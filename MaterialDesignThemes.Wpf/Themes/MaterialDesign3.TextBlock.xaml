@@ -9,7 +9,7 @@
     <!-- MaterialDesignBody -->
     <Style
         TargetType="{x:Type TextBlock}"
-        x:Key="MaterialDesignBodySmall">
+        x:Key="MaterialDesignBodySmallTextBlock">
         <Setter
             Property="FontWeight"
             Value="Regular" />
@@ -22,7 +22,7 @@
     </Style>
     <Style
         TargetType="{x:Type TextBlock}"
-        x:Key="MaterialDesignBodyMedium">
+        x:Key="MaterialDesignBodyMediumTextBlock">
         <Setter
             Property="FontWeight"
             Value="Regular" />
@@ -35,7 +35,7 @@
     </Style>
     <Style
         TargetType="{x:Type TextBlock}"
-        x:Key="MaterialDesignBodyLarge">
+        x:Key="MaterialDesignBodyLargeTextBlock">
         <Setter
             Property="FontWeight"
             Value="Regular" />
@@ -50,7 +50,7 @@
     <!-- MaterialDesignLabel -->
     <Style
         TargetType="{x:Type TextBlock}"
-        x:Key="MaterialDesignLabelSmall">
+        x:Key="MaterialDesignLabelSmallTextBlock">
         <Setter
             Property="FontWeight"
             Value="Medium" />
@@ -63,7 +63,7 @@
     </Style>
     <Style
         TargetType="{x:Type TextBlock}"
-        x:Key="MaterialDesignLabelMedium">
+        x:Key="MaterialDesignLabelMediumTextBlock">
         <Setter
             Property="FontWeight"
             Value="Medium" />
@@ -76,7 +76,7 @@
     </Style>
     <Style
         TargetType="{x:Type TextBlock}"
-        x:Key="MaterialDesignLabelLarge">
+        x:Key="MaterialDesignLabelLargeTextBlock">
         <Setter
             Property="FontWeight"
             Value="Medium" />
@@ -91,7 +91,7 @@
     <!-- MaterialDesignTitle -->
     <Style
         TargetType="{x:Type TextBlock}"
-        x:Key="MaterialDesignTitleSmall">
+        x:Key="MaterialDesignTitleSmallTextBlock">
         <Setter
             Property="FontWeight"
             Value="Medium" />
@@ -104,7 +104,7 @@
     </Style>
     <Style
         TargetType="{x:Type TextBlock}"
-        x:Key="MaterialDesignTitleMedium">
+        x:Key="MaterialDesignTitleMediumTextBlock">
         <Setter
             Property="FontWeight"
             Value="Medium" />
@@ -117,7 +117,7 @@
     </Style>
     <Style
         TargetType="{x:Type TextBlock}"
-        x:Key="MaterialDesignTitleLarge">
+        x:Key="MaterialDesignTitleLargeTextBlock">
         <Setter
             Property="FontWeight"
             Value="Medium" />
@@ -132,7 +132,7 @@
     <!-- MaterialDesignHeadline -->
     <Style
         TargetType="{x:Type TextBlock}"
-        x:Key="MaterialDesignHeadlineSmall">
+        x:Key="MaterialDesignHeadlineSmallTextBlock">
         <Setter
             Property="FontWeight"
             Value="Regular" />
@@ -145,7 +145,7 @@
     </Style>
     <Style
         TargetType="{x:Type TextBlock}"
-        x:Key="MaterialDesignHeadlinelMedium">
+        x:Key="MaterialDesignHeadlinelMediumTextBlock">
         <Setter
             Property="FontWeight"
             Value="Regular" />
@@ -158,7 +158,7 @@
     </Style>
     <Style
         TargetType="{x:Type TextBlock}"
-        x:Key="MaterialDesignHeadlineLarge">
+        x:Key="MaterialDesignHeadlineLargeTextBlock">
         <Setter
             Property="FontWeight"
             Value="Regular" />
@@ -173,7 +173,7 @@
     <!-- MaterialDesignDisplay -->
     <Style
         TargetType="{x:Type TextBlock}"
-        x:Key="MaterialDesignDisplaySmall">
+        x:Key="MaterialDesignDisplaySmallTextBlock">
         <Setter
             Property="FontWeight"
             Value="Regular" />
@@ -186,7 +186,7 @@
     </Style>
     <Style
         TargetType="{x:Type TextBlock}"
-        x:Key="MaterialDesignDisplayMedium">
+        x:Key="MaterialDesignDisplayMediumTextBlock">
         <Setter
             Property="FontWeight"
             Value="Regular" />
@@ -199,7 +199,7 @@
     </Style>
     <Style
         TargetType="{x:Type TextBlock}"
-        x:Key="MaterialDesignDisplayLarge">
+        x:Key="MaterialDesignDisplayLargeTextBlock">
         <Setter
             Property="FontWeight"
             Value="Regular" />
