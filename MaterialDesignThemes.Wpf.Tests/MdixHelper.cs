@@ -14,7 +14,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             var _ = Application.Current;
         }
 
-        private static ResourceDictionary DefaultResourceDictionary => GetResourceDictionary("MaterialDesign2.Defaults.xaml");
+        private static ResourceDictionary DefaultResourceDictionary => GetResourceDictionary("MaterialDesignTheme.Defaults.xaml");
 
         private static ResourceDictionary GenericResourceDictionary => GetResourceDictionary("Generic.xaml");
 
