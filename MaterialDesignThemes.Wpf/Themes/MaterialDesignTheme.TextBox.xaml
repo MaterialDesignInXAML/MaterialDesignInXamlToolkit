@@ -37,7 +37,7 @@
         <Setter Property="Opacity" Value="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource Mode=TemplatedParent}}" />
         <Setter Property="Text" Value="{Binding Path=(wpf:HintAssist.HelperText), RelativeSource={RelativeSource Mode=TemplatedParent}}" />
     </Style>
-    
+
     <Style x:Key="MaterialDesignTextBoxBase" TargetType="{x:Type TextBoxBase}">
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
