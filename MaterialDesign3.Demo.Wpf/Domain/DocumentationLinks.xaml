@@ -1,0 +1,133 @@
+﻿<UserControl
+    x:Class="MaterialDesign3Demo.Domain.DocumentationLinks"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:domain="clr-namespace:MaterialDesign3Demo.Domain"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance domain:DemoItem, IsDesignTimeCreatable=True }">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate
+                DataType="{x:Type domain:DocumentationLink}">
+                <Button
+                    x:Name="Root"
+                    ToolTip="Wiki Article"
+                    ToolTipService.InitialShowDelay="0"
+                    Style="{DynamicResource MaterialDesignFlatButton}"
+                    Command="{Binding Open}">
+                    <StackPanel
+                        Orientation="Horizontal">
+                        <materialDesign:PackIcon
+                            x:Name="PackIcon"
+                            Kind="BookOpenVariant"
+                            VerticalAlignment="Center" />
+                        <TextBlock
+                            Margin="8 0 0 0"
+                            Style="{StaticResource MaterialDesignBody1TextBlock}"
+                            Text="{Binding Label, Mode=OneWay}" />
+                    </StackPanel>
+                </Button>
+                <DataTemplate.Triggers>
+                    <DataTrigger
+                        Binding="{Binding Type}"
+                        Value="DemoPageSource">
+                        <Setter
+                            TargetName="PackIcon"
+                            Property="Kind"
+                            Value="Xml" />
+                        <Setter
+                            TargetName="Root"
+                            Property="ToolTip"
+                            Value="Demo Source" />
+                    </DataTrigger>
+                    <DataTrigger
+                        Binding="{Binding Type}"
+                        Value="StyleSource">
+                        <Setter
+                            TargetName="PackIcon"
+                            Property="Kind"
+                            Value="Brush" />
+                        <Setter
+                            TargetName="Root"
+                            Property="ToolTip"
+                            Value="Style Source" />
+                    </DataTrigger>
+                    <DataTrigger
+                        Binding="{Binding Type}"
+                        Value="Video">
+                        <Setter
+                            TargetName="PackIcon"
+                            Property="Kind"
+                            Value="YoutubePlay" />
+                        <Setter
+                            TargetName="Root"
+                            Property="ToolTip"
+                            Value="Video Help" />
+                    </DataTrigger>
+                    <DataTrigger
+                        Binding="{Binding Type}"
+                        Value="ControlSource">
+                        <Setter
+                            TargetName="PackIcon"
+                            Property="Kind"
+                            Value="CodeBraces" />
+                        <Setter
+                            TargetName="Root"
+                            Property="ToolTip"
+                            Value="Object Source/API" />
+                    </DataTrigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <ScrollViewer
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            HorizontalScrollBarVisibility="Auto"
+            VerticalScrollBarVisibility="Disabled">
+            <StackPanel
+                Margin="16"
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    Kind="Information"
+                    VerticalAlignment="Center" />
+                <TextBlock
+                    Margin="8 0 0 0"
+                    VerticalAlignment="Center">Information Links:</TextBlock>
+                <ItemsControl
+                    Margin="16 0 0 0"
+                    ItemsSource="{Binding Documentation}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel
+                                Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style
+                            TargetType="ContentPresenter">
+                            <Setter
+                                Property="Margin"
+                                Value="0 0 8 0" />
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+        <Border
+            BorderBrush="{DynamicResource MaterialDesignDivider}"
+            BorderThickness="0 0 0 1" />
+    </Grid>
+</UserControl>

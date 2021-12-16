@@ -1,0 +1,187 @@
+﻿<UserControl
+    x:Class="MaterialDesign3Demo.Shadows"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+    mc:Ignorable="d" 
+    d:DesignHeight="300"
+    d:DesignWidth="300">
+    <StackPanel Margin="8 8 0 0">
+        <TextBlock
+            Text="Raised controls have default shadows set, but the shadows can be overriden."/>
+        
+        <StackPanel
+            Orientation="Horizontal"
+            Margin="0 32 0 0">
+            <smtx:XamlDisplay UniqueKey="shadow_1">
+                <Button
+                    Style="{DynamicResource MaterialDesignRaisedButton}"
+                    Content="DEPTH 1"/>
+            </smtx:XamlDisplay>
+            
+            <smtx:XamlDisplay
+                UniqueKey="shadow_2"
+                Margin="16 0 0 0">
+                <Button
+                    Style="{DynamicResource MaterialDesignRaisedButton}"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                    Content="DEPTH 2"/>
+            </smtx:XamlDisplay>
+            
+            <smtx:XamlDisplay
+                UniqueKey="shadow_3"
+                Margin="16 0 0 0">
+                <Button
+                    Style="{DynamicResource MaterialDesignRaisedButton}"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                    Content="DEPTH 3"/>
+            </smtx:XamlDisplay>
+            
+            <smtx:XamlDisplay
+                UniqueKey="shadow_4"
+                Margin="16 0 0 0">
+                <Button
+                    Style="{DynamicResource MaterialDesignRaisedButton}"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth4"
+                    Content="DEPTH 4"/>
+            </smtx:XamlDisplay>
+            
+            <smtx:XamlDisplay UniqueKey="shadow_5" Margin="16 0 0 0">
+                <Button
+                    Style="{DynamicResource MaterialDesignRaisedButton}"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                    Content="DEPTH 5"/>
+            </smtx:XamlDisplay>
+        </StackPanel>
+        
+        <StackPanel
+            Orientation="Horizontal"
+            Margin="0 32 0 0">
+            <smtx:XamlDisplay UniqueKey="shadow_6">
+                <Button
+                    Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                    Content="1"/>
+            </smtx:XamlDisplay>
+            
+            <smtx:XamlDisplay
+                UniqueKey="shadow_7"
+                Margin="16 0 0 0">
+                <Button
+                    Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                    Content="2"/>
+            </smtx:XamlDisplay>
+            
+            <smtx:XamlDisplay
+                UniqueKey="shadow_8"
+                Margin="16 0 0 0">
+                <Button
+                    Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                    Content="3"/>
+            </smtx:XamlDisplay>
+            
+            <smtx:XamlDisplay
+                UniqueKey="shadow_9"
+                Margin="16 0 0 0">
+                <Button
+                    Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth4"
+                    Content="4"/>
+            </smtx:XamlDisplay>
+            
+            <smtx:XamlDisplay
+                UniqueKey="shadow_10"
+                Margin="16 0 0 0">
+                <Button
+                    Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                    Content="5"/>
+            </smtx:XamlDisplay>
+        </StackPanel>
+        
+        <StackPanel
+            Orientation="Horizontal"
+            Margin="0 32 0 0">
+            <smtx:XamlDisplay UniqueKey="shadow_11">
+                <materialDesign:Card
+                    materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                    Padding="32"
+                    Content="DEPTH 1"/>
+            </smtx:XamlDisplay>
+            
+            <smtx:XamlDisplay
+                UniqueKey="shadow_12"
+                Margin="16 0 0 0">
+                <materialDesign:Card
+                    materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                    Padding="32"
+                    Content="DEPTH 2"/>
+            </smtx:XamlDisplay>
+            
+            <smtx:XamlDisplay
+                UniqueKey="shadow_13"
+                Margin="16 0 0 0">
+                <materialDesign:Card
+                    materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                    Padding="32"
+                    Content="DEPTH 3"/>
+            </smtx:XamlDisplay>
+            
+            <smtx:XamlDisplay
+                UniqueKey="shadow_14"
+                Margin="16 0 0 0">
+                <materialDesign:Card
+                    materialDesign:ShadowAssist.ShadowDepth="Depth4"
+                    Padding="32"
+                    Content="DEPTH 4"/>
+            </smtx:XamlDisplay>
+            
+            <smtx:XamlDisplay
+                UniqueKey="shadow_15"
+                Margin="16 0 0 0">
+                <materialDesign:Card
+                    materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                    Padding="32"
+                    Content="DEPTH 5"/>
+            </smtx:XamlDisplay>
+        </StackPanel>
+        
+        <StackPanel
+            Orientation="Horizontal"
+            Margin="0 32 0 0">
+            <smtx:XamlDisplay UniqueKey="shadow_16">
+                <materialDesign:Card
+                    materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                    materialDesign:ShadowAssist.ShadowEdges="Bottom,Right"
+                    Padding="32"
+                    Content="CUSTOM CLIP"/>
+            </smtx:XamlDisplay>
+            
+            <smtx:XamlDisplay
+                UniqueKey="shadow_17"
+                Margin="16 0 0 0">
+                <materialDesign:Card
+                    materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                    materialDesign:ShadowAssist.ShadowEdges="Top"
+                    Padding="32"
+                    Content="CUSTOM CLIP"/>
+            </smtx:XamlDisplay>
+            
+            <smtx:XamlDisplay
+                UniqueKey="shadow_18"
+                Margin="16 0 0 0">
+                <materialDesign:Card
+                    materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                    materialDesign:ShadowAssist.ShadowEdges="Bottom,Left"
+                    Padding="32"
+                    Content="CUSTOM CLIP"/>
+            </smtx:XamlDisplay>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
+
