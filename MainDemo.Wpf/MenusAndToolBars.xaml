@@ -218,6 +218,26 @@
 
         <smtx:XamlDisplay
             UniqueKey="menus_3"
+            DockPanel.Dock="Top"
+            Margin="5 16 0 0">
+            <ToolBarTray>
+                <ToolBar
+                    Style="{StaticResource MaterialDesignToolBar}"
+                    ClipToBounds="False">
+                    <Menu>
+                        <MenuItem
+                            Header="Nested">
+                            <MenuItem
+                                Header="Item 1" />
+                            <MenuItem
+                                Header="Item 2" />
+                        </MenuItem>
+                    </Menu>              
+                </ToolBar>
+            </ToolBarTray>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay
+            UniqueKey="menus_4"
             Margin="16"
             VerticalAlignment="Top"
             HorizontalAlignment="Left">
@@ -225,7 +245,7 @@
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay
-            UniqueKey="menus_4"
+            UniqueKey="menus_5"
             Margin="16"
             VerticalAlignment="Top"
             HorizontalAlignment="Left">
