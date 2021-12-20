@@ -729,6 +729,86 @@
                     </Grid>
                 </smtx:XamlDisplay>
 
+                <smtx:XamlDisplay UniqueKey="buttons_outlined_7" Margin="8 0">
+                    <Grid Width="124">
+                        <!-- raised button with progress, useful to auto dismiss/accept something -->
+                        <Button
+                            Command="{Binding DismissCommand}"
+                            Style="{StaticResource MaterialDesignOutlinedButton}"
+                            HorizontalAlignment="Left"
+                            materialDesign:ButtonProgressAssist.Value="{Binding DismissButtonProgress}"
+                            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                            Visibility="{Binding ShowDismissButton, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="DISMISS"/>
+                                <materialDesign:PackIcon
+                                    Margin="4 .5 0 0"
+                                    Kind="Close" />
+                            </StackPanel>
+                        </Button>
+
+                        <TextBlock
+                            Text="{Binding DemoRestartCountdownText}"
+                            VerticalAlignment="Center"
+                            Visibility="{Binding ShowDismissButton, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
+                    </Grid>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="buttons_outlined_8" Margin="8 0">
+                    <Grid Width="124">
+                        <Button
+                            Style="{StaticResource MaterialDesignOutlinedButton}"
+                            materialDesign:ButtonProgressAssist.Value="-1"
+                            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                            materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                            Content="Indeterminate" Margin="2,0"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                    </Grid>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="buttons_flat_bg_7" Margin="8 0">
+                    <Grid Width="124">
+                        <!-- raised button with progress, useful to auto dismiss/accept something -->
+                        <Button
+                            Command="{Binding DismissCommand}"
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            HorizontalAlignment="Left"
+                            materialDesign:ButtonProgressAssist.Value="{Binding DismissButtonProgress}"
+                            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                            Visibility="{Binding ShowDismissButton, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="DISMISS"/>
+                                <materialDesign:PackIcon
+                                    Margin="4 .5 0 0"
+                                    Kind="Close" />
+                            </StackPanel>
+                        </Button>
+
+                        <TextBlock
+                            Text="{Binding DemoRestartCountdownText}"
+                            VerticalAlignment="Center"
+                            Visibility="{Binding ShowDismissButton, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
+                    </Grid>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="buttons_flat_bg_8" Margin="8 0">
+                    <Grid Width="124">
+                        <Button
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            materialDesign:ButtonProgressAssist.Value="-1"
+                            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                            materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                            Content="Indeterminate" Margin="2,0"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                    </Grid>
+                </smtx:XamlDisplay>
+            </StackPanel>
+
+            <StackPanel
+                Orientation="Horizontal"
+                Margin="0 24 0 0">
                 <smtx:XamlDisplay UniqueKey="buttons_28" Margin="8 0">
                     <StackPanel Orientation="Horizontal" smtx:XamlDisplay.Ignore="This">
                         <!-- floating action button with progress -->
