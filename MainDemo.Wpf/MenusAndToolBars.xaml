@@ -226,13 +226,38 @@
                     ClipToBounds="False">
                     <Menu>
                         <MenuItem
-                            Header="Nested">
+                            Header="Nested menu">
                             <MenuItem
                                 Header="Item 1" />
                             <MenuItem
                                 Header="Item 2" />
                         </MenuItem>
-                    </Menu>              
+                    </Menu>
+
+                    <Separator />
+
+                    <ComboBox
+                        Margin="8 0"
+                        Width="80"
+                        Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                        materialDesign:HintAssist.Hint="Food">
+                        <ComboBoxItem
+                            Content="Fries"
+                            IsSelected="True" />
+
+                        <ComboBoxItem
+                            Content="Waffles" />
+
+                        <ComboBoxItem
+                            Content="Chocolate" />
+                    </ComboBox>
+
+                    <TextBox
+                        Width="80"
+                        Margin="8 0"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        materialDesign:HintAssist.Hint="Drink"
+                        Text="Beer" />
                 </ToolBar>
             </ToolBarTray>
         </smtx:XamlDisplay>
