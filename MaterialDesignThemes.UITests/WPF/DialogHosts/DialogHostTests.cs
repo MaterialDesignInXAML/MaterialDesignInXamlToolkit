@@ -164,6 +164,8 @@ namespace MaterialDesignThemes.UITests.WPF.DialogHosts
                 Assert.Equal(Colors.Red, await card1.GetBackgroundColor());
                 Assert.Equal(Colors.Red, await card2.GetBackgroundColor());
             });
+
+            recorder.Success();
         }
 
         [Theory]
@@ -242,6 +244,8 @@ namespace MaterialDesignThemes.UITests.WPF.DialogHosts
                     await textBlock2.GetEffectiveBackground(),
                     MinimumContrastSmallText);
             });
+
+            recorder.Success();
         }
     }
 }
