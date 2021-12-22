@@ -52,6 +52,12 @@ public class DialogHostTests : TestBase
             Assert.Equal(1, invocations.Count);
         });
 
+        await Wait.For(async () =>
+        {
+            Assert.True(await contentCover.GetIsHitTestVisible());
+            Assert.True(await contentCover.GetOpacity() > 0.0);
+        });
+
         await drawerHost.LeftClick();
 
         await Wait.For(async () => await contentCover.GetOpacity() <= 0.0);
