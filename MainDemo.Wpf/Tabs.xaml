@@ -6,207 +6,240 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignHeight="1080"
+    d:DesignWidth="1920"
     mc:Ignorable="d">
-    <WrapPanel Margin="0,0,8,8">
-        <smtx:XamlDisplay
-            Margin="16,4,0,16"
-            VerticalContentAlignment="Top"
-            UniqueKey="tabs_1">
-            <TabControl Style="{StaticResource MaterialDesignTabControl}">
-                <TabItem Header="Tab 1" Style="{StaticResource MaterialDesignTabItem}">
-                    <TextBlock
-                        Width="200"
-                        Height="200"
-                        Margin="5"
-                        VerticalAlignment="Top"
-                        Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-                        Text="Standard Tab 1" />
-                </TabItem>
-                <TabItem Header="Tab 2" Style="{StaticResource MaterialDesignTabItem}">
-                    <TextBlock
-                        Width="200"
-                        Height="200"
-                        Margin="5"
-                        VerticalAlignment="Top"
-                        Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-                        Text="Standard Tab 2" />
-                </TabItem>
-            </TabControl>
-        </smtx:XamlDisplay>
+    <StackPanel Margin="0,0,8,8">
+        <TextBlock
+            Margin="0,0,0,16"
+            Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+            Text="Tabs" />
 
-        <smtx:XamlDisplay
-            Margin="16,4,0,16"
-            VerticalContentAlignment="Top"
-            UniqueKey="tabs_2">
-            <TabControl Style="{StaticResource MaterialDesignTabControl}">
-                <TabItem Header="Tab 1" Style="{StaticResource MaterialDesignTabItemCompact}">
-                    <TextBlock
-                        Width="200"
-                        Height="200"
-                        Margin="5"
-                        VerticalAlignment="Top"
-                        Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-                        Text="Compact Tab 1" />
-                </TabItem>
-                <TabItem Header="Tab 2" Style="{StaticResource MaterialDesignTabItemCompact}">
-                    <TextBlock
-                        Width="200"
-                        Height="200"
-                        Margin="5"
-                        VerticalAlignment="Top"
-                        Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-                        Text="Compact Tab 2" />
-                </TabItem>
-            </TabControl>
-        </smtx:XamlDisplay>
+        <TextBlock
+            Margin="0,0,0,8"
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Text="Default style" />
 
-        <smtx:XamlDisplay
-            Margin="16,4,0,16"
-            VerticalContentAlignment="Top"
-            UniqueKey="tabs_3">
-            <TabControl Style="{StaticResource MaterialDesignTabControl}" TabStripPlacement="Left">
-                <TabItem Header="Tab 1" Style="{StaticResource MaterialDesignTabItem}">
-                    <TextBlock
-                        Width="200"
-                        Height="200"
-                        Margin="5"
-                        VerticalAlignment="Top"
-                        Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-                        Text="Standard Left Tab 1" />
-                </TabItem>
-                <TabItem Header="Tab 2" Style="{StaticResource MaterialDesignTabItem}">
-                    <TextBlock
-                        Width="200"
-                        Height="200"
-                        Margin="5"
-                        VerticalAlignment="Top"
-                        Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-                        Text="Standard Left Tab 2" />
-                </TabItem>
-            </TabControl>
-        </smtx:XamlDisplay>
+        <WrapPanel Margin="0,0,0,16">
+            <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_1">
+                <materialDesign:Card>
+                    <TabControl Width="300" Style="{StaticResource MaterialDesignTabControl}">
+                        <TabItem Header="Tab 1" Style="{StaticResource MaterialDesignTabItem}">
+                            <TextBlock
+                                Width="200"
+                                Height="200"
+                                Margin="5"
+                                VerticalAlignment="Top"
+                                Text="Standard Tab 1" />
+                        </TabItem>
+                        <TabItem Header="Tab 2" Style="{StaticResource MaterialDesignTabItem}">
+                            <TextBlock
+                                Width="200"
+                                Height="200"
+                                Margin="5"
+                                VerticalAlignment="Top"
+                                Text="Standard Tab 2" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay
-            Margin="16,4,0,16"
-            VerticalContentAlignment="Top"
-            UniqueKey="tabs_4">
-            <TabControl materialDesign:ColorZoneAssist.Mode="Inverted" Style="{StaticResource MaterialDesignTabControl}">
-                <TabItem Header="Tab 1" Style="{StaticResource MaterialDesignTabItem}">
-                    <TextBlock
-                        Width="200"
-                        Height="200"
-                        Margin="5"
-                        VerticalAlignment="Top"
-                        Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-                        Text="Standard Tab 1 with Inverted ColorZone Mode"
-                        TextWrapping="WrapWithOverflow" />
-                </TabItem>
-                <TabItem Header="Tab 2" Style="{StaticResource MaterialDesignTabItem}">
-                    <TextBlock
-                        Width="200"
-                        Height="200"
-                        Margin="5"
-                        VerticalAlignment="Top"
-                        Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-                        Text="Standard Tab 2 with Inverted ColorZone Mode"
-                        TextWrapping="WrapWithOverflow" />
-                </TabItem>
-            </TabControl>
-        </smtx:XamlDisplay>
+            <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_3">
+                <materialDesign:Card>
+                    <TabControl
+                        Width="300"
+                        Style="{StaticResource MaterialDesignTabControl}"
+                        TabStripPlacement="Left">
+                        <TabItem Header="Tab 1" Style="{StaticResource MaterialDesignTabItem}">
+                            <TextBlock
+                                Width="200"
+                                Height="200"
+                                Margin="5"
+                                VerticalAlignment="Top"
+                                Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                                Text="Standard Left Tab 1" />
+                        </TabItem>
+                        <TabItem Header="Tab 2" Style="{StaticResource MaterialDesignTabItem}">
+                            <TextBlock
+                                Width="200"
+                                Height="200"
+                                Margin="5"
+                                VerticalAlignment="Top"
+                                Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                                Text="Standard Left Tab 2" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay
-            Margin="16,4,0,16"
-            VerticalContentAlignment="Top"
-            UniqueKey="tabs_5">
-            <TabControl materialDesign:ColorZoneAssist.Mode="PrimaryDark" Style="{StaticResource MaterialDesignTabControl}">
-                <TabItem Header="Tab 1" Style="{StaticResource MaterialDesignTabItemCompact}">
-                    <TextBlock
-                        Width="200"
-                        Height="200"
-                        Margin="5"
-                        VerticalAlignment="Top"
-                        Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-                        Text="Compact Tab 1 with PrimaryDark ColorZone Mode"
-                        TextWrapping="WrapWithOverflow" />
-                </TabItem>
-                <TabItem Header="Tab 2" Style="{StaticResource MaterialDesignTabItemCompact}">
-                    <TextBlock
-                        Width="200"
-                        Height="200"
-                        Margin="5"
-                        VerticalAlignment="Top"
-                        Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-                        Text="Compact Tab 2 with PrimaryDark ColorZone Mode"
-                        TextWrapping="WrapWithOverflow" />
-                </TabItem>
-            </TabControl>
-        </smtx:XamlDisplay>
+            <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_4">
+                <materialDesign:Card>
+                    <TabControl
+                        Width="300"
+                        materialDesign:ColorZoneAssist.Mode="Inverted"
+                        Style="{StaticResource MaterialDesignTabControl}">
+                        <TabItem Header="Tab 1" Style="{StaticResource MaterialDesignTabItem}">
+                            <TextBlock
+                                Width="200"
+                                Height="200"
+                                Margin="5"
+                                VerticalAlignment="Top"
+                                Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                                Text="Standard Tab 1 with Inverted ColorZone Mode"
+                                TextWrapping="WrapWithOverflow" />
+                        </TabItem>
+                        <TabItem Header="Tab 2" Style="{StaticResource MaterialDesignTabItem}">
+                            <TextBlock
+                                Width="200"
+                                Height="200"
+                                Margin="5"
+                                VerticalAlignment="Top"
+                                Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                                Text="Standard Tab 2 with Inverted ColorZone Mode"
+                                TextWrapping="WrapWithOverflow" />
+                        </TabItem>
+                    </TabControl>
 
-        <smtx:XamlDisplay
-            Margin="16,4,0,16"
-            VerticalContentAlignment="Top"
-            UniqueKey="tabs_6">
-            <TabControl materialDesign:ColorZoneAssist.Mode="SecondaryMid" Style="{StaticResource MaterialDesignTabControl}">
-                <TabItem Header="Tab 1" Style="{StaticResource MaterialDesignTabItemCompact}">
-                    <TextBlock
-                        Width="200"
-                        Height="200"
-                        Margin="5"
-                        VerticalAlignment="Top"
-                        Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-                        Text="Compact Tab 1 with SecondaryMid ColorZone Mode"
-                        TextWrapping="WrapWithOverflow" />
-                </TabItem>
-                <TabItem Header="Tab 2" Style="{StaticResource MaterialDesignTabItemCompact}">
-                    <TextBlock
-                        Width="200"
-                        Height="200"
-                        Margin="5"
-                        VerticalAlignment="Top"
-                        Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-                        Text="Compact Tab 2 with SecondaryMid ColorZone Mode"
-                        TextWrapping="WrapWithOverflow" />
-                </TabItem>
-            </TabControl>
-        </smtx:XamlDisplay>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+        </WrapPanel>
 
-        <smtx:XamlDisplay
-            Margin="16,4,0,16"
-            VerticalContentAlignment="Top"
-            UniqueKey="tabs_7">
-            <TabControl
-                materialDesign:ColorZoneAssist.Mode="Inverted"
-                Style="{StaticResource MaterialDesignTabControl}"
-                TabStripPlacement="Right">
-                <TabItem
-                    Header="Tab 1"
-                    Style="{StaticResource MaterialDesignTabItemCompact}"
-                    Typography.Capitals="Normal">
-                    <TextBlock
-                        Width="200"
-                        Height="200"
-                        Margin="5"
-                        VerticalAlignment="Top"
-                        Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-                        Text="Compact Right Tab 1 with Inverted ColorZone Mode and Normal Header Typography"
-                        TextWrapping="WrapWithOverflow" />
-                </TabItem>
-                <TabItem
-                    Header="Tab 2"
-                    Style="{StaticResource MaterialDesignTabItemCompact}"
-                    Typography.Capitals="Normal">
-                    <TextBlock
-                        Width="200"
-                        Height="200"
-                        Margin="5"
-                        VerticalAlignment="Top"
-                        Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-                        Text="Compact Right Tab 2 with Inverted ColorZone Mode and Normal Header Typography"
-                        TextWrapping="WrapWithOverflow" />
-                </TabItem>
-            </TabControl>
-        </smtx:XamlDisplay>
-    </WrapPanel>
+        <TextBlock
+            Margin="0,0,0,8"
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Text="Compact style" />
+
+        <WrapPanel Margin="0,0,0,16">
+            <smtx:XamlDisplay VerticalContentAlignment="Top" UniqueKey="tabs_2">
+                <materialDesign:Card>
+                    <TabControl Width="300" Style="{StaticResource MaterialDesignTabControl}">
+                        <TabItem Header="Tab 1" Style="{StaticResource MaterialDesignTabItemCompact}">
+                            <TextBlock
+                                Width="200"
+                                Height="200"
+                                Margin="5"
+                                VerticalAlignment="Top"
+                                Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                                Text="Compact Tab 1" />
+                        </TabItem>
+                        <TabItem Header="Tab 2" Style="{StaticResource MaterialDesignTabItemCompact}">
+                            <TextBlock
+                                Width="200"
+                                Height="200"
+                                Margin="5"
+                                VerticalAlignment="Top"
+                                Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                                Text="Compact Tab 2" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+        </WrapPanel>
+
+        <TextBlock
+            Margin="0,0,0,8"
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Text="Colors" />
+
+        <WrapPanel>
+            <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_5">
+                <materialDesign:Card>
+                    <TabControl
+                        Width="300"
+                        materialDesign:ColorZoneAssist.Mode="PrimaryDark"
+                        Style="{StaticResource MaterialDesignTabControl}">
+                        <TabItem Header="Tab 1" Style="{StaticResource MaterialDesignTabItemCompact}">
+                            <TextBlock
+                                Width="200"
+                                Height="200"
+                                Margin="5"
+                                VerticalAlignment="Top"
+                                Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                                Text="Compact Tab 1 with PrimaryDark ColorZone Mode"
+                                TextWrapping="WrapWithOverflow" />
+                        </TabItem>
+                        <TabItem Header="Tab 2" Style="{StaticResource MaterialDesignTabItemCompact}">
+                            <TextBlock
+                                Width="200"
+                                Height="200"
+                                Margin="5"
+                                VerticalAlignment="Top"
+                                Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                                Text="Compact Tab 2 with PrimaryDark ColorZone Mode"
+                                TextWrapping="WrapWithOverflow" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_6">
+                <materialDesign:Card>
+                    <TabControl
+                        Width="300"
+                        materialDesign:ColorZoneAssist.Mode="SecondaryMid"
+                        Style="{StaticResource MaterialDesignTabControl}">
+                        <TabItem Header="Tab 1" Style="{StaticResource MaterialDesignTabItemCompact}">
+                            <TextBlock
+                                Width="200"
+                                Height="200"
+                                Margin="5"
+                                VerticalAlignment="Top"
+                                Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                                Text="Compact Tab 1 with SecondaryMid ColorZone Mode"
+                                TextWrapping="WrapWithOverflow" />
+                        </TabItem>
+                        <TabItem Header="Tab 2" Style="{StaticResource MaterialDesignTabItemCompact}">
+                            <TextBlock
+                                Width="200"
+                                Height="200"
+                                Margin="5"
+                                VerticalAlignment="Top"
+                                Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                                Text="Compact Tab 2 with SecondaryMid ColorZone Mode"
+                                TextWrapping="WrapWithOverflow" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_7">
+                <materialDesign:Card>
+                    <TabControl
+                        Width="300"
+                        materialDesign:ColorZoneAssist.Mode="Inverted"
+                        Style="{StaticResource MaterialDesignTabControl}"
+                        TabStripPlacement="Right">
+                        <TabItem
+                            Header="Tab 1"
+                            Style="{StaticResource MaterialDesignTabItemCompact}"
+                            Typography.Capitals="Normal">
+                            <TextBlock
+                                Width="200"
+                                Height="200"
+                                Margin="5"
+                                VerticalAlignment="Top"
+                                Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                                Text="Compact Right Tab 1 with Inverted ColorZone Mode and Normal Header Typography"
+                                TextWrapping="WrapWithOverflow" />
+                        </TabItem>
+                        <TabItem
+                            Header="Tab 2"
+                            Style="{StaticResource MaterialDesignTabItemCompact}"
+                            Typography.Capitals="Normal">
+                            <TextBlock
+                                Width="200"
+                                Height="200"
+                                Margin="5"
+                                VerticalAlignment="Top"
+                                Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                                Text="Compact Right Tab 2 with Inverted ColorZone Mode and Normal Header Typography"
+                                TextWrapping="WrapWithOverflow" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+        </WrapPanel>
+
+
+    </StackPanel>
 </UserControl>

@@ -99,9 +99,10 @@
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
         <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
-        <Setter Property="Typography.Capitals" Value="AllSmallCaps" />
-        <Setter Property="Padding" Value="16,12,16,12" />
-        <Setter Property="Height" Value="72" />
+        <Setter Property="Padding" Value="16,12" />
+        <Setter Property="Height" Value="48" />
+        <Setter Property="MinWidth" Value="90" />
+        <Setter Property="MaxWidth" Value="360" />
         <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
         <Setter Property="Template">
             <Setter.Value>
@@ -109,7 +110,6 @@
                     <Grid x:Name="Root">
                         <wpf:ColorZone
                             x:Name="tabitemcz"
-                            Grid.RowSpan="2"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
                             wpf:ColorZoneAssist.Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Background)}"
