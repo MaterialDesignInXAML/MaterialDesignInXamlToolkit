@@ -42,13 +42,12 @@
                     <DockPanel KeyboardNavigation.TabNavigation="Local">
                         <wpf:ColorZone
                             x:Name="PART_ColorZone"
-                            wpf:ColorZoneAssist.Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Background)}"
-                            wpf:ColorZoneAssist.Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Foreground)}"
-                            wpf:ShadowAssist.ShadowDepth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth)}"
-                            wpf:ShadowAssist.ShadowEdges="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowEdges)}"
+                            wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}"
+                            wpf:ShadowAssist.ShadowEdges="{TemplateBinding wpf:ShadowAssist.ShadowEdges}"
                             DockPanel.Dock="Top"
                             Focusable="False"
-                            Mode="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Mode)}">
+                            Mode="{TemplateBinding wpf:ColorZoneAssist.Mode}">
+
                             <UniformGrid
                                 x:Name="HeaderPanel"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -57,15 +56,13 @@
                                 KeyboardNavigation.TabIndex="1"
                                 Rows="1" />
                         </wpf:ColorZone>
-                        <wpf:ColorZone
-                            x:Name="PART_ColorZoneSelectedContent"
+                        <Border
+                            x:Name="PART_BorderSelectedContent"
                             Padding="{TemplateBinding Padding}"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
                             Background="{x:Null}"
-                            Focusable="False"
-                            Foreground="{DynamicResource MaterialDesignBody}"
-                            Mode="Standard">
+                            Focusable="False">
                             <ContentPresenter
                                 x:Name="PART_SelectedContentHost"
                                 Margin="{TemplateBinding Padding}"
@@ -77,7 +74,7 @@
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                 TextBlock.Foreground="{Binding ElementName=PART_ColorZone, Path=Foreground}"
                                 TextElement.Foreground="{Binding ElementName=PART_ColorZone, Path=Foreground}" />
-                        </wpf:ColorZone>
+                        </Border>
                     </DockPanel>
 
                     <ControlTemplate.Triggers>

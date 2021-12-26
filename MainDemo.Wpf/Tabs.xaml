@@ -42,17 +42,14 @@
 
             <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_3">
                 <materialDesign:Card>
-                    <TabControl
-                        Width="300"
-                        Style="{StaticResource MaterialDesignTabControl}"
-                        TabStripPlacement="Left">
-                        <TabItem Header="Tab 1" Style="{StaticResource MaterialDesignTabItem}">
+                    <TabControl Width="300" TabStripPlacement="Left">
+                        <TabItem Header="TAB 1">
                             <TextBlock
                                 Height="200"
                                 Margin="8"
                                 Text="Standard Left Tab 1" />
                         </TabItem>
-                        <TabItem Header="TAB 2" Style="{StaticResource MaterialDesignTabItem}">
+                        <TabItem Header="TAB 2">
                             <TextBlock
                                 Height="200"
                                 Margin="8"
@@ -64,18 +61,15 @@
 
             <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_4">
                 <materialDesign:Card>
-                    <TabControl
-                        Width="300"
-                        materialDesign:ColorZoneAssist.Mode="Inverted"
-                        Style="{StaticResource MaterialDesignTabControl}">
-                        <TabItem Header="TAB 1" Style="{StaticResource MaterialDesignTabItem}">
+                    <TabControl Width="300" materialDesign:ColorZoneAssist.Mode="Inverted">
+                        <TabItem Header="TAB 1">
                             <TextBlock
                                 Height="200"
                                 Margin="8"
                                 Text="Standard Tab 1 with Inverted ColorZone Mode"
                                 TextWrapping="WrapWithOverflow" />
                         </TabItem>
-                        <TabItem Header="TAB 2" Style="{StaticResource MaterialDesignTabItem}">
+                        <TabItem Header="TAB 2">
                             <TextBlock
                                 Height="200"
                                 Margin="8"
@@ -96,18 +90,15 @@
         <WrapPanel>
             <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_5">
                 <materialDesign:Card>
-                    <TabControl
-                        Width="300"
-                        materialDesign:ColorZoneAssist.Mode="PrimaryDark"
-                        Style="{StaticResource MaterialDesignTabControl}">
-                        <TabItem Header="TAB 1" Style="{StaticResource MaterialDesignTabItem}">
+                    <TabControl Width="300" materialDesign:ColorZoneAssist.Mode="PrimaryDark">
+                        <TabItem Header="TAB 1">
                             <TextBlock
                                 Height="200"
                                 Margin="8"
                                 Text="Compact Tab 1 with PrimaryDark ColorZone Mode"
                                 TextWrapping="WrapWithOverflow" />
                         </TabItem>
-                        <TabItem Header="TAB 2" Style="{StaticResource MaterialDesignTabItem}">
+                        <TabItem Header="TAB 2">
                             <TextBlock
                                 Height="200"
                                 Margin="8"
@@ -120,18 +111,15 @@
 
             <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_6">
                 <materialDesign:Card>
-                    <TabControl
-                        Width="300"
-                        materialDesign:ColorZoneAssist.Mode="SecondaryMid"
-                        Style="{StaticResource MaterialDesignTabControl}">
-                        <TabItem Header="TAB 1" Style="{StaticResource MaterialDesignTabItem}">
+                    <TabControl Width="300" materialDesign:ColorZoneAssist.Mode="SecondaryMid">
+                        <TabItem Header="TAB 1">
                             <TextBlock
                                 Height="200"
                                 Margin="8"
                                 Text="Compact Tab 1 with SecondaryMid ColorZone Mode"
                                 TextWrapping="WrapWithOverflow" />
                         </TabItem>
-                        <TabItem Header="TAB 2" Style="{StaticResource MaterialDesignTabItem}">
+                        <TabItem Header="TAB 2">
                             <TextBlock
                                 Height="200"
                                 Margin="8"
@@ -147,16 +135,15 @@
                     <TabControl
                         Width="300"
                         materialDesign:ColorZoneAssist.Mode="Inverted"
-                        Style="{StaticResource MaterialDesignTabControl}"
                         TabStripPlacement="Right">
-                        <TabItem Header="TAB 1" Typography.Capitals="Normal">
+                        <TabItem Header="TAB 1">
                             <TextBlock
                                 Height="200"
                                 Margin="8"
                                 Text="Compact Right Tab 1 with Inverted ColorZone Mode and Normal Header Typography"
                                 TextWrapping="WrapWithOverflow" />
                         </TabItem>
-                        <TabItem Header="TAB 2" Typography.Capitals="Normal">
+                        <TabItem Header="TAB 2">
                             <TextBlock
                                 Height="200"
                                 Margin="8"
