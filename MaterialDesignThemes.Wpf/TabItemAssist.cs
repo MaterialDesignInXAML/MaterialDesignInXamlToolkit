@@ -14,8 +14,8 @@ namespace MaterialDesignThemes.Wpf
             = DependencyProperty.RegisterAttached("TopIcon", typeof(PackIconKind?), typeof(TabItemAssist),
                 new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
 
-        public static object GetTopIcon(DependencyObject element)
-            => element.GetValue(TopIconProperty);
+        public static PackIconKind? GetTopIcon(DependencyObject element)
+            => (PackIconKind?)element.GetValue(TopIconProperty);
         public static void SetTopIcon(DependencyObject element, object value)
             => element.SetValue(TopIconProperty, value);
         #endregion

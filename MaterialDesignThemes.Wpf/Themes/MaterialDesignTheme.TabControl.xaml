@@ -5,11 +5,11 @@
     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary>
-            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-            <converters:BorderClipConverter x:Key="BorderClipConverter" />
-        </ResourceDictionary>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
     </ResourceDictionary.MergedDictionaries>
+
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <converters:BorderClipConverter x:Key="BorderClipConverter" />
 
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
@@ -33,6 +33,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
+        <Setter Property="wpf:ColorZoneAssist.Mode" Value="PrimaryMid" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabControl}">
@@ -97,6 +98,7 @@
 
     <Style x:Key="MaterialDesignTabItem" TargetType="{x:Type TabItem}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
         <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="Padding" Value="16,12" />
@@ -104,6 +106,7 @@
         <Setter Property="MinWidth" Value="90" />
         <Setter Property="MaxWidth" Value="360" />
         <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
+        <Setter Property="wpf:ColorZoneAssist.Mode" Value="PrimaryMid" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabItem}">
@@ -130,7 +133,7 @@
                                 Opacity=".82"
                                 RecognizesAccessKey="True"
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                TextBlock.FontSize="15"
+                                TextBlock.FontSize="14"
                                 TextBlock.FontWeight="Medium"
                                 TextOptions.TextFormattingMode="Ideal"
                                 TextOptions.TextRenderingMode="Auto"
@@ -243,13 +246,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
-
-    <Style
-        x:Key="MaterialDesignTabItemCompact"
-        BasedOn="{StaticResource MaterialDesignTabItem}"
-        TargetType="{x:Type TabItem}">
-        <Setter Property="Height" Value="48" />
     </Style>
 
     <!--  NAVIGATION RAIL  -->
