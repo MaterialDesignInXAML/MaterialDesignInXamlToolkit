@@ -26,7 +26,6 @@
         </Setter>
     </Style>
 
-
     <Style x:Key="MaterialDesignTabControl" TargetType="{x:Type TabControl}">
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
@@ -42,6 +41,7 @@
                     <DockPanel KeyboardNavigation.TabNavigation="Local">
                         <wpf:ColorZone
                             x:Name="PART_ColorZone"
+                            VerticalAlignment="Stretch"
                             wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}"
                             wpf:ShadowAssist.ShadowEdges="{TemplateBinding wpf:ShadowAssist.ShadowEdges}"
                             DockPanel.Dock="Top"
@@ -51,6 +51,7 @@
                             <UniformGrid
                                 x:Name="HeaderPanel"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="Top"
                                 Focusable="False"
                                 IsItemsHost="True"
                                 KeyboardNavigation.TabIndex="1"
@@ -100,13 +101,6 @@
         </Setter>
     </Style>
 
-    <Style
-        x:Key="MaterialDesignFilledTabControl"
-        BasedOn="{StaticResource MaterialDesignTabControlBase}"
-        TargetType="{x:Type TabControl}">
-        <Setter Property="wpf:ColorZoneAssist.Mode" Value="PrimaryMid" />
-    </Style>
-
     <Style x:Key="MaterialDesignTabItem" TargetType="{x:Type TabItem}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
@@ -117,7 +111,7 @@
         <Setter Property="MinWidth" Value="90" />
         <Setter Property="MaxWidth" Value="360" />
         <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
-        <Setter Property="wpf:ColorZoneAssist.Mode" Value="PrimaryMid" />
+        <Setter Property="wpf:ColorZoneAssist.Mode" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(wpf:ColorZoneAssist.Mode)}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabItem}">
