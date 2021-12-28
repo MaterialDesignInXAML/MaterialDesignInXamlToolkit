@@ -26,27 +26,26 @@
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesignTabControl" TargetType="{x:Type TabControl}">
+    <Style x:Key="MaterialDesignTabControlBase" TargetType="{x:Type TabControl}">
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
-        <Setter Property="wpf:ColorZoneAssist.Mode" Value="PrimaryMid" />
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth3" />
+        <Setter Property="wpf:ColorZoneAssist.Mode" Value="PrimaryMid" />
         <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="Bottom" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabControl}">
                     <DockPanel KeyboardNavigation.TabNavigation="Local">
-                        <wpf:ColorZone
+                        <wpf:Card
                             x:Name="PART_ColorZone"
                             VerticalAlignment="Stretch"
                             wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}"
                             wpf:ShadowAssist.ShadowEdges="{TemplateBinding wpf:ShadowAssist.ShadowEdges}"
                             DockPanel.Dock="Top"
-                            Focusable="False"
-                            Mode="{TemplateBinding wpf:ColorZoneAssist.Mode}">
+                            Focusable="False">
 
                             <UniformGrid
                                 x:Name="HeaderPanel"
@@ -56,7 +55,7 @@
                                 IsItemsHost="True"
                                 KeyboardNavigation.TabIndex="1"
                                 Rows="1" />
-                        </wpf:ColorZone>
+                        </wpf:Card>
                         <Border
                             x:Name="PART_BorderSelectedContent"
                             Padding="{TemplateBinding Padding}"
@@ -101,30 +100,101 @@
         </Setter>
     </Style>
 
+    <Style
+        x:Key="MaterialDesignTabControl"
+        BasedOn="{StaticResource MaterialDesignTabControlBase}"
+        TargetType="{x:Type TabControl}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="wpf:ColorZoneAssist.Background" Value="Transparent" />
+
+        <Style.Triggers>
+            <Trigger Property="wpf:ColorZoneAssist.Mode" Value="Standard">
+                <Setter Property="wpf:ColorZoneAssist.Foreground" Value="{DynamicResource MaterialDesignBody}" />
+            </Trigger>
+            <Trigger Property="wpf:ColorZoneAssist.Mode" Value="PrimaryMid">
+                <Setter Property="wpf:ColorZoneAssist.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+            </Trigger>
+            <Trigger Property="wpf:ColorZoneAssist.Mode" Value="PrimaryLight">
+                <Setter Property="wpf:ColorZoneAssist.Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+            </Trigger>
+            <Trigger Property="wpf:ColorZoneAssist.Mode" Value="PrimaryDark">
+                <Setter Property="wpf:ColorZoneAssist.Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+            </Trigger>
+            <Trigger Property="wpf:ColorZoneAssist.Mode" Value="SecondaryLight">
+                <Setter Property="wpf:ColorZoneAssist.Foreground" Value="{DynamicResource SecondaryHueLightBrush}" />
+            </Trigger>
+            <Trigger Property="wpf:ColorZoneAssist.Mode" Value="SecondaryMid">
+                <Setter Property="wpf:ColorZoneAssist.Foreground" Value="{DynamicResource SecondaryHueMidBrush}" />
+            </Trigger>
+            <Trigger Property="wpf:ColorZoneAssist.Mode" Value="SecondaryDark">
+                <Setter Property="wpf:ColorZoneAssist.Foreground" Value="{DynamicResource SecondaryHueDarkBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style
+        x:Key="MaterialDesignFilledTabControl"
+        BasedOn="{StaticResource MaterialDesignTabControlBase}"
+        TargetType="{x:Type TabControl}">
+
+        <Style.Triggers>
+            <Trigger Property="wpf:ColorZoneAssist.Mode" Value="Standard">
+                <Setter Property="wpf:ColorZoneAssist.Background" Value="{DynamicResource MaterialDesignBody}" />
+                <Setter Property="wpf:ColorZoneAssist.Foreground" Value="{DynamicResource MaterialDesignBody}" />
+            </Trigger>
+            <Trigger Property="wpf:ColorZoneAssist.Mode" Value="PrimaryMid">
+                <Setter Property="wpf:ColorZoneAssist.Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+                <Setter Property="wpf:ColorZoneAssist.Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+            </Trigger>
+            <Trigger Property="wpf:ColorZoneAssist.Mode" Value="PrimaryLight">
+                <Setter Property="wpf:ColorZoneAssist.Foreground" Value="{DynamicResource PrimaryHueLightForegroundBrush}" />
+                <Setter Property="wpf:ColorZoneAssist.Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+            </Trigger>
+            <Trigger Property="wpf:ColorZoneAssist.Mode" Value="PrimaryDark">
+                <Setter Property="wpf:ColorZoneAssist.Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+                <Setter Property="wpf:ColorZoneAssist.Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
+            </Trigger>
+            <Trigger Property="wpf:ColorZoneAssist.Mode" Value="SecondaryLight">
+                <Setter Property="wpf:ColorZoneAssist.Foreground" Value="{DynamicResource SecondaryHueLightForegroundBrush}" />
+                <Setter Property="wpf:ColorZoneAssist.Background" Value="{DynamicResource SecondaryHueLightBrush}" />
+            </Trigger>
+            <Trigger Property="wpf:ColorZoneAssist.Mode" Value="SecondaryMid">
+                <Setter Property="wpf:ColorZoneAssist.Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+                <Setter Property="wpf:ColorZoneAssist.Background" Value="{DynamicResource SecondaryHueMidBrush}" />
+            </Trigger>
+            <Trigger Property="wpf:ColorZoneAssist.Mode" Value="SecondaryDark">
+                <Setter Property="wpf:ColorZoneAssist.Foreground" Value="{DynamicResource SecondaryHueDarkForegroundBrush}" />
+                <Setter Property="wpf:ColorZoneAssist.Background" Value="{DynamicResource SecondaryHueDarkBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <Style x:Key="MaterialDesignTabItem" TargetType="{x:Type TabItem}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+
+        <!--  Foreground is for the content, not the header  -->
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
-        <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+
         <Setter Property="Padding" Value="16,12" />
         <Setter Property="Height" Value="48" />
         <Setter Property="MinWidth" Value="90" />
         <Setter Property="MaxWidth" Value="360" />
         <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
         <Setter Property="wpf:ColorZoneAssist.Mode" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(wpf:ColorZoneAssist.Mode)}" />
+        <Setter Property="wpf:ColorZoneAssist.Background" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(wpf:ColorZoneAssist.Background)}" />
+        <Setter Property="wpf:ColorZoneAssist.Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(wpf:ColorZoneAssist.Foreground)}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabItem}">
                     <Grid x:Name="Root">
+                        <!--  This is the Header label ColorZone.  -->
                         <wpf:ColorZone
-                            x:Name="tabitemcz"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
-                            wpf:ColorZoneAssist.Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Background)}"
-                            wpf:ColorZoneAssist.Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Foreground)}"
-                            Background="{x:Null}"
+                            Background="{TemplateBinding wpf:ColorZoneAssist.Background}"
                             Focusable="False"
-                            Mode="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Mode)}">
+                            Foreground="{TemplateBinding wpf:ColorZoneAssist.Foreground}"
+                            Mode="{TemplateBinding wpf:ColorZoneAssist.Mode}">
                             <wpf:Ripple
                                 x:Name="contentPresenter"
                                 Padding="{TemplateBinding Padding}"
@@ -146,7 +216,7 @@
                         </wpf:ColorZone>
                         <Border
                             x:Name="SelectionHighlightBorder"
-                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderBrush="{TemplateBinding wpf:ColorZoneAssist.Foreground}"
                             BorderThickness="0,0,0,2"
                             RenderTransformOrigin="0.5,0.5"
                             Visibility="Hidden">
@@ -215,38 +285,6 @@
                         <DataTrigger Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Right">
                             <Setter TargetName="SelectionHighlightBorder" Property="BorderThickness" Value="2,0,0,0" />
                         </DataTrigger>
-                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="Standard">
-                            <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignBody}" />
-                            <Setter Property="Background" Value="{DynamicResource MaterialDesignBody}" />
-                        </Trigger>
-                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="PrimaryMid">
-                            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
-                            <Setter Property="Background" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
-                        </Trigger>
-                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="PrimaryLight">
-                            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightForegroundBrush}" />
-                            <Setter Property="Background" Value="{DynamicResource PrimaryHueLightForegroundBrush}" />
-                        </Trigger>
-                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="PrimaryDark">
-                            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
-                            <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
-                        </Trigger>
-                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="SecondaryLight">
-                            <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueLightForegroundBrush}" />
-                            <Setter Property="Background" Value="{DynamicResource SecondaryHueLightForegroundBrush}" />
-                        </Trigger>
-                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="SecondaryMid">
-                            <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
-                            <Setter Property="Background" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
-                        </Trigger>
-                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="SecondaryDark">
-                            <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueDarkForegroundBrush}" />
-                            <Setter Property="Background" Value="{DynamicResource SecondaryHueDarkForegroundBrush}" />
-                        </Trigger>
-                        <Trigger Property="wpf:ColorZoneAssist.Mode" Value="Custom">
-                            <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Foreground)}" />
-                            <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Foreground)}" />
-                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
