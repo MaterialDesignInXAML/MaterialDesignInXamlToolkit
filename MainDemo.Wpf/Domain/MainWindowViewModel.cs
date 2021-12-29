@@ -291,7 +291,8 @@ namespace MaterialDesignDemo.Domain
                 typeof(Tabs),
                 new[]
                 {
-                    DocumentationLink.DemoPageLink<Tabs>()
+                    DocumentationLink.DemoPageLink<Tabs>(),
+                    DocumentationLink.StyleLink("TabControl")
                 });
 
             yield return new DemoItem(
