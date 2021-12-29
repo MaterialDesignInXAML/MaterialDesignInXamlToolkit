@@ -44,6 +44,7 @@
                             VerticalAlignment="Stretch"
                             wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}"
                             wpf:ShadowAssist.ShadowEdges="{TemplateBinding wpf:ShadowAssist.ShadowEdges}"
+                            Background="{TemplateBinding wpf:ColorZoneAssist.Background}"
                             DockPanel.Dock="Top"
                             Focusable="False">
 
