@@ -40,7 +40,7 @@
                 <ControlTemplate TargetType="{x:Type TabControl}">
                     <DockPanel KeyboardNavigation.TabNavigation="Local">
                         <wpf:Card
-                            x:Name="PART_ColorZone"
+                            x:Name="PART_HeaderCard"
                             VerticalAlignment="Stretch"
                             wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}"
                             wpf:ShadowAssist.ShadowEdges="{TemplateBinding wpf:ShadowAssist.ShadowEdges}"
@@ -77,24 +77,24 @@
                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
                                 Focusable="False"
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                TextBlock.Foreground="{Binding ElementName=PART_ColorZone, Path=Foreground}"
-                                TextElement.Foreground="{Binding ElementName=PART_ColorZone, Path=Foreground}" />
+                                TextBlock.Foreground="{Binding ElementName=PART_HeaderCard, Path=Foreground}"
+                                TextElement.Foreground="{Binding ElementName=PART_HeaderCard, Path=Foreground}" />
                         </Border>
                     </DockPanel>
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="TabStripPlacement" Value="Bottom">
-                            <Setter TargetName="PART_ColorZone" Property="DockPanel.Dock" Value="Bottom" />
+                            <Setter TargetName="PART_HeaderCard" Property="DockPanel.Dock" Value="Bottom" />
                             <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="Top" />
                         </Trigger>
                         <Trigger Property="TabStripPlacement" Value="Left">
-                            <Setter TargetName="PART_ColorZone" Property="DockPanel.Dock" Value="Left" />
+                            <Setter TargetName="PART_HeaderCard" Property="DockPanel.Dock" Value="Left" />
                             <Setter TargetName="HeaderPanel" Property="Rows" Value="0" />
                             <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="Right" />
                             <Setter TargetName="HeaderPanel" Property="Columns" Value="1" />
                         </Trigger>
                         <Trigger Property="TabStripPlacement" Value="Right">
-                            <Setter TargetName="PART_ColorZone" Property="DockPanel.Dock" Value="Right" />
+                            <Setter TargetName="PART_HeaderCard" Property="DockPanel.Dock" Value="Right" />
                             <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="Left" />
                             <Setter TargetName="HeaderPanel" Property="Rows" Value="0" />
                             <Setter TargetName="HeaderPanel" Property="Columns" Value="1" />
@@ -462,13 +462,13 @@
                                 Visibility="Visible" />
 
                             <wpf:ColorZone
-                                x:Name="PART_ColorZone"
+                                x:Name="PART_HeaderCard"
                                 VerticalAlignment="Stretch"
                                 wpf:ColorZoneAssist.Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Background)}"
                                 wpf:ColorZoneAssist.Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Foreground)}"
                                 Focusable="False"
                                 Mode="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Mode)}">
-                                <Grid Background="{Binding ElementName=PART_ColorZone, Path=Background}">
+                                <Grid Background="{Binding ElementName=PART_HeaderCard, Path=Background}">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="1*" />
@@ -510,7 +510,7 @@
                         </Grid>
                         <!--  selected content  -->
                         <wpf:ColorZone
-                            x:Name="PART_ColorZoneSelectedContent"
+                            x:Name="PART_HeaderCardSelectedContent"
                             Padding="{TemplateBinding Padding}"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
@@ -535,7 +535,7 @@
                             <Setter TargetName="DividerRect" Property="Visibility" Value="Visible" />
                         </Trigger>
                         <Trigger Property="wpf:ColorZoneAssist.Mode" Value="Standard">
-                            <Setter TargetName="PART_ColorZone" Property="Background" Value="Transparent" />
+                            <Setter TargetName="PART_HeaderCard" Property="Background" Value="Transparent" />
                         </Trigger>
                         <Trigger Property="TabStripPlacement" Value="Top">
                             <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="Bottom" />
