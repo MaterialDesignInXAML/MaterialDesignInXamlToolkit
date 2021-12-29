@@ -44,18 +44,22 @@
                             VerticalAlignment="Stretch"
                             wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}"
                             wpf:ShadowAssist.ShadowEdges="{TemplateBinding wpf:ShadowAssist.ShadowEdges}"
-                            Background="{TemplateBinding wpf:ColorZoneAssist.Background}"
                             DockPanel.Dock="Top"
                             Focusable="False">
+                            <wpf:ColorZone
+                                VerticalAlignment="Stretch"
+                                Background="{TemplateBinding wpf:ColorZoneAssist.Background}"
+                                Focusable="False">
 
-                            <UniformGrid
-                                x:Name="HeaderPanel"
-                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalAlignment="Top"
-                                Focusable="False"
-                                IsItemsHost="True"
-                                KeyboardNavigation.TabIndex="1"
-                                Rows="1" />
+                                <UniformGrid
+                                    x:Name="HeaderPanel"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="Top"
+                                    Focusable="False"
+                                    IsItemsHost="True"
+                                    KeyboardNavigation.TabIndex="1"
+                                    Rows="1" />
+                            </wpf:ColorZone>
                         </wpf:Card>
                         <Border
                             x:Name="PART_BorderSelectedContent"
