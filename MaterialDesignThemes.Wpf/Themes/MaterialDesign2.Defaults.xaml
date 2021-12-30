@@ -81,6 +81,8 @@
     <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource MaterialDesignScrollBar}" />
     <Style TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource MaterialDesignScrollViewer}" />
     <Style TargetType="{x:Type Slider}" BasedOn="{StaticResource MaterialDesignSlider}" />
+    <Style TargetType="{x:Type TabControl}" BasedOn="{StaticResource MaterialDesignTabControl}" />
+    <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource MaterialDesignTabItem}" />
     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}" />
     <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}" />
     <Style TargetType="{x:Type ToolBar}" BasedOn="{StaticResource MaterialDesignToolBar}" />
