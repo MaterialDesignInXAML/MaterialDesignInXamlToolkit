@@ -296,13 +296,13 @@
                                         HorizontalAlignment="Right"
                                         Orientation="Horizontal">
                                         <Button
-                                            Style="{DynamicResource MaterialDesignFlatButton}"
+                                            Style="{StaticResource MaterialDesignFlatButton}"
                                             Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                             CommandParameter="0"
                                             Content="CANCEL"/>
 
                                         <Button
-                                            Style="{DynamicResource MaterialDesignFlatButton}"
+                                            Style="{StaticResource MaterialDesignFlatButton}"
                                             Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                             CommandParameter="1"
                                             Content="OK"/>
@@ -347,13 +347,13 @@
                                         HorizontalAlignment="Right"
                                         Orientation="Horizontal">
                                         <Button
-                                            Style="{DynamicResource MaterialDesignFlatButton}"
+                                            Style="{StaticResource MaterialDesignFlatButton}"
                                             Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                             CommandParameter="0"
                                             Content="CANCEL"/>
 
                                         <Button
-                                            Style="{DynamicResource MaterialDesignFlatButton}"
+                                            Style="{StaticResource MaterialDesignFlatButton}"
                                             Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                             CommandParameter="1"
                                             Content="OK"/>
@@ -407,13 +407,13 @@
                                         HorizontalAlignment="Right"
                                         Orientation="Horizontal">
                                         <Button
-                                            Style="{DynamicResource MaterialDesignFlatButton}"
+                                            Style="{StaticResource MaterialDesignFlatButton}"
                                             Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                             CommandParameter="0"
                                             Content="CANCEL"/>
 
                                         <Button
-                                            Style="{DynamicResource MaterialDesignFlatButton}"
+                                            Style="{StaticResource MaterialDesignFlatButton}"
                                             Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                             CommandParameter="1"
                                             Content="OK"/>
@@ -513,7 +513,7 @@
                 <WrapPanel>
 
                     <GroupBox Header="MaterialDesignClock" Margin="10"
-                              Style="{DynamicResource MaterialDesignCardGroupBox}"
+                              Style="{StaticResource MaterialDesignCardGroupBox}"
                               materialDesign:ColorZoneAssist.Mode="SecondaryMid"
                               materialDesign:ShadowAssist.ShadowDepth="Depth3">
                         <smtx:XamlDisplay UniqueKey="clock_1" >
@@ -524,7 +524,7 @@
                     </GroupBox>
 
                     <GroupBox Header="No Header" Margin="10" VerticalAlignment="Top"
-                                  Style="{DynamicResource MaterialDesignCardGroupBox}"
+                                  Style="{StaticResource MaterialDesignCardGroupBox}"
                                   materialDesign:ColorZoneAssist.Mode="SecondaryMid"
                                   materialDesign:ShadowAssist.ShadowDepth="Depth3" >
                         <smtx:XamlDisplay UniqueKey="clock_2" >
@@ -534,7 +534,7 @@
                     </GroupBox>
 
                     <GroupBox Header="MaterialDesignClockHorizontal" Margin="10"
-                                  Style="{DynamicResource MaterialDesignCardGroupBox}"
+                                  Style="{StaticResource MaterialDesignCardGroupBox}"
                                   materialDesign:ColorZoneAssist.Mode="SecondaryMid"
                                   materialDesign:ShadowAssist.ShadowDepth="Depth3" VerticalAlignment="Top">
                         <smtx:XamlDisplay UniqueKey="clock_3" >
@@ -545,7 +545,7 @@
                     </GroupBox>
 
                     <GroupBox Header="MaterialDesignClockVertical" Margin="10"
-                                  Style="{DynamicResource MaterialDesignCardGroupBox}"
+                                  Style="{StaticResource MaterialDesignCardGroupBox}"
                                   materialDesign:ColorZoneAssist.Mode="SecondaryMid"
                                   materialDesign:ShadowAssist.ShadowDepth="Depth3" >
                         <smtx:XamlDisplay UniqueKey="clock_4" >
@@ -556,7 +556,7 @@
                     </GroupBox>
 
                     <GroupBox Header="MaterialDesignClockHorizontalThemed" Margin="10"
-                                  Style="{DynamicResource MaterialDesignCardGroupBox}"
+                                  Style="{StaticResource MaterialDesignCardGroupBox}"
                                   materialDesign:ColorZoneAssist.Mode="SecondaryMid"
                                   materialDesign:ShadowAssist.ShadowDepth="Depth3" >
                         <smtx:XamlDisplay UniqueKey="clock_5" >
@@ -567,7 +567,7 @@
                     </GroupBox>
 
                     <GroupBox Header="MaterialDesignClockVerticalThemed" Margin="10"
-                                  Style="{DynamicResource MaterialDesignCardGroupBox}"
+                                  Style="{StaticResource MaterialDesignCardGroupBox}"
                                   materialDesign:ColorZoneAssist.Mode="SecondaryMid"
                                   materialDesign:ShadowAssist.ShadowDepth="Depth3" >
                         <smtx:XamlDisplay UniqueKey="clock_6" >
@@ -583,7 +583,7 @@
             <Expander Grid.Row="3" Header="12H Clock picker styles">
                 <WrapPanel >
                     <GroupBox Header="MaterialDesignClock" Margin="10"
-                      Style="{DynamicResource MaterialDesignCardGroupBox}"
+                      Style="{StaticResource MaterialDesignCardGroupBox}"
                               materialDesign:ColorZoneAssist.Mode="SecondaryMid"
                               materialDesign:ShadowAssist.ShadowDepth="Depth3" >
                         <smtx:XamlDisplay UniqueKey="clock_7" >
@@ -595,7 +595,7 @@
                     </GroupBox>
 
                     <GroupBox Header="No Header" Margin="10"
-                      Style="{DynamicResource MaterialDesignCardGroupBox}"
+                      Style="{StaticResource MaterialDesignCardGroupBox}"
                               materialDesign:ColorZoneAssist.Mode="SecondaryMid"
                               materialDesign:ShadowAssist.ShadowDepth="Depth3"
                               VerticalAlignment="Top">
@@ -608,7 +608,7 @@
                     </GroupBox>
 
                     <GroupBox Header="MaterialDesignClockHorizontal" Margin="10"
-                      Style="{DynamicResource MaterialDesignCardGroupBox}"
+                      Style="{StaticResource MaterialDesignCardGroupBox}"
                               materialDesign:ColorZoneAssist.Mode="SecondaryMid"
                               materialDesign:ShadowAssist.ShadowDepth="Depth3"
                               VerticalAlignment="Top">
@@ -621,7 +621,7 @@
                     </GroupBox>
 
                     <GroupBox Header="MaterialDesignClockVertical" Margin="10"
-                      Style="{DynamicResource MaterialDesignCardGroupBox}"
+                      Style="{StaticResource MaterialDesignCardGroupBox}"
                               materialDesign:ColorZoneAssist.Mode="SecondaryMid"
                               materialDesign:ShadowAssist.ShadowDepth="Depth3" >
                         <smtx:XamlDisplay UniqueKey="clock_10" >
@@ -633,7 +633,7 @@
                     </GroupBox>
 
                     <GroupBox Header="MaterialDesignClockHorizontalThemed" Margin="10"
-                      Style="{DynamicResource MaterialDesignCardGroupBox}"
+                      Style="{StaticResource MaterialDesignCardGroupBox}"
                               materialDesign:ColorZoneAssist.Mode="SecondaryMid"
                               materialDesign:ShadowAssist.ShadowDepth="Depth3" >
                         <smtx:XamlDisplay UniqueKey="clock_11" >
@@ -645,7 +645,7 @@
                     </GroupBox>
 
                     <GroupBox Header="MaterialDesignClockVerticalThemed" Margin="10"
-                      Style="{DynamicResource MaterialDesignCardGroupBox}"
+                      Style="{StaticResource MaterialDesignCardGroupBox}"
                               materialDesign:ColorZoneAssist.Mode="SecondaryMid"
                               materialDesign:ShadowAssist.ShadowDepth="Depth3" >
                         <smtx:XamlDisplay UniqueKey="clock_12" >

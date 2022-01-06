@@ -26,7 +26,7 @@
             </TextBlock>
 
             <!-- you can easily use the move next, previous, first and last commands -->
-            <Button Style="{DynamicResource MaterialDesignFloatingActionButton}" Margin="64"
+            <Button Style="{StaticResource MaterialDesignFloatingActionButton}" Margin="64"
                 Command="{x:Static materialDesign:Transitioner.MoveNextCommand}">
                 <materialDesign:PackIcon Kind="Pill" />
             </Button>

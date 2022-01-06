@@ -25,14 +25,14 @@
                 TextWrapping="Wrap"
                 TextAlignment="Center">That's the end of the demo for now; a full MVVM demo coming soon!</TextBlock>
             <!--
-            <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}" TextWrapping="Wrap" TextAlignment="Center">Finally, we will put it all together to create full master &amp; details pages, controlled via MVVM.</TextBlock>
+            <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" TextWrapping="Wrap" TextAlignment="Center">Finally, we will put it all together to create full master &amp; details pages, controlled via MVVM.</TextBlock>
             -->
             <StackPanel
                 Orientation="Horizontal"
                 Grid.Row="1"
                 HorizontalAlignment="Center">
                 <Button
-                    Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                     Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
@@ -41,7 +41,7 @@
                         Kind="StepBackward" />
                 </Button>
                 <!--
-                <Button Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"
+                <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
                     Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
                     VerticalAlignment="Top"
                     Margin="16">

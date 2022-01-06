@@ -292,7 +292,7 @@
                                         Margin="2">
                                         <DockPanel LastChildFill="True">
                                             <Button
-                                                Style="{DynamicResource MaterialDesignToolForegroundButton}"
+                                                Style="{StaticResource MaterialDesignToolForegroundButton}"
                                                 Margin="8 -6 8 -6"
                                                 DockPanel.Dock="Right"
                                                 Content="{materialDesign:PackIcon Kind=Search}"/>
@@ -359,7 +359,7 @@
                                         Margin="2">
                                         <DockPanel LastChildFill="True">
                                             <Button
-                                                Style="{DynamicResource MaterialDesignToolForegroundButton}"
+                                                Style="{StaticResource MaterialDesignToolForegroundButton}"
                                                 Margin="8 -6 8 -6"
                                                 DockPanel.Dock="Right"
                                                 Content="{materialDesign:PackIcon Kind=Search}"/>
