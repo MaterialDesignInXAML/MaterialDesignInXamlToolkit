@@ -18,7 +18,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <TextBlock>New contact:</TextBlock>
-        <TextBox wpf:HintAssist.Hint="Name" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"                 
+        <TextBox wpf:HintAssist.Hint="Name" Style="{StaticResource MaterialDesignFloatingHintTextBox}"                 
                  Margin="0 6 0 0"
                  FontSize="18" Grid.Row="1">
             <TextBox.Text>
@@ -29,20 +29,20 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <TextBox wpf:HintAssist.Hint="Number" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+        <TextBox wpf:HintAssist.Hint="Number" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  Margin="0 8 0 0"
                  FontSize="16" Grid.Row="2"
                  />
         <StackPanel Orientation="Horizontal" Grid.Row="3"
                     Margin="0 16 0 0">
-            <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}"
+            <Button IsDefault="True" Style="{StaticResource MaterialDesignFlatButton}"
                     Command="{x:Static wpf:DialogHost.CloseDialogCommand}">
                 <Button.CommandParameter>
                     <system:Boolean>True</system:Boolean>
                 </Button.CommandParameter>
                 ACCEPT
             </Button>
-            <Button IsCancel="True" Margin="8 0 0 0" Style="{DynamicResource MaterialDesignFlatButton}"
+            <Button IsCancel="True" Margin="8 0 0 0" Style="{StaticResource MaterialDesignFlatButton}"
                     Command="{x:Static wpf:DialogHost.CloseDialogCommand}">
                 <Button.CommandParameter>
                     <system:Boolean>False</system:Boolean>

@@ -165,7 +165,7 @@
                         <Button.CommandParameter>
                             <StackPanel Margin="16">
                                 <ProgressBar
-                                    Style="{DynamicResource MaterialDesignCircularProgressBar}"
+                                    Style="{StaticResource MaterialDesignCircularProgressBar}"
                                     HorizontalAlignment="Center" Margin="16"
                                     IsIndeterminate="True"
                                     Value="0" />

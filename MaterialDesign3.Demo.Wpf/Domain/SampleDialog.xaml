@@ -23,7 +23,7 @@
         <TextBlock>New contact:</TextBlock>
         <TextBox
             wpf:HintAssist.Hint="Name"
-            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
             Margin="0 6 0 0"
             FontSize="18"
             Grid.Row="1">
@@ -40,7 +40,7 @@
         </TextBox>
         <TextBox
             wpf:HintAssist.Hint="Number"
-            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
             Margin="0 8 0 0"
             FontSize="16"
             Grid.Row="2" />
@@ -50,7 +50,7 @@
             Margin="0 16 0 0">
             <Button
                 IsDefault="True"
-                Style="{DynamicResource MaterialDesignFlatButton}"
+                Style="{StaticResource MaterialDesignFlatButton}"
                 Command="{x:Static wpf:DialogHost.CloseDialogCommand}">
                 <Button.CommandParameter>
                     <system:Boolean>True</system:Boolean>
@@ -60,7 +60,7 @@
             <Button
                 IsCancel="True"
                 Margin="8 0 0 0"
-                Style="{DynamicResource MaterialDesignFlatButton}"
+                Style="{StaticResource MaterialDesignFlatButton}"
                 Command="{x:Static wpf:DialogHost.CloseDialogCommand}">
                 <Button.CommandParameter>
                     <system:Boolean>False</system:Boolean>

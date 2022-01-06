@@ -55,13 +55,13 @@
             Margin="16"
             HorizontalAlignment="Right">
             <Button
-                Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                 Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}">
                 <materialDesign:PackIcon
                     Kind="StepBackward" />
             </Button>
             <Button
-                Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                 Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
                 Margin="16 0 0 0">
                 <materialDesign:PackIcon

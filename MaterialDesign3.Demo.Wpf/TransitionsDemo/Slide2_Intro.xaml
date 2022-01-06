@@ -30,7 +30,7 @@
                 The transition will originate from where the user clicks the button.  Experiment with the back/forward buttons.
             </TextBlock>
             <Button
-                Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                 Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
                 HorizontalAlignment="Left"
                 Grid.Row="1">
@@ -38,7 +38,7 @@
                     Kind="StepBackward" />
             </Button>
             <Button
-                Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"
+                Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
                 Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
                 HorizontalAlignment="Right"
                 Grid.Row="1">

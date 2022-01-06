@@ -72,14 +72,14 @@
                             CommandParameter="{x:Static Dock.Left}"
                             Margin="4"
                             HorizontalAlignment="Center"
-                            Style="{DynamicResource MaterialDesignFlatButton}"
+                            Style="{StaticResource MaterialDesignFlatButton}"
                             Content="CLOSE THIS"/>
 
                         <Button
                             Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                             Margin="4"
                             HorizontalAlignment="Center"
-                            Style="{DynamicResource MaterialDesignFlatButton}"
+                            Style="{StaticResource MaterialDesignFlatButton}"
                             Content="CLOSE ALL"/>
                     </StackPanel>
                 </materialDesign:DrawerHost.LeftDrawerContent>
@@ -96,7 +96,7 @@
 
                         <Button
                             Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                            Style="{DynamicResource MaterialDesignFlatButton}"
+                            Style="{StaticResource MaterialDesignFlatButton}"
                             Margin="4"
                             VerticalAlignment="Center"
                             Content="CLOSE ALL"/>
@@ -104,7 +104,7 @@
                         <Button
                             Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                             CommandParameter="{x:Static Dock.Top}"
-                            Style="{DynamicResource MaterialDesignFlatButton}"
+                            Style="{StaticResource MaterialDesignFlatButton}"
                             Margin="4"
                             VerticalAlignment="Center"
                             Content="CLOSE THIS"/>
@@ -123,14 +123,14 @@
                             CommandParameter="{x:Static Dock.Right}"
                             Margin="4"
                             HorizontalAlignment="Center"
-                            Style="{DynamicResource MaterialDesignFlatButton}"
+                            Style="{StaticResource MaterialDesignFlatButton}"
                             Content="CLOSE THIS"/>
 
                         <Button
                             Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                             Margin="4"
                             HorizontalAlignment="Center"
-                            Style="{DynamicResource MaterialDesignFlatButton}"
+                            Style="{StaticResource MaterialDesignFlatButton}"
                             Content="CLOSE ALL"/>
                     </StackPanel>
                 </materialDesign:DrawerHost.RightDrawerContent>
@@ -148,7 +148,7 @@
 
                         <Button
                             Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                            Style="{DynamicResource MaterialDesignFlatButton}"
+                            Style="{StaticResource MaterialDesignFlatButton}"
                             Margin="4"
                             VerticalAlignment="Center"
                             Content="CLOSE ALL"/>
@@ -156,7 +156,7 @@
                         <Button
                             Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                             CommandParameter="{x:Static Dock.Bottom}"
-                            Style="{DynamicResource MaterialDesignFlatButton}"
+                            Style="{StaticResource MaterialDesignFlatButton}"
                             Margin="4"
                             VerticalAlignment="Center"
                             Content="CLOSE THIS"/>
@@ -215,7 +215,7 @@
                         Grid.Row="1"
                         Grid.Column="1"
                         Margin="4" 
-                        Style="{DynamicResource MaterialDesignRaisedAccentButton}"
+                        Style="{StaticResource MaterialDesignRaisedAccentButton}"
                         Content="{materialDesign:PackIcon Kind=ArrowAll}"/>
                 </Grid>
 

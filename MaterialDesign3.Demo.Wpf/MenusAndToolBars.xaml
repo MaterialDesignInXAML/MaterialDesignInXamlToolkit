@@ -83,7 +83,7 @@
             Margin="5 0 0 0">
             <ToolBarTray>
                 <ToolBar
-                    Style="{DynamicResource MaterialDesignToolBar}"
+                    Style="{StaticResource MaterialDesignToolBar}"
                     ClipToBounds="False">
                     <Button
                         ToolTip="Follow me on Twitter"
@@ -201,12 +201,12 @@
 
                     <RadioButton
                         GroupName="YYY"
-                        Style="{DynamicResource MaterialDesignToolRadioButton}"
+                        Style="{StaticResource MaterialDesignToolRadioButton}"
                         Content="{materialDesign:PackIcon Kind=Radio}"/>
 
                     <RadioButton
                         GroupName="YYY"
-                        Style="{DynamicResource MaterialDesignToolRadioButton}"
+                        Style="{StaticResource MaterialDesignToolRadioButton}"
                         Content="{materialDesign:PackIcon Kind=EmoticonPoop}"/>
                     
                     <Separator/>

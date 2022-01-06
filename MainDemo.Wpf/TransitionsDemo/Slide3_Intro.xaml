@@ -10,13 +10,13 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="64">
             <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" TextWrapping="Wrap" TextAlignment="Center">OK, we've seen some cool stuff.  Let's take a look at some more transition types.</TextBlock>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" 
+                <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}" 
                         Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
                         VerticalAlignment="Center"
                         Margin="16">
                     <materialDesign:PackIcon Kind="StepBackward" />
                 </Button>
-                <Button Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"
+                <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
                         Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
                         Margin="16">
                     <materialDesign:PackIcon Kind="StepForward" />

@@ -24,7 +24,7 @@
                     x:Name="Root"
                     ToolTip="Wiki Article"
                     ToolTipService.InitialShowDelay="0"
-                    Style="{DynamicResource MaterialDesignFlatButton}"
+                    Style="{StaticResource MaterialDesignFlatButton}"
                     Command="{Binding Open}">
                     <StackPanel
                         Orientation="Horizontal">
