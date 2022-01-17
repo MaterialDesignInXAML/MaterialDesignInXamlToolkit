@@ -109,7 +109,7 @@
 
                         <Button
                             x:Name="SearchButton"
-                            Style="{DynamicResource MaterialDesignToolButton}"
+                            Style="{StaticResource MaterialDesignToolButton}"
                             Command="{Binding SearchCommand}"
                             CommandParameter="{Binding ElementName=SearchBox, Path=Text}"
                             Height="24"

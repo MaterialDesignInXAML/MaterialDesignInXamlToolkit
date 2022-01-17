@@ -1,94 +1,544 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
-                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
+    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Font.xaml"/>
+        <ResourceDictionary
+            Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Font.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <converters:TextFieldHintVisibilityConverter x:Key="StringIsEmptyVisibilityConverter" IsEmptyValue="Collapsed" IsNotEmptyValue="Visible"/>
-    <converters:BrushRoundConverter x:Key="BrushRoundConverter"/>
-    
-    <ContextMenu x:Key="MaterialDesignDefaultContextMenu"
-                 FontFamily="{Binding PlacementTarget.FontFamily, RelativeSource={RelativeSource Self}}">
-        <MenuItem Command="Cut">
+    <converters:TextFieldHintVisibilityConverter
+        x:Key="StringIsEmptyVisibilityConverter"
+        IsEmptyValue="Collapsed"
+        IsNotEmptyValue="Visible" />
+    <converters:BrushRoundConverter
+        x:Key="BrushRoundConverter" />
+
+    <ContextMenu
+        x:Key="MaterialDesignDefaultContextMenu"
+        FontFamily="{Binding PlacementTarget.FontFamily, RelativeSource={RelativeSource Self}}">
+        <MenuItem
+            Command="Cut">
             <MenuItem.Icon>
-                <wpf:PackIcon Kind="ContentCut" />
+                <wpf:PackIcon
+                    Kind="ContentCut" />
             </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Command="Copy">
+        <MenuItem
+            Command="Copy">
             <MenuItem.Icon>
-                <wpf:PackIcon Kind="ContentCopy" />
+                <wpf:PackIcon
+                    Kind="ContentCopy" />
             </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Command="Paste">
+        <MenuItem
+            Command="Paste">
             <MenuItem.Icon>
-                <wpf:PackIcon Kind="ContentPaste" />
+                <wpf:PackIcon
+                    Kind="ContentPaste" />
             </MenuItem.Icon>
         </MenuItem>
         <Separator />
-        <MenuItem Command="SelectAll">
+        <MenuItem
+            Command="SelectAll">
             <MenuItem.Icon>
-                <wpf:PackIcon Kind="SelectAll" />
+                <wpf:PackIcon
+                    Kind="SelectAll" />
             </MenuItem.Icon>
         </MenuItem>
     </ContextMenu>
 
-    <Style x:Key="MaterialDesignSeparator" TargetType="{x:Type Separator}">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignSelection}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignSelection}"/>
-        <Setter Property="MinHeight" Value="1"/>
-        <Setter Property="SnapsToDevicePixels" Value="true"/>
-        <Setter Property="Height" Value="16"/>
-        <Setter Property="Template">
+    <Style
+        x:Key="MaterialDesignSeparator"
+        TargetType="{x:Type Separator}">
+        <Setter
+            Property="Background"
+            Value="{DynamicResource MaterialDesignSelection}" />
+        <Setter
+            Property="BorderBrush"
+            Value="{DynamicResource MaterialDesignSelection}" />
+        <Setter
+            Property="MinHeight"
+            Value="1" />
+        <Setter
+            Property="SnapsToDevicePixels"
+            Value="true" />
+        <Setter
+            Property="Height"
+            Value="16" />
+        <Setter
+            Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Separator}">
-                    <Rectangle Height="1" Fill="{TemplateBinding Background}"
-                               HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                <ControlTemplate
+                    TargetType="{x:Type Separator}">
+                    <Rectangle
+                        Height="1"
+                        Fill="{TemplateBinding Background}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesignMenu" TargetType="{x:Type MenuBase}">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
-        <Setter Property="FontFamily" Value="{StaticResource MaterialDesignFont}"/>
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
-        <Setter Property="TextBlock.FontSize" Value="15"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="UseLayoutRounding" Value="True"/>
-        <Setter Property="Template">
+    <Style
+        TargetType="{x:Type MenuItem}"
+        x:Key="MaterialDesignMenuItem"
+        BasedOn="{x:Null}">
+        <Setter
+            Property="Padding"
+            Value="24 0 24 0"></Setter>
+        <Setter
+            Property="OverridesDefaultStyle"
+            Value="True" />
+        <Setter
+            Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type MenuBase}">
-                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                <ControlTemplate
+                    TargetType="{x:Type MenuItem}">
+                    <ControlTemplate.Resources>
+                        <Style
+                            TargetType="wpf:PackIcon">
+                            <Setter
+                                Property="FrameworkElement.Width"
+                                Value="16" />
+                            <Setter
+                                Property="FrameworkElement.Height"
+                                Value="16" />
+                        </Style>
+                    </ControlTemplate.Resources>
+                    <Grid
+                        ClipToBounds="True">
+                        <Border
+                            x:Name="templateRoot"
+                            BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}"
-                            Padding="{TemplateBinding Padding}"
-                            SnapsToDevicePixels="true">
-                        <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            SnapsToDevicePixels="True" />
+                        <Border
+                            x:Name="BackgroundRoot"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                            SnapsToDevicePixels="True"
+                            Opacity="0" />
+                        <wpf:Ripple
+                            Background="Transparent"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                            Focusable="False"
+                            Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}">
+                            <Grid
+                                Height="{TemplateBinding Height}"
+                                Background="Transparent">
+                                <Grid
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    Margin="{TemplateBinding Padding}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition
+                                            Width="Auto"
+                                            SharedSizeGroup="IconGroup" />
+                                        <ColumnDefinition
+                                            Width="*"
+                                            SharedSizeGroup="HeaderGroup" />
+                                        <ColumnDefinition
+                                            Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid
+                                        x:Name="IconWrapper"
+                                        Visibility="Visible"
+                                        Width="40">
+                                        <ContentPresenter
+                                            x:Name="Icon"
+                                            Content="{TemplateBinding Icon}"
+                                            ContentSource="Icon"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Height="16"
+                                            Width="16"
+                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                    </Grid>
+                                    <Grid
+                                        x:Name="GlyphWrapper"
+                                        Visibility="Collapsed"
+                                        Width="40">
+                                        <Viewbox
+                                            x:Name="GlyphPanel"
+                                            Width="16"
+                                            Height="16"
+                                            HorizontalAlignment="Left"
+                                            Margin="0"
+                                            Visibility="Collapsed"
+                                            VerticalAlignment="Center"
+                                            FlowDirection="LeftToRight">
+                                            <Canvas
+                                                Width="24"
+                                                Height="24">
+                                                <Path
+                                                    Data="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
+                                                    x:Name="Glyph"
+                                                    Fill="{TemplateBinding Foreground}"
+                                                    FlowDirection="LeftToRight" />
+                                            </Canvas>
+                                        </Viewbox>
+                                    </Grid>
+                                    <Grid
+                                        Grid.Column="1">
+                                        <ContentPresenter
+                                            x:Name="BoldHeaderPresenter"
+                                            Visibility="Hidden"
+                                            TextBlock.FontWeight="Bold"
+                                            ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                            Content="{TemplateBinding Header}"
+                                            ContentStringFormat="{TemplateBinding HeaderStringFormat}"
+                                            ContentSource="Header"
+                                            RecognizesAccessKey="True"
+                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                            VerticalAlignment="Center" />
+                                        <ContentPresenter
+                                            x:Name="HeaderPresenter"
+                                            ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                            Content="{TemplateBinding Header}"
+                                            ContentStringFormat="{TemplateBinding HeaderStringFormat}"
+                                            ContentSource="Header"
+                                            RecognizesAccessKey="True"
+                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                            VerticalAlignment="Center" />
+                                    </Grid>
+                                    <Grid
+                                        x:Name="InputGestureTextWrapper"
+                                        Grid.Column="2"
+                                        Visibility="Collapsed">
+                                        <TextBlock
+                                            Visibility="{TemplateBinding InputGestureText, Converter={StaticResource StringIsEmptyVisibilityConverter}}"
+                                            Margin="16 0 0 0"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Right"
+                                            Text="{TemplateBinding InputGestureText}"
+                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                            Foreground="{TemplateBinding Foreground}" />
+                                    </Grid>
+                                    <Grid
+                                        x:Name="SubBlock"
+                                        Grid.Column="2"
+                                        Visibility="Collapsed"
+                                        Margin="16 0 0 0">
+                                        <Path
+                                            Width="5"
+                                            Height="10"
+                                            Stretch="Uniform"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Data="M0,16 L8,8 L0,0 Z"
+                                            Fill="{TemplateBinding Foreground}"
+                                            SnapsToDevicePixels="False" />
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </wpf:Ripple>
+                        <Popup
+                            x:Name="PART_Popup"
+                            AllowsTransparency="True"
+                            Focusable="False"
+                            IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                            PopupAnimation="Slide"
+                            Placement="Bottom"
+                            CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
+                            <Border
+                                x:Name="SubMenuBorder"
+                                Background="{Binding Path=Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=MenuBase}}"
+                                Effect="{DynamicResource MaterialDesignShadowDepth1}"
+                                CornerRadius="2">
+
+                                <Border
+                                    Background="Transparent">
+                                    <ScrollViewer
+                                        x:Name="SubMenuScrollViewer"
+                                        Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
+                                        <Grid
+                                            RenderOptions.ClearTypeHint="Enabled"
+                                            Margin="0 16">
+                                            <Canvas
+                                                HorizontalAlignment="Left"
+                                                Height="0"
+                                                VerticalAlignment="Top"
+                                                Width="0">
+                                                <Rectangle
+                                                    x:Name="OpaqueRect"
+                                                    Fill="{Binding Background, ElementName=SubMenuBorder}"
+                                                    Height="{Binding ActualHeight, ElementName=SubMenuBorder}"
+                                                    Width="{Binding ActualWidth, ElementName=SubMenuBorder}" />
+                                            </Canvas>
+                                            <ItemsPresenter
+                                                x:Name="ItemsPresenter"
+                                                KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                Grid.IsSharedSizeScope="True"
+                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                KeyboardNavigation.TabNavigation="Cycle" />
+                                        </Grid>
+                                    </ScrollViewer>
+                                </Border>
+                            </Border>
+                        </Popup>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <!--#region Roles Triggers -->
+                        <Trigger
+                            Property="Role"
+                            Value="SubmenuHeader">
+                            <Setter
+                                TargetName="SubBlock"
+                                Property="Visibility"
+                                Value="Visible" />
+                            <Setter
+                                TargetName="PART_Popup"
+                                Property="Placement"
+                                Value="Right" />
+                            <Setter
+                                TargetName="PART_Popup"
+                                Property="VerticalOffset"
+                                Value="-16" />
+                            <Setter
+                                Property="Height"
+                                Value="32" />
+                            <Setter
+                                TargetName="BoldHeaderPresenter"
+                                Property="Visibility"
+                                Value="Collapsed" />
+                        </Trigger>
+                        <Trigger
+                            Property="Role"
+                            Value="SubmenuItem">
+                            <Setter
+                                Property="Height"
+                                Value="32" />
+                            <Setter
+                                TargetName="InputGestureTextWrapper"
+                                Property="Visibility"
+                                Value="Visible" />
+                            <Setter
+                                TargetName="BoldHeaderPresenter"
+                                Property="Visibility"
+                                Value="Collapsed" />
+                        </Trigger>
+                        <Trigger
+                            Property="Role"
+                            Value="TopLevelHeader">
+                            <Setter
+                                Property="Grid.IsSharedSizeScope"
+                                Value="True" />
+                            <Setter
+                                Property="Padding"
+                                Value="16 0" />
+                            <Setter
+                                Property="Height"
+                                Value="48" />
+                            <Setter
+                                TargetName="templateRoot"
+                                Property="CornerRadius"
+                                Value="2" />
+                            <Setter
+                                TargetName="BackgroundRoot"
+                                Property="CornerRadius"
+                                Value="2" />
+                        </Trigger>
+                        <Trigger
+                            Property="Role"
+                            Value="TopLevelItem">
+                            <Setter
+                                Property="Padding"
+                                Value="16 0" />
+                            <Setter
+                                Property="Height"
+                                Value="48" />
+                            <Setter
+                                TargetName="templateRoot"
+                                Property="CornerRadius"
+                                Value="2" />
+                            <Setter
+                                TargetName="BackgroundRoot"
+                                Property="CornerRadius"
+                                Value="2" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    Property="Role"
+                                    Value="TopLevelHeader" />
+                                <Condition
+                                    Property="IsSubmenuOpen"
+                                    Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter
+                                    TargetName="HeaderPresenter"
+                                    Property="TextBlock.FontWeight"
+                                    Value="Bold" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <!--#endregion-->
+
+                        <Trigger
+                            Property="HasDropShadow"
+                            SourceName="PART_Popup"
+                            Value="True">
+                            <Setter
+                                TargetName="SubMenuBorder"
+                                Property="Margin"
+                                Value="5" />
+                        </Trigger>
+
+                        <Trigger
+                            Property="IsSuspendingPopupAnimation"
+                            Value="True">
+                            <Setter
+                                Property="PopupAnimation"
+                                TargetName="PART_Popup"
+                                Value="None" />
+                        </Trigger>
+                        <Trigger
+                            Property="Icon"
+                            Value="{x:Null}">
+                            <Setter
+                                Property="Visibility"
+                                TargetName="IconWrapper"
+                                Value="Collapsed" />
+                        </Trigger>
+                        <Trigger
+                            Property="IsChecked"
+                            Value="True">
+                            <Setter
+                                Property="Visibility"
+                                TargetName="GlyphPanel"
+                                Value="Visible" />
+                        </Trigger>
+                        <Trigger
+                            Property="IsCheckable"
+                            Value="True">
+                            <Setter
+                                Property="Visibility"
+                                TargetName="GlyphWrapper"
+                                Value="Visible" />
+                            <Setter
+                                Property="Visibility"
+                                TargetName="IconWrapper"
+                                Value="Collapsed" />
+                        </Trigger>
+                        <Trigger
+                            Property="IsHighlighted"
+                            Value="True">
+                            <Setter
+                                TargetName="BackgroundRoot"
+                                Property="Opacity"
+                                Value="0.13" />
+                        </Trigger>
+                        <Trigger
+                            Property="IsEnabled"
+                            Value="False">
+                            <Setter
+                                Property="Opacity"
+                                Value=".56" />
+                        </Trigger>
+                        <Trigger
+                            Property="CanContentScroll"
+                            SourceName="SubMenuScrollViewer"
+                            Value="False">
+                            <Setter
+                                Property="Canvas.Top"
+                                TargetName="OpaqueRect"
+                                Value="{Binding VerticalOffset, ElementName=SubMenuScrollViewer}" />
+                            <Setter
+                                Property="Canvas.Left"
+                                TargetName="OpaqueRect"
+                                Value="{Binding HorizontalOffset, ElementName=SubMenuScrollViewer}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="MaterialDesignMenu"
+        TargetType="{x:Type MenuBase}">
+        <Style.Resources>
+            <Style
+                TargetType="MenuItem"
+                BasedOn="{StaticResource MaterialDesignMenuItem}" />
+        </Style.Resources>
+
+        <Setter
+            Property="Background"
+            Value="{DynamicResource MaterialDesignPaper}" />
+        <Setter
+            Property="FontFamily"
+            Value="{StaticResource MaterialDesignFont}" />
+        <Setter
+            Property="Foreground"
+            Value="{DynamicResource MaterialDesignBody}" />
+        <Setter
+            Property="TextBlock.FontSize"
+            Value="15" />
+        <Setter
+            Property="VerticalContentAlignment"
+            Value="Center" />
+        <Setter
+            Property="UseLayoutRounding"
+            Value="True" />
+        <Setter
+            Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type MenuBase}">
+                    <Border
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{TemplateBinding Background}"
+                        Padding="{TemplateBinding Padding}"
+                        SnapsToDevicePixels="true">
+                        <ItemsPresenter
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesignContextMenu" TargetType="{x:Type ContextMenu}" BasedOn="{StaticResource MaterialDesignMenu}">
-        <Setter Property="Template">
+    <Style
+        x:Key="MaterialDesignContextMenu"
+        TargetType="{x:Type ContextMenu}"
+        BasedOn="{StaticResource MaterialDesignMenu}">
+        <Setter
+            Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type MenuBase}">
-                    <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
+                <ControlTemplate
+                    TargetType="{x:Type MenuBase}">
+                    <AdornerDecorator
+                        CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                         <Grid>
-                            <Border Background="{TemplateBinding Background}" Margin="3"
-                                    CornerRadius="2" Effect="{DynamicResource MaterialDesignShadowDepth1}"></Border>
-                        
-                            <Border Margin="3" Background="Transparent">
-                                <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
-                                    <Grid RenderOptions.ClearTypeHint="Enabled" Margin="0 16">
-                                        <ItemsPresenter x:Name="ItemsPresenter"
-                                                        KeyboardNavigation.DirectionalNavigation="Cycle"
-                                                        Grid.IsSharedSizeScope="True"
-                                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                        KeyboardNavigation.TabNavigation="Cycle"/>
+                            <Border
+                                Background="{TemplateBinding Background}"
+                                Margin="3"
+                                CornerRadius="2"
+                                Effect="{DynamicResource MaterialDesignShadowDepth1}"></Border>
+
+                            <Border
+                                Margin="3"
+                                Background="Transparent">
+                                <ScrollViewer
+                                    x:Name="SubMenuScrollViewer"
+                                    Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
+                                    <Grid
+                                        RenderOptions.ClearTypeHint="Enabled"
+                                        Margin="0 16">
+                                        <ItemsPresenter
+                                            x:Name="ItemsPresenter"
+                                            KeyboardNavigation.DirectionalNavigation="Cycle"
+                                            Grid.IsSharedSizeScope="True"
+                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                            KeyboardNavigation.TabNavigation="Cycle" />
                                     </Grid>
                                 </ScrollViewer>
                             </Border>
@@ -99,223 +549,37 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type MenuItem}" x:Key="MaterialDesignMenuItem" BasedOn="{x:Null}">
-        <Setter Property="Padding" Value="24 0 24 0"></Setter>
-        <Setter Property="OverridesDefaultStyle" Value="True"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type MenuItem}">
-                    <ControlTemplate.Resources>
-                        <Style TargetType="wpf:PackIcon">
-                            <Setter Property="FrameworkElement.Width" Value="16" />
-                            <Setter Property="FrameworkElement.Height" Value="16" />
-                        </Style>
-                    </ControlTemplate.Resources>
-                    <Grid ClipToBounds="True">
-                        <Border x:Name="templateRoot"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{TemplateBinding Background}"
-                                SnapsToDevicePixels="True"/>
-                        <Border x:Name="BackgroundRoot"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
-                                SnapsToDevicePixels="True"
-                                Opacity="0"/>
-                        <wpf:Ripple Background="Transparent"
-                                    HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
-                                    Focusable="False"
-                                    Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}">
-                            <Grid Height="{TemplateBinding Height}" Background="Transparent">
-                                <Grid VerticalAlignment="Center"
-                                      Background="Transparent"
-                                      Margin="{TemplateBinding Padding}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" SharedSizeGroup="IconGroup"/>
-                                        <ColumnDefinition Width="*" SharedSizeGroup="HeaderGroup"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid x:Name="IconWrapper" Visibility="Visible" Width="40">
-                                        <ContentPresenter x:Name="Icon"
-                                                          Content="{TemplateBinding Icon}"
-                                                          ContentSource="Icon"
-                                                          HorizontalAlignment="Left" VerticalAlignment="Center"
-                                                          Height="16" Width="16"
-                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                                    </Grid>
-                                    <Grid x:Name="GlyphWrapper" Visibility="Collapsed" Width="40">
-                                        <Viewbox x:Name="GlyphPanel"
-                                                 Width="16" Height="16"
-                                                 HorizontalAlignment="Left"
-                                                 Margin="0" Visibility="Collapsed" VerticalAlignment="Center"
-                                                 FlowDirection="LeftToRight">
-                                            <Canvas Width="24" Height="24">
-                                                <Path Data="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" 
-					    		        			  x:Name="Glyph"
-					    		        			  Fill="{TemplateBinding Foreground}" FlowDirection="LeftToRight" />
-                                            </Canvas>
-                                        </Viewbox>
-                                    </Grid>
-                                    <Grid Grid.Column="1">
-                                        <ContentPresenter x:Name="BoldHeaderPresenter"
-                                                          Visibility="Hidden"
-                                                          TextBlock.FontWeight="Bold"
-                                                          ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                                          Content="{TemplateBinding Header}"
-                                                          ContentStringFormat="{TemplateBinding HeaderStringFormat}"
-                                                          ContentSource="Header"
-                                                          RecognizesAccessKey="True"
-                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                          VerticalAlignment="Center"/>
-                                        <ContentPresenter x:Name="HeaderPresenter"
-                                                          ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                                          Content="{TemplateBinding Header}"
-                                                          ContentStringFormat="{TemplateBinding HeaderStringFormat}"
-                                                          ContentSource="Header"
-                                                          RecognizesAccessKey="True"
-                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                          VerticalAlignment="Center"/>
-                                    </Grid>
-                                    <Grid x:Name="InputGestureTextWrapper"
-                                          Grid.Column="2"
-                                          Visibility="Collapsed">
-                                        <TextBlock Visibility="{TemplateBinding InputGestureText, Converter={StaticResource StringIsEmptyVisibilityConverter}}"
-                                                   Margin="16 0 0 0"
-                                                   VerticalAlignment="Center" HorizontalAlignment="Right"
-                                                   Text="{TemplateBinding InputGestureText}"
-                                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                   Foreground="{TemplateBinding Foreground}"/>
-                                    </Grid>
-                                    <Grid x:Name="SubBlock"
-                                          Grid.Column="2"
-                                          Visibility="Collapsed"
-                                          Margin="16 0 0 0">
-                                        <Path Width="5" Height="10"
-                                              Stretch="Uniform"
-                                              HorizontalAlignment="Right"
-                                              VerticalAlignment="Center"
-                                              Data="M0,16 L8,8 L0,0 Z"
-                                              Fill="{TemplateBinding Foreground}"
-                                              SnapsToDevicePixels="False"/>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                        </wpf:Ripple>
-                        <Popup x:Name="PART_Popup"
-                               AllowsTransparency="True"
-                               Focusable="False"
-                               IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
-                               PopupAnimation="Slide"
-                               Placement="Bottom"
-                               CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
-                            <Border x:Name="SubMenuBorder"
-                                    Background="{Binding Path=Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=MenuBase}}"
-                                    Effect="{DynamicResource MaterialDesignShadowDepth1}"
-                                    CornerRadius="2">
 
-                                <Border Background="Transparent">
-                                    <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
-                                        <Grid RenderOptions.ClearTypeHint="Enabled" Margin="0 16">
-                                            <Canvas HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
-                                                <Rectangle x:Name="OpaqueRect"
-                                                           Fill="{Binding Background, ElementName=SubMenuBorder}"
-                                                           Height="{Binding ActualHeight, ElementName=SubMenuBorder}"
-                                                           Width="{Binding ActualWidth, ElementName=SubMenuBorder}"/>
-                                            </Canvas>
-                                            <ItemsPresenter x:Name="ItemsPresenter"
-                                                            KeyboardNavigation.DirectionalNavigation="Cycle"
-                                                            Grid.IsSharedSizeScope="True"
-                                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                            KeyboardNavigation.TabNavigation="Cycle"/>
-                                        </Grid>
-                                    </ScrollViewer>
-                                </Border>
-                            </Border>
-                        </Popup>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <!--#region Roles Triggers -->
-                        <Trigger Property="Role" Value="SubmenuHeader">
-                            <Setter TargetName="SubBlock" Property="Visibility" Value="Visible" />
-                            <Setter TargetName="PART_Popup" Property="Placement" Value="Right" />
-                            <Setter TargetName="PART_Popup" Property="VerticalOffset" Value="-16" />
-                            <Setter Property="Height" Value="32"/>
-                            <Setter TargetName="BoldHeaderPresenter" Property="Visibility" Value="Collapsed"/>
-                        </Trigger>
-                        <Trigger Property="Role" Value="SubmenuItem">
-                            <Setter Property="Height" Value="32"/>
-                            <Setter TargetName="InputGestureTextWrapper" Property="Visibility" Value="Visible"/>
-                            <Setter TargetName="BoldHeaderPresenter" Property="Visibility" Value="Collapsed"/>
-                        </Trigger>
-                        <Trigger Property="Role" Value="TopLevelHeader">
-                            <Setter Property="Grid.IsSharedSizeScope" Value="True"/>
-                            <Setter Property="Padding" Value="16 0"/>
-                            <Setter Property="Height" Value="48"/>
-                            <Setter TargetName="templateRoot" Property="CornerRadius" Value="2"/>
-                            <Setter TargetName="BackgroundRoot" Property="CornerRadius" Value="2"/>
-                        </Trigger>
-                        <Trigger Property="Role" Value="TopLevelItem">
-                            <Setter Property="Padding" Value="16 0"/>
-                            <Setter Property="Height" Value="48"/>
-                            <Setter TargetName="templateRoot" Property="CornerRadius" Value="2"/>
-                            <Setter TargetName="BackgroundRoot" Property="CornerRadius" Value="2"/>
-                        </Trigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="Role" Value="TopLevelHeader"/>
-                                <Condition Property="IsSubmenuOpen" Value="True"/>
-                            </MultiTrigger.Conditions>
-                            <MultiTrigger.Setters>
-                                <Setter TargetName="HeaderPresenter" Property="TextBlock.FontWeight" Value="Bold"/>
-                            </MultiTrigger.Setters>
-                        </MultiTrigger>
-                        <!--#endregion-->
-
-                        <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="True">
-                            <Setter TargetName="SubMenuBorder" Property="Margin" Value="5"/>
-                        </Trigger>
-
-                        <Trigger Property="IsSuspendingPopupAnimation" Value="True">
-                            <Setter Property="PopupAnimation" TargetName="PART_Popup" Value="None"/>
-                        </Trigger>
-                        <Trigger Property="Icon" Value="{x:Null}">
-                            <Setter Property="Visibility" TargetName="IconWrapper" Value="Collapsed"/>
-                        </Trigger>
-                        <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="Visibility" TargetName="GlyphPanel" Value="Visible"/>
-                        </Trigger>
-                        <Trigger Property="IsCheckable" Value="True">
-                            <Setter Property="Visibility" TargetName="GlyphWrapper" Value="Visible"/>
-                            <Setter Property="Visibility" TargetName="IconWrapper" Value="Collapsed"/>
-                        </Trigger>
-                        <Trigger Property="IsHighlighted" Value="True">
-                            <Setter TargetName="BackgroundRoot" Property="Opacity" Value="0.13"/>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" Value=".56"/>
-                        </Trigger>
-                        <Trigger Property="CanContentScroll" SourceName="SubMenuScrollViewer" Value="False">
-                            <Setter Property="Canvas.Top" TargetName="OpaqueRect" Value="{Binding VerticalOffset, ElementName=SubMenuScrollViewer}"/>
-                            <Setter Property="Canvas.Left" TargetName="OpaqueRect" Value="{Binding HorizontalOffset, ElementName=SubMenuScrollViewer}"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+    <Style
+        x:Key="{x:Static wpf:Spelling.SuggestionMenuItemStyleKey}"
+        TargetType="{x:Type MenuItem}"
+        BasedOn="{StaticResource MaterialDesignMenuItem}">
+        <Setter
+            Property="FontWeight"
+            Value="Bold" />
+        <Setter
+            Property="Header"
+            Value="{Binding RelativeSource={RelativeSource Self}, Path=CommandParameter}" />
     </Style>
 
-    <Style x:Key="{x:Static wpf:Spelling.SuggestionMenuItemStyleKey}"  TargetType="{x:Type MenuItem}" BasedOn="{StaticResource MaterialDesignMenuItem}">
-        <Setter Property="FontWeight" Value="Bold" />
-        <Setter Property="Header" Value="{Binding RelativeSource={RelativeSource Self}, Path=CommandParameter}" />
+    <Style
+        x:Key="{x:Static wpf:Spelling.IgnoreAllMenuItemStyleKey}"
+        TargetType="{x:Type MenuItem}"
+        BasedOn="{StaticResource MaterialDesignMenuItem}">
+        <Setter
+            Property="Header"
+            Value="Ignore All" />
     </Style>
 
-    <Style x:Key="{x:Static wpf:Spelling.IgnoreAllMenuItemStyleKey}"  TargetType="{x:Type MenuItem}" BasedOn="{StaticResource MaterialDesignMenuItem}">
-        <Setter Property="Header" Value="Ignore All" />
-    </Style>
-
-    <Style x:Key="{x:Static wpf:Spelling.NoSuggestionsMenuItemStyleKey}" TargetType="{x:Type MenuItem}" BasedOn="{StaticResource MaterialDesignMenuItem}">
-        <Setter Property="Header" Value="(no spelling suggestions)" />
-        <Setter Property="IsEnabled" Value="False" />
+    <Style
+        x:Key="{x:Static wpf:Spelling.NoSuggestionsMenuItemStyleKey}"
+        TargetType="{x:Type MenuItem}"
+        BasedOn="{StaticResource MaterialDesignMenuItem}">
+        <Setter
+            Property="Header"
+            Value="(no spelling suggestions)" />
+        <Setter
+            Property="IsEnabled"
+            Value="False" />
     </Style>
 </ResourceDictionary>

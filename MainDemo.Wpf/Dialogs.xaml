@@ -165,7 +165,7 @@
                         <Button.CommandParameter>
                             <StackPanel Margin="16">
                                 <ProgressBar
-                                    Style="{DynamicResource MaterialDesignCircularProgressBar}"
+                                    Style="{StaticResource MaterialDesignCircularProgressBar}"
                                     HorizontalAlignment="Center" Margin="16"
                                     IsIndeterminate="True"
                                     Value="0" />
@@ -242,6 +242,7 @@
                 Grid.Column="3"
                 Grid.Row="1" >
                 <materialDesign:DialogHost
+                    Placement="Mouse"
                     VerticalAlignment="Center"
                     IsOpen="{Binding IsSample4DialogOpen}"
                     DialogContent="{Binding Sample4Content}"

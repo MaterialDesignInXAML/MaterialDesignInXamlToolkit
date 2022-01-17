@@ -47,7 +47,7 @@
             Grid.Row="0">
             <GroupBox
                 Header="Shadow Header"
-                Style="{DynamicResource MaterialDesignGroupBox}"
+                Style="{StaticResource MaterialDesignGroupBox}"
                 Margin="16"
                 materialDesign:ShadowAssist.ShadowDepth="Depth3"
                 BorderThickness="0">
@@ -65,7 +65,7 @@
             <Border Background="{DynamicResource MaterialDesignBackground}">
                 <GroupBox
                     Header="Transparent Background"
-                    Style="{DynamicResource MaterialDesignGroupBox}"
+                    Style="{StaticResource MaterialDesignGroupBox}"
                     Margin="16"
                     UseLayoutRounding="True">
                     <TextBlock Text="My Content"/>
@@ -78,7 +78,7 @@
             Grid.Row="1">
             <GroupBox
                 Header="Accent Header"
-                Style="{DynamicResource MaterialDesignGroupBox}"
+                Style="{StaticResource MaterialDesignGroupBox}"
                 Margin="16"
                 materialDesign:ColorZoneAssist.Mode="SecondaryMid">
                 <TextBlock Text="My Content"/>
@@ -91,7 +91,7 @@
             Grid.Row="1">
             <GroupBox
                 Header="Custom Header"
-                Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" 
+                Style="{StaticResource MaterialDesignGroupBox}" Margin="16" 
                 materialDesign:ColorZoneAssist.Mode="Custom"
                 materialDesign:ColorZoneAssist.Background="Black"
                 materialDesign:ColorZoneAssist.Foreground="White">
@@ -105,7 +105,7 @@
             Grid.Row="2">
             <GroupBox
                 Header="Card Group Box"
-                Style="{DynamicResource MaterialDesignCardGroupBox}"
+                Style="{StaticResource MaterialDesignCardGroupBox}"
                 Margin="16">
                 <GroupBox.HeaderTemplate>
                     <DataTemplate>
@@ -138,7 +138,7 @@
             Grid.Row="2">
             <GroupBox
                 Header="Card Group Box Accent"
-                Style="{DynamicResource MaterialDesignCardGroupBox}"
+                Style="{StaticResource MaterialDesignCardGroupBox}"
                 Margin="16" 
                 materialDesign:ColorZoneAssist.Mode="SecondaryMid">
                 <GroupBox.HeaderTemplate>
@@ -172,7 +172,7 @@
             Grid.Row="2">
             <GroupBox
                 Header="Card Group Box Custom"
-                Style="{DynamicResource MaterialDesignCardGroupBox}"
+                Style="{StaticResource MaterialDesignCardGroupBox}"
                 Margin="16" 
                 materialDesign:ColorZoneAssist.Mode="Custom"
                 materialDesign:ColorZoneAssist.Background="Black"

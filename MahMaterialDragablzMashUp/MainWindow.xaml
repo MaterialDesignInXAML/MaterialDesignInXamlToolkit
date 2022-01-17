@@ -15,7 +15,7 @@
         <CommandBinding Command="Copy" Executed="OnCopy" />
     </Window.CommandBindings>
     <controls:MetroWindow.WindowButtonCommands>
-        <controls:WindowButtonCommands Style="{DynamicResource MahApps.Styles.WindowButtonCommands.Win10}" />
+        <controls:WindowButtonCommands Style="{StaticResource MahApps.Styles.WindowButtonCommands.Win10}" />
     </controls:MetroWindow.WindowButtonCommands>
     <controls:MetroWindow.Flyouts>
         <controls:FlyoutsControl>

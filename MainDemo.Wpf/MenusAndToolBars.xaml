@@ -83,7 +83,7 @@
             Margin="5 0 0 0">
             <ToolBarTray>
                 <ToolBar
-                    Style="{DynamicResource MaterialDesignToolBar}"
+                    Style="{StaticResource MaterialDesignToolBar}"
                     ClipToBounds="False">
                     <Button
                         ToolTip="Follow me on Twitter"
@@ -201,12 +201,12 @@
 
                     <RadioButton
                         GroupName="YYY"
-                        Style="{DynamicResource MaterialDesignToolRadioButton}"
+                        Style="{StaticResource MaterialDesignToolRadioButton}"
                         Content="{materialDesign:PackIcon Kind=Radio}"/>
 
                     <RadioButton
                         GroupName="YYY"
-                        Style="{DynamicResource MaterialDesignToolRadioButton}"
+                        Style="{StaticResource MaterialDesignToolRadioButton}"
                         Content="{materialDesign:PackIcon Kind=EmoticonPoop}"/>
                     
                     <Separator/>
@@ -218,6 +218,51 @@
 
         <smtx:XamlDisplay
             UniqueKey="menus_3"
+            DockPanel.Dock="Top"
+            Margin="5 16 0 0">
+            <ToolBarTray>
+                <ToolBar
+                    Style="{StaticResource MaterialDesignToolBar}"
+                    ClipToBounds="False">
+                    <Menu>
+                        <MenuItem
+                            Header="Nested menu">
+                            <MenuItem
+                                Header="Item 1" />
+                            <MenuItem
+                                Header="Item 2" />
+                        </MenuItem>
+                    </Menu>
+
+                    <Separator />
+
+                    <ComboBox
+                        Margin="8 0"
+                        Width="80"
+                        Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                        materialDesign:HintAssist.Hint="Food">
+                        <ComboBoxItem
+                            Content="Fries"
+                            IsSelected="True" />
+
+                        <ComboBoxItem
+                            Content="Waffles" />
+
+                        <ComboBoxItem
+                            Content="Chocolate" />
+                    </ComboBox>
+
+                    <TextBox
+                        Width="80"
+                        Margin="8 0"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        materialDesign:HintAssist.Hint="Drink"
+                        Text="Beer" />
+                </ToolBar>
+            </ToolBarTray>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay
+            UniqueKey="menus_4"
             Margin="16"
             VerticalAlignment="Top"
             HorizontalAlignment="Left">
@@ -225,7 +270,7 @@
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay
-            UniqueKey="menus_4"
+            UniqueKey="menus_5"
             Margin="16"
             VerticalAlignment="Top"
             HorizontalAlignment="Left">

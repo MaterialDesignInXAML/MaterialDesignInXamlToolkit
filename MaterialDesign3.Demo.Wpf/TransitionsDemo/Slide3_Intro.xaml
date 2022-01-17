@@ -1,0 +1,45 @@
+﻿<UserControl
+    x:Class="MaterialDesign3Demo.TransitionsDemo.Slide3_Intro"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="300">
+    <materialDesign:ColorZone
+        Mode="PrimaryDark"
+        VerticalAlignment="Stretch"
+        HorizontalAlignment="Stretch"
+        VerticalContentAlignment="Stretch">
+        <StackPanel
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Margin="64">
+            <TextBlock
+                Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                TextWrapping="Wrap"
+                TextAlignment="Center">OK, we've seen some cool stuff.  Let's take a look at some more transition types.</TextBlock>
+            <StackPanel
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
+                <Button
+                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                    Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
+                    VerticalAlignment="Center"
+                    Margin="16">
+                    <materialDesign:PackIcon
+                        Kind="StepBackward" />
+                </Button>
+                <Button
+                    Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                    Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
+                    Margin="16">
+                    <materialDesign:PackIcon
+                        Kind="StepForward" />
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </materialDesign:ColorZone>
+</UserControl>

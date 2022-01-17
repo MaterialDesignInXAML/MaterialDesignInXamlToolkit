@@ -304,11 +304,11 @@
                         Content="And go create"/>
                     <RadioButton
                         Margin="16 4 16 0"
-                        Style="{DynamicResource MaterialDesignUserForegroundRadioButton}"
+                        Style="{StaticResource MaterialDesignUserForegroundRadioButton}"
                         Content="This?"/>
                     <RadioButton
                         Margin="16 4 16 0"
-                        Style="{DynamicResource MaterialDesignUserForegroundRadioButton}"
+                        Style="{StaticResource MaterialDesignUserForegroundRadioButton}"
                         Content="Or This?"/>
                     <Separator Style="{StaticResource MaterialDesignLightSeparator}"/>
                     <StackPanel

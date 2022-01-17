@@ -32,12 +32,12 @@
             <Button Click="SecondSlideButton_OnClick" Margin="0 16 0 0">Second</Button>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" Margin="16" HorizontalAlignment="Right">
-            <Button Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" 
+            <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}" 
                     Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
                     >
                 <materialDesign:PackIcon Kind="StepBackward" />
             </Button>
-            <Button Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"                     
+            <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"                     
                     Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
                     Margin="16 0 0 0">
                 <materialDesign:PackIcon Kind="StepForward" />

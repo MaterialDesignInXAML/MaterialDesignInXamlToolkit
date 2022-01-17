@@ -18,7 +18,7 @@
             Margin="0 32 0 0">
             <smtx:XamlDisplay UniqueKey="shadow_1">
                 <Button
-                    Style="{DynamicResource MaterialDesignRaisedButton}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
                     Content="DEPTH 1"/>
             </smtx:XamlDisplay>
             
@@ -26,7 +26,7 @@
                 UniqueKey="shadow_2"
                 Margin="16 0 0 0">
                 <Button
-                    Style="{DynamicResource MaterialDesignRaisedButton}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
                     materialDesign:ShadowAssist.ShadowDepth="Depth2"
                     Content="DEPTH 2"/>
             </smtx:XamlDisplay>
@@ -35,7 +35,7 @@
                 UniqueKey="shadow_3"
                 Margin="16 0 0 0">
                 <Button
-                    Style="{DynamicResource MaterialDesignRaisedButton}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
                     materialDesign:ShadowAssist.ShadowDepth="Depth3"
                     Content="DEPTH 3"/>
             </smtx:XamlDisplay>
@@ -44,14 +44,14 @@
                 UniqueKey="shadow_4"
                 Margin="16 0 0 0">
                 <Button
-                    Style="{DynamicResource MaterialDesignRaisedButton}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
                     materialDesign:ShadowAssist.ShadowDepth="Depth4"
                     Content="DEPTH 4"/>
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay UniqueKey="shadow_5" Margin="16 0 0 0">
                 <Button
-                    Style="{DynamicResource MaterialDesignRaisedButton}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
                     materialDesign:ShadowAssist.ShadowDepth="Depth5"
                     Content="DEPTH 5"/>
             </smtx:XamlDisplay>
@@ -62,7 +62,7 @@
             Margin="0 32 0 0">
             <smtx:XamlDisplay UniqueKey="shadow_6">
                 <Button
-                    Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                     materialDesign:ShadowAssist.ShadowDepth="Depth1"
                     Content="1"/>
             </smtx:XamlDisplay>
@@ -71,7 +71,7 @@
                 UniqueKey="shadow_7"
                 Margin="16 0 0 0">
                 <Button
-                    Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                     materialDesign:ShadowAssist.ShadowDepth="Depth2"
                     Content="2"/>
             </smtx:XamlDisplay>
@@ -80,7 +80,7 @@
                 UniqueKey="shadow_8"
                 Margin="16 0 0 0">
                 <Button
-                    Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                     materialDesign:ShadowAssist.ShadowDepth="Depth3"
                     Content="3"/>
             </smtx:XamlDisplay>
@@ -89,7 +89,7 @@
                 UniqueKey="shadow_9"
                 Margin="16 0 0 0">
                 <Button
-                    Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                     materialDesign:ShadowAssist.ShadowDepth="Depth4"
                     Content="4"/>
             </smtx:XamlDisplay>
@@ -98,7 +98,7 @@
                 UniqueKey="shadow_10"
                 Margin="16 0 0 0">
                 <Button
-                    Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                     materialDesign:ShadowAssist.ShadowDepth="Depth5"
                     Content="5"/>
             </smtx:XamlDisplay>

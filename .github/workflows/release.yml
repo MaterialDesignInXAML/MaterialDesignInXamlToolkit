@@ -67,9 +67,9 @@ jobs:
       uses: ./.github/actions/push-artifacts
       timeout-minutes: 10
       with:
-        mdixVersion: ${{ env.mdixVersion }}-ci${{ github.run_number }}
-        mdixColorsVersion: ${{ env.mdixColorsVersion }}-ci${{ github.run_number }}
-        mdixMahAppsVersion: ${{ env.mdixMahappsVersion }}-ci${{ github.run_number }}
+        mdixVersion: ${{ env.mdixVersion }}
+        mdixColorsVersion: ${{ env.mdixColorsVersion }}
+        mdixMahAppsVersion: ${{ env.mdixMahappsVersion }}
         demoAppPath: "MainDemo.Wpf/bin/${{ env.buildConfiguration }}"
         nugetKey: ${{ secrets.PAT }}
 

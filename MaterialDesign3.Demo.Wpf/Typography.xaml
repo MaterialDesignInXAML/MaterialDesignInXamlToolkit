@@ -1,0 +1,950 @@
+﻿<UserControl
+    x:Class="MaterialDesign3Demo.Typography"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style
+            x:Key="Caption"
+            TargetType="{x:Type TextBlock}"
+            BasedOn="{StaticResource MaterialDesignBodyMediumTextBlock}">
+            <Setter
+                Property="LineStackingStrategy"
+                Value="BlockLineHeight" />
+            <Setter
+                Property="Margin"
+                Value="8 0 0 0" />
+            <Setter
+                Property="VerticalAlignment"
+                Value="Center" />
+        </Style>
+        <Style
+            TargetType="{x:Type Border}">
+            <Setter
+                Property="VerticalAlignment"
+                Value="Center" />
+            <Setter
+                Property="BorderThickness"
+                Value="1" />
+            <Setter
+                Property="CornerRadius"
+                Value="16" />
+            <Setter
+                Property="Padding"
+                Value="12 4" />
+            <Setter
+                Property="BorderBrush"
+                Value="LightGray" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="Auto" />
+            <ColumnDefinition
+                Width="32" />
+            <ColumnDefinition
+                Width="Auto" />
+            <ColumnDefinition
+                Width="32" />
+            <ColumnDefinition
+                Width="Auto" />
+            <ColumnDefinition
+                Width="32" />
+            <ColumnDefinition
+                Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition               
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- MaterialDesignDisplayLargeTextBlock -->
+        <Border
+            Grid.Row="0"
+            Grid.Column="0">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="LetterABoxOutline" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="Regular" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="0"
+            Grid.Column="2">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="FormatSize" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="57" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="0"
+            Grid.Column="4">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="ArrowUpDown" />
+
+                <TextBlock
+                    Text="64"
+                    Style="{StaticResource Caption}" />
+            </StackPanel>
+        </Border>
+
+        <smtx:XamlDisplay
+            UniqueKey="typography_101"
+            Grid.Row="0"
+            Grid.Column="6">
+            <TextBlock
+                Padding="0 16"
+                VerticalAlignment="Center"
+                Style="{StaticResource MaterialDesignDisplayLargeTextBlock}"
+                Text="Display Large" />
+        </smtx:XamlDisplay>
+
+        <!-- MaterialDesignDisplayMediumTextBlock -->
+        <Border
+            Grid.Row="1"
+            Grid.Column="0">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="LetterABoxOutline" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="Regular" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="1"
+            Grid.Column="2">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="FormatSize" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="45" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="1"
+            Grid.Column="4">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="ArrowUpDown" />
+
+                <TextBlock
+                    Text="52"
+                    Style="{StaticResource Caption}" />
+            </StackPanel>
+        </Border>
+        
+        <smtx:XamlDisplay
+            UniqueKey="typography_102"
+            Grid.Row="1"
+            Grid.Column="6">
+            <TextBlock
+                Padding="0 16"
+                VerticalAlignment="Center"                
+                Style="{StaticResource MaterialDesignDisplayMediumTextBlock}"
+                Text="Display Medium" />
+        </smtx:XamlDisplay>
+
+        <!-- MaterialDesignDisplaySmallTextBlock -->
+        <Border
+            Grid.Row="2"
+            Grid.Column="0">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="LetterABoxOutline" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="Regular" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="2"
+            Grid.Column="2">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="FormatSize" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="36" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="2"
+            Grid.Column="4">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="ArrowUpDown" />
+
+                <TextBlock
+                    Text="44"
+                    Style="{StaticResource Caption}" />
+            </StackPanel>
+        </Border>
+        
+        <smtx:XamlDisplay
+            UniqueKey="typography_103"
+            Grid.Row="2"
+            Grid.Column="6">
+            <TextBlock
+                Padding="0 16"
+                VerticalAlignment="Center"            
+                Style="{StaticResource MaterialDesignDisplaySmallTextBlock}"
+                Text="Display Small" />
+        </smtx:XamlDisplay>
+
+        <!-- MaterialDesignHeadlineLargeTextBlock -->
+        <Border
+            Grid.Row="3"
+            Grid.Column="0">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="LetterABoxOutline" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="Regular" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="3"
+            Grid.Column="2">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="FormatSize" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="32" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="3"
+            Grid.Column="4">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="ArrowUpDown" />
+
+                <TextBlock
+                    Text="40"
+                    Style="{StaticResource Caption}" />
+            </StackPanel>
+        </Border>
+        
+        <smtx:XamlDisplay
+            UniqueKey="typography_104"
+            Grid.Row="3"
+            Grid.Column="6">
+            <TextBlock
+                Padding="0 16"
+                VerticalAlignment="Center"            
+                Style="{StaticResource MaterialDesignHeadlineLargeTextBlock}"
+                Text="Headline Large" />
+        </smtx:XamlDisplay>
+
+        <!-- MaterialDesignHeadlineMediumTextBlock -->
+        <Border
+            Grid.Row="4"
+            Grid.Column="0">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="LetterABoxOutline" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="Regular" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="4"
+            Grid.Column="2">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="FormatSize" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="28" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="4"
+            Grid.Column="4">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="ArrowUpDown" />
+
+                <TextBlock
+                    Text="36"
+                    Style="{StaticResource Caption}" />
+            </StackPanel>
+        </Border>
+        
+        <smtx:XamlDisplay
+            UniqueKey="typography_105"
+            Grid.Row="4"
+            Grid.Column="6">
+            <TextBlock
+                Padding="0 16"
+                VerticalAlignment="Center"                
+                Style="{StaticResource MaterialDesignHeadlineMediumTextBlock}"
+                Text="Headline Medium" />
+        </smtx:XamlDisplay>
+
+        <!-- MaterialDesignHeadlineSmallTextBlock -->
+        <Border
+            Grid.Row="5"
+            Grid.Column="0">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="LetterABoxOutline" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="Regular" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="5"
+            Grid.Column="2">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="FormatSize" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="24" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="5"
+            Grid.Column="4">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="ArrowUpDown" />
+
+                <TextBlock
+                    Text="32"
+                    Style="{StaticResource Caption}" />
+            </StackPanel>
+        </Border>
+        
+        <smtx:XamlDisplay
+            UniqueKey="typography_106"
+            Grid.Row="5"
+            Grid.Column="6">
+            <TextBlock
+                Padding="0 16"
+                VerticalAlignment="Center"            
+                Style="{StaticResource MaterialDesignHeadlineSmallTextBlock}"
+                Text="Headline Small" />
+        </smtx:XamlDisplay>
+
+        <!-- MaterialDesignTitleLargeTextBlock -->
+        <Border
+            Grid.Row="6"
+            Grid.Column="0">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="LetterABoxOutline" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="Medium" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="6"
+            Grid.Column="2">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="FormatSize" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="22" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="6"
+            Grid.Column="4">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="ArrowUpDown" />
+
+                <TextBlock
+                    Text="28"
+                    Style="{StaticResource Caption}" />
+            </StackPanel>
+        </Border>
+        
+        <smtx:XamlDisplay
+            UniqueKey="typography_107"
+            Grid.Row="6"
+            Grid.Column="6">
+            <TextBlock
+                Padding="0 16"
+                VerticalAlignment="Center"
+                Style="{StaticResource MaterialDesignTitleLargeTextBlock}"
+                Text="Title Large" />
+        </smtx:XamlDisplay>
+
+        <!-- MaterialDesignTitleMediumTextBlock -->
+        <Border
+            Grid.Row="7"
+            Grid.Column="0">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="LetterABoxOutline" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="Medium" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="7"
+            Grid.Column="2">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="FormatSize" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="16" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="7"
+            Grid.Column="4">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="ArrowUpDown" />
+
+                <TextBlock
+                    Text="24"
+                    Style="{StaticResource Caption}" />
+            </StackPanel>
+        </Border>
+        
+        <smtx:XamlDisplay
+            UniqueKey="typography_108"
+            Grid.Row="7"
+            Grid.Column="6">
+            <TextBlock
+                Padding="0 16"
+                VerticalAlignment="Center"
+                Style="{StaticResource MaterialDesignTitleMediumTextBlock}"
+                Text="Title Medium" />
+        </smtx:XamlDisplay>
+
+        <!-- MaterialDesignTitleSmallTextBlock -->
+        <Border
+            Grid.Row="8"
+            Grid.Column="0">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="LetterABoxOutline" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="Medium" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="8"
+            Grid.Column="2">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="FormatSize" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="14" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="8"
+            Grid.Column="4">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="ArrowUpDown" />
+
+                <TextBlock
+                    Text="20"
+                    Style="{StaticResource Caption}" />
+            </StackPanel>
+        </Border>
+        
+        <smtx:XamlDisplay
+            UniqueKey="typography_109"
+            Grid.Row="8"
+            Grid.Column="6">
+            <TextBlock
+                Padding="0 16"
+                VerticalAlignment="Center"
+                Style="{StaticResource MaterialDesignTitleSmallTextBlock}"
+                Text="Title Small" />
+        </smtx:XamlDisplay>
+
+        <!-- MaterialDesignLabelLargeTextBlock -->
+        <Border
+            Grid.Row="9"
+            Grid.Column="0">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="LetterABoxOutline" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="Medium" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="9"
+            Grid.Column="2">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="FormatSize" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="14" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="9"
+            Grid.Column="4">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="ArrowUpDown" />
+
+                <TextBlock
+                    Text="20"
+                    Style="{StaticResource Caption}" />
+            </StackPanel>
+        </Border>
+        
+        <smtx:XamlDisplay
+            UniqueKey="typography_110"
+            Grid.Row="9"
+            Grid.Column="6">
+            <TextBlock
+                Padding="0 16"
+                VerticalAlignment="Center"
+                Style="{StaticResource MaterialDesignLabelLargeTextBlock}"
+                Text="Label Large" />
+        </smtx:XamlDisplay>
+
+        <!-- MaterialDesignLabelMediumTextBlock -->
+        <Border
+            Grid.Row="10"
+            Grid.Column="0">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="LetterABoxOutline" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="Medium" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="10"
+            Grid.Column="2">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="FormatSize" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="12" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="10"
+            Grid.Column="4">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="ArrowUpDown" />
+
+                <TextBlock
+                    Text="16"
+                    Style="{StaticResource Caption}" />
+            </StackPanel>
+        </Border>
+        
+        <smtx:XamlDisplay
+            UniqueKey="typography_111"
+            Grid.Row="10"
+            Grid.Column="6">
+            <TextBlock
+                Padding="0 16"
+                VerticalAlignment="Center"
+                Style="{StaticResource MaterialDesignLabelMediumTextBlock}"
+                Text="Label Medium" />
+        </smtx:XamlDisplay>
+
+        <!-- MaterialDesignLabelSmallTextBlock -->
+        <Border
+            Grid.Row="11"
+            Grid.Column="0">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="LetterABoxOutline" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="Medium" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="11"
+            Grid.Column="2">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="FormatSize" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="11" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="11"
+            Grid.Column="4">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="ArrowUpDown" />
+
+                <TextBlock
+                    Text="16"
+                    Style="{StaticResource Caption}" />
+            </StackPanel>
+        </Border>
+        
+        <smtx:XamlDisplay
+            UniqueKey="typography_112"
+            Grid.Row="11"
+            Grid.Column="6">
+            <TextBlock
+                Padding="0 16"
+                VerticalAlignment="Center"
+                Style="{StaticResource MaterialDesignLabelSmallTextBlock}"
+                Text="Label Small" />
+        </smtx:XamlDisplay>
+
+        <!-- MaterialDesignBodyLargeTextBlock -->
+        <Border
+            Grid.Row="12"
+            Grid.Column="0">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="LetterABoxOutline" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="Regular" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="12"
+            Grid.Column="2">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="FormatSize" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="16" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="12"
+            Grid.Column="4">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="ArrowUpDown" />
+
+                <TextBlock
+                    Text="24"
+                    Style="{StaticResource Caption}" />
+            </StackPanel>
+        </Border>
+        
+        <smtx:XamlDisplay
+            UniqueKey="typography_113"
+            Grid.Row="12"
+            Grid.Column="6">
+            <TextBlock
+                Padding="0 16"
+                VerticalAlignment="Center"
+                Style="{StaticResource MaterialDesignBodyLargeTextBlock}"
+                Text="Body Large" />
+        </smtx:XamlDisplay>
+
+        <!-- MaterialDesignBodyMediumTextBlock -->
+        <Border
+            Grid.Row="13"
+            Grid.Column="0">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="LetterABoxOutline" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="Regular" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="13"
+            Grid.Column="2">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="FormatSize" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="14" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="13"
+            Grid.Column="4">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="ArrowUpDown" />
+
+                <TextBlock
+                    Text="20"
+                    Style="{StaticResource Caption}" />
+            </StackPanel>
+        </Border>
+        
+        <smtx:XamlDisplay
+            UniqueKey="typography_114"
+            Grid.Row="13"
+            Grid.Column="6">
+            <TextBlock
+                Padding="0 16"
+                VerticalAlignment="Center"
+                Style="{StaticResource MaterialDesignBodyMediumTextBlock}"
+                Text="Body Medium" />
+        </smtx:XamlDisplay>
+
+        <!-- MaterialDesignBodySmallTextBlock -->
+        <Border
+            Grid.Row="14"
+            Grid.Column="0">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="LetterABoxOutline" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="Regular" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="14"
+            Grid.Column="2">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="FormatSize" />
+
+                <TextBlock
+                    Style="{StaticResource Caption}"
+                    Text="12" />
+            </StackPanel>
+        </Border>
+
+        <Border
+            Grid.Row="14"
+            Grid.Column="4">
+            <StackPanel
+                Orientation="Horizontal">
+                <materialDesign:PackIcon
+                    VerticalAlignment="Center"
+                    Kind="ArrowUpDown" />
+
+                <TextBlock
+                    Text="16"
+                    Style="{StaticResource Caption}" />
+            </StackPanel>
+        </Border>
+        
+        <smtx:XamlDisplay
+            UniqueKey="typography_115"
+            Grid.Row="14"
+            Grid.Column="6">
+            <TextBlock
+                Padding="0 16"
+                VerticalAlignment="Center"
+                Style="{StaticResource MaterialDesignBodySmallTextBlock}"
+                Text="Body Small" />
+        </smtx:XamlDisplay>
+    </Grid>
+</UserControl>

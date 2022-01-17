@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -8,7 +8,6 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <AssemblyTitle>MahMaterialDragablzMashUp</AssemblyTitle>
     <Product>MahMaterialDragablzMashUp</Product>
-    <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
     <Prefer32Bit>true</Prefer32Bit>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>

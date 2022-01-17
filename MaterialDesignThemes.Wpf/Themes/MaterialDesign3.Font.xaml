@@ -1,0 +1,6 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <FontFamily
+        x:Key="MaterialDesignFont">pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Noto/#Noto</FontFamily>
+</ResourceDictionary>

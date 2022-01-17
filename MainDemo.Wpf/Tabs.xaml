@@ -1,0 +1,382 @@
+﻿<UserControl
+    x:Class="MaterialDesignDemo.Tabs"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+    d:DesignHeight="4000"
+    d:DesignWidth="1920"
+    mc:Ignorable="d">
+    <StackPanel Margin="0,0,8,8">
+        <TextBlock
+            Margin="0,0,0,16"
+            Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+            Text="Tabs" />
+
+        <TextBlock
+            Margin="0,0,0,8"
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Text="Default style" />
+
+        <WrapPanel Margin="0,0,0,16">
+            <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_1">
+                <materialDesign:Card>
+                    <TabControl Width="300" materialDesign:ColorZoneAssist.Mode="PrimaryLight">
+                        <TabItem Header="TAB 1">
+                            <TextBlock Margin="8" Text="PrimaryLight Tab 1" />
+                        </TabItem>
+                        <TabItem Header="TAB 2">
+                            <TextBlock Margin="8" Text="PrimaryLight Tab 2" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_2">
+                <materialDesign:Card>
+                    <TabControl Width="300" materialDesign:ColorZoneAssist.Mode="PrimaryMid">
+                        <TabItem Header="TAB 1">
+                            <TextBlock Margin="8" Text="PrimaryMid Tab 1" />
+                        </TabItem>
+                        <TabItem Header="TAB 2">
+                            <TextBlock Margin="8" Text="PrimaryMid Tab 2" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_3">
+                <materialDesign:Card>
+                    <TabControl Width="300" materialDesign:ColorZoneAssist.Mode="PrimaryDark">
+                        <TabItem Header="TAB 1">
+                            <TextBlock Margin="8" Text="PrimaryDark Tab 1" />
+                        </TabItem>
+                        <TabItem Header="TAB 2">
+                            <TextBlock Margin="8" Text="PrimaryDark Tab 2" />
+                        </TabItem>
+                    </TabControl>
+
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+        </WrapPanel>
+
+        <WrapPanel Margin="0,0,0,16">
+            <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_4">
+                <materialDesign:Card>
+                    <TabControl Width="300" materialDesign:ColorZoneAssist.Mode="SecondaryLight">
+                        <TabItem Header="TAB 1">
+                            <TextBlock Margin="8" Text="SecondaryLight Tab 1" />
+                        </TabItem>
+                        <TabItem Header="TAB 2">
+                            <TextBlock Margin="8" Text="SecondaryLight Tab 2" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_5">
+                <materialDesign:Card>
+                    <TabControl Width="300" materialDesign:ColorZoneAssist.Mode="SecondaryMid">
+                        <TabItem Header="TAB 1">
+                            <TextBlock Margin="8" Text="SecondaryMid Tab 1" />
+                        </TabItem>
+                        <TabItem Header="TAB 2">
+                            <TextBlock Margin="8" Text="SecondaryMid Tab 2" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_6">
+                <materialDesign:Card>
+                    <TabControl Width="300" materialDesign:ColorZoneAssist.Mode="SecondaryDark">
+                        <TabItem Header="TAB 1">
+                            <TextBlock Margin="8" Text="SecondaryDark Tab 1" />
+                        </TabItem>
+                        <TabItem Header="TAB 2">
+                            <TextBlock Margin="8" Text="SecondaryDark Tab 2" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+        </WrapPanel>
+
+        <TextBlock
+            Margin="0,0,0,8"
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Text="Filled style" />
+
+        <WrapPanel Margin="0,0,0,16">
+            <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_7">
+                <materialDesign:Card>
+                    <TabControl
+                        Width="300"
+                        materialDesign:ColorZoneAssist.Mode="PrimaryLight"
+                        Style="{StaticResource MaterialDesignFilledTabControl}">
+                        <TabItem Header="TAB 1">
+                            <TextBlock Margin="8" Text="PrimaryLight Tab 1" />
+                        </TabItem>
+                        <TabItem Header="TAB 2">
+                            <TextBlock Margin="8" Text="PrimaryLight Tab 2" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_8">
+                <materialDesign:Card>
+                    <TabControl
+                        Width="300"
+                        materialDesign:ColorZoneAssist.Mode="PrimaryMid"
+                        Style="{StaticResource MaterialDesignFilledTabControl}">
+                        <TabItem Header="TAB 1">
+                            <TextBlock Margin="8" Text="PrimaryMid Tab 1" />
+                        </TabItem>
+                        <TabItem Header="TAB 2">
+                            <TextBlock Margin="8" Text="PrimaryMid Tab 2" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_9">
+                <materialDesign:Card>
+                    <TabControl
+                        Width="300"
+                        materialDesign:ColorZoneAssist.Mode="PrimaryDark"
+                        Style="{StaticResource MaterialDesignFilledTabControl}">
+                        <TabItem Header="TAB 1">
+                            <TextBlock Margin="8" Text="PrimaryDark Tab 1" />
+                        </TabItem>
+                        <TabItem Header="TAB 2">
+                            <TextBlock Margin="8" Text="PrimaryDark Tab 2" />
+                        </TabItem>
+                    </TabControl>
+
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+        </WrapPanel>
+
+        <WrapPanel Margin="0,0,0,16">
+            <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_10">
+                <materialDesign:Card>
+                    <TabControl
+                        Width="300"
+                        materialDesign:ColorZoneAssist.Mode="SecondaryLight"
+                        Style="{StaticResource MaterialDesignFilledTabControl}">
+                        <TabItem Header="TAB 1">
+                            <TextBlock Margin="8" Text="SecondaryLight Tab 1" />
+                        </TabItem>
+                        <TabItem Header="TAB 2">
+                            <TextBlock Margin="8" Text="SecondaryLight Tab 2" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_11">
+                <materialDesign:Card>
+                    <TabControl
+                        Width="300"
+                        materialDesign:ColorZoneAssist.Mode="SecondaryMid"
+                        Style="{StaticResource MaterialDesignFilledTabControl}">
+                        <TabItem Header="TAB 1">
+                            <TextBlock Margin="8" Text="SecondaryMid Tab 1" />
+                        </TabItem>
+                        <TabItem Header="TAB 2">
+                            <TextBlock Margin="8" Text="SecondaryMid Tab 2" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_12">
+                <materialDesign:Card>
+                    <TabControl
+                        Width="300"
+                        materialDesign:ColorZoneAssist.Mode="SecondaryDark"
+                        Style="{StaticResource MaterialDesignFilledTabControl}">
+                        <TabItem Header="TAB 1">
+                            <TextBlock Margin="8" Text="SecondaryDark Tab 1" />
+                        </TabItem>
+                        <TabItem Header="TAB 2">
+                            <TextBlock Margin="8" Text="SecondaryDark Tab 2" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+        </WrapPanel>
+
+        <TextBlock
+            Margin="0,0,0,8"
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Text="Placement" />
+
+        <WrapPanel>
+            <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_13">
+                <materialDesign:Card>
+                    <TabControl
+                        Width="300"
+                        Height="150"
+                        TabStripPlacement="Left">
+                        <TabItem Header="TAB 1">
+                            <TextBlock Margin="8" Text="Left placement" />
+                        </TabItem>
+                        <TabItem Header="TAB 2">
+                            <TextBlock Margin="8" Text="Left placement" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_14">
+                <materialDesign:Card>
+                    <TabControl
+                        Width="300"
+                        Height="150"
+                        TabStripPlacement="Right">
+                        <TabItem Header="TAB 1">
+                            <TextBlock Margin="8" Text="Right placement tab 1" />
+                        </TabItem>
+                        <TabItem Header="TAB 2">
+                            <TextBlock Margin="8" Text="Right placement tab 2" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_15">
+                <materialDesign:Card>
+                    <TabControl
+                        Width="300"
+                        Height="150"
+                        TabStripPlacement="Bottom">
+                        <TabItem Header="TAB 1">
+                            <TextBlock Margin="8" Text="Bottom placement tab 1" />
+                        </TabItem>
+                        <TabItem Header="TAB 2">
+                            <TextBlock Margin="8" Text="Bottom placement tab 2" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+        </WrapPanel>
+
+        <WrapPanel>
+            <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_16">
+                <materialDesign:Card>
+                    <TabControl
+                        Width="300"
+                        Height="150"
+                        Style="{StaticResource MaterialDesignFilledTabControl}"
+                        TabStripPlacement="Left">
+                        <TabItem Header="TAB 1">
+                            <TextBlock Margin="8" Text="Left placement" />
+                        </TabItem>
+                        <TabItem Header="TAB 2">
+                            <TextBlock Margin="8" Text="Left placement" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_17">
+                <materialDesign:Card>
+                    <TabControl
+                        Width="300"
+                        Height="150"
+                        Style="{StaticResource MaterialDesignFilledTabControl}"
+                        TabStripPlacement="Right">
+                        <TabItem Header="TAB 1">
+                            <TextBlock Margin="8" Text="Right placement tab 1" />
+                        </TabItem>
+                        <TabItem Header="TAB 2">
+                            <TextBlock Margin="8" Text="Right placement tab 2" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_18">
+                <materialDesign:Card>
+                    <TabControl
+                        Width="300"
+                        Height="150"
+                        Style="{StaticResource MaterialDesignFilledTabControl}"
+                        TabStripPlacement="Bottom">
+                        <TabItem Header="TAB 1">
+                            <TextBlock Margin="8" Text="Bottom placement tab 1" />
+                        </TabItem>
+                        <TabItem Header="TAB 2">
+                            <TextBlock Margin="8" Text="Bottom placement tab 2" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+        </WrapPanel>
+
+        <TextBlock
+            Margin="0,0,0,8"
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Text="Different sizes" />
+
+        <StackPanel>
+            <smtx:XamlDisplay Margin="0,0,0,16" UniqueKey="tabs_19">
+                <materialDesign:Card>
+                    <TabControl HorizontalContentAlignment="Left">
+                        <TabItem Header="TAB1">
+                            <TextBlock Margin="8" Text="Full-width example tab 1" />
+                        </TabItem>
+                        <TabItem Header="TAB 2">
+                            <TextBlock Margin="8" Text="Full-width example tab 2" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay Margin="0,0,0,16" UniqueKey="tabs_20">
+                <materialDesign:Card>
+                    <TabControl HorizontalContentAlignment="Left" Style="{StaticResource MaterialDesignFilledTabControl}">
+                        <TabItem Header="TAB1">
+                            <TextBlock Margin="8" Text="Full-width filled example tab 1" />
+                        </TabItem>
+                        <TabItem Header="TAB 2">
+                            <TextBlock Margin="8" Text="Full-width filled example tab 2" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay Margin="0,0,0,16" UniqueKey="tabs_21">
+                <materialDesign:Card>
+                    <TabControl HorizontalContentAlignment="Left" materialDesign:ColorZoneAssist.Mode="SecondaryMid">
+                        <TabItem Header="TAB1">
+                            <TextBlock Margin="8" Text="Full-width secondary example tab 1" />
+                        </TabItem>
+                        <TabItem Header="TAB 2">
+                            <TextBlock Margin="8" Text="Full-width secondary example tab 2" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay Margin="0,0,0,16" UniqueKey="tabs_22">
+                <materialDesign:Card>
+                    <TabControl
+                        HorizontalContentAlignment="Left"
+                        materialDesign:ColorZoneAssist.Mode="SecondaryMid"
+                        Style="{StaticResource MaterialDesignFilledTabControl}">
+                        <TabItem Header="TAB1">
+                            <TextBlock Margin="8" Text="Full-width secondary filled example tab 1" />
+                        </TabItem>
+                        <TabItem Header="TAB 2">
+                            <TextBlock Margin="8" Text="Full-width secondary filled example tab 2" />
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

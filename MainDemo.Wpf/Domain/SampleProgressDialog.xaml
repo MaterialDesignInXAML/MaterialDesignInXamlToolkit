@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d">
     <ProgressBar Width="24" Height="24" Margin="16"
-                 Style="{DynamicResource MaterialDesignCircularProgressBar}"
+                 Style="{StaticResource MaterialDesignCircularProgressBar}"
                  IsIndeterminate="True"
                  Value="33"/>
 </UserControl>
