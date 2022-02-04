@@ -33,7 +33,7 @@ runs:
 
     - name: Test
       shell: pwsh
-      run: dotnet test ${{ inputs.solution }} --configuration ${{ inputs.buildConfiguration }} --no-build --verbosity detailed --blame-crash
+      run: dotnet test ${{ inputs.solution }} --configuration ${{ inputs.buildConfiguration }} --no-build --verbosity normal --blame-crash
 
     - name: Upload Screenshots
       if: ${{ always() }}
