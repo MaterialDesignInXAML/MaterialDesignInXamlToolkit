@@ -391,7 +391,10 @@ namespace MaterialDesignThemes.UITests.WPF.TextBoxes
 ");
             
             var scrollViewer = await textBox.GetElement<ScrollViewer>("PART_ContentHost");
-            Assert.Equal(VerticalAlignment.Top, await scrollViewer.GetVerticalAlignment());
+            //The default for this changed with issue 2556.
+            //It should be stretch so that the horizontal scroll bar is at the bottom and not
+            //pushed to the bottom of the text.
+            Assert.Equal(VerticalAlignment.Stretch, await scrollViewer.GetVerticalAlignment());
 
             foreach (var alignment in Enum.GetValues<VerticalAlignment>())
             {

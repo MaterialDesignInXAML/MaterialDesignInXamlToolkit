@@ -54,7 +54,7 @@
         <Setter Property="CaretBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="SelectionBrush" Value="{DynamicResource PrimaryHueLightBrush}" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-        <Setter Property="VerticalContentAlignment" Value="Top" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="AllowDrop" Value="true" />
         <Setter Property="Cursor" Value="Arrow" />
@@ -337,7 +337,6 @@
                             <Setter TargetName="HelperTextTextBlock" Property="Margin" Value="16,0,0,0" />
                         </Trigger>
                         <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
-                            <Setter Property="VerticalContentAlignment" Value="Top" />
                             <Setter Property="BorderThickness" Value="1" />
                             <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaBorder}" />
                             <Setter Property="Padding" Value="16,16,12,16" />
