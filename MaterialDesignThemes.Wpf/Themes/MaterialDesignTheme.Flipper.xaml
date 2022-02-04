@@ -69,27 +69,30 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <wpf:Plane3D x:Name="Plane3D" RotationY="0" ZFactor="2.055">
-                            <Grid>
+                        <Grid x:Name="PlacementTarget">
+                            <Grid x:Name="PlaneContent">
                                 <ContentPresenter 
-                                    x:Name="FrontContentPresenter"                    
-                                    Margin="{TemplateBinding Padding}"                            
+                                    x:Name="FrontContentPresenter"
+                                    Margin="{TemplateBinding Padding}"
                                     Content="{TemplateBinding FrontContent}" 
                                     ContentTemplate="{TemplateBinding FrontContentTemplate}" 
                                     ContentTemplateSelector="{TemplateBinding FrontContentTemplateSelector}" 
                                     ContentStringFormat="{TemplateBinding FrontContentStringFormat}"
                                     RenderTransformOrigin=".5,.5" />
                                 <ContentPresenter 
-                                    x:Name="BackContentPresenter"                    
+                                    x:Name="BackContentPresenter"
                                     Visibility="Hidden"
-                                    Margin="{TemplateBinding Padding}"                            
+                                    Margin="{TemplateBinding Padding}"
                                     Content="{TemplateBinding BackContent}" 
                                     ContentTemplate="{TemplateBinding BackContentTemplate}" 
                                     ContentTemplateSelector="{TemplateBinding BackContentTemplateSelector}" 
                                     ContentStringFormat="{TemplateBinding BackContentStringFormat}"
                                     RenderTransformOrigin=".5,.5" />
                             </Grid>
-                        </wpf:Plane3D>
+                            <wpf:Plane3D x:Name="Plane3D" RotationY="0" ZFactor="2.055">
+
+                            </wpf:Plane3D>
+                        </Grid>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -138,7 +141,7 @@
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
-                                
+
                                 <VisualState x:Name="Unflipped">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames  Storyboard.TargetProperty="Visibility" Storyboard.TargetName="BackContentPresenter">
@@ -158,22 +161,22 @@
                                             <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
-                                </VisualState>                                
+                                </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <wpf:Plane3D x:Name="PART_Plane3D" RotationY="0" ZFactor="2.055">
-                            <wpf:Card wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}">
+                        <Grid x:Name="PlacementTarget">
+                            <wpf:Card wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}" x:Name="PlaneContent">
                                 <Grid>
-                                    <ContentPresenter x:Name="FrontContentPresenter"                    
-                                                      Margin="{TemplateBinding Padding}"                            
+                                    <ContentPresenter x:Name="FrontContentPresenter"
+                                                      Margin="{TemplateBinding Padding}"
                                                       Content="{TemplateBinding FrontContent}" 
                                                       ContentTemplate="{TemplateBinding FrontContentTemplate}" 
                                                       ContentTemplateSelector="{TemplateBinding FrontContentTemplateSelector}" 
                                                       ContentStringFormat="{TemplateBinding FrontContentStringFormat}"
                                                       RenderTransformOrigin=".5,.5" />
-                                    <ContentPresenter x:Name="BackContentPresenter"                    
+                                    <ContentPresenter x:Name="BackContentPresenter"
                                                       Visibility="Collapsed"
-                                                      Margin="{TemplateBinding Padding}"                            
+                                                      Margin="{TemplateBinding Padding}"
                                                       Content="{TemplateBinding BackContent}" 
                                                       ContentTemplate="{TemplateBinding BackContentTemplate}" 
                                                       ContentTemplateSelector="{TemplateBinding BackContentTemplateSelector}" 
@@ -181,7 +184,10 @@
                                                       RenderTransformOrigin=".5,.5" />
                                 </Grid>
                             </wpf:Card>
-                        </wpf:Plane3D>
+                            <wpf:Plane3D x:Name="PART_Plane3D" RotationY="0" ZFactor="2.055">
+
+                            </wpf:Plane3D>
+                        </Grid>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

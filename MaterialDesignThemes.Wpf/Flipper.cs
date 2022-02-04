@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -7,6 +8,8 @@ using System.Windows.Threading;
 namespace MaterialDesignThemes.Wpf
 {
     [TemplatePart(Name = Plane3DPartName, Type = typeof(Plane3D))]
+    [TemplatePart(Name = "PlacementTarget", Type = typeof(Grid))]
+    [TemplatePart(Name = "PlaneContent", Type = typeof(FrameworkElement))]
     [TemplateVisualState(GroupName = TemplateFlipGroupName, Name = TemplateFlippedStateName)]
     [TemplateVisualState(GroupName = TemplateFlipGroupName, Name = TemplateUnflippedStateName)]
     public class Flipper : Control
@@ -19,6 +22,10 @@ namespace MaterialDesignThemes.Wpf
         public const string TemplateUnflippedStateName = "Unflipped";
 
         private Plane3D? _plane3D;
+        private FrameworkElement? _flipperContent;
+        private Grid? _placementTarget;
+        private FrameworkElement? _border;
+
 
         static Flipper()
         {
@@ -108,6 +115,28 @@ namespace MaterialDesignThemes.Wpf
         private static void IsFlippedPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             var flipper = (Flipper)dependencyObject;
+
+            //Move content into flipper
+            flipper._placementTarget.Children.Remove(flipper._flipperContent);
+            flipper._plane3D.Child = flipper._flipperContent;
+
+            bool isFlipped = flipper.IsFlipped;
+            var stateName = isFlipped ? TemplateFlippedStateName : TemplateUnflippedStateName;
+            var stateGroup = VisualStateManager.GetVisualStateGroups(flipper._border);
+            var visualState = stateGroup.Cast<VisualStateGroup>()
+                .SelectMany(g => g.States.Cast<VisualState>())
+                .First(s => s.Name == stateName);
+
+            EventHandler? completed = null;
+            completed = new EventHandler((_, __) =>
+            {
+                //Move content out of flipper
+                flipper._plane3D.Child = null;
+                flipper._placementTarget.Children.Add(flipper._flipperContent);
+                visualState.Storyboard.Completed -= completed;
+            });
+            visualState.Storyboard.Completed += completed;
+            
             flipper.UpdateVisualStates(true);
             flipper.RemeasureDuringFlip();
             OnIsFlippedChanged(flipper, dependencyPropertyChangedEventArgs);
@@ -150,6 +179,9 @@ namespace MaterialDesignThemes.Wpf
             UpdateVisualStates(false);
 
             _plane3D = GetTemplateChild(Plane3DPartName) as Plane3D;
+            _flipperContent = GetTemplateChild("PlaneContent") as FrameworkElement;
+            _placementTarget = GetTemplateChild("PlacementTarget") as Grid;
+            _border = GetTemplateChild("Border") as FrameworkElement;
         }
 
         private void RemeasureDuringFlip()
@@ -175,14 +207,10 @@ namespace MaterialDesignThemes.Wpf
         }
 
         private void UpdateVisualStates(bool useTransitions)
-        {
-            VisualStateManager.GoToState(this, IsFlipped ? TemplateFlippedStateName : TemplateUnflippedStateName,
+            => VisualStateManager.GoToState(this, IsFlipped ? TemplateFlippedStateName : TemplateUnflippedStateName,
                 useTransitions);
-        }
 
         private void FlipHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
-        {
-            SetCurrentValue(IsFlippedProperty, !IsFlipped);
-        }
+            => SetCurrentValue(IsFlippedProperty, !IsFlipped);
     }
 }

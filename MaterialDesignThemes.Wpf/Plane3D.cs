@@ -32,6 +32,7 @@ namespace MaterialDesignThemes.Wpf
         private static readonly Vector3D YAxis = new Vector3D(0, 1, 0);
         private static readonly Vector3D ZAxis = new Vector3D(0, 0, 1);
 
+        //TODO: expose a dependency property to turn off caching
 
         public static readonly DependencyProperty RotationXProperty =
             DependencyProperty.Register("RotationX", typeof(double), typeof(Plane3D), new UIPropertyMetadata(0.0, (d, args) => ((Plane3D)d).UpdateRotation()));
@@ -90,6 +91,10 @@ namespace MaterialDesignThemes.Wpf
 
                 // Wrap child with special decorator that catches layout invalidations. 
                 _originalChild = value;
+                if (_logicalChild is Decorator d)
+                {
+                    d.Child = null;
+                }
                 _logicalChild = new LayoutInvalidationCatcher() { Child = _originalChild };
                 _visualChild = CreateVisualChild();
 
