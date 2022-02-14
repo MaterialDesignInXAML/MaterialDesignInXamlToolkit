@@ -30,7 +30,6 @@ namespace MaterialDesignThemes.Wpf
             DependencyProperty.RegisterAttached("ShowSelection", typeof(bool), typeof(ListBoxItemAssist), new PropertyMetadata(true));
         #endregion
 
-
         #region SelectionHeight
         public static int GetSelectionHeight(DependencyObject element)
             => (int)element.GetValue(SelectionHeightProperty);
@@ -38,7 +37,7 @@ namespace MaterialDesignThemes.Wpf
             => element.SetValue(SelectionHeightProperty, value);
 
         public static readonly DependencyProperty SelectionHeightProperty =
-            DependencyProperty.RegisterAttached("SelectionHeight", typeof(int), typeof(ListBoxItemAssist), new PropertyMetadata(0));
+            DependencyProperty.RegisterAttached("SelectionHeight", typeof(int), typeof(ListBoxItemAssist), new PropertyMetadata(default(int)));
         #endregion
 
         #region SelectionWidth
@@ -48,7 +47,7 @@ namespace MaterialDesignThemes.Wpf
             => element.SetValue(SelectionWidthProperty, value);
 
         public static readonly DependencyProperty SelectionWidthProperty =
-            DependencyProperty.RegisterAttached("SelectionWidth", typeof(int), typeof(ListBoxItemAssist), new PropertyMetadata(0));
+            DependencyProperty.RegisterAttached("SelectionWidth", typeof(int), typeof(ListBoxItemAssist), new PropertyMetadata(default(int)));
         #endregion
 
         #region SelectionCornerRadius
@@ -59,6 +58,46 @@ namespace MaterialDesignThemes.Wpf
 
         public static readonly DependencyProperty SelectionCornerRadiusProperty =
             DependencyProperty.RegisterAttached("SelectionCornerRadius", typeof(CornerRadius), typeof(ListBoxItemAssist), new PropertyMetadata(new CornerRadius(2.0)));
+        #endregion
+
+        #region UnselectedIcon
+        public static PackIconKind GetUnselectedIcon(DependencyObject element)
+            => (PackIconKind)element.GetValue(UnselectedIconProperty);
+        public static void SetUnselectedIcon(DependencyObject element, PackIconKind value)
+            => element.SetValue(UnselectedIconProperty, value);
+
+        public static readonly DependencyProperty UnselectedIconProperty =
+            DependencyProperty.RegisterAttached("UnselectedIcon", typeof(PackIconKind), typeof(ListBoxItemAssist), new PropertyMetadata(default(PackIconKind)));
+        #endregion
+
+        #region SelectedIcon
+        public static PackIconKind GetSelectedIcon(DependencyObject element)
+            => (PackIconKind)element.GetValue(SelectedIconProperty);
+        public static void SetSelectedIcon(DependencyObject element, PackIconKind value)
+            => element.SetValue(SelectedIconProperty, value);
+
+        public static readonly DependencyProperty SelectedIconProperty =
+            DependencyProperty.RegisterAttached("SelectedIcon", typeof(PackIconKind), typeof(ListBoxItemAssist), new PropertyMetadata(default(PackIconKind)));
+        #endregion
+
+        #region IconSize
+        public static int GetIconSize(DependencyObject element)
+            => (int)element.GetValue(IconSizeProperty);
+        public static void SetIconSize(DependencyObject element, int value)
+            => element.SetValue(IconSizeProperty, value);
+
+        public static readonly DependencyProperty IconSizeProperty =
+            DependencyProperty.RegisterAttached("IconSize", typeof(int), typeof(ListBoxItemAssist), new PropertyMetadata(24));
+        #endregion
+
+        #region IsTextVisible
+        public static bool GetIsTextVisible(DependencyObject element)
+            => (bool)element.GetValue(IsTextVisibleProperty);
+        public static void SetIsTextVisible(DependencyObject element, bool value)
+            => element.SetValue(IsTextVisibleProperty, value);
+
+        public static readonly DependencyProperty IsTextVisibleProperty =
+            DependencyProperty.RegisterAttached("IsTextVisible", typeof(bool), typeof(ListBoxItemAssist), new PropertyMetadata(true));
         #endregion
     }
 }

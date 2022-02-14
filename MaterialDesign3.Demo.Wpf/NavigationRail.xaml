@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:local="clr-namespace:MaterialDesign3Demo"
     mc:Ignorable="d" 
     d:DesignHeight="450"
     d:DesignWidth="800">
@@ -14,211 +15,219 @@
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="Padding" Value="5"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="TextAlignment" Value="Center"/>
         </Style>
+        <Style x:Key="CustomColorMaterialDesign3NavigationListBoxItem" TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationRailListBoxItem}">
+            <Setter Property="Foreground" Value="#E8DEF8"/>
+            <Setter Property="Background" Value="#4A4458"/>
+        </Style>
+        <Style x:Key="CustomColorMaterialDesign3SmallNavigationListBoxItem" TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3SmallNavigationRailListBoxItem}">
+            <Setter Property="Foreground" Value="#E8DEF8"/>
+            <Setter Property="Background" Value="#4A4458"/>
+        </Style>        
     </UserControl.Resources>
 
 
-    <Grid Background="#1D1A22" SnapsToDevicePixels="True">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-        </Grid.ColumnDefinitions>
+    <UniformGrid Rows="1" >
 
-        <Grid Margin="40 20 40 0" Background="#25232A">
+        <Grid Background="{DynamicResource MaterialDesignCardBackground}" Width="80">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button Height="56" Width="56" Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                    Background="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidBrushForeground}" BorderThickness="0"
+                    materialDesign:ButtonAssist.CornerRadius="14" Margin="0 37 0 80">
+                <materialDesign:PackIcon Kind="PencilOutline" Width="24" Height="48"/>
+            </Button>
+
+            <ListBox Grid.Row="1" VerticalAlignment="Top">
+                <ListBoxItem>
+                    <ListBoxItem.Style>
+                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3SmallNavigationRailPrimaryListBoxItem}">
+                            <Setter Property="materialDesign:ListBoxItemAssist.SelectedIcon" Value="Circle"/>
+                            <Setter Property="materialDesign:ListBoxItemAssist.UnselectedIcon" Value="CircleOutline"/>
+                        </Style>
+                    </ListBoxItem.Style>
+                    <TextBlock Text="text 1"/>
+                </ListBoxItem>
+                <ListBoxItem >
+                    <ListBoxItem.Style>
+                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3SmallNavigationRailPrimaryListBoxItem}">
+                            <Setter Property="materialDesign:ListBoxItemAssist.SelectedIcon" Value="Triangle"/>
+                            <Setter Property="materialDesign:ListBoxItemAssist.UnselectedIcon" Value="TriangleOutline"/>
+                        </Style>
+                    </ListBoxItem.Style>
+                    <TextBlock Text="text 2"/>
+                </ListBoxItem>
+                <ListBoxItem >
+                    <ListBoxItem.Style>
+                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3SmallNavigationRailPrimaryListBoxItem}">
+                            <Setter Property="materialDesign:ListBoxItemAssist.SelectedIcon" Value="Receipt"/>
+                            <Setter Property="materialDesign:ListBoxItemAssist.UnselectedIcon" Value="ReceiptOutline"/>
+                        </Style>
+                    </ListBoxItem.Style>
+                    <TextBlock Text="text 3"/>
+                </ListBoxItem>
+            </ListBox>
+
+        </Grid>
+
+        <Grid Width="120" Background="{DynamicResource MaterialDesignCardBackground}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <Button Height="84" Width="84" Style="{StaticResource MaterialDesignFlatMidBgButton}"
-                    Background="#633B48" Foreground="#FFD8E4" BorderThickness="0"
+                    Background="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidBrushForeground}" BorderThickness="0"
                     materialDesign:ButtonAssist.CornerRadius="22" Margin="0 56 0 120">
                 <materialDesign:PackIcon Kind="PencilOutline" Width="27" Height="27"/>
             </Button>
 
-        <Viewbox Grid.Row="1" VerticalAlignment="Top" Stretch="Uniform" Width="120">
-            <ListBox Style="{StaticResource MaterialDesign3NavigationListBox}" Foreground="#E8DEF8">
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationListBoxItem}">
-                        <Setter Property="Foreground" Value="#E8DEF8"/>
-                        <Setter Property="Background" Value="#4A4458"/>
-                        <Setter Property="materialDesign:ListBoxItemAssist.CornerRadius" Value="0"/>
-                        <Setter Property="Width" Value="80"/>
-                        <Setter Property="Height" Value="62"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-                        <Setter Property="Padding" Value="0"/>
-                        <Setter Property="Margin" Value="0 3"/>
-                        <Setter Property="materialDesign:ListBoxItemAssist.SelectionHeight" Value="32"/>
-                        <Setter Property="materialDesign:ListBoxItemAssist.SelectionWidth" Value="56"/>
-                        <Setter Property="materialDesign:ListBoxItemAssist.SelectionCornerRadius" Value="16"/>
-                    </Style>
-                </ListBox.ItemContainerStyle>
-                <ListBoxItem >
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="4*"/>
-                            <RowDefinition Height="3*"/>
-                        </Grid.RowDefinitions>
-                        <materialDesign:PackIcon Kind="Circle" HorizontalAlignment="Center"
-                                                    VerticalAlignment="Center"
-                                                    Width="12" Height="12" />
-                        <TextBlock Grid.Row="1" Text="Test 1" FontSize="12" Padding="0"
-                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
-                </ListBoxItem>
-                <ListBoxItem >
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="4*"/>
-                            <RowDefinition Height="3*"/>
-                        </Grid.RowDefinitions>
-                        <materialDesign:PackIcon Kind="TriangleOutline" HorizontalAlignment="Center"
-                                                    Width="12" Height="12" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Row="1" Text="Test 1" FontSize="12" Padding="0"
-                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
-                </ListBoxItem>
-                <ListBoxItem >
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="4*"/>
-                            <RowDefinition Height="3*"/>
-                        </Grid.RowDefinitions>
-                        <materialDesign:PackIcon Kind="ReceiptOutline" HorizontalAlignment="Center"
-                                                    Width="12" Height="12" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Row="1" Text="Test 1" FontSize="12" Padding="0"
-                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
-                </ListBoxItem>
-                <ListBoxItem >
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="4*"/>
-                            <RowDefinition Height="3*"/>
-                        </Grid.RowDefinitions>
-                        <materialDesign:PackIcon Kind="SquareOutline" HorizontalAlignment="Center"
-                                                    Width="12" Height="12" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Row="1" Text="Test 1" FontSize="12" Padding="0"
-                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
-                </ListBoxItem>
-                <ListBoxItem >
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="4*"/>
-                            <RowDefinition Height="3*"/>
-                        </Grid.RowDefinitions>
-                        <materialDesign:PackIcon Kind="PentagonOutline" HorizontalAlignment="Center"
-                                                    Width="12" Height="12" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Row="1" Text="Test 1" FontSize="12" Padding="0"
-                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
-                </ListBoxItem>
-            </ListBox>
-                
-        </Viewbox>
+            <Viewbox Grid.Row="1" VerticalAlignment="Top" Stretch="Fill" Width="120">
+                <ListBox Grid.Row="1" Margin="0 0 0 0"
+                     Foreground="#E8DEF8" ItemsSource="{Binding SampleList}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationRailPrimaryListBoxItem}">
+                            <Setter Property="materialDesign:ListBoxItemAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
+                            <Setter Property="materialDesign:ListBoxItemAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
+                            <Setter Property="materialDesign:ListBoxItemAssist.IsTextVisible" Value="False"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.Resources>
+                        <DataTemplate DataType="{x:Type local:ItemSample}">
+                            <TextBlock Text="{Binding Title}"/>
+                        </DataTemplate>
+                    </ListBox.Resources>
+                </ListBox>
+            </Viewbox>
+        </Grid>
 
-        </Grid>            
-
-        <Grid Grid.Column="1" Width="120" Margin="40 20 40 0" Background="#25232A">
+        <Grid Background="{DynamicResource MaterialDesignCardBackground}" Width="80">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
+            <Button Height="56" Width="56" Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                    Background="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidBrushForeground}" BorderThickness="0"
+                    materialDesign:ButtonAssist.CornerRadius="14" Margin="0 37 0 80">
+                <materialDesign:PackIcon Kind="PencilOutline" Width="24" Height="48"/>
+            </Button>
+
+            <ListBox Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding SampleList}">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3SmallNavigationRailListBoxItem}">
+                        <Setter Property="materialDesign:ListBoxItemAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
+                        <Setter Property="materialDesign:ListBoxItemAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
+                        <Setter Property="materialDesign:ListBoxItemAssist.IsTextVisible" Value="True"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.Resources>
+                    <DataTemplate DataType="{x:Type local:ItemSample}">
+                        <TextBlock Text="{Binding Title}"/>
+                    </DataTemplate>
+                </ListBox.Resources>
+            </ListBox>
+
+        </Grid>
+
+        <Grid Width="120" Background="{DynamicResource MaterialDesignCardBackground}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button Height="84" Width="84" Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                    Background="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidBrushForeground}" BorderThickness="0"
+                    materialDesign:ButtonAssist.CornerRadius="22" Margin="0 56 0 120">
+                <materialDesign:PackIcon Kind="PencilOutline" Width="27" Height="27"/>
+            </Button>
+
+            <Viewbox Grid.Row="1" VerticalAlignment="Top" Stretch="Fill" Width="120">
+                <ListBox Grid.Row="1" Margin="0 0 0 0"
+                         ItemsSource="{Binding SampleList}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationRailListBoxItem}">
+                            <Setter Property="materialDesign:ListBoxItemAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
+                            <Setter Property="materialDesign:ListBoxItemAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
+                            <Setter Property="materialDesign:ListBoxItemAssist.IsTextVisible" Value="False"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.Resources>
+                        <DataTemplate DataType="{x:Type local:ItemSample}">
+                            <TextBlock Text="{Binding Title}"/>
+                        </DataTemplate>
+                    </ListBox.Resources>
+                </ListBox>
+            </Viewbox>
+        </Grid>        
+        
+        <Grid Grid.Column="2" Width="120" Background="#25232A">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
             <Button Height="84" Width="84" Style="{StaticResource MaterialDesignFlatMidBgButton}"
                     Background="#633B48" Foreground="#FFD8E4" BorderThickness="0"
                     materialDesign:ButtonAssist.CornerRadius="22" Margin="0 84 0 180">
                 <materialDesign:PackIcon Kind="PencilOutline" Width="27" Height="27"/>
             </Button>
 
-            <ListBox Grid.Row="1" Style="{StaticResource MaterialDesign3NavigationListBox}" Margin="0 0 0 0"
+            <ListBox Grid.Row="1" VerticalAlignment="Top"  Margin="0 0 0 0"
                      Foreground="#E8DEF8">
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationListBoxItem}">
-                        <Setter Property="Foreground" Value="#E8DEF8"/>
-                        <Setter Property="Background" Value="#4A4458"/>
-                        <Setter Property="Width" Value="120"/>
-                        <Setter Property="Height" Value="93"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-                        <Setter Property="Padding" Value="0"/>
-                        <Setter Property="Margin" Value="0 4"/>
-                        <Setter Property="materialDesign:ListBoxItemAssist.CornerRadius" Value="0"/>
-                        <Setter Property="materialDesign:ListBoxItemAssist.SelectionHeight" Value="48"/>
-                        <Setter Property="materialDesign:ListBoxItemAssist.SelectionWidth" Value="84"/>
-                        <Setter Property="materialDesign:ListBoxItemAssist.SelectionCornerRadius" Value="24"/>
-                    </Style>
-                </ListBox.ItemContainerStyle>
                 <ListBoxItem >
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="4*"/>
-                            <RowDefinition Height="3*"/>
-                        </Grid.RowDefinitions>
-                        <materialDesign:PackIcon Kind="Circle" HorizontalAlignment="Center"
-                                                 VerticalAlignment="Center"
-                                                 Width="18" Height="18" />
-                        <TextBlock Grid.Row="1" Text="Test 1" FontSize="18" Padding="0"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
+                    <ListBoxItem.Style>
+                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource CustomColorMaterialDesign3NavigationListBoxItem}">
+                            <Setter Property="materialDesign:ListBoxItemAssist.SelectedIcon" Value="Circle"/>
+                            <Setter Property="materialDesign:ListBoxItemAssist.UnselectedIcon" Value="CircleOutline"/>
+                        </Style>
+                    </ListBoxItem.Style>
+                    <TextBlock Text="Test 1"/>
                 </ListBoxItem>
                 <ListBoxItem >
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="4*"/>
-                            <RowDefinition Height="3*"/>
-                        </Grid.RowDefinitions>
-                        <materialDesign:PackIcon Kind="TriangleOutline" HorizontalAlignment="Center"
-                                                 Width="18" Height="18" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Row="1" Text="Test 1" FontSize="18" Padding="0"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
+                    <ListBoxItem.Style>
+                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource CustomColorMaterialDesign3NavigationListBoxItem}">
+                            <Setter Property="materialDesign:ListBoxItemAssist.SelectedIcon" Value="Triangle"/>
+                            <Setter Property="materialDesign:ListBoxItemAssist.UnselectedIcon" Value="TriangleOutline"/>
+                        </Style>
+                    </ListBoxItem.Style>
+                    <TextBlock Text="Test 2"/>
                 </ListBoxItem>
                 <ListBoxItem >
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="4*"/>
-                            <RowDefinition Height="3*"/>
-                        </Grid.RowDefinitions>
-                        <materialDesign:PackIcon Kind="ReceiptOutline" HorizontalAlignment="Center"
-                                                 Width="18" Height="18" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Row="1" Text="Test 1" FontSize="18" Padding="0"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
+                    <ListBoxItem.Style>
+                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource CustomColorMaterialDesign3NavigationListBoxItem}">
+                            <Setter Property="materialDesign:ListBoxItemAssist.SelectedIcon" Value="Receipt"/>
+                            <Setter Property="materialDesign:ListBoxItemAssist.UnselectedIcon" Value="ReceiptOutline"/>
+                        </Style>
+                    </ListBoxItem.Style>
+                    <TextBlock Text="Test 3"/>
                 </ListBoxItem>
                 <ListBoxItem >
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="4*"/>
-                            <RowDefinition Height="3*"/>
-                        </Grid.RowDefinitions>
-                        <materialDesign:PackIcon Kind="SquareOutline" HorizontalAlignment="Center"
-                                                 Width="18" Height="18" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Row="1" Text="Test 1" FontSize="18" Padding="0"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
+                    <ListBoxItem.Style>
+                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource CustomColorMaterialDesign3NavigationListBoxItem}">
+                            <Setter Property="materialDesign:ListBoxItemAssist.SelectedIcon" Value="Square"/>
+                            <Setter Property="materialDesign:ListBoxItemAssist.UnselectedIcon" Value="SquareOutline"/>
+                        </Style>
+                    </ListBoxItem.Style>
+                    <TextBlock Text="Test 4"/>
                 </ListBoxItem>
                 <ListBoxItem >
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="4*"/>
-                            <RowDefinition Height="3*"/>
-                        </Grid.RowDefinitions>
-                        <materialDesign:PackIcon Kind="PentagonOutline" HorizontalAlignment="Center"
-                                                 Width="18" Height="18" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Row="1" Text="Test 1" FontSize="18" Padding="0"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
+                    <ListBoxItem.Style>
+                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource CustomColorMaterialDesign3NavigationListBoxItem}">
+                            <Setter Property="materialDesign:ListBoxItemAssist.SelectedIcon" Value="Pentagon"/>
+                            <Setter Property="materialDesign:ListBoxItemAssist.UnselectedIcon" Value="PentagonOutline"/>
+                        </Style>
+                    </ListBoxItem.Style>
+                    <TextBlock Text="Everyone Image" Padding="0"/>
                 </ListBoxItem>
             </ListBox>
 
         </Grid>
 
-        <Grid Grid.Column="2" Width="160" Margin="40 20 40 0" Background="#25232A">
+        <Grid Grid.Column="3" Width="160" Background="#25232A">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
@@ -230,151 +239,117 @@
                 <materialDesign:PackIcon Kind="PencilOutline" Width="36" Height="36"/>
             </Button>
 
-            <ListBox Grid.Row="1" Style="{StaticResource MaterialDesign3NavigationListBox}" Margin="0 0 0 0"
-                     Foreground="#E8DEF8">
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationListBoxItem}">
-                        <Setter Property="Foreground" Value="#E8DEF8"/>
-                        <Setter Property="Background" Value="#4A4458"/>
-                        <Setter Property="materialDesign:ListBoxItemAssist.CornerRadius" Value="0"/>
-                        <Setter Property="Width" Value="160"/>
-                        <Setter Property="Height" Value="124"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-                        <Setter Property="Padding" Value="0"/>
-                        <Setter Property="Margin" Value="0 6"/>
-                        <Setter Property="materialDesign:ListBoxItemAssist.SelectionHeight" Value="64"/>
-                        <Setter Property="materialDesign:ListBoxItemAssist.SelectionWidth" Value="112"/>
-                        <Setter Property="materialDesign:ListBoxItemAssist.SelectionCornerRadius" Value="32"/>
-                    </Style>
-                </ListBox.ItemContainerStyle>
-                <ListBoxItem >
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="4*"/>
-                            <RowDefinition Height="3*"/>
-                        </Grid.RowDefinitions>
-                        <materialDesign:PackIcon Kind="Circle" HorizontalAlignment="Center"
-                                                 VerticalAlignment="Center"
-                                                 Width="24" Height="24" />
-                        <TextBlock Grid.Row="1" Text="Test 1" FontSize="24" Padding="0"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
-                </ListBoxItem>
-                <ListBoxItem >
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="4*"/>
-                            <RowDefinition Height="3*"/>
-                        </Grid.RowDefinitions>
-                        <materialDesign:PackIcon Kind="TriangleOutline" HorizontalAlignment="Center"
-                                                 Width="24" Height="24" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Row="1" Text="Test 1" FontSize="24" Padding="0"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
-                </ListBoxItem>
-                <ListBoxItem >
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="4*"/>
-                            <RowDefinition Height="3*"/>
-                        </Grid.RowDefinitions>
-                        <materialDesign:PackIcon Kind="ReceiptOutline" HorizontalAlignment="Center"
-                                                 Width="24" Height="24" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Row="1" Text="Test 1" FontSize="24" Padding="0"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
-                </ListBoxItem>
-                <ListBoxItem >
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="4*"/>
-                            <RowDefinition Height="3*"/>
-                        </Grid.RowDefinitions>
-                        <materialDesign:PackIcon Kind="SquareOutline" HorizontalAlignment="Center"
-                                                 Width="24" Height="24" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Row="1" Text="Test 1" FontSize="24" Padding="0"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
-                </ListBoxItem>
-                <ListBoxItem >
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="4*"/>
-                            <RowDefinition Height="3*"/>
-                        </Grid.RowDefinitions>
-                        <materialDesign:PackIcon Kind="PentagonOutline" HorizontalAlignment="Center"
-                                                 Width="24" Height="24" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Row="1" Text="Test 1" FontSize="24" Padding="0"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
-                </ListBoxItem>
-            </ListBox>
-            
+            <Viewbox Grid.Row="1" VerticalAlignment="Top" Stretch="Fill" Width="160">
+                <ListBox Grid.Row="1"  Margin="0 0 0 0"
+                     Foreground="#E8DEF8" ItemsSource="{Binding SampleList}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource CustomColorMaterialDesign3NavigationListBoxItem}">
+                            <Setter Property="materialDesign:ListBoxItemAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
+                            <Setter Property="materialDesign:ListBoxItemAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.Resources>
+                        <DataTemplate DataType="{x:Type local:ItemSample}">
+                            <TextBlock Text="{Binding Title}"/>
+                        </DataTemplate>
+                    </ListBox.Resources>
+                </ListBox>
+            </Viewbox>
         </Grid>
 
-        <Grid Grid.Column="3" Width="160" Margin="40 20 40 0" Background="#25232A">
+        <Grid Grid.Column="4" Width="120" Background="#25232A">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Button Height="112" Width="112" Style="{StaticResource MaterialDesignFlatMidBgButton}" Background="#633B48" Foreground="#FFD8E4" BorderThickness="0"
-                    materialDesign:ButtonAssist.CornerRadius="30" Margin="0 112 0 240">
-                <materialDesign:PackIcon Kind="PencilOutline" Width="36" Height="36"/>
+            <Button Height="84" Width="84" Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                    Background="#633B48" Foreground="#FFD8E4" BorderThickness="0"
+                    materialDesign:ButtonAssist.CornerRadius="22" Margin="0 56 0 120">
+                <materialDesign:PackIcon Kind="PencilOutline" Width="27" Height="27"/>
             </Button>
 
-            <ListBox Grid.Row="1" Style="{StaticResource MaterialDesign3NavigationListBox}" Margin="0 0 0 0"
-                     Foreground="#E8DEF8">
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationListBoxItem}">
-                        <Setter Property="Foreground" Value="#E8DEF8"/>
-                        <Setter Property="Background" Value="#4A4458"/>
-                        <Setter Property="materialDesign:ListBoxItemAssist.CornerRadius" Value="0"/>
-                        <Setter Property="Width" Value="160"/>
-                        <Setter Property="Height" Value="124"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-                        <Setter Property="Padding" Value="0"/>
-                        <Setter Property="Margin" Value="0 6"/>
-                        <Setter Property="materialDesign:ListBoxItemAssist.SelectionHeight" Value="112"/>
-                        <Setter Property="materialDesign:ListBoxItemAssist.SelectionWidth" Value="112"/>
-                        <Setter Property="materialDesign:ListBoxItemAssist.SelectionCornerRadius" Value="56"/>
-                    </Style>
-                </ListBox.ItemContainerStyle>
-                <ListBoxItem >
-                    <Grid>
-                        <materialDesign:PackIcon Kind="Circle" HorizontalAlignment="Center"
-                                                 Width="24" Height="24" VerticalAlignment="Center"
-                                                 Margin="0 0 0 0"/>
-                    </Grid>
-                </ListBoxItem>
-                <ListBoxItem >
-                    <Grid>
-                        <materialDesign:PackIcon Kind="Accessibility" HorizontalAlignment="Center"
-                                                 Width="24" Height="24" VerticalAlignment="Center"/>
-                    </Grid>
-                </ListBoxItem>
-                <ListBoxItem >
-                    <Grid>
-                        <materialDesign:PackIcon Kind="Videocam" HorizontalAlignment="Center"
-                                                 Width="24" Height="24" VerticalAlignment="Center"/>
-                    </Grid>
-                </ListBoxItem>
-                <ListBoxItem >
-                    <Grid>
-                        <materialDesign:PackIcon Kind="EmoticonManProfile" HorizontalAlignment="Center"
-                                                 Width="24" Height="24" VerticalAlignment="Center"/>
-                    </Grid>
-                </ListBoxItem>
-                <ListBoxItem >
-                    <Grid>
-                        <materialDesign:PackIcon Kind="NfcVariant" HorizontalAlignment="Center"
-                                                 Width="24" Height="24" VerticalAlignment="Center"/>
-                    </Grid>
-                </ListBoxItem>
-            </ListBox>
+            <Viewbox Grid.Row="1" VerticalAlignment="Top" Stretch="Fill" Width="120">
+                <ListBox Grid.Row="1"  Margin="0 0 0 0" 
+                     Foreground="#E8DEF8" ItemsSource="{Binding SampleList}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource CustomColorMaterialDesign3NavigationListBoxItem}">
+                            <Setter Property="materialDesign:ListBoxItemAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
+                            <Setter Property="materialDesign:ListBoxItemAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
+                            <Setter Property="materialDesign:ListBoxItemAssist.IsTextVisible" Value="False"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.Resources>
+                        <DataTemplate DataType="{x:Type local:ItemSample}">
+                            <TextBlock Text="{Binding Title}"/>
+                        </DataTemplate>
+                    </ListBox.Resources>
+                </ListBox>
+            </Viewbox>
+        </Grid>
 
+        <Grid Grid.Column="4" Width="120" Background="#FFFCF3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button Height="84" Width="84" Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                    Background="#AEF0D6" Foreground="#002117" BorderThickness="0"
+                    materialDesign:ButtonAssist.CornerRadius="22" Margin="0 56 0 120">
+                <materialDesign:PackIcon Kind="PencilOutline" Width="27" Height="27"/>
+            </Button>
+
+            <Viewbox Grid.Row="1" VerticalAlignment="Top" Stretch="Fill" Width="120">
+                <ListBox Grid.Row="1" ItemsSource="{Binding SampleList}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3SmallNavigationRailListBoxItem}">
+                            <Setter Property="Foreground" Value="#48473A"/>
+                            <Setter Property="Background" Value="#E6E4C0"/>
+                            <Setter Property="materialDesign:ListBoxItemAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
+                            <Setter Property="materialDesign:ListBoxItemAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
+                            <Setter Property="materialDesign:ListBoxItemAssist.IsTextVisible" Value="False"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.Resources>
+                        <DataTemplate DataType="{x:Type local:ItemSample}">
+                            <TextBlock Text="{Binding Title}"/>
+                        </DataTemplate>
+                    </ListBox.Resources>
+                </ListBox>
+            </Viewbox>
+        </Grid>
+        
+        <Grid Grid.Column="4" Width="120" Background="#FFFCF3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button Height="84" Width="84" Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                    Background="#AEF0D6" Foreground="#002117" BorderThickness="0"
+                    materialDesign:ButtonAssist.CornerRadius="22" Margin="0 56 0 120">
+                <materialDesign:PackIcon Kind="PencilOutline" Width="27" Height="27"/>
+            </Button>
+
+            <Viewbox Grid.Row="1" VerticalAlignment="Top" Stretch="Fill" Width="120">
+                <ListBox Grid.Row="1" ItemsSource="{Binding SampleList}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3SmallNavigationRailListBoxItem}">
+                            <Setter Property="Foreground" Value="#48473A"/>
+                            <Setter Property="Background" Value="#E6E4C0"/>
+                            <Setter Property="materialDesign:ListBoxItemAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
+                            <Setter Property="materialDesign:ListBoxItemAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
+                            <Setter Property="materialDesign:ListBoxItemAssist.IsTextVisible" Value="True"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.Resources>
+                        <DataTemplate DataType="{x:Type local:ItemSample}">
+                            <TextBlock Text="{Binding Title}"/>
+                        </DataTemplate>
+                    </ListBox.Resources>
+                </ListBox>
+            </Viewbox>
         </Grid>
 
         <Grid Visibility="Collapsed">
@@ -964,5 +939,5 @@
                 </StackPanel>
             </GroupBox>
         </Grid>
-    </Grid>
+    </UniformGrid>
 </UserControl>
