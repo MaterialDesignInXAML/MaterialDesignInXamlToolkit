@@ -41,7 +41,7 @@ jobs:
   build:
     needs: [check_for_changes]
     if: ${{ needs.check_for_changes.outputs.should_run == 'true' }}
-    runs-on: windows-latest
+    runs-on: windows-2019
 
     steps:
     - uses: actions/checkout@v2
