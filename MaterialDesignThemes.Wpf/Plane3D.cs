@@ -1,14 +1,17 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
+using System.Windows.Shapes;
 
 namespace MaterialDesignThemes.Wpf
 {
     /// <summary>
-    /// View a control on a 3D plane.    
+    /// View a control on a 3D plane.
     /// </summary>
     /// <remarks>
     /// Taken from http://blogs.msdn.com/greg_schechter/archive/2007/10/26/enter-the-planerator-dead-simple-3d-in-wpf-with-a-stupid-name.aspx , Greg Schechter - Fall 2007
@@ -20,17 +23,17 @@ namespace MaterialDesignThemes.Wpf
         private FrameworkElement? _visualChild;
         private FrameworkElement? _originalChild;
 
-        private readonly QuaternionRotation3D _quaternionRotation = new QuaternionRotation3D();
-        private readonly RotateTransform3D _rotationTransform = new RotateTransform3D();
+        private readonly QuaternionRotation3D _quaternionRotation = new();
+        private readonly RotateTransform3D _rotationTransform = new();
         private Viewport3D? _viewport3D;
-        private readonly ScaleTransform3D _scaleTransform = new ScaleTransform3D();
+        private readonly ScaleTransform3D _scaleTransform = new();
 
         private static readonly Point3D[] Mesh = { new Point3D(0, 0, 0), new Point3D(0, 1, 0), new Point3D(1, 1, 0), new Point3D(1, 0, 0) };
         private static readonly Point[] TexCoords = { new Point(0, 1), new Point(0, 0), new Point(1, 0), new Point(1, 1) };
         private static readonly int[] Indices = { 0, 2, 1, 0, 3, 2 };
-        private static readonly Vector3D XAxis = new Vector3D(1, 0, 0);
-        private static readonly Vector3D YAxis = new Vector3D(0, 1, 0);
-        private static readonly Vector3D ZAxis = new Vector3D(0, 0, 1);
+        private static readonly Vector3D XAxis = new(1, 0, 0);
+        private static readonly Vector3D YAxis = new(0, 1, 0);
+        private static readonly Vector3D ZAxis = new(0, 0, 1);
 
         //TODO: expose a dependency property to turn off caching
 
@@ -80,6 +83,59 @@ namespace MaterialDesignThemes.Wpf
             set => SetValue(ZFactorProperty, value);
         }
 
+
+
+        public void SetVisualContent(FrameworkElement? element)
+        {
+            // Wrap child with special decorator that catches layout invalidations. 
+            //_logicalChild = new LayoutInvalidationCatcher() { Child = _originalChild };
+            RemoveVisualChild(_visualChild);
+            RemoveLogicalChild(_logicalChild);
+            if (element is not null)
+            {
+                int width =  (int)element.Width;
+                int height = (int)element.Height;
+
+                var target = new RenderTargetBitmap(width, height, 96, 96, PixelFormats.Pbgra32);
+                var brush = new VisualBrush(element);
+
+                var visual = new DrawingVisual();
+                
+                var drawingContext = visual.RenderOpen();
+
+                drawingContext.DrawRectangle(brush, null, new Rect(new Point(0, 0),
+                    new Point(width, height)));
+
+                drawingContext.Close();
+
+                target.Render(visual);
+                var encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(target));
+
+                using (var file = File.OpenWrite(@"D:\Temp\Image.png"))
+                {
+                    encoder.Save(file);
+                }
+                var image = new Image
+                {
+                    Source = target,
+                    Height = element.RenderSize.Height,
+                    Width = element.RenderSize.Width,
+                };
+
+                _logicalChild = new LayoutInvalidationCatcher() { Child = image };
+                _visualChild = CreateVisualChild(_logicalChild);
+                
+                AddVisualChild(_visualChild);
+                AddLogicalChild(_logicalChild);
+            }
+            // Need to use a logical child here to make sure databinding operations get down to it,
+            // since otherwise the child appears only as the Visual to a Viewport2DVisual3D, which 
+            // doesn't have databinding operations pass into it from above.
+            // AddLogicalChild(_logicalChild);
+            InvalidateMeasure();
+        }
+
         public FrameworkElement? Child
         {
             get => _originalChild;
@@ -89,14 +145,14 @@ namespace MaterialDesignThemes.Wpf
                 RemoveVisualChild(_visualChild);
                 RemoveLogicalChild(_logicalChild);
 
-                // Wrap child with special decorator that catches layout invalidations. 
                 _originalChild = value;
                 if (_logicalChild is Decorator d)
                 {
                     d.Child = null;
                 }
+                // Wrap child with special decorator that catches layout invalidations. 
                 _logicalChild = new LayoutInvalidationCatcher() { Child = _originalChild };
-                _visualChild = CreateVisualChild();
+                _visualChild = CreateVisualChild(_logicalChild);
 
                 AddVisualChild(_visualChild);
 
@@ -138,7 +194,7 @@ namespace MaterialDesignThemes.Wpf
 
         protected override int VisualChildrenCount => _visualChild == null ? 0 : 1;
 
-        private FrameworkElement CreateVisualChild()
+        private FrameworkElement CreateVisualChild(FrameworkElement visual)
         {
             var simpleQuad = new MeshGeometry3D
             {
@@ -151,32 +207,57 @@ namespace MaterialDesignThemes.Wpf
             Material frontMaterial = new DiffuseMaterial(Brushes.White);
             frontMaterial.SetValue(Viewport2DVisual3D.IsVisualHostMaterialProperty, true);
 
-            var vb = new VisualBrush(_logicalChild);
+            var vb = new VisualBrush(visual);
             SetCachingForObject(vb);  // big perf wins by caching!!
             Material backMaterial = new DiffuseMaterial(vb);
 
             _rotationTransform.Rotation = _quaternionRotation;
-            var xfGroup = new Transform3DGroup { Children = { _scaleTransform, _rotationTransform } };
+            var xfGroup = new Transform3DGroup
+            {
+                Children =
+                {
+                    _scaleTransform,
+                    _rotationTransform
+                }
+            };
 
-            var backModel = new GeometryModel3D { Geometry = simpleQuad, Transform = xfGroup, BackMaterial = backMaterial };
+            var backModel = new GeometryModel3D
+            {
+                Geometry = simpleQuad,
+                Transform = xfGroup,
+                BackMaterial = backMaterial
+            };
             var m3DGroup = new Model3DGroup
             {
-                Children = { new DirectionalLight(Colors.White, new Vector3D(0, 0, -1)),
-                                 new DirectionalLight(Colors.White, new Vector3D(0.1, -0.1, 1)),
-                                 backModel }
+                Children =
+                {
+                    new DirectionalLight(Colors.White, new Vector3D(0, 0, -1)),
+                    new DirectionalLight(Colors.White, new Vector3D(0.1, -0.1, 1)),
+                    backModel
+                }
             };
 
             // Non-interactive Visual3D consisting of the backside, and two lights.
             var mv3D = new ModelVisual3D { Content = m3DGroup };
 
             // Interactive frontside Visual3D
-            var frontModel = new Viewport2DVisual3D { Geometry = simpleQuad, Visual = _logicalChild, Material = frontMaterial, Transform = xfGroup };
+            var frontModel = new Viewport2DVisual3D
+            {
+                Geometry = simpleQuad,
+                Visual = visual,
+                Material = frontMaterial,
+                Transform = xfGroup
+            };
 
             // Cache the brush in the VP2V3 by setting caching on it.  Big perf wins.
             SetCachingForObject(frontModel);
 
             // Scene consists of both the above Visual3D's.
-            _viewport3D = new Viewport3D { ClipToBounds = false, Children = { mv3D, frontModel } };
+            _viewport3D = new Viewport3D
+            {
+                ClipToBounds = false,
+                Children = { mv3D, frontModel }
+            };
 
             UpdateRotation();
 
