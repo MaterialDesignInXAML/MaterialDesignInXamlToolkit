@@ -293,7 +293,7 @@ namespace MaterialDesignThemes.Wpf
                 .ConfigureAwait(true);
             try
             {
-                Snackbar snackbar;
+                Snackbar? snackbar;
                 while (true)
                 {
                     if (_isDisposed || _dispatcher.HasShutdownStarted)
@@ -332,7 +332,7 @@ namespace MaterialDesignThemes.Wpf
                 _showMessageSemaphore.Release();
             }
 
-            Snackbar FindSnackbar() => _pairedSnackbars.FirstOrDefault(sb =>
+            Snackbar? FindSnackbar() => _pairedSnackbars.FirstOrDefault(sb =>
             {
                 if (!sb.IsLoaded || sb.Visibility != Visibility.Visible) return false;
                 var window = Window.GetWindow(sb);

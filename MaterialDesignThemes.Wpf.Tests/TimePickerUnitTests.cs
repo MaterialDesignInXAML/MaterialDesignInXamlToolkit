@@ -140,6 +140,24 @@ namespace MaterialDesignThemes.Wpf.Tests
 
             //Spain Spanish
             var spainSpanish = CultureInfo.GetCultureInfo("es-ES");
+#if NET5_0_OR_GREATER
+            foreach (var data in GetDisplaysExpectedTextDataForCulture(spainSpanish, am,
+                "3:05 a. m.", "3:05:09 a. m.", //12 hour short
+                "03:05 a. m.", "03:05:09 a. m.", //12 hour long
+                "3:05", "3:05:09", //24 hour short
+                "03:05", "03:05:09")) //24 hour long
+            {
+                yield return data;
+            }
+            foreach (var data in GetDisplaysExpectedTextDataForCulture(spainSpanish, pm,
+                "4:30 p. m.", "4:30:25 p. m.", //12 hour short
+                "04:30 p. m.", "04:30:25 p. m.", //12 hour long
+                "16:30", "16:30:25", //24 hour short
+                "16:30", "16:30:25")) //24 hour long
+            {
+                yield return data;
+            }
+#else
             foreach (var data in GetDisplaysExpectedTextDataForCulture(spainSpanish, am,
                 "3:05", "3:05:09", //12 hour short
                 "03:05", "03:05:09", //12 hour long
@@ -156,9 +174,28 @@ namespace MaterialDesignThemes.Wpf.Tests
             {
                 yield return data;
             }
+#endif
 
             //Iran Farsi fa-IR
             var iranFarsi = CultureInfo.GetCultureInfo("fa-IR");
+#if NET5_0_OR_GREATER
+            foreach (var data in GetDisplaysExpectedTextDataForCulture(iranFarsi, am,
+                "3:05 قبل‌ازظهر", "3:05:09 قبل‌ازظهر", //12 hour short
+                "03:05 قبل‌ازظهر", "03:05:09 قبل‌ازظهر", //12 hour long
+                "3:05", "3:05:09", //24 hour short
+                "03:05", "03:05:09")) //24 hour long
+            {
+                yield return data;
+            }
+            foreach (var data in GetDisplaysExpectedTextDataForCulture(iranFarsi, pm,
+                "4:30 بعدازظهر", "4:30:25 بعدازظهر", //12 hour short
+                "04:30 بعدازظهر", "04:30:25 بعدازظهر", //12 hour long
+                "16:30", "16:30:25", //24 hour short
+                "16:30", "16:30:25")) //24 hour long
+            {
+                yield return data;
+            }
+#else
             foreach (var data in GetDisplaysExpectedTextDataForCulture(iranFarsi, am,
                 "3:05 ق.ظ", "3:05:09 ق.ظ", //12 hour short
                 "03:05 ق.ظ", "03:05:09 ق.ظ", //12 hour long
@@ -175,6 +212,8 @@ namespace MaterialDesignThemes.Wpf.Tests
             {
                 yield return data;
             }
+#endif
+
         }
 
         private static IEnumerable<object[]> GetDisplaysExpectedTextDataForCulture(CultureInfo culture,
