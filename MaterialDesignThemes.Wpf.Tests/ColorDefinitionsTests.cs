@@ -42,7 +42,7 @@ namespace MaterialDesignThemes.Wpf.Tests
                 Assert.False(themeProperty is null, $"{themePropertyName} from {xaml} not found in {theme.GetType()}");
                 Assert.NotNull(themeProperty);
 
-                Assert.Equal(solidColorBrush.Color, themeProperty!.GetValue(theme));
+                Assert.Equal(solidColorBrush!.Color, themeProperty!.GetValue(theme));
             }
         }
 
