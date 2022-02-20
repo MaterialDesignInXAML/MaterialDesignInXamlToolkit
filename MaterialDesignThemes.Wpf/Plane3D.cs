@@ -6,7 +6,6 @@ using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
-using System.Windows.Shapes;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -83,8 +82,6 @@ namespace MaterialDesignThemes.Wpf
             set => SetValue(ZFactorProperty, value);
         }
 
-
-
         public void SetVisualContent(FrameworkElement? element)
         {
             // Wrap child with special decorator that catches layout invalidations. 
@@ -93,8 +90,8 @@ namespace MaterialDesignThemes.Wpf
             RemoveLogicalChild(_logicalChild);
             if (element is not null)
             {
-                int width =  (int)element.Width;
-                int height = (int)element.Height;
+                int width =  (int)element.RenderSize.Width;
+                int height = (int)element.RenderSize.Height;
 
                 var target = new RenderTargetBitmap(width, height, 96, 96, PixelFormats.Pbgra32);
                 var brush = new VisualBrush(element);
@@ -112,7 +109,7 @@ namespace MaterialDesignThemes.Wpf
                 var encoder = new PngBitmapEncoder();
                 encoder.Frames.Add(BitmapFrame.Create(target));
 
-                using (var file = File.OpenWrite(@"D:\Temp\Image.png"))
+                using (var file = File.OpenWrite(@"C:\Temp\Image.png"))
                 {
                     encoder.Save(file);
                 }

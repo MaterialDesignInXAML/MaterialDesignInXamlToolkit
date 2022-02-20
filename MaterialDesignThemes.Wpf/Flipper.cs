@@ -136,8 +136,8 @@ namespace MaterialDesignThemes.Wpf
             //visualState.Storyboard.Completed += completed;
             var flipper = (Flipper)dependencyObject;
 
-            //FrameworkElement? visualContent = (bool)dependencyPropertyChangedEventArgs.NewValue ? flipper.FrontContentPresenter : flipper.BackContentPresenter;
-            //flipper._plane3D?.SetVisualContent(visualContent);
+            FrameworkElement? visualContent = (bool)dependencyPropertyChangedEventArgs.NewValue ? flipper.FrontContentPresenter : flipper.BackContentPresenter;
+            flipper._plane3D?.SetVisualContent(visualContent);
             
             flipper.UpdateVisualStates(true);
             flipper.RemeasureDuringFlip();
@@ -182,41 +182,41 @@ namespace MaterialDesignThemes.Wpf
 
             _plane3D = GetTemplateChild(Plane3DPartName) as Plane3D;
 
-            var border = new Border()
-            {
-                Height = 300,
-                Width = 300,
-                Background = new SolidColorBrush(Colors.Fuchsia)
-            };
-            border.Measure(new Size(300, 300));
-            border.Arrange(new Rect(0, 0, 300, 300));
-            border.UpdateLayout();
-            _plane3D!.SetVisualContent(border);
+            //var border = new Border()
+            //{
+            //    Height = 300,
+            //    Width = 300,
+            //    Background = new SolidColorBrush(Colors.Fuchsia)
+            //};
+            //border.Measure(new Size(300, 300));
+            //border.Arrange(new Rect(0, 0, 300, 300));
+            //border.UpdateLayout();
 
             FrontContentPresenter = GetTemplateChild("FrontContentPresenter") as ContentPresenter;
             BackContentPresenter = GetTemplateChild("BackContentPresenter") as ContentPresenter;
+            //_plane3D!.SetVisualContent(FrontContentPresenter);
         }
 
         private void RemeasureDuringFlip()
         {
             //not entirely happy hardcoding this, but I have explored other options I am not happy with, and this will do for now
-            const int storyboardMs = 400;
-            const int granularity = 6;
+            //const int storyboardMs = 400;
+            //const int granularity = 6;
 
-            var remeasureInterval = new TimeSpan(0, 0, 0, 0, storyboardMs / granularity);
-            var refreshCount = 0;
-            var plane3D = _plane3D;
-            if (plane3D is null) return;
+            //var remeasureInterval = new TimeSpan(0, 0, 0, 0, storyboardMs / granularity);
+            //var refreshCount = 0;
+            //var plane3D = _plane3D;
+            //if (plane3D is null) return;
 
-            DispatcherTimer? dt = null;
-            dt = new DispatcherTimer(remeasureInterval, DispatcherPriority.Normal,
-                (sender, args) =>
-                {
-                    plane3D.InvalidateMeasure();
-                    if (refreshCount++ == granularity)
-                        dt?.Stop();
-                }, Dispatcher);
-            dt.Start();
+            //DispatcherTimer? dt = null;
+            //dt = new DispatcherTimer(remeasureInterval, DispatcherPriority.Normal,
+            //    (sender, args) =>
+            //    {
+            //        plane3D.InvalidateMeasure();
+            //        if (refreshCount++ == granularity)
+            //            dt?.Stop();
+            //    }, Dispatcher);
+            //dt.Start();
         }
 
         private void UpdateVisualStates(bool useTransitions)
