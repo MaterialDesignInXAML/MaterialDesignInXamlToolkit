@@ -49,7 +49,7 @@
                 <smtx:XamlDisplay
                     UniqueKey="navrail_1"
                     Margin="5,5,5,0">
-                    <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}" BorderThickness="0"
+                    <TabControl Style="{StaticResource MaterialDesignNavigationRailTabControl}" BorderThickness="0"
                                 BorderBrush="Transparent" TabStripPlacement="Left"
                                 materialDesign:ShadowAssist.ShadowDepth="Depth0"
                                 materialDesign:ColorZoneAssist.Mode="Standard" SnapsToDevicePixels="True"
@@ -126,7 +126,7 @@
                     Margin="5,5,5,0"
                     Grid.Column="1">
                     <TabControl TabStripPlacement="Bottom"
-                                Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
+                                Style="{StaticResource MaterialDesignNavigationRailTabControl}"
                                 materialDesign:ColorZoneAssist.Mode="PrimaryLight"
                                 materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
                                 materialDesign:NavigationRailAssist.SelectionCornerRadius="50"
@@ -190,7 +190,7 @@
                     Margin="5,5,5,0"
                     Grid.Row="1">
                     <TabControl
-                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}"
                         TabStripPlacement="Right">
                         <TabItem >
                             <TabItem.Header>
@@ -264,7 +264,7 @@
                     Grid.Row="1"
                     Grid.Column="1">
                     <TabControl VerticalContentAlignment="Bottom"
-                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}"
                         materialDesign:ColorZoneAssist.Mode="PrimaryMid">
                         <TabItem >
                             <TabItem.Header>
@@ -339,7 +339,7 @@
             Margin="5">
             <smtx:XamlDisplay UniqueKey="navrail_floating_1">
                 <TabControl 
-                    Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
+                    Style="{StaticResource MaterialDesignNavigationRailTabControl}" 
                     materialDesign:ColorZoneAssist.Mode="PrimaryMid"
                     TabStripPlacement="Top"
                     materialDesign:NavigationRailAssist.SelectionCornerRadius="50 10 10 10"
@@ -428,7 +428,7 @@
             <StackPanel Orientation="Horizontal">
                 <smtx:XamlDisplay UniqueKey="navrail_noshadow_1">
                     <TabControl
-                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}" 
                         materialDesign:ColorZoneAssist.Mode="Standard"
                         materialDesign:ShadowAssist.ShadowDepth="Depth0">
                         <TabItem >
@@ -472,7 +472,7 @@
                 
                 <smtx:XamlDisplay UniqueKey="navrail_wshadow_1">
                     <TabControl
-                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}" 
                         materialDesign:ColorZoneAssist.Mode="Standard"
                         materialDesign:ShadowAssist.ShadowDepth="Depth1">
                         <TabItem >
@@ -516,7 +516,7 @@
                 
                 <smtx:XamlDisplay UniqueKey="navrail_wshadow_2">
                     <TabControl
-                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}" 
                         materialDesign:ColorZoneAssist.Mode="Standard"
                         materialDesign:ShadowAssist.ShadowDepth="Depth2">
                         <TabItem >
@@ -560,7 +560,7 @@
                 
                 <smtx:XamlDisplay UniqueKey="navrail_wshadow_3">
                     <TabControl
-                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}" 
                         materialDesign:ColorZoneAssist.Mode="Standard"
                         materialDesign:ShadowAssist.ShadowDepth="Depth3">
                         <TabItem >

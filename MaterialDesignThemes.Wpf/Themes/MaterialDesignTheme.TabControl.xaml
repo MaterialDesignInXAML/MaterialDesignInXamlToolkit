@@ -430,7 +430,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesignNavigatilRailTabControl" TargetType="{x:Type TabControl}">
+    <Style x:Key="MaterialDesignNavigationRailTabControl" TargetType="{x:Type TabControl}">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
         <Setter Property="VerticalContentAlignment" Value="Top" />
