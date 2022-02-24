@@ -35,7 +35,7 @@
                     <TabControl
                         materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
                         SnapsToDevicePixels="True"
-                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}"
                         TabStripPlacement="Left">
                         <materialDesign:NavigationRailAssist.FloatingContent>
                             <Button
@@ -168,7 +168,7 @@
                         materialDesign:ColorZoneAssist.Mode="PrimaryLight"
                         materialDesign:NavigationRailAssist.SelectionCornerRadius="50"
                         materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
-                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}"
                         TabStripPlacement="Bottom">
 
                         <TabItem Margin="4">
@@ -241,7 +241,7 @@
                 Margin="0,8,8,0"
                 UniqueKey="navrail_2">
                 <materialDesign:Card>
-                    <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}" TabStripPlacement="Right">
+                    <TabControl Style="{StaticResource MaterialDesignNavigationRailTabControl}" TabStripPlacement="Right">
                         <TabItem>
                             <TabItem.Header>
                                 <StackPanel Width="auto" Height="auto">
@@ -331,7 +331,7 @@
                     <TabControl
                         VerticalContentAlignment="Bottom"
                         materialDesign:ColorZoneAssist.Mode="PrimaryMid"
-                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}">
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}">
                         <TabItem>
                             <TabItem.Header>
                                 <StackPanel Width="auto" Height="auto">
@@ -427,7 +427,7 @@
                     materialDesign:ColorZoneAssist.Mode="PrimaryMid"
                     materialDesign:NavigationRailAssist.SelectionCornerRadius="50 10 10 10"
                     materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
-                    Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
+                    Style="{StaticResource MaterialDesignNavigationRailTabControl}"
                     TabStripPlacement="Top">
                     <materialDesign:NavigationRailAssist.FloatingContent>
                         <Button Margin="8" Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
@@ -532,7 +532,7 @@
                     <TabControl
                         materialDesign:ColorZoneAssist.Mode="Standard"
                         materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}">
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}">
                         <TabItem>
                             <TabItem.Header>
                                 <StackPanel Width="auto" Height="auto">
@@ -594,7 +594,7 @@
                     <TabControl
                         materialDesign:ColorZoneAssist.Mode="Standard"
                         materialDesign:ShadowAssist.ShadowDepth="Depth1"
-                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}">
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}">
                         <TabItem>
                             <TabItem.Header>
                                 <StackPanel Width="auto" Height="auto">
@@ -656,7 +656,7 @@
                     <TabControl
                         materialDesign:ColorZoneAssist.Mode="Standard"
                         materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}">
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}">
                         <TabItem>
                             <TabItem.Header>
                                 <StackPanel Width="auto" Height="auto">
@@ -718,7 +718,7 @@
                     <TabControl
                         materialDesign:ColorZoneAssist.Mode="Standard"
                         materialDesign:ShadowAssist.ShadowDepth="Depth3"
-                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}">
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}">
                         <TabItem>
                             <TabItem.Header>
                                 <StackPanel Width="auto" Height="auto">
