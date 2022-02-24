@@ -578,4 +578,8 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!-- Obsolete: will be removed in 5.0.0 release -->
+    <Style x:Key="MaterialDesignNavigatilRailTabControl" TargetType="{x:Type TabControl}"> BasedOn="{StaticResource MaterialDesignNavigationRailTabControl}"/>
+
 </ResourceDictionary>
