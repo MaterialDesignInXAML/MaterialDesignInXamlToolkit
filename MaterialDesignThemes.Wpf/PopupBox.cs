@@ -596,7 +596,7 @@ namespace MaterialDesignThemes.Wpf
                          ))
                 ))
             {
-                controls = controls.Reverse();
+                controls = controls?.Reverse();
                 translateCoordinateFrom = 80;
             }
             else

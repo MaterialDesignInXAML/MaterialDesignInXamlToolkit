@@ -50,7 +50,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         {
             var converter = new ColorConverter();
             // ReSharper disable once PossibleNullReferenceException
-            Color color = (Color)converter.ConvertFrom(colorName);
+            Color color = (Color)converter.ConvertFrom(colorName)!;
             var hsb = color.ToHsb();
 
             SetColor(color);

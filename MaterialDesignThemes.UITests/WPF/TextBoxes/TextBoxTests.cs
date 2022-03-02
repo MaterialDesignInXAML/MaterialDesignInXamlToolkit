@@ -21,7 +21,7 @@ namespace MaterialDesignThemes.UITests.WPF.TextBoxes
 
         [Fact]
         [Description("Issue 1883")]
-        public async Task OnClearButtonShown_ControlHeighDoesNotChange()
+        public async Task OnClearButtonShown_ControlHeightDoesNotChange()
         {
             await using var recorder = new TestRecorder(App);
 
@@ -56,7 +56,7 @@ namespace MaterialDesignThemes.UITests.WPF.TextBoxes
 
         [Fact]
         [Description("Issue 1883")]
-        public async Task OnClearButtonWithHintShown_ControlHeighDoesNotChange()
+        public async Task OnClearButtonWithHintShown_ControlHeightDoesNotChange()
         {
             await using var recorder = new TestRecorder(App);
 
@@ -122,6 +122,37 @@ namespace MaterialDesignThemes.UITests.WPF.TextBoxes
             await Wait.For(async () => Assert.Equal(initialHeight, await textBox.GetActualHeight()));
             Rect rect = await textBox.GetCoordinates();
             Assert.Equal(initialRect, rect);
+            recorder.Success();
+        }
+
+        [Fact]
+        [Description("Issue 2495")]
+        public async Task OnTextBox_WithClearButton_ClearsText()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            var grid = await LoadXaml<Grid>(@"
+<Grid Margin=""30"">
+    <TextBox VerticalAlignment=""Top""
+             Text=""Some Text""
+             materialDesign:TextFieldAssist.HasClearButton=""True"">
+    </TextBox>
+</Grid>");
+            var textBox = await grid.GetElement<TextBox>("/TextBox");
+            var clearButton = await textBox.GetElement<Button>("PART_ClearButton");
+
+            string? text = await textBox.GetText();
+
+            Assert.NotNull(text);
+
+            await clearButton.LeftClick();
+
+            await Wait.For(async () =>
+            {
+                text = await textBox.GetText();
+                Assert.Null(text);
+            });
+
             recorder.Success();
         }
 
@@ -360,7 +391,10 @@ namespace MaterialDesignThemes.UITests.WPF.TextBoxes
 ");
             
             var scrollViewer = await textBox.GetElement<ScrollViewer>("PART_ContentHost");
-            Assert.Equal(VerticalAlignment.Top, await scrollViewer.GetVerticalAlignment());
+            //The default for this changed with issue 2556.
+            //It should be stretch so that the horizontal scroll bar is at the bottom and not
+            //pushed to the bottom of the text.
+            Assert.Equal(VerticalAlignment.Stretch, await scrollViewer.GetVerticalAlignment());
 
             foreach (var alignment in Enum.GetValues<VerticalAlignment>())
             {

@@ -5,6 +5,7 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters
 {
+    [Obsolete("This will be removed in the 5.0 release as it is no longer used")]
     public class CardClipConverter : IMultiValueConverter
     {
         /// <summary>

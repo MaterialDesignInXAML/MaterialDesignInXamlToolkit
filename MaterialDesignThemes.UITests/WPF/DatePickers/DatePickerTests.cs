@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using XamlTest;
@@ -19,7 +20,7 @@ namespace MaterialDesignThemes.UITests.WPF.DatePickers
         public async Task OnDatePickerHelperTextFontSize_ChangesHelperTextFontSize()
         {
             await using var recorder = new TestRecorder(App);
-
+            
             var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <DatePicker materialDesign:HintAssist.HelperTextFontSize=""20""/>
@@ -31,6 +32,34 @@ namespace MaterialDesignThemes.UITests.WPF.DatePickers
             double fontSize = await helpTextBlock.GetFontSize();
 
             Assert.Equal(20, fontSize);
+            recorder.Success();
+        }
+
+        [Fact]
+        [Description("Issue 2495")]
+        public async Task OnDatePicker_WithClearButton_ClearsSelectedDate()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            var stackPanel = await LoadXaml<StackPanel>($@"
+<StackPanel>
+    <DatePicker SelectedDate=""{DateTime.Today:d}"" materialDesign:TextFieldAssist.HasClearButton=""True""/>
+</StackPanel>");
+            var datePicker = await stackPanel.GetElement<DatePicker>("/DatePicker");
+            var clearButton = await datePicker.GetElement<Button>("PART_ClearButton");
+
+            DateTime? selectedDate = await datePicker.GetSelectedDate();
+
+            Assert.NotNull(selectedDate);
+
+            await clearButton.LeftClick();
+
+            await Wait.For(async () =>
+            {
+                selectedDate = await datePicker.GetSelectedDate();
+                Assert.Null(selectedDate);
+            });
+            
             recorder.Success();
         }
     }

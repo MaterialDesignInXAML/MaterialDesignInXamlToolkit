@@ -71,7 +71,6 @@
             </WrapPanel>
 
             <WrapPanel
-                Margin="0 12 0 0"
                 Orientation="Horizontal"
                 smtx:XamlDisplay.Ignore="This">
                 <smtx:XamlDisplay UniqueKey="chips_6" Margin="0 0 4 4">
@@ -110,6 +109,42 @@
                         IsDeletable="True"
                         IconBackground="{DynamicResource PrimaryHueLightBrush}"
                         IconForeground="{DynamicResource PrimaryHueLightForegroundBrush}" />
+                </smtx:XamlDisplay>
+            </WrapPanel>
+
+            <WrapPanel
+                Orientation="Horizontal"
+                smtx:XamlDisplay.Ignore="This">
+                <smtx:XamlDisplay UniqueKey="chips_34" Margin="0 0 6 4">
+                    <materialDesign:Chip Content="James Willock" Style="{StaticResource MaterialDesignOutlineChip}">
+                        <materialDesign:Chip.Icon>
+                            <Image Source="Resources/ProfilePic.jpg" />
+                        </materialDesign:Chip.Icon>
+                    </materialDesign:Chip>
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="chips_35" Margin="0 0 4 4">
+                    <materialDesign:Chip Content="Example Chip" Style="{StaticResource MaterialDesignOutlineChip}" />
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="chips_36" Margin="0 0 4 4">
+                    <materialDesign:Chip Content="ANZ Bank" Icon="A" Style="{StaticResource MaterialDesignOutlineChip}" />
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="chips_37" Margin="0 0 4 4">
+                    <materialDesign:Chip Content="ZNA Inc" Icon="Z" Style="{StaticResource MaterialDesignOutlineChip}" />
+                </smtx:XamlDisplay>
+
+                <smtx:XamlDisplay UniqueKey="chips_38" Margin="0 0 4 4">
+                    <materialDesign:Chip
+                        Content="Twitter"
+                        Style="{StaticResource MaterialDesignOutlineChip}"
+                        IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                        IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                        <materialDesign:Chip.Icon>
+                            <materialDesign:PackIcon Kind="Twitter"/>
+                        </materialDesign:Chip.Icon>
+                    </materialDesign:Chip>
                 </smtx:XamlDisplay>
             </WrapPanel>
         </StackPanel>
@@ -392,4 +427,3 @@
         </StackPanel>
     </Grid>
 </UserControl>
-

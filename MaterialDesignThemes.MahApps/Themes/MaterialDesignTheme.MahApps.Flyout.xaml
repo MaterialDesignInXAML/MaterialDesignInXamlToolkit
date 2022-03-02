@@ -22,7 +22,7 @@
                         DockPanel.Dock="Left"
                         Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type mah:Flyout}}, Path=Foreground}"
                         IsCancel="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:Flyout}}, Path=CloseButtonIsCancel}"
-                        Style="{DynamicResource MaterialDesignToolButton}"
+                        Style="{StaticResource MaterialDesignToolButton}"
                         Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:Flyout}}, Path=CloseButtonVisibility}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">

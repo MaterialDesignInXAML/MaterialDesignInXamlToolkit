@@ -104,7 +104,7 @@
                                                           Focusable="{TemplateBinding UpDownButtonsFocusable}"
                                                           Foreground="{TemplateBinding Foreground}"
                                                           IsTabStop="False"
-                                                          Style="{DynamicResource MahApps.Styles.Button.Chromeless}">
+                                                          Style="{StaticResource MahApps.Styles.Button.Chromeless}">
                                         <Path x:Name="PolygonUp"
                                                       Width="14"
                                                       Height="14"
@@ -122,7 +122,7 @@
                                                           Focusable="{TemplateBinding UpDownButtonsFocusable}"
                                                           Foreground="{TemplateBinding Foreground}"
                                                           IsTabStop="False"
-                                                          Style="{DynamicResource MahApps.Styles.Button.Chromeless}">
+                                                          Style="{StaticResource MahApps.Styles.Button.Chromeless}">
                                         <Path x:Name="PolygonDown"
                                                       Width="14"
                                                       Height="3"

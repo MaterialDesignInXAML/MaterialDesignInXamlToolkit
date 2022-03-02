@@ -326,7 +326,7 @@
                             <Setter TargetName="AdditionalContentControl" Property="Visibility" Value="Visible" />
                         </DataTrigger>
                         <Trigger Property="HasItems" Value="false">
-                            <Setter Property="Visibility" TargetName="Expander" Value="Hidden"/>
+                            <Setter Property="Visibility" TargetName="Expander" Value="Collapsed"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value=".56"/>

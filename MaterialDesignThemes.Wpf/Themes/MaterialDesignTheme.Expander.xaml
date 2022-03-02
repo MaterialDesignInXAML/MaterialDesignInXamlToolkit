@@ -180,15 +180,20 @@
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity" 
                                                              Storyboard.TargetName="ContentPanel" 
                                                              From="0" To="1"
-                                                             Duration="{StaticResource ExpandDuration}"/>
+                                                             Duration="{DynamicResource ExpandDuration}"/>
                                             <DoubleAnimation Storyboard.TargetName="ContentSiteScaleTransform" 
                                                              Storyboard.TargetProperty="(ScaleTransform.ScaleY)" 
                                                              From="0" To="1"
-                                                             Duration="{StaticResource ExpandDuration}">
+                                                             Duration="{DynamicResource ExpandDuration}">
                                                 <DoubleAnimation.EasingFunction>
                                                     <CubicEase EasingMode="EaseInOut"/>
                                                 </DoubleAnimation.EasingFunction>
                                             </DoubleAnimation>
+                                            <ObjectAnimationUsingKeyFrames Duration="0:0:0"
+                                                                           Storyboard.TargetName="PART_Content"
+                                                                           Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0%" Value="{x:Static Visibility.Visible}"/>
+                                            </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
 
@@ -197,15 +202,20 @@
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity" 
                                                              Storyboard.TargetName="ContentPanel" 
                                                              From="1" To="0" 
-                                                             Duration="{StaticResource CollapseDuration}"/>
+                                                             Duration="{DynamicResource CollapseDuration}"/>
                                             <DoubleAnimation Storyboard.TargetName="ContentSiteScaleTransform" 
                                                              Storyboard.TargetProperty="(ScaleTransform.ScaleY)" 
                                                              From="1" To="0"
-                                                             Duration="{StaticResource CollapseDuration}">
+                                                             Duration="{DynamicResource CollapseDuration}">
                                                 <DoubleAnimation.EasingFunction>
                                                     <CubicEase EasingMode="EaseInOut"/>
                                                 </DoubleAnimation.EasingFunction>
                                             </DoubleAnimation>
+                                            <ObjectAnimationUsingKeyFrames Duration="{DynamicResource CollapseDuration}" 
+                                                                           Storyboard.TargetName="PART_Content" 
+                                                                           Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="100%" Value="{x:Static Visibility.Collapsed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
@@ -220,6 +230,11 @@
                                                          Storyboard.TargetProperty="(ScaleTransform.ScaleY)" 
                                                          To="1" 
                                                          Duration="0" />
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="PART_Content"
+                                                                       Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0%" Value="{x:Static Visibility.Visible}"/>
+                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
 
@@ -233,6 +248,11 @@
                                                          Storyboard.TargetProperty="(ScaleTransform.ScaleY)"
                                                          To="0"
                                                          Duration="0" />
+                                        <ObjectAnimationUsingKeyFrames Duration="0" 
+                                                                       Storyboard.TargetName="PART_Content" 
+                                                                       Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="100%" Value="{x:Static Visibility.Collapsed}"/>
+                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
 
@@ -271,18 +291,19 @@
                                     <Grid.LayoutTransform>
                                         <RotateTransform Angle="{Binding Path=ExpandDirection, RelativeSource={RelativeSource AncestorType=Expander}, Converter={StaticResource ExpanderRotateAngleConverter}, ConverterParameter=-1}"/>
                                     </Grid.LayoutTransform>
-                                    
+
                                     <ContentPresenter Name="PART_Content" Focusable="False"
+                                                      Visibility="Collapsed"
                                                       ContentTemplate="{TemplateBinding ContentTemplate}"
                                                       ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                                       ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>
 
                                 </Grid>
                             </Border>
-
                         </DockPanel>
                     </Border>
                     <ControlTemplate.Triggers>
+
                         <Trigger Property="ExpandDirection" Value="Right">
                             <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Left"/>
                             <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource MaterialDesignVerticalHeaderStyle}"/>

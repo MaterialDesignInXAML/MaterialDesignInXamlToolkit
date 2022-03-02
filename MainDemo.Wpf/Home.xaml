@@ -119,7 +119,7 @@
                                 Margin="0 8 0 0">
                                 <Grid Margin="8">
                                     <Button
-                                        Style="{DynamicResource MaterialDesignFlatButton}"
+                                        Style="{StaticResource MaterialDesignFlatButton}"
                                         HorizontalAlignment="Left"
                                         x:Name="GitHubButton" Click="GitHubButton_OnClick">
                                         <StackPanel Orientation="Horizontal">
@@ -132,7 +132,7 @@
                                     </Button>
                                     
                                     <Button
-                                        Style="{DynamicResource MaterialDesignFlatButton}"
+                                        Style="{StaticResource MaterialDesignFlatButton}"
                                         HorizontalAlignment="Right"
                                         x:Name="TwitterButton"
                                         Click="TwitterButton_OnClick">
@@ -154,7 +154,7 @@
                                 BorderBrush="{DynamicResource MaterialDesignDivider}">
                                 <Grid Margin="8">
                                     <Button
-                                        Style="{DynamicResource MaterialDesignFlatButton}"
+                                        Style="{StaticResource MaterialDesignFlatButton}"
                                         HorizontalAlignment="Left"
                                         x:Name="ChatButton"
                                         Click="ChatButton_OnClick">
@@ -168,7 +168,7 @@
                                     </Button>
                                     
                                     <Button
-                                        Style="{DynamicResource MaterialDesignFlatButton}"
+                                        Style="{StaticResource MaterialDesignFlatButton}"
                                         HorizontalAlignment="Right"
                                         x:Name="EmailButton"
                                         Click="EmailButton_OnClick">
@@ -229,7 +229,7 @@
                                 Padding="8">
                                 <DockPanel>
                                     <Button
-                                        Style="{DynamicResource MaterialDesignFlatButton}" 
+                                        Style="{StaticResource MaterialDesignFlatButton}" 
                                         DockPanel.Dock="Right"
                                         x:Name="DonateButton"
                                         Click="DonateButton_OnClick">

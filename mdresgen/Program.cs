@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -41,7 +42,7 @@ namespace mdresgen
             {"color dark-when-small", Color.Black}
         };
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             var xDocument = XDocument.Load(BaseSnippetLocation);
             var xmlRoot = xDocument.Root ??
@@ -68,7 +69,7 @@ namespace mdresgen
             else if (args.Contains("old"))
                 GenerateOldXaml(xmlRoot);
             else if (args.Contains("icons"))
-                IconThing.Run();
+                await IconThing.RunAsync();
             else
                 GenerateXaml(xmlRoot);
 
@@ -80,7 +81,7 @@ namespace mdresgen
 
         private static void GenerateClasses(MdPalette palettes)
         {
-            foreach(var palette in palettes.palettes ?? Enumerable.Empty<MdPalette.palette>())
+            foreach (var palette in palettes.palettes ?? Enumerable.Empty<MdPalette.palette>())
             {
                 var sb = new StringBuilder();
 

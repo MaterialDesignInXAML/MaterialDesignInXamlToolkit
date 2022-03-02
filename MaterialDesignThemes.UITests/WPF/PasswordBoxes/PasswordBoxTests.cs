@@ -4,7 +4,6 @@ using System.Windows.Controls;
 using XamlTest;
 using Xunit;
 using Xunit.Abstractions;
-using Controls = System.Windows.Controls;
 
 namespace MaterialDesignThemes.UITests.WPF.PasswordBoxes
 {
@@ -55,6 +54,36 @@ namespace MaterialDesignThemes.UITests.WPF.PasswordBoxes
             double fontSize = await helpTextBlock.GetFontSize();
 
             Assert.Equal(20, fontSize);
+            recorder.Success();
+        }
+
+        [Fact]
+        [Description("Issue 2495")]
+        public async Task OnPasswordBox_WithClearButton_ClearsPassword()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            var grid = await LoadXaml<Grid>(@"
+<Grid Margin=""30"">
+    <PasswordBox materialDesign:TextFieldAssist.HasClearButton=""True"" />
+</Grid>");
+            var passwordBox = await grid.GetElement<PasswordBox>("/PasswordBox");
+            var clearButton = await passwordBox.GetElement<Button>("PART_ClearButton");
+
+            await passwordBox.SendKeyboardInput($"Test");
+
+            string? password = await passwordBox.GetPassword();
+
+            Assert.NotNull(password);
+
+            await clearButton.LeftClick();
+
+            await Wait.For(async () =>
+            {
+                password = await passwordBox.GetPassword();
+                Assert.Null(password);
+            });
+
             recorder.Success();
         }
     }

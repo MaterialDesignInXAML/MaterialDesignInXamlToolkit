@@ -54,5 +54,44 @@ namespace MaterialDesignThemes.UITests.WPF.ComboBoxes
             Assert.Equal(20, fontSize);
             recorder.Success();
         }
+
+        [Fact]
+        [Description("Issue 2495")]
+        public async Task OnComboBox_WithClearButton_ClearsSelection()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            var stackPanel = await LoadXaml<StackPanel>($@"
+<StackPanel>
+    <ComboBox materialDesign:HintAssist.Hint=""OS""
+              materialDesign:TextFieldAssist.HasClearButton=""True""
+              SelectedIndex=""1"">
+        <ComboBoxItem Content=""Android"" />
+        <ComboBoxItem Content=""iOS"" />
+        <ComboBoxItem Content=""Linux"" />
+        <ComboBoxItem Content=""Windows"" />
+    </ComboBox>
+</StackPanel>");
+            var comboBox = await stackPanel.GetElement<ComboBox>("/ComboBox");
+            var clearButton = await comboBox.GetElement<Button>("PART_ClearButton");
+
+            int? selectedIndex = await comboBox.GetSelectedIndex();
+            object? text = await comboBox.GetText();
+
+            Assert.True(selectedIndex >= 0);
+            Assert.NotNull(text);
+
+            await clearButton.LeftClick();
+
+            await Wait.For(async () =>
+            {
+                text = await comboBox.GetText();
+                Assert.Null(text);
+                selectedIndex = await comboBox.GetSelectedIndex();
+                Assert.False(selectedIndex >= 0);
+            });
+
+            recorder.Success();
+        }
     }
 }

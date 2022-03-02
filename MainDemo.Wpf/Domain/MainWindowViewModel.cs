@@ -287,6 +287,15 @@ namespace MaterialDesignDemo.Domain
                 });
 
             yield return new DemoItem(
+                "Tabs",
+                typeof(Tabs),
+                new[]
+                {
+                    DocumentationLink.DemoPageLink<Tabs>(),
+                    DocumentationLink.StyleLink("TabControl")
+                });
+
+            yield return new DemoItem(
                 "Trees",
                 typeof(Trees),
                 new[]

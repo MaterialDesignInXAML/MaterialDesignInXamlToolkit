@@ -20,10 +20,6 @@ The API is king. If adding anything to the public interface of this library (con
 
 This whole project is a personal hobby, and this is even more true of the UWP section.  I'm not accepting any PRs to UWP as I will be coding on this in my spare time, and using it as a way to learn and explore UWP for my own enlightenment.  If and when the UWP solution becomes more mature I will relax this stance.
 
-## TabControl:
-
-There is no TabControl style, I won't create one, and I won't accept one.  I have Dragablz and don't want the added burden of supporting two styles; even if it is fully complete.  I don't want the duplication and the overhead.  
-
 ## Submitting a PR:
 
 Probably the smaller the better (within sensible bounds for the nature of your change); at least keep a single feature to a single branch/PR.

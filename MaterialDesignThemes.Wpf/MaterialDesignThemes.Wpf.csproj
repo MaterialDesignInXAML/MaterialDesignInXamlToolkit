@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <TargetFrameworks>net452;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>net452;netcoreapp3.1;net6.0-windows</TargetFrameworks>
     <UseWPF>true</UseWPF>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <MDIXVersion Condition="$(MDIXVersion) == '' Or $(MDIXVersion) == '*Undefined*'">1.0.1</MDIXVersion>
     <AssemblyTitle>MaterialDesignThemes.Wpf</AssemblyTitle>
     <Product>MaterialDesignColors.Wpf</Product>
@@ -11,12 +10,17 @@
     <Version>$(MDIXVersion)</Version>
     <AssemblyVersion>$(MDIXVersion)</AssemblyVersion>
     <NoWarn>CS1591;CS1574</NoWarn>
-    <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
     <DocumentationFile>bin\$(Configuration)\MaterialDesignThemes.Wpf.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Resource Include="Resources\Roboto\*.ttf" />
     <Content Include="Resources\Roboto\*.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+
+    <None Remove="Resources\Noto\*.ttf" />
+    <None Remove="Resources\Noto\OFL.txt" />
+    <Content Include="Resources\Noto\*.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

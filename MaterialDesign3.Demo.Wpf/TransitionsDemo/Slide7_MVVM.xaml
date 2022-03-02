@@ -1,0 +1,54 @@
+﻿<UserControl
+    x:Class="MaterialDesign3Demo.TransitionsDemo.Slide7_MVVM"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    mc:Ignorable="d"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    d:DesignHeight="300"
+    d:DesignWidth="300">
+    <materialDesign:ColorZone
+        Mode="Light"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch">
+        <Grid
+            Margin="64">
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition
+                    Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                TextWrapping="Wrap"
+                TextAlignment="Center">That's the end of the demo for now; a full MVVM demo coming soon!</TextBlock>
+            <!--
+            <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" TextWrapping="Wrap" TextAlignment="Center">Finally, we will put it all together to create full master &amp; details pages, controlled via MVVM.</TextBlock>
+            -->
+            <StackPanel
+                Orientation="Horizontal"
+                Grid.Row="1"
+                HorizontalAlignment="Center">
+                <Button
+                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                    Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Margin="16">
+                    <materialDesign:PackIcon
+                        Kind="StepBackward" />
+                </Button>
+                <!--
+                <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                    Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
+                    VerticalAlignment="Top"
+                    Margin="16">
+                    <materialDesign:PackIcon Kind="StepForward" />
+                </Button>
+                -->
+            </StackPanel>
+        </Grid>
+    </materialDesign:ColorZone>
+</UserControl>

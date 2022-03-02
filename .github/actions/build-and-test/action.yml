@@ -1,0 +1,43 @@
+name: 'Compile and Test'
+description: 'Build the solution and runs the tests'
+inputs:
+  solution:
+    description: 'The relative path to the solution file'
+    required: true
+  buildConfiguration:
+    description: 'The configuration to use when building'
+    required: true
+  nugetKey:
+    description: The API key to setup with the NUGET_AUTH_TOKEN.
+    required: false
+runs:
+  using: "composite"
+  steps:
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: | 
+          3.1.x
+          5.x
+          6.x
+      env:
+        NUGET_AUTH_TOKEN: ${{ inputs.nugetToken }}
+        
+    - name: Restore dependencies
+      shell: pwsh
+      run: dotnet restore ${{ inputs.solution }}
+
+    - name: Build
+      shell: pwsh
+      run: dotnet build ${{ inputs.solution }} --configuration ${{ inputs.buildConfiguration }} --no-restore -p:Platform="Any CPU" -p:TreatWarningsAsErrors=True
+
+    - name: Test
+      shell: pwsh
+      run: dotnet test ${{ inputs.solution }} --configuration ${{ inputs.buildConfiguration }} --no-build --verbosity normal --blame-crash
+
+    - name: Upload Screenshots
+      if: ${{ always() }}
+      uses: actions/upload-artifact@v2
+      with:
+        name: Screenshots-${{ github.run_number }}
+        path: ${{ github.workspace }}/MaterialDesignThemes.UITests/bin/${{ inputs.buildConfiguration }}/net5.0-windows/Screenshots

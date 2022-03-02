@@ -4,7 +4,7 @@
     <Company>Mulholland Software/James Willock</Company>
 
     <Configurations>Debug;Release</Configurations>
-    <LangVersion>9.0</LangVersion>
+    <LangVersion>10.0</LangVersion>
     <ErrorReport>prompt</ErrorReport>
 
     <SignAssembly>true</SignAssembly>

@@ -365,6 +365,15 @@ namespace MaterialDesignThemes.Wpf
             set => SetValue(IsOpenProperty, value);
         }
 
+        public static readonly DependencyProperty PlacementProperty = DependencyProperty.Register(
+            nameof(Placement), typeof(PlacementMode), typeof(DialogHost), new PropertyMetadata(PlacementMode.Center));
+
+        public PlacementMode Placement
+        {
+            get => (PlacementMode)GetValue(PlacementProperty);
+            set => SetValue(PlacementProperty, value);
+        }
+
         public static readonly DependencyProperty DialogContentProperty = DependencyProperty.Register(
             nameof(DialogContent), typeof(object), typeof(DialogHost), new PropertyMetadata(default(object)));
 
@@ -507,7 +516,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty DialogBackgroundProperty = DependencyProperty.Register(
-            nameof(DialogBackground), typeof(Brush), typeof(DialogHost), new PropertyMetadata(Brushes.White));
+            nameof(DialogBackground), typeof(Brush), typeof(DialogHost), new PropertyMetadata(null));
 
         /// <summary>
         /// Represents the brush for the Dialog's background

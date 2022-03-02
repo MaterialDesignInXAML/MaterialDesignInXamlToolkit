@@ -2,606 +2,778 @@
     x:Class="MaterialDesignDemo.NavigationRail"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-    xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-    mc:Ignorable="d" 
-    d:DesignHeight="450"
-    d:DesignWidth="800">
-    
-    <UserControl.Resources>
-        <Style TargetType="{x:Type TextBlock}">
-            <Setter Property="Padding" Value="5"/>
-            <Setter Property="TextWrapping" Value="Wrap"/>
-        </Style>
-    </UserControl.Resources>
-    
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
-        
-        <GroupBox
-            Header="General"
-            Style="{StaticResource MaterialDesignCardGroupBox}"
-            Margin="5"
-            materialDesign:ColorZoneAssist.Mode="Standard"
-            materialDesign:ShadowAssist.ShadowEdges="Right"
-            Grid.RowSpan="2">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-                
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                </Grid.RowDefinitions>
-              
-                <smtx:XamlDisplay
-                    UniqueKey="navrail_1"
-                    Margin="5,5,5,0">
-                    <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}" BorderThickness="0"
-                                BorderBrush="Transparent" TabStripPlacement="Left"
-                                materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                                materialDesign:ColorZoneAssist.Mode="Standard" SnapsToDevicePixels="True"
-                                materialDesign:NavigationRailAssist.ShowSelectionBackground="True">
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+    d:DesignHeight="1080"
+    d:DesignWidth="1920"
+    mc:Ignorable="d">
+    <StackPanel>
+        <TextBlock
+            Margin="0,0,0,16"
+            Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+            Text="NavigationRail" />
+
+        <TextBlock
+            Margin="0,0,0,8"
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Text="General" />
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="navrail_1">
+                <materialDesign:Card>
+                    <TabControl
+                        materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
+                        SnapsToDevicePixels="True"
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}"
+                        TabStripPlacement="Left">
                         <materialDesign:NavigationRailAssist.FloatingContent>
-                            <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
-                                    Content="{materialDesign:PackIcon Kind=Plus}" Margin="8"/>
+                            <Button
+                                Margin="8"
+                                Content="{materialDesign:PackIcon Kind=Plus}"
+                                Style="{StaticResource MaterialDesignFloatingActionAccentButton}" />
                         </materialDesign:NavigationRailAssist.FloatingContent>
-                        <TabItem >
+                        <TabItem>
                             <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="Folder" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="All Files" HorizontalAlignment="Center"/>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="Folder" />
+                                    <TextBlock HorizontalAlignment="Center" Text="All Files" />
                                 </StackPanel>
                             </TabItem.Header>
-                            <TextBlock >
-                                <Run Text="tab 1 content. Default look and behaviors."/>
-                                <LineBreak/>
-                                <LineBreak/>
-                                <Run FontStyle="Italic">
-                                    Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
-                                </Run>
-                            </TextBlock>
+
+                            <StackPanel Margin="16">
+                                <TextBlock
+                                    Margin="0,0,0,8"
+                                    Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                                    Text="All Files" />
+
+                                <TextBlock>
+                                    <Run Text="tab 1 content. Default look and behaviors." />
+                                    <LineBreak />
+                                    <LineBreak />
+                                    <Run FontStyle="Italic">
+                                        Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+                                    </Run>
+                                </TextBlock>
+                            </StackPanel>
                         </TabItem>
 
-                        <TabItem >
+                        <TabItem>
                             <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="ClockOutline" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Recent" HorizontalAlignment="Center"/>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="ClockOutline" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Recent" />
                                 </StackPanel>
                             </TabItem.Header>
-                            <TextBlock>
-                                <Run Text="tab 2 content. Default look and behaviors."/>
-                                <LineBreak/>
-                                <LineBreak/>
-                                <Run FontStyle="Italic">
-                                    Praesent sed dui arcu. Vivamus porta auctor sagittis
-                                </Run>
-                            </TextBlock>
+                            <StackPanel Margin="16">
+                                <TextBlock
+                                    Margin="0,0,0,8"
+                                    Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                                    Text="Recent" />
+
+                                <TextBlock>
+                                    <Run Text="tab 2 content. Default look and behaviors." />
+                                    <LineBreak />
+                                    <LineBreak />
+                                    <Run FontStyle="Italic">
+                                        Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+                                    </Run>
+                                </TextBlock>
+                            </StackPanel>
                         </TabItem>
 
-                        <TabItem >
+                        <TabItem>
                             <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="Images" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Photos" HorizontalAlignment="Center"/>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="Images" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Photos" />
                                 </StackPanel>
                             </TabItem.Header>
-                            <TextBlock>
-                                <Run Text="tab 3 content. Default look and behaviors."/>
-                                <LineBreak/>
-                                <LineBreak/>
-                            </TextBlock>
+                            <StackPanel Margin="16">
+                                <TextBlock
+                                    Margin="0,0,0,8"
+                                    Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                                    Text="Photos" />
+
+                                <TextBlock>
+                                    <Run Text="tab 3 content. Default look and behaviors." />
+                                    <LineBreak />
+                                    <LineBreak />
+                                    <Run FontStyle="Italic">
+                                        Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+                                    </Run>
+                                </TextBlock>
+                            </StackPanel>
                         </TabItem>
 
-                        <TabItem >
+                        <TabItem>
                             <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="MusicBoxMultiple" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Sounds" HorizontalAlignment="Center"/>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="MusicBoxMultiple" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Sounds" />
                                 </StackPanel>
                             </TabItem.Header>
-                            <TextBlock>
-                                <Run Text="tab 4 content. Default look and behaviors."/>
-                                <LineBreak/>
-                                <LineBreak/>
-                            </TextBlock>
+                            <StackPanel Margin="16">
+                                <TextBlock
+                                    Margin="0,0,0,8"
+                                    Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                                    Text="Sounds" />
+
+                                <TextBlock>
+                                    <Run Text="tab 4 content. Default look and behaviors." />
+                                    <LineBreak />
+                                    <LineBreak />
+                                    <Run FontStyle="Italic">
+                                        Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+                                    </Run>
+                                </TextBlock>
+                            </StackPanel>
                         </TabItem>
                     </TabControl>
-                </smtx:XamlDisplay>
-                <smtx:XamlDisplay
-                    UniqueKey="navrail_4"
-                    Margin="5,5,5,0"
-                    Grid.Column="1">
-                    <TabControl TabStripPlacement="Bottom"
-                                Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
-                                materialDesign:ColorZoneAssist.Mode="PrimaryLight"
-                                materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
-                                materialDesign:NavigationRailAssist.SelectionCornerRadius="50"
-                                HorizontalContentAlignment="Center">
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay
+                Grid.Column="1"
+                Margin="8,0,0,8"
+                UniqueKey="navrail_4">
+                <materialDesign:Card>
+                    <TabControl
+                        HorizontalContentAlignment="Center"
+                        materialDesign:ColorZoneAssist.Mode="PrimaryLight"
+                        materialDesign:NavigationRailAssist.SelectionCornerRadius="50"
+                        materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}"
+                        TabStripPlacement="Bottom">
 
                         <TabItem Margin="4">
                             <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="ClockOutline" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Recent" HorizontalAlignment="Center"/>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="ClockOutline" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Recent" />
                                 </StackPanel>
                             </TabItem.Header>
                             <TextBlock>
-                                <Run Text="tab 2 content. Default look and behaviors."/>
-                                <LineBreak/>
-                                <LineBreak/>
+                                <Run Text="tab 2 content. Default look and behaviors." />
+                                <LineBreak />
+                                <LineBreak />
                                 <Run FontStyle="Italic">
                                     Praesent sed dui arcu. Vivamus porta auctor sagittis
                                 </Run>
                             </TextBlock>
                         </TabItem>
 
-                        <TabItem >
+                        <TabItem>
                             <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="Images" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Photos" HorizontalAlignment="Center"/>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="Images" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Photos" />
                                 </StackPanel>
                             </TabItem.Header>
                             <TextBlock>
-                                <Run Text="tab 3 content. Default look and behaviors."/>
-                                <LineBreak/>
-                                <LineBreak/>
+                                <Run Text="tab 3 content. Default look and behaviors." />
+                                <LineBreak />
+                                <LineBreak />
                                 <Run FontStyle="Italic">
                                     Praesevzddvvvvvvvvvv
                                 </Run>
                             </TextBlock>
                         </TabItem>
 
-                        <TabItem >
+                        <TabItem>
                             <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="MusicBoxMultiple" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Sounds" HorizontalAlignment="Center"/>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="MusicBoxMultiple" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Sounds" />
                                 </StackPanel>
                             </TabItem.Header>
                             <TextBlock>
-                                <Run Text="tab 4 content. Default look and behaviors."/>
-                                <LineBreak/>
-                                <LineBreak/>
+                                <Run Text="tab 4 content. Default look and behaviors." />
+                                <LineBreak />
+                                <LineBreak />
                                 <Run FontStyle="Italic">
                                     Prfadsssssssssssssssbvdcas
                                 </Run>
                             </TextBlock>
                         </TabItem>
                     </TabControl>
-                </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay
-                    UniqueKey="navrail_2"
-                    Margin="5,5,5,0"
-                    Grid.Row="1">
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay
+                Grid.Row="1"
+                Margin="0,8,8,0"
+                UniqueKey="navrail_2">
+                <materialDesign:Card>
+                    <TabControl Style="{StaticResource MaterialDesignNavigationRailTabControl}" TabStripPlacement="Right">
+                        <TabItem>
+                            <TabItem.Header>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="Folder" />
+                                    <TextBlock HorizontalAlignment="Center" Text="All Files" />
+                                </StackPanel>
+                            </TabItem.Header>
+                            <TextBlock>
+                                <Run Text="tab 1 content. Default look and behaviors." />
+                                <LineBreak />
+                                <LineBreak />
+                                <Run FontStyle="Italic">
+                                    Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+                                </Run>
+                            </TextBlock>
+                        </TabItem>
+
+                        <TabItem>
+                            <TabItem.Header>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="ClockOutline" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Recent" />
+                                </StackPanel>
+                            </TabItem.Header>
+                            <TextBlock>
+                                <Run Text="tab 2 content. Default look and behaviors." />
+                                <LineBreak />
+                                <LineBreak />
+                                <Run FontStyle="Italic">
+                                    Praesent sed dui arcu. Vivamus porta auctor sagittis
+                                </Run>
+                            </TextBlock>
+                        </TabItem>
+
+                        <TabItem>
+                            <TabItem.Header>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="Images" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Photos" />
+                                </StackPanel>
+                            </TabItem.Header>
+                            <TextBlock>
+                                <Run Text="tab 3 content. Default look and behaviors." />
+                                <LineBreak />
+                                <LineBreak />
+                            </TextBlock>
+                        </TabItem>
+
+                        <TabItem>
+                            <TabItem.Header>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="MusicBoxMultiple" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Sounds" />
+                                </StackPanel>
+                            </TabItem.Header>
+                            <TextBlock>
+                                <Run Text="tab 4 content. Default look and behaviors." />
+                                <LineBreak />
+                                <LineBreak />
+                            </TextBlock>
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="8,8,0,0"
+                UniqueKey="navrail_3">
+                <materialDesign:Card>
                     <TabControl
-                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
-                        TabStripPlacement="Right">
-                        <TabItem >
+                        VerticalContentAlignment="Bottom"
+                        materialDesign:ColorZoneAssist.Mode="PrimaryMid"
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}">
+                        <TabItem>
                             <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="Folder" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="All Files" HorizontalAlignment="Center"/>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="Folder" />
+                                    <TextBlock HorizontalAlignment="Center" Text="All Files" />
                                 </StackPanel>
                             </TabItem.Header>
-                            <TextBlock >
-                                <Run Text="tab 1 content. Default look and behaviors."/>
-                                <LineBreak/>
-                                <LineBreak/>
+                            <TextBlock>
+                                <Run Text="tab 1 content. Default look and behaviors." />
+                                <LineBreak />
+                                <LineBreak />
                                 <Run FontStyle="Italic">
                                     Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
                                 </Run>
                             </TextBlock>
                         </TabItem>
 
-                        <TabItem >
+                        <TabItem>
                             <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="ClockOutline" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Recent" HorizontalAlignment="Center"/>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="ClockOutline" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Recent" />
                                 </StackPanel>
                             </TabItem.Header>
                             <TextBlock>
-                                <Run Text="tab 2 content. Default look and behaviors."/>
-                                <LineBreak/>
-                                <LineBreak/>
+                                <Run Text="tab 2 content. Default look and behaviors." />
+                                <LineBreak />
+                                <LineBreak />
                                 <Run FontStyle="Italic">
                                     Praesent sed dui arcu. Vivamus porta auctor sagittis
                                 </Run>
                             </TextBlock>
                         </TabItem>
 
-                        <TabItem >
+                        <TabItem>
                             <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="Images" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Photos" HorizontalAlignment="Center"/>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="Images" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Photos" />
                                 </StackPanel>
                             </TabItem.Header>
                             <TextBlock>
-                                <Run Text="tab 3 content. Default look and behaviors."/>
-                                <LineBreak/>
-                                <LineBreak/>
+                                <Run Text="tab 3 content. Default look and behaviors." />
+                                <LineBreak />
+                                <LineBreak />
                             </TextBlock>
                         </TabItem>
 
-                        <TabItem >
+                        <TabItem>
                             <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="MusicBoxMultiple" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Sounds" HorizontalAlignment="Center"/>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="MusicBoxMultiple" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Sounds" />
                                 </StackPanel>
                             </TabItem.Header>
                             <TextBlock>
-                                <Run Text="tab 4 content. Default look and behaviors."/>
-                                <LineBreak/>
-                                <LineBreak/>
-                            </TextBlock>
-                        </TabItem>
-
-
-                    </TabControl>
-                </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay
-                    UniqueKey="navrail_3"
-                    Margin="5,5,5,0"
-                    Grid.Row="1"
-                    Grid.Column="1">
-                    <TabControl VerticalContentAlignment="Bottom"
-                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
-                        materialDesign:ColorZoneAssist.Mode="PrimaryMid">
-                        <TabItem >
-                            <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="Folder" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="All Files" HorizontalAlignment="Center"/>
-                                </StackPanel>
-                            </TabItem.Header>
-                            <TextBlock >
-                                <Run Text="tab 1 content. Default look and behaviors."/>
-                                <LineBreak/>
-                                <LineBreak/>
-                                <Run FontStyle="Italic">
-                                    Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
-                                </Run>
-                            </TextBlock>
-                        </TabItem>
-
-                        <TabItem >
-                            <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="ClockOutline" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Recent" HorizontalAlignment="Center"/>
-                                </StackPanel>
-                            </TabItem.Header>
-                            <TextBlock>
-                                <Run Text="tab 2 content. Default look and behaviors."/>
-                                <LineBreak/>
-                                <LineBreak/>
-                                <Run FontStyle="Italic">
-                                    Praesent sed dui arcu. Vivamus porta auctor sagittis
-                                </Run>
-                            </TextBlock>
-                        </TabItem>
-
-                        <TabItem >
-                            <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="Images" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Photos" HorizontalAlignment="Center"/>
-                                </StackPanel>
-                            </TabItem.Header>
-                            <TextBlock>
-                                <Run Text="tab 3 content. Default look and behaviors."/>
-                                <LineBreak/>
-                                <LineBreak/>
-                            </TextBlock>
-                        </TabItem>
-
-                        <TabItem >
-                            <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="MusicBoxMultiple" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Sounds" HorizontalAlignment="Center"/>
-                                </StackPanel>
-                            </TabItem.Header>
-                            <TextBlock>
-                                <Run Text="tab 4 content. Default look and behaviors."/>
-                                <LineBreak/>
-                                <LineBreak/>
+                                <Run Text="tab 4 content. Default look and behaviors." />
+                                <LineBreak />
+                                <LineBreak />
                             </TextBlock>
                         </TabItem>
                     </TabControl>
-                </smtx:XamlDisplay>
-            </Grid>
-        </GroupBox>
-        <GroupBox
-            Grid.Column="1"
-            Header="Floating Action Button"
-            Style="{StaticResource MaterialDesignCardGroupBox}"
-            materialDesign:ColorZoneAssist.Mode="Standard"
-            Margin="5">
-            <smtx:XamlDisplay UniqueKey="navrail_floating_1">
-                <TabControl 
-                    Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+        </Grid>
+
+        <Separator Margin="0,16" />
+
+        <TextBlock
+            Margin="0,0,0,8"
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Text="Floating Action Button" />
+
+        <smtx:XamlDisplay UniqueKey="navrail_floating_1">
+            <materialDesign:Card>
+                <TabControl
                     materialDesign:ColorZoneAssist.Mode="PrimaryMid"
-                    TabStripPlacement="Top"
                     materialDesign:NavigationRailAssist.SelectionCornerRadius="50 10 10 10"
-                    materialDesign:NavigationRailAssist.ShowSelectionBackground="True">
+                    materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
+                    Style="{StaticResource MaterialDesignNavigationRailTabControl}"
+                    TabStripPlacement="Top">
                     <materialDesign:NavigationRailAssist.FloatingContent>
-                        <Button
-                            Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
-                            Margin="8">
-                            <materialDesign:PackIcon Kind="Plus" Width="24" Height="24"/>
+                        <Button Margin="8" Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
+                            <materialDesign:PackIcon
+                                Width="24"
+                                Height="24"
+                                Kind="Plus" />
                         </Button>
                     </materialDesign:NavigationRailAssist.FloatingContent>
 
-                    <TabItem >
+                    <TabItem>
                         <TabItem.Header>
-                            <StackPanel Height="auto" Width="auto">
-                                <materialDesign:PackIcon Kind="Folder" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                <TextBlock Text="All Files" HorizontalAlignment="Center"/>
-                            </StackPanel>
-                        </TabItem.Header>
-                        <TextBlock >
-                                <Run Text="tab 1 content. Default look and behaviors."/>
-                                <LineBreak/>
-                                <LineBreak/>
-                                <Run FontStyle="Italic">
-                                    Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
-                                </Run>
-                        </TextBlock>
-                    </TabItem>
-
-                    <TabItem >
-                        <TabItem.Header>
-                            <StackPanel Height="auto" Width="auto">
-                                <materialDesign:PackIcon Kind="ClockOutline" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                <TextBlock Text="Recent" HorizontalAlignment="Center"/>
+                            <StackPanel Width="auto" Height="auto">
+                                <materialDesign:PackIcon
+                                    Width="24"
+                                    Height="24"
+                                    HorizontalAlignment="Center"
+                                    Kind="Folder" />
+                                <TextBlock HorizontalAlignment="Center" Text="All Files" />
                             </StackPanel>
                         </TabItem.Header>
                         <TextBlock>
-                                <Run Text="tab 2 content. Default look and behaviors."/>
-                                <LineBreak/>
-                                <LineBreak/>
-                                <Run FontStyle="Italic">
-                                    Praesent sed dui arcu. Vivamus porta auctor sagittis
-                                </Run>
+                            <Run Text="tab 1 content. Default look and behaviors." />
+                            <LineBreak />
+                            <LineBreak />
+                            <Run FontStyle="Italic">
+                                Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+                            </Run>
                         </TextBlock>
                     </TabItem>
 
-                    <TabItem >
+                    <TabItem>
                         <TabItem.Header>
-                            <StackPanel Height="auto" Width="auto">
-                                <materialDesign:PackIcon Kind="Images" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                <TextBlock Text="Photos" HorizontalAlignment="Center"/>
+                            <StackPanel Width="auto" Height="auto">
+                                <materialDesign:PackIcon
+                                    Width="24"
+                                    Height="24"
+                                    HorizontalAlignment="Center"
+                                    Kind="ClockOutline" />
+                                <TextBlock HorizontalAlignment="Center" Text="Recent" />
                             </StackPanel>
                         </TabItem.Header>
                         <TextBlock>
-                                <Run Text="tab 3 content. Default look and behaviors."/>
-                                <LineBreak/>
-                                <LineBreak/>
+                            <Run Text="tab 2 content. Default look and behaviors." />
+                            <LineBreak />
+                            <LineBreak />
+                            <Run FontStyle="Italic">
+                                Praesent sed dui arcu. Vivamus porta auctor sagittis
+                            </Run>
                         </TextBlock>
                     </TabItem>
 
-                    <TabItem >
+                    <TabItem>
                         <TabItem.Header>
-                            <StackPanel Height="auto" Width="auto">
-                                <materialDesign:PackIcon Kind="MusicBoxMultiple" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                <TextBlock Text="Sounds" HorizontalAlignment="Center"/>
+                            <StackPanel Width="auto" Height="auto">
+                                <materialDesign:PackIcon
+                                    Width="24"
+                                    Height="24"
+                                    HorizontalAlignment="Center"
+                                    Kind="Images" />
+                                <TextBlock HorizontalAlignment="Center" Text="Photos" />
                             </StackPanel>
                         </TabItem.Header>
                         <TextBlock>
-                                <Run Text="tab 4 content. Default look and behaviors."/>
-                                <LineBreak/>
-                                <LineBreak/>
+                            <Run Text="tab 3 content. Default look and behaviors." />
+                            <LineBreak />
+                            <LineBreak />
                         </TextBlock>
                     </TabItem>
-                    
+
+                    <TabItem>
+                        <TabItem.Header>
+                            <StackPanel Width="auto" Height="auto">
+                                <materialDesign:PackIcon
+                                    Width="24"
+                                    Height="24"
+                                    HorizontalAlignment="Center"
+                                    Kind="MusicBoxMultiple" />
+                                <TextBlock HorizontalAlignment="Center" Text="Sounds" />
+                            </StackPanel>
+                        </TabItem.Header>
+                        <TextBlock>
+                            <Run Text="tab 4 content. Default look and behaviors." />
+                            <LineBreak />
+                            <LineBreak />
+                        </TextBlock>
+                    </TabItem>
                 </TabControl>
+            </materialDesign:Card>
+        </smtx:XamlDisplay>
+
+        <Separator Margin="0,16" />
+
+        <TextBlock
+            Margin="0,0,0,8"
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Text="Shadow" />
+
+        <StackPanel Orientation="Horizontal">
+            <smtx:XamlDisplay UniqueKey="navrail_noshadow_1">
+                <materialDesign:Card>
+                    <TabControl
+                        materialDesign:ColorZoneAssist.Mode="Standard"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}">
+                        <TabItem>
+                            <TabItem.Header>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="Folder" />
+                                    <TextBlock HorizontalAlignment="Center" Text="All Files" />
+                                </StackPanel>
+                            </TabItem.Header>
+                            <Grid Width="100" />
+                        </TabItem>
+
+                        <TabItem>
+                            <TabItem.Header>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="ClockOutline" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Recent" />
+                                </StackPanel>
+                            </TabItem.Header>
+                        </TabItem>
+
+                        <TabItem>
+                            <TabItem.Header>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="Images" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Photos" />
+                                </StackPanel>
+                            </TabItem.Header>
+                        </TabItem>
+
+                        <TabItem>
+                            <TabItem.Header>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="MusicBoxMultiple" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Sounds" />
+                                </StackPanel>
+                            </TabItem.Header>
+                        </TabItem>
+                    </TabControl>
+                </materialDesign:Card>
             </smtx:XamlDisplay>
-        </GroupBox>
-        
-        <GroupBox
-            Grid.Column="1"
-            Grid.Row="1"
-            Header="Shadow"
-            Style="{StaticResource MaterialDesignCardGroupBox}"
-            materialDesign:ColorZoneAssist.Mode="Standard"
-            Margin="5">
-            <StackPanel Orientation="Horizontal">
-                <smtx:XamlDisplay UniqueKey="navrail_noshadow_1">
+
+            <smtx:XamlDisplay UniqueKey="navrail_wshadow_1">
+                <materialDesign:Card>
                     <TabControl
-                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
                         materialDesign:ColorZoneAssist.Mode="Standard"
-                        materialDesign:ShadowAssist.ShadowDepth="Depth0">
-                        <TabItem >
+                        materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}">
+                        <TabItem>
                             <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="Folder" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="All Files" HorizontalAlignment="Center"/>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="Folder" />
+                                    <TextBlock HorizontalAlignment="Center" Text="All Files" />
                                 </StackPanel>
                             </TabItem.Header>
-                            <Grid  Width="100"/>
+                            <Grid Width="100" />
                         </TabItem>
 
-                        <TabItem >
+                        <TabItem>
                             <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="ClockOutline" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Recent" HorizontalAlignment="Center"/>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="ClockOutline" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Recent" />
                                 </StackPanel>
                             </TabItem.Header>
                         </TabItem>
 
-                        <TabItem >
+                        <TabItem>
                             <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="Images" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Photos" HorizontalAlignment="Center"/>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="Images" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Photos" />
                                 </StackPanel>
                             </TabItem.Header>
                         </TabItem>
 
-                        <TabItem >
+                        <TabItem>
                             <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="MusicBoxMultiple" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Sounds" HorizontalAlignment="Center"/>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="MusicBoxMultiple" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Sounds" />
                                 </StackPanel>
                             </TabItem.Header>
                         </TabItem>
                     </TabControl>
-                </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay UniqueKey="navrail_wshadow_1">
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay UniqueKey="navrail_wshadow_2">
+                <materialDesign:Card>
                     <TabControl
-                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
                         materialDesign:ColorZoneAssist.Mode="Standard"
-                        materialDesign:ShadowAssist.ShadowDepth="Depth1">
-                        <TabItem >
+                        materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}">
+                        <TabItem>
                             <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="Folder" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="All Files" HorizontalAlignment="Center"/>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="Folder" />
+                                    <TextBlock HorizontalAlignment="Center" Text="All Files" />
                                 </StackPanel>
                             </TabItem.Header>
-                            <Grid  Width="100"/>
+                            <Grid Width="100" />
                         </TabItem>
 
-                        <TabItem >
+                        <TabItem>
                             <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="ClockOutline" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Recent" HorizontalAlignment="Center"/>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="ClockOutline" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Recent" />
                                 </StackPanel>
                             </TabItem.Header>
                         </TabItem>
 
-                        <TabItem >
+                        <TabItem>
                             <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="Images" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Photos" HorizontalAlignment="Center"/>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="Images" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Photos" />
                                 </StackPanel>
                             </TabItem.Header>
                         </TabItem>
 
-                        <TabItem >
+                        <TabItem>
                             <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="MusicBoxMultiple" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Sounds" HorizontalAlignment="Center"/>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="MusicBoxMultiple" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Sounds" />
                                 </StackPanel>
                             </TabItem.Header>
                         </TabItem>
                     </TabControl>
-                </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay UniqueKey="navrail_wshadow_2">
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay UniqueKey="navrail_wshadow_3">
+                <materialDesign:Card>
                     <TabControl
-                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
                         materialDesign:ColorZoneAssist.Mode="Standard"
-                        materialDesign:ShadowAssist.ShadowDepth="Depth2">
-                        <TabItem >
+                        materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}">
+                        <TabItem>
                             <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="Folder" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="All Files" HorizontalAlignment="Center"/>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="Folder" />
+                                    <TextBlock HorizontalAlignment="Center" Text="All Files" />
                                 </StackPanel>
                             </TabItem.Header>
-                            <Grid  Width="100"/>
+                            <Grid Width="100" />
                         </TabItem>
 
-                        <TabItem >
+                        <TabItem>
                             <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="ClockOutline" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Recent" HorizontalAlignment="Center"/>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="ClockOutline" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Recent" />
                                 </StackPanel>
                             </TabItem.Header>
                         </TabItem>
 
-                        <TabItem >
+                        <TabItem>
                             <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="Images" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Photos" HorizontalAlignment="Center"/>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="Images" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Photos" />
                                 </StackPanel>
                             </TabItem.Header>
                         </TabItem>
 
-                        <TabItem >
+                        <TabItem>
                             <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="MusicBoxMultiple" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Sounds" HorizontalAlignment="Center"/>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="MusicBoxMultiple" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Sounds" />
                                 </StackPanel>
                             </TabItem.Header>
                         </TabItem>
                     </TabControl>
-                </smtx:XamlDisplay>
-                
-                <smtx:XamlDisplay UniqueKey="navrail_wshadow_3">
-                    <TabControl
-                        Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
-                        materialDesign:ColorZoneAssist.Mode="Standard"
-                        materialDesign:ShadowAssist.ShadowDepth="Depth3">
-                        <TabItem >
-                            <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="Folder" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="All Files" HorizontalAlignment="Center"/>
-                                </StackPanel>
-                            </TabItem.Header>
-                            <Grid  Width="100"/>
-                        </TabItem>
-
-                        <TabItem >
-                            <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="ClockOutline" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Recent" HorizontalAlignment="Center"/>
-                                </StackPanel>
-                            </TabItem.Header>
-                        </TabItem>
-
-                        <TabItem >
-                            <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="Images" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Photos" HorizontalAlignment="Center"/>
-                                </StackPanel>
-                            </TabItem.Header>
-                        </TabItem>
-
-                        <TabItem >
-                            <TabItem.Header>
-                                <StackPanel Height="auto" Width="auto">
-                                    <materialDesign:PackIcon Kind="MusicBoxMultiple" Width="24" Height="24" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Sounds" HorizontalAlignment="Center"/>
-                                </StackPanel>
-                            </TabItem.Header>
-                        </TabItem>
-                    </TabControl>
-                </smtx:XamlDisplay>
-            </StackPanel>      
-        </GroupBox>
-    </Grid>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+        </StackPanel>
+    </StackPanel>
 </UserControl>

@@ -139,6 +139,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <wpf:PopupEx PlacementTarget="{Binding ElementName=DialogHostRoot, Mode=OneWay}"
+                                     Placement="{TemplateBinding Placement}"
                                      x:Name="PART_Popup" 
                                      Style="{TemplateBinding PopupStyle}"
                                      wpf:ThemeAssist.Theme="{TemplateBinding DialogTheme}">
@@ -155,7 +156,7 @@
                                           Margin="{TemplateBinding DialogMargin}"
                                           wpf:ShadowAssist.ShadowDepth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth)}"
                                           UniformCornerRadius="4"
-                                          Background="{Binding DialogBackground, RelativeSource={RelativeSource TemplatedParent}}"
+                                          Tag="{TemplateBinding DialogBackground}"
                                           TextElement.Foreground="{DynamicResource MaterialDesignBody}"
                                           FocusManager.IsFocusScope="False"
                                           Foreground="{DynamicResource MaterialDesignBody}"
@@ -168,6 +169,16 @@
                                           ContentTemplate="{TemplateBinding DialogContentTemplate}"
                                           ContentTemplateSelector="{TemplateBinding DialogContentTemplateSelector}"
                                           ContentStringFormat="{TemplateBinding DialogContentStringFormat}">
+                                    <wpf:Card.Style>
+                                        <Style TargetType="wpf:Card" BasedOn="{StaticResource {x:Type wpf:Card}}">
+                                            <Setter Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}}" />
+                                            <Style.Triggers>
+                                                <Trigger Property="Tag" Value="{x:Null}">
+                                                    <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </wpf:Card.Style>
                                     <wpf:Card.RenderTransform>
                                         <TransformGroup>
                                             <ScaleTransform x:Name="CardScaleTransform"
@@ -208,6 +219,7 @@
     <Style x:Key="MaterialDesignEmbeddedDialogHost" TargetType="{x:Type wpf:DialogHost}">
         <Setter Property="DialogMargin" Value="35" />
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth5" />
+        <Setter Property="Placement" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Template">
@@ -335,7 +347,8 @@
                             x:Name="ContentPresenter" Opacity="1"
                             Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" />
 
-                        <Grid x:Name="PART_ContentCoverGrid" Background="{Binding OverlayBackground, RelativeSource={RelativeSource TemplatedParent}}" 
+                        <Grid x:Name="PART_ContentCoverGrid"
+                              Background="{Binding OverlayBackground, RelativeSource={RelativeSource TemplatedParent}}" 
                               Opacity="0" IsHitTestVisible="False" Focusable="False">
                             <Grid.Style>
                                 <Style TargetType="Grid">
@@ -356,7 +369,7 @@
                                 Margin="{TemplateBinding DialogMargin}"
                                 wpf:ShadowAssist.ShadowDepth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth)}"
                                 UniformCornerRadius="4"
-                                Background="{Binding DialogBackground, RelativeSource={RelativeSource TemplatedParent}}"
+                                Tag="{TemplateBinding DialogBackground}"
                                 TextElement.Foreground="{DynamicResource MaterialDesignBody}"
                                 FocusManager.IsFocusScope="False"
                                 Foreground="{DynamicResource MaterialDesignBody}"
@@ -375,6 +388,16 @@
                                                         ScaleY="0" />
                                     </TransformGroup>
                                 </wpf:Card.RenderTransform>
+                                <wpf:Card.Style>
+                                    <Style TargetType="wpf:Card" BasedOn="{StaticResource {x:Type wpf:Card}}">
+                                        <Setter Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}}" />
+                                        <Style.Triggers>
+                                            <Trigger Property="Tag" Value="{x:Null}">
+                                                <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </wpf:Card.Style>
                             </wpf:Card>
                         </Grid>
 
@@ -387,5 +410,35 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="Placement" Value="Center">
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+            </Trigger>
+            <Trigger Property="Placement" Value="Left">
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+            </Trigger>
+            <Trigger Property="Placement" Value="Top">
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Top"/>
+            </Trigger>
+            <Trigger Property="Placement" Value="Right">
+                <Setter Property="HorizontalContentAlignment" Value="Right"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+            </Trigger>
+            <Trigger Property="Placement" Value="Bottom">
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+            </Trigger>
+            <Trigger Property="Placement" Value="Absolute">
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="VerticalContentAlignment" Value="Top"/>
+            </Trigger>
+            <Trigger Property="Placement" Value="AbsolutePoint">
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="VerticalContentAlignment" Value="Top"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>
