@@ -337,7 +337,7 @@
                                 Value="16 0" />
                             <Setter
                                 Property="Height"
-                                Value="48" />
+                                Value="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Menu}}}" />
                             <Setter
                                 TargetName="templateRoot"
                                 Property="CornerRadius"
