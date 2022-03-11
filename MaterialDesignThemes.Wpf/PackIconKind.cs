@@ -6926,6 +6926,7 @@ namespace MaterialDesignThemes.Wpf
         LessThanOrEqual,
         Library,
         LocalLibrary=Library,
+        LibraryOutline,
         LibraryShelves,
         License,
         Award=License,
