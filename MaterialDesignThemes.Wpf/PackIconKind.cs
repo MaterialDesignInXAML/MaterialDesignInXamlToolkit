@@ -4300,6 +4300,8 @@ namespace MaterialDesignThemes.Wpf
         Directions,
         DirectionsFork,
         Disc,
+        CdRom=Disc,
+        Dvd=Disc,
         DiscAlert,
         DiscFull=DiscAlert,
         DiscWarning=DiscAlert,
