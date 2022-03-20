@@ -1,0 +1,13 @@
+# .github/release.yml
+
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+    authors:
+      - MDIX-SA
+      - github-actions[bot]
+  categories:
+    - title: Key Changes 
+      labels:
+        - release-notes
