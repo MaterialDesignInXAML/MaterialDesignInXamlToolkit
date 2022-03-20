@@ -10,4 +10,9 @@ changelog:
   categories:
     - title: Key Changes 
       labels:
-        - release-notes
+        - release notes
+    - title: Breaking Changes 
+      labels:
+        - breaking change
+        - visual breaking change
+     
