@@ -550,6 +550,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
     </Style>
 
 
