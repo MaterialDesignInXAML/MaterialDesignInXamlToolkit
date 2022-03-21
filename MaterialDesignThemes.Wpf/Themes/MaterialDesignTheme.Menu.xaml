@@ -17,7 +17,8 @@
 
     <ContextMenu
         x:Key="MaterialDesignDefaultContextMenu"
-        FontFamily="{Binding PlacementTarget.FontFamily, RelativeSource={RelativeSource Self}}">
+        FontFamily="{Binding PlacementTarget.FontFamily, RelativeSource={RelativeSource Self}}"
+        Background="{DynamicResource MaterialDesignPaper}">
         <MenuItem
             Command="Cut">
             <MenuItem.Icon>
