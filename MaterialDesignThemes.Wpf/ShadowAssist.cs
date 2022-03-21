@@ -6,6 +6,7 @@ using System.Windows.Media.Effects;
 
 namespace MaterialDesignThemes.Wpf
 {
+
     public enum ShadowDepth
     {
         Depth0,
@@ -39,6 +40,8 @@ namespace MaterialDesignThemes.Wpf
 
     public static class ShadowAssist
     {
+        private const double ShadowAnimationDuration = 100; //in milliseconds
+
         public static readonly DependencyProperty ShadowDepthProperty = DependencyProperty.RegisterAttached(
             "ShadowDepth", typeof(ShadowDepth), typeof(ShadowAssist), new FrameworkPropertyMetadata(default(ShadowDepth), FrameworkPropertyMetadataOptions.AffectsRender));
 
@@ -75,7 +78,7 @@ namespace MaterialDesignThemes.Wpf
             {
                 SetLocalInfo(dependencyObject, new ShadowLocalInfo(dropShadowEffect.Opacity));
 
-                var doubleAnimation = new DoubleAnimation(1, new Duration(TimeSpan.FromMilliseconds(350)))
+                var doubleAnimation = new DoubleAnimation(1, new Duration(TimeSpan.FromMilliseconds(ShadowAnimationDuration)))
                 {
                     FillBehavior = FillBehavior.HoldEnd
                 };
@@ -86,7 +89,7 @@ namespace MaterialDesignThemes.Wpf
                 var shadowLocalInfo = GetLocalInfo(dependencyObject);
                 if (shadowLocalInfo == null) return;
 
-                var doubleAnimation = new DoubleAnimation(shadowLocalInfo.StandardOpacity, new Duration(TimeSpan.FromMilliseconds(350)))
+                var doubleAnimation = new DoubleAnimation(shadowLocalInfo.StandardOpacity, new Duration(TimeSpan.FromMilliseconds(ShadowAnimationDuration)))
                 {
                     FillBehavior = FillBehavior.HoldEnd
                 };

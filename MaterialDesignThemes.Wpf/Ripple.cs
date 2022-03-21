@@ -15,6 +15,8 @@ namespace MaterialDesignThemes.Wpf
     [TemplateVisualState(GroupName = "CommonStates", Name = TemplateStateMouseOut)]
     public class Ripple : ContentControl
     {
+        private const double RippleAnimationDuration = 225; //in milliseconds
+
         public const string TemplateStateNormal = "Normal";
         public const string TemplateStateMousePressed = "MousePressed";
         public const string TemplateStateMouseOut = "MouseOut";
@@ -45,7 +47,7 @@ namespace MaterialDesignThemes.Wpf
                 if (scaleTrans != null)
                 {
                     double currentScale = scaleTrans.ScaleX;
-                    var newTime = TimeSpan.FromMilliseconds(300 * (1.0 - currentScale));
+                    var newTime = TimeSpan.FromMilliseconds(RippleAnimationDuration * (1.0 - currentScale));
 
                     // change the scale animation according to the current scale
                     var scaleXKeyFrame = ripple.Template.FindName("MousePressedToNormalScaleXKeyFrame", ripple) as EasingDoubleKeyFrame;
