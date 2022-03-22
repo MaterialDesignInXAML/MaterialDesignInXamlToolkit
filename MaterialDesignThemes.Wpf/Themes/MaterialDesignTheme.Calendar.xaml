@@ -314,7 +314,7 @@
                         </DataTemplate>
                     </ControlTemplate.Resources>
 
-                    <Grid x:Name="PART_Root">
+                    <Grid x:Name="PART_Root" Cursor="">
                         <Grid.Resources>
                             <SolidColorBrush x:Key="DisabledColor" Color="#A5FFFFFF"/>
                         </Grid.Resources>
@@ -330,7 +330,8 @@
                         </VisualStateManager.VisualStateGroups>
 
                         <wpf:Card UniformCornerRadius="2" Background="{TemplateBinding Background}" Padding="0 -1 0 0"
-                                  wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}">
+                                  wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}"
+                                  ClipContent="True">
                   
                             <Grid RenderOptions.ClearTypeHint="Enabled">
                                 <Grid.Resources>
