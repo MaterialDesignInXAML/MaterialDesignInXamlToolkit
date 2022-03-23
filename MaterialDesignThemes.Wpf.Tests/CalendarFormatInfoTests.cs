@@ -7,8 +7,13 @@ namespace MaterialDesignThemes.Wpf.Tests
     {
         [StaTheory]
         [InlineData("en-US", "MMMM yyyy", "yyyy", "ddd,", "MMM d")]
+#if NET5_0_OR_GREATER
+        [InlineData("fr-CA", "MMMM yyyy", "yyyy", "ddd", "d MMM")]
+        [InlineData("ja-JP", "yyyy年M月", "yyyy年", "M月d日", "dddd")]
+#else
         [InlineData("fr-CA", "MMMM, yyyy", "yyyy", "ddd", "d MMM")]
         [InlineData("ja-JP", "yyyy'年'M'月'", "yyyy年", "M月d日", "dddd")]
+#endif
         public void TestFromCultureInfo(string cultureName, string yearMonth, string componentThree, string componentTwo, string componentOne)
         {
             var result = CalendarFormatInfo.FromCultureInfo(CultureInfo.GetCultureInfo(cultureName));

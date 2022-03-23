@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net472;netcoreapp3.1;net5.0-windows</TargetFrameworks>
+        <TargetFrameworks>net472;netcoreapp3.1;net6.0-windows</TargetFrameworks>
         <AssemblyTitle>MaterialDesignColors.Wpf.Tests</AssemblyTitle>
         <Product>MaterialDesignColors.Wpf.Tests</Product>
     </PropertyGroup>

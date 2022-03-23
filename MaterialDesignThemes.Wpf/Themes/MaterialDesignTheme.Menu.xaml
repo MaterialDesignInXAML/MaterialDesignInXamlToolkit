@@ -87,6 +87,9 @@
         x:Key="MaterialDesignMenuItem"
         BasedOn="{x:Null}">
         <Setter
+            Property="Background"
+            Value="{DynamicResource MaterialDesignPaper}" />
+        <Setter
             Property="Padding"
             Value="24 0 24 0"></Setter>
         <Setter
@@ -114,7 +117,7 @@
                             x:Name="templateRoot"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}"
+                            
                             SnapsToDevicePixels="True" />
                         <Border
                             x:Name="BackgroundRoot"
@@ -248,7 +251,7 @@
                             CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                             <Border
                                 x:Name="SubMenuBorder"
-                                Background="{Binding Path=Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=MenuBase}}"
+                                Background="{DynamicResource MaterialDesignPaper}"
                                 Effect="{DynamicResource MaterialDesignShadowDepth1}"
                                 CornerRadius="2">
 
@@ -334,7 +337,7 @@
                                 Value="16 0" />
                             <Setter
                                 Property="Height"
-                                Value="48" />
+                                Value="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Menu}}}" />
                             <Setter
                                 TargetName="templateRoot"
                                 Property="CornerRadius"
@@ -471,7 +474,7 @@
 
         <Setter
             Property="Background"
-            Value="{DynamicResource MaterialDesignPaper}" />
+            Value="Transparent" />
         <Setter
             Property="FontFamily"
             Value="{StaticResource MaterialDesignFont}" />
@@ -547,6 +550,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
     </Style>
 
 

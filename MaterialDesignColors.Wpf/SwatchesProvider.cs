@@ -26,14 +26,14 @@ namespace MaterialDesignColors
             var resourcesName = assembly.GetName().Name + ".g";
             var manager = new ResourceManager(resourcesName, assembly);
             var resourceSet = manager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
-            var dictionaryEntries = resourceSet.OfType<DictionaryEntry>().ToList();
+            var dictionaryEntries = resourceSet?.OfType<DictionaryEntry>().ToList();
             string? assemblyName = assembly.GetName().Name;
 
             var regex = new Regex(@"^themes\/materialdesigncolor\.(?<name>[a-z]+)\.(?<type>primary|accent)\.baml$");
 
             Swatches =
-                dictionaryEntries
-                .Select(x => new { key = x.Key.ToString(), match = regex.Match(x.Key.ToString()) })
+                dictionaryEntries?
+                .Select(x => new { key = x.Key.ToString(), match = regex.Match(x.Key.ToString() ?? "") })
                 .Where(x => x.match.Success && x.match.Groups["name"].Value != "black")
                 .GroupBy(x => x.match.Groups["name"].Value)
                 .Select(x =>
@@ -43,7 +43,12 @@ namespace MaterialDesignColors
                     Read(assemblyName, x.SingleOrDefault(y => y.match.Groups["type"].Value == "primary")?.key),
                     Read(assemblyName, x.SingleOrDefault(y => y.match.Groups["type"].Value == "accent")?.key)
                 ))
-                .ToList();
+                .ToList() ??
+#if NETCOREAPP3_1_OR_GREATER
+                (IEnumerable<Swatch>)Array.Empty<Swatch>();
+#else
+                (IEnumerable<Swatch>)new Swatch[0];
+#endif
         }
 
         /// <summary>
