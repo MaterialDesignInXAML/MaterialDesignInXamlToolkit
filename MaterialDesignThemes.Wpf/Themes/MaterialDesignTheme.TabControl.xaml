@@ -177,6 +177,7 @@
     <Style x:Key="MaterialDesignTabItem" TargetType="{x:Type TabItem}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
 
+        <Setter Property="Background" Value="{x:Null}" />
         <!--  Foreground is for the content, not the header  -->
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
 
