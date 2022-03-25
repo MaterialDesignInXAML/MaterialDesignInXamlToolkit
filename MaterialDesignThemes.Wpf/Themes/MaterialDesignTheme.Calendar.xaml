@@ -314,7 +314,7 @@
                         </DataTemplate>
                     </ControlTemplate.Resources>
 
-                    <Grid x:Name="PART_Root" Cursor="">
+                    <Grid x:Name="PART_Root">
                         <Grid.Resources>
                             <SolidColorBrush x:Key="DisabledColor" Color="#A5FFFFFF"/>
                         </Grid.Resources>
