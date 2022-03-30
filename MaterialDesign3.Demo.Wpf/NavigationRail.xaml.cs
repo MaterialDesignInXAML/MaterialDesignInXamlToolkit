@@ -1,66 +1,59 @@
 ﻿using System.Collections.Generic;
+using MaterialDesign3Demo.Domain;
 using MaterialDesignThemes.Wpf;
 
-namespace MaterialDesign3Demo
+namespace MaterialDesign3Demo;
+
+public partial class NavigationRail
 {
-    public partial class NavigationRail
+
+    public List<SampleItem> SampleList { get; set; }
+
+    public NavigationRail()
     {
+        InitializeComponent();
+        DataContext = this;
 
-        public List<ItemSample> SampleList { get; set; }
-
-        public NavigationRail()
+        SampleList = new()
         {
-            InitializeComponent();
-            DataContext = this;
-
-            SampleList = new()
+            new SampleItem
             {
-                new ItemSample
-                {
-                    Title = "Payment",
-                    SelectedIcon = PackIconKind.CreditCard,
-                    UnselectedIcon = PackIconKind.CreditCardOutline,
-                },
-                new ItemSample
-                {
-                    Title = "Home",
-                    SelectedIcon = PackIconKind.Home,
-                    UnselectedIcon = PackIconKind.HomeOutline,
-                },
-                new ItemSample
-                {
-                    Title = "Special",
-                    SelectedIcon = PackIconKind.Star,
-                    UnselectedIcon = PackIconKind.StarOutline,
-                },
-                new ItemSample
-                {
-                    Title = "Shared",
-                    SelectedIcon = PackIconKind.Users,
-                    UnselectedIcon = PackIconKind.UsersOutline,
-                },
-                new ItemSample
-                {
-                    Title = "Files",
-                    SelectedIcon = PackIconKind.Folder,
-                    UnselectedIcon = PackIconKind.FolderOutline,
-                },
-                new ItemSample
-                {
-                    Title = "Library",
-                    SelectedIcon = PackIconKind.Bookshelf,
-                    UnselectedIcon = PackIconKind.Bookshelf,
-                },
-            };
-        }
-
-
+                Title = "Payment",
+                SelectedIcon = PackIconKind.CreditCard,
+                UnselectedIcon = PackIconKind.CreditCardOutline,
+            },
+            new SampleItem
+            {
+                Title = "Home",
+                SelectedIcon = PackIconKind.Home,
+                UnselectedIcon = PackIconKind.HomeOutline,
+            },
+            new SampleItem
+            {
+                Title = "Special",
+                SelectedIcon = PackIconKind.Star,
+                UnselectedIcon = PackIconKind.StarOutline,
+            },
+            new SampleItem
+            {
+                Title = "Shared",
+                SelectedIcon = PackIconKind.Users,
+                UnselectedIcon = PackIconKind.UsersOutline,
+            },
+            new SampleItem
+            {
+                Title = "Files",
+                SelectedIcon = PackIconKind.Folder,
+                UnselectedIcon = PackIconKind.FolderOutline,
+            },
+            new SampleItem
+            {
+                Title = "Library",
+                SelectedIcon = PackIconKind.Bookshelf,
+                UnselectedIcon = PackIconKind.Bookshelf,
+            },
+        };
     }
 
-    public class ItemSample
-    {
-        public string Title { get; set; }
-        public PackIconKind SelectedIcon { get; set; }
-        public PackIconKind UnselectedIcon { get; set; }
-    }
+
 }

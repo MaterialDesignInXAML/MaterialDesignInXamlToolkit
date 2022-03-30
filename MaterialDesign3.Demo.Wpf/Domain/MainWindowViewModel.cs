@@ -16,9 +16,9 @@ namespace MaterialDesign3Demo.Domain
     {
         public MainWindowViewModel(ISnackbarMessageQueue snackbarMessageQueue)
         {
-            DemoItems = new ObservableCollection<DemoItem>(new[]
+            DemoItems = new ObservableCollection<DemoItem>
             {
-                new DemoItem(
+              new DemoItem(
                     "Home",
                     typeof(Home),
                     new[]
@@ -28,14 +28,24 @@ namespace MaterialDesign3Demo.Domain
                             $"{ConfigurationManager.AppSettings["GitHub"]}/wiki",
                             "WIKI"),
                         DocumentationLink.DemoPageLink<Home>()
-                    }
-                )
-            });
+                    },
+                    selectedIcon: PackIconKind.Home,
+                    unselectedIcon: PackIconKind.HomeOutline)
+            };
 
             foreach (var item in GenerateDemoItems(snackbarMessageQueue).OrderBy(i => i.Name))
             {
                 DemoItems.Add(item);
             }
+
+            MainDemoItems = new ObservableCollection<DemoItem>
+            {
+                DemoItems.First(x => x.Name == "Home"),
+                DemoItems.First(x => x.Name == "Buttons"),
+                DemoItems.First(x => x.Name == "Toggles"),
+                DemoItems.First(x => x.Name == "Fields"),
+                DemoItems.First(x => x.Name == "Pickers")
+            };
 
             _demoItemsView = CollectionViewSource.GetDefaultView(DemoItems);
             _demoItemsView.Filter = DemoItemsFilter;
@@ -87,6 +97,7 @@ namespace MaterialDesign3Demo.Domain
         }
 
         public ObservableCollection<DemoItem> DemoItems { get; }
+        public ObservableCollection<DemoItem> MainDemoItems { get; }
 
         public DemoItem? SelectedItem
         {
@@ -126,7 +137,9 @@ namespace MaterialDesign3Demo.Domain
                     DocumentationLink.DemoPageLink<PaletteSelector>("Demo View"),
                     DocumentationLink.DemoPageLink<PaletteSelectorViewModel>("Demo View Model"),
                     DocumentationLink.ApiLink<PaletteHelper>()
-                });
+                },
+                selectedIcon: PackIconKind.Palette,
+                unselectedIcon: PackIconKind.PaletteOutline);
 
             yield return new DemoItem(
                 "Color Tool",
@@ -139,7 +152,9 @@ namespace MaterialDesign3Demo.Domain
                     DocumentationLink.DemoPageLink<ColorTool>("Demo View"),
                     DocumentationLink.DemoPageLink<ColorToolViewModel>("Demo View Model"),
                     DocumentationLink.ApiLink<PaletteHelper>()
-                });
+                },
+                selectedIcon: PackIconKind.Eyedropper,
+                unselectedIcon: PackIconKind.EyedropperVariant);
 
             yield return new DemoItem(
                 "Buttons",
@@ -152,7 +167,9 @@ namespace MaterialDesign3Demo.Domain
                     DocumentationLink.StyleLink("Button"),
                     DocumentationLink.StyleLink("PopupBox"),
                     DocumentationLink.ApiLink<PopupBox>()
-                });
+                },
+                selectedIcon: PackIconKind.GestureTapHold,
+                unselectedIcon: PackIconKind.GestureTapHold);
 
             yield return new DemoItem(
                 "Toggles",
@@ -163,7 +180,9 @@ namespace MaterialDesign3Demo.Domain
                     DocumentationLink.StyleLink("ToggleButton"),
                     DocumentationLink.StyleLink("CheckBox"),
                     DocumentationLink.ApiLink<Toggles>()
-                });
+                },
+                selectedIcon: PackIconKind.ToggleSwitch,
+                unselectedIcon: PackIconKind.ToggleSwitchOffOutline);
 
             yield return new DemoItem(
                 "Rating Bar",
@@ -173,7 +192,9 @@ namespace MaterialDesign3Demo.Domain
                     DocumentationLink.DemoPageLink<RatingBar>(),
                     DocumentationLink.StyleLink("RatingBar"),
                     DocumentationLink.ApiLink<RatingBar>()
-                });
+                },
+                selectedIcon: PackIconKind.Star,
+                unselectedIcon: PackIconKind.StarOutline);
 
             yield return new DemoItem(
                 "Fields",
@@ -182,7 +203,9 @@ namespace MaterialDesign3Demo.Domain
                 {
                     DocumentationLink.DemoPageLink<Fields>(),
                     DocumentationLink.StyleLink("TextBox")
-                });
+                },
+                selectedIcon: PackIconKind.Pencil,
+                unselectedIcon: PackIconKind.PencilOutline);
 
             yield return new DemoItem(
                 "Fields line up",
@@ -190,7 +213,9 @@ namespace MaterialDesign3Demo.Domain
                 new[]
                 {
                     DocumentationLink.DemoPageLink<FieldsLineUp>()
-                });
+                },
+                selectedIcon: PackIconKind.PencilBox,
+                unselectedIcon: PackIconKind.PencilBoxOutline);
 
             yield return new DemoItem(
                 "ComboBoxes",
@@ -199,7 +224,9 @@ namespace MaterialDesign3Demo.Domain
                 {
                     DocumentationLink.DemoPageLink<ComboBoxes>(),
                     DocumentationLink.StyleLink("ComboBox")
-                });
+                },
+                selectedIcon: PackIconKind.CheckboxMarked,
+                unselectedIcon: PackIconKind.CheckboxMarkedOutline);
 
             yield return new DemoItem(
                 "Pickers",
@@ -210,7 +237,9 @@ namespace MaterialDesign3Demo.Domain
                     DocumentationLink.StyleLink("Clock"),
                     DocumentationLink.StyleLink("DatePicker"),
                     DocumentationLink.ApiLink<TimePicker>()
-                });
+                },
+                selectedIcon: PackIconKind.Clock,
+                unselectedIcon: PackIconKind.ClockOutline);
 
             yield return new DemoItem(
                 "Sliders",
@@ -219,7 +248,9 @@ namespace MaterialDesign3Demo.Domain
                 {
                     DocumentationLink.DemoPageLink<Sliders>(),
                     DocumentationLink.StyleLink("Slider")
-                });
+                },
+                selectedIcon: PackIconKind.TuneVariant,
+                unselectedIcon: PackIconKind.TuneVariant);
 
             yield return new DemoItem(
                 "Chips",
@@ -229,7 +260,9 @@ namespace MaterialDesign3Demo.Domain
                     DocumentationLink.DemoPageLink<Chips>(),
                     DocumentationLink.StyleLink("Chip"),
                     DocumentationLink.ApiLink<Chip>()
-                });
+                },
+                selectedIcon: PackIconKind.None,
+                unselectedIcon: PackIconKind.None);
 
             yield return new DemoItem(
                 "Typography",
@@ -238,7 +271,9 @@ namespace MaterialDesign3Demo.Domain
                 {
                     DocumentationLink.DemoPageLink<Typography>(),
                     DocumentationLink.StyleLink("TextBlock")
-                })
+                },
+                selectedIcon: PackIconKind.FormatSize,
+                unselectedIcon: PackIconKind.FormatTitle)
             {
                 HorizontalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
             };
@@ -251,7 +286,9 @@ namespace MaterialDesign3Demo.Domain
                     DocumentationLink.DemoPageLink<Cards>(),
                     DocumentationLink.StyleLink("Card"),
                     DocumentationLink.ApiLink<Card>()
-                });
+                },
+                selectedIcon: PackIconKind.Card,
+                unselectedIcon: PackIconKind.CardOutline);
 
             yield return new DemoItem(
                 "Icon Pack",
@@ -262,6 +299,8 @@ namespace MaterialDesign3Demo.Domain
                     DocumentationLink.DemoPageLink<IconPackViewModel>("Demo View Model"),
                     DocumentationLink.ApiLink<PackIcon>()
                 },
+                selectedIcon: PackIconKind.Robot,
+                unselectedIcon: PackIconKind.RobotOutline,
                 new IconPackViewModel(snackbarMessageQueue))
             {
                 VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Disabled
@@ -274,7 +313,9 @@ namespace MaterialDesign3Demo.Domain
                 {
                     DocumentationLink.DemoPageLink<ColorZones>(),
                     DocumentationLink.ApiLink<ColorZone>()
-                });
+                },
+                selectedIcon: PackIconKind.Subtitles,
+                unselectedIcon: PackIconKind.SubtitlesOutline);
 
             yield return new DemoItem(
                 "Lists",
@@ -285,7 +326,9 @@ namespace MaterialDesign3Demo.Domain
                     DocumentationLink.DemoPageLink<ListsAndGridsViewModel>("Demo View Model", "Domain"),
                     DocumentationLink.StyleLink("ListBox"),
                     DocumentationLink.StyleLink("ListView")
-                });
+                },
+                selectedIcon: PackIconKind.FormatListBulletedSquare,
+                unselectedIcon: PackIconKind.FormatListCheckbox);
 
             yield return new DemoItem(
                 "Trees",
@@ -295,7 +338,9 @@ namespace MaterialDesign3Demo.Domain
                     DocumentationLink.DemoPageLink<Trees>("Demo View"),
                     DocumentationLink.DemoPageLink<TreesViewModel>("Demo View Model"),
                     DocumentationLink.StyleLink("TreeView")
-                });
+                },
+                selectedIcon: PackIconKind.FileTree,
+                unselectedIcon: PackIconKind.FileTreeOutline);
 
             yield return new DemoItem(
                 "Data Grids",
@@ -305,7 +350,9 @@ namespace MaterialDesign3Demo.Domain
                     DocumentationLink.DemoPageLink<DataGrids>("Demo View"),
                     DocumentationLink.DemoPageLink<ListsAndGridsViewModel>("Demo View Model", "Domain"),
                     DocumentationLink.StyleLink("DataGrid")
-                });
+                },
+                selectedIcon: PackIconKind.ViewGrid,
+                unselectedIcon: PackIconKind.ViewGridOutline);
 
             yield return new DemoItem(
                 "Expander",
@@ -314,7 +361,9 @@ namespace MaterialDesign3Demo.Domain
                 {
                     DocumentationLink.DemoPageLink<Expander>(),
                     DocumentationLink.StyleLink("Expander")
-                });
+                },
+                selectedIcon: PackIconKind.UnfoldMoreHorizontal,
+                unselectedIcon: PackIconKind.UnfoldMoreHorizontal);
 
             yield return new DemoItem(
                 "Group Boxes",
@@ -323,7 +372,9 @@ namespace MaterialDesign3Demo.Domain
                 {
                     DocumentationLink.DemoPageLink<GroupBoxes>(),
                     DocumentationLink.StyleLink("GroupBox")
-                });
+                },
+                selectedIcon: PackIconKind.TextBoxMultiple,
+                unselectedIcon: PackIconKind.TextBoxMultipleOutline);
 
             yield return new DemoItem(
                 "Menus & Tool Bars",
@@ -333,7 +384,9 @@ namespace MaterialDesign3Demo.Domain
                     DocumentationLink.DemoPageLink<MenusAndToolBars>(),
                     DocumentationLink.StyleLink("Menu"),
                     DocumentationLink.StyleLink("ToolBar")
-                });
+                },
+                selectedIcon: PackIconKind.DotsHorizontalCircle,
+                unselectedIcon: PackIconKind.DotsHorizontalCircleOutline);
 
             yield return new DemoItem(
                 "Progress Indicators",
@@ -342,16 +395,37 @@ namespace MaterialDesign3Demo.Domain
                 {
                     DocumentationLink.DemoPageLink<Progress>(),
                     DocumentationLink.StyleLink("ProgressBar")
-                });
+                },
+                selectedIcon: PackIconKind.ProgressClock,
+                unselectedIcon: PackIconKind.ProgressClock);
 
             yield return new DemoItem(
                 "Navigation Rail",
                 typeof(NavigationRail),
                 new[]
                 {
-                    DocumentationLink.DemoPageLink<NavigationRail>("Demo View"),
-                    DocumentationLink.StyleLink("TabControl"),
-                });
+                    DocumentationLink.DemoPageLink<NavigationRail>(),
+                    DocumentationLink.StyleLink("NavigaionRail"),
+                },
+                selectedIcon: PackIconKind.NavigationVariant,
+                unselectedIcon: PackIconKind.NavigationVariantOutline)
+            {
+                HorizontalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
+            };
+
+            yield return new DemoItem(
+                "Navigation Bar",
+                typeof(NavigationBar),
+                new[]
+                {
+                    DocumentationLink.DemoPageLink<NavigationBar>(),
+                    DocumentationLink.StyleLink("NavigaionBar"),
+                },
+                selectedIcon: PackIconKind.NavigationVariant,
+                unselectedIcon: PackIconKind.NavigationVariantOutline)
+            {
+                HorizontalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
+            };
 
             yield return new DemoItem(
                 "Dialogs",
@@ -362,7 +436,9 @@ namespace MaterialDesign3Demo.Domain
                     DocumentationLink.DemoPageLink<Dialogs>("Demo View"),
                     DocumentationLink.DemoPageLink<DialogsViewModel>("Demo View Model", "Domain"),
                     DocumentationLink.ApiLink<DialogHost>()
-                })
+                },
+                selectedIcon: PackIconKind.CommentAlert,
+                unselectedIcon: PackIconKind.CommentAlertOutline)
             {
                 HorizontalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
             };
@@ -374,7 +450,9 @@ namespace MaterialDesign3Demo.Domain
                 {
                     DocumentationLink.DemoPageLink<Drawers>("Demo View"),
                     DocumentationLink.ApiLink<DrawerHost>()
-                });
+                },
+                selectedIcon: PackIconKind.ExpandAll,
+                unselectedIcon: PackIconKind.ExpandAll);
 
             yield return new DemoItem(
                 "Snackbar",
@@ -386,7 +464,9 @@ namespace MaterialDesign3Demo.Domain
                     DocumentationLink.StyleLink("Snackbar"),
                     DocumentationLink.ApiLink<Snackbar>(),
                     DocumentationLink.ApiLink<ISnackbarMessageQueue>()
-                })
+                },
+                selectedIcon: PackIconKind.InformationCircle,
+                unselectedIcon: PackIconKind.InformationCircleOutline)
             {
                 HorizontalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
             };
@@ -401,7 +481,9 @@ namespace MaterialDesign3Demo.Domain
                     DocumentationLink.ApiLink<Transitioner>("Transitions"),
                     DocumentationLink.ApiLink<TransitionerSlide>("Transitions"),
                     DocumentationLink.ApiLink<TransitioningContent>("Transitions"),
-                });
+                },
+                selectedIcon: PackIconKind.TransitionMasked,
+                unselectedIcon: PackIconKind.Transition);
 
             yield return new DemoItem(
                 "Shadows",
@@ -409,7 +491,9 @@ namespace MaterialDesign3Demo.Domain
                 new[]
                 {
                     DocumentationLink.DemoPageLink<Shadows>(),
-                });
+                },
+                selectedIcon: PackIconKind.BoxShadow,
+                unselectedIcon: PackIconKind.BoxShadow);
         }
 
         private bool DemoItemsFilter(object obj)
