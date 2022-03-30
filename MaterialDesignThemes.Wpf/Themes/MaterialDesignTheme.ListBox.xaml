@@ -323,6 +323,7 @@
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
         <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
         <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+        <Setter Property="wpf:ScrollViewerAssist.IsAutoHideEnabled" Value="True"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
@@ -484,7 +485,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-
     </Style>
 
     <Style x:Key="MaterialDesignNavigationPrimaryListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignNavigationListBoxItem}">
@@ -535,163 +535,6 @@
 
     <Style x:Key="MaterialDesignNavigationAccentListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}">
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignNavigationAccentListBoxItem}"/>
-    </Style>
-
-    <!--#endregion-->
-
-    <!--#region M3 -->
-
-    <Style x:Key="MaterialDesign3NavigationRailListBoxItem" TargetType="{x:Type ListBoxItem}">
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignBodyLight}"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-        <Setter Property="Padding" Value="0"/>
-        <Setter Property="SnapsToDevicePixels" Value="True"/>
-        <Setter Property="Margin" Value="0 3"/>
-        <Setter Property="FontWeight" Value="Regular"/>
-        <Setter Property="Width" Value="120"/>
-        <Setter Property="Height" Value="93"/>
-        <Setter Property="FontSize" Value="16"/>
-        <Setter Property="wpf:ListBoxItemAssist.CornerRadius" Value="0"/>
-        <Setter Property="wpf:ListBoxItemAssist.SelectionHeight" Value="48"/>
-        <Setter Property="wpf:ListBoxItemAssist.SelectionWidth" Value="84"/>
-        <Setter Property="wpf:ListBoxItemAssist.SelectionCornerRadius" Value="24"/>
-        <Setter Property="wpf:ListBoxItemAssist.SelectedIcon" Value="Circle"/>
-        <Setter Property="wpf:ListBoxItemAssist.UnselectedIcon" Value="CircleOutline"/>
-        <Setter Property="wpf:ListBoxItemAssist.IsTextVisible" Value="True"/>
-        <Setter Property="wpf:ListBoxItemAssist.IconSize" Value="24"/>
-        <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <Border x:Name="border"
-                            Margin="{TemplateBinding Margin}"
-                            CornerRadius="{Binding Path=(wpf:ListBoxItemAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
-                            ClipToBounds="{TemplateBinding ClipToBounds}">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup Name="CommonStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
-                                        <VisualTransition.GeneratedEasingFunction>
-                                            <CircleEase EasingMode="EaseOut"/>
-                                        </VisualTransition.GeneratedEasingFunction>
-                                    </VisualTransition>
-                                </VisualStateGroup.Transitions>
-                                <VisualState Name="Normal"/>
-                                <VisualState Name="MouseOver">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="MouseOverBorder" Storyboard.TargetProperty="Opacity"
-                                                             To="0.1" Duration="0"/>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState Name="Disabled"/>
-                            </VisualStateGroup>
-                            <VisualStateGroup Name="SelectionStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="0:0:0.6"/>
-                                </VisualStateGroup.Transitions>
-                                <VisualState Name="Selected">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="SelectedBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="1" Duration="0"/>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState Name="Unselected"/>
-                                <VisualState Name="SelectedUnfocused">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="SelectedBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="1" Duration="0"/>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Grid>
-                            <Grid.Clip>
-                                <MultiBinding Converter="{StaticResource BorderClipConverter}">
-                                    <Binding ElementName="border" Path="ActualWidth" />
-                                    <Binding ElementName="border" Path="ActualHeight" />
-                                    <Binding ElementName="border" Path="CornerRadius" />
-                                    <Binding ElementName="border" Path="BorderThickness" />
-                                </MultiBinding>
-                            </Grid.Clip>
-                            <Border x:Name="MouseOverBorder"
-                                    Opacity="0"
-                                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
-
-                            <Border x:Name="SelectedBorder" Opacity="0"
-                                    VerticalAlignment="Top"
-                                    Height="{Binding Path=(wpf:ListBoxItemAssist.SelectionHeight), RelativeSource={RelativeSource TemplatedParent}}"
-                                    Width="{Binding Path=(wpf:ListBoxItemAssist.SelectionWidth), RelativeSource={RelativeSource TemplatedParent}}"
-                                    Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    CornerRadius="{Binding Path=(wpf:ListBoxItemAssist.SelectionCornerRadius), RelativeSource={RelativeSource TemplatedParent}}">
-                            </Border>
-                            <wpf:Ripple Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
-                                        Focusable="False"
-                                        ContentTemplate="{TemplateBinding ContentTemplate}"
-                                        ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                        Padding="{TemplateBinding Padding}"
-                                        RecognizesAccessKey="False">
-                                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="4*"/>
-                                        <RowDefinition Height="3*"/>
-                                    </Grid.RowDefinitions>
-                                    <wpf:PackIcon x:Name="Icon" Grid.RowSpan="1"
-                                                  Kind="{Binding Path=(wpf:ListBoxItemAssist.SelectedIcon), RelativeSource={RelativeSource TemplatedParent}}"
-                                                  HorizontalAlignment="Center"
-                                                  VerticalAlignment="Center"
-                                                  Width="{Binding Path=(wpf:ListBoxItemAssist.IconSize), RelativeSource={RelativeSource TemplatedParent}}"
-                                                  Height="{Binding Path=(wpf:ListBoxItemAssist.IconSize), RelativeSource={RelativeSource TemplatedParent}}" />
-                                    <ContentControl x:Name="Text" Content="{TemplateBinding Content}" Grid.Row="1" Margin="4 0" Padding="0"
-                                                    HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                </Grid>
-                            </wpf:Ripple>
-                        </Grid>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" Value=".56" />
-                        </Trigger>
-                        <Trigger Property="IsSelected" Value="False">
-                            <Setter TargetName="Icon" Property="Kind" Value="{Binding Path=(wpf:ListBoxItemAssist.UnselectedIcon), RelativeSource={RelativeSource TemplatedParent}}"/>
-                        </Trigger>
-                        <Trigger Property="wpf:ListBoxItemAssist.IsTextVisible" Value="False">
-                            <Setter TargetName="Text" Property="Visibility" Value="Collapsed"/>
-                            <Setter TargetName="Icon" Property="Grid.RowSpan" Value="2"/>
-                            <Setter TargetName="SelectedBorder" Property="Height" Value="{Binding Path=(wpf:ListBoxItemAssist.SelectionWidth), RelativeSource={RelativeSource TemplatedParent}}"/>
-                            <Setter TargetName="SelectedBorder" Property="CornerRadius" Value="{Binding Path=(wpf:ListBoxItemAssist.SelectionHeight), RelativeSource={RelativeSource TemplatedParent}}"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style x:Key="MaterialDesign3SmallNavigationRailListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesign3NavigationRailListBoxItem}">
-        <Setter Property="Width" Value="80"/>
-        <Setter Property="Height" Value="62"/>
-        <Setter Property="FontSize" Value="12"/>
-        <Setter Property="wpf:ListBoxItemAssist.SelectionHeight" Value="32"/>
-        <Setter Property="wpf:ListBoxItemAssist.SelectionWidth" Value="56"/>
-        <Setter Property="wpf:ListBoxItemAssist.SelectionCornerRadius" Value="16"/>
-        <Setter Property="wpf:ListBoxItemAssist.IconSize" Value="16"/>
-    </Style>
-
-    <Style x:Key="MaterialDesign3NavigationRailPrimaryListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesign3NavigationRailListBoxItem}">
-        <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
-    </Style>
-
-    <Style x:Key="MaterialDesign3SmallNavigationRailPrimaryListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesign3SmallNavigationRailListBoxItem}">
-        <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
     </Style>
 
     <!--#endregion-->
