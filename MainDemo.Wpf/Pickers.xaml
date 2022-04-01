@@ -184,6 +184,7 @@
                         <DatePicker
                             Width="140"
                             materialDesign:HintAssist.Hint="Pick Date"
+                            materialDesign:HintAssist.HelperText="Helper text"
                             Style="{StaticResource MaterialDesignFilledDatePicker}"/>
                     </smtx:XamlDisplay>
 
@@ -194,6 +195,7 @@
                         <DatePicker
                             Width="140"
                             materialDesign:HintAssist.Hint="Pick Date"
+                            materialDesign:HintAssist.HelperText="Helper text"
                             Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
                     </smtx:XamlDisplay>
                 </StackPanel>

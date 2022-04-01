@@ -302,6 +302,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <Grid.Resources>
@@ -377,6 +378,17 @@
                         materialDesign:HintAssist.Hint="Password"/>
                 </StackPanel>
             </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay
+                Grid.Row="1"
+                Grid.Column="4"
+                UniqueKey="passwordFilled1"
+                VerticalAlignment="Bottom">
+                <PasswordBox
+                        Style="{StaticResource MaterialDesignFilledPasswordBox}"
+                        materialDesign:HintAssist.Hint="Password"
+                        materialDesign:HintAssist.HelperText="Helper text"/>
+            </smtx:XamlDisplay>
         </Grid>
 
         <Grid Margin="0 48 0 0">
@@ -386,6 +398,7 @@
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -469,6 +482,17 @@
                         IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordBoxEnabledComboBox}"
                         materialDesign:HintAssist.Hint="Password"/>
                 </StackPanel>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay
+                Grid.Row="1"
+                Grid.Column="4"
+                UniqueKey="passwordOutlined1"
+                Margin="0 34 0 0">
+                <PasswordBox
+                        Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
+                        materialDesign:HintAssist.Hint="Password"
+                        materialDesign:HintAssist.HelperText="Helper text"/>
             </smtx:XamlDisplay>
         </Grid>
 

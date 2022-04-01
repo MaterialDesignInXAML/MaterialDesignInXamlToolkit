@@ -416,6 +416,7 @@
                     CornerRadius="{TemplateBinding wpf:TextFieldAssist.UnderlineCornerRadius}"
                     Background="{TemplateBinding wpf:TextFieldAssist.UnderlineBrush}" />
                 <Canvas
+                    x:Name="HelperTextWrapper"
                     VerticalAlignment="Bottom">
                     <TextBlock
                         Canvas.Top="2"
@@ -606,6 +607,7 @@
                         </MultiBinding>
                     </Setter.Value>
                 </Setter>
+                <Setter TargetName="HelperTextWrapper" Property="Margin" Value="16 0 0 0" />
             </Trigger>
             <Trigger
                 Property="IsEditable"
