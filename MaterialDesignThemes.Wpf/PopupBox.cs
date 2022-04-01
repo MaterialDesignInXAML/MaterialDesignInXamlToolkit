@@ -345,6 +345,21 @@ namespace MaterialDesignThemes.Wpf
         }
 
         /// <summary>
+        /// Get or sets the corner radius of the popup card.
+        /// </summary>
+        public static readonly DependencyProperty PopupUniformCornerRadiusProperty = DependencyProperty.Register(
+            nameof(PopupUniformCornerRadius), typeof(double), typeof(PopupBox), new PropertyMetadata(default(double)));
+
+        /// <summary>
+        /// Get or sets the corner radius of the popup card.
+        /// </summary>
+        public double PopupUniformCornerRadius
+        {
+            get => (double)GetValue(PopupUniformCornerRadiusProperty);
+            set => SetValue(PopupUniformCornerRadiusProperty, value);
+        }
+
+        /// <summary>
         /// Framework use. Provides the method used to position the popup.
         /// </summary>
         public CustomPopupPlacementCallback PopupPlacementMethod => GetPopupPlacement;
