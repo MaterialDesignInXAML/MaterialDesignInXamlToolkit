@@ -278,6 +278,15 @@
                         <TabItem Header="TAB 2">
                             <TextBlock Margin="8" Text="Left placement" />
                         </TabItem>
+                        <TabItem Header="TAB 3 Diff Width">
+                            <TextBlock Margin="8" Text="Tab 3 with different width" />
+                        </TabItem>
+                        <TabItem Header="TAB 4 Looong">
+                            <TextBlock Margin="8" Text="Tab 4 with long width" />
+                        </TabItem>
+                        <TabItem Header="TABB 5">
+                            <TextBlock Margin="8" Text="Left placement tabb 5" />
+                        </TabItem>
                     </TabControl>
                 </materialDesign:Card>
             </smtx:XamlDisplay>
@@ -357,6 +366,30 @@
                         </TabItem>
                         <TabItem Header="TAB 2">
                             <TextBlock Margin="8" Text="Full-width secondary example tab 2" />
+                        </TabItem>
+                        <TabItem Header="TAB 3333">
+                            <TextBlock Margin="8" Text="Full-width secondary example tab 3333" />
+                        </TabItem>
+                        <TabItem Header="TAB4 Wide">
+                            <TextBlock Margin="8" Text="Full-width secondary example tab 4 wide" />
+                        </TabItem>
+                        <TabItem Header="TABbbbbbbbbbbxxxxx 5">
+                            <TextBlock Margin="8" Text="Full-width secondary example tab 5" />
+                        </TabItem>
+                        <TabItem Header="TAB 6 Different Width">
+                            <TextBlock Margin="8" Text="Full-width secondary example tab 6 different width" />
+                        </TabItem>
+                        <TabItem Header="TAB 7 Looooong">
+                            <TextBlock Margin="8" Text="Full-width secondary example tab 7 looooong" />
+                        </TabItem>
+                        <TabItem Header="TAB 8 Width">
+                            <TextBlock Margin="8" Text="Full-width secondary example tab 8 width" />
+                        </TabItem>
+                        <TabItem Header="TAAX999">
+                            <TextBlock Margin="8" Text="Full-width secondary example tab 9" />
+                        </TabItem>
+                        <TabItem Header="Tab10">
+                            <TextBlock Margin="8" Text="Full-width secondary example tab 10" />
                         </TabItem>
                     </TabControl>
                 </materialDesign:Card>
