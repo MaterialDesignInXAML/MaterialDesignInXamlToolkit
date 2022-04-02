@@ -13,14 +13,14 @@
         <smtx:XamlDisplay
             UniqueKey="menus_1"
             DockPanel.Dock="Top"
-            Margin="5 5 0 5">
-            <Menu IsMainMenu="True">
+            Margin="5 5 0 15">
+            <Menu IsMainMenu="True" Height="48">
                 <MenuItem Header="_File">
                     <MenuItem
                         Header="Save"
                         Icon="{materialDesign:PackIcon Kind=ContentSave}">
                     </MenuItem>
-                    
+
                     <MenuItem Header="Save As.."/>
 
                     <MenuItem
@@ -29,16 +29,16 @@
                         Icon="{materialDesign:PackIcon Kind=ExitToApp}"/>
 
                     <Separator/>
-                    
+
                     <MenuItem
                         Header="Excellent"
                         IsCheckable="True"
                         IsChecked="True"/>
-                    
+
                     <MenuItem
                         Header="Rubbish"
                         IsCheckable="True"/>
-                    
+
                     <MenuItem
                         Header="Dig Deeper"
                         InputGestureText="Ctrl+D">
@@ -49,7 +49,7 @@
                             Header="Disappointment"
                             IsCheckable="True"/>
                     </MenuItem>
-                    
+
                     <MenuItem
                         Header="Look Deeper"
                         InputGestureText="Ctrl+D">
@@ -57,7 +57,7 @@
                         <MenuItem Header="Ice Cream"/>
                     </MenuItem>
                 </MenuItem>
-                
+
                 <MenuItem Header="_Edit">
                     <MenuItem
                         Header="_Cut"
@@ -75,6 +75,46 @@
                         Icon="{materialDesign:PackIcon Kind=ContentPaste}"/>
                 </MenuItem>
             </Menu>
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay
+            UniqueKey="bigMenu"
+            DockPanel.Dock="Top"
+            Margin="5 5 0 5">
+            <materialDesign:Card Height="80">
+                <Menu>
+                    <MenuItem Header="Big">
+                        <MenuItem Header="Test 1"/>
+                        <MenuItem Header="Test 1"/>
+                        <MenuItem Header="Test 1"/>
+                    </MenuItem>
+                    <MenuItem Header="Menu">
+                        <MenuItem Header="Test 1"/>
+                        <MenuItem Header="Test 1"/>
+                        <MenuItem Header="Test 1"/>
+                    </MenuItem>
+                </Menu>
+            </materialDesign:Card>
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay
+            UniqueKey="smallMenu"
+            DockPanel.Dock="Top"
+            Margin="5 5 0 20">
+            <materialDesign:Card Height="25">
+                <Menu>
+                    <MenuItem Header="Small">
+                        <MenuItem Header="Test 1"/>
+                        <MenuItem Header="Test 1"/>
+                        <MenuItem Header="Test 1"/>
+                    </MenuItem>
+                    <MenuItem Header="Menu">
+                        <MenuItem Header="Test 1"/>
+                        <MenuItem Header="Test 1"/>
+                        <MenuItem Header="Test 1"/>
+                    </MenuItem>
+                </Menu>
+            </materialDesign:Card>
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay
