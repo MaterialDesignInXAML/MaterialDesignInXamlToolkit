@@ -197,9 +197,7 @@
                         <wpf:ColorZone
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
-                            Background="{TemplateBinding wpf:ColorZoneAssist.Background}"
                             Focusable="False"
-                            Foreground="{TemplateBinding wpf:ColorZoneAssist.Foreground}"
                             Mode="{TemplateBinding wpf:ColorZoneAssist.Mode}">
                             <wpf:Ripple
                                 x:Name="contentPresenter"
