@@ -327,10 +327,10 @@
                 <materialDesign:Card>
                     <TabControl HorizontalContentAlignment="Left">
                         <TabItem Header="TAB1">
-                            <TextBlock Margin="8" Text="Full-width example tab 1" />
+                            <TextBlock Margin="8" Text="Not filled example tab 1" />
                         </TabItem>
                         <TabItem Header="TAB 2">
-                            <TextBlock Margin="8" Text="Full-width example tab 2" />
+                            <TextBlock Margin="8" Text="No filled example tab 2" />
                         </TabItem>
                     </TabControl>
                 </materialDesign:Card>
@@ -353,10 +353,10 @@
                 <materialDesign:Card>
                     <TabControl HorizontalContentAlignment="Left" materialDesign:ColorZoneAssist.Mode="SecondaryMid">
                         <TabItem Header="TAB1">
-                            <TextBlock Margin="8" Text="Full-width secondary example tab 1" />
+                            <TextBlock Margin="8" Text="Not filled secondary example tab 1" />
                         </TabItem>
                         <TabItem Header="TAB 2">
-                            <TextBlock Margin="8" Text="Full-width secondary example tab 2" />
+                            <TextBlock Margin="8" Text="Not filled secondary example tab 2" />
                         </TabItem>
                     </TabControl>
                 </materialDesign:Card>
