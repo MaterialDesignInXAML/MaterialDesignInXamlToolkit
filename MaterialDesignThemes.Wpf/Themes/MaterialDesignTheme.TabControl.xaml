@@ -51,6 +51,7 @@
                                 Background="{TemplateBinding wpf:ColorZoneAssist.Background}"
                                 Focusable="False">
                                 <ScrollViewer
+                                    wpf:ScrollViewerAssist.SupportHorizontalScroll="True"
                                     HorizontalScrollBarVisibility="Hidden"
                                     VerticalScrollBarVisibility="Hidden">
                                     <StackPanel>
