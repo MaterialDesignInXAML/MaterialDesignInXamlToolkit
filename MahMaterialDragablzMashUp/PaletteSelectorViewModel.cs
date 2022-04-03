@@ -23,13 +23,13 @@ namespace MahMaterialDragablzMashUp
             IsDarkTheme = theme.GetBaseTheme() == BaseTheme.Dark;
         }
 
-        public ICommand ToggleStyleCommand { get; } = new AnotherCommandImplementation(o => ApplyStyle((bool)o));
+        public ICommand ToggleStyleCommand { get; } = new AnotherCommandImplementation(o => ApplyStyle((bool)o!));
 
         public IEnumerable<Swatch> Swatches { get; }
 
-        public ICommand ApplyPrimaryCommand { get; } = new AnotherCommandImplementation(o => ApplyPrimary((Swatch)o));
+        public ICommand ApplyPrimaryCommand { get; } = new AnotherCommandImplementation(o => ApplyPrimary((Swatch)o!));
 
-        public ICommand ApplyAccentCommand { get; } = new AnotherCommandImplementation(o => ApplyAccent((Swatch)o));
+        public ICommand ApplyAccentCommand { get; } = new AnotherCommandImplementation(o => ApplyAccent((Swatch)o!));
 
         private bool _isDarkTheme;
         public bool IsDarkTheme

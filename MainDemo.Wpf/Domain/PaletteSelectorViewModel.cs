@@ -15,12 +15,12 @@ namespace MaterialDesignDemo.Domain
 
         public IEnumerable<Swatch> Swatches { get; }
 
-        public ICommand ApplyPrimaryCommand { get; } = new AnotherCommandImplementation(o => ApplyPrimary((Swatch)o));
+        public ICommand ApplyPrimaryCommand { get; } = new AnotherCommandImplementation(o => ApplyPrimary((Swatch)o!));
 
         private static void ApplyPrimary(Swatch swatch) 
             => ModifyTheme(theme => theme.SetPrimaryColor(swatch.ExemplarHue.Color));
 
-        public ICommand ApplyAccentCommand { get; } = new AnotherCommandImplementation(o => ApplyAccent((Swatch)o));
+        public ICommand ApplyAccentCommand { get; } = new AnotherCommandImplementation(o => ApplyAccent((Swatch)o!));
 
         private static void ApplyAccent(Swatch swatch)
         {
