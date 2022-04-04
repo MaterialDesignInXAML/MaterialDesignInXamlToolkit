@@ -93,7 +93,7 @@
                                         ContentTemplate="{TemplateBinding ContentTemplate}"
                                         ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                        HorizontalContentAlignment="Stretch" 
                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                         Padding="{TemplateBinding Padding}"
                                         RecognizesAccessKey="False">
@@ -109,6 +109,9 @@
                                     </Grid>
                                     <ContentControl DockPanel.Dock="Left" x:Name="Text" Content="{TemplateBinding Content}" Grid.Row="1" Margin="12 0 0 0" Padding="0"
                                                     HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                    <ContentControl DockPanel.Dock="Right" VerticalAlignment="Center"
+                                                    Content="{Binding Path=(wpf:BadgedAssist.Badge), RelativeSource={RelativeSource TemplatedParent}}"/>
                                 </DockPanel>
                             </wpf:Ripple>
                         </Grid>

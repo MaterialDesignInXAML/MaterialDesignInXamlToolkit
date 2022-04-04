@@ -3,6 +3,9 @@
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Badged.xaml" />
+    </ResourceDictionary.MergedDictionaries>
     <converters:BorderClipConverter x:Key="BorderClipConverter"/>
     <converters:BrushRoundConverter x:Key="BrushRoundConverter"/>
 
@@ -28,6 +31,9 @@
         <Setter Property="wpf:NavigationRailAssist.UnselectedIcon" Value="CircleOutline"/>
         <Setter Property="wpf:NavigationRailAssist.IsTextVisible" Value="True"/>
         <Setter Property="wpf:NavigationRailAssist.IconSize" Value="24"/>
+        <Setter Property="wpf:BadgedAssist.BadgeBackground" Value="{StaticResource PrimaryHueLightBrush}"/>
+        <Setter Property="wpf:BadgedAssist.BadgeForeground" Value="{StaticResource PrimaryHueLightForegroundBrush}"/>
+        <Setter Property="wpf:BadgedAssist.BadgePlacementMode" Value="TopRight"/>
         <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="Template">
             <Setter.Value>
@@ -75,37 +81,41 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Grid>
-                            <Grid.Clip>
-                                <MultiBinding Converter="{StaticResource BorderClipConverter}">
-                                                        <Binding ElementName="border" Path="ActualWidth" />
-                                                        <Binding ElementName="border" Path="ActualHeight" />
-                                                        <Binding ElementName="border" Path="CornerRadius" />
-                                                        <Binding ElementName="border" Path="BorderThickness" />
-                                                    </MultiBinding>
-                            </Grid.Clip>
-                            <Border x:Name="MouseOverBorder"
-                                    Opacity="0"
-                                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
+                        <Grid ClipToBounds="False">
+                            <Grid>
+                                <Grid.Clip>
+                                    <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                                        <Binding ElementName="border" Path="ActualWidth" />
+                                        <Binding ElementName="border" Path="ActualHeight" />
+                                        <Binding ElementName="border" Path="CornerRadius" />
+                                        <Binding ElementName="border" Path="BorderThickness" />
+                                    </MultiBinding>
+                                </Grid.Clip>
+                                <Border x:Name="MouseOverBorder"
+                                        Opacity="0"
+                                        Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
 
-                            <Border x:Name="SelectedBorder" Opacity="0"
-                                    VerticalAlignment="Top"
-                                    Height="{Binding Path=(wpf:NavigationRailAssist.SelectionHeight), RelativeSource={RelativeSource TemplatedParent}}"
-                                    Width="{Binding Path=(wpf:NavigationRailAssist.SelectionWidth), RelativeSource={RelativeSource TemplatedParent}}"
-                                    Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    CornerRadius="{Binding Path=(wpf:NavigationRailAssist.SelectionCornerRadius), RelativeSource={RelativeSource TemplatedParent}}">
-                            </Border>
-                            <wpf:Ripple Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
-                                        Focusable="False"
-                                        ContentTemplate="{TemplateBinding ContentTemplate}"
-                                        ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                        Padding="{TemplateBinding Padding}"
-                                        RecognizesAccessKey="False"/>
+                                <Border x:Name="SelectedBorder" Opacity="0"
+                                        VerticalAlignment="Top"
+                                        Height="{Binding Path=(wpf:NavigationRailAssist.SelectionHeight), RelativeSource={RelativeSource TemplatedParent}}"
+                                        Width="{Binding Path=(wpf:NavigationRailAssist.SelectionWidth), RelativeSource={RelativeSource TemplatedParent}}"
+                                        Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="{Binding Path=(wpf:NavigationRailAssist.SelectionCornerRadius), RelativeSource={RelativeSource TemplatedParent}}">
+                                </Border>
+                                <wpf:Ripple Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                                            Focusable="False" ClipToBounds="False"
+                                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                                            ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                            Padding="{TemplateBinding Padding}"
+                                            RecognizesAccessKey="False"/>                                
+                            </Grid>
+
+                            
                             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="4*"/>
@@ -113,11 +123,20 @@
                                 </Grid.RowDefinitions>
                                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="IconContainer" Grid.RowSpan="1"
                                       Height="{Binding Path=(wpf:NavigationRailAssist.SelectionHeight), RelativeSource={RelativeSource TemplatedParent}}">
-                                    <wpf:PackIcon x:Name="Icon" HorizontalAlignment="Center"
-                                                  VerticalAlignment="Center"
-                                                  Kind="{Binding Path=(wpf:NavigationRailAssist.SelectedIcon), RelativeSource={RelativeSource TemplatedParent}}"
-                                                  Width="{Binding Path=(wpf:NavigationRailAssist.IconSize), RelativeSource={RelativeSource TemplatedParent}}"
-                                                  Height="{Binding Path=(wpf:NavigationRailAssist.IconSize), RelativeSource={RelativeSource TemplatedParent}}" />
+                                    <wpf:Badged x:Name="badge" Badge="{Binding Path=(wpf:BadgedAssist.Badge), RelativeSource={RelativeSource TemplatedParent}}"
+                                                HorizontalAlignment="Center"
+                                                Style="{StaticResource MaterialDesignBadge}"
+                                                BadgeBackground="{Binding Path=(wpf:BadgedAssist.BadgeBackground), RelativeSource={RelativeSource TemplatedParent}}"
+                                                BadgeForeground="{Binding Path=(wpf:BadgedAssist.BadgeForeground), RelativeSource={RelativeSource TemplatedParent}}"
+                                                VerticalAlignment="Center"
+                                                BadgePlacementMode="{Binding Path=(wpf:BadgedAssist.BadgePlacementMode), RelativeSource={RelativeSource TemplatedParent}}">
+
+                                        <wpf:PackIcon x:Name="Icon" HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"
+                                                      Kind="{Binding Path=(wpf:NavigationRailAssist.SelectedIcon), RelativeSource={RelativeSource TemplatedParent}}"
+                                                      Width="{Binding Path=(wpf:NavigationRailAssist.IconSize), RelativeSource={RelativeSource TemplatedParent}}"
+                                                      Height="{Binding Path=(wpf:NavigationRailAssist.IconSize), RelativeSource={RelativeSource TemplatedParent}}" />
+                                    </wpf:Badged>
                                 </Grid>
                                 <ContentControl x:Name="Text" Content="{TemplateBinding Content}" Grid.Row="1" Margin="4 4 4 0" Padding="0"
                                                     HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -137,6 +156,9 @@
                             <Setter TargetName="IconContainer" Property="Grid.RowSpan" Value="2"/>
                             <Setter TargetName="SelectedBorder" Property="Height" Value="{Binding Path=(wpf:NavigationRailAssist.SelectionWidth), RelativeSource={RelativeSource TemplatedParent}}"/>
                             <Setter TargetName="SelectedBorder" Property="CornerRadius" Value="{Binding Path=(wpf:NavigationRailAssist.SelectionHeight), RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </Trigger>
+                        <Trigger Property="wpf:BadgedAssist.IsMiniBadge" Value="True">
+                            <Setter TargetName="badge" Property="Style" Value="{StaticResource MaterialDesignMiniBadge}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
