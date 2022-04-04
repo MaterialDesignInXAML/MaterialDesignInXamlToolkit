@@ -14,111 +14,117 @@
 
             <StackPanel>
                 <TextBlock Text="Normal"/>
-                
-                <Button Height="56" Width="56"
-                        Background="{DynamicResource SecondaryHueMidBrush}"
-                        Foreground="{DynamicResource SecondaryHueMidBrushForeground}"
-                        BorderThickness="0"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Bottom"
-                        materialDesign:ButtonAssist.CornerRadius="16"
-                        Margin="16">
-                    <materialDesign:PackIcon Kind="PencilOutline"
-                                             Width="24"
-                                             Height="24"/>
-                </Button>
-                
-                <Grid Height="80"
-                      Background="{DynamicResource MaterialDesignCardBackground}">
-                    <ListBox Height="80"
-                             SelectedIndex="0"
-                             Style="{StaticResource MaterialDesign3.NavigationBarPrimaryListBox}">
-                        <ListBoxItem>
-                            <ListBoxItem.Style>
-                                <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationBarPrimaryListBoxItem}">
-                                    <Setter Property="materialDesign:NavigationBarAssist.SelectedIcon" Value="Circle"/>
-                                    <Setter Property="materialDesign:NavigationBarAssist.UnselectedIcon" Value="CircleOutline"/>
-                                </Style>
-                            </ListBoxItem.Style>
-                            <TextBlock Text="text 1"/>
-                        </ListBoxItem>
-                        <ListBoxItem >
-                            <ListBoxItem.Style>
-                                <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationBarPrimaryListBoxItem}">
-                                    <Setter Property="materialDesign:NavigationBarAssist.SelectedIcon" Value="Triangle"/>
-                                    <Setter Property="materialDesign:NavigationBarAssist.UnselectedIcon" Value="TriangleOutline"/>
-                                </Style>
-                            </ListBoxItem.Style>
-                            <TextBlock Text="text 2"/>
-                        </ListBoxItem>
-                        <ListBoxItem >
-                            <ListBoxItem.Style>
-                                <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationBarPrimaryListBoxItem}">
-                                    <Setter Property="materialDesign:NavigationBarAssist.SelectedIcon" Value="Receipt"/>
-                                    <Setter Property="materialDesign:NavigationBarAssist.UnselectedIcon" Value="ReceiptOutline"/>
-                                </Style>
-                            </ListBoxItem.Style>
-                            <TextBlock Text="text 3"/>
-                        </ListBoxItem>
-                    </ListBox>
-                </Grid>
+                <smtx:XamlDisplay UniqueKey="navbar_1">
+                    <StackPanel>
+                        <Button Height="56" Width="56"
+                                Background="{DynamicResource SecondaryHueMidBrush}"
+                                Foreground="{DynamicResource SecondaryHueMidBrushForeground}"
+                                BorderThickness="0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                materialDesign:ButtonAssist.CornerRadius="16"
+                                Margin="16">
+                            <materialDesign:PackIcon Kind="PencilOutline"
+                                                     Width="24"
+                                                     Height="24"/>
+                        </Button>
+
+                        <Grid Height="80"
+                              Background="{DynamicResource MaterialDesignCardBackground}">
+                            <ListBox Height="80"
+                                     SelectedIndex="0"
+                                     Style="{StaticResource MaterialDesign3.NavigationBarPrimaryListBox}">
+                                <ListBoxItem>
+                                    <ListBoxItem.Style>
+                                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationBarPrimaryListBoxItem}">
+                                            <Setter Property="materialDesign:NavigationBarAssist.SelectedIcon" Value="Circle"/>
+                                            <Setter Property="materialDesign:NavigationBarAssist.UnselectedIcon" Value="CircleOutline"/>
+                                        </Style>
+                                    </ListBoxItem.Style>
+                                    <TextBlock Text="text 1"/>
+                                </ListBoxItem>
+                                <ListBoxItem >
+                                    <ListBoxItem.Style>
+                                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationBarPrimaryListBoxItem}">
+                                            <Setter Property="materialDesign:NavigationBarAssist.SelectedIcon" Value="Triangle"/>
+                                            <Setter Property="materialDesign:NavigationBarAssist.UnselectedIcon" Value="TriangleOutline"/>
+                                        </Style>
+                                    </ListBoxItem.Style>
+                                    <TextBlock Text="text 2"/>
+                                </ListBoxItem>
+                                <ListBoxItem >
+                                    <ListBoxItem.Style>
+                                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationBarPrimaryListBoxItem}">
+                                            <Setter Property="materialDesign:NavigationBarAssist.SelectedIcon" Value="Receipt"/>
+                                            <Setter Property="materialDesign:NavigationBarAssist.UnselectedIcon" Value="ReceiptOutline"/>
+                                        </Style>
+                                    </ListBoxItem.Style>
+                                    <TextBlock Text="text 3"/>
+                                </ListBoxItem>
+                            </ListBox>
+                        </Grid>
+                    </StackPanel>
+                </smtx:XamlDisplay>
             </StackPanel>
 
             <StackPanel Margin="0 20 0 0">
                 <TextBlock Text="MVVM"/>
-
-                <Grid Height="80"
-                      Background="{DynamicResource MaterialDesignCardBackground}">
-                    <ListBox Height="80"
+                <smtx:XamlDisplay UniqueKey="navbar_2">
+                    <Grid Height="80"
+                            Background="{DynamicResource MaterialDesignCardBackground}">
+                        <ListBox Height="80"
                              ItemsSource="{Binding SampleList}"
                              SelectedIndex="0"
                              Style="{StaticResource MaterialDesign3.NavigationBarListBox}">
-                        <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationBarListBoxItem}">
-                                <Setter Property="materialDesign:NavigationBarAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
-                                <Setter Property="materialDesign:NavigationBarAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
-                                <Setter Property="materialDesign:NavigationBarAssist.IsTextVisible" Value="True"/>
-                            </Style>
-                        </ListBox.ItemContainerStyle>
-                        <ListBox.Resources>
-                            <DataTemplate DataType="{x:Type domain:SampleItem}">
-                                <TextBlock Text="{Binding Title}"/>
-                            </DataTemplate>
-                        </ListBox.Resources>
-                    </ListBox>
-                </Grid>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationBarListBoxItem}">
+                                    <Setter Property="materialDesign:NavigationBarAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
+                                    <Setter Property="materialDesign:NavigationBarAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
+                                    <Setter Property="materialDesign:NavigationBarAssist.IsTextVisible" Value="True"/>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <ListBox.Resources>
+                                <DataTemplate DataType="{x:Type domain:SampleItem}">
+                                    <TextBlock Text="{Binding Title}"/>
+                                </DataTemplate>
+                            </ListBox.Resources>
+                        </ListBox>
+                    </Grid>
+                </smtx:XamlDisplay>
             </StackPanel>
 
             <StackPanel Margin="0 20 0 0">
                 <TextBlock Text="Without Text"/>
-
-                <Grid Height="80"
-                      Background="{DynamicResource MaterialDesignCardBackground}">
-                    <ListBox Height="80"
+                <smtx:XamlDisplay UniqueKey="navbar_3">
+                    <Grid Height="80"
+                          Background="{DynamicResource MaterialDesignCardBackground}">
+                        <ListBox Height="80"
                              ItemsSource="{Binding SampleList}"
                              SelectedIndex="0"
                              Style="{StaticResource MaterialDesign3.NavigationBarPrimaryListBox}">
-                        <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationBarPrimaryListBoxItem}">
-                                <Setter Property="materialDesign:NavigationBarAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
-                                <Setter Property="materialDesign:NavigationBarAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
-                                <Setter Property="materialDesign:NavigationBarAssist.IsTextVisible" Value="False"/>
-                            </Style>
-                        </ListBox.ItemContainerStyle>
-                        <ListBox.Resources>
-                            <DataTemplate DataType="{x:Type domain:SampleItem}">
-                                <TextBlock Text="{Binding Title}"/>
-                            </DataTemplate>
-                        </ListBox.Resources>
-                    </ListBox>
-                </Grid>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationBarPrimaryListBoxItem}">
+                                    <Setter Property="materialDesign:NavigationBarAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
+                                    <Setter Property="materialDesign:NavigationBarAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
+                                    <Setter Property="materialDesign:NavigationBarAssist.IsTextVisible" Value="False"/>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <ListBox.Resources>
+                                <DataTemplate DataType="{x:Type domain:SampleItem}">
+                                    <TextBlock Text="{Binding Title}"/>
+                                </DataTemplate>
+                            </ListBox.Resources>
+                        </ListBox>
+                    </Grid>
+                </smtx:XamlDisplay>
             </StackPanel>
 
 
             <StackPanel Margin="0 20 0 0">
                 <TextBlock Text="Custom Color"/>
-                
-                <Button Height="56"
+                <smtx:XamlDisplay UniqueKey="navbar_4">
+                    <StackPanel>
+                        <Button Height="56"
                         Width="56"
                         Background="#633B48"
                         Foreground="#FFD8E4" 
@@ -127,73 +133,79 @@
                         VerticalAlignment="Bottom"
                         materialDesign:ButtonAssist.CornerRadius="16"
                         Margin="16">
-                    <materialDesign:PackIcon Kind="PencilOutline" Width="24" Height="24"/>
-                </Button>
+                            <materialDesign:PackIcon Kind="PencilOutline" Width="24" Height="24"/>
+                        </Button>
 
-                <Grid Height="80" Background="#25232A">
-                    <ListBox Height="80" ItemsSource="{Binding SampleList}" SelectedIndex="0" Foreground="#E8DEF8" 
-                             Style="{StaticResource MaterialDesign3.NavigationBarPrimaryListBox}">
-                        <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationBarPrimaryListBoxItem}">
-                                <Setter Property="Foreground" Value="#E8DEF8"/>
-                                <Setter Property="Background" Value="#4A4458"/>
-                                <Setter Property="materialDesign:NavigationBarAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
-                                <Setter Property="materialDesign:NavigationBarAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
-                                <Setter Property="materialDesign:NavigationBarAssist.IsTextVisible" Value="True"/>
-                            </Style>
-                        </ListBox.ItemContainerStyle>
-                        <ListBox.Resources>
-                            <DataTemplate DataType="{x:Type domain:SampleItem}">
-                                <TextBlock Text="{Binding Title}"/>
-                            </DataTemplate>
-                        </ListBox.Resources>
-                    </ListBox>
-                </Grid>
+                        <Grid Height="80" Background="#25232A">
+                            <ListBox Height="80" ItemsSource="{Binding SampleList}" SelectedIndex="0" Foreground="#E8DEF8" 
+                                     Style="{StaticResource MaterialDesign3.NavigationBarPrimaryListBox}">
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationBarPrimaryListBoxItem}">
+                                        <Setter Property="Foreground" Value="#E8DEF8"/>
+                                        <Setter Property="Background" Value="#4A4458"/>
+                                        <Setter Property="materialDesign:NavigationBarAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
+                                        <Setter Property="materialDesign:NavigationBarAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
+                                        <Setter Property="materialDesign:NavigationBarAssist.IsTextVisible" Value="True"/>
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
+                                <ListBox.Resources>
+                                    <DataTemplate DataType="{x:Type domain:SampleItem}">
+                                        <TextBlock Text="{Binding Title}"/>
+                                    </DataTemplate>
+                                </ListBox.Resources>
+                            </ListBox>
+                        </Grid>
+                    </StackPanel>
+                </smtx:XamlDisplay>
             </StackPanel>
 
             <StackPanel Margin="0 20 0 0">
+
                 <TextBlock Text="Custom Size"/>
+                <smtx:XamlDisplay UniqueKey="navbar_5">
+                    <StackPanel>
+                        <Button Height="96" Width="96"
+                                Background="#633B48"
+                                Foreground="#FFD8E4" 
+                                BorderThickness="0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                materialDesign:ButtonAssist.CornerRadius="28"
+                                Margin="16">
+                            <materialDesign:PackIcon Kind="PencilOutline" Width="36" Height="36"/>
+                        </Button>
 
-                <Button Height="96" Width="96"
-                        Background="#633B48"
-                        Foreground="#FFD8E4" 
-                        BorderThickness="0"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Bottom"
-                        materialDesign:ButtonAssist.CornerRadius="28"
-                        Margin="16">
-                    <materialDesign:PackIcon Kind="PencilOutline" Width="36" Height="36"/>
-                </Button>
-
-                <Grid Height="160"
+                        <Grid Height="160"
                       Background="#25232A">
-                    <ListBox ItemsSource="{Binding SampleList}"
+                            <ListBox ItemsSource="{Binding SampleList}"
                              SelectedIndex="0"
                              Foreground="#E8DEF8" 
                              Style="{StaticResource MaterialDesign3.NavigationBarPrimaryListBox}">
-                        <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationBarPrimaryListBoxItem}">
-                                <Setter Property="Foreground" Value="#E8DEF8"/>
-                                <Setter Property="Background" Value="#4A4458"/>
-                                <Setter Property="FontSize" Value="24"/>
-                                <Setter Property="materialDesign:NavigationBarAssist.SelectionHeight" Value="64"/>
-                                <Setter Property="materialDesign:NavigationBarAssist.SelectionWidth" Value="128"/>
-                                <Setter Property="materialDesign:NavigationBarAssist.SelectionCornerRadius" Value="32"/>
-                                <Setter Property="materialDesign:NavigationBarAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
-                                <Setter Property="materialDesign:NavigationBarAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
-                                <Setter Property="materialDesign:NavigationBarAssist.IsTextVisible" Value="True"/>
-                                <Setter Property="materialDesign:NavigationBarAssist.IconSize" Value="48"/>
-                            </Style>
-                        </ListBox.ItemContainerStyle>
-                        <ListBox.Resources>
-                            <DataTemplate DataType="{x:Type domain:SampleItem}">
-                                <TextBlock Text="{Binding Title}"/>
-                            </DataTemplate>
-                        </ListBox.Resources>
-                    </ListBox>
-                </Grid>
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationBarPrimaryListBoxItem}">
+                                        <Setter Property="Foreground" Value="#E8DEF8"/>
+                                        <Setter Property="Background" Value="#4A4458"/>
+                                        <Setter Property="FontSize" Value="24"/>
+                                        <Setter Property="materialDesign:NavigationBarAssist.SelectionHeight" Value="64"/>
+                                        <Setter Property="materialDesign:NavigationBarAssist.SelectionWidth" Value="128"/>
+                                        <Setter Property="materialDesign:NavigationBarAssist.SelectionCornerRadius" Value="32"/>
+                                        <Setter Property="materialDesign:NavigationBarAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
+                                        <Setter Property="materialDesign:NavigationBarAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
+                                        <Setter Property="materialDesign:NavigationBarAssist.IsTextVisible" Value="True"/>
+                                        <Setter Property="materialDesign:NavigationBarAssist.IconSize" Value="48"/>
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
+                                <ListBox.Resources>
+                                    <DataTemplate DataType="{x:Type domain:SampleItem}">
+                                        <TextBlock Text="{Binding Title}"/>
+                                    </DataTemplate>
+                                </ListBox.Resources>
+                            </ListBox>
+                        </Grid>
+                    </StackPanel>
+                </smtx:XamlDisplay>
             </StackPanel>
         </StackPanel>
-            
+
     </Grid>
 </UserControl>
