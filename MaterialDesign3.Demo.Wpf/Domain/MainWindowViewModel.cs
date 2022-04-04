@@ -76,6 +76,15 @@ namespace MaterialDesign3Demo.Domain
                    SelectedIndex++;
                },
                _ => SelectedIndex < DemoItems.Count - 1);
+
+            DismissAllNotificationsCommand = new AnotherCommandImplementation(
+                _ => DemoItems[0].DismissAllNotifications(),
+                _ => DemoItems[0].Notifications != null);
+
+            AddNewNotificationCommand = new AnotherCommandImplementation(
+                _ => DemoItems[0].AddNewNotification());
+
+            AddNewNotificationCommand.Execute(null);
         }
 
         private readonly ICollectionView _demoItemsView;
@@ -120,6 +129,8 @@ namespace MaterialDesign3Demo.Domain
         public AnotherCommandImplementation HomeCommand { get; }
         public AnotherCommandImplementation MovePrevCommand { get; }
         public AnotherCommandImplementation MoveNextCommand { get; }
+        public AnotherCommandImplementation DismissAllNotificationsCommand { get; }
+        public AnotherCommandImplementation AddNewNotificationCommand { get; }
 
         private static IEnumerable<DemoItem> GenerateDemoItems(ISnackbarMessageQueue snackbarMessageQueue)
         {

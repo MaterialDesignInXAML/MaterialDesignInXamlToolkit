@@ -158,5 +158,7 @@ namespace MaterialDesign3Demo
             }
 
         }
+
+        private void CloseNotificationPanel_Click(object sender, RoutedEventArgs e) => NotificationPanel.Visibility = Visibility.Collapsed;
     }
 }

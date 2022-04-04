@@ -21,6 +21,7 @@ public partial class NavigationRail
                 Title = "Payment",
                 SelectedIcon = PackIconKind.CreditCard,
                 UnselectedIcon = PackIconKind.CreditCardOutline,
+                Notification = 1
             },
             new SampleItem
             {
@@ -55,5 +56,9 @@ public partial class NavigationRail
         };
     }
 
+    private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        => SampleList[0].Notification = SampleList[0].Notification is null ? 1 : null;
 
+    private void Button_Click_1(object sender, System.Windows.RoutedEventArgs e)
+        => SampleList[0].Notification = SampleList[0].Notification is null ? "123+" : null;
 }

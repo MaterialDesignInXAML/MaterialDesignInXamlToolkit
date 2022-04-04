@@ -97,7 +97,9 @@
                             Background="{DynamicResource SecondaryHueMidBrush}"
                             Foreground="{DynamicResource SecondaryHueMidBrushForeground}"
                             BorderThickness="0"
-                            materialDesign:ButtonAssist.CornerRadius="16">
+                            materialDesign:ButtonAssist.CornerRadius="16"
+                            Margin="0 10 0 40"
+                            Click="Button_Click">
                         <materialDesign:PackIcon Kind="PencilOutline" Width="24" Height="24"/>
                     </Button>
 
@@ -107,6 +109,7 @@
                                 <Setter Property="materialDesign:NavigationRailAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
                                 <Setter Property="materialDesign:NavigationRailAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
                                 <Setter Property="materialDesign:NavigationRailAssist.IsTextVisible" Value="True"/>
+                                <Setter Property="materialDesign:BadgedAssist.Badge" Value="{Binding Notification}"/>
                             </Style>
                         </ListBox.ItemContainerStyle>
                         <ListBox.Resources>
@@ -130,8 +133,9 @@
                     </Grid.RowDefinitions>
 
                     <Button Height="56" Width="56" Style="{StaticResource MaterialDesignFlatMidBgButton}"
-                        Background="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidBrushForeground}" BorderThickness="0"
-                        materialDesign:ButtonAssist.CornerRadius="16" Margin="0 37 0 80">
+                            Background="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidBrushForeground}" BorderThickness="0"
+                            materialDesign:ButtonAssist.CornerRadius="16" Margin="0 37 0 80"
+                            Click="Button_Click_1">
                         <materialDesign:PackIcon Kind="PencilOutline" Width="24" Height="24"/>
                     </Button>
 
@@ -143,6 +147,9 @@
                                     <Setter Property="materialDesign:NavigationRailAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
                                     <Setter Property="materialDesign:NavigationRailAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
                                     <Setter Property="materialDesign:NavigationRailAssist.IsTextVisible" Value="False"/>
+                                    <Setter Property="materialDesign:BadgedAssist.Badge" Value="{Binding Notification}"/>
+                                    <Setter Property="materialDesign:BadgedAssist.BadgeBackground" Value="#930006"/>
+                                    <Setter Property="materialDesign:BadgedAssist.BadgeForeground" Value="#FFDAD4"/>
                                 </Style>
                             </ListBox.ItemContainerStyle>
                             <ListBox.Resources>
@@ -160,6 +167,42 @@
             <TextBlock Text="Custom Colors" HorizontalAlignment="Center"/>
             <StackPanel Orientation="Horizontal">
                 <smtx:XamlDisplay UniqueKey="navrail_4">
+                    <Grid Width="80" Background="#FFFCF3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Button Height="56" Width="56" Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                                Background="#AEF0D6" Foreground="#002117" BorderThickness="0"
+                                materialDesign:ButtonAssist.CornerRadius="16" Margin="0 40 0 80">
+                            <materialDesign:PackIcon Kind="PencilOutline" Width="24" Height="24"/>
+                        </Button>
+
+                        <Viewbox Grid.Row="1" VerticalAlignment="Top" Stretch="Uniform" Width="80">
+                            <ListBox Grid.Row="1" ItemsSource="{Binding SampleList}" SelectedIndex="0">
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationRailListBoxItem}">
+                                        <Setter Property="Foreground" Value="#48473A"/>
+                                        <Setter Property="Background" Value="#E6E4C0"/>
+                                        <Setter Property="materialDesign:NavigationRailAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
+                                        <Setter Property="materialDesign:NavigationRailAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
+                                        <Setter Property="materialDesign:BadgedAssist.Badge" Value="{Binding Notification}"/>
+                                        <Setter Property="materialDesign:BadgedAssist.BadgeBackground" Value="#930006"/>
+                                        <Setter Property="materialDesign:BadgedAssist.BadgeForeground" Value="#FFDAD4"/>
+                                        <Setter Property="materialDesign:BadgedAssist.IsMiniBadge" Value="True"/>
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
+                                <ListBox.Resources>
+                                    <DataTemplate DataType="{x:Type domain:SampleItem}">
+                                        <TextBlock Text="{Binding Title}"/>
+                                    </DataTemplate>
+                                </ListBox.Resources>
+                            </ListBox>
+                        </Viewbox>
+                    </Grid>
+                </smtx:XamlDisplay>
+                <smtx:XamlDisplay UniqueKey="navrail_5">
                     <Grid Width="80" Background="#25232A">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
@@ -220,39 +263,6 @@
                             </ListBoxItem>
                         </ListBox>
 
-                    </Grid>
-                </smtx:XamlDisplay>
-                <smtx:XamlDisplay UniqueKey="navrail_5">
-                    <Grid Width="80" Background="#FFFCF3">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-
-                        <Button Height="56" Width="56" Style="{StaticResource MaterialDesignFlatMidBgButton}"
-                Background="#AEF0D6" Foreground="#002117" BorderThickness="0"
-                materialDesign:ButtonAssist.CornerRadius="16" Margin="0 40 0 80">
-                            <materialDesign:PackIcon Kind="PencilOutline" Width="24" Height="24"/>
-                        </Button>
-
-                        <Viewbox Grid.Row="1" VerticalAlignment="Top" Stretch="Uniform" Width="80">
-                            <ListBox Grid.Row="1" ItemsSource="{Binding SampleList}" SelectedIndex="0">
-                                <ListBox.ItemContainerStyle>
-                                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationRailListBoxItem}">
-                                        <Setter Property="Foreground" Value="#48473A"/>
-                                        <Setter Property="Background" Value="#E6E4C0"/>
-                                        <Setter Property="materialDesign:NavigationRailAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
-                                        <Setter Property="materialDesign:NavigationRailAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
-                                        <Setter Property="materialDesign:NavigationRailAssist.IsTextVisible" Value="True"/>
-                                    </Style>
-                                </ListBox.ItemContainerStyle>
-                                <ListBox.Resources>
-                                    <DataTemplate DataType="{x:Type domain:SampleItem}">
-                                        <TextBlock Text="{Binding Title}"/>
-                                    </DataTemplate>
-                                </ListBox.Resources>
-                            </ListBox>
-                        </Viewbox>
                     </Grid>
                 </smtx:XamlDisplay>
             </StackPanel>

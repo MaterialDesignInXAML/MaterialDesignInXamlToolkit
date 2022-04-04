@@ -115,6 +115,7 @@
                             <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationDrawerPrimaryListBoxItem}">
                                 <Setter Property="materialDesign:NavigationDrawerAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
                                 <Setter Property="materialDesign:NavigationDrawerAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
+                                <Setter Property="materialDesign:BadgedAssist.Badge" Value="{Binding Notifications}"/>
                             </Style>
                         </ListBox.ItemContainerStyle>
                     </ListBox>
@@ -255,13 +256,16 @@
                             <materialDesign:PackIcon Kind="Github" Width="24" Height="24"/>
                         </Button>
 
-                        <Viewbox Grid.Row="1" VerticalAlignment="Top" Stretch="Uniform" Width="80">
+                        <Viewbox Grid.Row="1" VerticalAlignment="Top" Stretch="Uniform">
                             <ListBox VerticalAlignment="Top" ItemsSource="{Binding MainDemoItems}" SelectedValue="{Binding SelectedItem}">
                                 <ListBox.ItemContainerStyle>
                                     <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationRailPrimaryListBoxItem}">
                                         <Setter Property="materialDesign:NavigationRailAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
                                         <Setter Property="materialDesign:NavigationRailAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
                                         <Setter Property="materialDesign:NavigationRailAssist.IsTextVisible" Value="True"/>
+                                        <Setter Property="materialDesign:BadgedAssist.Badge" Value="{Binding Notifications}"/>
+                                        <Setter Property="materialDesign:BadgedAssist.BadgeBackground" Value="#930006"/>
+                                        <Setter Property="materialDesign:BadgedAssist.BadgeForeground" Value="#FFDAD4"/>
                                     </Style>
                                 </ListBox.ItemContainerStyle>
                                 <ListBox.Resources>
@@ -291,6 +295,31 @@
                                             Content="{Binding Content, UpdateSourceTrigger=PropertyChanged, FallbackValue={x:Null}}"/>
                         </ScrollViewer>
 
+                        <materialDesign:Card x:Name="NotificationPanel" Grid.Row="0" Grid.RowSpan="2"
+                                             HorizontalAlignment="Right" VerticalAlignment="Top"
+                                             Margin="10" UniformCornerRadius="25">
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Button Grid.Row="0" Content="{materialDesign:PackIcon Kind=Close}" HorizontalAlignment="Right"
+                                        Click="CloseNotificationPanel_Click" Style="{StaticResource MaterialDesignIconForegroundButton}"/>
+                                <TextBlock Grid.Row="1" Text="{Binding DemoItems[0].Notifications, StringFormat={}You have {0} new notifications!}" TextWrapping="Wrap"
+                                           TextAlignment="Center" FontSize="18" Margin="0 0 0 20"/>
+                                <StackPanel  Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+                                    <RepeatButton Content="Add New Notification" Style="{StaticResource MaterialDesignFlatButton}"
+                                             materialDesign:ButtonAssist.CornerRadius="16" Margin="0 0 10 0"
+                                             Command="{Binding AddNewNotificationCommand}"/>
+                                    <Button Content="Dismiss All" Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                                             materialDesign:ButtonAssist.CornerRadius="16" 
+                                             Command="{Binding DismissAllNotificationsCommand}"/>
+                                </StackPanel>
+
+                            </Grid>
+                        </materialDesign:Card>
+
                         <materialDesign:Snackbar x:Name="MainSnackbar"
                                                  MessageQueue="{materialDesign:MessageQueue}"
                                                  Grid.Row="1"/>
@@ -314,6 +343,9 @@
                                     <Setter Property="materialDesign:NavigationBarAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
                                     <Setter Property="materialDesign:NavigationBarAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
                                     <Setter Property="materialDesign:NavigationBarAssist.IsTextVisible" Value="True"/>
+                                    <Setter Property="materialDesign:BadgedAssist.Badge" Value="{Binding Notifications}"/>
+                                    <Setter Property="materialDesign:BadgedAssist.BadgeBackground" Value="#930006"/>
+                                    <Setter Property="materialDesign:BadgedAssist.BadgeForeground" Value="#FFDAD4"/>
                                 </Style>
                             </ListBox.ItemContainerStyle>
                             <ListBox.Resources>
