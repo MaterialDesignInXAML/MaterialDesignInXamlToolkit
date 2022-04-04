@@ -84,7 +84,7 @@ namespace MaterialDesign3Demo.Domain
             AddNewNotificationCommand = new AnotherCommandImplementation(
                 _ => DemoItems[0].AddNewNotification());
 
-            AddNewNotificationCommand.Execute(null);
+            AddNewNotificationCommand.Execute(new object());
         }
 
         private readonly ICollectionView _demoItemsView;
