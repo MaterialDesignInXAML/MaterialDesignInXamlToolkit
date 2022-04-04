@@ -13,7 +13,7 @@
     d:DesignWidth="800">
 
     <UserControl.Resources>
-        <Style x:Key="CustomColorMaterialDesign3NavigationListBoxItem" TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationRailListBoxItem}">
+        <Style x:Key="CustomColorMaterialDesign3NavigationListBoxItem" TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationRailListBoxItem}">
             <Setter Property="Foreground" Value="#E8DEF8"/>
             <Setter Property="Background" Value="#4A4458"/>
         </Style>
@@ -44,7 +44,7 @@
                     <ListBox Grid.Row="1" VerticalAlignment="Top" SelectedIndex="0">
                         <ListBoxItem>
                             <ListBoxItem.Style>
-                                <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationRailPrimaryListBoxItem}">
+                                <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationRailPrimaryListBoxItem}">
                                     <Setter Property="materialDesign:NavigationRailAssist.SelectedIcon" Value="Circle"/>
                                     <Setter Property="materialDesign:NavigationRailAssist.UnselectedIcon" Value="CircleOutline"/>
                                     <Setter Property="materialDesign:NavigationRailAssist.IconSize" Value="16"/>
@@ -54,7 +54,7 @@
                         </ListBoxItem>
                         <ListBoxItem >
                             <ListBoxItem.Style>
-                                <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationRailPrimaryListBoxItem}">
+                                <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationRailPrimaryListBoxItem}">
                                     <Setter Property="materialDesign:NavigationRailAssist.SelectedIcon" Value="Triangle"/>
                                     <Setter Property="materialDesign:NavigationRailAssist.UnselectedIcon" Value="TriangleOutline"/>
                                     <Setter Property="materialDesign:NavigationRailAssist.IconSize" Value="16"/>
@@ -64,7 +64,7 @@
                         </ListBoxItem>
                         <ListBoxItem >
                             <ListBoxItem.Style>
-                                <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationRailPrimaryListBoxItem}">
+                                <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationRailPrimaryListBoxItem}">
                                     <Setter Property="materialDesign:NavigationRailAssist.SelectedIcon" Value="Receipt"/>
                                     <Setter Property="materialDesign:NavigationRailAssist.UnselectedIcon" Value="ReceiptOutline"/>
                                     <Setter Property="materialDesign:NavigationRailAssist.IconSize" Value="16"/>
@@ -91,20 +91,19 @@
                     <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" Margin="0 32 0 0"/>
 
                     <Button Grid.Row="1"
-                        Height="56"
-                        Width="56"
-                        Style="{StaticResource MaterialDesignFlatMidBgButton}"
-                        Background="{DynamicResource SecondaryHueMidBrush}"
-                        Foreground="{DynamicResource SecondaryHueMidBrushForeground}"
-                        BorderThickness="0"
-                        materialDesign:ButtonAssist.CornerRadius="16"
-                        Margin="0 10 0 40">
+                            Height="56"
+                            Width="56"
+                            Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                            Background="{DynamicResource SecondaryHueMidBrush}"
+                            Foreground="{DynamicResource SecondaryHueMidBrushForeground}"
+                            BorderThickness="0"
+                            materialDesign:ButtonAssist.CornerRadius="16">
                         <materialDesign:PackIcon Kind="PencilOutline" Width="24" Height="24"/>
                     </Button>
 
                     <ListBox Grid.Row="2" VerticalAlignment="Top" ItemsSource="{Binding SampleList}" SelectedIndex="0">
                         <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationRailListBoxItem}">
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationRailListBoxItem}">
                                 <Setter Property="materialDesign:NavigationRailAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
                                 <Setter Property="materialDesign:NavigationRailAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
                                 <Setter Property="materialDesign:NavigationRailAssist.IsTextVisible" Value="True"/>
@@ -112,7 +111,7 @@
                         </ListBox.ItemContainerStyle>
                         <ListBox.Resources>
                             <DataTemplate DataType="{x:Type domain:SampleItem}">
-                                <TextBlock Text="{Binding Title}"/>
+                                <TextBlock Text="{Binding Title}"/>     
                             </DataTemplate>
                         </ListBox.Resources>
                     </ListBox>
@@ -140,7 +139,7 @@
                         <ListBox Grid.Row="1" Margin="0 0 0 0" SelectedIndex="0"
                     Foreground="#E8DEF8" ItemsSource="{Binding SampleList}">
                             <ListBox.ItemContainerStyle>
-                                <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationRailPrimaryListBoxItem}">
+                                <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationRailPrimaryListBoxItem}">
                                     <Setter Property="materialDesign:NavigationRailAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
                                     <Setter Property="materialDesign:NavigationRailAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
                                     <Setter Property="materialDesign:NavigationRailAssist.IsTextVisible" Value="False"/>
@@ -239,7 +238,7 @@
                         <Viewbox Grid.Row="1" VerticalAlignment="Top" Stretch="Uniform" Width="80">
                             <ListBox Grid.Row="1" ItemsSource="{Binding SampleList}" SelectedIndex="0">
                                 <ListBox.ItemContainerStyle>
-                                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationRailListBoxItem}">
+                                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationRailListBoxItem}">
                                         <Setter Property="Foreground" Value="#48473A"/>
                                         <Setter Property="Background" Value="#E6E4C0"/>
                                         <Setter Property="materialDesign:NavigationRailAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
@@ -279,7 +278,7 @@
                             <ListBox Grid.Row="1" Margin="0 0 0 0" SelectedIndex="0"
                         ItemsSource="{Binding SampleList}">
                                 <ListBox.ItemContainerStyle>
-                                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationRailListBoxItem}">
+                                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationRailListBoxItem}">
                                         <Setter Property="materialDesign:NavigationRailAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
                                         <Setter Property="materialDesign:NavigationRailAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
                                         <Setter Property="materialDesign:NavigationRailAssist.IsTextVisible" Value="False"/>

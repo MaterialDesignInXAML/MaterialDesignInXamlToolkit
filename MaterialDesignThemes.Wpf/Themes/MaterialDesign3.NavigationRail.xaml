@@ -7,7 +7,7 @@
     <converters:BrushRoundConverter x:Key="BrushRoundConverter"/>
 
 
-    <Style x:Key="MaterialDesign3NavigationRailListBoxItem" TargetType="{x:Type ListBoxItem}">
+    <Style x:Key="MaterialDesign3.NavigationRailListBoxItem" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
         <Setter Property="Background" Value="{DynamicResource MaterialDesignBodyLight}"/>
         <Setter Property="BorderThickness" Value="0"/>
@@ -78,11 +78,11 @@
                         <Grid>
                             <Grid.Clip>
                                 <MultiBinding Converter="{StaticResource BorderClipConverter}">
-                                    <Binding ElementName="border" Path="ActualWidth" />
-                                    <Binding ElementName="border" Path="ActualHeight" />
-                                    <Binding ElementName="border" Path="CornerRadius" />
-                                    <Binding ElementName="border" Path="BorderThickness" />
-                                </MultiBinding>
+                                                        <Binding ElementName="border" Path="ActualWidth" />
+                                                        <Binding ElementName="border" Path="ActualHeight" />
+                                                        <Binding ElementName="border" Path="CornerRadius" />
+                                                        <Binding ElementName="border" Path="BorderThickness" />
+                                                    </MultiBinding>
                             </Grid.Clip>
                             <Border x:Name="MouseOverBorder"
                                     Opacity="0"
@@ -105,23 +105,24 @@
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                         Padding="{TemplateBinding Padding}"
-                                        RecognizesAccessKey="False">
-                                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="4*"/>
-                                        <RowDefinition Height="3*"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="IconContainer" Grid.RowSpan="1" Height="{Binding Path=(wpf:NavigationRailAssist.SelectionHeight), RelativeSource={RelativeSource TemplatedParent}}">
-                                        <wpf:PackIcon x:Name="Icon" Kind="{Binding Path=(wpf:NavigationRailAssist.SelectedIcon), RelativeSource={RelativeSource TemplatedParent}}"
-                                                  HorizontalAlignment="Center"
+                                        RecognizesAccessKey="False"/>
+                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="4*"/>
+                                    <RowDefinition Height="3*"/>
+                                </Grid.RowDefinitions>
+                                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="IconContainer" Grid.RowSpan="1"
+                                      Height="{Binding Path=(wpf:NavigationRailAssist.SelectionHeight), RelativeSource={RelativeSource TemplatedParent}}">
+                                    <wpf:PackIcon x:Name="Icon" HorizontalAlignment="Center"
                                                   VerticalAlignment="Center"
+                                                  Kind="{Binding Path=(wpf:NavigationRailAssist.SelectedIcon), RelativeSource={RelativeSource TemplatedParent}}"
                                                   Width="{Binding Path=(wpf:NavigationRailAssist.IconSize), RelativeSource={RelativeSource TemplatedParent}}"
                                                   Height="{Binding Path=(wpf:NavigationRailAssist.IconSize), RelativeSource={RelativeSource TemplatedParent}}" />
-                                    </Grid>
-                                    <ContentControl x:Name="Text" Content="{TemplateBinding Content}" Grid.Row="1" Margin="4 4 4 0" Padding="0"
-                                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Grid>
-                            </wpf:Ripple>
+                                <ContentControl x:Name="Text" Content="{TemplateBinding Content}" Grid.Row="1" Margin="4 4 4 0" Padding="0"
+                                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -143,7 +144,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesign3NavigationRailPrimaryListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesign3NavigationRailListBoxItem}">
+    <Style x:Key="MaterialDesign3.NavigationRailPrimaryListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesign3.NavigationRailListBoxItem}">
         <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
     </Style>
 

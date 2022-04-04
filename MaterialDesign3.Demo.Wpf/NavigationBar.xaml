@@ -32,10 +32,10 @@
                       Background="{DynamicResource MaterialDesignCardBackground}">
                     <ListBox Height="80"
                              SelectedIndex="0"
-                             Style="{StaticResource MaterialDesign3NavigationBarPrimaryListBox}">
+                             Style="{StaticResource MaterialDesign3.NavigationBarPrimaryListBox}">
                         <ListBoxItem>
                             <ListBoxItem.Style>
-                                <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationBarPrimaryListBoxItem}">
+                                <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationBarPrimaryListBoxItem}">
                                     <Setter Property="materialDesign:NavigationBarAssist.SelectedIcon" Value="Circle"/>
                                     <Setter Property="materialDesign:NavigationBarAssist.UnselectedIcon" Value="CircleOutline"/>
                                 </Style>
@@ -44,7 +44,7 @@
                         </ListBoxItem>
                         <ListBoxItem >
                             <ListBoxItem.Style>
-                                <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationBarPrimaryListBoxItem}">
+                                <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationBarPrimaryListBoxItem}">
                                     <Setter Property="materialDesign:NavigationBarAssist.SelectedIcon" Value="Triangle"/>
                                     <Setter Property="materialDesign:NavigationBarAssist.UnselectedIcon" Value="TriangleOutline"/>
                                 </Style>
@@ -53,7 +53,7 @@
                         </ListBoxItem>
                         <ListBoxItem >
                             <ListBoxItem.Style>
-                                <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationBarPrimaryListBoxItem}">
+                                <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationBarPrimaryListBoxItem}">
                                     <Setter Property="materialDesign:NavigationBarAssist.SelectedIcon" Value="Receipt"/>
                                     <Setter Property="materialDesign:NavigationBarAssist.UnselectedIcon" Value="ReceiptOutline"/>
                                 </Style>
@@ -72,9 +72,9 @@
                     <ListBox Height="80"
                              ItemsSource="{Binding SampleList}"
                              SelectedIndex="0"
-                             Style="{StaticResource MaterialDesign3NavigationBarListBox}">
+                             Style="{StaticResource MaterialDesign3.NavigationBarListBox}">
                         <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationBarListBoxItem}">
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationBarListBoxItem}">
                                 <Setter Property="materialDesign:NavigationBarAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
                                 <Setter Property="materialDesign:NavigationBarAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
                                 <Setter Property="materialDesign:NavigationBarAssist.IsTextVisible" Value="True"/>
@@ -97,9 +97,9 @@
                     <ListBox Height="80"
                              ItemsSource="{Binding SampleList}"
                              SelectedIndex="0"
-                             Style="{StaticResource MaterialDesign3NavigationBarPrimaryListBox}">
+                             Style="{StaticResource MaterialDesign3.NavigationBarPrimaryListBox}">
                         <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationBarPrimaryListBoxItem}">
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationBarPrimaryListBoxItem}">
                                 <Setter Property="materialDesign:NavigationBarAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
                                 <Setter Property="materialDesign:NavigationBarAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
                                 <Setter Property="materialDesign:NavigationBarAssist.IsTextVisible" Value="False"/>
@@ -132,9 +132,9 @@
 
                 <Grid Height="80" Background="#25232A">
                     <ListBox Height="80" ItemsSource="{Binding SampleList}" SelectedIndex="0" Foreground="#E8DEF8" 
-                             Style="{StaticResource MaterialDesign3NavigationBarPrimaryListBox}">
+                             Style="{StaticResource MaterialDesign3.NavigationBarPrimaryListBox}">
                         <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationBarPrimaryListBoxItem}">
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationBarPrimaryListBoxItem}">
                                 <Setter Property="Foreground" Value="#E8DEF8"/>
                                 <Setter Property="Background" Value="#4A4458"/>
                                 <Setter Property="materialDesign:NavigationBarAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
@@ -170,9 +170,9 @@
                     <ListBox ItemsSource="{Binding SampleList}"
                              SelectedIndex="0"
                              Foreground="#E8DEF8" 
-                             Style="{StaticResource MaterialDesign3NavigationBarPrimaryListBox}">
+                             Style="{StaticResource MaterialDesign3.NavigationBarPrimaryListBox}">
                         <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationBarPrimaryListBoxItem}">
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationBarPrimaryListBoxItem}">
                                 <Setter Property="Foreground" Value="#E8DEF8"/>
                                 <Setter Property="Background" Value="#4A4458"/>
                                 <Setter Property="FontSize" Value="24"/>

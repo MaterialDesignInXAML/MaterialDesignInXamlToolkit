@@ -55,14 +55,34 @@
             LeftDrawerCornerRadius="0 20 20 0">
             <materialDesign:DrawerHost.LeftDrawerContent>
                 <DockPanel MinWidth="220">
-                    <StackPanel DockPanel.Dock="Top" Margin="16">
-                        <Image Source="Resources/ms-icon-310x310.png"
-                           Stretch="Uniform"
-                           Width="100"
-                           Height="100"/>
-                        <TextBlock Text="Material Design In XAML" HorizontalAlignment="Center" Margin="0 10 0 0"
+                    <DockPanel DockPanel.Dock="Top" Margin="16" LastChildFill="False">
+                        <Image DockPanel.Dock="Left" Source="Resources/ms-icon-310x310.png"
+                               Stretch="Uniform"
+                               Width="36"
+                               Height="36"/>
+                        <TextBlock DockPanel.Dock="Left" Text="Material Design In XAML" HorizontalAlignment="Center"
+                                   Margin="10 0 10 0" VerticalAlignment="Center" TextWrapping="Wrap"
                                    Style="{StaticResource MaterialDesignTitleLargeTextBlock}"/>
-                    </StackPanel>
+
+                        <Button DockPanel.Dock="Right" x:Name="MenuOpen" Height="56" Width="56"
+                                Style="{StaticResource MaterialDesignIconForegroundButton}"
+                                Foreground="{StaticResource MaterialDesignBody}"
+                                Click="MenuOpen_Click">
+                            <materialDesign:PackIcon Kind="MenuOpen" Width="36" Height="36"/>
+                        </Button>
+                    </DockPanel>
+
+                    <Button DockPanel.Dock="Top" Height="56" x:Name="DrawerFAB"
+                            Background="{DynamicResource SecondaryHueMidBrush}"
+                            Foreground="{DynamicResource SecondaryHueMidBrushForeground}"
+                            BorderThickness="0" HorizontalContentAlignment="Left"
+                            materialDesign:ButtonAssist.CornerRadius="16" Margin="16 6 16 32"
+                            Click="GitHubButton_OnClick">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Github" Width="24" Height="24" VerticalAlignment="Center"/>
+                            <TextBlock Text="Source Code" Margin="20 0 0 0" VerticalAlignment="Center" FontSize="20"/>
+                        </StackPanel>
+                    </Button>
 
 
                     <TextBox 
@@ -92,7 +112,7 @@
                             </DataTemplate>
                         </ListBox.Resources>
                         <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationDrawerPrimaryListBoxItem}">
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationDrawerPrimaryListBoxItem}">
                                 <Setter Property="materialDesign:NavigationDrawerAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
                                 <Setter Property="materialDesign:NavigationDrawerAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
                             </Style>
@@ -238,11 +258,10 @@
                         <Viewbox Grid.Row="1" VerticalAlignment="Top" Stretch="Uniform" Width="80">
                             <ListBox VerticalAlignment="Top" ItemsSource="{Binding MainDemoItems}" SelectedValue="{Binding SelectedItem}">
                                 <ListBox.ItemContainerStyle>
-                                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationRailPrimaryListBoxItem}">
+                                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationRailPrimaryListBoxItem}">
                                         <Setter Property="materialDesign:NavigationRailAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
                                         <Setter Property="materialDesign:NavigationRailAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
                                         <Setter Property="materialDesign:NavigationRailAssist.IsTextVisible" Value="True"/>
-
                                     </Style>
                                 </ListBox.ItemContainerStyle>
                                 <ListBox.Resources>
@@ -261,26 +280,20 @@
                         </Grid.RowDefinitions>
                         <domain:DocumentationLinks DataContext="{Binding SelectedItem}"/>
 
-                        <ScrollViewer
-                        x:Name="MainScrollViewer"
-                        Grid.Row="1"
-                        materialDesign:ScrollViewerAssist.IsAutoHideEnabled="True"
-                        HorizontalScrollBarVisibility="{Binding SelectedItem.HorizontalScrollBarVisibilityRequirement, FallbackValue=Disabled}"
-                        VerticalScrollBarVisibility="{Binding SelectedItem.VerticalScrollBarVisibilityRequirement, FallbackValue=Disabled}" >
-                            <ScrollViewer.Resources>
-                                <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
-                            </ScrollViewer.Resources>
-                            <ContentControl
-                            DataContextChanged="OnSelectedItemChanged"
-                            DataContext="{Binding SelectedItem}"
-                            Margin="{Binding MarginRequirement, FallbackValue=16}"
-                            Content="{Binding Content, UpdateSourceTrigger=PropertyChanged, FallbackValue={x:Null}}"/>
+                        <ScrollViewer x:Name="MainScrollViewer"
+                                      Grid.Row="1"
+                                      materialDesign:ScrollViewerAssist.IsAutoHideEnabled="True"
+                                      HorizontalScrollBarVisibility="{Binding SelectedItem.HorizontalScrollBarVisibilityRequirement, FallbackValue=Disabled}"
+                                      VerticalScrollBarVisibility="{Binding SelectedItem.VerticalScrollBarVisibilityRequirement, FallbackValue=Disabled}">
+                            <ContentControl DataContextChanged="OnSelectedItemChanged"
+                                            DataContext="{Binding SelectedItem}"
+                                            Margin="{Binding MarginRequirement, FallbackValue=16}"
+                                            Content="{Binding Content, UpdateSourceTrigger=PropertyChanged, FallbackValue={x:Null}}"/>
                         </ScrollViewer>
 
-                        <materialDesign:Snackbar
-                        x:Name="MainSnackbar"
-                        MessageQueue="{materialDesign:MessageQueue}"
-                        Grid.Row="1"/>
+                        <materialDesign:Snackbar x:Name="MainSnackbar"
+                                                 MessageQueue="{materialDesign:MessageQueue}"
+                                                 Grid.Row="1"/>
                     </Grid>
                 </Grid>
 
@@ -290,11 +303,14 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <materialDesign:ColorZone Grid.Row="1" Background="{DynamicResource MaterialDesignCardBackground}" Height="80">
-                        <ListBox ItemsSource="{Binding MainDemoItems}" SelectedValue="{Binding SelectedItem}"
-                             Style="{StaticResource MaterialDesign3NavigationBarListBox}">
+                    <materialDesign:ColorZone Grid.Row="1"
+                                              Background="{DynamicResource MaterialDesignCardBackground}"
+                                              Height="80">
+                        <ListBox ItemsSource="{Binding MainDemoItems}"
+                                 SelectedValue="{Binding SelectedItem}"
+                                 Style="{StaticResource MaterialDesign3.NavigationBarListBox}">
                             <ListBox.ItemContainerStyle>
-                                <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3NavigationBarPrimaryListBoxItem}">
+                                <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesign3.NavigationBarPrimaryListBoxItem}">
                                     <Setter Property="materialDesign:NavigationBarAssist.SelectedIcon" Value="{Binding SelectedIcon}"/>
                                     <Setter Property="materialDesign:NavigationBarAssist.UnselectedIcon" Value="{Binding UnselectedIcon}"/>
                                     <Setter Property="materialDesign:NavigationBarAssist.IsTextVisible" Value="True"/>
@@ -309,11 +325,20 @@
                     </materialDesign:ColorZone>
                 </Grid>
 
-                <Button Grid.Row="1" x:Name="FAB" Height="96" Width="96"
-                        Background="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidBrushForeground}" BorderThickness="0"
-                        materialDesign:ButtonAssist.CornerRadius="28" Margin="0 0 16 16"
-                        HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="GitHubButton_OnClick">
-                    <materialDesign:PackIcon Kind="Github" Width="36" Height="36"/>
+                <Button Grid.Row="1"
+                        x:Name="FAB"
+                        Height="96"
+                        Width="96"
+                        Background="{DynamicResource SecondaryHueMidBrush}"
+                        Foreground="{DynamicResource SecondaryHueMidBrushForeground}" BorderThickness="0"
+                        materialDesign:ButtonAssist.CornerRadius="28"
+                        Margin="0 0 16 16"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Click="GitHubButton_OnClick">
+                    <materialDesign:PackIcon Kind="Github"
+                                             Width="36"
+                                             Height="36"/>
                 </Button>
             </Grid>
         </materialDesign:DrawerHost>

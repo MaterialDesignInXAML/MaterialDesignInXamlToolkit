@@ -85,7 +85,16 @@ namespace MaterialDesign3Demo
         }
 
         private void MenuToggleButton_OnClick(object sender, RoutedEventArgs e)
-            => DemoItemsSearchBox.Focus();
+        {
+            DemoItemsSearchBox.Focus();
+            if (ActualWidth > 1600)
+            {
+                NavRail.Visibility = Visibility.Collapsed;
+                MenuToggleButton.Visibility = Visibility.Collapsed;
+            }
+
+        }
+
 
         private void MenuDarkModeButton_Click(object sender, RoutedEventArgs e)
             => ModifyTheme(DarkModeToggleButton.IsChecked == true);
@@ -115,6 +124,7 @@ namespace MaterialDesign3Demo
                 NavDrawer.IsLeftDrawerOpen = false;
                 MenuToggleButton.Visibility = Visibility.Visible;
                 FAB.Visibility = Visibility.Visible;
+                DrawerFAB.Visibility = Visibility.Collapsed;
             }
             else if (ActualWidth > 700 && ActualWidth <= 1600)
             {
@@ -124,6 +134,7 @@ namespace MaterialDesign3Demo
                 NavDrawer.IsLeftDrawerOpen = false;
                 MenuToggleButton.Visibility = Visibility.Visible;
                 FAB.Visibility = Visibility.Collapsed;
+                DrawerFAB.Visibility = Visibility.Collapsed;
             }
             else if (ActualWidth > 1600)
             {
@@ -132,8 +143,20 @@ namespace MaterialDesign3Demo
                 NavDrawer.OpenMode = DrawerHostOpenMode.Standard;
                 NavDrawer.IsLeftDrawerOpen = true;
                 MenuToggleButton.Visibility = Visibility.Collapsed;
-                FAB.Visibility = Visibility.Visible;
+                FAB.Visibility = Visibility.Collapsed;
+                DrawerFAB.Visibility = Visibility.Visible;
             }
+        }
+
+        private void MenuOpen_Click(object sender, RoutedEventArgs e)
+        {
+            NavDrawer.IsLeftDrawerOpen = false;
+            if (ActualWidth > 1600)
+            {
+                NavRail.Visibility = Visibility.Visible;
+                MenuToggleButton.Visibility = Visibility.Visible;
+            }
+
         }
     }
 }

@@ -7,7 +7,7 @@
     <converters:BrushRoundConverter x:Key="BrushRoundConverter"/>
 
 
-    <Style x:Key="MaterialDesign3NavigationDrawerListBoxItem" TargetType="{x:Type ListBoxItem}">
+    <Style x:Key="MaterialDesign3.NavigationDrawerListBoxItem" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
         <Setter Property="Background" Value="{DynamicResource MaterialDesignBody}"/>
         <Setter Property="BorderThickness" Value="0"/>
@@ -126,7 +126,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesign3NavigationDrawerPrimaryListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesign3NavigationDrawerListBoxItem}">
+    <Style x:Key="MaterialDesign3.NavigationDrawerPrimaryListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesign3.NavigationDrawerListBoxItem}">
         <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}"/>
         <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
     </Style>

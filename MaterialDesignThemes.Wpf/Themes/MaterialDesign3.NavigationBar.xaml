@@ -10,7 +10,7 @@
     <converters:BorderClipConverter x:Key="BorderClipConverter"/>
     <converters:BrushRoundConverter x:Key="BrushRoundConverter"/>
 
-    <Style x:Key="MaterialDesign3NavigationBarListBoxItem" TargetType="{x:Type ListBoxItem}">
+    <Style x:Key="MaterialDesign3.NavigationBarListBoxItem" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
         <Setter Property="Background" Value="{DynamicResource MaterialDesignBodyLight}"/>
         <Setter Property="BorderThickness" Value="0"/>
@@ -144,12 +144,12 @@
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesign3NavigationBarPrimaryListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesign3NavigationBarListBoxItem}">
+    <Style x:Key="MaterialDesign3.NavigationBarPrimaryListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesign3.NavigationBarListBoxItem}">
         <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
     </Style>
 
-    <Style x:Key="MaterialDesign3NavigationBarListBox" TargetType="ListBox" BasedOn="{StaticResource MaterialDesignListBox}">
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesign3NavigationBarListBoxItem}"/>
+    <Style x:Key="MaterialDesign3.NavigationBarListBox" TargetType="ListBox" BasedOn="{StaticResource MaterialDesignListBox}">
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesign3.NavigationBarListBoxItem}"/>
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
@@ -159,8 +159,8 @@
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesign3NavigationBarPrimaryListBox" TargetType="ListBox" BasedOn="{StaticResource MaterialDesign3NavigationBarListBox}">
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesign3NavigationBarPrimaryListBoxItem}"/>
+    <Style x:Key="MaterialDesign3.NavigationBarPrimaryListBox" TargetType="ListBox" BasedOn="{StaticResource MaterialDesign3.NavigationBarListBox}">
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesign3.NavigationBarPrimaryListBoxItem}"/>
     </Style>
 
 </ResourceDictionary>
