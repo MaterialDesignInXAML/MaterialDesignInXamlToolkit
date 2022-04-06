@@ -77,7 +77,7 @@ namespace MaterialDesign3Demo.Domain
 
         public ColorToolViewModel()
         {
-            ToggleBaseCommand = new AnotherCommandImplementation(o => ApplyBase((bool)o));
+            ToggleBaseCommand = new AnotherCommandImplementation(o => ApplyBase((bool)o!));
             ChangeHueCommand = new AnotherCommandImplementation(ChangeHue);
             ChangeCustomHueCommand = new AnotherCommandImplementation(ChangeCustomColor);
             ChangeToPrimaryCommand = new AnotherCommandImplementation(o => ChangeScheme(ColorScheme.Primary));
@@ -94,9 +94,9 @@ namespace MaterialDesign3Demo.Domain
             SelectedColor = _primaryColor;
         }
 
-        private void ChangeCustomColor(object obj)
+        private void ChangeCustomColor(object? obj)
         {
-            var color = (Color)obj;
+            var color = (Color)obj!;
 
             if (ActiveScheme == ColorScheme.Primary)
             {
@@ -149,9 +149,9 @@ namespace MaterialDesign3Demo.Domain
 
         private Color? _secondaryForegroundColor;
 
-        private void ChangeHue(object obj)
+        private void ChangeHue(object? obj)
         {
-            var hue = (Color)obj;
+            var hue = (Color)obj!;
 
             SelectedColor = hue;
             if (ActiveScheme == ColorScheme.Primary)

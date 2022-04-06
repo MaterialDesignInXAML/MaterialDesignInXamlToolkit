@@ -47,7 +47,7 @@ namespace mdresgen
             var xDocument = XDocument.Load(BaseSnippetLocation);
             var xmlRoot = xDocument.Root ??
                           throw new InvalidDataException("The input document does not contain a root");
-            var palette = JsonConvert.DeserializeObject<MdPalette>(File.ReadAllText(MdPaletteJsonLocation));
+            var palette = JsonConvert.DeserializeObject<MdPalette>(File.ReadAllText(MdPaletteJsonLocation))!;
 
             if (args.Length == 0)
                 GenerateXaml(xmlRoot);

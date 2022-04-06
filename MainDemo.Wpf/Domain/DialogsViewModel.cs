@@ -22,7 +22,7 @@ namespace MaterialDesignDemo.Domain
 
         public ICommand RunExtendedDialogCommand => new AnotherCommandImplementation(ExecuteRunExtendedDialog);
 
-        private async void ExecuteRunDialog(object o)
+        private async void ExecuteRunDialog(object? _)
         {
             //let's set up a little MVVM, cos that's what the cool kids are doing:
             var view = new SampleDialog
@@ -40,7 +40,7 @@ namespace MaterialDesignDemo.Domain
         private void ClosingEventHandler(object sender, DialogClosingEventArgs eventArgs)
             => Debug.WriteLine("You can intercept the closing event, and cancel here.");
 
-        private async void ExecuteRunExtendedDialog(object o)
+        private async void ExecuteRunExtendedDialog(object? _)
         {
             //let's set up a little MVVM, cos that's what the cool kids are doing:
             var view = new SampleDialog
@@ -100,15 +100,15 @@ namespace MaterialDesignDemo.Domain
             set => SetProperty(ref _sample4Content, value);
         }
 
-        private void OpenSample4Dialog(object obj)
+        private void OpenSample4Dialog(object? _)
         {
             Sample4Content = new Sample4Dialog();
             IsSample4DialogOpen = true;
         }
 
-        private void CancelSample4Dialog(object obj) => IsSample4DialogOpen = false;
+        private void CancelSample4Dialog(object? _) => IsSample4DialogOpen = false;
 
-        private void AcceptSample4Dialog(object obj)
+        private void AcceptSample4Dialog(object? _)
         {
             //pretend to do something for 3 seconds, then close
             Sample4Content = new SampleProgressDialog();

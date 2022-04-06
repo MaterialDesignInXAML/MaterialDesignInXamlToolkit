@@ -90,10 +90,10 @@ namespace MaterialDesign3Demo.Domain
             set => SetProperty(ref _packIconKind, value);
         }
 
-        private void OpenDotCom(object obj)
+        private void OpenDotCom(object? _)
             => Link.OpenInBrowser("https://materialdesignicons.com/");
 
-        private async void Search(object obj)
+        private async void Search(object? obj)
         {
             var text = obj as string;
             if (string.IsNullOrWhiteSpace(text))
@@ -108,7 +108,7 @@ namespace MaterialDesign3Demo.Domain
             }
         }
 
-        private void CopyToClipboard(object obj)
+        private void CopyToClipboard(object? obj)
         {
             var toBeCopied = $"<materialDesign:PackIcon Kind=\"{obj}\" />";
             Clipboard.SetDataObject(toBeCopied);
@@ -140,7 +140,7 @@ namespace MaterialDesign3Demo.Domain
         private ICommand? _saveIconCommand;
         public ICommand SaveIconCommand => _saveIconCommand ??= new AnotherCommandImplementation(OnSaveIcon);
 
-        private void OnSaveIcon(object _)
+        private void OnSaveIcon(object? _)
         {
             var saveDialog = new SaveFileDialog
             {

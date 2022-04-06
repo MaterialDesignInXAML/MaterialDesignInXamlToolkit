@@ -50,15 +50,29 @@
                                 VerticalAlignment="Stretch"
                                 Background="{TemplateBinding wpf:ColorZoneAssist.Background}"
                                 Focusable="False">
-
-                                <UniformGrid
-                                    x:Name="HeaderPanel"
-                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                    VerticalAlignment="Top"
-                                    Focusable="False"
-                                    IsItemsHost="True"
-                                    KeyboardNavigation.TabIndex="1"
-                                    Rows="1" />
+                                <ScrollViewer
+                                    wpf:ScrollViewerAssist.SupportHorizontalScroll="True"
+                                    HorizontalScrollBarVisibility="Hidden"
+                                    VerticalScrollBarVisibility="Hidden">
+                                    <StackPanel>
+                                        <UniformGrid
+                                            x:Name="CenteredHeaderPanel"
+                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                            Focusable="False"
+                                            IsItemsHost="True"
+                                            KeyboardNavigation.TabIndex="1"
+                                            Rows="1" />
+                                        <VirtualizingStackPanel
+                                            x:Name="HeaderPanel"
+                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                            Focusable="False"
+                                            IsItemsHost="True"
+                                            KeyboardNavigation.TabIndex="1"
+                                            Orientation="Horizontal" />
+                                    </StackPanel>
+                                </ScrollViewer>
                             </wpf:ColorZone>
                         </wpf:Card>
                         <Border
@@ -83,21 +97,37 @@
                     </DockPanel>
 
                     <ControlTemplate.Triggers>
+                        <Trigger Property="HorizontalContentAlignment" Value="Stretch">
+                            <Setter TargetName="HeaderPanel" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="CenteredHeaderPanel" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="HorizontalContentAlignment" Value="Center">
+                            <Setter TargetName="HeaderPanel" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="CenteredHeaderPanel" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="HorizontalContentAlignment" Value="Left">
+                            <Setter TargetName="HeaderPanel" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="CenteredHeaderPanel" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="HorizontalContentAlignment" Value="Right">
+                            <Setter TargetName="HeaderPanel" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="CenteredHeaderPanel" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
                         <Trigger Property="TabStripPlacement" Value="Bottom">
                             <Setter TargetName="PART_HeaderCard" Property="DockPanel.Dock" Value="Bottom" />
                             <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="Top" />
                         </Trigger>
                         <Trigger Property="TabStripPlacement" Value="Left">
                             <Setter TargetName="PART_HeaderCard" Property="DockPanel.Dock" Value="Left" />
-                            <Setter TargetName="HeaderPanel" Property="Rows" Value="0" />
+                            <Setter TargetName="CenteredHeaderPanel" Property="Rows" Value="0" />
                             <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="Right" />
-                            <Setter TargetName="HeaderPanel" Property="Columns" Value="1" />
+                            <Setter TargetName="CenteredHeaderPanel" Property="Columns" Value="1" />
                         </Trigger>
                         <Trigger Property="TabStripPlacement" Value="Right">
                             <Setter TargetName="PART_HeaderCard" Property="DockPanel.Dock" Value="Right" />
                             <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="Left" />
-                            <Setter TargetName="HeaderPanel" Property="Rows" Value="0" />
-                            <Setter TargetName="HeaderPanel" Property="Columns" Value="1" />
+                            <Setter TargetName="CenteredHeaderPanel" Property="Rows" Value="0" />
+                            <Setter TargetName="CenteredHeaderPanel" Property="Columns" Value="1" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -177,6 +207,7 @@
     <Style x:Key="MaterialDesignTabItem" TargetType="{x:Type TabItem}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
 
+        <Setter Property="Background" Value="{x:Null}" />
         <!--  Foreground is for the content, not the header  -->
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
 
@@ -196,9 +227,7 @@
                         <wpf:ColorZone
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
-                            Background="{TemplateBinding wpf:ColorZoneAssist.Background}"
                             Focusable="False"
-                            Foreground="{TemplateBinding wpf:ColorZoneAssist.Foreground}"
                             Mode="{TemplateBinding wpf:ColorZoneAssist.Mode}">
                             <wpf:Ripple
                                 x:Name="contentPresenter"
@@ -579,7 +608,10 @@
         </Setter>
     </Style>
 
-    <!-- Obsolete: will be removed in 5.0.0 release -->
-    <Style x:Key="MaterialDesignNavigatilRailTabControl" TargetType="{x:Type TabControl}" BasedOn="{StaticResource MaterialDesignNavigationRailTabControl}" />
+    <!--  Obsolete: will be removed in 5.0.0 release  -->
+    <Style
+        x:Key="MaterialDesignNavigatilRailTabControl"
+        BasedOn="{StaticResource MaterialDesignNavigationRailTabControl}"
+        TargetType="{x:Type TabControl}" />
 
 </ResourceDictionary>

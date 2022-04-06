@@ -85,7 +85,7 @@ namespace MaterialDesign3Demo.Domain
 
         public ICommand Open { get; }
 
-        private void Execute(object o)
+        private void Execute(object? _)
         {
             Link.OpenInBrowser(Url);
         }
