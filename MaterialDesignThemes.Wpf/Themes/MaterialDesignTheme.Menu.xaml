@@ -117,7 +117,7 @@
                             x:Name="templateRoot"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            
+                            Background="{TemplateBinding Background}"
                             SnapsToDevicePixels="True" />
                         <Border
                             x:Name="BackgroundRoot"
@@ -251,7 +251,7 @@
                             CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                             <Border
                                 x:Name="SubMenuBorder"
-                                Background="{DynamicResource MaterialDesignPaper}"
+                                Background="{TemplateBinding Background}"
                                 Effect="{DynamicResource MaterialDesignShadowDepth1}"
                                 CornerRadius="2">
 
