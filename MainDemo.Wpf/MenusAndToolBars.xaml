@@ -93,6 +93,11 @@
                         <MenuItem Header="Test 1"/>
                         <MenuItem Header="Test 1"/>
                     </MenuItem>
+                    <MenuItem Header="In Color" Background="{DynamicResource PrimaryHueMidBrush}" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}">
+                        <MenuItem Header="Test 1" Background="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"/>
+                        <MenuItem Header="Test 1" Background="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"/>
+                        <MenuItem Header="Test 1" Background="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"/>
+                    </MenuItem>
                 </Menu>
             </materialDesign:Card>
         </smtx:XamlDisplay>
