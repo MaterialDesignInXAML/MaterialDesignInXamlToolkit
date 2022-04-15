@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Drawing;
+using System.Windows;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -14,7 +15,8 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty CornerRadiusProperty
             = DependencyProperty.RegisterAttached("CornerRadius", typeof(CornerRadius), typeof(ListBoxItemAssist), new PropertyMetadata(DefaultCornerRadius));
 
-        public static CornerRadius GetCornerRadius(DependencyObject element) => (CornerRadius)element.GetValue(CornerRadiusProperty);
+        public static CornerRadius GetCornerRadius(DependencyObject element)
+            => (CornerRadius)element.GetValue(CornerRadiusProperty);
         public static void SetCornerRadius(DependencyObject element, CornerRadius value) => element.SetValue(CornerRadiusProperty, value);
         #endregion
 

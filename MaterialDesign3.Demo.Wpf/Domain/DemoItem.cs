@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesign3Demo.Domain
 {
@@ -15,12 +16,17 @@ namespace MaterialDesign3Demo.Domain
         private ScrollBarVisibility _verticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto;
         private Thickness _marginRequirement = new(16);
 
-        public DemoItem(string name, Type contentType, IEnumerable<DocumentationLink> documentation, object? dataContext = null)
+        private int _notificationNumber = 0;
+
+        public DemoItem(string name, Type contentType, IEnumerable<DocumentationLink> documentation,
+            PackIconKind selectedIcon, PackIconKind unselectedIcon, object? dataContext = null)
         {
             Name = name;
             _contentType = contentType;
             _dataContext = dataContext;
             Documentation = documentation;
+            SelectedIcon = selectedIcon;
+            UnselectedIcon = unselectedIcon;
         }
 
         public string Name { get; }
@@ -28,6 +34,18 @@ namespace MaterialDesign3Demo.Domain
         public IEnumerable<DocumentationLink> Documentation { get; }
 
         public object? Content => _content ??= CreateContent();
+
+        public PackIconKind SelectedIcon { get; set; }
+        public PackIconKind UnselectedIcon { get; set; }
+
+        public object? Notifications
+        {
+            get
+            {
+                if (_notificationNumber == 0) return null;
+                else return _notificationNumber < 100 ? _notificationNumber : "99+";
+            }
+        }
 
         public ScrollBarVisibility HorizontalScrollBarVisibilityRequirement
         {
@@ -56,6 +74,18 @@ namespace MaterialDesign3Demo.Domain
             }
 
             return content;
+        }
+
+        public void AddNewNotification()
+        {
+            _notificationNumber++;
+            OnPropertyChanged(nameof(Notifications));
+        }
+
+        public void DismissAllNotifications()
+        {
+            _notificationNumber = 0;
+            OnPropertyChanged(nameof(Notifications));
         }
     }
 }

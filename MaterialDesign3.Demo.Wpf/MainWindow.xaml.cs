@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Configuration;
 
 namespace MaterialDesign3Demo
 {
@@ -43,16 +44,19 @@ namespace MaterialDesign3Demo
 
         private void UIElement_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            //until we had a StaysOpen glag to Drawer, this will help with scroll bars
-            var dependencyObject = Mouse.Captured as DependencyObject;
-
-            while (dependencyObject != null)
+            if (NavDrawer.OpenMode is not DrawerHostOpenMode.Standard)
             {
-                if (dependencyObject is ScrollBar) return;
-                dependencyObject = VisualTreeHelper.GetParent(dependencyObject);
-            }
+                //until we had a StaysOpen glag to Drawer, this will help with scroll bars
+                var dependencyObject = Mouse.Captured as DependencyObject;
 
-            MenuToggleButton.IsChecked = false;
+                while (dependencyObject != null)
+                {
+                    if (dependencyObject is ScrollBar) return;
+                    dependencyObject = VisualTreeHelper.GetParent(dependencyObject);
+                }
+
+                MenuToggleButton.IsChecked = false;
+            }
         }
 
         private async void MenuPopupButton_OnClick(object sender, RoutedEventArgs e)
@@ -80,10 +84,19 @@ namespace MaterialDesign3Demo
             }
         }
 
-        private void MenuToggleButton_OnClick(object sender, RoutedEventArgs e) 
-            => DemoItemsSearchBox.Focus();
+        private void MenuToggleButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            DemoItemsSearchBox.Focus();
+            if (ActualWidth > 1600)
+            {
+                NavRail.Visibility = Visibility.Collapsed;
+                MenuToggleButton.Visibility = Visibility.Collapsed;
+            }
 
-        private void MenuDarkModeButton_Click(object sender, RoutedEventArgs e) 
+        }
+
+
+        private void MenuDarkModeButton_Click(object sender, RoutedEventArgs e)
             => ModifyTheme(DarkModeToggleButton.IsChecked == true);
 
         private static void ModifyTheme(bool isDarkTheme)
@@ -97,5 +110,55 @@ namespace MaterialDesign3Demo
 
         private void OnSelectedItemChanged(object sender, DependencyPropertyChangedEventArgs e)
             => MainScrollViewer.ScrollToHome();
+
+        private void GitHubButton_OnClick(object sender, RoutedEventArgs e)
+            => Link.OpenInBrowser(ConfigurationManager.AppSettings["GitHub"]);
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (ActualWidth <= 700)
+            {
+                NavRail.Visibility = Visibility.Collapsed;
+                NavBar.Visibility = Visibility.Visible;
+                NavDrawer.OpenMode = DrawerHostOpenMode.Modal;
+                NavDrawer.IsLeftDrawerOpen = false;
+                MenuToggleButton.Visibility = Visibility.Visible;
+                FAB.Visibility = Visibility.Visible;
+                DrawerFAB.Visibility = Visibility.Collapsed;
+            }
+            else if (ActualWidth > 700 && ActualWidth <= 1600)
+            {
+                NavRail.Visibility = Visibility.Visible;
+                NavBar.Visibility = Visibility.Collapsed;
+                NavDrawer.OpenMode = DrawerHostOpenMode.Modal;
+                NavDrawer.IsLeftDrawerOpen = false;
+                MenuToggleButton.Visibility = Visibility.Visible;
+                FAB.Visibility = Visibility.Collapsed;
+                DrawerFAB.Visibility = Visibility.Collapsed;
+            }
+            else if (ActualWidth > 1600)
+            {
+                NavRail.Visibility = Visibility.Collapsed;
+                NavBar.Visibility = Visibility.Collapsed;
+                NavDrawer.OpenMode = DrawerHostOpenMode.Standard;
+                NavDrawer.IsLeftDrawerOpen = true;
+                MenuToggleButton.Visibility = Visibility.Collapsed;
+                FAB.Visibility = Visibility.Collapsed;
+                DrawerFAB.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void MenuOpen_Click(object sender, RoutedEventArgs e)
+        {
+            NavDrawer.IsLeftDrawerOpen = false;
+            if (ActualWidth > 1600)
+            {
+                NavRail.Visibility = Visibility.Visible;
+                MenuToggleButton.Visibility = Visibility.Visible;
+            }
+
+        }
+
+        private void CloseNotificationPanel_Click(object sender, RoutedEventArgs e) => NotificationPanel.Visibility = Visibility.Collapsed;
     }
 }

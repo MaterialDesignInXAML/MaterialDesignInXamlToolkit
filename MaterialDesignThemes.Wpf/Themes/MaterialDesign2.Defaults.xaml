@@ -5,6 +5,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Badged.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Calendar.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Chip.xaml" />
@@ -50,7 +51,7 @@
     <SolidColorBrush x:Key="MaterialDesignDarkForeground" Color="#FFFAFAFA"/>
     <SolidColorBrush x:Key="MaterialDesignDarkSeparatorBackground" Color="#1F000000" />
     <SolidColorBrush x:Key="MaterialDesignLightSeparatorBackground" Color="#1FFFFFFF" />
-    
+
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedButton}" />
     <Style TargetType="{x:Type Calendar}" BasedOn="{StaticResource MaterialDesignCalendarPortrait}" />
     <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource MaterialDesignCheckBox}" />
