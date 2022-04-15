@@ -53,11 +53,11 @@ namespace MaterialDesignThemes.UITests.WPF.Buttons
 
             //Act
             Thickness borderThickness = await internalBorder.GetBorderThickness();
-            SolidColorBrush? borderBrush = (await internalBorder.GetBorderBrush()) as SolidColorBrush;
+            Color? borderBrush = await internalBorder.GetBorderBrushColor();
 
             //Assert
             Assert.Equal(new Thickness(5), borderThickness);
-            Assert.Equal(Colors.Red, borderBrush?.Color);
+            Assert.Equal(Colors.Red, borderBrush);
 
             recorder.Success();
         }
