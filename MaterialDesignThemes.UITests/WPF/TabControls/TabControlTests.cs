@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -31,19 +31,23 @@ public class TabControlTests : TestBase
     <TabItem Header=""TAB 2"">
         <TextBlock Margin=""8"" Text=""PrimaryMid Tab 2"" />
     </TabItem>
-</TabControl> ");
+</TabControl>");
 
         IVisualElement<TextBlock> textBlock = await tabControl.GetElement<TextBlock>(@"/TabItem[0]/TextBlock[0]");
+        IVisualElement<Border> selectedTabBorder = await tabControl.GetElement<Border>(@"/TabItem[0]~SelectionHighlightBorder");
 
         //Act
         Color? foreground = await textBlock.GetForegroundColor();
         Color? background = await textBlock.GetEffectiveBackground();
+        Color? selectedTabUnderline = await selectedTabBorder.GetBorderBrushColor();
 
         //Assert
         Assert.NotNull(foreground);
         Assert.NotNull(background);
 
         MaterialDesignSpec.AssertContrastRatio(foreground.Value, background.Value, MaterialDesignSpec.MinimumContrastSmallText);
+
+        Assert.Equal(foreground, selectedTabUnderline);
 
         recorder.Success();
     }
