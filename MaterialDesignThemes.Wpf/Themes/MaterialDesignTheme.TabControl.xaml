@@ -228,7 +228,8 @@
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
                             Focusable="False"
-                            Mode="{TemplateBinding wpf:ColorZoneAssist.Mode}">
+                            Mode="{TemplateBinding wpf:ColorZoneAssist.Mode}"
+                            x:Name="ColorZoneHeader">
                             <wpf:Ripple
                                 x:Name="contentPresenter"
                                 Padding="{TemplateBinding Padding}"
@@ -250,7 +251,7 @@
                         </wpf:ColorZone>
                         <Border
                             x:Name="SelectionHighlightBorder"
-                            BorderBrush="{TemplateBinding wpf:ColorZoneAssist.Foreground}"
+                            BorderBrush="{Binding Path=Foreground, ElementName=ColorZoneHeader}"
                             BorderThickness="0,0,0,2"
                             RenderTransformOrigin="0.5,0.5"
                             Visibility="Hidden">
