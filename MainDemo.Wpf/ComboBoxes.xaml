@@ -311,6 +311,21 @@
                     </ComboBox.SelectedItem>
                 </ComboBox>
             </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay
+                UniqueKey="comboboxes_helpertext_filled_combobox"
+                HorizontalAlignment="Left">
+
+                <ComboBox
+                    Style="{StaticResource MaterialDesignFilledComboBox}" 
+                    materialDesign:HintAssist.Hint="With helper text"
+                    materialDesign:HintAssist.HelperText="Helper text"
+                    Width="256">
+                    <ComboBoxItem Content="Item 1"/>
+                    <ComboBoxItem Content="Item 2"/>
+                    <ComboBoxItem Content="Item 3"/>
+                </ComboBox>
+            </smtx:XamlDisplay>
         </StackPanel>
 
         <TextBlock
@@ -373,6 +388,21 @@
                             </Binding.ValidationRules>
                         </Binding>
                     </ComboBox.SelectedItem>
+                </ComboBox>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay
+                UniqueKey="comboboxes_helpertext_outlined_combobox"
+                HorizontalAlignment="Left">
+
+                <ComboBox
+                    Style="{StaticResource MaterialDesignOutlinedComboBox}" 
+                    materialDesign:HintAssist.Hint="With helper text"
+                    materialDesign:HintAssist.HelperText="Helper text"
+                    Width="256">
+                    <ComboBoxItem Content="Item 1"/>
+                    <ComboBoxItem Content="Item 2"/>
+                    <ComboBoxItem Content="Item 3"/>
                 </ComboBox>
             </smtx:XamlDisplay>
         </StackPanel>
