@@ -40,4 +40,4 @@ runs:
       uses: actions/upload-artifact@v2
       with:
         name: Screenshots-${{ github.run_number }}
-        path: ${{ github.workspace }}/MaterialDesignThemes.UITests/bin/${{ inputs.buildConfiguration }}/net5.0-windows/Screenshots
+        path: ${{ github.workspace }}/MaterialDesignThemes.UITests/bin/${{ inputs.buildConfiguration }}/net6.0-windows/Screenshots

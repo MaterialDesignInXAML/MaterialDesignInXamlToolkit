@@ -26,6 +26,8 @@
         </Setter>
     </Style>
 
+    <!--#region ToolToggle -->
+
     <Style x:Key="MaterialDesignToolToggleListBoxItem" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
@@ -216,6 +218,10 @@
         <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0" />
     </Style>
 
+    <!--#endregion-->
+
+    <!--#region Default -->
+
     <Style x:Key="MaterialDesignListBoxItem" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
@@ -307,6 +313,48 @@
         </Setter>
     </Style>
 
+    <Style x:Key="MaterialDesignListBox" TargetType="{x:Type ListBox}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignListBoxItem}" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+        <Setter Property="wpf:ScrollViewerAssist.IsAutoHideEnabled" Value="True"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBox}" >
+                    <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"  ClipToBounds="False"
+                            SnapsToDevicePixels="true">
+                        <ScrollViewer Focusable="false" Padding="{TemplateBinding Padding}"  ClipToBounds="False">
+                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"  ClipToBounds="False"/>
+                        </ScrollViewer>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsGrouping" Value="true"/>
+                                <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region Cards -->
+
     <Style x:Key="MaterialDesignCardsListBoxItem" TargetType="{x:Type ListBoxItem}">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Padding" Value="0"/>
@@ -328,6 +376,14 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="MaterialDesignCardsListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}">
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignCardsListBoxItem}"/>
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region Navigation -->
 
     <Style x:Key="MaterialDesignNavigationListBoxItem" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
@@ -432,7 +488,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-
     </Style>
 
     <Style x:Key="MaterialDesignNavigationPrimaryListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignNavigationListBoxItem}">
@@ -457,9 +512,9 @@
     <Style x:Key="MaterialDesignNavigationAccentListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignNavigationListBoxItem}">
         <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidBrush}"/>
         <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}"/>
-        
+
         <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
-        
+
         <Style.Triggers>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
@@ -473,44 +528,6 @@
 
     </Style>
 
-    <Style x:Key="MaterialDesignListBox" TargetType="{x:Type ListBox}">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignListBoxItem}" />
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
-        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
-        <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
-        <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
-        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBox}">
-                    <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
-                        <ScrollViewer Focusable="false" Padding="{TemplateBinding Padding}">
-                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                        </ScrollViewer>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsGrouping" Value="true"/>
-                                <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false"/>
-                            </MultiTrigger.Conditions>
-                            <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
-                        </MultiTrigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style x:Key="MaterialDesignCardsListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}">
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignCardsListBoxItem}"/>
-    </Style>
-
     <Style x:Key="MaterialDesignNavigationListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}">
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignNavigationListBoxItem}"/>
     </Style>
@@ -522,6 +539,10 @@
     <Style x:Key="MaterialDesignNavigationAccentListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}">
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignNavigationAccentListBoxItem}"/>
     </Style>
+
+    <!--#endregion-->
+
+    <!--#region Filter Chip-->
 
     <Style x:Key="MaterialDesignFilterChipListBoxItem" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Template">
@@ -715,6 +736,9 @@
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipAccentOutlineListBoxItem}"/>
     </Style>
 
+    <!--#endregion-->
+
+    <!--#region Choice Chip-->
     <Style x:Key="MaterialDesignChoiceChipListBoxItem" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Template">
             <Setter.Value>
@@ -866,4 +890,5 @@
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignChoiceChipAccentOutlineListBoxItem}"/>
     </Style>
 
+    <!--#endregion-->
 </ResourceDictionary>

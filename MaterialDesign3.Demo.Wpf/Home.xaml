@@ -65,13 +65,13 @@
         
         <ScrollViewer
             Grid.Row="1"
-            HorizontalScrollBarVisibility="Auto"
-            VerticalScrollBarVisibility="Disabled"
+            HorizontalScrollBarVisibility="Disabled"
+            VerticalScrollBarVisibility="Auto"
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom"
             Margin="0 0 0 32">
             <Grid>
-                <StackPanel Orientation="Horizontal">
+                <WrapPanel Orientation="Horizontal" Margin="0 20 0 0">
                     <materialDesign:Card
                         Width="420"
                         Margin="4 2 8 16"
@@ -252,11 +252,11 @@
                             </Border>
                         </Grid>
                     </materialDesign:Card>
-                </StackPanel>
+                </WrapPanel>
             </Grid>
         </ScrollViewer>
         
-        <materialDesign:PopupBox
+        <!--<materialDesign:PopupBox
             Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
@@ -279,7 +279,7 @@
                     ToolTip="Chat"
                     Click="ChatButton_OnClick"
                     Content="{materialDesign:PackIcon Kind=Message, Size=20}">
-                    <!-- mix up the colours by bringing in a named palette (see merged dictionaries at top) -->
+                    --><!-- mix up the colours by bringing in a named palette (see merged dictionaries at top) --><!--
                     <Button.Background>
                         <SolidColorBrush Color="{StaticResource GreenPrimary500}"/>
                     </Button.Background>
@@ -309,6 +309,6 @@
                     </Button.Foreground>
                 </Button>
             </StackPanel>
-        </materialDesign:PopupBox>
+        </materialDesign:PopupBox>-->
     </Grid>
 </UserControl>
