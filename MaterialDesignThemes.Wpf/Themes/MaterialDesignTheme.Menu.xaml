@@ -88,7 +88,7 @@
         BasedOn="{x:Null}">
         <Setter
             Property="Background"
-            Value="{DynamicResource MaterialDesignPaper}" />
+            Value="Transparent" />
         <Setter
             Property="Padding"
             Value="24 0 24 0"></Setter>
@@ -251,12 +251,12 @@
                             CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                             <Border
                                 x:Name="SubMenuBorder"
-                                Background="{TemplateBinding Background}"
+                                Background="{DynamicResource MaterialDesignPaper}"
                                 Effect="{DynamicResource MaterialDesignShadowDepth1}"
                                 CornerRadius="2">
 
                                 <Border
-                                    Background="Transparent">
+                                    Background="{TemplateBinding Background}">
                                     <ScrollViewer
                                         x:Name="SubMenuScrollViewer"
                                         Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
@@ -270,7 +270,7 @@
                                                 Width="0">
                                                 <Rectangle
                                                     x:Name="OpaqueRect"
-                                                    Fill="{Binding Background, ElementName=SubMenuBorder}"
+                                                    Fill="{TemplateBinding Background}"
                                                     Height="{Binding ActualHeight, ElementName=SubMenuBorder}"
                                                     Width="{Binding ActualWidth, ElementName=SubMenuBorder}" />
                                             </Canvas>
