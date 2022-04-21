@@ -105,9 +105,15 @@ namespace MaterialDesignThemes.Wpf
                 if (shadowLocalInfo == null) return;
 
                 TimeSpan time = GetShadowAnimationDuration(dependencyObject);
-                var doubleAnimation = new DoubleAnimation(shadowLocalInfo.StandardOpacity, new Duration(time))
+
+                var doubleAnimation = new DoubleAnimation()
                 {
-                    FillBehavior = FillBehavior.HoldEnd
+                    To = shadowLocalInfo.StandardOpacity,
+                    Duration = new Duration(time),
+                    FillBehavior = FillBehavior.HoldEnd,
+                    EasingFunction = new CubicEase(),
+                    AccelerationRatio = 0.4,
+                    DecelerationRatio = 0.2
                 };
                 dropShadowEffect.BeginAnimation(DropShadowEffect.OpacityProperty, doubleAnimation);
             }
@@ -161,7 +167,7 @@ namespace MaterialDesignThemes.Wpf
                propertyType: typeof(TimeSpan),
                ownerType: typeof(ShadowAssist),
                defaultMetadata: new FrameworkPropertyMetadata(
-                   defaultValue: new TimeSpan(0, 0, 0, 0, 150),
+                   defaultValue: new TimeSpan(0, 0, 0, 0, 180),
                    flags: FrameworkPropertyMetadataOptions.Inherits)
                );
         
