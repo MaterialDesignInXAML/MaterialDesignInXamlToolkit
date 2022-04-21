@@ -41,7 +41,7 @@ Comprehensive and easy to use Material Design theme and control library for the 
 
 # ![Alt text](web/images/MD4XAML28.png "How Can I Use The Themes?") Source Code
 
-To load the source project you will need Visual Studio 2019. Don't worry if you have an earlier version, you can still use the compiled assemblies from NuGet (`Install-Package MaterialDesignThemes`). There are two demo projects in the solution, restore the necessary NuGet packages and correct the programming syntax that is not compatible with C# versions lower than C# 8.0 (`currently used in Visual Studio 2019`). Then, you should be able to fire both of these projects up. One is a "pure" Material Design project, the other illustrates how to combine with Dragablz & MahApps.
+To load the source project you will need Visual Studio 2022. Don't worry if you have an earlier version, you can still use the compiled assemblies from NuGet (`Install-Package MaterialDesignThemes`). There are three demo projects in the solution, restore the necessary NuGet packages and correct the programming syntax that is not compatible with C# versions lower than C# 10.0 (`currently used in Visual Studio 2022`). Then, you should be able to fire the projects up. The first one is a "pure" Material Design 2 project. The second one shows how to combine with Dragablz and MahApps. The last one is a Material Design 3 project (`In Development`).
 
 # ![Alt text](web/images/MD4XAML28.png "Contributions") Contribution Guidelines
 
