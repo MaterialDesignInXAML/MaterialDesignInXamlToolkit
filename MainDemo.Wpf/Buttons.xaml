@@ -44,10 +44,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock
             Style="{StaticResource MaterialDesignHeadline5TextBlock}"
@@ -1096,19 +1092,38 @@
             </smtx:XamlDisplay>
         </StackPanel>
 
+        <Rectangle
+            Margin="0 24 0 0"
+            Height="1"
+            Fill="{DynamicResource MaterialDesignDivider}"
+            Grid.Row="11" />
+
         <TextBlock
             Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-            Grid.Row="11"
+            Grid.Row="12"
             Margin="0 24"
-            Text="Buttons - With Custom ShadowAssist Animation Duration"/>
+            Text="Buttons - With Custom Animation Duration"/>
 
         <StackPanel
-            Grid.Row="12"
+            Grid.Row="13"
             Orientation="Horizontal">
-            <Button materialDesign:ShadowAssist.ShadowAnimationDuration="0:0:0" Margin="0,0,20,0">Instant</Button>
-            <Button Margin="0,0,20,0">Default</Button>
-            <Button materialDesign:ShadowAssist.ShadowAnimationDuration="0:0:2">Long</Button>
+            <smtx:XamlDisplay UniqueKey="button_duration_1" Margin="0,0,20,0">
+                <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                    materialDesign:ShadowAssist.ShadowAnimationDuration="0:0:0">
+                    Instant Duration
+                </Button>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay UniqueKey="button_duration_2" Margin="0,0,20,0">
+                <Button>
+                    Default Duration
+                </Button>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay UniqueKey="button_duration_3" Margin="0,0,20,0">
+                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    materialDesign:ShadowAssist.ShadowAnimationDuration="0:0:0.5">
+                    Long Duration
+                </Button>
+            </smtx:XamlDisplay>
         </StackPanel>
-
     </Grid>
 </UserControl>

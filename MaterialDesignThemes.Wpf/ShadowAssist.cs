@@ -161,7 +161,7 @@ namespace MaterialDesignThemes.Wpf
                propertyType: typeof(TimeSpan),
                ownerType: typeof(ShadowAssist),
                defaultMetadata: new FrameworkPropertyMetadata(
-                   defaultValue: new TimeSpan(0, 0, 0, 0, 180),
+                   defaultValue: new TimeSpan(0, 0, 0, 0, 150),
                    flags: FrameworkPropertyMetadataOptions.Inherits)
                );
         
