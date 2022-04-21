@@ -44,6 +44,10 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock
             Style="{StaticResource MaterialDesignHeadline5TextBlock}"
@@ -1091,5 +1095,20 @@
                 </materialDesign:PopupBox>
             </smtx:XamlDisplay>
         </StackPanel>
+
+        <TextBlock
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Grid.Row="11"
+            Margin="0 24"
+            Text="Buttons - With Custom ShadowAssist Animation Duration"/>
+
+        <StackPanel
+            Grid.Row="12"
+            Orientation="Horizontal">
+            <Button materialDesign:ShadowAssist.ShadowAnimationDuration="0:0:0" Margin="0,0,20,0">Instant</Button>
+            <Button Margin="0,0,20,0">Default</Button>
+            <Button materialDesign:ShadowAssist.ShadowAnimationDuration="0:0:2">Long</Button>
+        </StackPanel>
+
     </Grid>
 </UserControl>
