@@ -1,11 +1,14 @@
 using System;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 
 namespace MaterialDesignThemes.Wpf
 {
+
     public enum ShadowDepth
     {
         Depth0,
@@ -37,8 +40,10 @@ namespace MaterialDesignThemes.Wpf
         public double StandardOpacity { get; }
     }
 
-    public static class ShadowAssist
+    public class ShadowAssist
     {
+
+        #region AttachedProperty : ShadowDepthProperty
         public static readonly DependencyProperty ShadowDepthProperty = DependencyProperty.RegisterAttached(
             "ShadowDepth", typeof(ShadowDepth), typeof(ShadowAssist), new FrameworkPropertyMetadata(default(ShadowDepth), FrameworkPropertyMetadataOptions.AffectsRender));
 
@@ -51,7 +56,9 @@ namespace MaterialDesignThemes.Wpf
         {
             return (ShadowDepth)element.GetValue(ShadowDepthProperty);
         }
+        #endregion
 
+        #region AttachedProperty : LocalInfoPropertyKey
         private static readonly DependencyPropertyKey LocalInfoPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
             "LocalInfo", typeof(ShadowLocalInfo), typeof(ShadowAssist), new PropertyMetadata(default(ShadowLocalInfo)));
 
@@ -60,14 +67,18 @@ namespace MaterialDesignThemes.Wpf
 
         private static ShadowLocalInfo? GetLocalInfo(DependencyObject element)
             => (ShadowLocalInfo?)element.GetValue(LocalInfoPropertyKey.DependencyProperty);
+        #endregion
 
+        #region AttachedProperty : DarkenProperty
         public static readonly DependencyProperty DarkenProperty = DependencyProperty.RegisterAttached(
             "Darken", typeof(bool), typeof(ShadowAssist), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.AffectsRender, DarkenPropertyChangedCallback));
 
         private static void DarkenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
+
             var uiElement = dependencyObject as UIElement;
             var dropShadowEffect = uiElement?.Effect as DropShadowEffect;
+
 
             if (dropShadowEffect == null) return;
 
@@ -75,9 +86,16 @@ namespace MaterialDesignThemes.Wpf
             {
                 SetLocalInfo(dependencyObject, new ShadowLocalInfo(dropShadowEffect.Opacity));
 
-                var doubleAnimation = new DoubleAnimation(1, new Duration(TimeSpan.FromMilliseconds(350)))
+                TimeSpan time = GetShadowAnimationDuration(dependencyObject);
+
+                var doubleAnimation = new DoubleAnimation()
                 {
-                    FillBehavior = FillBehavior.HoldEnd
+                    To = 1,
+                    Duration = new Duration(time),
+                    FillBehavior = FillBehavior.HoldEnd,
+                    EasingFunction = new CubicEase(),
+                    AccelerationRatio = 0.4,
+                    DecelerationRatio = 0.2
                 };
                 dropShadowEffect.BeginAnimation(DropShadowEffect.OpacityProperty, doubleAnimation);
             }
@@ -86,9 +104,16 @@ namespace MaterialDesignThemes.Wpf
                 var shadowLocalInfo = GetLocalInfo(dependencyObject);
                 if (shadowLocalInfo == null) return;
 
-                var doubleAnimation = new DoubleAnimation(shadowLocalInfo.StandardOpacity, new Duration(TimeSpan.FromMilliseconds(350)))
+                TimeSpan time = GetShadowAnimationDuration(dependencyObject);
+
+                var doubleAnimation = new DoubleAnimation()
                 {
-                    FillBehavior = FillBehavior.HoldEnd
+                    To = shadowLocalInfo.StandardOpacity,
+                    Duration = new Duration(time),
+                    FillBehavior = FillBehavior.HoldEnd,
+                    EasingFunction = new CubicEase(),
+                    AccelerationRatio = 0.4,
+                    DecelerationRatio = 0.2
                 };
                 dropShadowEffect.BeginAnimation(DropShadowEffect.OpacityProperty, doubleAnimation);
             }
@@ -103,7 +128,9 @@ namespace MaterialDesignThemes.Wpf
         {
             return (bool)element.GetValue(DarkenProperty);
         }
+        #endregion
 
+        #region AttachedProperty : CacheModeProperty
         public static readonly DependencyProperty CacheModeProperty = DependencyProperty.RegisterAttached(
             "CacheMode", typeof(CacheMode), typeof(ShadowAssist), new FrameworkPropertyMetadata(new BitmapCache { EnableClearType = true, SnapsToDevicePixels = true }, FrameworkPropertyMetadataOptions.Inherits));
 
@@ -116,7 +143,9 @@ namespace MaterialDesignThemes.Wpf
         {
             return (CacheMode)element.GetValue(CacheModeProperty);
         }
+        #endregion
 
+        #region AttachedProperty : ShadowEdgesProperty
         public static readonly DependencyProperty ShadowEdgesProperty = DependencyProperty.RegisterAttached(
             "ShadowEdges", typeof(ShadowEdges), typeof(ShadowAssist), new PropertyMetadata(ShadowEdges.All));
 
@@ -129,5 +158,21 @@ namespace MaterialDesignThemes.Wpf
         {
             return (ShadowEdges)element.GetValue(ShadowEdgesProperty);
         }
+        #endregion
+
+        #region AttachedProperty : ShadowAnimationDurationProperty
+        public static readonly DependencyProperty ShadowAnimationDurationProperty =
+           DependencyProperty.RegisterAttached(
+               name: "ShadowAnimationDuration",
+               propertyType: typeof(TimeSpan),
+               ownerType: typeof(ShadowAssist),
+               defaultMetadata: new FrameworkPropertyMetadata(
+                   defaultValue: new TimeSpan(0, 0, 0, 0, 180),
+                   flags: FrameworkPropertyMetadataOptions.Inherits)
+               );
+        
+        public static TimeSpan GetShadowAnimationDuration(DependencyObject element) => (TimeSpan)element.GetValue(ShadowAnimationDurationProperty);
+        public static void SetShadowAnimationDuration(DependencyObject element, TimeSpan value) => element.SetValue(ShadowAnimationDurationProperty, value);
+        #endregion
     }
 }
