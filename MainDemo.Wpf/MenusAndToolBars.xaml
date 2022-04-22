@@ -14,7 +14,7 @@
             UniqueKey="menus_1"
             DockPanel.Dock="Top"
             Margin="5 5 0 15">
-            <Menu IsMainMenu="True" Height="48">
+            <Menu IsMainMenu="True">
                 <MenuItem Header="_File">
                     <MenuItem
                         Header="Save"
@@ -82,7 +82,7 @@
             DockPanel.Dock="Top"
             Margin="5 5 0 5">
             <materialDesign:Card Height="80">
-                <Menu>
+                <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
                     <MenuItem Header="Big">
                         <MenuItem Header="Test 1"/>
                         <MenuItem Header="Test 1"/>

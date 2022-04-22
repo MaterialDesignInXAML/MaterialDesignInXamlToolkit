@@ -335,9 +335,10 @@
                             <Setter
                                 Property="Padding"
                                 Value="16 0" />
+                            <Setter Property="wpf:MenuAssist.TopLevelMenuItemHeight" Value="48"/>
                             <Setter
                                 Property="Height"
-                                Value="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Menu}}}" />
+                                Value="{Binding Path=(wpf:MenuAssist.TopLevelMenuItemHeight), RelativeSource={RelativeSource TemplatedParent}}" />
                             <Setter
                                 TargetName="templateRoot"
                                 Property="CornerRadius"
