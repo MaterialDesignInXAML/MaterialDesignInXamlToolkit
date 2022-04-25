@@ -81,8 +81,8 @@
             UniqueKey="bigMenu"
             DockPanel.Dock="Top"
             Margin="5 5 0 5">
-            <materialDesign:Card Height="80">
-                <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
+            <materialDesign:Card x:Name="card1" Height="80">
+                <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type materialDesign:Card}},Path=ActualHeight}">
                     <MenuItem Header="Big">
                         <MenuItem Header="Test 1"/>
                         <MenuItem Header="Test 1"/>
@@ -107,7 +107,7 @@
             DockPanel.Dock="Top"
             Margin="5 5 0 20">
             <materialDesign:Card Height="25">
-                <Menu>
+                <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="25">
                     <MenuItem Header="Small">
                         <MenuItem Header="Test 1"/>
                         <MenuItem Header="Test 1"/>
