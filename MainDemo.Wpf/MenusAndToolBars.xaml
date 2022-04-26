@@ -9,12 +9,16 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300">
-    <DockPanel>
+    <StackPanel Margin="15">
+        <TextBlock
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Text="Default Menu"
+            Margin="0 0 0 20"/>
+        
         <smtx:XamlDisplay
             UniqueKey="menus_1"
-            DockPanel.Dock="Top"
-            Margin="5 5 0 15">
-            <Menu IsMainMenu="True" Height="48">
+            HorizontalAlignment="Left">
+            <Menu>
                 <MenuItem Header="_File">
                     <MenuItem
                         Header="Save"
@@ -77,54 +81,128 @@
             </Menu>
         </smtx:XamlDisplay>
 
+        <Separator Margin="0 20" Style="{DynamicResource MaterialDesignSeparator}"/>
+
+        <TextBlock
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Text="Menu with custom Height"
+            Margin="0 0 0 20"/>
+
         <smtx:XamlDisplay
-            UniqueKey="bigMenu"
-            DockPanel.Dock="Top"
-            Margin="5 5 0 5">
-            <materialDesign:Card Height="80">
-                <Menu>
-                    <MenuItem Header="Big">
-                        <MenuItem Header="Test 1"/>
-                        <MenuItem Header="Test 1"/>
-                        <MenuItem Header="Test 1"/>
-                    </MenuItem>
-                    <MenuItem Header="Menu">
-                        <MenuItem Header="Test 1"/>
-                        <MenuItem Header="Test 1"/>
-                        <MenuItem Header="Test 1"/>
-                    </MenuItem>
-                    <MenuItem Header="In Color" Background="{DynamicResource PrimaryHueMidBrush}" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}">
-                        <MenuItem Header="Test 1" Background="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"/>
-                        <MenuItem Header="Test 1" Background="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"/>
-                        <MenuItem Header="Test 1" Background="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"/>
-                    </MenuItem>
-                </Menu>
-            </materialDesign:Card>
+            UniqueKey="customHeightMenu1"
+            HorizontalAlignment="Left"
+            Margin="0 0 0 15">
+            <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="25">
+                <MenuItem Header="Small">
+                    <MenuItem Header="Item 1"/>
+                    <MenuItem Header="Item 2"/>
+                    <MenuItem Header="Item 3"/>
+                </MenuItem>
+                <MenuItem Header="Menu">
+                    <MenuItem Header="Item 1"/>
+                    <MenuItem Header="Item 2"/>
+                    <MenuItem Header="Item 3"/>
+                </MenuItem>
+            </Menu>
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay
-            UniqueKey="smallMenu"
-            DockPanel.Dock="Top"
-            Margin="5 5 0 20">
-            <materialDesign:Card Height="25">
-                <Menu>
-                    <MenuItem Header="Small">
-                        <MenuItem Header="Test 1"/>
-                        <MenuItem Header="Test 1"/>
-                        <MenuItem Header="Test 1"/>
-                    </MenuItem>
-                    <MenuItem Header="Menu">
-                        <MenuItem Header="Test 1"/>
-                        <MenuItem Header="Test 1"/>
-                        <MenuItem Header="Test 1"/>
-                    </MenuItem>
-                </Menu>
-            </materialDesign:Card>
+            UniqueKey="customHeightMenu2"
+            HorizontalAlignment="Left">
+            <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="80">
+                <MenuItem Header="Big">
+                    <MenuItem Header="Item 1"/>
+                    <MenuItem Header="Item 2"/>
+                    <MenuItem Header="Item 3"/>
+                </MenuItem>
+                <MenuItem Header="Menu">
+                    <MenuItem Header="Item 1"/>
+                    <MenuItem Header="Item 2"/>
+                    <MenuItem Header="Item 3"/>
+                </MenuItem>
+            </Menu>
         </smtx:XamlDisplay>
+
+        <Separator Margin="0 20" Style="{DynamicResource MaterialDesignSeparator}"/>
+
+        <TextBlock
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Text="Adaptive Menu"
+            Margin="0 0 0 20"/>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" MinHeight="25"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <smtx:XamlDisplay
+                UniqueKey="adaptiveMenu"
+                Grid.Row="0"
+                HorizontalAlignment="Left">
+                <materialDesign:Card>
+                    <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type materialDesign:Card}},Path=ActualHeight}">
+                        <MenuItem Header="Adaptive">
+                            <MenuItem Header="Item 1"/>
+                            <MenuItem Header="Item 2"/>
+                            <MenuItem Header="Item 3"/>
+                        </MenuItem>
+                        <MenuItem Header="Menu">
+                            <MenuItem Header="Item 1"/>
+                            <MenuItem Header="Item 2"/>
+                            <MenuItem Header="Item 3"/>
+                        </MenuItem>
+                    </Menu>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+            <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" Margin="0 10"/>
+            <Grid Grid.Row="2">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Information" Margin="0 0 5 0"/>
+                    <TextBlock>The menu height matches with the parent panel height. Use the splitter to see the adaptive menu in action.</TextBlock>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <Separator Margin="0 20" Style="{DynamicResource MaterialDesignSeparator}"/>
+
+        <TextBlock
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Text="Menu with colored items"
+            Margin="0 0 0 20"/>
+
+        <smtx:XamlDisplay
+            UniqueKey="coloredMenu1"
+            HorizontalAlignment="Left">
+            <Menu>
+                <MenuItem Header="Menu">
+                    <MenuItem Header="Item 1"/>
+                    <MenuItem Header="Item 2"/>
+                    <MenuItem Header="Item 3"/>
+                </MenuItem>
+                <MenuItem Header="In Color" Background="{DynamicResource PrimaryHueMidBrush}" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}">
+                    <MenuItem Header="Item 1" Background="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"/>
+                    <MenuItem Header="Item 2" Background="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"/>
+                    <MenuItem Header="Item 3" Background="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"/>
+                </MenuItem>
+                <MenuItem Header="(1) Important" Foreground="Crimson">
+                    <MenuItem Header="Item 1" Foreground="{DynamicResource MaterialDesignLightForeground}"/>
+                    <MenuItem Header="(1) This is important" Foreground="Crimson"/>
+                    <MenuItem Header="Nothing here" Foreground="{DynamicResource MaterialDesignLightForeground}"/>
+                </MenuItem>
+            </Menu>
+        </smtx:XamlDisplay>
+        
+        <Separator Margin="0 20" Style="{DynamicResource MaterialDesignSeparator}"/>
+
+        <TextBlock
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Text="Toolbars"
+            Margin="0 0 0 20"/>
 
         <smtx:XamlDisplay
             UniqueKey="menus_2"
-            DockPanel.Dock="Top"
             Margin="5 0 0 0">
             <ToolBarTray>
                 <ToolBar
@@ -263,7 +341,6 @@
 
         <smtx:XamlDisplay
             UniqueKey="menus_3"
-            DockPanel.Dock="Top"
             Margin="5 16 0 0">
             <ToolBarTray>
                 <ToolBar
@@ -306,30 +383,35 @@
                 </ToolBar>
             </ToolBarTray>
         </smtx:XamlDisplay>
-        <smtx:XamlDisplay
-            UniqueKey="menus_4"
-            Margin="16"
-            VerticalAlignment="Top"
-            HorizontalAlignment="Left">
-            <TextBox Text="With Default Context Menu"/>
-        </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay
-            UniqueKey="menus_5"
-            Margin="16"
-            VerticalAlignment="Top"
-            HorizontalAlignment="Left">
-            <TextBox Text="With Custom Context Menu">
-                <TextBox.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Hello World"/>
-                        <MenuItem Header="Clickety Click">
-                            <MenuItem Header="Clackety Clack"/>
-                        </MenuItem>
-                    </ContextMenu>
-                </TextBox.ContextMenu>
-            </TextBox>
-        </smtx:XamlDisplay>
-    </DockPanel>
+        <Separator Margin="0 20" Style="{DynamicResource MaterialDesignSeparator}"/>
+
+        <TextBlock
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Text="Context Menus"
+            Margin="0 0 0 20"/>
+
+        <StackPanel Orientation="Horizontal">
+            <smtx:XamlDisplay
+                UniqueKey="menus_4"
+                Margin="0 0 20 0">
+                <TextBox Text="With Default Context Menu"/>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay
+                UniqueKey="menus_5">
+                <TextBox Text="With Custom Context Menu">
+                    <TextBox.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Hello World"/>
+                            <MenuItem Header="Clickety Click">
+                                <MenuItem Header="Clackety Clack"/>
+                            </MenuItem>
+                        </ContextMenu>
+                    </TextBox.ContextMenu>
+                </TextBox>
+            </smtx:XamlDisplay>
+        </StackPanel>
+    </StackPanel>
 </UserControl>
 
