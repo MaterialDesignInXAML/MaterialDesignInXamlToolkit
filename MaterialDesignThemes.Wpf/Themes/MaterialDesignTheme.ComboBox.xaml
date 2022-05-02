@@ -360,6 +360,7 @@
                                     ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
                                     IsHitTestVisible="False"
                                     Margin="{TemplateBinding wpf:TextFieldAssist.TextBoxViewMargin}" />
+                                <!-- This TextBox is used in the ComboBoxAssist class. Be careful when applying changes here. -->
                                 <TextBox
                                     x:Name="PART_EditableTextBox"
                                     Grid.Column="1"
