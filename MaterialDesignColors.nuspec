@@ -15,12 +15,14 @@
     <copyright>$copyright$</copyright>
     <tags>WPF XAML Material Design Colour Color UI UX</tags>
     <dependencies>
-      <group targetFramework="net452" />
+      <group targetFramework="net462" />
       <group targetFramework="netcoreapp3.1" />
+      <group targetFramework="net6.0-windows" />
     </dependencies>
   </metadata>
   <files>
-    <file src="MaterialDesignColors.Wpf\bin\$configuration$\net452\MaterialDesignColors.*" target="lib\net452" exclude="**\*.json" />
+    <file src="MaterialDesignColors.Wpf\bin\$configuration$\net452\MaterialDesignColors.*" target="lib\net462" exclude="**\*.json" />
     <file src="MaterialDesignColors.Wpf\bin\$configuration$\netcoreapp3.1\MaterialDesignColors.*" target="lib\netcoreapp3.1" exclude="**\*.json" />
+    <file src="MaterialDesignColors.Wpf\bin\$configuration$\net6.0-windows\MaterialDesignColors.*" target="lib\net6.0-windows" exclude="**\*.json" />
   </files>
 </package>

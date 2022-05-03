@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net452;netcoreapp3.1;net6.0-windows</TargetFrameworks>
+        <TargetFrameworks>net462;netcoreapp3.1;net6.0-windows</TargetFrameworks>
         <UseWPF>true</UseWPF>
         <MDIXMahAppsVersion Condition="$(MDIXMahAppsVersion) == '' Or $(MDIXMahAppsVersion) == '*Undefined*'">1.0.1</MDIXMahAppsVersion>
         <AssemblyTitle>MaterialDesignThemes.MahApps</AssemblyTitle>
