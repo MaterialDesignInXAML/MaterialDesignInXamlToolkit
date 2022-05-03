@@ -1,0 +1,12 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MaterialDesignThemes.WinUI">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="MaterialDesignTheme.Button.xaml" />
+        <ResourceDictionary Source="MaterialDesignTheme.Ripple.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    
+    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}" />
+    <Style TargetType="local:Ripple" BasedOn="{StaticResource MaterialDesignRipple}" />
+</ResourceDictionary>

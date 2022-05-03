@@ -14,6 +14,6 @@
     <Nullable>enable</Nullable>
 
     <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
-    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <ManagePackageVersionsCentrally Condition="'$(ManagePackageVersionsCentrally)'==''">true</ManagePackageVersionsCentrally>
   </PropertyGroup>
 </Project>
