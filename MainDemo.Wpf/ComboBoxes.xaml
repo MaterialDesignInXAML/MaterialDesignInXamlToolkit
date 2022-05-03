@@ -52,6 +52,7 @@
                 <ComboBox
                     materialDesign:HintAssist.Hint="Search"
                     materialDesign:HintAssist.HintOpacity=".26"
+                    materialDesign:ComboBoxAssist.MaxLength="2"
                     IsEditable="True">
                     <ComboBoxItem Content="Apple"/>
                     <ComboBoxItem Content="Banana"/>
