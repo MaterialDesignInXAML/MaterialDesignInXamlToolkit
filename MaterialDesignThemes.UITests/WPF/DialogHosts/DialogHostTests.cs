@@ -47,7 +47,15 @@ namespace MaterialDesignThemes.UITests.WPF.DialogHosts
             await closeDialogButton.LeftClick();
 
             var retry = new Retry(5, TimeSpan.FromSeconds(5));
-            await Wait.For(async () => await overlay.GetVisibility() != Visibility.Visible, retry);
+            try
+            {
+                await Wait.For(async () => await overlay.GetVisibility() != Visibility.Visible, retry);
+            }
+            catch(TimeoutException)
+            {
+                await closeDialogButton.LeftClick();
+                await Wait.For(async () => await overlay.GetVisibility() != Visibility.Visible, retry);
+            }
             await testOverlayButton.LeftClick();
             await Wait.For(async () => Assert.Equal("Clicks: 2", await resultTextBlock.GetText()), retry);
 

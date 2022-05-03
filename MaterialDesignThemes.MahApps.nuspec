@@ -15,7 +15,7 @@
     <copyright>$copyright$</copyright>
     <tags>WPF XAML MahApps Material Design Theme Colour Color UI UX</tags>
     <dependencies>
-      <group targetFramework="net452">
+      <group targetFramework="net462">
         <dependency id="MaterialDesignColors" version="[1.2.1, 2.0)" />
         <dependency id="MaterialDesignThemes" version="[3.0.0, 4.0)" />
         <dependency id="MahApps.Metro" version="[2.0.0-alpha0748, 3.0)" />
@@ -25,10 +25,16 @@
         <dependency id="MaterialDesignThemes" version="[3.0.0, 4.0)" />
         <dependency id="MahApps.Metro" version="[2.0.0, 3.0)" />
       </group>
+      <group targetFramework="net6.0-windows">
+        <dependency id="MaterialDesignColors" version="[1.2.1, 2.0)" />
+        <dependency id="MaterialDesignThemes" version="[3.0.0, 4.0)" />
+        <dependency id="MahApps.Metro" version="[2.0.0, 3.0)" />
+      </group>
     </dependencies>
   </metadata>
   <files>
-    <file src="MaterialDesignThemes.MahApps\bin\$configuration$\net452\MaterialDesignThemes.MahApps.*" target="lib\net452" exclude="**\*.json" />
+    <file src="MaterialDesignThemes.MahApps\bin\$configuration$\net452\MaterialDesignThemes.MahApps.*" target="lib\net462" exclude="**\*.json" />
     <file src="MaterialDesignThemes.MahApps\bin\$configuration$\netcoreapp3.1\MaterialDesignThemes.MahApps.*" target="lib\netcoreapp3.1" exclude="**\*.json" />
+    <file src="MaterialDesignThemes.MahApps\bin\$configuration$\net6.0-windows\MaterialDesignThemes.MahApps.*" target="lib\net6.0-windows" exclude="**\*.json" />
   </files>
 </package>

@@ -2,7 +2,7 @@
   <PropertyGroup>
     <RootNamespace>MaterialDesignColors</RootNamespace>
     <AssemblyName>MaterialDesignColors</AssemblyName>
-    <TargetFrameworks>net452;netcoreapp3.1;net6.0-windows</TargetFrameworks>
+    <TargetFrameworks>net462;netcoreapp3.1;net6.0-windows</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <MDIXColorsVersion Condition="$(MDIXColorsVersion) == '' Or $(MDIXColorsVersion) == '*Undefined*'">1.0.1</MDIXColorsVersion>
     <AssemblyTitle>MaterialDesignColors.Wpf</AssemblyTitle>
