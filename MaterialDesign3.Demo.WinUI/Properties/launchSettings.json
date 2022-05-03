@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "MaterialDesign3.Demo.WinUI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "MaterialDesign3.Demo.WinUI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

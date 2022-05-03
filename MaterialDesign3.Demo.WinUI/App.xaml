@@ -1,8 +1,8 @@
 ﻿<Application
-    x:Class="MainDemo.WinUI.App"
+    x:Class="MaterialDesign3.Demo.WinUI.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:MainDemo.WinUI">
+    xmlns:local="using:MaterialDesign3.Demo.WinUI">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

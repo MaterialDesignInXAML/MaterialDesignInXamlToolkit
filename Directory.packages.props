@@ -14,6 +14,8 @@
         <PackageVersion Include="Microsoft.NETCore.Platforms" Version="5.0.0" />
         <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
         <PackageVersion Include="Microsoft.Toolkit.MVVM" Version="7.1.2" />
+        <PackageVersion Include="Microsoft.WindowsAppSDK" Version="1.0.2" />
+        <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.194" />
         <PackageVersion Include="Newtonsoft.Json" Version="13.0.1" />
         <PackageVersion Include="Shouldly" Version="4.0.3" />
         <PackageVersion Include="ShowMeTheXAML" Version="2.0.0" />

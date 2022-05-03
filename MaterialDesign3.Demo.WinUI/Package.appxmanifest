@@ -7,14 +7,14 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="ce6e19aa-12a7-46f8-87b2-0af6165354ed"
+    Name="a4ae160a-2a06-4e45-9b7b-a8003f301d7a"
     Publisher="CN=kitok"
     Version="1.0.0.0" />
 
   <Properties>
-    <DisplayName>MainDemo.WinUI (Package)</DisplayName>
+    <DisplayName>MaterialDesign3.Demo.WinUI</DisplayName>
     <PublisherDisplayName>kitok</PublisherDisplayName>
-    <Logo>Images\StoreLogo.png</Logo>
+    <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
   <Dependencies>
@@ -31,13 +31,13 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="MainDemo.WinUI (Package)"
-        Description="MainDemo.WinUI (Package)"
+        DisplayName="MaterialDesign3.Demo.WinUI"
+        Description="MaterialDesign3.Demo.WinUI"
         BackgroundColor="transparent"
-        Square150x150Logo="Images\Square150x150Logo.png"
-        Square44x44Logo="Images\Square44x44Logo.png">
-        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png" />
-        <uap:SplashScreen Image="Images\SplashScreen.png" />
+        Square150x150Logo="Assets\Square150x150Logo.png"
+        Square44x44Logo="Assets\Square44x44Logo.png">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" />
+        <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
   </Applications>
