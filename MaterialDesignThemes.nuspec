@@ -21,7 +21,7 @@
       <group targetFramework="netcoreapp3.1">
         <dependency id="MaterialDesignColors" version="[1.2.1, 2.0)" />
       </group>
-      <group targetFramework="net6.0-windows">
+      <group targetFramework="net6.0">
         <dependency id="MaterialDesignColors" version="[1.2.1, 2.0)" />
       </group>
     </dependencies>
@@ -29,9 +29,9 @@
   <files>
     <file src="MaterialDesignThemes.Wpf\bin\$configuration$\net462\MaterialDesignThemes.Wpf.*" target="lib\net462" exclude="**\*.json" />
     <file src="MaterialDesignThemes.Wpf\bin\$configuration$\netcoreapp3.1\MaterialDesignThemes.Wpf.*" target="lib\netcoreapp3.1" exclude="**\*.json" />
-    <file src="MaterialDesignThemes.Wpf\bin\$configuration$\net6.0-windows\MaterialDesignThemes.Wpf.*" target="lib\net6.0-windows" exclude="**\*.json" />
+    <file src="MaterialDesignThemes.Wpf\bin\$configuration$\net6.0-windows\MaterialDesignThemes.Wpf.*" target="lib\net6.0" exclude="**\*.json" />
     <file src="MaterialDesignThemes.Wpf\Resources\Roboto\*.ttf" target="build\Resources\Roboto" />
     <file src="MaterialDesignThemes.Wpf\MaterialDesignThemes.targets" target="build" />
-    <file src="MaterialDesignThemes.Wpf\VisualStudioToolsManifest.xml" target="tools"/>
+    <file src="MaterialDesignThemes.Wpf\VisualStudioToolsManifest.xml" target="tools" />
   </files>
 </package>
