@@ -148,7 +148,7 @@ namespace MaterialDesignThemes.Wpf
                     switch (msg)
                     {
                         case WM_MOUSEHWHEEL:
-                            int tilt = (short)((wParam.ToInt32() >> 16) & 0xFFFF);
+                            int tilt = (short)((wParam.ToInt64() >> 16) & 0xFFFF);
                             OnMouseTilt(tilt);
                             return (IntPtr)1;
                     }
