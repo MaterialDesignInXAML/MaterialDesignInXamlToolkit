@@ -10,6 +10,7 @@
     <converters:SliderValueLabelPositionConverter x:Key="SliderValueLabelPositionConverter" />
     <converters:BooleanAllConverter x:Key="BooleanAllConverter" />
     <converters:InvertBooleanConverter x:Key="InvertBooleanConverter" />
+    <converters:SliderToolTipConverter x:Key="SliderToolTipConverter" />
 
     <Style x:Key="MaterialDesignRepeatButton" TargetType="{x:Type RepeatButton}">
         <Setter Property="OverridesDefaultStyle" Value="True"/>
@@ -267,9 +268,15 @@
                     <TextBlock
                         Foreground="{DynamicResource MaterialDesignPaper}"
                         Margin="12,0,12,5"
-                        Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=Value}"
                         TextAlignment="Center"
-                        VerticalAlignment="Center" />
+                        VerticalAlignment="Center">
+                        <TextBlock.Text >
+                            <MultiBinding Converter="{StaticResource SliderToolTipConverter}" ValidatesOnDataErrors="True" NotifyOnValidationError="True" TargetNullValue="">
+                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=RangeBase}" Path="Value" TargetNullValue="" />
+                                <Binding Path="(wpf:SliderAssist.ToolTipFormat)" RelativeSource="{RelativeSource FindAncestor, AncestorType=RangeBase}" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
                 </Grid>
             </Canvas>
             <AdornerDecorator>
@@ -451,9 +458,15 @@
                     <TextBlock
                         Foreground="{DynamicResource MaterialDesignPaper}"
                         Margin="12,0,17,0"
-                        Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=Value}"
                         TextAlignment="Center"
-                        VerticalAlignment="Center" />
+                        VerticalAlignment="Center">
+                        <TextBlock.Text >
+                            <MultiBinding Converter="{StaticResource SliderToolTipConverter}" ValidatesOnDataErrors="True" NotifyOnValidationError="True" TargetNullValue="">
+                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=RangeBase}" Path="Value" TargetNullValue="" />
+                                <Binding Path="(wpf:SliderAssist.ToolTipFormat)" RelativeSource="{RelativeSource FindAncestor, AncestorType=RangeBase}" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
                 </Grid>
             </Canvas>
             <AdornerDecorator>
