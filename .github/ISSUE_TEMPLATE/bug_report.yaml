@@ -13,7 +13,7 @@ body:
       label: Bug explanation
       description: |
         - Tell us what is the problem and what did you expect to happen.
-        - Explain the differents steps to reproduce the bug.
+        - Explain the different steps to reproduce the bug.
         - Provide a minimal and reproducible example.
         
         You can attach some screenshots or/and videos to better illustrate the problem.
