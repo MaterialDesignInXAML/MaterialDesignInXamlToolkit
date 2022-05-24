@@ -14,7 +14,7 @@ body:
       description: |
         - Tell us what is the problem and what did you expect to happen.
         - Explain the different steps to reproduce the bug.
-        - Provide a minimal and reproducible example.
+        - Provide a minimal and reproducible example either with code snippets or ideally an example repository.
         
         You can attach some screenshots or/and videos to better illustrate the problem.
       placeholder: Explain the problem...
