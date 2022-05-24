@@ -1,0 +1,30 @@
+name: Bug report
+description: File a bug report
+labels: ["bug", "evaluation required"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+        Seriously consider creating and linking to a test repo which takes absolutely minimal setup to illustrate how reproduce the problem.
+  - type: textarea
+    id: bug-explanation
+    attributes:
+      label: Bug explanation
+      description: |
+        - Tell us what is the problem and what did you expect to happen.
+        - Explain the different steps to reproduce the bug.
+        - Provide a minimal and reproducible example either with code snippets or ideally an example repository.
+        
+        You can attach some screenshots or/and videos to better illustrate the problem.
+      placeholder: Explain the problem...
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: What version of our package are you running?
+      placeholder: "Example: 4.5.0"
+    validations:
+      required: true
