@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -12,40 +13,37 @@ using Xunit.Abstractions;
 [assembly: GenerateHelpers(typeof(TimePicker))]
 [assembly: GenerateHelpers(typeof(DrawerHost))]
 
-namespace MaterialDesignThemes.UITests
+namespace MaterialDesignThemes.UITests;
+
+public abstract class TestBase : IAsyncLifetime
 {
-    public abstract class TestBase : IDisposable
+    protected ITestOutputHelper Output { get; }
+
+    [NotNull]
+    protected IApp? App { get; set; }
+
+    public TestBase(ITestOutputHelper output)
+        => Output = output ?? throw new ArgumentNullException(nameof(output));
+
+    protected async Task<Color> GetThemeColor(string name)
     {
-        protected ITestOutputHelper Output { get; }
-
-        protected IApp App { get; }
-
-        public TestBase(ITestOutputHelper output)
-        {
-            Output = output ?? throw new ArgumentNullException(nameof(output));
-
-            App = XamlTest.App.StartRemote();
-        }
-
-        protected async Task<Color> GetThemeColor(string name)
-        {
-            IResource resource = await App.GetResource(name);
-            return resource.GetAs<Color?>() ?? throw new Exception($"Failed to convert resource '{name}' to color");
-        }
-
-        protected async Task<IVisualElement<T>> LoadXaml<T>(string xaml)
-        {
-            await App.InitialzeWithMaterialDesign();
-            return await App.CreateWindowWith<T>(xaml);
-        }
-
-        protected async Task<IVisualElement> LoadUserControl<TControl>()
-            where TControl : UserControl
-        {
-            await App.InitialzeWithMaterialDesign();
-            return await App.CreateWindowWithUserControl<TControl>();
-        }
-
-        public virtual void Dispose() => App.Dispose();
+        IResource resource = await App.GetResource(name);
+        return resource.GetAs<Color?>() ?? throw new Exception($"Failed to convert resource '{name}' to color");
     }
+
+    protected async Task<IVisualElement<T>> LoadXaml<T>(string xaml)
+    {
+        await App.InitialzeWithMaterialDesign();
+        return await App.CreateWindowWith<T>(xaml);
+    }
+
+    protected async Task<IVisualElement> LoadUserControl<TControl>()
+        where TControl : UserControl
+    {
+        await App.InitialzeWithMaterialDesign();
+        return await App.CreateWindowWithUserControl<TControl>();
+    }
+
+    public async Task InitializeAsync() => App = await XamlTest.App.StartRemote(message => Output.WriteLine(message));
+    public async Task DisposeAsync() => await App.DisposeAsync();
 }
