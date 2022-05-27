@@ -79,11 +79,12 @@ namespace MaterialDesignThemes.Wpf
             var uiElement = dependencyObject as UIElement;
             var dropShadowEffect = uiElement?.Effect as DropShadowEffect;
 
-
-            if (dropShadowEffect == null) return;
+            if (dropShadowEffect is null) return;
 
             if ((bool)dependencyPropertyChangedEventArgs.NewValue)
             {
+                dropShadowEffect.BeginAnimation(DropShadowEffect.OpacityProperty, null);
+
                 SetLocalInfo(dependencyObject, new ShadowLocalInfo(dropShadowEffect.Opacity));
 
                 TimeSpan time = GetShadowAnimationDuration(dependencyObject);
@@ -102,7 +103,7 @@ namespace MaterialDesignThemes.Wpf
             else
             {
                 var shadowLocalInfo = GetLocalInfo(dependencyObject);
-                if (shadowLocalInfo == null) return;
+                if (shadowLocalInfo is null) return;
 
                 TimeSpan time = GetShadowAnimationDuration(dependencyObject);
 
