@@ -1350,6 +1350,7 @@
         <Style.Triggers>
             <Trigger Property="IsEditable" Value="True">
                 <Setter Property="IsTabStop" Value="False" />
+                <Setter Property="ContextMenu" Value="{StaticResource MaterialDesignDefaultContextMenu}" />
                 <!-- designer prefers hard bool -->
                 <Setter Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="{StaticResource TrueValue}" />
             </Trigger>
