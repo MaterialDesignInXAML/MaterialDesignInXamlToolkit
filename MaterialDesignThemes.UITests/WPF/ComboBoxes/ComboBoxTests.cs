@@ -102,7 +102,7 @@ public class ComboBoxTests : TestBase
         await using var recorder = new TestRecorder(App);
 
         var comboBox = await LoadXaml<ComboBox>(@"
-<ComboBox IsEditable=""False"" Width=""200"" Style=""{StaticResource MaterialDesignComboBox}"">
+<ComboBox IsEditable=""True"" Width=""200"" Style=""{StaticResource MaterialDesignComboBox}"">
     <ComboBoxItem Content=""Select1"" />
     <ComboBoxItem>Select2</ComboBoxItem>
     <ComboBoxItem>Select3</ComboBoxItem>
@@ -113,14 +113,18 @@ public class ComboBoxTests : TestBase
         await comboBox.RightClick();
 
         IVisualElement<ContextMenu>? contextMenu = await comboBox.GetContextMenu();
-        Assert.NotNull(contextMenu);
+        Assert.True(contextMenu is not null, "No context menu set on the ComboBox");
 
-        Assert.NotNull(await contextMenu!.GetElement(ElementQuery.PropertyExpression<MenuItem>(x => x.Header, "Cut")));
-        Assert.NotNull(await contextMenu!.GetElement(ElementQuery.PropertyExpression<MenuItem>(x => x.Header, "Copy")));
-        Assert.NotNull(await contextMenu!.GetElement(ElementQuery.PropertyExpression<MenuItem>(x => x.Header, "Paste")));
-
-        await Task.Delay(TimeSpan.FromSeconds(100));
+        await AssertMenu("Cut");
+        await AssertMenu("Copy");
+        await AssertMenu("Paste");
 
         recorder.Success();
+
+        async Task AssertMenu(string menuHeader)
+        {
+            var menuItem = await contextMenu!.GetElement(ElementQuery.PropertyExpression<MenuItem>(x => x.Header, menuHeader));
+            Assert.True(menuItem is not null, $"{menuHeader} menu item not found");
+        }
     }
 }
