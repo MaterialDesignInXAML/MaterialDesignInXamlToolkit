@@ -71,7 +71,7 @@ public class ClockTests
 
         clock.TimeChanged += OnTimeChanged;
 
-        void OnTimeChanged(object sender, TimeChangedEventArgs e)
+        void OnTimeChanged(object? sender, TimeChangedEventArgs e)
             => invocations.Add(e);
         DateTime now = DateTime.Now;
 
