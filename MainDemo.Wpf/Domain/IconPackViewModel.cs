@@ -169,8 +169,8 @@ namespace MaterialDesignDemo.Domain
                 var packIcon = new PackIcon
                 {
                     Kind = PackIconKind,
-                    Background = new SolidColorBrush(Colors.Transparent),
-                    Foreground = new SolidColorBrush(Color.FromRgb(0x17, 0x92, 0x87)),
+                    Background = new SolidColorBrush(GeneratedIconBackground),
+                    Foreground = new SolidColorBrush(GeneratedIconForeground),
                     Width = size,
                     Height = size,
                     Style = (Style)Application.Current.FindResource(typeof(PackIcon))
