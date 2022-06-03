@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace MaterialDesignDemo.Domain
@@ -12,7 +13,7 @@ namespace MaterialDesignDemo.Domain
 
         public ComboBoxesViewModel()
         {
-            LongListToTestComboVirtualization = new List<int>(Enumerable.Range(0, 1000));
+            LongIntegerList = new List<int>(Enumerable.Range(0, 1000));
             ShortStringList = new[]
             {
                 "Item 1",
@@ -20,8 +21,15 @@ namespace MaterialDesignDemo.Domain
                 "Item 3"
             };
 
-            SelectedValueOne = LongListToTestComboVirtualization.Skip(2).First();
+            SelectedValueOne = LongIntegerList.Skip(2).First();
             SelectedTextTwo = null;
+
+            LongStringList = new List<string>();
+
+            for(int i = 0; i < 1000; i++)
+            {
+                LongStringList.Add(Path.GetRandomFileName());
+            }
         }
 
         public int? SelectedValueOne
@@ -48,7 +56,8 @@ namespace MaterialDesignDemo.Domain
             set => SetProperty(ref _selectedValidationOutlined, value);
         }
 
-        public IList<int> LongListToTestComboVirtualization { get; }
+        public IList<int> LongIntegerList { get; }
         public IList<string> ShortStringList { get; }
+        public IList<string> LongStringList { get; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 
 namespace MaterialDesignDemo.Domain
@@ -19,6 +20,13 @@ namespace MaterialDesignDemo.Domain
                     if (args.PropertyName == nameof(SelectableViewModel.IsSelected))
                         OnPropertyChanged(nameof(IsAllItems1Selected));
                 };
+            }
+
+            Files = new List<string>();
+
+            for (int i = 0; i < 1000; i++)
+            {
+                Files.Add(Path.GetRandomFileName());
             }
         }
 
@@ -78,5 +86,8 @@ namespace MaterialDesignDemo.Domain
         public ObservableCollection<SelectableViewModel> Items3 { get; }
 
         public IEnumerable<string> Foods => new[] { "Burger", "Fries", "Shake", "Lettuce" };
+
+        public IList<string> Files { get; }
+
     }
 }

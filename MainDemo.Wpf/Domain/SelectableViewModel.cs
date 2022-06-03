@@ -8,6 +8,7 @@
         private char _code;
         private double _numeric;
         private string? _food;
+        private string? _files;
 
         public bool IsSelected
         {
@@ -43,6 +44,12 @@
         {
             get => _food;
             set => SetProperty(ref _food, value);
+        }
+
+        public string? Files
+        {
+            get => _files;
+            set => SetProperty(ref _files, value);
         }
     }
 }

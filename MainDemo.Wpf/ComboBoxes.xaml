@@ -152,7 +152,7 @@
             Fill="{DynamicResource MaterialDesignDivider}" />
         <TextBlock
             Style="{StaticResource SectionTitle}"
-            Text="Virtualised ComboBoxes"/>
+            Text="ComboBoxes with long lists"/>
 
         <StackPanel Orientation="Horizontal">
 
@@ -160,7 +160,7 @@
                 <ComboBox
                     materialDesign:HintAssist.Hint="Virtualisation"
                     MinWidth="72"
-                    ItemsSource="{Binding LongListToTestComboVirtualization}"
+                    ItemsSource="{Binding LongIntegerList}"
                     SelectedValue="{Binding SelectedValueOne}">
 
                     <ComboBox.SelectedItem>
@@ -174,12 +174,6 @@
                             </Binding.ValidationRules>
                         </Binding>
                     </ComboBox.SelectedItem>
-                    
-                    <ComboBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel />
-                        </ItemsPanelTemplate>
-                    </ComboBox.ItemsPanel>
                 </ComboBox>
             </smtx:XamlDisplay>
 
@@ -188,7 +182,7 @@
                 <ComboBox materialDesign:HintAssist.Hint="(editable)"
                           MinWidth="72"
                           IsEditable="True"
-                          ItemsSource="{Binding LongListToTestComboVirtualization}">
+                          ItemsSource="{Binding LongIntegerList}">
                     <ComboBox.Text>
                         <Binding Path="SelectedTextTwo" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
@@ -196,22 +190,12 @@
                             </Binding.ValidationRules>
                         </Binding>
                     </ComboBox.Text>
-                    <ComboBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel />
-                        </ItemsPanelTemplate>
-                    </ComboBox.ItemsPanel>
                 </ComboBox>
             </smtx:XamlDisplay>
             <smtx:XamlDisplay UniqueKey="comboboxes_7">
                 <ComboBox materialDesign:HintAssist.Hint="(float hint)"
-                          ItemsSource="{Binding LongListToTestComboVirtualization}"
+                          ItemsSource="{Binding LongIntegerList}"
                           Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                    <ComboBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel />
-                        </ItemsPanelTemplate>
-                    </ComboBox.ItemsPanel>
                 </ComboBox>
             </smtx:XamlDisplay>
             <smtx:XamlDisplay UniqueKey="comboboxes_8">
@@ -219,32 +203,27 @@
                           materialDesign:HintAssist.FloatingScale="1.5"
                           materialDesign:HintAssist.FloatingOffset="0, -24"
                           MinWidth="72"
-                          ItemsSource="{Binding LongListToTestComboVirtualization}"
+                          ItemsSource="{Binding LongIntegerList}"
                           Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                    <ComboBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel />
-                        </ItemsPanelTemplate>
-                    </ComboBox.ItemsPanel>
                 </ComboBox>
             </smtx:XamlDisplay>
             <smtx:XamlDisplay UniqueKey="comboboxes_12">
                 <ComboBox materialDesign:HintAssist.Hint="(Change fontfamily float hint)"
                           materialDesign:HintAssist.FontFamily="Verdana"
                           MinWidth="72"
-                          ItemsSource="{Binding LongListToTestComboVirtualization}"
+                          ItemsSource="{Binding LongStringList}"
                           Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                    <ComboBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel />
-                        </ItemsPanelTemplate>
-                    </ComboBox.ItemsPanel>
                 </ComboBox>
             </smtx:XamlDisplay>
         </StackPanel>
 
+        <StackPanel Orientation="Horizontal" Margin="0,40,0,0">
+            <materialDesign:PackIcon Kind="Information" Margin="0 0 5 0"/>
+            <TextBlock>ComboBoxes are virtualized by default in the library</TextBlock>
+        </StackPanel>
+
         <Rectangle
-            Margin="0 32 0 0"
+            Margin="0 15 0 0"
             Height="1"
             Fill="{DynamicResource MaterialDesignDivider}" />
         <TextBlock
