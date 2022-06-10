@@ -32,7 +32,7 @@ xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"">
         <ResourceDictionary Source = ""pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml"" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>";
-
+            
             await app.Initialize(applicationResourceXaml,
                 Path.GetFullPath("MaterialDesignColors.dll"),
                 Path.GetFullPath("MaterialDesignThemes.Wpf.dll"),

@@ -16,4 +16,18 @@
     <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Using Include="System"/>
+    <Using Include="System.Collections.Generic"/>
+    <Using Include="System.IO"/>
+    <Using Include="System.Linq"/>
+    <Using Include="System.Text"/>
+    <Using Include="System.Threading.Tasks"/>
+    <Using Include="System.Windows"/>
+    <Using Include="System.Windows.Controls"/>
+    <Using Include="System.Windows.Controls.Primitives"/>
+    <Using Include="System.Windows.Input"/>
+    <Using Include="System.Windows.Markup"/>
+  </ItemGroup>
 </Project>
