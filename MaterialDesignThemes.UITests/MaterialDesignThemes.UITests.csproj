@@ -20,6 +20,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Using Include="MaterialDesignThemes.Wpf"/>
+    <Using Include="XamlTest"/>
+    <Using Include="Xunit"/>
+    <Using Include="Xunit.Abstractions"/>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj" />
   </ItemGroup>
 </Project>

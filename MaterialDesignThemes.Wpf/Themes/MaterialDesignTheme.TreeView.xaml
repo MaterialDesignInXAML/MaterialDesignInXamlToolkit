@@ -1,8 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
-                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
-                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary>
@@ -24,6 +23,7 @@
         <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="wpf:TreeViewAssist.HasNoItemsExpanderVisibility" Value="Hidden" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TreeView}">
@@ -165,6 +165,7 @@
         <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type TreeView}}}"/>
         <Setter Property="wpf:TreeViewAssist.ExpanderSize" Value="16"/>
         <Setter Property="wpf:TreeViewAssist.ShowSelection" Value="True"/>
+        <Setter Property="wpf:TreeViewAssist.HasNoItemsExpanderVisibility" Value="{Binding RelativeSource={RelativeSource AncestorType=TreeView}, Path=(wpf:TreeViewAssist.HasNoItemsExpanderVisibility)}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TreeViewItem}">
@@ -326,7 +327,7 @@
                             <Setter TargetName="AdditionalContentControl" Property="Visibility" Value="Visible" />
                         </DataTrigger>
                         <Trigger Property="HasItems" Value="false">
-                            <Setter Property="Visibility" TargetName="Expander" Value="Collapsed"/>
+                            <Setter Property="Visibility" TargetName="Expander" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TreeViewAssist.HasNoItemsExpanderVisibility)}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value=".56"/>

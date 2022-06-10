@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -44,6 +44,11 @@ public abstract class TestBase : IAsyncLifetime
         return await App.CreateWindowWithUserControl<TControl>();
     }
 
-    public async Task InitializeAsync() => App = await XamlTest.App.StartRemote(message => Output.WriteLine(message));
+    public async Task InitializeAsync() =>
+        App = await XamlTest.App.StartRemote(new AppOptions
+        {
+            AllowVisualStudioDebuggerAttach = true,
+            LogMessage = message => Output.WriteLine(message)
+        });
     public async Task DisposeAsync() => await App.DisposeAsync();
 }
