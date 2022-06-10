@@ -31,4 +31,7 @@
         <PackageReference Include="Microsoft.Composition" />
         <PackageReference Include="Newtonsoft.Json" />
     </ItemGroup>
+    <ItemGroup>
+        <Using Remove="System.Windows.*"/>
+    </ItemGroup>
 </Project>
