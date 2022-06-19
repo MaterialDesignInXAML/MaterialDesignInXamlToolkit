@@ -44,7 +44,7 @@
                             <ResourceDictionary
                                 Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
                             <ResourceDictionary
-                                Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+                                Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.ToggleButton.xaml" />
                         </ResourceDictionary.MergedDictionaries>
 
                         <smtxAe:TextDocumentValueConverter
