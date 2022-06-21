@@ -127,4 +127,25 @@ public class ComboBoxTests : TestBase
             Assert.True(menuItem is not null, $"{menuHeader} menu item not found");
         }
     }
+
+    [Fact]
+    [Description("Issue 2713")]
+    public async Task OnEditableComboBox_ClickInTextArea_FocusesTextBox()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        var comboBox = await LoadXaml<ComboBox>(@"
+<ComboBox IsEditable=""True"" Width=""200"">
+    <ComboBoxItem Content=""Android""/>
+    <ComboBoxItem Content=""iOS"" />
+    <ComboBoxItem Content=""Linux"" />
+    <ComboBoxItem Content=""Windows"" />
+</ComboBox>");
+
+        await comboBox.LeftClick();
+
+
+        recorder.Success();
+
+    }
 }

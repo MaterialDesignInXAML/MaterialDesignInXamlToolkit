@@ -47,7 +47,7 @@ public abstract class TestBase : IAsyncLifetime
     public async Task InitializeAsync() =>
         App = await XamlTest.App.StartRemote(new AppOptions
         {
-            AllowVisualStudioDebuggerAttach = true,
+            AllowVisualStudioDebuggerAttach = false,
             LogMessage = message => Output.WriteLine(message)
         });
     public async Task DisposeAsync() => await App.DisposeAsync();
