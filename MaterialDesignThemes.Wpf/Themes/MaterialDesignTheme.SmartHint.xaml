@@ -8,7 +8,7 @@
     <converters:BooleanToVisibilityConverter x:Key="InverseBoolToVisConverter" TrueValue="Collapsed" FalseValue="Visible"/>
     <converters:FloatingHintTransformConverter x:Key="FloatingHintTransformConverter" />
     <system:Double x:Key="NoContentFloatingScale">1.0</system:Double>
-    <SineEase x:Key="AnimationEasingFunction" EasingMode="EaseOut"/>
+    <CubicEase x:Key="AnimationEasingFunction" EasingMode="EaseInOut"/>
 
     <Style TargetType="{x:Type wpf:SmartHint}">
         <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -35,7 +35,7 @@
                                     <VisualTransition From="*" To="HintRestingPosition">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetName="SimpleHintTextBlock" Storyboard.TargetProperty="Opacity"
-                                                             Duration="0:0:0.3"
+                                                             Duration="0:0:0.15"
                                                              EasingFunction="{StaticResource AnimationEasingFunction}"/>
                                         </Storyboard>
                                     </VisualTransition>
@@ -81,20 +81,20 @@
                                             <VisualTransition From="*" To="HintFloatingPosition">
                                                 <Storyboard>
                                                     <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="Opacity"
-                                                                     Duration="0:0:0.3" To="{TemplateBinding HintOpacity}"
+                                                                     Duration="0:0:0.15" To="{TemplateBinding HintOpacity}"
                                                                      EasingFunction="{StaticResource AnimationEasingFunction}"/>
                                                     <DoubleAnimation Storyboard.TargetName="ScaleHost"  Storyboard.TargetProperty="Scale"
-                                                                     Duration="0:0:0.3" To="1"
+                                                                     Duration="0:0:0.15" To="1"
                                                                      EasingFunction="{StaticResource AnimationEasingFunction}"/>
                                                 </Storyboard>
                                             </VisualTransition>
                                             <VisualTransition From="*" To="HintRestingPosition">
                                                 <Storyboard>
                                                     <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="Opacity"
-                                                                     Duration="0:0:0.3"
+                                                                     Duration="0:0:0.15"
                                                                      EasingFunction="{StaticResource AnimationEasingFunction}"/>
                                                     <DoubleAnimation Storyboard.TargetName="ScaleHost"  Storyboard.TargetProperty="Scale"
-                                                                     Duration="0:0:0.3"
+                                                                     Duration="0:0:0.15"
                                                                      EasingFunction="{StaticResource AnimationEasingFunction}"/>
                                                 </Storyboard>
                                             </VisualTransition>
