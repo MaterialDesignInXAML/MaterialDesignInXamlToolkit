@@ -84,6 +84,68 @@
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay
+            UniqueKey="cards_1b"
+            Margin="4 4 0 16"
+            VerticalContentAlignment="Top">
+            <materialDesign:Card Width="200" Style="{StaticResource MaterialDesignOutlinedCard}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="140" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Image
+                        Source="Resources/Chartridge046_small.jpg"
+                        Height="140"
+                        Width="196"
+                        Stretch="UniformToFill"/>
+                    <Button
+                        Grid.Row="0"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Margin="0 0 16 -20">
+                        <materialDesign:PackIcon Kind="Bike" />
+                    </Button>
+                    <StackPanel Grid.Row="1" Margin="8 24 8 0" >
+                        <TextBlock FontWeight="Bold">Outlined style</TextBlock>
+                        <TextBlock
+                            TextWrapping="Wrap"
+                            VerticalAlignment="Center"
+                            Text="Removes the drop shadow and flattens the look of the card."/>
+                    </StackPanel>
+                    <StackPanel
+                        HorizontalAlignment="Right"
+                        Grid.Row="2"
+                        Orientation="Horizontal"
+                        Margin="8">
+                        <Button
+                            Style="{StaticResource MaterialDesignToolButton}"
+                            Width="30" Padding="2 0 2 0"
+                            materialDesign:RippleAssist.IsCentered="True">
+                            <materialDesign:PackIcon Kind="ShareVariant" />
+                        </Button>
+                        <Button
+                            Style="{StaticResource MaterialDesignToolButton}"
+                            Width="30"
+                            Padding="2 0 2 0"
+                            materialDesign:RippleAssist.IsCentered="True">
+                            <materialDesign:PackIcon Kind="Heart" />
+                        </Button>
+                        <materialDesign:PopupBox
+                            Style="{StaticResource MaterialDesignToolPopupBox}"
+                            Padding="2 0 2 0">
+                            <StackPanel>
+                                <Button Content="More"/>
+                                <Button Content="Options"/>
+                            </StackPanel>
+                        </materialDesign:PopupBox>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay
             UniqueKey="cards_2"
             Margin="4 4 0 16"
             VerticalContentAlignment="Top">

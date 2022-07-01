@@ -33,6 +33,7 @@
     <!-- set up default styles for our custom Material Design in XAML Toolkit controls -->
     <Style TargetType="{x:Type local:Clock}" BasedOn="{StaticResource MaterialDesignClock}" />
     <Style TargetType="{x:Type local:Badged}" BasedOn="{StaticResource MaterialDesignBadge}" />
+    <Style TargetType="{x:Type local:Card}" BasedOn="{StaticResource MaterialDesignElevatedCard}" />
     <Style TargetType="{x:Type local:PopupBox}" BasedOn="{StaticResource MaterialDesignPopupBox}" />
     <Style TargetType="{x:Type local:TimePicker}" BasedOn="{StaticResource MaterialDesignTimePicker}" />
 
