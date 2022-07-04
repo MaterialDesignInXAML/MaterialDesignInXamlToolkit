@@ -52,5 +52,15 @@ namespace MaterialDesignThemes.Wpf
         public static void SetHeaderBackground(Expander element, Brush? value)
             => element.SetValue(HeaderBackgroundProperty, value);
         #endregion
+
+        #region AttachedProperty : CanToggleProperty
+        public static readonly DependencyProperty CanToggleProperty
+            = DependencyProperty.RegisterAttached("CanToggle", typeof(bool), typeof(ExpanderAssist), new PropertyMetadata(true));
+
+        public static bool GetCanToggle(Expander element)
+            => (bool)element.GetValue(CanToggleProperty);
+        public static void SetCanToggle(Expander element, bool value)
+            => element.SetValue(CanToggleProperty, value);
+        #endregion
     }
 }

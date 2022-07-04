@@ -271,6 +271,7 @@
                                           Opacity="0.87"
                                           Foreground="{TemplateBinding Foreground}"
                                           Background="{TemplateBinding wpf:ExpanderAssist.HeaderBackground}"
+                                          IsHitTestVisible="{TemplateBinding wpf:ExpanderAssist.CanToggle}"
                                           Content="{TemplateBinding Header}"
                                           ContentTemplate="{TemplateBinding HeaderTemplate}"
                                           ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
