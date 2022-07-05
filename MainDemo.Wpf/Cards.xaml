@@ -649,14 +649,42 @@
                 <materialDesign:Flipper
                     Style="{StaticResource MaterialDesignCardFlipper}"
                     IsFlippedChanged="Flipper_OnIsFlippedChanged"
-                    UniformCornerRadius="8">
+                    materialDesign:CardAssist.UniformCornerRadius="8">
                     <materialDesign:Flipper.FrontContent>
                         <Button
                             Style="{StaticResource MaterialDesignFlatButton}"
                             Command="{x:Static materialDesign:Flipper.FlipCommand}"
                             Margin="8"
                             Width="184"
-                            Content="Rounded Card Flipper"/>
+                            Content="Rounded Card Flipper 1"/>
+                    </materialDesign:Flipper.FrontContent>
+                    <materialDesign:Flipper.BackContent>
+                        <Button
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                            Margin="8"
+                            Width="184"
+                            Content="GO BACK"/>
+                    </materialDesign:Flipper.BackContent>
+                </materialDesign:Flipper>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay
+                UniqueKey="cards_12"
+                Margin="4 4 0 0"
+                VerticalContentAlignment="Top">
+                <materialDesign:Flipper
+                    Style="{StaticResource MaterialDesignCardFlipper}"
+                    IsFlippedChanged="Flipper_OnIsFlippedChanged"
+                    materialDesign:CardAssist.UniformCornerRadius="8"
+                    materialDesign:CardAssist.CardStyle="{StaticResource MaterialDesignOutlinedCard}">
+                    <materialDesign:Flipper.FrontContent>
+                        <Button
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                            Margin="8"
+                            Width="184"
+                            Content="Rounded Card Flipper 2"/>
                     </materialDesign:Flipper.FrontContent>
                     <materialDesign:Flipper.BackContent>
                         <Button

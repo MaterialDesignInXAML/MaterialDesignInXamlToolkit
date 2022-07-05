@@ -162,7 +162,9 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <wpf:Plane3D x:Name="PART_Plane3D" RotationY="0" ZFactor="2.055">
-                            <wpf:Card wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}" UniformCornerRadius="{TemplateBinding UniformCornerRadius}">
+                            <wpf:Card wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}"
+                                      UniformCornerRadius="{TemplateBinding wpf:CardAssist.UniformCornerRadius}"
+                                      Style="{TemplateBinding wpf:CardAssist.CardStyle}">
                                 <Grid>
                                     <ContentPresenter x:Name="FrontContentPresenter"                    
                                                       Margin="{TemplateBinding Padding}"                            
