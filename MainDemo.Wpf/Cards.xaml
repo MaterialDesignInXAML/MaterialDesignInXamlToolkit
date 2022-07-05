@@ -551,6 +551,62 @@
                 </materialDesign:Flipper.BackContent>
             </materialDesign:Flipper>
         </smtx:XamlDisplay>
+
+        <StackPanel>
+            <smtx:XamlDisplay
+                UniqueKey="cards_10"
+                Margin="4 4 0 0"
+                VerticalContentAlignment="Top">
+                <materialDesign:Flipper
+                    IsFlippedChanged="Flipper_OnIsFlippedChanged">
+                    <materialDesign:Flipper.FrontContent>
+                        <Button
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            materialDesign:ButtonAssist.CornerRadius="8"
+                            Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                            Margin="8"
+                            Width="184"
+                            Content="Rounded Flipper"/>
+                    </materialDesign:Flipper.FrontContent>
+                    <materialDesign:Flipper.BackContent>
+                        <Button
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            materialDesign:ButtonAssist.CornerRadius="8"
+                            Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                            Margin="8"
+                            Width="184"
+                            Content="GO BACK"/>
+                    </materialDesign:Flipper.BackContent>
+                </materialDesign:Flipper>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay
+                UniqueKey="cards_11"
+                Margin="4 4 0 0"
+                VerticalContentAlignment="Top">
+                <materialDesign:Flipper
+                    Style="{StaticResource MaterialDesignCardFlipper}"
+                    IsFlippedChanged="Flipper_OnIsFlippedChanged"
+                    UniformCornerRadius="8">
+                    <materialDesign:Flipper.FrontContent>
+                        <Button
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                            Margin="8"
+                            Width="184"
+                            Content="Rounded Card Flipper"/>
+                    </materialDesign:Flipper.FrontContent>
+                    <materialDesign:Flipper.BackContent>
+                        <Button
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                            Margin="8"
+                            Width="184"
+                            Content="GO BACK"/>
+                    </materialDesign:Flipper.BackContent>
+                </materialDesign:Flipper>
+            </smtx:XamlDisplay>
+        </StackPanel>
     </WrapPanel>
 </UserControl>
 
