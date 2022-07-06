@@ -4,7 +4,7 @@ namespace MaterialDesignThemes.Wpf.Tests;
 
 public class RatingBarTests
 {
-    [Theory]
+    [StaTheory]
     [InlineData(-5, 0.0)]
     [InlineData(5, 5.0)]
     [InlineData(15, 10.0)]
