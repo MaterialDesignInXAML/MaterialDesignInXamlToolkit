@@ -16,7 +16,10 @@ namespace MaterialDesignThemes.Wpf
         Depth2,
         Depth3,
         Depth4,
-        Depth5
+        Depth5,
+        Depth6,
+        Depth7,
+        Depth8
     }
 
     [Flags]

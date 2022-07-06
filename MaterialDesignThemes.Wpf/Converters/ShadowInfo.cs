@@ -21,6 +21,9 @@ namespace MaterialDesignThemes.Wpf.Converters
                 { ShadowDepth.Depth3, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth3"] },
                 { ShadowDepth.Depth4, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth4"] },
                 { ShadowDepth.Depth5, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth5"] },
+                { ShadowDepth.Depth6, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth6"] },
+                { ShadowDepth.Depth7, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth7"] },
+                { ShadowDepth.Depth8, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth8"] },
             };
         }
 
