@@ -20,7 +20,13 @@ public static class CardAssist
     /// </summary>
     public static readonly DependencyProperty CardStyleProperty
         = DependencyProperty.RegisterAttached("CardStyle", typeof(Style), typeof(CardAssist),
-            new FrameworkPropertyMetadata(default(Style), FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+            new FrameworkPropertyMetadata(default(Style), FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits, null, CoerceCardStyleCallback));
+    private static object? CoerceCardStyleCallback(DependencyObject d, object baseValue)
+    {
+        if (baseValue is Style style && style.TargetType != typeof(Card))
+            return default(Style);
+        return baseValue;
+    }
 
     public static void SetCardStyle(DependencyObject element, Style value) => element.SetValue(CardStyleProperty, value);
     public static Style GetCardStyle(DependencyObject element) => (Style)element.GetValue(CardStyleProperty);
