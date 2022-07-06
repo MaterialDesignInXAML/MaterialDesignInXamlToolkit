@@ -1,7 +1,4 @@
 using System.Collections.ObjectModel;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -30,7 +27,22 @@ namespace MaterialDesignThemes.Wpf
         private void SelectItemHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
         {
             if (executedRoutedEventArgs.Parameter is int && !IsReadOnly)
-                Value = (int)executedRoutedEventArgs.Parameter;
+            {
+                // Get mouse offset inside source
+                int buttonValue = (int) executedRoutedEventArgs.Parameter;
+                RatingBarButton b = (RatingBarButton)executedRoutedEventArgs.OriginalSource;
+                Point p = Mouse.GetPosition(b);
+                if (Orientation == Orientation.Horizontal)
+                {
+                    double value = b.ActualWidth / p.X;
+                    Value = value <= 2 ? buttonValue : buttonValue - 0.5;
+                }
+                else
+                {
+                    double value = b.ActualHeight / p.Y;
+                    Value = value <= 2 ? buttonValue : buttonValue - 0.5;
+                }
+            }
         }
 
         public static readonly DependencyProperty MinProperty = DependencyProperty.Register(
@@ -52,19 +64,34 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
-            nameof(Value), typeof(int), typeof(RatingBar), new PropertyMetadata(0, ValuePropertyChangedCallback));
+            nameof(Value), typeof(double), typeof(RatingBar), new PropertyMetadata(0.0, ValuePropertyChangedCallback, ValueCoerceValueCallback));
 
         private static void ValuePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             var ratingBar = (RatingBar)dependencyObject;
             foreach (var button in ratingBar.RatingButtons)
-                button.IsWithinSelectedValue = button.Value <= (int)dependencyPropertyChangedEventArgs.NewValue;
+            {
+                button.IsWithinSelectedValue = button.Value <= (double)dependencyPropertyChangedEventArgs.NewValue;
+                button.IsHalfwayWithinSelectedValue = button.Value <= (double)dependencyPropertyChangedEventArgs.NewValue + 0.5;
+            }
             OnValueChanged(ratingBar, dependencyPropertyChangedEventArgs);
         }
 
-        public int Value
+        private static object ValueCoerceValueCallback(DependencyObject d, object baseValue)
         {
-            get => (int)GetValue(ValueProperty);
+            var ratingBar = (RatingBar) d;
+            if (baseValue is double value)
+            {
+                // Coerce the value into a multiple of 0.5 and within the bounds
+                double valueInCorrectMultiple = Math.Round(value * 2, MidpointRounding.AwayFromZero) / 2;
+                return Math.Min(ratingBar.Max, Math.Max(ratingBar.Min, valueInCorrectMultiple));
+            }
+            return (double)ratingBar.Min;
+        }
+
+        public double Value
+        {
+            get => (double)GetValue(ValueProperty);
             set => SetValue(ValueProperty, value);
         }
 
@@ -72,10 +99,10 @@ namespace MaterialDesignThemes.Wpf
             EventManager.RegisterRoutedEvent(
                 nameof(Value),
                 RoutingStrategy.Bubble,
-                typeof(RoutedPropertyChangedEventHandler<int>),
+                typeof(RoutedPropertyChangedEventHandler<double>),
                 typeof(RatingBar));
 
-        public event RoutedPropertyChangedEventHandler<int> ValueChanged
+        public event RoutedPropertyChangedEventHandler<double> ValueChanged
         {
             add => AddHandler(ValueChangedEvent, value);
             remove => RemoveHandler(ValueChangedEvent, value);
@@ -85,9 +112,9 @@ namespace MaterialDesignThemes.Wpf
             DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var instance = (RatingBar)d;
-            var args = new RoutedPropertyChangedEventArgs<int>(
-                    (int)e.OldValue,
-                    (int)e.NewValue)
+            var args = new RoutedPropertyChangedEventArgs<double>(
+                    (double)e.OldValue,
+                    (double)e.NewValue)
             { RoutedEvent = ValueChangedEvent };
             instance.RaiseEvent(args);
         }

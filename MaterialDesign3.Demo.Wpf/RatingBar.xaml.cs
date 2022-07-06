@@ -7,7 +7,7 @@ namespace MaterialDesign3Demo
     {
         public RatingBar() => InitializeComponent();
 
-        private void BasicRatingBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<int> e)
+        private void BasicRatingBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
             => Debug.WriteLine($"BasicRatingBar value changed from {e.OldValue} to {e.NewValue}.");
     }
 }
