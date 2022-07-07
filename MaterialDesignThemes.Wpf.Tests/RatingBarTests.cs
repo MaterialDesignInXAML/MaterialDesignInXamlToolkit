@@ -12,10 +12,12 @@ public class RatingBarTests
     [InlineData(0.3, 0.5)]
     [InlineData(0.7, 0.5)]
     [InlineData(0.8, 1.0)]
+    [InlineData(1.2, 1.0)]
+    [InlineData(1.3, 1.5)]
     public void SetValue_CoercesToCorrectMultipleAndStaysWithinBounds(double valueToSet, double expectedValue)
     {
         // Arrange
-        RatingBar ratingBar = new() { Min = 0, Max = 10};
+        RatingBar ratingBar = new() { Min = 1, Max = 10};
 
         // Act
         ratingBar.Value = valueToSet;

@@ -84,7 +84,7 @@ namespace MaterialDesignThemes.Wpf
             {
                 // Coerce the value into a multiple of 0.5 and within the bounds
                 double valueInCorrectMultiple = Math.Round(value * 2, MidpointRounding.AwayFromZero) / 2;
-                return Math.Min(ratingBar.Max, Math.Max(ratingBar.Min, valueInCorrectMultiple));
+                return Math.Min(ratingBar.Max, Math.Max(ratingBar.Min - 1, valueInCorrectMultiple));
             }
             return (double)ratingBar.Min;
         }

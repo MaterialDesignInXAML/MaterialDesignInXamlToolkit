@@ -24,7 +24,7 @@
                 Margin="5 0 0 5">
                 <materialDesign:RatingBar
                     x:Name="BasicRatingBar"
-                    Value="3"
+                    Value="0"
                     ValueChanged="BasicRatingBar_ValueChanged"/>
             </smtx:XamlDisplay>
             
