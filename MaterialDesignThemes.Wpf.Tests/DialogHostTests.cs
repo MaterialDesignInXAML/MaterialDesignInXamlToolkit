@@ -284,7 +284,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         {
             Guid closeParameter = Guid.NewGuid();
 
-            Task<object?> showTask = _dialogHost.ShowDialog("Content", (object sender, DialogClosedEventArgs args) =>
+            Task<object?> showTask = _dialogHost.ShowDialog("Content", null, null, (object sender, DialogClosedEventArgs args) =>
             {
                 args.Session.CloseParameter = closeParameter;
             });
