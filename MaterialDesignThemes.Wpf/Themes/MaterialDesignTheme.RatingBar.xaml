@@ -3,18 +3,6 @@
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-    <!-- TODO: Use correct theming colors
-         Currently these brushes are simply hardcoded to use the PrimaryHueMidBrush color value, and a semi-transparent version of it (to represent halfway selected RatingBarButton) -->
-    <LinearGradientBrush x:Key="RatingBarValue50PercentHorizontalForeground" StartPoint="0,0.5" EndPoint="1,0.5">
-        <GradientStop Color="#FF673AB7" Offset="0.5" />
-        <GradientStop Color="#42673AB7" Offset="0.5" />
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="RatingBarValue50PercentVerticalForeground" StartPoint="0.5,0" EndPoint="0.5,1">
-        <GradientStop Color="#FF673AB7" Offset="0.5" />
-        <GradientStop Color="#42673AB7" Offset="0.5" />
-    </LinearGradientBrush>
-    <SolidColorBrush x:Key="RatingBarValue0PercentForeground" Color="#42673AB7" />
-
     <Style TargetType="{x:Type wpf:RatingBar}">
         <Setter Property="ClipToBounds" Value="False" />
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
@@ -50,7 +38,18 @@
                                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                 Padding="{TemplateBinding Padding}"
                                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                RenderTransformOrigin=".5, .5">
+                                                RenderTransformOrigin=".5, .5"
+                                                Tag="{DynamicResource PrimaryHueMidBrush}">
+                                            <TextBlock.Foreground>
+                                                <MultiBinding Converter="{x:Static wpf:TextBlockForegroundConverter.Instance}">
+                                                    <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
+                                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="Min" />
+                                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="Max" />
+                                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="Orientation" />
+                                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="Value" />
+                                                    <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                                </MultiBinding>
+                                            </TextBlock.Foreground>
                                         <wpf:Ripple.RenderTransform>
                                             <RotateTransform x:Name="RotateTransform"></RotateTransform>
                                         </wpf:Ripple.RenderTransform>
@@ -78,29 +77,6 @@
                         </Setter>
                     </Style.Setters>
                     <Style.Triggers>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsWithinSelectedValue" Value="False" />
-                                <Condition Property="IsHalfwayWithinSelectedValue" Value="False" />
-                            </MultiTrigger.Conditions>
-                            <Setter Property="TextBlock.Foreground" Value="{StaticResource RatingBarValue0PercentForeground}" />
-                        </MultiTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsWithinSelectedValue}" Value="False" />
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsHalfwayWithinSelectedValue}" Value="True" />
-                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=Orientation}" Value="Horizontal" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter Property="TextBlock.Foreground" Value="{StaticResource RatingBarValue50PercentHorizontalForeground}" />
-                        </MultiDataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsWithinSelectedValue}" Value="False" />
-                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsHalfwayWithinSelectedValue}" Value="True" />
-                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=Orientation}" Value="Vertical" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter Property="TextBlock.Foreground" Value="{StaticResource RatingBarValue50PercentVerticalForeground}" />
-                        </MultiDataTrigger>
                         <DataTrigger Binding="{Binding IsReadOnly, RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}}" Value="True">
                             <Setter Property="Template">
                                 <Setter.Value>
@@ -113,7 +89,18 @@
                                                     Padding="{TemplateBinding Padding}"
                                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                                     RenderTransformOrigin=".5, .5"
-                                                    IsEnabled="False">
+                                                    IsEnabled="False"
+                                                    Tag="{DynamicResource PrimaryHueMidBrush}">
+                                            <TextBlock.Foreground>
+                                                <MultiBinding Converter="{x:Static wpf:TextBlockForegroundConverter.Instance}">
+                                                    <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
+                                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="Min" />
+                                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="Max" />
+                                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="Orientation" />
+                                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="Value" />
+                                                    <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                                </MultiBinding>
+                                            </TextBlock.Foreground>
                                         </wpf:Ripple>
                                     </ControlTemplate>
                                 </Setter.Value>

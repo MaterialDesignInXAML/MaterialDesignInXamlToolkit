@@ -1,4 +1,7 @@
 using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Windows.Data;
+using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -199,5 +202,48 @@ namespace MaterialDesignThemes.Wpf
 
             base.OnApplyTemplate();
         }
+    }
+
+    internal class TextBlockForegroundConverter : IMultiValueConverter
+    {
+        public static TextBlockForegroundConverter Instance { get; } = new();
+
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            //TODO add orientation as another parameter (might also need min/max to derive percentage)
+            if (values?.Length == 6
+                && values[0] is SolidColorBrush brush
+                && values[1] is int min
+                && values[2] is int max
+                && values[3] is Orientation orientation
+                && values[4] is double value
+                && values[5] is int buttonValue)
+            {
+                if (value >= buttonValue)
+                    return brush;
+
+                var opaque = brush.Color;
+                var semiTransparent = Color.FromArgb(0x42, brush.Color.R, brush.Color.G, brush.Color.B);
+
+                if (value >= buttonValue - 0.5)
+                {
+                    return new LinearGradientBrush
+                    {
+                        StartPoint = orientation == Orientation.Horizontal ? new Point(0, 0.5) : new Point(0.5, 0),
+                        EndPoint = orientation == Orientation.Horizontal ? new Point(1, 0.5) : new Point(0.5, 1),
+                        GradientStops = new()
+                        {
+                            new GradientStop {Color = opaque, Offset = 0.5},
+                            new GradientStop {Color = semiTransparent, Offset = 0.5}
+                        }
+                    };
+                }
+
+                return new SolidColorBrush(semiTransparent);
+            }
+            return null;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException();
     }
 }
