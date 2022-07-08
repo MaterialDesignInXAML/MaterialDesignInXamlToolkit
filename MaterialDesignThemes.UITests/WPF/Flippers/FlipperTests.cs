@@ -13,7 +13,7 @@ public class FlipperTests : TestBase
 
         //Arrange
         IVisualElement<Flipper> flipper = await LoadXaml<Flipper>(
-            @"<materialDesign:Flipper Style=""{StaticResource MaterialDesignCardFlipper}"" materialDesign:CardAssist.CardStyle=""{StaticResource MaterialDesignOutlinedCard}"" materialDesign:CardAssist.UniformCornerRadius=""5"" />");
+            @"<materialDesign:Flipper Style=""{StaticResource MaterialDesignCardFlipper}"" materialDesign:FlipperAssist.CardStyle=""{StaticResource MaterialDesignOutlinedCard}"" materialDesign:FlipperAssist.UniformCornerRadius=""5"" />");
         IVisualElement<Card> internalCard = await flipper.GetElement<Card>();
         IVisualElement<Border> internalBorder = await internalCard.GetElement<Border>();
 
@@ -36,7 +36,7 @@ public class FlipperTests : TestBase
 
         //Arrange
         IVisualElement<Flipper> flipper = await LoadXaml<Flipper>(
-            @"<materialDesign:Flipper Style=""{StaticResource MaterialDesignCardFlipper}"" materialDesign:CardAssist.CardStyle=""{StaticResource MaterialDesignElevatedCard}"" materialDesign:CardAssist.UniformCornerRadius=""5"" />");
+            @"<materialDesign:Flipper Style=""{StaticResource MaterialDesignCardFlipper}"" materialDesign:FlipperAssist.CardStyle=""{StaticResource MaterialDesignElevatedCard}"" materialDesign:FlipperAssist.UniformCornerRadius=""5"" />");
         IVisualElement<Card> internalCard = await flipper.GetElement<Card>();
         IVisualElement<Border> internalBorder = await internalCard.GetElement<Border>();
 
