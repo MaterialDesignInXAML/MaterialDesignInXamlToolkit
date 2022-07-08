@@ -9,7 +9,7 @@
 
     <Style x:Key="MaterialDesignElevatedCard" TargetType="{x:Type wpf:Card}">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignCardBackground}" />
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth2" />
+        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth_1dp" />
         <Setter Property="Focusable" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
