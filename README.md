@@ -17,12 +17,10 @@ Comprehensive and easy to use Material Design theme and control library for the 
 - Demo applications included in the source project
 
 [![Backers on Open Collective](https://opencollective.com/materialdesigninxaml/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/materialdesigninxaml/sponsors/badge.svg)](#sponsors) [![Gitter](https://img.shields.io/badge/Gitter-Join%20Chat,%20Get%20Help,%20Say%20Hello!-green.svg?style=flat-square)](https://gitter.im/ButchersBoy/MaterialDesignInXamlToolkit)
-![Nightly Build](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/actions/workflows/nightly_release.yml/badge.svg?branch=master)
 [![NuGet-Themes](https://img.shields.io/nuget/v/MaterialDesignThemes.svg?label=NuGet:%20Themes&style=flat-square)](https://www.nuget.org/packages/MaterialDesignThemes/)
 [![NuGet-Themes](<https://img.shields.io/nuget/vpre/MaterialDesignThemes.svg?label=NuGet:%20Themes%20(CI)&style=flat-square>)](https://www.nuget.org/packages/MaterialDesignThemes/)
 [![NuGet-Themes](https://img.shields.io/nuget/vpre/MaterialDesignColors.svg?label=NuGet:%20Colours&style=flat-square)](https://www.nuget.org/packages/MaterialDesignColors/)
 [![Issues](https://img.shields.io/github/issues/MaterialDesignInXAML/MaterialDesignInXamlToolkit.svg?style=flat-square)](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues)
-[![Twitter](https://img.shields.io/badge/twitter-%40james__willock-55acee.svg?style=flat-square)](https://twitter.com/James_Willock)
 
 # ![Alt text](web/images/MD4XAML28.png "How Can I Use The Themes?") Getting Started
 
@@ -55,14 +53,17 @@ To load the source project you will need Visual Studio 2022. Don't worry if you 
 
 # ![Alt text](web/images/MD4XAML28.png "Mentions") Mentions
 
-- Logo courtesy of GitHub user [Snalty](https://github.com/snalty), and you can see more of him;
-- on his [blog](http://holothere.tumblr.com/)
-- and on [Twitter](https://twitter.com/snalty)
+- **[James Willock](https://github.com/ButchersBoy)
+[![Twitter](https://img.shields.io/badge/twitter-%40james__willock-55acee.svg?style=flat-square)](https://twitter.com/James_Willock)** - Founder of the project
+- **[Kevin Bost](https://github.com/Keboo)
+[![Twitter](https://img.shields.io/badge/twitter-%40kitokeboo-55acee.svg?style=flat-square)](https://twitter.com/kitokeboo)** - Maintainer of the repository
+- [Snalty](https://github.com/snalty)
+[![Twitter](https://img.shields.io/badge/twitter-%40snalty-55acee.svg?style=flat-square)](https://twitter.com/snalty) - Designer of the logo
 - Icon pack sourced from [Material Design Icons](https://materialdesignicons.com/)
-- Utilises [ControlzEx](https://github.com/ControlzEx/ControlzEx)
-- Ignace Maes, whose [Material Skin](https://github.com/IgnaceMaes/MaterialSkin) project inspired the original material design theme for [Dragablz](https://github.com/ButchersBoy/Dragablz), which in turn led to me starting this project
-- [Material Design Extensions](https://github.com/spiegelp/MaterialDesignExtensions) is a community repository based on this library that provides additional controls and features.
-- **[Contributors!](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/graphs/contributors)** Thanks for the PRs which have helped add some extra polish.
+- [ControlzEx](https://github.com/ControlzEx/ControlzEx) - Library used in MaterialDesignInXAML
+- [Ignace Maes](https://github.com/IgnaceMaes) - Whose [Material Skin](https://github.com/IgnaceMaes/MaterialSkin) project inspired the original material design theme for [Dragablz](https://github.com/ButchersBoy/Dragablz), which in turn led James Willock start this project
+- [Material Design Extensions](https://github.com/spiegelp/MaterialDesignExtensions) - A community repository based on this library that provides additional controls and features.
+- **[Contributors](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/graphs/contributors)** - A big thank you to all the contributors of the project!
 
 # <a name="Screenshots"></a>![Alt text](web/images/MD4XAML28.png "Screenshots") Screenshots
 
