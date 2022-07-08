@@ -143,18 +143,6 @@ namespace MaterialDesignThemes.Wpf
             instance.RaiseEvent(args);
         }
 
-        public static readonly DependencyProperty UniformCornerRadiusProperty = DependencyProperty.Register(
-            nameof(UniformCornerRadius), typeof(double), typeof(Flipper), new PropertyMetadata(default(double)));
-
-        /// <summary>
-        /// Gets or sets the (uniform) corner radius applied the the <see cref="Flipper"/> when the MaterialDesignCardFlipper style is applied.
-        /// </summary>
-        public double UniformCornerRadius
-        {
-            get => (double)GetValue(UniformCornerRadiusProperty);
-            set => SetValue(UniformCornerRadiusProperty, value);
-        }
-
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
