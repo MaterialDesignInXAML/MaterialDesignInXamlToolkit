@@ -48,33 +48,12 @@
                     materialDesign:ShadowAssist.ShadowDepth="Depth4"
                     Content="DEPTH 4"/>
             </smtx:XamlDisplay>
-            
+
             <smtx:XamlDisplay UniqueKey="shadow_5" Margin="16 0 0 0">
                 <Button
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     materialDesign:ShadowAssist.ShadowDepth="Depth5"
                     Content="DEPTH 5"/>
-            </smtx:XamlDisplay>
-
-            <smtx:XamlDisplay UniqueKey="shadow_6" Margin="16 0 0 0">
-                <Button
-                    Style="{StaticResource MaterialDesignRaisedButton}"
-                    materialDesign:ShadowAssist.ShadowDepth="Depth6"
-                    Content="DEPTH 6"/>
-            </smtx:XamlDisplay>
-
-            <smtx:XamlDisplay UniqueKey="shadow_7" Margin="16 0 0 0">
-                <Button
-                    Style="{StaticResource MaterialDesignRaisedButton}"
-                    materialDesign:ShadowAssist.ShadowDepth="Depth7"
-                    Content="DEPTH 7"/>
-            </smtx:XamlDisplay>
-
-            <smtx:XamlDisplay UniqueKey="shadow_8" Margin="16 0 0 0">
-                <Button
-                    Style="{StaticResource MaterialDesignRaisedButton}"
-                    materialDesign:ShadowAssist.ShadowDepth="Depth8"
-                    Content="DEPTH 8"/>
             </smtx:XamlDisplay>
         </StackPanel>
         
@@ -114,7 +93,7 @@
                     materialDesign:ShadowAssist.ShadowDepth="Depth4"
                     Content="4"/>
             </smtx:XamlDisplay>
-            
+
             <smtx:XamlDisplay
                 UniqueKey="shadow_13"
                 Margin="16 0 0 0">
@@ -122,33 +101,6 @@
                     Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                     materialDesign:ShadowAssist.ShadowDepth="Depth5"
                     Content="5"/>
-            </smtx:XamlDisplay>
-
-            <smtx:XamlDisplay
-                UniqueKey="shadow_14"
-                Margin="16 0 0 0">
-                <Button
-                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                    materialDesign:ShadowAssist.ShadowDepth="Depth6"
-                    Content="6"/>
-            </smtx:XamlDisplay>
-
-            <smtx:XamlDisplay
-                UniqueKey="shadow_15"
-                Margin="16 0 0 0">
-                <Button
-                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                    materialDesign:ShadowAssist.ShadowDepth="Depth7"
-                    Content="7"/>
-            </smtx:XamlDisplay>
-
-            <smtx:XamlDisplay
-                UniqueKey="shadow_16"
-                Margin="16 0 0 0">
-                <Button
-                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                    materialDesign:ShadowAssist.ShadowDepth="Depth8"
-                    Content="8"/>
             </smtx:XamlDisplay>
         </StackPanel>
         
@@ -188,7 +140,7 @@
                     Padding="32"
                     Content="DEPTH 4"/>
             </smtx:XamlDisplay>
-            
+
             <smtx:XamlDisplay
                 UniqueKey="shadow_21"
                 Margin="16 0 0 0">
@@ -196,33 +148,6 @@
                     materialDesign:ShadowAssist.ShadowDepth="Depth5"
                     Padding="32"
                     Content="DEPTH 5"/>
-            </smtx:XamlDisplay>
-
-            <smtx:XamlDisplay
-                UniqueKey="shadow_22"
-                Margin="16 0 0 0">
-                <materialDesign:Card
-                    materialDesign:ShadowAssist.ShadowDepth="Depth6"
-                    Padding="32"
-                    Content="DEPTH 6"/>
-            </smtx:XamlDisplay>
-
-            <smtx:XamlDisplay
-                UniqueKey="shadow_23"
-                Margin="16 0 0 0">
-                <materialDesign:Card
-                    materialDesign:ShadowAssist.ShadowDepth="Depth7"
-                    Padding="32"
-                    Content="DEPTH 7"/>
-            </smtx:XamlDisplay>
-
-            <smtx:XamlDisplay
-                UniqueKey="shadow_24"
-                Margin="16 0 0 0">
-                <materialDesign:Card
-                    materialDesign:ShadowAssist.ShadowDepth="Depth8"
-                    Padding="32"
-                    Content="DEPTH 8"/>
             </smtx:XamlDisplay>
         </StackPanel>
         

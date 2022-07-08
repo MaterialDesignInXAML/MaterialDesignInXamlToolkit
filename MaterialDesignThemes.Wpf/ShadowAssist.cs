@@ -11,15 +11,27 @@ namespace MaterialDesignThemes.Wpf
 
     public enum ShadowDepth
     {
-        Depth0,
-        Depth1,
-        Depth2,
-        Depth3,
-        Depth4,
-        Depth5,
-        Depth6,
-        Depth7,
-        Depth8
+        #region ObseleteDepth
+        [Obsolete] Depth0,
+        [Obsolete] Depth1,
+        [Obsolete] Depth2,
+        [Obsolete] Depth3,
+        [Obsolete] Depth4,
+        [Obsolete] Depth5,
+        #endregion
+
+        Depth_0dp,
+        Depth_1dp,
+        Depth_2dp,
+        Depth_3dp,
+        Depth_4dp,
+        Depth_5dp,
+        Depth_6dp,
+        Depth_7dp,
+        Depth_8dp,
+        Depth_12dp,
+        Depth_16dp,
+        Depth_24dp
     }
 
     [Flags]

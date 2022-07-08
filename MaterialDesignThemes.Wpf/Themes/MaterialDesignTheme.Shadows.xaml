@@ -7,13 +7,23 @@
     <Color x:Key="MaterialDesignShadow">#000000</Color>
     <SolidColorBrush x:Key="MaterialDesignShadowBrush" Color="{StaticResource MaterialDesignShadow}"/>
      
-    <DropShadowEffect x:Key="MaterialDesignShadowDepth1" BlurRadius="2" ShadowDepth="1" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity=".42" RenderingBias="Performance" po:Freeze="True"/>
-    <DropShadowEffect x:Key="MaterialDesignShadowDepth2" BlurRadius="4" ShadowDepth="1.5" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity=".42" RenderingBias="Performance" po:Freeze="True" />
-    <DropShadowEffect x:Key="MaterialDesignShadowDepth3" BlurRadius="6" ShadowDepth="2" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity=".42" RenderingBias="Performance" po:Freeze="True" />
-    <DropShadowEffect x:Key="MaterialDesignShadowDepth4" BlurRadius="8" ShadowDepth="2.5" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity=".42" RenderingBias="Performance" po:Freeze="True" />
-    <DropShadowEffect x:Key="MaterialDesignShadowDepth5" BlurRadius="10" ShadowDepth="3" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity=".42" RenderingBias="Performance" po:Freeze="True" />
-    <DropShadowEffect x:Key="MaterialDesignShadowDepth6" BlurRadius="12" ShadowDepth="3.5" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity=".42" RenderingBias="Performance" po:Freeze="True" />
-    <DropShadowEffect x:Key="MaterialDesignShadowDepth7" BlurRadius="14" ShadowDepth="4" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity=".42" RenderingBias="Performance" po:Freeze="True" />
-    <DropShadowEffect x:Key="MaterialDesignShadowDepth8" BlurRadius="16" ShadowDepth="4.5" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity=".42" RenderingBias="Performance" po:Freeze="True" />
-	
+    <!--#region Obselete-->
+    <DropShadowEffect x:Key="MaterialDesignShadowDepth1" BlurRadius="5" ShadowDepth="1" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity=".42" RenderingBias="Performance" po:Freeze="True" />
+    <DropShadowEffect x:Key="MaterialDesignShadowDepth2" BlurRadius="8" ShadowDepth="1.5" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity=".42" RenderingBias="Performance" po:Freeze="True" />
+    <DropShadowEffect x:Key="MaterialDesignShadowDepth3" BlurRadius="14" ShadowDepth="4.5" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity=".42" RenderingBias="Performance" po:Freeze="True" />
+    <DropShadowEffect x:Key="MaterialDesignShadowDepth4" BlurRadius="25" ShadowDepth="8" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity=".42" RenderingBias="Performance" po:Freeze="True" />
+    <DropShadowEffect x:Key="MaterialDesignShadowDepth5" BlurRadius="35" ShadowDepth="13" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity=".42" RenderingBias="Performance" po:Freeze="True" />
+    <!--#endregion-->
+    
+    <DropShadowEffect x:Key="MaterialDesignShadowDepth_1dp" BlurRadius="2" ShadowDepth="1" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity="0.5" RenderingBias="Performance" po:Freeze="True"/>
+    <DropShadowEffect x:Key="MaterialDesignShadowDepth_2dp" BlurRadius="4" ShadowDepth="1.5" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity="0.5" RenderingBias="Performance" po:Freeze="True" />
+    <DropShadowEffect x:Key="MaterialDesignShadowDepth_3dp" BlurRadius="6" ShadowDepth="2" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity="0.5" RenderingBias="Performance" po:Freeze="True" />
+    <DropShadowEffect x:Key="MaterialDesignShadowDepth_4dp" BlurRadius="8" ShadowDepth="2.5" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity="0.5" RenderingBias="Performance" po:Freeze="True" />
+    <DropShadowEffect x:Key="MaterialDesignShadowDepth_5dp" BlurRadius="10" ShadowDepth="3" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity="0.5" RenderingBias="Performance" po:Freeze="True" />
+    <DropShadowEffect x:Key="MaterialDesignShadowDepth_6dp" BlurRadius="12" ShadowDepth="3.5" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity="0.5" RenderingBias="Performance" po:Freeze="True" />
+    <DropShadowEffect x:Key="MaterialDesignShadowDepth_7dp" BlurRadius="14" ShadowDepth="4" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity="0.5" RenderingBias="Performance" po:Freeze="True" />
+    <DropShadowEffect x:Key="MaterialDesignShadowDepth_8dp" BlurRadius="16" ShadowDepth="4.5" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity="0.5" RenderingBias="Performance" po:Freeze="True" />
+    <DropShadowEffect x:Key="MaterialDesignShadowDepth_12dp" BlurRadius="24" ShadowDepth="6.5" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity="0.5" RenderingBias="Performance" po:Freeze="True" />
+    <DropShadowEffect x:Key="MaterialDesignShadowDepth_16dp" BlurRadius="32" ShadowDepth="8.5" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity="0.5" RenderingBias="Performance" po:Freeze="True" />
+    <DropShadowEffect x:Key="MaterialDesignShadowDepth_24dp" BlurRadius="48" ShadowDepth="12.5" Direction="270" Color="{StaticResource MaterialDesignShadow}" Opacity="0.5" RenderingBias="Performance" po:Freeze="True" />
 </ResourceDictionary>

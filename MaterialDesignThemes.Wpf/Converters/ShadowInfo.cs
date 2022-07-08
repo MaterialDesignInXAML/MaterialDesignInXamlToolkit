@@ -15,15 +15,28 @@ namespace MaterialDesignThemes.Wpf.Converters
 
             ShadowsDictionary = new Dictionary<ShadowDepth, DropShadowEffect?>
             {
+                // Obselete
+                #region ObseleteDepth
                 { ShadowDepth.Depth0, null },
                 { ShadowDepth.Depth1, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth1"] },
                 { ShadowDepth.Depth2, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth2"] },
                 { ShadowDepth.Depth3, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth3"] },
                 { ShadowDepth.Depth4, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth4"] },
                 { ShadowDepth.Depth5, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth5"] },
-                { ShadowDepth.Depth6, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth6"] },
-                { ShadowDepth.Depth7, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth7"] },
-                { ShadowDepth.Depth8, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth8"] },
+                #endregion
+                
+                { ShadowDepth.Depth_0dp, null },
+                { ShadowDepth.Depth_1dp, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth_1dp"] },
+                { ShadowDepth.Depth_2dp, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth_2dp"] },
+                { ShadowDepth.Depth_3dp, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth_3dp"] },
+                { ShadowDepth.Depth_4dp, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth_4dp"] },
+                { ShadowDepth.Depth_5dp, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth_5dp"] },
+                { ShadowDepth.Depth_6dp, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth_6dp"] },
+                { ShadowDepth.Depth_7dp, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth_7dp"] },
+                { ShadowDepth.Depth_8dp, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth_8dp"] },
+                { ShadowDepth.Depth_12dp, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth_12dp"] },
+                { ShadowDepth.Depth_16dp, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth_16dp"] },
+                { ShadowDepth.Depth_24dp, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth_24dp"] }
             };
         }
 
