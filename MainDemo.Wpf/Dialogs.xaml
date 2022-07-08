@@ -64,6 +64,7 @@
                 Grid.Row="1">
                 <materialDesign:DialogHost
                     DialogClosing="Sample1_DialogHost_OnDialogClosing"
+                    DialogClosed="Sample1_DialogHost_OnDialogClosed"
                     DialogTheme="Inherit">
                     <materialDesign:DialogHost.DialogContent>
                         <StackPanel Margin="16">
@@ -160,6 +161,7 @@
                     <Button
                         Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                         materialDesign:DialogHost.DialogClosingAttached="Sample2_DialogHost_OnDialogClosing"
+                        materialDesign:DialogHost.DialogClosedAttached="Sample2_DialogHost_OnDialogClosed"
                         Width="128"
                         Content="PASS VIEW">
                         <Button.CommandParameter>
@@ -283,6 +285,7 @@
                 Margin="8 8 0 0">
                 <materialDesign:DialogHost
                     DialogClosing="Sample5_DialogHost_OnDialogClosing"
+                    DialogClosed="Sample5_DialogHost_OnDialogClosed"
                     Style="{StaticResource MaterialDesignEmbeddedDialogHost}"
                     DialogMargin="8">
                     <materialDesign:DialogHost.DialogContent>

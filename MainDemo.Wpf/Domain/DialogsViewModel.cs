@@ -31,7 +31,7 @@ namespace MaterialDesignDemo.Domain
             };
 
             //show the dialog
-            var result = await DialogHost.Show(view, "RootDialog", ClosingEventHandler);
+            var result = await DialogHost.Show(view, "RootDialog", null, ClosingEventHandler, ClosedEventHandler);
 
             //check the result...
             Debug.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
@@ -39,6 +39,9 @@ namespace MaterialDesignDemo.Domain
 
         private void ClosingEventHandler(object sender, DialogClosingEventArgs eventArgs)
             => Debug.WriteLine("You can intercept the closing event, and cancel here.");
+
+        private void ClosedEventHandler(object sender, DialogClosedEventArgs eventArgs)
+            => Debug.WriteLine("You can intercept the closed event here (1).");
 
         private async void ExecuteRunExtendedDialog(object? _)
         {
@@ -49,17 +52,18 @@ namespace MaterialDesignDemo.Domain
             };
 
             //show the dialog
-            var result = await DialogHost.Show(view, "RootDialog", ExtendedOpenedEventHandler, ExtendedClosingEventHandler);
+            var result = await DialogHost.Show(view, "RootDialog", ExtendedOpenedEventHandler, ExtendedClosingEventHandler, ExtendedClosedEventHandler);
 
             //check the result...
             Debug.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
         }
 
-        private void ExtendedOpenedEventHandler(object sender, DialogOpenedEventArgs eventargs)
+        private void ExtendedOpenedEventHandler(object sender, DialogOpenedEventArgs eventArgs)
             => Debug.WriteLine("You could intercept the open and affect the dialog using eventArgs.Session.");
 
         private void ExtendedClosingEventHandler(object sender, DialogClosingEventArgs eventArgs)
         {
+            Debug.WriteLine("You can intercept the closing event, cancel it, and do our own close after a little while.");
             if (eventArgs.Parameter is bool parameter &&
                 parameter == false) return;
 
@@ -75,6 +79,9 @@ namespace MaterialDesignDemo.Domain
                 .ContinueWith((t, _) => eventArgs.Session.Close(false), null,
                     TaskScheduler.FromCurrentSynchronizationContext());
         }
+
+        private void ExtendedClosedEventHandler(object sender, DialogClosedEventArgs eventArgs)
+            => Debug.WriteLine("You could intercept the closed event here (2).");
 
         #endregion
 
