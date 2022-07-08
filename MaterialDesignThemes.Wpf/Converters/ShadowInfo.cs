@@ -17,14 +17,16 @@ namespace MaterialDesignThemes.Wpf.Converters
             {
                 // Obselete
                 #region ObseleteDepth
+                #pragma warning disable CS0618 // Type or member is obsolete
                 { ShadowDepth.Depth0, null },
                 { ShadowDepth.Depth1, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth1"] },
                 { ShadowDepth.Depth2, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth2"] },
                 { ShadowDepth.Depth3, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth3"] },
                 { ShadowDepth.Depth4, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth4"] },
                 { ShadowDepth.Depth5, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth5"] },
+                #pragma warning restore CS0618 // Type or member is obsolete
                 #endregion
-                
+
                 { ShadowDepth.Depth_0dp, null },
                 { ShadowDepth.Depth_1dp, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth_1dp"] },
                 { ShadowDepth.Depth_2dp, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth_2dp"] },
