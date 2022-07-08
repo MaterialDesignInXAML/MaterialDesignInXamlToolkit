@@ -182,6 +182,180 @@
                     Content="CUSTOM CLIP"/>
             </smtx:XamlDisplay>
         </StackPanel>
+        <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}" Margin="0,45,0,10">
+            New Depth Shadow System
+        </TextBlock>
+        <Separator Style="{DynamicResource MaterialDesignSeparator}" Margin="0,0,0,16"/>
+        <WrapPanel Orientation="Horizontal">
+            <smtx:XamlDisplay
+                UniqueKey="new_shadow_card_0dp"
+                Margin="0,0,16,32">
+                <materialDesign:Card
+                    materialDesign:ShadowAssist.ShadowDepth="Depth_0dp"
+                    Width="150"
+                    Height="80">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        Depth 0dp
+                    </TextBlock>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay
+                UniqueKey="new_shadow_card_1dp"
+                Margin="0,0,16,32">
+                <materialDesign:Card
+                    materialDesign:ShadowAssist.ShadowDepth="Depth_1dp"
+                    Width="150"
+                    Height="80">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        Depth 1dp
+                    </TextBlock>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay
+                UniqueKey="new_shadow_card_2dp"
+                Margin="0,0,16,32">
+                <materialDesign:Card
+                    materialDesign:ShadowAssist.ShadowDepth="Depth_2dp"
+                    Width="150"
+                    Height="80">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        Depth 2dp
+                    </TextBlock>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay
+                UniqueKey="new_shadow_card_3dp"
+                Margin="0,0,16,32">
+                <materialDesign:Card
+                    materialDesign:ShadowAssist.ShadowDepth="Depth_3dp"
+                    Width="150"
+                    Height="80">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        Depth 3dp
+                    </TextBlock>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay
+                UniqueKey="new_shadow_card_4dp"
+                Margin="0,0,16,32">
+                <materialDesign:Card
+                    materialDesign:ShadowAssist.ShadowDepth="Depth_4dp"
+                    Width="150"
+                    Height="80">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        Depth 4dp
+                    </TextBlock>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay
+                UniqueKey="new_shadow_card_5dp"
+                Margin="0,0,16,32">
+                <materialDesign:Card
+                    materialDesign:ShadowAssist.ShadowDepth="Depth_5dp"
+                    Width="150"
+                    Height="80">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        Depth 5dp
+                    </TextBlock>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay
+                UniqueKey="new_shadow_card_6dp"
+                Margin="0,0,16,32">
+                <materialDesign:Card
+                    materialDesign:ShadowAssist.ShadowDepth="Depth_6dp"
+                    Width="150"
+                    Height="80">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        Depth 6dp
+                    </TextBlock>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay
+                UniqueKey="new_shadow_card_7dp"
+                Margin="0,0,16,32">
+                <materialDesign:Card
+                    materialDesign:ShadowAssist.ShadowDepth="Depth_7dp"
+                    Width="150"
+                    Height="80">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        Depth 7dp
+                    </TextBlock>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay
+                UniqueKey="new_shadow_card_8dp"
+                Margin="0,0,16,32">
+                <materialDesign:Card
+                    materialDesign:ShadowAssist.ShadowDepth="Depth_8dp"
+                    Width="150"
+                    Height="80">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        Depth 8dp
+                    </TextBlock>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay
+                UniqueKey="new_shadow_card_12dp"
+                Margin="0,0,16,32">
+                <materialDesign:Card
+                    materialDesign:ShadowAssist.ShadowDepth="Depth_12dp"
+                    Width="150"
+                    Height="80">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        Depth 12dp
+                    </TextBlock>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay
+                UniqueKey="new_shadow_card_16"
+                Margin="0,0,16,32">
+                <materialDesign:Card
+                    materialDesign:ShadowAssist.ShadowDepth="Depth_16dp"
+                    Width="150"
+                    Height="80">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        Depth 16dp
+                    </TextBlock>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay
+                UniqueKey="new_shadow_card_24"
+                Margin="0,0,16,32">
+                <materialDesign:Card
+                    materialDesign:ShadowAssist.ShadowDepth="Depth_24dp"
+                    Width="150"
+                    Height="80">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        Depth 24dp
+                    </TextBlock>
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+        </WrapPanel>
     </StackPanel>
 </UserControl>
 
