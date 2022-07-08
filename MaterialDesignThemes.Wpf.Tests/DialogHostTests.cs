@@ -1,9 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
+﻿using System.ComponentModel;
 using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests
@@ -190,6 +185,34 @@ namespace MaterialDesignThemes.Wpf.Tests
         }
 
         [StaFact]
+        public async Task WhenCancellingClosingEventClosedEventHandlerIsNotInvoked()
+        {
+            int closingInvokeCount = 0;
+            void ClosingHandler(object s, DialogClosingEventArgs e)
+            {
+                closingInvokeCount++;
+                if (closingInvokeCount == 1)
+                {
+                    e.Cancel();
+                }
+            }
+            int closedInvokeCount = 0;
+            void ClosedHandler(object s, DialogClosedEventArgs e)
+            {
+                closedInvokeCount++;
+            }
+
+            var dialogTask = DialogHost.Show("Content", null, ClosingHandler, ClosedHandler);
+            _dialogHost.CurrentSession?.Close("FirstResult");
+            _dialogHost.CurrentSession?.Close("SecondResult");
+            object? result = await dialogTask;
+
+            Assert.Equal("SecondResult", result);
+            Assert.Equal(2, closingInvokeCount);
+            Assert.Equal(1, closedInvokeCount);
+        }
+
+        [StaFact]
         [Description("Issue 1328")]
         public async Task WhenDoubleClickAwayDialogCloses()
         {
@@ -257,6 +280,21 @@ namespace MaterialDesignThemes.Wpf.Tests
         }
 
         [StaFact]
+        public async Task WhenClosingDialogReturnValueCanBeSpecifiedInClosedEventHandler()
+        {
+            Guid closeParameter = Guid.NewGuid();
+
+            Task<object?> showTask = _dialogHost.ShowDialog("Content", (sender, args) => { }, (sender, args) => { }, (object sender, DialogClosedEventArgs args) =>
+            {
+                args.Session.CloseParameter = closeParameter;
+            });
+
+            DialogHost.CloseDialogCommand.Execute(null, _dialogHost);
+
+            Assert.Equal(closeParameter, await showTask);
+        }
+
+        [StaFact]
         [Description("Pull Request 2029")]
         public void WhenClosingDialogItThrowsWhenNoInstancesLoaded()
         {
@@ -306,16 +344,24 @@ namespace MaterialDesignThemes.Wpf.Tests
         {
             object parameter = Guid.NewGuid();
             object? closingParameter = null;
+            object? closedParameter = null;
             _dialogHost.DialogClosing += DialogClosing;
+            _dialogHost.DialogClosed += DialogClosed;
             _dialogHost.IsOpen = true;
 
             DialogHost.Close(null, parameter);
 
             Assert.Equal(parameter, closingParameter);
+            Assert.Equal(parameter, closedParameter);
 
             void DialogClosing(object sender, DialogClosingEventArgs eventArgs)
             {
                 closingParameter = eventArgs.Parameter;
+            }
+
+            void DialogClosed(object sender, DialogClosedEventArgs eventArgs)
+            {
+                closedParameter = eventArgs.Parameter;
             }
         }
 
