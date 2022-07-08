@@ -1,13 +1,13 @@
 ﻿namespace MaterialDesignThemes.Wpf;
 
-public static class CardAssist
+public static class FlipperAssist
 {
     #region AttachedProperty : UniformCornerRadiusProperty
     /// <summary>
     /// Controls the (uniform) corner radius of the contained card
     /// </summary>
     public static readonly DependencyProperty UniformCornerRadiusProperty
-        = DependencyProperty.RegisterAttached("UniformCornerRadius", typeof(double), typeof(CardAssist),
+        = DependencyProperty.RegisterAttached("UniformCornerRadius", typeof(double), typeof(FlipperAssist),
             new FrameworkPropertyMetadata(default(double), FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
     public static void SetUniformCornerRadius(DependencyObject element, double value) => element.SetValue(UniformCornerRadiusProperty, value);
@@ -19,11 +19,11 @@ public static class CardAssist
     /// Controls the style of the contained card
     /// </summary>
     public static readonly DependencyProperty CardStyleProperty
-        = DependencyProperty.RegisterAttached("CardStyle", typeof(Style), typeof(CardAssist),
+        = DependencyProperty.RegisterAttached("CardStyle", typeof(Style), typeof(FlipperAssist),
             new FrameworkPropertyMetadata(default(Style), FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits, null, CoerceCardStyleCallback));
     private static object? CoerceCardStyleCallback(DependencyObject d, object baseValue)
     {
-        if (baseValue is Style style && style.TargetType != typeof(Card))
+        if (baseValue is Style style && !typeof(Card).IsAssignableFrom(style.TargetType))
             return default(Style);
         return baseValue;
     }

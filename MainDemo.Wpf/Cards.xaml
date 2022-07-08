@@ -649,7 +649,7 @@
                 <materialDesign:Flipper
                     Style="{StaticResource MaterialDesignCardFlipper}"
                     IsFlippedChanged="Flipper_OnIsFlippedChanged"
-                    materialDesign:CardAssist.UniformCornerRadius="8">
+                    materialDesign:FlipperAssist.UniformCornerRadius="8">
                     <materialDesign:Flipper.FrontContent>
                         <Button
                             Style="{StaticResource MaterialDesignFlatButton}"
@@ -676,8 +676,8 @@
                 <materialDesign:Flipper
                     Style="{StaticResource MaterialDesignCardFlipper}"
                     IsFlippedChanged="Flipper_OnIsFlippedChanged"
-                    materialDesign:CardAssist.UniformCornerRadius="8"
-                    materialDesign:CardAssist.CardStyle="{StaticResource MaterialDesignOutlinedCard}">
+                    materialDesign:FlipperAssist.UniformCornerRadius="8"
+                    materialDesign:FlipperAssist.CardStyle="{StaticResource MaterialDesignOutlinedCard}">
                     <materialDesign:Flipper.FrontContent>
                         <Button
                             Style="{StaticResource MaterialDesignFlatButton}"
