@@ -37,19 +37,5 @@ namespace MaterialDesignThemes.Wpf
             get => (bool)GetValue(IsWithinSelectedValueProperty);
             internal set => SetValue(IsWithinValuePropertyKey, value);
         }
-
-        private static readonly DependencyPropertyKey IsHalfwayWithinValuePropertyKey =
-            DependencyProperty.RegisterReadOnly(
-                "IsHalfwayWithinSelectedValue", typeof(bool), typeof(RatingBarButton),
-                new PropertyMetadata(default(bool)));
-
-        public static readonly DependencyProperty IsHalfwayWithinSelectedValueProperty =
-            IsWithinValuePropertyKey.DependencyProperty;
-
-        public bool IsHalfwayWithinSelectedValue
-        {
-            get => (bool)GetValue(IsHalfwayWithinSelectedValueProperty);
-            internal set => SetValue(IsHalfwayWithinValuePropertyKey, value);
-        }
     }
 }

@@ -31,20 +31,17 @@ namespace MaterialDesignThemes.Wpf
         {
             if (executedRoutedEventArgs.Parameter is int && !IsReadOnly)
             {
+                if (!IsFractionValueEnabled)
+                {
+                    Value = (int)executedRoutedEventArgs.Parameter;
+                    return;
+                }
+
                 // Get mouse offset inside source
-                int buttonValue = (int) executedRoutedEventArgs.Parameter;
                 RatingBarButton b = (RatingBarButton)executedRoutedEventArgs.OriginalSource;
                 Point p = Mouse.GetPosition(b);
-                if (Orientation == Orientation.Horizontal)
-                {
-                    double value = b.ActualWidth / p.X;
-                    Value = value <= 2 ? buttonValue : buttonValue - 0.5;
-                }
-                else
-                {
-                    double value = b.ActualHeight / p.Y;
-                    Value = value <= 2 ? buttonValue : buttonValue - 0.5;
-                }
+                double percentSelected = Orientation == Orientation.Horizontal ? p.X / b.ActualWidth : p.Y / b.ActualHeight;
+                Value = b.Value - 1 + percentSelected;
             }
         }
 
@@ -66,6 +63,42 @@ namespace MaterialDesignThemes.Wpf
             set => SetValue(MaxProperty, value);
         }
 
+        private static readonly DependencyPropertyKey IsFractionValueEnabledPropertyKey =
+            DependencyProperty.RegisterReadOnly(
+                "IsFractionValueEnabled", typeof(bool), typeof(RatingBar),
+                new PropertyMetadata(default(bool)));
+
+        internal static readonly DependencyProperty IsFractionValueEnabledProperty =
+            IsFractionValueEnabledPropertyKey.DependencyProperty;
+
+        internal bool IsFractionValueEnabled
+        {
+            get => (bool)GetValue(IsFractionValueEnabledProperty);
+            private set => SetValue(IsFractionValueEnabledPropertyKey, value);
+        }
+
+        public static readonly DependencyProperty ValueIncrementsProperty = DependencyProperty.Register(
+            nameof(ValueIncrements), typeof(double), typeof(RatingBar), new PropertyMetadata(1.0, ValueIncrementsPropertyChangedCallback, ValueIncrementsCoerceValueCallback));
+
+        private static void ValueIncrementsPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var ratingBar = (RatingBar)d;
+            ratingBar.IsFractionValueEnabled = Math.Abs(ratingBar.ValueIncrements - 1.0) > 1e-10;
+            ratingBar.RebuildButtons();
+        }
+
+        private static object ValueIncrementsCoerceValueCallback(DependencyObject d, object baseValue)
+            => Math.Max(double.Epsilon, Math.Min(1.0, (double)baseValue));
+
+        /// <summary>
+        /// Gets or sets the value increments. Set to a value between 0.0 and 1.0 (both exclusive) to enable fractional values. Default value is 1.0 (i.e. fractional values disabled)
+        /// </summary>
+        public double ValueIncrements
+        {
+            get { return (double) GetValue(ValueIncrementsProperty); }
+            set { SetValue(ValueIncrementsProperty, value); }
+        }
+
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
             nameof(Value), typeof(double), typeof(RatingBar), new PropertyMetadata(0.0, ValuePropertyChangedCallback, ValueCoerceValueCallback));
 
@@ -74,8 +107,8 @@ namespace MaterialDesignThemes.Wpf
             var ratingBar = (RatingBar)dependencyObject;
             foreach (var button in ratingBar.RatingButtons)
             {
+                // The property being set here is no longer used. If the RatingBarButton (and the DP) was not public I would have just removed it.
                 button.IsWithinSelectedValue = button.Value <= (double)dependencyPropertyChangedEventArgs.NewValue;
-                button.IsHalfwayWithinSelectedValue = button.Value <= (double)dependencyPropertyChangedEventArgs.NewValue + 0.5;
             }
             OnValueChanged(ratingBar, dependencyPropertyChangedEventArgs);
         }
@@ -83,11 +116,16 @@ namespace MaterialDesignThemes.Wpf
         private static object ValueCoerceValueCallback(DependencyObject d, object baseValue)
         {
             var ratingBar = (RatingBar) d;
+
+            // If factional values are disabled we don't do any coercion. This maintains back-compat where coercion was not applied. 
+            if (!ratingBar.IsFractionValueEnabled)
+                return baseValue;
+
             if (baseValue is double value)
             {
-                // Coerce the value into a multiple of 0.5 and within the bounds
-                double valueInCorrectMultiple = Math.Round(value * 2, MidpointRounding.AwayFromZero) / 2;
-                return Math.Min(ratingBar.Max, Math.Max(ratingBar.Min - 1, valueInCorrectMultiple));
+                // Coerce the value into a multiple of ValueIncrements and within the bounds.
+                double valueInCorrectMultiple = Math.Round(value / ratingBar.ValueIncrements, MidpointRounding.AwayFromZero) * ratingBar.ValueIncrements;
+                return Math.Min(ratingBar.Max, Math.Max(ratingBar.Min, valueInCorrectMultiple));
             }
             return (double)ratingBar.Min;
         }
@@ -182,7 +220,10 @@ namespace MaterialDesignThemes.Wpf
         private void RebuildButtons()
         {
             _ratingButtonsInternal.Clear();
-            for (var i = Min; i <= Max; i++)
+            // When fractional values are enabled, the first rating button represents the value Min when not selected at all and Min+1 when fully selected;
+            // thus we start with the value Min+1 for the values of the rating buttons.
+            int start = IsFractionValueEnabled ? Min + 1 : Min;
+            for (int i = start; i <= Max; i++)
             {
                 _ratingButtonsInternal.Add(new RatingBarButton
                 {
@@ -206,42 +247,43 @@ namespace MaterialDesignThemes.Wpf
 
     internal class TextBlockForegroundConverter : IMultiValueConverter
     {
+        internal static byte SemiTransparent => 0x42; // ~26% opacity
+
         public static TextBlockForegroundConverter Instance { get; } = new();
 
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            //TODO add orientation as another parameter (might also need min/max to derive percentage)
-            if (values?.Length == 6
+            if (values?.Length == 4
                 && values[0] is SolidColorBrush brush
-                && values[1] is int min
-                && values[2] is int max
-                && values[3] is Orientation orientation
-                && values[4] is double value
-                && values[5] is int buttonValue)
+                && values[1] is Orientation orientation
+                && values[2] is double value
+                && values[3] is int buttonValue)
             {
                 if (value >= buttonValue)
                     return brush;
 
-                var opaque = brush.Color;
-                var semiTransparent = Color.FromArgb(0x42, brush.Color.R, brush.Color.G, brush.Color.B);
+                var originalColor = brush.Color;
+                var semiTransparent = Color.FromArgb(SemiTransparent, brush.Color.R, brush.Color.G, brush.Color.B);
 
-                if (value >= buttonValue - 0.5)
+                if (value > buttonValue - 1.0)
                 {
+                    double offset = value - buttonValue + 1;
                     return new LinearGradientBrush
                     {
                         StartPoint = orientation == Orientation.Horizontal ? new Point(0, 0.5) : new Point(0.5, 0),
                         EndPoint = orientation == Orientation.Horizontal ? new Point(1, 0.5) : new Point(0.5, 1),
                         GradientStops = new()
                         {
-                            new GradientStop {Color = opaque, Offset = 0.5},
-                            new GradientStop {Color = semiTransparent, Offset = 0.5}
+                            new GradientStop {Color = originalColor, Offset = offset},
+                            new GradientStop {Color = semiTransparent, Offset = offset}
                         }
                     };
                 }
-
                 return new SolidColorBrush(semiTransparent);
             }
-            return null;
+
+            // This should never happen (returning actual brush to avoid the compiler squiggly line warnings)
+            return Brushes.Transparent;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException();

@@ -43,8 +43,6 @@
                                             <TextBlock.Foreground>
                                                 <MultiBinding Converter="{x:Static wpf:TextBlockForegroundConverter.Instance}">
                                                     <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
-                                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="Min" />
-                                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="Max" />
                                                     <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="Orientation" />
                                                     <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="Value" />
                                                     <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}"/>
