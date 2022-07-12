@@ -34,7 +34,7 @@ namespace MaterialDesignThemes.UITests.WPF.Theme
         {
             await using var recorder = new TestRecorder(App);
 
-            await App.InitialzeWithMaterialDesign(BaseTheme.Light, primary, colorAdjustment:new ColorAdjustment());
+            await App.InitializeWithMaterialDesign(BaseTheme.Light, primary, colorAdjustment:new ColorAdjustment());
 
             IWindow window = await App.CreateWindow<ColorAdjustWindow>();
 
