@@ -75,7 +75,7 @@ namespace MaterialDesign3Demo.Domain
 
             return new DocumentationLink(
                 DocumentationLinkType.DemoPageSource,
-                $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/MainDemo.Wpf/{(string.IsNullOrWhiteSpace(@namespace) ? "" : "/" + @namespace + "/")}{typeof(TDemoPage).Name}.{ext}",
+                $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/MaterialDesign3.Demo.Wpf/{(string.IsNullOrWhiteSpace(@namespace) ? "" : "/" + @namespace + "/")}{typeof(TDemoPage).Name}.{ext}",
                 label ?? typeof(TDemoPage).Name);
         }
 
