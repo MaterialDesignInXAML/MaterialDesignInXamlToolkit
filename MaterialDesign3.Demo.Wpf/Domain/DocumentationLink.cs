@@ -26,11 +26,13 @@ namespace MaterialDesign3Demo.Domain
                 $"{ConfigurationManager.AppSettings["GitHub"]}/wiki/" + page, label);
         }
 
-        public static DocumentationLink StyleLink(string nameChunk)
+        public static DocumentationLink StyleLink(string nameChunk, bool isMd3Style = false)
         {
+            var themesUrl = $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/MaterialDesignThemes.Wpf/Themes/";
+
             return new DocumentationLink(
                 DocumentationLinkType.StyleSource,
-                $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/MaterialDesignThemes.Wpf/Themes/MaterialDesignTheme.{nameChunk}.xaml",
+                $"{themesUrl}MaterialDesign{(isMd3Style ? "3" : "Theme")}.{nameChunk}.xaml",
                 nameChunk);
         }
 
