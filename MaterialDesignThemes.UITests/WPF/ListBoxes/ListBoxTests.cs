@@ -104,7 +104,7 @@ ScrollViewer.VerticalScrollBarVisibility=""Visible"">
 ";
             for(int i = 0; i < 50; i++)
             {
-                xaml += $"    <ListBoxItem>This is a pretty long meaningless text just to make horizontal scrollbar visibile</ListBoxItem>{Environment.NewLine}";
+                xaml += $"    <ListBoxItem>This is a pretty long meaningless text just to make horizontal scrollbar visible</ListBoxItem>{Environment.NewLine}";
             }
             xaml += "</ListBox>";
 

@@ -37,8 +37,8 @@ namespace MaterialDesignThemes.UITests.WPF.TextBoxes
             var clearButton = await grid.GetElement<Button>("PART_ClearButton");
 
             await textBox.MoveKeyboardFocus();
-            //Delay needed to accout for transition storyboard
-            await Task.Delay(MaterialDesignTextBox.FocusedAimationTime);
+            //Delay needed to account for transition storyboard
+            await Task.Delay(MaterialDesignTextBox.FocusedAnimationTime);
 
             double initialHeight = await textBox.GetActualHeight();
 
@@ -46,7 +46,7 @@ namespace MaterialDesignThemes.UITests.WPF.TextBoxes
             await clearButton.LeftClick();
 
             //Assert
-            await Task.Delay(MaterialDesignTextBox.FocusedAimationTime);
+            await Task.Delay(MaterialDesignTextBox.FocusedAnimationTime);
 
             double height = await textBox.GetActualHeight();
             Assert.Equal(initialHeight, height);
@@ -83,8 +83,8 @@ namespace MaterialDesignThemes.UITests.WPF.TextBoxes
 
             //Act
             await textBox.MoveKeyboardFocus();
-            //Delay needed to accout for transition storyboard
-            await Task.Delay(MaterialDesignTextBox.FocusedAimationTime);
+            //Delay needed to account for transition storyboard
+            await Task.Delay(MaterialDesignTextBox.FocusedAnimationTime);
 
             //Assert
             double height = await textBox.GetActualHeight();
@@ -318,7 +318,7 @@ namespace MaterialDesignThemes.UITests.WPF.TextBoxes
 
         [Fact]
         [Description("Issue 2362")]
-        public async Task FloatingOffset_ValuesGetApproprietlyApplied()
+        public async Task FloatingOffset_ValuesGetAppropriatelyApplied()
         {
             await using var recorder = new TestRecorder(App);
 

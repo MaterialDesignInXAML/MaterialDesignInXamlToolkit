@@ -84,7 +84,7 @@ namespace MaterialDesignThemes.UITests.WPF.DialogHosts
 
         [Fact]
         [Description("Issue 2398")]
-        public async Task FontSettingsSholdInheritIntoDialog()
+        public async Task FontSettingsShouldInheritIntoDialog()
         {
             await using var recorder = new TestRecorder(App);
 

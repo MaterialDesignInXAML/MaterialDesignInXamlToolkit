@@ -22,14 +22,14 @@ namespace MaterialDesignThemes.Wpf.Transitions
             var transformGroup = new TransformGroup();
             transformGroup.Children.Add(scaleTransform);
             transformGroup.Children.Add(translateTransform);
-            var ellipseGeomotry = new EllipseGeometry()
+            var ellipseGeometry = new EllipseGeometry()
             {
                 RadiusX = radius,
                 RadiusY = radius,
                 Transform = transformGroup
             };
 
-            toSlide.SetCurrentValue(UIElement.ClipProperty, ellipseGeomotry);
+            toSlide.SetCurrentValue(UIElement.ClipProperty, ellipseGeometry);
             zIndexController.Stack(toSlide, fromSlide);
 
             var zeroKeyTime = KeyTime.FromTimeSpan(TimeSpan.Zero);

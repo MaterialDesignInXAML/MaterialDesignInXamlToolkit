@@ -20,12 +20,12 @@ namespace MaterialDesignThemes.Wpf.Transitions
         }
 
         /// <summary>
-        /// Causes the the next slide to be displayed (affectively increments <see cref="Selector.SelectedIndex"/>).
+        /// Causes the the next slide to be displayed (effectively increments <see cref="Selector.SelectedIndex"/>).
         /// </summary>
         public static readonly RoutedCommand MoveNextCommand = new();
 
         /// <summary>
-        /// Causes the the previous slide to be displayed (affectively decrements <see cref="Selector.SelectedIndex"/>).
+        /// Causes the the previous slide to be displayed (effectively decrements <see cref="Selector.SelectedIndex"/>).
         /// </summary>
         public static readonly RoutedCommand MovePreviousCommand = new();
 

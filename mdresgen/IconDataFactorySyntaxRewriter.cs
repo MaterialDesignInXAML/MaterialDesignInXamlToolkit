@@ -21,8 +21,8 @@ namespace mdresgen
             if (node.Kind() != SyntaxKind.CollectionInitializerExpression)
                 return node;
 
-            var initialiserExpressions = GetInitializerItems(_icons);
-            var complexElementInitializerExpression = SyntaxFactory.InitializerExpression(SyntaxKind.ComplexElementInitializerExpression, initialiserExpressions);
+            var initializerExpressions = GetInitializerItems(_icons);
+            var complexElementInitializerExpression = SyntaxFactory.InitializerExpression(SyntaxKind.ComplexElementInitializerExpression, initializerExpressions);
 
             return complexElementInitializerExpression;
         }

@@ -21,7 +21,7 @@ namespace MaterialDesignThemes.Wpf
         /// <summary>
         /// Set the maximum length for the text field.
         /// </summary>
-        /// <remarks>Not a dprop, as is only applied once.</remarks>
+        /// <remarks>Not a dependency property, as is only applied once.</remarks>
         public int MaxLength { get; set; }
     }
 }

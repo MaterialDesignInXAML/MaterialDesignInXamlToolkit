@@ -11,7 +11,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         /// <summary>
-        /// Allows interation with the current dialog session.
+        /// Allows interaction with the current dialog session.
         /// </summary>
         public Dock Dock { get; }
     }

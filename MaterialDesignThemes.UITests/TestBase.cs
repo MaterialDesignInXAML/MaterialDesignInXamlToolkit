@@ -33,14 +33,14 @@ public abstract class TestBase : IAsyncLifetime
 
     protected async Task<IVisualElement<T>> LoadXaml<T>(string xaml)
     {
-        await App.InitialzeWithMaterialDesign();
+        await App.InitializeWithMaterialDesign();
         return await App.CreateWindowWith<T>(xaml);
     }
 
     protected async Task<IVisualElement> LoadUserControl<TControl>()
         where TControl : UserControl
     {
-        await App.InitialzeWithMaterialDesign();
+        await App.InitializeWithMaterialDesign();
         return await App.CreateWindowWithUserControl<TControl>();
     }
 

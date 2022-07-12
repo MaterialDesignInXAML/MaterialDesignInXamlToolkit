@@ -95,9 +95,9 @@ namespace MaterialDesignThemes.Wpf
 
                 AddVisualChild(_visualChild);
 
-                // Need to use a logical child here to make sure databinding operations get down to it,
+                // Need to use a logical child here to make sure data binding operations get down to it,
                 // since otherwise the child appears only as the Visual to a Viewport2DVisual3D, which 
-                // doesn't have databinding operations pass into it from above.
+                // doesn't have data binding operations pass into it from above.
                 AddLogicalChild(_logicalChild);
                 InvalidateMeasure();
             }
@@ -223,7 +223,7 @@ namespace MaterialDesignThemes.Wpf
 
         /// <summary>
         /// Wrap this around a class that we want to catch the measure and arrange 
-        /// processes occuring on, and propagate to the parent Planerator, if any.
+        /// processes occurring on, and propagate to the parent Planerator, if any.
         /// Do this because layout invalidations don't flow up out of a 
         /// Viewport2DVisual3D object.
         /// </summary>

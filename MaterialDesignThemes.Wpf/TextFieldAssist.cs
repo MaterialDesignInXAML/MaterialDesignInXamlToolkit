@@ -75,7 +75,7 @@ namespace MaterialDesignThemes.Wpf
         public static Brush GetUnderlineBrush(DependencyObject element) => (Brush)element.GetValue(UnderlineBrushProperty);
 
         /// <summary>
-        /// Controls the visbility of the text field box.
+        /// Controls the visibility of the text field box.
         /// </summary>
         public static readonly DependencyProperty HasFilledTextFieldProperty = DependencyProperty.RegisterAttached(
             "HasFilledTextField", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false));
@@ -169,7 +169,7 @@ namespace MaterialDesignThemes.Wpf
             => (string?)element.GetValue(PrefixTextProperty);
 
         /// <summary>
-        /// Controls the visbility of the clear button.
+        /// Controls the visibility of the clear button.
         /// </summary>
         public static readonly DependencyProperty HasClearButtonProperty = DependencyProperty.RegisterAttached(
             "HasClearButton", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false));

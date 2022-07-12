@@ -416,7 +416,7 @@ namespace MaterialDesign3Demo.Domain
                 new[]
                 {
                     DocumentationLink.DemoPageLink<NavigationRail>(),
-                    DocumentationLink.StyleLink("NavigaionRail"),
+                    DocumentationLink.StyleLink("NavigationRail"),
                 },
                 selectedIcon: PackIconKind.NavigationVariant,
                 unselectedIcon: PackIconKind.NavigationVariantOutline)
@@ -430,7 +430,7 @@ namespace MaterialDesign3Demo.Domain
                 new[]
                 {
                     DocumentationLink.DemoPageLink<NavigationBar>(),
-                    DocumentationLink.StyleLink("NavigaionBar"),
+                    DocumentationLink.StyleLink("NavigationBar"),
                 },
                 selectedIcon: PackIconKind.NavigationVariant,
                 unselectedIcon: PackIconKind.NavigationVariantOutline)

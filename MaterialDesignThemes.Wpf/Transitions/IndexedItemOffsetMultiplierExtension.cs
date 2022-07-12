@@ -68,7 +68,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
                 multiplier = itemsControl.Items.IndexOf(element);
             }
 
-            if (multiplier == -1) //still not found, repeat now using datacontext
+            if (multiplier == -1) //still not found, repeat now using data context
             {
                 var frameworkElement = element as FrameworkElement;
                 if (frameworkElement != null)
