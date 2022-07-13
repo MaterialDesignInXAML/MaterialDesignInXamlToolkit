@@ -358,8 +358,100 @@ namespace MaterialDesignThemes.Wpf
                     return new SolidColorBrush(semiTransparent);
                 }
 
-                // This should never happen (returning actual brush to avoid the compiler squiggly line warnings)
+                // This should never happen (returning actual brush to avoid the compilers squiggly line warning)
                 return Brushes.Transparent;
+            }
+
+            public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException();
+        }
+
+        internal class PreviewIndicatorTransformXConverter : IMultiValueConverter
+        {
+            public static PreviewIndicatorTransformXConverter Instance { get; } = new();
+
+            internal double Margin => 2.0;
+
+            public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+            {
+                if (values.Length >= 6
+                    && values[0] is double ratingBarButtonActualWidth
+                    && values[1] is double previewValueActualWidth
+                    && values[2] is Orientation ratingBarOrientation
+                    && values[3] is bool isFractionalValueEnabled
+                    && values[4] is double previewValue
+                    && values[5] is int ratingButtonValue)
+                {
+                    if (!isFractionalValueEnabled)
+                    {
+                        return ratingBarOrientation switch
+                        {
+                            Orientation.Horizontal => (ratingBarButtonActualWidth - previewValueActualWidth) / 2,
+                            Orientation.Vertical => -previewValueActualWidth - Margin,
+                            _ => throw new ArgumentOutOfRangeException()
+                        };
+                    }
+
+                    // Special handling of edge cases due to the inaccuracy of how double values are stored
+                    double percent = previewValue % 1;
+                    if (Math.Abs(ratingButtonValue - previewValue) <= double.Epsilon)
+                        percent = 1.0;
+                    else if (percent <= double.Epsilon)
+                        percent = 0.0;
+
+                    return ratingBarOrientation switch
+                    {
+                        Orientation.Horizontal => percent * ratingBarButtonActualWidth - (previewValueActualWidth / 2),
+                        Orientation.Vertical => -previewValueActualWidth - Margin,
+                        _ => throw new ArgumentOutOfRangeException()
+                    };
+                }
+                return 1.0;
+            }
+
+            public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException();
+        }
+
+        internal class PreviewIndicatorTransformYConverter : IMultiValueConverter
+        {
+            public static PreviewIndicatorTransformYConverter Instance { get; } = new();
+
+            internal double Margin => 2.0;
+
+            public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+            {
+                if (values.Length >= 6
+                    && values[0] is double ratingBarButtonActualHeight
+                    && values[1] is double previewValueActualHeight
+                    && values[2] is Orientation ratingBarOrientation
+                    && values[3] is bool isFractionalValueEnabled
+                    && values[4] is double previewValue
+                    && values[5] is int ratingButtonValue)
+                {
+                    if (!isFractionalValueEnabled)
+                    {
+                        return ratingBarOrientation switch
+                        {
+                            Orientation.Horizontal => -previewValueActualHeight - Margin,
+                            Orientation.Vertical => (ratingBarButtonActualHeight - previewValueActualHeight) / 2,
+                            _ => throw new ArgumentOutOfRangeException()
+                        };
+                    }
+
+                    // Special handling of edge cases due to the inaccuracy of how double values are stored
+                    double percent = previewValue % 1;
+                    if (Math.Abs(ratingButtonValue - previewValue) <= double.Epsilon)
+                        percent = 1.0;
+                    else if (percent <= double.Epsilon)
+                        percent = 0.0;
+
+                    return ratingBarOrientation switch
+                    {
+                        Orientation.Horizontal => -previewValueActualHeight - Margin,
+                        Orientation.Vertical => percent * ratingBarButtonActualHeight - (previewValueActualHeight / 2),
+                        _ => throw new ArgumentOutOfRangeException()
+                    };
+                }
+                return 1.0;
             }
 
             public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException();

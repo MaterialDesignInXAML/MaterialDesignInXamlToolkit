@@ -56,10 +56,33 @@
                                             </wpf:Ripple.RenderTransform>
                                         </wpf:Ripple>
                                         <Canvas>
-                                            <Grid x:Name="label1" Height="36" IsHitTestVisible="False" RenderTransformOrigin="0.5,1" Visibility="Collapsed">
+                                            <Grid x:Name="previewValueHorizontal" Height="36" IsHitTestVisible="False" Visibility="Collapsed">
                                                 <Grid.RenderTransform>
                                                     <TransformGroup>
-                                                        <TranslateTransform Y="-40" X="0" />    <!-- TODO X should be calculated using a converter -->
+                                                        <TranslateTransform>
+                                                            <TranslateTransform.X>
+                                                                <MultiBinding Converter="{x:Static wpf:RatingBar+PreviewIndicatorTransformXConverter.Instance}">
+                                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualWidth" />
+                                                                    <Binding ElementName="previewValueHorizontal" Path="ActualWidth" />
+                                                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="Orientation" />
+                                                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="IsFractionalValueEnabled" />
+                                                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="PreviewValue" />
+                                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Value" />
+                                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsMouseOver" />
+                                                                </MultiBinding>
+                                                            </TranslateTransform.X>
+                                                            <TranslateTransform.Y>
+                                                                <MultiBinding Converter="{x:Static wpf:RatingBar+PreviewIndicatorTransformYConverter.Instance}">
+                                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualHeight" />
+                                                                    <Binding ElementName="previewValueHorizontal" Path="ActualHeight" />
+                                                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="Orientation" />
+                                                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="IsFractionalValueEnabled" />
+                                                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="PreviewValue" />
+                                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Value" />
+                                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsMouseOver" />
+                                                                </MultiBinding>
+                                                            </TranslateTransform.Y>
+                                                        </TranslateTransform>
                                                     </TransformGroup>
                                                 </Grid.RenderTransform>
                                                 <AdornerDecorator>
@@ -75,18 +98,41 @@
                                                         <Polygon VerticalAlignment="Bottom" HorizontalAlignment="Center" Points="0,0 4.5,5 9,0" Fill="{DynamicResource MaterialDesignToolTipBackground}" />
                                                     </Grid>
                                                 </AdornerDecorator>
-                                                <TextBlock
-                                                    Foreground="{DynamicResource MaterialDesignPaper}"
-                                                    Margin="12,0,12,5"
-                                                    TextAlignment="Center"
-                                                    VerticalAlignment="Center"
-                                                    Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=PreviewValue}">
+                                                <TextBlock x:Name="previewValueTextHorizontal"
+                                                           Foreground="{DynamicResource MaterialDesignPaper}"
+                                                           Margin="12,0,12,5"
+                                                           TextAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=PreviewValue}">
                                                 </TextBlock>
                                             </Grid>
-                                            <Grid x:Name="label2" Height="31" IsHitTestVisible="False" RenderTransformOrigin="1,0.5" Visibility="Collapsed">
+                                            <Grid x:Name="previewValueVertical" Height="31" IsHitTestVisible="False" Visibility="Collapsed">
                                                 <Grid.RenderTransform>
                                                     <TransformGroup>
-                                                        <TranslateTransform Y="-7" X="0" />    <!-- TODO X should be calculated using a converter -->
+                                                        <TranslateTransform>
+                                                            <TranslateTransform.X>
+                                                                <MultiBinding Converter="{x:Static wpf:RatingBar+PreviewIndicatorTransformXConverter.Instance}">
+                                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualWidth" />
+                                                                    <Binding ElementName="previewValueVertical" Path="ActualWidth" />
+                                                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="Orientation" />
+                                                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="IsFractionalValueEnabled" />
+                                                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="PreviewValue" />
+                                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Value" />
+                                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsMouseOver" />
+                                                                </MultiBinding>
+                                                            </TranslateTransform.X>
+                                                            <TranslateTransform.Y>
+                                                                <MultiBinding Converter="{x:Static wpf:RatingBar+PreviewIndicatorTransformYConverter.Instance}">
+                                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualHeight" />
+                                                                    <Binding ElementName="previewValueVertical" Path="ActualHeight" />
+                                                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="Orientation" />
+                                                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="IsFractionalValueEnabled" />
+                                                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="PreviewValue" />
+                                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Value" />
+                                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsMouseOver" />
+                                                                </MultiBinding>
+                                                            </TranslateTransform.Y>
+                                                        </TranslateTransform>
                                                     </TransformGroup>
                                                 </Grid.RenderTransform>
                                                 <AdornerDecorator>
@@ -102,12 +148,12 @@
                                                         <Polygon VerticalAlignment="Center" HorizontalAlignment="Right" Points="0,0 6,5 0,10" Fill="{DynamicResource MaterialDesignToolTipBackground}" />
                                                     </Grid>
                                                 </AdornerDecorator>
-                                                <TextBlock
-                                                    Foreground="{DynamicResource MaterialDesignPaper}"
-                                                    Margin="12,0,17,0"
-                                                    TextAlignment="Center"
-                                                    VerticalAlignment="Center"
-                                                    Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=PreviewValue}">
+                                                <TextBlock x:Name="previewValueTextVertical"
+                                                           Foreground="{DynamicResource MaterialDesignPaper}"
+                                                           Margin="12,0,17,0"
+                                                           TextAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=PreviewValue}">
                                                 </TextBlock>
                                             </Grid>
                                         </Canvas>
@@ -119,7 +165,17 @@
                                                 <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=Orientation}" Value="Horizontal" />
                                                 <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=IsPreviewValueEnabled}" Value="True" />
                                             </MultiDataTrigger.Conditions>
-                                            <Setter TargetName="label1" Property="Visibility" Value="Visible" />
+                                            <Setter TargetName="previewValueHorizontal" Property="Visibility" Value="Visible" />
+                                        </MultiDataTrigger>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
+                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=Orientation}" Value="Horizontal" />
+                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=IsPreviewValueEnabled}" Value="True" />
+                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=IsFractionalValueEnabled}" Value="True" />
+                                            </MultiDataTrigger.Conditions>
+                                            <!-- When fractional values are enabled, always show the preview with 2 decimal places -->
+                                            <Setter TargetName="previewValueTextHorizontal" Property="Text" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=PreviewValue, StringFormat=' {0:N2}'}" />
                                         </MultiDataTrigger>
                                         <MultiDataTrigger>
                                             <MultiDataTrigger.Conditions>
@@ -127,7 +183,17 @@
                                                 <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=Orientation}" Value="Vertical" />
                                                 <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=IsPreviewValueEnabled}" Value="True" />
                                             </MultiDataTrigger.Conditions>
-                                            <Setter TargetName="label2" Property="Visibility" Value="Visible" />
+                                            <Setter TargetName="previewValueVertical" Property="Visibility" Value="Visible" />
+                                        </MultiDataTrigger>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
+                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=Orientation}" Value="Vertical" />
+                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=IsPreviewValueEnabled}" Value="True" />
+                                                <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=IsFractionalValueEnabled}" Value="True" />
+                                            </MultiDataTrigger.Conditions>
+                                            <!-- When fractional values are enabled, always show the preview with 2 decimal places -->
+                                            <Setter TargetName="previewValueTextVertical" Property="Text" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=PreviewValue, StringFormat=' {0:N2}'}" />
                                         </MultiDataTrigger>
                                         <EventTrigger RoutedEvent="Click">
                                             <EventTrigger.Actions>
@@ -168,8 +234,6 @@
                                             <TextBlock.Foreground>
                                                 <MultiBinding Converter="{x:Static wpf:RatingBar+TextBlockForegroundConverter.Instance}">
                                                     <Binding Path="Tag" RelativeSource="{RelativeSource Self}"/>
-                                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="Min" />
-                                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="Max" />
                                                     <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="Orientation" />
                                                     <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" Path="Value" />
                                                     <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}"/>
