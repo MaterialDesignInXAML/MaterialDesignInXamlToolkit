@@ -369,7 +369,7 @@ namespace MaterialDesignThemes.Wpf
         {
             public static PreviewIndicatorTransformXConverter Instance { get; } = new();
 
-            internal double Margin => 2.0;
+            internal static double Margin => 2.0;
 
             public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
             {
@@ -415,7 +415,7 @@ namespace MaterialDesignThemes.Wpf
         {
             public static PreviewIndicatorTransformYConverter Instance { get; } = new();
 
-            internal double Margin => 2.0;
+            internal static double Margin => 2.0;
 
             public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
             {
