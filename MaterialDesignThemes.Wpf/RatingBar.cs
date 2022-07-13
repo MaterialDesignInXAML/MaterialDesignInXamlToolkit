@@ -121,6 +121,8 @@ namespace MaterialDesignThemes.Wpf
             var ratingBar = (RatingBar)d;
             if (baseValue is double value)
             {
+                if (!ratingBar.IsFractionalValueEnabled)
+                    value = Math.Ceiling(value);
                 return ratingBar.CoerceToValidIncrement(value);
             }
             return (double)ratingBar.Min;
