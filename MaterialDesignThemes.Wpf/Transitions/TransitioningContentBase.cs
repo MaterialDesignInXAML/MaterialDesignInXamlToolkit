@@ -126,7 +126,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
 
         private FrameworkElement GetNameScopeRoot()
         {
-            //https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/issues/950
+            //https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/950
             //Only set the NameScope if the child does not already have a TemplateNameScope set
             if (VisualChildrenCount > 0 && GetVisualChild(0) is FrameworkElement fe && NameScope.GetNameScope(fe) != null)
             {

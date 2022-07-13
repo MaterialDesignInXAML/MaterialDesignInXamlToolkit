@@ -30,7 +30,7 @@ Comprehensive and easy to use Material Design theme and control library for the 
 
 # ![Alt text](web/images/MD4XAML28.png "In Action") See It In Action
 
-- Download a pre-compiled demo from the [releases](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/releases) page.
+- Download a pre-compiled demo from the [releases](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/releases) page.
 - Download the source and run the demo ([more information](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/wiki/Compiling-From-Source)).
 - Checkout [Keboo/MaterialDesign.Examples](https://github.com/Keboo/MaterialDesignInXaml.Examples)
 - Checkout [doobry](http://materialdesigninxaml.net/doobry).
@@ -63,7 +63,7 @@ To load the source project you will need Visual Studio 2022. Don't worry if you 
 - [ControlzEx](https://github.com/ControlzEx/ControlzEx) - Library used in MaterialDesignInXAML
 - [Ignace Maes](https://github.com/IgnaceMaes) - Whose [Material Skin](https://github.com/IgnaceMaes/MaterialSkin) project inspired the original material design theme for [Dragablz](https://github.com/ButchersBoy/Dragablz), which in turn led James Willock start this project
 - [Material Design Extensions](https://github.com/spiegelp/MaterialDesignExtensions) - A community repository based on this library that provides additional controls and features.
-- **[Contributors](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/graphs/contributors)** - A big thank you to all the contributors of the project!
+- **[Contributors](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/graphs/contributors)** - A big thank you to all the contributors of the project!
 
 # <a name="Screenshots"></a>![Alt text](web/images/MD4XAML28.png "Screenshots") Screenshots
 

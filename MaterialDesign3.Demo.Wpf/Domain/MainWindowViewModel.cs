@@ -188,9 +188,8 @@ namespace MaterialDesign3Demo.Domain
                 new[]
                 {
                     DocumentationLink.DemoPageLink<Toggles>(),
-                    DocumentationLink.StyleLink("ToggleButton"),
-                    DocumentationLink.StyleLink("CheckBox"),
-                    DocumentationLink.ApiLink<Toggles>()
+                    DocumentationLink.StyleLink("ToggleButton", true),
+                    DocumentationLink.StyleLink("CheckBox")
                 },
                 selectedIcon: PackIconKind.ToggleSwitch,
                 unselectedIcon: PackIconKind.ToggleSwitchOffOutline);
@@ -281,7 +280,7 @@ namespace MaterialDesign3Demo.Domain
                 new[]
                 {
                     DocumentationLink.DemoPageLink<Typography>(),
-                    DocumentationLink.StyleLink("TextBlock")
+                    DocumentationLink.StyleLink("TextBlock", true)
                 },
                 selectedIcon: PackIconKind.FormatSize,
                 unselectedIcon: PackIconKind.FormatTitle)
@@ -416,7 +415,7 @@ namespace MaterialDesign3Demo.Domain
                 new[]
                 {
                     DocumentationLink.DemoPageLink<NavigationRail>(),
-                    DocumentationLink.StyleLink("NavigationRail"),
+                    DocumentationLink.StyleLink("NavigationRail", true),
                 },
                 selectedIcon: PackIconKind.NavigationVariant,
                 unselectedIcon: PackIconKind.NavigationVariantOutline)
@@ -430,7 +429,7 @@ namespace MaterialDesign3Demo.Domain
                 new[]
                 {
                     DocumentationLink.DemoPageLink<NavigationBar>(),
-                    DocumentationLink.StyleLink("NavigationBar"),
+                    DocumentationLink.StyleLink("NavigationBar", true),
                 },
                 selectedIcon: PackIconKind.NavigationVariant,
                 unselectedIcon: PackIconKind.NavigationVariantOutline)
