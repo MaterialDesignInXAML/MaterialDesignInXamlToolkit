@@ -25,28 +25,32 @@ namespace MaterialDesignThemes.Wpf
         {
             CommandBindings.Add(new CommandBinding(SelectRatingCommand, SelectItemHandler));
             _ratingButtons = new ReadOnlyObservableCollection<RatingBarButton>(_ratingButtonsInternal);
+            MouseLeave += RatingBar_MouseLeave;
         }
 
         private void SelectItemHandler(object sender, ExecutedRoutedEventArgs executedRoutedEventArgs)
         {
             if (executedRoutedEventArgs.Parameter is int && !IsReadOnly)
             {
-                if (!IsFractionValueEnabled)
+                if (!IsFractionalValueEnabled)
                 {
                     Value = (int)executedRoutedEventArgs.Parameter;
                     return;
                 }
-
-                // Get mouse offset inside source
-                RatingBarButton b = (RatingBarButton)executedRoutedEventArgs.OriginalSource;
-                Point p = Mouse.GetPosition(b);
-                double percentSelected = Orientation == Orientation.Horizontal ? p.X / b.ActualWidth : p.Y / b.ActualHeight;
-                Value = b.Value - 1 + percentSelected;
+                Value = GetValueAtMousePosition((RatingBarButton)executedRoutedEventArgs.OriginalSource);
             }
         }
 
+        private double GetValueAtMousePosition(RatingBarButton ratingBarButton)
+        {
+            // Get mouse offset inside source
+            Point p = Mouse.GetPosition(ratingBarButton);
+            double percentSelected = Orientation == Orientation.Horizontal ? p.X / ratingBarButton.ActualWidth : p.Y / ratingBarButton.ActualHeight;
+            return ratingBarButton.Value - 1 + percentSelected;
+        }
+
         public static readonly DependencyProperty MinProperty = DependencyProperty.Register(
-            nameof(Min), typeof(int), typeof(RatingBar), new PropertyMetadata(1, MinPropertyChangedCallback));
+            nameof(Min), typeof(int), typeof(RatingBar), new PropertyMetadata(1, MinPropertyChangedCallback, MinPropertyCoerceValueCallback));
 
         public int Min
         {
@@ -55,7 +59,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty MaxProperty = DependencyProperty.Register(
-            nameof(Max), typeof(int), typeof(RatingBar), new PropertyMetadata(5, MaxPropertyChangedCallback));
+            nameof(Max), typeof(int), typeof(RatingBar), new PropertyMetadata(5, MaxPropertyChangedCallback, MaxPropertyCoerceValueCallback));
 
         public int Max
         {
@@ -63,18 +67,16 @@ namespace MaterialDesignThemes.Wpf
             set => SetValue(MaxProperty, value);
         }
 
-        private static readonly DependencyPropertyKey IsFractionValueEnabledPropertyKey =
-            DependencyProperty.RegisterReadOnly(
-                "IsFractionValueEnabled", typeof(bool), typeof(RatingBar),
-                new PropertyMetadata(default(bool)));
+        private static readonly DependencyPropertyKey IsFractionalValueEnabledPropertyKey = DependencyProperty.RegisterReadOnly(
+                nameof(IsFractionalValueEnabled), typeof(bool), typeof(RatingBar), new PropertyMetadata(false));
 
-        internal static readonly DependencyProperty IsFractionValueEnabledProperty =
-            IsFractionValueEnabledPropertyKey.DependencyProperty;
+        internal static readonly DependencyProperty IsFractionalValueEnabledProperty =
+            IsFractionalValueEnabledPropertyKey.DependencyProperty;
 
-        internal bool IsFractionValueEnabled
+        internal bool IsFractionalValueEnabled
         {
-            get => (bool)GetValue(IsFractionValueEnabledProperty);
-            private set => SetValue(IsFractionValueEnabledPropertyKey, value);
+            get => (bool)GetValue(IsFractionalValueEnabledProperty);
+            private set => SetValue(IsFractionalValueEnabledPropertyKey, value);
         }
 
         public static readonly DependencyProperty ValueIncrementsProperty = DependencyProperty.Register(
@@ -83,7 +85,7 @@ namespace MaterialDesignThemes.Wpf
         private static void ValueIncrementsPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var ratingBar = (RatingBar)d;
-            ratingBar.IsFractionValueEnabled = Math.Abs(ratingBar.ValueIncrements - 1.0) > 1e-10;
+            ratingBar.IsFractionalValueEnabled = Math.Abs(ratingBar.ValueIncrements - 1.0) > 1e-10;
             ratingBar.RebuildButtons();
         }
 
@@ -99,8 +101,42 @@ namespace MaterialDesignThemes.Wpf
             set { SetValue(ValueIncrementsProperty, value); }
         }
 
+        public static readonly DependencyProperty IsPreviewValueEnabledProperty = DependencyProperty.Register(
+            nameof(IsPreviewValueEnabled), typeof(bool), typeof(RatingBar), new PropertyMetadata(false));
+
+        public bool IsPreviewValueEnabled
+        {
+            get { return (bool) GetValue(IsPreviewValueEnabledProperty); }
+            set { SetValue(IsPreviewValueEnabledProperty, value); }
+        }
+
+        private static readonly DependencyPropertyKey PreviewValuePropertyKey = DependencyProperty.RegisterReadOnly(
+            nameof(PreviewValue), typeof(double?), typeof(RatingBar), new PropertyMetadata(null, null, PreviewValuePropertyCoerceValueCallback));
+
+        private static object? PreviewValuePropertyCoerceValueCallback(DependencyObject d, object? baseValue)
+        {
+            if (baseValue == null)
+                return null;
+
+            var ratingBar = (RatingBar)d;
+            if (baseValue is double value)
+            {
+                return ratingBar.CoerceToValidIncrement(value);
+            }
+            return (double)ratingBar.Min;
+        }
+
+        internal static readonly DependencyProperty PreviewValueProperty =
+            PreviewValuePropertyKey.DependencyProperty;
+
+        internal double? PreviewValue
+        {
+            get => (double?)GetValue(PreviewValueProperty);
+            private set => SetValue(PreviewValuePropertyKey, value);
+        }
+
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
-            nameof(Value), typeof(double), typeof(RatingBar), new PropertyMetadata(0.0, ValuePropertyChangedCallback, ValueCoerceValueCallback));
+            nameof(Value), typeof(double), typeof(RatingBar), new PropertyMetadata(0.0, ValuePropertyChangedCallback, ValuePropertyCoerceValueCallback));
 
         private static void ValuePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -113,21 +149,26 @@ namespace MaterialDesignThemes.Wpf
             OnValueChanged(ratingBar, dependencyPropertyChangedEventArgs);
         }
 
-        private static object ValueCoerceValueCallback(DependencyObject d, object baseValue)
+        private static object ValuePropertyCoerceValueCallback(DependencyObject d, object baseValue)
         {
             var ratingBar = (RatingBar) d;
 
-            // If factional values are disabled we don't do any coercion. This maintains back-compat where coercion was not applied. 
-            if (!ratingBar.IsFractionValueEnabled)
+            // If factional values are disabled we don't do any coercion. This maintains back-compat where coercion was not applied and Value could be outside of Min/Max range. 
+            if (!ratingBar.IsFractionalValueEnabled)
                 return baseValue;
 
             if (baseValue is double value)
             {
-                // Coerce the value into a multiple of ValueIncrements and within the bounds.
-                double valueInCorrectMultiple = Math.Round(value / ratingBar.ValueIncrements, MidpointRounding.AwayFromZero) * ratingBar.ValueIncrements;
-                return Math.Min(ratingBar.Max, Math.Max(ratingBar.Min, valueInCorrectMultiple));
+                return ratingBar.CoerceToValidIncrement(value);
             }
             return (double)ratingBar.Min;
+        }
+
+        private double CoerceToValidIncrement(double value)
+        {
+            // Coerce the value into a multiple of ValueIncrements and within the bounds.
+            double valueInCorrectMultiple = Math.Round(value / ValueIncrements, MidpointRounding.AwayFromZero) * ValueIncrements;
+            return Math.Min(Max, Math.Max(Min, valueInCorrectMultiple));
         }
 
         public double Value
@@ -209,23 +250,44 @@ namespace MaterialDesignThemes.Wpf
 
         private static void MaxPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            ((RatingBar)dependencyObject).RebuildButtons();
+            var ratingBar = (RatingBar)dependencyObject;
+            ratingBar.CoerceValue(ValueProperty);
+            ratingBar.RebuildButtons();
+        }
+
+        private static object MinPropertyCoerceValueCallback(DependencyObject d, object baseValue)
+        {
+            var ratingBar = (RatingBar)d;
+            return Math.Min((int)baseValue, ratingBar.Max);
         }
 
         private static void MinPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            ((RatingBar)dependencyObject).RebuildButtons();
+            var ratingBar = (RatingBar)dependencyObject;
+            ratingBar.CoerceValue(ValueProperty);
+            ratingBar.RebuildButtons();
+        }
+
+        private static object MaxPropertyCoerceValueCallback(DependencyObject d, object baseValue)
+        {
+            var ratingBar = (RatingBar)d;
+            return Math.Max((int)baseValue, ratingBar.Min);
         }
 
         private void RebuildButtons()
         {
+            foreach (var ratingBarButton in _ratingButtonsInternal)
+            {
+                ratingBarButton.MouseMove -= RatingBarButton_MouseMove;
+            }
             _ratingButtonsInternal.Clear();
+
             // When fractional values are enabled, the first rating button represents the value Min when not selected at all and Min+1 when fully selected;
             // thus we start with the value Min+1 for the values of the rating buttons.
-            int start = IsFractionValueEnabled ? Min + 1 : Min;
+            int start = IsFractionalValueEnabled ? Min + 1 : Min;
             for (int i = start; i <= Max; i++)
             {
-                _ratingButtonsInternal.Add(new RatingBarButton
+                var ratingBarButton = new RatingBarButton
                 {
                     Content = i,
                     ContentTemplate = ValueItemTemplate,
@@ -233,8 +295,21 @@ namespace MaterialDesignThemes.Wpf
                     IsWithinSelectedValue = i <= Value,
                     Style = ValueItemContainerButtonStyle,
                     Value = i,
-                });
+                };
+                ratingBarButton.MouseMove += RatingBarButton_MouseMove;
+                _ratingButtonsInternal.Add(ratingBarButton);
             }
+        }
+
+        private void RatingBar_MouseLeave(object sender, MouseEventArgs e) => PreviewValue = null;
+
+        private void RatingBarButton_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (!IsPreviewValueEnabled)
+                return;
+
+            var ratingBarButton = (RatingBarButton) sender;
+            PreviewValue = GetValueAtMousePosition(ratingBarButton);
         }
 
         public override void OnApplyTemplate()
