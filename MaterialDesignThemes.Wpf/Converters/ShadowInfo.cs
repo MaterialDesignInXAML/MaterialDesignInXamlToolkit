@@ -15,8 +15,8 @@ namespace MaterialDesignThemes.Wpf.Converters
 
             ShadowsDictionary = new Dictionary<ShadowDepth, DropShadowEffect?>
             {
-                // Obselete
-                #region ObseleteDepth
+                // Obsolete
+                #region ObsoleteDepth
                 #pragma warning disable CS0618 // Type or member is obsolete
                 { ShadowDepth.Depth0, null },
                 { ShadowDepth.Depth1, (DropShadowEffect)resourceDictionary["MaterialDesignShadowDepth1"] },

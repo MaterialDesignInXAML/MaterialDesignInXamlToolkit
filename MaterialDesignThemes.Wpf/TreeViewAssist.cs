@@ -4,7 +4,7 @@ public static class TreeViewAssist
 {
     #region AdditionalTemplate
     /// <summary>
-    /// Allows additional rendering for each tree node, outside of the rippled part of the node which responsds to user selection.                        
+    /// Allows additional rendering for each tree node, outside of the rippled part of the node which responds to user selection.
     /// </summary>
     /// <remarks>
     /// The content to be rendered is the same of the <see cref="TreeViewItem"/>; i.e the Header property, or
@@ -43,7 +43,7 @@ public static class TreeViewAssist
     #region AdditionalTemplateSelector
 
     /// <summary>
-    /// Allows additional rendering for each tree node, outside of the rippled part of the node which responsds to user selection.                        
+    /// Allows additional rendering for each tree node, outside of the rippled part of the node which responds to user selection.
     /// </summary>
     /// <remarks>
     /// The content to be rendered is the same of the <see cref="TreeViewItem"/>; i.e the Header property, or
@@ -136,7 +136,7 @@ public static class TreeViewAssist
         => element.SetValue(HasNoItemsExpanderVisibilityProperty, value);
 
     /// <summary>
-    /// Allows controlling the visibilty of the expander arrow on TreeViewItems that do not have any children.
+    /// Allows controlling the visibility of the expander arrow on TreeViewItems that do not have any children.
     /// </summary>
     public static readonly DependencyProperty HasNoItemsExpanderVisibilityProperty =
         DependencyProperty.RegisterAttached("HasNoItemsExpanderVisibility", typeof(Visibility), typeof(TreeViewAssist), new PropertyMetadata(Visibility.Hidden));

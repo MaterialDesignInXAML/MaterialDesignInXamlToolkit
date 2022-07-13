@@ -10,7 +10,7 @@ namespace MaterialDesignThemes.UITests
 {
     public static class XamlTestMixins
     {
-        public static async Task InitialzeWithMaterialDesign(this IApp app,
+        public static async Task InitializeWithMaterialDesign(this IApp app,
             BaseTheme baseTheme = BaseTheme.Light,
             PrimaryColor primary = PrimaryColor.DeepPurple,
             SecondaryColor secondary = SecondaryColor.Lime,

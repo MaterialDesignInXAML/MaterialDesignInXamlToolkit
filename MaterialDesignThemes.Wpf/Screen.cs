@@ -278,7 +278,7 @@ namespace MaterialDesignThemes.Wpf
                     lock (_syncLock)
                     {
 
-                        //now that we have a lock, verify (again) our changecount...
+                        //now that we have a lock, verify (again) our change count...
                         if (_desktopChangedCount == -1)
                         {
                             //sync the UserPreference.Desktop change event.  We'll keep count 

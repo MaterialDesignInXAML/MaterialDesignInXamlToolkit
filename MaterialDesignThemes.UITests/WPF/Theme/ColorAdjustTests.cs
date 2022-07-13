@@ -34,7 +34,7 @@ namespace MaterialDesignThemes.UITests.WPF.Theme
         {
             await using var recorder = new TestRecorder(App);
 
-            await App.InitialzeWithMaterialDesign(BaseTheme.Light, primary, colorAdjustment:new ColorAdjustment());
+            await App.InitializeWithMaterialDesign(BaseTheme.Light, primary, colorAdjustment:new ColorAdjustment());
 
             IWindow window = await App.CreateWindow<ColorAdjustWindow>();
 
@@ -55,7 +55,7 @@ namespace MaterialDesignThemes.UITests.WPF.Theme
 
             async Task AssertContrastRatio()
             {
-                const double tollerance = 0.1;
+                const double tolerance = 0.1;
                 Color? largeTextForeground = await largeText.GetForegroundColor();
                 Color largeTextBackground = await largeText.GetEffectiveBackground();
 
@@ -63,9 +63,9 @@ namespace MaterialDesignThemes.UITests.WPF.Theme
                 Color smallTextBackground = await smallText.GetEffectiveBackground();
 
                 var largeContrastRatio = ColorAssist.ContrastRatio(largeTextForeground.Value, largeTextBackground);
-                Assert.True(largeContrastRatio >= MaterialDesignSpec.MinimumContrastLargeText - tollerance, $"Large font contrast ratio '{largeContrastRatio}' does not meet material design spec {MaterialDesignSpec.MinimumContrastLargeText}");
+                Assert.True(largeContrastRatio >= MaterialDesignSpec.MinimumContrastLargeText - tolerance, $"Large font contrast ratio '{largeContrastRatio}' does not meet material design spec {MaterialDesignSpec.MinimumContrastLargeText}");
                 var smallContrastRatio = ColorAssist.ContrastRatio(smallTextForeground.Value, smallTextBackground);
-                Assert.True(smallContrastRatio >= MaterialDesignSpec.MinimumContrastSmallText - tollerance, $"Small font contrast ratio '{smallContrastRatio}' does not meet material design spec {MaterialDesignSpec.MinimumContrastSmallText}");
+                Assert.True(smallContrastRatio >= MaterialDesignSpec.MinimumContrastSmallText - tolerance, $"Small font contrast ratio '{smallContrastRatio}' does not meet material design spec {MaterialDesignSpec.MinimumContrastSmallText}");
             }
         }
     }

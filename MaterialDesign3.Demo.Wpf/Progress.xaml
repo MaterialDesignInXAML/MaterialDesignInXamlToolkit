@@ -87,7 +87,7 @@
             </smtx:XamlDisplay>
         </StackPanel>
 
-        <!-- circular progress bars.. specify the MaterialDesignCicularProgressBar resource -->
+        <!-- circular progress bars.. specify the MaterialDesignCircularProgressBar resource -->
         <Grid
             VerticalAlignment="Top"
             Grid.Column="2" Grid.Row="1">

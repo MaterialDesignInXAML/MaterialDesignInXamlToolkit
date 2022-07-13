@@ -13,15 +13,15 @@ namespace MaterialDesignThemes.Wpf
     {
         [Obsolete("Use Depth_0dp instead")]
         Depth0,
-        [Obsolete("Considersing Depth_2dp instead")]
+        [Obsolete("Consider using Depth_2dp instead")]
         Depth1,
-        [Obsolete("Considersing Depth_3dp instead")]
+        [Obsolete("Consider using Depth_3dp instead")]
         Depth2,
-        [Obsolete("Considersing Depth_7dp instead")]
+        [Obsolete("Consider using Depth_7dp instead")]
         Depth3,
-        [Obsolete("Considersing Depth_12dp instead")]
+        [Obsolete("Consider using Depth_12dp instead")]
         Depth4,
-        [Obsolete("Considersing Depth_24dp instead")]
+        [Obsolete("Consider using Depth_24dp instead")]
         Depth5,
 
         Depth_0dp,

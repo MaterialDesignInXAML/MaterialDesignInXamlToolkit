@@ -13,7 +13,7 @@ namespace MaterialDesignThemes.Wpf.Tests
     {
         [StaFact]
         [Description("Issue 2135")]
-        public void TreeViewItemBackgroundShouldBeinherited()
+        public void TreeViewItemBackgroundShouldBeInherited()
         {
             var expectedBackgroundBrush = new SolidColorBrush(Colors.HotPink);
             var item = new TreeViewItem { Header = "Test" };

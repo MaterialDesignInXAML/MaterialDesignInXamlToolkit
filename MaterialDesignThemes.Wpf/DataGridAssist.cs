@@ -198,7 +198,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         /// <summary>
-        /// Allows editing of components inside of a datagrid cell with a single left click.
+        /// Allows editing of components inside of a data grid cell with a single left click.
         /// </summary>
         private static void AllowDirectEditWithoutFocus(object sender, MouseButtonEventArgs mouseArgs)
         {
@@ -208,7 +208,7 @@ namespace MaterialDesignThemes.Wpf
                 .OfType<DataGridCell>()
                 .FirstOrDefault();
 
-            // Readonly has to be handled as the passthrough ignores the
+            // Readonly has to be handled as the pass-through ignores the
             // cell and interacts directly with the content
             if (dataGridCell?.IsReadOnly ?? true)
             {

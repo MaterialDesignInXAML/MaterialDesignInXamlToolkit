@@ -735,7 +735,7 @@ namespace MaterialDesignThemes.Wpf
                         // allow scrolling
                         if (GetCapture() != IntPtr.Zero) return;
 
-                        // Take capture back because click happend outside of control
+                        // Take capture back because click happened outside of control
                         Mouse.Capture(popupBox, CaptureMode.SubTree);
                         e.Handled = true;
                     }

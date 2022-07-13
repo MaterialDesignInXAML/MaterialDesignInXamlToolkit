@@ -10,7 +10,7 @@ public class TreeViewTests : TestBase
 
     [Fact]
     [Description("Issue 2618")]
-    public async Task HasNoItemsExpanderVisibility_ChangesVisibiliyOnExpander()
+    public async Task HasNoItemsExpanderVisibility_ChangesVisibilityOnExpander()
     {
         await using var recorder = new TestRecorder(App);
 
@@ -73,7 +73,7 @@ public class TreeViewTests : TestBase
     [InlineData(Visibility.Hidden)]
     [InlineData(Visibility.Collapsed)]
     [InlineData(Visibility.Visible)]
-    public async Task HasNoItemsExpanderVisibility_SetOnTreeView_ChangesVisibiliyOnExpanders(Visibility visibility)
+    public async Task HasNoItemsExpanderVisibility_SetOnTreeView_ChangesVisibilityOnExpanders(Visibility visibility)
     {
         await using var recorder = new TestRecorder(App);
 

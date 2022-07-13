@@ -4,11 +4,11 @@ using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests
 {
-    public class UIElementExtensionsTests : IClassFixture<UIElementExtensionsTests.ArdornerFixture>
+    public class UIElementExtensionsTests : IClassFixture<UIElementExtensionsTests.AdornerFixture>
     {
-        private readonly ArdornerFixture testFixture;
+        private readonly AdornerFixture testFixture;
 
-        public UIElementExtensionsTests(ArdornerFixture fixture)
+        public UIElementExtensionsTests(AdornerFixture fixture)
         {
             testFixture = fixture;
         }
@@ -27,11 +27,11 @@ namespace MaterialDesignThemes.Wpf.Tests
                 () => testFixture.testElement.AddAdorner(new BottomDashedLineAdorner(testFixture.testElement)));
         }
 
-        #region Class : ArdornerFixture
-        public class ArdornerFixture : IDisposable
+        #region Class : AdornerFixture
+        public class AdornerFixture : IDisposable
         {
             public UIElement testElement;
-            public ArdornerFixture()
+            public AdornerFixture()
             {
                 testElement = new UIElement();
             }

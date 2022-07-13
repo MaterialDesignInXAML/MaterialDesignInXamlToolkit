@@ -25,7 +25,7 @@ namespace MaterialDesignThemes.Wpf
         public bool IsCancelled { get; private set; }
 
         /// <summary>
-        /// Allows interation with the current dialog session.
+        /// Allows interaction with the current dialog session.
         /// </summary>
         public Dock Dock { get; }
     }

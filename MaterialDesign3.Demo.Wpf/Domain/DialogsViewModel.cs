@@ -55,7 +55,7 @@ namespace MaterialDesign3Demo.Domain
             Debug.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
         }
 
-        private void ExtendedOpenedEventHandler(object sender, DialogOpenedEventArgs eventargs)
+        private void ExtendedOpenedEventHandler(object sender, DialogOpenedEventArgs eventArgs)
             => Debug.WriteLine("You could intercept the open and affect the dialog using eventArgs.Session.");
 
         private void ExtendedClosingEventHandler(object sender, DialogClosingEventArgs eventArgs)

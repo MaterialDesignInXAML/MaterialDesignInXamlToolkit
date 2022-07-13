@@ -165,7 +165,7 @@ public class TimePickerTests : TestBase
     [InlineData("1:2")]
     [InlineData("1:02")]
     [InlineData("1:02 AM")]
-    public async Task OnLostFocusIfTimeHasBeenChanged_TextWillbeFormated(string text)
+    public async Task OnLostFocusIfTimeHasBeenChanged_TextWillBeFormatted(string text)
     {
         await using var recorder = new TestRecorder(App);
 
@@ -192,7 +192,7 @@ public class TimePickerTests : TestBase
     [InlineData("1:2")]
     [InlineData("1:02")]
     [InlineData("1:02 AM")]
-    public async Task OnLostFocusIfTimeHasNotBeenChanged_TextWillbeFormated(string text)
+    public async Task OnLostFocusIfTimeHasNotBeenChanged_TextWillBeFormatted(string text)
     {
         await using var recorder = new TestRecorder(App);
 
@@ -220,7 +220,7 @@ public class TimePickerTests : TestBase
     [InlineData("1:2")]
     [InlineData("1:02")]
     [InlineData("1:02 AM")]
-    public async Task OnEnterKeyDownIfTimeHasNotBeenChanged_TextWillbeFormated(string text)
+    public async Task OnEnterKeyDownIfTimeHasNotBeenChanged_TextWillBeFormatted(string text)
     {
         await using var recorder = new TestRecorder(App);
 
@@ -245,7 +245,7 @@ public class TimePickerTests : TestBase
     [InlineData("1:2")]
     [InlineData("1:02")]
     [InlineData("1:02 AM")]
-    public async Task OnEnterKeyDownIfTimeHasBeenChanged_TextWillbeFormated(string text)
+    public async Task OnEnterKeyDownIfTimeHasBeenChanged_TextWillBeFormatted(string text)
     {
         await using var recorder = new TestRecorder(App);
 
@@ -270,7 +270,7 @@ public class TimePickerTests : TestBase
     [InlineData("1:2")]
     [InlineData("1:02")]
     [InlineData("1:02 AM")]
-    public async Task OnTimePickedIfTimeHasBeenChanged_TextWillbeFormated(string text)
+    public async Task OnTimePickedIfTimeHasBeenChanged_TextWillBeFormatted(string text)
     {
         await using var recorder = new TestRecorder(App);
 
@@ -296,7 +296,7 @@ public class TimePickerTests : TestBase
     [InlineData("1:2")]
     [InlineData("1:02")]
     [InlineData("1:02 AM")]
-    public async Task OnTimePickedIfTimeHasNotBeenChanged_TextWillbeFormated(string text)
+    public async Task OnTimePickedIfTimeHasNotBeenChanged_TextWillBeFormatted(string text)
     {
         await using var recorder = new TestRecorder(App);
 

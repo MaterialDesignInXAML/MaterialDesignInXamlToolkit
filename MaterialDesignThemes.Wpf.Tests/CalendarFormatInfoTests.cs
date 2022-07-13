@@ -68,7 +68,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         }
 
         [StaFact]
-        public void SettingYearPatternOfMultupleCultures()
+        public void SettingYearPatternOfMultipleCultures()
         {
             string[] cultureNames = { "en-001", "en-150" };
             CalendarFormatInfo.SetYearPattern(cultureNames, "B");
@@ -95,7 +95,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         }
 
         [StaFact]
-        public void SettingDayOfWeekStyleOfMultupleCultures()
+        public void SettingDayOfWeekStyleOfMultipleCultures()
         {
             string[] cultureNames = { "en-001", "en-150" };
             CalendarFormatInfo.SetDayOfWeekStyle(cultureNames, new CalendarFormatInfo.DayOfWeekStyle("Z", "@", true));
@@ -119,7 +119,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         }
 
         [StaFact]
-        public void ResettingDayOfWeekStyleOfMultupleCultures()
+        public void ResettingDayOfWeekStyleOfMultipleCultures()
         {
             string[] cultureNames = { "en-001", "en-150" };
             CalendarFormatInfo.SetDayOfWeekStyle(cultureNames, new CalendarFormatInfo.DayOfWeekStyle("Z", "@", true));

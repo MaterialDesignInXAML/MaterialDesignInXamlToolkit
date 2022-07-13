@@ -468,9 +468,9 @@ public class Clock : Control
                 var outerBoundary = (_centreCanvas.X * ButtonRadiusInnerRatio +
                                      (_centreCanvas.X * ButtonRadiusRatio - _centreCanvas.X * ButtonRadiusInnerRatio) / 2);
                 var sqrt = Math.Sqrt((_centreCanvas.X - currentDragPosition.X) * (_centreCanvas.X - currentDragPosition.X) + (_centreCanvas.Y - currentDragPosition.Y) * (_centreCanvas.Y - currentDragPosition.Y));
-                var localIsPostMerdiem = sqrt > outerBoundary;
+                var localIsPostMeridiem = sqrt > outerBoundary;
 
-                var hour = (int)Math.Round(6 * angle / Math.PI, MidpointRounding.AwayFromZero) % 12 + (localIsPostMerdiem ? 12 : 0);
+                var hour = (int)Math.Round(6 * angle / Math.PI, MidpointRounding.AwayFromZero) % 12 + (localIsPostMeridiem ? 12 : 0);
                 if (hour == 12)
                     hour = 0;
                 else if (hour == 0)

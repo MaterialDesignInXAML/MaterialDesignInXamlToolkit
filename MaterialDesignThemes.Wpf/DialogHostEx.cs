@@ -19,7 +19,7 @@ namespace MaterialDesignThemes.Wpf
         /// Thrown is a <see cref="DialogHost"/> is not found when conducting a depth first traversal of visual tree.  
         /// </exception>
         /// <remarks>
-        /// As a depth first traversal of the window's visual tree is performed, it is not safe to use this method in a situtation where a screen has multiple <see cref="DialogHost"/>s.
+        /// As a depth first traversal of the window's visual tree is performed, it is not safe to use this method in a situation where a screen has multiple <see cref="DialogHost"/>s.
         /// </remarks>
         /// <returns></returns>
         public static Task<object?> ShowDialog(this Window window, object content)
@@ -35,7 +35,7 @@ namespace MaterialDesignThemes.Wpf
         /// Thrown is a <see cref="DialogHost"/> is not found when conducting a depth first traversal of visual tree.  
         /// </exception>
         /// <remarks>
-        /// As a depth first traversal of the window's visual tree is performed, it is not safe to use this method in a situtation where a screen has multiple <see cref="DialogHost"/>s.
+        /// As a depth first traversal of the window's visual tree is performed, it is not safe to use this method in a situation where a screen has multiple <see cref="DialogHost"/>s.
         /// </remarks>
         /// <returns></returns>
         public static Task<object?> ShowDialog(this Window window, object content, DialogOpenedEventHandler openedEventHandler)
@@ -51,7 +51,7 @@ namespace MaterialDesignThemes.Wpf
         /// Thrown is a <see cref="DialogHost"/> is not found when conducting a depth first traversal of visual tree.  
         /// </exception>
         /// <remarks>
-        /// As a depth first traversal of the window's visual tree is performed, it is not safe to use this method in a situtation where a screen has multiple <see cref="DialogHost"/>s.
+        /// As a depth first traversal of the window's visual tree is performed, it is not safe to use this method in a situation where a screen has multiple <see cref="DialogHost"/>s.
         /// </remarks>
         /// <returns></returns>
         public static Task<object?> ShowDialog(this Window window, object content, DialogClosingEventHandler closingEventHandler)
@@ -68,7 +68,7 @@ namespace MaterialDesignThemes.Wpf
         /// Thrown is a <see cref="DialogHost"/> is not found when conducting a depth first traversal of visual tree.  
         /// </exception>
         /// <remarks>
-        /// As a depth first traversal of the window's visual tree is performed, it is not safe to use this method in a situtation where a screen has multiple <see cref="DialogHost"/>s.
+        /// As a depth first traversal of the window's visual tree is performed, it is not safe to use this method in a situation where a screen has multiple <see cref="DialogHost"/>s.
         /// </remarks>
         /// <returns></returns>
         public static Task<object?> ShowDialog(this Window window, object content, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
@@ -86,7 +86,7 @@ namespace MaterialDesignThemes.Wpf
         /// Thrown is a <see cref="DialogHost"/> is not found when conducting a depth first traversal of visual tree.  
         /// </exception>
         /// <remarks>
-        /// As a depth first traversal of the window's visual tree is performed, it is not safe to use this method in a situtation where a screen has multiple <see cref="DialogHost"/>s.
+        /// As a depth first traversal of the window's visual tree is performed, it is not safe to use this method in a situation where a screen has multiple <see cref="DialogHost"/>s.
         /// </remarks>
         /// <returns></returns>
         public static Task<object?> ShowDialog(this Window window, object content, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler, DialogClosedEventHandler closedEventHandler)
@@ -178,7 +178,7 @@ namespace MaterialDesignThemes.Wpf
             DialogHost? dialogHost = childDependencyObject.GetVisualAncestry().OfType<DialogHost>().FirstOrDefault();
 
             if (dialogHost is null)
-                throw new InvalidOperationException("Unable to find a DialogHost in visual tree ancestory");
+                throw new InvalidOperationException("Unable to find a DialogHost in visual tree ancestry");
 
             return dialogHost;
         }

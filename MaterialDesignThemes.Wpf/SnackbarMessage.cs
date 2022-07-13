@@ -13,7 +13,7 @@ namespace MaterialDesignThemes.Wpf
     /// Defines the content of a message within a <see cref="Snackbar"/>.  Primary content should be set via the 
     /// standard <see cref="SnackbarMessage.Content"/> property.  Where an action is allowed, content
     /// can be provided in <see cref="ActionContent"/>.  Standard button properties are 
-    /// provided for actions, includiing <see cref="ActionCommand"/>.
+    /// provided for actions, including <see cref="ActionCommand"/>.
     /// </summary>
     [TypeConverter(typeof(SnackbarMessageTypeConverter))]
     [TemplatePart(Name = ActionButtonPartName, Type = typeof(ButtonBase))]

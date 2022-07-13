@@ -7,8 +7,8 @@ namespace MaterialDesignColors.ColorManipulation
     public static class ColorAssist
     {
         /// <summary>
-        /// The relative brightness of any point in a colorspace, normalized to 0 for darkest black and 1 for lightest white
-        /// For the sRGB colorspace, the relative luminance of a color is defined as L = 0.2126 * R + 0.7152 * G + 0.0722 * B where R, G and B are defined as:
+        /// The relative brightness of any point in a color space, normalized to 0 for darkest black and 1 for lightest white
+        /// For the sRGB color space, the relative luminance of a color is defined as L = 0.2126 * R + 0.7152 * G + 0.0722 * B where R, G and B are defined as:
         /// if RsRGB <= 0.03928 then R = RsRGB / 12.92 else R = ((RsRGB+0.055)/1.055) ^ 2.4
         /// if GsRGB <= 0.03928 then G = GsRGB / 12.92 else G = ((GsRGB+0.055)/1.055) ^ 2.4
         /// if BsRGB <= 0.03928 then B = BsRGB / 12.92 else B = ((BsRGB+0.055)/1.055) ^ 2.4
@@ -20,7 +20,7 @@ namespace MaterialDesignColors.ColorManipulation
         /// </summary>
         /// <param name="color"></param>
         /// <returns></returns>
-        public static float RelativeLuninance(this Color color)
+        public static float RelativeLuminance(this Color color)
         {
             return
                 0.2126f * Calc(color.R / 255f) +
@@ -30,6 +30,9 @@ namespace MaterialDesignColors.ColorManipulation
             static float Calc(float colorValue)
                 => colorValue <= 0.03928f ? colorValue / 12.92f : (float)Math.Pow((colorValue + 0.055f) / 1.055f, 2.4);
         }
+
+        [Obsolete("Use RelativeLuminance instead")]
+        public static float RelativeLuninance(this Color color) => RelativeLuminance(color);
 
         /// <summary>
         /// The contrast ratio is calculated as (L1 + 0.05) / (L2 + 0.05), where
@@ -42,8 +45,8 @@ namespace MaterialDesignColors.ColorManipulation
         /// <returns></returns>
         public static float ContrastRatio(this Color color, Color color2)
         {
-            float l1 = color.RelativeLuninance();
-            float l2 = color2.RelativeLuninance();
+            float l1 = color.RelativeLuminance();
+            float l2 = color2.RelativeLuminance();
             if (l2 > l1)
             {
                 float temp = l1;
@@ -59,10 +62,10 @@ namespace MaterialDesignColors.ColorManipulation
         /// <param name="foreground">The foreground color</param>
         /// <param name="background">The background color</param>
         /// <param name="targetRatio">The target contrast ratio</param>
-        /// <param name="tollerance">The tollerance to the contrast ratio needs to be within</param>
+        /// <param name="tolerance">The tolerance to the contrast ratio needs to be within</param>
         /// <returns>The updated foreground color with the target contrast ratio with the background</returns>
-        public static Color EnsureContrastRatio(this Color foreground, Color background, float targetRatio, float tollerance = 0.1f)
-            => EnsureContrastRatio(foreground, background, targetRatio, out _, tollerance);
+        public static Color EnsureContrastRatio(this Color foreground, Color background, float targetRatio, float tolerance = 0.1f)
+            => EnsureContrastRatio(foreground, background, targetRatio, out _, tolerance);
 
         /// <summary>
         /// Adjust the foreground color to have an acceptable contrast ratio.
@@ -71,9 +74,9 @@ namespace MaterialDesignColors.ColorManipulation
         /// <param name="background">The background color</param>
         /// <param name="targetRatio">The target contrast ratio</param>
         /// <param name="offset">The offset that was applied</param>
-        /// <param name="tollerance">The tollerance to the contrast ratio needs to be within</param>
+        /// <param name="tolerance">The tolerance to the contrast ratio needs to be within</param>
         /// <returns>The updated foreground color with the target contrast ratio with the background</returns>
-        public static Color EnsureContrastRatio(this Color foreground, Color background, float targetRatio, out double offset, float tollerance = 0.1f)
+        public static Color EnsureContrastRatio(this Color foreground, Color background, float targetRatio, out double offset, float tolerance = 0.1f)
         {
             offset = 0.0f;
             float ratio = foreground.ContrastRatio(background);
@@ -88,7 +91,7 @@ namespace MaterialDesignColors.ColorManipulation
             Color finalColor = foreground;
             double? adjust = null;
 
-            while ((ratio < targetRatio - tollerance || ratio > targetRatio + tollerance) &&
+            while ((ratio < targetRatio - tolerance || ratio > targetRatio + tolerance) &&
                    finalColor != Colors.White &&
                    finalColor != Colors.Black)
             {
