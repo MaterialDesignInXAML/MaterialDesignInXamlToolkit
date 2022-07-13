@@ -52,7 +52,7 @@ public class RatingBarTests
     {
         // Arrange
         SolidColorBrush brush = Brushes.Red;
-        IMultiValueConverter converter = TextBlockForegroundConverter.Instance;
+        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
         object[] values = Arrange_Values(brush, value: 1, buttonValue: 1);
 
         // Act
@@ -67,7 +67,7 @@ public class RatingBarTests
     {
         // Arrange
         SolidColorBrush brush = Brushes.Red;
-        IMultiValueConverter converter = TextBlockForegroundConverter.Instance;
+        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
         object[] values = Arrange_Values(brush, value: 2, buttonValue: 1);
 
         // Act
@@ -82,7 +82,7 @@ public class RatingBarTests
     {
         // Arrange
         SolidColorBrush brush = Brushes.Red;
-        IMultiValueConverter converter = TextBlockForegroundConverter.Instance;
+        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
         object[] values = Arrange_Values(brush, value: 0.5, buttonValue: 2);
 
         // Act
@@ -91,7 +91,7 @@ public class RatingBarTests
         // Assert
         Assert.IsAssignableFrom<SolidColorBrush>(result);
         SolidColorBrush resultBrush = (SolidColorBrush)result!;
-        Assert.Equal(TextBlockForegroundConverter.SemiTransparent, resultBrush.Color.A);
+        Assert.Equal(RatingBar.TextBlockForegroundConverter.SemiTransparent, resultBrush.Color.A);
     }
 
     [Fact]
@@ -99,7 +99,7 @@ public class RatingBarTests
     {
         // Arrange
         SolidColorBrush brush = Brushes.Red;
-        IMultiValueConverter converter = TextBlockForegroundConverter.Instance;
+        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
         object[] values = Arrange_Values(brush, value: 1.5, buttonValue: 2, orientation: Orientation.Horizontal);
 
         // Act
@@ -117,7 +117,7 @@ public class RatingBarTests
     {
         // Arrange
         SolidColorBrush brush = Brushes.Red;
-        IMultiValueConverter converter = TextBlockForegroundConverter.Instance;
+        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
         object[] values = Arrange_Values(brush, value: 1.5, buttonValue: 2, orientation: Orientation.Vertical);
 
         // Act
@@ -135,7 +135,7 @@ public class RatingBarTests
     {
         // Arrange
         SolidColorBrush brush = Brushes.Red;
-        IMultiValueConverter converter = TextBlockForegroundConverter.Instance;
+        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
         object[] values = Arrange_Values(brush, value: 1.1, buttonValue: 2);
 
         // Act
@@ -150,7 +150,7 @@ public class RatingBarTests
         Assert.Equal(0.1, stop1.Offset, 10);
         Assert.Equal(brush.Color, stop1.Color);
         Assert.Equal(0.1, stop2.Offset, 10);
-        Assert.Equal(brush.Color.WithAlphaChannel(TextBlockForegroundConverter.SemiTransparent), stop2.Color);
+        Assert.Equal(brush.Color.WithAlphaChannel(RatingBar.TextBlockForegroundConverter.SemiTransparent), stop2.Color);
     }
 
     [Fact]
@@ -158,7 +158,7 @@ public class RatingBarTests
     {
         // Arrange
         SolidColorBrush brush = Brushes.Red;
-        IMultiValueConverter converter = TextBlockForegroundConverter.Instance;
+        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
         object[] values = Arrange_Values(brush, value: 1.42, buttonValue: 2);
 
         // Act
@@ -173,7 +173,7 @@ public class RatingBarTests
         Assert.Equal(0.42, stop1.Offset, 10);
         Assert.Equal(brush.Color, stop1.Color);
         Assert.Equal(0.42, stop2.Offset, 10);
-        Assert.Equal(brush.Color.WithAlphaChannel(TextBlockForegroundConverter.SemiTransparent), stop2.Color);
+        Assert.Equal(brush.Color.WithAlphaChannel(RatingBar.TextBlockForegroundConverter.SemiTransparent), stop2.Color);
     }
 
     [Fact]
@@ -181,7 +181,7 @@ public class RatingBarTests
     {
         // Arrange
         SolidColorBrush brush = Brushes.Red;
-        IMultiValueConverter converter = TextBlockForegroundConverter.Instance;
+        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
         object[] values = Arrange_Values(brush, value: 1.87, buttonValue: 2);
 
         // Act
@@ -196,7 +196,7 @@ public class RatingBarTests
         Assert.Equal(0.87, stop1.Offset, 10);
         Assert.Equal(brush.Color, stop1.Color);
         Assert.Equal(0.87, stop2.Offset, 10);
-        Assert.Equal(brush.Color.WithAlphaChannel(TextBlockForegroundConverter.SemiTransparent), stop2.Color);
+        Assert.Equal(brush.Color.WithAlphaChannel(RatingBar.TextBlockForegroundConverter.SemiTransparent), stop2.Color);
     }
 
     private static object[] Arrange_Values(SolidColorBrush brush, double value, int buttonValue, Orientation orientation = Orientation.Horizontal) =>

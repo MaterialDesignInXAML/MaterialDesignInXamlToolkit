@@ -318,49 +318,49 @@ namespace MaterialDesignThemes.Wpf
 
             base.OnApplyTemplate();
         }
-    }
 
-    internal class TextBlockForegroundConverter : IMultiValueConverter
-    {
-        internal static byte SemiTransparent => 0x42; // ~26% opacity
-
-        public static TextBlockForegroundConverter Instance { get; } = new();
-
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        internal class TextBlockForegroundConverter : IMultiValueConverter
         {
-            if (values?.Length == 4
-                && values[0] is SolidColorBrush brush
-                && values[1] is Orientation orientation
-                && values[2] is double value
-                && values[3] is int buttonValue)
+            internal static byte SemiTransparent => 0x42; // ~26% opacity
+
+            public static TextBlockForegroundConverter Instance { get; } = new();
+
+            public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
             {
-                if (value >= buttonValue)
-                    return brush;
-
-                var originalColor = brush.Color;
-                var semiTransparent = Color.FromArgb(SemiTransparent, brush.Color.R, brush.Color.G, brush.Color.B);
-
-                if (value > buttonValue - 1.0)
+                if (values?.Length == 4
+                    && values[0] is SolidColorBrush brush
+                    && values[1] is Orientation orientation
+                    && values[2] is double value
+                    && values[3] is int buttonValue)
                 {
-                    double offset = value - buttonValue + 1;
-                    return new LinearGradientBrush
+                    if (value >= buttonValue)
+                        return brush;
+
+                    var originalColor = brush.Color;
+                    var semiTransparent = Color.FromArgb(SemiTransparent, brush.Color.R, brush.Color.G, brush.Color.B);
+
+                    if (value > buttonValue - 1.0)
                     {
-                        StartPoint = orientation == Orientation.Horizontal ? new Point(0, 0.5) : new Point(0.5, 0),
-                        EndPoint = orientation == Orientation.Horizontal ? new Point(1, 0.5) : new Point(0.5, 1),
-                        GradientStops = new()
+                        double offset = value - buttonValue + 1;
+                        return new LinearGradientBrush
+                        {
+                            StartPoint = orientation == Orientation.Horizontal ? new Point(0, 0.5) : new Point(0.5, 0),
+                            EndPoint = orientation == Orientation.Horizontal ? new Point(1, 0.5) : new Point(0.5, 1),
+                            GradientStops = new()
                         {
                             new GradientStop {Color = originalColor, Offset = offset},
                             new GradientStop {Color = semiTransparent, Offset = offset}
                         }
-                    };
+                        };
+                    }
+                    return new SolidColorBrush(semiTransparent);
                 }
-                return new SolidColorBrush(semiTransparent);
+
+                // This should never happen (returning actual brush to avoid the compiler squiggly line warnings)
+                return Brushes.Transparent;
             }
 
-            // This should never happen (returning actual brush to avoid the compiler squiggly line warnings)
-            return Brushes.Transparent;
+            public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException();
         }
-
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException();
     }
 }
