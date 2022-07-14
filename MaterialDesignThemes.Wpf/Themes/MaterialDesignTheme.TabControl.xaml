@@ -138,8 +138,9 @@
         TargetType="{x:Type TabControl}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="wpf:TabAssist.HasFilledTab" Value="False" />
+        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0" />
+        <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="None" />
         <Setter Property="wpf:ColorZoneAssist.Background" Value="Transparent" />
-        <Setter Property="wpf:ColorZoneAssist.Foreground" Value="{DynamicResource MaterialDesignBody}" />
     </Style>
 
     <Style
@@ -176,6 +177,10 @@
             <Trigger Property="wpf:ColorZoneAssist.Mode" Value="SecondaryDark">
                 <Setter Property="wpf:ColorZoneAssist.Foreground" Value="{DynamicResource SecondaryHueDarkForegroundBrush}" />
                 <Setter Property="wpf:ColorZoneAssist.Background" Value="{DynamicResource SecondaryHueDarkBrush}" />
+            </Trigger>
+            <Trigger Property="wpf:ColorZoneAssist.Mode" Value="Custom">
+                <Setter Property="wpf:ColorZoneAssist.Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Foreground)}" />
+                <Setter Property="wpf:ColorZoneAssist.Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Background)}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -298,7 +303,12 @@
                             <Setter TargetName="SelectionHighlightBorder" Property="BorderThickness" Value="2,0,0,0" />
                         </DataTrigger>
 
-                        <!--  Header foreground color change when focused -->
+                        <!--  Force the header foreground do be MaterialDesignBody by default (only for not filled tabs) -->
+                        <Trigger Property="wpf:TabAssist.HasFilledTab" Value="False">
+                            <Setter TargetName="ColorZoneHeader" Property="wpf:ColorZoneAssist.Foreground" Value="{DynamicResource MaterialDesignBody}" />
+                        </Trigger>
+
+                        <!-- The header foreground color change when focused (only for not filled tabs) -->
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="wpf:TabAssist.HasFilledTab" Value="False" />
@@ -347,7 +357,14 @@
                             </MultiTrigger.Conditions>
                             <Setter TargetName="ColorZoneHeader" Property="wpf:ColorZoneAssist.Foreground" Value="{DynamicResource SecondaryHueDarkBrush}" />
                         </MultiTrigger>
-                        
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="wpf:TabAssist.HasFilledTab" Value="False" />
+                                <Condition Property="IsSelected" Value="True" />
+                                <Condition Property="wpf:ColorZoneAssist.Mode" Value="Custom" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="ColorZoneHeader" Property="wpf:ColorZoneAssist.Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Foreground)}" />
+                        </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
