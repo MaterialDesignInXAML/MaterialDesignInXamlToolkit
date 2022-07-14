@@ -20,6 +20,32 @@
             Style="{StaticResource MaterialDesignHeadline5TextBlock}"
             Text="Default style" />
 
+        <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_1_default" HorizontalAlignment="Left">
+            <TabControl Width="300">
+                <TabItem Header="TAB 1">
+                    <TextBlock Margin="8" Text="PrimaryLight Tab 1" />
+                </TabItem>
+                <TabItem Header="TAB 2">
+                    <TextBlock Margin="8" Text="PrimaryLight Tab 2" />
+                </TabItem>
+            </TabControl>
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_custom_1" HorizontalAlignment="Left">
+            <TabControl Width="300"
+                        Style="{StaticResource MaterialDesignFilledTabControl}"
+                        materialDesign:ColorZoneAssist.Mode="Custom"
+                        materialDesign:ColorZoneAssist.Foreground="{DynamicResource PrimaryHueMidBrush}"
+                        materialDesign:ColorZoneAssist.Background="{DynamicResource MaterialDesignCardBackground}">
+                <TabItem Header="TAB 1">
+                    <TextBlock Margin="8" Text="PrimaryLight Tab 1" />
+                </TabItem>
+                <TabItem Header="TAB 2">
+                    <TextBlock Margin="8" Text="PrimaryLight Tab 2" />
+                </TabItem>
+            </TabControl>
+        </smtx:XamlDisplay>
+
         <WrapPanel Margin="0,0,0,16">
             <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_1">
                 <materialDesign:Card>
