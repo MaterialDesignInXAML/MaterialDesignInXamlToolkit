@@ -433,7 +433,7 @@
                             <TextBlock Margin="8" Text="Not filled example tab 1" />
                         </TabItem>
                         <TabItem Header="TAB 2">
-                            <TextBlock Margin="8" Text="No filled example tab 2" />
+                            <TextBlock Margin="8" Text="Not filled example tab 2" />
                         </TabItem>
                     </TabControl>
                 </materialDesign:Card>
@@ -443,10 +443,10 @@
                 <materialDesign:Card>
                     <TabControl HorizontalContentAlignment="Left" Style="{StaticResource MaterialDesignFilledTabControl}">
                         <TabItem Header="TAB1">
-                            <TextBlock Margin="8" Text="Full-width filled example tab 1" />
+                            <TextBlock Margin="8" Text="Filled example tab 1" />
                         </TabItem>
                         <TabItem Header="TAB 2">
-                            <TextBlock Margin="8" Text="Full-width filled example tab 2" />
+                            <TextBlock Margin="8" Text="Filled example tab 2" />
                         </TabItem>
                     </TabControl>
                 </materialDesign:Card>
@@ -462,28 +462,28 @@
                             <TextBlock Margin="8" Text="Not filled secondary example tab 2" />
                         </TabItem>
                         <TabItem Header="TAB 3333">
-                            <TextBlock Margin="8" Text="Full-width secondary example tab 3333" />
+                            <TextBlock Margin="8" Text="Secondary example tab 3333" />
                         </TabItem>
                         <TabItem Header="TAB4 Wide">
-                            <TextBlock Margin="8" Text="Full-width secondary example tab 4 wide" />
+                            <TextBlock Margin="8" Text="Secondary example tab 4 wide" />
                         </TabItem>
                         <TabItem Header="TABbbbbbbbbbbxxxxx 5">
-                            <TextBlock Margin="8" Text="Full-width secondary example tab 5" />
+                            <TextBlock Margin="8" Text="Secondary example tab 5" />
                         </TabItem>
                         <TabItem Header="TAB 6 Different Width">
-                            <TextBlock Margin="8" Text="Full-width secondary example tab 6 different width" />
+                            <TextBlock Margin="8" Text="Secondary example tab 6 different width" />
                         </TabItem>
                         <TabItem Header="TAB 7 Looooong">
-                            <TextBlock Margin="8" Text="Full-width secondary example tab 7 looooong" />
+                            <TextBlock Margin="8" Text="Secondary example tab 7 looooong" />
                         </TabItem>
                         <TabItem Header="TAB 8 Width">
-                            <TextBlock Margin="8" Text="Full-width secondary example tab 8 width" />
+                            <TextBlock Margin="8" Text="Secondary example tab 8 width" />
                         </TabItem>
                         <TabItem Header="TAAX999">
-                            <TextBlock Margin="8" Text="Full-width secondary example tab 9" />
+                            <TextBlock Margin="8" Text="Secondary example tab 9" />
                         </TabItem>
                         <TabItem Header="Tab10">
-                            <TextBlock Margin="8" Text="Full-width secondary example tab 10" />
+                            <TextBlock Margin="8" Text="Secondary example tab 10" />
                         </TabItem>
                     </TabControl>
                 </materialDesign:Card>
@@ -496,10 +496,10 @@
                         materialDesign:ColorZoneAssist.Mode="SecondaryMid"
                         Style="{StaticResource MaterialDesignFilledTabControl}">
                         <TabItem Header="TAB1">
-                            <TextBlock Margin="8" Text="Full-width secondary filled example tab 1" />
+                            <TextBlock Margin="8" Text="Secondary filled example tab 1" />
                         </TabItem>
                         <TabItem Header="TAB 2">
-                            <TextBlock Margin="8" Text="Full-width secondary filled example tab 2" />
+                            <TextBlock Margin="8" Text="Secondary filled example tab 2" />
                         </TabItem>
                     </TabControl>
                 </materialDesign:Card>
