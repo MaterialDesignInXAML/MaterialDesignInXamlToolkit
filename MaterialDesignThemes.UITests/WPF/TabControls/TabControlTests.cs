@@ -1,10 +1,5 @@
 using System.ComponentModel;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Media;
-using XamlTest;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace MaterialDesignThemes.UITests.WPF.TabControls;
 

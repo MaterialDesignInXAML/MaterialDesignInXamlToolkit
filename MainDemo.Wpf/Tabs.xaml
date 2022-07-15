@@ -41,13 +41,13 @@
 
             <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_2">
                 <TabControl Width="300" materialDesign:ColorZoneAssist.Mode="PrimaryMid">
-                        <TabItem Header="TAB 1">
-                            <TextBlock Margin="8" Text="PrimaryMid Tab 1" />
-                        </TabItem>
-                        <TabItem Header="TAB 2">
-                            <TextBlock Margin="8" Text="PrimaryMid Tab 2" />
-                        </TabItem>
-                    </TabControl>
+                    <TabItem Header="TAB 1">
+                        <TextBlock Margin="8" Text="PrimaryMid Tab 1" />
+                    </TabItem>
+                    <TabItem Header="TAB 2">
+                        <TextBlock Margin="8" Text="PrimaryMid Tab 2" />
+                    </TabItem>
+                </TabControl>
             </smtx:XamlDisplay>
 
             <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_3">
