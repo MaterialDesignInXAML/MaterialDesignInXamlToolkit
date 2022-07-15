@@ -79,6 +79,180 @@
                 VerticalAlignment="Top"
                 Margin="10,2,0,0"/>
         </StackPanel>
+
+        <TextBlock
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Text="Rating bar with preview"/>
+
+        <StackPanel
+            Margin="0 16 0 0"
+            Orientation="Horizontal">
+            <smtx:XamlDisplay
+                UniqueKey="previewRatingBar_1"
+                VerticalContentAlignment="Top"
+                Margin="5 0 0 5">
+                <materialDesign:RatingBar
+                    x:Name="BasicRatingBarWithPreview"
+                    Value="3"
+                    IsPreviewValueEnabled="True"/>
+            </smtx:XamlDisplay>
+
+            <TextBlock
+                Text="{Binding ElementName=BasicRatingBarWithPreview, Path=Value, StringFormat=Rating: {0}}"
+                VerticalAlignment="Top"
+                Margin="10,2,0,0"/>
+
+            <smtx:XamlDisplay
+                UniqueKey="previewRatingBar_2"
+                Margin="24 0 0 5">
+                <materialDesign:RatingBar
+                    x:Name="CustomRatingBarWithPreview"
+                    Max="3"
+                    Value="2"
+                    IsPreviewValueEnabled="True"
+                    Orientation="Vertical">
+                    <materialDesign:RatingBar.ValueItemTemplate>
+                        <DataTemplate DataType="system:Int32">
+                            <Grid>
+                                <materialDesign:PackIcon
+                                    Kind="Heart"
+                                    Height="24"
+                                    Width="24"/>
+                                <TextBlock
+                                    Text="{Binding}"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontSize="8"
+                                    Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </materialDesign:RatingBar.ValueItemTemplate>
+                </materialDesign:RatingBar>
+            </smtx:XamlDisplay>
+            <TextBlock
+                Text="{Binding ElementName=CustomRatingBarWithPreview, Path=Value, StringFormat=Rating: {0}}"
+                VerticalAlignment="Top"
+                Margin="10,2,0,0"/>
+        </StackPanel>
+
+        <TextBlock
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Text="Rating bar with fractional values"/>
+
+        <StackPanel
+            Margin="0 16 0 0"
+            Orientation="Horizontal">
+            <smtx:XamlDisplay
+                UniqueKey="fractionalRatingBar_1"
+                VerticalContentAlignment="Top"
+                Margin="5 0 0 5">
+                <materialDesign:RatingBar
+                    x:Name="BasicRatingBarFractional"
+                    Min="0"
+                    Max="5"
+                    Value="0"
+                    ValueIncrements="0.25"
+                    ValueChanged="BasicRatingBarFractional_ValueChanged"/>
+            </smtx:XamlDisplay>
+
+            <TextBlock
+                Text="{Binding ElementName=BasicRatingBarFractional, Path=Value, StringFormat=Rating: {0}}"
+                VerticalAlignment="Top"
+                Margin="10,2,0,0"/>
+
+            <smtx:XamlDisplay
+                UniqueKey="fractionalRatingBar_2"
+                Margin="24 0 0 5">
+                <materialDesign:RatingBar
+                    x:Name="CustomRatingBarFractional"
+                    Min="0"
+                    Max="3"
+                    Value="2"
+                    ValueIncrements="0.25"
+                    Orientation="Vertical">
+                    <materialDesign:RatingBar.ValueItemTemplate>
+                        <DataTemplate DataType="system:Int32">
+                            <Grid>
+                                <materialDesign:PackIcon
+                                    Kind="Heart"
+                                    Height="24"
+                                    Width="24"/>
+                                <TextBlock
+                                    Text="{Binding}"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontSize="8"
+                                    Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </materialDesign:RatingBar.ValueItemTemplate>
+                </materialDesign:RatingBar>
+            </smtx:XamlDisplay>
+            <TextBlock
+                Text="{Binding ElementName=CustomRatingBarFractional, Path=Value, StringFormat=Rating: {0}}"
+                VerticalAlignment="Top"
+                Margin="10,2,0,0"/>
+        </StackPanel>
+
+        <TextBlock
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Text="Rating bar with preview and fractional values"/>
+
+        <StackPanel
+            Margin="0 16 0 0"
+            Orientation="Horizontal">
+            <smtx:XamlDisplay
+                UniqueKey="fractionalPreviewRatingBar_1"
+                VerticalContentAlignment="Top"
+                Margin="5 0 0 5">
+                <materialDesign:RatingBar
+                    x:Name="BasicRatingBarFractionalPreview"
+                    Min="0"
+                    Max="5"
+                    Value="0"
+                    ValueIncrements="0.25"
+                    IsPreviewValueEnabled="True"/>
+            </smtx:XamlDisplay>
+
+            <TextBlock
+                Text="{Binding ElementName=BasicRatingBarFractionalPreview, Path=Value, StringFormat=Rating: {0}}"
+                VerticalAlignment="Top"
+                Margin="10,2,0,0"/>
+
+            <smtx:XamlDisplay
+                UniqueKey="fractionalPreviewRatingBar_2"
+                Margin="24 0 0 5">
+                <materialDesign:RatingBar
+                    x:Name="CustomRatingBarFractionalPreview"
+                    Min="0"
+                    Max="3"
+                    Value="2"
+                    ValueIncrements="0.25"
+                    IsPreviewValueEnabled="True"
+                    Orientation="Vertical">
+                    <materialDesign:RatingBar.ValueItemTemplate>
+                        <DataTemplate DataType="system:Int32">
+                            <Grid>
+                                <materialDesign:PackIcon
+                                    Kind="Heart"
+                                    Height="24"
+                                    Width="24"/>
+                                <TextBlock
+                                    Text="{Binding}"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontSize="8"
+                                    Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </materialDesign:RatingBar.ValueItemTemplate>
+                </materialDesign:RatingBar>
+            </smtx:XamlDisplay>
+            <TextBlock
+                Text="{Binding ElementName=CustomRatingBarFractionalPreview, Path=Value, StringFormat=Rating: {0}}"
+                VerticalAlignment="Top"
+                Margin="10,2,0,0"/>
+        </StackPanel>
     </StackPanel>
 </UserControl>
 
