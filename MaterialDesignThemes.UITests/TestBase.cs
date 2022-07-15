@@ -1,12 +1,5 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Media;
-using MaterialDesignThemes.Wpf;
-using XamlTest;
-using Xunit;
-using Xunit.Abstractions;
 
 [assembly: CollectionBehavior(DisableTestParallelization = true)]
 [assembly: GenerateHelpers(typeof(SmartHint))]
