@@ -19,7 +19,7 @@ runs:
         dotnet-version: | 
           3.1.x
           5.x
-          6.0.301
+          6.x
       env:
         NUGET_AUTH_TOKEN: ${{ inputs.nugetToken }}
         

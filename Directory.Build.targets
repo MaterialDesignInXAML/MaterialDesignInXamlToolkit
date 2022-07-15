@@ -1,0 +1,9 @@
+<Project>
+    <Target Name="MaterialDesign_RemoveDuplicateAnalyzers" BeforeTargets="CoreCompile">
+        <ItemGroup>
+            <FilteredAnalyzer Include="@(Analyzer->Distinct())" />
+            <Analyzer Remove="@(Analyzer)" />
+            <Analyzer Include="@(FilteredAnalyzer)" />
+        </ItemGroup>
+    </Target>
+</Project>
