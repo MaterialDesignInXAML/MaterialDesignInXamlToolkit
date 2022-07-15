@@ -145,8 +145,10 @@ namespace MaterialDesignThemes.Wpf
             var ratingBar = (RatingBar)dependencyObject;
             foreach (var button in ratingBar.RatingButtons)
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 // The property being set here is no longer used. If the RatingBarButton (and the DP) was not public I would have just removed it.
                 button.IsWithinSelectedValue = button.Value <= (double)dependencyPropertyChangedEventArgs.NewValue;
+#pragma warning restore CS0618 // Type or member is obsolete
             }
             OnValueChanged(ratingBar, dependencyPropertyChangedEventArgs);
         }
@@ -294,7 +296,9 @@ namespace MaterialDesignThemes.Wpf
                     Content = i,
                     ContentTemplate = ValueItemTemplate,
                     ContentTemplateSelector = ValueItemTemplateSelector,
+#pragma warning disable CS0618 // Type or member is obsolete
                     IsWithinSelectedValue = i <= Value,
+#pragma warning restore CS0618 // Type or member is obsolete
                     Style = ValueItemContainerButtonStyle,
                     Value = i,
                 };
