@@ -137,7 +137,7 @@
         TargetType="{x:Type TabControl}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="wpf:TabAssist.HasFilledTab" Value="False" />
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0" />
+        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp0" />
         <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="None" />
         <Setter Property="wpf:ColorZoneAssist.Background" Value="Transparent" />
     </Style>

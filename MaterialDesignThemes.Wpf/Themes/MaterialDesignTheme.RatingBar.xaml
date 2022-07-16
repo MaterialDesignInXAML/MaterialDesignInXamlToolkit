@@ -8,7 +8,7 @@
         <Setter Property="ClipToBounds" Value="False" />
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth1" />
+        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp2" />
         <Setter Property="ValueItemTemplate">
             <Setter.Value>
                 <DataTemplate DataType="system:Int32">
@@ -89,7 +89,7 @@
                                                     <AdornerDecorator.CacheMode>
                                                         <BitmapCache SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                                                     </AdornerDecorator.CacheMode>
-                                                    <Grid Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}">
+                                                    <Grid Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}">
                                                         <Rectangle
                                                             Fill="{DynamicResource MaterialDesignToolTipBackground}"
                                                             Margin="0,0,0,5"
@@ -139,7 +139,7 @@
                                                     <AdornerDecorator.CacheMode>
                                                         <BitmapCache SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                                                     </AdornerDecorator.CacheMode>
-                                                    <Grid Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}">
+                                                    <Grid Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}">
                                                         <Rectangle
                                                             Fill="{DynamicResource MaterialDesignToolTipBackground}"
                                                             Margin="0,0,5,0"
