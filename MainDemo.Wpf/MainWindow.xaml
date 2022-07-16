@@ -98,7 +98,7 @@
             <DockPanel>
                 <materialDesign:ColorZone
                     Padding="16"
-                    materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                    materialDesign:ElevationAssist.Elevation="Dp4"
                     Mode="PrimaryMid"
                     DockPanel.Dock="Top">
                     <DockPanel>

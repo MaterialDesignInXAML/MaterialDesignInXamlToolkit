@@ -130,7 +130,7 @@
                 </Grid.RowDefinitions>
                 <materialDesign:ColorZone
                     Padding="16"
-                    materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                    materialDesign:ElevationAssist.Elevation="Dp0"
                     Mode="Standard"
                     DockPanel.Dock="Top">
                     <Grid >

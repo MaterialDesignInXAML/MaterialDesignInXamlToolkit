@@ -57,7 +57,7 @@
                     Content="H"
                     Style="{StaticResource MaterialDesignActionToggleButton}"
                     ToolTip="MaterialDesignActionToggleButton"
-                    materialDesign:ShadowAssist.ShadowDepth="Depth3"/>
+                    materialDesign:ElevationAssist.Elevation="Dp8"/>
             </smtx:XamlDisplay>
             
             <smtx:XamlDisplay

@@ -34,7 +34,7 @@
         <Setter Property="Padding" Value="0" />
         <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
         <Setter Property="wpf:ColorZoneAssist.Mode" Value="PrimaryMid" />
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth2" />
+        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp4" />
         <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="Bottom" />
         <Setter Property="Template">
             <Setter.Value>
@@ -42,7 +42,7 @@
                     <DockPanel KeyboardNavigation.TabNavigation="Local">
                         <wpf:ColorZone
                                 x:Name="PART_HeaderZone"
-                                wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}"
+                                wpf:ElevationAssist.Elevation="{TemplateBinding wpf:ElevationAssist.Elevation}"
                                 wpf:ShadowAssist.ShadowEdges="{TemplateBinding wpf:ShadowAssist.ShadowEdges}"
                                 VerticalAlignment="Stretch"
                                 Background="{TemplateBinding wpf:ColorZoneAssist.Background}"
@@ -520,7 +520,7 @@
         <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
         <Setter Property="TabStripPlacement" Value="Left" />
         <Setter Property="BorderThickness" Value="0,0,1,0" />
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0" />
+        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp0" />
         <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="Right" />
         <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignNavigationRailTabItem}" />
         <Setter Property="Template">
@@ -534,7 +534,7 @@
                             SnapsToDevicePixels="True">
                             <wpf:Card
                                 x:Name="shadowCard"
-                                wpf:ShadowAssist.ShadowDepth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth)}"
+                                wpf:ElevationAssist.Elevation="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation)}"
                                 wpf:ShadowAssist.ShadowEdges="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowEdges)}"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{DynamicResource MaterialDesignDivider}"
@@ -611,7 +611,7 @@
                         </wpf:ColorZone>
                     </DockPanel>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0">
+                        <Trigger Property="wpf:ElevationAssist.Elevation" Value="Dp0">
                             <Setter TargetName="shadowCard" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="DividerRect" Property="Visibility" Value="Visible" />
                         </Trigger>

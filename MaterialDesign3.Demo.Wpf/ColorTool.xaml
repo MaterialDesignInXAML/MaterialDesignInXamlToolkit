@@ -28,7 +28,7 @@
 
             <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
                 <Setter Property="BorderBrush" Value="Transparent" />
-                <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth0" />
+                <Setter Property="materialDesign:ElevationAssist.Elevation" Value="Dp0" />
             </Style>
 
             <Style TargetType="TextBlock" x:Key="HexLabelTextBlock" BasedOn="{StaticResource MaterialDesignBody2TextBlock}">
@@ -53,7 +53,7 @@
                             <Setter Property="BorderThickness" Value="0" />
                             <Setter Property="Margin" Value="1 1 0 0" />
                             <Setter Property="materialDesign:RippleAssist.IsDisabled" Value="True" />
-                            <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth0" />
+                            <Setter Property="materialDesign:ElevationAssist.Elevation" Value="Dp0" />
                             <Setter Property="Tag" Value="0" />
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
@@ -133,7 +133,7 @@
                     <Grid.Resources>
                         <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}" x:Key="PaletteButton">
                             <Setter Property="BorderBrush" Value="Transparent" />
-                            <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth0" />
+                            <Setter Property="materialDesign:ElevationAssist.Elevation" Value="Dp0" />
                             <Setter Property="materialDesign:ShadowAssist.ShadowEdges" Value="All" />
                             <Setter Property="materialDesign:RippleAssist.Feedback" Value="LightGray" />
                             <Setter Property="materialDesign:RippleAssist.RippleOnTop" Value="True" />
@@ -165,7 +165,7 @@
                                 <Style TargetType="Button" BasedOn="{StaticResource PaletteButton}">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding ActiveScheme}" Value="Primary">
-                                            <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth3" />
+                                            <Setter Property="materialDesign:ElevationAssist.Elevation" Value="Dp8" />
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
@@ -260,7 +260,7 @@
                                 <Style TargetType="Button" BasedOn="{StaticResource PaletteButton}">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding ActiveScheme}" Value="Secondary">
-                                            <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth3" />
+                                            <Setter Property="materialDesign:ElevationAssist.Elevation" Value="Dp8" />
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
@@ -358,7 +358,7 @@
                                     <Style TargetType="Button" BasedOn="{StaticResource PaletteButton}">
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding ActiveScheme}" Value="PrimaryForeground">
-                                                <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth3" />
+                                                <Setter Property="materialDesign:ElevationAssist.Elevation" Value="Dp8" />
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
@@ -429,7 +429,7 @@
                                     <Style TargetType="Button" BasedOn="{StaticResource PaletteButton}">
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding ActiveScheme}" Value="SecondaryForeground">
-                                                <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth3" />
+                                                <Setter Property="materialDesign:ElevationAssist.Elevation" Value="Dp8" />
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>

@@ -45,7 +45,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="16 4 16 4"/>
         <Setter Property="Height" Value="32" />
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth1" />        
+        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp2" />
         <Setter Property="wpf:ButtonAssist.CornerRadius" Value="2" />
         <Setter Property="wpf:RippleAssist.Feedback" Value="White" />
         <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
@@ -63,7 +63,7 @@
                                         BorderThickness="{TemplateBinding BorderThickness}"
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         x:Name="border"
-                                        Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}" />
+                                        Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}" />
                                 <ProgressBar x:Name="ProgressBar"
                                              Style="{DynamicResource MaterialDesignLinearProgressBar}"
                                              Minimum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Minimum)}"
@@ -271,30 +271,30 @@
     </Style>
 
     <Style x:Key="MaterialDesignFlatLightBgButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedLightButton}">
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0" />
+        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp0" />
     </Style>
 
     <!--#endregion-->
     <!--#region Flat Background Button-->
 
     <Style x:Key="MaterialDesignFlatMidBgButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0" />
+        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp0" />
     </Style>
 
     <Style x:Key="MaterialDesignFlatDarkBgButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}">
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0" />
+        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp0" />
     </Style>
 
     <Style x:Key="MaterialDesignFlatSecondaryLightBgButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedSecondaryLightButton}">
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0" />
+        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp0" />
     </Style>
 
     <Style x:Key="MaterialDesignFlatSecondaryMidBgButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedSecondaryButton}">
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0" />
+        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp0" />
     </Style>
 
     <Style x:Key="MaterialDesignFlatSecondaryDarkBgButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedSecondaryDarkButton}">
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0" />
+        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp0" />
     </Style>
 
     <Style x:Key="MaterialDesignFlatAccentBgButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFlatSecondaryMidBgButton}">
@@ -454,7 +454,7 @@
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth2" />
+        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp6" />
         <Setter Property="Padding" Value="1"/>
         <Setter Property="Width" Value="40" />
         <Setter Property="Height" Value="40" />
@@ -465,7 +465,7 @@
                     <Grid>
                         <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                             <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}"
-                                     Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                                     Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}"
                                      x:Name="border">
                             </Ellipse>
                         </AdornerDecorator>
@@ -683,7 +683,7 @@
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth1" />
+        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp2" />
         <Setter Property="TextBlock.FontWeight" Value="Medium"/>
         <Setter Property="TextBlock.FontSize" Value="14"/>
         <Setter Property="BorderThickness" Value="1"/>
@@ -699,7 +699,7 @@
                             <Grid>
                                 <Border Background="{TemplateBinding Background}" 
                                         CornerRadius="{Binding Path=(wpf:ButtonAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
-                                        Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                                        Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}"
                                         x:Name="background" />
                                 <Border CornerRadius="{Binding Path=(wpf:ButtonAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
                                         BorderThickness="{TemplateBinding BorderThickness}"

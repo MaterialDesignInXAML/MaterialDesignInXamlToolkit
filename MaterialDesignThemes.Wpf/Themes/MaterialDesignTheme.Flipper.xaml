@@ -162,7 +162,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <wpf:Plane3D x:Name="PART_Plane3D" RotationY="0" ZFactor="2.055">
-                            <wpf:Card wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}"
+                            <wpf:Card wpf:ElevationAssist.Elevation="{TemplateBinding wpf:ElevationAssist.Elevation}"
                                       UniformCornerRadius="{TemplateBinding wpf:FlipperAssist.UniformCornerRadius}"
                                       Style="{TemplateBinding wpf:FlipperAssist.CardStyle}">
                                 <Grid>

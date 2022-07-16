@@ -123,7 +123,7 @@
                             CornerRadius="2"
                             Panel.ZIndex="1"
                             Margin="16 0 0 0"
-                            materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                            materialDesign:ElevationAssist.Elevation="Dp2">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -177,7 +177,7 @@
                 Mode="PrimaryDark"
                 Padding="16"
                 CornerRadius="10"
-                materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                materialDesign:ElevationAssist.Elevation="Dp4"
                 ClipToBounds="False">
                 <StackPanel Orientation="Horizontal">
                     <ToggleButton

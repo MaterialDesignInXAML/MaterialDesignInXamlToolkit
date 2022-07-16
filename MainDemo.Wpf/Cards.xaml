@@ -425,7 +425,7 @@
                 UniqueKey="cards_8"
                 Margin="4 4 0 0"
                 VerticalContentAlignment="Top">
-                <materialDesign:Flipper Style="{StaticResource MaterialDesignCardFlipper}" materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                <materialDesign:Flipper Style="{StaticResource MaterialDesignCardFlipper}" materialDesign:ElevationAssist.Elevation="Dp0">
                     <materialDesign:Flipper.FrontContent>
                         <Grid Height="256" Width="200">
                             <Grid.RowDefinitions>

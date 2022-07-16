@@ -41,6 +41,10 @@
                         <Setter TargetName="PackIcon" Property="Kind" Value="CodeBraces" />
                         <Setter TargetName="Root" Property="ToolTip" Value="Object Source/API" />
                     </DataTrigger>
+                    <DataTrigger Binding="{Binding Type}" Value="Specs">
+                        <Setter TargetName="PackIcon" Property="Kind" Value="MaterialDesign" />
+                        <Setter TargetName="Root" Property="ToolTip" Value="Material Design Specs" />
+                    </DataTrigger>
                 </DataTemplate.Triggers>
             </DataTemplate>
         </ResourceDictionary>

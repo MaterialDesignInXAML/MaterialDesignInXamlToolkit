@@ -94,7 +94,7 @@
             Grid.Row="2"
             Margin="0 8 0 0"
             CornerRadius="2"
-            materialDesign:ShadowAssist.ShadowDepth="Depth2">
+            materialDesign:ElevationAssist.Elevation="Dp4">
             <StackPanel Orientation="Horizontal" Margin="8">
                 <Border
                     Background="White"
