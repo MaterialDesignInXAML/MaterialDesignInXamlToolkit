@@ -127,4 +127,49 @@ public class ComboBoxTests : TestBase
             Assert.True(menuItem is not null, $"{menuHeader} menu item not found");
         }
     }
+
+    [Fact]
+    [Description("Issue 2713")]
+    public async Task OnEditableComboBox_ClickInTextArea_FocusesTextBox()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        var stackPanel = await LoadXaml<StackPanel>(@"
+<StackPanel Orientation=""Horizontal"">
+    <ComboBox x:Name=""EditableComboBox"" IsEditable=""True"" Style=""{StaticResource MaterialDesignComboBox}"">
+        <ComboBoxItem>Select1</ComboBoxItem>
+        <ComboBoxItem>Select2</ComboBoxItem>
+        <ComboBoxItem IsSelected=""True"">Select3</ComboBoxItem>
+        <ComboBoxItem>Select4</ComboBoxItem>
+        <ComboBoxItem>Select5</ComboBoxItem>
+    </ComboBox>
+    <Button x:Name=""Button"" />
+</StackPanel>");
+
+        var comboBox = await stackPanel.GetElement<ComboBox>("EditableComboBox");
+        var editableTextBox = await comboBox.GetElement<TextBox>("PART_EditableTextBox");
+        var button = await stackPanel.GetElement<Button>("Button");
+
+        // Open the combobox initially
+        await comboBox.LeftClick(Position.RightCenter);
+        await Task.Delay(50);   // Allow a little time for the drop-down to open (and property to change)
+        bool wasOpenAfterClickOnToggleButton = await comboBox.GetIsDropDownOpen();
+
+        // Focus (i.e. click) another element
+        await button.LeftClick();
+
+        // Click the editable TextBox of the ComboBox
+        await editableTextBox.LeftClick();
+        await Task.Delay(50);   // Allow a little time for the drop-down to open (and property to change)
+        bool wasOpenAfterClickOnEditableTextBox = await comboBox.GetIsDropDownOpen();
+        bool textBoxHasFocus = await editableTextBox.GetIsFocused();
+        bool textBoxHasKeyboardFocus = await editableTextBox.GetIsKeyboardFocused();
+
+        Assert.True(wasOpenAfterClickOnToggleButton, "ComboBox should have opened drop down when clicking the toggle button");
+        Assert.False(wasOpenAfterClickOnEditableTextBox, "ComboBox should not have opened drop down when clicking the editable TextBox");
+        Assert.True(textBoxHasFocus, "Editable TextBox should have focus");
+        Assert.True(textBoxHasKeyboardFocus, "Editable TextBox should have keyboard focus");
+
+        recorder.Success();
+    }
 }
