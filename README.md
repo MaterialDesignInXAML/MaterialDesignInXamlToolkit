@@ -110,7 +110,10 @@ To load the source project you will need Visual Studio 2022. Don't worry if you 
 ## Contributors
 
 This project exists thanks to all the people who contribute.
-<a href="https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/graphs/contributors"><img src="https://opencollective.com/materialdesigninxaml/contributors.svg?width=890&button=false" /></a>
+
+<a href="https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=MaterialDesignInXAML/MaterialDesignInXamlToolkit" />
+</a>
 
 ## Backers
 
