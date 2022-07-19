@@ -275,7 +275,8 @@
                 HorizontalAlignment="Left">
                 <ComboBox
                     Style="{StaticResource MaterialDesignFilledComboBox}"
-                    materialDesign:HintAssist.Hint="Validation test"
+                    materialDesign:HintAssist.Hint="Validation test (editable)"
+                    IsEditable="True"
                     ItemsSource="{Binding ShortStringList}"
                     materialDesign:TextFieldAssist.HasClearButton="True"
                     Width="256">
