@@ -200,6 +200,52 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabItem}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="SelectHorizontalTabItem">
+                            <DoubleAnimation Storyboard.TargetName="ScaleTransform"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             From="0"
+                                             To="1"
+                                             Duration="0">
+                            </DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetName="ScaleTransform"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             From="0"
+                                             To="1"
+                                             Duration="0:0:0.3">
+                                <DoubleAnimation.EasingFunction>
+                                    <SineEase EasingMode="EaseOut" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetName="PART_BackgroundSelection"
+                                             Storyboard.TargetProperty="Opacity"
+                                             To="0.12"
+                                             BeginTime="0:0:0.3"
+                                             Duration="0" />
+                        </Storyboard>
+                        <Storyboard x:Key="SelectVerticalTabItem">
+                            <DoubleAnimation Storyboard.TargetName="ScaleTransform"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             From="0"
+                                             To="1"
+                                             Duration="0">
+                            </DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetName="ScaleTransform"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             From="0"
+                                             To="1"
+                                             Duration="0:0:0.3">
+                                <DoubleAnimation.EasingFunction>
+                                    <SineEase EasingMode="EaseOut" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetName="PART_BackgroundSelection"
+                                             Storyboard.TargetProperty="Opacity"
+                                             To="0.12"
+                                             BeginTime="0:0:0.3"
+                                             Duration="0" />
+                        </Storyboard>
+                    </ControlTemplate.Resources>
                     <Grid x:Name="Root">
                         <!--  This is the Header label ColorZone.  -->
                         <wpf:ColorZone
@@ -236,52 +282,13 @@
                             RenderTransformOrigin="0.5,0.5"
                             Visibility="Hidden">
                             <Border.RenderTransform>
-                                <ScaleTransform x:Name="ScaleTransform" ScaleX="0" ScaleY="1" />
+                                <ScaleTransform x:Name="ScaleTransform" ScaleX="0" ScaleY="0" />
                             </Border.RenderTransform>
                             <Rectangle
                                 x:Name="PART_BackgroundSelection"
                                 Fill="{TemplateBinding Background}"
-                                Opacity="0.12" />
+                                Opacity="0.0" />
                         </Border>
-
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="SelectionStates">
-                                <VisualState x:Name="Selected">
-                                    <Storyboard>
-                                        <DoubleAnimation
-                                            Storyboard.TargetName="ScaleTransform"
-                                            Storyboard.TargetProperty="ScaleX"
-                                            From="0"
-                                            To="1"
-                                            Duration="0:0:0.3">
-                                            <DoubleAnimation.EasingFunction>
-                                                <SineEase EasingMode="EaseOut" />
-                                            </DoubleAnimation.EasingFunction>
-                                        </DoubleAnimation>
-                                        <DoubleAnimation
-                                            BeginTime="0:0:0.3"
-                                            Storyboard.TargetName="PART_BackgroundSelection"
-                                            Storyboard.TargetProperty="Opacity"
-                                            To="0.12"
-                                            Duration="0" />
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Unselected">
-                                    <Storyboard>
-                                        <DoubleAnimation
-                                            Storyboard.TargetName="ScaleTransform"
-                                            Storyboard.TargetProperty="ScaleX"
-                                            To="0"
-                                            Duration="0" />
-                                        <DoubleAnimation
-                                            Storyboard.TargetName="PART_BackgroundSelection"
-                                            Storyboard.TargetProperty="Opacity"
-                                            To="0"
-                                            Duration="0" />
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
@@ -300,6 +307,44 @@
                         <DataTrigger Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Right">
                             <Setter TargetName="SelectionHighlightBorder" Property="BorderThickness" Value="2,0,0,0" />
                         </DataTrigger>
+
+                        <!-- Selected TabItem animations (vary depending on TabControl.TabStripPlacement value) -->
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True" />
+                                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Top" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource SelectHorizontalTabItem}" />
+                            </MultiDataTrigger.EnterActions>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True" />
+                                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Bottom" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource SelectHorizontalTabItem}" />
+                            </MultiDataTrigger.EnterActions>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True" />
+                                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Left" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource SelectVerticalTabItem}" />
+                            </MultiDataTrigger.EnterActions>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True" />
+                                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Right" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource SelectVerticalTabItem}" />
+                            </MultiDataTrigger.EnterActions>
+                        </MultiDataTrigger>
 
                         <!--  Force the header foreground do be MaterialDesignBody by default (only for not filled tabs) -->
                         <Trigger Property="wpf:TabAssist.HasFilledTab" Value="False">
