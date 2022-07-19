@@ -15,7 +15,7 @@
     <Style TargetType="{x:Type wpf:DialogHost}">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="DialogMargin" Value="35" />
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth5" />
+        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp24" />
         <Setter Property="DialogTheme" Value="Inherit" />
         <Setter Property="PopupStyle" Value="{StaticResource MaterialDesignDialogHostPopup}" />
         <Setter Property="Template">
@@ -154,7 +154,7 @@
                                 </Border>
                                 <wpf:Card x:Name="PART_PopupContentElement" 
                                           Margin="{TemplateBinding DialogMargin}"
-                                          wpf:ShadowAssist.ShadowDepth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth)}"
+                                          wpf:ElevationAssist.Elevation="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation)}"
                                           UniformCornerRadius="4"
                                           Tag="{TemplateBinding DialogBackground}"
                                           TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -218,7 +218,7 @@
 
     <Style x:Key="MaterialDesignEmbeddedDialogHost" TargetType="{x:Type wpf:DialogHost}">
         <Setter Property="DialogMargin" Value="35" />
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth5" />
+        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp24" />
         <Setter Property="Placement" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -367,7 +367,7 @@
                             <wpf:Card 
                                 x:Name="PART_PopupContentElement" 
                                 Margin="{TemplateBinding DialogMargin}"
-                                wpf:ShadowAssist.ShadowDepth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth)}"
+                                wpf:ElevationAssist.Elevation="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation)}"
                                 UniformCornerRadius="4"
                                 Tag="{TemplateBinding DialogBackground}"
                                 TextElement.Foreground="{DynamicResource MaterialDesignBody}"

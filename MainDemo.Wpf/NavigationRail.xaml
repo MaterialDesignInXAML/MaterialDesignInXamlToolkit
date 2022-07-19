@@ -531,7 +531,7 @@
                 <materialDesign:Card>
                     <TabControl
                         materialDesign:ColorZoneAssist.Mode="Standard"
-                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                        materialDesign:ElevationAssist.Elevation="Dp0"
                         Style="{StaticResource MaterialDesignNavigationRailTabControl}">
                         <TabItem>
                             <TabItem.Header>
@@ -593,7 +593,7 @@
                 <materialDesign:Card>
                     <TabControl
                         materialDesign:ColorZoneAssist.Mode="Standard"
-                        materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                        materialDesign:ElevationAssist.Elevation="Dp2"
                         Style="{StaticResource MaterialDesignNavigationRailTabControl}">
                         <TabItem>
                             <TabItem.Header>
@@ -655,7 +655,7 @@
                 <materialDesign:Card>
                     <TabControl
                         materialDesign:ColorZoneAssist.Mode="Standard"
-                        materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                        materialDesign:ElevationAssist.Elevation="Dp4"
                         Style="{StaticResource MaterialDesignNavigationRailTabControl}">
                         <TabItem>
                             <TabItem.Header>
@@ -717,7 +717,7 @@
                 <materialDesign:Card>
                     <TabControl
                         materialDesign:ColorZoneAssist.Mode="Standard"
-                        materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                        materialDesign:ElevationAssist.Elevation="Dp8"
                         Style="{StaticResource MaterialDesignNavigationRailTabControl}">
                         <TabItem>
                             <TabItem.Header>

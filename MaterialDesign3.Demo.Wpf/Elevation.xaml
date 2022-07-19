@@ -1,0 +1,193 @@
+﻿<UserControl
+    x:Class="MaterialDesign3Demo.Elevation"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+    mc:Ignorable="d" 
+    d:DesignHeight="300"
+    d:DesignWidth="300">
+    <StackPanel Margin="8 8 0 0">
+        <TextBlock
+            Text="Elevated controls have default elevation set, but the elevation can be overriden."/>
+
+        <WrapPanel
+            Orientation="Horizontal"
+            Margin="0 12 0 0">
+            <smtx:XamlDisplay
+                UniqueKey="shadow_1"
+                Margin="0 0 16 32">
+                <Button
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    Content="2 DP"/>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay
+                UniqueKey="shadow_2"
+                Margin="0 0 16 32">
+                <Button
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    materialDesign:ElevationAssist.Elevation="Dp4"
+                    Content="4 DP"/>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay
+                UniqueKey="shadow_3"
+                Margin="0 0 16 32">
+                <Button
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    materialDesign:ElevationAssist.Elevation="Dp8"
+                    Content="8 DP"/>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay
+                UniqueKey="shadow_4"
+                Margin="0 0 16 32">
+                <Button
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    materialDesign:ElevationAssist.Elevation="Dp12"
+                    Content="12 DP"/>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay
+                UniqueKey="shadow_5"
+                Margin="0 0 16 32">
+                <Button
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    materialDesign:ElevationAssist.Elevation="Dp16"
+                    Content="16 DP"/>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay
+                UniqueKey="shadow_9"
+                Margin="0 0 16 32">
+                <Button
+                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                    materialDesign:ElevationAssist.Elevation="Dp0"
+                    Content="0"/>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay
+                UniqueKey="shadow_10"
+                Margin="0 0 16 32">
+                <Button
+                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                    materialDesign:ElevationAssist.Elevation="Dp2"
+                    Content="2"/>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay
+                UniqueKey="shadow_11"
+                Margin="0 0 16 32">
+                <Button
+                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                    Content="6"/>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay
+                UniqueKey="shadow_12"
+                Margin="0 0 16 32">
+                <Button
+                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                    materialDesign:ElevationAssist.Elevation="Dp12"
+                    Content="12"/>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay
+                UniqueKey="shadow_13"
+                Margin="0 0 16 32">
+                <Button
+                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                    materialDesign:ElevationAssist.Elevation="Dp16"
+                    Content="16"/>
+            </smtx:XamlDisplay>
+        </WrapPanel>
+
+        <WrapPanel
+            Orientation="Horizontal"
+            Margin="0 12 0 0">
+            <WrapPanel.Resources>
+                <Style TargetType="{x:Type materialDesign:Card}" BasedOn="{StaticResource {x:Type materialDesign:Card}}">
+                    <Setter Property="Width" Value="150" />
+                    <Setter Property="Height" Value="80" />
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                </Style>
+            </WrapPanel.Resources>
+            <smtx:XamlDisplay UniqueKey="elevation_card_level0" Margin="0,0,16,32">
+                <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp0" Content="0 dp" />
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay UniqueKey="elevation_card_level1" Margin="0,0,16,32">
+                <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp1" Content="1 dp" />
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay UniqueKey="elevation_card_level2" Margin="0,0,16,32">
+                <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp2" Content="2 dp" />
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay UniqueKey="elevation_card_level3" Margin="0,0,16,32">
+                <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp3" Content="3 dp" />
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay UniqueKey="elevation_card_level4" Margin="0,0,16,32">
+                <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp4" Content="4 dp" />
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay UniqueKey="elevation_card_level5" Margin="0,0,16,32">
+                <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp5" Content="5 dp" />
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay UniqueKey="elevation_card_level6" Margin="0,0,16,32">
+                <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp6" Content="6 dp" />
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay UniqueKey="elevation_card_level7" Margin="0,0,16,32">
+                <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp7" Content="7 dp" />
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay UniqueKey="elevation_card_level8" Margin="0,0,16,32">
+                <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp8" Content="8 dp" />
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay UniqueKey="elevation_card_level12" Margin="0,0,16,32">
+                <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp12" Content="12 dp" />
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay UniqueKey="elevation_card_level16" Margin="0,0,16,32">
+                <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp16" Content="16 dp" />
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay UniqueKey="elevation_card_level24" Margin="0,0,16,32">
+                <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp24" Content="24 dp" />
+            </smtx:XamlDisplay>
+        </WrapPanel>
+
+        <WrapPanel
+            Orientation="Horizontal"
+            Margin="0 12 0 0">
+            <WrapPanel.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="TextAlignment" Value="Center" />
+                    <Setter Property="LineHeight" Value="20" />
+                    <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+                </Style>
+                <Style TargetType="{x:Type materialDesign:Card}" BasedOn="{StaticResource {x:Type materialDesign:Card}}">
+                    <Setter Property="Width" Value="150" />
+                    <Setter Property="Height" Value="80" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                    <Setter Property="UseLayoutRounding" Value="True" />
+                    <Setter Property="UniformCornerRadius" Value="0" />
+                    <Setter Property="materialDesign:ElevationAssist.Elevation" Value="Dp16" />
+                </Style>
+            </WrapPanel.Resources>
+            <smtx:XamlDisplay UniqueKey="shadow_26" Margin="0 0 16 32">
+                <materialDesign:Card materialDesign:ShadowAssist.ShadowEdges="Bottom,Right">
+                    <TextBlock Text="Custom shadow clip&#10;Bottom, Right" />
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay UniqueKey="shadow_27" Margin="0 0 16 32">
+                <materialDesign:Card materialDesign:ShadowAssist.ShadowEdges="Top">
+                    <TextBlock Text="Custom shadow clip&#10;Top" />
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+            <smtx:XamlDisplay UniqueKey="shadow_28" Margin="0 0 16 32">
+                <materialDesign:Card materialDesign:ShadowAssist.ShadowEdges="Bottom,Left">
+                    <TextBlock Text="Custom shadow clip&#10;Bottom, Left" />
+                </materialDesign:Card>
+            </smtx:XamlDisplay>
+        </WrapPanel>
+
+    </StackPanel>
+</UserControl>

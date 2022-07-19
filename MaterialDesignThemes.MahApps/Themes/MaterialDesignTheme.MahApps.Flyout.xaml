@@ -8,7 +8,7 @@
 
     <DataTemplate x:Key="HeaderTemplate" x:Shared="False">
         <wpf:ColorZone x:Name="PART_ColorZone"
-                       wpf:ShadowAssist.ShadowDepth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(mahApps:FlyoutAssist.HeaderShadowDepth)}"
+                       wpf:ElevationAssist.Elevation="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(mahApps:FlyoutAssist.HeaderElevation)}"
                        Mode="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(mahApps:FlyoutAssist.HeaderColorMode)}">
             <DockPanel x:Name="dpHeader"
                        Margin="{Binding Path=(mah:HeaderedControlHelper.HeaderMargin), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:Flyout}}, Mode=OneWay}"
@@ -254,7 +254,7 @@
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="Visibility" Value="Hidden" />
         <Setter Property="mahApps:FlyoutAssist.HeaderColorMode" Value="PrimaryMid" />
-        <Setter Property="mahApps:FlyoutAssist.HeaderShadowDepth" Value="Depth2" />
+        <Setter Property="mahApps:FlyoutAssist.HeaderElevation" Value="Dp4" />
         <Style.Triggers>
             <Trigger Property="Position" Value="Right">
                 <Setter Property="mah:HeaderedControlHelper.HeaderMargin" Value="10 25 10 10" />
@@ -264,11 +264,11 @@
             </Trigger>
             <Trigger Property="TitleVisibility" Value="Collapsed">
                 <Setter Property="mahApps:FlyoutAssist.HeaderColorMode" Value="Standard" />
-                <Setter Property="mahApps:FlyoutAssist.HeaderShadowDepth" Value="Depth0" />
+                <Setter Property="mahApps:FlyoutAssist.HeaderElevation" Value="Dp0" />
             </Trigger>
             <Trigger Property="TitleVisibility" Value="Hidden">
                 <Setter Property="mahApps:FlyoutAssist.HeaderColorMode" Value="Standard" />
-                <Setter Property="mahApps:FlyoutAssist.HeaderShadowDepth" Value="Depth0" />
+                <Setter Property="mahApps:FlyoutAssist.HeaderElevation" Value="Dp0" />
             </Trigger>
         </Style.Triggers>
     </Style>

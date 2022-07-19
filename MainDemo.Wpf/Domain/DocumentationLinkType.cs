@@ -6,6 +6,7 @@
         DemoPageSource,
         ControlSource,
         StyleSource,
-        Video
+        Video,
+        Specs
     }
 }

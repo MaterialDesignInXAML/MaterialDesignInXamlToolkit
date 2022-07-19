@@ -71,7 +71,7 @@
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="PopupHorizontalOffset" Value="5"/>
         <Setter Property="PopupVerticalOffset" Value="5"/>
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth3" />
+        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp6" />
         <Setter Property="TextElement.FontWeight" Value="Normal" />
         <Setter Property="Padding" Value="0 8 0 8" />
         <Setter Property="Focusable" Value="True" />
@@ -157,7 +157,7 @@
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth2" />
+        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp6" />
         <Setter Property="Width" Value="56" />
         <Setter Property="Height" Value="56" />
         <Setter Property="Focusable" Value="False" />
@@ -223,7 +223,7 @@
                                             </VisualStateManager.VisualStateGroups>
                                             <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                                                 <Ellipse Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" 
-                                                         Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                                                         Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}"
                                                          x:Name="border">
                                                 </Ellipse>
                                             </AdornerDecorator>

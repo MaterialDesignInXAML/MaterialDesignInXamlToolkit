@@ -9,8 +9,10 @@
 
     <Style x:Key="MaterialDesignElevatedCard" TargetType="{x:Type wpf:Card}">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignCardBackground}" />
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth_1dp" />
+        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp1" />
         <Setter Property="Focusable" Value="False"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type wpf:Card}">
@@ -23,11 +25,11 @@
                                 <MultiBinding Converter="{StaticResource ShadowEdgeConverter}">
                                     <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualWidth"/>
                                     <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualHeight"/>
-                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:ShadowAssist.ShadowDepth)" />
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:ElevationAssist.Elevation)" />
                                     <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:ShadowAssist.ShadowEdges)" />
                                 </MultiBinding>
                             </AdornerDecorator.OpacityMask>
-                            <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                            <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}"
                                     CornerRadius="{TemplateBinding UniformCornerRadius, Converter={x:Static converters:DoubleToCornerRadiusConverter.Instance}}">
                                 <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" 
                                         x:Name="PART_ClipBorder"
@@ -39,7 +41,9 @@
                                           Content="{TemplateBinding ContentControl.Content}"
                                           ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
                                           ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}"
-                                          ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" />
+                                          ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="ClipContent" Value="True">
@@ -54,6 +58,8 @@
     <Style x:Key="MaterialDesignOutlinedCard" TargetType="{x:Type wpf:Card}">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignCardBackground}" />
         <Setter Property="Focusable" Value="False"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type wpf:Card}">
@@ -67,7 +73,9 @@
                                           Content="{TemplateBinding ContentControl.Content}"
                                           ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
                                           ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}"
-                                          ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" />
+                                          ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                             </Border>
                         </Border>
                     </Grid>

@@ -79,6 +79,9 @@ namespace MaterialDesign3Demo.Domain
                 label ?? typeof(TDemoPage).Name);
         }
 
+        public static DocumentationLink SpecsLink(string url, string? label)
+            => new(DocumentationLinkType.Specs, url, label ?? "Specs");
+
         public string Label { get; }
 
         public string Url { get; }

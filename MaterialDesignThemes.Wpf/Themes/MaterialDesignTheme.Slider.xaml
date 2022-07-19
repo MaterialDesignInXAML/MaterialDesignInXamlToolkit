@@ -91,7 +91,7 @@
                 <Ellipse
                     x:Name="grip"
                     Fill="{TemplateBinding Foreground}"
-                    Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                    Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}"
                     Margin="-1,0" />
             </AdornerDecorator>
         </Grid>
@@ -256,7 +256,7 @@
                         <AdornerDecorator.CacheMode>
                             <BitmapCache SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         </AdornerDecorator.CacheMode>
-                        <Grid Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}">
+                        <Grid Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}">
                             <Rectangle
                                 Fill="{DynamicResource MaterialDesignToolTipBackground}"
                                 Margin="0,0,0,5"
@@ -286,7 +286,7 @@
                 <Ellipse
                     x:Name="grip"
                     Fill="{TemplateBinding Foreground}"
-                    Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                    Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}"
                     Margin="-1,0" />
             </AdornerDecorator>
         </Grid>
@@ -446,7 +446,7 @@
                         <AdornerDecorator.CacheMode>
                             <BitmapCache SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         </AdornerDecorator.CacheMode>
-                        <Grid Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}">
+                        <Grid Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}">
                             <Rectangle
                                 Fill="{DynamicResource MaterialDesignToolTipBackground}"
                                 Margin="0,0,5,0"
@@ -475,7 +475,7 @@
                 </AdornerDecorator.CacheMode>
                 <Ellipse
                      x:Name="grip"
-                     Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                     Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}"
                      Fill="{TemplateBinding Foreground}"
                      Margin="0,-1" />
             </AdornerDecorator>
@@ -791,7 +791,7 @@
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="IsMoveToPointEnabled" Value="True" />
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth1" />
+        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp1" />
         <Setter Property="SnapsToDevicePixels" Value="False" />
         <Setter Property="UseLayoutRounding" Value="False" />
         <Setter Property="Template" Value="{StaticResource MaterialDesignSliderHorizontal}"/>
@@ -813,7 +813,7 @@
         <Setter Property="IsMoveToPointEnabled" Value="True" />
         <Setter Property="IsSnapToTickEnabled" Value="True"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth1" />
+        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp1" />
         <Setter Property="SnapsToDevicePixels" Value="False" />
         <Setter Property="UseLayoutRounding" Value="False" />
         <Setter Property="Template" Value="{StaticResource MaterialDesignDiscreteSliderHorizontal}"/>
@@ -835,7 +835,7 @@
         <Setter Property="IsMoveToPointEnabled" Value="True" />
         <Setter Property="IsSnapToTickEnabled" Value="True"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth1" />
+        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp1" />
         <Setter Property="SnapsToDevicePixels" Value="False" />
         <Setter Property="UseLayoutRounding" Value="False" />
         <Setter Property="Template" Value="{StaticResource MaterialDesignDiscreteSliderVertical}"/>

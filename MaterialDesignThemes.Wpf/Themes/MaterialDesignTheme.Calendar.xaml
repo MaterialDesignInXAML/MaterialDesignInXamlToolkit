@@ -330,7 +330,7 @@
                         </VisualStateManager.VisualStateGroups>
 
                         <wpf:Card UniformCornerRadius="2" Background="{TemplateBinding Background}" Padding="0 -1 0 0"
-                                  wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}"
+                                  wpf:ElevationAssist.Elevation="{TemplateBinding wpf:ElevationAssist.Elevation}"
                                   ClipContent="True">
                   
                             <Grid RenderOptions.ClearTypeHint="Enabled">
@@ -675,7 +675,7 @@
         <Setter Property="wpf:CalendarAssist.HeaderBackground" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="wpf:CalendarAssist.HeaderForeground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
         <Setter Property="wpf:CalendarAssist.Orientation" Value="Vertical"/>
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0"/>
+        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Calendar}">
@@ -688,7 +688,7 @@
                         Foreground="{TemplateBinding Foreground}"
                         wpf:CalendarAssist.IsHeaderVisible="{TemplateBinding wpf:CalendarAssist.IsHeaderVisible}"
                         wpf:CalendarAssist.Orientation="{TemplateBinding wpf:CalendarAssist.Orientation}"
-                        wpf:ShadowAssist.ShadowDepth="{TemplateBinding wpf:ShadowAssist.ShadowDepth}"
+                        wpf:ElevationAssist.Elevation="{TemplateBinding wpf:ElevationAssist.Elevation}"
                         wpf:CalendarAssist.HeaderBackground="{TemplateBinding wpf:CalendarAssist.HeaderBackground}"
                         wpf:CalendarAssist.HeaderForeground="{TemplateBinding wpf:CalendarAssist.HeaderForeground}"/>
                 </ControlTemplate>

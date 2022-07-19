@@ -412,11 +412,13 @@ namespace MaterialDesignDemo.Domain
                 });
 
             yield return new DemoItem(
-                "Shadows",
-                typeof(Shadows),
+                "Elevation",
+                typeof(Elevation),
                 new[]
                 {
-                    DocumentationLink.DemoPageLink<Shadows>(),
+                    DocumentationLink.DemoPageLink<Elevation>(),
+                    DocumentationLink.StyleLink("Shadows"),
+                    DocumentationLink.SpecsLink("https://material.io/design/environment/elevation.html", "Elevation")
                 });
         }
 

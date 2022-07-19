@@ -25,7 +25,7 @@
             OpeningEffect="{materialDesign:TransitionEffect SlideInFromRight, Duration=0:0:1.2}">
             <materialDesign:ColorZone
                 Mode="PrimaryMid"
-                materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                materialDesign:ElevationAssist.Elevation="Dp6"
                 Margin="4">
                 <StackPanel
                     Margin="16"

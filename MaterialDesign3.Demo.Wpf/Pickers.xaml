@@ -429,7 +429,7 @@
                 <WrapPanel>
 
                     <GroupBox Header="Default" Style="{StaticResource MaterialDesignCardGroupBox}"
-                                  materialDesign:ShadowAssist.ShadowDepth="Depth3" Margin="10"
+                                  materialDesign:ElevationAssist.Elevation="Dp8" Margin="10"
                                   materialDesign:ColorZoneAssist.Mode="SecondaryMid">
                         <smtx:XamlDisplay UniqueKey="calendar_1">
                             <Calendar />
@@ -437,7 +437,7 @@
                     </GroupBox>
 
                     <GroupBox Header="Custom Colors" Style="{StaticResource MaterialDesignCardGroupBox}"
-                              materialDesign:ShadowAssist.ShadowDepth="Depth3" Margin="10"
+                              materialDesign:ElevationAssist.Elevation="Dp8" Margin="10"
                               materialDesign:ColorZoneAssist.Mode="SecondaryMid">
                         <smtx:XamlDisplay UniqueKey="calendar_2">
                             <Grid>
@@ -462,7 +462,7 @@
                     </GroupBox>
 
                     <GroupBox Header="Even More Custom Colors" Style="{StaticResource MaterialDesignCardGroupBox}"
-                                  materialDesign:ShadowAssist.ShadowDepth="Depth3" Margin="10"
+                                  materialDesign:ElevationAssist.Elevation="Dp8" Margin="10"
                                   materialDesign:ColorZoneAssist.Mode="SecondaryMid" >
                         <smtx:XamlDisplay UniqueKey="calendar_3" >
                             <Grid>
@@ -487,7 +487,7 @@
                     </GroupBox>
 
                     <GroupBox Header="Horizontal" Style="{StaticResource MaterialDesignCardGroupBox}"
-                                  materialDesign:ShadowAssist.ShadowDepth="Depth3" 
+                                  materialDesign:ElevationAssist.Elevation="Dp8" 
                                   materialDesign:ColorZoneAssist.Mode="SecondaryMid"
                                   VerticalAlignment="Top" Margin="10">
                         <smtx:XamlDisplay UniqueKey="calendar_4" >
@@ -498,11 +498,11 @@
 
 
                     <GroupBox Header="Transparent Header and shadow" Style="{StaticResource MaterialDesignCardGroupBox}"
-                                  materialDesign:ShadowAssist.ShadowDepth="Depth3"  Margin="10"
+                                  materialDesign:ElevationAssist.Elevation="Dp8"  Margin="10"
                                   materialDesign:ColorZoneAssist.Mode="SecondaryMid">
                         <smtx:XamlDisplay UniqueKey="calendar_5" >
                             <Calendar Style="{StaticResource MaterialDesignCalendarPortraitForeground}"
-                                      materialDesign:ShadowAssist.ShadowDepth="Depth3"/>
+                                      materialDesign:ElevationAssist.Elevation="Dp8"/>
                         </smtx:XamlDisplay>
                     </GroupBox>
 
@@ -515,7 +515,7 @@
                     <GroupBox Header="MaterialDesignClock" Margin="10"
                               Style="{StaticResource MaterialDesignCardGroupBox}"
                               materialDesign:ColorZoneAssist.Mode="SecondaryMid"
-                              materialDesign:ShadowAssist.ShadowDepth="Depth3">
+                              materialDesign:ElevationAssist.Elevation="Dp8">
                         <smtx:XamlDisplay UniqueKey="clock_1" >
                             <materialDesign:Clock Width="auto" DisplayAutomation="CycleWithSeconds"
                                                   Is24Hours="True"
@@ -526,7 +526,7 @@
                     <GroupBox Header="No Header" Margin="10" VerticalAlignment="Top"
                                   Style="{StaticResource MaterialDesignCardGroupBox}"
                                   materialDesign:ColorZoneAssist.Mode="SecondaryMid"
-                                  materialDesign:ShadowAssist.ShadowDepth="Depth3" >
+                                  materialDesign:ElevationAssist.Elevation="Dp8" >
                         <smtx:XamlDisplay UniqueKey="clock_2" >
                             <materialDesign:Clock Width="auto" DisplayAutomation="CycleWithSeconds"
                                                   Is24Hours="True" IsHeaderVisible="False" />
@@ -536,7 +536,7 @@
                     <GroupBox Header="MaterialDesignClockHorizontal" Margin="10"
                                   Style="{StaticResource MaterialDesignCardGroupBox}"
                                   materialDesign:ColorZoneAssist.Mode="SecondaryMid"
-                                  materialDesign:ShadowAssist.ShadowDepth="Depth3" VerticalAlignment="Top">
+                                  materialDesign:ElevationAssist.Elevation="Dp8" VerticalAlignment="Top">
                         <smtx:XamlDisplay UniqueKey="clock_3" >
                             <materialDesign:Clock Width="auto" DisplayAutomation="CycleWithSeconds"
                                                   Is24Hours="True" 
@@ -547,7 +547,7 @@
                     <GroupBox Header="MaterialDesignClockVertical" Margin="10"
                                   Style="{StaticResource MaterialDesignCardGroupBox}"
                                   materialDesign:ColorZoneAssist.Mode="SecondaryMid"
-                                  materialDesign:ShadowAssist.ShadowDepth="Depth3" >
+                                  materialDesign:ElevationAssist.Elevation="Dp8" >
                         <smtx:XamlDisplay UniqueKey="clock_4" >
                             <materialDesign:Clock Width="auto" DisplayAutomation="CycleWithSeconds"
                                                   Is24Hours="True" 
@@ -558,7 +558,7 @@
                     <GroupBox Header="MaterialDesignClockHorizontalThemed" Margin="10"
                                   Style="{StaticResource MaterialDesignCardGroupBox}"
                                   materialDesign:ColorZoneAssist.Mode="SecondaryMid"
-                                  materialDesign:ShadowAssist.ShadowDepth="Depth3" >
+                                  materialDesign:ElevationAssist.Elevation="Dp8" >
                         <smtx:XamlDisplay UniqueKey="clock_5" >
                             <materialDesign:Clock Width="auto" DisplayAutomation="CycleWithSeconds"
                                                   Is24Hours="True" 
@@ -569,7 +569,7 @@
                     <GroupBox Header="MaterialDesignClockVerticalThemed" Margin="10"
                                   Style="{StaticResource MaterialDesignCardGroupBox}"
                                   materialDesign:ColorZoneAssist.Mode="SecondaryMid"
-                                  materialDesign:ShadowAssist.ShadowDepth="Depth3" >
+                                  materialDesign:ElevationAssist.Elevation="Dp8" >
                         <smtx:XamlDisplay UniqueKey="clock_6" >
                             <materialDesign:Clock Width="auto" DisplayAutomation="CycleWithSeconds"
                                                   Is24Hours="True" 
@@ -585,7 +585,7 @@
                     <GroupBox Header="MaterialDesignClock" Margin="10"
                       Style="{StaticResource MaterialDesignCardGroupBox}"
                               materialDesign:ColorZoneAssist.Mode="SecondaryMid"
-                              materialDesign:ShadowAssist.ShadowDepth="Depth3" >
+                              materialDesign:ElevationAssist.Elevation="Dp8" >
                         <smtx:XamlDisplay UniqueKey="clock_7" >
                             <materialDesign:Clock Width="auto"
                                   DisplayAutomation="ToSeconds"
@@ -597,7 +597,7 @@
                     <GroupBox Header="No Header" Margin="10"
                       Style="{StaticResource MaterialDesignCardGroupBox}"
                               materialDesign:ColorZoneAssist.Mode="SecondaryMid"
-                              materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                              materialDesign:ElevationAssist.Elevation="Dp8"
                               VerticalAlignment="Top">
                         <smtx:XamlDisplay UniqueKey="clock_8" >
                             <materialDesign:Clock Width="auto"
@@ -610,7 +610,7 @@
                     <GroupBox Header="MaterialDesignClockHorizontal" Margin="10"
                       Style="{StaticResource MaterialDesignCardGroupBox}"
                               materialDesign:ColorZoneAssist.Mode="SecondaryMid"
-                              materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                              materialDesign:ElevationAssist.Elevation="Dp8"
                               VerticalAlignment="Top">
                         <smtx:XamlDisplay UniqueKey="clock_9" >
                             <materialDesign:Clock 
@@ -623,7 +623,7 @@
                     <GroupBox Header="MaterialDesignClockVertical" Margin="10"
                       Style="{StaticResource MaterialDesignCardGroupBox}"
                               materialDesign:ColorZoneAssist.Mode="SecondaryMid"
-                              materialDesign:ShadowAssist.ShadowDepth="Depth3" >
+                              materialDesign:ElevationAssist.Elevation="Dp8" >
                         <smtx:XamlDisplay UniqueKey="clock_10" >
                             <materialDesign:Clock 
                                       DisplayAutomation="CycleWithSeconds"
@@ -635,7 +635,7 @@
                     <GroupBox Header="MaterialDesignClockHorizontalThemed" Margin="10"
                       Style="{StaticResource MaterialDesignCardGroupBox}"
                               materialDesign:ColorZoneAssist.Mode="SecondaryMid"
-                              materialDesign:ShadowAssist.ShadowDepth="Depth3" >
+                              materialDesign:ElevationAssist.Elevation="Dp8" >
                         <smtx:XamlDisplay UniqueKey="clock_11" >
                             <materialDesign:Clock Width="auto"
                                       DisplayAutomation="CycleWithSeconds"
@@ -647,7 +647,7 @@
                     <GroupBox Header="MaterialDesignClockVerticalThemed" Margin="10"
                       Style="{StaticResource MaterialDesignCardGroupBox}"
                               materialDesign:ColorZoneAssist.Mode="SecondaryMid"
-                              materialDesign:ShadowAssist.ShadowDepth="Depth3" >
+                              materialDesign:ElevationAssist.Elevation="Dp8" >
                         <smtx:XamlDisplay UniqueKey="clock_12" >
                             <materialDesign:Clock Width="auto"
                                       DisplayAutomation="CycleWithSeconds"

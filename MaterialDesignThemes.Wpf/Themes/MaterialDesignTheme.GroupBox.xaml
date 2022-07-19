@@ -26,7 +26,7 @@
         <Setter Property="Padding" Value="9"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="SnapsToDevicePixels" Value="true"/>
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0" />
+        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp0" />
         <Setter Property="wpf:ColorZoneAssist.Mode" Value="PrimaryMid" />
         <Setter Property="Template">
             <Setter.Value>
@@ -35,7 +35,7 @@
                         <Border Background="{TemplateBinding Background}" BorderBrush="{Binding Path=Background, ElementName=PART_ColorZone}" BorderThickness="{TemplateBinding BorderThickness}" />
                         <DockPanel Background="{TemplateBinding Background}">
                             <wpf:ColorZone UseLayoutRounding="True" x:Name="PART_ColorZone" DockPanel.Dock="Top" Padding="{TemplateBinding Padding}" 
-                                           Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}"
+                                           Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}"
                                            wpf:ShadowAssist.ShadowEdges="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowEdges)}"
                                            Mode="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Mode)}"
                                            wpf:ColorZoneAssist.Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Background)}"
@@ -63,7 +63,7 @@
         <Setter Property="Padding" Value="9"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="SnapsToDevicePixels" Value="true"/>
-        <Setter Property="wpf:ShadowAssist.ShadowDepth" Value="Depth0" />
+        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp0" />
         <Setter Property="wpf:ColorZoneAssist.Mode" Value="PrimaryMid" />
         <Setter Property="Template">
             <Setter.Value>
@@ -71,7 +71,7 @@
                     <wpf:Card VerticalAlignment="Stretch">
                         <DockPanel Background="{TemplateBinding Background}">
                             <wpf:ColorZone x:Name="PART_ColorZone" DockPanel.Dock="Top" Padding="{TemplateBinding Padding}" 
-                                           Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ShadowAssist.ShadowDepth), Converter={x:Static converters:ShadowConverter.Instance}}" 
+                                           Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}" 
                                            Mode="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Mode)}"                                           
                                            wpf:ColorZoneAssist.Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Background)}"
                                            wpf:ColorZoneAssist.Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Foreground)}">

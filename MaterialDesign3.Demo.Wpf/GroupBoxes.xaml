@@ -49,7 +49,7 @@
                 Header="Shadow Header"
                 Style="{StaticResource MaterialDesignGroupBox}"
                 Margin="16"
-                materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                materialDesign:ElevationAssist.Elevation="Dp8"
                 BorderThickness="0">
                 <TextBlock
                     Margin="6,6,6,6"

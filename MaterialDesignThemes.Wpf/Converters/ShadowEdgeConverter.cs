@@ -1,6 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Windows;
+﻿using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
@@ -9,55 +7,68 @@ namespace MaterialDesignThemes.Wpf.Converters
 {
     public class ShadowEdgeConverter : IMultiValueConverter
     {
-        public object? Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object[]? values, Type targetType, object? parameter, CultureInfo culture)
         {
-            if (values?.Length != 4)
-            {
-                return Binding.DoNothing;
-            }
+            static double? GetValidSize(object? value)
+                => value is double d && !double.IsNaN(d) && !double.IsInfinity(d) ? d : null;
 
-            if (!(values[0] is double) || !(values[1] is double) || !(values[2] is ShadowDepth) ||
-                !(values[3] is ShadowEdges))
+            static DropShadowEffect? GetDropShadow(object? value) => value switch
             {
-                return Binding.DoNothing;
-            }
+                Elevation elevation => ElevationAssist.GetDropShadow(elevation),
+#pragma warning disable CS0618
+                ShadowDepth depth => ElevationAssist.GetDropShadow(ShadowAssist.GetElevation(depth)),
+#pragma warning restore CS0618
+                _ => null
+            };
 
-            double width = (double)values[0];
-            double height = (double)values[1];
-            if (double.IsNaN(width) || double.IsInfinity(width) || double.IsNaN(height) || double.IsInfinity(height))
-            {
-                return Binding.DoNothing;
-            }
-            DropShadowEffect? dropShadow = ShadowInfo.GetDropShadow((ShadowDepth)values[2]);
-            if (dropShadow is null)
+            if (values is null
+                || values.Length < 3
+                || GetValidSize(values[0]) is not { } width
+                || GetValidSize(values[1]) is not { } height
+                || GetDropShadow(values[2]) is not { } dropShadow)
             {
                 return null;
             }
 
-            ShadowEdges edges = (ShadowEdges)values[3];
             double blurRadius = dropShadow.BlurRadius;
 
-            var rect = new Rect(0, 0, width, height);
+            Rect rect;
 
-            if (edges.HasFlag(ShadowEdges.Left))
+            if (values.Length > 3 && values[3] is ShadowEdges edges and not ShadowEdges.All)
             {
-                rect = new Rect(rect.X - blurRadius, rect.Y, rect.Width + blurRadius, rect.Height);
+                rect = new Rect(0, 0, width, height);
+
+                if (edges.HasFlag(ShadowEdges.Left))
+                {
+                    rect = rect with { X = -blurRadius, Width = width + blurRadius };
+                }
+
+                if (edges.HasFlag(ShadowEdges.Top))
+                {
+                    rect = rect with { Y = -blurRadius, Height = height + blurRadius };
+                }
+
+                if (edges.HasFlag(ShadowEdges.Right))
+                {
+                    rect = rect with { Width = rect.Width + blurRadius };
+                }
+
+                if (edges.HasFlag(ShadowEdges.Bottom))
+                {
+                    rect = rect with { Height = rect.Height + blurRadius };
+                }
             }
-            if (edges.HasFlag(ShadowEdges.Top))
+            else
             {
-                rect = new Rect(rect.X, rect.Y - blurRadius, rect.Width, rect.Height + blurRadius);
-            }
-            if (edges.HasFlag(ShadowEdges.Right))
-            {
-                rect = new Rect(rect.X, rect.Y, rect.Width + blurRadius, rect.Height);
-            }
-            if (edges.HasFlag(ShadowEdges.Bottom))
-            {
-                rect = new Rect(rect.X, rect.Y, rect.Width, rect.Height + blurRadius);
+                rect = new Rect(
+                    -blurRadius,
+                    -blurRadius,
+                    width + blurRadius + blurRadius,
+                    height + blurRadius + blurRadius);
             }
 
-            var size = new GeometryDrawing(new SolidColorBrush(Colors.White), new Pen(), new RectangleGeometry(rect));
-            return new DrawingBrush(size)
+            var drawing = new GeometryDrawing(Brushes.White, null, new RectangleGeometry(rect));
+            return new DrawingBrush(drawing)
             {
                 Stretch = Stretch.None,
                 TileMode = TileMode.None,
