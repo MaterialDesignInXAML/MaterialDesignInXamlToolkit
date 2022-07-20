@@ -359,7 +359,7 @@
                                 Value="16 0" />
                             <Setter
                                 Property="Height"
-                                Value="48" />
+                                Value="{Binding Path=(wpf:MenuAssist.TopLevelMenuItemHeight), RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=MenuBase}}" />
                             <Setter
                                 TargetName="templateRoot"
                                 Property="CornerRadius"
