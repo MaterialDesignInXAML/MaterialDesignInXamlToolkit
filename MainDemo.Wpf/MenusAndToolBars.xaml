@@ -93,16 +93,17 @@
             HorizontalAlignment="Left"
             Margin="0 0 0 15">
             <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="25">
+                <MenuItem Header="Very">
+                    <MenuItem Header="Item 1"/>
+                    <MenuItem Header="Item 2"/>
+                    <MenuItem Header="Item 3"/>
+                </MenuItem>
                 <MenuItem Header="Small">
                     <MenuItem Header="Item 1"/>
                     <MenuItem Header="Item 2"/>
                     <MenuItem Header="Item 3"/>
                 </MenuItem>
-                <MenuItem Header="Menu">
-                    <MenuItem Header="Item 1"/>
-                    <MenuItem Header="Item 2"/>
-                    <MenuItem Header="Item 3"/>
-                </MenuItem>
+                <MenuItem Header="Menu" />
             </Menu>
         </smtx:XamlDisplay>
 
@@ -110,16 +111,17 @@
             UniqueKey="customHeightMenu2"
             HorizontalAlignment="Left">
             <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="80">
+                <MenuItem Header="Very">
+                    <MenuItem Header="Item 1"/>
+                    <MenuItem Header="Item 2"/>
+                    <MenuItem Header="Item 3"/>
+                </MenuItem>
                 <MenuItem Header="Big">
                     <MenuItem Header="Item 1"/>
                     <MenuItem Header="Item 2"/>
                     <MenuItem Header="Item 3"/>
                 </MenuItem>
-                <MenuItem Header="Menu">
-                    <MenuItem Header="Item 1"/>
-                    <MenuItem Header="Item 2"/>
-                    <MenuItem Header="Item 3"/>
-                </MenuItem>
+                <MenuItem Header="Menu" />
             </Menu>
         </smtx:XamlDisplay>
 
@@ -143,16 +145,17 @@
                 HorizontalAlignment="Left">
                 <materialDesign:Card>
                     <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type materialDesign:Card}},Path=ActualHeight}">
-                        <MenuItem Header="Adaptive">
+                        <MenuItem Header="File">
                             <MenuItem Header="Item 1"/>
                             <MenuItem Header="Item 2"/>
                             <MenuItem Header="Item 3"/>
                         </MenuItem>
-                        <MenuItem Header="Menu">
+                        <MenuItem Header="Edit">
                             <MenuItem Header="Item 1"/>
                             <MenuItem Header="Item 2"/>
                             <MenuItem Header="Item 3"/>
                         </MenuItem>
+                        <MenuItem Header="About" />
                     </Menu>
                 </materialDesign:Card>
             </smtx:XamlDisplay>
