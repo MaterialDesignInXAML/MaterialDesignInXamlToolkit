@@ -1,4 +1,4 @@
-﻿namespace MaterialDesignThemes.UITests.WPF.Flippers;
+namespace MaterialDesignThemes.UITests.WPF.Flippers;
 
 public class FlipperTests : TestBase
 {
@@ -48,6 +48,26 @@ public class FlipperTests : TestBase
         Assert.Equal(5, internalBorderCornerRadius.Value.TopRight);
         Assert.Equal(5, internalBorderCornerRadius.Value.BottomRight);
         Assert.Equal(5, internalBorderCornerRadius.Value.BottomLeft);
+
+        recorder.Success();
+    }
+
+    [Fact]
+    public async Task Flipper_ElevatedCardStyleApplied_AppliesDefaultElevation()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        //Arrange
+        IVisualElement<Flipper> flipper = await LoadXaml<Flipper>(
+            @"<materialDesign:Flipper Style=""{StaticResource MaterialDesignCardFlipper}"" materialDesign:FlipperAssist.CardStyle=""{StaticResource MaterialDesignElevatedCard}"" />");
+        IVisualElement<Card> internalCard = await flipper.GetElement<Card>();
+
+        //Act
+        // TODO: This throws an exception because it fails to load the 'MaterialDesignTheme.Shadows.xaml' resource dictionary in the ElevationAssist static ctor
+        Elevation? defaultElevation = await internalCard.GetProperty<Elevation>(ElevationAssist.ElevationProperty);
+
+        //Assert
+        Assert.Equal(Elevation.Dp1, defaultElevation);
 
         recorder.Success();
     }
