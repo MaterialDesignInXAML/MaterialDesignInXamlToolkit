@@ -523,8 +523,6 @@
                                           Grid.Column="1"
                                           Grid.ColumnSpan="3"
                                           Grid.Row="2"
-                                          HorizontalAlignment="Center"
-                                          VerticalAlignment="Top"
                                           Margin="6 -3 7 6"
                                           Visibility="Hidden">
                                     <Border x:Name="PART_YearViewCopy" RenderTransformOrigin="0, 0.5"
@@ -542,15 +540,15 @@
                                             <TranslateTransform X="0" />
                                         </Grid.RenderTransform>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
                                         </Grid.RowDefinitions>
                                     </Grid>
                                 </Grid>
