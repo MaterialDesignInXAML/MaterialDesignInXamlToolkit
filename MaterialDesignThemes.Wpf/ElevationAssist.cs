@@ -18,17 +18,11 @@ public enum Elevation
     Dp24
 }
 
-public static class ElevationAssist
+internal static class ElevationInfo
 {
     private static readonly IDictionary<Elevation, DropShadowEffect?> ShadowsDictionary;
 
-    public static readonly DependencyProperty ElevationProperty = DependencyProperty.RegisterAttached(
-        "Elevation",
-        typeof(Elevation),
-        typeof(ElevationAssist),
-        new FrameworkPropertyMetadata(default(Elevation), FrameworkPropertyMetadataOptions.AffectsRender));
-
-    static ElevationAssist()
+    static ElevationInfo()
     {
         const string shadowsUri = "pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml";
         var resourceDictionary = new ResourceDictionary { Source = new Uri(shadowsUri, UriKind.Absolute) };
@@ -50,8 +44,20 @@ public static class ElevationAssist
         };
     }
 
+    public static DropShadowEffect? GetDropShadow(Elevation elevation) => ShadowsDictionary[elevation];
+}
+
+public static class ElevationAssist
+{
+
+    public static readonly DependencyProperty ElevationProperty = DependencyProperty.RegisterAttached(
+        "Elevation",
+        typeof(Elevation),
+        typeof(ElevationAssist),
+        new FrameworkPropertyMetadata(default(Elevation), FrameworkPropertyMetadataOptions.AffectsRender));
+
     public static void SetElevation(DependencyObject element, Elevation value) => element.SetValue(ElevationProperty, value);
     public static Elevation GetElevation(DependencyObject element) => (Elevation)element.GetValue(ElevationProperty);
 
-    public static DropShadowEffect? GetDropShadow(Elevation elevation) => ShadowsDictionary[elevation];
+    public static DropShadowEffect? GetDropShadow(Elevation elevation) => ElevationInfo.GetDropShadow(elevation);
 }
