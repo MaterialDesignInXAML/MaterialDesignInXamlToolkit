@@ -172,6 +172,17 @@
                 materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" />
 
         </smtx:XamlDisplay>
+
+        <TextBlock
+            Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+            Text="Custom Selected Cell Border Brush" Margin="0 24 0 0"/>
+
+        <smtx:XamlDisplay UniqueKey="grids_4">
+            <DataGrid
+                ItemsSource="{Binding Items1}"
+                CanUserAddRows="False"
+                materialDesign:DataGridAssist.SelectedCellBorderBrush="Crimson" />
+        </smtx:XamlDisplay>
     </StackPanel>
 </UserControl>
 

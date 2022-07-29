@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -134,6 +135,17 @@ namespace MaterialDesignThemes.Wpf
             => (Thickness)element.GetValue(CellPaddingProperty);
         public static void SetCellPadding(DataGrid element, Thickness value)
             => element.SetValue(CellPaddingProperty, value);
+        #endregion
+
+        #region AttachedProperty : SelectedCellBorderBrushProperty
+        public static readonly DependencyProperty SelectedCellBorderBrushProperty
+            = DependencyProperty.RegisterAttached("SelectedCellBorderBrush", typeof(Brush), typeof(DataGridAssist),
+                new PropertyMetadata(null));
+
+        public static Brush GetSelectedCellBorderBrush(DataGrid element)
+            => (Brush)element.GetValue(SelectedCellBorderBrushProperty);
+        public static void SetSelectedCellBorderBrush(DataGrid element, Brush value)
+            => element.SetValue(SelectedCellBorderBrushProperty, value);
         #endregion
 
         #region AttachedProperty : ColumnHeaderPaddingProperty
