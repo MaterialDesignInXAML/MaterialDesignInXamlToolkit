@@ -140,7 +140,7 @@ namespace MaterialDesignThemes.Wpf
         #region AttachedProperty : SelectedCellBorderBrushProperty
         public static readonly DependencyProperty SelectedCellBorderBrushProperty
             = DependencyProperty.RegisterAttached("SelectedCellBorderBrush", typeof(Brush), typeof(DataGridAssist),
-                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
+                new PropertyMetadata(null));
 
         public static Brush GetSelectedCellBorderBrush(DataGrid element)
             => (Brush)element.GetValue(SelectedCellBorderBrushProperty);
