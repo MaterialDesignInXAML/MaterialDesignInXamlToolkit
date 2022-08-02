@@ -42,7 +42,7 @@
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
                                         <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HighlightBackground"/>
-                                        <DoubleAnimation Duration="0" To=".35" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="NormalText"/>
+                                        <DoubleAnimation Duration="0" To=".38" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="NormalText"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -116,22 +116,16 @@
                                  StrokeThickness="1" RadiusX="15" RadiusY="15" Height="30"/>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsFocused" Value="False">
+                        <Trigger Property="HasSelectedDays" Value="False">
                             <Setter TargetName="NormalText" Property="TextElement.Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}}"/>
+                        </Trigger>
+                        <Trigger Property="IsInactive" Value="True">
+                            <Setter TargetName="NormalText" Property="Opacity" Value="0.56" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsInactive"
-                     Value="True">
-                <Setter Property="MinHeight"
-                        Value="0" />
-                <Setter Property="MaxHeight"
-                        Value="0" />
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
     <Style x:Key="MaterialDesignCalendarDayButton" TargetType="{x:Type CalendarDayButton}">
@@ -233,11 +227,7 @@
                                         <DoubleAnimation Duration="0"
                                                          To="0"
                                                          Storyboard.TargetProperty="Opacity"
-                                                         Storyboard.TargetName="HighlightingBorder"/>
-                                        <DoubleAnimation Duration="0"
-                                                         To="0.38"
-                                                         Storyboard.TargetProperty="Opacity" 
-                                                         Storyboard.TargetName="NormalText" />
+                                                         Storyboard.TargetName="HighlightBackground"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -274,22 +264,19 @@
                         <Trigger Property="IsSelected" Value="False">
                             <Setter TargetName="NormalText" Property="TextElement.Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}}"/>
                         </Trigger>
+                        <Trigger Property="IsInactive" Value="True">
+                            <Setter TargetName="NormalText" Property="Opacity" Value="0.56" />
+                        </Trigger>
+                        <Trigger Property="IsBlackedOut" Value="True">
+                            <Setter TargetName="NormalText" Property="Opacity" Value="0.38" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <Trigger Property="IsInactive"
-                     Value="True">
-                <Setter Property="MinHeight"
-                        Value="0" />
-                <Setter Property="MaxHeight"
-                        Value="0" />
-            </Trigger>
-            <Trigger Property="IsBlackedOut"
-                     Value="True">
-                <Setter Property="Cursor"
-                        Value="No" />
+            <Trigger Property="IsBlackedOut" Value="True">
+                <Setter Property="Cursor" Value="Arrow" />
             </Trigger>
         </Style.Triggers>
     </Style>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using XamlTest;
@@ -41,9 +42,10 @@ namespace MaterialDesignThemes.UITests.WPF.DatePickers
         {
             await using var recorder = new TestRecorder(App);
 
+            string dateString = DateTime.Today.ToString("d", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"));
             var stackPanel = await LoadXaml<StackPanel>($@"
 <StackPanel>
-    <DatePicker SelectedDate=""{DateTime.Today:d}"" materialDesign:TextFieldAssist.HasClearButton=""True""/>
+    <DatePicker SelectedDate=""{dateString}"" materialDesign:TextFieldAssist.HasClearButton=""True""/>
 </StackPanel>");
             var datePicker = await stackPanel.GetElement<DatePicker>("/DatePicker");
             var clearButton = await datePicker.GetElement<Button>("PART_ClearButton");
