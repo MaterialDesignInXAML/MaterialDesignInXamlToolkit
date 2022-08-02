@@ -114,7 +114,7 @@ public class ComboBoxTests : TestBase
 
         IVisualElement<ContextMenu>? contextMenu = await comboBox.GetContextMenu();
         Assert.True(contextMenu is not null, "No context menu set on the ComboBox");
-
+        await Wait.For(async () => await contextMenu!.GetIsVisible());
         await AssertMenu("Cut");
         await AssertMenu("Copy");
         await AssertMenu("Paste");
