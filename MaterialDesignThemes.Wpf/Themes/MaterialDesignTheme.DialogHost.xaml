@@ -193,7 +193,7 @@
                             <ContentPresenter x:Name="ContentPresenter" Opacity="1" Content="{TemplateBinding ContentControl.Content}" 
                                               ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" />
                         </AdornerDecorator>
-                        <Grid x:Name="PART_ContentCoverGrid" Background="Transparent" IsHitTestVisible="False" Focusable="False">
+                        <Grid x:Name="PART_ContentCoverGrid" Background="Transparent" IsHitTestVisible="False" Focusable="False" Visibility="{Binding ElementName=ContentCoverBorder, Path=Visibility}">
                             <Grid.OpacityMask>
                                 <VisualBrush Visual="{Binding ElementName=ContentCoverBorder}" />
                             </Grid.OpacityMask>
@@ -351,7 +351,7 @@
                             x:Name="ContentPresenter" Opacity="1"
                             Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" />
 
-                        <Grid x:Name="PART_ContentCoverGrid" Background="Transparent" IsHitTestVisible="False" Focusable="False">
+                        <Grid x:Name="PART_ContentCoverGrid" Background="Transparent" IsHitTestVisible="False" Focusable="False" Visibility="{Binding ElementName=ContentCoverBorder, Path=Visibility}">
                             <Grid.OpacityMask>
                                 <VisualBrush Visual="{Binding ElementName=ContentCoverBorder}" />
                             </Grid.OpacityMask>

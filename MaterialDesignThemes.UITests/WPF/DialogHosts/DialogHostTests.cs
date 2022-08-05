@@ -26,7 +26,7 @@ namespace MaterialDesignThemes.UITests.WPF.DialogHosts
             await using var recorder = new TestRecorder(App);
 
             IVisualElement dialogHost = await LoadUserControl<WithCounter>();
-            var overlay = await dialogHost.GetElement<Border>("ContentCoverBorder");
+            var overlay = await dialogHost.GetElement<Grid>("PART_ContentCoverGrid");
 
             var resultTextBlock = await dialogHost.GetElement<TextBlock>("ResultTextBlock");
             await Wait.For(async () => await resultTextBlock.GetText() == "Clicks: 0");
