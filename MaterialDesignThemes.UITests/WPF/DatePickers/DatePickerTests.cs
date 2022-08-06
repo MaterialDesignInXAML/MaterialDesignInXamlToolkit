@@ -92,7 +92,7 @@ namespace MaterialDesignThemes.UITests.WPF.DatePickers
             await Task.Delay(50);   // Wait for the visual change
             var focusedBorderThickness = await datePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
 
-            // TODO: How can I mark the element as invalid? Perhaps XAMLTest should have a MarkInvalid(DP, ValidationError) extension method, since I cannot access the element itself here at appropriately set the ValidationError
+            // TODO: How can I mark the element as invalid? Perhaps XAMLTest should have a MarkInvalid(DP, ValidationError) extension method, since I cannot access the element itself here and appropriately set the ValidationError
             var withErrorBorderThickness = await datePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
 
             // Assert
