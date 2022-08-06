@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Threading.Tasks;
@@ -62,6 +62,45 @@ namespace MaterialDesignThemes.UITests.WPF.DatePickers
                 Assert.Null(selectedDate);
             });
             
+            recorder.Success();
+        }
+
+        [Fact]
+        [Description("Issue 2737")]
+        public async Task OutlinedDatePicker_RespectsActiveAndInactiveBorderThickness_WhenAttachedPropertiesAreSet()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            // Arrange
+            var expectedInactiveBorderThickness = new Thickness(4, 3, 2, 1);
+            var expectedActiveBorderThickness = new Thickness(1, 2, 3, 4);
+            var stackPanel = await LoadXaml<StackPanel>($@"
+<StackPanel>
+    <DatePicker Style=""{{StaticResource MaterialDesignOutlinedDatePicker}}""
+      materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness=""{expectedInactiveBorderThickness}""
+      materialDesign:DatePickerAssist.OutlinedBorderActiveThickness=""{expectedActiveBorderThickness}""/>
+</StackPanel>");
+            var datePicker = await stackPanel.GetElement<DatePicker>("/DatePicker");
+            var datePickerTextBox = await datePicker.GetElement<TextBox>("PART_TextBox");
+
+            // Act
+            var inactiveBorderThickness = await datePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
+            await datePickerTextBox.MoveCursorTo();
+            await Task.Delay(50);   // Wait for the visual change
+            var hoverBorderThickness = await datePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
+            await datePickerTextBox.LeftClick();
+            await Task.Delay(50);   // Wait for the visual change
+            var focusedBorderThickness = await datePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
+
+            // TODO: How can I mark the element as invalid? Perhaps XAMLTest should have a MarkInvalid(DP, ValidationError) extension method, since I cannot access the element itself here at appropriately set the ValidationError
+            var withErrorBorderThickness = await datePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
+
+            // Assert
+            Assert.Equal(expectedInactiveBorderThickness, inactiveBorderThickness);
+            Assert.Equal(expectedActiveBorderThickness, hoverBorderThickness);
+            Assert.Equal(expectedActiveBorderThickness, focusedBorderThickness);
+            Assert.Equal(expectedActiveBorderThickness, withErrorBorderThickness);
+
             recorder.Success();
         }
     }

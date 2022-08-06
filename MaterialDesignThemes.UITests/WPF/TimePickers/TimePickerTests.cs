@@ -337,4 +337,43 @@ public class TimePickerTests : TestBase
         Assert.Equal(20, fontSize);
         recorder.Success();
     }
+
+    [Fact]
+    [Description("Issue 2737")]
+    public async Task OutlinedTimePicker_RespectsActiveAndInactiveBorderThickness_WhenAttachedPropertiesAreSet()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // Arrange
+        var expectedInactiveBorderThickness = new Thickness(4, 3, 2, 1);
+        var expectedActiveBorderThickness = new Thickness(1, 2, 3, 4);
+        var stackPanel = await LoadXaml<StackPanel>($@"
+<StackPanel>
+    <materialDesign:TimePicker Style=""{{StaticResource MaterialDesignOutlinedTimePicker}}""
+      materialDesign:TimePickerAssist.OutlinedBorderInactiveThickness=""{expectedInactiveBorderThickness}""
+      materialDesign:TimePickerAssist.OutlinedBorderActiveThickness=""{expectedActiveBorderThickness}""/>
+</StackPanel>");
+        var timePicker = await stackPanel.GetElement<TimePicker>("/TimePicker");
+        var timePickerTextBox = await timePicker.GetElement<TimePickerTextBox>("/TimePickerTextBox");
+
+        // Act
+        var inactiveBorderThickness = await timePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
+        await timePickerTextBox.MoveCursorTo();
+        await Task.Delay(50);   // Wait for the visual change
+        var hoverBorderThickness = await timePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
+        await timePickerTextBox.LeftClick();
+        await Task.Delay(50);   // Wait for the visual change
+        var focusedBorderThickness = await timePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
+
+        // TODO: How can I mark the element as invalid? Perhaps XAMLTest should have a MarkInvalid(DP, ValidationError) extension method, since I cannot access the element itself here at appropriately set the ValidationError
+        var withErrorBorderThickness = await timePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
+
+        // Assert
+        Assert.Equal(expectedInactiveBorderThickness, inactiveBorderThickness);
+        Assert.Equal(expectedActiveBorderThickness, hoverBorderThickness);
+        Assert.Equal(expectedActiveBorderThickness, focusedBorderThickness);
+        Assert.Equal(expectedActiveBorderThickness, withErrorBorderThickness);
+
+        recorder.Success();
+    }
 }
