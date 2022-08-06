@@ -79,17 +79,21 @@ namespace MaterialDesignThemes.UITests.WPF.DatePickers
     <DatePicker Style=""{{StaticResource MaterialDesignOutlinedDatePicker}}""
       materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness=""{expectedInactiveBorderThickness}""
       materialDesign:DatePickerAssist.OutlinedBorderActiveThickness=""{expectedActiveBorderThickness}""/>
+    <Button x:Name=""Button"" Content=""Some Button"" />
 </StackPanel>");
             var datePicker = await stackPanel.GetElement<DatePicker>("/DatePicker");
             var datePickerTextBox = await datePicker.GetElement<TextBox>("PART_TextBox");
+            var button = await stackPanel.GetElement<Button>("Button");
 
             // Act
+            await button.MoveCursorTo();
+            await Task.Delay(50);   // Wait for the visual change
             var inactiveBorderThickness = await datePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
             await datePickerTextBox.MoveCursorTo();
-            await Task.Delay(100);   // Wait for the visual change
+            await Task.Delay(50);   // Wait for the visual change
             var hoverBorderThickness = await datePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
             await datePickerTextBox.LeftClick();
-            await Task.Delay(100);   // Wait for the visual change
+            await Task.Delay(50);   // Wait for the visual change
             var focusedBorderThickness = await datePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
 
             // TODO: How can I mark the element as invalid? Perhaps XAMLTest should have a MarkInvalid(DP, ValidationError) extension method, since I cannot access the element itself here and appropriately set the ValidationError

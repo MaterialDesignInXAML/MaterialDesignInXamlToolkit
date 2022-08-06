@@ -352,17 +352,21 @@ public class TimePickerTests : TestBase
     <materialDesign:TimePicker Style=""{{StaticResource MaterialDesignOutlinedTimePicker}}""
       materialDesign:TimePickerAssist.OutlinedBorderInactiveThickness=""{expectedInactiveBorderThickness}""
       materialDesign:TimePickerAssist.OutlinedBorderActiveThickness=""{expectedActiveBorderThickness}""/>
+    <Button x:Name=""Button"" Content=""Some Button"" />
 </StackPanel>");
         var timePicker = await stackPanel.GetElement<TimePicker>("/TimePicker");
         var timePickerTextBox = await timePicker.GetElement<TimePickerTextBox>("/TimePickerTextBox");
+        var button = await stackPanel.GetElement<Button>("Button");
 
         // Act
+        await button.MoveCursorTo();
+        await Task.Delay(50);   // Wait for the visual change
         var inactiveBorderThickness = await timePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
         await timePickerTextBox.MoveCursorTo();
-        await Task.Delay(100);   // Wait for the visual change
+        await Task.Delay(50);   // Wait for the visual change
         var hoverBorderThickness = await timePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
         await timePickerTextBox.LeftClick();
-        await Task.Delay(100);   // Wait for the visual change
+        await Task.Delay(50);   // Wait for the visual change
         var focusedBorderThickness = await timePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
 
         // TODO: How can I mark the element as invalid? Perhaps XAMLTest should have a MarkInvalid(DP, ValidationError) extension method, since I cannot access the element itself here and appropriately set the ValidationError
