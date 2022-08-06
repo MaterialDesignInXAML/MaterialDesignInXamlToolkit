@@ -359,10 +359,10 @@ public class TimePickerTests : TestBase
         // Act
         var inactiveBorderThickness = await timePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
         await timePickerTextBox.MoveCursorTo();
-        await Task.Delay(50);   // Wait for the visual change
+        await Task.Delay(100);   // Wait for the visual change
         var hoverBorderThickness = await timePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
         await timePickerTextBox.LeftClick();
-        await Task.Delay(50);   // Wait for the visual change
+        await Task.Delay(100);   // Wait for the visual change
         var focusedBorderThickness = await timePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
 
         // TODO: How can I mark the element as invalid? Perhaps XAMLTest should have a MarkInvalid(DP, ValidationError) extension method, since I cannot access the element itself here and appropriately set the ValidationError
