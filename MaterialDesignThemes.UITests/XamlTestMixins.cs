@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using MaterialDesignColors;
+using MaterialDesignThemes.UITests.WPF.DatePickers;
 using MaterialDesignThemes.Wpf;
 using XamlTest;
 
@@ -40,14 +41,21 @@ xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"">
                 Assembly.GetExecutingAssembly().Location);
         }
 
-        public static async Task<IVisualElement<T>> CreateWindowWith<T>(this IApp app, string xaml)
+        public static async Task<IVisualElement<T>> CreateWindowWith<T>(this IApp app, string xaml, params (string namespacePrefix, Type type)[] additionalNamespaceDeclarations)
         {
+            var extraNamespaceDeclarations = new StringBuilder("");
+            foreach ((string namespacePrefix, Type type) in additionalNamespaceDeclarations)
+            {
+                extraNamespaceDeclarations.AppendLine($@"xmlns:{namespacePrefix}=""clr-namespace:{type.Namespace};assembly={type.Assembly.GetName().Name}""");
+            }
+
             string windowXaml = @$"<Window
         xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
         xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
         xmlns:d=""http://schemas.microsoft.com/expression/blend/2008""
         xmlns:mc=""http://schemas.openxmlformats.org/markup-compatibility/2006""
         xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes""
+        {extraNamespaceDeclarations}
         mc:Ignorable=""d""
         Height=""800"" Width=""1100""
         TextElement.Foreground=""{{DynamicResource MaterialDesignBody}}""

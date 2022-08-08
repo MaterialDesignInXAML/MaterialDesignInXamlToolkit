@@ -78,10 +78,19 @@ namespace MaterialDesignThemes.UITests.WPF.DatePickers
 <StackPanel>
     <DatePicker Style=""{{StaticResource MaterialDesignOutlinedDatePicker}}""
       materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness=""{expectedInactiveBorderThickness}""
-      materialDesign:DatePickerAssist.OutlinedBorderActiveThickness=""{expectedActiveBorderThickness}""/>
-    <Button x:Name=""Button"" Content=""Some Button"" />
-</StackPanel>");
+      materialDesign:DatePickerAssist.OutlinedBorderActiveThickness=""{expectedActiveBorderThickness}"">
+      <DatePicker.SelectedDate>
+        <Binding RelativeSource=""{{RelativeSource Self}}"" Path=""Tag"" UpdateSourceTrigger=""PropertyChanged"">
+          <Binding.ValidationRules>
+            <local:FutureDateValidationRule ValidatesOnTargetUpdated=""True""/>
+          </Binding.ValidationRules>
+        </Binding>
+      </DatePicker.SelectedDate>
+    </DatePicker>
+    <Button x:Name=""Button"" Content=""Some Button"" Margin=""0,20,0,0"" />
+</StackPanel>", ("local", typeof(FutureDateValidationRule)));
             var datePicker = await stackPanel.GetElement<DatePicker>("/DatePicker");
+            await datePicker.SetProperty(DatePicker.SelectedDateProperty, DateTime.Now.AddDays(1));
             var datePickerTextBox = await datePicker.GetElement<TextBox>("PART_TextBox");
             var button = await stackPanel.GetElement<Button>("Button");
 
@@ -96,7 +105,9 @@ namespace MaterialDesignThemes.UITests.WPF.DatePickers
             await Task.Delay(50);   // Wait for the visual change
             var focusedBorderThickness = await datePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
 
-            // TODO: How can I mark the element as invalid? Perhaps XAMLTest should have a MarkInvalid(DP, ValidationError) extension method, since I cannot access the element itself here and appropriately set the ValidationError
+            // TODO: It would be cool if a validation error could be set via XAMLTest without the need for the Binding and ValidationRules elements in the XAML above.
+            await datePicker.SetProperty(DatePicker.SelectedDateProperty, DateTime.Now);
+            await Task.Delay(50);   // Wait for the visual change
             var withErrorBorderThickness = await datePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
 
             // Assert
@@ -106,6 +117,22 @@ namespace MaterialDesignThemes.UITests.WPF.DatePickers
             Assert.Equal(expectedActiveBorderThickness, withErrorBorderThickness);
 
             recorder.Success();
+        }
+    }
+
+    public class FutureDateValidationRule : ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            DateTime time;
+            if (!DateTime.TryParse((value ?? "").ToString(),
+                    CultureInfo.CurrentCulture,
+                    DateTimeStyles.AssumeLocal | DateTimeStyles.AllowWhiteSpaces,
+                    out time)) return new ValidationResult(false, "Invalid date");
+
+            return time.Date <= DateTime.Now.Date
+                ? new ValidationResult(false, "Future date required")
+                : ValidationResult.ValidResult;
         }
     }
 }
