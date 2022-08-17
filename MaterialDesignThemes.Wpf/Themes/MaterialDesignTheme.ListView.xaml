@@ -34,7 +34,7 @@
                                           VerticalScrollBarVisibility="Hidden"
                                           wpf:ScrollViewerAssist.SyncHorizontalOffset="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}">
                                 <Border BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0,0,0,1">
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ListViewAssist.HeaderRowBackground)}">
                                         <GridViewHeaderRowPresenter x:Name="PART_GridViewHeaderRowPresenter"
                                                                 AllowsColumnReorder="{Binding Path=TemplatedParent.View.AllowsColumnReorder, RelativeSource={RelativeSource TemplatedParent}}"
                                                                 ColumnHeaderContainerStyle="{Binding Path=TemplatedParent.View.ColumnHeaderContainerStyle, RelativeSource={RelativeSource TemplatedParent}}"
@@ -193,7 +193,7 @@
         </Style.Triggers>
     </Style>
 
-    <converters:ListViewGridViewConverter 
+    <converters:ListViewGridViewConverter
         x:Key="MaterialDesignListViewItemContainerStyleConverter"
         DefaultValue="{StaticResource MaterialDesignListBoxItem}"
         ViewValue="{StaticResource MaterialDesignGridViewItem}" />
