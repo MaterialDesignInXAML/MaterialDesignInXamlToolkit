@@ -405,6 +405,15 @@ namespace MaterialDesignThemes.Wpf
             set => SetValue(PlacementProperty, value);
         }
 
+        public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
+            nameof(CornerRadius), typeof(CornerRadius), typeof(DialogHost), new PropertyMetadata(default(CornerRadius)));
+
+        public CornerRadius CornerRadius
+        {
+            get { return (CornerRadius) GetValue(CornerRadiusProperty); }
+            set { SetValue(CornerRadiusProperty, value); }
+        }
+
         public static readonly DependencyProperty DialogContentProperty = DependencyProperty.Register(
             nameof(DialogContent), typeof(object), typeof(DialogHost), new PropertyMetadata(default(object)));
 

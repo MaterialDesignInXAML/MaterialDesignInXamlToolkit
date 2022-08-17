@@ -255,5 +255,73 @@ namespace MaterialDesignThemes.UITests.WPF.DialogHosts
 
             recorder.Success();
         }
+
+        [Fact]
+        [Description("Issue 2772")]
+        public async Task CornerRadius_AppliedToContentCoverBorder_WhenSetOnDialogHost()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            IVisualElement grid = await LoadXaml<Grid>(@"
+<Grid>
+  <materialDesign:DialogHost x:Name=""DialogHost"" CornerRadius=""1,2,3,4"">
+    <materialDesign:DialogHost.DialogContent>
+      <TextBlock Text=""Some Text"" />
+    </materialDesign:DialogHost.DialogContent>
+    <Button Content=""Show Dialog"" x:Name=""ShowButton"" Command=""{x:Static materialDesign:DialogHost.OpenDialogCommand}"" />
+  </materialDesign:DialogHost>
+</Grid>");
+
+            var showButton = await grid.GetElement<Button>("ShowButton");
+            var dialogHost = await grid.GetElement<DialogHost>("DialogHost");
+
+            await showButton.LeftClick();
+
+            await Wait.For(async () =>
+            {
+                var contentCoverBorder = await dialogHost.GetElement<Border>("ContentCoverBorder");
+
+                Assert.Equal(1, (await contentCoverBorder.GetCornerRadius()).TopLeft);
+                Assert.Equal(2, (await contentCoverBorder.GetCornerRadius()).TopRight);
+                Assert.Equal(3, (await contentCoverBorder.GetCornerRadius()).BottomRight);
+                Assert.Equal(4, (await contentCoverBorder.GetCornerRadius()).BottomLeft);
+            });
+
+            recorder.Success();
+        }
+
+        [Fact]
+        [Description("Issue 2772")]
+        public async Task CornerRadius_AppliedToContentCoverBorder_WhenSetOnEmbeddedDialogHost()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            IVisualElement grid = await LoadXaml<Grid>(@"
+<Grid>
+  <materialDesign:DialogHost x:Name=""DialogHost"" Style=""{StaticResource MaterialDesignEmbeddedDialogHost}"" CornerRadius=""1,2,3,4"">
+    <materialDesign:DialogHost.DialogContent>
+      <TextBlock Text=""Some Text"" />
+    </materialDesign:DialogHost.DialogContent>
+    <Button Content=""Show Dialog"" x:Name=""ShowButton"" Command=""{x:Static materialDesign:DialogHost.OpenDialogCommand}"" />
+  </materialDesign:DialogHost>
+</Grid>");
+
+            var showButton = await grid.GetElement<Button>("ShowButton");
+            var dialogHost = await grid.GetElement<DialogHost>("DialogHost");
+
+            await showButton.LeftClick();
+
+            await Wait.For(async () =>
+            {
+                var contentCoverBorder = await dialogHost.GetElement<Border>("ContentCoverBorder");
+
+                Assert.Equal(1, (await contentCoverBorder.GetCornerRadius()).TopLeft);
+                Assert.Equal(2, (await contentCoverBorder.GetCornerRadius()).TopRight);
+                Assert.Equal(3, (await contentCoverBorder.GetCornerRadius()).BottomRight);
+                Assert.Equal(4, (await contentCoverBorder.GetCornerRadius()).BottomLeft);
+            });
+
+            recorder.Success();
+        }
     }
 }
