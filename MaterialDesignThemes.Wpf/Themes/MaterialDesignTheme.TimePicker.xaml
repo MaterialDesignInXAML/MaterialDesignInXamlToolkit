@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
@@ -14,6 +14,7 @@
     <converters:MathConverter x:Key="MathMultiplyConverter" Operation="Multiply" />
     <converters:FloatingHintOffsetCalculationConverter x:Key="FloatingHintOffsetCalculationConverter" />
     <converters:PickerInnerPaddingConverter x:Key="PickerInnerPaddingConverter" />
+    <converters:OutlinedDateTimePickerActiveBorderThicknessConverter x:Key="OutlinedDateTimePickerActiveBorderThicknessConverter" />
 
     <Style x:Key="MaterialDesignTimePickerTextBox" TargetType="{x:Type wpf:TimePickerTextBox}">
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
@@ -261,7 +262,7 @@
                         </Trigger>
                         <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
                             <Setter Property="VerticalContentAlignment" Value="Top" />
-                            <Setter Property="BorderThickness" Value="1" />
+                            <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TimePickerAssist.OutlinedBorderInactiveThickness)}" />
                             <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaBorder}" />
                             <Setter Property="Padding" Value="16 16 12 16" />
                             <Setter TargetName="Underline" Property="Visibility" Value="Collapsed" />
@@ -356,8 +357,15 @@
                                 <Condition Property="IsKeyboardFocused" Value="True" />
                                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="border" Property="Margin" Value="-1" />
-                            <Setter Property="BorderThickness" Value="2" />
+                            <Setter TargetName="border" Property="Margin">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{StaticResource OutlinedDateTimePickerActiveBorderThicknessConverter}">
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TimePickerAssist.OutlinedBorderInactiveThickness)" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TimePickerAssist.OutlinedBorderActiveThickness)" />
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TimePickerAssist.OutlinedBorderActiveThickness)}" />
                             <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
                         </MultiTrigger>
                         <MultiTrigger>
@@ -397,8 +405,15 @@
                                 <Condition Property="IsMouseOver" Value="True" />
                                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="border" Property="Margin" Value="-1" />
-                            <Setter Property="BorderThickness" Value="2" />
+                            <Setter TargetName="border" Property="Margin">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{StaticResource OutlinedDateTimePickerActiveBorderThicknessConverter}">
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TimePickerAssist.OutlinedBorderInactiveThickness)" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TimePickerAssist.OutlinedBorderActiveThickness)" />
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TimePickerAssist.OutlinedBorderActiveThickness)}" />
                         </MultiTrigger>
 
                         <!-- Validation.HasError -->
@@ -411,8 +426,15 @@
                                 <Condition Property="Validation.HasError" Value="True" />
                                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="border" Property="Margin" Value="-1" />
-                            <Setter Property="BorderThickness" Value="2" />
+                            <Setter TargetName="border" Property="Margin">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{StaticResource OutlinedDateTimePickerActiveBorderThicknessConverter}">
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TimePickerAssist.OutlinedBorderInactiveThickness)" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TimePickerAssist.OutlinedBorderActiveThickness)" />
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TimePickerAssist.OutlinedBorderActiveThickness)}" />
                             <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>

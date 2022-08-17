@@ -198,6 +198,60 @@
                             materialDesign:HintAssist.HelperText="Helper text"
                             Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
                     </smtx:XamlDisplay>
+
+                    <smtx:XamlDisplay
+                        UniqueKey="pickers_unchanging_borderthickness"
+                        HorizontalAlignment="Left"
+                        Margin="0 16 0 0">
+                        <DatePicker
+                            Width="140"
+                            materialDesign:HintAssist.Hint="Pick Date"
+                            materialDesign:HintAssist.HelperText="Helper text"
+                            materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="2"
+                            materialDesign:HintAssist.FloatingOffset="0,-22"
+                            Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+                    </smtx:XamlDisplay>
+
+                    <smtx:XamlDisplay
+                        UniqueKey="pickers_14_custom_borderthickness"
+                        HorizontalAlignment="Left"
+                        Margin="0 16 0 0">
+                        <DatePicker
+                            Width="140"
+                            materialDesign:HintAssist.Hint="Pick Date"
+                            materialDesign:HintAssist.HelperText="Helper text"
+                            materialDesign:HintAssist.FloatingOffset="0,-23"
+                            materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="3"
+                            materialDesign:DatePickerAssist.OutlinedBorderActiveThickness="3"
+                            Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+                    </smtx:XamlDisplay>
+
+                    <smtx:XamlDisplay
+                        UniqueKey="pickers_time"
+                        HorizontalAlignment="Left"
+                        Margin="0 16 0 0">
+                        <materialDesign:TimePicker
+                            Is24Hours="True"
+                            Width="140"
+                            materialDesign:HintAssist.Hint="Pick Time"
+                            materialDesign:HintAssist.HelperText="Helper text"
+                            Style="{StaticResource MaterialDesignOutlinedTimePicker}"/>
+                    </smtx:XamlDisplay>
+
+                    <smtx:XamlDisplay
+                        UniqueKey="pickers_time_custom_borderthickness"
+                        HorizontalAlignment="Left"
+                        Margin="0 16 0 0">
+                        <materialDesign:TimePicker
+                            Is24Hours="True"
+                            Width="140"
+                            materialDesign:HintAssist.Hint="Pick Time"
+                            materialDesign:HintAssist.HelperText="Helper text"
+                            materialDesign:HintAssist.FloatingOffset="0,-23"
+                            materialDesign:TimePickerAssist.OutlinedBorderInactiveThickness="3"
+                            materialDesign:TimePickerAssist.OutlinedBorderActiveThickness="3"
+                            Style="{StaticResource MaterialDesignOutlinedTimePicker}"/>
+                    </smtx:XamlDisplay>
                 </StackPanel>
 
                 <smtx:XamlDisplay

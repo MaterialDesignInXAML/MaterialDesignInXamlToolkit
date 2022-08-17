@@ -24,10 +24,10 @@ public abstract class TestBase : IAsyncLifetime
         return resource.GetAs<Color?>() ?? throw new Exception($"Failed to convert resource '{name}' to color");
     }
 
-    protected async Task<IVisualElement<T>> LoadXaml<T>(string xaml)
+    protected async Task<IVisualElement<T>> LoadXaml<T>(string xaml, params (string namespacePrefix, Type type)[] additionalNamespaceDeclarations)
     {
         await App.InitializeWithMaterialDesign();
-        return await App.CreateWindowWith<T>(xaml);
+        return await App.CreateWindowWith<T>(xaml, additionalNamespaceDeclarations);
     }
 
     protected async Task<IVisualElement> LoadUserControl<TControl>()

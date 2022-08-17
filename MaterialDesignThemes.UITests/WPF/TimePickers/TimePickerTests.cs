@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.Threading.Tasks;
 namespace MaterialDesignThemes.UITests.WPF.TimePickers;
 
@@ -337,4 +338,64 @@ public class TimePickerTests : TestBase
         Assert.Equal(20, fontSize);
         recorder.Success();
     }
+
+    [Fact]
+    [Description("Issue 2737")]
+    public async Task OutlinedTimePicker_RespectsActiveAndInactiveBorderThickness_WhenAttachedPropertiesAreSet()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // Arrange
+        var expectedInactiveBorderThickness = new Thickness(4, 3, 2, 1);
+        var expectedActiveBorderThickness = new Thickness(1, 2, 3, 4);
+        var stackPanel = await LoadXaml<StackPanel>($@"
+<StackPanel>
+    <materialDesign:TimePicker Style=""{{StaticResource MaterialDesignOutlinedTimePicker}}""
+      materialDesign:TimePickerAssist.OutlinedBorderInactiveThickness=""{expectedInactiveBorderThickness}""
+      materialDesign:TimePickerAssist.OutlinedBorderActiveThickness=""{expectedActiveBorderThickness}"">
+      <materialDesign:TimePicker.Text>
+        <Binding RelativeSource=""{{RelativeSource Self}}"" Path=""Tag"" UpdateSourceTrigger=""PropertyChanged"">
+          <Binding.ValidationRules>
+            <local:OnlyTenOClockValidationRule ValidatesOnTargetUpdated=""True""/>
+          </Binding.ValidationRules>
+        </Binding>
+      </materialDesign:TimePicker.Text>
+    </materialDesign:TimePicker>
+    <Button x:Name=""Button"" Content=""Some Button"" Margin=""0,20,0,0"" />
+</StackPanel>", ("local", typeof(OnlyTenOClockValidationRule)));
+        var timePicker = await stackPanel.GetElement<TimePicker>("/TimePicker");
+        await timePicker.SetProperty(TimePicker.TextProperty, "10:00");
+        var timePickerTextBox = await timePicker.GetElement<TimePickerTextBox>("/TimePickerTextBox");
+        var button = await stackPanel.GetElement<Button>("Button");
+
+        // Act
+        await button.MoveCursorTo();
+        await Task.Delay(50);   // Wait for the visual change
+        var inactiveBorderThickness = await timePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
+        await timePickerTextBox.MoveCursorTo();
+        await Task.Delay(50);   // Wait for the visual change
+        var hoverBorderThickness = await timePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
+        await timePickerTextBox.LeftClick();
+        await Task.Delay(50);   // Wait for the visual change
+        var focusedBorderThickness = await timePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
+
+        // TODO: It would be cool if a validation error could be set via XAMLTest without the need for the Binding and ValidationRules elements in the XAML above.
+        await timePicker.SetProperty(TimePicker.TextProperty, "11:00");
+        await Task.Delay(50);   // Wait for the visual change
+        var withErrorBorderThickness = await timePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
+
+        // Assert
+        Assert.Equal(expectedInactiveBorderThickness, inactiveBorderThickness);
+        Assert.Equal(expectedActiveBorderThickness, hoverBorderThickness);
+        Assert.Equal(expectedActiveBorderThickness, focusedBorderThickness);
+        Assert.Equal(expectedActiveBorderThickness, withErrorBorderThickness);
+
+        recorder.Success();
+    }
+}
+
+public class OnlyTenOClockValidationRule : ValidationRule
+{
+    public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        => value is not "10:00" ? new ValidationResult(false, "Only 10 o'clock allowed") : ValidationResult.ValidResult;
 }
