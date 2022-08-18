@@ -46,6 +46,7 @@
                                 wpf:ShadowAssist.ShadowEdges="{TemplateBinding wpf:ShadowAssist.ShadowEdges}"
                                 VerticalAlignment="Stretch"
                                 Background="{TemplateBinding wpf:ColorZoneAssist.Background}"
+                                Panel.ZIndex="1"
                                 DockPanel.Dock="Top"
                                 Focusable="False">
                             <ScrollViewer
@@ -77,6 +78,7 @@
                             Padding="{TemplateBinding Padding}"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
+                            Panel.ZIndex="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Panel.ZIndex)}"
                             Background="{x:Null}"
                             Focusable="False">
                             <ContentPresenter
