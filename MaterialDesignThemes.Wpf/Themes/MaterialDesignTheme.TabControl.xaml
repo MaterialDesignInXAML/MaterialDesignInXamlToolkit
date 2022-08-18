@@ -462,7 +462,7 @@
                                     Content="{TemplateBinding Header}"
                                     ContentStringFormat="{TemplateBinding HeaderStringFormat}"
                                     ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                    ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                    ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
                                     Focusable="False"
                                     Opacity=".52"
                                     RecognizesAccessKey="True"
