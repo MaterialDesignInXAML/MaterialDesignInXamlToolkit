@@ -6,8 +6,10 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+    xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
     d:DesignHeight="4000"
     d:DesignWidth="1920"
+    d:DataContext="{d:DesignInstance Type=domain:TabsViewModel, IsDesignTimeCreatable=True}"
     mc:Ignorable="d">
     <StackPanel Margin="0,0,8,8">
 
@@ -505,5 +507,27 @@
                 </materialDesign:Card>
             </smtx:XamlDisplay>
         </StackPanel>
+
+        <TextBlock
+            Margin="0,15,0,20"
+            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+            Text="Custom items (and DisplayMemberPath)" />
+
+        <smtx:XamlDisplay Margin="0,0,0,16" UniqueKey="tabs_with_displaymemberpath">
+            <materialDesign:Card>
+                <TabControl
+                    ItemsSource="{Binding CustomTabs}"
+                    SelectedItem="{Binding SelectedTab}"
+                    HorizontalContentAlignment="Left"
+                    DisplayMemberPath="CustomHeader">
+                    <TabControl.ContentTemplate>
+                        <DataTemplate DataType="domain:CustomTab">
+                            <TextBlock Text="{Binding CustomContent}" FontSize="18" Margin="10" />
+                        </DataTemplate>
+                    </TabControl.ContentTemplate>
+                </TabControl>
+            </materialDesign:Card>
+        </smtx:XamlDisplay>
+
     </StackPanel>
 </UserControl>
