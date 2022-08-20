@@ -402,6 +402,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <Grid.Resources>
@@ -486,13 +487,33 @@
 
             <smtx:XamlDisplay
                 Grid.Row="1"
-                Grid.Column="4"
+                Grid.Column="3"
                 UniqueKey="passwordOutlined1"
                 Margin="0 34 0 0">
                 <PasswordBox
                         Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
                         materialDesign:HintAssist.Hint="Password"
                         materialDesign:HintAssist.HelperText="Helper text"/>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay
+                Grid.Row="1"
+                Grid.Column="4"
+                UniqueKey="fields_with_validation"
+                Margin="0 34 0 0">
+                <TextBox
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    VerticalAlignment="Top"
+                    materialDesign:HintAssist.Hint="Start typing to show helper text"
+                    materialDesign:HintAssist.HelperText="Helper text and validation text should align">
+                    <TextBox.Text>
+                        <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
             </smtx:XamlDisplay>
         </Grid>
 
