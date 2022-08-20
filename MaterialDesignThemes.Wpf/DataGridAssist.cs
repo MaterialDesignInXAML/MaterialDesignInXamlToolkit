@@ -242,6 +242,11 @@ namespace MaterialDesignThemes.Wpf
                     {
                         return;
                     }
+                    if (dataGridCell.IsEditing)
+                    {
+                        // If the cell is already being edited, we let the cell itself handle the mouse event
+                        return;
+                    }
 
                     dataGrid.CurrentCell = new DataGridCellInfo(dataGridCell);
                     dataGrid.BeginEdit();
