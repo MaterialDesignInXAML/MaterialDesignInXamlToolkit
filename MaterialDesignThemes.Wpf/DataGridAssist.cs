@@ -176,15 +176,20 @@ namespace MaterialDesignThemes.Wpf
 
             if (enableCheckBoxAssist)
             {
-                dataGrid.PreviewMouseLeftButtonDown += AllowDirectEditWithoutFocus;
-                dataGrid.KeyDown += EditOnSpacebarPress;
+                // Register for bubbling events from cells, even when the cell handles them (thus the 'true' parameter)
+                dataGrid.AddHandler(UIElement.MouseLeftButtonDownEvent, (RoutedEventHandler)OnMouseLeftButtonDown, true);
+                dataGrid.PreviewKeyDown += EditOnSpacebarPress;
             }
             else
             {
-                dataGrid.PreviewMouseLeftButtonDown -= AllowDirectEditWithoutFocus;
-                dataGrid.KeyDown -= EditOnSpacebarPress;
+                dataGrid.RemoveHandler(UIElement.MouseLeftButtonDownEvent, (RoutedEventHandler)OnMouseLeftButtonDown);
+                dataGrid.PreviewKeyDown -= EditOnSpacebarPress;
             }
         }
+
+        // This relay is only needed because the UIElement.AddHandler() has strict requirements for the signature of the passed Delegate
+        private static void OnMouseLeftButtonDown(object sender, RoutedEventArgs e) => AllowDirectEditWithoutFocus(sender, (MouseButtonEventArgs)e);
+
         #endregion
 
         #region AttachedProperty : CornerRadiusProperty
@@ -201,11 +206,14 @@ namespace MaterialDesignThemes.Wpf
         private static void EditOnSpacebarPress(object sender, KeyEventArgs e)
         {
             var dataGrid = (DataGrid)sender;
-
-            if (e.Key == Key.Space && e.OriginalSource is DataGridCell cell
-                && !cell.IsReadOnly && cell.Column is DataGridComboBoxColumn)
+            if (e.Key == Key.Space && e.OriginalSource is DataGridCell { IsReadOnly: false } cell)
             {
-                dataGrid.BeginEdit();
+                if (cell.Column is DataGridComboBoxColumn ||
+                    cell.Column is System.Windows.Controls.DataGridTextColumn)
+                {
+                    dataGrid.BeginEdit();
+                    e.Handled = true;
+                }
             }
         }
 
@@ -227,20 +235,37 @@ namespace MaterialDesignThemes.Wpf
                 return;
             }
 
-            if (dataGridCell?.Content is UIElement element)
+            if (dataGridCell.Content is UIElement element)
             {
                 var dataGrid = (DataGrid)sender;
 
-                // Check if the cursor actually hit the element and not just the cell
-                var mousePosition = mouseArgs.GetPosition(element);
-                var elementHitBox = new Rect(element.RenderSize);
-                if (elementHitBox.Contains(mousePosition))
+                // If it is a DataGridTemplateColumn we want the
+                // click to be handled naturally by the control
+                if (dataGridCell.Column.GetType() == typeof(DataGridTemplateColumn))
                 {
-                    // If it is a DataGridTemplateColumn we want the
-                    // click to be handled naturally by the control
-                    if (dataGridCell.Column.GetType() == typeof(DataGridTemplateColumn))
+                    return;
+                }
+                if (dataGridCell.IsEditing)
+                {
+                    // If the cell is already being edited, we don't want to (re)start editing
+                    return;
+                }
+
+                dataGrid.CurrentCell = new DataGridCellInfo(dataGridCell);
+                dataGrid.BeginEdit();
+
+                switch (dataGridCell.Content)
+                {
+                    case TextBox textBox:
                     {
-                        return;
+                        // Send a 'left-click' routed event to the TextBox to place the I-beam at the position of the mouse cursor
+                        var mouseDownEvent = new MouseButtonEventArgs(mouseArgs.MouseDevice, mouseArgs.Timestamp, mouseArgs.ChangedButton)
+                        {
+                            RoutedEvent = Mouse.MouseDownEvent,
+                            Source = mouseArgs.Source
+                        };
+                        textBox.RaiseEvent(mouseDownEvent);
+                        break;
                     }
                     if (dataGridCell.IsEditing)
                     {
@@ -248,46 +273,32 @@ namespace MaterialDesignThemes.Wpf
                         return;
                     }
 
-                    dataGrid.CurrentCell = new DataGridCellInfo(dataGridCell);
-                    dataGrid.BeginEdit();
-                    //Begin edit likely changes the visual tree, trigger the mouse down event to cause the DataGrid to adjust selection
-                    var mouseDownEvent = new MouseButtonEventArgs(mouseArgs.MouseDevice, mouseArgs.Timestamp, mouseArgs.ChangedButton)
+                    case ToggleButton toggleButton:
                     {
-                        RoutedEvent = Mouse.MouseDownEvent,
-                        Source = mouseArgs.Source
-                    };
+                        // Check if the cursor actually hit the checkbox and not just the cell
+                        var mousePosition = mouseArgs.GetPosition(element);
+                        var elementHitBox = new Rect(element.RenderSize);
+                        if (elementHitBox.Contains(mousePosition))
+                        {
+                            // Send a 'left click' routed command to the toggleButton to toggle the state
+                            var newMouseEvent = new MouseButtonEventArgs(mouseArgs.MouseDevice, 0, MouseButton.Left)
+                            {
+                                RoutedEvent = Mouse.MouseDownEvent,
+                                Source = dataGrid
+                            };
 
-                    dataGridCell.RaiseEvent(mouseDownEvent);
+                            toggleButton.RaiseEvent(newMouseEvent);
+                        }
+                        break;
+                    }
 
-                    switch (dataGridCell?.Content)
+                    // Open the dropdown explicitly. Left clicking is not
+                    // viable, as it would edit the text and not open the
+                    // dropdown
+                    case ComboBox comboBox:
                     {
-                        // Send a 'left click' routed command to the toggleButton
-                        case ToggleButton toggleButton:
-                            {
-                                var newMouseEvent = new MouseButtonEventArgs(mouseArgs.MouseDevice, 0, MouseButton.Left)
-                                {
-                                    RoutedEvent = Mouse.MouseDownEvent,
-                                    Source = dataGrid
-                                };
-
-                                toggleButton.RaiseEvent(newMouseEvent);
-                                break;
-                            }
-
-                        // Open the dropdown explicitly. Left clicking is not
-                        // viable, as it would edit the text and not open the
-                        // dropdown
-                        case ComboBox comboBox:
-                            {
-                                comboBox.IsDropDownOpen = true;
-                                mouseArgs.Handled = true;
-                                break;
-                            }
-
-                        default:
-                            {
-                                break;
-                            }
+                        comboBox.IsDropDownOpen = true;
+                        break;
                     }
                 }
             }

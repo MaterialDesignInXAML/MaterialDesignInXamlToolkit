@@ -21,15 +21,23 @@
     </UserControl.Resources>
     
     <StackPanel>
-        <TextBlock
-            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-            Text="Custom Columns"/>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock
+                Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                Text="Custom Columns"/>
+            <TextBlock
+                Style="{StaticResource MaterialDesignBody1TextBlock}" VerticalAlignment="Center"
+                Margin="25,0,10,0"
+                Text="SelectionUnit:"/>
+            <ComboBox x:Name="selectionUnitComboBox" ItemsSource="{Binding SelectionUnits}" SelectedIndex="0" VerticalAlignment="Center" />
+        </StackPanel>
         
         <smtx:XamlDisplay UniqueKey="grids_1">
             <DataGrid
                 ItemsSource="{Binding Items1}"
                 CanUserAddRows="False" AutoGenerateColumns="False"
-                HeadersVisibility="All">
+                HeadersVisibility="All"
+                SelectionUnit="{Binding ElementName=selectionUnitComboBox, Path=SelectedValue}">
                 <DataGrid.Resources>
                     <domain:BindingProxy
                         x:Key="DataContextProxy"
