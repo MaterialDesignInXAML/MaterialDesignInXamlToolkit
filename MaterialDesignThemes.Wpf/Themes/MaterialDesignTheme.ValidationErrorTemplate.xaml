@@ -102,7 +102,7 @@
             </DataTrigger>
 
             <DataTrigger Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:TextFieldAssist.HasFilledTextField)}" Value="True">
-                <Setter TargetName="DefaultErrorViewer" Property="Margin" Value="16,2,0,0"/>
+                <Setter TargetName="DefaultErrorViewer" Property="Margin" Value="16,2,0,2"/>
             </DataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
