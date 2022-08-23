@@ -21,9 +21,14 @@ public static class PasswordBoxAssist
 
     public static readonly DependencyProperty PasswordProperty = DependencyProperty.RegisterAttached(
         "Password", typeof(string), typeof(PasswordBoxAssist), new FrameworkPropertyMetadata(null, HandlePasswordChanged) { BindsTwoWayByDefault = true, DefaultUpdateSourceTrigger = UpdateSourceTrigger.LostFocus });
-
     public static void SetPassword(DependencyObject element, string value) => element.SetValue(PasswordProperty, value);
     public static string GetPassword(DependencyObject element) => (string) element.GetValue(PasswordProperty);
+
+    // Internal attached DP used to initially wire up the connection between the masked PasswordBox content and the clear text TextBox content
+    internal static readonly DependencyProperty InitialPasswordProperty = DependencyProperty.RegisterAttached(
+        "InitialPassword", typeof(string), typeof(PasswordBoxAssist), new PropertyMetadata(default(string)));
+    internal static void SetInitialPassword(DependencyObject element, string value) => element.SetValue(InitialPasswordProperty, value);
+    internal static string GetInitialPassword(DependencyObject element) => (string)element.GetValue(InitialPasswordProperty);
 
     private static readonly DependencyProperty IsPasswordInitializedProperty = DependencyProperty.RegisterAttached(
         "IsPasswordInitialized", typeof(bool), typeof(PasswordBoxAssist), new PropertyMetadata(false));
@@ -33,16 +38,12 @@ public static class PasswordBoxAssist
 
     private static void HandlePasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var passwordBox = d as PasswordBox;
-        if (passwordBox == null)
+        if (d is not PasswordBox passwordBox)
             return;
 
-        // If we're being called because we set the value of the property we're bound to (from inside 
-        // HandlePasswordChanged, then do nothing - we already have the latest value).
         if ((bool)passwordBox.GetValue(SettingPasswordProperty))
             return;
 
-        // If this is the initial set (see the comment on PasswordProperty), set ourselves up
         if (!(bool)passwordBox.GetValue(IsPasswordInitializedProperty))
         {
             passwordBox.SetValue(IsPasswordInitializedProperty, true);
