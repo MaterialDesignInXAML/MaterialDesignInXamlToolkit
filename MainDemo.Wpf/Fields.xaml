@@ -78,6 +78,7 @@
             <PasswordBox
                 Grid.Column="4" Grid.Row="1" VerticalAlignment="Top"
                 Style="{StaticResource MaterialDesignFilledRevealPasswordBox}"
+                Password="Set from XAML"
                 materialDesign:HintAssist.Hint="Password"
                 materialDesign:TextFieldAssist.HasClearButton="True"
                 materialDesign:HintAssist.HelperText="Not bound password"/>
