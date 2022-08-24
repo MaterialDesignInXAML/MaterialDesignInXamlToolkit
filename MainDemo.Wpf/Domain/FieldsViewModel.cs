@@ -33,19 +33,16 @@ namespace MaterialDesignDemo.Domain
             set => SetProperty(ref _password2, value);
         }
 
-
-        public string? Text1
-        {
-            get => _text1;
-            set => SetProperty(ref _text1, value);
-        }
-
-        public string? Text2
-        {
-            get => _text2;
-            set => SetProperty(ref _text2, value);
-        }
         public FieldsTestObject TestObject => new() { Name = "Mr. Test" };
+
+        public ICommand SetPassword1FromViewModelCommand { get; }
+        public ICommand SetPassword2FromViewModelCommand { get; }
+
+        public FieldsViewModel()
+        {
+            SetPassword1FromViewModelCommand = new AnotherCommandImplementation(_ => Password1 = "Set from code-behind!");
+            SetPassword2FromViewModelCommand = new AnotherCommandImplementation(_ => Password2 = "Set from code-behind!");
+        }
     }
 
     public class FieldsTestObject : ViewModelBase

@@ -53,7 +53,8 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />
-                <RowDefinition Height="100" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="80" />
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource MaterialDesignBody2TextBlock}" VerticalAlignment="Top" Text="MaterialDesignRevealPasswordBox" />
@@ -67,14 +68,14 @@
                 materialDesign:PasswordBoxAssist.Password="{Binding Password1, Mode=TwoWay}"
                 materialDesign:HintAssist.Hint="Password"
                 materialDesign:TextFieldAssist.HasClearButton="True"
-                materialDesign:HintAssist.HelperText="Bound password"/>
+                materialDesign:HintAssist.HelperText="Bound to Password1"/>
             <PasswordBox
                 Grid.Column="2" Grid.Row="1" VerticalAlignment="Top"
                 Style="{StaticResource MaterialDesignFloatingHintRevealPasswordBox}"
                 materialDesign:PasswordBoxAssist.Password="{Binding Password2, Mode=TwoWay}"
                 materialDesign:HintAssist.Hint="Password"
                 materialDesign:TextFieldAssist.HasClearButton="True"
-                materialDesign:HintAssist.HelperText="Bound password"/>
+                materialDesign:HintAssist.HelperText="Bound to Password2"/>
             <PasswordBox
                 Grid.Column="4" Grid.Row="1" VerticalAlignment="Top"
                 Style="{StaticResource MaterialDesignFilledRevealPasswordBox}"
@@ -88,6 +89,9 @@
                 materialDesign:HintAssist.Hint="Password"
                 materialDesign:TextFieldAssist.HasClearButton="True"
                 materialDesign:HintAssist.HelperText="Not bound password"/>
+
+            <Button Grid.Column="0" Grid.Row="2" Command="{Binding SetPassword1FromViewModelCommand}" Content="Set Password1 from VM" VerticalAlignment="Top" />
+            <Button Grid.Column="2" Grid.Row="2" Command="{Binding SetPassword2FromViewModelCommand}" Content="Set Password2 from VM" VerticalAlignment="Top" />
         </Grid>
 
         <Grid VerticalAlignment="Top">
