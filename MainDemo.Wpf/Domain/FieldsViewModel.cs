@@ -31,8 +31,16 @@ namespace MaterialDesignDemo.Domain
             set => SetProperty(ref _password2, value);
         }
 
-
         public FieldsTestObject TestObject => new() { Name = "Mr. Test" };
+
+        public ICommand SetPassword1FromViewModelCommand { get; }
+        public ICommand SetPassword2FromViewModelCommand { get; }
+
+        public FieldsViewModel()
+        {
+            SetPassword1FromViewModelCommand = new AnotherCommandImplementation(_ => Password1 = "Set from code-behind!");
+            SetPassword2FromViewModelCommand = new AnotherCommandImplementation(_ => Password2 = "Set from code-behind!");
+        }
     }
 
     public class FieldsTestObject : ViewModelBase
