@@ -341,7 +341,7 @@
                                                                        Duration="0">
                                             <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <DoubleAnimation Storyboard.TargetName="ContentCoverBorder" Storyboard.TargetProperty="Opacity"
+                                        <DoubleAnimation Storyboard.TargetName="ContentCoverBorder" Storyboard.TargetProperty="Opacity" Duration="0"
                                                          To="0" />
                                     </Storyboard>
                                 </VisualState>
