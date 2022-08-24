@@ -52,9 +52,11 @@ public static class PasswordBoxAssist
         passwordBox.Password = e.NewValue as string;
     }
 
-    private static void HandlePasswordChanged(object sender, RoutedEventArgs e)
+    private static void HandlePasswordChanged(object? sender, RoutedEventArgs e)
     {
-        var passwordBox = (PasswordBox)sender;
+        if (sender is not PasswordBox passwordBox)
+            return;
+
         passwordBox.SetValue(SettingPasswordProperty, true);
         string currentPassword = GetPassword(passwordBox);
         if (currentPassword != passwordBox.Password)
