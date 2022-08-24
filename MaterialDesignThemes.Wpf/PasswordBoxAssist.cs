@@ -47,7 +47,7 @@ public static class PasswordBoxAssist
         if (!(bool)passwordBox.GetValue(IsPasswordInitializedProperty))
         {
             passwordBox.SetValue(IsPasswordInitializedProperty, true);
-            passwordBox.PasswordChanged += HandlePasswordChanged;
+            WeakEventManager<PasswordBox, RoutedEventArgs>.AddHandler(passwordBox, nameof(PasswordBox.PasswordChanged), HandlePasswordChanged);
         }
         passwordBox.Password = e.NewValue as string;
     }
