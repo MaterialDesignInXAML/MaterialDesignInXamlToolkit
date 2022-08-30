@@ -16,6 +16,8 @@
     <converters:NotConverter x:Key="NotConverter" />
     <converters:MathConverter x:Key="MathMultiplyConverter" Operation="Multiply" />
     <converters:FloatingHintOffsetCalculationConverter x:Key="FloatingHintOffsetCalculationConverter" />
+    <converters:CursorConverter x:Key="ArrowCursorConverter" FallbackCursor="Arrow" />
+    <converters:CursorConverter x:Key="IBeamCursorConverter" FallbackCursor="IBeam" />
 
     <Style
         x:Key="MaterialDesignCharacterCounterTextBlock"
@@ -57,7 +59,6 @@
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="AllowDrop" Value="true" />
-        <Setter Property="Cursor" Value="Arrow" />
         <Setter Property="Padding" Value="{x:Static wpf:Constants.TextBoxDefaultPadding}" />
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
@@ -74,7 +75,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBoxBase}">
-                    <Grid>
+                    <Grid Cursor="{TemplateBinding Cursor, Converter={StaticResource ArrowCursorConverter}}">
                         <Border
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
@@ -148,7 +149,7 @@
                                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                 Panel.ZIndex="1"
                                                 wpf:ScrollViewerAssist.IgnorePadding="True"
-                                                Cursor="IBeam"
+                                                Cursor="{TemplateBinding Cursor, Converter={StaticResource IBeamCursorConverter}}"
                                                 Focusable="false"
                                                 HorizontalScrollBarVisibility="Hidden"
                                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
