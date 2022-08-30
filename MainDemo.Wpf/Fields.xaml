@@ -480,9 +480,7 @@
                         Style="{StaticResource MaterialDesignFilledPasswordBox}"
                         materialDesign:HintAssist.Hint="Password (validated)"
                         materialDesign:HintAssist.HelperText="Helper text"
-                        domain1:PasswordHelper.Attach="True"
-                        domain1:PasswordHelper.Password="{Binding Path=Password1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}">
-                    </PasswordBox>
+                        materialDesign:PasswordBoxAssist.Password="{Binding Path=Password1Validated, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
                 </StackPanel>
             </smtx:XamlDisplay>
         </Grid>
@@ -627,9 +625,7 @@
                         Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
                         materialDesign:HintAssist.Hint="Password (validated)"
                         materialDesign:HintAssist.HelperText="Helper text"
-                        domain1:PasswordHelper.Attach="True"
-                        domain1:PasswordHelper.Password="{Binding Path=Password2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}">
-                    </PasswordBox>
+                        materialDesign:PasswordBoxAssist.Password="{Binding Path=Password2Validated, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" />
                 </StackPanel>
             </smtx:XamlDisplay>
         </Grid>
