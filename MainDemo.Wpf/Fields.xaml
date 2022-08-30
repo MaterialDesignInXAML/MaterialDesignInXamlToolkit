@@ -296,6 +296,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -381,7 +382,7 @@
 
             <smtx:XamlDisplay
                 Grid.Row="1"
-                Grid.Column="4"
+                Grid.Column="3"
                 UniqueKey="passwordFilled1"
                 VerticalAlignment="Bottom">
                 <PasswordBox
@@ -389,15 +390,55 @@
                         materialDesign:HintAssist.Hint="Password"
                         materialDesign:HintAssist.HelperText="Helper text"/>
             </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay
+                Grid.Row="2"
+                Grid.Column="2"
+                UniqueKey="fieldFilled_with_validation"
+                HorizontalAlignment="Left"
+                Margin="0 24 0 0">
+                <TextBox
+                    Style="{StaticResource MaterialDesignFilledTextBox}"
+                    VerticalAlignment="Top"
+                    materialDesign:HintAssist.Hint="Text (validated)"
+                    materialDesign:HintAssist.HelperText="Helper text">
+                    <TextBox.Text>
+                        <Binding Path="Text1" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay
+                Grid.Row="2"
+                Grid.Column="3"
+                UniqueKey="passwordFilled_with_validation"
+                HorizontalAlignment="Left"
+                Margin="0 24 0 0">
+                <StackPanel Orientation="Vertical">
+                    <PasswordBox
+                        Style="{StaticResource MaterialDesignFilledPasswordBox}"
+                        materialDesign:HintAssist.Hint="Password (validated)"
+                        materialDesign:HintAssist.HelperText="Helper text"
+                        domain1:PasswordHelper.Attach="True"
+                        domain1:PasswordHelper.Password="{Binding Path=Password1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}">
+                    </PasswordBox>
+                </StackPanel>
+            </smtx:XamlDisplay>
         </Grid>
 
         <Grid Margin="0 48 0 0">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -426,6 +467,7 @@
 
             <smtx:XamlDisplay
                 Grid.Row="1"
+                Grid.RowSpan="2"
                 Grid.Column="0"
                 UniqueKey="fields_26">
 
@@ -448,6 +490,7 @@
 
             <smtx:XamlDisplay
                 Grid.Row="1"
+                Grid.RowSpan="2"
                 Grid.Column="1"
                 UniqueKey="fields_29">
                 <StackPanel>
@@ -486,13 +529,51 @@
 
             <smtx:XamlDisplay
                 Grid.Row="1"
-                Grid.Column="4"
+                Grid.Column="3"
                 UniqueKey="passwordOutlined1"
                 Margin="0 34 0 0">
                 <PasswordBox
                         Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
                         materialDesign:HintAssist.Hint="Password"
                         materialDesign:HintAssist.HelperText="Helper text"/>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay
+                Grid.Row="2"
+                Grid.Column="2"
+                UniqueKey="fieldOutlined_with_validation"
+                HorizontalAlignment="Left"
+                Margin="0 24 0 0">
+                <TextBox
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    VerticalAlignment="Top"
+                    materialDesign:HintAssist.Hint="Text (validated)"
+                    materialDesign:HintAssist.HelperText="Helper text">
+                    <TextBox.Text>
+                        <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </smtx:XamlDisplay>
+
+            <smtx:XamlDisplay
+                Grid.Row="2"
+                Grid.Column="3"
+                UniqueKey="passwordOutlined_with_validation"
+                HorizontalAlignment="Left"
+                Margin="0 24 0 0">
+                <StackPanel Orientation="Vertical">
+                    <PasswordBox
+                        Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
+                        materialDesign:HintAssist.Hint="Password (validated)"
+                        materialDesign:HintAssist.HelperText="Helper text"
+                        domain1:PasswordHelper.Attach="True"
+                        domain1:PasswordHelper.Password="{Binding Path=Password2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}">
+                    </PasswordBox>
+                </StackPanel>
             </smtx:XamlDisplay>
         </Grid>
 
