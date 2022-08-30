@@ -405,6 +405,7 @@
                             <Setter TargetName="grid" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
                             <Setter TargetName="border" Property="wpf:BottomDashedLineAdorner.IsAttached" Value="True" />
                             <Setter TargetName="borderUnderline" Property="Height" Value="0" />
+                            <Setter TargetName="PART_ClearButton" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -414,6 +415,7 @@
                             <Setter TargetName="border" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
                             <Setter TargetName="borderUnderline" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
                             <Setter TargetName="borderUnderline" Property="Height" Value="1" />
+                            <Setter TargetName="PART_ClearButton" Property="Opacity" Value="1" /> <!-- Opacity already applied on 'border' -->
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
