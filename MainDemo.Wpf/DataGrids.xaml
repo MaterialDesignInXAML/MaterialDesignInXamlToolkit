@@ -11,7 +11,7 @@
     d:DesignHeight="300"
     d:DesignWidth="600"
     d:DataContext="{d:DesignInstance domain:ListsAndGridsViewModel}">
-    
+
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -19,23 +19,31 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    
+
     <StackPanel>
-        <TextBlock
-            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-            Text="Custom Columns"/>
-        
+        <StackPanel Orientation="Horizontal">
+            <TextBlock
+                Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                Text="Custom Columns"/>
+            <TextBlock
+                Style="{StaticResource MaterialDesignBody1TextBlock}" VerticalAlignment="Center"
+                Margin="25,0,10,0"
+                Text="SelectionUnit:"/>
+            <ComboBox x:Name="selectionUnitComboBox" ItemsSource="{Binding SelectionUnits}" SelectedIndex="0" VerticalAlignment="Center" />
+        </StackPanel>
+
         <smtx:XamlDisplay UniqueKey="grids_1">
             <DataGrid
                 ItemsSource="{Binding Items1}"
                 CanUserAddRows="False" AutoGenerateColumns="False"
-                HeadersVisibility="All">
+                HeadersVisibility="All"
+                SelectionUnit="{Binding ElementName=selectionUnitComboBox, Path=SelectedValue}">
                 <DataGrid.Resources>
                     <domain:BindingProxy
                         x:Key="DataContextProxy"
                         Data="{Binding}" />
                 </DataGrid.Resources>
-                
+
                 <DataGrid.Columns>
                     <DataGridCheckBoxColumn
                         Binding="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}" 
@@ -47,20 +55,20 @@
                                     IsChecked="{Binding Data.IsAllItems1Selected, Source={StaticResource DataContextProxy}}"/>
                             </Border>
                         </DataGridCheckBoxColumn.Header>
-                        
+
                         <DataGridCheckBoxColumn.HeaderStyle>
                             <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
                             </Style>
                         </DataGridCheckBoxColumn.HeaderStyle>
                     </DataGridCheckBoxColumn>
-                    
+
                     <DataGridTextColumn
                         Binding="{Binding Code}"
                         Header="Code"
                         ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"/>
-                    
+
                     <!-- if you want to use the pop up style (MaterialDesignDataGridTextColumnPopupEditingStyle), you must use MaterialDataGridTextColumn -->
                     <materialDesign:DataGridTextColumn
                         Header="Name"
@@ -74,7 +82,7 @@
                             </Binding>
                         </materialDesign:DataGridTextColumn.Binding>
                     </materialDesign:DataGridTextColumn>
-                    
+
                     <!-- set a max length to get an indicator in the editor -->
                     <DataGridTextColumn
                         Header="Description"
@@ -88,7 +96,7 @@
                             </Binding>
                         </DataGridTextColumn.Binding>
                     </DataGridTextColumn>
-                    
+
                     <materialDesign:DataGridTextColumn
                         Binding="{Binding Numeric}"
                         Header="Number with long header"
@@ -109,7 +117,7 @@
                                 </Setter>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
-                        
+
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
                                 <Setter Property="HorizontalAlignment" Value="Right" />
@@ -134,9 +142,20 @@
                     <materialDesign:DataGridComboBoxColumn
                         Header="ComboBox with long list"
                         SelectedValueBinding="{Binding Files}"
-                        ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.Files}">
+                        ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.Files}" />
 
-                    </materialDesign:DataGridComboBoxColumn>
+                    <DataGridTemplateColumn Header="Template Column">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate DataType="{x:Type domain:SelectableViewModel}">
+                                <TextBlock Text="{Binding Name}" FontStyle="Italic" FontSize="14" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate DataType="{x:Type domain:SelectableViewModel}">
+                                <TextBox Text="{Binding Name}" Foreground="{DynamicResource SecondaryHueMidBrush}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </smtx:XamlDisplay>
@@ -145,12 +164,12 @@
             <materialDesign:PackIcon Kind="Information" Margin="0 0 5 0"/>
             <TextBlock>DataGridComboBoxColumns are virtualized by default in the library</TextBlock>
         </StackPanel>
-        
+
         <TextBlock
             Style="{StaticResource MaterialDesignHeadline5TextBlock}"
             Text="Auto Generated Columns"
             Margin="0 24 0 0"/>
-        
+
         <smtx:XamlDisplay UniqueKey="grids_2">
             <DataGrid
                 ItemsSource="{Binding Items2}"
@@ -158,11 +177,11 @@
                 SelectionUnit="Cell"
                 SelectionMode="Extended" />
         </smtx:XamlDisplay>
-        
+
         <TextBlock
             Style="{StaticResource MaterialDesignHeadline6TextBlock}"
             Text="Custom Padding" Margin="0 24 0 0"/>
-        
+
         <smtx:XamlDisplay UniqueKey="grids_3">
             <DataGrid
                 ItemsSource="{Binding Items3}"
