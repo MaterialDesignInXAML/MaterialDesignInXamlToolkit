@@ -86,5 +86,61 @@ namespace MaterialDesignThemes.UITests.WPF.PasswordBoxes
 
             recorder.Success();
         }
+
+        [Fact]
+        [Description("PR 2828")]
+        public async Task RevealPasswordBox_WithBoundPasswordProperty_RespectsThreeWayBinding()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            var grid = await LoadXaml<Grid>(@"
+<Grid Margin=""30"">
+  <StackPanel Orientation=""Vertical"">
+    <TextBox x:Name=""BoundPassword"" />
+    <PasswordBox x:Name=""PasswordBox""
+         materialDesign:PasswordBoxAssist.Password=""{Binding ElementName=BoundPassword, Path=Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}""
+         Style=""{StaticResource MaterialDesignFloatingHintRevealPasswordBox}""/>
+  </StackPanel>
+</Grid>");
+            var boundPasswordTextBox = await grid.GetElement<TextBox>("BoundPassword"); // Serves as the "VM" in this test
+            var passwordBox = await grid.GetElement<PasswordBox>("PasswordBox");
+            var clearTextPasswordTextBox = await passwordBox.GetElement<TextBox>("RevealPasswordTextBox");
+            var revealPasswordButton = await passwordBox.GetElement<ToggleButton>("RevealPasswordButton");
+
+            // Act 1 (Update in VM updates PasswordBox and RevealPasswordTextBox)
+            await boundPasswordTextBox.SendKeyboardInput($"1");
+            string? boundText1 = await boundPasswordTextBox.GetProperty<string>(TextBox.TextProperty);
+            string? password1 = await passwordBox.GetProperty<string>(nameof(PasswordBox.Password));
+            string? clearTextPassword1 = await clearTextPasswordTextBox.GetProperty<string>(TextBox.TextProperty);
+
+            // Act 2 (Update in PasswordBox updates VM and RevealPasswordTextBox)
+            await passwordBox.SendKeyboardInput($"2");
+            string? boundText2 = await boundPasswordTextBox.GetProperty<string>(TextBox.TextProperty);
+            string? password2 = await passwordBox.GetProperty<string>(nameof(PasswordBox.Password));
+            string? clearTextPassword2 = await clearTextPasswordTextBox.GetProperty<string>(TextBox.TextProperty);
+
+            // Act 2 (Update in RevealPasswordTextBox updates PasswordBox and VM)
+            await revealPasswordButton.LeftClick();
+            await Task.Delay(50);   // Wait for the "clear text TextBox" to become visible
+            await clearTextPasswordTextBox.SendKeyboardInput($"3");
+            string? boundText3 = await boundPasswordTextBox.GetProperty<string>(TextBox.TextProperty);
+            string? password3 = await passwordBox.GetProperty<string>(nameof(PasswordBox.Password));
+            string? clearTextPassword3 = await clearTextPasswordTextBox.GetProperty<string>(TextBox.TextProperty);
+
+            // Assert
+            Assert.Equal("1", boundText1);
+            Assert.Equal("1", password1);
+            Assert.Equal("1", clearTextPassword1);
+
+            Assert.Equal("21", boundText2);
+            Assert.Equal("21", password2);
+            Assert.Equal("21", clearTextPassword2);
+
+            Assert.Equal("321", boundText3);
+            Assert.Equal("321", password3);
+            Assert.Equal("321", clearTextPassword3);
+
+            recorder.Success();
+        }
     }
 }

@@ -1,13 +1,15 @@
-﻿namespace MaterialDesignDemo.Domain
+namespace MaterialDesignDemo.Domain
 {
     public class FieldsViewModel : ViewModelBase
     {
         private string? _name;
         private string? _name2;
+        private string? _password1 = string.Empty;
+        private string? _password2 = "pre-filled";
+        private string? _password1Validated = "pre-filled";
+        private string? _password2Validated = "pre-filled";
         private string? _text1;
         private string? _text2;
-        private string? _password1 = "password";
-        private string? _password2 = "password";
 
         public string? Name
         {
@@ -36,26 +38,47 @@
         public string? Password1
         {
             get => _password1;
-            set
-            {
-                if (string.IsNullOrEmpty(value))
-                    throw new ArgumentException("Password cannot be empty");
-                SetProperty(ref _password1, value);
-            }
+            set => SetProperty(ref _password1, value);
         }
 
         public string? Password2
         {
             get => _password2;
+            set => SetProperty(ref _password2, value);
+        }
+
+        public string? Password1Validated
+        {
+            get => _password1Validated;
             set
             {
                 if (string.IsNullOrEmpty(value))
                     throw new ArgumentException("Password cannot be empty");
-                SetProperty(ref _password2, value);
+                SetProperty(ref _password1Validated, value);
+            }
+        }
+
+        public string? Password2Validated
+        {
+            get => _password2Validated;
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentException("Password cannot be empty");
+                SetProperty(ref _password2Validated, value);
             }
         }
 
         public FieldsTestObject TestObject => new() { Name = "Mr. Test" };
+
+        public ICommand SetPassword1FromViewModelCommand { get; }
+        public ICommand SetPassword2FromViewModelCommand { get; }
+
+        public FieldsViewModel()
+        {
+            SetPassword1FromViewModelCommand = new AnotherCommandImplementation(_ => Password1 = "Set from code-behind!");
+            SetPassword2FromViewModelCommand = new AnotherCommandImplementation(_ => Password2 = "Set from code-behind!");
+        }
     }
 
     public class FieldsTestObject : ViewModelBase
