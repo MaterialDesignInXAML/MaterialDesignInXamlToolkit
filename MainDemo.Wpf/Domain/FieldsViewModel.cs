@@ -76,8 +76,8 @@ namespace MaterialDesignDemo.Domain
 
         public FieldsViewModel()
         {
-            SetPassword1FromViewModelCommand = new AnotherCommandImplementation(_ => Password1 = "Set from code-behind!");
-            SetPassword2FromViewModelCommand = new AnotherCommandImplementation(_ => Password2 = "Set from code-behind!");
+            SetPassword1FromViewModelCommand = new AnotherCommandImplementation(_ => Password1 = "Set from ViewModel!");
+            SetPassword2FromViewModelCommand = new AnotherCommandImplementation(_ => Password2 = "Set from ViewModel!");
         }
     }
 
