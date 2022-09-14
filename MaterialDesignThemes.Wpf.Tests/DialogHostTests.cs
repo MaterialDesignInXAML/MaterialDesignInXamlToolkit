@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Threading;
 using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests
@@ -401,6 +402,43 @@ namespace MaterialDesignThemes.Wpf.Tests
             {
                 dialogHost2.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
             }
+        }
+
+        [StaFact]
+        [Description("Issue 2844")]
+        public void GetDialogSession_ShouldAllowAccessFromMultipleUIThreads()
+        {
+            // Arrange
+            Guid dialogHostIdentifier = Guid.NewGuid();
+            Guid dialogHostOnOtherUiThreadIdentifier = Guid.NewGuid();
+            DialogHost dialogHost = new();
+            DialogHost dialogHostOnOtherUiThread;
+            ManualResetEventSlim sync1 = new ManualResetEventSlim();
+
+            // Load dialogHost on current UI thread
+            dialogHost.ApplyDefaultStyle();
+            dialogHost.Identifier = dialogHostIdentifier;
+            dialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+            // Load dialogHostOnOtherUiThread on different UI thread
+            var thread = new Thread(() =>
+            {
+                dialogHostOnOtherUiThread = new();
+                dialogHostOnOtherUiThread.ApplyDefaultStyle();
+                dialogHostOnOtherUiThread.Identifier = dialogHostOnOtherUiThreadIdentifier;
+                dialogHostOnOtherUiThread.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+                sync1.Set();
+                System.Windows.Threading.Dispatcher.Run();
+            });
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
+            sync1.Wait();
+
+            // Act & Assert
+            DialogHost.GetDialogSession(dialogHostIdentifier);
+            DialogHost.GetDialogSession(dialogHostOnOtherUiThreadIdentifier);
+
+            // Cleanup
+            thread.Abort();
         }
     }
 }
