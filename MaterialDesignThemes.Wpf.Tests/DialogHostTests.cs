@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Threading;
+using System.Windows.Threading;
 using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests
@@ -414,6 +415,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             DialogHost dialogHost = new();
             DialogHost dialogHostOnOtherUiThread;
             ManualResetEventSlim sync1 = new ManualResetEventSlim();
+            Dispatcher? otherUiThreadDispatcher = null;
 
             // Load dialogHost on current UI thread
             dialogHost.ApplyDefaultStyle();
@@ -426,8 +428,9 @@ namespace MaterialDesignThemes.Wpf.Tests
                 dialogHostOnOtherUiThread.ApplyDefaultStyle();
                 dialogHostOnOtherUiThread.Identifier = dialogHostOnOtherUiThreadIdentifier;
                 dialogHostOnOtherUiThread.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+                otherUiThreadDispatcher = Dispatcher.CurrentDispatcher;
                 sync1.Set();
-                System.Windows.Threading.Dispatcher.Run();
+                Dispatcher.Run();
             });
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
@@ -438,7 +441,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             DialogHost.GetDialogSession(dialogHostOnOtherUiThreadIdentifier);
 
             // Cleanup
-            thread.Abort();
+            otherUiThreadDispatcher?.InvokeShutdown();
         }
     }
 }
