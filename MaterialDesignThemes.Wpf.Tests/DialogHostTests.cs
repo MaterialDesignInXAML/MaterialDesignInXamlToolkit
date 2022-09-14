@@ -440,7 +440,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             DialogHost.GetDialogSession(dialogHostIdentifier);
             DialogHost.GetDialogSession(dialogHostOnOtherUiThreadIdentifier);
 
-            // Cleanup
+            // Cleanup 
             otherUiThreadDispatcher?.InvokeShutdown();
         }
     }
