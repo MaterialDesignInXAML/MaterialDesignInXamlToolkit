@@ -24,7 +24,7 @@ jobs:
       should_run: ${{ github.event_name == 'push' || steps.check_tag.outputs.has_changed }}
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       if: ${{ github.event_name != 'push' }}
       with:
         fetch-depth: 0
@@ -44,7 +44,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 0
 
