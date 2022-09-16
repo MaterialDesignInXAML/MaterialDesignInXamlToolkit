@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Threading;
@@ -223,8 +224,17 @@ namespace MaterialDesignThemes.Wpf
             {
                 if (instance.TryGetTarget(out DialogHost? dialogInstance))
                 {
-                    dialogInstance.Dispatcher.VerifyAccess();
-                    if (Equals(dialogIdentifier, dialogInstance.Identifier))
+                    object? identifier = null;
+                    if (dialogInstance.CheckAccess())
+                    {
+                        identifier = dialogInstance.Identifier;
+                    }
+                    else
+                    {
+                        // Retrieve the identifier using the Dispatcher on the owning thread (effectively replaces the VerifyAccess() call previously used)
+                        identifier = dialogInstance.Dispatcher.Invoke(() => dialogInstance.Identifier);
+                    }
+                    if (Equals(dialogIdentifier, identifier))
                     {
                         targets.Add(dialogInstance);
                     }
