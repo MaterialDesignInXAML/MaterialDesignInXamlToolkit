@@ -11,9 +11,9 @@ on:
 env:
   solution: MaterialDesignToolkit.Full.sln
   buildConfiguration: 'Release'
-  mdixColorsVersion: '2.0.7'
-  mdixMahAppsVersion: '0.2.3'
-  mdixVersion: '4.6.0'
+  mdixColorsVersion: '2.0.8'
+  mdixMahAppsVersion: '0.2.4'
+  mdixVersion: '4.7.0'
 
 jobs:
   check_for_changes:
