@@ -232,7 +232,7 @@ namespace MaterialDesignThemes.Wpf
                     else
                     {
                         // Retrieve the identifier using the Dispatcher on the owning thread (effectively replaces the VerifyAccess() call previously used)
-                        dialogInstance.Dispatcher.Invoke(() => identifier = dialogInstance.Identifier);
+                        identifier = dialogInstance.Dispatcher.Invoke(() => dialogInstance.Identifier);
                     }
                     if (Equals(dialogIdentifier, identifier))
                     {
