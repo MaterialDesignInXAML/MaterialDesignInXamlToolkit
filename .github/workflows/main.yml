@@ -1,0 +1,28 @@
+# This is a basic workflow to help you get started with Actions
+name: Generate Milestone Contributors
+
+# Controls when the workflow will run
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      milestone:
+        description: 'The milestone to generate contributors'
+        required: true
+        type: string
+
+jobs:
+  show_contributors:
+    runs-on: ubuntu-latest
+    name: A job to get contributors
+    steps:
+      - name: GetContribs
+        id: get-contribs
+        uses: Keboo/GitHubHelper@master
+        with:
+          milestone: '${{ inputs.milestone }}'
+          repository: 'MaterialDesignInXamlToolkit'
+          repository-owner: 'MaterialDesignInXAML'
+          token: ${{ github.token }}
+      - name: Get the output
+        run: echo "${{ steps.get-contribs.outputs.contributors }}"
