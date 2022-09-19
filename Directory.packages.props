@@ -7,7 +7,7 @@
         <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3" PrivateAssets="all" />
         <PackageVersion Include="Microsoft.CodeAnalysis.Common" Version="4.3.0" />
         <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.2.0" />
-        <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.2.0" />
+        <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.3.0" />
         <PackageVersion Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.2.0" />
         <PackageVersion Include="Microsoft.Composition" Version="1.0.31" />
         <PackageVersion Include="Microsoft.CSharp" Version="4.7.0" />
