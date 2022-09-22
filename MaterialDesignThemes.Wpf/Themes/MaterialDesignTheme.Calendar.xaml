@@ -651,7 +651,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="MaterialDesignCalendarPortrait" TargetType="{x:Type Calendar}">
+    <Style x:Key="MaterialDesignCalendarPortraitBase" TargetType="{x:Type Calendar}">
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
         <Setter Property="SnapsToDevicePixels" Value="true"/>
@@ -666,7 +666,7 @@
                 <ControlTemplate TargetType="{x:Type Calendar}">
                     <CalendarItem
                         x:Name="PART_CalendarItem"
-                        Style="{DynamicResource MaterialDesignCalendarItemPortrait}"
+                        Style="{TemplateBinding CalendarItemStyle}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         Background="{TemplateBinding Background}"
@@ -679,6 +679,10 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="MaterialDesignCalendarPortrait" TargetType="Calendar" BasedOn="{StaticResource MaterialDesignCalendarPortraitBase}">
+        <Setter Property="CalendarItemStyle" Value="{StaticResource MaterialDesignCalendarItemPortrait}" />
     </Style>
 
     <Style x:Key="MaterialDesignCalendarPortraitForeground" TargetType="Calendar" BasedOn="{StaticResource MaterialDesignCalendarPortrait}">
