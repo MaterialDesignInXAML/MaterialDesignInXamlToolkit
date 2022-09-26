@@ -89,9 +89,7 @@
                                 ContentTemplate="{TemplateBinding ContentTemplate}"
                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
                                 Focusable="False"
-                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                TextBlock.Foreground="{Binding ElementName=PART_HeaderCard, Path=Foreground}"
-                                TextElement.Foreground="{Binding ElementName=PART_HeaderCard, Path=Foreground}" />
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         </Border>
                     </DockPanel>
 
