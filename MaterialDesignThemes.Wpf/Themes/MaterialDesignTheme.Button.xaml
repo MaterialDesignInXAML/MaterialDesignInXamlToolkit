@@ -437,6 +437,7 @@
 
     <Style x:Key="MaterialDesignToolForegroundButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignToolButton}">
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
+        <Setter Property="wpf:RippleAssist.Feedback" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
     </Style>
 
     <!--#endregion-->
@@ -671,6 +672,7 @@
 
     <Style x:Key="MaterialDesignIconForegroundButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignIconButton}">
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
+        <Setter Property="wpf:RippleAssist.Feedback" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>
     </Style>
 
     <!--#endregion-->
