@@ -25,3 +25,14 @@ jobs:
         solution: ${{ env.solution }}
         buildConfiguration: ${{ env.buildConfiguration }}
         nugetKey: ${{ secrets.PAT }}
+
+  automerge:
+    needs: build
+    runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write
+      contents: write
+
+    steps:
+      - uses: fastify/github-action-merge-dependabot@v3.4.0  
