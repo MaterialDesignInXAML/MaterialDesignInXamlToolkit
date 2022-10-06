@@ -152,6 +152,9 @@ namespace MaterialDesignThemes.Wpf
 
         private void SaturationBrightnessCanvasMouseMove(object sender, MouseEventArgs e)
         {
+            if (Mouse.Captured is null || Mouse.Captured != _saturationBrightnessThumb)
+                return;
+
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 var position = e.GetPosition(_saturationBrightnessCanvas);
