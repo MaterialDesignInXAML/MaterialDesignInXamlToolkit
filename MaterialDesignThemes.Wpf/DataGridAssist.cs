@@ -233,6 +233,12 @@ public static class DataGridAssist
         if (dataGridCell.Content is UIElement element)
         {
             var dataGrid = (DataGrid)sender;
+            // If it is a DataGridTemplateColumn we want the
+            // click to be handled naturally by the control
+            if (dataGridCell.Column.GetType() == typeof(DataGridTemplateColumn))
+            {
+                return;
+            }
             if (dataGridCell.IsEditing)
             {
                 // If the cell is already being edited, we don't want to (re)start editing
