@@ -244,6 +244,15 @@ public static class DataGridAssist
                 // If the cell is already being edited, we don't want to (re)start editing
                 return;
             }
+            //NB: Issue 2852 - Don't handle events from nested data grids
+            var parentDataGrid = dataGridCell
+                .GetVisualAncestry()
+                .OfType<DataGrid>()
+                .FirstOrDefault();
+            if (parentDataGrid != dataGrid)
+            {
+                return;
+            }
 
             dataGrid.CurrentCell = new DataGridCellInfo(dataGridCell);
             dataGrid.BeginEdit();
