@@ -1,11 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using MaterialDesignThemes.Wpf;
-using XamlTest;
-
-namespace MaterialDesignThemes.UITests.WPF.TimePickers;
+﻿namespace MaterialDesignThemes.UITests.WPF.TimePickers;
 
 public static class MaterialDesignTimePicker
 {

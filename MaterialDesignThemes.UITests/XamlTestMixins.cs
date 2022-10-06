@@ -1,29 +1,23 @@
-﻿using System.IO;
-using System.Reflection;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿using System.Reflection;
 using MaterialDesignColors;
-using MaterialDesignThemes.UITests.WPF.DatePickers;
-using MaterialDesignThemes.Wpf;
-using XamlTest;
 
-namespace MaterialDesignThemes.UITests
+namespace MaterialDesignThemes.UITests;
+
+public static class XamlTestMixins
 {
-    public static class XamlTestMixins
+    public static async Task InitializeWithMaterialDesign(this IApp app,
+        BaseTheme baseTheme = BaseTheme.Light,
+        PrimaryColor primary = PrimaryColor.DeepPurple,
+        SecondaryColor secondary = SecondaryColor.Lime,
+        ColorAdjustment? colorAdjustment = null)
     {
-        public static async Task InitializeWithMaterialDesign(this IApp app,
-            BaseTheme baseTheme = BaseTheme.Light,
-            PrimaryColor primary = PrimaryColor.DeepPurple,
-            SecondaryColor secondary = SecondaryColor.Lime,
-            ColorAdjustment? colorAdjustment = null)
+        string colorAdjustString = "";
+        if (colorAdjustment != null)
         {
-            string colorAdjustString = "";
-            if (colorAdjustment != null)
-            {
-                colorAdjustString = "ColorAdjustment=\"{materialDesign:ColorAdjustment}\"";
-            }
+            colorAdjustString = "ColorAdjustment=\"{materialDesign:ColorAdjustment}\"";
+        }
 
-            string applicationResourceXaml = $@"<ResourceDictionary 
+        string applicationResourceXaml = $@"<ResourceDictionary 
 xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
 xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
 xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"">
@@ -34,22 +28,22 @@ xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"">
         <ResourceDictionary Source = ""pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml"" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>";
-            
-            await app.Initialize(applicationResourceXaml,
-                Path.GetFullPath("MaterialDesignColors.dll"),
-                Path.GetFullPath("MaterialDesignThemes.Wpf.dll"),
-                Assembly.GetExecutingAssembly().Location);
+        
+        await app.Initialize(applicationResourceXaml,
+            Path.GetFullPath("MaterialDesignColors.dll"),
+            Path.GetFullPath("MaterialDesignThemes.Wpf.dll"),
+            Assembly.GetExecutingAssembly().Location);
+    }
+
+    public static async Task<IVisualElement<T>> CreateWindowWith<T>(this IApp app, string xaml, params (string namespacePrefix, Type type)[] additionalNamespaceDeclarations)
+    {
+        var extraNamespaceDeclarations = new StringBuilder("");
+        foreach ((string namespacePrefix, Type type) in additionalNamespaceDeclarations)
+        {
+            extraNamespaceDeclarations.AppendLine($@"xmlns:{namespacePrefix}=""clr-namespace:{type.Namespace};assembly={type.Assembly.GetName().Name}""");
         }
 
-        public static async Task<IVisualElement<T>> CreateWindowWith<T>(this IApp app, string xaml, params (string namespacePrefix, Type type)[] additionalNamespaceDeclarations)
-        {
-            var extraNamespaceDeclarations = new StringBuilder("");
-            foreach ((string namespacePrefix, Type type) in additionalNamespaceDeclarations)
-            {
-                extraNamespaceDeclarations.AppendLine($@"xmlns:{namespacePrefix}=""clr-namespace:{type.Namespace};assembly={type.Assembly.GetName().Name}""");
-            }
-
-            string windowXaml = @$"<Window
+        string windowXaml = @$"<Window
         xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
         xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
         xmlns:d=""http://schemas.microsoft.com/expression/blend/2008""
@@ -70,13 +64,13 @@ xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"">
         WindowStartupLocation=""CenterScreen"">
         {xaml}
 </Window>";
-            IWindow window = await app.CreateWindow(windowXaml);
-            return await window.GetElement<T>(".Content");
-        }
+        IWindow window = await app.CreateWindow(windowXaml);
+        return await window.GetElement<T>(".Content");
+    }
 
-        public static async Task<IVisualElement> CreateWindowWith(this IApp app, string xaml)
-        {
-            string windowXaml = @$"<Window
+    public static async Task<IVisualElement> CreateWindowWith(this IApp app, string xaml)
+    {
+        string windowXaml = @$"<Window
         xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
         xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
         xmlns:d=""http://schemas.microsoft.com/expression/blend/2008""
@@ -96,14 +90,14 @@ xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"">
         WindowStartupLocation=""CenterScreen"">
         {xaml}
 </Window>";
-            IWindow window = await app.CreateWindow(windowXaml);
-            return await window.GetElement(".Content");
-        }
+        IWindow window = await app.CreateWindow(windowXaml);
+        return await window.GetElement(".Content");
+    }
 
-        public static async Task<IVisualElement> CreateWindowWithUserControl<TControl>(this IApp app)
-            where TControl : UserControl
-        {
-            string windowXaml = @$"<Window
+    public static async Task<IVisualElement> CreateWindowWithUserControl<TControl>(this IApp app)
+        where TControl : UserControl
+    {
+        string windowXaml = @$"<Window
         xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
         xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
         xmlns:d=""http://schemas.microsoft.com/expression/blend/2008""
@@ -124,8 +118,7 @@ xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"">
         WindowStartupLocation=""CenterScreen"">
         <local:{typeof(TControl).Name} />
 </Window>";
-            IWindow window = await app.CreateWindow(windowXaml);
-            return await window.GetElement(".Content.Content");
-        }
+        IWindow window = await app.CreateWindow(windowXaml);
+        return await window.GetElement(".Content.Content");
     }
 }
