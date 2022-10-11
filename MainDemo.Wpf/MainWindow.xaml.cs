@@ -86,6 +86,11 @@ namespace MaterialDesignDemo
         private void MenuDarkModeButton_Click(object sender, RoutedEventArgs e) 
             => ModifyTheme(DarkModeToggleButton.IsChecked == true);
 
+        private void FlowDirectionButton_Click(object sender, RoutedEventArgs e)
+            => FlowDirection = FlowDirectionToggleButton.IsChecked.GetValueOrDefault(false)
+                ? FlowDirection.RightToLeft
+                : FlowDirection.LeftToRight;
+
         private static void ModifyTheme(bool isDarkTheme)
         {
             var paletteHelper = new PaletteHelper();

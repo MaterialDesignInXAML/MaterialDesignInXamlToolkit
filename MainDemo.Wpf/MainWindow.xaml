@@ -153,6 +153,7 @@
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
                                         <RowDefinition />
+                                        <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <TextBlock
                                         Text="Light"
@@ -175,6 +176,22 @@
                                         IsChecked="{Binding ControlsEnabled}"
                                         Grid.Row="1"
                                         Grid.Column="1"/>
+
+                                    <TextBlock
+                                        Text="LTR"
+                                        Margin="0 10 10 0"
+                                        Grid.Row="2"/>
+                                    <ToggleButton
+                                        x:Name="FlowDirectionToggleButton"
+                                        Click="FlowDirectionButton_Click"
+                                        Margin="0 10 0 0"
+                                        Grid.Column="1"
+                                        Grid.Row="2"/>
+                                    <TextBlock
+                                        Text="RTL"
+                                        Margin="10 10 0 0"
+                                        Grid.Column="2"
+                                        Grid.Row="2"/>
                                 </Grid>
 
                                 <Separator/>
