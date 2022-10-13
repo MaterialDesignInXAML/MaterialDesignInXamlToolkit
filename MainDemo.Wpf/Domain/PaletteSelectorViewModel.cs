@@ -1,5 +1,7 @@
 ﻿using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
+using MaterialDesignThemes.Wpf.Theming;
+using Theme = MaterialDesignThemes.Wpf.Theming.Theme;
 
 namespace MaterialDesignDemo.Domain
 {
@@ -27,10 +29,10 @@ namespace MaterialDesignDemo.Domain
             }
         }
 
-        private static void ModifyTheme(Action<ITheme> modificationAction)
+        private static void ModifyTheme(Action<Theme> modificationAction)
         {
-            var paletteHelper = new PaletteHelper();
-            ITheme theme = paletteHelper.GetTheme();
+            ThemeManager paletteHelper = ThemeManager.GetApplicationThemeManager()!;
+            Theme theme = paletteHelper.GetTheme();
 
             modificationAction?.Invoke(theme);
 

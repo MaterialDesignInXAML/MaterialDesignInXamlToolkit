@@ -1,6 +1,6 @@
 ﻿using ControlzEx.Theming;
 using MaterialDesignThemes.Wpf;
-using Theme = MaterialDesignThemes.Wpf.Theme;
+using Theme = MaterialDesignThemes.Wpf.Theming.Theme;
 
 namespace MaterialDesignThemes.MahApps;
 

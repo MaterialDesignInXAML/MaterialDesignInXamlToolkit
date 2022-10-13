@@ -5,51 +5,57 @@ namespace MaterialDesignThemes.Wpf.Tests
 {
     public class CustomColorThemeTests
     {
-        [StaTheory]
-        [MemberData(nameof(GetThemeValues))]
-        public void WhenValueIsMissingThemeIsNotSet(BaseTheme? baseTheme, Color? primaryColor, Color? secondaryColor)
-        {
-            //Arrange
-            var bundledTheme = new CustomColorTheme();
-
-            //Act
-            bundledTheme.BaseTheme = baseTheme;
-            bundledTheme.PrimaryColor = primaryColor;
-            bundledTheme.SecondaryColor = secondaryColor;
-
-            //Assert
-            Assert.Throws<InvalidOperationException>(() => bundledTheme.GetTheme());
-        }
-
-        public static IEnumerable<object?[]> GetThemeValues()
-        {
-            yield return new object?[] { null, null, null };
-            yield return new object?[] { BaseTheme.Light, null, null };
-            yield return new object?[] { BaseTheme.Inherit, null, null };
-            yield return new object?[] { null, Colors.Blue, null };
-            yield return new object?[] { BaseTheme.Light, Colors.Blue, null };
-            yield return new object?[] { BaseTheme.Inherit, Colors.Blue, null };
-            yield return new object?[] { null, null, Colors.Blue };
-            yield return new object?[] { BaseTheme.Light, null, Colors.Blue };
-            yield return new object?[] { BaseTheme.Inherit, null, Colors.Blue };
-        }
-
         [StaFact]
         public void WhenAllValuesAreSetThemeIsSet()
         {
             //Arrange
-            var bundledTheme = new CustomColorTheme();
+            CustomColorTheme customTheme = new();
+            var themeManager = Theming.ThemeManager.GetThemeManager(customTheme);
 
             //Act
-            bundledTheme.BaseTheme = BaseTheme.Light;
-            bundledTheme.PrimaryColor = Colors.Fuchsia;
-            bundledTheme.SecondaryColor = Colors.Lime;
+            customTheme.BaseTheme = BaseTheme.Light;
+            customTheme.PrimaryColor = Colors.Fuchsia;
+            customTheme.SecondaryColor = Colors.Lime;
 
             //Assert
-            ITheme theme = bundledTheme.GetTheme();
+            Theming.Theme theme = themeManager.GetTheme();
             Assert.Equal(Colors.Fuchsia, theme.PrimaryMid.Color);
             Assert.Equal(Colors.Lime, theme.SecondaryMid.Color);
-            Assert.Equal(Theme.Light.MaterialDesignBody, theme.Body);
+            Assert.Equal(Theming.Theme.Light.Foreground, theme.Foreground);
+        }
+
+        [StaFact]
+        public void CustomColorThemeContainsAllOfTheExpectedResources()
+        {
+            //Arrange
+            CustomColorTheme customTheme = new();
+
+            var startingResources = customTheme.Keys
+                .Cast<string>()
+                .OrderBy(x => x)
+                .ToList();
+
+            //Act
+            customTheme.BaseTheme = BaseTheme.Light;
+            customTheme.PrimaryColor = Colors.Fuchsia;
+            customTheme.SecondaryColor = Colors.Lime;
+
+            //Assert
+            var endingResources = customTheme.Keys
+                .Cast<string>()
+                .OrderBy(x => x)
+                .ToList();
+
+            //Remove meta level resources
+            const string currentThemeKey = "MaterialDesignThemes.CurrentThemeKey";
+            const string themeManagerKey = "MaterialDesignThemes.ThemeManagerKey";
+
+            startingResources.Remove(currentThemeKey);
+            startingResources.Remove(themeManagerKey);
+            endingResources.Remove(currentThemeKey);
+            endingResources.Remove(themeManagerKey);
+
+            Assert.Equal(startingResources, endingResources);
         }
     }
 }

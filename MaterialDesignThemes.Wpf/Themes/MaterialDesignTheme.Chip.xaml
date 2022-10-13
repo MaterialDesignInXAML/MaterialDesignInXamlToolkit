@@ -17,7 +17,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToolTip">
-                    <wpf:Card Foreground="{DynamicResource MaterialDesignBody}"
+                    <wpf:Card Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
                               FontSize="15"
                               FontWeight="Regular"
                               Padding="0 8 0 8"

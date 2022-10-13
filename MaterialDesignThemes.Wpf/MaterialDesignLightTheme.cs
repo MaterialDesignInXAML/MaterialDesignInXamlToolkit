@@ -2,6 +2,7 @@
 
 namespace MaterialDesignThemes.Wpf
 {
+    [Obsolete("Use MaterialDesignThemes.Wpf.Theming.LightTheme")]
     public class MaterialDesignLightTheme : IBaseTheme
     {
         public Color MaterialDesignValidationErrorColor { get; } = (Color)ColorConverter.ConvertFromString("#B00020");

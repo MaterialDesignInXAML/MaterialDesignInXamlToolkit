@@ -2,7 +2,8 @@
 using System.Windows.Media.Animation;
 using ControlzEx.Theming;
 using MaterialDesignThemes.Wpf;
-using Theme = ControlzEx.Theming.Theme;
+using Theme = MaterialDesignThemes.Wpf.Theming.Theme;
+using ThemeEx = ControlzEx.Theming.Theme;
 
 namespace MaterialDesignThemes.MahApps;
 

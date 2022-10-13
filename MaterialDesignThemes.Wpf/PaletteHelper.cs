@@ -1,7 +1,9 @@
 ﻿namespace MaterialDesignThemes.Wpf
 {
+    [Obsolete("Use MaterialDesignThemes.Wpf.Theming.ThemeManager instead")]
     public class PaletteHelper
     {
+        [Obsolete("Use MaterialDesignThemes.Wpf.Theming.ThemeManager.GetApplicationTheme() instead")]
         public virtual ITheme GetTheme()
         {
             if (Application.Current is null)
@@ -9,6 +11,7 @@
             return GetResourceDictionary().GetTheme();
         }
 
+        [Obsolete("Use MaterialDesignThemes.Wpf.Theming.ThemeManager.SetApplicationTheme() instead")]
         public virtual void SetTheme(ITheme theme)
         {
             if (theme is null) throw new ArgumentNullException(nameof(theme));

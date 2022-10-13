@@ -9,17 +9,16 @@
 
         private void ChangeThemeClick(object sender, RoutedEventArgs e)
         {
-            var helper = new PaletteHelper();
-            var theme = helper.GetTheme();
+            Wpf.Theming.Theme theme = ThemeManager.GetApplicationTheme();
             if (((ToggleButton)sender).IsChecked == true)
             {
-                theme.SetBaseTheme(Wpf.Theme.Dark);
+                theme.SetBaseTheme(Wpf.Theming.Theme.Dark);
             }
             else
             {
-                theme.SetBaseTheme(Wpf.Theme.Light);
+                theme.SetBaseTheme(Wpf.Theming.Theme.Light);
             }
-            helper.SetTheme(theme);
+            ThemeManager.SetApplicationTheme(theme);
         }
     }
 }

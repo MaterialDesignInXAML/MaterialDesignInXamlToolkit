@@ -3,6 +3,7 @@ using MaterialDesignColors;
 
 namespace MaterialDesignThemes.Wpf
 {
+    [Obsolete("Use MaterialDesignThemes.Wpf.Theming.Theme instead")]
     public interface ITheme
     {
         ColorPair PrimaryLight { get; set; }

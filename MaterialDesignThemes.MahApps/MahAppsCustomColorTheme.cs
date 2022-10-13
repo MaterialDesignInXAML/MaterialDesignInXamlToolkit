@@ -2,7 +2,10 @@
 using ControlzEx.Theming;
 using MaterialDesignColors.ColorManipulation;
 using MaterialDesignThemes.Wpf;
-using Theme = ControlzEx.Theming.Theme;
+using Theme = MaterialDesignThemes.Wpf.Theming.Theme;
+using ThemeEx = ControlzEx.Theming.Theme;
+using ThemeManager = MaterialDesignThemes.Wpf.Theming.ThemeManager;
+using ThemeManagerEx = ControlzEx.Theming.ThemeManager;
 
 namespace MaterialDesignThemes.MahApps;
 
@@ -110,5 +113,7 @@ public class MahAppsCustomColorTheme : CustomColorTheme
                     break;
             }
         }
+#pragma warning restore CS0672 // Member overrides obsolete member
+#pragma warning restore CS0618 // Type or member is obsolete
     }
 }

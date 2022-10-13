@@ -44,4 +44,14 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
   </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\MaterialDesign.Generators\MaterialDesign.Generators.csproj">
+            <OutputItemType>Analyzer</OutputItemType>
+            <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+        </ProjectReference>
+        
+        <AdditionalFiles Include="Themes\MaterialDesignTheme.Light.xaml" />
+        <AdditionalFiles Include="Themes\MaterialDesignTheme.Dark.xaml" />
+    </ItemGroup>
 </Project>

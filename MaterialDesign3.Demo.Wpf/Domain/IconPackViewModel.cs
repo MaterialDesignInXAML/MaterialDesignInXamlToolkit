@@ -2,7 +2,10 @@
 using System.Windows.Media.Imaging;
 using BluwolfIcons;
 using MaterialDesignThemes.Wpf;
+using MaterialDesignThemes.Wpf.Theming;
 using Microsoft.Win32;
+using Theme = MaterialDesignThemes.Wpf.Theming.Theme;
+using ThemeChangedEventArgs = MaterialDesignThemes.Wpf.Theming.ThemeChangedEventArgs;
 
 namespace MaterialDesign3Demo.Domain
 {
@@ -26,16 +29,15 @@ namespace MaterialDesign3Demo.Domain
                     .OrderBy(x => x.Kind)
                     .ToList());
 
-            var helper = new PaletteHelper();
-            if (helper.GetThemeManager() is { } themeManager)
+            if (ThemeManager.GetApplicationThemeManager() is { } themeManager)
             {
                 themeManager.ThemeChanged += ThemeManager_ThemeChanged;
+                SetDefaultIconColors(themeManager.GetTheme());
             }
-            SetDefaultIconColors();
         }
 
         private void ThemeManager_ThemeChanged(object? sender, ThemeChangedEventArgs e)
-            => SetDefaultIconColors();
+            => SetDefaultIconColors(e.NewTheme);
 
         public ICommand OpenDotComCommand { get; }
         public ICommand SearchCommand { get; }
@@ -107,11 +109,9 @@ namespace MaterialDesign3Demo.Domain
             _snackbarMessageQueue.Enqueue(toBeCopied + " copied to clipboard");
         }
 
-        private void SetDefaultIconColors()
+        private void SetDefaultIconColors(Theme theme)
         {
-            var helper = new PaletteHelper();
-            ITheme theme = helper.GetTheme();
-            GeneratedIconBackground = theme.Paper;
+            GeneratedIconBackground = theme.Background;
             GeneratedIconForeground = theme.PrimaryMid.Color;
         }
 

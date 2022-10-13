@@ -13,4 +13,16 @@
   <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="{StaticResource Primary700}" po:Freeze="True" />
   <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="{StaticResource Primary700Foreground}" po:Freeze="True" />
 
+  <Color x:Key="MaterialDesign.Brush.Primary.Color">#795548</Color>
+  <SolidColorBrush x:Key="MaterialDesign.Brush.Primary" Color="{StaticResource MaterialDesign.Brush.Primary.Color}" po:Freeze="True" />
+  <Color x:Key="MaterialDesign.Brush.Primary.Foreground.Color">#795548_FOREGROUND</Color>
+  <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Foreground" Color="{StaticResource MaterialDesign.Brush.Primary.Foreground.Color}" po:Freeze="True" />
+  <Color x:Key="MaterialDesign.Brush.Primary.Dark.Color">#795548_DARK</Color>
+  <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Dark" Color="{StaticResource MaterialDesign.Brush.Primary.Dark.Color}" po:Freeze="True" />
+  <Color x:Key="MaterialDesign.Brush.Primary.Dark.Foreground.Color">#795548_DARK_FOREGROUND</Color>
+  <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Dark.Foreground" Color="{StaticResource MaterialDesign.Brush.Primary.Dark.Foreground.Color}" po:Freeze="True" />
+  <Color x:Key="MaterialDesign.Brush.Primary.Light.Color">#795548_LIGHT</Color>
+  <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Light" Color="{StaticResource MaterialDesign.Brush.Primary.Light.Color}" po:Freeze="True" />
+  <Color x:Key="MaterialDesign.Brush.Primary.Light.Foreground.Color">#795548_LIGHT_FOREGROUND</Color>
+  <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Light.Foreground" Color="{StaticResource MaterialDesign.Brush.Primary.Light.Foreground.Color}" po:Freeze="True" />
 </ResourceDictionary>

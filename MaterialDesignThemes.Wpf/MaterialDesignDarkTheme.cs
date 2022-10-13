@@ -2,6 +2,7 @@
 
 namespace MaterialDesignThemes.Wpf
 {
+    [Obsolete("Use MaterialDesignThemes.Wpf.Theming.DarkTheme")]
     public class MaterialDesignDarkTheme : IBaseTheme
     {
         public Color MaterialDesignValidationErrorColor { get; } = (Color)ColorConverter.ConvertFromString("#CF6679");

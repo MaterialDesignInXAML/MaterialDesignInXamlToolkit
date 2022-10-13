@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
+using MaterialDesignThemes.Wpf.Theming;
+using Theme = MaterialDesignThemes.Wpf.Theming.Theme;
 
 namespace MahMaterialDragablzMashUp
 {
@@ -13,8 +15,8 @@ namespace MahMaterialDragablzMashUp
         {
             Swatches = new SwatchesProvider().Swatches;
 
-            PaletteHelper paletteHelper = new PaletteHelper();
-            ITheme theme = paletteHelper.GetTheme();
+            ThemeManager themeManager = ThemeManager.GetApplicationThemeManager()!;
+            Theme? theme = themeManager.GetTheme();
 
             IsDarkTheme = theme.GetBaseTheme() == BaseTheme.Dark;
         }
@@ -72,14 +74,14 @@ namespace MahMaterialDragablzMashUp
             }
         }
 
-        private static void ModifyTheme(Action<ITheme> modificationAction)
+        private static void ModifyTheme(Action<Theme> modificationAction)
         {
-            PaletteHelper paletteHelper = new PaletteHelper();
-            ITheme theme = paletteHelper.GetTheme();
+            ThemeManager themeManager = ThemeManager.GetApplicationThemeManager()!;
+            Theme? theme = themeManager.GetTheme();
 
             modificationAction?.Invoke(theme);
 
-            paletteHelper.SetTheme(theme);
+            themeManager.SetTheme(theme);
         }
     }
 }

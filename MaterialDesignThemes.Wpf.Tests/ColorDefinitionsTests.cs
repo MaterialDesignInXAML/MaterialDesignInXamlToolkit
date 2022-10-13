@@ -7,19 +7,13 @@ namespace MaterialDesignThemes.Wpf.Tests
     public class ColorDefinitionsTests
     {
         [Fact]
-        public void VerifyLightXamlColorsInTheme()
-            => AssertXamlColorsInTheme("MaterialDesignTheme.Light.xaml", new MaterialDesignLightTheme());
-
-        [Fact]
-        public void VerifyDarkXamlColorsInTheme()
-            => AssertXamlColorsInTheme("MaterialDesignTheme.Dark.xaml", new MaterialDesignDarkTheme());
-
-        private static void AssertXamlColorsInTheme(string xaml, IBaseTheme baseTheme)
+        public void LightAndDarkThemeBothContainSameResources()
         {
-            var theme = new Theme();
-            theme.SetBaseTheme(baseTheme);
+            var light = MdixHelper.GetResourceDictionary("MaterialDesignTheme.Light.xaml");
+            var dark = MdixHelper.GetResourceDictionary("MaterialDesignTheme.Dark.xaml");
 
-            var resourceDictionary = MdixHelper.GetResourceDictionary(xaml);
+            var lightKeys = light.Keys.OfType<string>().OrderBy(x => x).ToList();
+            var darkKeys = dark.Keys.OfType<string>().OrderBy(x => x).ToList();
 
             foreach (var (key, solidColorBrush) in resourceDictionary
                 .Cast<DictionaryEntry>()
@@ -44,50 +38,25 @@ namespace MaterialDesignThemes.Wpf.Tests
             }
         }
 
-        [Fact]
-        public void VerifyLightThemeColorsInXaml()
-            => AssertThemeColorsInXaml(new MaterialDesignLightTheme(), "MaterialDesignTheme.Light.xaml");
 
-        [Fact]
-        public void VerifyDarkThemeColorsInXaml()
-            => AssertThemeColorsInXaml(new MaterialDesignDarkTheme(), "MaterialDesignTheme.Dark.xaml");
-
-        private static void AssertThemeColorsInXaml(IBaseTheme baseTheme, string xaml)
+        [Theory]
+        [InlineData("MaterialDesignTheme.Light.xaml")]
+        [InlineData("MaterialDesignTheme.Dark.xaml")]
+        public void BrushesUseSameValuesAsColors(string resourceDictionary)
         {
-            var theme = new Theme();
-            theme.SetBaseTheme(baseTheme);
+            var dictionary = MdixHelper.GetResourceDictionary(resourceDictionary);
 
-            var resourceDictionary = MdixHelper.GetResourceDictionary(xaml);
-
-            var updatedDictionary = new ResourceDictionary();
-            updatedDictionary.SetTheme(theme);
-
-            foreach (var property in theme.GetType().GetProperties().Where(p => p.PropertyType == typeof(Color)))
+            foreach (var key in dictionary.Keys.OfType<string>().Where(x => x.StartsWith("MaterialDesign.") && !x.EndsWith(".Color")))
             {
-                var propertyColor = (Color)property.GetValue(theme)!;
-                var (nameBrush, nameColor) = property.Name == "ValidationError"
-                    ? ("MaterialDesignValidationErrorBrush", "MaterialDesignValidationErrorColor")
-                    : ("MaterialDesign" + property.Name, "MaterialDesign" + property.Name + "Color");
-
-                Assert.True(resourceDictionary.Contains(nameBrush), $"{nameBrush} from {theme.GetType()} not found in {xaml}");
-
-                var xamlValue = resourceDictionary[nameBrush];
-                Assert.True(xamlValue is SolidColorBrush, $"{nameBrush} in {xaml} is no SolidColorBrush");
-                Assert.Equal(propertyColor, ((SolidColorBrush)xamlValue).Color);
-
-                Assert.True(updatedDictionary.Contains(nameColor), $"{nameColor} from {theme.GetType()} not set via ResourceDictionaryExtensions.SetTheme");
-                Assert.Equal(propertyColor, updatedDictionary[nameColor]);
+                if (dictionary[key] is SolidColorBrush brush)
+                {
+                    Color color = (Color)dictionary[key + ".Color"];
+                    Assert.True(brush.Color == color, $"Brush '{key}' has color {brush.Color} but expected {color}, in {resourceDictionary}");
+                }
             }
         }
 
-        [Fact]
-        public void VerifyLightThemeXamlCanBeRead()
-            => AssertThemeColorsReadFromXaml(new MaterialDesignLightTheme(), "MaterialDesignTheme.Light.xaml");
-
-        [Fact]
-        public void VerifyDarkThemeXamlCanBeRead()
-            => AssertThemeColorsReadFromXaml(new MaterialDesignDarkTheme(), "MaterialDesignTheme.Dark.xaml");
-
+        [Obsolete]
         private static void AssertThemeColorsReadFromXaml(IBaseTheme baseTheme, string xaml)
         {
             var resourceDictionary = new ResourceDictionary();

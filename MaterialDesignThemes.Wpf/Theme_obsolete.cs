@@ -4,6 +4,7 @@ using Microsoft.Win32;
 
 namespace MaterialDesignThemes.Wpf
 {
+    [Obsolete("Use MaterialDesignThemes.Wpf.Theming.Theme instead")]
     public class Theme : ITheme
     {
         public static IBaseTheme Light { get; } = new MaterialDesignLightTheme();

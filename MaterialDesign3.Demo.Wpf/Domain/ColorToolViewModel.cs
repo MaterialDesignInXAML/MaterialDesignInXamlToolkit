@@ -1,12 +1,14 @@
 ﻿using System.Windows.Media;
 using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
+using MaterialDesignThemes.Wpf.Theming;
+using Theme = MaterialDesignThemes.Wpf.Theming.Theme;
 
 namespace MaterialDesign3Demo.Domain
 {
     internal class ColorToolViewModel : ViewModelBase
     {
-        private readonly PaletteHelper _paletteHelper = new PaletteHelper();
+        private readonly ThemeManager _themeManager = ThemeManager.GetApplicationThemeManager()!;
 
         private ColorScheme _activeScheme;
         public ColorScheme ActiveScheme
@@ -66,10 +68,9 @@ namespace MaterialDesign3Demo.Domain
 
         private void ApplyBase(bool isDark)
         {
-            ITheme theme = _paletteHelper.GetTheme();
-            IBaseTheme baseTheme = isDark ? new MaterialDesignDarkTheme() : new MaterialDesignLightTheme();
-            theme.SetBaseTheme(baseTheme);
-            _paletteHelper.SetTheme(theme);
+            Theme theme = _themeManager.GetTheme();
+            theme.SetBaseTheme(isDark ? BaseTheme.Dark : BaseTheme.Light);
+            _themeManager.SetTheme(theme);
         }
 
         public ColorToolViewModel()
@@ -83,7 +84,7 @@ namespace MaterialDesign3Demo.Domain
             ChangeToSecondaryForegroundCommand = new AnotherCommandImplementation(o => ChangeScheme(ColorScheme.SecondaryForeground));
 
 
-            ITheme theme = _paletteHelper.GetTheme();
+            Theme theme = _themeManager.GetTheme();
 
             _primaryColor = theme.PrimaryMid.Color;
             _secondaryColor = theme.SecondaryMid.Color;
@@ -97,12 +98,12 @@ namespace MaterialDesign3Demo.Domain
 
             if (ActiveScheme == ColorScheme.Primary)
             {
-                _paletteHelper.ChangePrimaryColor(color);
+                _themeManager.ChangePrimaryColor(color);
                 _primaryColor = color;
             }
             else if (ActiveScheme == ColorScheme.Secondary)
             {
-                _paletteHelper.ChangeSecondaryColor(color);
+                _themeManager.ChangeSecondaryColor(color);
                 _secondaryColor = color;
             }
             else if (ActiveScheme == ColorScheme.PrimaryForeground)
@@ -153,15 +154,15 @@ namespace MaterialDesign3Demo.Domain
             SelectedColor = hue;
             if (ActiveScheme == ColorScheme.Primary)
             {
-                _paletteHelper.ChangePrimaryColor(hue);
+                _themeManager.ChangePrimaryColor(hue);
                 _primaryColor = hue;
-                _primaryForegroundColor = _paletteHelper.GetTheme().PrimaryMid.GetForegroundColor();
+                _primaryForegroundColor = _themeManager.GetTheme().PrimaryMid.GetForegroundColor();
             }
             else if (ActiveScheme == ColorScheme.Secondary)
             {
-                _paletteHelper.ChangeSecondaryColor(hue);
+                _themeManager.ChangeSecondaryColor(hue);
                 _secondaryColor = hue;
-                _secondaryForegroundColor = _paletteHelper.GetTheme().SecondaryMid.GetForegroundColor();
+                _secondaryForegroundColor = _themeManager.GetTheme().SecondaryMid.GetForegroundColor();
             }
             else if (ActiveScheme == ColorScheme.PrimaryForeground)
             {
@@ -177,24 +178,24 @@ namespace MaterialDesign3Demo.Domain
 
         private void SetPrimaryForegroundToSingleColor(Color color)
         {
-            ITheme theme = _paletteHelper.GetTheme();
+            Theme theme = _themeManager.GetTheme();
 
             theme.PrimaryLight = new ColorPair(theme.PrimaryLight.Color, color);
             theme.PrimaryMid = new ColorPair(theme.PrimaryMid.Color, color);
             theme.PrimaryDark = new ColorPair(theme.PrimaryDark.Color, color);
 
-            _paletteHelper.SetTheme(theme);
+            _themeManager.SetTheme(theme);
         }
 
         private void SetSecondaryForegroundToSingleColor(Color color)
         {
-            ITheme theme = _paletteHelper.GetTheme();
+            Theme theme = _themeManager.GetTheme();
 
             theme.SecondaryLight = new ColorPair(theme.SecondaryLight.Color, color);
             theme.SecondaryMid = new ColorPair(theme.SecondaryMid.Color, color);
             theme.SecondaryDark = new ColorPair(theme.SecondaryDark.Color, color);
 
-            _paletteHelper.SetTheme(theme);
+            _themeManager.SetTheme(theme);
         }
     }
 }

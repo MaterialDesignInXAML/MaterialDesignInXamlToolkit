@@ -3,6 +3,8 @@ using System.Threading;
 using System.Windows.Media;
 using MaterialDesignDemo.Domain;
 using MaterialDesignThemes.Wpf;
+using MaterialDesignThemes.Wpf.Theming;
+using Theme = MaterialDesignThemes.Wpf.Theming.Theme;
 
 namespace MaterialDesignDemo
 {
@@ -22,16 +24,13 @@ namespace MaterialDesignDemo
 
             DataContext = new MainWindowViewModel(MainSnackbar.MessageQueue!);
 
-            var paletteHelper = new PaletteHelper();
-            var theme = paletteHelper.GetTheme();
+            var themeManager = ThemeManager.GetApplicationThemeManager()!;
+            var theme = themeManager.GetTheme();
 
             DarkModeToggleButton.IsChecked = theme.GetBaseTheme() == BaseTheme.Dark;
 
-            if (paletteHelper.GetThemeManager() is { } themeManager)
-            {
-                themeManager.ThemeChanged += (_, e)
-                    => DarkModeToggleButton.IsChecked = e.NewTheme?.GetBaseTheme() == BaseTheme.Dark;
-            }
+            themeManager.ThemeChanged += (_, e)
+                => DarkModeToggleButton.IsChecked = e.NewTheme?.GetBaseTheme() == BaseTheme.Dark;
 
             Snackbar = MainSnackbar;
         }
@@ -88,11 +87,11 @@ namespace MaterialDesignDemo
 
         private static void ModifyTheme(bool isDarkTheme)
         {
-            var paletteHelper = new PaletteHelper();
-            var theme = paletteHelper.GetTheme();
+            ThemeManager themeManager = ThemeManager.GetApplicationThemeManager()!;
+            var theme = themeManager.GetTheme();
 
             theme.SetBaseTheme(isDarkTheme ? Theme.Dark : Theme.Light);
-            paletteHelper.SetTheme(theme);
+            themeManager.SetTheme(theme);
         }
 
         private void OnSelectedItemChanged(object sender, DependencyPropertyChangedEventArgs e)

@@ -1,5 +1,6 @@
 ﻿namespace MaterialDesignThemes.Wpf
 {
+    [Obsolete("Use MaterialDesignThemes.Wpf.Theming.ThemeChangedEventArgs instead")]
     public class ThemeChangedEventArgs : EventArgs
     {
         public ThemeChangedEventArgs(ResourceDictionary resourceDictionary, ITheme oldTheme, ITheme newTheme)

@@ -1,12 +1,14 @@
 ﻿using System.Windows.Media;
 using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
+using MaterialDesignThemes.Wpf.Theming;
+using Theme = MaterialDesignThemes.Wpf.Theming.Theme;
 
 namespace MaterialDesignDemo.Domain;
 
 internal class ColorToolViewModel : ViewModelBase
 {
-    private readonly PaletteHelper _paletteHelper = new();
+    private readonly ThemeManager _themeManager = ThemeManager.GetApplicationThemeManager()!;
 
     private ColorScheme _activeScheme;
     public ColorScheme ActiveScheme
@@ -64,13 +66,13 @@ internal class ColorToolViewModel : ViewModelBase
 
     public ICommand ToggleBaseCommand { get; }
 
-    private void ApplyBase(bool isDark)
-    {
-        ITheme theme = _paletteHelper.GetTheme();
-        IBaseTheme baseTheme = isDark ? new MaterialDesignDarkTheme() : (IBaseTheme)new MaterialDesignLightTheme();
-        theme.SetBaseTheme(baseTheme);
-        _paletteHelper.SetTheme(theme);
-    }
+        private void ApplyBase(bool isDark)
+        {
+            var theme = _themeManager.GetTheme();
+            Theme baseTheme = isDark ? Theme.Dark : Theme.Light;
+            theme.SetBaseTheme(baseTheme);
+            _themeManager.SetTheme(theme);
+        }
 
     public ColorToolViewModel()
     {
@@ -83,7 +85,7 @@ internal class ColorToolViewModel : ViewModelBase
         ChangeToSecondaryForegroundCommand = new AnotherCommandImplementation(o => ChangeScheme(ColorScheme.SecondaryForeground));
 
 
-        ITheme theme = _paletteHelper.GetTheme();
+        var theme = _themeManager.GetTheme();
 
         _primaryColor = theme.PrimaryMid.Color;
         _secondaryColor = theme.SecondaryMid.Color;
@@ -95,10 +97,26 @@ internal class ColorToolViewModel : ViewModelBase
     {
         var color = (Color)obj!;
 
-        if (ActiveScheme == ColorScheme.Primary)
-        {
-            _paletteHelper.ChangePrimaryColor(color);
-            _primaryColor = color;
+            if (ActiveScheme == ColorScheme.Primary)
+            {
+                _themeManager.ChangePrimaryColor(color);
+                _primaryColor = color;
+            }
+            else if (ActiveScheme == ColorScheme.Secondary)
+            {
+                _themeManager.ChangeSecondaryColor(color);
+                _secondaryColor = color;
+            }
+            else if (ActiveScheme == ColorScheme.PrimaryForeground)
+            {
+                SetPrimaryForegroundToSingleColor(color);
+                _primaryForegroundColor = color;
+            }
+            else if (ActiveScheme == ColorScheme.SecondaryForeground)
+            {
+                SetSecondaryForegroundToSingleColor(color);
+                _secondaryForegroundColor = color;
+            }
         }
         else if (ActiveScheme == ColorScheme.Secondary)
         {
@@ -150,50 +168,50 @@ internal class ColorToolViewModel : ViewModelBase
     {
         var hue = (Color)obj!;
 
-        SelectedColor = hue;
-        if (ActiveScheme == ColorScheme.Primary)
-        {
-            _paletteHelper.ChangePrimaryColor(hue);
-            _primaryColor = hue;
-            _primaryForegroundColor = _paletteHelper.GetTheme().PrimaryMid.GetForegroundColor();
+            SelectedColor = hue;
+            if (ActiveScheme == ColorScheme.Primary)
+            {
+                _themeManager.ChangePrimaryColor(hue);
+                _primaryColor = hue;
+                _primaryForegroundColor = _themeManager.GetTheme().PrimaryMid.GetForegroundColor();
+            }
+            else if (ActiveScheme == ColorScheme.Secondary)
+            {
+                _themeManager.ChangeSecondaryColor(hue);
+                _secondaryColor = hue;
+                _secondaryForegroundColor = _themeManager.GetTheme().SecondaryMid.GetForegroundColor();
+            }
+            else if (ActiveScheme == ColorScheme.PrimaryForeground)
+            {
+                SetPrimaryForegroundToSingleColor(hue);
+                _primaryForegroundColor = hue;
+            }
+            else if (ActiveScheme == ColorScheme.SecondaryForeground)
+            {
+                SetSecondaryForegroundToSingleColor(hue);
+                _secondaryForegroundColor = hue;
+            }
         }
         else if (ActiveScheme == ColorScheme.Secondary)
         {
-            _paletteHelper.ChangeSecondaryColor(hue);
-            _secondaryColor = hue;
-            _secondaryForegroundColor = _paletteHelper.GetTheme().SecondaryMid.GetForegroundColor();
-        }
-        else if (ActiveScheme == ColorScheme.PrimaryForeground)
-        {
-            SetPrimaryForegroundToSingleColor(hue);
-            _primaryForegroundColor = hue;
-        }
-        else if (ActiveScheme == ColorScheme.SecondaryForeground)
-        {
-            SetSecondaryForegroundToSingleColor(hue);
-            _secondaryForegroundColor = hue;
-        }
-    }
+            var theme = _themeManager.GetTheme();
 
     private void SetPrimaryForegroundToSingleColor(Color color)
     {
         ITheme theme = _paletteHelper.GetTheme();
 
-        theme.PrimaryLight = new ColorPair(theme.PrimaryLight.Color, color);
-        theme.PrimaryMid = new ColorPair(theme.PrimaryMid.Color, color);
-        theme.PrimaryDark = new ColorPair(theme.PrimaryDark.Color, color);
+            _themeManager.SetTheme(theme);
+        }
 
-        _paletteHelper.SetTheme(theme);
-    }
 
     private void SetSecondaryForegroundToSingleColor(Color color)
     {
-        ITheme theme = _paletteHelper.GetTheme();
+        var theme = _themeManager.GetTheme();
 
         theme.SecondaryLight = new ColorPair(theme.SecondaryLight.Color, color);
         theme.SecondaryMid = new ColorPair(theme.SecondaryMid.Color, color);
         theme.SecondaryDark = new ColorPair(theme.SecondaryDark.Color, color);
 
-        _paletteHelper.SetTheme(theme);
+            _themeManager.SetTheme(theme);
     }
 }

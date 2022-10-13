@@ -1,6 +1,7 @@
 ﻿using System.Windows.Media;
-using MaterialDesignThemes.Wpf;
+using MaterialDesignThemes.Wpf.Theming;
 using ShowMeTheXAML;
+using ThemeChangedEventArgs = MaterialDesignThemes.Wpf.Theming.ThemeChangedEventArgs;
 
 namespace MahMaterialDragablzMashUp
 {
@@ -16,11 +17,9 @@ namespace MahMaterialDragablzMashUp
 
             //Add/Update brush used by Dragablz when the theme changes
             //Solution for https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/2349
-            PaletteHelper helper = new PaletteHelper();
-            if (helper.GetThemeManager() is { } themeManager)
-            {
-                themeManager.ThemeChanged += ThemeManager_ThemeChanged;
-            }
+            ThemeManager themeManager = new ThemeManager(Resources);
+
+            themeManager.ThemeChanged += ThemeManager_ThemeChanged;
         }
 
         private void ThemeManager_ThemeChanged(object? sender, ThemeChangedEventArgs e)

@@ -288,7 +288,7 @@
       </Setter.Value>
     </Setter>
     <Setter Property="VerticalAlignment" Value="Bottom" />
-    <Setter Property="local:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="local:TextFieldAssist.UnderlineBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
   </Style>
 
   <Style TargetType="{x:Type local:MaterialDateDisplay}">

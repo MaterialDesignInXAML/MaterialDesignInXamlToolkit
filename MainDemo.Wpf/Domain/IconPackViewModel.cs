@@ -2,7 +2,9 @@
 using System.Windows.Media.Imaging;
 using BluwolfIcons;
 using MaterialDesignThemes.Wpf;
+using MaterialDesignThemes.Wpf.Theming;
 using Microsoft.Win32;
+using Theme = MaterialDesignThemes.Wpf.Theming.Theme;
 
 namespace MaterialDesignDemo.Domain
 {
@@ -26,15 +28,14 @@ namespace MaterialDesignDemo.Domain
                     .OrderBy(x => x.Kind)
                     .ToList());
 
-            var helper = new PaletteHelper();
-            if (helper.GetThemeManager() is { } themeManager)
-            {
-                themeManager.ThemeChanged += ThemeManager_ThemeChanged;
-            }
+            ThemeManager themeManager = ThemeManager.GetApplicationThemeManager()!;
+
+            themeManager.ThemeChanged += ThemeManager_ThemeChanged;
+
             SetDefaultIconColors();
         }
 
-        private void ThemeManager_ThemeChanged(object? sender, ThemeChangedEventArgs e)
+        private void ThemeManager_ThemeChanged(object? sender, EventArgs e)
             => SetDefaultIconColors();
 
         public ICommand OpenDotComCommand { get; }
@@ -109,9 +110,9 @@ namespace MaterialDesignDemo.Domain
 
         private void SetDefaultIconColors()
         {
-            var helper = new PaletteHelper();
-            ITheme theme = helper.GetTheme();
-            GeneratedIconBackground = theme.Paper;
+            ThemeManager themeManager = ThemeManager.GetApplicationThemeManager()!;
+            Theme theme = themeManager.GetTheme();
+            GeneratedIconBackground = theme.Background;
             GeneratedIconForeground = theme.PrimaryMid.Color;
         }
 

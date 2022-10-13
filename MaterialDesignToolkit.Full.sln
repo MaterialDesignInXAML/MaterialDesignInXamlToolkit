@@ -50,6 +50,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{9E303A4A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mdresgen", "mdresgen\mdresgen.csproj", "{59CE50AC-D176-4CC0-B465-26F66054A15E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialDesign.Generators", "MaterialDesign.Generators\MaterialDesign.Generators.csproj", "{17B9D4DF-B20B-4550-80EE-2CB88EF8D1FF}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{18401177-A30E-4330-8F6B-101DF876CE99}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\build_artifacts.yml = .github\workflows\build_artifacts.yml
@@ -219,6 +221,22 @@ Global
 		{59CE50AC-D176-4CC0-B465-26F66054A15E}.Release|x64.Build.0 = Release|Any CPU
 		{59CE50AC-D176-4CC0-B465-26F66054A15E}.Release|x86.ActiveCfg = Release|Any CPU
 		{59CE50AC-D176-4CC0-B465-26F66054A15E}.Release|x86.Build.0 = Release|Any CPU
+		{17B9D4DF-B20B-4550-80EE-2CB88EF8D1FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17B9D4DF-B20B-4550-80EE-2CB88EF8D1FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17B9D4DF-B20B-4550-80EE-2CB88EF8D1FF}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{17B9D4DF-B20B-4550-80EE-2CB88EF8D1FF}.Debug|ARM.Build.0 = Debug|Any CPU
+		{17B9D4DF-B20B-4550-80EE-2CB88EF8D1FF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{17B9D4DF-B20B-4550-80EE-2CB88EF8D1FF}.Debug|x64.Build.0 = Debug|Any CPU
+		{17B9D4DF-B20B-4550-80EE-2CB88EF8D1FF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{17B9D4DF-B20B-4550-80EE-2CB88EF8D1FF}.Debug|x86.Build.0 = Debug|Any CPU
+		{17B9D4DF-B20B-4550-80EE-2CB88EF8D1FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17B9D4DF-B20B-4550-80EE-2CB88EF8D1FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17B9D4DF-B20B-4550-80EE-2CB88EF8D1FF}.Release|ARM.ActiveCfg = Release|Any CPU
+		{17B9D4DF-B20B-4550-80EE-2CB88EF8D1FF}.Release|ARM.Build.0 = Release|Any CPU
+		{17B9D4DF-B20B-4550-80EE-2CB88EF8D1FF}.Release|x64.ActiveCfg = Release|Any CPU
+		{17B9D4DF-B20B-4550-80EE-2CB88EF8D1FF}.Release|x64.Build.0 = Release|Any CPU
+		{17B9D4DF-B20B-4550-80EE-2CB88EF8D1FF}.Release|x86.ActiveCfg = Release|Any CPU
+		{17B9D4DF-B20B-4550-80EE-2CB88EF8D1FF}.Release|x86.Build.0 = Release|Any CPU
 		{98627CBE-F009-482E-97E9-C69C7135E91F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{98627CBE-F009-482E-97E9-C69C7135E91F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98627CBE-F009-482E-97E9-C69C7135E91F}.Debug|ARM.ActiveCfg = Debug|Any CPU

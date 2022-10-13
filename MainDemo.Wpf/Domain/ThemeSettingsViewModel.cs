@@ -1,4 +1,6 @@
 ﻿using MaterialDesignThemes.Wpf;
+using MaterialDesignThemes.Wpf.Theming;
+using Theme = MaterialDesignThemes.Wpf.Theming.Theme;
 
 namespace MaterialDesignDemo.Domain
 {
@@ -6,28 +8,22 @@ namespace MaterialDesignDemo.Domain
     {
         public ThemeSettingsViewModel()
         {
-            PaletteHelper paletteHelper = new PaletteHelper();
-            ITheme theme = paletteHelper.GetTheme();
+            ThemeManager themeManager = ThemeManager.GetApplicationThemeManager()!;
+            Theme theme = themeManager.GetTheme();
 
             IsDarkTheme = theme.GetBaseTheme() == BaseTheme.Dark;
 
-            if (theme is Theme internalTheme)
-            {
-                _isColorAdjusted = internalTheme.ColorAdjustment is not null;
+            _isColorAdjusted = theme.ColorAdjustment is not null;
 
-                var colorAdjustment = internalTheme.ColorAdjustment ?? new ColorAdjustment();
-                _desiredContrastRatio = colorAdjustment.DesiredContrastRatio;
-                _contrastValue = colorAdjustment.Contrast;
-                _colorSelectionValue = colorAdjustment.Colors;
-            }
+            var colorAdjustment = theme.ColorAdjustment ?? new ColorAdjustment();
+            _desiredContrastRatio = colorAdjustment.DesiredContrastRatio;
+            _contrastValue = colorAdjustment.Contrast;
+            _colorSelectionValue = colorAdjustment.Colors;
 
-            if (paletteHelper.GetThemeManager() is { } themeManager)
+            themeManager.ThemeChanged += (_, e) =>
             {
-                themeManager.ThemeChanged += (_, e) =>
-                {
-                    IsDarkTheme = e.NewTheme?.GetBaseTheme() == BaseTheme.Dark;
-                };
-            }
+                IsDarkTheme = e.NewTheme?.GetBaseTheme() == BaseTheme.Dark;
+            };
         }
 
         private bool _isDarkTheme;
@@ -124,14 +120,14 @@ namespace MaterialDesignDemo.Domain
             }
         }
 
-        private static void ModifyTheme(Action<ITheme> modificationAction)
+        private static void ModifyTheme(Action<Theme> modificationAction)
         {
-            var paletteHelper = new PaletteHelper();
-            ITheme theme = paletteHelper.GetTheme();
+            ThemeManager themeManager = ThemeManager.GetApplicationThemeManager()!;
+            Theme theme = themeManager.GetTheme();
 
             modificationAction?.Invoke(theme);
 
-            paletteHelper.SetTheme(theme);
+            themeManager.SetTheme(theme);
         }
     }
 }

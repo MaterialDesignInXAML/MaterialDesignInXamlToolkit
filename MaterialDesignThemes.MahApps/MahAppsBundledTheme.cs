@@ -1,7 +1,10 @@
 ﻿using ControlzEx.Theming;
 using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
-using Theme = ControlzEx.Theming.Theme;
+using Theme = MaterialDesignThemes.Wpf.Theming.Theme;
+using ThemeEx = ControlzEx.Theming.Theme;
+using ThemeManager = MaterialDesignThemes.Wpf.Theming.ThemeManager;
+using ThemeManagerEx = ControlzEx.Theming.ThemeManager;
 
 namespace MaterialDesignThemes.MahApps;
 
@@ -117,5 +120,6 @@ public class MahAppsBundledTheme : BundledTheme
                     break;
             }
         }
+#pragma warning restore CS0618 // Type or member is obsolete
     }
 }

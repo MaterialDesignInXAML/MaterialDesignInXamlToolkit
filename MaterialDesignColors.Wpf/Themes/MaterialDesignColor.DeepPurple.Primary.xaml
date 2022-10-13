@@ -1,24 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <Color x:Key="Primary50">#ede7f6</Color>
+  <Color x:Key="Primary50">#EDE7F6</Color>
   <Color x:Key="Primary50Foreground">#DD000000</Color>
-  <Color x:Key="Primary100">#d1c4e9</Color>
+  <Color x:Key="Primary100">#D1C4E9</Color>
   <Color x:Key="Primary100Foreground">#DD000000</Color>
-  <Color x:Key="Primary200">#b39ddb</Color>
+  <Color x:Key="Primary200">#B39DDB</Color>
   <Color x:Key="Primary200Foreground">#DD000000</Color>
-  <Color x:Key="Primary300">#9575cd</Color>
+  <Color x:Key="Primary300">#9575CD</Color>
   <Color x:Key="Primary300Foreground">#DDFFFFFF</Color>
-  <Color x:Key="Primary400">#7e57c2</Color>
+  <Color x:Key="Primary400">#7E57C2</Color>
   <Color x:Key="Primary400Foreground">#DDFFFFFF</Color>
-  <Color x:Key="Primary500">#673ab7</Color>
+  <Color x:Key="Primary500">#673AB7</Color>
   <Color x:Key="Primary500Foreground">#DDFFFFFF</Color>
-  <Color x:Key="Primary600">#5e35b1</Color>
+  <Color x:Key="Primary600">#5E35B1</Color>
   <Color x:Key="Primary600Foreground">#DDFFFFFF</Color>
-  <Color x:Key="Primary700">#512da8</Color>
+  <Color x:Key="Primary700">#512DA8</Color>
   <Color x:Key="Primary700Foreground">#DDFFFFFF</Color>
-  <Color x:Key="Primary800">#4527a0</Color>
+  <Color x:Key="Primary800">#4527A0</Color>
   <Color x:Key="Primary800Foreground">#DDFFFFFF</Color>
-  <Color x:Key="Primary900">#311b92</Color>
+  <Color x:Key="Primary900">#311B92</Color>
   <Color x:Key="Primary900Foreground">#DDFFFFFF</Color>
 </ResourceDictionary>
