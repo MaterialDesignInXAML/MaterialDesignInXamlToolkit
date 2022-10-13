@@ -272,7 +272,7 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="SelectedBorder"
                                                          Storyboard.TargetProperty="Opacity"
-                                                         To="0.03" Duration="0"/>
+                                                         To="0.09" Duration="0"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
