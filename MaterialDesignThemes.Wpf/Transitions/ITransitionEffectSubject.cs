@@ -1,5 +1,3 @@
-using System;
-
 namespace MaterialDesignThemes.Wpf.Transitions
 {
     public interface ITransitionEffectSubject

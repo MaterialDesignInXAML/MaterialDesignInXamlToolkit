@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MaterialDesign3Demo.Domain
+﻿namespace MaterialDesign3Demo.Domain
 {
     public class PickersViewModel : ViewModelBase
     {

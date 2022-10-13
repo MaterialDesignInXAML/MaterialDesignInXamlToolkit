@@ -1,14 +1,9 @@
-﻿using System;
+﻿using System.Configuration;
 using System.Diagnostics;
+using System.Threading;
+using System.Windows.Media;
 using MaterialDesign3Demo.Domain;
 using MaterialDesignThemes.Wpf;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls.Primitives;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Configuration;
 
 namespace MaterialDesign3Demo
 {

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 using MaterialDesignColors;
 using Microsoft.Win32;
 

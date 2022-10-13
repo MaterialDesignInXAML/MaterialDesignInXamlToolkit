@@ -1,7 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-
-namespace MaterialDesignDemo
+﻿namespace MaterialDesignDemo
 {
     public static class XamlDisplayEx
     {

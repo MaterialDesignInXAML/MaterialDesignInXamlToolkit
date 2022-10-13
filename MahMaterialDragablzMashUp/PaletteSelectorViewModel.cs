@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Windows;
-using System.Windows.Input;
+﻿using System.ComponentModel;
 using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
 

@@ -1,9 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Input;
-
-namespace MaterialDesignThemes.Wpf.Internal
+﻿namespace MaterialDesignThemes.Wpf.Internal
 {
     public static class ClearText
     {

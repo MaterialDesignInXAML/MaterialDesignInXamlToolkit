@@ -11,8 +11,8 @@ internal class TabsViewModel : ViewModelBase
     public TabsViewModel() =>
         CustomTabs = new()
         {
-            new CustomTab {CustomHeader = "Custom tab 1", CustomContent = "Custom tab 1 content"},
-            new CustomTab {CustomHeader = "Custom tab 2", CustomContent = "Custom tab 2 content"}
+            new CustomTab { CustomHeader = "Custom tab 1", CustomContent = "Custom tab 1 content" },
+            new CustomTab { CustomHeader = "Custom tab 2", CustomContent = "Custom tab 2 content" }
         };
 }
 

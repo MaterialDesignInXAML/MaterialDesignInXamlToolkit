@@ -1,11 +1,7 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using System.Threading;
-using System.Windows;
+using Microsoft.Win32;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -25,7 +21,7 @@ namespace MaterialDesignThemes.Wpf
 
             [DllImport(User32, CharSet = CharSet.Auto)]
             [ResourceExposure(ResourceScope.None)]
-            public static extern bool GetMonitorInfo(HandleRef hmonitor, [In, Out]MONITORINFOEX info);
+            public static extern bool GetMonitorInfo(HandleRef hmonitor, [In, Out] MONITORINFOEX info);
 
             [DllImport(User32, ExactSpelling = true)]
             [ResourceExposure(ResourceScope.None)]

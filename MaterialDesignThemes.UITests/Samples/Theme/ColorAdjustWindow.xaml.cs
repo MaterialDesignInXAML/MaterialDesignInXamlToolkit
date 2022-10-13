@@ -1,8 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls.Primitives;
-using MaterialDesignThemes.Wpf;
-
-namespace MaterialDesignThemes.UITests.Samples.Theme
+﻿namespace MaterialDesignThemes.UITests.Samples.Theme
 {
     /// <summary>
     /// Interaction logic for ColorAdjustWindow.xaml

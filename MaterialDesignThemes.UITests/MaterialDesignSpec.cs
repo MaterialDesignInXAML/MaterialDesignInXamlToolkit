@@ -20,7 +20,7 @@ public static class MaterialDesignSpec
     public static void AssertContrastRatio(Color foreground, Color background, double minimumContrastRatio)
     {
         const double tolerance = 0.1;
-        
+
         var ratio = ColorAssist.ContrastRatio(foreground, background);
         Assert.True(ratio >= minimumContrastRatio - tolerance, $"Contrast ratio '{ratio}' is less than {minimumContrastRatio} with a tolerance of 0.1");
     }

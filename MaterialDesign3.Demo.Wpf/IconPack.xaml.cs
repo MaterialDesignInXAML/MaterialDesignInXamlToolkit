@@ -1,9 +1,4 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-
-namespace MaterialDesign3Demo
+﻿namespace MaterialDesign3Demo
 {
     public partial class IconPack
     {

@@ -2,62 +2,66 @@
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:dockablz="clr-namespace:Dragablz.Dockablz;assembly=Dragablz"
                       xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
                       xmlns:mahMaterialDragablzMashUp="clr-namespace:MahMaterialDragablzMashUp"
-                      xmlns:dockablz="clr-namespace:Dragablz.Dockablz;assembly=Dragablz"
                       xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
-                      WindowTransitionsEnabled="False"
-                      Style="{StaticResource MaterialDesignWindow}"
-                      GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
+                      Title="Material-MahApps-Dragablz Mash Up"
+                      Width="800"
+                      Height="640"
                       FontFamily="{DynamicResource MahApps.Fonts.Family.Window.Title}"
-                      Title="Material-MahApps-Dragablz Mash Up" Height="640" Width="800">
-    <Window.CommandBindings>
-        <CommandBinding Command="Copy" Executed="OnCopy" />
-    </Window.CommandBindings>
-    <controls:MetroWindow.WindowButtonCommands>
-        <controls:WindowButtonCommands Style="{StaticResource MahApps.Styles.WindowButtonCommands.Win10}" />
-    </controls:MetroWindow.WindowButtonCommands>
-    <controls:MetroWindow.Flyouts>
-        <controls:FlyoutsControl>
-            <controls:Flyout x:Name="LeftFlyout" Position="Left" Header="Settings" wpf:FlyoutAssist.HeaderColorMode="SecondaryMid">
-                <mahMaterialDragablzMashUp:FlyoutContent />
-            </controls:Flyout>
-        </controls:FlyoutsControl>
-    </controls:MetroWindow.Flyouts>
-    <controls:MetroWindow.LeftWindowCommands>
-        <controls:WindowCommands>
-            <wpf:PopupBox Style="{StaticResource WindowCommandsPopupBoxStyle}">
-                <StackPanel>
-                    <Button Content="Hello World"/>
-                    <Button Content="Nice Popup"/>
-                    <Button Content="Goodbye"/>
-                </StackPanel>
-            </wpf:PopupBox>
-        </controls:WindowCommands>
-    </controls:MetroWindow.LeftWindowCommands>
-        <dockablz:Layout>
-        <dragablz:TabablzControl BorderThickness="0"
-                                 Margin="0,-1,0,1">
-            <dragablz:TabablzControl.InterTabController>
-                <dragablz:InterTabController />
-            </dragablz:TabablzControl.InterTabController>
-            <TabItem Header="DIALOGS">
-                <mahMaterialDragablzMashUp:Dialogs Margin="8">
-                    <mahMaterialDragablzMashUp:Dialogs.DataContext>
-                        <mahMaterialDragablzMashUp:DialogsViewModel />
-                    </mahMaterialDragablzMashUp:Dialogs.DataContext>
-                </mahMaterialDragablzMashUp:Dialogs>
-            </TabItem>
-            <TabItem Header="MAHAPPS">
-                <mahMaterialDragablzMashUp:Mah Margin="16" />
-            </TabItem>
-            <TabItem Header="PALETTE">
-                <mahMaterialDragablzMashUp:PaletteSelector Margin="16">
-                    <mahMaterialDragablzMashUp:PaletteSelector.DataContext>
-                        <mahMaterialDragablzMashUp:PaletteSelectorViewModel />
-                    </mahMaterialDragablzMashUp:PaletteSelector.DataContext>
-                </mahMaterialDragablzMashUp:PaletteSelector>
-            </TabItem>           
-        </dragablz:TabablzControl>
-    </dockablz:Layout>
+                      GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
+                      Style="{StaticResource MaterialDesignWindow}"
+                      WindowTransitionsEnabled="False">
+  <Window.CommandBindings>
+    <CommandBinding Command="Copy" Executed="OnCopy" />
+  </Window.CommandBindings>
+  <controls:MetroWindow.WindowButtonCommands>
+    <controls:WindowButtonCommands Style="{StaticResource MahApps.Styles.WindowButtonCommands.Win10}" />
+  </controls:MetroWindow.WindowButtonCommands>
+  <controls:MetroWindow.Flyouts>
+    <controls:FlyoutsControl>
+      <controls:Flyout x:Name="LeftFlyout"
+                       wpf:FlyoutAssist.HeaderColorMode="SecondaryMid"
+                       Header="Settings"
+                       Position="Left">
+        <mahMaterialDragablzMashUp:FlyoutContent />
+      </controls:Flyout>
+    </controls:FlyoutsControl>
+  </controls:MetroWindow.Flyouts>
+  <controls:MetroWindow.LeftWindowCommands>
+    <controls:WindowCommands>
+      <wpf:PopupBox Style="{StaticResource WindowCommandsPopupBoxStyle}">
+        <StackPanel>
+          <Button Content="Hello World" />
+          <Button Content="Nice Popup" />
+          <Button Content="Goodbye" />
+        </StackPanel>
+      </wpf:PopupBox>
+    </controls:WindowCommands>
+  </controls:MetroWindow.LeftWindowCommands>
+  <dockablz:Layout>
+    <dragablz:TabablzControl Margin="0,-1,0,1" BorderThickness="0">
+      <dragablz:TabablzControl.InterTabController>
+        <dragablz:InterTabController />
+      </dragablz:TabablzControl.InterTabController>
+      <TabItem Header="DIALOGS">
+        <mahMaterialDragablzMashUp:Dialogs Margin="8">
+          <mahMaterialDragablzMashUp:Dialogs.DataContext>
+            <mahMaterialDragablzMashUp:DialogsViewModel />
+          </mahMaterialDragablzMashUp:Dialogs.DataContext>
+        </mahMaterialDragablzMashUp:Dialogs>
+      </TabItem>
+      <TabItem Header="MAHAPPS">
+        <mahMaterialDragablzMashUp:Mah Margin="16" />
+      </TabItem>
+      <TabItem Header="PALETTE">
+        <mahMaterialDragablzMashUp:PaletteSelector Margin="16">
+          <mahMaterialDragablzMashUp:PaletteSelector.DataContext>
+            <mahMaterialDragablzMashUp:PaletteSelectorViewModel />
+          </mahMaterialDragablzMashUp:PaletteSelector.DataContext>
+        </mahMaterialDragablzMashUp:PaletteSelector>
+      </TabItem>
+    </dragablz:TabablzControl>
+  </dockablz:Layout>
 </controls:MetroWindow>

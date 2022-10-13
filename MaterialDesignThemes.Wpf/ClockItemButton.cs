@@ -1,9 +1,4 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls.Primitives;
-using System.Windows.Input;
-
-namespace MaterialDesignThemes.Wpf
+﻿namespace MaterialDesignThemes.Wpf
 {
 
     [TemplatePart(Name = ThumbPartName, Type = typeof(Thumb))]

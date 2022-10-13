@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
-namespace MaterialDesignDemo.Domain
+﻿namespace MaterialDesignDemo.Domain
 {
     public class ComboBoxesViewModel : ViewModelBase
     {
@@ -26,7 +22,7 @@ namespace MaterialDesignDemo.Domain
 
             LongStringList = new List<string>();
 
-            for(int i = 0; i < 1000; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 LongStringList.Add(Path.GetRandomFileName());
             }

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace mdresgen
+﻿namespace mdresgen
 {
     internal class Icon
     {

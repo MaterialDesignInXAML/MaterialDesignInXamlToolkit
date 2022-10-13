@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using ShowMeTheXAML;
+﻿using ShowMeTheXAML;
 
 namespace MaterialDesign3Demo
 {

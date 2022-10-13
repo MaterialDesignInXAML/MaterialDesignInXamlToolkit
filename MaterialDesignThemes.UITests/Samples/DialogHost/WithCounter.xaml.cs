@@ -1,7 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-
-namespace MaterialDesignThemes.UITests.Samples.DialogHost
+﻿namespace MaterialDesignThemes.UITests.Samples.DialogHost
 {
     /// <summary>
     /// Interaction logic for WithCounter.xaml

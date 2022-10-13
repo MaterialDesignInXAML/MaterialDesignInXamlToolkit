@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using System.Windows;
 
 namespace MaterialDesign3Demo
 {

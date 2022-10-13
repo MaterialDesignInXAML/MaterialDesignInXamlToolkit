@@ -1,152 +1,172 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
-                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
-                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
-    <converters:BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
-    <converters:BooleanToVisibilityConverter x:Key="InverseBoolToVisConverter" TrueValue="Collapsed" FalseValue="Visible"/>
-    <converters:FloatingHintTransformConverter x:Key="FloatingHintTransformConverter" />
-    <system:Double x:Key="NoContentFloatingScale">1.0</system:Double>
-    <CubicEase x:Key="AnimationEasingFunction" EasingMode="EaseInOut"/>
+  <converters:BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
+  <converters:BooleanToVisibilityConverter x:Key="InverseBoolToVisConverter"
+                                           FalseValue="Visible"
+                                           TrueValue="Collapsed" />
+  <converters:FloatingHintTransformConverter x:Key="FloatingHintTransformConverter" />
+  <system:Double x:Key="NoContentFloatingScale">1.0</system:Double>
+  <CubicEase x:Key="AnimationEasingFunction" EasingMode="EaseInOut" />
 
-    <Style TargetType="{x:Type wpf:SmartHint}">
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="HorizontalContentAlignment" Value="Left"/>
-        <Setter Property="VerticalContentAlignment" Value="Bottom"/>
-        <Setter Property="IsTabStop" Value="False"/>
-        <Setter Property="IsHitTestVisible" Value="False" />
+  <Style TargetType="{x:Type wpf:SmartHint}">
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="HorizontalContentAlignment" Value="Left" />
+    <Setter Property="IsHitTestVisible" Value="False" />
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type wpf:SmartHint}">
+          <Grid Margin="{TemplateBinding Padding}"
+                HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                VerticalAlignment="{TemplateBinding VerticalAlignment}">
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="ContentStates">
+                <VisualStateGroup.Transitions>
+                  <VisualTransition From="*" To="HintFloatingPosition">
+                    <Storyboard>
+                      <DoubleAnimation Storyboard.TargetName="SimpleHintTextBlock"
+                                       Storyboard.TargetProperty="Opacity"
+                                       To="0"
+                                       Duration="0:0:0" />
+                    </Storyboard>
+                  </VisualTransition>
+                  <VisualTransition From="*" To="HintRestingPosition">
+                    <Storyboard>
+                      <DoubleAnimation EasingFunction="{StaticResource AnimationEasingFunction}"
+                                       Storyboard.TargetName="SimpleHintTextBlock"
+                                       Storyboard.TargetProperty="Opacity"
+                                       Duration="0:0:0.15" />
+                    </Storyboard>
+                  </VisualTransition>
+                </VisualStateGroup.Transitions>
+                <VisualState x:Name="HintFloatingPosition">
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="SimpleHintTextBlock"
+                                     Storyboard.TargetProperty="Opacity"
+                                     To="0"
+                                     Duration="0" />
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="HintRestingPosition">
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="SimpleHintTextBlock"
+                                     Storyboard.TargetProperty="Opacity"
+                                     Duration="0" />
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <ContentControl x:Name="SimpleHintTextBlock"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Content="{TemplateBinding Hint}"
+                            FontSize="{TemplateBinding FontSize}"
+                            IsHitTestVisible="False"
+                            IsTabStop="False"
+                            Opacity="{TemplateBinding HintOpacity}"
+                            Visibility="{TemplateBinding UseFloating, Converter={StaticResource InverseBoolToVisConverter}}" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="VerticalContentAlignment" Value="Bottom" />
+    <Style.Triggers>
+      <Trigger Property="UseFloating" Value="True">
         <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type wpf:SmartHint}">
-                    <Grid Margin="{TemplateBinding Padding}"
-                          HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                          VerticalAlignment="{TemplateBinding VerticalAlignment}">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="ContentStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition From="*" To="HintFloatingPosition">
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="SimpleHintTextBlock" Storyboard.TargetProperty="Opacity"
-                                                             Duration="0:0:0" To="0" />
-                                        </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition From="*" To="HintRestingPosition">
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="SimpleHintTextBlock" Storyboard.TargetProperty="Opacity"
-                                                             Duration="0:0:0.15"
-                                                             EasingFunction="{StaticResource AnimationEasingFunction}"/>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                </VisualStateGroup.Transitions>
-                                <VisualState x:Name="HintFloatingPosition">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SimpleHintTextBlock"
-                                                         Duration="0" To="0" />
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="HintRestingPosition">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SimpleHintTextBlock"
-                                                         Duration="0" />
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <ContentControl x:Name="SimpleHintTextBlock"
-                                        IsTabStop="False"
-                                        Visibility="{TemplateBinding UseFloating, Converter={StaticResource InverseBoolToVisConverter}}"
-                                        Content="{TemplateBinding Hint}"
-                                        FontSize="{TemplateBinding FontSize}"
-                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                        Opacity="{TemplateBinding HintOpacity}"
-                                        IsHitTestVisible="False"/>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type wpf:SmartHint}">
+              <Grid Margin="{TemplateBinding Padding}"
+                    HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                    VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                <VisualStateManager.VisualStateGroups>
+                  <VisualStateGroup x:Name="ContentStates">
+                    <VisualStateGroup.Transitions>
+                      <VisualTransition From="*" To="HintFloatingPosition">
+                        <Storyboard>
+                          <DoubleAnimation EasingFunction="{StaticResource AnimationEasingFunction}"
+                                           Storyboard.TargetName="FloatingHintTextBlock"
+                                           Storyboard.TargetProperty="Opacity"
+                                           To="{TemplateBinding HintOpacity}"
+                                           Duration="0:0:0.15" />
+                          <DoubleAnimation EasingFunction="{StaticResource AnimationEasingFunction}"
+                                           Storyboard.TargetName="ScaleHost"
+                                           Storyboard.TargetProperty="Scale"
+                                           To="1"
+                                           Duration="0:0:0.15" />
+                        </Storyboard>
+                      </VisualTransition>
+                      <VisualTransition From="*" To="HintRestingPosition">
+                        <Storyboard>
+                          <DoubleAnimation EasingFunction="{StaticResource AnimationEasingFunction}"
+                                           Storyboard.TargetName="FloatingHintTextBlock"
+                                           Storyboard.TargetProperty="Opacity"
+                                           Duration="0:0:0.15" />
+                          <DoubleAnimation EasingFunction="{StaticResource AnimationEasingFunction}"
+                                           Storyboard.TargetName="ScaleHost"
+                                           Storyboard.TargetProperty="Scale"
+                                           Duration="0:0:0.15" />
+                        </Storyboard>
+                      </VisualTransition>
+                    </VisualStateGroup.Transitions>
+                    <VisualState x:Name="HintFloatingPosition">
+                      <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock"
+                                         Storyboard.TargetProperty="Opacity"
+                                         To="{TemplateBinding HintOpacity}"
+                                         Duration="0" />
+                        <DoubleAnimation Storyboard.TargetName="ScaleHost"
+                                         Storyboard.TargetProperty="Scale"
+                                         To="1"
+                                         Duration="0" />
+                      </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="HintRestingPosition">
+                      <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock"
+                                         Storyboard.TargetProperty="Opacity"
+                                         Duration="0" />
+                        <DoubleAnimation Storyboard.TargetName="ScaleHost"
+                                         Storyboard.TargetProperty="Scale"
+                                         Duration="0" />
+                      </Storyboard>
+                    </VisualState>
+                  </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <wpf:ScaleHost x:Name="ScaleHost" />
+                <ContentControl x:Name="FloatingHintTextBlock"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Hint}"
+                                FontFamily="{TemplateBinding FontFamily}"
+                                FontSize="{TemplateBinding FontSize}"
+                                IsHitTestVisible="False"
+                                IsTabStop="False"
+                                Opacity="{TemplateBinding HintOpacity}"
+                                RenderTransformOrigin="0,0"
+                                Visibility="{TemplateBinding UseFloating, Converter={StaticResource BoolToVisConverter}}">
+                  <ContentControl.Tag>
+                    <system:Double>0.0</system:Double>
+                  </ContentControl.Tag>
+                  <ContentControl.RenderTransform>
+                    <MultiBinding Converter="{StaticResource FloatingHintTransformConverter}">
+                      <Binding ElementName="ScaleHost" Path="Scale" />
+                      <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}" />
+                      <Binding Source="{StaticResource NoContentFloatingScale}" />
+                      <Binding Path="FloatingOffset" RelativeSource="{RelativeSource TemplatedParent}" />
+                    </MultiBinding>
+                  </ContentControl.RenderTransform>
+                </ContentControl>
+              </Grid>
+            </ControlTemplate>
+          </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="UseFloating" Value="True">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type wpf:SmartHint}">
-                            <Grid Margin="{TemplateBinding Padding}"
-                                  HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                                  VerticalAlignment="{TemplateBinding VerticalAlignment}">
-                                <VisualStateManager.VisualStateGroups>
-                                    <VisualStateGroup x:Name="ContentStates">
-                                        <VisualStateGroup.Transitions>
-                                            <VisualTransition From="*" To="HintFloatingPosition">
-                                                <Storyboard>
-                                                    <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="Opacity"
-                                                                     Duration="0:0:0.15" To="{TemplateBinding HintOpacity}"
-                                                                     EasingFunction="{StaticResource AnimationEasingFunction}"/>
-                                                    <DoubleAnimation Storyboard.TargetName="ScaleHost"  Storyboard.TargetProperty="Scale"
-                                                                     Duration="0:0:0.15" To="1"
-                                                                     EasingFunction="{StaticResource AnimationEasingFunction}"/>
-                                                </Storyboard>
-                                            </VisualTransition>
-                                            <VisualTransition From="*" To="HintRestingPosition">
-                                                <Storyboard>
-                                                    <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock" Storyboard.TargetProperty="Opacity"
-                                                                     Duration="0:0:0.15"
-                                                                     EasingFunction="{StaticResource AnimationEasingFunction}"/>
-                                                    <DoubleAnimation Storyboard.TargetName="ScaleHost"  Storyboard.TargetProperty="Scale"
-                                                                     Duration="0:0:0.15"
-                                                                     EasingFunction="{StaticResource AnimationEasingFunction}"/>
-                                                </Storyboard>
-                                            </VisualTransition>
-                                        </VisualStateGroup.Transitions>
-                                        <VisualState x:Name="HintFloatingPosition">
-                                            <Storyboard>
-                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FloatingHintTextBlock"
-                                                                 Duration="0" To="{TemplateBinding HintOpacity}" />
-                                                <DoubleAnimation Storyboard.TargetName="ScaleHost"  Storyboard.TargetProperty="Scale"
-                                                                 Duration="0" To="1"/>
-                                            </Storyboard>
-                                        </VisualState>
-                                        <VisualState x:Name="HintRestingPosition">
-                                            <Storyboard>
-                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FloatingHintTextBlock"
-                                                                 Duration="0" />
-                                                <DoubleAnimation Storyboard.TargetName="ScaleHost"  Storyboard.TargetProperty="Scale"
-                                                                 Duration="0" />
-                                            </Storyboard>
-                                        </VisualState>
-                                    </VisualStateGroup>
-                                </VisualStateManager.VisualStateGroups>
-                                <wpf:ScaleHost x:Name="ScaleHost" />
-                                <ContentControl x:Name="FloatingHintTextBlock"
-                                        Visibility="{TemplateBinding UseFloating, Converter={StaticResource BoolToVisConverter}}"
-                                        Content="{TemplateBinding Hint}"
-                                        FontSize="{TemplateBinding FontSize}"
-                                        FontFamily="{TemplateBinding FontFamily}"
-                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                        Opacity="{TemplateBinding HintOpacity}"
-                                        IsHitTestVisible="False"
-                                        IsTabStop="False"
-                                        RenderTransformOrigin="0,0">
-                                    <ContentControl.Tag>
-                                        <system:Double>0.0</system:Double>
-                                    </ContentControl.Tag>
-                                    <ContentControl.RenderTransform>
-                                        <MultiBinding Converter="{StaticResource FloatingHintTransformConverter}">
-                                            <Binding Path="Scale" ElementName="ScaleHost"/>
-                                            <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                            <Binding Source="{StaticResource NoContentFloatingScale}"/>
-                                            <Binding Path="FloatingOffset" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                        </MultiBinding>
-                                    </ContentControl.RenderTransform>
-                                </ContentControl>
-                            </Grid>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
 
 </ResourceDictionary>

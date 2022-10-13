@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows;
-using Xunit;
+﻿using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests
 {
@@ -15,7 +13,7 @@ namespace MaterialDesignThemes.Wpf.Tests
 
         [Fact]
         public void AddAdornerNullArgumentThrowsException()
-        { 
+        {
             Assert.Throws<ArgumentNullException>(
                 () => testFixture.testElement.AddAdorner<BottomDashedLineAdorner>(null!));
         }

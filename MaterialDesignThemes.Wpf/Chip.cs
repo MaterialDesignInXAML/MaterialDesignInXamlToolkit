@@ -1,8 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Input;
 using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
@@ -28,7 +24,7 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty IconProperty
             = DependencyProperty.Register(nameof(Icon), typeof(object), typeof(Chip), new PropertyMetadata(default(object?)));
         #endregion
-        
+
         #region DependencyProperty : IconBackgroundProperty
         public Brush? IconBackground
         {
@@ -61,7 +57,7 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty IsDeletableProperty
             = DependencyProperty.Register(nameof(IsDeletable), typeof(bool), typeof(Chip), new PropertyMetadata(default(bool)));
         #endregion
-        
+
         #region DependencyProperty : DeleteCommandProperty
         public ICommand? DeleteCommand
         {
@@ -81,7 +77,7 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty DeleteCommandParameterProperty
             = DependencyProperty.Register(nameof(DeleteCommandParameter), typeof(object), typeof(Chip), new PropertyMetadata(default(object?)));
         #endregion
-        
+
         #region DependencyProperty : DeleteToolTipProperty
         public object? DeleteToolTip
         {
@@ -94,13 +90,13 @@ namespace MaterialDesignThemes.Wpf
 
         #region Event : DeleteClickEvent
         [Category("Behavior")]
-        
+
         public event RoutedEventHandler DeleteClick
         {
             add => AddHandler(DeleteClickEvent, value);
             remove => RemoveHandler(DeleteClickEvent, value);
         }
-        
+
         public static readonly RoutedEvent DeleteClickEvent
             = EventManager.RegisterRoutedEvent(nameof(DeleteClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(Chip));
         #endregion
@@ -111,14 +107,14 @@ namespace MaterialDesignThemes.Wpf
             {
                 _deleteButton.Click -= DeleteButtonOnClick;
             }
-            
+
             _deleteButton = GetTemplateChild(DeleteButtonPartName) as ButtonBase;
-            
+
             if (_deleteButton != null)
             {
                 _deleteButton.Click += DeleteButtonOnClick;
             }
-            
+
             base.OnApplyTemplate();
         }
 

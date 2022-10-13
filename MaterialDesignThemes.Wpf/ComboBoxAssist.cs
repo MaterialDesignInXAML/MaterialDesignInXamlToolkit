@@ -1,8 +1,4 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
-
-namespace MaterialDesignThemes.Wpf;
+﻿namespace MaterialDesignThemes.Wpf;
 
 public static class ComboBoxAssist
 {

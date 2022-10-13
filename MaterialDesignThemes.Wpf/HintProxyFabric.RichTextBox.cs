@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
+﻿using System.Windows.Documents;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -22,7 +19,7 @@ namespace MaterialDesignThemes.Wpf
                     _richTextBox.Document.ContentEnd
                 );
 
-                return string.IsNullOrEmpty(textRange.Text) || 
+                return string.IsNullOrEmpty(textRange.Text) ||
                     textRange.Text == Environment.NewLine;
             }
 

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
-using System.Linq;
 using System.Windows.Data;
-using System.Windows.Controls;
 using MaterialDesignThemes.Wpf;
 using MaterialDesignThemes.Wpf.Transitions;
-using MaterialDesignDemo;
 
 namespace MaterialDesign3Demo.Domain
 {

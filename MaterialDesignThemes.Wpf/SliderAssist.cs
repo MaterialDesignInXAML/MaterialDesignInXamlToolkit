@@ -1,7 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls.Primitives;
-
-namespace MaterialDesignThemes.Wpf
+﻿namespace MaterialDesignThemes.Wpf
 {
     public static class SliderAssist
     {

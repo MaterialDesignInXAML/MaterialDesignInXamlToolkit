@@ -1,8 +1,4 @@
-﻿using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -44,7 +40,8 @@ namespace MaterialDesignThemes.Wpf
                 ripple.RaiseEvent(
                     new MouseButtonEventArgs(mouseButtonEventArgs.MouseDevice, mouseButtonEventArgs.Timestamp, mouseButtonEventArgs.ChangedButton)
                     {
-                        RoutedEvent = UIElement.PreviewMouseLeftButtonDownEvent, Source = ripple
+                        RoutedEvent = UIElement.PreviewMouseLeftButtonDownEvent,
+                        Source = ripple
                     });
             }
         }

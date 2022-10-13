@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing.Drawing2D;
-using System.Drawing.Text;
-using System.Linq;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 using MaterialDesignColors;
 using MaterialDesignColors.ColorManipulation;
 

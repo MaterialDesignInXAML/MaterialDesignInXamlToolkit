@@ -1,5 +1,3 @@
-using System.Windows;
-
 namespace MaterialDesignThemes.Wpf.Transitions
 {
     public interface ITransitionWipe

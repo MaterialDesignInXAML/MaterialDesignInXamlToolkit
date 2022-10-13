@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using MaterialDesign3Demo.Domain;
+﻿using MaterialDesign3Demo.Domain;
 using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesign3Demo;

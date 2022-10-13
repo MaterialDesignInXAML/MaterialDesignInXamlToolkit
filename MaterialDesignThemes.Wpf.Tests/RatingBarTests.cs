@@ -24,7 +24,7 @@ public class RatingBarTests
     public void SetMin_ShouldNotCoerceValue_WhenFractionalValuesAreDisabled()
     {
         // Arrange
-        RatingBar ratingBar = new() { Min = 1, Max = 10, Value = 5};
+        RatingBar ratingBar = new() { Min = 1, Max = 10, Value = 5 };
 
         // Act
         ratingBar.Min = 7;
@@ -134,7 +134,7 @@ public class RatingBarTests
         object[] values = Arrange_TextBlockForegroundConverterValues(brush, value: 1, buttonValue: 1);
 
         // Act
-        var result =  converter.Convert(values, typeof(Brush), null, CultureInfo.CurrentCulture) as Brush;
+        var result = converter.Convert(values, typeof(Brush), null, CultureInfo.CurrentCulture) as Brush;
 
         // Assert
         Assert.Equal(brush, result);
@@ -342,7 +342,7 @@ public class RatingBarTests
         Assert.Equal(expectedValue, result); // 100% of 20 minus fixed margin
     }
 
-    
+
 
     private static object[] Arrange_PreviewIndicatorTransformXConverterValues(double ratingBarButtonActualWidth, double previewValueActualWidth, Orientation orientation, bool isFractionalValueEnabled, double previewValue, int buttonValue) =>
         new object[] { ratingBarButtonActualWidth, previewValueActualWidth, orientation, isFractionalValueEnabled, previewValue, buttonValue };

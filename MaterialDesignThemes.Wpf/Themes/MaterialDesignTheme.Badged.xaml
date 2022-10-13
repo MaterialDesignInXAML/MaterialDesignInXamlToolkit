@@ -2,247 +2,260 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
-    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-    <SineEase EasingMode="EaseOut" x:Key="BadgeEase" />
-    <Storyboard x:Key="BadgeChangedStoryboard">
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
-            <EasingDoubleKeyFrame KeyTime="0" Value="1.4" />
-            <EasingDoubleKeyFrame EasingFunction="{StaticResource BadgeEase}" KeyTime="0:0:0.3" Value="1" />
-        </DoubleAnimationUsingKeyFrames>
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-            <EasingDoubleKeyFrame KeyTime="0" Value="1.4" />
-            <EasingDoubleKeyFrame EasingFunction="{StaticResource BadgeEase}" KeyTime="0:0:0.3" Value="1" />
-        </DoubleAnimationUsingKeyFrames>
-    </Storyboard>
-    
-    <Style TargetType="{x:Type wpf:Badged}" x:Key="MaterialDesignBadge">
-        <Setter Property="IsTabStop" Value="False" />
-        <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="BadgeColorZoneMode" Value="PrimaryLight" />
-        <Setter Property="BadgePlacementMode" Value="TopRight" />
-        <Setter Property="BadgeChangedStoryboard" Value="{StaticResource BadgeChangedStoryboard}" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type wpf:Badged}">
-                    <Grid>
-                        <Border Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter Content="{TemplateBinding Content}"
-                                              ContentStringFormat="{TemplateBinding ContentStringFormat}"
-                                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                              Margin="{TemplateBinding Padding}"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                        </Border>
-                        <Border x:Name="PART_BadgeContainer" 
-                                CornerRadius="{TemplateBinding CornerRadius}" Background="{TemplateBinding BadgeBackground}"                                 
-                                MinWidth="18" MinHeight="18"                                
-                                HorizontalAlignment="Left" VerticalAlignment="Top" Padding="2"
-                                TextElement.FontSize="11"
-                                TextElement.FontWeight="DemiBold"
-                                RenderTransformOrigin=".5,.5"
-                                Visibility="{TemplateBinding IsBadgeSet, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <Border.Resources>
-                                <Style TargetType="wpf:PackIcon">
-                                    <Setter Property="Width" Value="12" />
-                                    <Setter Property="Height" Value="12" />
-                                </Style>
-                            </Border.Resources>
-                            <Border.RenderTransform>
-                                <ScaleTransform ScaleX="1" ScaleY="1" />
-                            </Border.RenderTransform>
-                            <ContentControl Foreground="{TemplateBinding BadgeForeground}"
-                                            IsTabStop="False"
-                                            Focusable="False"
-                                            HorizontalAlignment="Center" VerticalAlignment="Center"
-                                            Margin="1 0 1 0"
-                                            Content="{TemplateBinding Badge}" />
-                        </Border>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="BadgePlacementMode" Value="TopLeft">
-                            <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Left" />
-                            <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Top" />
-                        </Trigger>
-                        <Trigger Property="BadgePlacementMode" Value="Top">
-                            <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Center" />
-                            <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Top" />
-                        </Trigger>
-                        <Trigger Property="BadgePlacementMode" Value="TopRight">
-                            <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Right" />
-                            <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Top" />
-                        </Trigger>
-                        <Trigger Property="BadgePlacementMode" Value="Right">
-                            <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Right" />
-                            <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Center" />
-                        </Trigger>
-                        <Trigger Property="BadgePlacementMode" Value="BottomRight">
-                            <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Right" />
-                            <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Bottom" />
-                        </Trigger>
-                        <Trigger Property="BadgePlacementMode" Value="Bottom">
-                            <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Center" />
-                            <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Bottom" />
-                        </Trigger>
-                        <Trigger Property="BadgePlacementMode" Value="BottomLeft">
-                            <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Left" />
-                            <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Bottom" />
-                        </Trigger>
-                        <Trigger Property="BadgePlacementMode" Value="Left">
-                            <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Left" />
-                            <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Center" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="BadgeColorZoneMode" Value="Standard">
-                <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesignPaper}" />
-                <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesignBody}" />
-            </Trigger>
-            <Trigger Property="BadgeColorZoneMode" Value="Inverted">
-                <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesignBody}" />
-                <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesignPaper}" />
-            </Trigger>
-            <Trigger Property="BadgeColorZoneMode" Value="PrimaryLight">
-                <Setter Property="BadgeBackground" Value="{DynamicResource PrimaryHueLightBrush}" />
-                <Setter Property="BadgeForeground" Value="{DynamicResource PrimaryHueLightForegroundBrush}" />
-            </Trigger>
-            <Trigger Property="BadgeColorZoneMode" Value="PrimaryMid">
-                <Setter Property="BadgeBackground" Value="{DynamicResource PrimaryHueMidBrush}" />
-                <Setter Property="BadgeForeground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
-            </Trigger>
-            <Trigger Property="BadgeColorZoneMode" Value="PrimaryDark">
-                <Setter Property="BadgeBackground" Value="{DynamicResource PrimaryHueDarkBrush}" />
-                <Setter Property="BadgeForeground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
-            </Trigger>
-            <Trigger Property="BadgeColorZoneMode" Value="SecondaryMid">
-                <Setter Property="BadgeBackground" Value="{DynamicResource SecondaryHueMidBrush}" />
-                <Setter Property="BadgeForeground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
-            </Trigger>
-            <Trigger Property="BadgeColorZoneMode" Value="Light">
-                <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesignLightBackground}" />
-                <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesignLightForeground}" />
-            </Trigger>
-            <Trigger Property="BadgeColorZoneMode" Value="Dark">
-                <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesignDarkBackground}" />
-                <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesignDarkForeground}" />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
+  <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+  <SineEase x:Key="BadgeEase" EasingMode="EaseOut" />
+  <Storyboard x:Key="BadgeChangedStoryboard">
+    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+      <EasingDoubleKeyFrame KeyTime="0" Value="1.4" />
+      <EasingDoubleKeyFrame EasingFunction="{StaticResource BadgeEase}"
+                            KeyTime="0:0:0.3"
+                            Value="1" />
+    </DoubleAnimationUsingKeyFrames>
+    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+      <EasingDoubleKeyFrame KeyTime="0" Value="1.4" />
+      <EasingDoubleKeyFrame EasingFunction="{StaticResource BadgeEase}"
+                            KeyTime="0:0:0.3"
+                            Value="1" />
+    </DoubleAnimationUsingKeyFrames>
+  </Storyboard>
 
-    <Style TargetType="{x:Type wpf:Badged}" x:Key="MaterialDesignMiniBadge">
-        <Setter Property="IsTabStop" Value="False" />
-        <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="BadgeColorZoneMode" Value="PrimaryLight" />
-        <Setter Property="BadgePlacementMode" Value="TopRight" />
-        <Setter Property="BadgeChangedStoryboard" Value="{StaticResource BadgeChangedStoryboard}" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type wpf:Badged}">
-                    <Grid>
-                        <Border Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter Content="{TemplateBinding Content}"
-                                              ContentStringFormat="{TemplateBinding ContentStringFormat}"
-                                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                              Margin="{TemplateBinding Padding}"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                        </Border>
-                        <Border x:Name="PART_BadgeContainer" 
-                                CornerRadius="{TemplateBinding CornerRadius}" Background="{TemplateBinding BadgeBackground}"                                 
-                                Width="6" Height="6"                                
-                                HorizontalAlignment="Left" VerticalAlignment="Top" Padding="2"
-                                TextElement.FontSize="11"
-                                TextElement.FontWeight="DemiBold"
-                                RenderTransformOrigin=".5,.5"
-                                Visibility="{TemplateBinding IsBadgeSet, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <Border.RenderTransform>
-                                <ScaleTransform ScaleX="1" ScaleY="1" />
-                            </Border.RenderTransform>
-                        </Border>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="BadgePlacementMode" Value="TopLeft">
-                            <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Left" />
-                            <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Top" />
-                        </Trigger>
-                        <Trigger Property="BadgePlacementMode" Value="Top">
-                            <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Center" />
-                            <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Top" />
-                        </Trigger>
-                        <Trigger Property="BadgePlacementMode" Value="TopRight">
-                            <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Right" />
-                            <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Top" />
-                        </Trigger>
-                        <Trigger Property="BadgePlacementMode" Value="Right">
-                            <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Right" />
-                            <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Center" />
-                        </Trigger>
-                        <Trigger Property="BadgePlacementMode" Value="BottomRight">
-                            <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Right" />
-                            <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Bottom" />
-                        </Trigger>
-                        <Trigger Property="BadgePlacementMode" Value="Bottom">
-                            <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Center" />
-                            <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Bottom" />
-                        </Trigger>
-                        <Trigger Property="BadgePlacementMode" Value="BottomLeft">
-                            <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Left" />
-                            <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Bottom" />
-                        </Trigger>
-                        <Trigger Property="BadgePlacementMode" Value="Left">
-                            <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Left" />
-                            <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Center" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="BadgeColorZoneMode" Value="Standard">
-                <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesignPaper}" />
-                <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesignBody}" />
+  <Style x:Key="MaterialDesignBadge" TargetType="{x:Type wpf:Badged}">
+    <Setter Property="BadgeChangedStoryboard" Value="{StaticResource BadgeChangedStoryboard}" />
+    <Setter Property="BadgeColorZoneMode" Value="PrimaryLight" />
+    <Setter Property="BadgePlacementMode" Value="TopRight" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type wpf:Badged}">
+          <Grid>
+            <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+              <ContentPresenter Margin="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}"
+                                ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+            </Border>
+            <Border x:Name="PART_BadgeContainer"
+                    MinWidth="18"
+                    MinHeight="18"
+                    Padding="2"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Background="{TemplateBinding BadgeBackground}"
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    RenderTransformOrigin=".5,.5"
+                    TextElement.FontSize="11"
+                    TextElement.FontWeight="DemiBold"
+                    Visibility="{TemplateBinding IsBadgeSet, Converter={StaticResource BooleanToVisibilityConverter}}">
+              <Border.Resources>
+                <Style TargetType="wpf:PackIcon">
+                  <Setter Property="Height" Value="12" />
+                  <Setter Property="Width" Value="12" />
+                </Style>
+              </Border.Resources>
+              <Border.RenderTransform>
+                <ScaleTransform ScaleX="1" ScaleY="1" />
+              </Border.RenderTransform>
+              <ContentControl Margin="1,0,1,0"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              Content="{TemplateBinding Badge}"
+                              Focusable="False"
+                              Foreground="{TemplateBinding BadgeForeground}"
+                              IsTabStop="False" />
+            </Border>
+          </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="BadgePlacementMode" Value="TopLeft">
+              <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Left" />
+              <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Top" />
             </Trigger>
-            <Trigger Property="BadgeColorZoneMode" Value="Inverted">
-                <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesignBody}" />
-                <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesignPaper}" />
+            <Trigger Property="BadgePlacementMode" Value="Top">
+              <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Center" />
+              <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Top" />
             </Trigger>
-            <Trigger Property="BadgeColorZoneMode" Value="PrimaryLight">
-                <Setter Property="BadgeBackground" Value="{DynamicResource PrimaryHueLightBrush}" />
-                <Setter Property="BadgeForeground" Value="{DynamicResource PrimaryHueLightForegroundBrush}" />
+            <Trigger Property="BadgePlacementMode" Value="TopRight">
+              <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Right" />
+              <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Top" />
             </Trigger>
-            <Trigger Property="BadgeColorZoneMode" Value="PrimaryMid">
-                <Setter Property="BadgeBackground" Value="{DynamicResource PrimaryHueMidBrush}" />
-                <Setter Property="BadgeForeground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+            <Trigger Property="BadgePlacementMode" Value="Right">
+              <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Right" />
+              <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Center" />
             </Trigger>
-            <Trigger Property="BadgeColorZoneMode" Value="PrimaryDark">
-                <Setter Property="BadgeBackground" Value="{DynamicResource PrimaryHueDarkBrush}" />
-                <Setter Property="BadgeForeground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+            <Trigger Property="BadgePlacementMode" Value="BottomRight">
+              <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Right" />
+              <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Bottom" />
             </Trigger>
-            <Trigger Property="BadgeColorZoneMode" Value="SecondaryMid">
-                <Setter Property="BadgeBackground" Value="{DynamicResource SecondaryHueMidBrush}" />
-                <Setter Property="BadgeForeground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+            <Trigger Property="BadgePlacementMode" Value="Bottom">
+              <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Center" />
+              <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Bottom" />
             </Trigger>
-            <Trigger Property="BadgeColorZoneMode" Value="Light">
-                <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesignLightBackground}" />
-                <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesignLightForeground}" />
+            <Trigger Property="BadgePlacementMode" Value="BottomLeft">
+              <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Left" />
+              <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Bottom" />
             </Trigger>
-            <Trigger Property="BadgeColorZoneMode" Value="Dark">
-                <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesignDarkBackground}" />
-                <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesignDarkForeground}" />
+            <Trigger Property="BadgePlacementMode" Value="Left">
+              <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Left" />
+              <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Center" />
             </Trigger>
-        </Style.Triggers>
-    </Style>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Style.Triggers>
+      <Trigger Property="BadgeColorZoneMode" Value="Standard">
+        <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesignPaper}" />
+        <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesignBody}" />
+      </Trigger>
+      <Trigger Property="BadgeColorZoneMode" Value="Inverted">
+        <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesignBody}" />
+        <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesignPaper}" />
+      </Trigger>
+      <Trigger Property="BadgeColorZoneMode" Value="PrimaryLight">
+        <Setter Property="BadgeBackground" Value="{DynamicResource PrimaryHueLightBrush}" />
+        <Setter Property="BadgeForeground" Value="{DynamicResource PrimaryHueLightForegroundBrush}" />
+      </Trigger>
+      <Trigger Property="BadgeColorZoneMode" Value="PrimaryMid">
+        <Setter Property="BadgeBackground" Value="{DynamicResource PrimaryHueMidBrush}" />
+        <Setter Property="BadgeForeground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+      </Trigger>
+      <Trigger Property="BadgeColorZoneMode" Value="PrimaryDark">
+        <Setter Property="BadgeBackground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+        <Setter Property="BadgeForeground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+      </Trigger>
+      <Trigger Property="BadgeColorZoneMode" Value="SecondaryMid">
+        <Setter Property="BadgeBackground" Value="{DynamicResource SecondaryHueMidBrush}" />
+        <Setter Property="BadgeForeground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+      </Trigger>
+      <Trigger Property="BadgeColorZoneMode" Value="Light">
+        <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesignLightBackground}" />
+        <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesignLightForeground}" />
+      </Trigger>
+      <Trigger Property="BadgeColorZoneMode" Value="Dark">
+        <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesignDarkBackground}" />
+        <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesignDarkForeground}" />
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style x:Key="MaterialDesignMiniBadge" TargetType="{x:Type wpf:Badged}">
+    <Setter Property="BadgeChangedStoryboard" Value="{StaticResource BadgeChangedStoryboard}" />
+    <Setter Property="BadgeColorZoneMode" Value="PrimaryLight" />
+    <Setter Property="BadgePlacementMode" Value="TopRight" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type wpf:Badged}">
+          <Grid>
+            <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+              <ContentPresenter Margin="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}"
+                                ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+            </Border>
+            <Border x:Name="PART_BadgeContainer"
+                    Width="6"
+                    Height="6"
+                    Padding="2"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Background="{TemplateBinding BadgeBackground}"
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    RenderTransformOrigin=".5,.5"
+                    TextElement.FontSize="11"
+                    TextElement.FontWeight="DemiBold"
+                    Visibility="{TemplateBinding IsBadgeSet, Converter={StaticResource BooleanToVisibilityConverter}}">
+              <Border.RenderTransform>
+                <ScaleTransform ScaleX="1" ScaleY="1" />
+              </Border.RenderTransform>
+            </Border>
+          </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="BadgePlacementMode" Value="TopLeft">
+              <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Left" />
+              <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Top" />
+            </Trigger>
+            <Trigger Property="BadgePlacementMode" Value="Top">
+              <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Center" />
+              <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Top" />
+            </Trigger>
+            <Trigger Property="BadgePlacementMode" Value="TopRight">
+              <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Right" />
+              <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Top" />
+            </Trigger>
+            <Trigger Property="BadgePlacementMode" Value="Right">
+              <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Right" />
+              <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Center" />
+            </Trigger>
+            <Trigger Property="BadgePlacementMode" Value="BottomRight">
+              <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Right" />
+              <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Bottom" />
+            </Trigger>
+            <Trigger Property="BadgePlacementMode" Value="Bottom">
+              <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Center" />
+              <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Bottom" />
+            </Trigger>
+            <Trigger Property="BadgePlacementMode" Value="BottomLeft">
+              <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Left" />
+              <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Bottom" />
+            </Trigger>
+            <Trigger Property="BadgePlacementMode" Value="Left">
+              <Setter TargetName="PART_BadgeContainer" Property="HorizontalAlignment" Value="Left" />
+              <Setter TargetName="PART_BadgeContainer" Property="VerticalAlignment" Value="Center" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Style.Triggers>
+      <Trigger Property="BadgeColorZoneMode" Value="Standard">
+        <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesignPaper}" />
+        <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesignBody}" />
+      </Trigger>
+      <Trigger Property="BadgeColorZoneMode" Value="Inverted">
+        <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesignBody}" />
+        <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesignPaper}" />
+      </Trigger>
+      <Trigger Property="BadgeColorZoneMode" Value="PrimaryLight">
+        <Setter Property="BadgeBackground" Value="{DynamicResource PrimaryHueLightBrush}" />
+        <Setter Property="BadgeForeground" Value="{DynamicResource PrimaryHueLightForegroundBrush}" />
+      </Trigger>
+      <Trigger Property="BadgeColorZoneMode" Value="PrimaryMid">
+        <Setter Property="BadgeBackground" Value="{DynamicResource PrimaryHueMidBrush}" />
+        <Setter Property="BadgeForeground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+      </Trigger>
+      <Trigger Property="BadgeColorZoneMode" Value="PrimaryDark">
+        <Setter Property="BadgeBackground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+        <Setter Property="BadgeForeground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+      </Trigger>
+      <Trigger Property="BadgeColorZoneMode" Value="SecondaryMid">
+        <Setter Property="BadgeBackground" Value="{DynamicResource SecondaryHueMidBrush}" />
+        <Setter Property="BadgeForeground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+      </Trigger>
+      <Trigger Property="BadgeColorZoneMode" Value="Light">
+        <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesignLightBackground}" />
+        <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesignLightForeground}" />
+      </Trigger>
+      <Trigger Property="BadgeColorZoneMode" Value="Dark">
+        <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesignDarkBackground}" />
+        <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesignDarkForeground}" />
+      </Trigger>
+    </Style.Triggers>
+  </Style>
 
 </ResourceDictionary>

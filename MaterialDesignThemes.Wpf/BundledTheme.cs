@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using MaterialDesignColors;
+﻿using MaterialDesignColors;
 
 namespace MaterialDesignThemes.Wpf
 {

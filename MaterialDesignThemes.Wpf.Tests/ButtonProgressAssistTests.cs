@@ -1,5 +1,4 @@
-﻿using System.Windows.Controls;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests
@@ -19,7 +18,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             // Assert defaults
             Assert.Equal("Minimum", ButtonProgressAssist.MinimumProperty.Name);
             Assert.Equal(default, ButtonProgressAssist.GetMinimum(_testElement));
-            
+
             // Assert setting works
             ButtonProgressAssist.SetMinimum(_testElement, 133.14);
             Assert.Equal(133.14, ButtonProgressAssist.GetMinimum(_testElement));

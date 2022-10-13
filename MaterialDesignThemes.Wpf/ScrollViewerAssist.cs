@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Interop;
+﻿using System.Windows.Interop;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -106,7 +103,7 @@ namespace MaterialDesignThemes.Wpf
 
             static void OnLoaded(ScrollViewer scrollViewer, Action<ScrollViewer> doOnLoaded)
             {
-                if(scrollViewer.IsLoaded)
+                if (scrollViewer.IsLoaded)
                 {
                     doOnLoaded(scrollViewer);
                 }

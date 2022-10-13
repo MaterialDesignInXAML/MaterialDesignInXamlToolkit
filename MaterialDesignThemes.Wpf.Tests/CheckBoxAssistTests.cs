@@ -1,5 +1,4 @@
-﻿using System.Windows.Controls;
-using Xunit;
+﻿using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests
 {

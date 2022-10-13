@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Windows;
-using ControlzEx.Theming;
+﻿using ControlzEx.Theming;
 using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
 using Theme = ControlzEx.Theming.Theme;
@@ -26,7 +23,7 @@ namespace MaterialDesignThemes.MahApps
                         MergedDictionaries.Add(dark);
                         break;
                     case Wpf.BaseTheme.Inherit:
-                        switch(Wpf.Theme.GetSystemTheme())
+                        switch (Wpf.Theme.GetSystemTheme())
                         {
                             case Wpf.BaseTheme.Dark:
                                 MergedDictionaries.Add(dark);

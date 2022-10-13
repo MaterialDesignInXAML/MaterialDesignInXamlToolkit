@@ -1,6 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 using System.Windows.Media.Animation;
 
 namespace MaterialDesignThemes.Wpf
@@ -132,7 +130,7 @@ namespace MaterialDesignThemes.Wpf
         public static readonly DependencyProperty CornerRadiusProperty
             = DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(Badged), new PropertyMetadata(DefaultCornerRadius));
         #endregion
-        
+
         static Badged()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Badged), new FrameworkPropertyMetadata(typeof(Badged)));
@@ -175,7 +173,7 @@ namespace MaterialDesignThemes.Wpf
             {
                 return;
             }
-            
+
             _badgeContainer.BeginStoryboard(BadgeChangedStoryboard);
         }
     }

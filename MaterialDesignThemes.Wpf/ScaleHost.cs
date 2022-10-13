@@ -1,6 +1,4 @@
-﻿using System.Windows;
-
-namespace MaterialDesignThemes.Wpf
+﻿namespace MaterialDesignThemes.Wpf
 {
     /// <summary>
     /// Internal use only.

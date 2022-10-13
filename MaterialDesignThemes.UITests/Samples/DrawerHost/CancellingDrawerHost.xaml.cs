@@ -1,6 +1,4 @@
-﻿using System.Windows.Controls;
-
-namespace MaterialDesignThemes.UITests.Samples.DrawHost
+﻿namespace MaterialDesignThemes.UITests.Samples.DrawHost
 {
     /// <summary>
     /// Interaction logic for CancellingDrawerHost.xaml

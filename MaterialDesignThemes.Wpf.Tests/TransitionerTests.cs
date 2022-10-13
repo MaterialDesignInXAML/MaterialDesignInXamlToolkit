@@ -1,5 +1,4 @@
-﻿using System.Windows.Controls;
-using MaterialDesignThemes.Wpf.Transitions;
+﻿using MaterialDesignThemes.Wpf.Transitions;
 using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests

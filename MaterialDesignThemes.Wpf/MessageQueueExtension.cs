@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows.Markup;
-
-namespace MaterialDesignThemes.Wpf
+﻿namespace MaterialDesignThemes.Wpf
 {
     /// <summary>
     /// Provides shorthand to initialise a new <see cref="SnackbarMessageQueue"/> for a <see cref="Snackbar"/>.

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using System.Threading;
+using System.Windows.Media;
 using MaterialDesignDemo.Domain;
 using MaterialDesignThemes.Wpf;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls.Primitives;
-using System.Windows.Input;
-using System.Windows.Media;
 
 namespace MaterialDesignDemo
 {
@@ -80,10 +75,10 @@ namespace MaterialDesignDemo
             }
         }
 
-        private void MenuToggleButton_OnClick(object sender, RoutedEventArgs e) 
+        private void MenuToggleButton_OnClick(object sender, RoutedEventArgs e)
             => DemoItemsSearchBox.Focus();
 
-        private void MenuDarkModeButton_Click(object sender, RoutedEventArgs e) 
+        private void MenuDarkModeButton_Click(object sender, RoutedEventArgs e)
             => ModifyTheme(DarkModeToggleButton.IsChecked == true);
 
         private void FlowDirectionButton_Click(object sender, RoutedEventArgs e)

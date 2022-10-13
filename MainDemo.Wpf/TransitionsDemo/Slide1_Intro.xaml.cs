@@ -1,5 +1,4 @@
-﻿using System.Windows.Controls;
-using MaterialDesignDemo.Domain;
+﻿using MaterialDesignDemo.Domain;
 
 namespace MaterialDesignDemo.TransitionsDemo
 {

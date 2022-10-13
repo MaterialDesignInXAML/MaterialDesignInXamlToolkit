@@ -1,8 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Globalization;
 using Calendar = System.Windows.Controls.Calendar;
 
 namespace MaterialDesignThemes.Wpf

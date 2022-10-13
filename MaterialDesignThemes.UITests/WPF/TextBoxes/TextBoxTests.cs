@@ -1,15 +1,6 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
-using MaterialDesignThemes.Wpf;
-using XamlTest;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace MaterialDesignThemes.UITests.WPF.TextBoxes
 {
@@ -390,7 +381,7 @@ namespace MaterialDesignThemes.UITests.WPF.TextBoxes
             var textBox = await LoadXaml<TextBox>($@"
     <TextBox Height=""100"" Text=""Test""/>
 ");
-            
+
             var scrollViewer = await textBox.GetElement<ScrollViewer>("PART_ContentHost");
             //The default for this changed with issue 2556.
             //It should be stretch so that the horizontal scroll bar is at the bottom and not

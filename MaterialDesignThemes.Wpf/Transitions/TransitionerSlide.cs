@@ -1,6 +1,4 @@
-﻿using System.Windows;
-
-namespace MaterialDesignThemes.Wpf.Transitions
+﻿namespace MaterialDesignThemes.Wpf.Transitions
 {
     /// <summary>
     /// Content control to host the content of an individual page within a <see cref="Transitioner"/>.

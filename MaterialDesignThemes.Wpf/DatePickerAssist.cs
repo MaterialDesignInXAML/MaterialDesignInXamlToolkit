@@ -15,7 +15,7 @@ public static class DatePickerAssist
 
     public static Thickness GetOutlinedBorderInactiveThickness(DependencyObject element)
     {
-        return (Thickness) element.GetValue(OutlinedBorderInactiveThicknessProperty);
+        return (Thickness)element.GetValue(OutlinedBorderInactiveThicknessProperty);
     }
 
     public static readonly DependencyProperty OutlinedBorderActiveThicknessProperty = DependencyProperty.RegisterAttached(
@@ -28,6 +28,6 @@ public static class DatePickerAssist
 
     public static Thickness GetOutlinedBorderActiveThickness(DependencyObject element)
     {
-        return (Thickness) element.GetValue(OutlinedBorderActiveThicknessProperty);
+        return (Thickness)element.GetValue(OutlinedBorderActiveThicknessProperty);
     }
 }

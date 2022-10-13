@@ -1,9 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Windows.Media;
-using MaterialDesignThemes.Wpf;
-using XamlTest;
-using Xunit;
-using Xunit.Abstractions;
+﻿using System.Windows.Media;
 
 namespace MaterialDesignThemes.UITests.WPF.ColorZones
 {

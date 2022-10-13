@@ -1,8 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using MaterialDesignThemes.Wpf.Transitions;
-
-namespace MaterialDesignThemes.Wpf
+﻿namespace MaterialDesignThemes.Wpf
 {
     /// <summary>
     /// 

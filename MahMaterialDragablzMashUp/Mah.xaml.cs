@@ -1,6 +1,4 @@
-﻿using System.Windows.Controls;
-
-namespace MahMaterialDragablzMashUp
+﻿namespace MahMaterialDragablzMashUp
 {
     /// <summary>
     /// Interaction logic for MahApps.xaml

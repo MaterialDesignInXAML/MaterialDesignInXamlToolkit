@@ -1,6 +1,4 @@
-﻿using System.Windows;
-
-namespace MaterialDesign3Demo
+﻿namespace MaterialDesign3Demo
 {
     public partial class Cards
     {

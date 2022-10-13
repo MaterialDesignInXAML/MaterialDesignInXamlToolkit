@@ -10,7 +10,7 @@ namespace MaterialDesignThemes.Wpf.Tests.Converters
         [EnumData]
         public void EnumValues_AreAllHandled(MathOperation operation)
         {
-            var converter = new MathConverter 
+            var converter = new MathConverter
             {
                 Operation = operation
             };

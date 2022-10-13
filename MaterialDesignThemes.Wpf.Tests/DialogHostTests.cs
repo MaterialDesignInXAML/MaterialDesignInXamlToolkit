@@ -447,7 +447,7 @@ public class DialogHostTests : IDisposable
         {
             // Cleanup 
             otherUiThreadDispatcher?.InvokeShutdown();
-            
+
             dialogHost?.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
             dialogHostOnOtherUiThread?.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
         }

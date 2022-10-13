@@ -1,7 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-
-namespace MaterialDesign3Demo.TransitionsDemo
+﻿namespace MaterialDesign3Demo.TransitionsDemo
 {
     /// <summary>
     /// Interaction logic for Slide6_Origins.xaml
