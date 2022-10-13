@@ -1,5 +1,4 @@
 ﻿using System.Configuration;
-using System.Windows;
 using MaterialDesignDemo.Domain;
 
 namespace MaterialDesignDemo

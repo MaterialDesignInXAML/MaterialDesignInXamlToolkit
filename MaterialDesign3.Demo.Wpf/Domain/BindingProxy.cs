@@ -1,5 +1,3 @@
-using System.Windows;
-
 namespace MaterialDesign3Demo.Domain
 {
     public class BindingProxy : Freezable

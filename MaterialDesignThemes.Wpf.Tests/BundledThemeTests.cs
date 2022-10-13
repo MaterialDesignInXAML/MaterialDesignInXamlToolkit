@@ -1,5 +1,4 @@
-﻿using System;
-using MaterialDesignColors;
+﻿using MaterialDesignColors;
 using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests

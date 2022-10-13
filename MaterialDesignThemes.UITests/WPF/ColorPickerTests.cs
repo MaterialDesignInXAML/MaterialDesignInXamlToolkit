@@ -26,16 +26,16 @@ public class ColorPickerTests : TestBase
         Rect thumbLocation = await thumb.GetCoordinates();
 
         await thumb.SendInput(MouseInput.MoveToElement(Position.BottomLeft));
-        await thumb.SendInput(MouseInput.MoveRelative(xOffset: -5, yOffset:-10));
+        await thumb.SendInput(MouseInput.MoveRelative(xOffset: -5, yOffset: -10));
         await thumb.SendInput(MouseInput.LeftDown());
-        await thumb.SendInput(MouseInput.MoveRelative(yOffset:25));
+        await thumb.SendInput(MouseInput.MoveRelative(yOffset: 25));
         await Task.Delay(100);
         await thumb.SendInput(MouseInput.LeftUp());
 
 
         double currentBrightness = (await colorPicker.GetColor()).ToHsb().Brightness;
         Assert.True(currentBrightness < lastBrightness, $"Brightness {currentBrightness} is not less than {lastBrightness}");
-        
+
         recorder.Success();
     }
 }

@@ -1,6 +1,3 @@
-using System.Windows;
-using System.Windows.Controls;
-
 namespace MaterialDesignThemes.Wpf
 {
     public static class TextBlockAssist
@@ -14,7 +11,7 @@ namespace MaterialDesignThemes.Wpf
             "AutoToolTip", typeof(bool), typeof(TextBlockAssist), new PropertyMetadata(false, OnAutoToolTipChanged));
 
         public static void SetAutoToolTip(DependencyObject element, bool value) => element.SetValue(AutoToolTipProperty, value);
-        public static bool GetAutoToolTip(DependencyObject element) => (bool) element.GetValue(AutoToolTipProperty);
+        public static bool GetAutoToolTip(DependencyObject element) => (bool)element.GetValue(AutoToolTipProperty);
 
         private static void OnAutoToolTipChanged(DependencyObject element, DependencyPropertyChangedEventArgs args)
         {
@@ -31,7 +28,7 @@ namespace MaterialDesignThemes.Wpf
                 textBlock.SizeChanged -= UpdateToolTipOnSizeChanged;
         }
 
-        private static void UpdateToolTipOnSizeChanged(object sender, SizeChangedEventArgs args) => UpdateToolTip((TextBlock) sender);
+        private static void UpdateToolTipOnSizeChanged(object sender, SizeChangedEventArgs args) => UpdateToolTip((TextBlock)sender);
 
         private static void UpdateToolTip(TextBlock textBlock)
         {

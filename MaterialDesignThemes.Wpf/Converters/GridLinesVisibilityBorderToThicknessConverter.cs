@@ -1,7 +1,4 @@
-using System;
 using System.Globalization;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters
@@ -9,7 +6,7 @@ namespace MaterialDesignThemes.Wpf.Converters
     internal class GridLinesVisibilityBorderToThicknessConverter : IValueConverter
     {
         private const double GridLinesThickness = 1;
-        
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (!(value is DataGridGridLinesVisibility visibility))

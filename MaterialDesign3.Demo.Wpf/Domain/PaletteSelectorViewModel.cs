@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Input;
-using MaterialDesignColors;
+﻿using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesign3Demo.Domain

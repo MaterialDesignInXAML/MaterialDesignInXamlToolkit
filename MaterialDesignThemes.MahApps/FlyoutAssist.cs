@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using MaterialDesignThemes.Wpf;
+﻿using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignThemes.MahApps
 {

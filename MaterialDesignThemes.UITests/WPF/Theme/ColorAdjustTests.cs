@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 using MaterialDesignColors;
 using MaterialDesignColors.ColorManipulation;
 using MaterialDesignThemes.UITests.Samples.Theme;
-using MaterialDesignThemes.Wpf;
-using XamlTest;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace MaterialDesignThemes.UITests.WPF.Theme
 {
@@ -34,7 +24,7 @@ namespace MaterialDesignThemes.UITests.WPF.Theme
         {
             await using var recorder = new TestRecorder(App);
 
-            await App.InitializeWithMaterialDesign(BaseTheme.Light, primary, colorAdjustment:new ColorAdjustment());
+            await App.InitializeWithMaterialDesign(BaseTheme.Light, primary, colorAdjustment: new ColorAdjustment());
 
             IWindow window = await App.CreateWindow<ColorAdjustWindow>();
 
@@ -47,7 +37,7 @@ namespace MaterialDesignThemes.UITests.WPF.Theme
             await AssertContrastRatio();
 
             await themeToggle.LeftClick();
-            await Wait.For(async() => await window.GetBackgroundColor() != windowBackground);
+            await Wait.For(async () => await window.GetBackgroundColor() != windowBackground);
 
             await AssertContrastRatio();
 

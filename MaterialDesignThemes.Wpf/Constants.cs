@@ -1,5 +1,3 @@
-using System.Windows;
-
 namespace MaterialDesignThemes.Wpf;
 
 public static class Constants

@@ -1,5 +1,4 @@
-﻿using System;
-using Xunit;
+﻿using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests
 {
@@ -25,7 +24,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         [Fact]
         public void IsDuplicate_AlwaysShowIsTrue_ItReturnsFalse()
         {
-            SnackbarMessageQueueItem item = CreateItem(alwaysShow:true);
+            SnackbarMessageQueueItem item = CreateItem(alwaysShow: true);
             SnackbarMessageQueueItem other = CreateItem();
 
             Assert.False(item.IsDuplicate(other));
@@ -35,7 +34,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         public void IsDuplicate_WithDifferentContent_ItReturnsFalse()
         {
             SnackbarMessageQueueItem item = CreateItem();
-            SnackbarMessageQueueItem other = CreateItem(content:Guid.NewGuid().ToString());
+            SnackbarMessageQueueItem other = CreateItem(content: Guid.NewGuid().ToString());
 
             Assert.False(item.IsDuplicate(other));
         }
@@ -44,7 +43,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         public void IsDuplicate_WithDifferentActionContent_ItReturnsFalse()
         {
             SnackbarMessageQueueItem item = CreateItem();
-            SnackbarMessageQueueItem other = CreateItem(actionContent:Guid.NewGuid().ToString());
+            SnackbarMessageQueueItem other = CreateItem(actionContent: Guid.NewGuid().ToString());
 
             Assert.False(item.IsDuplicate(other));
         }

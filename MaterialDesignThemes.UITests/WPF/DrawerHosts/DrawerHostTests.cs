@@ -1,12 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using MaterialDesignThemes.UITests.Samples.DrawHost;
-using MaterialDesignThemes.Wpf;
-using XamlTest;
-using Xunit;
-using Xunit.Abstractions;
+﻿using MaterialDesignThemes.UITests.Samples.DrawHost;
 
 namespace MaterialDesignThemes.UITests.WPF.DrawerHosts;
 
@@ -131,4 +123,3 @@ public class DialogHostTests : TestBase
         recorder.Success();
     }
 }
-

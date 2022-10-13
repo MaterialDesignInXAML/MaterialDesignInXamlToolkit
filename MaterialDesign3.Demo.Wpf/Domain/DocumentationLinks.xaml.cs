@@ -1,6 +1,4 @@
-﻿using System.Windows.Controls;
-
-namespace MaterialDesign3Demo.Domain
+﻿namespace MaterialDesign3Demo.Domain
 {
     /// <summary>
     /// Interaction logic for DocumentationLinks.xaml

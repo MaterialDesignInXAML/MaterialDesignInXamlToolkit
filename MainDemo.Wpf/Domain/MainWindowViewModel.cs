@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
-using System.Linq;
 using System.Windows.Data;
-using System.Windows.Controls;
 using MaterialDesignThemes.Wpf;
 using MaterialDesignThemes.Wpf.Transitions;
 
@@ -262,11 +258,11 @@ namespace MaterialDesignDemo.Domain
                     DocumentationLink.ApiLink<PackIcon>()
                 },
                 new IconPackViewModel(snackbarMessageQueue))
-                {
-                    //The icons view handles its own scrolling
-                    HorizontalScrollBarVisibilityRequirement = ScrollBarVisibility.Disabled,
-                    VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Disabled
-                };
+            {
+                //The icons view handles its own scrolling
+                HorizontalScrollBarVisibilityRequirement = ScrollBarVisibility.Disabled,
+                VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Disabled
+            };
 
             yield return new DemoItem(
                 "Colour Zones",

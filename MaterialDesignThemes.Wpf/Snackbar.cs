@@ -1,8 +1,4 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Markup;
-using System.Windows.Media.Animation;
+﻿using System.Windows.Media.Animation;
 using System.Windows.Threading;
 
 namespace MaterialDesignThemes.Wpf
@@ -35,7 +31,7 @@ namespace MaterialDesignThemes.Wpf
 
         public SnackbarMessage? Message
         {
-            get => (SnackbarMessage?) GetValue(MessageProperty);
+            get => (SnackbarMessage?)GetValue(MessageProperty);
             set => SetValue(MessageProperty, value);
         }
 
@@ -45,7 +41,7 @@ namespace MaterialDesignThemes.Wpf
 
         private static void MessageQueuePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            var snackbar = (Snackbar) dependencyObject;
+            var snackbar = (Snackbar)dependencyObject;
             snackbar._messageQueueRegistrationCleanUp?.Invoke();
             var messageQueue = dependencyPropertyChangedEventArgs.NewValue as SnackbarMessageQueue;
             snackbar._messageQueueRegistrationCleanUp = messageQueue?.Pair(snackbar);
@@ -60,7 +56,7 @@ namespace MaterialDesignThemes.Wpf
 
         public SnackbarMessageQueue? MessageQueue
         {
-            get => (SnackbarMessageQueue?) GetValue(MessageQueueProperty);
+            get => (SnackbarMessageQueue?)GetValue(MessageQueueProperty);
             set => SetValue(MessageQueueProperty, value);
         }
 
@@ -69,7 +65,7 @@ namespace MaterialDesignThemes.Wpf
 
         public bool IsActive
         {
-            get => (bool) GetValue(IsActiveProperty);
+            get => (bool)GetValue(IsActiveProperty);
             set => SetValue(IsActiveProperty, value);
         }
 
@@ -85,7 +81,7 @@ namespace MaterialDesignThemes.Wpf
         private static void OnIsActiveChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var instance = d as Snackbar;
-            var args = new RoutedPropertyChangedEventArgs<bool>((bool) e.OldValue, (bool) e.NewValue)
+            var args = new RoutedPropertyChangedEventArgs<bool>((bool)e.OldValue, (bool)e.NewValue)
             {
                 RoutedEvent = IsActiveChangedEvent
             };
@@ -116,7 +112,7 @@ namespace MaterialDesignThemes.Wpf
 
         public Style? ActionButtonStyle
         {
-            get => (Style?) GetValue(ActionButtonStyleProperty);
+            get => (Style?)GetValue(ActionButtonStyleProperty);
             set => SetValue(ActionButtonStyleProperty, value);
         }
 
@@ -140,7 +136,7 @@ namespace MaterialDesignThemes.Wpf
         private TimeSpan GetStoryboardResourceDuration(string resourceName)
         {
             var storyboard = Template.Resources.Contains(resourceName)
-                ? (Storyboard) Template.Resources[resourceName]
+                ? (Storyboard)Template.Resources[resourceName]
                 : null;
 
             return storyboard != null && storyboard.Duration.HasTimeSpan
@@ -157,9 +153,9 @@ namespace MaterialDesignThemes.Wpf
         {
             OnIsActiveChanged(dependencyObject, dependencyPropertyChangedEventArgs);
 
-            if ((bool) dependencyPropertyChangedEventArgs.NewValue) return;
+            if ((bool)dependencyPropertyChangedEventArgs.NewValue) return;
 
-            var snackbar = (Snackbar) dependencyObject;
+            var snackbar = (Snackbar)dependencyObject;
             if (snackbar.Message is null) return;
 
             var dispatcherTimer = new DispatcherTimer
@@ -187,7 +183,7 @@ namespace MaterialDesignThemes.Wpf
 
         public SnackbarActionButtonPlacementMode ActionButtonPlacement
         {
-            get => (SnackbarActionButtonPlacementMode) GetValue(ActionButtonPlacementProperty);
+            get => (SnackbarActionButtonPlacementMode)GetValue(ActionButtonPlacementProperty);
             set => SetValue(ActionButtonPlacementProperty, value);
         }
     }

@@ -1,7 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-
-namespace MaterialDesign3Demo.Domain
+﻿namespace MaterialDesign3Demo.Domain
 {
     public class SimpleDataTemplateSelector : DataTemplateSelector
     {

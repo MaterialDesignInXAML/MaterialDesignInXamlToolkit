@@ -1,8 +1,7 @@
-﻿using MaterialDesignColors.ColorManipulation;
-using System;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
+using MaterialDesignColors.ColorManipulation;
 
 namespace MaterialDesignThemes.Wpf.Converters
 {

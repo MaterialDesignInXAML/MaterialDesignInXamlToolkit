@@ -1,12 +1,5 @@
-﻿using System;
-using System.ComponentModel;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
+﻿using System.ComponentModel;
 using System.Windows.Media;
-using XamlTest;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace MaterialDesignThemes.UITests.WPF.ListBoxes
 {
@@ -102,7 +95,7 @@ ScrollViewer.VerticalScrollBarVisibility=""Visible"">
     <Style BasedOn=""{StaticResource MaterialDesignScrollBarMinimal}"" TargetType=""{x:Type ScrollBar}"" />
 </ListBox.Resources>
 ";
-            for(int i = 0; i < 50; i++)
+            for (int i = 0; i < 50; i++)
             {
                 xaml += $"    <ListBoxItem>This is a pretty long meaningless text just to make horizontal scrollbar visible</ListBoxItem>{Environment.NewLine}";
             }

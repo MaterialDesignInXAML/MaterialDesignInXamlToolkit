@@ -1,5 +1,4 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
 
@@ -26,13 +25,13 @@ namespace MaterialDesignThemes.Wpf.Converters
                 _ => Colors.White
             };
 
-            var alpha = (double) rgba.A / byte.MaxValue;
+            var alpha = (double)rgba.A / byte.MaxValue;
             var alphaReverse = 1 - alpha;
 
             return Color.FromRgb(
-                (byte) (alpha * rgba.R + alphaReverse * backgroundColor.R),
-                (byte) (alpha * rgba.G + alphaReverse * backgroundColor.G),
-                (byte) (alpha * rgba.B + alphaReverse * backgroundColor.B)
+                (byte)(alpha * rgba.R + alphaReverse * backgroundColor.R),
+                (byte)(alpha * rgba.G + alphaReverse * backgroundColor.G),
+                (byte)(alpha * rgba.B + alphaReverse * backgroundColor.B)
             );
         }
 

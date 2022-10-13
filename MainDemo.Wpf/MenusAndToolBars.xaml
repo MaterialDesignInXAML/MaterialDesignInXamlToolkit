@@ -1,420 +1,363 @@
-﻿<UserControl
-    x:Class="MaterialDesignDemo.MenusAndToolBars"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-    xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
-    mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="300">
-    <StackPanel Margin="15">
-        <TextBlock
-            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-            Text="Default Menu"
-            Margin="0 0 0 20"/>
-        
-        <smtx:XamlDisplay
-            UniqueKey="menus_1"
-            HorizontalAlignment="Left">
-            <Menu>
-                <MenuItem Header="_File">
-                    <MenuItem
-                        Header="Save"
-                        Icon="{materialDesign:PackIcon Kind=ContentSave}">
-                    </MenuItem>
+﻿<UserControl x:Class="MaterialDesignDemo.MenusAndToolBars"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
+  <StackPanel Margin="15">
+    <TextBlock Margin="0,0,0,20"
+               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+               Text="Default Menu" />
 
-                    <MenuItem Header="Save As.."/>
+    <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="menus_1">
+      <Menu>
+        <MenuItem Header="_File">
+          <MenuItem Header="Save" Icon="{materialDesign:PackIcon Kind=ContentSave}" />
 
-                    <MenuItem
-                        Header="Exit"
-                        InputGestureText="Ctrl+E"
-                        Icon="{materialDesign:PackIcon Kind=ExitToApp}"/>
+          <MenuItem Header="Save As.." />
 
-                    <Separator/>
+          <MenuItem Header="Exit"
+                    Icon="{materialDesign:PackIcon Kind=ExitToApp}"
+                    InputGestureText="Ctrl+E" />
 
-                    <MenuItem
-                        Header="Excellent"
-                        IsCheckable="True"
-                        IsChecked="True"/>
+          <Separator />
 
-                    <MenuItem
-                        Header="Rubbish"
-                        IsCheckable="True"/>
+          <MenuItem Header="Excellent"
+                    IsCheckable="True"
+                    IsChecked="True" />
 
-                    <MenuItem
-                        Header="Dig Deeper"
-                        InputGestureText="Ctrl+D">
-                        <MenuItem
-                            Header="Enlightenment?"
-                            IsCheckable="True"/>
-                        <MenuItem
-                            Header="Disappointment"
-                            IsCheckable="True"/>
-                    </MenuItem>
+          <MenuItem Header="Rubbish" IsCheckable="True" />
 
-                    <MenuItem
-                        Header="Look Deeper"
-                        InputGestureText="Ctrl+D">
-                        <MenuItem Header="Plain"/>
-                        <MenuItem Header="Ice Cream"/>
-                    </MenuItem>
-                </MenuItem>
+          <MenuItem Header="Dig Deeper" InputGestureText="Ctrl+D">
+            <MenuItem Header="Enlightenment?" IsCheckable="True" />
+            <MenuItem Header="Disappointment" IsCheckable="True" />
+          </MenuItem>
 
-                <MenuItem Header="_Edit">
-                    <MenuItem
-                        Header="_Cut"
-                        Command="Cut"
-                        Icon="{materialDesign:PackIcon Kind=ContentCut}"/>
+          <MenuItem Header="Look Deeper" InputGestureText="Ctrl+D">
+            <MenuItem Header="Plain" />
+            <MenuItem Header="Ice Cream" />
+          </MenuItem>
+        </MenuItem>
 
-                    <MenuItem
-                        Header="_Copy"
-                        Command="Copy"
-                        Icon="{materialDesign:PackIcon Kind=ContentCopy}"/>
+        <MenuItem Header="_Edit">
+          <MenuItem Command="Cut"
+                    Header="_Cut"
+                    Icon="{materialDesign:PackIcon Kind=ContentCut}" />
 
-                    <MenuItem
-                        Header="_Paste"
-                        Command="Paste"
-                        Icon="{materialDesign:PackIcon Kind=ContentPaste}"/>
-                </MenuItem>
-            </Menu>
-        </smtx:XamlDisplay>
+          <MenuItem Command="Copy"
+                    Header="_Copy"
+                    Icon="{materialDesign:PackIcon Kind=ContentCopy}" />
 
-        <Separator Margin="0 20" Style="{DynamicResource MaterialDesignSeparator}"/>
+          <MenuItem Command="Paste"
+                    Header="_Paste"
+                    Icon="{materialDesign:PackIcon Kind=ContentPaste}" />
+        </MenuItem>
+      </Menu>
+    </smtx:XamlDisplay>
 
-        <TextBlock
-            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-            Text="Menu with custom Height"
-            Margin="0 0 0 20"/>
+    <Separator Margin="0,20" Style="{DynamicResource MaterialDesignSeparator}" />
 
-        <smtx:XamlDisplay
-            UniqueKey="customHeightMenu1"
-            HorizontalAlignment="Left"
-            Margin="0 0 0 15">
-            <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="25">
-                <MenuItem Header="Very">
-                    <MenuItem Header="Item 1"/>
-                    <MenuItem Header="Item 2"/>
-                    <MenuItem Header="Item 3"/>
-                </MenuItem>
-                <MenuItem Header="Small">
-                    <MenuItem Header="Item 1"/>
-                    <MenuItem Header="Item 2"/>
-                    <MenuItem Header="Item 3"/>
-                </MenuItem>
-                <MenuItem Header="Menu" />
-            </Menu>
-        </smtx:XamlDisplay>
+    <TextBlock Margin="0,0,0,20"
+               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+               Text="Menu with custom Height" />
 
-        <smtx:XamlDisplay
-            UniqueKey="customHeightMenu2"
-            HorizontalAlignment="Left">
-            <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="80">
-                <MenuItem Header="Very">
-                    <MenuItem Header="Item 1"/>
-                    <MenuItem Header="Item 2"/>
-                    <MenuItem Header="Item 3"/>
-                </MenuItem>
-                <MenuItem Header="Big">
-                    <MenuItem Header="Item 1"/>
-                    <MenuItem Header="Item 2"/>
-                    <MenuItem Header="Item 3"/>
-                </MenuItem>
-                <MenuItem Header="Menu" />
-            </Menu>
-        </smtx:XamlDisplay>
+    <smtx:XamlDisplay Margin="0,0,0,15"
+                      HorizontalAlignment="Left"
+                      UniqueKey="customHeightMenu1">
+      <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="25">
+        <MenuItem Header="Very">
+          <MenuItem Header="Item 1" />
+          <MenuItem Header="Item 2" />
+          <MenuItem Header="Item 3" />
+        </MenuItem>
+        <MenuItem Header="Small">
+          <MenuItem Header="Item 1" />
+          <MenuItem Header="Item 2" />
+          <MenuItem Header="Item 3" />
+        </MenuItem>
+        <MenuItem Header="Menu" />
+      </Menu>
+    </smtx:XamlDisplay>
 
-        <Separator Margin="0 20" Style="{DynamicResource MaterialDesignSeparator}"/>
+    <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="customHeightMenu2">
+      <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="80">
+        <MenuItem Header="Very">
+          <MenuItem Header="Item 1" />
+          <MenuItem Header="Item 2" />
+          <MenuItem Header="Item 3" />
+        </MenuItem>
+        <MenuItem Header="Big">
+          <MenuItem Header="Item 1" />
+          <MenuItem Header="Item 2" />
+          <MenuItem Header="Item 3" />
+        </MenuItem>
+        <MenuItem Header="Menu" />
+      </Menu>
+    </smtx:XamlDisplay>
 
-        <TextBlock
-            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-            Text="Adaptive Menu"
-            Margin="0 0 0 20"/>
+    <Separator Margin="0,20" Style="{DynamicResource MaterialDesignSeparator}" />
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" MinHeight="25"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+    <TextBlock Margin="0,0,0,20"
+               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+               Text="Adaptive Menu" />
 
-            <smtx:XamlDisplay
-                UniqueKey="adaptiveMenu"
-                Grid.Row="0"
-                HorizontalAlignment="Left">
-                <materialDesign:Card>
-                    <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type materialDesign:Card}},Path=ActualHeight}">
-                        <MenuItem Header="File">
-                            <MenuItem Header="Item 1"/>
-                            <MenuItem Header="Item 2"/>
-                            <MenuItem Header="Item 3"/>
-                        </MenuItem>
-                        <MenuItem Header="Edit">
-                            <MenuItem Header="Item 1"/>
-                            <MenuItem Header="Item 2"/>
-                            <MenuItem Header="Item 3"/>
-                        </MenuItem>
-                        <MenuItem Header="About" />
-                    </Menu>
-                </materialDesign:Card>
-            </smtx:XamlDisplay>
-            <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" Margin="0 10"/>
-            <Grid Grid.Row="2">
-                <StackPanel Orientation="Horizontal">
-                    <materialDesign:PackIcon Kind="Information" Margin="0 0 5 0"/>
-                    <TextBlock>The menu height matches with the parent panel height. Use the splitter to see the adaptive menu in action.</TextBlock>
-                </StackPanel>
-            </Grid>
-        </Grid>
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" MinHeight="25" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
 
-        <Separator Margin="0 20" Style="{DynamicResource MaterialDesignSeparator}"/>
-
-        <TextBlock
-            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-            Text="Menu with colored items"
-            Margin="0 0 0 20"/>
-
-        <smtx:XamlDisplay
-            UniqueKey="coloredMenu1"
-            HorizontalAlignment="Left">
-            <Menu>
-                <MenuItem Header="Menu">
-                    <MenuItem Header="Item 1"/>
-                    <MenuItem Header="Item 2"/>
-                    <MenuItem Header="Item 3"/>
-                </MenuItem>
-                <MenuItem Header="In Color" Background="{DynamicResource PrimaryHueMidBrush}" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}">
-                    <MenuItem Header="Item 1" Background="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"/>
-                    <MenuItem Header="Item 2" Background="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"/>
-                    <MenuItem Header="Item 3" Background="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"/>
-                </MenuItem>
-                <MenuItem Header="(1) Important" Foreground="Crimson">
-                    <MenuItem Header="Item 1" Foreground="{DynamicResource MaterialDesignLightForeground}"/>
-                    <MenuItem Header="(1) This is important" Foreground="Crimson"/>
-                    <MenuItem Header="Nothing here" Foreground="{DynamicResource MaterialDesignLightForeground}"/>
-                </MenuItem>
-            </Menu>
-        </smtx:XamlDisplay>
-        
-        <Separator Margin="0 20" Style="{DynamicResource MaterialDesignSeparator}"/>
-
-        <TextBlock
-            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-            Text="Toolbars"
-            Margin="0 0 0 20"/>
-
-        <smtx:XamlDisplay
-            UniqueKey="menus_2"
-            Margin="5 0 0 0">
-            <ToolBarTray>
-                <ToolBar
-                    Style="{StaticResource MaterialDesignToolBar}"
-                    ClipToBounds="False">
-                    <Button
-                        ToolTip="Follow me on Twitter"
-                        Click="TwitterButton_OnClick"
-                        Content="{materialDesign:PackIcon Kind=Twitter}"/>
-
-                    <Button
-                        ToolTip="Save"
-                        Content="{materialDesign:PackIcon Kind=ContentSave}"/>
-
-                    <Separator/>
-
-                    <Button
-                        Command="Cut"
-                        ToolTip="Cut"
-                        ToolBar.OverflowMode="AsNeeded"
-                        Content="{materialDesign:PackIcon Kind=ContentCut}"/>
-                    
-                    <Button
-                        Command="Copy"
-                        ToolTip="Copy that stuff"
-                        ToolBar.OverflowMode="AsNeeded"
-                        Content="{materialDesign:PackIcon Kind=ContentCopy}"/>
-                    
-                    <Separator/>
-
-                    <Button
-                        Command="Paste"
-                        ToolTip="Paste some stuff"
-                        ToolBar.OverflowMode="AsNeeded"
-                        Content="{materialDesign:PackIcon Kind=ContentPaste}"/>
-                    
-                    <!-- when badging in a toolbar, make sure the parent ToolBar.ClipToBounds="False", and
-                     manually apply the button style -->
-                    <materialDesign:Badged
-                        ToolBar.OverflowMode="AsNeeded"
-                        Badge="{materialDesign:PackIcon Alert}"
-                        CornerRadius="5">
-                        <Button
-                            ToolTip="Badge it up!"
-                            Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
-                            Content="{materialDesign:PackIcon Kind=AirplaneTakeoff}"/>
-                    </materialDesign:Badged>
-                    
-                    <Separator/>
-                    
-                    <ListBox>
-                        <ListBoxItem ToolTip="This is a lonley toggle with TextBlock instead of icon">
-                            <TextBlock Text="W"/>
-                        </ListBoxItem>
-                    </ListBox>
-                    
-                    <Separator/>
-                    
-                    <ListBox SelectedIndex="0">
-                        <ListBox.ToolTip>
-                            <StackPanel>
-                                <TextBlock Text="MaterialDesignToolToggleFlatListBox"/>
-                                <TextBlock Text="Exclusive selection"/>
-                                <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behaviour"/>
-                            </StackPanel>
-                        </ListBox.ToolTip>
-
-                        <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatAlignLeft}"/>
-                        <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatAlignCenter}"/>
-                        <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatAlignRight}"/>
-                        <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatAlignJustify}"/>
-                    </ListBox>
-                    
-                    <Separator/>
-                    
-                    <ListBox SelectionMode="Extended">
-                        <ListBox.ToolTip>
-                            <StackPanel>
-                                <TextBlock Text="MaterialDesignToolToggleListBox"/>
-                                <TextBlock Text="Multiple selection"/>
-                                <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behaviour"/>
-                            </StackPanel>
-                        </ListBox.ToolTip>
-
-                        <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatBold}"/>
-                        <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatItalic}"/>
-                        <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatUnderline}"/>
-                    </ListBox>
-                    
-                    <Separator/>
-                    
-                    <Label
-                        Content="Font size:"
-                        VerticalAlignment="Center"/>
-                    
-                    <ComboBox>
-                        <ComboBoxItem Content="10"/>
-                        <ComboBoxItem IsSelected="True" Content="12"/>
-                        <ComboBoxItem Content="14"/>
-                        <ComboBoxItem Content="16"/>
-                    </ComboBox>
-
-                    <CheckBox Content="Check"/>
-
-                    <Button
-                        ToolTip="Take a nap"
-                        ToolBar.OverflowMode="Always"
-                        Content="{materialDesign:PackIcon Kind=Hotel}"/>
-
-                    <RadioButton
-                        GroupName="XXX"
-                        Content="Radio"/>
-                    
-                    <RadioButton
-                        GroupName="XXX"
-                        Content="Ga Ga"/>
-                    
-                    <Separator/>
-
-                    <RadioButton
-                        GroupName="YYY"
-                        Style="{StaticResource MaterialDesignToolRadioButton}"
-                        Content="{materialDesign:PackIcon Kind=Radio}"/>
-
-                    <RadioButton
-                        GroupName="YYY"
-                        Style="{StaticResource MaterialDesignToolRadioButton}"
-                        Content="{materialDesign:PackIcon Kind=EmoticonPoop}"/>
-                    
-                    <Separator/>
-                    
-                    <ToggleButton/>
-                </ToolBar>
-            </ToolBarTray>
-        </smtx:XamlDisplay>
-
-        <smtx:XamlDisplay
-            UniqueKey="menus_3"
-            Margin="5 16 0 0">
-            <ToolBarTray>
-                <ToolBar
-                    Style="{StaticResource MaterialDesignToolBar}"
-                    ClipToBounds="False">
-                    <Menu>
-                        <MenuItem
-                            Header="Nested menu">
-                            <MenuItem
-                                Header="Item 1" />
-                            <MenuItem
-                                Header="Item 2" />
-                        </MenuItem>
-                    </Menu>
-
-                    <Separator />
-
-                    <ComboBox
-                        Margin="8 0"
-                        Width="80"
-                        Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                        materialDesign:HintAssist.Hint="Food">
-                        <ComboBoxItem
-                            Content="Fries"
-                            IsSelected="True" />
-
-                        <ComboBoxItem
-                            Content="Waffles" />
-
-                        <ComboBoxItem
-                            Content="Chocolate" />
-                    </ComboBox>
-
-                    <TextBox
-                        Width="80"
-                        Margin="8 0"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                        materialDesign:HintAssist.Hint="Drink"
-                        Text="Beer" />
-                </ToolBar>
-            </ToolBarTray>
-        </smtx:XamlDisplay>
-
-        <Separator Margin="0 20" Style="{DynamicResource MaterialDesignSeparator}"/>
-
-        <TextBlock
-            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-            Text="Context Menus"
-            Margin="0 0 0 20"/>
-
+      <smtx:XamlDisplay Grid.Row="0"
+                        HorizontalAlignment="Left"
+                        UniqueKey="adaptiveMenu">
+        <materialDesign:Card>
+          <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type materialDesign:Card}}, Path=ActualHeight}">
+            <MenuItem Header="File">
+              <MenuItem Header="Item 1" />
+              <MenuItem Header="Item 2" />
+              <MenuItem Header="Item 3" />
+            </MenuItem>
+            <MenuItem Header="Edit">
+              <MenuItem Header="Item 1" />
+              <MenuItem Header="Item 2" />
+              <MenuItem Header="Item 3" />
+            </MenuItem>
+            <MenuItem Header="About" />
+          </Menu>
+        </materialDesign:Card>
+      </smtx:XamlDisplay>
+      <GridSplitter Grid.Row="1"
+                    Height="5"
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch" />
+      <Grid Grid.Row="2">
         <StackPanel Orientation="Horizontal">
-            <smtx:XamlDisplay
-                UniqueKey="menus_4"
-                Margin="0 0 20 0">
-                <TextBox Text="With Default Context Menu"/>
-            </smtx:XamlDisplay>
-
-            <smtx:XamlDisplay
-                UniqueKey="menus_5">
-                <TextBox Text="With Custom Context Menu">
-                    <TextBox.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem Header="Hello World"/>
-                            <MenuItem Header="Clickety Click">
-                                <MenuItem Header="Clackety Clack"/>
-                            </MenuItem>
-                        </ContextMenu>
-                    </TextBox.ContextMenu>
-                </TextBox>
-            </smtx:XamlDisplay>
+          <materialDesign:PackIcon Margin="0,0,5,0" Kind="Information" />
+          <TextBlock>The menu height matches with the parent panel height. Use the splitter to see the adaptive menu in action.</TextBlock>
         </StackPanel>
+      </Grid>
+    </Grid>
+
+    <Separator Margin="0,20" Style="{DynamicResource MaterialDesignSeparator}" />
+
+    <TextBlock Margin="0,0,0,20"
+               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+               Text="Menu with colored items" />
+
+    <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="coloredMenu1">
+      <Menu>
+        <MenuItem Header="Menu">
+          <MenuItem Header="Item 1" />
+          <MenuItem Header="Item 2" />
+          <MenuItem Header="Item 3" />
+        </MenuItem>
+        <MenuItem Background="{DynamicResource PrimaryHueMidBrush}"
+                  Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                  Header="In Color">
+          <MenuItem Background="{DynamicResource SecondaryHueMidBrush}"
+                    Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"
+                    Header="Item 1" />
+          <MenuItem Background="{DynamicResource SecondaryHueMidBrush}"
+                    Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"
+                    Header="Item 2" />
+          <MenuItem Background="{DynamicResource SecondaryHueMidBrush}"
+                    Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"
+                    Header="Item 3" />
+        </MenuItem>
+        <MenuItem Foreground="Crimson" Header="(1) Important">
+          <MenuItem Foreground="{DynamicResource MaterialDesignLightForeground}" Header="Item 1" />
+          <MenuItem Foreground="Crimson" Header="(1) This is important" />
+          <MenuItem Foreground="{DynamicResource MaterialDesignLightForeground}" Header="Nothing here" />
+        </MenuItem>
+      </Menu>
+    </smtx:XamlDisplay>
+
+    <Separator Margin="0,20" Style="{DynamicResource MaterialDesignSeparator}" />
+
+    <TextBlock Margin="0,0,0,20"
+               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+               Text="Toolbars" />
+
+    <smtx:XamlDisplay Margin="5,0,0,0" UniqueKey="menus_2">
+      <ToolBarTray>
+        <ToolBar ClipToBounds="False" Style="{StaticResource MaterialDesignToolBar}">
+          <Button Click="TwitterButton_OnClick"
+                  Content="{materialDesign:PackIcon Kind=Twitter}"
+                  ToolTip="Follow me on Twitter" />
+
+          <Button Content="{materialDesign:PackIcon Kind=ContentSave}" ToolTip="Save" />
+
+          <Separator />
+
+          <Button Command="Cut"
+                  Content="{materialDesign:PackIcon Kind=ContentCut}"
+                  ToolBar.OverflowMode="AsNeeded"
+                  ToolTip="Cut" />
+
+          <Button Command="Copy"
+                  Content="{materialDesign:PackIcon Kind=ContentCopy}"
+                  ToolBar.OverflowMode="AsNeeded"
+                  ToolTip="Copy that stuff" />
+
+          <Separator />
+
+          <Button Command="Paste"
+                  Content="{materialDesign:PackIcon Kind=ContentPaste}"
+                  ToolBar.OverflowMode="AsNeeded"
+                  ToolTip="Paste some stuff" />
+
+          <!--
+            when badging in a toolbar, make sure the parent ToolBar.ClipToBounds="False", and
+            manually apply the button style
+          -->
+          <materialDesign:Badged Badge="{materialDesign:PackIcon Alert}"
+                                 CornerRadius="5"
+                                 ToolBar.OverflowMode="AsNeeded">
+            <Button Content="{materialDesign:PackIcon Kind=AirplaneTakeoff}"
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                    ToolTip="Badge it up!" />
+          </materialDesign:Badged>
+
+          <Separator />
+
+          <ListBox>
+            <ListBoxItem ToolTip="This is a lonley toggle with TextBlock instead of icon">
+              <TextBlock Text="W" />
+            </ListBoxItem>
+          </ListBox>
+
+          <Separator />
+
+          <ListBox SelectedIndex="0">
+            <ListBox.ToolTip>
+              <StackPanel>
+                <TextBlock Text="MaterialDesignToolToggleFlatListBox" />
+                <TextBlock Text="Exclusive selection" />
+                <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+              </StackPanel>
+            </ListBox.ToolTip>
+
+            <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatAlignLeft}" />
+            <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatAlignCenter}" />
+            <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatAlignRight}" />
+            <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatAlignJustify}" />
+          </ListBox>
+
+          <Separator />
+
+          <ListBox SelectionMode="Extended">
+            <ListBox.ToolTip>
+              <StackPanel>
+                <TextBlock Text="MaterialDesignToolToggleListBox" />
+                <TextBlock Text="Multiple selection" />
+                <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+              </StackPanel>
+            </ListBox.ToolTip>
+
+            <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatBold}" />
+            <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatItalic}" />
+            <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatUnderline}" />
+          </ListBox>
+
+          <Separator />
+
+          <Label VerticalAlignment="Center" Content="Font size:" />
+
+          <ComboBox>
+            <ComboBoxItem Content="10" />
+            <ComboBoxItem Content="12" IsSelected="True" />
+            <ComboBoxItem Content="14" />
+            <ComboBoxItem Content="16" />
+          </ComboBox>
+
+          <CheckBox Content="Check" />
+
+          <Button Content="{materialDesign:PackIcon Kind=Hotel}"
+                  ToolBar.OverflowMode="Always"
+                  ToolTip="Take a nap" />
+
+          <RadioButton Content="Radio" GroupName="XXX" />
+
+          <RadioButton Content="Ga Ga" GroupName="XXX" />
+
+          <Separator />
+
+          <RadioButton Content="{materialDesign:PackIcon Kind=Radio}"
+                       GroupName="YYY"
+                       Style="{StaticResource MaterialDesignToolRadioButton}" />
+
+          <RadioButton Content="{materialDesign:PackIcon Kind=EmoticonPoop}"
+                       GroupName="YYY"
+                       Style="{StaticResource MaterialDesignToolRadioButton}" />
+
+          <Separator />
+
+          <ToggleButton />
+        </ToolBar>
+      </ToolBarTray>
+    </smtx:XamlDisplay>
+
+    <smtx:XamlDisplay Margin="5,16,0,0" UniqueKey="menus_3">
+      <ToolBarTray>
+        <ToolBar ClipToBounds="False" Style="{StaticResource MaterialDesignToolBar}">
+          <Menu>
+            <MenuItem Header="Nested menu">
+              <MenuItem Header="Item 1" />
+              <MenuItem Header="Item 2" />
+            </MenuItem>
+          </Menu>
+
+          <Separator />
+
+          <ComboBox Width="80"
+                    Margin="8,0"
+                    materialDesign:HintAssist.Hint="Food"
+                    Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+            <ComboBoxItem Content="Fries" IsSelected="True" />
+
+            <ComboBoxItem Content="Waffles" />
+
+            <ComboBoxItem Content="Chocolate" />
+          </ComboBox>
+
+          <TextBox Width="80"
+                   Margin="8,0"
+                   materialDesign:HintAssist.Hint="Drink"
+                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                   Text="Beer" />
+        </ToolBar>
+      </ToolBarTray>
+    </smtx:XamlDisplay>
+
+    <Separator Margin="0,20" Style="{DynamicResource MaterialDesignSeparator}" />
+
+    <TextBlock Margin="0,0,0,20"
+               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+               Text="Context Menus" />
+
+    <StackPanel Orientation="Horizontal">
+      <smtx:XamlDisplay Margin="0,0,20,0" UniqueKey="menus_4">
+        <TextBox Text="With Default Context Menu" />
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay UniqueKey="menus_5">
+        <TextBox Text="With Custom Context Menu">
+          <TextBox.ContextMenu>
+            <ContextMenu>
+              <MenuItem Header="Hello World" />
+              <MenuItem Header="Clickety Click">
+                <MenuItem Header="Clackety Clack" />
+              </MenuItem>
+            </ContextMenu>
+          </TextBox.ContextMenu>
+        </TextBox>
+      </smtx:XamlDisplay>
     </StackPanel>
+  </StackPanel>
 </UserControl>
 

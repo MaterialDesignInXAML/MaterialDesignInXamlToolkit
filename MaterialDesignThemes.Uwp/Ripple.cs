@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Media;
 namespace MaterialDesignThemes.Uwp
 {
     [TemplateVisualState(GroupName = "CommonStates", Name = "Normal")]
-    [TemplateVisualState(GroupName = "CommonStates", Name = "Pressed")]    
+    [TemplateVisualState(GroupName = "CommonStates", Name = "Pressed")]
     public sealed class Ripple : ContentControl, INotifyPropertyChanged
     {
         private double _rippleSize;
@@ -22,7 +22,7 @@ namespace MaterialDesignThemes.Uwp
 
         public Ripple()
         {
-            DefaultStyleKey = typeof(Ripple);            
+            DefaultStyleKey = typeof(Ripple);
             SizeChanged += OnSizeChanged;
         }
 
@@ -33,11 +33,11 @@ namespace MaterialDesignThemes.Uwp
         }
 
         public static readonly DependencyProperty FeedbackProperty = DependencyProperty.Register(
-            "Feedback", typeof (Brush), typeof (Ripple), new PropertyMetadata(default(Brush)));
+            "Feedback", typeof(Brush), typeof(Ripple), new PropertyMetadata(default(Brush)));
 
         public Brush Feedback
         {
-            get { return (Brush) GetValue(FeedbackProperty); }
+            get { return (Brush)GetValue(FeedbackProperty); }
             set { SetValue(FeedbackProperty, value); }
         }
 
@@ -54,8 +54,8 @@ namespace MaterialDesignThemes.Uwp
             {
                 var point = e.GetCurrentPoint(this);
 
-                RippleX = point.Position.X - RippleSize/2;
-                RippleY = point.Position.Y - RippleSize/2;
+                RippleX = point.Position.X - RippleSize / 2;
+                RippleY = point.Position.Y - RippleSize / 2;
 
                 VisualStateManager.GoToState(this, "Normal", true);
                 VisualStateManager.GoToState(this, "MousePressed", true);
@@ -65,11 +65,11 @@ namespace MaterialDesignThemes.Uwp
         }
 
         public static readonly DependencyProperty RippleSizeMultiplierProperty = DependencyProperty.Register(
-            "RippleSizeMultiplier", typeof (double), typeof (Ripple), new PropertyMetadata(1.75));
+            "RippleSizeMultiplier", typeof(double), typeof(Ripple), new PropertyMetadata(1.75));
 
         public double RippleSizeMultiplier
         {
-            get { return (double) GetValue(RippleSizeMultiplierProperty); }
+            get { return (double)GetValue(RippleSizeMultiplierProperty); }
             set { SetValue(RippleSizeMultiplierProperty, value); }
         }
 

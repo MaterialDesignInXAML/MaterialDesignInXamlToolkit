@@ -1,11 +1,5 @@
-using System;
 using System.ComponentModel;
 using System.Globalization;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using XamlTest;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace MaterialDesignThemes.UITests.WPF.DatePickers
 {
@@ -21,7 +15,7 @@ namespace MaterialDesignThemes.UITests.WPF.DatePickers
         public async Task OnDatePickerHelperTextFontSize_ChangesHelperTextFontSize()
         {
             await using var recorder = new TestRecorder(App);
-            
+
             var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <DatePicker materialDesign:HintAssist.HelperTextFontSize=""20""/>
@@ -61,7 +55,7 @@ namespace MaterialDesignThemes.UITests.WPF.DatePickers
                 selectedDate = await datePicker.GetSelectedDate();
                 Assert.Null(selectedDate);
             });
-            
+
             recorder.Success();
         }
 

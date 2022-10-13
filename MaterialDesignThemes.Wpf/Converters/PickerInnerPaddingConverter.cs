@@ -1,6 +1,4 @@
-using System;
 using System.Globalization;
-using System.Windows;
 using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters
@@ -19,7 +17,7 @@ namespace MaterialDesignThemes.Wpf.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
             => throw new NotSupportedException();
-        
+
         /// <summary>
         /// Adds the width of the inner picker button to the right of inner padding 
         /// </summary>

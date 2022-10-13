@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using Shouldly;
+﻿using Shouldly;
 using Xunit;
 
 namespace MaterialDesignColors.Wpf.Fixture

@@ -1,10 +1,3 @@
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using XamlTest;
-using Xunit;
-using Xunit.Abstractions;
-
 namespace MaterialDesignThemes.UITests.WPF
 {
     public class TextFieldDefaultHeightTests : TestBase
@@ -83,7 +76,7 @@ namespace MaterialDesignThemes.UITests.WPF
 
             recorder.Success();
         }
-        
+
         [Fact]
         public async Task SameHeightWithOutlinedStyle()
         {

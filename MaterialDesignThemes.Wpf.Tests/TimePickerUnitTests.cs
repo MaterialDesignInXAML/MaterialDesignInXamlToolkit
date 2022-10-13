@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Markup;
 using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests

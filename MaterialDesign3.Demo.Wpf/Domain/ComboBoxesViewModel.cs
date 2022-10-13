@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace MaterialDesign3Demo.Domain
+﻿namespace MaterialDesign3Demo.Domain
 {
     public class ComboBoxesViewModel : ViewModelBase
     {

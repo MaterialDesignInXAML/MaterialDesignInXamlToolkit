@@ -1,15 +1,10 @@
 ﻿using System.ComponentModel;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using XamlTest;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace MaterialDesignThemes.UITests.WPF.PasswordBoxes
 {
-    public class PasswordBoxTests: TestBase
+    public class PasswordBoxTests : TestBase
     {
-        public PasswordBoxTests(ITestOutputHelper output) 
+        public PasswordBoxTests(ITestOutputHelper output)
             : base(output)
         {
         }

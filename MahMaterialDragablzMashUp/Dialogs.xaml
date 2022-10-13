@@ -1,17 +1,18 @@
 ﻿<UserControl x:Class="MahMaterialDragablzMashUp.Dialogs"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MahMaterialDragablzMashUp"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:dialogs="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
-             mc:Ignorable="d"     
+             xmlns:local="clr-namespace:MahMaterialDragablzMashUp"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DataContext="{d:DesignInstance local:DialogsViewModel}"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
              dialogs:DialogParticipation.Register="{Binding}"
-             d:DesignHeight="300" d:DesignWidth="300"
-             d:DataContext="{d:DesignInstance local:DialogsViewModel}">
-    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Button Command="{Binding ShowInputDialogCommand}">INPUT DIALOG</Button>
-        <Button Command="{Binding ShowProgressDialogCommand}" Margin="0 48 0 0">PROGRESS DIALOG</Button>
-        <Button Command="{Binding ShowLeftFlyoutCommand}" Margin="0 48 0 0">FLYOUT</Button>
-    </StackPanel>
+             mc:Ignorable="d">
+  <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Button Command="{Binding ShowInputDialogCommand}">INPUT DIALOG</Button>
+    <Button Margin="0,48,0,0" Command="{Binding ShowProgressDialogCommand}">PROGRESS DIALOG</Button>
+    <Button Margin="0,48,0,0" Command="{Binding ShowLeftFlyoutCommand}">FLYOUT</Button>
+  </StackPanel>
 </UserControl>

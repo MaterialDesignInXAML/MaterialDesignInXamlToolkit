@@ -190,7 +190,7 @@ namespace MaterialDesignThemes.Wpf
                    defaultValue: new TimeSpan(0, 0, 0, 0, 180),
                    flags: FrameworkPropertyMetadataOptions.Inherits)
                );
-        
+
         public static TimeSpan GetShadowAnimationDuration(DependencyObject element) => (TimeSpan)element.GetValue(ShadowAnimationDurationProperty);
         public static void SetShadowAnimationDuration(DependencyObject element, TimeSpan value) => element.SetValue(ShadowAnimationDurationProperty, value);
         #endregion

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Windows;
-
-namespace MaterialDesignThemes.Wpf
+﻿namespace MaterialDesignThemes.Wpf
 {
     public class PaletteHelper
     {

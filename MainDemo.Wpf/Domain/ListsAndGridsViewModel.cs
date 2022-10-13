@@ -1,7 +1,4 @@
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
 
 namespace MaterialDesignDemo.Domain
 {
@@ -35,7 +32,7 @@ namespace MaterialDesignDemo.Domain
             get
             {
                 var selected = Items1.Select(item => item.IsSelected).Distinct().ToList();
-                return selected.Count == 1 ? selected.Single() : (bool?) null;
+                return selected.Count == 1 ? selected.Single() : (bool?)null;
             }
             set
             {

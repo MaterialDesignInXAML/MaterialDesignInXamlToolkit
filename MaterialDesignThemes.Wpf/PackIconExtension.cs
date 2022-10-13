@@ -1,6 +1,3 @@
-using System;
-using System.Windows.Markup;
-
 namespace MaterialDesignThemes.Wpf
 {
     [MarkupExtensionReturnType(typeof(PackIcon))]

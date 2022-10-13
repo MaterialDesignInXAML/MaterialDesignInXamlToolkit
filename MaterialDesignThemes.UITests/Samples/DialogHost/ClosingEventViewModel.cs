@@ -4,7 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 namespace MaterialDesignThemes.UITests.Samples.DialogHost;
 
 [ObservableObject]
-public partial class ClosingEventViewModel 
+public partial class ClosingEventViewModel
 {
     [ObservableProperty]
     private bool _dialogIsOpen;

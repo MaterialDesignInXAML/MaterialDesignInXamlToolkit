@@ -1,11 +1,7 @@
-﻿using System;
-using System.Linq;
-using System.Windows;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 using ControlzEx.Theming;
 using MaterialDesignColors.ColorManipulation;
 using MaterialDesignThemes.Wpf;
-using System.Diagnostics.CodeAnalysis;
 using Theme = ControlzEx.Theming.Theme;
 
 namespace MaterialDesignThemes.MahApps

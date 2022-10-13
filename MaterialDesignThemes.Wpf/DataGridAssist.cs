@@ -1,4 +1,3 @@
-using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf;
@@ -260,44 +259,44 @@ public static class DataGridAssist
             switch (dataGridCell.Content)
             {
                 case TextBoxBase textBox:
-                {
-                    // Send a 'left-click' routed event to the TextBox to place the I-beam at the position of the mouse cursor
-                    var mouseDownEvent = new MouseButtonEventArgs(mouseArgs.MouseDevice, mouseArgs.Timestamp, mouseArgs.ChangedButton)
                     {
-                        RoutedEvent = Mouse.MouseDownEvent,
-                        Source = mouseArgs.Source
-                    };
-                    textBox.RaiseEvent(mouseDownEvent);
-                    break;
-                }
-
-                case ToggleButton toggleButton:
-                {
-                    // Check if the cursor actually hit the checkbox and not just the cell
-                    var mousePosition = mouseArgs.GetPosition(element);
-                    var elementHitBox = new Rect(element.RenderSize);
-                    if (elementHitBox.Contains(mousePosition))
-                    {
-                        // Send a 'left click' routed command to the toggleButton to toggle the state
-                        var newMouseEvent = new MouseButtonEventArgs(mouseArgs.MouseDevice, mouseArgs.Timestamp, mouseArgs.ChangedButton)
+                        // Send a 'left-click' routed event to the TextBox to place the I-beam at the position of the mouse cursor
+                        var mouseDownEvent = new MouseButtonEventArgs(mouseArgs.MouseDevice, mouseArgs.Timestamp, mouseArgs.ChangedButton)
                         {
                             RoutedEvent = Mouse.MouseDownEvent,
-                            Source = dataGrid
+                            Source = mouseArgs.Source
                         };
-
-                        toggleButton.RaiseEvent(newMouseEvent);
+                        textBox.RaiseEvent(mouseDownEvent);
+                        break;
                     }
-                    break;
-                }
+
+                case ToggleButton toggleButton:
+                    {
+                        // Check if the cursor actually hit the checkbox and not just the cell
+                        var mousePosition = mouseArgs.GetPosition(element);
+                        var elementHitBox = new Rect(element.RenderSize);
+                        if (elementHitBox.Contains(mousePosition))
+                        {
+                            // Send a 'left click' routed command to the toggleButton to toggle the state
+                            var newMouseEvent = new MouseButtonEventArgs(mouseArgs.MouseDevice, mouseArgs.Timestamp, mouseArgs.ChangedButton)
+                            {
+                                RoutedEvent = Mouse.MouseDownEvent,
+                                Source = dataGrid
+                            };
+
+                            toggleButton.RaiseEvent(newMouseEvent);
+                        }
+                        break;
+                    }
 
                 // Open the dropdown explicitly. Left clicking is not
                 // viable, as it would edit the text and not open the
                 // dropdown
                 case ComboBox comboBox:
-                {
-                    comboBox.IsDropDownOpen = true;
-                    break;
-                }
+                    {
+                        comboBox.IsDropDownOpen = true;
+                        break;
+                    }
             }
         }
     }
