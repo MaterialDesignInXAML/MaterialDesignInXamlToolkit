@@ -314,6 +314,28 @@
 
     <TextBlock Margin="0,15,0,20"
                Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+               Text="Scrollable content" />
+
+    <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_scrollable_content" HorizontalAlignment="Left">
+      <TabControl Width="500"
+                  Height="200">
+        <TabItem Header="TAB 1">
+          <ScrollViewer>
+            <TextBlock Text="{Binding VeryLongText}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TextWrapping="Wrap" />
+          </ScrollViewer>
+        </TabItem>
+        <TabItem Header="TAB 2">
+          <ScrollViewer>
+            <TextBox Text="{Binding VeryLongText}" Style="{StaticResource MaterialDesignOutlinedTextBox}" AcceptsReturn="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TextWrapping="Wrap" Margin="5" />
+          </ScrollViewer>
+        </TabItem>
+      </TabControl>
+    </smtx:XamlDisplay>
+
+    <Separator Style="{DynamicResource MaterialDesignSeparator}" />
+
+    <TextBlock Margin="0,15,0,20"
+               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
                Text="Placement" />
 
 
