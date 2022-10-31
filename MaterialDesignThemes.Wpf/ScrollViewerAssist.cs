@@ -74,9 +74,6 @@ public static class ScrollViewerAssist
     public static readonly DependencyProperty SupportHorizontalScrollProperty = DependencyProperty.RegisterAttached(
         "SupportHorizontalScroll", typeof(bool), typeof(ScrollViewerAssist), new PropertyMetadata(false, OnSupportHorizontalScrollChanged));
 
-    public static readonly DependencyProperty IgnoreVerticalScrollProperty = DependencyProperty.RegisterAttached(
-        "IgnoreVerticalScroll", typeof(bool), typeof(ScrollViewerAssist), new PropertyMetadata(false, OnIgnoreVerticalScrollChanged));
-
     private static void OnSupportHorizontalScrollChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         //Based on: https://blog.walterlv.com/post/handle-horizontal-scrolling-of-touchpad-en.html
@@ -161,6 +158,9 @@ public static class ScrollViewerAssist
             }
         }
     }
+
+    public static readonly DependencyProperty IgnoreVerticalScrollProperty = DependencyProperty.RegisterAttached(
+        "IgnoreVerticalScroll", typeof(bool), typeof(ScrollViewerAssist), new PropertyMetadata(false, OnIgnoreVerticalScrollChanged));
 
     private static void OnIgnoreVerticalScrollChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
