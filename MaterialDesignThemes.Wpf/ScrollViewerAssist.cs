@@ -159,10 +159,10 @@ public static class ScrollViewerAssist
         }
     }
 
-    public static readonly DependencyProperty IgnoreVerticalScrollProperty = DependencyProperty.RegisterAttached(
-        "IgnoreVerticalScroll", typeof(bool), typeof(ScrollViewerAssist), new PropertyMetadata(false, OnIgnoreVerticalScrollChanged));
+    public static readonly DependencyProperty RaiseVerticalScrollUpstreamProperty = DependencyProperty.RegisterAttached(
+        "RaiseVerticalScrollUpstream", typeof(bool), typeof(ScrollViewerAssist), new PropertyMetadata(false, OnRaiseVerticalScrollUpstreamChanged));
 
-    private static void OnIgnoreVerticalScrollChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnRaiseVerticalScrollUpstreamChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is ScrollViewer scrollViewer)
         {
@@ -170,7 +170,7 @@ public static class ScrollViewerAssist
             {
                 OnLoaded(scrollViewer, sv =>
                 {
-                    if (GetIgnoreVerticalScroll(sv))
+                    if (GetRaiseVerticalScrollUpstream(sv))
                     {
                         RegisterHook(sv);
                     }
@@ -180,7 +180,7 @@ public static class ScrollViewerAssist
             {
                 OnLoaded(scrollViewer, sv =>
                 {
-                    if (!GetIgnoreVerticalScroll(sv))
+                    if (!GetRaiseVerticalScrollUpstream(sv))
                     {
                         RemoveHook(sv);
                     }
@@ -209,7 +209,6 @@ public static class ScrollViewerAssist
         static void RemoveHook(ScrollViewer scrollViewer)
         {
             scrollViewer.RemoveHandler(UIElement.MouseWheelEvent, (RoutedEventHandler)ScrollViewerOnMouseWheel);
-            //scrollViewer.PreviewMouseWheel -= ScrollViewerOnMouseWheel;
         }
 
         static void RegisterHook(ScrollViewer scrollViewer)
@@ -245,10 +244,9 @@ public static class ScrollViewerAssist
     public static bool GetSupportHorizontalScroll(DependencyObject element)
         => (bool)element.GetValue(SupportHorizontalScrollProperty);
 
-    public static void SetIgnoreVerticalScroll(DependencyObject element, bool value)
-        => element.SetValue(IgnoreVerticalScrollProperty, value);
+    public static void SetRaiseVerticalScrollUpstream(DependencyObject element, bool value)
+        => element.SetValue(RaiseVerticalScrollUpstreamProperty, value);
 
-    public static bool GetIgnoreVerticalScroll(DependencyObject element)
-        => (bool)element.GetValue(IgnoreVerticalScrollProperty);
-
+    public static bool GetRaiseVerticalScrollUpstream(DependencyObject element)
+        => (bool)element.GetValue(RaiseVerticalScrollUpstreamProperty);
 }
