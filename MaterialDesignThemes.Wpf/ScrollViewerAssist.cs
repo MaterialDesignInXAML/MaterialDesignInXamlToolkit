@@ -159,10 +159,10 @@ public static class ScrollViewerAssist
         }
     }
 
-    public static readonly DependencyProperty RaiseVerticalScrollUpstreamProperty = DependencyProperty.RegisterAttached(
-        "RaiseVerticalScrollUpstream", typeof(bool), typeof(ScrollViewerAssist), new PropertyMetadata(false, OnRaiseVerticalScrollUpstreamChanged));
+    public static readonly DependencyProperty BubbleVerticalScrollProperty = DependencyProperty.RegisterAttached(
+        "BubbleVerticalScroll", typeof(bool), typeof(ScrollViewerAssist), new PropertyMetadata(false, OnBubbleVerticalScrollChanged));
 
-    private static void OnRaiseVerticalScrollUpstreamChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnBubbleVerticalScrollChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is ScrollViewer scrollViewer)
         {
@@ -170,7 +170,7 @@ public static class ScrollViewerAssist
             {
                 OnLoaded(scrollViewer, sv =>
                 {
-                    if (GetRaiseVerticalScrollUpstream(sv))
+                    if (GetBubbleVerticalScroll(sv))
                     {
                         RegisterHook(sv);
                     }
@@ -180,7 +180,7 @@ public static class ScrollViewerAssist
             {
                 OnLoaded(scrollViewer, sv =>
                 {
-                    if (!GetRaiseVerticalScrollUpstream(sv))
+                    if (!GetBubbleVerticalScroll(sv))
                     {
                         RemoveHook(sv);
                     }
@@ -244,9 +244,9 @@ public static class ScrollViewerAssist
     public static bool GetSupportHorizontalScroll(DependencyObject element)
         => (bool)element.GetValue(SupportHorizontalScrollProperty);
 
-    public static void SetRaiseVerticalScrollUpstream(DependencyObject element, bool value)
-        => element.SetValue(RaiseVerticalScrollUpstreamProperty, value);
+    public static void SetBubbleVerticalScroll(DependencyObject element, bool value)
+        => element.SetValue(BubbleVerticalScrollProperty, value);
 
-    public static bool GetRaiseVerticalScrollUpstream(DependencyObject element)
-        => (bool)element.GetValue(RaiseVerticalScrollUpstreamProperty);
+    public static bool GetBubbleVerticalScroll(DependencyObject element)
+        => (bool)element.GetValue(BubbleVerticalScrollProperty);
 }

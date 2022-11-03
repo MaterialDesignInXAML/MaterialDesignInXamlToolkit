@@ -42,7 +42,7 @@
                            DockPanel.Dock="Top"
                            Focusable="False">
               <ScrollViewer wpf:ScrollViewerAssist.SupportHorizontalScroll="True"
-                            wpf:ScrollViewerAssist.RaiseVerticalScrollUpstream="True"
+                            wpf:ScrollViewerAssist.BubbleVerticalScroll="True"
                             HorizontalScrollBarVisibility="Hidden"
                             VerticalScrollBarVisibility="Hidden">
                 <StackPanel>
