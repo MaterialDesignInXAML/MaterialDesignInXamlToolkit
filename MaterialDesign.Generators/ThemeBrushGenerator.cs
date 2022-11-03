@@ -7,12 +7,12 @@ namespace MaterialDesign.Generators;
 [Generator]
 public class ThemeBrushGenerator : ISourceGenerator
 {
-    private static Regex ColorKeyRegex = new(@"MaterialDesign\.Brush\.(?<Property>.+)\.Color");
+    private static readonly Regex ColorKeyRegex = new(@"MaterialDesign\.Brush\.(?<Property>.+)\.Color");
 
     public void Execute(GeneratorExecutionContext context)
     {
         //Uncomment to enable debugging
-        //System.Diagnostics.Debugger.Launch();
+        System.Diagnostics.Debugger.Launch();
 
         GenerateThemeClass(context, "Light");
         GenerateThemeClass(context, "Dark");

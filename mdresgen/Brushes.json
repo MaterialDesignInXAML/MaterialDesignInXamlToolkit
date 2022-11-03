@@ -1,0 +1,22 @@
+﻿[
+    {
+        "name": "MaterialDesign.Brush.Background",
+        "themeValues": {
+            "light": "#FFFFFFFF",
+            "dark": "#FF000000"
+        },
+        "alternateKeys": [
+            "MaterialDesignBackground"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.Button.FlatClick",
+        "themeValues": {
+            "light": "#FFDEDEDE",
+            "dark": "#19757575"
+        },
+        "alternateKeys": [
+            "MaterialDesignFlatButtonClick"
+        ]
+    }
+]

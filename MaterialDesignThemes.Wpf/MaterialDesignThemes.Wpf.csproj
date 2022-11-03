@@ -25,6 +25,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" />
   </ItemGroup>
@@ -45,7 +46,7 @@
     </Page>
   </ItemGroup>
 
-    <ItemGroup>
+  <!--<ItemGroup>
         <ProjectReference Include="..\MaterialDesign.Generators\MaterialDesign.Generators.csproj">
             <OutputItemType>Analyzer</OutputItemType>
             <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -53,5 +54,5 @@
         
         <AdditionalFiles Include="Themes\MaterialDesignTheme.Light.xaml" />
         <AdditionalFiles Include="Themes\MaterialDesignTheme.Dark.xaml" />
-    </ItemGroup>
+    </ItemGroup>-->
 </Project>

@@ -15,6 +15,14 @@ tab_width = 4
 insert_final_newline = true
 trim_trailing_whitespace = true
 
+##### Json files #####
+[*.{json}]
+
+# Indentation and spacing
+indent_size = 2
+indent_style = space
+tab_width = 2
+
 ##### XAML/XML files #####
 [*.{xaml,xml,csproj,targets,props,nuspec}]
 
