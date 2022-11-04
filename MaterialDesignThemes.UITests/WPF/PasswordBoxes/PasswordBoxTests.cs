@@ -163,6 +163,6 @@ namespace MaterialDesignThemes.UITests.WPF.PasswordBoxes
             Assert.Equal("2", password2);
 
             recorder.Success();
-        }
+        } 
     }
 }
