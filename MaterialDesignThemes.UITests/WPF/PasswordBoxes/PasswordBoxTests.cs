@@ -105,7 +105,7 @@ namespace MaterialDesignThemes.UITests.WPF.PasswordBoxes
 
             // Act 2 (Update in RevealPasswordTextBox updates PasswordBox and VM)
             await revealPasswordButton.LeftClick();
-            await Task.Delay(50);   // Wait for the "clear text TextBox" to become visible
+            await Task.Delay(100);   // Wait for the "clear text TextBox" to become visible
             await clearTextPasswordTextBox.SendKeyboardInput($"2");
             string? boundText2 = await userControl.GetProperty<string>(nameof(BoundPasswordBox.ViewModelPassword));
             string? password2 = await passwordBox.GetProperty<string>(nameof(PasswordBox.Password));
