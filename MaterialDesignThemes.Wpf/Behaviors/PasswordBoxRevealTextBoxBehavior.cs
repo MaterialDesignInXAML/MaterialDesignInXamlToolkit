@@ -71,7 +71,7 @@ internal class PasswordBoxRevealTextBoxBehavior : Behavior<TextBox>
         int selectionLength = 0;
         if (endValue.HasValue)
         {
-            selectionLength = endValue.Value - startValue.GetValueOrDefault(0);
+            selectionLength = endValue.Value - selectionStart;
         }
         return new PasswordBoxSelection(selectionStart, selectionLength);
     }
