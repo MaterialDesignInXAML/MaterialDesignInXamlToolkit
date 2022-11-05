@@ -1,10 +1,8 @@
 using System.Windows.Data;
-using System.Windows.Documents;
-using Microsoft.Xaml.Behaviors;
 
 namespace MaterialDesignThemes.Wpf;
 
-public class PasswordBoxAssist : Behavior<PasswordBox>
+public static class PasswordBoxAssist
 {
     public static readonly DependencyProperty PasswordMaskedIconProperty = DependencyProperty.RegisterAttached(
         "PasswordMaskedIcon", typeof(PackIconKind), typeof(PasswordBoxAssist), new FrameworkPropertyMetadata(PackIconKind.EyeOff, FrameworkPropertyMetadataOptions.Inherits));
@@ -30,17 +28,6 @@ public class PasswordBoxAssist : Behavior<PasswordBox>
         "IsChanging", typeof(bool), typeof(PasswordBoxAssist), new UIPropertyMetadata(false));
     private static void SetIsChanging(UIElement element, bool value) => element.SetValue(IsChangingProperty, value);
     private static bool GetIsChanging(UIElement element) => (bool)element.GetValue(IsChangingProperty);
-    
-    private static readonly DependencyProperty SelectionProperty = DependencyProperty.RegisterAttached(
-        "Selection", typeof(TextSelection), typeof(PasswordBoxAssist), new UIPropertyMetadata(default(TextSelection)));
-    private static void SetSelection(DependencyObject obj, TextSelection? value) => obj.SetValue(SelectionProperty, value);
-    private static TextSelection? GetSelection(DependencyObject obj) => (TextSelection?)obj.GetValue(SelectionProperty);
-
-    private static readonly DependencyProperty RevealedPasswordTextBoxProperty = DependencyProperty.RegisterAttached(
-        "RevealedPasswordTextBox", typeof(TextBox), typeof(PasswordBoxAssist), new UIPropertyMetadata(default(TextBox)));
-    private static void SetRevealedPasswordTextBox(DependencyObject obj, TextBox? value) => obj.SetValue(RevealedPasswordTextBoxProperty, value);
-    private static TextBox? GetRevealedPasswordTextBox(DependencyObject obj) => (TextBox?)obj.GetValue(RevealedPasswordTextBoxProperty);
-
 
     /// <summary>
     /// Handles changes to the 'Password' attached property.
@@ -69,24 +56,5 @@ public class PasswordBoxAssist : Behavior<PasswordBox>
             SetPassword(passwordBox, passwordBox.Password);
             SetIsChanging(passwordBox, false);
         }
-    }
-
-    private void PasswordBoxLoaded(object sender, RoutedEventArgs e) => SetPassword(AssociatedObject, AssociatedObject.Password);
-    
-    protected override void OnAttached()
-    {
-        base.OnAttached();
-        AssociatedObject.PasswordChanged += PasswordBoxPasswordChanged;
-        AssociatedObject.Loaded += PasswordBoxLoaded;
-    }
-
-    protected override void OnDetaching()
-    {
-        if (AssociatedObject != null)
-        {
-            AssociatedObject.Loaded -= PasswordBoxLoaded;
-            AssociatedObject.PasswordChanged -= PasswordBoxPasswordChanged;
-        }
-        base.OnDetaching();
     }
 }
