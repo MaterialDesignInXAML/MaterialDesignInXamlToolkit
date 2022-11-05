@@ -20,14 +20,30 @@ internal class PasswordBoxRevealTextBoxBehavior : Behavior<TextBox>
         set => SetValue(PasswordBoxProperty, value);
     }
 
+    private static PropertyInfo SelectionPropertyInfo { get; }
+    private static MethodInfo SelectMethodInfo { get; }
+    private static MethodInfo GetStartMethodInfo { get; }
+    private static MethodInfo GetEndMethodInfo { get; }
+    private static PropertyInfo GetOffsetPropertyInfo { get; }
+
+    static PasswordBoxRevealTextBoxBehavior()
+    {
+        SelectionPropertyInfo = typeof(PasswordBox).GetProperty("Selection", BindingFlags.NonPublic | BindingFlags.Instance) ?? throw new InvalidOperationException("Did not find 'Selection' property on PasswordBox");
+        SelectMethodInfo = typeof(PasswordBox).GetMethod("Select", BindingFlags.Instance | BindingFlags.NonPublic) ?? throw new InvalidOperationException("Did not find 'Select' method on PasswordBox");
+        Type iTextRange = typeof(PasswordBox).Assembly.GetType("System.Windows.Documents.ITextRange") ?? throw new InvalidOperationException("Failed to find ITextRange");
+        GetStartMethodInfo = iTextRange.GetProperty("Start")?.GetGetMethod() ?? throw new InvalidOperationException($"Failed to find 'Start' property on {iTextRange.FullName}");
+        GetEndMethodInfo = iTextRange.GetProperty("End")?.GetGetMethod() ?? throw new InvalidOperationException($"Failed to find 'End' property on {iTextRange.FullName}");
+        Type passwordTextPointer = typeof(PasswordBox).Assembly.GetType("System.Windows.Controls.PasswordTextPointer") ?? throw new InvalidOperationException("Failed to find PasswordTextPointer");
+        GetOffsetPropertyInfo = passwordTextPointer.GetProperty("Offset", BindingFlags.NonPublic | BindingFlags.Instance) ?? throw new InvalidOperationException("Failed to find 'Offset' property on PasswordTextPointer");
+    }
+
     protected override void OnAttached()
     {
         base.OnAttached();
         AssociatedObject.IsVisibleChanged += AssociatedObjectOnIsVisibleChanged;
         if (PasswordBox != null)
         {
-            var info = typeof(PasswordBox).GetProperty("Selection", BindingFlags.NonPublic | BindingFlags.Instance);
-            var selection = info?.GetValue(PasswordBox, null) as TextSelection;
+            var selection = SelectionPropertyInfo.GetValue(PasswordBox, null) as TextSelection;
             SetSelection(AssociatedObject, selection);
         }
     }
@@ -62,11 +78,10 @@ internal class PasswordBoxRevealTextBoxBehavior : Behavior<TextBox>
     private PasswordBoxSelection GetPasswordBoxSelection()
     {
         var selection = GetSelection(AssociatedObject);
-        var typeTextRange = selection?.GetType().GetInterfaces().FirstOrDefault(i => i.Name == "ITextRange");
-        object? start = typeTextRange?.GetProperty("Start")?.GetGetMethod()?.Invoke(selection, null);
-        object? end = typeTextRange?.GetProperty("End")?.GetGetMethod()?.Invoke(selection, null);
-        int? startValue = start?.GetType().GetProperty("Offset", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(start, null) as int?;
-        int? endValue = end?.GetType().GetProperty("Offset", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(end, null) as int?;
+        object? start = GetStartMethodInfo.Invoke(selection, null);
+        object? end = GetEndMethodInfo.Invoke(selection, null);
+        int? startValue = GetOffsetPropertyInfo.GetValue(start, null) as int?;
+        int? endValue = GetOffsetPropertyInfo.GetValue(end, null) as int?;
         int selectionStart = startValue ?? 0;
         int selectionLength = 0;
         if (endValue.HasValue)
@@ -76,17 +91,7 @@ internal class PasswordBoxRevealTextBoxBehavior : Behavior<TextBox>
         return new PasswordBoxSelection(selectionStart, selectionLength);
     }
 
-    private void SetPasswordBoxSelection(int selectionStart, int selectionLength) => typeof(PasswordBox).GetMethod("Select", BindingFlags.Instance | BindingFlags.NonPublic)?.Invoke(PasswordBox, new object[] { selectionStart, selectionLength });
+    private void SetPasswordBoxSelection(int selectionStart, int selectionLength) => SelectMethodInfo.Invoke(PasswordBox, new object[] { selectionStart, selectionLength });
 
-    private struct PasswordBoxSelection
-    {
-        public readonly int SelectionStart;
-        public readonly int SelectionEnd;
-
-        public PasswordBoxSelection(int selectionStart, int selectionEnd)
-        {
-            SelectionStart = selectionStart;
-            SelectionEnd = selectionEnd;
-        }
-    }
+    private record struct PasswordBoxSelection(int SelectionStart, int SelectionEnd);
 }
