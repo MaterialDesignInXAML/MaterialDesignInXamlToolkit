@@ -67,7 +67,7 @@ internal class PasswordBoxRevealTextBoxBehavior : Behavior<TextBox>
         object? end = typeTextRange?.GetProperty("End")?.GetGetMethod()?.Invoke(selection, null);
         int? startValue = start?.GetType().GetProperty("Offset", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(start, null) as int?;
         int? endValue = end?.GetType().GetProperty("Offset", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(end, null) as int?;
-        int selectionStart = startValue.GetValueOrDefault(0);
+        int selectionStart = startValue ?? 0;
         int selectionLength = 0;
         if (endValue.HasValue)
         {
