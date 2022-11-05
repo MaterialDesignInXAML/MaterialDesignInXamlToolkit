@@ -1,4 +1,7 @@
-﻿using System.Drawing;
+﻿using System.Collections;
+using System.Diagnostics;
+using System.Drawing;
+using System.Net;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -26,6 +29,35 @@ public record class ThemeValues(
     [property:JsonPropertyName("dark")]
     string Dark);
 
+
+[DebuggerDisplay($"{{{nameof(Name)}}} [Values: {{{nameof(Values)}.Count}}] [Children: {{{nameof(Children)}.Count}}]")]
+public class TreeItem<T> : IEnumerable<T>
+{
+    public string Name { get; }
+
+    public TreeItem(string name) => Name = name;
+
+    public List<T> Values { get; } = new();
+
+    public List<TreeItem<T>> Children { get; } = new();
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        foreach (T value in Values)
+        {
+            yield return value;
+        }
+        foreach(TreeItem<T> child in Children)
+        {
+            foreach (T value in child)
+            {
+                yield return value;
+            }
+        }
+    }
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+}
+
 internal static class ThemeBrushGenerator
 {
     private record class BrushContainer(string ClassName,
@@ -39,11 +71,37 @@ internal static class ThemeBrushGenerator
         using var inputFile = File.OpenRead("Brushes.json");
         Brush[] brushes = await JsonSerializer.DeserializeAsync<Brush[]>(inputFile)
             ?? throw new InvalidOperationException("Did not find brushes from source file");
+        brushes = brushes.OrderBy(x => x.Name).ToArray();
+
+        TreeItem<Brush> brushTree = BuildBrushTree(brushes);
 
         GenerateThemeBrushFiles(brushes, repoRoot);
-        GenerateThemeManager(brushes, repoRoot);
+        GenerateThemeManager(brushTree, repoRoot);
         GenerateThemeFiles(brushes, repoRoot);
         GenerateBuiltinThemingDictionaries(brushes, repoRoot);
+    }
+
+    public static TreeItem<Brush> BuildBrushTree(IReadOnlyList<Brush> brushes)
+    {
+        TreeItem<Brush> root = new("");
+        
+        foreach (Brush brush in brushes)
+        {
+            TreeItem<Brush> current = root;
+            foreach (string part in brush.ContainerParts)
+            {
+                TreeItem<Brush>? child = current.Children.FirstOrDefault(x => x.Name == part);
+                if (child is null)
+                {
+                    child = new(part);
+                    current.Children.Add(child);
+                }
+                current = child;
+            }
+            current.Values.Add(brush);
+        }
+
+        return root;
     }
 
     private static void GenerateThemeBrushFiles(IEnumerable<Brush> brushes, DirectoryInfo repoRoot)
@@ -83,7 +141,7 @@ internal static class ThemeBrushGenerator
             string indent = "    ";
             if (!isRoot)
             {
-                themeFile.WriteLine($"    public sealed partial class {brushGrouping.Key}Brushes");
+                themeFile.WriteLine($"    public sealed partial class {brushGrouping.Key.Replace(".", "")}Brushes");
                 themeFile.WriteLine("    {");
                 indent = "        ";
             }
@@ -105,7 +163,7 @@ internal static class ThemeBrushGenerator
         }
     }
 
-    private static void GenerateThemeManager(IEnumerable<Brush> brushes, DirectoryInfo repoRoot)
+    private static void GenerateThemeManager(TreeItem<Brush> brushes, DirectoryInfo repoRoot)
     {
         using var themeManagerFile = new StreamWriter(Path.Combine(repoRoot.FullName, "MaterialDesignThemes.Wpf", "Theming", "ThemeManager.g.cs"));
 
@@ -132,42 +190,44 @@ internal static class ThemeBrushGenerator
         themeManagerFile.WriteLine("    {");
         themeManagerFile.WriteLine($"        return new Theme");
         themeManagerFile.WriteLine("        {");
-        const string indent = "            ";
-        foreach (var brush in brushes)
+        const string indent = "        ";
+
+        void WriteTreeItem(TreeItem<Brush> treeItem, string indent)
         {
-            string currentIndent = indent;
-            foreach(string part in brush.ContainerParts)
+            if (!string.IsNullOrEmpty(treeItem.Name))
             {
-                themeManagerFile.WriteLine($"{currentIndent}{part} =");
-                themeManagerFile.WriteLine($"{currentIndent}{{");
-                currentIndent += "    ";
+                themeManagerFile.WriteLine($"{indent}{treeItem.Name} =");
+                themeManagerFile.WriteLine($"{indent}{{");
             }
-            themeManagerFile.WriteLine($"{currentIndent}{brush.PropertyName} = GetColor(resourceDictionary, \"{brush.Name}\"),");
-            foreach (string _ in brush.ContainerParts)
+
+            WriteValues(treeItem, indent + "    ");
+
+            foreach (TreeItem<Brush> child in treeItem.Children)
             {
-                currentIndent = currentIndent[..^4];
-                themeManagerFile.WriteLine($"{currentIndent}}}");
+                WriteTreeItem(child, indent + "    ");
+            }
+
+            if (!string.IsNullOrEmpty(treeItem.Name))
+            {
+                themeManagerFile.WriteLine($"{indent}}},");
             }
         }
+
+        void WriteValues(TreeItem<Brush> treeItem, string indent)
+        {
+            foreach (Brush brush in treeItem.Values)
+            {
+                themeManagerFile.WriteLine($"{indent}{brush.PropertyName} = GetColor(resourceDictionary, \"{brush.Name}\"),");
+            }
+        }
+
+        WriteTreeItem(brushes, indent);
+        
         themeManagerFile.WriteLine("        };");
         themeManagerFile.WriteLine("    }");
-
-
-
+        
         themeManagerFile.WriteLine();
         themeManagerFile.WriteLine("}");
-
-
-
-        /*
-         * partial class ThemeManager
-{
-    private void SetBrushes(ResourceDictionary resourceDictionary, Theme theme)
-    {
-        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Background", theme.Background);
-    }
-}
-         */
     }
 
     private static void GenerateThemeFiles(IEnumerable<Brush> brushes, DirectoryInfo repoRoot)
@@ -202,7 +262,7 @@ internal static class ThemeBrushGenerator
     private static void GenerateBuiltinThemingDictionaries(IEnumerable<Brush> brushes, DirectoryInfo repoRoot)
     {
         WriteFile("BundledTheme");
-        WriteFile("CustomColor");
+        WriteFile("CustomColorTheme");
 
         void WriteFile(string className)
         {

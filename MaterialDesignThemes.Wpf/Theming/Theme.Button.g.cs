@@ -9,5 +9,7 @@ public partial class Theme
 
         public Color FlatClick { get; set; }
 
+        public Color FlatRipple { get; set; }
+
     }
 }

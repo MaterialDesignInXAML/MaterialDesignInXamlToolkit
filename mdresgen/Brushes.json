@@ -10,6 +10,36 @@
         ]
     },
     {
+        "name": "MaterialDesign.Brush.Foreground",
+        "themeValues": {
+            "light": "#DD000000",
+            "dark": "#DDFFFFFF"
+        },
+        "alternateKeys": [
+            "MaterialDesignBody"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.LightForeground",
+        "themeValues": {
+            "light": "#89000000",
+            "dark": "#89FFFFFF"
+        },
+        "alternateKeys": [
+            "MaterialDesignBodyLight"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.ValidationError",
+        "themeValues": {
+            "light": "#FFB00020",
+            "dark": "#FFCF6679"
+        },
+        "alternateKeys": [
+            "MaterialDesignValidationErrorBrush"
+        ]
+    },
+    {
         "name": "MaterialDesign.Brush.Button.FlatClick",
         "themeValues": {
             "light": "#FFDEDEDE",
@@ -17,6 +47,206 @@
         },
         "alternateKeys": [
             "MaterialDesignFlatButtonClick"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.Button.FlatRipple",
+        "themeValues": {
+            "light": "#FFB6B6B6",
+            "dark": "#FFB6B6B6"
+        },
+        "alternateKeys": [
+            "MaterialDesignFlatButtonRipple"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.Card.Background",
+        "themeValues": {
+            "light": "#FFFFFFFF",
+            "dark": "#FF424242"
+        },
+        "alternateKeys": [
+            "MaterialDesignCardBackground"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.CheckBox.Disabled",
+        "themeValues": {
+            "light": "#FFBDBDBD",
+            "dark": "#FF647076"
+        },
+        "alternateKeys": [
+            "MaterialDesignCheckBoxDisabled"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.CheckBox.Off",
+        "themeValues": {
+            "light": "#89000000",
+            "dark": "#89FFFFFF"
+        },
+        "alternateKeys": [
+            "MaterialDesignCheckBoxOff"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.Chip.Background",
+        "themeValues": {
+            "light": "#12000000",
+            "dark": "#FF2E3C43"
+        },
+        "alternateKeys": [
+            "MaterialDesignChipBackground"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.DataGrid.ColumnHeaderForeground",
+        "themeValues": {
+            "light": "#BC000000",
+            "dark": "#BCFFFFFF"
+        },
+        "alternateKeys": [
+            "MaterialDesignColumnHeader"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.DataGrid.RowHoverBackground",
+        "themeValues": {
+            "light": "#0A000000",
+            "dark": "#14FFFFFF"
+        },
+        "alternateKeys": [
+            "MaterialDesignDataGridRowHoverBackground"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.SnackBar.Background",
+        "themeValues": {
+            "light": "#FF323232",
+            "dark": "#FFCDCDCD"
+        },
+        "alternateKeys": [
+            "MaterialDesignSnackbarBackground"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.SnackBar.MouseOver",
+        "themeValues": {
+            "light": "#FF464642",
+            "dark": "#FFB9B9BD"
+        },
+        "alternateKeys": [
+            "MaterialDesignSnackbarMouseOver"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.SnackBar.Ripple",
+        "themeValues": {
+            "light": "#FFB6B6B6",
+            "dark": "#FF494949"
+        },
+        "alternateKeys": [
+            "MaterialDesignSnackbarRipple"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.TextBox.OutlineBorder",
+        "themeValues": {
+            "light": "#BC000000",
+            "dark": "#BCFFFFFF"
+        },
+        "alternateKeys": [
+            "MaterialDesignTextAreaBorder"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.TextBox.OutlineInactiveBorder",
+        "themeValues": {
+            "light": "#29000000",
+            "dark": "#29FFFFFF"
+        },
+        "alternateKeys": [
+            "MaterialDesignTextAreaInactiveBorder"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.TextBox.Border",
+        "themeValues": {
+            "light": "#89000000",
+            "dark": "#89FFFFFF"
+        },
+        "alternateKeys": [
+            "MaterialDesignTextBoxBorder"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.TextBox.FilledBackground",
+        "themeValues": {
+            "light": "#0F000000",
+            "dark": "#1AFFFFFF"
+        },
+        "alternateKeys": [
+            "MaterialDesignTextFieldBoxBackground"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.TextBox.DisabledBackground",
+        "themeValues": {
+            "light": "#08000000",
+            "dark": "#0DFFFFFF"
+        },
+        "alternateKeys": [
+            "MaterialDesignTextFieldBoxDisabledBackground"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.TextBox.HoverBackground",
+        "themeValues": {
+            "light": "#14000000",
+            "dark": "#1FFFFFFF"
+        },
+        "alternateKeys": [
+            "MaterialDesignTextFieldBoxHoverBackground"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.ToolBar.Item.Background",
+        "themeValues": {
+            "light": "#FFE0E0E0",
+            "dark": "#FFE0E0E0"
+        },
+        "alternateKeys": [
+            "MaterialDesignToolBackground"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.ToolBar.Background",
+        "themeValues": {
+            "light": "#FFF5F5F5",
+            "dark": "#FF212121"
+        },
+        "alternateKeys": [
+            "MaterialDesignToolBarBackground"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.ToolBar.Item.Foreground",
+        "themeValues": {
+            "light": "#FF616161",
+            "dark": "#FF616161"
+        },
+        "alternateKeys": [
+            "MaterialDesignToolForeground"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.ToolTip.Background",
+        "themeValues": {
+            "light": "#FF757575",
+            "dark": "#FFEEEEEE"
+        },
+        "alternateKeys": [
+            "MaterialDesignToolTipBackground"
         ]
     }
 ]

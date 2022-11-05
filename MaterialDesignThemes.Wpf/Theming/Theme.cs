@@ -69,11 +69,6 @@ public partial class Theme
     public ColorPair SecondaryMid { get; set; }
     public ColorPair SecondaryDark { get; set; }
 
-    public Color Foreground { get; set; }
-    public Color LightForeground { get; set; }
-
-    public Color ValidationError { get; set; }
-
     public ButtonBrushes Button { get; } = new();
     public CardBrushes Card { get; } = new();
     public CheckBoxBrushes CheckBox { get; } = new();
@@ -106,26 +101,9 @@ public partial class Theme
     public Color Selection { get; set; }
 
     public ColorAdjustment? ColorAdjustment { get; set; }
-
-    public sealed partial class ButtonBrushes
+            
+    public sealed partial class ChipBrushes
     {
-        public Color FlatRipple { get; set; }
-    }
-
-    public sealed class CardBrushes
-    {
-        public Color Background { get; set; }
-    }
-
-    public sealed class CheckBoxBrushes
-    {
-        public Color Off { get; set; }
-        public Color Disabled { get; set; }
-    }
-
-    public sealed class ChipBrushes
-    {
-        public Color Background { get; set; }
         public Color OutlineCheckedBorder { get; set; }
     }
 
@@ -143,14 +121,12 @@ public partial class Theme
         public Color OutlineInactiveBorder { get; set; }
     }
 
-    public sealed class DataGridBrushes
+    public sealed partial class DataGridBrushes
     {
         public Color Border { get; set; }
         public Color CellFocusBorder { get; set; }
         public Color CellSelectedBackground { get; set; }
-        public Color ColumnHeaderForeground { get; set; }
         public Color PopupBorder { get; set; }
-        public Color RowHoverBackground { get; set; }
         public Color RowSelectedBackground { get; set; }
         public Color SelectAllButtonPressed { get; set; }
 
@@ -254,31 +230,12 @@ public partial class Theme
         public Color LabelBackground { get; set; }
     }
 
-    public sealed class SnackBarBrushes
-    {
-        public Color Background { get; set; }
-        public Color MouseOver { get; set; }
-        public Color Ripple { get; set; }
-    }
-
     public sealed class TabControlBrushes
     {
         public Color Ripple { get; set; }
         public Color TabDivider { get; set; }
     }
-
-    public sealed class TextBoxBrushes
-    {
-        public Color Border { get; set; }
-        public Color HoverBackground { get; set; }
-        public Color DisabledBackground { get; set; }
-
-        public Color FilledBackground { get; set; }
-
-        public Color OutlineBorder { get; set; }
-        public Color OutlineInactiveBorder { get; set; }
-    }
-
+    
     public sealed class TimePickerBrushes
     {
         public Color Border { get; set; }
@@ -295,10 +252,8 @@ public partial class Theme
 
     }
 
-    public sealed class ToolBarBrushes
+    public sealed partial class ToolBarBrushes
     {
-        public Color Background { get; set; }
-
         public Color HoverBackground { get; set; }
 
         public Color OverflowBackground { get; set; }
@@ -312,16 +267,9 @@ public partial class Theme
 
         public ToolBarItemBrushes Item { get; } = new();
     }
-
-    public sealed class ToolBarItemBrushes
+    
+    public sealed partial class ToolTipBrushes
     {
-        public Color Foreground { get; set; }
-        public Color Background { get; set; }
-    }
-
-    public sealed class ToolTipBrushes
-    {
-        public Color Background { get; set; }
         public Color Foreground { get; set; }
     }
 }
