@@ -17,12 +17,15 @@
     <dependencies>
       <group targetFramework="net462">
         <dependency id="MaterialDesignColors" version="[1.2.1, 2.0)" />
+        <dependency id="Microsoft.Xaml.Behaviors.Wpf" version="1.1.31" />
       </group>
       <group targetFramework="netcoreapp3.1">
         <dependency id="MaterialDesignColors" version="[1.2.1, 2.0)" />
+        <dependency id="Microsoft.Xaml.Behaviors.Wpf" version="1.1.31" />
       </group>
       <group targetFramework="net6.0">
         <dependency id="MaterialDesignColors" version="[1.2.1, 2.0)" />
+        <dependency id="Microsoft.Xaml.Behaviors.Wpf" version="1.1.31" />
       </group>
     </dependencies>
   </metadata>
