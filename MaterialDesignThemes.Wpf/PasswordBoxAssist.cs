@@ -29,13 +29,21 @@ public static class PasswordBoxAssist
     private static void SetIsChanging(UIElement element, bool value) => element.SetValue(IsChangingProperty, value);
     private static bool GetIsChanging(UIElement element) => (bool)element.GetValue(IsChangingProperty);
 
+    // Attached property used by the "reveal" Style to enforce the wiring-up of the PasswordChanged event handler; needed for the "reveal" TextBox.
+    internal static readonly DependencyProperty SuppressBindingGuardProperty = DependencyProperty.RegisterAttached(
+        "SuppressBindingGuard", typeof(bool), typeof(PasswordBoxAssist), new PropertyMetadata(default(bool)));
+    internal static void SetSuppressBindingGuard(DependencyObject element, bool value) => element.SetValue(SuppressBindingGuardProperty, value);
+    internal static bool GetSuppressBindingGuard(DependencyObject element) => (bool) element.GetValue(SuppressBindingGuardProperty);
+
     /// <summary>
     /// Handles changes to the 'Password' attached property.
     /// </summary>
     private static void HandlePasswordChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
     {
-        if (sender is PasswordBox targetPasswordBox)
+        if (sender is PasswordBox targetPasswordBox &&
+            (GetSuppressBindingGuard(targetPasswordBox) || BindingOperations.GetBindingBase(targetPasswordBox, PasswordProperty) != null))
         {
+            // If the PasswordBox is either "reveal" style (ie. SuppressBindingGuard=true) or the user has set a binding on the attached property, we wire up the PasswordChanged event handler.
             targetPasswordBox.PasswordChanged -= PasswordBoxPasswordChanged;
             if (!GetIsChanging(targetPasswordBox))
             {
