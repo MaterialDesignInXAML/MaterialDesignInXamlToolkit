@@ -2,17 +2,20 @@
 
 namespace MaterialDesignThemes.Wpf;
 
-internal class StylizedBehaviors
+/* This class is a copy of the StylizedBehaviors.cs from the MahApps.Metro repository with very few changes to it:
+ * https://github.com/MahApps/MahApps.Metro/blob/6bce9f8733318a7f1f50ff112f834e917e766ae8/src/MahApps.Metro/Behaviors/StylizedBehaviors.cs
+ */
+public static class BehaviorsAssist
 {
     private static readonly DependencyProperty OriginalBehaviorProperty = DependencyProperty.RegisterAttached(
-        "OriginalBehavior", typeof(Behavior), typeof(StylizedBehaviors), new UIPropertyMetadata(null));
+        "OriginalBehavior", typeof(Behavior), typeof(BehaviorsAssist), new UIPropertyMetadata(null));
     private static void SetOriginalBehavior(DependencyObject obj, Behavior? value) => obj.SetValue(OriginalBehaviorProperty, value);
     private static Behavior? GetOriginalBehavior(DependencyObject obj) => (Behavior?)obj.GetValue(OriginalBehaviorProperty);
 
-    internal static readonly DependencyProperty BehaviorsProperty = DependencyProperty.RegisterAttached(
-        "Behaviors", typeof(StylizedBehaviorCollection), typeof(StylizedBehaviors), new FrameworkPropertyMetadata(null, OnPropertyChanged));
-    internal static void SetBehaviors(DependencyObject uie, StylizedBehaviorCollection? value) => uie.SetValue(BehaviorsProperty, value);
-    internal static StylizedBehaviorCollection? GetBehaviors(DependencyObject uie) => (StylizedBehaviorCollection?)uie.GetValue(BehaviorsProperty);
+    public static readonly DependencyProperty BehaviorsProperty = DependencyProperty.RegisterAttached(
+        "Behaviors", typeof(BehaviorCollection), typeof(BehaviorsAssist), new FrameworkPropertyMetadata(null, OnPropertyChanged));
+    public static void SetBehaviors(DependencyObject uie, BehaviorCollection? value) => uie.SetValue(BehaviorsProperty, value);
+    public static BehaviorCollection? GetBehaviors(DependencyObject uie) => (BehaviorCollection?)uie.GetValue(BehaviorsProperty);
 
     private static void OnPropertyChanged(DependencyObject dpo, DependencyPropertyChangedEventArgs e)
     {
@@ -21,8 +24,8 @@ internal class StylizedBehaviors
             return;
         }
 
-        var newBehaviors = e.NewValue as StylizedBehaviorCollection;
-        var oldBehaviors = e.OldValue as StylizedBehaviorCollection;
+        var newBehaviors = e.NewValue as BehaviorCollection;
+        var oldBehaviors = e.OldValue as BehaviorCollection;
         if (newBehaviors == oldBehaviors)
         {
             return;
@@ -94,7 +97,7 @@ internal class StylizedBehaviors
         }
     }
 
-    private static int GetIndexOf(BehaviorCollection itemBehaviors, Behavior behavior)
+    private static int GetIndexOf(Microsoft.Xaml.Behaviors.BehaviorCollection itemBehaviors, Behavior behavior)
     {
         int index = -1;
 
