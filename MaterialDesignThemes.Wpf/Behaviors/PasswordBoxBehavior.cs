@@ -1,24 +1,23 @@
 ﻿using Microsoft.Xaml.Behaviors;
 
-namespace MaterialDesignThemes.Wpf.Behaviors
+namespace MaterialDesignThemes.Wpf.Behaviors;
+
+internal class PasswordBoxBehavior : Behavior<PasswordBox>
 {
-    internal class PasswordBoxBehavior : Behavior<PasswordBox>
+    private void PasswordBoxLoaded(object sender, RoutedEventArgs e) => PasswordBoxAssist.SetPassword(AssociatedObject, AssociatedObject.Password);
+
+    protected override void OnAttached()
     {
-        private void PasswordBoxLoaded(object sender, RoutedEventArgs e) => PasswordBoxAssist.SetPassword(AssociatedObject, AssociatedObject.Password);
+        base.OnAttached();
+        AssociatedObject.Loaded += PasswordBoxLoaded;
+    }
 
-        protected override void OnAttached()
+    protected override void OnDetaching()
+    {
+        if (AssociatedObject != null)
         {
-            base.OnAttached();
-            AssociatedObject.Loaded += PasswordBoxLoaded;
+            AssociatedObject.Loaded -= PasswordBoxLoaded;
         }
-
-        protected override void OnDetaching()
-        {
-            if (AssociatedObject != null)
-            {
-                AssociatedObject.Loaded -= PasswordBoxLoaded;
-            }
-            base.OnDetaching();
-        }
+        base.OnDetaching();
     }
 }
