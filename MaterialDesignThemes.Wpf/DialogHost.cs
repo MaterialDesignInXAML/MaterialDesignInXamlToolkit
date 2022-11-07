@@ -1,4 +1,3 @@
-using System.Threading;
 using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Threading;
@@ -420,7 +419,7 @@ namespace MaterialDesignThemes.Wpf
 
         public CornerRadius CornerRadius
         {
-            get { return (CornerRadius) GetValue(CornerRadiusProperty); }
+            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
             set { SetValue(CornerRadiusProperty, value); }
         }
 

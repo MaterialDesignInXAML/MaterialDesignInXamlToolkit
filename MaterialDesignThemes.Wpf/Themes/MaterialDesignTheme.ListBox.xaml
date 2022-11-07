@@ -1,894 +1,956 @@
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
-                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
+                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
-        <ResourceDictionary>
-            <converters:BrushRoundConverter x:Key="BrushRoundConverter"/>
-            <converters:BorderClipConverter x:Key="BorderClipConverter" />
-            <converters:IsDarkConverter x:Key="IsDarkConverter" />
-        </ResourceDictionary>
-    </ResourceDictionary.MergedDictionaries>
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
+    <ResourceDictionary>
+      <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
+      <converters:BorderClipConverter x:Key="BorderClipConverter" />
+      <converters:IsDarkConverter x:Key="IsDarkConverter" />
+    </ResourceDictionary>
+  </ResourceDictionary.MergedDictionaries>
 
-    <converters:EqualityToVisibilityConverter x:Key="EqualityToVisibilityConverter" />
+  <converters:EqualityToVisibilityConverter x:Key="EqualityToVisibilityConverter" />
 
-    <Style x:Key="FocusVisual">
-        <Setter Property="Control.Template">
-            <Setter.Value>
-                <ControlTemplate>
-                    <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+  <Style x:Key="FocusVisual">
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Rectangle Margin="2"
+                     SnapsToDevicePixels="true"
+                     Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
+                     StrokeDashArray="1 2"
+                     StrokeThickness="1" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
 
-    <!--#region ToolToggle -->
+  <!--#region ToolToggle-->
 
-    <Style x:Key="MaterialDesignToolToggleListBoxItem" TargetType="{x:Type ListBoxItem}">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}"/>
-        <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-        <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-        <Setter Property="Padding" Value="14 6 14 6" />
-        <Setter Property="SnapsToDevicePixels" Value="True"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Margin="{TemplateBinding Margin}"
-                            ClipToBounds="{TemplateBinding ClipToBounds}">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup Name="CommonStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
-                                        <VisualTransition.GeneratedEasingFunction>
-                                            <CircleEase EasingMode="EaseOut"/>
-                                        </VisualTransition.GeneratedEasingFunction>
-                                    </VisualTransition>
-                                </VisualStateGroup.Transitions>
-                                <VisualState Name="Normal"/>
-                                <VisualState Name="MouseOver">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="MouseOverBorder" Storyboard.TargetProperty="Opacity"
-                                                         To="0.03" Duration="0"/>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState Name="Disabled"/>
-                            </VisualStateGroup>
-                            <VisualStateGroup Name="SelectionStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition From="*" To="Selected">
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectedBackgroundBorder">
-                                                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition From="*" To="SelectedUnfocused">
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectedBackgroundBorder">
-                                                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition From="Selected" To="Unselected">
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
-                                                             Storyboard.TargetProperty="Opacity"
-                                                             To="0" Duration="0"/>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                </VisualStateGroup.Transitions>
-                                <VisualState Name="Selected">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="1" Duration="0"/>
-                                        <DoubleAnimation Storyboard.TargetName="SelectedBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="1" Duration="0"/>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState Name="Unselected"/>
-                                <VisualState Name="SelectedUnfocused">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="1" Duration="0"/>
-                                        <DoubleAnimation Storyboard.TargetName="SelectedBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="1" Duration="0"/>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Grid>
-                            <Border x:Name="MouseOverBorder"
-                                    Opacity="0"
-                                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
-                            <Border x:Name="SelectedBackgroundBorder"
-                                    Opacity="0"
-                                    Background="{DynamicResource MaterialDesignDivider}" />
-                            <wpf:Ripple x:Name="Ripple" Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
-                                        Opacity=".56"
-                                        Focusable="False"
-                                        Content="{TemplateBinding Content}"
-                                        ContentTemplate="{TemplateBinding ContentTemplate}"
-                                        ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                        Padding="{TemplateBinding Padding}">
-                            </wpf:Ripple>
-                            <Border x:Name="SelectedBorder"
-                                    Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=SelectionMode, Converter={StaticResource EqualityToVisibilityConverter}, ConverterParameter={x:Static SelectionMode.Extended}, Mode=OneWay}"
-                                    Opacity="0"
-                                    BorderThickness="0"
-                                    BorderBrush="{DynamicResource MaterialDesignDivider}" />
-                        </Grid>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter TargetName="Ripple" Property="Opacity" Value=".92" />
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" Value=".56" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+  <Style x:Key="MaterialDesignToolToggleListBoxItem" TargetType="{x:Type ListBoxItem}">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+    <Setter Property="Padding" Value="14,6,14,6" />
+    <Setter Property="SnapsToDevicePixels" Value="True" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+          <Border Margin="{TemplateBinding Margin}"
+                  Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  ClipToBounds="{TemplateBinding ClipToBounds}">
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup Name="CommonStates">
+                <VisualStateGroup.Transitions>
+                  <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
+                    <VisualTransition.GeneratedEasingFunction>
+                      <CircleEase EasingMode="EaseOut" />
+                    </VisualTransition.GeneratedEasingFunction>
+                  </VisualTransition>
+                </VisualStateGroup.Transitions>
+                <VisualState Name="Normal" />
+                <VisualState Name="MouseOver">
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="MouseOverBorder"
+                                     Storyboard.TargetProperty="Opacity"
+                                     To="0.03"
+                                     Duration="0" />
+                  </Storyboard>
+                </VisualState>
+                <VisualState Name="Disabled" />
+              </VisualStateGroup>
+              <VisualStateGroup Name="SelectionStates">
+                <VisualStateGroup.Transitions>
+                  <VisualTransition From="*" To="Selected">
+                    <Storyboard>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SelectedBackgroundBorder" Storyboard.TargetProperty="Opacity">
+                        <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                      </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                  </VisualTransition>
+                  <VisualTransition From="*" To="SelectedUnfocused">
+                    <Storyboard>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SelectedBackgroundBorder" Storyboard.TargetProperty="Opacity">
+                        <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                      </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                  </VisualTransition>
+                  <VisualTransition From="Selected" To="Unselected">
+                    <Storyboard>
+                      <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                       Storyboard.TargetProperty="Opacity"
+                                       To="0"
+                                       Duration="0" />
+                    </Storyboard>
+                  </VisualTransition>
+                </VisualStateGroup.Transitions>
+                <VisualState Name="Selected">
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                     Storyboard.TargetProperty="Opacity"
+                                     To="1"
+                                     Duration="0" />
+                    <DoubleAnimation Storyboard.TargetName="SelectedBorder"
+                                     Storyboard.TargetProperty="Opacity"
+                                     To="1"
+                                     Duration="0" />
+                  </Storyboard>
+                </VisualState>
+                <VisualState Name="Unselected" />
+                <VisualState Name="SelectedUnfocused">
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="SelectedBackgroundBorder"
+                                     Storyboard.TargetProperty="Opacity"
+                                     To="1"
+                                     Duration="0" />
+                    <DoubleAnimation Storyboard.TargetName="SelectedBorder"
+                                     Storyboard.TargetProperty="Opacity"
+                                     To="1"
+                                     Duration="0" />
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Grid>
+              <Border x:Name="MouseOverBorder"
+                      Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                      Opacity="0" />
+              <Border x:Name="SelectedBackgroundBorder"
+                      Background="{DynamicResource MaterialDesignDivider}"
+                      Opacity="0" />
+              <wpf:Ripple x:Name="Ripple"
+                          Padding="{TemplateBinding Padding}"
+                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                          Content="{TemplateBinding Content}"
+                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                          Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                          Focusable="False"
+                          Opacity=".56"
+                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+              <Border x:Name="SelectedBorder"
+                      BorderBrush="{DynamicResource MaterialDesignDivider}"
+                      BorderThickness="0"
+                      Opacity="0"
+                      Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=SelectionMode, Converter={StaticResource EqualityToVisibilityConverter}, ConverterParameter={x:Static SelectionMode.Extended}, Mode=OneWay}" />
+            </Grid>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+              <Setter TargetName="Ripple" Property="Opacity" Value=".92" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter Property="Opacity" Value=".56" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+  </Style>
 
-    <Style x:Key="MaterialDesignToolToggleListBox" TargetType="{x:Type ListBox}">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignToolBarBackground}"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
-        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
-        <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
-        <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
-        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-        <Setter Property="wpf:ListBoxAssist.IsToggle" Value="True" />
-        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp1" />
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignToolToggleListBoxItem}"/>
-        <Setter Property="ItemsPanel">
-            <Setter.Value>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal" />
-                </ItemsPanelTemplate>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBox}">
-                    <ControlTemplate.Resources>
-                        <Style TargetType="{x:Type wpf:PackIcon}" >
-                            <Setter Property="FrameworkElement.Width" Value="22" />
-                            <Setter Property="FrameworkElement.Height" Value="22" />
-                        </Style>
-                    </ControlTemplate.Resources>
-                    <Border x:Name="Bd" 
-                            BorderBrush="{TemplateBinding BorderBrush}" 
-                            BorderThickness="{TemplateBinding BorderThickness}" 
-                            SnapsToDevicePixels="true"
-                            Padding="{TemplateBinding Padding}">
-                        <wpf:Card wpf:ElevationAssist.Elevation="{TemplateBinding wpf:ElevationAssist.Elevation}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" Background="{TemplateBinding Background}">
-                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                        </wpf:Card>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsGrouping" Value="true"/>
-                                <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false"/>
-                            </MultiTrigger.Conditions>
-                            <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
-                        </MultiTrigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+  <Style x:Key="MaterialDesignToolToggleListBox" TargetType="{x:Type ListBox}">
+    <Setter Property="Background" Value="{DynamicResource MaterialDesignToolBarBackground}" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignToolToggleListBoxItem}" />
+    <Setter Property="ItemsPanel">
+      <Setter.Value>
+        <ItemsPanelTemplate>
+          <StackPanel Orientation="Horizontal" />
+        </ItemsPanelTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
+    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+    <Setter Property="ScrollViewer.PanningMode" Value="Both" />
+    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+    <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBox}">
+          <ControlTemplate.Resources>
+            <Style TargetType="{x:Type wpf:PackIcon}">
+              <Setter Property="FrameworkElement.Height" Value="22" />
+              <Setter Property="FrameworkElement.Width" Value="22" />
+            </Style>
+          </ControlTemplate.Resources>
+          <Border x:Name="Bd"
+                  Padding="{TemplateBinding Padding}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  SnapsToDevicePixels="true">
+            <wpf:Card HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                      wpf:ElevationAssist.Elevation="{TemplateBinding wpf:ElevationAssist.Elevation}"
+                      Background="{TemplateBinding Background}">
+              <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+            </wpf:Card>
+          </Border>
+          <ControlTemplate.Triggers>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="IsGrouping" Value="true" />
+                <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false" />
+              </MultiTrigger.Conditions>
+              <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
+            </MultiTrigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp1" />
+    <Setter Property="wpf:ListBoxAssist.IsToggle" Value="True" />
+  </Style>
 
-    <Style x:Key="MaterialDesignToolVerticalToggleListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignToolToggleListBox}">
-        <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="HorizontalAlignment" Value="Stretch"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="ItemsPanel">
-            <Setter.Value>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel Orientation="Vertical" />
-                </ItemsPanelTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+  <Style x:Key="MaterialDesignToolVerticalToggleListBox"
+         TargetType="{x:Type ListBox}"
+         BasedOn="{StaticResource MaterialDesignToolToggleListBox}">
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="ItemsPanel">
+      <Setter.Value>
+        <ItemsPanelTemplate>
+          <VirtualizingStackPanel Orientation="Vertical" />
+        </ItemsPanelTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="VerticalAlignment" Value="Top" />
+  </Style>
 
-    <Style x:Key="MaterialDesignToolToggleFlatListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignToolToggleListBox}">
-        <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp0" />
-    </Style>
+  <Style x:Key="MaterialDesignToolToggleFlatListBox"
+         TargetType="{x:Type ListBox}"
+         BasedOn="{StaticResource MaterialDesignToolToggleListBox}">
+    <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp0" />
+  </Style>
 
-    <!--#endregion-->
+  <!--#endregion-->
 
-    <!--#region Default -->
+  <!--#region Default-->
 
-    <Style x:Key="MaterialDesignListBoxItem" TargetType="{x:Type ListBoxItem}">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-        <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-        <Setter Property="Padding" Value="8"/>
-        <Setter Property="SnapsToDevicePixels" Value="True"/>
-        <Setter Property="wpf:ListBoxItemAssist.ShowSelection" Value="{Binding Path=(wpf:ListBoxItemAssist.ShowSelection), RelativeSource={RelativeSource AncestorType=ListBox}}"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Margin="{TemplateBinding Margin}"
-                            ClipToBounds="{TemplateBinding ClipToBounds}">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup Name="CommonStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
-                                        <VisualTransition.GeneratedEasingFunction>
-                                            <CircleEase EasingMode="EaseOut"/>
-                                        </VisualTransition.GeneratedEasingFunction>
-                                    </VisualTransition>
-                                </VisualStateGroup.Transitions>
-                                <VisualState Name="Normal"/>
-                                <VisualState Name="MouseOver">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="MouseOverBorder" Storyboard.TargetProperty="Opacity"
-                                                             To="0.1" Duration="0"/>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState Name="Disabled"/>
-                            </VisualStateGroup>
-                            <VisualStateGroup Name="SelectionStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="0:0:0.6"/>
-                                </VisualStateGroup.Transitions>
-                                <VisualState Name="Selected">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="SelectedBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="0.18" Duration="0"/>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState Name="Unselected"/>
-                                <VisualState Name="SelectedUnfocused">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="SelectedBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="0.03" Duration="0"/>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Grid>
-                            <Border x:Name="MouseOverBorder"
-                                    Opacity="0"
-                                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
+  <Style x:Key="MaterialDesignListBoxItem" TargetType="{x:Type ListBoxItem}">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+    <Setter Property="Padding" Value="8" />
+    <Setter Property="SnapsToDevicePixels" Value="True" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+          <Border Margin="{TemplateBinding Margin}"
+                  Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  ClipToBounds="{TemplateBinding ClipToBounds}">
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup Name="CommonStates">
+                <VisualStateGroup.Transitions>
+                  <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
+                    <VisualTransition.GeneratedEasingFunction>
+                      <CircleEase EasingMode="EaseOut" />
+                    </VisualTransition.GeneratedEasingFunction>
+                  </VisualTransition>
+                </VisualStateGroup.Transitions>
+                <VisualState Name="Normal" />
+                <VisualState Name="MouseOver">
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="MouseOverBorder"
+                                     Storyboard.TargetProperty="Opacity"
+                                     To="0.1"
+                                     Duration="0" />
+                  </Storyboard>
+                </VisualState>
+                <VisualState Name="Disabled" />
+              </VisualStateGroup>
+              <VisualStateGroup Name="SelectionStates">
+                <VisualStateGroup.Transitions>
+                  <VisualTransition GeneratedDuration="0:0:0.6" />
+                </VisualStateGroup.Transitions>
+                <VisualState Name="Selected">
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="SelectedBorder"
+                                     Storyboard.TargetProperty="Opacity"
+                                     To="0.18"
+                                     Duration="0" />
+                  </Storyboard>
+                </VisualState>
+                <VisualState Name="Unselected" />
+                <VisualState Name="SelectedUnfocused">
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="SelectedBorder"
+                                     Storyboard.TargetProperty="Opacity"
+                                     To="0.09"
+                                     Duration="0" />
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Grid>
+              <Border x:Name="MouseOverBorder"
+                      Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                      Opacity="0" />
 
-                            <Border x:Name="SelectedBorder" Opacity="0"
-                                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}">
-                            </Border>
-                            <wpf:Ripple x:Name="Ripple"
-                                        Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
-                                        Focusable="False"
-                                        Content="{TemplateBinding Content}"
-                                        ContentTemplate="{TemplateBinding ContentTemplate}"
-                                        ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                        Padding="{TemplateBinding Padding}"
-                                        RecognizesAccessKey="False"/>
-                        </Grid>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" Value=".56" />
-                        </Trigger>
-                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ListBoxItemAssist.ShowSelection)}" Value="False">
-                            <Setter TargetName="MouseOverBorder" Property="Visibility" Value="Collapsed"/>
-                            <Setter TargetName="SelectedBorder" Property="Visibility" Value="Collapsed"/>
-                            <Setter TargetName="Ripple" Property="Feedback" Value="Transparent"/>
-                        </DataTrigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+              <Border x:Name="SelectedBorder"
+                      Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                      Opacity="0" />
+              <wpf:Ripple x:Name="Ripple"
+                          Padding="{TemplateBinding Padding}"
+                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                          Content="{TemplateBinding Content}"
+                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                          Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                          Focusable="False"
+                          RecognizesAccessKey="False"
+                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+            </Grid>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter Property="Opacity" Value=".56" />
+            </Trigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ListBoxItemAssist.ShowSelection)}" Value="False">
+              <Setter TargetName="MouseOverBorder" Property="Visibility" Value="Collapsed" />
+              <Setter TargetName="Ripple" Property="Feedback" Value="Transparent" />
+              <Setter TargetName="SelectedBorder" Property="Visibility" Value="Collapsed" />
+            </DataTrigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+    <Setter Property="wpf:ListBoxItemAssist.ShowSelection" Value="{Binding Path=(wpf:ListBoxItemAssist.ShowSelection), RelativeSource={RelativeSource AncestorType=ListBox}}" />
+  </Style>
 
-    <Style x:Key="MaterialDesignListBox" TargetType="{x:Type ListBox}">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignListBoxItem}" />
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
-        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
-        <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
-        <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
-        <Setter Property="wpf:ScrollViewerAssist.IsAutoHideEnabled" Value="True"/>
-        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBox}" >
-                    <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}"  ClipToBounds="False"
-                            SnapsToDevicePixels="true">
-                        <ScrollViewer Focusable="false" Padding="{TemplateBinding Padding}"  ClipToBounds="False">
-                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"  ClipToBounds="False"/>
-                        </ScrollViewer>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsGrouping" Value="true"/>
-                                <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false"/>
-                            </MultiTrigger.Conditions>
-                            <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
-                        </MultiTrigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+  <Style x:Key="MaterialDesignListBox" TargetType="{x:Type ListBox}">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignListBoxItem}" />
+    <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
+    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+    <Setter Property="ScrollViewer.PanningMode" Value="Both" />
+    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+    <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBox}">
+          <Border x:Name="Bd"
+                  Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  ClipToBounds="False"
+                  SnapsToDevicePixels="true">
+            <ScrollViewer Padding="{TemplateBinding Padding}"
+                          ClipToBounds="False"
+                          Focusable="false">
+              <ItemsPresenter ClipToBounds="False" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+            </ScrollViewer>
+          </Border>
+          <ControlTemplate.Triggers>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="IsGrouping" Value="true" />
+                <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false" />
+              </MultiTrigger.Conditions>
+              <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
+            </MultiTrigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="wpf:ScrollViewerAssist.IsAutoHideEnabled" Value="True" />
+  </Style>
 
-    <!--#endregion-->
+  <!--#endregion-->
 
-    <!--#region Cards -->
+  <!--#region Cards-->
 
-    <Style x:Key="MaterialDesignCardsListBoxItem" TargetType="{x:Type ListBoxItem}">
-        <Setter Property="SnapsToDevicePixels" Value="True"/>
-        <Setter Property="Padding" Value="0"/>
-        <Setter Property="Margin" Value="0 0 8 8"></Setter>
-        <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-        <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-        <Setter Property="Background" Value="White"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <wpf:Card Content="{TemplateBinding Content}"
-                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                              ContentStringFormat="{TemplateBinding ContentStringFormat}"
-                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+  <Style x:Key="MaterialDesignCardsListBoxItem" TargetType="{x:Type ListBoxItem}">
+    <Setter Property="Background" Value="White" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+    <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+    <Setter Property="Margin" Value="0,0,8,8" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="SnapsToDevicePixels" Value="True" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+          <wpf:Card Content="{TemplateBinding Content}"
+                    ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                    ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+  </Style>
 
-    <Style x:Key="MaterialDesignCardsListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}">
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignCardsListBoxItem}"/>
-    </Style>
+  <Style x:Key="MaterialDesignCardsListBox"
+         TargetType="{x:Type ListBox}"
+         BasedOn="{StaticResource MaterialDesignListBox}">
+    <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignCardsListBoxItem}" />
+  </Style>
 
-    <!--#endregion-->
+  <!--#endregion-->
 
-    <!--#region Navigation -->
+  <!--#region Navigation-->
 
-    <Style x:Key="MaterialDesignNavigationListBoxItem" TargetType="{x:Type ListBoxItem}">
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignBody}"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-        <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-        <Setter Property="Padding" Value="8"/>
-        <Setter Property="SnapsToDevicePixels" Value="True"/>
-        <Setter Property="Margin" Value="4 2 4 2"/>
-        <Setter Property="FontWeight" Value="Medium"/>
-        <Setter Property="wpf:ListBoxItemAssist.CornerRadius" Value="4"/>
+  <Style x:Key="MaterialDesignNavigationListBoxItem" TargetType="{x:Type ListBoxItem}">
+    <Setter Property="Background" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="FontWeight" Value="Medium" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+    <Setter Property="Margin" Value="4,2,4,2" />
+    <Setter Property="Padding" Value="8" />
+    <Setter Property="SnapsToDevicePixels" Value="True" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+          <Border x:Name="border"
+                  Margin="{TemplateBinding Margin}"
+                  ClipToBounds="{TemplateBinding ClipToBounds}"
+                  CornerRadius="{Binding Path=(wpf:ListBoxItemAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}">
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup Name="CommonStates">
+                <VisualStateGroup.Transitions>
+                  <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
+                    <VisualTransition.GeneratedEasingFunction>
+                      <CircleEase EasingMode="EaseOut" />
+                    </VisualTransition.GeneratedEasingFunction>
+                  </VisualTransition>
+                </VisualStateGroup.Transitions>
+                <VisualState Name="Normal" />
+                <VisualState Name="MouseOver">
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="MouseOverBorder"
+                                     Storyboard.TargetProperty="Opacity"
+                                     To="0.1"
+                                     Duration="0" />
+                  </Storyboard>
+                </VisualState>
+                <VisualState Name="Disabled" />
+              </VisualStateGroup>
+              <VisualStateGroup Name="SelectionStates">
+                <VisualStateGroup.Transitions>
+                  <VisualTransition GeneratedDuration="0:0:0.6" />
+                </VisualStateGroup.Transitions>
+                <VisualState Name="Selected">
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="SelectedBorder"
+                                     Storyboard.TargetProperty="Opacity"
+                                     To="0.12"
+                                     Duration="0" />
+                  </Storyboard>
+                </VisualState>
+                <VisualState Name="Unselected" />
+                <VisualState Name="SelectedUnfocused">
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="SelectedBorder"
+                                     Storyboard.TargetProperty="Opacity"
+                                     To="0.12"
+                                     Duration="0" />
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Grid>
+              <Grid.Clip>
+                <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                  <Binding ElementName="border" Path="ActualWidth" />
+                  <Binding ElementName="border" Path="ActualHeight" />
+                  <Binding ElementName="border" Path="CornerRadius" />
+                  <Binding ElementName="border" Path="BorderThickness" />
+                </MultiBinding>
+              </Grid.Clip>
+              <Border x:Name="MouseOverBorder"
+                      Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                      Opacity="0" />
 
-        <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <Border x:Name="border"
-                            Margin="{TemplateBinding Margin}"
-                            CornerRadius="{Binding Path=(wpf:ListBoxItemAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
-                            ClipToBounds="{TemplateBinding ClipToBounds}">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup Name="CommonStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
-                                        <VisualTransition.GeneratedEasingFunction>
-                                            <CircleEase EasingMode="EaseOut"/>
-                                        </VisualTransition.GeneratedEasingFunction>
-                                    </VisualTransition>
-                                </VisualStateGroup.Transitions>
-                                <VisualState Name="Normal"/>
-                                <VisualState Name="MouseOver">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="MouseOverBorder" Storyboard.TargetProperty="Opacity"
-                                                             To="0.1" Duration="0"/>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState Name="Disabled"/>
-                            </VisualStateGroup>
-                            <VisualStateGroup Name="SelectionStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="0:0:0.6"/>
-                                </VisualStateGroup.Transitions>
-                                <VisualState Name="Selected">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="SelectedBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="0.12" Duration="0"/>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState Name="Unselected"/>
-                                <VisualState Name="SelectedUnfocused">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="SelectedBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="0.12" Duration="0"/>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Grid>
-                            <Grid.Clip>
-                                <MultiBinding Converter="{StaticResource BorderClipConverter}">
-                                    <Binding ElementName="border" Path="ActualWidth" />
-                                    <Binding ElementName="border" Path="ActualHeight" />
-                                    <Binding ElementName="border" Path="CornerRadius" />
-                                    <Binding ElementName="border" Path="BorderThickness" />
-                                </MultiBinding>
-                            </Grid.Clip>
-                            <Border x:Name="MouseOverBorder"
-                                    Opacity="0"
-                                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
+              <Border x:Name="SelectedBorder"
+                      Background="{TemplateBinding Background}"
+                      BorderBrush="{TemplateBinding BorderBrush}"
+                      BorderThickness="{TemplateBinding BorderThickness}"
+                      Opacity="0" />
+              <wpf:Ripple Padding="{TemplateBinding Padding}"
+                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                          Content="{TemplateBinding Content}"
+                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                          ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                          Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                          Focusable="False"
+                          RecognizesAccessKey="False"
+                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+            </Grid>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter Property="Opacity" Value=".56" />
+            </Trigger>
 
-                            <Border x:Name="SelectedBorder" Opacity="0"
-                                    Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}">
-                            </Border>
-                            <wpf:Ripple Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
-                                        Focusable="False"
-                                        Content="{TemplateBinding Content}"
-                                        ContentTemplate="{TemplateBinding ContentTemplate}"
-                                        ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                        Padding="{TemplateBinding Padding}"
-                                        RecognizesAccessKey="False">
-                            </wpf:Ripple>
-                        </Grid>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" Value=".56" />
-                        </Trigger>
+            <Trigger Property="IsSelected" Value="False">
+              <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+            </Trigger>
 
-                        <Trigger Property="IsSelected" Value="False">
-                            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
-                        </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+    <Setter Property="wpf:ListBoxItemAssist.CornerRadius" Value="4" />
 
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+  </Style>
 
-    <Style x:Key="MaterialDesignNavigationPrimaryListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignNavigationListBoxItem}">
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
-        <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
+  <Style x:Key="MaterialDesignNavigationPrimaryListBoxItem"
+         TargetType="{x:Type ListBoxItem}"
+         BasedOn="{StaticResource MaterialDesignNavigationListBoxItem}">
+    <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
 
-        <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
 
-        <Style.Triggers>
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True"/>
-                    <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
-                <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
-            </MultiDataTrigger>
-        </Style.Triggers>
+    <Style.Triggers>
+      <MultiDataTrigger>
+        <MultiDataTrigger.Conditions>
+          <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True" />
+          <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
+        </MultiDataTrigger.Conditions>
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+      </MultiDataTrigger>
+    </Style.Triggers>
 
-    </Style>
+  </Style>
 
-    <Style x:Key="MaterialDesignNavigationAccentListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignNavigationListBoxItem}">
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidBrush}"/>
-        <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}"/>
+  <Style x:Key="MaterialDesignNavigationAccentListBoxItem"
+         TargetType="{x:Type ListBoxItem}"
+         BasedOn="{StaticResource MaterialDesignNavigationListBoxItem}">
+    <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidBrush}" />
 
-        <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
 
-        <Style.Triggers>
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True"/>
-                    <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueLightBrush}" />
-                <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
-            </MultiDataTrigger>
-        </Style.Triggers>
+    <Style.Triggers>
+      <MultiDataTrigger>
+        <MultiDataTrigger.Conditions>
+          <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True" />
+          <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
+        </MultiDataTrigger.Conditions>
+        <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueLightBrush}" />
+      </MultiDataTrigger>
+    </Style.Triggers>
 
-    </Style>
+  </Style>
 
-    <Style x:Key="MaterialDesignNavigationListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}">
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignNavigationListBoxItem}"/>
-    </Style>
+  <Style x:Key="MaterialDesignNavigationListBox"
+         TargetType="{x:Type ListBox}"
+         BasedOn="{StaticResource MaterialDesignListBox}">
+    <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignNavigationListBoxItem}" />
+  </Style>
 
-    <Style x:Key="MaterialDesignNavigationPrimaryListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}">
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignNavigationPrimaryListBoxItem}"/>
-    </Style>
+  <Style x:Key="MaterialDesignNavigationPrimaryListBox"
+         TargetType="{x:Type ListBox}"
+         BasedOn="{StaticResource MaterialDesignListBox}">
+    <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignNavigationPrimaryListBoxItem}" />
+  </Style>
 
-    <Style x:Key="MaterialDesignNavigationAccentListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}">
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignNavigationAccentListBoxItem}"/>
-    </Style>
+  <Style x:Key="MaterialDesignNavigationAccentListBox"
+         TargetType="{x:Type ListBox}"
+         BasedOn="{StaticResource MaterialDesignListBox}">
+    <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignNavigationAccentListBoxItem}" />
+  </Style>
 
-    <!--#endregion-->
+  <!--#endregion-->
 
-    <!--#region Filter Chip-->
+  <!--#region Filter Chip-->
 
-    <Style x:Key="MaterialDesignFilterChipListBoxItem" TargetType="{x:Type ListBoxItem}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <CheckBox Style="{StaticResource MaterialDesignFilterChipCheckBox}" 
-                              IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
-                              Content="{TemplateBinding Content}"
-                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
-                              FontFamily="{TemplateBinding FontFamily}"
-                              FontSize="{TemplateBinding FontSize}"
-                              FontStretch="{TemplateBinding FontStretch}"
-                              FontStyle="{TemplateBinding FontStyle}"
-                              FontWeight="{TemplateBinding FontWeight}"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+  <Style x:Key="MaterialDesignFilterChipListBoxItem" TargetType="{x:Type ListBoxItem}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+          <CheckBox Content="{TemplateBinding Content}"
+                    ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                    ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                    FontFamily="{TemplateBinding FontFamily}"
+                    FontSize="{TemplateBinding FontSize}"
+                    FontStretch="{TemplateBinding FontStretch}"
+                    FontStyle="{TemplateBinding FontStyle}"
+                    FontWeight="{TemplateBinding FontWeight}"
+                    IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                    Style="{StaticResource MaterialDesignFilterChipCheckBox}" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
 
-    <Style x:Key="MaterialDesignFilterChipListBox" TargetType="{x:Type ListBox}">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="SelectionMode" Value="Multiple"/>
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
-        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
-        <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
-        <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
-        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipListBoxItem}"/>
-        <Setter Property="ItemsPanel">
-            <Setter.Value>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal" />
-                </ItemsPanelTemplate>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBox}">
-                    <ControlTemplate.Resources>
-                        <Style TargetType="{x:Type wpf:PackIcon}" >
-                            <Setter Property="FrameworkElement.Width" Value="22" />
-                            <Setter Property="FrameworkElement.Height" Value="22" />
-                        </Style>
-                    </ControlTemplate.Resources>
-                    <Border x:Name="Bd" 
-                            BorderBrush="{TemplateBinding BorderBrush}" 
-                            BorderThickness="{TemplateBinding BorderThickness}" 
-                            SnapsToDevicePixels="true"
-                            Padding="{TemplateBinding Padding}">
-                        <ScrollViewer Focusable="false" Padding="{TemplateBinding Padding}">
-                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                        </ScrollViewer>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsGrouping" Value="true"/>
-                                <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false"/>
-                            </MultiTrigger.Conditions>
-                            <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
-                        </MultiTrigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+  <Style x:Key="MaterialDesignFilterChipListBox" TargetType="{x:Type ListBox}">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipListBoxItem}" />
+    <Setter Property="ItemsPanel">
+      <Setter.Value>
+        <ItemsPanelTemplate>
+          <WrapPanel Orientation="Horizontal" />
+        </ItemsPanelTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
+    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+    <Setter Property="ScrollViewer.PanningMode" Value="Both" />
+    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+    <Setter Property="SelectionMode" Value="Multiple" />
+    <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBox}">
+          <ControlTemplate.Resources>
+            <Style TargetType="{x:Type wpf:PackIcon}">
+              <Setter Property="FrameworkElement.Height" Value="22" />
+              <Setter Property="FrameworkElement.Width" Value="22" />
+            </Style>
+          </ControlTemplate.Resources>
+          <Border x:Name="Bd"
+                  Padding="{TemplateBinding Padding}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  SnapsToDevicePixels="true">
+            <ScrollViewer Padding="{TemplateBinding Padding}" Focusable="false">
+              <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+            </ScrollViewer>
+          </Border>
+          <ControlTemplate.Triggers>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="IsGrouping" Value="true" />
+                <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false" />
+              </MultiTrigger.Conditions>
+              <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
+            </MultiTrigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+  </Style>
 
-    <Style x:Key="MaterialDesignFilterChipPrimaryListBoxItem" TargetType="{x:Type ListBoxItem}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <CheckBox Style="{StaticResource MaterialDesignFilterChipPrimaryCheckBox}" 
-                              IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
-                              Content="{TemplateBinding Content}"
-                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
-                              FontFamily="{TemplateBinding FontFamily}"
-                              FontSize="{TemplateBinding FontSize}"
-                              FontStretch="{TemplateBinding FontStretch}"
-                              FontStyle="{TemplateBinding FontStyle}"
-                              FontWeight="{TemplateBinding FontWeight}"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+  <Style x:Key="MaterialDesignFilterChipPrimaryListBoxItem" TargetType="{x:Type ListBoxItem}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+          <CheckBox Content="{TemplateBinding Content}"
+                    ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                    ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                    FontFamily="{TemplateBinding FontFamily}"
+                    FontSize="{TemplateBinding FontSize}"
+                    FontStretch="{TemplateBinding FontStretch}"
+                    FontStyle="{TemplateBinding FontStyle}"
+                    FontWeight="{TemplateBinding FontWeight}"
+                    IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                    Style="{StaticResource MaterialDesignFilterChipPrimaryCheckBox}" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
 
-    <Style x:Key="MaterialDesignFilterChipPrimaryListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignFilterChipListBox}">
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipPrimaryListBoxItem}"/>
-    </Style>
+  <Style x:Key="MaterialDesignFilterChipPrimaryListBox"
+         TargetType="{x:Type ListBox}"
+         BasedOn="{StaticResource MaterialDesignFilterChipListBox}">
+    <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipPrimaryListBoxItem}" />
+  </Style>
 
-    <Style x:Key="MaterialDesignFilterChipAccentListBoxItem" TargetType="{x:Type ListBoxItem}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <CheckBox Style="{StaticResource MaterialDesignFilterChipAccentCheckBox}" 
-                              IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
-                              Content="{TemplateBinding Content}"
-                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
-                              FontFamily="{TemplateBinding FontFamily}"
-                              FontSize="{TemplateBinding FontSize}"
-                              FontStretch="{TemplateBinding FontStretch}"
-                              FontStyle="{TemplateBinding FontStyle}"
-                              FontWeight="{TemplateBinding FontWeight}"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+  <Style x:Key="MaterialDesignFilterChipAccentListBoxItem" TargetType="{x:Type ListBoxItem}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+          <CheckBox Content="{TemplateBinding Content}"
+                    ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                    ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                    FontFamily="{TemplateBinding FontFamily}"
+                    FontSize="{TemplateBinding FontSize}"
+                    FontStretch="{TemplateBinding FontStretch}"
+                    FontStyle="{TemplateBinding FontStyle}"
+                    FontWeight="{TemplateBinding FontWeight}"
+                    IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                    Style="{StaticResource MaterialDesignFilterChipAccentCheckBox}" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
 
-    <Style x:Key="MaterialDesignFilterChipAccentListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignFilterChipListBox}">
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipAccentListBoxItem}"/>
-    </Style>
+  <Style x:Key="MaterialDesignFilterChipAccentListBox"
+         TargetType="{x:Type ListBox}"
+         BasedOn="{StaticResource MaterialDesignFilterChipListBox}">
+    <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipAccentListBoxItem}" />
+  </Style>
 
-    <Style x:Key="MaterialDesignFilterChipOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <CheckBox Style="{StaticResource MaterialDesignFilterChipOutlineCheckBox}" 
-                              IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
-                              Content="{TemplateBinding Content}"
-                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
-                              FontFamily="{TemplateBinding FontFamily}"
-                              FontSize="{TemplateBinding FontSize}"
-                              FontStretch="{TemplateBinding FontStretch}"
-                              FontStyle="{TemplateBinding FontStyle}"
-                              FontWeight="{TemplateBinding FontWeight}"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+  <Style x:Key="MaterialDesignFilterChipOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+          <CheckBox Content="{TemplateBinding Content}"
+                    ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                    ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                    FontFamily="{TemplateBinding FontFamily}"
+                    FontSize="{TemplateBinding FontSize}"
+                    FontStretch="{TemplateBinding FontStretch}"
+                    FontStyle="{TemplateBinding FontStyle}"
+                    FontWeight="{TemplateBinding FontWeight}"
+                    IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                    Style="{StaticResource MaterialDesignFilterChipOutlineCheckBox}" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
 
-    <Style x:Key="MaterialDesignFilterChipOutlineListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignFilterChipListBox}">
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipOutlineListBoxItem}"/>
-    </Style>
+  <Style x:Key="MaterialDesignFilterChipOutlineListBox"
+         TargetType="{x:Type ListBox}"
+         BasedOn="{StaticResource MaterialDesignFilterChipListBox}">
+    <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipOutlineListBoxItem}" />
+  </Style>
 
-    <Style x:Key="MaterialDesignFilterChipPrimaryOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <CheckBox Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}" 
-                              IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
-                              Content="{TemplateBinding Content}"
-                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              FontFamily="{TemplateBinding FontFamily}"
-                              FontSize="{TemplateBinding FontSize}"
-                              FontStretch="{TemplateBinding FontStretch}"
-                              FontStyle="{TemplateBinding FontStyle}"
-                              FontWeight="{TemplateBinding FontWeight}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+  <Style x:Key="MaterialDesignFilterChipPrimaryOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+          <CheckBox Content="{TemplateBinding Content}"
+                    ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                    ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                    FontFamily="{TemplateBinding FontFamily}"
+                    FontSize="{TemplateBinding FontSize}"
+                    FontStretch="{TemplateBinding FontStretch}"
+                    FontStyle="{TemplateBinding FontStyle}"
+                    FontWeight="{TemplateBinding FontWeight}"
+                    IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                    Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
 
-    <Style x:Key="MaterialDesignFilterChipPrimaryOutlineListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignFilterChipListBox}">
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipPrimaryOutlineListBoxItem}"/>
-    </Style>
+  <Style x:Key="MaterialDesignFilterChipPrimaryOutlineListBox"
+         TargetType="{x:Type ListBox}"
+         BasedOn="{StaticResource MaterialDesignFilterChipListBox}">
+    <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipPrimaryOutlineListBoxItem}" />
+  </Style>
 
-    <Style x:Key="MaterialDesignFilterChipAccentOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <CheckBox Style="{StaticResource MaterialDesignFilterChipAccentOutlineCheckBox}" 
-                              IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
-                              Content="{TemplateBinding Content}"
-                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                              FontFamily="{TemplateBinding FontFamily}"
-                              FontSize="{TemplateBinding FontSize}"
-                              FontStretch="{TemplateBinding FontStretch}"
-                              FontStyle="{TemplateBinding FontStyle}"
-                              FontWeight="{TemplateBinding FontWeight}"
-                              ContentStringFormat="{TemplateBinding ContentTemplateSelector}"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+  <Style x:Key="MaterialDesignFilterChipAccentOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+          <CheckBox Content="{TemplateBinding Content}"
+                    ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                    ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                    FontFamily="{TemplateBinding FontFamily}"
+                    FontSize="{TemplateBinding FontSize}"
+                    FontStretch="{TemplateBinding FontStretch}"
+                    FontStyle="{TemplateBinding FontStyle}"
+                    FontWeight="{TemplateBinding FontWeight}"
+                    IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                    Style="{StaticResource MaterialDesignFilterChipAccentOutlineCheckBox}" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
 
-    <Style x:Key="MaterialDesignFilterChipAccentOutlineListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignFilterChipListBox}">
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipAccentOutlineListBoxItem}"/>
-    </Style>
+  <Style x:Key="MaterialDesignFilterChipAccentOutlineListBox"
+         TargetType="{x:Type ListBox}"
+         BasedOn="{StaticResource MaterialDesignFilterChipListBox}">
+    <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipAccentOutlineListBoxItem}" />
+  </Style>
 
-    <!--#endregion-->
+  <!--#endregion-->
 
-    <!--#region Choice Chip-->
-    <Style x:Key="MaterialDesignChoiceChipListBoxItem" TargetType="{x:Type ListBoxItem}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <RadioButton Style="{StaticResource MaterialDesignChoiceChipRadioButton}" 
-                                 IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
-                                 Content="{TemplateBinding Content}"
-                                 ContentTemplate="{TemplateBinding ContentTemplate}"
-                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                 ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
-                                 FontFamily="{TemplateBinding FontFamily}"
-                                 FontSize="{TemplateBinding FontSize}"
-                                 FontStretch="{TemplateBinding FontStretch}"
-                                 FontStyle="{TemplateBinding FontStyle}"
-                                 FontWeight="{TemplateBinding FontWeight}"
-                                 GroupName="{Binding  RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+  <!--#region Choice Chip-->
+  <Style x:Key="MaterialDesignChoiceChipListBoxItem" TargetType="{x:Type ListBoxItem}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+          <RadioButton Content="{TemplateBinding Content}"
+                       ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                       ContentTemplate="{TemplateBinding ContentTemplate}"
+                       ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                       FontFamily="{TemplateBinding FontFamily}"
+                       FontSize="{TemplateBinding FontSize}"
+                       FontStretch="{TemplateBinding FontStretch}"
+                       FontStyle="{TemplateBinding FontStyle}"
+                       FontWeight="{TemplateBinding FontWeight}"
+                       GroupName="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
+                       IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                       Style="{StaticResource MaterialDesignChoiceChipRadioButton}" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
 
-    <Style x:Key="MaterialDesignChoiceChipListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignFilterChipListBox}">
-        <Setter Property="SelectionMode" Value="Single"/>
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignChoiceChipListBoxItem}"/>
-    </Style>
+  <Style x:Key="MaterialDesignChoiceChipListBox"
+         TargetType="{x:Type ListBox}"
+         BasedOn="{StaticResource MaterialDesignFilterChipListBox}">
+    <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignChoiceChipListBoxItem}" />
+    <Setter Property="SelectionMode" Value="Single" />
+  </Style>
 
-    <Style x:Key="MaterialDesignChoiceChipPrimaryListBoxItem" TargetType="{x:Type ListBoxItem}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <RadioButton Style="{StaticResource MaterialDesignChoiceChipPrimaryRadioButton}" 
-                                 IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
-                                 Content="{TemplateBinding Content}"
-                                 ContentTemplate="{TemplateBinding ContentTemplate}"
-                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                 ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
-                                 FontFamily="{TemplateBinding FontFamily}"
-                                 FontSize="{TemplateBinding FontSize}"
-                                 FontStretch="{TemplateBinding FontStretch}"
-                                 FontStyle="{TemplateBinding FontStyle}"
-                                 FontWeight="{TemplateBinding FontWeight}"
-                                 GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+  <Style x:Key="MaterialDesignChoiceChipPrimaryListBoxItem" TargetType="{x:Type ListBoxItem}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+          <RadioButton Content="{TemplateBinding Content}"
+                       ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                       ContentTemplate="{TemplateBinding ContentTemplate}"
+                       ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                       FontFamily="{TemplateBinding FontFamily}"
+                       FontSize="{TemplateBinding FontSize}"
+                       FontStretch="{TemplateBinding FontStretch}"
+                       FontStyle="{TemplateBinding FontStyle}"
+                       FontWeight="{TemplateBinding FontWeight}"
+                       GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
+                       IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                       Style="{StaticResource MaterialDesignChoiceChipPrimaryRadioButton}" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
 
-    <Style x:Key="MaterialDesignChoiceChipPrimaryListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignChoiceChipListBox}">
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignChoiceChipPrimaryListBoxItem}"/>
-    </Style>
+  <Style x:Key="MaterialDesignChoiceChipPrimaryListBox"
+         TargetType="{x:Type ListBox}"
+         BasedOn="{StaticResource MaterialDesignChoiceChipListBox}">
+    <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignChoiceChipPrimaryListBoxItem}" />
+  </Style>
 
-    <Style x:Key="MaterialDesignChoiceChipAccentListBoxItem" TargetType="{x:Type ListBoxItem}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <RadioButton Style="{StaticResource MaterialDesignChoiceChipAccentRadioButton}" 
-                                 IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
-                                 Content="{TemplateBinding Content}"
-                                 ContentTemplate="{TemplateBinding ContentTemplate}"
-                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                 ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
-                                 FontFamily="{TemplateBinding FontFamily}"
-                                 FontSize="{TemplateBinding FontSize}"
-                                 FontStretch="{TemplateBinding FontStretch}"
-                                 FontStyle="{TemplateBinding FontStyle}"
-                                 FontWeight="{TemplateBinding FontWeight}"
-                                 GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+  <Style x:Key="MaterialDesignChoiceChipAccentListBoxItem" TargetType="{x:Type ListBoxItem}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+          <RadioButton Content="{TemplateBinding Content}"
+                       ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                       ContentTemplate="{TemplateBinding ContentTemplate}"
+                       ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                       FontFamily="{TemplateBinding FontFamily}"
+                       FontSize="{TemplateBinding FontSize}"
+                       FontStretch="{TemplateBinding FontStretch}"
+                       FontStyle="{TemplateBinding FontStyle}"
+                       FontWeight="{TemplateBinding FontWeight}"
+                       GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
+                       IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                       Style="{StaticResource MaterialDesignChoiceChipAccentRadioButton}" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
 
-    <Style x:Key="MaterialDesignChoiceChipAccentListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignChoiceChipListBox}">
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignChoiceChipAccentListBoxItem}"/>
-    </Style>
+  <Style x:Key="MaterialDesignChoiceChipAccentListBox"
+         TargetType="{x:Type ListBox}"
+         BasedOn="{StaticResource MaterialDesignChoiceChipListBox}">
+    <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignChoiceChipAccentListBoxItem}" />
+  </Style>
 
-    <Style x:Key="MaterialDesignChoiceChipOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <RadioButton Style="{StaticResource MaterialDesignChoiceChipOutlineRadioButton}" 
-                                 IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
-                                 Content="{TemplateBinding Content}"
-                                 ContentTemplate="{TemplateBinding ContentTemplate}"
-                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                 ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
-                                 FontFamily="{TemplateBinding FontFamily}"
-                                 FontSize="{TemplateBinding FontSize}"
-                                 FontStretch="{TemplateBinding FontStretch}"
-                                 FontStyle="{TemplateBinding FontStyle}"
-                                 FontWeight="{TemplateBinding FontWeight}"
-                                 GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+  <Style x:Key="MaterialDesignChoiceChipOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+          <RadioButton Content="{TemplateBinding Content}"
+                       ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                       ContentTemplate="{TemplateBinding ContentTemplate}"
+                       ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                       FontFamily="{TemplateBinding FontFamily}"
+                       FontSize="{TemplateBinding FontSize}"
+                       FontStretch="{TemplateBinding FontStretch}"
+                       FontStyle="{TemplateBinding FontStyle}"
+                       FontWeight="{TemplateBinding FontWeight}"
+                       GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
+                       IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                       Style="{StaticResource MaterialDesignChoiceChipOutlineRadioButton}" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
 
-    <Style x:Key="MaterialDesignChoiceChipOutlineListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignChoiceChipListBox}">
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignChoiceChipOutlineListBoxItem}"/>
-    </Style>
+  <Style x:Key="MaterialDesignChoiceChipOutlineListBox"
+         TargetType="{x:Type ListBox}"
+         BasedOn="{StaticResource MaterialDesignChoiceChipListBox}">
+    <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignChoiceChipOutlineListBoxItem}" />
+  </Style>
 
-    <Style x:Key="MaterialDesignChoiceChipPrimaryOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <RadioButton Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}" 
-                                 IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
-                                 Content="{TemplateBinding Content}"
-                                 ContentTemplate="{TemplateBinding ContentTemplate}"
-                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                 ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
-                                 FontFamily="{TemplateBinding FontFamily}"
-                                 FontSize="{TemplateBinding FontSize}"
-                                 FontStretch="{TemplateBinding FontStretch}"
-                                 FontStyle="{TemplateBinding FontStyle}"
-                                 FontWeight="{TemplateBinding FontWeight}"
-                                 GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+  <Style x:Key="MaterialDesignChoiceChipPrimaryOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+          <RadioButton Content="{TemplateBinding Content}"
+                       ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                       ContentTemplate="{TemplateBinding ContentTemplate}"
+                       ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                       FontFamily="{TemplateBinding FontFamily}"
+                       FontSize="{TemplateBinding FontSize}"
+                       FontStretch="{TemplateBinding FontStretch}"
+                       FontStyle="{TemplateBinding FontStyle}"
+                       FontWeight="{TemplateBinding FontWeight}"
+                       GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
+                       IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                       Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
 
-    <Style x:Key="MaterialDesignChoiceChipPrimaryOutlineListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignChoiceChipListBox}">
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignChoiceChipPrimaryOutlineListBoxItem}"/>
-    </Style>
+  <Style x:Key="MaterialDesignChoiceChipPrimaryOutlineListBox"
+         TargetType="{x:Type ListBox}"
+         BasedOn="{StaticResource MaterialDesignChoiceChipListBox}">
+    <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignChoiceChipPrimaryOutlineListBoxItem}" />
+  </Style>
 
-    <Style x:Key="MaterialDesignChoiceChipAccentOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <RadioButton Style="{StaticResource MaterialDesignChoiceChipAccentOutlineRadioButton}" 
-                                 IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
-                                 Content="{TemplateBinding Content}"
-                                 ContentTemplate="{TemplateBinding ContentTemplate}"
-                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                 ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
-                                 FontFamily="{TemplateBinding FontFamily}"
-                                 FontSize="{TemplateBinding FontSize}"
-                                 FontStretch="{TemplateBinding FontStretch}"
-                                 FontStyle="{TemplateBinding FontStyle}"
-                                 FontWeight="{TemplateBinding FontWeight}"
-                                 GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+  <Style x:Key="MaterialDesignChoiceChipAccentOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+          <RadioButton Content="{TemplateBinding Content}"
+                       ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                       ContentTemplate="{TemplateBinding ContentTemplate}"
+                       ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                       FontFamily="{TemplateBinding FontFamily}"
+                       FontSize="{TemplateBinding FontSize}"
+                       FontStretch="{TemplateBinding FontStretch}"
+                       FontStyle="{TemplateBinding FontStyle}"
+                       FontWeight="{TemplateBinding FontWeight}"
+                       GroupName="{Binding Name, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
+                       IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                       Style="{StaticResource MaterialDesignChoiceChipAccentOutlineRadioButton}" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
 
-    <Style x:Key="MaterialDesignChoiceChipAccentOutlineListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignChoiceChipListBox}">
-        <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignChoiceChipAccentOutlineListBoxItem}"/>
-    </Style>
+  <Style x:Key="MaterialDesignChoiceChipAccentOutlineListBox"
+         TargetType="{x:Type ListBox}"
+         BasedOn="{StaticResource MaterialDesignChoiceChipListBox}">
+    <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignChoiceChipAccentOutlineListBoxItem}" />
+  </Style>
 
-    <!--#endregion-->
+  <!--#endregion-->
 </ResourceDictionary>

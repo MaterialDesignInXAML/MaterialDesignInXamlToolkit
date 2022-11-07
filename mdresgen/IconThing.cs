@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Net.Http;
 using Humanizer;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -40,7 +34,7 @@ namespace mdresgen
 
         private static void Write(string content, string filePath)
         {
-            for(string? currentDirectory = Path.GetFullPath(".");
+            for (string? currentDirectory = Path.GetFullPath(".");
                 !string.IsNullOrEmpty(Path.GetDirectoryName(currentDirectory));
                 currentDirectory = Path.GetDirectoryName(currentDirectory))
             {
@@ -73,7 +67,7 @@ namespace mdresgen
                 );
 
             var iconsByName = new Dictionary<string, Icon>(StringComparer.OrdinalIgnoreCase);
-            foreach(Icon icon in icons)
+            foreach (Icon icon in icons)
             {
                 if (iconsByName.ContainsKey(icon.Name))
                 {

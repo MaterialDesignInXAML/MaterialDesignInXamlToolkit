@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
-using System.Windows;
+﻿using System.Globalization;
 using System.Windows.Media;
 using MaterialDesignThemes.Wpf.Converters;
 using Xunit;
@@ -29,7 +27,7 @@ namespace MaterialDesignThemes.Wpf.Tests.Converters
         {
             var converter = new FloatingHintTransformConverter();
 
-            var result = converter.Convert(new[] { scale, lower, upper, offset }, 
+            var result = converter.Convert(new[] { scale, lower, upper, offset },
                 typeof(Transform), null, CultureInfo.CurrentUICulture);
 
             Assert.Equal(Transform.Identity, result);

@@ -1,10 +1,7 @@
-﻿using MaterialDesignThemes.Wpf;
-using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Globalization;
-using System.Linq;
-using System.Windows.Controls;
 using MaterialDesignDemo.Domain;
+using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignDemo
 {

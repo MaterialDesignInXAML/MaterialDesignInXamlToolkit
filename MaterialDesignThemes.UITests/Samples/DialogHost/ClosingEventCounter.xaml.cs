@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using System.Windows.Controls;
-
-namespace MaterialDesignThemes.UITests.Samples.DialogHost
+﻿namespace MaterialDesignThemes.UITests.Samples.DialogHost
 {
     /// <summary>
     /// Interaction logic for ClosingEventCounter.xaml

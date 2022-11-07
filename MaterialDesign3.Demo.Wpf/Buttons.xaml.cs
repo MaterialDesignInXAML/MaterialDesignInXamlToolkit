@@ -1,6 +1,4 @@
-using System;
 using System.Diagnostics;
-using System.Windows;
 using MaterialDesign3Demo.Domain;
 
 namespace MaterialDesign3Demo

@@ -1,9 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Input;
+﻿using System.ComponentModel;
 using System.Windows.Media;
 using MaterialDesignThemes.Wpf.Converters;
 

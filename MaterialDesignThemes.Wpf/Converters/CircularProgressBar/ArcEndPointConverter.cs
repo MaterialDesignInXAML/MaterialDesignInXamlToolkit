@@ -1,6 +1,4 @@
-using System;
 using System.Globalization;
-using System.Windows;
 using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters.CircularProgressBar
@@ -14,7 +12,7 @@ namespace MaterialDesignThemes.Wpf.Converters.CircularProgressBar
         /// and the start point of the second arc.
         /// </summary>
         public const string ParameterMidPoint = "MidPoint";
-        
+
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             var actualWidth = values[0].ExtractDouble();
@@ -37,7 +35,7 @@ namespace MaterialDesignThemes.Wpf.Converters.CircularProgressBar
             var percent = maximum <= minimum ? 1.0 : (value - minimum) / (maximum - minimum);
             if (Equals(parameter, ParameterMidPoint))
                 percent /= 2;
-                
+
             var degrees = 360 * percent;
             var radians = degrees * (Math.PI / 180);
 

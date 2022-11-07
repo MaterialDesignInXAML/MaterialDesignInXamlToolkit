@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
@@ -172,7 +166,7 @@ namespace MaterialDesignThemes.Wpf
             get => (bool)GetValue(TopDrawerCloseOnClickAwayProperty);
             set => SetValue(TopDrawerCloseOnClickAwayProperty, value);
         }
-        
+
         public static readonly DependencyProperty TopDrawerCornerRadiusProperty = DependencyProperty.Register(
             nameof(TopDrawerCornerRadius), typeof(CornerRadius), typeof(DrawerHost), new PropertyMetadata(default(CornerRadius)));
 
@@ -261,7 +255,7 @@ namespace MaterialDesignThemes.Wpf
             get => (bool)GetValue(LeftDrawerCloseOnClickAwayProperty);
             set => SetValue(LeftDrawerCloseOnClickAwayProperty, value);
         }
-        
+
         public static readonly DependencyProperty LeftDrawerCornerRadiusProperty = DependencyProperty.Register(
             nameof(LeftDrawerCornerRadius), typeof(CornerRadius), typeof(DrawerHost), new PropertyMetadata(default(CornerRadius)));
 
@@ -350,7 +344,7 @@ namespace MaterialDesignThemes.Wpf
             get => (bool)GetValue(RightDrawerCloseOnClickAwayProperty);
             set => SetValue(RightDrawerCloseOnClickAwayProperty, value);
         }
-        
+
         public static readonly DependencyProperty RightDrawerCornerRadiusProperty = DependencyProperty.Register(
             nameof(RightDrawerCornerRadius), typeof(CornerRadius), typeof(DrawerHost), new PropertyMetadata(default(CornerRadius)));
 
@@ -439,7 +433,7 @@ namespace MaterialDesignThemes.Wpf
             get => (bool)GetValue(BottomDrawerCloseOnClickAwayProperty);
             set => SetValue(BottomDrawerCloseOnClickAwayProperty, value);
         }
-        
+
         public static readonly DependencyProperty BottomDrawerCornerRadiusProperty = DependencyProperty.Register(
             nameof(BottomDrawerCornerRadius), typeof(CornerRadius), typeof(DrawerHost), new PropertyMetadata(default(CornerRadius)));
 
@@ -447,7 +441,7 @@ namespace MaterialDesignThemes.Wpf
         {
             get => (CornerRadius?)GetValue(BottomDrawerCornerRadiusProperty);
             set => SetValue(BottomDrawerCornerRadiusProperty, value);
-        }        
+        }
 
         #endregion
 

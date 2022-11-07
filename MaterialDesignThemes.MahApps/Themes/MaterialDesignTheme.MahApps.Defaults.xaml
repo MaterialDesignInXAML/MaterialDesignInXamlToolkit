@@ -2,34 +2,34 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls">
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Fonts.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Flyout.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.NumericUpDown.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.RangeSlider.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.TextBox.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.PasswordBox.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.WindowCommands.xaml" />
-    </ResourceDictionary.MergedDictionaries>
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Fonts.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Flyout.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.NumericUpDown.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.RangeSlider.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.TextBox.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.PasswordBox.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.WindowCommands.xaml" />
+  </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="{x:Type controls:NumericUpDown}" BasedOn="{StaticResource MaterialDesignNumericUpDown}" />
-    <Style TargetType="{x:Type controls:RangeSlider}" BasedOn="{StaticResource MaterialDesignRangeSlider}" />
-    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MahApps.MaterialDesignTextBox}" />
-    <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MahApps.MaterialDesignPasswordBox}" />
+  <Style TargetType="{x:Type controls:NumericUpDown}" BasedOn="{StaticResource MaterialDesignNumericUpDown}" />
+  <Style TargetType="{x:Type controls:RangeSlider}" BasedOn="{StaticResource MaterialDesignRangeSlider}" />
+  <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MahApps.MaterialDesignTextBox}" />
+  <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MahApps.MaterialDesignPasswordBox}" />
 
-    <Style x:Key="MahApps.Styles.NumericUpDown.DataGridColumn"
-           BasedOn="{StaticResource MaterialDesignNumericUpDown}"
-           TargetType="{x:Type controls:NumericUpDown}">
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="HideUpDownButtons" Value="True" />
-        <Setter Property="MinHeight" Value="0" />
-        <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
-    </Style>
+  <Style x:Key="MahApps.Styles.NumericUpDown.DataGridColumn"
+         TargetType="{x:Type controls:NumericUpDown}"
+         BasedOn="{StaticResource MaterialDesignNumericUpDown}">
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="HideUpDownButtons" Value="True" />
+    <Setter Property="MinHeight" Value="0" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+  </Style>
 
-    <Style x:Key="MahApps.Styles.NumericUpDown.DataGridColumnEditing"
-           BasedOn="{StaticResource MahApps.Styles.NumericUpDown.DataGridColumn}"
-           TargetType="{x:Type controls:NumericUpDown}">
-        <Setter Property="HideUpDownButtons" Value="False" />
-    </Style>
+  <Style x:Key="MahApps.Styles.NumericUpDown.DataGridColumnEditing"
+         TargetType="{x:Type controls:NumericUpDown}"
+         BasedOn="{StaticResource MahApps.Styles.NumericUpDown.DataGridColumn}">
+    <Setter Property="HideUpDownButtons" Value="False" />
+  </Style>
 </ResourceDictionary>

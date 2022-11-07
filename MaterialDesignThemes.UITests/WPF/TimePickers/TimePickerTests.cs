@@ -1,7 +1,5 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Globalization;
-using System.Threading.Tasks;
 namespace MaterialDesignThemes.UITests.WPF.TimePickers;
 
 public class TimePickerTests : TestBase
@@ -206,7 +204,7 @@ public class TimePickerTests : TestBase
         var timePickerTextBox = await timePicker.GetElement<TimePickerTextBox>("/TimePickerTextBox");
         var textBox = await stackPanel.GetElement<TextBox>("/TextBox");
 
-        await timePicker.SetSelectedTime(new DateTime (2020, 8, 10, 1, 2, 0)); 
+        await timePicker.SetSelectedTime(new DateTime(2020, 8, 10, 1, 2, 0));
         await timePickerTextBox.MoveKeyboardFocus();
         await timePickerTextBox.SendKeyboardInput($"{text}");
         await textBox.MoveKeyboardFocus();
@@ -232,7 +230,7 @@ public class TimePickerTests : TestBase
         var timePicker = await stackPanel.GetElement<TimePicker>("/TimePicker");
         var timePickerTextBox = await timePicker.GetElement<TimePickerTextBox>("/TimePickerTextBox");
 
-        await timePicker.SetSelectedTime(new DateTime (2020, 8, 10, 1, 2, 0)); 
+        await timePicker.SetSelectedTime(new DateTime(2020, 8, 10, 1, 2, 0));
         await timePickerTextBox.MoveKeyboardFocus();
         await timePickerTextBox.SendKeyboardInput($"{text}{Key.Enter}");
 
@@ -257,7 +255,7 @@ public class TimePickerTests : TestBase
         var timePicker = await stackPanel.GetElement<TimePicker>("/TimePicker");
         var timePickerTextBox = await timePicker.GetElement<TimePickerTextBox>("/TimePickerTextBox");
 
-        await timePicker.SetSelectedTime(new DateTime (2020, 8, 10, 1, 3, 0)); 
+        await timePicker.SetSelectedTime(new DateTime(2020, 8, 10, 1, 3, 0));
         await timePickerTextBox.MoveKeyboardFocus();
         await timePickerTextBox.SendKeyboardInput($"{text}{Key.Enter}");
 

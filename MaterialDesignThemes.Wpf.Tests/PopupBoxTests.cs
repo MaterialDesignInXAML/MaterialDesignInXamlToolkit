@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Windows.Controls.Primitives;
 using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests

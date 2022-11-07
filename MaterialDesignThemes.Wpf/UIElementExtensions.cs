@@ -1,6 +1,3 @@
-using System;
-using System.Linq;
-using System.Windows;
 using System.Windows.Documents;
 
 namespace MaterialDesignThemes.Wpf
@@ -18,10 +15,10 @@ namespace MaterialDesignThemes.Wpf
             {
                 throw new ArgumentNullException(nameof(adorner));
             }
-            
+
             var adornerLayer = AdornerLayer.GetAdornerLayer(element)
                 ?? throw new InvalidOperationException("This element has no adorner layer.");
-            
+
             adornerLayer.Add(adorner);
         }
 

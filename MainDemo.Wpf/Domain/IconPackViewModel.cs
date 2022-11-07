@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using System.Windows.Media;
-using MaterialDesignThemes.Wpf;
-using MaterialDesignDemo.Domain;
-using Microsoft.Win32;
-using BluwolfIcons;
+﻿using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.IO;
+using BluwolfIcons;
+using MaterialDesignThemes.Wpf;
+using Microsoft.Win32;
 
 namespace MaterialDesignDemo.Domain
 {

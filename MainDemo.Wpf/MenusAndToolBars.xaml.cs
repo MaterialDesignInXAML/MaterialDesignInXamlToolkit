@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using MaterialDesignDemo.Domain;
+﻿using MaterialDesignDemo.Domain;
 
 namespace MaterialDesignDemo
 {

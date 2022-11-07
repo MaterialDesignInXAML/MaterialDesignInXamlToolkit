@@ -1,14 +1,6 @@
-﻿using System;
-using System.ComponentModel;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.ComponentModel;
 using System.Windows.Media;
 using MaterialDesignThemes.UITests.Samples.DialogHost;
-using MaterialDesignThemes.Wpf;
-using XamlTest;
-using Xunit;
-using Xunit.Abstractions;
 
 using static MaterialDesignThemes.UITests.MaterialDesignSpec;
 
@@ -51,7 +43,7 @@ namespace MaterialDesignThemes.UITests.WPF.DialogHosts
             {
                 await Wait.For(async () => await overlay.GetVisibility() != Visibility.Visible, retry);
             }
-            catch(TimeoutException)
+            catch (TimeoutException)
             {
                 await closeDialogButton.LeftClick();
                 await Wait.For(async () => await overlay.GetVisibility() != Visibility.Visible, retry);

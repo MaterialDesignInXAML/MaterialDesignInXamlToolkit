@@ -1,7 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-
-namespace MahAppsDragablzDemo
+﻿namespace MahAppsDragablzDemo
 {
     public static class XamlDisplayEx
     {

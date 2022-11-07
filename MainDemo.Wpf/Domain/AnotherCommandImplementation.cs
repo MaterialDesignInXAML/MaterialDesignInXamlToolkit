@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows.Input;
-
-namespace MaterialDesignDemo.Domain
+﻿namespace MaterialDesignDemo.Domain
 {
     /// <summary>
     /// No WPF project is complete without it's own version of this.

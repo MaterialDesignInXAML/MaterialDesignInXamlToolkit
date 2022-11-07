@@ -1,9 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Media;
-using XamlTest;
-using Xunit;
-using Xunit.Abstractions;
+﻿using System.Windows.Media;
 
 namespace MaterialDesignThemes.UITests.WPF.Buttons
 {

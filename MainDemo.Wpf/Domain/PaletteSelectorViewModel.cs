@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Input;
-using MaterialDesignColors;
+﻿using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignDemo.Domain
@@ -17,14 +14,14 @@ namespace MaterialDesignDemo.Domain
 
         public ICommand ApplyPrimaryCommand { get; } = new AnotherCommandImplementation(o => ApplyPrimary((Swatch)o!));
 
-        private static void ApplyPrimary(Swatch swatch) 
+        private static void ApplyPrimary(Swatch swatch)
             => ModifyTheme(theme => theme.SetPrimaryColor(swatch.ExemplarHue.Color));
 
         public ICommand ApplyAccentCommand { get; } = new AnotherCommandImplementation(o => ApplyAccent((Swatch)o!));
 
         private static void ApplyAccent(Swatch swatch)
         {
-            if (swatch is { AccentExemplarHue: not null } )
+            if (swatch is { AccentExemplarHue: not null })
             {
                 ModifyTheme(theme => theme.SetSecondaryColor(swatch.AccentExemplarHue.Color));
             }

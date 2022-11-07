@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace MaterialDesignColors
+﻿namespace MaterialDesignColors
 {
     /// <summary>
     /// Defines a single colour swatch.

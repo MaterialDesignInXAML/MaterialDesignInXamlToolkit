@@ -5,6 +5,7 @@ using System.Windows.Media;
 [assembly: GenerateHelpers(typeof(SmartHint))]
 [assembly: GenerateHelpers(typeof(TimePicker))]
 [assembly: GenerateHelpers(typeof(DrawerHost))]
+[assembly: GenerateHelpers(typeof(ColorPicker))]
 
 namespace MaterialDesignThemes.UITests;
 

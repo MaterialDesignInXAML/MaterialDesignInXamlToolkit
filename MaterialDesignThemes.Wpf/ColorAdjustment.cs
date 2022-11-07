@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows.Markup;
-
-namespace MaterialDesignThemes.Wpf
+﻿namespace MaterialDesignThemes.Wpf
 {
     public class ColorAdjustment : MarkupExtension
     {

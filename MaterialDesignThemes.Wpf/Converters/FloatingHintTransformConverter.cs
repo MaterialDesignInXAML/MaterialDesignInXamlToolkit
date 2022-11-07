@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Windows;
+﻿using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
 
@@ -11,8 +8,8 @@ namespace MaterialDesignThemes.Wpf.Converters
     {
         public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
         {
-            if (values == null 
-                || values.Length != 4 
+            if (values == null
+                || values.Length != 4
                 || values.Any(v => v == null)
                 || !double.TryParse(values[0]?.ToString(), out double scale)
                 || !double.TryParse(values[1]?.ToString(), out double lower)

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Reflection;
-using System.Windows;
+﻿using System.Reflection;
 using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf

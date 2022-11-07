@@ -28,10 +28,9 @@
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" />
         <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" />
-        <PackageReference Include="Microsoft.Composition" />
         <PackageReference Include="Newtonsoft.Json" />
     </ItemGroup>
     <ItemGroup>
-        <Using Remove="System.Windows.*"/>
+        <Using Remove="System.Windows.*" />
     </ItemGroup>
 </Project>

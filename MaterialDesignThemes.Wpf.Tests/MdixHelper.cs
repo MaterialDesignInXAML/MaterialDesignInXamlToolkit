@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
+﻿using System.Collections;
 using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests

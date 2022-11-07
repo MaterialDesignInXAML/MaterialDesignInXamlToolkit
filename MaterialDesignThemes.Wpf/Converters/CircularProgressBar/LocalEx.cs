@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace MaterialDesignThemes.Wpf.Converters.CircularProgressBar
+﻿namespace MaterialDesignThemes.Wpf.Converters.CircularProgressBar
 {
     internal static class LocalEx
     {

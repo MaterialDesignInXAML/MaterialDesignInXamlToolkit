@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -42,7 +39,7 @@ namespace MaterialDesignThemes.Wpf
         public static void SetHeaderFontSize(Expander element, double value)
             => element.SetValue(HeaderFontSizeProperty, value);
         #endregion
-        
+
         #region AttachedProperty : HeaderBackgroundProperty
         public static readonly DependencyProperty HeaderBackgroundProperty
             = DependencyProperty.RegisterAttached("HeaderBackground", typeof(Brush), typeof(ExpanderAssist));

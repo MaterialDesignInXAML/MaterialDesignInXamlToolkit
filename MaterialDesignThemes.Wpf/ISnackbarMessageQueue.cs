@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MaterialDesignThemes.Wpf
+﻿namespace MaterialDesignThemes.Wpf
 {
     public interface ISnackbarMessageQueue
     {

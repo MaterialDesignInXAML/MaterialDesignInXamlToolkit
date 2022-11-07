@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MaterialDesignColors.ColorManipulation
+﻿namespace MaterialDesignColors.ColorManipulation
 {
     internal struct Lab
     {

@@ -1,5 +1,3 @@
-using System.Windows;
-
 namespace MaterialDesignThemes.Wpf
 {
     public delegate void ClockChoiceMadeEventHandler(object sender, ClockChoiceMadeEventArgs e);

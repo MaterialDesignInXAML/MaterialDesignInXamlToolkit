@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Linq;
-using System.Windows;
 using System.Windows.Media;
 using Xunit;
 
@@ -9,11 +7,11 @@ namespace MaterialDesignThemes.Wpf.Tests
     public class ColorDefinitionsTests
     {
         [Fact]
-        public void VerifyLightXamlColorsInTheme() 
+        public void VerifyLightXamlColorsInTheme()
             => AssertXamlColorsInTheme("MaterialDesignTheme.Light.xaml", new MaterialDesignLightTheme());
 
         [Fact]
-        public void VerifyDarkXamlColorsInTheme() 
+        public void VerifyDarkXamlColorsInTheme()
             => AssertXamlColorsInTheme("MaterialDesignTheme.Dark.xaml", new MaterialDesignDarkTheme());
 
         private static void AssertXamlColorsInTheme(string xaml, IBaseTheme baseTheme)
@@ -26,7 +24,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             foreach (var (key, solidColorBrush) in resourceDictionary
                 .Cast<DictionaryEntry>()
                 .Where(e => e.Value is SolidColorBrush)
-                .Select(e => ((string) e.Key, e.Value as SolidColorBrush))
+                .Select(e => ((string)e.Key, e.Value as SolidColorBrush))
                 .OrderBy(e => e.Item1))
             {
                 var baseThemePropertyName = key == "MaterialDesignValidationErrorBrush"
@@ -47,11 +45,11 @@ namespace MaterialDesignThemes.Wpf.Tests
         }
 
         [Fact]
-        public void VerifyLightThemeColorsInXaml() 
+        public void VerifyLightThemeColorsInXaml()
             => AssertThemeColorsInXaml(new MaterialDesignLightTheme(), "MaterialDesignTheme.Light.xaml");
 
         [Fact]
-        public void VerifyDarkThemeColorsInXaml() 
+        public void VerifyDarkThemeColorsInXaml()
             => AssertThemeColorsInXaml(new MaterialDesignDarkTheme(), "MaterialDesignTheme.Dark.xaml");
 
         private static void AssertThemeColorsInXaml(IBaseTheme baseTheme, string xaml)
@@ -66,7 +64,7 @@ namespace MaterialDesignThemes.Wpf.Tests
 
             foreach (var property in theme.GetType().GetProperties().Where(p => p.PropertyType == typeof(Color)))
             {
-                var propertyColor = (Color) property.GetValue(theme)!;
+                var propertyColor = (Color)property.GetValue(theme)!;
                 var (nameBrush, nameColor) = property.Name == "ValidationError"
                     ? ("MaterialDesignValidationErrorBrush", "MaterialDesignValidationErrorColor")
                     : ("MaterialDesign" + property.Name, "MaterialDesign" + property.Name + "Color");
@@ -75,7 +73,7 @@ namespace MaterialDesignThemes.Wpf.Tests
 
                 var xamlValue = resourceDictionary[nameBrush];
                 Assert.True(xamlValue is SolidColorBrush, $"{nameBrush} in {xaml} is no SolidColorBrush");
-                Assert.Equal(propertyColor, ((SolidColorBrush) xamlValue).Color);
+                Assert.Equal(propertyColor, ((SolidColorBrush)xamlValue).Color);
 
                 Assert.True(updatedDictionary.Contains(nameColor), $"{nameColor} from {theme.GetType()} not set via ResourceDictionaryExtensions.SetTheme");
                 Assert.Equal(propertyColor, updatedDictionary[nameColor]);
@@ -83,11 +81,11 @@ namespace MaterialDesignThemes.Wpf.Tests
         }
 
         [Fact]
-        public void VerifyLightThemeXamlCanBeRead() 
+        public void VerifyLightThemeXamlCanBeRead()
             => AssertThemeColorsReadFromXaml(new MaterialDesignLightTheme(), "MaterialDesignTheme.Light.xaml");
 
         [Fact]
-        public void VerifyDarkThemeXamlCanBeRead() 
+        public void VerifyDarkThemeXamlCanBeRead()
             => AssertThemeColorsReadFromXaml(new MaterialDesignDarkTheme(), "MaterialDesignTheme.Dark.xaml");
 
         private static void AssertThemeColorsReadFromXaml(IBaseTheme baseTheme, string xaml)

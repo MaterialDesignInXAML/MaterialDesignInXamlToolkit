@@ -1,7 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-
-namespace MaterialDesignThemes.Wpf;
+﻿namespace MaterialDesignThemes.Wpf;
 
 /// <summary>
 /// User a colour zone to easily switch the background and foreground colours, from selected Material Design palette or custom ones.

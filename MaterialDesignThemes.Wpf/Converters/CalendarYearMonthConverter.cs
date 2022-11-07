@@ -1,12 +1,9 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
+﻿using System.Globalization;
 using System.Windows.Data;
-using System.Windows.Markup;
 
 namespace MaterialDesignThemes.Wpf.Converters
 {
-    public sealed class CalendarYearMonthConverter: IMultiValueConverter
+    public sealed class CalendarYearMonthConverter : IMultiValueConverter
     {
         public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
         {

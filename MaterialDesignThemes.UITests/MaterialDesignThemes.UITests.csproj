@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
-    <PackageReference Include="Microsoft.Toolkit.MVVM" />
     <PackageReference Include="XAMLTest" />
     <PackageReference Include="xunit" />
     <PackageReference Include="xunit.runner.visualstudio">
@@ -20,10 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Using Include="MaterialDesignThemes.Wpf"/>
-    <Using Include="XamlTest"/>
-    <Using Include="Xunit"/>
-    <Using Include="Xunit.Abstractions"/>
+    <Using Include="MaterialDesignThemes.Wpf" />
+    <Using Include="XamlTest" />
+    <Using Include="Xunit" />
+    <Using Include="Xunit.Abstractions" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Controls;
-using Xunit;
+﻿using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
@@ -87,5 +83,5 @@ public class ClockTests
         Assert.Equal(now + TimeSpan.FromMinutes(-2), invocations[1].NewTime);
     }
 
-    
+
 }

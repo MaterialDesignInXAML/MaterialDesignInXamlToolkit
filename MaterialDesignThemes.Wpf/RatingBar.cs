@@ -97,7 +97,7 @@ namespace MaterialDesignThemes.Wpf
         /// </summary>
         public double ValueIncrements
         {
-            get { return (double) GetValue(ValueIncrementsProperty); }
+            get { return (double)GetValue(ValueIncrementsProperty); }
             set { SetValue(ValueIncrementsProperty, value); }
         }
 
@@ -106,7 +106,7 @@ namespace MaterialDesignThemes.Wpf
 
         public bool IsPreviewValueEnabled
         {
-            get { return (bool) GetValue(IsPreviewValueEnabledProperty); }
+            get { return (bool)GetValue(IsPreviewValueEnabledProperty); }
             set { SetValue(IsPreviewValueEnabledProperty, value); }
         }
 
@@ -155,7 +155,7 @@ namespace MaterialDesignThemes.Wpf
 
         private static object ValuePropertyCoerceValueCallback(DependencyObject d, object baseValue)
         {
-            var ratingBar = (RatingBar) d;
+            var ratingBar = (RatingBar)d;
 
             // If factional values are disabled we don't do any coercion. This maintains back-compat where coercion was not applied and Value could be outside of Min/Max range. 
             if (!ratingBar.IsFractionalValueEnabled)
@@ -314,7 +314,7 @@ namespace MaterialDesignThemes.Wpf
             if (!IsPreviewValueEnabled)
                 return;
 
-            var ratingBarButton = (RatingBarButton) sender;
+            var ratingBarButton = (RatingBarButton)sender;
             PreviewValue = GetValueAtMousePosition(ratingBarButton);
         }
 
@@ -353,10 +353,10 @@ namespace MaterialDesignThemes.Wpf
                             StartPoint = orientation == Orientation.Horizontal ? new Point(0, 0.5) : new Point(0.5, 0),
                             EndPoint = orientation == Orientation.Horizontal ? new Point(1, 0.5) : new Point(0.5, 1),
                             GradientStops = new()
-                        {
-                            new GradientStop {Color = originalColor, Offset = offset},
-                            new GradientStop {Color = semiTransparent, Offset = offset}
-                        }
+                            {
+                                new GradientStop { Color = originalColor, Offset = offset },
+                                new GradientStop { Color = semiTransparent, Offset = offset }
+                            }
                         };
                     }
                     return new SolidColorBrush(semiTransparent);

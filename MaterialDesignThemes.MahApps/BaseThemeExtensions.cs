@@ -1,5 +1,4 @@
-﻿using System;
-using ControlzEx.Theming;
+﻿using ControlzEx.Theming;
 using MaterialDesignThemes.Wpf;
 using Theme = MaterialDesignThemes.Wpf.Theme;
 
@@ -14,10 +13,10 @@ namespace MaterialDesignThemes.MahApps
                 BaseTheme.Light => ThemeManager.BaseColorLightConst,
                 BaseTheme.Dark => ThemeManager.BaseColorDarkConst,
                 BaseTheme.Inherit => Theme.GetSystemTheme() switch
-                    {
-                        BaseTheme.Dark => ThemeManager.BaseColorDarkConst,
-                        _ => ThemeManager.BaseColorLightConst
-                    },
+                {
+                    BaseTheme.Dark => ThemeManager.BaseColorDarkConst,
+                    _ => ThemeManager.BaseColorLightConst
+                },
                 _ => throw new InvalidOperationException()
             };
         }

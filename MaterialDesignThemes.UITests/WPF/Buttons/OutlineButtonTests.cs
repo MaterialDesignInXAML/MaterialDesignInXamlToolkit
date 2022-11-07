@@ -1,10 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using XamlTest;
-using Xunit;
-using Xunit.Abstractions;
+﻿using System.Windows.Media;
 
 namespace MaterialDesignThemes.UITests.WPF.Buttons
 {
@@ -82,7 +76,7 @@ namespace MaterialDesignThemes.UITests.WPF.Buttons
                 //Assert
                 Assert.Equal(midColor, internalBorderBackground?.Color);
             });
-            
+
             recorder.Success();
         }
     }

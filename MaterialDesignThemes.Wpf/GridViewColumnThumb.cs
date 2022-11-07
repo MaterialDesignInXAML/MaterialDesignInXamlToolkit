@@ -1,7 +1,4 @@
-﻿using System.Windows.Controls.Primitives;
-using System.Windows.Input;
-
-namespace MaterialDesignThemes.Wpf
+﻿namespace MaterialDesignThemes.Wpf
 {
     internal class GridViewColumnThumb : Thumb
     {

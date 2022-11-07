@@ -1,6 +1,4 @@
-﻿using System.Windows;
-
-namespace MaterialDesignThemes.Wpf.Converters
+﻿namespace MaterialDesignThemes.Wpf.Converters
 {
     public sealed class BooleanToVisibilityConverter : BooleanConverter<Visibility>
     {

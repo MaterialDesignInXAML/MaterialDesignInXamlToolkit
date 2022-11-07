@@ -1,6 +1,4 @@
-﻿using System.Windows;
-
-namespace MaterialDesignThemes.Wpf
+﻿namespace MaterialDesignThemes.Wpf
 {
     public class SnackbarMessageEventArgs : RoutedEventArgs
     {

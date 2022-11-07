@@ -1,6 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Windows.Controls;
+﻿using System.Globalization;
 
 namespace MaterialDesign3Demo.Domain
 {

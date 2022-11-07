@@ -1,6 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls.Primitives;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf
 {
@@ -27,7 +25,7 @@ namespace MaterialDesignThemes.Wpf
         #region AttachedProperty : ValueProperty
         public static readonly DependencyProperty ValueProperty
             = DependencyProperty.RegisterAttached("Value", typeof(double), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(double)));
-        
+
         public static double GetValue(ButtonBase element) => (double)element.GetValue(ValueProperty);
         public static void SetValue(ButtonBase element, double value) => element.SetValue(ValueProperty, value);
         #endregion
@@ -59,7 +57,7 @@ namespace MaterialDesignThemes.Wpf
         #region AttachedProperty : IsIndicatorVisibleProperty
         public static readonly DependencyProperty IsIndicatorVisibleProperty
             = DependencyProperty.RegisterAttached("IsIndicatorVisible", typeof(bool), typeof(ButtonProgressAssist), new FrameworkPropertyMetadata(default(bool)));
-        
+
         public static bool GetIsIndicatorVisible(ButtonBase element) => (bool)element.GetValue(IsIndicatorVisibleProperty);
         public static void SetIsIndicatorVisible(ButtonBase element, bool isIndicatorVisible) => element.SetValue(IsIndicatorVisibleProperty, isIndicatorVisible);
         #endregion
