@@ -91,12 +91,14 @@ namespace MaterialDesignThemes.UITests.WPF.PasswordBoxes
 
             await App.InitializeWithMaterialDesign();
             IWindow window = await App.CreateWindow<BoundPasswordBoxWindow>();
+            await recorder.SaveScreenshot();
             var userControl = await window.GetElement<BoundPasswordBox>();
             await userControl.SetProperty(nameof(BoundPasswordBox.UseRevealStyle), true);
             var passwordBox = await userControl.GetElement<PasswordBox>("PasswordBox");
             var clearTextPasswordTextBox = await passwordBox.GetElement<TextBox>("RevealPasswordTextBox");
             var revealPasswordButton = await passwordBox.GetElement<ToggleButton>("RevealPasswordButton");
-            
+            await recorder.SaveScreenshot();
+
             // Act 1 (Update in PasswordBox updates VM and RevealPasswordTextBox)
             await passwordBox.SendKeyboardInput($"1");
             string? boundText1 = await userControl.GetProperty<string>(nameof(BoundPasswordBox.ViewModelPassword));
