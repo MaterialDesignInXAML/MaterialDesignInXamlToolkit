@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MaterialDesignDemo.Fields"
+<UserControl x:Class="MaterialDesignDemo.Fields"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -339,9 +339,14 @@
                         Grid.Column="3"
                         VerticalAlignment="Bottom"
                         UniqueKey="passwordFilled1">
-        <PasswordBox materialDesign:HintAssist.HelperText="Helper text"
-                     materialDesign:HintAssist.Hint="Password"
-                     Style="{StaticResource MaterialDesignFilledPasswordBox}" />
+        <StackPanel>
+          <CheckBox x:Name="MaterialDesignFilledPasswordBoxTextCountComboBox" Content="View Password Input Count" />
+
+          <PasswordBox materialDesign:HintAssist.HelperText="Helper text"
+                       materialDesign:HintAssist.Hint="Password"
+                       materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignFilledPasswordBoxTextCountComboBox, Converter={StaticResource BooleanToVisibilityConverter}}"
+                       Style="{StaticResource MaterialDesignFilledPasswordBox}" />
+        </StackPanel>
       </smtx:XamlDisplay>
 
       <smtx:XamlDisplay Grid.Row="2"

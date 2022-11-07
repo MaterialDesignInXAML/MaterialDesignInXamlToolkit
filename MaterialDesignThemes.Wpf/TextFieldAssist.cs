@@ -263,7 +263,31 @@ namespace MaterialDesignThemes.Wpf
 
         public static readonly DependencyProperty CharacterCounterVisibilityProperty =
             DependencyProperty.RegisterAttached("CharacterCounterVisibility", typeof(Visibility), typeof(TextFieldAssist),
-                new PropertyMetadata(Visibility.Visible));
+                new PropertyMetadata(Visibility.Collapsed, CharacterCounterVisibilityChanged));
+
+        private static void CharacterCounterVisibilityChanged(DependencyObject element, DependencyPropertyChangedEventArgs e)
+        {
+            if (element is PasswordBox passwordBox)
+            {
+                passwordBox.PasswordChanged -= PasswordBoxOnPasswordChanged;
+                if (Equals(Visibility.Visible, e.NewValue))
+                {
+                    SetPasswordBoxCharacterCount(passwordBox, passwordBox.SecurePassword.Length);
+                    passwordBox.PasswordChanged += PasswordBoxOnPasswordChanged;
+                }
+            }
+        }
+
+        private static void PasswordBoxOnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            PasswordBox passwordBox = (PasswordBox)sender;
+            SetPasswordBoxCharacterCount(passwordBox, passwordBox.SecurePassword.Length);
+        }
+
+        internal static readonly DependencyProperty PasswordBoxCharacterCountProperty = DependencyProperty.RegisterAttached(
+            "PasswordBoxCharacterCount", typeof(int), typeof(TextFieldAssist), new PropertyMetadata(default(int)));
+        internal static void SetPasswordBoxCharacterCount(DependencyObject element, int value) => element.SetValue(PasswordBoxCharacterCountProperty, value);
+        internal static int GetPasswordBoxCharacterCount(DependencyObject element) => (int) element.GetValue(PasswordBoxCharacterCountProperty);
 
         #region Methods
 
