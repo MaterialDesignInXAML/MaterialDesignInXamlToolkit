@@ -102,10 +102,13 @@ namespace MaterialDesignThemes.UITests.WPF.PasswordBoxes
             string? boundText1 = await userControl.GetProperty<string>(nameof(BoundPasswordBox.ViewModelPassword));
             string? password1 = await passwordBox.GetProperty<string>(nameof(PasswordBox.Password));
             string? clearTextPassword1 = await clearTextPasswordTextBox.GetProperty<string>(TextBox.TextProperty);
+            await recorder.SaveScreenshot();
 
             // Act 2 (Update in RevealPasswordTextBox updates PasswordBox and VM)
             await revealPasswordButton.LeftClick();
+            await recorder.SaveScreenshot();
             await Task.Delay(50);   // Wait for the "clear text TextBox" to become visible
+            await recorder.SaveScreenshot();
             await clearTextPasswordTextBox.SendKeyboardInput($"2");
             string? boundText2 = await userControl.GetProperty<string>(nameof(BoundPasswordBox.ViewModelPassword));
             string? password2 = await passwordBox.GetProperty<string>(nameof(PasswordBox.Password));
