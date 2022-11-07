@@ -566,7 +566,21 @@
                     ItemsSource="{Binding CustomTabs}"
                     SelectedItem="{Binding SelectedTab}"
                     HorizontalContentAlignment="Left"
-                    DisplayMemberPath="CustomHeader">
+                    >
+                    <TabControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding CustomHeader}"/>
+                                <Button Command="{Binding CloseCommand}">
+                                    <Button.Template>
+                                        <ControlTemplate>
+                                            <materialDesign:PackIcon Kind="Close" Foreground="Red" Background="Transparent"/>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </TabControl.ItemTemplate>
                     <TabControl.ContentTemplate>
                         <DataTemplate DataType="domain:CustomTab">
                             <TextBlock Text="{Binding CustomContent}" FontSize="18" Margin="10" />
