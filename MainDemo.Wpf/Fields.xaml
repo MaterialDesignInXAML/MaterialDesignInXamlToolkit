@@ -340,7 +340,7 @@
                         VerticalAlignment="Bottom"
                         UniqueKey="passwordFilled1">
         <StackPanel>
-          <CheckBox x:Name="MaterialDesignFilledPasswordBoxTextCountComboBox" Content="View Pwd Input Count" />
+          <CheckBox x:Name="MaterialDesignFilledPasswordBoxTextCountComboBox" Content="View Password Input Count" />
 
           <PasswordBox materialDesign:HintAssist.HelperText="Helper text"
                        materialDesign:HintAssist.Hint="Password"
