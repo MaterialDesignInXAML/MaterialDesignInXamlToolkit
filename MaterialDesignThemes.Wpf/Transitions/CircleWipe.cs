@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
@@ -43,15 +44,18 @@ namespace MaterialDesignThemes.Wpf.Transitions
                 fromSlide.BeginAnimation(UIElement.OpacityProperty, null);
                 fromSlide.Opacity = 0;
             };
+
             fromSlide.BeginAnimation(UIElement.OpacityProperty, opacityAnimation);
+
 
             var scaleAnimation = new DoubleAnimationUsingKeyFrames();
             scaleAnimation.Completed += (sender, args) =>
-           {
-               toSlide.SetCurrentValue(UIElement.ClipProperty, null);
-               fromSlide.BeginAnimation(UIElement.OpacityProperty, null);
-               fromSlide.Opacity = 0;
-           };
+            {
+                toSlide.SetCurrentValue(UIElement.ClipProperty, null);
+                fromSlide.BeginAnimation(UIElement.OpacityProperty, null);
+                fromSlide.Opacity = 0;
+
+            };
             scaleAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(0, zeroKeyTime));
             scaleAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(1, endKeyTime));
             scaleTransform.BeginAnimation(ScaleTransform.ScaleXProperty, scaleAnimation);

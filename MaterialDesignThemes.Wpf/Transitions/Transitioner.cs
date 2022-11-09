@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace MaterialDesignThemes.Wpf.Transitions
 {
     /// <summary>
@@ -165,13 +167,19 @@ namespace MaterialDesignThemes.Wpf.Transitions
 
         private void ActivateFrame(int selectedIndex, int unselectedIndex)
         {
-            if (!IsLoaded) return;
+            if (!IsLoaded)
+            {
+                return;
+            }
 
             TransitionerSlide? oldSlide = null, newSlide = null;
-            for (var index = 0; index < Items.Count; index++)
+            for (int index = 0; index < Items.Count; index++)
             {
                 var slide = GetSlide(Items[index]);
-                if (slide == null) continue;
+                if (slide == null)
+                {
+                    continue;
+                }
                 if (index == selectedIndex)
                 {
                     newSlide = slide;
@@ -189,11 +197,29 @@ namespace MaterialDesignThemes.Wpf.Transitions
                 Panel.SetZIndex(slide, 0);
             }
 
-            if (newSlide != null)
-            {
-                newSlide.Opacity = 1;
-            }
+            ShowSlide(newSlide);
+            AnimateTransition(selectedIndex, unselectedIndex, oldSlide, newSlide);
+            HideSlide(oldSlide);
 
+            _nextTransitionOrigin = null;
+        }
+
+        private void HideSlide(TransitionerSlide? slide)
+        {
+            if(slide != null)
+            {
+                slide.Opacity = 0;
+            }
+        }
+        private void ShowSlide(TransitionerSlide? slide)
+        {
+            if(slide != null)
+            {
+                slide.Opacity = 1;
+            }
+        }
+        private void AnimateTransition(int selectedIndex, int unselectedIndex, TransitionerSlide? oldSlide, TransitionerSlide? newSlide)
+        {
             if (oldSlide != null && newSlide != null)
             {
                 var wipe = selectedIndex > unselectedIndex ? oldSlide.ForwardWipe : oldSlide.BackwardWipe;
@@ -205,21 +231,12 @@ namespace MaterialDesignThemes.Wpf.Transitions
                 {
                     DoStack(newSlide, oldSlide);
                 }
-
-                oldSlide.Opacity = 0;
             }
             else if (oldSlide != null || newSlide != null)
             {
                 DoStack(oldSlide ?? newSlide);
-                if (oldSlide != null)
-                {
-                    oldSlide.Opacity = 0;
-                }
             }
-
-            _nextTransitionOrigin = null;
         }
-
         private Point GetTransitionOrigin(TransitionerSlide slide)
         {
             if (_nextTransitionOrigin != null)
@@ -239,7 +256,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
 
         private static void DoStack(params TransitionerSlide?[] highestToLowest)
         {
-            var pos = highestToLowest.Length;
+            int pos = highestToLowest.Length;
             foreach (var slide in highestToLowest.Where(s => s != null))
             {
                 Panel.SetZIndex(slide, pos--);
