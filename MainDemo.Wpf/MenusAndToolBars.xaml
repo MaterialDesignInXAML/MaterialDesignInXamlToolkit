@@ -5,10 +5,10 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
-             d:DesignHeight="300"
-             d:DesignWidth="300"
+             d:DesignHeight="5000"
+             d:DesignWidth="1080"
              mc:Ignorable="d">
-  <StackPanel Margin="15">
+  <StackPanel>
     <TextBlock Margin="0,0,0,20"
                Style="{StaticResource MaterialDesignHeadline5TextBlock}"
                Text="Default Menu" />

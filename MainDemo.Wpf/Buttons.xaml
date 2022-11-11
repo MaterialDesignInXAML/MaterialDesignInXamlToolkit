@@ -9,7 +9,7 @@
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              d:DataContext="{d:DesignInstance domain:ButtonsViewModel}"
-             d:DesignHeight="1200"
+             d:DesignHeight="2000"
              d:DesignWidth="800"
              mc:Ignorable="d">
   <UserControl.Resources>
@@ -29,33 +29,17 @@
                                                              TrueValue="Collapsed" />
     </ResourceDictionary>
   </UserControl.Resources>
-  <Grid VerticalAlignment="Top">
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-    </Grid.RowDefinitions>
-    <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Buttons" />
-    <StackPanel Grid.Row="1">
+  <StackPanel>
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Buttons" />
+    <StackPanel>
       <StackPanel.Resources>
         <system:Double x:Key="IconSize">24</system:Double>
         <system:Double x:Key="ButtonWidth">90</system:Double>
       </StackPanel.Resources>
 
-      <StackPanel Margin="0,24,0,0">
-        <StackPanel Margin="0,16,0,0" Orientation="Horizontal">
-          <smtx:XamlDisplay Margin="8,0" UniqueKey="buttons_mini_action_1">
+      <StackPanel>
+        <StackPanel Margin="0 0 0 16" Orientation="Horizontal">
+          <smtx:XamlDisplay Margin="0 0 8,0" UniqueKey="buttons_mini_action_1">
             <Button IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                     ToolTip="MaterialDesignFloatingActionMiniLightButton">
@@ -114,9 +98,9 @@
             </Button>
           </smtx:XamlDisplay>
         </StackPanel>
-        <StackPanel Margin="0,16,0,0" Orientation="Horizontal">
+        <StackPanel Margin="0,0,0,16" Orientation="Horizontal">
 
-          <smtx:XamlDisplay Margin="8,0" UniqueKey="buttons_action_1">
+          <smtx:XamlDisplay Margin="0 0 8,0" UniqueKey="buttons_action_1">
             <Button IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
                     ToolTip="MaterialDesignFloatingActionLightButton">
@@ -176,8 +160,8 @@
             </Button>
           </smtx:XamlDisplay>
         </StackPanel>
-        <StackPanel Margin="0,24,0,0" Orientation="Horizontal">
-          <smtx:XamlDisplay Margin="8,0" UniqueKey="buttons_raised_1">
+        <StackPanel Margin="0,0,0,16" Orientation="Horizontal">
+          <smtx:XamlDisplay Margin="0 0 8,0" UniqueKey="buttons_raised_1">
             <Button Width="{StaticResource ButtonWidth}"
                     Content="_LIGHT"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
@@ -223,8 +207,8 @@
                     ToolTip="Resource name: MaterialDesignRaisedSecondaryDarkButton" />
           </smtx:XamlDisplay>
         </StackPanel>
-        <StackPanel Margin="0,24,0,0" Orientation="Horizontal">
-          <smtx:XamlDisplay Margin="8,0" UniqueKey="buttons_paper_1">
+        <StackPanel Margin="0,0,0,16" Orientation="Horizontal">
+          <smtx:XamlDisplay Margin="0 0 8,0" UniqueKey="buttons_paper_1">
             <Button Width="{StaticResource ButtonWidth}"
                     Content="LIGHT"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
@@ -267,9 +251,8 @@
                     ToolTip="Resource name: MaterialDesignPaperSecondaryDarkButton" />
           </smtx:XamlDisplay>
         </StackPanel>
-
-        <StackPanel Margin="0,24,0,0" Orientation="Horizontal">
-          <smtx:XamlDisplay Margin="8,0" UniqueKey="buttons_flat_1">
+        <StackPanel Margin="0,0,0,16" Orientation="Horizontal">
+          <smtx:XamlDisplay Margin="0 0 8,0" UniqueKey="buttons_flat_1">
             <Button Width="{StaticResource ButtonWidth}"
                     Click="ButtonBase_OnClick"
                     Content="LIGHT"
@@ -319,8 +302,8 @@
                     ToolTip="MaterialDesignFlatButton" />
           </smtx:XamlDisplay>
         </StackPanel>
-        <StackPanel Margin="0,12,0,0" Orientation="Horizontal">
-          <smtx:XamlDisplay Margin="8,0" UniqueKey="buttons_outlined_1">
+        <StackPanel Margin="0,0,0,16" Orientation="Horizontal">
+          <smtx:XamlDisplay Margin="0 0 8,0" UniqueKey="buttons_outlined_1">
             <Button Width="{StaticResource ButtonWidth}"
                     Content="LIGHT"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
@@ -361,8 +344,8 @@
                     Style="{StaticResource MaterialDesignOutlinedSecondaryDarkButton}" />
           </smtx:XamlDisplay>
         </StackPanel>
-        <StackPanel Margin="0,12,0,0" Orientation="Horizontal">
-          <smtx:XamlDisplay Margin="8,0" UniqueKey="buttons_flat_bg_1">
+        <StackPanel Margin="0,0,0,16" Orientation="Horizontal">
+          <smtx:XamlDisplay Margin="0 0 8,0" UniqueKey="buttons_flat_bg_1">
             <Button Width="{StaticResource ButtonWidth}"
                     Content="LIGHT"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
@@ -410,8 +393,8 @@
                     ToolTip="MaterialDesignFlatSecondaryDarkBgButton" />
           </smtx:XamlDisplay>
         </StackPanel>
-        <StackPanel Margin="0,24,0,0" Orientation="Horizontal">
-          <smtx:XamlDisplay Margin="8,0" UniqueKey="buttons_16">
+        <StackPanel Margin="0,0,0,16" Orientation="Horizontal">
+          <smtx:XamlDisplay Margin="0,0,8,0" UniqueKey="buttons_16">
             <materialDesign:Badged Badge="3">
               <Button Content="MAIL" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
             </materialDesign:Badged>
@@ -454,12 +437,12 @@
                     ToolTip="Icon" />
           </smtx:XamlDisplay>
         </StackPanel>
-        <StackPanel Margin="0,24,0,0" Orientation="Horizontal">
+        <StackPanel Margin="0,0,0,16" Orientation="Horizontal">
           <StackPanel.Resources>
             <system:Double x:Key="ButtonWidth">150</system:Double>
           </StackPanel.Resources>
 
-          <smtx:XamlDisplay Margin="8,0" UniqueKey="buttons_21">
+          <smtx:XamlDisplay Margin="0,0,8,0" UniqueKey="buttons_21">
             <Button Width="{StaticResource ButtonWidth}"
                     materialDesign:RippleAssist.Feedback="#DD000000"
                     Content="CUSTOM RIPPLE"
@@ -484,7 +467,7 @@
                           ToolTip="Resource name: MaterialDesignRaisedButton" />
           </smtx:XamlDisplay>
         </StackPanel>
-        <StackPanel Margin="0,12,0,0" Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal">
           <smtx:XamlDisplay UniqueKey="buttons_251">
             <Button IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignIconButton}"
@@ -511,27 +494,20 @@
           </smtx:XamlDisplay>
         </StackPanel>
       </StackPanel>
-
     </StackPanel>
 
-    <Rectangle Grid.Row="2"
-               Height="1"
-               Margin="0,24,0,0"
-               Fill="{DynamicResource MaterialDesignDivider}" />
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Grid.Row="3"
-               Margin="0,24"
-               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
                Text="Buttons - With Custom Corner Radius" />
 
-    <StackPanel Grid.Row="4" Orientation="Horizontal">
-
+    <StackPanel Orientation="Horizontal">
       <StackPanel.Resources>
         <system:Double x:Key="GridWidth">124</system:Double>
         <system:Double x:Key="ButtonHeight">50</system:Double>
       </StackPanel.Resources>
 
-      <smtx:XamlDisplay Margin="8,0" UniqueKey="button_roundcorner_1">
+      <smtx:XamlDisplay Margin="0 0 8,0" UniqueKey="button_roundcorner_1">
         <Grid Width="{StaticResource GridWidth}">
           <Button Height="{StaticResource ButtonHeight}"
                   materialDesign:ButtonAssist.CornerRadius="5"
@@ -580,19 +556,14 @@
       </smtx:XamlDisplay>
     </StackPanel>
 
-    <Rectangle Grid.Row="5"
-               Height="1"
-               Margin="0,24,0,0"
-               Fill="{DynamicResource MaterialDesignDivider}" />
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Grid.Row="6"
-               Margin="0,24"
-               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
                Text="Buttons - With Progress" />
 
-    <StackPanel Grid.Row="7">
-      <StackPanel Orientation="Horizontal">
-        <smtx:XamlDisplay Margin="8,0" UniqueKey="buttons_26">
+    <StackPanel>
+      <StackPanel Margin="0,0,0,16" Orientation="Horizontal">
+        <smtx:XamlDisplay Margin="0,0,8,0" UniqueKey="buttons_26">
           <Grid Width="124">
             <!-- raised button with progress, useful to auto dismiss/accept something -->
             <Button HorizontalAlignment="Left"
@@ -694,9 +665,8 @@
           </Grid>
         </smtx:XamlDisplay>
       </StackPanel>
-
-      <StackPanel Margin="0,24,0,0" Orientation="Horizontal">
-        <smtx:XamlDisplay Margin="8,0" UniqueKey="buttons_28">
+      <StackPanel Margin="0,0,0,16" Orientation="Horizontal">
+        <smtx:XamlDisplay Margin="0,0,8,0" UniqueKey="buttons_28">
           <StackPanel smtx:XamlDisplay.Ignore="This" Orientation="Horizontal">
             <!-- floating action button with progress -->
             <TextBlock Margin="0,0,8,0"
@@ -736,9 +706,8 @@
           </StackPanel>
         </smtx:XamlDisplay>
       </StackPanel>
-
-      <StackPanel Margin="0,24,0,0" Orientation="Horizontal">
-        <TextBlock Margin="8,0"
+      <StackPanel Orientation="Horizontal">
+        <TextBlock Margin="0,0,8,0"
                    VerticalAlignment="Center"
                    Text="Variations:" />
 
@@ -782,18 +751,13 @@
       </StackPanel>
     </StackPanel>
 
-    <Rectangle Grid.Row="8"
-               Height="1"
-               Margin="0,24,0,0"
-               Fill="{DynamicResource MaterialDesignDivider}" />
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Grid.Row="9"
-               Margin="0,24"
-               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
                Text="PopupBox" />
 
-    <StackPanel Grid.Row="10" Orientation="Horizontal">
-      <smtx:XamlDisplay Margin="8,0" UniqueKey="buttons_10">
+    <StackPanel Orientation="Horizontal">
+      <smtx:XamlDisplay Margin="0,0,8,0" UniqueKey="buttons_10">
         <StackPanel Orientation="Horizontal">
           <materialDesign:PopupBox IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" StaysOpen="True">
             <Grid Width="300" Margin="8,8,8,8">
@@ -890,8 +854,7 @@
           </materialDesign:PopupBox>
         </StackPanel>
       </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="8,0,0,5" UniqueKey="buttons_11">
+      <smtx:XamlDisplay Margin="8,0" UniqueKey="buttons_11">
         <materialDesign:PopupBox IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                  PlacementMode="BottomAndAlignCentres"
                                  Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}"
@@ -915,8 +878,7 @@
           </StackPanel>
         </materialDesign:PopupBox>
       </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="8,0,0,5" UniqueKey="buttons_9">
+      <smtx:XamlDisplay Margin="8,0" UniqueKey="buttons_9">
         <materialDesign:PopupBox Closed="PopupBox_OnClosed"
                                  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                  Opened="PopupBox_OnOpened"
@@ -937,32 +899,27 @@
       </smtx:XamlDisplay>
     </StackPanel>
 
-    <Rectangle Grid.Row="11"
-               Height="1"
-               Margin="0,24,0,0"
-               Fill="{DynamicResource MaterialDesignDivider}" />
+    <Rectangle Style="{StaticResource PageSectionSeparator}"/>
 
-    <TextBlock Grid.Row="12"
-               Margin="0,24"
-               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
                Text="Buttons - With Custom Animation Duration" />
 
-    <StackPanel Grid.Row="13" Orientation="Horizontal">
-      <smtx:XamlDisplay Margin="0,0,20,0" UniqueKey="button_duration_1">
+    <StackPanel Orientation="Horizontal">
+      <smtx:XamlDisplay Margin="0,0,8,0" UniqueKey="button_duration_1">
         <Button materialDesign:ShadowAssist.ShadowAnimationDuration="0:0:0" Style="{StaticResource MaterialDesignRaisedAccentButton}">
           Instant Duration
         </Button>
       </smtx:XamlDisplay>
-      <smtx:XamlDisplay Margin="0,0,20,0" UniqueKey="button_duration_2">
+      <smtx:XamlDisplay Margin="8,0" UniqueKey="button_duration_2">
         <Button>
           Default Duration
         </Button>
       </smtx:XamlDisplay>
-      <smtx:XamlDisplay Margin="0,0,20,0" UniqueKey="button_duration_3">
+      <smtx:XamlDisplay Margin="8,0" UniqueKey="button_duration_3">
         <Button materialDesign:ShadowAssist.ShadowAnimationDuration="0:0:0.5" Style="{StaticResource MaterialDesignRaisedDarkButton}">
           Long Duration
         </Button>
       </smtx:XamlDisplay>
     </StackPanel>
-  </Grid>
+  </StackPanel>
 </UserControl>
