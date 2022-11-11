@@ -27,6 +27,7 @@
                                      VerticalAlignment="Center"
                                      Kind="BookOpenVariant" />
             <TextBlock Margin="8,0,0,0"
+                       VerticalAlignment="Center"                       
                        Style="{StaticResource MaterialDesignBody1TextBlock}"
                        Text="{Binding Label, Mode=OneWay}" />
           </StackPanel>
