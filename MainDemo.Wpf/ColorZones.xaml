@@ -5,8 +5,8 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
-             d:DesignHeight="800"
-             d:DesignWidth="600"
+             d:DesignHeight="1080"
+             d:DesignWidth="1920"
              mc:Ignorable="d">
   <UserControl.Resources>
     <ResourceDictionary>
@@ -18,15 +18,14 @@
     </ResourceDictionary>
   </UserControl.Resources>
   <StackPanel>
-    <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Colour Zones" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Color zones" />
 
     <TextBlock MaxWidth="800"
-               Margin="0,16,0,0"
                HorizontalAlignment="Left"
                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
-               Text="The ColorZone control allows you to easily define striking blocks of colour to give your application extra clarity and style, whilst still remaining within the bounds of your Material Design palette."
+               Text="The ColorZone control allows you to easily define striking blocks of color to give your application extra clarity and style, whilst still remaining within the bounds of your Material Design palette."
                TextWrapping="Wrap" />
-    <TextBlock Margin="0,16,0,2"
+    <TextBlock Margin="0,16,0,8"
                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                Text="Invert the basic paper/body colours." />
 
@@ -52,7 +51,7 @@
         </DockPanel>
       </materialDesign:ColorZone>
     </smtx:XamlDisplay>
-    <TextBlock Margin="0,16,0,2"
+    <TextBlock Margin="0,16,0,8"
                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                Text="Use primary light background and foreground colours." />
 
@@ -67,7 +66,7 @@
         </StackPanel>
       </materialDesign:ColorZone>
     </smtx:XamlDisplay>
-    <TextBlock Margin="0,16,0,2"
+    <TextBlock Margin="0,16,0,8"
                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                Text="Use primary mid colours, and nest colour zones!" />
 
@@ -134,7 +133,7 @@
         </DockPanel>
       </materialDesign:ColorZone>
     </smtx:XamlDisplay>
-    <TextBlock Margin="0,16,0,2"
+    <TextBlock Margin="0,16,0,8"
                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                Text="Add in a corner radius and shadow." />
 
@@ -153,7 +152,7 @@
         </StackPanel>
       </materialDesign:ColorZone>
     </smtx:XamlDisplay>
-    <TextBlock Margin="0,16,0,2"
+    <TextBlock Margin="0,16,0,8"
                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                Text="Use secondary mid background and foreground colours." />
 
@@ -168,7 +167,7 @@
         </StackPanel>
       </materialDesign:ColorZone>
     </smtx:XamlDisplay>
-    <TextBlock Margin="0,16,0,2"
+    <TextBlock Margin="0,16,0,8"
                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                Text="Use custom background and foreground colours. Disabled ClipToBounds" />
 
