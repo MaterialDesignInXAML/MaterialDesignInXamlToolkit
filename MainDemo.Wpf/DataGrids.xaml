@@ -7,8 +7,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              d:DataContext="{d:DesignInstance domain:ListsAndGridsViewModel}"
-             d:DesignHeight="300"
-             d:DesignWidth="600"
+             d:DesignHeight="1080"
+             d:DesignWidth="1920"
              mc:Ignorable="d">
 
   <UserControl.Resources>
@@ -20,9 +20,10 @@
   </UserControl.Resources>
 
   <StackPanel>
-    <StackPanel Orientation="Horizontal">
-      <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Custom Columns" />
-      <TextBlock Margin="25,0,10,0"
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Custom Columns" />
+
+    <StackPanel Margin="0,0,0,8" Orientation="Horizontal">
+      <TextBlock Margin="0,0,8,0"
                  VerticalAlignment="Center"
                  Style="{StaticResource MaterialDesignBody1TextBlock}"
                  Text="SelectionUnit:" />
@@ -32,7 +33,7 @@
                 SelectedIndex="0" />
     </StackPanel>
 
-    <smtx:XamlDisplay UniqueKey="grids_1">
+    <smtx:XamlDisplay Margin="0,0,0,8" UniqueKey="grids_1">
       <DataGrid AutoGenerateColumns="False"
                 CanUserAddRows="False"
                 HeadersVisibility="All"
@@ -152,13 +153,14 @@
       </DataGrid>
     </smtx:XamlDisplay>
 
-    <StackPanel Margin="0,15,0,0" Orientation="Horizontal">
-      <materialDesign:PackIcon Margin="0,0,5,0" Kind="Information" />
-      <TextBlock>DataGridComboBoxColumns are virtualized by default in the library</TextBlock>
+    <StackPanel Orientation="Horizontal">
+      <materialDesign:PackIcon Margin="0,0,8,0" Kind="Information" />
+      <TextBlock Text="DataGridComboBoxColumns are virtualized by default in the library." VerticalAlignment="Center" />
     </StackPanel>
 
-    <TextBlock Margin="0,24,0,0"
-               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
                Text="Auto Generated Columns" />
 
     <smtx:XamlDisplay UniqueKey="grids_2">
@@ -168,8 +170,9 @@
                 SelectionUnit="Cell" />
     </smtx:XamlDisplay>
 
-    <TextBlock Margin="0,24,0,0"
-               Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
                Text="Custom Padding" />
 
     <smtx:XamlDisplay UniqueKey="grids_3">
@@ -181,8 +184,9 @@
 
     </smtx:XamlDisplay>
 
-    <TextBlock Margin="0,24,0,0"
-               Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
                Text="Custom Selected Cell Border Brush" />
 
     <smtx:XamlDisplay UniqueKey="grids_4">
