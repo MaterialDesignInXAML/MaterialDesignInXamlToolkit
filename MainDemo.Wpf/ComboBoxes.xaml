@@ -9,27 +9,19 @@
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              d:DataContext="{d:DesignInstance colorsDomain:ComboBoxesViewModel,
                                               IsDesignTimeCreatable=False}"
-             d:DesignHeight="300"
-             d:DesignWidth="600"
+             d:DesignHeight="1080"
+             d:DesignWidth="1920"
              mc:Ignorable="d">
-
   <UserControl.Resources>
-    <Style x:Key="SectionTitle"
-           TargetType="TextBlock"
-           BasedOn="{StaticResource MaterialDesignHeadline5TextBlock}">
-      <Setter Property="Margin" Value="0,24,0,0" />
-    </Style>
-
     <Style TargetType="{x:Type smtx:XamlDisplay}" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
-      <Setter Property="Margin" Value="16,0,0,0" />
+      <Setter Property="Margin" Value="8,0" />
       <Setter Property="VerticalAlignment" Value="Bottom" />
     </Style>
   </UserControl.Resources>
 
   <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
-    <TextBlock Margin="0"
-               Style="{StaticResource SectionTitle}"
-               Text="ComboBoxes" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
+               Text="Comboboxes" />
 
     <StackPanel Orientation="Horizontal">
       <StackPanel.Resources>
@@ -38,8 +30,7 @@
         </Style>
       </StackPanel.Resources>
 
-      <smtx:XamlDisplay Margin="0" UniqueKey="comboboxes_1">
-
+      <smtx:XamlDisplay Margin="0,0,8,0" UniqueKey="comboboxes_1">
         <ComboBox materialDesign:HintAssist.Hint="OS">
           <ComboBoxItem Content="Android" />
           <ComboBoxItem Content="iOS" />
@@ -58,7 +49,6 @@
           <ComboBoxItem Content="Orange" />
         </ComboBox>
       </smtx:XamlDisplay>
-
       <smtx:XamlDisplay UniqueKey="comboboxes_11">
         <ComboBox materialDesign:HintAssist.Hint="Prefix"
                   materialDesign:TextFieldAssist.PrefixText="$"
@@ -69,7 +59,6 @@
           <ComboBoxItem Content="Windows" />
         </ComboBox>
       </smtx:XamlDisplay>
-
       <smtx:XamlDisplay UniqueKey="comboboxes_3">
         <ComboBox MinWidth="128"
                   materialDesign:ColorZoneAssist.Mode="SecondaryLight"
@@ -85,7 +74,6 @@
           <ComboBoxItem Content="Windows" />
         </ComboBox>
       </smtx:XamlDisplay>
-
       <smtx:XamlDisplay UniqueKey="comboboxes_4">
         <ComboBox materialDesign:HintAssist.Hint="Disabled Combo with Hint"
                   materialDesign:HintAssist.IsFloating="True"
@@ -138,10 +126,8 @@
       </smtx:XamlDisplay>
     </StackPanel>
 
-    <Rectangle Height="1"
-               Margin="0,32,0,0"
-               Fill="{DynamicResource MaterialDesignDivider}" />
-    <TextBlock Style="{StaticResource SectionTitle}" Text="ComboBoxes with long lists" />
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="ComboBoxes with long lists" />
 
     <StackPanel Orientation="Horizontal">
 
@@ -207,14 +193,11 @@
       <TextBlock>ComboBoxes are virtualized by default in the library</TextBlock>
     </StackPanel>
 
-    <Rectangle Height="1"
-               Margin="0,15,0,0"
-               Fill="{DynamicResource MaterialDesignDivider}" />
-    <TextBlock Style="{StaticResource SectionTitle}" Text="Filled ComboBox" />
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Filled ComboBox" />
 
-    <StackPanel Margin="0,8,0,0" Orientation="Horizontal">
-      <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="comboboxes_filled_combobox">
-
+    <StackPanel Orientation="Horizontal">
+      <smtx:XamlDisplay Margin="0,0,8,0" HorizontalAlignment="Left" UniqueKey="comboboxes_filled_combobox">
         <StackPanel>
           <Grid>
             <Grid.ColumnDefinitions>
@@ -244,7 +227,6 @@
           </ComboBox>
         </StackPanel>
       </smtx:XamlDisplay>
-
       <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="comboboxes_validation_filled_combobox">
         <ComboBox Width="256"
                   materialDesign:HintAssist.Hint="Validation test (editable)"
@@ -263,7 +245,6 @@
           </ComboBox.SelectedItem>
         </ComboBox>
       </smtx:XamlDisplay>
-
       <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="comboboxes_helpertext_filled_combobox">
 
         <ComboBox Width="256"
@@ -277,11 +258,11 @@
       </smtx:XamlDisplay>
     </StackPanel>
 
-    <TextBlock Style="{StaticResource SectionTitle}" Text="Outlined ComboBox" />
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Outlined ComboBox" />
 
-    <StackPanel Margin="0,8,0,0" Orientation="Horizontal">
-      <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="comboboxes_outlined_combobox">
-
+    <StackPanel Margin="0,0,0,16" Orientation="Horizontal">
+      <smtx:XamlDisplay Margin="0,0,8,0" HorizontalAlignment="Left" UniqueKey="comboboxes_outlined_combobox">
         <StackPanel>
           <Grid>
             <Grid.ColumnDefinitions>
@@ -308,7 +289,6 @@
                     Style="{StaticResource MaterialDesignOutlinedComboBox}" />
         </StackPanel>
       </smtx:XamlDisplay>
-
       <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="comboboxes_validation_outlined_combobox">
         <ComboBox Width="256"
                   materialDesign:HintAssist.Hint="Validation test"
@@ -326,7 +306,6 @@
           </ComboBox.SelectedItem>
         </ComboBox>
       </smtx:XamlDisplay>
-
       <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="comboboxes_helpertext_outlined_combobox">
 
         <ComboBox Width="256"
