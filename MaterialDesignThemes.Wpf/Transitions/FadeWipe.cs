@@ -5,6 +5,7 @@ namespace MaterialDesignThemes.Wpf.Transitions
     public class FadeWipe : ITransitionWipe
     {
         private readonly SineEase _sineEase = new SineEase();
+        private readonly KeyTime zeroKeyTime = KeyTime.FromTimeSpan(TimeSpan.Zero);
 
         /// <summary>
         /// Duration of the animation
@@ -18,7 +19,6 @@ namespace MaterialDesignThemes.Wpf.Transitions
             if (zIndexController == null) throw new ArgumentNullException(nameof(zIndexController));
 
             // Set up time points
-            var zeroKeyTime = KeyTime.FromTimeSpan(TimeSpan.Zero);
             var endKeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(Duration.TotalSeconds / 2));
 
             // From
@@ -39,13 +39,10 @@ namespace MaterialDesignThemes.Wpf.Transitions
             toAnimation.Completed += (sender, args) =>
             {
                 toSlide.BeginAnimation(UIElement.OpacityProperty, null);
-                fromSlide.Opacity = 0;
-                toSlide.Opacity = 1;
             };
             fromAnimation.Completed += (sender, args) =>
             {
                 fromSlide.BeginAnimation(UIElement.OpacityProperty, null);
-                fromSlide.Opacity = 0;
                 toSlide.BeginAnimation(UIElement.OpacityProperty, toAnimation);
             };
 
