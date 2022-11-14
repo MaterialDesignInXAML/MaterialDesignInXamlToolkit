@@ -1,4 +1,4 @@
-﻿using System.Windows.Data;
+using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf;
 
@@ -24,45 +24,45 @@ public static class PasswordBoxAssist
     public static void SetPassword(DependencyObject element, string value) => element.SetValue(PasswordProperty, value);
     public static string GetPassword(DependencyObject element) => (string)element.GetValue(PasswordProperty);
 
-    // Internal attached DP used to initially wire up the connection between the masked PasswordBox content and the clear text TextBox content
-    internal static readonly DependencyProperty InitialPasswordProperty = DependencyProperty.RegisterAttached(
-        "InitialPassword", typeof(string), typeof(PasswordBoxAssist), new PropertyMetadata(default(string)));
-    internal static void SetInitialPassword(DependencyObject element, string value) => element.SetValue(InitialPasswordProperty, value);
-    internal static string GetInitialPassword(DependencyObject element) => (string)element.GetValue(InitialPasswordProperty);
+    private static readonly DependencyProperty IsChangingProperty = DependencyProperty.RegisterAttached(
+        "IsChanging", typeof(bool), typeof(PasswordBoxAssist), new UIPropertyMetadata(false));
+    private static void SetIsChanging(UIElement element, bool value) => element.SetValue(IsChangingProperty, value);
+    private static bool GetIsChanging(UIElement element) => (bool)element.GetValue(IsChangingProperty);
 
-    private static readonly DependencyProperty IsPasswordInitializedProperty = DependencyProperty.RegisterAttached(
-        "IsPasswordInitialized", typeof(bool), typeof(PasswordBoxAssist), new PropertyMetadata(false));
+    // Attached property used by the "reveal" Style to enforce the wiring-up of the PasswordChanged event handler; needed for the "reveal" TextBox.
+    internal static readonly DependencyProperty SuppressBindingGuardProperty = DependencyProperty.RegisterAttached(
+        "SuppressBindingGuard", typeof(bool), typeof(PasswordBoxAssist), new PropertyMetadata(default(bool)));
+    internal static void SetSuppressBindingGuard(DependencyObject element, bool value) => element.SetValue(SuppressBindingGuardProperty, value);
+    internal static bool GetSuppressBindingGuard(DependencyObject element) => (bool) element.GetValue(SuppressBindingGuardProperty);
 
-    private static readonly DependencyProperty SettingPasswordProperty = DependencyProperty.RegisterAttached(
-        "SettingPassword", typeof(bool), typeof(PasswordBoxAssist), new PropertyMetadata(false));
-
-    private static void HandlePasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    /// <summary>
+    /// Handles changes to the 'Password' attached property.
+    /// </summary>
+    private static void HandlePasswordChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
     {
-        if (d is not PasswordBox passwordBox)
-            return;
-
-        if ((bool)passwordBox.GetValue(SettingPasswordProperty))
-            return;
-
-        if (!(bool)passwordBox.GetValue(IsPasswordInitializedProperty))
+        if (sender is PasswordBox targetPasswordBox &&
+            (GetSuppressBindingGuard(targetPasswordBox) || BindingOperations.GetBindingBase(targetPasswordBox, PasswordProperty) != null))
         {
-            passwordBox.SetValue(IsPasswordInitializedProperty, true);
-            WeakEventManager<PasswordBox, RoutedEventArgs>.AddHandler(passwordBox, nameof(PasswordBox.PasswordChanged), HandlePasswordChanged);
+            // If the PasswordBox is either "reveal" style (ie. SuppressBindingGuard=true) or the user has set a binding on the attached property, we wire up the PasswordChanged event handler.
+            targetPasswordBox.PasswordChanged -= PasswordBoxPasswordChanged;
+            if (!GetIsChanging(targetPasswordBox))
+            {
+                targetPasswordBox.Password = (string)e.NewValue;
+            }
+            targetPasswordBox.PasswordChanged += PasswordBoxPasswordChanged;
         }
-        passwordBox.Password = e.NewValue as string;
     }
 
-    private static void HandlePasswordChanged(object? sender, RoutedEventArgs e)
+    /// <summary>
+    /// Handle the 'PasswordChanged'-event on the PasswordBox
+    /// </summary>
+    private static void PasswordBoxPasswordChanged(object sender, RoutedEventArgs e)
     {
-        if (sender is not PasswordBox passwordBox)
-            return;
-
-        passwordBox.SetValue(SettingPasswordProperty, true);
-        string currentPassword = GetPassword(passwordBox);
-        if (currentPassword != passwordBox.Password)
+        if (sender is PasswordBox passwordBox)
         {
+            SetIsChanging(passwordBox, true);
             SetPassword(passwordBox, passwordBox.Password);
+            SetIsChanging(passwordBox, false);
         }
-        passwordBox.SetValue(SettingPasswordProperty, false);
     }
 }
