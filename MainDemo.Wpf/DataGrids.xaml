@@ -155,13 +155,12 @@
 
     <StackPanel Orientation="Horizontal">
       <materialDesign:PackIcon Margin="0,0,8,0" Kind="Information" />
-      <TextBlock Text="DataGridComboBoxColumns are virtualized by default in the library." VerticalAlignment="Center" />
+      <TextBlock VerticalAlignment="Center" Text="DataGridComboBoxColumns are virtualized by default in the library." />
     </StackPanel>
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Style="{StaticResource PageTitleTextBlock}"
-               Text="Auto Generated Columns" />
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Auto Generated Columns" />
 
     <smtx:XamlDisplay UniqueKey="grids_2">
       <DataGrid CanUserAddRows="False"
@@ -172,8 +171,7 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Style="{StaticResource PageTitleTextBlock}"
-               Text="Custom Padding" />
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Custom Padding" />
 
     <smtx:XamlDisplay UniqueKey="grids_3">
       <DataGrid materialDesign:DataGridAssist.CellPadding="4 2 2 2"
@@ -186,8 +184,7 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Style="{StaticResource PageTitleTextBlock}"
-               Text="Custom Selected Cell Border Brush" />
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Custom Selected Cell Border Brush" />
 
     <smtx:XamlDisplay UniqueKey="grids_4">
       <DataGrid materialDesign:DataGridAssist.SelectedCellBorderBrush="Crimson"

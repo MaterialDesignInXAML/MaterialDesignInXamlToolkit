@@ -38,8 +38,8 @@
       </StackPanel.Resources>
 
       <StackPanel>
-        <StackPanel Margin="0 0 0 16" Orientation="Horizontal">
-          <smtx:XamlDisplay Margin="0 0 8,0" UniqueKey="buttons_mini_action_1">
+        <StackPanel Margin="0,0,0,16" Orientation="Horizontal">
+          <smtx:XamlDisplay Margin="0,0,8,0" UniqueKey="buttons_mini_action_1">
             <Button IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                     ToolTip="MaterialDesignFloatingActionMiniLightButton">
@@ -100,7 +100,7 @@
         </StackPanel>
         <StackPanel Margin="0,0,0,16" Orientation="Horizontal">
 
-          <smtx:XamlDisplay Margin="0 0 8,0" UniqueKey="buttons_action_1">
+          <smtx:XamlDisplay Margin="0,0,8,0" UniqueKey="buttons_action_1">
             <Button IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
                     ToolTip="MaterialDesignFloatingActionLightButton">
@@ -161,7 +161,7 @@
           </smtx:XamlDisplay>
         </StackPanel>
         <StackPanel Margin="0,0,0,16" Orientation="Horizontal">
-          <smtx:XamlDisplay Margin="0 0 8,0" UniqueKey="buttons_raised_1">
+          <smtx:XamlDisplay Margin="0,0,8,0" UniqueKey="buttons_raised_1">
             <Button Width="{StaticResource ButtonWidth}"
                     Content="_LIGHT"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
@@ -208,7 +208,7 @@
           </smtx:XamlDisplay>
         </StackPanel>
         <StackPanel Margin="0,0,0,16" Orientation="Horizontal">
-          <smtx:XamlDisplay Margin="0 0 8,0" UniqueKey="buttons_paper_1">
+          <smtx:XamlDisplay Margin="0,0,8,0" UniqueKey="buttons_paper_1">
             <Button Width="{StaticResource ButtonWidth}"
                     Content="LIGHT"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
@@ -252,7 +252,7 @@
           </smtx:XamlDisplay>
         </StackPanel>
         <StackPanel Margin="0,0,0,16" Orientation="Horizontal">
-          <smtx:XamlDisplay Margin="0 0 8,0" UniqueKey="buttons_flat_1">
+          <smtx:XamlDisplay Margin="0,0,8,0" UniqueKey="buttons_flat_1">
             <Button Width="{StaticResource ButtonWidth}"
                     Click="ButtonBase_OnClick"
                     Content="LIGHT"
@@ -303,7 +303,7 @@
           </smtx:XamlDisplay>
         </StackPanel>
         <StackPanel Margin="0,0,0,16" Orientation="Horizontal">
-          <smtx:XamlDisplay Margin="0 0 8,0" UniqueKey="buttons_outlined_1">
+          <smtx:XamlDisplay Margin="0,0,8,0" UniqueKey="buttons_outlined_1">
             <Button Width="{StaticResource ButtonWidth}"
                     Content="LIGHT"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
@@ -345,7 +345,7 @@
           </smtx:XamlDisplay>
         </StackPanel>
         <StackPanel Margin="0,0,0,16" Orientation="Horizontal">
-          <smtx:XamlDisplay Margin="0 0 8,0" UniqueKey="buttons_flat_bg_1">
+          <smtx:XamlDisplay Margin="0,0,8,0" UniqueKey="buttons_flat_bg_1">
             <Button Width="{StaticResource ButtonWidth}"
                     Content="LIGHT"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
@@ -498,8 +498,7 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Style="{StaticResource PageTitleTextBlock}"
-               Text="Buttons - With Custom Corner Radius" />
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Buttons - With Custom Corner Radius" />
 
     <StackPanel Orientation="Horizontal">
       <StackPanel.Resources>
@@ -507,7 +506,7 @@
         <system:Double x:Key="ButtonHeight">50</system:Double>
       </StackPanel.Resources>
 
-      <smtx:XamlDisplay Margin="0 0 8,0" UniqueKey="button_roundcorner_1">
+      <smtx:XamlDisplay Margin="0,0,8,0" UniqueKey="button_roundcorner_1">
         <Grid Width="{StaticResource GridWidth}">
           <Button Height="{StaticResource ButtonHeight}"
                   materialDesign:ButtonAssist.CornerRadius="5"
@@ -558,8 +557,7 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Style="{StaticResource PageTitleTextBlock}"
-               Text="Buttons - With Progress" />
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Buttons - With Progress" />
 
     <StackPanel>
       <StackPanel Margin="0,0,0,16" Orientation="Horizontal">
@@ -753,8 +751,7 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Style="{StaticResource PageTitleTextBlock}"
-               Text="PopupBox" />
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="PopupBox" />
 
     <StackPanel Orientation="Horizontal">
       <smtx:XamlDisplay Margin="0,0,8,0" UniqueKey="buttons_10">
@@ -899,10 +896,9 @@
       </smtx:XamlDisplay>
     </StackPanel>
 
-    <Rectangle Style="{StaticResource PageSectionSeparator}"/>
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Style="{StaticResource PageTitleTextBlock}"
-               Text="Buttons - With Custom Animation Duration" />
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Buttons - With Custom Animation Duration" />
 
     <StackPanel Orientation="Horizontal">
       <smtx:XamlDisplay Margin="0,0,8,0" UniqueKey="button_duration_1">

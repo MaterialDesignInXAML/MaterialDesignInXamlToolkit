@@ -9,8 +9,7 @@
              d:DesignWidth="1000"
              mc:Ignorable="d">
   <StackPanel>
-    <TextBlock Style="{StaticResource PageTitleTextBlock}"
-               Text="Action Chips" />
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Action Chips" />
 
     <StackPanel>
       <WrapPanel smtx:XamlDisplay.Ignore="This" Orientation="Horizontal">

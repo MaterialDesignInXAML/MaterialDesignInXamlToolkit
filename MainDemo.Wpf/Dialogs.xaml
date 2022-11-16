@@ -125,13 +125,13 @@
                TextWrapping="Wrap" />
 
     <smtx:XamlDisplay UniqueKey="dialogs_sample2">
-      <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+      <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
         <!--
           the request to open the dialog will bubble up to the top-most DialogHost,
           but we can used the attached property based event to handle the response
         -->
         <Button Width="128"
-                Margin="16"                
+                Margin="16"
                 materialDesign:DialogHost.DialogClosedAttached="Sample2_DialogHost_OnDialogClosed"
                 materialDesign:DialogHost.DialogClosingAttached="Sample2_DialogHost_OnDialogClosing"
                 Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
@@ -184,9 +184,9 @@
 
     <smtx:XamlDisplay UniqueKey="dialogs_sample3">
 
-      <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+      <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
         <Button Width="128"
-                Margin="16"              
+                Margin="16"
                 Command="{Binding RunDialogCommand}"
                 Content="RUN CODE" />
 
