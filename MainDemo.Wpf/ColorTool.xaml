@@ -118,7 +118,7 @@
   <DockPanel>
     <TextBlock DockPanel.Dock="Top"
                Text="Color tool"
-               Style="{StaticResource PageSectionTitleTextBlock}" />
+               Style="{StaticResource PageTitleTextBlock}" />
 
     <local:ThemeSettings Margin="0,0,0,8" DockPanel.Dock="Top" />
 
@@ -461,7 +461,7 @@
 
       <!-- Current scheme label -->
       <TextBlock DockPanel.Dock="Bottom"
-                 Style="{StaticResource PageSectionTitleTextBlock}"
+                 Style="{StaticResource PageTitleTextBlock}"
                  Text="Current scheme" />
 
       <!-- Color picker section -->

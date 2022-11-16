@@ -18,7 +18,7 @@
     </ResourceDictionary>
   </UserControl.Resources>
   <StackPanel>
-    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Color zones" />
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Color zones" />
 
     <TextBlock MaxWidth="800"
                HorizontalAlignment="Left"

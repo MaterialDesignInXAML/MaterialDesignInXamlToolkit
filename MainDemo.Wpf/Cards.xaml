@@ -20,7 +20,7 @@
     </ResourceDictionary>
   </UserControl.Resources>
   <StackPanel>
-    <TextBlock Text="Cards" Style="{StaticResource PageSectionTitleTextBlock}" />
+    <TextBlock Text="Cards" Style="{StaticResource PageTitleTextBlock}" />
 
     <WrapPanel>
       <smtx:XamlDisplay Margin="0,0,8,0"
@@ -335,7 +335,7 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Text="Flipper" Style="{StaticResource PageSectionTitleTextBlock}" />
+    <TextBlock Text="Flipper" Style="{StaticResource PageTitleTextBlock}" />
 
     <WrapPanel>
 

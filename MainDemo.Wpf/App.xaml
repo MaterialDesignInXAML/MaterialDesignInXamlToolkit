@@ -125,8 +125,12 @@
         <Setter Property="materialDesignDemo:XamlDisplayEx.ButtonDock" Value="Right" />
       </Style>
 
-      <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadline5TextBlock}" x:Key="PageSectionTitleTextBlock">
+      <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadline5TextBlock}" x:Key="PageTitleTextBlock">
         <Setter Property="Margin" Value="0 0 0 24"/> 
+      </Style>
+
+      <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadline6TextBlock}" x:Key="PageSectionTitleTextBlock">
+        <Setter Property="Margin" Value="0 0 0 16"/>
       </Style>
 
       <Style TargetType="Rectangle" x:Key="PageSectionSeparator">

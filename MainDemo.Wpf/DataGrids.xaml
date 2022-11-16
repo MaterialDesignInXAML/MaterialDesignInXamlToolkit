@@ -20,7 +20,7 @@
   </UserControl.Resources>
 
   <StackPanel>
-    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Custom Columns" />
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Custom Columns" />
 
     <StackPanel Margin="0,0,0,8" Orientation="Horizontal">
       <TextBlock Margin="0,0,8,0"
@@ -160,7 +160,7 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
+    <TextBlock Style="{StaticResource PageTitleTextBlock}"
                Text="Auto Generated Columns" />
 
     <smtx:XamlDisplay UniqueKey="grids_2">
@@ -172,7 +172,7 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
+    <TextBlock Style="{StaticResource PageTitleTextBlock}"
                Text="Custom Padding" />
 
     <smtx:XamlDisplay UniqueKey="grids_3">
@@ -186,7 +186,7 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
+    <TextBlock Style="{StaticResource PageTitleTextBlock}"
                Text="Custom Selected Cell Border Brush" />
 
     <smtx:XamlDisplay UniqueKey="grids_4">

@@ -30,7 +30,7 @@
     </ResourceDictionary>
   </UserControl.Resources>
   <StackPanel>
-    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Buttons" />
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Buttons" />
     <StackPanel>
       <StackPanel.Resources>
         <system:Double x:Key="IconSize">24</system:Double>
@@ -498,7 +498,7 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
+    <TextBlock Style="{StaticResource PageTitleTextBlock}"
                Text="Buttons - With Custom Corner Radius" />
 
     <StackPanel Orientation="Horizontal">
@@ -558,7 +558,7 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
+    <TextBlock Style="{StaticResource PageTitleTextBlock}"
                Text="Buttons - With Progress" />
 
     <StackPanel>
@@ -753,7 +753,7 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
+    <TextBlock Style="{StaticResource PageTitleTextBlock}"
                Text="PopupBox" />
 
     <StackPanel Orientation="Horizontal">
@@ -901,7 +901,7 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}"/>
 
-    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
+    <TextBlock Style="{StaticResource PageTitleTextBlock}"
                Text="Buttons - With Custom Animation Duration" />
 
     <StackPanel Orientation="Horizontal">
