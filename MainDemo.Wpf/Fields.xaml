@@ -7,206 +7,163 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              d:DataContext="{d:DesignInstance domain:FieldsViewModel,
                                               IsDesignTimeCreatable=False}"
-             d:DesignHeight="300"
-             d:DesignWidth="600"
+             d:DesignHeight="1080"
+             d:DesignWidth="1920"
              mc:Ignorable="d">
-
   <UserControl.Resources>
-    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
-      <Setter Property="Margin" Value="0,8" />
+    <sys:Double x:Key="FieldWidth">200</sys:Double>
+    <Thickness x:Key="IconMargin">0,0,8,0</Thickness>
+
+    <Style x:Key="FieldIcon" TargetType="materialDesign:PackIcon">
+      <Setter Property="DockPanel.Dock" Value="Left" />
+      <Setter Property="Margin" Value="{StaticResource IconMargin}" />
       <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
 
-    <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignPasswordBox}">
-      <Setter Property="Margin" Value="0,8" />
-    </Style>
-
-    <Style TargetType="{x:Type Viewbox}">
-      <Setter Property="Height" Value="18" />
-      <Setter Property="Margin" Value="0,0,8,0" />
-      <Setter Property="VerticalAlignment" Value="Center" />
-      <Setter Property="Width" Value="18" />
-    </Style>
-
-    <Style TargetType="{x:Type materialDesign:PackIcon}" BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}">
-      <Setter Property="Margin" Value="4,0,4,0" />
-      <Setter Property="VerticalAlignment" Value="Center" />
+    <Style x:Key="FieldDockPanel" TargetType="DockPanel">
+      <Setter Property="Margin" Value="0,0,8,16" />
+      <Setter Property="VerticalAlignment" Value="Bottom" />
+      <Setter Property="Width" Value="{StaticResource FieldWidth}" />
     </Style>
   </UserControl.Resources>
+  <StackPanel>
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Fields" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Common" />
 
-  <StackPanel Margin="8,0,16,16">
-    <Grid VerticalAlignment="Top">
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="155" />
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="155" />
-        <ColumnDefinition Width="*" />
-      </Grid.ColumnDefinitions>
+    <WrapPanel>
+      <DockPanel Style="{StaticResource FieldDockPanel}">
+        <materialDesign:PackIcon Foreground="{Binding ElementName=NameTextBox, Path=BorderBrush}"
+                                 Kind="Account"
+                                 Style="{StaticResource FieldIcon}" />
+        <smtx:XamlDisplay UniqueKey="fields_1">
+          <TextBox x:Name="NameTextBox"
+                   materialDesign:HintAssist.HelperText="Helper text longer than error"
+                   materialDesign:HintAssist.Hint="Name">
 
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-      </Grid.RowDefinitions>
+            <TextBox.Text>
+              <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
+                <Binding.ValidationRules>
+                  <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+                </Binding.ValidationRules>
+              </Binding>
+            </TextBox.Text>
+          </TextBox>
+        </smtx:XamlDisplay>
+      </DockPanel>
 
-      <TextBlock Grid.Row="0"
-                 Grid.Column="0"
-                 Grid.ColumnSpan="2"
-                 Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                 Text="Common Fields" />
+      <DockPanel Style="{StaticResource FieldDockPanel}">
+        <materialDesign:PackIcon Foreground="{Binding ElementName=PhoneTextBox, Path=BorderBrush}"
+                                 Kind="Phone"
+                                 Style="{StaticResource FieldIcon}" />
+        <smtx:XamlDisplay UniqueKey="fields_4">
+          <TextBox x:Name="PhoneTextBox"
+                   materialDesign:TransitionAssist.DisableTransitions="True"
+                   MaxLength="12" />
+        </smtx:XamlDisplay>
+      </DockPanel>
 
-      <materialDesign:PackIcon Grid.Row="1"
-                               Grid.Column="0"
-                               Foreground="{Binding ElementName=NameTextBox, Path=BorderBrush}"
-                               Kind="Account" />
+      <DockPanel Style="{StaticResource FieldDockPanel}">
+        <materialDesign:PackIcon Foreground="{Binding ElementName=CommentTextBox, Path=BorderBrush}"
+                                 Kind="Comment"
+                                 Style="{StaticResource FieldIcon}" />
+        <smtx:XamlDisplay UniqueKey="fields_6">
+          <TextBox x:Name="CommentTextBox"
+                   materialDesign:HintAssist.HelperText="Bigger Helper Text"
+                   materialDesign:HintAssist.HelperTextFontSize="16"
+                   materialDesign:HintAssist.Hint="Comment" />
+        </smtx:XamlDisplay>
+      </DockPanel>
 
-      <smtx:XamlDisplay Grid.Row="1"
-                        Grid.Column="1"
-                        UniqueKey="fields_1">
-        <TextBox x:Name="NameTextBox"
-                 materialDesign:HintAssist.HelperText="Helper text longer than error"
-                 materialDesign:HintAssist.Hint="Name">
+      <DockPanel Style="{StaticResource FieldDockPanel}">
+        <smtx:XamlDisplay UniqueKey="fields_8">
+          <TextBox VerticalAlignment="Center"
+                   materialDesign:HintAssist.Hint="Floating Hint"
+                   Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+        </smtx:XamlDisplay>
+      </DockPanel>
 
-          <TextBox.Text>
-            <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
-              <Binding.ValidationRules>
-                <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
-              </Binding.ValidationRules>
-            </Binding>
-          </TextBox.Text>
-        </TextBox>
-      </smtx:XamlDisplay>
+      <DockPanel Style="{StaticResource FieldDockPanel}">
+        <smtx:XamlDisplay UniqueKey="fields_16">
+          <TextBox VerticalAlignment="Center"
+                   materialDesign:TextFieldAssist.HasClearButton="True"
+                   materialDesign:TextFieldAssist.PrefixText="$"
+                   materialDesign:TextFieldAssist.SuffixText="mm"
+                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                   Text="Good stuff">
+            <materialDesign:HintAssist.Hint>
+              <StackPanel Margin="-2,0,0,0" Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="AccessPoint" />
+                <TextBlock Text="WiFi" />
+              </StackPanel>
+            </materialDesign:HintAssist.Hint>
+          </TextBox>
+        </smtx:XamlDisplay>
+      </DockPanel>
 
-      <materialDesign:PackIcon Grid.Row="2"
-                               Grid.Column="0"
-                               Foreground="{Binding ElementName=PhoneTextBox, Path=BorderBrush}"
-                               Kind="Phone" />
+      <DockPanel Style="{StaticResource FieldDockPanel}">
+        <materialDesign:PackIcon Foreground="{Binding ElementName=PasswordBox, Path=BorderBrush}"
+                                 Kind="Key"
+                                 Style="{StaticResource FieldIcon}" />
 
-      <smtx:XamlDisplay Grid.Row="2"
-                        Grid.Column="1"
-                        UniqueKey="fields_4">
-        <TextBox x:Name="PhoneTextBox"
-                 materialDesign:TransitionAssist.DisableTransitions="True"
-                 MaxLength="12" />
-      </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="fields_7">
+          <PasswordBox x:Name="PasswordBox"
+                       materialDesign:HintAssist.HelperText="At least 8 characters"
+                       materialDesign:HintAssist.Hint="Password"
+                       materialDesign:TextFieldAssist.HasClearButton="True" />
+        </smtx:XamlDisplay>
+      </DockPanel>
 
-      <materialDesign:PackIcon Grid.Row="3"
-                               Grid.Column="0"
-                               Foreground="{Binding ElementName=CommentTextBox, Path=BorderBrush}"
-                               Kind="Comment" />
+      <DockPanel Style="{StaticResource FieldDockPanel}">
+        <materialDesign:PackIcon Foreground="{Binding ElementName=FloatingPasswordBox, Path=BorderBrush}"
+                                 Kind="Key"
+                                 Style="{StaticResource FieldIcon}" />
 
-      <smtx:XamlDisplay Grid.Row="3"
-                        Grid.Column="1"
-                        UniqueKey="fields_6">
-        <TextBox x:Name="CommentTextBox"
-                 materialDesign:HintAssist.HelperText="Bigger Helper Text"
-                 materialDesign:HintAssist.HelperTextFontSize="16"
-                 materialDesign:HintAssist.Hint="Comment" />
-      </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="fields_18">
+          <PasswordBox x:Name="FloatingPasswordBox"
+                       materialDesign:HintAssist.Foreground="Green"
+                       materialDesign:HintAssist.Hint="Floating Password"
+                       materialDesign:TextFieldAssist.UnderlineBrush="Green"
+                       Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
+        </smtx:XamlDisplay>
+      </DockPanel>
 
-      <smtx:XamlDisplay Grid.Row="4"
-                        Grid.Column="1"
-                        UniqueKey="fields_8">
-        <TextBox VerticalAlignment="Center"
-                 materialDesign:HintAssist.Hint="Floating Hint"
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-      </smtx:XamlDisplay>
+      <DockPanel Style="{StaticResource FieldDockPanel}">
+        <smtx:XamlDisplay UniqueKey="fields_19">
+          <TextBox materialDesign:HintAssist.FloatingScale="0.50"
+                   materialDesign:HintAssist.Hint="Large Font"
+                   materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+                   FontSize="24"
+                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                   Text="Some Text" />
+        </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Grid.Row="5"
-                        Grid.Column="1"
-                        Margin="0,8"
-                        UniqueKey="fields_16">
-        <TextBox VerticalAlignment="Center"
-                 materialDesign:TextFieldAssist.HasClearButton="True"
-                 materialDesign:TextFieldAssist.PrefixText="$"
-                 materialDesign:TextFieldAssist.SuffixText="mm"
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 Text="Good stuff">
-          <materialDesign:HintAssist.Hint>
-            <StackPanel Margin="-2,0,0,0" Orientation="Horizontal">
-              <materialDesign:PackIcon Kind="AccessPoint" />
-              <TextBlock Text="WiFi" />
-            </StackPanel>
-          </materialDesign:HintAssist.Hint>
-        </TextBox>
-      </smtx:XamlDisplay>
+      </DockPanel>
 
-      <materialDesign:PackIcon Grid.Row="1"
-                               Grid.Column="2"
-                               Foreground="{Binding ElementName=PasswordBox, Path=BorderBrush}"
-                               Kind="Key" />
+      <DockPanel Style="{StaticResource FieldDockPanel}">
+        <smtx:XamlDisplay UniqueKey="fields_13">
+          <TextBox MinWidth="72"
+                   materialDesign:HintAssist.Hint="I'm Disabled"
+                   IsEnabled="False" />
+        </smtx:XamlDisplay>
+      </DockPanel>
 
-      <smtx:XamlDisplay Grid.Row="1"
-                        Grid.Column="3"
-                        UniqueKey="fields_7">
-        <PasswordBox x:Name="PasswordBox"
-                     materialDesign:HintAssist.HelperText="At least 8 characters"
-                     materialDesign:HintAssist.Hint="Password"
-                     materialDesign:TextFieldAssist.HasClearButton="True" />
-      </smtx:XamlDisplay>
+      <DockPanel Style="{StaticResource FieldDockPanel}">
+        <smtx:XamlDisplay UniqueKey="fields_15">
+          <PasswordBox MinWidth="72"
+                       IsEnabled="False"
+                       Password="01234" />
+        </smtx:XamlDisplay>
+      </DockPanel>
+    </WrapPanel>
 
-      <materialDesign:PackIcon Grid.Row="2"
-                               Grid.Column="2"
-                               Margin="0,12,0,0"
-                               Foreground="{Binding ElementName=FloatingPasswordBox, Path=BorderBrush}"
-                               Kind="Key" />
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Multi-line" />
 
-      <smtx:XamlDisplay Grid.Row="2"
-                        Grid.Column="3"
-                        Margin="0,12,0,0"
-                        UniqueKey="fields_18">
-        <PasswordBox x:Name="FloatingPasswordBox"
-                     materialDesign:HintAssist.Foreground="Green"
-                     materialDesign:HintAssist.Hint="Floating Password"
-                     materialDesign:TextFieldAssist.UnderlineBrush="Green"
-                     Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Grid.Row="3"
-                        Grid.Column="3"
-                        Padding="0,16,0,0"
-                        UniqueKey="fields_19">
-        <TextBox materialDesign:HintAssist.FloatingScale="0.50"
-                 materialDesign:HintAssist.Hint="Large Font"
-                 materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
-                 FontSize="24"
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 Text="Some Text" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Grid.Row="4"
-                        Grid.Column="3"
-                        UniqueKey="fields_13">
-        <TextBox MinWidth="72"
-                 materialDesign:HintAssist.Hint="I'm Disabled"
-                 IsEnabled="False" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Grid.Row="5"
-                        Grid.Column="3"
-                        UniqueKey="fields_15">
-        <PasswordBox MinWidth="72"
-                     IsEnabled="False"
-                     Password="01234" />
-      </smtx:XamlDisplay>
-
-      <TextBlock Grid.Row="0"
-                 Grid.Column="4"
-                 Margin="32,0,0,0"
-                 Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                 Text="Multi-line" />
-
-      <smtx:XamlDisplay Grid.Row="1"
-                        Grid.RowSpan="2"
-                        Grid.Column="4"
-                        Margin="32,0,0,0"
-                        UniqueKey="fields_3">
+    <StackPanel>
+      <smtx:XamlDisplay Margin="0,0,0,32" UniqueKey="fields_3">
         <TextBox Height="80"
                  MinWidth="280"
                  VerticalAlignment="Stretch"
@@ -218,11 +175,7 @@
                  VerticalScrollBarVisibility="Auto" />
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Grid.Row="3"
-                        Grid.RowSpan="2"
-                        Grid.Column="4"
-                        Margin="32,0,0,0"
-                        UniqueKey="fields_32">
+      <smtx:XamlDisplay UniqueKey="fields_32">
         <Grid>
           <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -258,42 +211,27 @@
           </RichTextBox>
         </Grid>
       </smtx:XamlDisplay>
-    </Grid>
+    </StackPanel>
 
-    <Grid Margin="0,48,0,0">
-      <Grid.RowDefinitions>
-        <RowDefinition />
-        <RowDefinition />
-        <RowDefinition />
-      </Grid.RowDefinitions>
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="Auto" />
-      </Grid.ColumnDefinitions>
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Filled" />
 
-      <Grid.Resources>
+    <WrapPanel>
+      <WrapPanel.Resources>
         <Style TargetType="{x:Type smtx:XamlDisplay}" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
-          <Setter Property="Margin" Value="0,0,16,0" />
+          <Setter Property="Margin" Value="0,0,16,16" />
           <Setter Property="VerticalAlignment" Value="Top" />
-          <Setter Property="Width" Value="200" />
+          <Setter Property="Width" Value="250" />
         </Style>
 
         <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
           <Setter Property="IsChecked" Value="True" />
           <Setter Property="Margin" Value="0,8" />
         </Style>
-      </Grid.Resources>
+      </WrapPanel.Resources>
 
-      <TextBlock Grid.ColumnSpan="2"
-                 Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                 Text="Filled fields" />
-
-      <smtx:XamlDisplay Grid.Row="1"
-                        Grid.Column="0"
-                        UniqueKey="fields_25">
+      <smtx:XamlDisplay UniqueKey="fields_25">
         <StackPanel>
           <CheckBox x:Name="MaterialDesignFilledTextBoxEnabledComboBox" Content="Enabled" />
 
@@ -307,9 +245,7 @@
         </StackPanel>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Grid.Row="1"
-                        Grid.Column="1"
-                        UniqueKey="fields_27">
+      <smtx:XamlDisplay UniqueKey="fields_27">
         <StackPanel>
           <CheckBox x:Name="MaterialDesignFilledTextBoxTextCountComboBox" Content="View Text Input Count" />
 
@@ -322,9 +258,7 @@
         </StackPanel>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Grid.Row="1"
-                        Grid.Column="2"
-                        UniqueKey="fields_28">
+      <smtx:XamlDisplay UniqueKey="fields_28">
         <StackPanel>
           <CheckBox x:Name="MaterialDesignFilledPasswordBoxEnabledComboBox" Content="Enabled" />
 
@@ -335,10 +269,7 @@
         </StackPanel>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Grid.Row="1"
-                        Grid.Column="3"
-                        VerticalAlignment="Bottom"
-                        UniqueKey="passwordFilled1">
+      <smtx:XamlDisplay VerticalAlignment="Bottom" UniqueKey="passwordFilled1">
         <StackPanel>
           <CheckBox x:Name="MaterialDesignFilledPasswordBoxTextCountComboBox" Content="View Password Input Count" />
 
@@ -349,10 +280,8 @@
         </StackPanel>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Grid.Row="2"
-                        Grid.Column="2"
-                        Margin="0,24,0,0"
-                        HorizontalAlignment="Left"
+      <smtx:XamlDisplay HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
                         UniqueKey="fieldFilled_with_validation">
         <TextBox VerticalAlignment="Top"
                  materialDesign:HintAssist.HelperText="Helper text"
@@ -368,10 +297,8 @@
         </TextBox>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Grid.Row="2"
-                        Grid.Column="3"
-                        Margin="0,24,0,0"
-                        HorizontalAlignment="Left"
+      <smtx:XamlDisplay HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
                         UniqueKey="passwordFilled_with_validation">
         <StackPanel Orientation="Vertical">
           <PasswordBox materialDesign:HintAssist.HelperText="Helper text"
@@ -380,26 +307,15 @@
                        Style="{StaticResource MaterialDesignFilledPasswordBox}" />
         </StackPanel>
       </smtx:XamlDisplay>
-    </Grid>
+    </WrapPanel>
 
-    <Grid Margin="0,48,0,0">
-      <Grid.RowDefinitions>
-        <RowDefinition />
-        <RowDefinition />
-        <RowDefinition />
-      </Grid.RowDefinitions>
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Outlined" />
 
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="Auto" />
-      </Grid.ColumnDefinitions>
-
-      <Grid.Resources>
+    <WrapPanel>
+      <WrapPanel.Resources>
         <Style TargetType="{x:Type smtx:XamlDisplay}" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
-          <Setter Property="Margin" Value="0,0,16,0" />
+          <Setter Property="Margin" Value="0,0,16,16" />
           <Setter Property="VerticalAlignment" Value="Top" />
           <Setter Property="Width" Value="200" />
         </Style>
@@ -408,19 +324,9 @@
           <Setter Property="IsChecked" Value="True" />
           <Setter Property="Margin" Value="0,8" />
         </Style>
-      </Grid.Resources>
+      </WrapPanel.Resources>
 
-      <TextBlock Grid.Row="0"
-                 Grid.Column="0"
-                 Grid.ColumnSpan="2"
-                 Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                 Text="Outlined fields" />
-
-      <smtx:XamlDisplay Grid.Row="1"
-                        Grid.RowSpan="2"
-                        Grid.Column="0"
-                        UniqueKey="fields_26">
-
+      <smtx:XamlDisplay UniqueKey="fields_26">
         <StackPanel>
           <CheckBox x:Name="MaterialDesignOutlinedTextBoxEnabledComboBox" Content="Enabled" />
 
@@ -435,10 +341,7 @@
         </StackPanel>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Grid.Row="1"
-                        Grid.RowSpan="2"
-                        Grid.Column="1"
-                        UniqueKey="fields_29">
+      <smtx:XamlDisplay UniqueKey="fields_29">
         <StackPanel>
           <CheckBox x:Name="MaterialDesignOutlinedTextBoxTextCountComboBox" Content="View Text Input Count" />
 
@@ -453,9 +356,7 @@
         </StackPanel>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Grid.Row="1"
-                        Grid.Column="2"
-                        UniqueKey="fields_30">
+      <smtx:XamlDisplay UniqueKey="fields_30">
         <StackPanel>
           <CheckBox x:Name="MaterialDesignOutlinedPasswordBoxEnabledComboBox" Content="Enabled" />
 
@@ -466,50 +367,52 @@
         </StackPanel>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Grid.Row="1"
-                        Grid.Column="3"
-                        Margin="0,34,0,0"
-                        UniqueKey="passwordOutlined1">
-        <PasswordBox materialDesign:HintAssist.HelperText="Helper text"
-                     materialDesign:HintAssist.Hint="Password"
-                     Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
+      <smtx:XamlDisplay UniqueKey="passwordOutlined1">
+        <StackPanel>
+          <CheckBox Visibility="Hidden" />
+
+          <PasswordBox materialDesign:HintAssist.HelperText="Helper text"
+                       materialDesign:HintAssist.Hint="Password"
+                       Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
+        </StackPanel>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Grid.Row="2"
-                        Grid.Column="2"
-                        Margin="0,24,0,0"
-                        HorizontalAlignment="Left"
-                        UniqueKey="fieldOutlined_with_validation">
-        <TextBox VerticalAlignment="Top"
-                 materialDesign:HintAssist.HelperText="Helper text"
-                 materialDesign:HintAssist.Hint="Text (validated)"
-                 Style="{StaticResource MaterialDesignOutlinedTextBox}">
-          <TextBox.Text>
-            <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged">
-              <Binding.ValidationRules>
-                <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
-              </Binding.ValidationRules>
-            </Binding>
-          </TextBox.Text>
-        </TextBox>
+      <smtx:XamlDisplay UniqueKey="fieldOutlined_with_validation">
+        <StackPanel>
+          <CheckBox Visibility="Hidden" />
+
+          <TextBox VerticalAlignment="Top"
+                   materialDesign:HintAssist.HelperText="Helper text"
+                   materialDesign:HintAssist.Hint="Text (validated)"
+                   Style="{StaticResource MaterialDesignOutlinedTextBox}">
+            <TextBox.Text>
+              <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged">
+                <Binding.ValidationRules>
+                  <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+                </Binding.ValidationRules>
+              </Binding>
+            </TextBox.Text>
+          </TextBox>
+
+        </StackPanel>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Grid.Row="2"
-                        Grid.Column="3"
-                        Margin="0,24,0,0"
-                        HorizontalAlignment="Left"
-                        UniqueKey="passwordOutlined_with_validation">
-        <StackPanel Orientation="Vertical">
+      <smtx:XamlDisplay UniqueKey="passwordOutlined_with_validation">
+        <StackPanel>
+          <CheckBox Visibility="Hidden" />
           <PasswordBox materialDesign:HintAssist.HelperText="Helper text"
                        materialDesign:HintAssist.Hint="Password (validated)"
                        materialDesign:PasswordBoxAssist.Password="{Binding Path=Password2Validated, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"
                        Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
         </StackPanel>
       </smtx:XamlDisplay>
-    </Grid>
+    </WrapPanel>
 
-    <Grid Margin="0,48,0,0">
-      <Grid.Resources>
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Reveal PasswordBox" />
+
+    <WrapPanel>
+      <WrapPanel.Resources>
         <Style TargetType="{x:Type smtx:XamlDisplay}" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
           <Setter Property="Margin" Value="0,0,16,0" />
           <Setter Property="VerticalAlignment" Value="Top" />
@@ -520,30 +423,9 @@
           <Setter Property="IsChecked" Value="True" />
           <Setter Property="Margin" Value="0,8" />
         </Style>
-      </Grid.Resources>
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="Auto" />
-      </Grid.ColumnDefinitions>
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="100" />
-        <RowDefinition Height="Auto" />
-      </Grid.RowDefinitions>
+      </WrapPanel.Resources>
 
-      <TextBlock Grid.Row="0"
-                 Grid.Column="0"
-                 Grid.ColumnSpan="4"
-                 Margin="0,0,0,10"
-                 Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                 Text="'Reveal' style PasswordBoxes" />
-
-      <smtx:XamlDisplay Grid.Row="1"
-                        Grid.Column="0"
-                        VerticalAlignment="Top"
-                        UniqueKey="reveal_password_default">
+      <smtx:XamlDisplay VerticalAlignment="Top" UniqueKey="reveal_password_default">
         <StackPanel>
           <CheckBox x:Name="RevealPasswordDefaultEnabled" Content="Enabled" />
           <PasswordBox materialDesign:HintAssist.HelperText="Bound to Password1"
@@ -552,13 +434,15 @@
                        materialDesign:TextFieldAssist.HasClearButton="True"
                        IsEnabled="{Binding ElementName=RevealPasswordDefaultEnabled, Path=IsChecked}"
                        Style="{StaticResource MaterialDesignRevealPasswordBox}" />
+
+          <Button Margin="0,32,0,0"
+                  VerticalAlignment="Top"
+                  Command="{Binding SetPassword1FromViewModelCommand}"
+                  Content="Set from VM" />
         </StackPanel>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Grid.Row="1"
-                        Grid.Column="1"
-                        VerticalAlignment="Top"
-                        UniqueKey="reveal_password_floating">
+      <smtx:XamlDisplay VerticalAlignment="Top" UniqueKey="reveal_password_floating">
         <StackPanel>
           <CheckBox x:Name="RevealPasswordFloatingEnabled" Content="Enabled" />
           <PasswordBox materialDesign:HintAssist.HelperText="Bound to Password2"
@@ -567,13 +451,15 @@
                        materialDesign:TextFieldAssist.HasClearButton="True"
                        IsEnabled="{Binding ElementName=RevealPasswordFloatingEnabled, Path=IsChecked}"
                        Style="{StaticResource MaterialDesignFloatingHintRevealPasswordBox}" />
+
+          <Button Margin="0,32,0,0"
+                  VerticalAlignment="Top"
+                  Command="{Binding SetPassword2FromViewModelCommand}"
+                  Content="Set from VM" />
         </StackPanel>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Grid.Row="1"
-                        Grid.Column="2"
-                        VerticalAlignment="Top"
-                        UniqueKey="reveal_password_filled">
+      <smtx:XamlDisplay VerticalAlignment="Top" UniqueKey="reveal_password_filled">
         <StackPanel>
           <CheckBox x:Name="RevealPasswordFilledEnabled" Content="Enabled" />
           <PasswordBox materialDesign:HintAssist.HelperText="Not bound password"
@@ -585,10 +471,7 @@
         </StackPanel>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Grid.Row="1"
-                        Grid.Column="3"
-                        VerticalAlignment="Top"
-                        UniqueKey="reveal_password_outlined">
+      <smtx:XamlDisplay VerticalAlignment="Top" UniqueKey="reveal_password_outlined">
         <StackPanel>
           <CheckBox x:Name="RevealPasswordOutlinedEnabled" Content="Enabled" />
           <PasswordBox materialDesign:HintAssist.HelperText="Not bound password"
@@ -598,60 +481,37 @@
                        Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}" />
         </StackPanel>
       </smtx:XamlDisplay>
+    </WrapPanel>
 
-      <Button Grid.Row="2"
-              Grid.Column="0"
-              Margin="0,0,45,0"
-              VerticalAlignment="Top"
-              Command="{Binding SetPassword1FromViewModelCommand}"
-              Content="Set from VM" />
-      <Button Grid.Row="2"
-              Grid.Column="1"
-              Margin="0,0,45,0"
-              VerticalAlignment="Top"
-              Command="{Binding SetPassword2FromViewModelCommand}"
-              Content="Set from VM" />
-    </Grid>
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="DataTemplate" />
 
-    <Grid Margin="0,48,0,0"
-          HorizontalAlignment="Left"
-          VerticalAlignment="Top">
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="Auto" />
-      </Grid.ColumnDefinitions>
-
-      <Grid.RowDefinitions>
-        <RowDefinition />
-        <RowDefinition />
-      </Grid.RowDefinitions>
-      <TextBlock Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="DataTemplate" />
-
-      <smtx:XamlDisplay Grid.Row="1"
-                        Grid.Column="0"
-                        UniqueKey="fields_20">
+    <WrapPanel>
+      <smtx:XamlDisplay UniqueKey="fields_20">
         <ContentControl Content="{Binding TestObject}">
           <ContentControl.ContentTemplate>
             <DataTemplate DataType="domain:FieldsTestObject">
               <StackPanel Orientation="Horizontal">
-                <TextBox Margin="0,0,0,0"
+                <TextBox Width="100"
                          VerticalAlignment="Bottom"
                          materialDesign:HintAssist.Hint="Name"
                          Text="{Binding Name}" />
 
                 <TextBox Margin="8,0,0,0"
+                         Width="100"
                          VerticalAlignment="Bottom"
                          materialDesign:HintAssist.Hint="Content"
                          Text="{Binding Content}" />
 
                 <TextBox Margin="8,0,0,0"
+                         Width="100"
                          VerticalAlignment="Bottom"
                          materialDesign:HintAssist.Hint="Name"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          Text="{Binding Name}" />
                 <TextBox Margin="8,0,0,0"
                          VerticalAlignment="Bottom"
+                         Width="100"                         
                          materialDesign:HintAssist.Hint="Content"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          Text="{Binding Content}" />
@@ -660,17 +520,14 @@
           </ContentControl.ContentTemplate>
         </ContentControl>
       </smtx:XamlDisplay>
-      <TextBlock Grid.Row="0"
-                 Grid.Column="1"
-                 Margin="32,0,0,0"
-                 Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
-                 Text="DataTemplateSelector" />
 
-      <smtx:XamlDisplay Grid.Row="1"
-                        Grid.Column="1"
-                        Margin="32,0,0,0"
-                        HorizontalAlignment="Left"
-                        UniqueKey="fields_21">
+    </WrapPanel>
+
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="DataTemplateSelector" />
+
+    <WrapPanel>
+      <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="fields_21">
         <ContentControl Content="{Binding TestObject}">
           <ContentControl.ContentTemplateSelector>
             <domain1:SimpleDataTemplateSelector>
@@ -678,22 +535,26 @@
                 <DataTemplate DataType="domain:FieldsTestObject">
                   <StackPanel Orientation="Horizontal">
                     <TextBox Margin="0,0,0,0"
+                             Width="100"                             
                              VerticalAlignment="Bottom"
                              materialDesign:HintAssist.Hint="Name"
                              Text="{Binding Name}" />
 
                     <TextBox Margin="8,0,0,0"
+                             Width="100"                             
                              VerticalAlignment="Bottom"
                              materialDesign:HintAssist.Hint="Content"
                              Text="{Binding Content}" />
 
                     <TextBox Margin="8,0,0,0"
                              VerticalAlignment="Bottom"
+                             Width="100"                             
                              materialDesign:HintAssist.Hint="Name"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              Text="{Binding Name}" />
 
                     <TextBox Margin="8,0,0,0"
+                             Width="100"                             
                              VerticalAlignment="Bottom"
                              materialDesign:HintAssist.Hint="Content"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -705,57 +566,59 @@
           </ContentControl.ContentTemplateSelector>
         </ContentControl>
       </smtx:XamlDisplay>
-      <TextBlock Grid.Row="0"
-                 Grid.Column="2"
-                 Margin="32,0,0,0"
-                 Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
-                 Text="Validation" />
 
-      <StackPanel Grid.Row="1"
-                  Grid.Column="2"
-                  Margin="32,0,0,0"
-                  Orientation="Horizontal">
-        <smtx:XamlDisplay Width="120" UniqueKey="fields_validation_1">
-          <TextBox Width="20"
-                   HorizontalAlignment="Left"
-                   materialDesign:ValidationAssist.UsePopup="True"
-                   ToolTip="Use a popup which can escape the bounds of the control where space is limited">
-            <TextBox.Text>
-              <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
-                <Binding.ValidationRules>
-                  <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
-                </Binding.ValidationRules>
-              </Binding>
-            </TextBox.Text>
-          </TextBox>
-        </smtx:XamlDisplay>
-        <smtx:XamlDisplay Width="120" UniqueKey="fields_validation_2">
-          <TextBox Width="20"
-                   HorizontalAlignment="Right"
-                   materialDesign:ValidationAssist.PopupPlacement="Left"
-                   materialDesign:ValidationAssist.UsePopup="True"
-                   ToolTip="Use a popup which can escape the bounds of the control where space is limited it can be placed in alternative positions">
-            <TextBox.Text>
-              <Binding Path="Name2" UpdateSourceTrigger="PropertyChanged">
-                <Binding.ValidationRules>
-                  <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
-                </Binding.ValidationRules>
-              </Binding>
-            </TextBox.Text>
-          </TextBox>
-        </smtx:XamlDisplay>
-        <smtx:XamlDisplay Width="120" UniqueKey="fields_validation_3">
-          <TextBox materialDesign:ValidationAssist.HorizontalAlignment="Right">
-            <TextBox.Text>
-              <Binding Path="Name2" UpdateSourceTrigger="PropertyChanged">
-                <Binding.ValidationRules>
-                  <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
-                </Binding.ValidationRules>
-              </Binding>
-            </TextBox.Text>
-          </TextBox>
-        </smtx:XamlDisplay>
-      </StackPanel>
-    </Grid>
+    </WrapPanel>
+
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Validation" />
+
+    <WrapPanel Margin="0,0,0,32">
+      <smtx:XamlDisplay Width="120"
+                        Margin="0,0,16,16"
+                        UniqueKey="fields_validation_1">
+        <TextBox Width="20"
+                 HorizontalAlignment="Left"
+                 materialDesign:ValidationAssist.UsePopup="True"
+                 ToolTip="Use a popup which can escape the bounds of the control where space is limited">
+          <TextBox.Text>
+            <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
+              <Binding.ValidationRules>
+                <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+              </Binding.ValidationRules>
+            </Binding>
+          </TextBox.Text>
+        </TextBox>
+      </smtx:XamlDisplay>
+      <smtx:XamlDisplay Width="120"
+                        Margin="0,0,16,16"
+                        UniqueKey="fields_validation_2">
+        <TextBox Width="20"
+                 HorizontalAlignment="Right"
+                 materialDesign:ValidationAssist.PopupPlacement="Left"
+                 materialDesign:ValidationAssist.UsePopup="True"
+                 ToolTip="Use a popup which can escape the bounds of the control where space is limited it can be placed in alternative positions">
+          <TextBox.Text>
+            <Binding Path="Name2" UpdateSourceTrigger="PropertyChanged">
+              <Binding.ValidationRules>
+                <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+              </Binding.ValidationRules>
+            </Binding>
+          </TextBox.Text>
+        </TextBox>
+      </smtx:XamlDisplay>
+      <smtx:XamlDisplay Width="120"
+                        Margin="0,0,16,16"
+                        UniqueKey="fields_validation_3">
+        <TextBox materialDesign:ValidationAssist.HorizontalAlignment="Right">
+          <TextBox.Text>
+            <Binding Path="Name2" UpdateSourceTrigger="PropertyChanged">
+              <Binding.ValidationRules>
+                <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+              </Binding.ValidationRules>
+            </Binding>
+          </TextBox.Text>
+        </TextBox>
+      </smtx:XamlDisplay>
+    </WrapPanel>
   </StackPanel>
 </UserControl>

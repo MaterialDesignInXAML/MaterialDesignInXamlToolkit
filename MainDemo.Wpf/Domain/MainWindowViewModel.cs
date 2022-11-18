@@ -178,7 +178,10 @@ public class MainWindowViewModel : ViewModelBase
             {
                 DocumentationLink.DemoPageLink<Fields>(),
                 DocumentationLink.StyleLink("TextBox")
-            });
+            })
+        {
+            HorizontalScrollBarVisibilityRequirement = ScrollBarVisibility.Disabled,
+        };
 
         yield return new DemoItem(
             "Fields line up",
