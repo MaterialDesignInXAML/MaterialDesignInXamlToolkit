@@ -8,65 +8,73 @@
              d:DesignHeight="300"
              d:DesignWidth="300"
              mc:Ignorable="d">
-  <StackPanel Margin="8,8,0,0">
+  <StackPanel>
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Elevation" />
+
     <TextBlock Text="Elevated controls have default elevation set, but the elevation can be overriden." />
 
-    <WrapPanel Margin="0,12,0,0" Orientation="Horizontal">
-      <smtx:XamlDisplay Margin="0,0,16,32" UniqueKey="shadow_1">
-        <Button Content="2 DP" Style="{StaticResource MaterialDesignRaisedButton}" />
-      </smtx:XamlDisplay>
+    <WrapPanel Orientation="Horizontal">
+      <WrapPanel Margin="0,12,0,0">
+        <smtx:XamlDisplay Margin="0,0,16,32" UniqueKey="shadow_1">
+          <Button Content="2 DP" Style="{StaticResource MaterialDesignRaisedButton}" />
+        </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,0,16,32" UniqueKey="shadow_2">
-        <Button materialDesign:ElevationAssist.Elevation="Dp4"
-                Content="4 DP"
-                Style="{StaticResource MaterialDesignRaisedButton}" />
-      </smtx:XamlDisplay>
+        <smtx:XamlDisplay Margin="0,0,16,32" UniqueKey="shadow_2">
+          <Button materialDesign:ElevationAssist.Elevation="Dp4"
+                  Content="4 DP"
+                  Style="{StaticResource MaterialDesignRaisedButton}" />
+        </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,0,16,32" UniqueKey="shadow_3">
-        <Button materialDesign:ElevationAssist.Elevation="Dp8"
-                Content="8 DP"
-                Style="{StaticResource MaterialDesignRaisedButton}" />
-      </smtx:XamlDisplay>
+        <smtx:XamlDisplay Margin="0,0,16,32" UniqueKey="shadow_3">
+          <Button materialDesign:ElevationAssist.Elevation="Dp8"
+                  Content="8 DP"
+                  Style="{StaticResource MaterialDesignRaisedButton}" />
+        </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,0,16,32" UniqueKey="shadow_4">
-        <Button materialDesign:ElevationAssist.Elevation="Dp12"
-                Content="12 DP"
-                Style="{StaticResource MaterialDesignRaisedButton}" />
-      </smtx:XamlDisplay>
+        <smtx:XamlDisplay Margin="0,0,16,32" UniqueKey="shadow_4">
+          <Button materialDesign:ElevationAssist.Elevation="Dp12"
+                  Content="12 DP"
+                  Style="{StaticResource MaterialDesignRaisedButton}" />
+        </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,0,16,32" UniqueKey="shadow_5">
-        <Button materialDesign:ElevationAssist.Elevation="Dp16"
-                Content="16 DP"
-                Style="{StaticResource MaterialDesignRaisedButton}" />
-      </smtx:XamlDisplay>
+        <smtx:XamlDisplay Margin="0,0,16,32" UniqueKey="shadow_5">
+          <Button materialDesign:ElevationAssist.Elevation="Dp16"
+                  Content="16 DP"
+                  Style="{StaticResource MaterialDesignRaisedButton}" />
+        </smtx:XamlDisplay>
+      </WrapPanel>
 
-      <smtx:XamlDisplay Margin="0,0,16,32" UniqueKey="shadow_9">
-        <Button materialDesign:ElevationAssist.Elevation="Dp0"
-                Content="0"
-                Style="{StaticResource MaterialDesignFloatingActionMiniButton}" />
-      </smtx:XamlDisplay>
+      <WrapPanel Margin="0,12,0,0">
 
-      <smtx:XamlDisplay Margin="0,0,16,32" UniqueKey="shadow_10">
-        <Button materialDesign:ElevationAssist.Elevation="Dp2"
-                Content="2"
-                Style="{StaticResource MaterialDesignFloatingActionMiniButton}" />
-      </smtx:XamlDisplay>
+        <smtx:XamlDisplay Margin="0,0,16,32" UniqueKey="shadow_9">
+          <Button materialDesign:ElevationAssist.Elevation="Dp0"
+                  Content="0"
+                  Style="{StaticResource MaterialDesignFloatingActionMiniButton}" />
+        </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,0,16,32" UniqueKey="shadow_11">
-        <Button Content="6" Style="{StaticResource MaterialDesignFloatingActionMiniButton}" />
-      </smtx:XamlDisplay>
+        <smtx:XamlDisplay Margin="0,0,16,32" UniqueKey="shadow_10">
+          <Button materialDesign:ElevationAssist.Elevation="Dp2"
+                  Content="2"
+                  Style="{StaticResource MaterialDesignFloatingActionMiniButton}" />
+        </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,0,16,32" UniqueKey="shadow_12">
-        <Button materialDesign:ElevationAssist.Elevation="Dp12"
-                Content="12"
-                Style="{StaticResource MaterialDesignFloatingActionMiniButton}" />
-      </smtx:XamlDisplay>
+        <smtx:XamlDisplay Margin="0,0,16,32" UniqueKey="shadow_11">
+          <Button Content="6" Style="{StaticResource MaterialDesignFloatingActionMiniButton}" />
+        </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,0,16,32" UniqueKey="shadow_13">
-        <Button materialDesign:ElevationAssist.Elevation="Dp16"
-                Content="16"
-                Style="{StaticResource MaterialDesignFloatingActionMiniButton}" />
-      </smtx:XamlDisplay>
+        <smtx:XamlDisplay Margin="0,0,16,32" UniqueKey="shadow_12">
+          <Button materialDesign:ElevationAssist.Elevation="Dp12"
+                  Content="12"
+                  Style="{StaticResource MaterialDesignFloatingActionMiniButton}" />
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Margin="0,0,16,32" UniqueKey="shadow_13">
+          <Button materialDesign:ElevationAssist.Elevation="Dp16"
+                  Content="16"
+                  Style="{StaticResource MaterialDesignFloatingActionMiniButton}" />
+        </smtx:XamlDisplay>
+      </WrapPanel>
+
     </WrapPanel>
 
     <WrapPanel Margin="0,12,0,0" Orientation="Horizontal">
