@@ -5,7 +5,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
-             d:DesignHeight="400"
+             d:DesignHeight="1080"
              d:DesignWidth="600"
              mc:Ignorable="d">
 
@@ -38,16 +38,10 @@
     </Style>
   </UserControl.Resources>
 
-  <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-    </Grid.RowDefinitions>
+  <StackPanel>
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Expander" />
 
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="800" />
-      <ColumnDefinition Width="Auto" />
-    </Grid.ColumnDefinitions>
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Default" />
     <smtx:XamlDisplay UniqueKey="explander_1">
       <StackPanel>
         <Expander HorizontalAlignment="Stretch" Header="Expander Example 1a">
@@ -92,10 +86,11 @@
       </StackPanel>
     </smtx:XamlDisplay>
 
-    <smtx:XamlDisplay Grid.Row="1"
-                      Grid.Column="0"
-                      Margin="4,24,0,0"
-                      UniqueKey="expander_2">
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+
+
+
+    <smtx:XamlDisplay UniqueKey="expander_2">
       <materialDesign:Card>
         <StackPanel>
           <Expander HorizontalAlignment="Stretch" Header="Expander Example 2a">
@@ -132,12 +127,11 @@
       </materialDesign:Card>
     </smtx:XamlDisplay>
 
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <smtx:XamlDisplay Grid.Row="0"
-                      Grid.RowSpan="2"
-                      Grid.Column="1"
-                      Margin="8"
-                      HorizontalAlignment="Left"
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Rotated" />
+
+    <smtx:XamlDisplay HorizontalAlignment="Left"
                       VerticalAlignment="Stretch"
                       UniqueKey="expander_3">
       <StackPanel Orientation="Horizontal">
@@ -216,6 +210,6 @@
         </Expander>
       </StackPanel>
     </smtx:XamlDisplay>
-  </Grid>
+  </StackPanel>
 </UserControl>
 
