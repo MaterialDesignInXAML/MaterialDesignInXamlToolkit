@@ -6,13 +6,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
-             d:DesignHeight="300"
-             d:DesignWidth="300"
+             d:DesignHeight="1080"
+             d:DesignWidth="1080"
              mc:Ignorable="d">
   <DockPanel>
-    <StackPanel Margin="8,4,8,0"
-                DockPanel.Dock="Top"
-                Orientation="Horizontal">
+    <TextBlock DockPanel.Dock="Top" Style="{StaticResource PageTitleTextBlock}" Text="Drawers" />
+
+    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
       <TextBlock VerticalAlignment="Center" Text="Black Overlay Background" />
 
       <ToggleButton x:Name="BackgroundToggle" Margin="8,0,16,0" />
@@ -28,9 +28,7 @@
       </ComboBox>
     </StackPanel>
 
-    <smtx:XamlDisplay MaxHeight="{x:Static system:Double.MaxValue}"
-                      Margin="5"
-                      UniqueKey="drawers_1">
+    <smtx:XamlDisplay MaxHeight="{x:Static system:Double.MaxValue}" UniqueKey="drawers_1">
       <materialDesign:DrawerHost x:Name="DrawerHost"
                                  Width="480"
                                  Height="480"
