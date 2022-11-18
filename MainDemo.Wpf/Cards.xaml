@@ -23,7 +23,7 @@
     <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Cards" />
 
     <WrapPanel>
-      <smtx:XamlDisplay Margin="0,0,8,0" UniqueKey="cards_1">
+      <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="cards_1">
         <materialDesign:Card Width="200">
           <Grid>
             <Grid.RowDefinitions>
@@ -73,7 +73,7 @@
           </Grid>
         </materialDesign:Card>
       </smtx:XamlDisplay>
-      <smtx:XamlDisplay Margin="8,0" UniqueKey="cards_1b">
+      <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="cards_1b">
         <materialDesign:Card Width="200" Style="{StaticResource MaterialDesignOutlinedCard}">
           <Grid>
             <Grid.RowDefinitions>
@@ -123,7 +123,7 @@
           </Grid>
         </materialDesign:Card>
       </smtx:XamlDisplay>
-      <smtx:XamlDisplay Margin="8,0"
+      <smtx:XamlDisplay Margin="0,0,8,8"
                         VerticalContentAlignment="Top"
                         UniqueKey="cards_2">
         <materialDesign:Card Width="220">
@@ -216,7 +216,7 @@
           </Grid>
         </materialDesign:Card>
       </smtx:XamlDisplay>
-      <StackPanel>
+      <StackPanel Margin="0,0,8,8">
         <smtx:XamlDisplay Margin="0,0,0,16"
                           VerticalContentAlignment="Top"
                           UniqueKey="cards_3">

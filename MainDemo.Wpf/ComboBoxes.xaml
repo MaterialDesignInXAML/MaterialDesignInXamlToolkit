@@ -19,8 +19,10 @@
     </Style>
   </UserControl.Resources>
 
-  <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
-    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Comboboxes" />
+  <StackPanel VerticalAlignment="Top">
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="ComboBoxes" />
+
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Default" />
 
     <StackPanel Orientation="Horizontal">
       <StackPanel.Resources>
@@ -126,10 +128,9 @@
     </StackPanel>
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
-    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="ComboBoxes with long lists" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Long lists" />
 
     <StackPanel Orientation="Horizontal">
-
       <smtx:XamlDisplay Margin="0" UniqueKey="comboboxes_5">
         <ComboBox MinWidth="72"
                   materialDesign:HintAssist.Hint="Virtualisation"
@@ -189,11 +190,12 @@
 
     <StackPanel Margin="0,40,0,0" Orientation="Horizontal">
       <materialDesign:PackIcon Margin="0,0,5,0" Kind="Information" />
-      <TextBlock>ComboBoxes are virtualized by default in the library</TextBlock>
+      <TextBlock VerticalAlignment="Center" Text="ComboBoxes are virtualized by default in the library" />
+
     </StackPanel>
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
-    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Filled ComboBox" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Filled style" />
 
     <StackPanel Orientation="Horizontal">
       <smtx:XamlDisplay Margin="0,0,8,0"
@@ -260,7 +262,7 @@
     </StackPanel>
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
-    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Outlined ComboBox" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Outlined style" />
 
     <StackPanel Margin="0,0,0,16" Orientation="Horizontal">
       <smtx:XamlDisplay Margin="0,0,8,0"

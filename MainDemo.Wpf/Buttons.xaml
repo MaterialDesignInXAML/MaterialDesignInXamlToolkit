@@ -31,6 +31,8 @@
   </UserControl.Resources>
   <StackPanel>
     <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Buttons" />
+
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Default" />
     <StackPanel>
       <StackPanel.Resources>
         <system:Double x:Key="IconSize">24</system:Double>
@@ -498,7 +500,7 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Buttons - With Custom Corner Radius" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Corner radius" />
 
     <StackPanel Orientation="Horizontal">
       <StackPanel.Resources>
@@ -557,7 +559,7 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Buttons - With Progress" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Progress" />
 
     <StackPanel>
       <StackPanel Margin="0,0,0,16" Orientation="Horizontal">
@@ -751,7 +753,7 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="PopupBox" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="PopupBox" />
 
     <StackPanel Orientation="Horizontal">
       <smtx:XamlDisplay Margin="0,0,8,0" UniqueKey="buttons_10">
@@ -898,7 +900,7 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Buttons - With Custom Animation Duration" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Custom animation" />
 
     <StackPanel Orientation="Horizontal">
       <smtx:XamlDisplay Margin="0,0,8,0" UniqueKey="button_duration_1">

@@ -247,7 +247,10 @@ public class MainWindowViewModel : ViewModelBase
                 DocumentationLink.DemoPageLink<Cards>(),
                 DocumentationLink.StyleLink("Card"),
                 DocumentationLink.ApiLink<Card>()
-            });
+            })
+        {
+            HorizontalScrollBarVisibilityRequirement = ScrollBarVisibility.Disabled
+        };
 
         yield return new DemoItem(
             "Icon Pack",
@@ -266,7 +269,7 @@ public class MainWindowViewModel : ViewModelBase
         };
 
         yield return new DemoItem(
-            "Colour Zones",
+            "Color Zones",
             typeof(ColorZones),
             new[]
             {

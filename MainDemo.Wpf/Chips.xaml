@@ -9,7 +9,9 @@
              d:DesignWidth="1000"
              mc:Ignorable="d">
   <StackPanel>
-    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Action Chips" />
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Chips" />
+    
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Action" />
 
     <StackPanel>
       <WrapPanel smtx:XamlDisplay.Ignore="This" Orientation="Horizontal">
@@ -118,7 +120,7 @@
     </StackPanel>
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
-    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Filter Chips" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Filter" />
 
     <StackPanel>
       <WrapPanel smtx:XamlDisplay.Ignore="This" Orientation="Horizontal">
@@ -231,7 +233,7 @@
     </StackPanel>
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
-    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Choice Chips" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Choice" />
 
     <StackPanel>
       <WrapPanel smtx:XamlDisplay.Ignore="This" Orientation="Horizontal">

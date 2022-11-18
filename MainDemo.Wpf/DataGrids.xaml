@@ -20,12 +20,12 @@
   </UserControl.Resources>
 
   <StackPanel>
-    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Custom Columns" />
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="DataGrid" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Custom Columns" />
 
     <StackPanel Margin="0,0,0,8" Orientation="Horizontal">
       <TextBlock Margin="0,0,8,0"
                  VerticalAlignment="Center"
-                 Style="{StaticResource MaterialDesignBody1TextBlock}"
                  Text="SelectionUnit:" />
       <ComboBox x:Name="selectionUnitComboBox"
                 VerticalAlignment="Center"
@@ -160,7 +160,7 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Auto Generated Columns" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Auto Generated Columns" />
 
     <smtx:XamlDisplay UniqueKey="grids_2">
       <DataGrid CanUserAddRows="False"
@@ -171,7 +171,7 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Custom Padding" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Custom Padding" />
 
     <smtx:XamlDisplay UniqueKey="grids_3">
       <DataGrid materialDesign:DataGridAssist.CellPadding="4 2 2 2"
@@ -184,7 +184,7 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Custom Selected Cell Border Brush" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Custom Selected Cell Border Brush" />
 
     <smtx:XamlDisplay UniqueKey="grids_4">
       <DataGrid materialDesign:DataGridAssist.SelectedCellBorderBrush="Crimson"
