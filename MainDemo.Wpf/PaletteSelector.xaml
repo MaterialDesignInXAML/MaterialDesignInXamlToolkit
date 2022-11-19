@@ -48,7 +48,7 @@
 
           <TextBlock Grid.ColumnSpan="2"
                      Margin="8"
-                     Text="{Binding Name}" />
+                     Text="{Binding Name, Mode=OneTime}" />
 
           <Border Grid.Row="1"
                   Grid.Column="0"

@@ -17,6 +17,7 @@
   <converters:FloatingHintOffsetCalculationConverter x:Key="FloatingHintOffsetCalculationConverter" />
   <converters:CursorConverter x:Key="ArrowCursorConverter" FallbackCursor="Arrow" />
   <converters:CursorConverter x:Key="IBeamCursorConverter" FallbackCursor="IBeam" />
+  <converters:StringLengthValueConverter x:Key="StringLengthValueConverter" />
 
   <Style x:Key="MaterialDesignCharacterCounterTextBlock"
          TargetType="TextBlock"
@@ -27,7 +28,8 @@
     <Setter Property="Text">
       <Setter.Value>
         <MultiBinding StringFormat="{}{0} / {1}">
-          <Binding Path="Text.Length" RelativeSource="{RelativeSource FindAncestor, AncestorType=TextBoxBase}" />
+          <Binding Path="Text" Converter="{StaticResource StringLengthValueConverter}"
+                   RelativeSource="{RelativeSource FindAncestor, AncestorType=TextBoxBase}" />
           <Binding Path="MaxLength" RelativeSource="{RelativeSource FindAncestor, AncestorType=TextBoxBase}" />
         </MultiBinding>
       </Setter.Value>

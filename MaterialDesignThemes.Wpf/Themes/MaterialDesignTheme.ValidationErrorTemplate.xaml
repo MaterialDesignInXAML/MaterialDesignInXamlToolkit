@@ -11,7 +11,7 @@
                    HorizontalAlignment="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.HorizontalAlignment)}"
                    FontSize="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.FontSize)}"
                    Foreground="{DynamicResource MaterialDesignValidationErrorBrush}"
-                   Text="{Binding ErrorContent}"
+                   Text="{Binding ErrorContent, Mode=OneTime}"
                    TextWrapping="Wrap"
                    UseLayoutRounding="false" />
       </DataTemplate>
@@ -26,7 +26,7 @@
                    HorizontalAlignment="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.HorizontalAlignment)}"
                    FontSize="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.FontSize)}"
                    Foreground="{DynamicResource MaterialDesignValidationErrorBrush}"
-                   Text="{Binding CurrentItem.ErrorContent}"
+                   Text="{Binding CurrentItem.ErrorContent, Mode=OneTime}"
                    TextWrapping="Wrap"
                    UseLayoutRounding="false" />
       </Border>
@@ -40,7 +40,7 @@
                      HorizontalAlignment="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.HorizontalAlignment)}"
                      FontSize="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.FontSize)}"
                      Foreground="{DynamicResource MaterialDesignValidationErrorBrush}"
-                     Text="{Binding CurrentItem.ErrorContent}"
+                     Text="{Binding CurrentItem.ErrorContent, Mode=OneTime}"
                      TextWrapping="Wrap"
                      UseLayoutRounding="false" />
         </Border>

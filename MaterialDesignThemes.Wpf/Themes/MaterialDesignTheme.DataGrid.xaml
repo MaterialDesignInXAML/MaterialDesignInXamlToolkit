@@ -17,6 +17,7 @@
   <converters:TopThicknessConverter x:Key="TopThicknessConverter" />
   <converters:RemoveAlphaBrushConverter x:Key="RemoveAlphaBrushConverter" />
   <converters:GridLinesVisibilityBorderToThicknessConverter x:Key="GridLinesVisibilityBorderToThicknessConverter" />
+  <converters:StringLengthValueConverter x:Key="StringLengthValueConverter" />
 
   <Style x:Key="MaterialDesignDataGridCheckBoxColumnStyle"
          TargetType="{x:Type CheckBox}"
@@ -189,7 +190,8 @@
                                Visibility="{TemplateBinding MaxLength, Converter={StaticResource NotZeroToVisibilityConverter}}">
                       <TextBlock.Text>
                         <MultiBinding StringFormat="{}{0}/{1}">
-                          <Binding Path="Text.Length" RelativeSource="{RelativeSource TemplatedParent}" />
+                          <Binding Path="Text" Converter="{StaticResource StringLengthValueConverter}"
+                                   RelativeSource="{RelativeSource TemplatedParent}" />
                           <Binding Path="MaxLength" RelativeSource="{RelativeSource TemplatedParent}" />
                         </MultiBinding>
                       </TextBlock.Text>

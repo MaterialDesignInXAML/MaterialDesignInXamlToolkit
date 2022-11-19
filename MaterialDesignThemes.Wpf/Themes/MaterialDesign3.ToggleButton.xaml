@@ -2,10 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
-                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
+                    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
 
   <!-- TODO freeze, share -->
-  <SolidColorBrush x:Key="AttentionToActionBrush" Opacity=".23" Color="Black" />
+  <SolidColorBrush x:Key="AttentionToActionBrush" Opacity=".23" Color="Black" po:Freeze="True" />
 
   <converters:MathConverter x:Key="DivisionMathConverter" Operation="Divide" />
   <converters:PointValueConverter x:Key="PointValueConverter" />

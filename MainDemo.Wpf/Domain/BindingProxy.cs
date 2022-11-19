@@ -1,16 +1,13 @@
-namespace MaterialDesignDemo.Domain
+namespace MaterialDesignDemo.Domain;
+
+public class BindingProxy : DependencyObject
 {
-    public class BindingProxy : Freezable
+    public object? Data
     {
-        protected override Freezable CreateInstanceCore() => new BindingProxy();
-
-        public object? Data
-        {
-            get => GetValue(DataProperty);
-            set => SetValue(DataProperty, value);
-        }
-
-        public static readonly DependencyProperty DataProperty =
-            DependencyProperty.Register("Data", typeof(object), typeof(BindingProxy), new UIPropertyMetadata(null));
+        get => GetValue(DataProperty);
+        set => SetValue(DataProperty, value);
     }
+
+    public static readonly DependencyProperty DataProperty =
+        DependencyProperty.Register("Data", typeof(object), typeof(BindingProxy), new UIPropertyMetadata(null));
 }
