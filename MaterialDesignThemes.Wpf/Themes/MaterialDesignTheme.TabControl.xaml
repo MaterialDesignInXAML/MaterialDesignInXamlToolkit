@@ -244,7 +244,6 @@
     <!-- Foreground is for the content, not the header -->
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabControl}}, Path=(TextElement.Foreground)}" />
     <Setter Property="Height" Value="48" />
-    <Setter Property="MaxWidth" Value="360" />
     <Setter Property="MinWidth" Value="90" />
     <Setter Property="Padding" Value="16,12" />
     <Setter Property="Template">
