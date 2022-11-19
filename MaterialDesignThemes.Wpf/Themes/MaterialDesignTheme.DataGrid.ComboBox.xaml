@@ -299,6 +299,7 @@
       </Setter.Value>
     </Setter>
     <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMarginEmbedded}" />
+    <Setter Property="CaretBrush" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
   </Style>
 
   <ControlTemplate x:Key="MaterialDesignDataGridComboBoxEditableTemplate" TargetType="{x:Type ComboBox}">
