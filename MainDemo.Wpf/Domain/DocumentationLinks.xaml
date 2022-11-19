@@ -18,7 +18,7 @@
       </ResourceDictionary.MergedDictionaries>
       <DataTemplate DataType="{x:Type domain:DocumentationLink}">
         <Button x:Name="Root"
-                Command="{Binding Open}"
+                Command="{Binding Open, Mode=OneTime}"
                 Style="{StaticResource MaterialDesignFlatButton}"
                 ToolTip="Wiki Article"
                 ToolTipService.InitialShowDelay="0">
@@ -28,27 +28,27 @@
                                      Kind="BookOpenVariant" />
             <TextBlock Margin="8,0,0,0"
                        Style="{StaticResource MaterialDesignBody1TextBlock}"
-                       Text="{Binding Label, Mode=OneWay}" />
+                       Text="{Binding Label, Mode=OneTime}" />
           </StackPanel>
         </Button>
         <DataTemplate.Triggers>
-          <DataTrigger Binding="{Binding Type}" Value="DemoPageSource">
+          <DataTrigger Binding="{Binding Type, Mode=OneTime}" Value="DemoPageSource">
             <Setter TargetName="PackIcon" Property="Kind" Value="Xml" />
             <Setter TargetName="Root" Property="ToolTip" Value="Demo Source" />
           </DataTrigger>
-          <DataTrigger Binding="{Binding Type}" Value="StyleSource">
+          <DataTrigger Binding="{Binding Type, Mode=OneTime}" Value="StyleSource">
             <Setter TargetName="PackIcon" Property="Kind" Value="Brush" />
             <Setter TargetName="Root" Property="ToolTip" Value="Style Source" />
           </DataTrigger>
-          <DataTrigger Binding="{Binding Type}" Value="Video">
+          <DataTrigger Binding="{Binding Type, Mode=OneTime}" Value="Video">
             <Setter TargetName="PackIcon" Property="Kind" Value="YoutubePlay" />
             <Setter TargetName="Root" Property="ToolTip" Value="Video Help" />
           </DataTrigger>
-          <DataTrigger Binding="{Binding Type}" Value="ControlSource">
+          <DataTrigger Binding="{Binding Type, Mode=OneTime}" Value="ControlSource">
             <Setter TargetName="PackIcon" Property="Kind" Value="CodeBraces" />
             <Setter TargetName="Root" Property="ToolTip" Value="Object Source/API" />
           </DataTrigger>
-          <DataTrigger Binding="{Binding Type}" Value="Specs">
+          <DataTrigger Binding="{Binding Type, Mode=OneTime}" Value="Specs">
             <Setter TargetName="PackIcon" Property="Kind" Value="MaterialDesign" />
             <Setter TargetName="Root" Property="ToolTip" Value="Material Design Specs" />
           </DataTrigger>

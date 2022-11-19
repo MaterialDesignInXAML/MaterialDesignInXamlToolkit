@@ -534,8 +534,8 @@
                   <StackPanel Orientation="Horizontal">
                     <TextBlock Width="80"
                                VerticalAlignment="Center"
-                               Text="{Binding Name}" />
-                    <ItemsControl ItemTemplate="{StaticResource SwatchColorTemplate}" ItemsSource="{Binding Hues}">
+                               Text="{Binding Name, Mode=OneTime}" />
+                    <ItemsControl ItemTemplate="{StaticResource SwatchColorTemplate}" ItemsSource="{Binding Hues, Mode=OneTime}">
                       <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                           <VirtualizingStackPanel Orientation="Horizontal" />
