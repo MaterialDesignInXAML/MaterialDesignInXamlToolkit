@@ -21,7 +21,7 @@
   </UserControl.Resources>
 
   <StackPanel>
-    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Dialogs" />
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Dialog" />
 
     <TextBlock MaxWidth="700"
                HorizontalAlignment="Left"

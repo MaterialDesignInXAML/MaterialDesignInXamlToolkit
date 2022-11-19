@@ -118,7 +118,7 @@
   <DockPanel>
     <TextBlock DockPanel.Dock="Top"
                Style="{StaticResource PageTitleTextBlock}"
-               Text="Color tool" />
+               Text="ColorTool" />
 
     <local:ThemeSettings Margin="0,0,0,8" DockPanel.Dock="Top" />
 

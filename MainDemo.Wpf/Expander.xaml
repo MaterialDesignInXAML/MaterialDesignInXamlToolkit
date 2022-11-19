@@ -87,9 +87,7 @@
     </smtx:XamlDisplay>
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
-
-
-
+    
     <smtx:XamlDisplay UniqueKey="expander_2">
       <materialDesign:Card>
         <StackPanel>

@@ -20,7 +20,7 @@
     </ResourceDictionary>
   </UserControl.Resources>
   <StackPanel>
-    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Cards" />
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Card" />
 
     <WrapPanel>
       <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="cards_1">

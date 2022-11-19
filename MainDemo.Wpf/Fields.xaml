@@ -30,7 +30,7 @@
     </Style>
   </UserControl.Resources>
   <StackPanel>
-    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Fields" />
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Field" />
     <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Common" />
 
     <WrapPanel>

@@ -10,7 +10,7 @@
              d:DesignWidth="1080"
              mc:Ignorable="d">
   <DockPanel>
-    <TextBlock DockPanel.Dock="Top" Style="{StaticResource PageTitleTextBlock}" Text="Drawers" />
+    <TextBlock DockPanel.Dock="Top" Style="{StaticResource PageTitleTextBlock}" Text="Drawer" />
 
     <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
       <TextBlock VerticalAlignment="Center" Text="Black Overlay Background" />

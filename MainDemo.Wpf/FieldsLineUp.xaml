@@ -8,7 +8,7 @@
              d:DesignWidth="1920"
              mc:Ignorable="d">
   <StackPanel>
-    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Fields line up" />
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Field line up" />
 
     <TextBlock MaxWidth="700"
                Margin="0,0,0,32"

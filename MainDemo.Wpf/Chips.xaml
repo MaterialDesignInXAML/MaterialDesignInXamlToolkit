@@ -9,7 +9,7 @@
              d:DesignWidth="1000"
              mc:Ignorable="d">
   <StackPanel>
-    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Chips" />
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Chip" />
     
     <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Action" />
 

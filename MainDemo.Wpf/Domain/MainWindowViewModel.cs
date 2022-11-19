@@ -25,6 +25,9 @@ public class MainWindowViewModel : ViewModelBase
                     DocumentationLink.DemoPageLink<Home>()
                 }
             )
+            {
+                HorizontalScrollBarVisibilityRequirement = ScrollBarVisibility.Disabled
+            }
         });
 
         foreach (var item in GenerateDemoItems(snackbarMessageQueue).OrderBy(i => i.Name))

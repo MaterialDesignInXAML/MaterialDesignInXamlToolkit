@@ -30,7 +30,7 @@
     </ResourceDictionary>
   </UserControl.Resources>
   <StackPanel>
-    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Buttons" />
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Button" />
 
     <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Default" />
     <StackPanel>
@@ -500,7 +500,7 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Corner radius" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Corner Radius" />
 
     <StackPanel Orientation="Horizontal">
       <StackPanel.Resources>
@@ -900,7 +900,7 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Custom animation" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Custom Animation" />
 
     <StackPanel Orientation="Horizontal">
       <smtx:XamlDisplay Margin="0,0,8,0" UniqueKey="button_duration_1">

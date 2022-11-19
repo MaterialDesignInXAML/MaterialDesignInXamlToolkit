@@ -184,7 +184,7 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Custom Selected Cell Border Brush" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Custom SelectedCellBorderBrush" />
 
     <smtx:XamlDisplay UniqueKey="grids_4">
       <DataGrid materialDesign:DataGridAssist.SelectedCellBorderBrush="Crimson"
