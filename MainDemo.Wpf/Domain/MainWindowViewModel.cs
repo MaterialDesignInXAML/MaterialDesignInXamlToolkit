@@ -125,7 +125,7 @@ public class MainWindowViewModel : ViewModelBase
             });
 
         yield return new DemoItem(
-            "Color Tool",
+            "ColorTool",
             typeof(ColorTool),
             new[]
             {
@@ -138,7 +138,7 @@ public class MainWindowViewModel : ViewModelBase
             });
 
         yield return new DemoItem(
-            "Buttons",
+            "Button",
             typeof(Buttons),
             new[]
             {
@@ -151,7 +151,7 @@ public class MainWindowViewModel : ViewModelBase
             });
 
         yield return new DemoItem(
-            "Toggles",
+            "Toggle",
             typeof(Toggles),
             new[]
             {
@@ -162,7 +162,7 @@ public class MainWindowViewModel : ViewModelBase
             });
 
         yield return new DemoItem(
-            "Rating Bar",
+            "RatingBar",
             typeof(RatingBar),
             new[]
             {
@@ -172,7 +172,7 @@ public class MainWindowViewModel : ViewModelBase
             });
 
         yield return new DemoItem(
-            "Fields",
+            "Field",
             typeof(Fields),
             new[]
             {
@@ -184,7 +184,7 @@ public class MainWindowViewModel : ViewModelBase
         };
 
         yield return new DemoItem(
-            "Fields line up",
+            "Field line up",
             typeof(FieldsLineUp),
             new[]
             {
@@ -192,7 +192,7 @@ public class MainWindowViewModel : ViewModelBase
             });
 
         yield return new DemoItem(
-            "ComboBoxes",
+            "ComboBox",
             typeof(ComboBoxes),
             new[]
             {
@@ -201,7 +201,7 @@ public class MainWindowViewModel : ViewModelBase
             });
 
         yield return new DemoItem(
-            "Pickers",
+            "Picker",
             typeof(Pickers),
             new[]
             {
@@ -212,7 +212,7 @@ public class MainWindowViewModel : ViewModelBase
             });
 
         yield return new DemoItem(
-            "Sliders",
+            "Slider",
             typeof(Sliders),
             new[]
             {
@@ -221,7 +221,7 @@ public class MainWindowViewModel : ViewModelBase
             });
 
         yield return new DemoItem(
-            "Chips",
+            "Chip",
             typeof(Chips),
             new[]
             {
@@ -243,7 +243,7 @@ public class MainWindowViewModel : ViewModelBase
         };
 
         yield return new DemoItem(
-            "Cards",
+            "Card",
             typeof(Cards),
             new[]
             {
@@ -256,7 +256,7 @@ public class MainWindowViewModel : ViewModelBase
         };
 
         yield return new DemoItem(
-            "Icon Pack",
+            "Icons",
             typeof(IconPack),
             new[]
             {
@@ -272,7 +272,7 @@ public class MainWindowViewModel : ViewModelBase
         };
 
         yield return new DemoItem(
-            "Color Zones",
+            "ColorZone",
             typeof(ColorZones),
             new[]
             {
@@ -281,7 +281,7 @@ public class MainWindowViewModel : ViewModelBase
             });
 
         yield return new DemoItem(
-            "Lists",
+            "List",
             typeof(Lists),
             new[]
             {
@@ -292,7 +292,7 @@ public class MainWindowViewModel : ViewModelBase
             });
 
         yield return new DemoItem(
-            "Tabs",
+            "Tab",
             typeof(Tabs),
             new[]
             {
@@ -301,7 +301,7 @@ public class MainWindowViewModel : ViewModelBase
             });
 
         yield return new DemoItem(
-            "Trees",
+            "Tree",
             typeof(Trees),
             new[]
             {
@@ -311,7 +311,7 @@ public class MainWindowViewModel : ViewModelBase
             });
 
         yield return new DemoItem(
-            "Data Grids",
+            "DataGrid",
             typeof(DataGrids),
             new[]
             {
@@ -330,16 +330,19 @@ public class MainWindowViewModel : ViewModelBase
             });
 
         yield return new DemoItem(
-            "Group Boxes",
+            "GroupBox",
             typeof(GroupBoxes),
             new[]
             {
                 DocumentationLink.DemoPageLink<GroupBoxes>(),
                 DocumentationLink.StyleLink("GroupBox")
-            });
+            })
+        {
+            HorizontalScrollBarVisibilityRequirement = ScrollBarVisibility.Disabled,
+        };
 
         yield return new DemoItem(
-            "Menus & Tool Bars",
+            "Menu & ToolBar",
             typeof(MenusAndToolBars),
             new[]
             {
@@ -349,7 +352,7 @@ public class MainWindowViewModel : ViewModelBase
             });
 
         yield return new DemoItem(
-            "Progress Indicators",
+            "Progress Indicator",
             typeof(Progress),
             new[]
             {
@@ -358,7 +361,7 @@ public class MainWindowViewModel : ViewModelBase
             });
 
         yield return new DemoItem(
-            "Navigation Rail",
+            "NavigationRail",
             typeof(NavigationRail),
             new[]
             {
@@ -367,7 +370,7 @@ public class MainWindowViewModel : ViewModelBase
             });
 
         yield return new DemoItem(
-            "Dialogs",
+            "Dialog",
             typeof(Dialogs),
             new[]
             {
@@ -405,7 +408,7 @@ public class MainWindowViewModel : ViewModelBase
         };
 
         yield return new DemoItem(
-            "Transitions",
+            "Transition",
             typeof(Transitions),
             new[]
             {

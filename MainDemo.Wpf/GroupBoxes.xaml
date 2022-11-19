@@ -17,18 +17,9 @@
     </ResourceDictionary>
   </UserControl.Resources>
 
-  <Grid>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition />
-      <ColumnDefinition />
-      <ColumnDefinition />
-    </Grid.ColumnDefinitions>
+  <StackPanel>
+    <TextBlock Text="GroupBox" Style="{StaticResource PageTitleTextBlock}" />
 
-    <Grid.RowDefinitions>
-      <RowDefinition />
-      <RowDefinition />
-      <RowDefinition />
-    </Grid.RowDefinitions>
     <smtx:XamlDisplay Grid.Row="0"
                       Grid.Column="0"
                       UniqueKey="groupbox_1">
@@ -174,7 +165,7 @@
                Source="Resources/Contact.png" />
       </GroupBox>
     </smtx:XamlDisplay>
-  </Grid>
+  </StackPanel>
 </UserControl>
 
 
