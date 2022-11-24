@@ -292,7 +292,10 @@ public class MainWindowViewModel : ViewModelBase
                 DocumentationLink.DemoPageLink<ListsAndGridsViewModel>("Demo View Model", "Domain"),
                 DocumentationLink.StyleLink("ListBox"),
                 DocumentationLink.StyleLink("ListView")
-            });
+            })
+        {
+            HorizontalScrollBarVisibilityRequirement = ScrollBarVisibility.Disabled,
+        };
 
         yield return new DemoItem(
             "Tab",
