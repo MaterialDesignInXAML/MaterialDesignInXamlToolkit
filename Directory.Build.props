@@ -1,10 +1,9 @@
 <Project>
   <PropertyGroup>
-    <Copyright>Copyright © 2020</Copyright>
+    <Copyright>Copyright © 2022</Copyright>
     <Company>Mulholland Software/James Willock</Company>
 
-    <Configurations>Debug;Release</Configurations>
-    <LangVersion>10.0</LangVersion>
+    <LangVersion>11.0</LangVersion>
     <ErrorReport>prompt</ErrorReport>
 
     <SignAssembly>true</SignAssembly>

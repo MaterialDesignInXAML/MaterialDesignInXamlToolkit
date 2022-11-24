@@ -40,26 +40,12 @@ function Update-Versions {
 
   foreach($dependency in $xml.package.metadata.dependencies.group.dependency){
     if ($dependency.id -eq "MaterialDesignColors") {
-      $dependency.version = Get-VersionString $MDIXColorsVersion
+      $dependency.version = $MDIXColorsVersion
     } elseif ($dependency.id -eq "MaterialDesignThemes") {
-      $dependency.version = Get-VersionString $MDIXVersion
+      $dependency.version = $MDIXVersion
     }
   }
   $xml.Save($Path)
-}
-
-function Get-VersionString {
-  param (
-    [string]$Version
-  )
-
-  $callback = {
-    [int]$args[0].Groups[1].Value + 1
-  }
-
-  $re = [regex]"^(\d+).*"
-  $nextVersion = $re.Replace($Version, $callback)
-  return "[$Version,$nextVersion.0)"
 }
 
 function New-Nuget {
