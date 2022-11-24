@@ -75,7 +75,7 @@ namespace mdresgen
 
         private static void GenerateClasses(MdPalette palettes)
         {
-            foreach (var palette in palettes.palettes ?? Enumerable.Empty<MdPalette.palette>())
+            foreach (var palette in palettes.palettes ?? Enumerable.Empty<MdPalette.Palette>())
             {
                 var sb = new StringBuilder();
 
