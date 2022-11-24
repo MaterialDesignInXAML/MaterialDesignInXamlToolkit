@@ -8,7 +8,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <AssemblyTitle>MahMaterialDragablzMashUp</AssemblyTitle>
     <Product>MahMaterialDragablzMashUp</Product>
-    <Prefer32Bit>true</Prefer32Bit>
+    <Prefer32Bit Condition="'$(TargetFramework)' == 'net472'">true</Prefer32Bit>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>

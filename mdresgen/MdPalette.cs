@@ -1,14 +1,13 @@
-﻿namespace mdresgen
-{
-    class MdPalette
-    {
-        public string[]? shades { get; set; }
-        public palette[]? palettes { get; set; }
+﻿namespace mdresgen;
 
-        public class palette
-        {
-            public string? name { get; set; }
-            public string[]? hexes { get; set; }
-        }
+public class MdPalette
+{
+    public string[]? shades { get; set; }
+    public Palette[]? palettes { get; set; }
+
+    public class Palette
+    {
+        public string? name { get; set; }
+        public string[]? hexes { get; set; }
     }
 }
