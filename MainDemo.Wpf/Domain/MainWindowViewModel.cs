@@ -373,7 +373,10 @@ public class MainWindowViewModel : ViewModelBase
             {
                 DocumentationLink.DemoPageLink<NavigationRail>("Demo View"),
                 DocumentationLink.StyleLink("TabControl"),
-            });
+            })
+        {
+            HorizontalScrollBarVisibilityRequirement = ScrollBarVisibility.Disabled,
+        };
 
         yield return new DemoItem(
             "Dialog",
