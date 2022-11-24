@@ -125,7 +125,10 @@ public class MainWindowViewModel : ViewModelBase
                 DocumentationLink.DemoPageLink<PaletteSelector>("Demo View"),
                 DocumentationLink.DemoPageLink<PaletteSelectorViewModel>("Demo View Model"),
                 DocumentationLink.ApiLink<PaletteHelper>()
-            });
+            })
+        {
+            HorizontalScrollBarVisibilityRequirement = ScrollBarVisibility.Disabled
+        };
 
         yield return new DemoItem(
             "ColorTool",
