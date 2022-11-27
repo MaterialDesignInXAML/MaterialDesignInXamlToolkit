@@ -34,20 +34,6 @@
   <system:Boolean x:Key="FalseValue">False</system:Boolean>
   <system:String x:Key="AllowCollapse">AllowCollapse</system:String>
 
-  <Style x:Key="FocusVisual">
-    <Setter Property="Control.Template">
-      <Setter.Value>
-        <ControlTemplate>
-          <Rectangle Margin="2,2,2,2"
-                     SnapsToDevicePixels="True"
-                     Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
-                     StrokeDashArray="1 2"
-                     StrokeThickness="1" />
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
   <ControlTemplate x:Key="PopupContentClassicTemplate" TargetType="ContentControl">
     <Grid MinWidth="{Binding Path=ContentMinWidth, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}" Margin="{Binding Path=ContentMargin, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}">
       <Grid.RowDefinitions>
@@ -203,7 +189,7 @@
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="BorderBrush" Value="Transparent" />
     <Setter Property="BorderThickness" Value="0" />
-    <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
     <Setter Property="Padding" Value="16,8" />
     <Setter Property="SnapsToDevicePixels" Value="True" />

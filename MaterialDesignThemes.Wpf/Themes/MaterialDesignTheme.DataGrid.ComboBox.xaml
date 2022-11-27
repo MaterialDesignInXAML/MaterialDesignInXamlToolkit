@@ -5,25 +5,11 @@
 
   <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
 
-  <Style x:Key="FocusVisual">
-    <Setter Property="Control.Template">
-      <Setter.Value>
-        <ControlTemplate>
-          <Rectangle Margin="2,2,2,2"
-                     SnapsToDevicePixels="true"
-                     Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
-                     StrokeDashArray="1 2"
-                     StrokeThickness="1" />
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
   <Style x:Key="MaterialDesignDataGridComboBoxItemStyle" TargetType="{x:Type ComboBoxItem}">
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="BorderBrush" Value="Transparent" />
     <Setter Property="BorderThickness" Value="0" />
-    <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
     <Setter Property="Padding" Value="8" />
     <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -413,7 +399,6 @@
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
     <Setter Property="BorderThickness" Value="0,0,0,0" />
-    <!-- Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/ -->
     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
     <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignDataGridComboBoxItemStyle}" />

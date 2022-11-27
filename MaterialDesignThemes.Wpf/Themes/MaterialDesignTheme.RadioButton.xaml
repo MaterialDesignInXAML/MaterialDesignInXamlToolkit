@@ -10,39 +10,11 @@
     </ResourceDictionary>
   </ResourceDictionary.MergedDictionaries>
 
-  <Style x:Key="OptionMarkFocusVisual">
-    <Setter Property="Control.Template">
-      <Setter.Value>
-        <ControlTemplate>
-          <Rectangle Margin="0,0,0,0"
-                     SnapsToDevicePixels="true"
-                     Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
-                     StrokeDashArray="1 2"
-                     StrokeThickness="1" />
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
-  <Style x:Key="FocusVisual">
-    <Setter Property="Control.Template">
-      <Setter.Value>
-        <ControlTemplate>
-          <Rectangle Margin="2"
-                     SnapsToDevicePixels="true"
-                     Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
-                     StrokeDashArray="1 2"
-                     StrokeThickness="1" />
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
   <Style x:Key="MaterialDesignRadioButton" TargetType="{x:Type RadioButton}">
     <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
     <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
     <Setter Property="BorderThickness" Value="1" />
-    <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
     <Setter Property="Template">
       <Setter.Value>
@@ -118,7 +90,6 @@
               <BeginStoryboard Storyboard="{StaticResource Click}" />
             </EventTrigger>
             <Trigger Property="HasContent" Value="true">
-              <Setter Property="FocusVisualStyle" Value="{StaticResource OptionMarkFocusVisual}" />
               <Setter Property="Padding" Value="4,2,0,0" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
@@ -169,7 +140,7 @@
 
   <Style x:Key="MaterialDesignUserForegroundRadioButton" TargetType="{x:Type RadioButton}">
     <Setter Property="BorderThickness" Value="1" />
-    <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
     <Setter Property="Template">
       <Setter.Value>
@@ -245,7 +216,6 @@
               <BeginStoryboard Storyboard="{StaticResource Click}" />
             </EventTrigger>
             <Trigger Property="HasContent" Value="true">
-              <Setter Property="FocusVisualStyle" Value="{StaticResource OptionMarkFocusVisual}" />
               <Setter Property="Padding" Value="4,2,0,0" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
@@ -275,7 +245,7 @@
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}" />
     <Setter Property="BorderThickness" Value="0,0,0,2" />
-    <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />
     <Setter Property="MinHeight" Value="32" />
@@ -367,6 +337,7 @@
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}" />
     <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
     <Setter Property="Padding" Value="14,6,14,6" />
     <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -495,6 +466,7 @@
     <Setter Property="Background" Value="{DynamicResource MaterialDesignBody}" />
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="FontSize" Value="13" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
     <Setter Property="Height" Value="32" />
@@ -634,6 +606,7 @@
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignBody}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="FontSize" Value="13" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
     <Setter Property="Height" Value="32" />

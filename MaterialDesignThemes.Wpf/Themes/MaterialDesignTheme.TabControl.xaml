@@ -10,20 +10,6 @@
   <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
   <converters:BorderClipConverter x:Key="BorderClipConverter" />
 
-  <Style x:Key="FocusVisual">
-    <Setter Property="Control.Template">
-      <Setter.Value>
-        <ControlTemplate>
-          <Rectangle Margin="2"
-                     SnapsToDevicePixels="true"
-                     Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
-                     StrokeDashArray="1 2"
-                     StrokeThickness="1" />
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
   <Style x:Key="MaterialDesignTabControlBase" TargetType="{x:Type TabControl}">
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
@@ -240,7 +226,7 @@
 
   <Style x:Key="MaterialDesignTabItem" TargetType="{x:Type TabItem}">
     <Setter Property="Background" Value="Transparent" />
-    <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <!-- Foreground is for the content, not the header -->
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabControl}}, Path=(TextElement.Foreground)}" />
     <Setter Property="Height" Value="48" />

@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
@@ -13,6 +13,7 @@
   <Style x:Key="MaterialDesign3.NavigationRailListBoxItem" TargetType="{x:Type ListBoxItem}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesignBodyLight}" />
     <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="FontSize" Value="12" />
     <Setter Property="FontWeight" Value="Regular" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />

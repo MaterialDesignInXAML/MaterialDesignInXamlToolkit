@@ -14,20 +14,6 @@
     </ResourceDictionary>
   </ResourceDictionary.MergedDictionaries>
 
-  <Style x:Key="FocusVisual">
-    <Setter Property="Control.Template">
-      <Setter.Value>
-        <ControlTemplate>
-          <Rectangle Margin="2"
-                     SnapsToDevicePixels="true"
-                     Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
-                     StrokeDashArray="1 2"
-                     StrokeThickness="1" />
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
   <converters:RangeLengthConverter x:Key="RangeLengthConverter" />
   <converters:MathConverter x:Key="MathAddConverter" Operation="Add" />
   <system:Int32 x:Key="ProgressRingStrokeWidth">8</system:Int32>
@@ -41,7 +27,7 @@
     <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Cursor" Value="Hand" />
-    <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
     <Setter Property="Height" Value="32" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -179,7 +165,7 @@
     <Setter Property="BorderBrush" Value="Transparent" />
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="Cursor" Value="Hand" />
-    <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
     <Setter Property="Height" Value="32" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -505,7 +491,7 @@
     <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Cursor" Value="Hand" />
-    <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
     <Setter Property="Height" Value="40" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -799,7 +785,7 @@
     <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Cursor" Value="Hand" />
-    <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
     <Setter Property="Height" Value="32" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />

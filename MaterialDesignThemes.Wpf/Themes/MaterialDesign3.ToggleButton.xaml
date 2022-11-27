@@ -11,20 +11,6 @@
   <converters:MathConverter x:Key="DivisionMathConverter" Operation="Divide" />
   <converters:PointValueConverter x:Key="PointValueConverter" />
 
-  <Style x:Key="FocusVisual">
-    <Setter Property="Control.Template">
-      <Setter.Value>
-        <ControlTemplate>
-          <Rectangle Margin="2"
-                     SnapsToDevicePixels="true"
-                     Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
-                     StrokeDashArray="1 2"
-                     StrokeThickness="1" />
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
   <wpf:PackIcon x:Key="CheckMarkIcon"
                 Width="24"
                 Height="24"
@@ -50,6 +36,7 @@
     <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="FontSize" Value="18" />
     <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
     <Setter Property="Height" Value="32" />
@@ -230,6 +217,7 @@
 
   <Style x:Key="MaterialDesignFlatToggleButton" TargetType="{x:Type ToggleButton}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesignToolBackground}" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="FontSize" Value="18" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesignToolForeground}" />
     <Setter Property="Height" Value="40" />
@@ -656,7 +644,7 @@
   <Style x:Key="MaterialDesignHamburgerToggleButton" TargetType="{x:Type ToggleButton}">
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="BorderThickness" Value="1" />
-    <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
     <Setter Property="Height" Value="37" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />

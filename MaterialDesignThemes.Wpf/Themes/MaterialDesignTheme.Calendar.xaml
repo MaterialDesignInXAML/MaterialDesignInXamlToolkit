@@ -9,6 +9,7 @@
   <Style x:Key="MaterialDesignCalendarButton" TargetType="{x:Type CalendarButton}">
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="FontSize" Value="12" />
     <Setter Property="Height" Value="48" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -161,6 +162,7 @@
 
   <Style x:Key="MaterialDesignCalendarDayButton" TargetType="{x:Type CalendarDayButton}">
     <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="FontSize" Value="12" />
     <Setter Property="Height" Value="28" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />

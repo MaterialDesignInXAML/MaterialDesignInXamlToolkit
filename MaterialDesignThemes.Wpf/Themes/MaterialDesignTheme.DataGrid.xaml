@@ -215,6 +215,7 @@
   <Style x:Key="{ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}" TargetType="{x:Type Button}">
     <Setter Property="BorderBrush" Value="{Binding HorizontalGridLinesBrush, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
     <Setter Property="BorderThickness" Value="{Binding GridLinesVisibility, RelativeSource={RelativeSource AncestorType=DataGrid}, Converter={StaticResource GridLinesVisibilityBorderToThicknessConverter}}" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type Button}">

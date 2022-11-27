@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
@@ -10,6 +10,7 @@
   </ResourceDictionary.MergedDictionaries>
 
   <Style x:Key="MaterialDesignPopupBoxButton" TargetType="{x:Type Button}">
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
     <Setter Property="HorizontalContentAlignment" Value="Left" />
     <Setter Property="Padding" Value="16,0,16,16" />
@@ -92,6 +93,7 @@
           <ControlTemplate.Resources>
             <Style TargetType="Separator" BasedOn="{StaticResource MaterialDesignSeparator}" />
             <Style x:Key="ToggleButtonStyle" TargetType="ToggleButton">
+              <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
               <Setter Property="Template">
                 <Setter.Value>
                   <ControlTemplate TargetType="ToggleButton">
@@ -198,6 +200,7 @@
               </Style.Setters>
             </Style>
             <Style x:Key="ToggleButtonStyle" TargetType="ToggleButton">
+              <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
               <Setter Property="Template">
                 <Setter.Value>
                   <ControlTemplate TargetType="ToggleButton">

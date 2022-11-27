@@ -10,6 +10,7 @@
   <KeyTime x:Key="CollapseKeyTime">0:0:0.200</KeyTime>
 
   <Style x:Key="MaterialDesignExpanderToggleButton" TargetType="{x:Type ToggleButton}">
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ToggleButton}">
@@ -51,7 +52,7 @@
 
   <Style x:Key="MaterialDesignHorizontalHeaderStyle" TargetType="{x:Type ToggleButton}">
     <Setter Property="Background" Value="Transparent" />
-
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ToggleButton}">
@@ -100,7 +101,7 @@
 
   <Style x:Key="MaterialDesignVerticalHeaderStyle" TargetType="{x:Type ToggleButton}">
     <Setter Property="Background" Value="Transparent" />
-
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ToggleButton}">

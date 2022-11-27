@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
@@ -27,6 +27,7 @@
 
   <Style x:Key="MaterialDesignCalendarMeridiemRadioButton" TargetType="{x:Type RadioButton}">
     <Setter Property="Background" Value="Transparent" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="FontSize" Value="14" />
     <Setter Property="FontWeight" Value="Medium" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
@@ -52,6 +53,7 @@
 
   <Style x:Key="MaterialDesignCalendarMeridiemRadioButtonDefault" TargetType="{x:Type RadioButton}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesignBodyLight}" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="FontSize" Value="14" />
     <Setter Property="FontWeight" Value="Medium" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBodyLight}" />
@@ -77,6 +79,7 @@
 
   <Style x:Key="MaterialDesignCalendarMeridiemRadioButtonThemed" TargetType="{x:Type RadioButton}">
     <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="FontSize" Value="14" />
     <Setter Property="FontWeight" Value="Medium" />
     <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
@@ -110,6 +113,7 @@
         <Style TargetType="{x:Type wpf:ClockItemButton}">
           <Setter Property="Background" Value="Transparent" />
           <Setter Property="Canvas.ZIndex" Value="0" />
+          <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
           <Setter Property="Height" Value="32" />
           <Setter Property="HorizontalContentAlignment" Value="Center" />
           <Setter Property="Template">
@@ -149,6 +153,7 @@
         <Style TargetType="{x:Type wpf:ClockItemButton}">
           <Setter Property="Background" Value="Transparent" />
           <Setter Property="Canvas.ZIndex" Value="1" />
+          <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
           <Setter Property="Height" Value="12" />
           <Setter Property="HorizontalContentAlignment" Value="Center" />
           <Setter Property="Template">
@@ -869,6 +874,7 @@
         <Style TargetType="{x:Type wpf:ClockItemButton}">
           <Setter Property="Background" Value="Transparent" />
           <Setter Property="Canvas.ZIndex" Value="0" />
+          <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
           <Setter Property="Height" Value="32" />
           <Setter Property="HorizontalContentAlignment" Value="Center" />
           <Setter Property="Template">
@@ -909,6 +915,7 @@
         <Style TargetType="{x:Type wpf:ClockItemButton}">
           <Setter Property="Background" Value="Transparent" />
           <Setter Property="Canvas.ZIndex" Value="1" />
+          <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
           <Setter Property="Height" Value="12" />
           <Setter Property="HorizontalContentAlignment" Value="Center" />
           <Setter Property="Template">
@@ -1691,6 +1698,7 @@
         <Style TargetType="{x:Type wpf:ClockItemButton}">
           <Setter Property="Background" Value="Transparent" />
           <Setter Property="Canvas.ZIndex" Value="0" />
+          <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
           <Setter Property="Height" Value="32" />
           <Setter Property="HorizontalContentAlignment" Value="Center" />
           <Setter Property="Template">
@@ -1731,6 +1739,7 @@
         <Style TargetType="{x:Type wpf:ClockItemButton}">
           <Setter Property="Background" Value="Transparent" />
           <Setter Property="Canvas.ZIndex" Value="1" />
+          <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
           <Setter Property="Height" Value="12" />
           <Setter Property="HorizontalContentAlignment" Value="Center" />
           <Setter Property="Template">
@@ -2506,6 +2515,7 @@
         <Style TargetType="{x:Type wpf:ClockItemButton}">
           <Setter Property="Background" Value="Transparent" />
           <Setter Property="Canvas.ZIndex" Value="0" />
+          <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
           <Setter Property="Height" Value="32" />
           <Setter Property="HorizontalContentAlignment" Value="Center" />
           <Setter Property="Template">
@@ -2546,6 +2556,7 @@
         <Style TargetType="{x:Type wpf:ClockItemButton}">
           <Setter Property="Background" Value="Transparent" />
           <Setter Property="Canvas.ZIndex" Value="1" />
+          <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
           <Setter Property="Height" Value="12" />
           <Setter Property="HorizontalContentAlignment" Value="Center" />
           <Setter Property="Template">
@@ -3327,6 +3338,7 @@
         <Style TargetType="{x:Type wpf:ClockItemButton}">
           <Setter Property="Background" Value="Transparent" />
           <Setter Property="Canvas.ZIndex" Value="0" />
+          <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
           <Setter Property="Height" Value="32" />
           <Setter Property="HorizontalContentAlignment" Value="Center" />
           <Setter Property="Template">
@@ -3367,6 +3379,7 @@
         <Style TargetType="{x:Type wpf:ClockItemButton}">
           <Setter Property="Background" Value="Transparent" />
           <Setter Property="Canvas.ZIndex" Value="1" />
+          <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
           <Setter Property="Height" Value="12" />
           <Setter Property="HorizontalContentAlignment" Value="Center" />
           <Setter Property="Template">

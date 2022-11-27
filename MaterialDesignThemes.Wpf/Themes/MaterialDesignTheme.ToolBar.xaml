@@ -21,6 +21,7 @@
 
   <Style x:Key="MaterialDesignToolBarVerticalOverflowButtonStyle" TargetType="{x:Type ToggleButton}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesignToolBarBackground}" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="MinHeight" Value="0" />
     <Setter Property="MinWidth" Value="0" />
     <Setter Property="Template">
@@ -59,6 +60,7 @@
 
   <Style x:Key="MaterialDesignToolBarHorizontalOverflowButtonStyle" TargetType="{x:Type ToggleButton}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesignToolBarBackground}" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="MinHeight" Value="0" />
     <Setter Property="MinWidth" Value="0" />
     <Setter Property="Template">
@@ -328,6 +330,7 @@
 
   <Style x:Key="{x:Static ToolBar.ButtonStyleKey}" TargetType="Button">
     <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />
     <Setter Property="Padding" Value="16" />
