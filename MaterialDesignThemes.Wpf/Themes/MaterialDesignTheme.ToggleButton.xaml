@@ -348,6 +348,7 @@
   </Style>
 
   <Style x:Key="MaterialDesignSwitchToggleButton" TargetType="{x:Type ToggleButton}">
+    <Setter Property="Width" Value="34" />
     <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
@@ -385,7 +386,7 @@
                                Duration="0:0:0.3" />
             </Storyboard>
           </ControlTemplate.Resources>
-          <Viewbox Width="34">
+          <Viewbox Width="{TemplateBinding Width}">
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="CheckStates">
                 <VisualStateGroup.Transitions>
