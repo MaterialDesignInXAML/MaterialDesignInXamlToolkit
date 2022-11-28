@@ -46,4 +46,72 @@ public class TabControlTests : TestBase
 
         recorder.Success();
     }
+
+    [Theory]
+    [InlineData("Center")]
+    [InlineData("Left")]
+    [InlineData("Right")]
+    [InlineData("Stretch")]
+    [InlineData("")]
+    public async Task TabItem_ShouldKeepDataContext_WhenContextMenuOpens(string horizontalContentAlignment)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        string alignment = string.Empty;
+        if (!string.IsNullOrEmpty(horizontalContentAlignment))
+        {
+            alignment = $"HorizontalContentAlignment=\"{horizontalContentAlignment}\"";
+        }
+
+        //Arrange
+        IVisualElement<StackPanel> stackPanel = await LoadXaml<StackPanel>(@$"
+<StackPanel Orientation=""Vertical"">
+  <TabControl
+          {alignment}
+          materialDesign:ColorZoneAssist.Mode=""PrimaryMid""
+          Style=""{{StaticResource MaterialDesignFilledTabControl}}"">
+    <system:String>aaaa</system:String>
+    <system:String>bbbb</system:String>
+    <TabControl.ItemTemplate>
+      <DataTemplate DataType=""system:String"">
+        <TextBlock Text=""{{Binding}}"" />
+      </DataTemplate>
+      </TabControl.ItemTemplate>
+      <TabControl.ContentTemplate>
+      <DataTemplate DataType=""system:String"">
+        <TextBlock Text=""{{Binding}}"" />
+      </DataTemplate>
+    </TabControl.ContentTemplate>
+  </TabControl>
+  <Button Margin=""50"" Width=""200"" Content=""Button with context menu"">
+    <Button.ContextMenu>
+      <ContextMenu>
+        <MenuItem Header=""Menu item"" />
+      </ContextMenu>
+    </Button.ContextMenu>
+  </Button>
+</StackPanel>", ("system", typeof(string)));
+
+        IVisualElement<TabControl> tabControl = await stackPanel.GetElement<TabControl>();
+        IVisualElement<Button> button = await stackPanel.GetElement<Button>();
+
+        // Assert initial data context
+        IVisualElement<TabItem> tabItem = await tabControl.GetElement<TabItem>();
+        object? dataContext = await tabItem.GetProperty<object?>(FrameworkElement.DataContextProperty);
+        Assert.Equal("aaaa", dataContext);
+
+        // Act
+        await button.MoveCursorTo();
+        await button.RightClick();
+        await tabControl.MoveCursorTo();
+        await tabControl.LeftClick(Position.TopLeft);
+        await Task.Delay(50);   // allow a little time for the disconnect to occur
+
+        // Assert data context still present
+        tabItem = await tabControl.GetElement<TabItem>();
+        dataContext = await tabItem.GetProperty<object?>(FrameworkElement.DataContextProperty);
+        Assert.Equal("aaaa", dataContext);
+
+        recorder.Success();
+    }
 }
