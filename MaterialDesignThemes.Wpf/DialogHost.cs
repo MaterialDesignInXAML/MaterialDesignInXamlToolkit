@@ -787,7 +787,7 @@ namespace MaterialDesignThemes.Wpf
 
         protected override void OnPreviewMouseDown(MouseButtonEventArgs e)
         {
-            if (Window.GetWindow(this) is { } window && !window.IsActive)
+            if (Window.GetWindow(this) is { } window && !window.IsActive && window.OwnedWindows.OfType<Window>().All(x => !x.IsActive))
             {
                 window.Activate();
             }
