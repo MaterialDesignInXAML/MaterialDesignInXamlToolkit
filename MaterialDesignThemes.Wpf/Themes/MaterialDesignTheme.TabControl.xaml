@@ -50,14 +50,14 @@
                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                Focusable="False"
-                               IsItemsHost="True"
+                               wpf:TabAssist.BindableIsItemsHost="{Binding IsVisible, RelativeSource={RelativeSource Self}}"
                                KeyboardNavigation.TabIndex="1"
                                Rows="1" />
                   <VirtualizingStackPanel x:Name="HeaderPanel"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           Focusable="False"
-                                          IsItemsHost="True"
+                                          wpf:TabAssist.BindableIsItemsHost="{Binding IsVisible, RelativeSource={RelativeSource Self}}"
                                           KeyboardNavigation.TabIndex="1"
                                           Orientation="Horizontal" />
                 </StackPanel>
@@ -86,6 +86,7 @@
               <Setter TargetName="CenteredHeaderPanel" Property="Visibility" Value="Visible" />
               <Setter TargetName="HeaderPanel" Property="Visibility" Value="Collapsed" />
             </Trigger>
+            
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="HorizontalContentAlignment" Value="Center" />
@@ -127,6 +128,7 @@
                 <Setter TargetName="CenteredHeaderPanel" Property="Visibility" Value="Visible" />
               </MultiTrigger.Setters>
             </MultiTrigger>
+            
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="HorizontalContentAlignment" Value="Right" />
@@ -147,6 +149,7 @@
                 <Setter TargetName="CenteredHeaderPanel" Property="Visibility" Value="Visible" />
               </MultiTrigger.Setters>
             </MultiTrigger>
+            
             <Trigger Property="TabStripPlacement" Value="Bottom">
               <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="Top" />
               <Setter TargetName="PART_HeaderZone" Property="DockPanel.Dock" Value="Bottom" />

@@ -76,8 +76,8 @@ public class TabControlTests : TestBase
       <DataTemplate DataType=""system:String"">
         <TextBlock Text=""{{Binding}}"" />
       </DataTemplate>
-      </TabControl.ItemTemplate>
-      <TabControl.ContentTemplate>
+    </TabControl.ItemTemplate>
+    <TabControl.ContentTemplate>
       <DataTemplate DataType=""system:String"">
         <TextBlock Text=""{{Binding}}"" />
       </DataTemplate>
@@ -97,7 +97,7 @@ public class TabControlTests : TestBase
 
         // Assert initial data context
         IVisualElement<TabItem> tabItem = await tabControl.GetElement<TabItem>();
-        object? dataContext = await tabItem.GetProperty<object?>(FrameworkElement.DataContextProperty);
+        object? dataContext = await tabItem.GetDataContext();
         Assert.Equal("aaaa", dataContext);
 
         // Act
@@ -105,11 +105,11 @@ public class TabControlTests : TestBase
         await button.RightClick();
         await tabControl.MoveCursorTo();
         await tabControl.LeftClick(Position.TopLeft);
-        await Task.Delay(50);   // allow a little time for the disconnect to occur
-
+        await Task.Delay(50); // allow a little time for the disconnect to occur
+        
         // Assert data context still present
         tabItem = await tabControl.GetElement<TabItem>();
-        dataContext = await tabItem.GetProperty<object?>(FrameworkElement.DataContextProperty);
+        dataContext = await tabItem.GetDataContext();
         Assert.Equal("aaaa", dataContext);
 
         recorder.Success();
