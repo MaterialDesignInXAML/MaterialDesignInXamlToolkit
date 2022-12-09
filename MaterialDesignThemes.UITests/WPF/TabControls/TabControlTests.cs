@@ -47,13 +47,19 @@ public class TabControlTests : TestBase
         recorder.Success();
     }
 
+    [Description("Issue 2983")]
     [Theory]
-    [InlineData("Center")]
-    [InlineData("Left")]
-    [InlineData("Right")]
-    [InlineData("Stretch")]
-    [InlineData("")]
-    public async Task TabItem_ShouldKeepDataContext_WhenContextMenuOpens(string horizontalContentAlignment)
+    [InlineData("Center", true)]
+    [InlineData("Center", false)]
+    [InlineData("Left", true)]
+    [InlineData("Left", false)]
+    [InlineData("Right", true)]
+    [InlineData("Right", false)]
+    [InlineData("Stretch", true)]
+    [InlineData("Stretch", false)]
+    [InlineData("", true)]
+    [InlineData("", false)]
+    public async Task TabItem_ShouldKeepDataContext_WhenContextMenuOpens(string horizontalContentAlignment, bool hasUniformTabWidth)
     {
         await using var recorder = new TestRecorder(App);
 
@@ -68,10 +74,11 @@ public class TabControlTests : TestBase
 <StackPanel Orientation=""Vertical"">
   <TabControl
           {alignment}
+          materialDesign:TabAssist.HasUniformTabWidth=""{hasUniformTabWidth}""
           materialDesign:ColorZoneAssist.Mode=""PrimaryMid""
           Style=""{{StaticResource MaterialDesignFilledTabControl}}"">
     <system:String>aaaa</system:String>
-    <system:String>bbbb</system:String>
+    <system:String>bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</system:String>
     <TabControl.ItemTemplate>
       <DataTemplate DataType=""system:String"">
         <TextBlock Text=""{{Binding}}"" />
