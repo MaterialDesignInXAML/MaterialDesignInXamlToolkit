@@ -163,6 +163,28 @@ namespace MaterialDesignThemes.UITests.WPF.PasswordBoxes
             Assert.Equal("2", password2);
 
             recorder.Success();
-        } 
+        }
+
+        [Fact]
+        [Description("Issue 2998")]
+        public async Task PasswordBox_WithRevealStyle_RespectsMaxLength()
+        {
+            await using var recorder = new TestRecorder(App);
+
+            var grid = await LoadXaml<Grid>(@"
+<Grid Margin=""30"">
+    <PasswordBox MaxLength=""5"" Style=""{StaticResource MaterialDesignFloatingHintRevealPasswordBox}"" />
+</Grid>");
+            var passwordBox = await grid.GetElement<PasswordBox>("/PasswordBox");
+            var revealPasswordTextBox = await passwordBox.GetElement<TextBox>("RevealPasswordTextBox");
+
+            int maxLength1 = await passwordBox.GetMaxLength();
+            int maxLength2 = await revealPasswordTextBox.GetMaxLength();
+
+            // Assert
+            Assert.Equal(maxLength1, maxLength2);
+
+            recorder.Success();
+        }
     }
 }
