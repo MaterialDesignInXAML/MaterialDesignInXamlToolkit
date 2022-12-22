@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
@@ -260,6 +260,7 @@
               <Setter TargetName="OverflowButton" Property="Style" Value="{StaticResource MaterialDesignToolBarVerticalOverflowButtonStyle}" />
               <Setter TargetName="OverflowGrid" Property="HorizontalAlignment" Value="Stretch" />
               <Setter TargetName="OverflowGrid" Property="VerticalAlignment" Value="Bottom" />
+              <Setter TargetName="OverflowGrid" Property="DockPanel.Dock" Value="Bottom" />
               <Setter TargetName="OverflowPopup" Property="Placement" Value="Right" />
               <Setter TargetName="PART_ToolBarPanel" Property="Margin" Value="1,0,2,2" />
               <Setter TargetName="ToolBarHeader" Property="DockPanel.Dock" Value="Top" />
