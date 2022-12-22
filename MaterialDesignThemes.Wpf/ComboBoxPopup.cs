@@ -283,30 +283,69 @@ namespace MaterialDesignThemes.Wpf
             var defaultVerticalOffsetIndependent = DpiHelper.TransformToDeviceY(data.MainVisual, DefaultVerticalOffset);
 
             double newY;
+            double newX = data.OffsetX;
             PopupDirection direction;
-            if (data.LocationY + data.PopupSize.Height > data.ScreenHeight)
+            double dropShadowWidth = DpiHelper.TransformToDeviceY(6);
+            double rotatedComboBoxHeight = data.TargetSize.Width;
+            double rotatedComboBoxWidth = data.TargetSize.Height;
+            var comboBox = visualAncestry.OfType<ComboBox>().First();
+            if (comboBox.LayoutTransform is RotateTransform comboBoxRotationCounterClockwise && Math.Abs(comboBoxRotationCounterClockwise.Angle + 90) <= 1e-10)
             {
-                newY = -(defaultVerticalOffsetIndependent + data.PopupSize.Height);
-                direction = PopupDirection.Up;
+                // ComboBox is rotated 90 degrees counter-clockwise (ie. Left=Down, Right=Up)
+                newY = defaultVerticalOffsetIndependent - rotatedComboBoxWidth - dropShadowWidth;
+                newX = 0;
+                if (data.LocationX + data.PopupSize.Width + rotatedComboBoxHeight + dropShadowWidth > data.ScreenWidth)
+                {
+                    newX -= popupSize.Width;
+                    direction = PopupDirection.Up;
+                }
+                else
+                {
+                    newX += rotatedComboBoxHeight;
+                    direction = PopupDirection.Down;
+                }
+            }
+            else if (comboBox.LayoutTransform is RotateTransform comboBoxRotationClockwise && Math.Abs(comboBoxRotationClockwise.Angle - 90) <= 1e-10)
+            {
+                // ComboBox is rotated 90 degrees clockwise (ie. Left=Up, Right=Down)
+                newY = defaultVerticalOffsetIndependent - dropShadowWidth;
+                newX = 0;
+                if (data.LocationX - rotatedComboBoxHeight > data.PopupSize.Width)
+                {
+                    newX -= popupSize.Width + rotatedComboBoxHeight;
+                    direction = PopupDirection.Up;
+                }
+                else
+                {
+                    direction = PopupDirection.Down;
+                }
             }
             else
             {
-                newY = defaultVerticalOffsetIndependent + data.TargetSize.Height;
-                direction = PopupDirection.Down;
+                if (data.LocationY + data.PopupSize.Height > data.ScreenHeight)
+                {
+                    newY = -(defaultVerticalOffsetIndependent + data.PopupSize.Height);
+                    direction = PopupDirection.Up;
+                }
+                else
+                {
+                    newY = defaultVerticalOffsetIndependent + data.TargetSize.Height;
+                    direction = PopupDirection.Down;
+                }
             }
 
             SetCurrentValue(OpenDirectionProperty, direction);
-            return new[] { new CustomPopupPlacement(new Point(data.OffsetX, newY), PopupPrimaryAxis.Horizontal) };
+            return new[] { new CustomPopupPlacement(new Point(newX, newY), PopupPrimaryAxis.Horizontal) };
 
             PositioningData GetPositioningData(IEnumerable<DependencyObject?> visualAncestry, Size popupSize, Size targetSize)
             {
                 var locationFromScreen = PlacementTarget.PointToScreen(new Point(0, 0));
 
                 var mainVisual = visualAncestry.OfType<Visual>().LastOrDefault();
-                if (mainVisual is null) throw new ArgumentException($"{nameof(visualAncestry)} must contains unless one {nameof(Visual)} control inside.");
+                if (mainVisual is null) throw new ArgumentException($"{nameof(visualAncestry)} must contains at least one {nameof(Visual)} control inside.");
 
                 var controlVisual = visualAncestry.OfType<Visual>().FirstOrDefault();
-                if (controlVisual == null) throw new ArgumentException($"{nameof(visualAncestry)} must contains unless one {nameof(Visual)} control inside.");
+                if (controlVisual == null) throw new ArgumentException($"{nameof(visualAncestry)} must contains at least one {nameof(Visual)} control inside.");
 
                 var screen = Screen.FromPoint(locationFromScreen);
                 var screenWidth = (int)screen.Bounds.Width;
