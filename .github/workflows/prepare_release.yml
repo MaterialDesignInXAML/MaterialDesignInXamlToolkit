@@ -63,20 +63,22 @@ jobs:
   update_release:
     needs: [collect_contributors, build_artifacts]
     runs-on: ubuntu-latest
+    name: Update Release
 
-    - name: Download NuGet Artifacts
-      uses: actions/download-artifact@v3
-      with:
-        name: NuGets
-        path: nugets
-
-    - name: Download Demo App Artifacts
-      uses: actions/download-artifact@v3
-      with:
-        name: DemoApp
-        path: demo-app
-
-    - name: Add Artifacts to Release
-      run: |
-        gh release upload "github.ref" nugets/*
-        gh release upload "github.ref" demo-app/*
+    steps:
+      - name: Download NuGet Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: NuGets
+          path: nugets
+  
+      - name: Download Demo App Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: DemoApp
+          path: demo-app
+  
+      - name: Add Artifacts to Release
+        run: |
+          gh release upload "github.ref" nugets/*
+          gh release upload "github.ref" demo-app/*
