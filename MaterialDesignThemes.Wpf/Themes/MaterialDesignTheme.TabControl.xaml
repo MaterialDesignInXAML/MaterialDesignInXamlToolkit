@@ -332,6 +332,7 @@
                 <ScaleTransform x:Name="ScaleTransform" ScaleX="0" ScaleY="0" />
               </Border.RenderTransform>
               <Rectangle x:Name="PART_BackgroundSelection"
+                         IsHitTestVisible="False"
                          Fill="{TemplateBinding Background}"
                          Opacity="0.0" />
             </Border>
@@ -343,6 +344,7 @@
             <Trigger Property="IsSelected" Value="True">
               <Setter TargetName="SelectionHighlightBorder" Property="Visibility" Value="Visible" />
               <Setter TargetName="contentPresenter" Property="Opacity" Value="1" />
+              <Setter TargetName="contentPresenter" Property="wpf:RippleAssist.IsDisabled" Value="True"/>
             </Trigger>
             <DataTrigger Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Bottom">
               <Setter TargetName="SelectionHighlightBorder" Property="BorderThickness" Value="0,2,0,0" />
@@ -530,6 +532,7 @@
             </Grid>
             <Border x:Name="SelectionHighlightBorder" Visibility="Hidden">
               <Border x:Name="PART_BackgroundSelection"
+                      IsHitTestVisible="False"
                       Background="{TemplateBinding Background}"
                       CornerRadius="{Binding Path=(wpf:NavigationRailAssist.SelectionCornerRadius), RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"
                       Opacity="0.12" />
@@ -544,6 +547,7 @@
             </Trigger>
             <Trigger Property="IsSelected" Value="True">
               <Setter TargetName="contentPresenter" Property="Opacity" Value="1" />
+              <Setter TargetName="contentPresenter" Property="wpf:RippleAssist.IsDisabled" Value="True"/>  
             </Trigger>
 
             <MultiTrigger>
