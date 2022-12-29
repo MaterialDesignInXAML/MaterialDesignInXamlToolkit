@@ -16,7 +16,7 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 
 ##### XAML/XML files #####
-[*.{xaml,xml,csproj,targets,props}]
+[*.{xaml,xml,csproj,targets,props,nuspec}]
 
 # Indentation and spacing
 indent_size = 2

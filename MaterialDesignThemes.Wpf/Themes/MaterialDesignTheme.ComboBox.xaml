@@ -355,7 +355,7 @@
                          MinWidth="10"
                          HorizontalAlignment="Stretch"
                          HorizontalContentAlignment="Stretch"
-                         CaretBrush="{TemplateBinding BorderBrush}"
+                         CaretBrush="{TemplateBinding Foreground}"
                          IsReadOnly="{TemplateBinding IsReadOnly}"
                          MaxLength="{Binding Path=(wpf:ComboBoxAssist.MaxLength), RelativeSource={RelativeSource Mode=TemplatedParent}}"
                          Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
@@ -852,7 +852,7 @@
     <Setter Property="wpf:ColorZoneAssist.Mode" Value="Standard" />
     <Setter Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="True" />
     <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
-    <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMarginEmbedded}" />
+    <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMargin}" />
     <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
     <Style.Triggers>
       <Trigger Property="IsEditable" Value="True">

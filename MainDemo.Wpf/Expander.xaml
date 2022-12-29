@@ -38,186 +38,184 @@
     </Style>
   </UserControl.Resources>
 
-  <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-    <Grid>
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-      </Grid.RowDefinitions>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
 
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="800" />
-        <ColumnDefinition Width="Auto" />
-      </Grid.ColumnDefinitions>
-      <smtx:XamlDisplay UniqueKey="explander_1">
-        <StackPanel>
-          <Expander HorizontalAlignment="Stretch" Header="Expander Example 1a">
-            <StackPanel Margin="24,8,24,16"
-                        Orientation="Vertical"
-                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
-              <TextBlock Text="Your Content" />
-              <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
-            </StackPanel>
-          </Expander>
-
-          <Expander HorizontalAlignment="Stretch"
-                    ExpandDirection="Up"
-                    Header="Expander Example 1b">
-            <StackPanel Margin="24,8,24,16"
-                        Orientation="Vertical"
-                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
-              <TextBlock Text="Your Content" />
-              <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
-            </StackPanel>
-          </Expander>
-
-          <Expander HorizontalAlignment="Stretch" Header="Expander Example 1c">
-            <StackPanel Margin="24,8,24,16"
-                        Orientation="Vertical"
-                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
-              <TextBlock Text="Your Content" />
-              <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
-            </StackPanel>
-          </Expander>
-
-          <Expander HorizontalAlignment="Stretch"
-                    materialDesign:ExpanderAssist.HorizontalHeaderPadding="35,2,24,2"
-                    Header="Custom Header Padding">
-            <StackPanel Margin="24,8,24,16"
-                        Orientation="Vertical"
-                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
-              <TextBlock Text="Your Content" />
-              <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
-            </StackPanel>
-          </Expander>
-        </StackPanel>
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Grid.Row="1"
-                        Grid.Column="0"
-                        Margin="4,24,0,0"
-                        UniqueKey="expander_2">
-        <materialDesign:Card>
-          <StackPanel>
-            <Expander HorizontalAlignment="Stretch" Header="Expander Example 2a">
-              <StackPanel Margin="24,8,24,16"
-                          Orientation="Vertical"
-                          TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
-                <TextBlock Text="Your Content" />
-                <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
-              </StackPanel>
-            </Expander>
-
-            <Border Style="{StaticResource HorizontalDividerBorder}" />
-
-            <Expander HorizontalAlignment="Stretch" Header="Expander Example 2b">
-              <StackPanel Margin="24,8,24,16"
-                          Orientation="Vertical"
-                          TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
-                <TextBlock Text="Your Content" />
-                <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
-              </StackPanel>
-            </Expander>
-
-            <Border Style="{StaticResource HorizontalDividerBorder}" />
-
-            <Expander HorizontalAlignment="Stretch" Header="Expander Example 2c">
-              <StackPanel Margin="24,8,24,16"
-                          Orientation="Vertical"
-                          TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
-                <TextBlock Text="Your Content" />
-                <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
-              </StackPanel>
-            </Expander>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="800" />
+      <ColumnDefinition Width="Auto" />
+    </Grid.ColumnDefinitions>
+    <smtx:XamlDisplay UniqueKey="explander_1">
+      <StackPanel>
+        <Expander HorizontalAlignment="Stretch" Header="Expander Example 1a">
+          <StackPanel Margin="24,8,24,16"
+                      Orientation="Vertical"
+                      TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+            <TextBlock Text="Your Content" />
+            <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
           </StackPanel>
-        </materialDesign:Card>
-      </smtx:XamlDisplay>
+        </Expander>
 
+        <Expander HorizontalAlignment="Stretch"
+                  ExpandDirection="Up"
+                  Header="Expander Example 1b">
+          <StackPanel Margin="24,8,24,16"
+                      Orientation="Vertical"
+                      TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+            <TextBlock Text="Your Content" />
+            <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
+          </StackPanel>
+        </Expander>
 
-      <smtx:XamlDisplay Grid.Row="0"
-                        Grid.RowSpan="2"
-                        Grid.Column="1"
-                        Margin="8"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Stretch"
-                        UniqueKey="expander_3">
-        <StackPanel Orientation="Horizontal">
-          <Expander ExpandDirection="Left">
-            <Expander.Header>
-              <TextBlock RenderTransformOrigin=".5,.5" Text="Expander Example 3a">
-                <TextBlock.LayoutTransform>
-                  <RotateTransform Angle="90" />
-                </TextBlock.LayoutTransform>
-              </TextBlock>
-            </Expander.Header>
+        <Expander HorizontalAlignment="Stretch" Header="Expander Example 1c">
+          <StackPanel Margin="24,8,24,16"
+                      Orientation="Vertical"
+                      TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+            <TextBlock Text="Your Content" />
+            <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
+          </StackPanel>
+        </Expander>
 
-            <StackPanel Margin="8,24,16,24"
+        <Expander HorizontalAlignment="Stretch"
+                  materialDesign:ExpanderAssist.HorizontalHeaderPadding="35,2,24,2"
+                  Header="Custom Header Padding">
+          <StackPanel Margin="24,8,24,16"
+                      Orientation="Vertical"
+                      TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+            <TextBlock Text="Your Content" />
+            <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
+          </StackPanel>
+        </Expander>
+      </StackPanel>
+    </smtx:XamlDisplay>
+
+    <smtx:XamlDisplay Grid.Row="1"
+                      Grid.Column="0"
+                      Margin="4,24,0,0"
+                      UniqueKey="expander_2">
+      <materialDesign:Card>
+        <StackPanel>
+          <Expander HorizontalAlignment="Stretch" Header="Expander Example 2a">
+            <StackPanel Margin="24,8,24,16"
                         Orientation="Vertical"
                         TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
               <TextBlock Text="Your Content" />
-              <TextBlock Style="{StaticResource VerticalExpanderContentTextBlock}" />
+              <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
             </StackPanel>
           </Expander>
 
-          <Border Style="{StaticResource VerticalDividerBorder}" />
+          <Border Style="{StaticResource HorizontalDividerBorder}" />
 
-          <Expander ExpandDirection="Right">
-            <Expander.Header>
-              <TextBlock RenderTransformOrigin=".5,.5" Text="Expander Example 3b">
-                <TextBlock.LayoutTransform>
-                  <RotateTransform Angle="90" />
-                </TextBlock.LayoutTransform>
-              </TextBlock>
-            </Expander.Header>
-
-            <StackPanel Margin="8,24,16,24"
+          <Expander HorizontalAlignment="Stretch" Header="Expander Example 2b">
+            <StackPanel Margin="24,8,24,16"
                         Orientation="Vertical"
                         TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
               <TextBlock Text="Your Content" />
-              <TextBlock Style="{StaticResource VerticalExpanderContentTextBlock}" />
+              <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
             </StackPanel>
           </Expander>
 
-          <Border Style="{StaticResource VerticalDividerBorder}" />
+          <Border Style="{StaticResource HorizontalDividerBorder}" />
 
-          <Expander ExpandDirection="Right">
-            <Expander.Header>
-              <TextBlock RenderTransformOrigin=".5,.5" Text="Expander Example 3c">
-                <TextBlock.LayoutTransform>
-                  <RotateTransform Angle="90" />
-                </TextBlock.LayoutTransform>
-              </TextBlock>
-            </Expander.Header>
-
-            <StackPanel Margin="8,24,16,24"
+          <Expander HorizontalAlignment="Stretch" Header="Expander Example 2c">
+            <StackPanel Margin="24,8,24,16"
                         Orientation="Vertical"
                         TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
               <TextBlock Text="Your Content" />
-              <TextBlock Style="{StaticResource VerticalExpanderContentTextBlock}" />
-            </StackPanel>
-          </Expander>
-
-          <Border Style="{StaticResource VerticalDividerBorder}" />
-
-          <Expander materialDesign:ExpanderAssist.VerticalHeaderPadding="0,35,0,5" ExpandDirection="Right">
-            <Expander.Header>
-              <TextBlock RenderTransformOrigin=".5,.5" Text="Custom Header Padding">
-                <TextBlock.LayoutTransform>
-                  <RotateTransform Angle="90" />
-                </TextBlock.LayoutTransform>
-              </TextBlock>
-            </Expander.Header>
-
-            <StackPanel Margin="8,24,16,24"
-                        Orientation="Vertical"
-                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
-              <TextBlock Text="Your Content" />
-              <TextBlock Style="{StaticResource VerticalExpanderContentTextBlock}" />
+              <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
             </StackPanel>
           </Expander>
         </StackPanel>
-      </smtx:XamlDisplay>
-    </Grid>
-  </ScrollViewer>
+      </materialDesign:Card>
+    </smtx:XamlDisplay>
+
+
+    <smtx:XamlDisplay Grid.Row="0"
+                      Grid.RowSpan="2"
+                      Grid.Column="1"
+                      Margin="8"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Stretch"
+                      UniqueKey="expander_3">
+      <StackPanel Orientation="Horizontal">
+        <Expander ExpandDirection="Left">
+          <Expander.Header>
+            <TextBlock RenderTransformOrigin=".5,.5" Text="Expander Example 3a">
+              <TextBlock.LayoutTransform>
+                <RotateTransform Angle="90" />
+              </TextBlock.LayoutTransform>
+            </TextBlock>
+          </Expander.Header>
+
+          <StackPanel Margin="8,24,16,24"
+                      Orientation="Vertical"
+                      TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+            <TextBlock Text="Your Content" />
+            <TextBlock Style="{StaticResource VerticalExpanderContentTextBlock}" />
+          </StackPanel>
+        </Expander>
+
+        <Border Style="{StaticResource VerticalDividerBorder}" />
+
+        <Expander ExpandDirection="Right">
+          <Expander.Header>
+            <TextBlock RenderTransformOrigin=".5,.5" Text="Expander Example 3b">
+              <TextBlock.LayoutTransform>
+                <RotateTransform Angle="90" />
+              </TextBlock.LayoutTransform>
+            </TextBlock>
+          </Expander.Header>
+
+          <StackPanel Margin="8,24,16,24"
+                      Orientation="Vertical"
+                      TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+            <TextBlock Text="Your Content" />
+            <TextBlock Style="{StaticResource VerticalExpanderContentTextBlock}" />
+          </StackPanel>
+        </Expander>
+
+        <Border Style="{StaticResource VerticalDividerBorder}" />
+
+        <Expander ExpandDirection="Right">
+          <Expander.Header>
+            <TextBlock RenderTransformOrigin=".5,.5" Text="Expander Example 3c">
+              <TextBlock.LayoutTransform>
+                <RotateTransform Angle="90" />
+              </TextBlock.LayoutTransform>
+            </TextBlock>
+          </Expander.Header>
+
+          <StackPanel Margin="8,24,16,24"
+                      Orientation="Vertical"
+                      TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+            <TextBlock Text="Your Content" />
+            <TextBlock Style="{StaticResource VerticalExpanderContentTextBlock}" />
+          </StackPanel>
+        </Expander>
+
+        <Border Style="{StaticResource VerticalDividerBorder}" />
+
+        <Expander materialDesign:ExpanderAssist.VerticalHeaderPadding="0,35,0,5" ExpandDirection="Right">
+          <Expander.Header>
+            <TextBlock RenderTransformOrigin=".5,.5" Text="Custom Header Padding">
+              <TextBlock.LayoutTransform>
+                <RotateTransform Angle="90" />
+              </TextBlock.LayoutTransform>
+            </TextBlock>
+          </Expander.Header>
+
+          <StackPanel Margin="8,24,16,24"
+                      Orientation="Vertical"
+                      TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+            <TextBlock Text="Your Content" />
+            <TextBlock Style="{StaticResource VerticalExpanderContentTextBlock}" />
+          </StackPanel>
+        </Expander>
+      </StackPanel>
+    </smtx:XamlDisplay>
+  </Grid>
 </UserControl>
 

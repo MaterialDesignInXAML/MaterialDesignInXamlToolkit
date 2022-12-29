@@ -276,7 +276,6 @@
                             IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                             IsTabStop="False"
                             Opacity="0.87"
-                            Style="{StaticResource MaterialDesignHorizontalHeaderStyle}"
                             TextElement.FontSize="{TemplateBinding wpf:ExpanderAssist.HeaderFontSize}" />
 
               <Border Name="ContentSite">

@@ -314,6 +314,28 @@
 
     <TextBlock Margin="0,15,0,20"
                Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+               Text="Scrollable content" />
+
+    <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_scrollable_content" HorizontalAlignment="Left">
+      <TabControl Width="500"
+                  Height="200">
+        <TabItem Header="TAB 1">
+          <ScrollViewer>
+            <TextBlock Text="{Binding VeryLongText}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TextWrapping="Wrap" />
+          </ScrollViewer>
+        </TabItem>
+        <TabItem Header="TAB 2">
+          <ScrollViewer>
+            <TextBox Text="{Binding VeryLongText}" Style="{StaticResource MaterialDesignOutlinedTextBox}" AcceptsReturn="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TextWrapping="Wrap" Margin="5" />
+          </ScrollViewer>
+        </TabItem>
+      </TabControl>
+    </smtx:XamlDisplay>
+
+    <Separator Style="{DynamicResource MaterialDesignSeparator}" />
+
+    <TextBlock Margin="0,15,0,20"
+               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
                Text="Placement" />
 
 
@@ -554,38 +576,32 @@
 
     <TextBlock Margin="0,15,0,20"
                Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-               Text="Custom items (and DisplayMemberPath)" />
+               Text="Custom items" />
 
-    <smtx:XamlDisplay Margin="0,0,0,16" UniqueKey="tabs_with_displaymemberpath">
+    <smtx:XamlDisplay Margin="0,0,0,16" UniqueKey="custom_tabs">
       <materialDesign:Card>
         <TabControl HorizontalContentAlignment="Left"
-                    DisplayMemberPath="CustomHeader"
                     ItemsSource="{Binding CustomTabs}"
-                    SelectedItem="{Binding SelectedTab}"
-                    HorizontalContentAlignment="Left"
-                    >
-                    <TabControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding CustomHeader}"/>
-                                <Button Command="{Binding CloseCommand}">
-                                    <Button.Template>
-                                        <ControlTemplate>
-                                            <materialDesign:PackIcon Kind="Close" Foreground="Red" Background="Transparent"/>
-                                        </ControlTemplate>
-                                    </Button.Template>
-                                </Button>
-                            </StackPanel>
-                        </DataTemplate>
-                    </TabControl.ItemTemplate>
-                    <TabControl.ContentTemplate>
-                        <DataTemplate DataType="domain:CustomTab">
-                            <TextBlock Text="{Binding CustomContent}" FontSize="18" Margin="10" />
-                        </DataTemplate>
-                    </TabControl.ContentTemplate>
-                </TabControl>
-            </materialDesign:Card>
-        </smtx:XamlDisplay>
+                    SelectedItem="{Binding SelectedTab}">
+          <!--
+          If you use DisplayMemberPath to bind to a simple auto property you can cause a binking leak.
+          See: https://blog.jetbrains.com/dotnet/2014/09/04/fighting-common-wpf-memory-leaks-with-dotmemory/
+          -->
+          <TabControl.ItemTemplate>
+            <DataTemplate DataType="domain:CustomTab">
+              <TextBlock Text="{Binding CustomHeader, Mode=OneTime}" />
+            </DataTemplate>
+          </TabControl.ItemTemplate>
+          <TabControl.ContentTemplate>
+            <DataTemplate DataType="domain:CustomTab">
+              <TextBlock Margin="10"
+                         FontSize="18"
+                         Text="{Binding CustomContent, Mode=OneTime}" />
+            </DataTemplate>
+          </TabControl.ContentTemplate>
+        </TabControl>
+      </materialDesign:Card>
+    </smtx:XamlDisplay>
 
   </StackPanel>
 </UserControl>

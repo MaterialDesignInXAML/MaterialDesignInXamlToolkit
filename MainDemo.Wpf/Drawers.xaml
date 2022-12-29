@@ -123,7 +123,7 @@
                       Orientation="Horizontal">
             <TextBlock Margin="4"
                        VerticalAlignment="Center"
-                       Foreground="{DynamicResource SecondaryHueLightBrushForeground}"
+                       Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"
                        Text="BOTTOM BRACKET" />
 
             <Button Margin="4"

@@ -17,7 +17,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 6.x
+        dotnet-version: 7.x
 
     - name: Run Icon Generation
       run: dotnet run -c Release -- icons

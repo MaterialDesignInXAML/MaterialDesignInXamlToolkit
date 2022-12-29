@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:internal="clr-namespace:MaterialDesignThemes.Wpf.Internal"
@@ -17,6 +17,7 @@
   <converters:FloatingHintOffsetCalculationConverter x:Key="FloatingHintOffsetCalculationConverter" />
   <converters:CursorConverter x:Key="ArrowCursorConverter" FallbackCursor="Arrow" />
   <converters:CursorConverter x:Key="IBeamCursorConverter" FallbackCursor="IBeam" />
+  <converters:StringLengthValueConverter x:Key="StringLengthValueConverter" />
 
   <Style x:Key="MaterialDesignCharacterCounterTextBlock"
          TargetType="TextBlock"
@@ -27,7 +28,8 @@
     <Setter Property="Text">
       <Setter.Value>
         <MultiBinding StringFormat="{}{0} / {1}">
-          <Binding Path="Text.Length" RelativeSource="{RelativeSource FindAncestor, AncestorType=TextBoxBase}" />
+          <Binding Path="Text" Converter="{StaticResource StringLengthValueConverter}"
+                   RelativeSource="{RelativeSource FindAncestor, AncestorType=TextBoxBase}" />
           <Binding Path="MaxLength" RelativeSource="{RelativeSource FindAncestor, AncestorType=TextBoxBase}" />
         </MultiBinding>
       </Setter.Value>
@@ -298,14 +300,14 @@
             <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
               <Setter Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxBackground}" />
               <Setter Property="Padding" Value="16,8,12,8" />
-              <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMarginEmbedded}" />
+              <Setter TargetName="Hint" Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMarginEmbedded}" />
               <Setter TargetName="HelperTextTextBlock" Property="Margin" Value="16,0,0,0" />
             </Trigger>
             <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
               <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaBorder}" />
               <Setter Property="BorderThickness" Value="1" />
               <Setter Property="Padding" Value="16,16,12,16" />
-              <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMarginEmbedded}" />
+              <Setter TargetName="Hint" Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMarginEmbedded}" />
               <Setter TargetName="HelperTextTextBlock" Property="Margin" Value="16,0,0,0" />
               <Setter TargetName="Hint" Property="FloatingOffset">
                 <Setter.Value>

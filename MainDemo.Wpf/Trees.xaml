@@ -134,14 +134,15 @@
                 <Setter Property="materialDesign:TreeViewAssist.ExpanderSize" Value="32" />
                 <Setter Property="materialDesign:TreeViewAssist.ShowSelection" Value="False" />
               </Style>
-              <HierarchicalDataTemplate DataType="{x:Type domain:MovieCategory}" ItemsSource="{Binding Movies}">
-                <TextBlock Margin="3,2" Text="{Binding Name}" />
+              <HierarchicalDataTemplate DataType="{x:Type domain:MovieCategory}"
+                                        ItemsSource="{Binding Movies, Mode=OneTime}">
+                <TextBlock Margin="3,2" Text="{Binding Name, Mode=OneTime}" />
               </HierarchicalDataTemplate>
 
               <DataTemplate DataType="{x:Type domain:Movie}">
                 <TextBlock Margin="3,2"
-                           Text="{Binding Name}"
-                           ToolTip="{Binding Director}" />
+                           Text="{Binding Name, Mode=OneTime}"
+                           ToolTip="{Binding Director, Mode=OneTime}" />
               </DataTemplate>
             </TreeView.Resources>
           </TreeView>

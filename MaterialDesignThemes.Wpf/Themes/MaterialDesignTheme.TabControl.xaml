@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
@@ -42,6 +42,7 @@
                            DockPanel.Dock="Top"
                            Focusable="False">
               <ScrollViewer wpf:ScrollViewerAssist.SupportHorizontalScroll="True"
+                            wpf:ScrollViewerAssist.BubbleVerticalScroll="True"
                             HorizontalScrollBarVisibility="Hidden"
                             VerticalScrollBarVisibility="Hidden">
                 <StackPanel>
@@ -49,14 +50,14 @@
                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                Focusable="False"
-                               IsItemsHost="True"
+                               wpf:TabAssist.BindableIsItemsHost="{Binding IsVisible, RelativeSource={RelativeSource Self}}"
                                KeyboardNavigation.TabIndex="1"
                                Rows="1" />
                   <VirtualizingStackPanel x:Name="HeaderPanel"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           Focusable="False"
-                                          IsItemsHost="True"
+                                          wpf:TabAssist.BindableIsItemsHost="{Binding IsVisible, RelativeSource={RelativeSource Self}}"
                                           KeyboardNavigation.TabIndex="1"
                                           Orientation="Horizontal" />
                 </StackPanel>
@@ -85,6 +86,7 @@
               <Setter TargetName="CenteredHeaderPanel" Property="Visibility" Value="Visible" />
               <Setter TargetName="HeaderPanel" Property="Visibility" Value="Collapsed" />
             </Trigger>
+            
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="HorizontalContentAlignment" Value="Center" />
@@ -126,6 +128,7 @@
                 <Setter TargetName="CenteredHeaderPanel" Property="Visibility" Value="Visible" />
               </MultiTrigger.Setters>
             </MultiTrigger>
+            
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="HorizontalContentAlignment" Value="Right" />
@@ -146,6 +149,7 @@
                 <Setter TargetName="CenteredHeaderPanel" Property="Visibility" Value="Visible" />
               </MultiTrigger.Setters>
             </MultiTrigger>
+            
             <Trigger Property="TabStripPlacement" Value="Bottom">
               <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="Top" />
               <Setter TargetName="PART_HeaderZone" Property="DockPanel.Dock" Value="Bottom" />
@@ -243,7 +247,6 @@
     <!-- Foreground is for the content, not the header -->
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabControl}}, Path=(TextElement.Foreground)}" />
     <Setter Property="Height" Value="48" />
-    <Setter Property="MaxWidth" Value="360" />
     <Setter Property="MinWidth" Value="90" />
     <Setter Property="Padding" Value="16,12" />
     <Setter Property="Template">
