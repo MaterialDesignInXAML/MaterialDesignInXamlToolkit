@@ -1,8 +1,12 @@
 name: Prepare Release
 
 on:
-  release:
-    types: [unpublished]
+  workflow_dispatch:
+    inputs:
+      milestone:
+        description: 'The milestone to generate a release for'
+        required: true
+        type: string
 
 env:
   solution: MaterialDesignToolkit.Full.sln
@@ -20,7 +24,7 @@ jobs:
         id: get-contribs
         uses: Keboo/GitHubHelper@master
         with:
-          milestone: '${{ github.ref }}'
+          milestone: '${{ inputs.milestone }}'
           repository: 'MaterialDesignInXamlToolkit'
           repository-owner: 'MaterialDesignInXAML'
           token: ${{ github.token }}
@@ -60,7 +64,7 @@ jobs:
           name: DemoApp
           path: "MainDemo.Wpf/bin/${{ env.buildConfiguration }}"
 
-  update_release:
+  create_release:
     needs: [collect_contributors, build_artifacts]
     runs-on: ubuntu-latest
     name: Update Release
@@ -71,14 +75,13 @@ jobs:
         with:
           name: NuGets
           path: nugets
-  
+
       - name: Download Demo App Artifacts
         uses: actions/download-artifact@v3
         with:
           name: DemoApp
           path: demo-app
-  
-      - name: Add Artifacts to Release
+
+      - name: Create Release
         run: |
-          gh release upload "github.ref" nugets/*
-          gh release upload "github.ref" demo-app/*
+          gh release create v${{ inputs.milestone }} --generate-notes '/nugets#NuGets' '/demo-app#Demo App'
