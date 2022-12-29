@@ -50,7 +50,7 @@ jobs:
 
       - name: Build NuGets
         shell: pwsh
-        run: .\Scripts\BuildNugets.ps1 -MDIXVersion ${{ inputs.mdixVersion }} -MDIXMahAppsVersion ${{ inputs.mdixMahAppsVersion }} -MDIXColorsVersion ${{ inputs.mdixColorsVersion }}
+        run: .\Scripts\BuildNugets.ps1 -MDIXVersion ${{ env.mdixVersion }} -MDIXMahAppsVersion ${{ env.mdixMahAppsVersion }} -MDIXColorsVersion ${{ env.mdixColorsVersion }}
 
       - name: Upload NuGets
         uses: actions/upload-artifact@v2
