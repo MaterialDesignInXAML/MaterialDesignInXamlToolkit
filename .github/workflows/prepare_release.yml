@@ -86,4 +86,4 @@ jobs:
 
       - name: Create Release
         run: |
-          gh release create v${{ inputs.milestone }} --latest --generate-notes '${{ github.workspace }}/nugets#NuGets' '${{ github.workspace }}/demo-app#Demo App'
+          gh release create v${{ inputs.milestone }} --repo '${{ github.repository }}' --latest --generate-notes '${{ github.workspace }}/nugets#NuGets' '${{ github.workspace }}/demo-app#Demo App'
