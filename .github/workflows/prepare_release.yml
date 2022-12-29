@@ -14,6 +14,8 @@ env:
   mdixColorsVersion: '2.1.0'
   mdixMahAppsVersion: '0.2.6'
   mdixVersion: '4.7.0'
+  # Needed for GitHub CLI
+  GH_TOKEN: ${{ github.token }}
 
 jobs:
   collect_contributors:
@@ -84,4 +86,4 @@ jobs:
 
       - name: Create Release
         run: |
-          gh release create v${{ inputs.milestone }} --generate-notes '/nugets#NuGets' '/demo-app#Demo App'
+          gh release create v${{ inputs.milestone }} --latest --generate-notes '/nugets#NuGets' '/demo-app#Demo App'
