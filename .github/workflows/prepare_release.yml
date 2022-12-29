@@ -1,0 +1,82 @@
+name: Prepare Release
+
+on:
+  release:
+    types: [unpublished]
+
+env:
+  solution: MaterialDesignToolkit.Full.sln
+  buildConfiguration: 'Release'
+  mdixColorsVersion: '2.1.0'
+  mdixMahAppsVersion: '0.2.6'
+  mdixVersion: '4.7.0'
+
+jobs:
+  collect_contributors:
+    runs-on: ubuntu-latest
+    name: Get a list of contributors
+    steps:
+      - name: Get Contributors
+        id: get-contribs
+        uses: Keboo/GitHubHelper@master
+        with:
+          milestone: '${{ github.ref }}'
+          repository: 'MaterialDesignInXamlToolkit'
+          repository-owner: 'MaterialDesignInXAML'
+          token: ${{ github.token }}
+
+      - name: Show Contributors
+        run: echo "${{ steps.get-contribs.outputs.contributors }}"
+
+  build_artifacts:
+    name: Build artifacts
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Build and Test
+        uses: ./.github/actions/build-and-test
+        timeout-minutes: 20
+        with:
+          solution: ${{ env.solution }}
+          buildConfiguration: ${{ env.buildConfiguration }}
+          nugetKey: ${{ secrets.PAT }}
+
+      - name: Build NuGets
+        shell: pwsh
+        run: .\Scripts\BuildNugets.ps1 -MDIXVersion ${{ inputs.mdixVersion }} -MDIXMahAppsVersion ${{ inputs.mdixMahAppsVersion }} -MDIXColorsVersion ${{ inputs.mdixColorsVersion }}
+
+      - name: Upload NuGets
+        uses: actions/upload-artifact@v2
+        with:
+          name: NuGets
+          path: "*.nupkg"
+
+      - name: Upload Demo App
+        uses: actions/upload-artifact@v2
+        with:
+          name: DemoApp
+          path: "MainDemo.Wpf/bin/${{ env.buildConfiguration }}"
+
+  update_release:
+    needs: [collect_contributors, build_artifacts]
+    runs-on: ubuntu-latest
+
+    - name: Download NuGet Artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: NuGets
+        path: nugets
+
+    - name: Download Demo App Artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: DemoApp
+        path: demo-app
+
+    - name: Add Artifacts to Release
+      run: |
+        gh release upload "github.ref" nugets/*
+        gh release upload "github.ref" demo-app/*
