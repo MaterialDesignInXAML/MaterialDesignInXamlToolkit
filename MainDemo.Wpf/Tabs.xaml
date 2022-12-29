@@ -588,8 +588,17 @@
           See: https://blog.jetbrains.com/dotnet/2014/09/04/fighting-common-wpf-memory-leaks-with-dotmemory/
           -->
           <TabControl.ItemTemplate>
-            <DataTemplate DataType="domain:CustomTab">
-              <TextBlock Text="{Binding CustomHeader, Mode=OneTime}" />
+            <DataTemplate>
+              <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding CustomHeader}"/>
+                <Button Command="{Binding CloseCommand}">
+                  <Button.Template>
+                    <ControlTemplate>
+                      <materialDesign:PackIcon Kind="Close" Foreground="Red" Background="Transparent"/>
+                    </ControlTemplate>
+                  </Button.Template>
+                </Button>
+              </StackPanel>
             </DataTemplate>
           </TabControl.ItemTemplate>
           <TabControl.ContentTemplate>
