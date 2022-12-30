@@ -501,7 +501,7 @@
                                Background="{TemplateBinding Background}"
                                BorderBrush="{TemplateBinding BorderBrush}"
                                Focusable="{TemplateBinding Focusable}"
-                               Style="{StaticResource MaterialDesignDatePickerTextBox}">
+                               Style="{DynamicResource MaterialDesignDatePickerTextBox}">
               <DatePickerTextBox.Padding>
                 <MultiBinding Converter="{StaticResource PickerInnerPaddingConverter}">
                   <Binding Path="Padding" RelativeSource="{RelativeSource TemplatedParent}" />
