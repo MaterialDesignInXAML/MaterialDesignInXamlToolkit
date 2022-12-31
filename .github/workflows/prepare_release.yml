@@ -37,7 +37,7 @@ jobs:
         run: |
           $response = gh api --method POST -H "Accept: application/vnd.github+json" /repos/${{ github.repository }}/releases/generate-notes -f tag_name='${{ inputs.milestone }}'
           $json = $response | ConvertFrom-Json
-          echo "::set-output name=release_notes::$json.body"
+          echo "::set-output name=release_notes::$($json.body)"
 
       - name: Generate Release Notes File
         shell: pwsh
