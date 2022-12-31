@@ -17,10 +17,15 @@ env:
   # Needed for GitHub CLI
   GH_TOKEN: ${{ github.token }}
 
+defaults:
+  run:
+    shell: pwsh
+
 jobs:
   collect_contributors:
     runs-on: ubuntu-latest
     name: Generate Release Notes
+
     steps:
       - name: Get Contributors
         id: get-contribs
@@ -32,7 +37,6 @@ jobs:
           token: ${{ github.token }}
 
       - name: Generate Release Notes
-        shell: pwsh
         run: |
           $response = gh api --method POST -H "Accept: application/vnd.github+json" /repos/${{ github.repository }}/releases/generate-notes -f tag_name='v${{ inputs.milestone }}'
           $json = $response | ConvertFrom-Json
@@ -67,7 +71,6 @@ jobs:
           nugetKey: ${{ secrets.PAT }}
 
       - name: Build NuGets
-        shell: pwsh
         run: .\Scripts\BuildNugets.ps1 -MDIXVersion ${{ env.mdixVersion }} -MDIXMahAppsVersion ${{ env.mdixMahAppsVersion }} -MDIXColorsVersion ${{ env.mdixColorsVersion }}
 
       - name: Upload NuGets
@@ -99,7 +102,6 @@ jobs:
           path: nugets
 
       - name: Get Previous NuGet release
-        shell: pwsh
         run: |
           $release = (gh api -H "Accept: application/vnd.github+json" /repos/${{ github.repository }}/releases/latest) | ConvertFrom-Json
           gh release download "$($release.tag_name)" --repo "${{ github.repository }}" --pattern *.nupkg
@@ -142,7 +144,6 @@ jobs:
           name: ReleaseNotes
 
       - name: Create Release
-        shell: pwsh
         run: |
           # We can't use glob pattern because of this bug https://github.com/cli/cli/issues/5099
           gh release create v${{ inputs.milestone }} --repo '${{ github.repository }}' --draft --latest --title "${{ inputs.milestone }}" --notes-file ReleaseNotes.md (Get-Item '${{ github.workspace }}/nugets/*.nupkg') '${{ github.workspace }}/DemoApp.zip'

@@ -4,6 +4,10 @@ on:
   release:
     types: [published]
 
+defaults:
+  run:
+    shell: pwsh
+
 jobs:
   publish_nugets:
     runs-on: ubuntu-latest
@@ -11,7 +15,6 @@ jobs:
     
     steps:
       - name: Download Release Artifacts
-        shell: pwsh
         run: |
           $release = (gh api -H "Accept: application/vnd.github+json" /repos/${{ github.repository }}/releases/tags/${{ github.ref_name }}) | ConvertFrom-Json
           gh release download "$($release.tag_name)" --repo "${{ github.repository }}"
