@@ -1,0 +1,25 @@
+name: Release Published
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish_nugets:
+    runs-on: ubuntu-latest
+    name: Publish NuGets
+    
+    steps:
+      - name: Download Release Artifacts
+        shell: pwsh
+        run: |
+          $release = (gh api -H "Accept: application/vnd.github+json" /repos/${{ github.repository }}/releases/tags/github.ref_name) | ConvertFrom-Json
+          
+          foreach($asset in $release.assets) {
+              if ($asset.name.EndsWith(".nupkg")){
+                  Write-Host "Downloading $($asset.id) - $($asset.name)"
+                  gh api -H "Accept: application/octet-stream" "/repos/${{ github.repository }}/releases/assets/$($asset.id)" | Out-File $asset.name
+              }
+          }
+
+

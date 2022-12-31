@@ -34,11 +34,12 @@ jobs:
       - name: Generate Release Notes
         shell: pwsh
         run: |
-          $response = gh api --method POST -H "Accept: application/vnd.github+json" /repos/${{ github.repository }}/releases/generate-notes -f tag_name='${{ inputs.milestone }}'
+          $response = gh api --method POST -H "Accept: application/vnd.github+json" /repos/${{ github.repository }}/releases/generate-notes -f tag_name='v${{ inputs.milestone }}'
           $json = $response | ConvertFrom-Json
           $releaseNotes = $json.body
           $contributors = "${{ steps.get-contribs.outputs.contributors }}"
           $releaseNotes | Out-File -Append "ReleaseNotes.md"
+          "`n" | Out-File -Append "ReleaseNotes.md"
           $contributors | Out-File -Append "ReleaseNotes.md"
           cat "ReleaseNotes.md"
 
