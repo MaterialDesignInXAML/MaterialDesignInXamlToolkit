@@ -87,7 +87,7 @@ jobs:
 
   build_icon_changes:
     needs: [build_artifacts]
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     name: Get Icon Changes
 
     steps:
