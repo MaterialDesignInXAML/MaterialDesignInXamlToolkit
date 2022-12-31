@@ -105,6 +105,7 @@ jobs:
         run: |
           $release = (gh api -H "Accept: application/vnd.github+json" /repos/${{ github.repository }}/releases/latest) | ConvertFrom-Json
           gh release download "$($release.tag_name)" --repo "${{ github.repository }}" --pattern *.nupkg
+        working-directory: nugets
 
       - name: Create Icon Diff File
         run: |
