@@ -42,3 +42,4 @@ runs:
       with:
         name: Screenshots-${{ github.run_number }}
         path: ${{ github.workspace }}/MaterialDesignThemes.UITests/bin/${{ inputs.buildConfiguration }}/net7.0-windows/Screenshots
+        if-no-files-found: ignore

@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
   schedule:
     - cron:  '0 9 * * *'
-  push:
-    tags:
-      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+  # push:
+  #   tags:
+  #     - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 env:
   solution: MaterialDesignToolkit.Full.sln
@@ -63,20 +63,20 @@ jobs:
         echo "mdixColorsVersion=${{ env.mdixColorsVersion }}-ci${{ github.run_number }}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf-8 -Append
         echo "mdixMahAppsVersion=${{ env.mdixMahAppsVersion }}-ci${{ github.run_number }}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf-8 -Append
         
-    - name: Push Artifacts
-      uses: ./.github/actions/push-artifacts
-      timeout-minutes: 10
-      with:
-        mdixVersion: ${{ env.mdixVersion }}
-        mdixColorsVersion: ${{ env.mdixColorsVersion }}
-        mdixMahAppsVersion: ${{ env.mdixMahappsVersion }}
-        demoAppPath: "MainDemo.Wpf/bin/${{ env.buildConfiguration }}"
-        nugetKey: ${{ secrets.PAT }}
+    # - name: Push Artifacts
+    #   uses: ./.github/actions/push-artifacts
+    #   timeout-minutes: 10
+    #   with:
+    #     mdixVersion: ${{ env.mdixVersion }}
+    #     mdixColorsVersion: ${{ env.mdixColorsVersion }}
+    #     mdixMahAppsVersion: ${{ env.mdixMahappsVersion }}
+    #     demoAppPath: "MainDemo.Wpf/bin/${{ env.buildConfiguration }}"
+    #     nugetKey: ${{ secrets.PAT }}
 
-    - name: Update latest tag
-      if: ${{ github.event_name != 'push' }}
-      run: |
-        git config user.name github-actions
-        git config user.email github-actions@github.com
-        git tag -f nightly_release master
-        git push -f --tags
+    # - name: Update latest tag
+    #   if: ${{ github.event_name != 'push' }}
+    #   run: |
+    #     git config user.name github-actions
+    #     git config user.email github-actions@github.com
+    #     git tag -f nightly_release master
+    #     git push -f --tags
