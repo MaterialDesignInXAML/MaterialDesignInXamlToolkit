@@ -19,7 +19,7 @@ internal static partial class IconDiff
             let match = FileNameRegex().Match(Path.GetFileName(file))
             where match.Success
             let version = Version.Parse(match.Groups["Version"].Value)
-            orderby version descending
+            orderby version
             select new FileInfo(file)).ToList();
 
         string output = await CompareNuGets(nugets.First(), nugets.Last());
