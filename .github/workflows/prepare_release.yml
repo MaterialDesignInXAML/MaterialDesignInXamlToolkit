@@ -20,7 +20,7 @@ env:
 jobs:
   collect_contributors:
     runs-on: ubuntu-latest
-    name: Get a list of contributors
+    name: Generate Release Notes
     steps:
       - name: Get Contributors
         id: get-contribs
@@ -31,8 +31,29 @@ jobs:
           repository-owner: 'MaterialDesignInXAML'
           token: ${{ github.token }}
 
-      - name: Show Contributors
-        run: echo "${{ steps.get-contribs.outputs.contributors }}"
+      - name: Generate Release Notes
+        id: generated_release_notes
+        shell: pwsh
+        run: |
+        $response = gh api --method POST -H "Accept: application/vnd.github+json" /repos/${{ github.repository }}/releases/generate-notes -f tag_name='${{ inputs.milestone }}'
+        $json = $response | ConvertFrom-Json
+        echo "::set-output name=release_notes::$json.body"
+
+      - name: Generate Release Notes File
+        shell: pwsh
+        run: |
+          $releaseNotes = "${{ steps.generated_release_notes.outputs.release_notes }}"
+          $contributors = "${{ steps.get-contribs.outputs.contributors }}"
+          $releaseNotes | Out-File -Append "ReleaseNotes.md"
+          $contributors | Out-File -Append "ReleaseNotes.md"
+          cat "ReleaseNotes.md"
+
+      - name: Upload Release Notes
+        uses: actions/upload-artifact@v2
+        with:
+          name: ReleaseNotes
+          path: "ReleaseNotes.md"
+
 
   build_artifacts:
     name: Build artifacts
@@ -87,8 +108,13 @@ jobs:
       - name: Zip Demo App
         run: zip -r DemoApp.zip demo-app/*
 
+      - name: Download Release Notes
+        uses: actions/download-artifact@v3
+        with:
+          name: ReleaseNotes
+
       - name: Create Release
         shell: pwsh
         run: |
           # We can't use glob pattern because of this bug https://github.com/cli/cli/issues/5099
-          gh release create v${{ inputs.milestone }} --repo '${{ github.repository }}' --draft --latest --generate-notes (Get-Item '${{ github.workspace }}/nugets/*.nupkg') '${{ github.workspace }}/DemoApp.zip'
+          gh release create v${{ inputs.milestone }} --repo '${{ github.repository }}' --draft --latest --notes-file ReleaseNotes.md (Get-Item '${{ github.workspace }}/nugets/*.nupkg') '${{ github.workspace }}/DemoApp.zip'
