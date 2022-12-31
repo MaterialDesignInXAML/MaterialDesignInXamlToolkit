@@ -38,30 +38,30 @@ public class Program
 
     static async Task Main(string[] args)
     {
-        var xDocument = XDocument.Load(BaseSnippetLocation);
-        var xmlRoot = xDocument.Root ??
-                      throw new InvalidDataException("The input document does not contain a root");
-        var palette = JsonConvert.DeserializeObject<MdPalette>(File.ReadAllText(MdPaletteJsonLocation))!;
-
+        
         if (args.Length == 0)
-            GenerateXaml(xmlRoot);
+            GenerateXaml(GetXmlRoot());
         if (args.Contains("class-swatches"))
+        {
+            var palette = JsonConvert.DeserializeObject<MdPalette>(File.ReadAllText(MdPaletteJsonLocation))!;
             GenerateClasses(palette);
+        }
         if (args.Contains("all-swatches"))
         {
+            var xmlRoot = GetXmlRoot();
             GenerateXaml(xmlRoot);
             GenerateXaml(xmlRoot, true);
             GenerateOldXaml(xmlRoot);
             GenerateOldXaml(xmlRoot, true);
         }
         if (args.Contains("json"))
-            GenerateJson(xmlRoot);
+            GenerateJson(GetXmlRoot());
         if (args.Contains("named"))
-            GenerateXaml(xmlRoot, true);
+            GenerateXaml(GetXmlRoot(), true);
         if (args.Contains("old-named"))
-            GenerateOldXaml(xmlRoot, true);
+            GenerateOldXaml(GetXmlRoot(), true);
         if (args.Contains("old"))
-            GenerateOldXaml(xmlRoot);
+            GenerateOldXaml(GetXmlRoot());
         if (args.Contains("icons"))
             await IconThing.RunAsync();
         if (args.Contains("icon-diff"))
@@ -70,6 +70,13 @@ public class Program
         Console.WriteLine();
         Console.WriteLine();
         Console.WriteLine("FINISHED");
+
+        static XElement GetXmlRoot()
+        {
+            var xDocument = XDocument.Load(BaseSnippetLocation);
+            return xDocument.Root ??
+                          throw new InvalidDataException("The input document does not contain a root");
+        }
     }
 
 
