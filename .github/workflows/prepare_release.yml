@@ -88,5 +88,7 @@ jobs:
         run: zip -r DemoApp.zip demo-app/*
 
       - name: Create Release
+        shell: pwsh
         run: |
-          gh release create v${{ inputs.milestone }} --repo '${{ github.repository }}' --latest --generate-notes '${{ github.workspace }}/nugets/*.nupkg' '${{ github.workspace }}/DemoApp.zip'
+          # We can't use glob pattern because of this bug https://github.com/cli/cli/issues/5099
+          gh release create v${{ inputs.milestone }} --repo '${{ github.repository }}' --draft --latest --generate-notes (Get-Item '${{ github.workspace }}/nugets/*.nupkg') '${{ github.workspace }}/DemoApp.zip'
