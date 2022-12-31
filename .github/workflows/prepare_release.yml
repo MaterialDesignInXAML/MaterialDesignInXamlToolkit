@@ -117,4 +117,4 @@ jobs:
         shell: pwsh
         run: |
           # We can't use glob pattern because of this bug https://github.com/cli/cli/issues/5099
-          gh release create v${{ inputs.milestone }} --repo '${{ github.repository }}' --draft --latest --notes-file ReleaseNotes.md (Get-Item '${{ github.workspace }}/nugets/*.nupkg') '${{ github.workspace }}/DemoApp.zip'
+          gh release create v${{ inputs.milestone }} --repo '${{ github.repository }}' --draft --latest --title "${{ inputs.milestone }}" --notes-file ReleaseNotes.md (Get-Item '${{ github.workspace }}/nugets/*.nupkg') '${{ github.workspace }}/DemoApp.zip'
