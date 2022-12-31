@@ -13,7 +13,7 @@ internal static partial class IconDiff
 
     public static async Task RunAsync()
     {
-        var nugetDir = Path.Combine(PathHelper.RepositoryRoot, "nuget");
+        var nugetDir = Path.Combine(PathHelper.RepositoryRoot, "nugets");
         var nugets =(
             from file in Directory.EnumerateFiles(nugetDir)
             let match = FileNameRegex().Match(Path.GetFileName(file))
