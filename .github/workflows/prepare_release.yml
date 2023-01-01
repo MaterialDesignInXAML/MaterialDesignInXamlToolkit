@@ -114,8 +114,8 @@ jobs:
       - name: Upload Icon Changes
         uses: actions/upload-artifact@v3
         with:
-          name: IconChanges.md
-          path: "IconChanges.md"
+          name: IconChanges
+          path: "IconChanges*.md"
 
 
   create_release:

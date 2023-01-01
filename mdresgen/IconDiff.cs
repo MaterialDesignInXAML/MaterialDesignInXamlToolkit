@@ -20,10 +20,17 @@ internal static partial class IconDiff
             where match.Success
             let version = Version.Parse(match.Groups["Version"].Value)
             orderby version
-            select new FileInfo(file)).ToList();
+            select (File: new FileInfo(file), Version: version)).ToList();
 
-        string output = await CompareNuGets(nugets.First(), nugets.Last());
-        await File.WriteAllTextAsync(Path.Combine(PathHelper.RepositoryRoot, "IconChanges.md"), output);
+        var oldNuget = nugets.First();
+        var newNuget = nugets.Last();
+
+        string output = await CompareNuGets(oldNuget.File, newNuget.File);
+        
+        await File.WriteAllTextAsync(Path.Combine(PathHelper.RepositoryRoot, $"IconChanges-{GetVersionString(oldNuget.Version)}--{GetVersionString(newNuget.Version)}.md"), output);
+
+        static string GetVersionString(Version version)
+            => $"{version.Major}.{version.Minor}.{version.Build}";
     }
 
     private static async Task<string> CompareNuGets(FileInfo previousNuget, FileInfo currentNuget)
