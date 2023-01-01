@@ -38,7 +38,7 @@ runs:
 
     - name: Upload Screenshots
       if: ${{ always() }}
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: Screenshots-${{ github.run_number }}
         path: ${{ github.workspace }}/MaterialDesignThemes.UITests/bin/${{ inputs.buildConfiguration }}/net7.0-windows/Screenshots
