@@ -33,7 +33,7 @@ internal static partial class IconDiff
             => $"{version.Major}.{version.Minor}.{version.Build}";
     }
 
-    private static async Task<string> CompareNuGets(FileInfo previousNuget, FileInfo currentNuget)
+    private static async Task<string> CompareNuGets(FileInfo previousNuget, Version previousVersion, FileInfo currentNuget, Version currentVersion)
     {
         Console.WriteLine($"Comparing previous {previousNuget.Name} to {currentNuget.Name}");
         var previousValues = await ProcessNuGet(previousNuget) ?? throw new InvalidOperationException($"Failed to find icons in previous NuGet {previousNuget.FullName}");
@@ -70,7 +70,7 @@ internal static partial class IconDiff
         .ToList();
 
         StringBuilder output = new();
-        output.AppendLine("## Pack Icon Changes");
+        output.AppendLine($"## Pack Icon Changes {previousVersion.ToString(3)} => {currentVersion.ToString(3)}");
         WriteIconChanges("New icons", newItems, newValuesByName);
 
         WriteIconChanges("Icons with visual changes", visuallyChanged, newValuesByName);
