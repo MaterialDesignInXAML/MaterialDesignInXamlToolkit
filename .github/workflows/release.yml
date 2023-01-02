@@ -243,4 +243,4 @@ jobs:
     steps:
       - name: Publish Release
         run: |
-          gh release edit v${{ inputs.milestone }} --draft=false
+          gh release edit v${{ inputs.milestone }} --repo '${{ github.repository }}' --draft=false
