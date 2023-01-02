@@ -1,0 +1,82 @@
+name: Nightly Release
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '0 9 * * *'
+  # push:
+  #   tags:
+  #     - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+env:
+  solution: MaterialDesignToolkit.Full.sln
+  buildConfiguration: 'Release'
+  mdixColorsVersion: '2.1.0'
+  mdixMahAppsVersion: '0.2.6'
+  mdixVersion: '4.7.0'
+
+jobs:
+  check_for_changes:
+    if: ${{ github.repository == 'MaterialDesignInXAML/MaterialDesignInXamlToolkit' }}
+    runs-on: windows-latest
+
+    outputs:
+      should_run: ${{ github.event_name == 'push' || steps.check_tag.outputs.has_changed }}
+
+    steps:
+    - uses: actions/checkout@v3
+      if: ${{ github.event_name != 'push' }}
+      with:
+        fetch-depth: 0
+
+    - id: check_tag
+      name: Check nightly_release tag
+      if: ${{ github.event_name != 'push' }}
+      run: |
+        $nightlyReleaseHash = $(git rev-parse nightly_release)
+        $masterHash = $(git rev-parse master)
+        $hasChanged = ($nightlyReleaseHash -ne $masterHash).ToString().ToLower()
+        echo "::set-output name=has_changed::$hasChanged"
+
+  build:
+    needs: [check_for_changes]
+    if: ${{ needs.check_for_changes.outputs.should_run == 'true' }}
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Build and Test
+      uses: ./.github/actions/build-and-test
+      timeout-minutes: 20
+      with:
+        solution: ${{ env.solution }}
+        buildConfiguration: ${{ env.buildConfiguration }}
+        nugetKey: ${{ secrets.PAT }}
+
+    - name: Set Nightly Version Numbers
+      if: ${{ github.event_name != 'push' }}
+      run: |
+        echo "mdixVersion=${{ env.mdixVersion }}-ci${{ github.run_number }}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf-8 -Append
+        echo "mdixColorsVersion=${{ env.mdixColorsVersion }}-ci${{ github.run_number }}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf-8 -Append
+        echo "mdixMahAppsVersion=${{ env.mdixMahAppsVersion }}-ci${{ github.run_number }}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf-8 -Append
+        
+    # - name: Push Artifacts
+    #   uses: ./.github/actions/push-artifacts
+    #   timeout-minutes: 10
+    #   with:
+    #     mdixVersion: ${{ env.mdixVersion }}
+    #     mdixColorsVersion: ${{ env.mdixColorsVersion }}
+    #     mdixMahAppsVersion: ${{ env.mdixMahappsVersion }}
+    #     demoAppPath: "MainDemo.Wpf/bin/${{ env.buildConfiguration }}"
+    #     nugetKey: ${{ secrets.PAT }}
+
+    # - name: Update latest tag
+    #   if: ${{ github.event_name != 'push' }}
+    #   run: |
+    #     git config user.name github-actions
+    #     git config user.email github-actions@github.com
+    #     git tag -f nightly_release master
+    #     git push -f --tags
