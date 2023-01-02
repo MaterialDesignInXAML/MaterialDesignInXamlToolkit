@@ -54,6 +54,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{18401177
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\control_styles.yml = .github\workflows\control_styles.yml
 		.github\workflows\icon_update.yml = .github\workflows\icon_update.yml
+		.github\workflows\nightly_release.yml = .github\workflows\nightly_release.yml
 		.github\workflows\pr_verification.yml = .github\workflows\pr_verification.yml
 		.github\workflows\release.yml = .github\workflows\release.yml
 	EndProjectSection

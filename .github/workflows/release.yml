@@ -219,7 +219,7 @@ jobs:
   push_nugets:
     needs: [create_release]
     runs-on: ubuntu-latest
-    name: Publish Release
+    name: Push NuGets
     environment: production
 
     steps:

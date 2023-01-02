@@ -25,7 +25,7 @@ internal static partial class IconDiff
         var oldNuget = nugets.First();
         var newNuget = nugets.Last();
 
-        string output = await CompareNuGets(oldNuget.File, newNuget.File);
+        string output = await CompareNuGets(oldNuget.File, oldNuget.Version, newNuget.File, newNuget.Version);
         
         await File.WriteAllTextAsync(Path.Combine(PathHelper.RepositoryRoot, $"IconChanges-{GetVersionString(oldNuget.Version)}--{GetVersionString(newNuget.Version)}.md"), output);
 
