@@ -146,7 +146,7 @@ jobs:
 
       - name: Create Release
         run: |
-          # We can't use glob pattern because of this bug https://github.com/cli/cli/issues/5099
+          # We can't use glob pattern matching for the artifacts because of this bug https://github.com/cli/cli/issues/5099
           gh release create v${{ inputs.milestone }} --repo '${{ github.repository }}' --draft --latest --title "${{ inputs.milestone }}" --notes-file ReleaseNotes.md (Get-Item '${{ github.workspace }}/nugets/*.nupkg') '${{ github.workspace }}/DemoApp.zip'
           
   update_wiki:
@@ -231,11 +231,10 @@ jobs:
 
       - name: Push NuGets
         run: |
-          ls nugets/*.nupkg
-          #dotnet nuget push nugets/*.nupkg --api-key ${{ secrets.PAT }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+          dotnet nuget push nugets/*.nupkg --api-key ${{ secrets.PAT }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 
   publish_release:
-    needs: [update_wiki, push_nugets]
+    needs: [create_release]
     runs-on: ubuntu-latest
     name: Publish Release
     environment: production
