@@ -250,6 +250,16 @@ namespace MaterialDesignThemes.Wpf
             DependencyProperty.Register(nameof(OpenDirection), typeof(PopupDirection),
                 typeof(ComboBoxPopup), new PropertyMetadata(PopupDirection.None));
 
+        public static readonly DependencyProperty CustomPopupPlacementCallbackOverrideProperty =
+            DependencyProperty.Register(nameof(CustomPopupPlacementCallbackOverride), typeof(CustomPopupPlacementCallback),
+                typeof(ComboBoxPopup), new PropertyMetadata(default(CustomPopupPlacementCallback)));
+
+        public CustomPopupPlacementCallback? CustomPopupPlacementCallbackOverride
+        {
+            get { return (CustomPopupPlacementCallback?) GetValue(CustomPopupPlacementCallbackOverrideProperty); }
+            set { SetValue(CustomPopupPlacementCallbackOverrideProperty, value); }
+        }
+
         public ComboBoxPopup()
             => CustomPopupPlacementCallback = ComboBoxCustomPopupPlacementCallback;
 
@@ -273,6 +283,11 @@ namespace MaterialDesignThemes.Wpf
         private CustomPopupPlacement[] ComboBoxCustomPopupPlacementCallback(
             Size popupSize, Size targetSize, Point offset)
         {
+            if (CustomPopupPlacementCallbackOverride != null)
+            {
+                return CustomPopupPlacementCallbackOverride(popupSize, targetSize, offset);
+            }
+
             var visualAncestry = PlacementTarget.GetVisualAncestry().ToList();
 
             var parent = visualAncestry.OfType<Panel>().ElementAt(1);
@@ -283,59 +298,20 @@ namespace MaterialDesignThemes.Wpf
             var defaultVerticalOffsetIndependent = DpiHelper.TransformToDeviceY(data.MainVisual, DefaultVerticalOffset);
 
             double newY;
-            double newX = data.OffsetX;
             PopupDirection direction;
-            double dropShadowWidth = DpiHelper.TransformToDeviceY(6);
-            double rotatedComboBoxHeight = data.TargetSize.Width;
-            double rotatedComboBoxWidth = data.TargetSize.Height;
-            var comboBox = visualAncestry.OfType<ComboBox>().First();
-            if (comboBox.LayoutTransform is RotateTransform comboBoxRotationCounterClockwise && Math.Abs(comboBoxRotationCounterClockwise.Angle + 90) <= 1e-10)
+            if (data.LocationY + data.PopupSize.Height > data.ScreenHeight)
             {
-                // ComboBox is rotated 90 degrees counter-clockwise (ie. Left=Down, Right=Up)
-                newY = defaultVerticalOffsetIndependent - rotatedComboBoxWidth - dropShadowWidth;
-                newX = 0;
-                if (data.LocationX + data.PopupSize.Width + rotatedComboBoxHeight + dropShadowWidth > data.ScreenWidth)
-                {
-                    newX -= popupSize.Width;
-                    direction = PopupDirection.Up;
-                }
-                else
-                {
-                    newX += rotatedComboBoxHeight;
-                    direction = PopupDirection.Down;
-                }
-            }
-            else if (comboBox.LayoutTransform is RotateTransform comboBoxRotationClockwise && Math.Abs(comboBoxRotationClockwise.Angle - 90) <= 1e-10)
-            {
-                // ComboBox is rotated 90 degrees clockwise (ie. Left=Up, Right=Down)
-                newY = defaultVerticalOffsetIndependent - dropShadowWidth;
-                newX = 0;
-                if (data.LocationX - rotatedComboBoxHeight > data.PopupSize.Width)
-                {
-                    newX -= popupSize.Width + rotatedComboBoxHeight;
-                    direction = PopupDirection.Up;
-                }
-                else
-                {
-                    direction = PopupDirection.Down;
-                }
+                newY = -(defaultVerticalOffsetIndependent + data.PopupSize.Height);
+                direction = PopupDirection.Up;
             }
             else
             {
-                if (data.LocationY + data.PopupSize.Height > data.ScreenHeight)
-                {
-                    newY = -(defaultVerticalOffsetIndependent + data.PopupSize.Height);
-                    direction = PopupDirection.Up;
-                }
-                else
-                {
-                    newY = defaultVerticalOffsetIndependent + data.TargetSize.Height;
-                    direction = PopupDirection.Down;
-                }
+                newY = defaultVerticalOffsetIndependent + data.TargetSize.Height;
+                direction = PopupDirection.Down;
             }
 
             SetCurrentValue(OpenDirectionProperty, direction);
-            return new[] { new CustomPopupPlacement(new Point(newX, newY), PopupPrimaryAxis.Horizontal) };
+            return new[] { new CustomPopupPlacement(new Point(data.OffsetX, newY), PopupPrimaryAxis.Horizontal) };
 
             PositioningData GetPositioningData(IEnumerable<DependencyObject?> visualAncestry, Size popupSize, Size targetSize)
             {

@@ -427,7 +427,8 @@
                            Tag="{DynamicResource MaterialDesignPaper}"
                            UpVerticalOffset="15"
                            UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                           VerticalOffset="0">
+                           VerticalOffset="0"
+                           CustomPopupPlacementCallbackOverride="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ComboBoxAssist.CustomPopupPlacementCallback)}">
           <wpf:ComboBoxPopup.Background>
             <MultiBinding Converter="{StaticResource FallbackBrushConverter}">
               <Binding Path="Background" RelativeSource="{RelativeSource TemplatedParent}" />
