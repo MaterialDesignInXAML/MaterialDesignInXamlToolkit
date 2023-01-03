@@ -256,8 +256,8 @@ namespace MaterialDesignThemes.Wpf
 
         public CustomPopupPlacementCallback? CustomPopupPlacementCallbackOverride
         {
-            get { return (CustomPopupPlacementCallback?) GetValue(CustomPopupPlacementCallbackOverrideProperty); }
-            set { SetValue(CustomPopupPlacementCallbackOverrideProperty, value); }
+            get => return (CustomPopupPlacementCallback?) GetValue(CustomPopupPlacementCallbackOverrideProperty); 
+            set => SetValue(CustomPopupPlacementCallbackOverrideProperty, value);
         }
 
         public ComboBoxPopup()
