@@ -27,7 +27,7 @@ jobs:
       name: Check nightly_release tag
       run: |
         $nightlyReleaseHash = $(git rev-parse nightly_release)
-        $masterHash = $(git rev-parse master)
+        $masterHash = $(git rev-parse origin/master)
         $hasChanged = ($nightlyReleaseHash -ne $masterHash).ToString().ToLower()
         echo "has_changed=$hasChanged" >> $GITHUB_OUTPUT
   
