@@ -29,6 +29,7 @@ jobs:
         $nightlyReleaseHash = $(git rev-parse nightly_release)
         $masterHash = $(git rev-parse origin/master)
         $hasChanged = ($nightlyReleaseHash -ne $masterHash).ToString().ToLower()
+        echo "Has updates $hasChanged"
         echo "has_changed=$hasChanged" >> $GITHUB_OUTPUT
   
   get_versions:
