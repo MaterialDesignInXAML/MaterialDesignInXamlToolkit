@@ -70,13 +70,12 @@ jobs:
 
       - name: Push NuGets
         run: |
-          ls nugets/*.nupkg
-          #dotnet nuget push nugets/*.nupkg --api-key ${{ secrets.PAT }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+          dotnet nuget push nugets/*.nupkg --api-key ${{ secrets.PAT }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 
-    # - name: Update latest tag
-    #   if: ${{ github.event_name != 'push' }}
-    #   run: |
-    #     git config user.name github-actions
-    #     git config user.email github-actions@github.com
-    #     git tag -f nightly_release master
-    #     git push -f --tags
+      - name: Update latest tag
+        if: ${{ github.event_name != 'push' }}
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git tag -f nightly_release master
+          git push -f --tags
