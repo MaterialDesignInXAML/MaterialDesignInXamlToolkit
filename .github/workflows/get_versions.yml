@@ -28,6 +28,9 @@ jobs:
       mdix-mahapps-version: "0.2.6"
     name: Set version numbers
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: pwsh
     # Map the job outputs to step outputs
     outputs:
       mdix-version: ${{ steps.output_versions.outputs.mdix-version }}
@@ -37,15 +40,15 @@ jobs:
       - name: Set preview version numbers
         if: ${{ !inputs.is-full-release }}
         run: |
-          echo "mdix-version=${{ env.mdix-version }}-ci${{ github.run_number }}" >> $GITHUB_ENV
-          echo "mdix-colors-version=${{ env.mdix-colors-version }}-ci${{ github.run_number }}" >> $GITHUB_ENV
-          echo "mdix-mahapps-version=${{ env.mdix-mahapps-version }}-ci${{ github.run_number }}" >> $GITHUB_ENV
+          "mdix-version=${{ env.mdix-version }}-ci${{ github.run_number }}" >> $env:GITHUB_ENV
+          "mdix-colors-version=${{ env.mdix-colors-version }}-ci${{ github.run_number }}" >> $env:GITHUB_ENV
+          "mdix-mahapps-version=${{ env.mdix-mahapps-version }}-ci${{ github.run_number }}" >> $env:GITHUB_ENV
       - name: Output Versions
         id: output_versions
         run: |
           echo ${{ env.mdix-version }}
-          echo "mdix-version=${{ env.mdix-version }}" >> $GITHUB_OUTPUT
+          "mdix-version=${{ env.mdix-version }}" >> $env:GITHUB_OUTPUT
           echo ${{ env.mdix-colors-version }}
-          echo "mdix-colors-version=${{ env.mdix-colors-version }}" >> $GITHUB_OUTPUT
+          "mdix-colors-version=${{ env.mdix-colors-version }}" >> $env:GITHUB_OUTPUT
           echo ${{ env.mdix-mahapps-version }}
-          echo "mdix-mahapps-version=${{ env.mdix-mahapps-version }}" >> $GITHUB_OUTPUT
+          "mdix-mahapps-version=${{ env.mdix-mahapps-version }}" >> $env:GITHUB_OUTPUT
