@@ -30,7 +30,7 @@ jobs:
         $masterHash = $(git rev-parse origin/master)
         $hasChanged = ($nightlyReleaseHash -ne $masterHash).ToString().ToLower()
         echo "Has updates $hasChanged"
-        echo "has_changed=$hasChanged" >> $GITHUB_OUTPUT
+        "has_changed=$hasChanged" >> $env:GITHUB_OUTPUT
 
   test:
     needs: check_for_changes
