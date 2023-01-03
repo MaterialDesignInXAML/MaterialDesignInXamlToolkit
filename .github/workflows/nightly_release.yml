@@ -5,6 +5,10 @@ on:
   schedule:
     - cron:  '0 9 * * *'
 
+defaults:
+  run:
+    shell: pwsh
+
 jobs:
   check_for_changes:
     #This check prevents this from running on forks

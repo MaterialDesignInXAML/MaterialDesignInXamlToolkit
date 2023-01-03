@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ master ]
 
+defaults:
+  run:
+    shell: pwsh
+
 env:
   solution: MaterialDesignToolkit.Full.sln
   buildConfiguration: 'Release'
