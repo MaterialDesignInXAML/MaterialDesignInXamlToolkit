@@ -6,25 +6,22 @@ on:
   pull_request:
     branches: [ master ]
 
+defaults:
+  run:
+    shell: pwsh
+
 env:
   solution: MaterialDesignToolkit.Full.sln
   buildConfiguration: 'Release'
 
 jobs:
   build:
-
-    runs-on: windows-latest
-
-    steps:
-    - uses: actions/checkout@v3
-
-    - name: Build and Test
-      uses: ./.github/actions/build-and-test
-      timeout-minutes: 20
-      with:
-        solution: ${{ env.solution }}
-        buildConfiguration: ${{ env.buildConfiguration }}
-        nugetKey: ${{ secrets.PAT }}
+    name: Build artifacts
+    uses: ./.github/workflows/build_artifacts.yml
+    with:
+      mdix-version: "0.0.0"
+      mdix-colors-version: "0.0.0"
+      mdix-mahapps-version: "0.0.0"
 
   automerge:
     needs: build

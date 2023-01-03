@@ -4,79 +4,78 @@ on:
   workflow_dispatch:
   schedule:
     - cron:  '0 9 * * *'
-  # push:
-  #   tags:
-  #     - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
-env:
-  solution: MaterialDesignToolkit.Full.sln
-  buildConfiguration: 'Release'
-  mdixColorsVersion: '2.1.0'
-  mdixMahAppsVersion: '0.2.6'
-  mdixVersion: '4.7.0'
+defaults:
+  run:
+    shell: pwsh
 
 jobs:
   check_for_changes:
+    #This check prevents this from running on forks
     if: ${{ github.repository == 'MaterialDesignInXAML/MaterialDesignInXamlToolkit' }}
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     outputs:
-      should_run: ${{ github.event_name == 'push' || steps.check_tag.outputs.has_changed }}
+      should_run: ${{ steps.check_tag.outputs.has_changed }}
 
     steps:
     - uses: actions/checkout@v3
-      if: ${{ github.event_name != 'push' }}
       with:
         fetch-depth: 0
 
     - id: check_tag
       name: Check nightly_release tag
-      if: ${{ github.event_name != 'push' }}
       run: |
         $nightlyReleaseHash = $(git rev-parse nightly_release)
-        $masterHash = $(git rev-parse master)
+        $masterHash = $(git rev-parse origin/master)
         $hasChanged = ($nightlyReleaseHash -ne $masterHash).ToString().ToLower()
-        echo "::set-output name=has_changed::$hasChanged"
+        echo "Has updates $hasChanged"
+        "has_changed=$hasChanged" >> $env:GITHUB_OUTPUT
 
-  build:
+  test:
+    needs: check_for_changes
+    runs-on: ubuntu-latest
+    steps:
+    - name: Test
+      run: |
+        echo "Test ${{ needs.check_for_changes.outputs.should_run }}"
+        
+  get_versions:
     needs: [check_for_changes]
     if: ${{ needs.check_for_changes.outputs.should_run == 'true' }}
-    runs-on: windows-latest
+    name: Get Versions
+    uses: ./.github/workflows/get_versions.yml
+
+  build_artifacts:
+    name: Build artifacts
+    needs: [get_versions, check_for_changes]
+    if: ${{ needs.check_for_changes.outputs.should_run == 'true' }}
+    uses: ./.github/workflows/build_artifacts.yml
+    with:
+      mdix-version: ${{ needs.get_versions.outputs.mdix-version }}
+      mdix-colors-version: ${{ needs.get_versions.outputs.mdix-colors-version }}
+      mdix-mahapps-version: ${{ needs.get_versions.outputs.mdix-colors-version }}
+
+  push_nugets:
+    needs: [build_artifacts]
+    runs-on: ubuntu-latest
+    name: Push NuGets
 
     steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
+      - name: Download NuGet Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: NuGets
+          path: nugets
 
-    - name: Build and Test
-      uses: ./.github/actions/build-and-test
-      timeout-minutes: 20
-      with:
-        solution: ${{ env.solution }}
-        buildConfiguration: ${{ env.buildConfiguration }}
-        nugetKey: ${{ secrets.PAT }}
+      - name: Push NuGets
+        run: |
+          dotnet nuget push nugets/*.nupkg --api-key ${{ secrets.PAT }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 
-    - name: Set Nightly Version Numbers
-      if: ${{ github.event_name != 'push' }}
-      run: |
-        echo "mdixVersion=${{ env.mdixVersion }}-ci${{ github.run_number }}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf-8 -Append
-        echo "mdixColorsVersion=${{ env.mdixColorsVersion }}-ci${{ github.run_number }}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf-8 -Append
-        echo "mdixMahAppsVersion=${{ env.mdixMahAppsVersion }}-ci${{ github.run_number }}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf-8 -Append
-        
-    # - name: Push Artifacts
-    #   uses: ./.github/actions/push-artifacts
-    #   timeout-minutes: 10
-    #   with:
-    #     mdixVersion: ${{ env.mdixVersion }}
-    #     mdixColorsVersion: ${{ env.mdixColorsVersion }}
-    #     mdixMahAppsVersion: ${{ env.mdixMahappsVersion }}
-    #     demoAppPath: "MainDemo.Wpf/bin/${{ env.buildConfiguration }}"
-    #     nugetKey: ${{ secrets.PAT }}
-
-    # - name: Update latest tag
-    #   if: ${{ github.event_name != 'push' }}
-    #   run: |
-    #     git config user.name github-actions
-    #     git config user.email github-actions@github.com
-    #     git tag -f nightly_release master
-    #     git push -f --tags
+      - name: Update latest tag
+        if: ${{ github.event_name != 'push' }}
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git tag -f nightly_release master
+          git push -f --tags
