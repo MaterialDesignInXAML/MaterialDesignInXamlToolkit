@@ -10,10 +10,6 @@ on:
 
 env:
   solution: MaterialDesignToolkit.Full.sln
-  buildConfiguration: 'Release'
-  mdixColorsVersion: '2.1.0'
-  mdixMahAppsVersion: '0.2.6'
-  mdixVersion: '4.7.0'
   # Needed for GitHub CLI
   GH_TOKEN: ${{ github.token }}
 
@@ -22,6 +18,12 @@ defaults:
     shell: pwsh
 
 jobs:
+  get_versions:
+    name: Get Versions
+    uses: ./.github/workflows/get_versions.yml
+    with:
+      is-full-release: true
+    
   collect_contributors:
     runs-on: ubuntu-latest
     name: Generate Release Notes
@@ -53,37 +55,14 @@ jobs:
           name: ReleaseNotes
           path: "ReleaseNotes.md"
 
-
   build_artifacts:
     name: Build artifacts
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Build and Test
-        uses: ./.github/actions/build-and-test
-        timeout-minutes: 20
-        with:
-          solution: ${{ env.solution }}
-          buildConfiguration: ${{ env.buildConfiguration }}
-          nugetKey: ${{ secrets.PAT }}
-
-      - name: Build NuGets
-        run: .\Scripts\BuildNugets.ps1 -MDIXVersion ${{ env.mdixVersion }} -MDIXMahAppsVersion ${{ env.mdixMahAppsVersion }} -MDIXColorsVersion ${{ env.mdixColorsVersion }}
-
-      - name: Upload NuGets
-        uses: actions/upload-artifact@v3
-        with:
-          name: NuGets
-          path: "*.nupkg"
-
-      - name: Upload Demo App
-        uses: actions/upload-artifact@v3
-        with:
-          name: DemoApp
-          path: "MainDemo.Wpf/bin/${{ env.buildConfiguration }}"
+    needs: get_versions
+    uses: ./.github/workflows/build_artifacts.yml
+    with:
+      mdix-version: ${{ needs.get_versions.outputs.mdix-version }}
+      mdix-colors-version: ${{ needs.get_versions.outputs.mdix-colors-version }}
+      mdix-mahapps-version: ${{ needs.get_versions.outputs.mdix-colors-version }}
 
   build_icon_changes:
     needs: [build_artifacts]
@@ -146,7 +125,7 @@ jobs:
 
       - name: Create Release
         run: |
-          # We can't use glob pattern matching for the artifacts because of this bug https://github.com/cli/cli/issues/5099
+          # We can't use glob pattern because of this bug https://github.com/cli/cli/issues/5099
           gh release create v${{ inputs.milestone }} --repo '${{ github.repository }}' --draft --latest --title "${{ inputs.milestone }}" --notes-file ReleaseNotes.md (Get-Item '${{ github.workspace }}/nugets/*.nupkg') '${{ github.workspace }}/DemoApp.zip'
           
   update_wiki:
@@ -231,10 +210,11 @@ jobs:
 
       - name: Push NuGets
         run: |
-          dotnet nuget push nugets/*.nupkg --api-key ${{ secrets.PAT }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+          ls nugets/*.nupkg
+          #dotnet nuget push nugets/*.nupkg --api-key ${{ secrets.PAT }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 
   publish_release:
-    needs: [create_release]
+    needs: [update_wiki, push_nugets]
     runs-on: ubuntu-latest
     name: Publish Release
     environment: production
