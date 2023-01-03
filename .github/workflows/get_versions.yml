@@ -43,9 +43,9 @@ jobs:
       - name: Output Versions
         id: output_versions
         run: |
-          echo $mdix-version
-          echo "mdix-version=$mdix-version" >> $GITHUB_OUTPUT
-          echo $mdix-colors-version
-          echo "mdix-colors-version=$mdix-colors-version" >> $GITHUB_OUTPUT
-          echo $mdix-mahapps-version
-          echo "mdix-mahapps-version=$mdix-mahapps-version" >> $GITHUB_OUTPUT
+          echo ${{ env.mdix-version }}
+          echo "mdix-version=${{ env.mdix-version }}" >> $GITHUB_OUTPUT
+          echo ${{ env.mdix-colors-version }}
+          echo "mdix-colors-version=${{ mdix-colors-version }}" >> $GITHUB_OUTPUT
+          echo ${{ env.mdix-mahapps-version }}
+          echo "mdix-mahapps-version=${{ env.mdix-mahapps-version }}" >> $GITHUB_OUTPUT

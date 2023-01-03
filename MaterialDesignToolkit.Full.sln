@@ -52,7 +52,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mdresgen", "mdresgen\mdresg
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{18401177-A30E-4330-8F6B-101DF876CE99}"
 	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build_artifacts.yml = .github\workflows\build_artifacts.yml
 		.github\workflows\control_styles.yml = .github\workflows\control_styles.yml
+		.github\workflows\get_versions.yml = .github\workflows\get_versions.yml
 		.github\workflows\icon_update.yml = .github\workflows\icon_update.yml
 		.github\workflows\nightly_release.yml = .github\workflows\nightly_release.yml
 		.github\workflows\pr_verification.yml = .github\workflows\pr_verification.yml
