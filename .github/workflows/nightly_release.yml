@@ -31,7 +31,15 @@ jobs:
         $hasChanged = ($nightlyReleaseHash -ne $masterHash).ToString().ToLower()
         echo "Has updates $hasChanged"
         echo "has_changed=$hasChanged" >> $GITHUB_OUTPUT
-  
+
+  test:
+    needs: check_for_changes
+    runs-on: ubuntu-latest
+    steps:
+    - name: Test
+      run: |
+        echo "Test ${{ needs.check_for_changes.outputs.should_run }}"
+        
   get_versions:
     needs: [check_for_changes]
     if: ${{ needs.check_for_changes.outputs.should_run == 'true' }}
