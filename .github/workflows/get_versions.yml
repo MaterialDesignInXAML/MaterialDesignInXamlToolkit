@@ -12,7 +12,7 @@ on:
       mdix-version:
         description: "The version for the MaterialDesignThemes library"
         value: ${{ jobs.getting_versions.outputs.mdix-version }}
-      midx-colors-version:
+      mdix-colors-version:
         description: "The version for the MaterialDesignColors library"
         value: ${{ jobs.getting_versions.outputs.mdix-colors-version }}
       mdix-mahapps-version:
