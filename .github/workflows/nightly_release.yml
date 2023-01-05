@@ -19,17 +19,17 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      should_run: ${{ steps.check_tag.outputs.has_changed }}
+      should_run: ${{ steps.check_for_changes.outputs.has_changed }}
 
     steps:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
 
-    - id: check_tag
+    - id: check_for_changes
       name: Check nightly_release tag
       run: |
-        $workflowList = gh run list --workflow "${{ github.action }}" --branch "${{ github.ref_name }}" --json databaseId --limit 1
+        $workflowList = gh run list --workflow "${{ github.workflow }}" --branch "${{ github.ref_name }}" --json databaseId --limit 1
         $runId = ($workflowList | ConvertFrom-Json)[0].databaseId
         $nightlyReleaseHash = ((gh run view $runId --json headSha) | ConvertFrom-Json).headSha
 
