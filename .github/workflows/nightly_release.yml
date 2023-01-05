@@ -25,10 +25,9 @@ jobs:
     - id: check_for_changes
       name: Check for changes
       run: |
-        gh repo set-default "${{ github.repository }}"
-        $workflowList = gh run list --workflow "${{ github.workflow }}" --branch "${{ github.ref_name }}" --json databaseId --limit 1
+        $workflowList = gh run list --workflow "${{ github.workflow }}" --branch "${{ github.ref_name }}" --json databaseId --limit 1 --repo "${{ github.repository }}"
         $runId = ($workflowList | ConvertFrom-Json)[0].databaseId
-        $lastRunHash = ((gh run view $runId --json headSha) | ConvertFrom-Json).headSha
+        $lastRunHash = ((gh run view $runId --json headSha --repo "${{ github.repository }}") | ConvertFrom-Json).headSha
 
         $hasChanged = ($lastRunHash -ne "${{ github.sha }}").ToString().ToLower()
         echo "Has updates $hasChanged"
