@@ -26,19 +26,14 @@ jobs:
     - id: check_tag
       name: Check nightly_release tag
       run: |
-        $nightlyReleaseHash = $(git rev-parse nightly_release)
+        $workflowList = gh run list --workflow "${{ github.action }}" --branch "${{ github.ref_name }}" --json databaseId --limit 1
+        $runId = ($workflowList | ConvertFrom-Json)[0].databaseId
+        $nightlyReleaseHash = ((gh run view $runId --json headSha) | ConvertFrom-Json).headSha
+
         $masterHash = $(git rev-parse origin/master)
         $hasChanged = ($nightlyReleaseHash -ne $masterHash).ToString().ToLower()
         echo "Has updates $hasChanged"
         "has_changed=$hasChanged" >> $env:GITHUB_OUTPUT
-
-  test:
-    needs: check_for_changes
-    runs-on: ubuntu-latest
-    steps:
-    - name: Test
-      run: |
-        echo "Test ${{ needs.check_for_changes.outputs.should_run }}"
         
   get_versions:
     needs: [check_for_changes]
@@ -71,11 +66,3 @@ jobs:
       - name: Push NuGets
         run: |
           dotnet nuget push nugets/*.nupkg --api-key ${{ secrets.PAT }} --source https://api.nuget.org/v3/index.json --skip-duplicate
-
-      - name: Update latest tag
-        if: ${{ github.event_name != 'push' }}
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git tag -f nightly_release master
-          git push -f --tags
