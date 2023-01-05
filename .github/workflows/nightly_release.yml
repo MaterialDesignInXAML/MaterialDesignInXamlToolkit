@@ -22,19 +22,14 @@ jobs:
       should_run: ${{ steps.check_for_changes.outputs.has_changed }}
 
     steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-
     - id: check_for_changes
-      name: Check nightly_release tag
+      name: Check for changes
       run: |
         $workflowList = gh run list --workflow "${{ github.workflow }}" --branch "${{ github.ref_name }}" --json databaseId --limit 1
         $runId = ($workflowList | ConvertFrom-Json)[0].databaseId
-        $nightlyReleaseHash = ((gh run view $runId --json headSha) | ConvertFrom-Json).headSha
+        $lastRunHash = ((gh run view $runId --json headSha) | ConvertFrom-Json).headSha
 
-        $masterHash = $(git rev-parse origin/master)
-        $hasChanged = ($nightlyReleaseHash -ne $masterHash).ToString().ToLower()
+        $hasChanged = ($lastRunHash -ne "${{ github.sha }}").ToString().ToLower()
         echo "Has updates $hasChanged"
         "has_changed=$hasChanged" >> $env:GITHUB_OUTPUT
         
