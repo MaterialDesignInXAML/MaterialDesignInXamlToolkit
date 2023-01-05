@@ -14,13 +14,6 @@ namespace MaterialDesignThemes.Wpf
     public enum PackIconKind
     {
         Abacus,
-        AbjadArabic,
-        WritingSystemArabic=AbjadArabic,
-        AbjadHebrew,
-        WritingSystemHebrew=AbjadHebrew,
-        AbTesting,
-        AbugidaDevanagari,
-        WritingSystemDevanagari=AbugidaDevanagari,
         AbugidaThai,
         WritingSystemThai=AbugidaThai,
         AccessPoint,
