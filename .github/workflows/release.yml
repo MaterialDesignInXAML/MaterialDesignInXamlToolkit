@@ -24,7 +24,7 @@ jobs:
     with:
       is-full-release: true
     
-  collect_contributors:
+  build_release_notes:
     runs-on: ubuntu-latest
     name: Generate Release Notes
 
@@ -95,7 +95,6 @@ jobs:
         with:
           name: IconChanges
           path: "IconChanges*.md"
-
 
   create_release:
     needs: [collect_contributors, build_artifacts, build_icon_changes]
