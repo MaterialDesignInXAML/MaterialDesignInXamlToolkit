@@ -31,6 +31,7 @@ jobs:
         $lastRunHash = ((gh run view $runId --json headSha --repo "${{ github.repository }}") | ConvertFrom-Json).headSha
 
         echo "Last hash $lastRunHash"
+        echo "Current hash ${{ github.sha }}"
 
         $hasChanged = ($lastRunHash -ne "${{ github.sha }}").ToString().ToLower()
         echo "Has updates $hasChanged"
