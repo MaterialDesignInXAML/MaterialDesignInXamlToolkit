@@ -176,6 +176,92 @@ public static class DataGridAssist
     }
     #endregion
 
+    #region AttachedProperty : ApplyMaterialDesignColumnStylesProperty
+    public static readonly DependencyProperty ApplyMaterialDesignColumnStylesProperty
+        = DependencyProperty.RegisterAttached("ApplyMaterialDesignColumnStyles", typeof(bool), typeof(DataGridAssist),
+            new PropertyMetadata(default(bool), ApplyMaterialDesignColumnStylesPropertyChangedCallback));
+
+    public static void SetApplyMaterialDesignColumnStyles(DataGrid element, bool value)
+        => element.SetValue(ApplyMaterialDesignColumnStylesProperty, value);
+
+    public static bool GetApplyMaterialDesignColumnStyles(DataGrid element)
+        => (bool) element.GetValue(ApplyMaterialDesignColumnStylesProperty);
+
+    private static void ApplyMaterialDesignColumnStylesPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var dataGrid = (DataGrid)d;
+
+        dataGrid.Columns.CollectionChanged -= Columns_CollectionChanged;
+        if (Equals(true, e.NewValue))
+        {
+            dataGrid.Columns.CollectionChanged += Columns_CollectionChanged;    // Auto-generated columns are added later in the chain, thus we subscribe to changes.
+            foreach (var column in dataGrid.Columns)
+            {
+                ApplyMaterialDesignColumnStyleForColumn(column);
+            }
+        }
+    }
+
+    private static void Columns_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+    {
+        foreach (DataGridColumn column in e.NewItems.OfType<DataGridColumn>())
+        {
+            ApplyMaterialDesignColumnStyleForColumn(column);
+        }
+    }
+
+    private static void ApplyMaterialDesignColumnStyleForColumn(DataGridColumn column)
+    {
+        Style defaultElementStyle = (Style)DataGridBoundColumn.ElementStyleProperty.GetMetadata(column.GetType()).DefaultValue;
+        Style defaultEditingElementStyle = (Style)DataGridBoundColumn.EditingElementStyleProperty.GetMetadata(column.GetType()).DefaultValue;
+
+        bool applyElementStyle;
+        bool applyEditingElementStyle;
+        switch (column)
+        {
+            case DataGridCheckBoxColumn checkBoxColumn:
+                applyElementStyle = Equals(checkBoxColumn.ElementStyle, defaultElementStyle);
+                applyEditingElementStyle = Equals(checkBoxColumn.EditingElementStyle, defaultEditingElementStyle);
+                if (applyElementStyle)
+                {
+                    checkBoxColumn.ElementStyle =  (Style)Application.Current.TryFindResource("MaterialDesignDataGridCheckBoxColumnStyle");
+                }
+
+                if (applyEditingElementStyle)
+                {
+                    checkBoxColumn.EditingElementStyle = (Style)Application.Current.TryFindResource("MaterialDesignDataGridCheckBoxColumnEditingStyle");
+                }
+                break;
+            case System.Windows.Controls.DataGridTextColumn textColumn:
+                applyElementStyle = Equals(textColumn.ElementStyle, defaultElementStyle);
+                applyEditingElementStyle = Equals(textColumn.EditingElementStyle, defaultEditingElementStyle);
+                if (applyElementStyle)
+                {
+                    textColumn.ElementStyle = (Style)Application.Current.TryFindResource("MaterialDesignDataGridTextColumnStyle");
+                }
+
+                if (applyEditingElementStyle)
+                {
+                    textColumn.EditingElementStyle = (Style)Application.Current.TryFindResource("MaterialDesignDataGridTextColumnEditingStyle");
+                }
+                break;
+            case System.Windows.Controls.DataGridComboBoxColumn comboBoxColumn:
+                applyElementStyle = Equals(comboBoxColumn.ElementStyle, defaultElementStyle);
+                applyEditingElementStyle = Equals(comboBoxColumn.EditingElementStyle, defaultEditingElementStyle);
+                if (applyElementStyle)
+                {
+                    comboBoxColumn.ElementStyle = (Style)Application.Current.TryFindResource(new ComponentResourceKey(typeof(ComboBox), "MaterialDataGridComboBoxColumnStyle"));
+                }
+
+                if (applyEditingElementStyle)
+                {
+                    comboBoxColumn.EditingElementStyle = (Style)Application.Current.TryFindResource(new ComponentResourceKey(typeof(ComboBox), "MaterialDataGridComboBoxColumnEditingStyle"));
+                }
+                break;
+        }
+    }
+    #endregion
+
     #region AttachedProperty : CellPaddingProperty
     public static readonly DependencyProperty CellPaddingProperty
         = DependencyProperty.RegisterAttached("CellPadding", typeof(Thickness), typeof(DataGridAssist),
