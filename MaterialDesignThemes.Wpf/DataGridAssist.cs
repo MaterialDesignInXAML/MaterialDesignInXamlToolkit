@@ -202,7 +202,7 @@ public static class DataGridAssist
         }
     }
 
-    private static void Columns_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+    private static void Columns_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
     {
         foreach (DataGridColumn column in e.NewItems.OfType<DataGridColumn>())
         {
