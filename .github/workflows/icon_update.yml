@@ -32,12 +32,7 @@ jobs:
 
     - name: Commit changes
       run: |
-        # TODO switch branch, commit, push
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         git commit -m "[bot] Pack Icon update" --all
         git push
-
-    - name: Open PR
-      run: |
-        # Open PR
