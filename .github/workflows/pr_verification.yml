@@ -10,10 +10,6 @@ defaults:
   run:
     shell: pwsh
 
-env:
-  solution: MaterialDesignToolkit.Full.sln
-  buildConfiguration: 'Release'
-
 jobs:
   build:
     name: Build artifacts

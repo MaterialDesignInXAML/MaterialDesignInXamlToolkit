@@ -5,6 +5,10 @@ on:
   schedule:
     - cron:  '0 3 * * *'
 
+defaults:
+  run:
+    shell: pwsh
+
 jobs:
   build:
     #This check prevents this from running on forks
@@ -14,6 +18,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
@@ -24,18 +30,9 @@ jobs:
       run: dotnet run -c Release -- icons
       working-directory: ./mdresgen
 
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v4
-      with:
-        commit-message: >
-          [Icon update detected by Github Action].
-          Auto generated pull request.
-        committer: Material Design Service Account <mdixsa@outlook.com>
-        author: Material Design Service Account <mdixsa@outlook.com>
-        branch: pipeline/icons
-        delete-branch: true
-        base: master
-        title: Update Icons [GitHub Action]
-        body: >
-          [Icon update detected by Github Action].
-          Auto generated pull request.
+    - name: Commit changes
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git commit -m "[bot] Pack Icon update" --all
+        git push
