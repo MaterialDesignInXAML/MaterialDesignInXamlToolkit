@@ -45,6 +45,10 @@ jobs:
   
       - name: Build
         run: dotnet build ${{ env.solution }} --configuration ${{ inputs.build-configuration }} --no-restore -p:Platform="Any CPU" -p:TreatWarningsAsErrors=True
+        env:
+          MDIXVersion: ${{ inputs.mdix-version }}
+          MDIXColorsVersion: ${{ inputs.mdix-colors-version }} 
+          MDIXMahAppsVersion: ${{ inputs.mdix-mahapps-version }}
   
       - name: Test
         timeout-minutes: 20
