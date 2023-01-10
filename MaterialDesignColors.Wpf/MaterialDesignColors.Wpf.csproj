@@ -5,6 +5,7 @@
     <TargetFrameworks>net462;netcoreapp3.1;net6.0-windows;net7.0-windows</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <MDIXColorsVersion Condition="$(MDIXColorsVersion) == '' Or $(MDIXColorsVersion) == '*Undefined*'">1.0.1</MDIXColorsVersion>
+    <MDIXColorsVersion>$([System.Text.RegularExpressions.Regex]::Replace("$(MDIXColorsVersion)", "-ci\d+$", ""))</MDIXColorsVersion>
     <AssemblyTitle>MaterialDesignColors.Wpf</AssemblyTitle>
     <Product>MaterialDesignColors.Wpf</Product>
     <Description>Material Design in XAML Toolkit - Colors</Description>
