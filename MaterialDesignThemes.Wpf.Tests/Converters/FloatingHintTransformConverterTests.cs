@@ -63,7 +63,7 @@ namespace MaterialDesignThemes.Wpf.Tests.Converters
             var result = (TransformGroup?)converter.Convert(new object?[] { scale, lower, upper, new Point(x, y) }, typeof(Transform), null, CultureInfo.CurrentUICulture);
 
             Assert.NotNull(result);
-            Assert.Equal(1, result.Children.Count);
+            Assert.Single(result.Children);
             Assert.IsType<TranslateTransform>(result.Children[0]);
         }
 
@@ -77,7 +77,7 @@ namespace MaterialDesignThemes.Wpf.Tests.Converters
             var result = (TransformGroup?)converter.Convert(new object?[] { scale, lower, upper, new Point(x, y) }, typeof(Transform), null, CultureInfo.CurrentUICulture);
 
             Assert.NotNull(result);
-            Assert.Equal(1, result.Children.Count);
+            Assert.Single(result.Children);
             Assert.IsType<ScaleTransform>(result.Children[0]);
         }
     }
