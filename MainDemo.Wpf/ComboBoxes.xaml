@@ -237,7 +237,7 @@
 
           <ComboBox x:Name="FilledComboBox"
                     Width="256"
-                    materialDesign:HintAssist.Hint="Some item"
+                    materialDesign:HintAssist.Hint="Some item with a very long hint text that will cut off when floating"
                     IsEnabled="{Binding Path=IsChecked, ElementName=FilledComboBoxEnabledCheckBox}"
                     Style="{StaticResource MaterialDesignFilledComboBox}">
             <ComboBoxItem Content="Item 1" />

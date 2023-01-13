@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -8,12 +8,13 @@
   <converters:BooleanToVisibilityConverter x:Key="InverseBoolToVisConverter"
                                            FalseValue="Visible"
                                            TrueValue="Collapsed" />
-  <converters:FloatingHintTransformConverter x:Key="FloatingHintTransformConverter" />
+  <converters:FloatingHintTransformConverter x:Key="FloatingHintCanvasTransformConverter" ApplyScaleTransform="False" />
+  <converters:FloatingHintTransformConverter x:Key="FloatingHintTransformConverter" ApplyTranslateTransform="False" />
   <system:Double x:Key="NoContentFloatingScale">1.0</system:Double>
   <CubicEase x:Key="AnimationEasingFunction" EasingMode="EaseInOut" />
 
   <Style TargetType="{x:Type wpf:SmartHint}">
-    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
     <Setter Property="HorizontalContentAlignment" Value="Left" />
     <Setter Property="IsHitTestVisible" Value="False" />
     <Setter Property="IsTabStop" Value="False" />
@@ -138,29 +139,39 @@
                   </VisualStateGroup>
                 </VisualStateManager.VisualStateGroups>
                 <wpf:ScaleHost x:Name="ScaleHost" />
-                <ContentControl x:Name="FloatingHintTextBlock"
-                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                Content="{TemplateBinding Hint}"
-                                FontFamily="{TemplateBinding FontFamily}"
-                                FontSize="{TemplateBinding FontSize}"
-                                IsHitTestVisible="False"
-                                IsTabStop="False"
-                                Opacity="{TemplateBinding HintOpacity}"
-                                RenderTransformOrigin="0,0"
-                                Visibility="{TemplateBinding UseFloating, Converter={StaticResource BoolToVisConverter}}">
-                  <ContentControl.Tag>
-                    <system:Double>0.0</system:Double>
-                  </ContentControl.Tag>
-                  <ContentControl.RenderTransform>
-                    <MultiBinding Converter="{StaticResource FloatingHintTransformConverter}">
+                <Canvas ClipToBounds="True" HorizontalAlignment="Stretch" Height="{Binding ElementName=FloatingHintTextBlock, Path=ActualHeight}">
+                  <Canvas.RenderTransform>
+                    <MultiBinding Converter="{StaticResource FloatingHintCanvasTransformConverter}">
                       <Binding ElementName="ScaleHost" Path="Scale" />
                       <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}" />
                       <Binding Source="{StaticResource NoContentFloatingScale}" />
                       <Binding Path="FloatingOffset" RelativeSource="{RelativeSource TemplatedParent}" />
                     </MultiBinding>
-                  </ContentControl.RenderTransform>
-                </ContentControl>
+                  </Canvas.RenderTransform>
+                  <ContentControl x:Name="FloatingHintTextBlock"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  Content="{TemplateBinding Hint}"
+                                  FontFamily="{TemplateBinding FontFamily}"
+                                  FontSize="{TemplateBinding FontSize}"
+                                  IsHitTestVisible="False"
+                                  IsTabStop="False"
+                                  Opacity="{TemplateBinding HintOpacity}"
+                                  RenderTransformOrigin="0,0"
+                                  Visibility="{TemplateBinding UseFloating, Converter={StaticResource BoolToVisConverter}}">
+                    <ContentControl.Tag>
+                      <system:Double>0.0</system:Double>
+                    </ContentControl.Tag>
+                    <ContentControl.RenderTransform>
+                      <MultiBinding Converter="{StaticResource FloatingHintTransformConverter}">
+                        <Binding ElementName="ScaleHost" Path="Scale" />
+                        <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}" />
+                        <Binding Source="{StaticResource NoContentFloatingScale}" />
+                        <Binding Path="FloatingOffset" RelativeSource="{RelativeSource TemplatedParent}" />
+                      </MultiBinding>
+                    </ContentControl.RenderTransform>
+                  </ContentControl>
+                </Canvas>
               </Grid>
             </ControlTemplate>
           </Setter.Value>

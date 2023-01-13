@@ -6,6 +6,9 @@ namespace MaterialDesignThemes.Wpf.Converters
 {
     internal class FloatingHintTransformConverter : IMultiValueConverter
     {
+        public bool ApplyScaleTransform { get; set; } = true;
+        public bool ApplyTranslateTransform { get; set; } = true;
+
         public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
         {
             if (values == null
@@ -22,16 +25,22 @@ namespace MaterialDesignThemes.Wpf.Converters
             double result = upper + (lower - upper) * scale;
 
             var transformGroup = new TransformGroup();
-            transformGroup.Children.Add(new ScaleTransform
+            if (ApplyScaleTransform)
             {
-                ScaleX = result,
-                ScaleY = result
-            });
-            transformGroup.Children.Add(new TranslateTransform
+                transformGroup.Children.Add(new ScaleTransform
+                {
+                    ScaleX = result,
+                    ScaleY = result
+                });
+            }
+            if (ApplyTranslateTransform)
             {
-                X = scale * floatingOffset.X,
-                Y = scale * floatingOffset.Y
-            });
+                transformGroup.Children.Add(new TranslateTransform
+                {
+                    X = scale * floatingOffset.X,
+                    Y = scale * floatingOffset.Y
+                });
+            }
             return transformGroup;
         }
 
