@@ -44,11 +44,8 @@ jobs:
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        $commitMessage = @"
-        [bot] Pack Icon update
-        
-        
-        skip-checks: true
-        "@
-        git commit -m "$commitMessage" --all
-        git push 
+        git checkout -b "automated/icon_update"
+        git commit -m "[bot] Pack Icon update" --all
+        git push
+        gh pr create --fill
+        gh pr merge --auto
