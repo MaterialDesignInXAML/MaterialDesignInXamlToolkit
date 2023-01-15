@@ -5,6 +5,9 @@ on:
   schedule:
     - cron:  '0 3 * * *'
 
+env:
+  GH_TOKEN: ${{ github.token }}
+
 defaults:
   run:
     shell: pwsh
