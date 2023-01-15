@@ -46,6 +46,6 @@ jobs:
         git config --local user.name "github-actions[bot]"
         git checkout -b "automated/icon_update"
         git commit -m "[bot] Pack Icon update" --all
-        git push
+        git push --set-upstream origin automated/icon_update
         gh pr create --fill
         gh pr merge --auto
