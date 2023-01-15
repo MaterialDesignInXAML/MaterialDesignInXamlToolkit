@@ -48,4 +48,4 @@ jobs:
         git commit -m "[bot] Pack Icon update" --all
         git push --set-upstream origin automated/icon_update
         gh pr create --fill
-        gh pr merge --auto
+        gh pr merge automated/icon_update --delete-branch --auto --squash
