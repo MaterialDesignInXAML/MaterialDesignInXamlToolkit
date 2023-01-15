@@ -5,6 +5,9 @@ on:
   schedule:
     - cron:  '0 3 * * *'
 
+env:
+  GH_TOKEN: ${{ github.token }}
+
 defaults:
   run:
     shell: pwsh
@@ -30,9 +33,22 @@ jobs:
       run: dotnet run -c Release -- icons
       working-directory: ./mdresgen
 
-    - name: Commit changes
+    - name: Check for changes
+      id: check_for_changes
+      run: |
+        $hasChanges = $((git status --porcelain).Length -gt 0).ToString().ToLower()
+        "has_changes=$hasChanges" >> $env:GITHUB_OUTPUT
+
+    - name: Open Pull Request
+      if: ${{ steps.check_for_changes.outputs.has_changes == 'true' }}
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git commit -m "[bot] Pack Icon update" --all
-        git push
+        $commitMessage = @"
+        [bot] Pack Icon update
+        
+        
+        skip-checks: true
+        "@
+        git commit -m "$commitMessage" --all
+        git push 
