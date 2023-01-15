@@ -6,7 +6,7 @@ on:
     - cron:  '0 3 * * *'
 
 env:
-  GH_TOKEN: ${{ github.token }}
+  GH_TOKEN: ${{ secrets.PAT }}
 
 defaults:
   run:
