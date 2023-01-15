@@ -6,7 +6,7 @@ on:
     - cron:  '0 3 * * *'
 
 env:
-  GH_TOKEN: ${{ secrets.PAT }}
+  GH_TOKEN: ${{ secrets.SA_PAT }}
 
 defaults:
   run:
