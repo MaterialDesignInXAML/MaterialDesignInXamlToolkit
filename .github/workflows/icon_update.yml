@@ -47,5 +47,9 @@ jobs:
         git checkout -b "automated/icon_update"
         git commit -m "[bot] Pack Icon update" --all
         git push -f --set-upstream origin automated/icon_update
-        gh pr create --fill
+        $commitMessage = @"[bot] Pack Icon update
+        
+        
+        skip-checks: true"@
+        gh pr create --title "Icon Update [bot]" --body $commitMessage
         gh pr merge automated/icon_update --delete-branch --auto --squash
