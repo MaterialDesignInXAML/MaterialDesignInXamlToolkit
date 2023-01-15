@@ -299,7 +299,7 @@
 
           <TextBox MaxWidth="400"
                    VerticalAlignment="Top"
-                   materialDesign:HintAssist.Hint="Floating hint in a box"
+                   materialDesign:HintAssist.Hint="Floating hint in a box that will cut off"
                    AcceptsReturn="True"
                    IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
                    Style="{StaticResource MaterialDesignFilledTextBox}"
