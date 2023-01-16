@@ -191,7 +191,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git commit -m "Update Wiki with icon changes for ${{ inputs.milestone }}" --all
+          git commit -m "[automated] Update Wiki with icon changes for ${{ inputs.milestone }}" --all
           git push
 
   push_nugets:
@@ -235,3 +235,44 @@ jobs:
           $milestones = $(gh milestone list --json number,title) | ConvertFrom-Json
           $milestoneNumber = ($milestones | Where-Object { $_.title -eq "${{ inputs.milestone }}" }).number
           gh milestone edit $milestoneNumber --state closed
+
+  update_version_numbers:
+    needs: [create_release]
+    runs-on: ubuntu-latest
+    name: Update Version Numbers
+    environment: production
+
+    steps:
+      - name: Increment Version Numbers
+        run: |
+          function Update-Version {
+              param (
+                [string]$Prefix
+              )
+              $workflowPath = "./.github/workflows/get_versions.yml"
+              $workflowContent = Get-Content -Path $workflowPath
+
+              $versionPattern = '"(\d+\.\d+\.)(\d+)"'
+              $pattern = "$Prefix`: $versionPattern"
+              $match = $workflowContent -match $pattern
+
+              if ($match[0] -match $versionPattern) {
+                  $newVersion = $Matches[1] + ([int]$Matches[2] + 1)
+                  $workflowContent = $workflowContent -replace $pattern,"$Prefix`: `"$newVersion`""
+              } else {
+                  Write-Error "Failed to update $Prefix version"
+              }
+
+              Set-Content -Path $workflowPath -Value $workflowContent
+          }
+
+          Update-Version -Prefix "mdix-version"
+          Update-Version -Prefix "mdix-colors-version"
+          Update-Version -Prefix "mdix-mahapps-version"
+      
+      - name: Push Changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "[automated] Increment version numbers after release of ${{ inputs.milestone }}" --all
+          git push
