@@ -212,7 +212,7 @@ jobs:
           dotnet nuget push nugets/*.nupkg --api-key ${{ secrets.PAT }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 
   publish_release:
-    needs: [update_wiki, push_nugets]
+    needs: [create_release]
     runs-on: ubuntu-latest
     name: Publish Release
     environment: production
@@ -221,3 +221,17 @@ jobs:
       - name: Publish Release
         run: |
           gh release edit v${{ inputs.milestone }} --repo '${{ github.repository }}' --draft=false
+
+  close_milestone:
+    needs: [create_release]
+    runs-on: ubuntu-latest
+    name: Close Milestone
+    environment: production
+
+    steps:
+      - name: Close Milestone
+        run: |
+          gh extension install valeriobelli/gh-milestone
+          $milestones = $(gh milestone list --json number,title) | ConvertFrom-Json
+          $milestoneNumber = ($milestones | Where-Object { $_.title -eq "${{ inputs.milestone }}" }).number
+          gh milestone edit $milestoneNumber --state closed
