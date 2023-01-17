@@ -199,7 +199,7 @@ public static class DataGridAssist
     {
         var dataGrid = (DataGrid)d;
         ColumnUpdater? columnUpdater = GetColumnUpdater(dataGrid);
-        if (columnUpdater is not { })
+        if (columnUpdater is not null)
         {
             columnUpdater = new ColumnUpdater(dataGrid);
         }
