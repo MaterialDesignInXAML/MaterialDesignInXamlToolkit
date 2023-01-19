@@ -9,6 +9,7 @@ public class SelectableViewModel : ViewModelBase
     private double _numeric;
     private string? _food;
     private string? _files;
+    private VehicleType _vehicleType;
 
     public bool IsSelected
     {
@@ -51,4 +52,20 @@ public class SelectableViewModel : ViewModelBase
         get => _files;
         set => SetProperty(ref _files, value);
     }
+
+    public VehicleType VehicleType
+    {
+        get => _vehicleType;
+        set => SetProperty(ref _vehicleType, value);
+    }
+}
+
+public enum VehicleType
+{
+    Car,
+    Bus,
+    Motorcycle,
+    Van,
+    Scooter,
+    Truck
 }

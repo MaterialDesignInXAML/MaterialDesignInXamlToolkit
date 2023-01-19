@@ -9,6 +9,7 @@ namespace MaterialDesignDemo.Domain
             Items1 = CreateData();
             Items2 = CreateData();
             Items3 = CreateData();
+            Items4 = CreateData();
 
             foreach (var model in Items1)
             {
@@ -81,6 +82,7 @@ namespace MaterialDesignDemo.Domain
         public ObservableCollection<SelectableViewModel> Items1 { get; }
         public ObservableCollection<SelectableViewModel> Items2 { get; }
         public ObservableCollection<SelectableViewModel> Items3 { get; }
+        public ObservableCollection<SelectableViewModel> Items4 { get; }
 
         public IEnumerable<string> Foods => new[] { "Burger", "Fries", "Shake", "Lettuce" };
 

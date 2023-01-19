@@ -43,9 +43,8 @@
         </DataGrid.Resources>
 
         <DataGrid.Columns>
-          <DataGridCheckBoxColumn Binding="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}"
-                                  EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}"
-                                  ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}">
+          <!-- by default a DataGridCheckBoxColumn will have the MaterialDesignDataGridCheckBoxColumnStyle and MaterialDesignDataGridCheckBoxColumnEditingStyle applied. See DataGridAssist.ApplyMaterialDesignColumnStyles attached property -->
+          <DataGridCheckBoxColumn Binding="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}">
             <DataGridCheckBoxColumn.Header>
               <Border Background="Transparent">
                 <CheckBox IsChecked="{Binding Data.IsAllItems1Selected, Source={StaticResource DataContextProxy}}" />
@@ -59,10 +58,8 @@
             </DataGridCheckBoxColumn.HeaderStyle>
           </DataGridCheckBoxColumn>
 
-          <DataGridTextColumn Binding="{Binding Code}"
-                              EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
-                              ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
-                              Header="Code" />
+          <!-- by default a DataGridTextColumn will have the MaterialDesignDataGridTextColumnStyle and MaterialDesignDataGridTextColumnEditingStyle applied. See DataGridAssist.ApplyMaterialDesignColumnStyles attached property -->
+          <DataGridTextColumn Binding="{Binding Code}" Header="Code" />
 
           <!-- if you want to use the pop up style (MaterialDesignDataGridTextColumnPopupEditingStyle), you must use MaterialDataGridTextColumn -->
           <materialDesign:DataGridTextColumn EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"
@@ -78,9 +75,7 @@
           </materialDesign:DataGridTextColumn>
 
           <!-- set a max length to get an indicator in the editor -->
-          <DataGridTextColumn EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
-                              ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
-                              Header="Description">
+          <DataGridTextColumn Header="Description">
             <DataGridTextColumn.Binding>
               <Binding Path="Description">
                 <Binding.ValidationRules>
@@ -188,7 +183,7 @@
     <smtx:XamlDisplay UniqueKey="grids_4">
       <DataGrid materialDesign:DataGridAssist.SelectedCellBorderBrush="Crimson"
                 CanUserAddRows="False"
-                ItemsSource="{Binding Items1}" />
+                ItemsSource="{Binding Items4}" />
     </smtx:XamlDisplay>
   </StackPanel>
 </UserControl>
