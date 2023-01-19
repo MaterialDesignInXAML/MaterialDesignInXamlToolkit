@@ -5,7 +5,7 @@
         public virtual ITheme GetTheme()
         {
             if (Application.Current is null)
-                throw new InvalidOperationException($"Cannot get theme outside of a WPF application. Use {nameof(ResourceDictionaryExtensions)}.{nameof(ResourceDictionaryExtensions.GetTheme)} on the appropriate resource dictionary instead.");
+                throw new InvalidOperationException($"Cannot get theme outside of a WPF application. Use {nameof(ResourceDictionaryMixins)}.{nameof(ResourceDictionaryMixins.GetTheme)} on the appropriate resource dictionary instead.");
             return GetResourceDictionary().GetTheme();
         }
 
@@ -13,7 +13,7 @@
         {
             if (theme is null) throw new ArgumentNullException(nameof(theme));
             if (Application.Current is null)
-                throw new InvalidOperationException($"Cannot set theme outside of a WPF application. Use {nameof(ResourceDictionaryExtensions)}.{nameof(ResourceDictionaryExtensions.SetTheme)} on the appropriate resource dictionary instead.");
+                throw new InvalidOperationException($"Cannot set theme outside of a WPF application. Use {nameof(ResourceDictionaryMixins)}.{nameof(ResourceDictionaryMixins.SetTheme)} on the appropriate resource dictionary instead.");
 
             GetResourceDictionary().SetTheme(theme);
         }
@@ -21,7 +21,7 @@
         public virtual IThemeManager? GetThemeManager()
         {
             if (Application.Current is null)
-                throw new InvalidOperationException($"Cannot get ThemeManager outside of a WPF application. Use {nameof(ResourceDictionaryExtensions)}.{nameof(ResourceDictionaryExtensions.GetThemeManager)} on the appropriate resource dictionary instead.");
+                throw new InvalidOperationException($"Cannot get ThemeManager outside of a WPF application. Use {nameof(ResourceDictionaryMixins)}.{nameof(ResourceDictionaryMixins.GetThemeManager)} on the appropriate resource dictionary instead.");
             return GetResourceDictionary().GetThemeManager();
         }
 
