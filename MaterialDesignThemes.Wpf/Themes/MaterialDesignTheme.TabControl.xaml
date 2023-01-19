@@ -749,10 +749,4 @@
     <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
     <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="Right" />
   </Style>
-
-  <!-- Obsolete: will be removed in 5.0.0 release -->
-  <Style x:Key="MaterialDesignNavigatilRailTabControl"
-         TargetType="{x:Type TabControl}"
-         BasedOn="{StaticResource MaterialDesignNavigationRailTabControl}" />
-
 </ResourceDictionary>
