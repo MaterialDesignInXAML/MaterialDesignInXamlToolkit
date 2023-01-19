@@ -122,22 +122,6 @@
         </StackPanel>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay UniqueKey="comboboxes_10">
-
-        <StackPanel>
-          <CheckBox x:Name="ClassicModeCheckBox"
-                    Content="Use classic mode"
-                    IsChecked="True"
-                    IsThreeState="False" />
-
-          <ComboBox materialDesign:ComboBoxAssist.ClassicMode="{Binding ElementName=ClassicModeCheckBox, Path=IsChecked}">
-            <ComboBoxItem Content="Apple" IsSelected="True" />
-            <ComboBoxItem Content="Banana" />
-            <ComboBoxItem Content="Pear" />
-            <ComboBoxItem Content="Orange" />
-          </ComboBox>
-        </StackPanel>
-      </smtx:XamlDisplay>
     </StackPanel>
 
     <Rectangle Height="1"
