@@ -412,7 +412,6 @@
                            wpf:ColorZoneAssist.Mode="{Binding Path=(wpf:ColorZoneAssist.Mode), RelativeSource={RelativeSource TemplatedParent}}"
                            AllowsTransparency="True"
                            ClassicContentTemplate="{StaticResource PopupContentClassicTemplate}"
-                           ClassicMode="True"
                            ContentMargin="6,0,6,6"
                            ContentMinWidth="{Binding Path=ActualWidth, ElementName=templateRoot}"
                            DefaultVerticalOffset="-1"
