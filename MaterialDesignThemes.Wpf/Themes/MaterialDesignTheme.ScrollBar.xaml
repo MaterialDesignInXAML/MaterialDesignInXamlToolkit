@@ -94,16 +94,6 @@
     </Setter>
   </Style>
 
-  <!-- Obsolete: will be removed in a future version -->
-  <Style x:Key="MaterialDesignScrollBarThumbVertical"
-         TargetType="{x:Type Thumb}"
-         BasedOn="{StaticResource MaterialDesignScrollBarThumb}" />
-
-  <!-- Obsolete: will be removed in a future version -->
-  <Style x:Key="MaterialDesignScrollBarThumbHorizontal"
-         TargetType="{x:Type Thumb}"
-         BasedOn="{StaticResource MaterialDesignScrollBarThumb}" />
-
   <Style x:Key="MaterialDesignScrollBar" TargetType="{x:Type ScrollBar}">
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="BorderBrush" Value="Transparent" />
