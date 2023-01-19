@@ -1,11 +1,10 @@
 ﻿using System.Windows.Media;
 
-namespace MaterialDesignColors
+namespace MaterialDesignColors;
+
+public interface ISwatch
 {
-    public interface ISwatch
-    {
-        string Name { get; }
-        IEnumerable<Color> Hues { get; }
-        IDictionary<MaterialDesignColor, Color> Lookup { get; }
-    }
+    string Name { get; }
+    IEnumerable<Color> Hues { get; }
+    IDictionary<MaterialDesignColor, Color> Lookup { get; }
 }
