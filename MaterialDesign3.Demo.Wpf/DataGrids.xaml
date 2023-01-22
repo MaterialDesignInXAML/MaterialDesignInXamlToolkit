@@ -22,22 +22,20 @@
   <StackPanel>
     <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Custom Columns" />
 
+    <FrameworkElement x:Name="DataContextProxy" DataContext="{Binding}"/>
+
     <smtx:XamlDisplay UniqueKey="grids_1">
       <DataGrid AutoGenerateColumns="False"
                 CanUserAddRows="False"
                 HeadersVisibility="All"
                 ItemsSource="{Binding Items1}">
-        <DataGrid.Resources>
-          <domain:BindingProxy x:Key="DataContextProxy" Data="{Binding}" />
-        </DataGrid.Resources>
-
         <DataGrid.Columns>
           <DataGridCheckBoxColumn Binding="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}"
                                   EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}"
                                   ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}">
             <DataGridCheckBoxColumn.Header>
               <Border Background="Transparent">
-                <CheckBox IsChecked="{Binding Data.IsAllItems1Selected, Source={StaticResource DataContextProxy}}" />
+                <CheckBox IsChecked="{Binding DataContext.IsAllItems1Selected, Source={x:Reference DataContextProxy}}" />
               </Border>
             </DataGridCheckBoxColumn.Header>
 
