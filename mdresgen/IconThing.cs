@@ -50,8 +50,10 @@ static class IconThing
 
     private static async Task<string> GetSourceDataAsync()
     {
+        //Might want to consider leveraging one of the other json sources.
+        //https://github.com/Pictogrammers/pictogrammers.com/blob/18993aab2e9f0f647aa5b54faf995ae1718bc505/docs/contribute/api.mdx
         return await Client.GetStringAsync(
-                "https://materialdesignicons.com/api/package/38EF63D0-4744-11E4-B3CF-842B2B6CFE1B");
+                "https://dev.materialdesignicons.com/api/package/38EF63D0-4744-11E4-B3CF-842B2B6CFE1B");
     }
 
     private static IEnumerable<Icon> GetIcons(string sourceData)
@@ -62,7 +64,9 @@ static class IconThing
                jObject["icons"]?.Select(t => new Icon(
                t["name"]?.ToString().Underscore().Pascalize() ?? throw new Exception("Failed to find name"),
                t["data"]?.ToString() ?? throw new Exception("Failed to find data"),
-               t["aliases"]?.ToObject<IEnumerable<string>>()?.Select(x => x.Underscore().Pascalize()).ToList()
+               t["aliases"]?.ToObject<IEnumerable<JObject>>()?
+                .Select(x => x["name"]?.ToString().Underscore().Pascalize())
+                .OfType<string>().ToList()
                     ?? throw new Exception("Failed to find aliases"))) ?? throw new Exception("failed to find icons")
             );
 
