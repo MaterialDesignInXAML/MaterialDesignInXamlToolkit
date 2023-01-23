@@ -1,7 +1,7 @@
 <Project>
   <ItemGroup>
     <PackageVersion Include="BluwolfIcons" Version="1.0.1" />
-    <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+    <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.1.0" />
     <PackageVersion Include="Dragablz" Version="0.0.3.234" />
     <PackageVersion Include="Humanizer" Version="2.14.1" />
     <PackageVersion Include="MahApps.Metro" Version="2.4.9" />
