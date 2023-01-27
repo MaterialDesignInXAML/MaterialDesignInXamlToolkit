@@ -10,6 +10,7 @@
                                            TrueValue="Collapsed" />
   <converters:FloatingHintTransformConverter x:Key="FloatingHintCanvasTransformConverter" ApplyScaleTransform="False" />
   <converters:FloatingHintTransformConverter x:Key="FloatingHintTransformConverter" ApplyTranslateTransform="False" />
+  <converters:FloatingHintTextBlockMarginConverter x:Key="FloatingHintTextBlockMarginConverter" />
   <system:Double x:Key="NoContentFloatingScale">1.0</system:Double>
   <CubicEase x:Key="AnimationEasingFunction" EasingMode="EaseInOut" />
 
@@ -159,6 +160,17 @@
                                   Opacity="{TemplateBinding HintOpacity}"
                                   RenderTransformOrigin="0,0"
                                   Visibility="{TemplateBinding UseFloating, Converter={StaticResource BoolToVisConverter}}">
+                    <ContentControl.Margin>
+                      <MultiBinding Converter="{StaticResource FloatingHintTextBlockMarginConverter}">
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:HintAssist.FloatingHintHorizontalAlignment)" />
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="HorizontalContentAlignment" />
+                        <Binding RelativeSource="{RelativeSource Self}" Path="ActualWidth" />
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualWidth" />
+                        <Binding ElementName="ScaleHost" Path="Scale" />
+                        <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}" />
+                        <Binding Source="{StaticResource NoContentFloatingScale}" />
+                      </MultiBinding>
+                    </ContentControl.Margin>
                     <ContentControl.Tag>
                       <system:Double>0.0</system:Double>
                     </ContentControl.Tag>

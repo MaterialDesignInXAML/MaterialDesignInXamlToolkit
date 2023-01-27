@@ -326,7 +326,7 @@
                     Grid.Column="0"
                     Padding="{TemplateBinding Padding}">
               <Grid x:Name="InnerRoot"
-                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                    HorizontalAlignment="Stretch"
                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                     UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
@@ -353,7 +353,7 @@
                 <TextBox x:Name="PART_EditableTextBox"
                          Grid.Column="1"
                          MinWidth="10"
-                         HorizontalAlignment="Stretch"
+                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                          HorizontalContentAlignment="Stretch"
                          CaretBrush="{TemplateBinding Foreground}"
                          IsReadOnly="{TemplateBinding IsReadOnly}"
@@ -372,7 +372,8 @@
                                HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                UseFloating="{TemplateBinding wpf:HintAssist.IsFloating}"
-                               UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+                               UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                               HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}">
                   <wpf:SmartHint.Hint>
                     <Border x:Name="HintBackgroundBorder"
                             Background="{TemplateBinding wpf:HintAssist.Background}"

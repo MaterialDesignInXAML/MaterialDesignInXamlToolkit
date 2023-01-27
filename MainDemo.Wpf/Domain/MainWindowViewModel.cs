@@ -419,6 +419,15 @@ public class MainWindowViewModel : ViewModelBase
                 DocumentationLink.StyleLink("Shadows"),
                 DocumentationLink.SpecsLink("https://material.io/design/environment/elevation.html", "Elevation")
             });
+
+        yield return new DemoItem(
+            "Smart Hint",
+            typeof(SmartHint),
+            new[]
+            {
+                DocumentationLink.DemoPageLink<SmartHint>(),
+                DocumentationLink.StyleLink("SmartHint"),
+            });
     }
 
     private bool DemoItemsFilter(object obj)
