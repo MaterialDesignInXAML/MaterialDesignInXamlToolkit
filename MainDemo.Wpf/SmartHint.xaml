@@ -1,0 +1,491 @@
+﻿<UserControl x:Class="MaterialDesignDemo.SmartHint"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
+             mc:Ignorable="d"
+             x:Name="_root"
+             d:DataContext="{d:DesignInstance domain:SmartHintViewModel, IsDesignTimeCreatable=False}"
+             d:DesignHeight="450" d:DesignWidth="800" Margin="-16,0,-16,0">
+  <Grid Grid.IsSharedSizeScope="True">
+    <Grid.Resources>
+      <materialDesign:MathConverter x:Key="SubtractConverter" Operation="Subtract" />
+      <Style TargetType="{x:Type smtx:XamlDisplay}" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
+        <Setter Property="Margin" Value="0,10,16,0" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Width" Value="186" />
+        <Setter Property="materialDesign:HintAssist.FloatingHintHorizontalAlignment" Value="{Binding SelectedAlignment}" />
+        <Setter Property="materialDesign:HintAssist.FloatingScale" Value="{Binding SelectedFloatingScale}" />
+        <Setter Property="materialDesign:HintAssist.FloatingOffset" Value="{Binding SelectedFloatingOffset}" />
+        <Setter Property="materialDesign:HintAssist.Hint" Value="{Binding HintText}" />
+      </Style>
+      <Style x:Key="StyleNameIndicator" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}">
+        <Setter Property="Margin" Value="0,10,16,0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+      </Style>
+      <materialDesign:PackIconKind x:Key="LeadingIcon">Github</materialDesign:PackIconKind>
+    </Grid.Resources>
+
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+
+    <GroupBox Grid.Row="0" Margin="8,0,16,16" Header="Hint Settings" Style="{StaticResource MaterialDesignCardGroupBox}">
+      <StackPanel Orientation="Horizontal" Margin="10">
+        <TextBlock Text="FloatingHintHorizontalAlignment:" VerticalAlignment="Center" />
+        <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding HorizontalAlignmentOptions}" SelectedItem="{Binding SelectedAlignment, Mode=TwoWay}" />
+        <TextBlock Text="FloatingScale:" VerticalAlignment="Center" Margin="20,0,0,0" />
+        <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding FloatingScaleOptions}" SelectedItem="{Binding SelectedFloatingScale, Mode=TwoWay}" ItemStringFormat="F2" />
+        <TextBlock Text="FloatingOffset:" VerticalAlignment="Center" Margin="20,0,0,0" />
+        <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding FloatingOffsetOptions}" SelectedItem="{Binding SelectedFloatingOffset, Mode=TwoWay}" />
+        <CheckBox Content="HasClearButton" IsChecked="{Binding ShowClearButton}" Margin="20,0,0,0" />
+        <CheckBox Content="HasLeadingIcon" IsChecked="{Binding ShowLeadingIcon}" Margin="20,0,0,0" />
+        <TextBox Text="{Binding HintText, UpdateSourceTrigger=PropertyChanged}" Margin="20,0,0,0" Width="180" />
+      </StackPanel>
+    </GroupBox>
+
+    <Grid Grid.Row="1" Margin="0,16,0,0">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" Width="200" />
+        <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+        <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+        <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+        <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+
+      <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="--- Alignments ---" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" Margin="0,0,0,10" />
+      <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="Left" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" />
+      <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="Center" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" />
+      <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="Right" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" />
+      <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="Stretch" Grid.Column="4" Grid.Row="1" HorizontalAlignment="Center" />
+    </Grid>
+
+    <ScrollViewer Grid.Row="2" VerticalAlignment="Top" materialDesign:ScrollViewerAssist.BubbleVerticalScroll="False" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Margin="0,20,0,0"
+                  Height="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ScrollViewer}}, Path=ViewportHeight, Converter={StaticResource SubtractConverter}, ConverterParameter=250}">
+      <StackPanel Margin="8,0,16,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+
+        <!-- TextBox variants -->
+        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="TextBox styles" />
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFloatingHintTextBox</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="textbox_floating_left">
+            <TextBox HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="textbox_floating_center">
+            <TextBox HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="textbox_floating_right">
+            <TextBox HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="textbox_floating_stretch">
+            <TextBox HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFilledTextBox}">
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFilledTextBox</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="textbox_filled_left">
+            <TextBox HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="textbox_filled_center">
+            <TextBox HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="textbox_filled_right">
+            <TextBox HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="textbox_filled_stretch">
+            <TextBox HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignOutlinedTextBox</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="textbox_outlined_left">
+            <TextBox HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="textbox_outlined_center">
+            <TextBox HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="textbox_outlined_right">
+            <TextBox HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="textbox_outlined_stretch">
+            <TextBox HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+
+        <!-- RichTextBox variants -->
+        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="RichTextBox styles" Margin="0,40,0,0" />
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type RichTextBox}" BasedOn="{StaticResource MaterialDesignRichTextBox}">
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignRichTextBox</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="richtextbox_left">
+            <RichTextBox HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="richtextbox_center">
+            <RichTextBox HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="richtextbox_right">
+            <RichTextBox HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="richtextbox_stretch">
+            <RichTextBox HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+
+        <!-- PasswordBox variants -->
+        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="PasswordBox styles" Margin="0,40,0,0" />
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignFloatingHintPasswordBox}">
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFloatingHintPasswordBox</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="passwordbox_floating_left">
+            <PasswordBox HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="passwordbox_floating_center">
+            <PasswordBox HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="passwordbox_floating_right">
+            <PasswordBox HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="passwordbox_floating_stretch">
+            <PasswordBox HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignFilledPasswordBox}">
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFilledPasswordBox</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="passwordbox_filled_left">
+            <PasswordBox HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="passwordbox_filled_center">
+            <PasswordBox HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="passwordbox_filled_right">
+            <PasswordBox HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="passwordbox_filled_stretch">
+            <PasswordBox HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignOutlinedPasswordBox}">
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignOutlinedPasswordBox</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="passwordbox_outlined_left">
+            <PasswordBox HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="passwordbox_outlined_center">
+            <PasswordBox HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="passwordbox_outlined_right">
+            <PasswordBox HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="passwordbox_outlined_stretch">
+            <PasswordBox HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+
+        <!-- Reveal style PasswordBox variants -->
+        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="PasswordBox 'reveal' styles" Margin="0,40,0,0" />
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignFloatingHintRevealPasswordBox}">
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFloatingHintRevealPasswordBox</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="passwordbox_reveal_floating_left">
+            <PasswordBox HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="passwordbox_reveal_floating_center">
+            <PasswordBox HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="passwordbox_reveal_floating_right">
+            <PasswordBox HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="passwordbox_reveal_floating_stretch">
+            <PasswordBox HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignFilledRevealPasswordBox}">
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFilledRevealPasswordBox</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="passwordbox_reveal_filled_left">
+            <PasswordBox HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="passwordbox_reveal_filled_center">
+            <PasswordBox HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="passwordbox_reveal_filled_right">
+            <PasswordBox HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="passwordbox_reveal_filled_stretch">
+            <PasswordBox HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignOutlinedRevealPasswordBox}">
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignOutlinedRevealPasswordBox</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="passwordbox_reveal_outlined_left">
+            <PasswordBox HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="passwordbox_reveal_outlined_center">
+            <PasswordBox HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="passwordbox_reveal_outlined_right">
+            <PasswordBox HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="passwordbox_reveal_outlined_stretch">
+            <PasswordBox HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+
+        <!-- ComboBox variants -->
+        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="ComboBox styles" Margin="0,40,0,0" />
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="ItemsSource" Value="{Binding ComboBoxOptions}" />
+              <Setter Property="IsEditable" Value="True" />
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFloatingHintComboBox</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="combobox_floating_left">
+            <ComboBox HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="combobox_floating_center">
+            <ComboBox HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="combobox_floating_right">
+            <ComboBox HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="combobox_floating_stretch">
+            <ComboBox HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignFilledComboBox}">
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="ItemsSource" Value="{Binding ComboBoxOptions}" />
+              <Setter Property="IsEditable" Value="True" />
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFilledComboBox</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="combobox_filled_left">
+            <ComboBox HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="combobox_filled_center">
+            <ComboBox HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="combobox_filled_right">
+            <ComboBox HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="combobox_filled_stretch">
+            <ComboBox HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignOutlinedComboBox}">
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="ItemsSource" Value="{Binding ComboBoxOptions}" />
+              <Setter Property="IsEditable" Value="True" />
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignOutlinedComboBox</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="combobox_outlined_left">
+            <ComboBox HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="combobox_outlined_center">
+            <ComboBox HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="combobox_outlined_right">
+            <ComboBox HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="combobox_outlined_stretch">
+            <ComboBox HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+      </StackPanel>
+    </ScrollViewer>
+  </Grid>
+</UserControl>
