@@ -11,17 +11,17 @@ public class Program
     private const string MdPaletteJsonLocation = "MdPaletteJson.json";
 
     // Legacy
-    private const string OldXamlFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.xaml";
-    private const string OldXamlNamedFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Named.xaml";
+    private const string OldXamlFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.xaml";
+    private const string OldXamlNamedFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Named.xaml";
 
 
-    private const string XamlPrimaryFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Primary.xaml";
-    private const string XamlAccentFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Accent.xaml";
-    private const string XamlPrimaryNamedFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Named.Primary.xaml";
-    private const string XamlAccentNamedFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Named.Accent.xaml";
+    private const string XamlPrimaryFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Primary.xaml";
+    private const string XamlAccentFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Accent.xaml";
+    private const string XamlPrimaryNamedFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Named.Primary.xaml";
+    private const string XamlAccentNamedFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Named.Accent.xaml";
 
-    private const string RecommendedPrimaryFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\Recommended\Primary\MaterialDesignColor.{0}.xaml";
-    private const string RecommendedAccentFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\Recommended\Accent\MaterialDesignColor.{0}.xaml";
+    private const string RecommendedPrimaryFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\Recommended\Primary\MaterialDesignColor.{0}.xaml";
+    private const string RecommendedAccentFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\Recommended\Accent\MaterialDesignColor.{0}.xaml";
     private const string RecommendedPrimaryTemplateLocation = "RecommendedPrimaryTemplate.xaml";
     private const string RecommendedAccentTemplateLocation = "RecommendedAccentTemplate.xaml";
 
@@ -139,24 +139,24 @@ public class Program
             var primary = ToResourceDictionary(color, out primaryEmpty, named, ColorMode.PrimaryOnly);
             var accent = ToResourceDictionary(color, out accentEmpty, named, ColorMode.AccentOnly);
 
-            var longcolor = primary.Item1;
-            var shortcolor = longcolor.Replace(" ", "");
+            var longColor = primary.Item1;
+            var shortColor = longColor.Replace(" ", "");
 
-            if (string.Compare(shortcolor, "black", StringComparison.InvariantCultureIgnoreCase) == 0) continue;
+            if (string.Compare(shortColor, "black", StringComparison.InvariantCultureIgnoreCase) == 0) continue;
 
-            Console.WriteLine("{0} \t Primary: {1} \t Accent: {2}", longcolor.PadRight(15, ' '), !primaryEmpty, !accentEmpty);
+            Console.WriteLine("{0} \t Primary: {1} \t Accent: {2}", longColor.PadRight(15, ' '), !primaryEmpty, !accentEmpty);
 
             if (!primaryEmpty)
             {
                 primary.Item2.Save(
                     string.Format(
                         named ? XamlPrimaryNamedFileFormat : XamlPrimaryFileFormat,
-                        shortcolor
+                        shortColor
                         ));
 
                 File.WriteAllText(
-                    string.Format(RecommendedPrimaryFileFormat, shortcolor),
-                    recommendedPrimary.Replace("$COLOR", shortcolor).Replace("$LONG_COLOR", longcolor)
+                    string.Format(RecommendedPrimaryFileFormat, shortColor),
+                    recommendedPrimary.Replace("$COLOR", shortColor).Replace("$LONG_COLOR", longColor)
                     );
             }
 
@@ -165,12 +165,12 @@ public class Program
                 accent.Item2.Save(
                     string.Format(
                         named ? XamlAccentNamedFileFormat : XamlAccentFileFormat,
-                        shortcolor
+                        shortColor
                         ));
 
                 File.WriteAllText(
-                    string.Format(RecommendedAccentFileFormat, shortcolor),
-                    recommendedAccent.Replace("$COLOR", shortcolor).Replace("$LONG_COLOR", longcolor)
+                    string.Format(RecommendedAccentFileFormat, shortColor),
+                    recommendedAccent.Replace("$COLOR", shortColor).Replace("$LONG_COLOR", longColor)
                     );
             }
         }
