@@ -4,6 +4,10 @@
             "commandName": "Project",
             "commandLineArgs": "icons"
         },
+        "Generate swatches": {
+            "commandName": "Project",
+            "commandLineArgs": "all-swatches"
+        },
         "Diff icons": {
             "commandName": "Project",
             "commandLineArgs": "icon-diff"
