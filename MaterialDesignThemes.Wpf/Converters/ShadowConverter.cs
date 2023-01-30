@@ -23,7 +23,7 @@ public class ShadowConverter : IValueConverter
     private static DropShadowEffect? Clone(DropShadowEffect? dropShadowEffect)
     {
         if (dropShadowEffect is null) return null;
-        DropShadowEffect rv = new()
+        return new DropShadowEffect()
         {
             BlurRadius = dropShadowEffect.BlurRadius,
             Color = dropShadowEffect.Color,
@@ -32,7 +32,5 @@ public class ShadowConverter : IValueConverter
             RenderingBias = dropShadowEffect.RenderingBias,
             ShadowDepth = dropShadowEffect.ShadowDepth
         };
-        rv.Freeze();
-        return rv;
     }
 }
