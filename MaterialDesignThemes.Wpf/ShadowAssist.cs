@@ -41,49 +41,40 @@ public static class ShadowAssist
 
     private static void DarkenPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
     {
-
         var uiElement = dependencyObject as UIElement;
         var dropShadowEffect = uiElement?.Effect as DropShadowEffect;
 
         if (dropShadowEffect is null) return;
 
+        double? toOpacity;
         if ((bool)dependencyPropertyChangedEventArgs.NewValue)
         {
             dropShadowEffect.BeginAnimation(DropShadowEffect.OpacityProperty, null);
 
             SetLocalInfo(dependencyObject, new ShadowLocalInfo(dropShadowEffect.Opacity));
 
-            TimeSpan time = GetShadowAnimationDuration(dependencyObject);
-
-            var doubleAnimation = new DoubleAnimation()
-            {
-                To = 1,
-                Duration = new Duration(time),
-                FillBehavior = FillBehavior.HoldEnd,
-                EasingFunction = new CubicEase(),
-                AccelerationRatio = 0.4,
-                DecelerationRatio = 0.2
-            };
-            dropShadowEffect.BeginAnimation(DropShadowEffect.OpacityProperty, doubleAnimation);
+            toOpacity = 1;
         }
         else
         {
             var shadowLocalInfo = GetLocalInfo(dependencyObject);
             if (shadowLocalInfo is null) return;
 
-            TimeSpan time = GetShadowAnimationDuration(dependencyObject);
-
-            var doubleAnimation = new DoubleAnimation()
-            {
-                To = shadowLocalInfo.StandardOpacity,
-                Duration = new Duration(time),
-                FillBehavior = FillBehavior.HoldEnd,
-                EasingFunction = new CubicEase(),
-                AccelerationRatio = 0.4,
-                DecelerationRatio = 0.2
-            };
-            dropShadowEffect.BeginAnimation(DropShadowEffect.OpacityProperty, doubleAnimation);
+            toOpacity = shadowLocalInfo.StandardOpacity;
         }
+
+        TimeSpan time = GetShadowAnimationDuration(dependencyObject);
+
+        var doubleAnimation = new DoubleAnimation()
+        {
+            To = toOpacity,
+            Duration = new Duration(time),
+            FillBehavior = FillBehavior.HoldEnd,
+            EasingFunction = new CubicEase(),
+            AccelerationRatio = 0.4,
+            DecelerationRatio = 0.2
+        };
+        dropShadowEffect.BeginAnimation(DropShadowEffect.OpacityProperty, doubleAnimation);
     }
 
     public static void SetDarken(DependencyObject element, bool value)
