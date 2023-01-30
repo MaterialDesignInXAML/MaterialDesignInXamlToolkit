@@ -8,7 +8,7 @@ internal class FloatingHintTextBlockMarginConverter : IMultiValueConverter
 {
     public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (values == null || values.Length != 7 || values.Any(v => v == null)
+        if (values?.Length != 7 || values.Any(v => v == null)
             || values[0] is not FloatingHintHorizontalAlignment floatingAlignment
             || values[1] is not HorizontalAlignment restingAlignment
             || !double.TryParse(values[2]!.ToString(), out double desiredWidth)
