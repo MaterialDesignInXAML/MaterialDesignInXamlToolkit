@@ -50,14 +50,14 @@
                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                Focusable="False"
-                               wpf:TabAssist.BindableIsItemsHost="{Binding IsVisible, RelativeSource={RelativeSource Self}}"
+                               wpf:TabAssist.BindableIsItemsHost="{Binding Visibility, RelativeSource={RelativeSource Self}}"
                                KeyboardNavigation.TabIndex="1"
                                Rows="1" />
                   <VirtualizingStackPanel x:Name="HeaderPanel"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           Focusable="False"
-                                          wpf:TabAssist.BindableIsItemsHost="{Binding IsVisible, RelativeSource={RelativeSource Self}}"
+                                          wpf:TabAssist.BindableIsItemsHost="{Binding Visibility, RelativeSource={RelativeSource Self}}"
                                           KeyboardNavigation.TabIndex="1"
                                           Orientation="Horizontal" />
                 </StackPanel>
