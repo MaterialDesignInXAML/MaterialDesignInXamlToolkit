@@ -60,13 +60,11 @@
                    Width="200"
                    Margin="16,4"
                    materialDesign:HintAssist.Hint="Search"
-                   materialDesign:HintAssist.IsFloating="True"
                    materialDesign:TextFieldAssist.DecorationVisibility="Collapsed"
                    materialDesign:TextFieldAssist.HasClearButton="True"
-                   materialDesign:TextFieldAssist.HasOutlinedTextField="True"
-                   materialDesign:TextFieldAssist.TextFieldCornerRadius="4"
                    DockPanel.Dock="Top"
-                   Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}" />
+                   Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"
+                   Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
 
           <ListBox x:Name="DemoItemsListBox"
                    Margin="0,16,0,16"
