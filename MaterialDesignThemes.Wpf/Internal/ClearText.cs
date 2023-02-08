@@ -35,7 +35,7 @@
 
             static void OnClearCommand(object sender, ExecutedRoutedEventArgs e)
             {
-                switch (e.Source)
+                switch (sender)
                 {
                     case DatePicker datePicker:
                         datePicker.SetCurrentValue(DatePicker.SelectedDateProperty, null);
