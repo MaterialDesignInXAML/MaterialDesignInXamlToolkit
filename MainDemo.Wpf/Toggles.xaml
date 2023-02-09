@@ -60,8 +60,8 @@
       <smtx:XamlDisplay Margin="0,5,8,8" UniqueKey="buttons_36">
         <ToggleButton Content="C"
                       IsChecked="True"
-                      Style="{StaticResource MaterialDesignActionAccentToggleButton}"
-                      ToolTip="MaterialDesignActionAccentToggleButton" />
+                      Style="{StaticResource MaterialDesignActionSecondaryToggleButton}"
+                      ToolTip="MaterialDesignActionSecondaryToggleButton" />
       </smtx:XamlDisplay>
 
       <smtx:XamlDisplay Margin="0,5,8,8" UniqueKey="buttons_37">
@@ -173,9 +173,9 @@
       </smtx:XamlDisplay>
 
       <smtx:XamlDisplay Margin="8,0,0,0" UniqueKey="buttons_67">
-        <RadioButton Content="Accent"
+        <RadioButton Content="Secondary"
                      IsChecked="True"
-                     Style="{StaticResource MaterialDesignAccentRadioButton}" />
+                     Style="{StaticResource MaterialDesignSecondaryRadioButton}" />
       </smtx:XamlDisplay>
 
       <smtx:XamlDisplay Margin="8,0,0,0" UniqueKey="buttons_68">
@@ -191,9 +191,9 @@
       </smtx:XamlDisplay>
 
       <smtx:XamlDisplay Margin="8,0,0,0" UniqueKey="buttons_70">
-        <CheckBox Content="Accent"
+        <CheckBox Content="Secondary"
                   IsChecked="True"
-                  Style="{StaticResource MaterialDesignAccentCheckBox}" />
+                  Style="{StaticResource MaterialDesignSecondaryCheckBox}" />
       </smtx:XamlDisplay>
     </StackPanel>
 
@@ -241,8 +241,8 @@
                         VerticalAlignment="Center"
                         UniqueKey="buttons_51">
         <ToggleButton IsChecked="True"
-                      Style="{StaticResource MaterialDesignSwitchAccentToggleButton}"
-                      ToolTip="MaterialDesignSwitchAccentToggleButton" />
+                      Style="{StaticResource MaterialDesignSwitchSecondaryToggleButton}"
+                      ToolTip="MaterialDesignSwitchSecondaryToggleButton" />
       </smtx:XamlDisplay>
 
       <smtx:XamlDisplay Margin="8,0,0,0"

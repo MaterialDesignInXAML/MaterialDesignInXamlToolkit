@@ -124,7 +124,7 @@
                       Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                       Content="{materialDesign:PackIcon Kind=Plus,
                                                         Size=22}"
-                      Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" />
+                      Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}" />
             </Grid>
           </Border>
         </materialDesign:DialogHost>
@@ -324,7 +324,7 @@
                       Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                       Content="{materialDesign:PackIcon Kind=Plus,
                                                         Size=22}"
-                      Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" />
+                      Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}" />
             </Grid>
           </Border>
         </materialDesign:DialogHost>

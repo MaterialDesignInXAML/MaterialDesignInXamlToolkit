@@ -479,12 +479,17 @@
     <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
   </Style>
 
-  <Style x:Key="MaterialDesignMultiFloatingActionAccentPopupBox"
+  <Style x:Key="MaterialDesignMultiFloatingActionSecondaryPopupBox"
          TargetType="{x:Type wpf:PopupBox}"
          BasedOn="{StaticResource MaterialDesignMultiFloatingActionPopupBox}">
     <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
     <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}" />
     <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
   </Style>
+
+  <!-- Obsolete -->
+  <Style x:Key="MaterialDesignMultiFloatingActionAccentPopupBox"
+         TargetType="{x:Type wpf:PopupBox}"
+         BasedOn="{StaticResource MaterialDesignMultiFloatingActionSecondaryPopupBox}"/>
 
 </ResourceDictionary>
