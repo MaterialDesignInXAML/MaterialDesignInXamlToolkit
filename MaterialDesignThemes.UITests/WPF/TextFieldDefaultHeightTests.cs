@@ -1,17 +1,17 @@
-namespace MaterialDesignThemes.UITests.WPF
+namespace MaterialDesignThemes.UITests.WPF;
+
+public class TextFieldDefaultHeightTests : TestBase
 {
-    public class TextFieldDefaultHeightTests : TestBase
+    public TextFieldDefaultHeightTests(ITestOutputHelper output) : base(output) { }
+
+    private const int Precision = 3;
+
+    [Fact]
+    public async Task SameHeightWithDefaultStyle()
     {
-        public TextFieldDefaultHeightTests(ITestOutputHelper output) : base(output) { }
+        await using var recorder = new TestRecorder(App);
 
-        private const int Precision = 3;
-
-        [Fact]
-        public async Task SameHeightWithDefaultStyle()
-        {
-            await using var recorder = new TestRecorder(App);
-
-            var stackPanel = await LoadXaml<StackPanel>(@"
+        var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <TextBox />
     <PasswordBox />
@@ -20,21 +20,21 @@ namespace MaterialDesignThemes.UITests.WPF
     <materialDesign:TimePicker />
 </StackPanel>");
 
-            var height = await GetHeight(stackPanel, "TextBox");
-            Assert.Equal(height, await GetHeight(stackPanel, "PasswordBox"), Precision);
-            Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
-            Assert.Equal(height, await GetHeight(stackPanel, "DatePicker"), Precision);
-            Assert.Equal(height, await GetHeight(stackPanel, "TimePicker"), Precision);
+        var height = await GetHeight(stackPanel, "TextBox");
+        Assert.Equal(height, await GetHeight(stackPanel, "PasswordBox"), Precision);
+        Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
+        Assert.Equal(height, await GetHeight(stackPanel, "DatePicker"), Precision);
+        Assert.Equal(height, await GetHeight(stackPanel, "TimePicker"), Precision);
 
-            recorder.Success();
-        }
+        recorder.Success();
+    }
 
-        [Fact]
-        public async Task SameHeightWithFloatingHintStyle()
-        {
-            await using var recorder = new TestRecorder(App);
+    [Fact]
+    public async Task SameHeightWithFloatingHintStyle()
+    {
+        await using var recorder = new TestRecorder(App);
 
-            var stackPanel = await LoadXaml<StackPanel>(@"
+        var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <TextBox materialDesign:HintAssist.IsFloating=""True"" />
     <PasswordBox materialDesign:HintAssist.IsFloating=""True"" />
@@ -43,22 +43,22 @@ namespace MaterialDesignThemes.UITests.WPF
     <materialDesign:TimePicker materialDesign:HintAssist.IsFloating=""True"" />
 </StackPanel>");
 
-            var height = await GetHeight(stackPanel, "TextBox");
-            Assert.True(height > 0);
-            Assert.Equal(height, await GetHeight(stackPanel, "PasswordBox"), Precision);
-            Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
-            Assert.Equal(height, await GetHeight(stackPanel, "DatePicker"), Precision);
-            Assert.Equal(height, await GetHeight(stackPanel, "TimePicker"), Precision);
+        var height = await GetHeight(stackPanel, "TextBox");
+        Assert.True(height > 0);
+        Assert.Equal(height, await GetHeight(stackPanel, "PasswordBox"), Precision);
+        Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
+        Assert.Equal(height, await GetHeight(stackPanel, "DatePicker"), Precision);
+        Assert.Equal(height, await GetHeight(stackPanel, "TimePicker"), Precision);
 
-            recorder.Success();
-        }
+        recorder.Success();
+    }
 
-        [Fact]
-        public async Task SameHeightWithFilledStyle()
-        {
-            await using var recorder = new TestRecorder(App);
+    [Fact]
+    public async Task SameHeightWithFilledStyle()
+    {
+        await using var recorder = new TestRecorder(App);
 
-            var stackPanel = await LoadXaml<StackPanel>(@"
+        var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <TextBox Style=""{StaticResource MaterialDesignFilledTextBox}"" />
     <PasswordBox Style=""{StaticResource MaterialDesignFilledPasswordBox}"" />
@@ -67,22 +67,22 @@ namespace MaterialDesignThemes.UITests.WPF
     <materialDesign:TimePicker Style=""{StaticResource MaterialDesignFilledTimePicker}"" />
 </StackPanel>");
 
-            var height = await GetHeight(stackPanel, "TextBox");
-            Assert.True(height > 0);
-            Assert.Equal(height, await GetHeight(stackPanel, "PasswordBox"), Precision);
-            Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
-            Assert.Equal(height, await GetHeight(stackPanel, "DatePicker"), Precision);
-            Assert.Equal(height, await GetHeight(stackPanel, "TimePicker"), Precision);
+        var height = await GetHeight(stackPanel, "TextBox");
+        Assert.True(height > 0);
+        Assert.Equal(height, await GetHeight(stackPanel, "PasswordBox"), Precision);
+        Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
+        Assert.Equal(height, await GetHeight(stackPanel, "DatePicker"), Precision);
+        Assert.Equal(height, await GetHeight(stackPanel, "TimePicker"), Precision);
 
-            recorder.Success();
-        }
+        recorder.Success();
+    }
 
-        [Fact]
-        public async Task SameHeightWithOutlinedStyle()
-        {
-            await using var recorder = new TestRecorder(App);
+    [Fact]
+    public async Task SameHeightWithOutlinedStyle()
+    {
+        await using var recorder = new TestRecorder(App);
 
-            var stackPanel = await LoadXaml<StackPanel>(@"
+        var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <TextBox Style=""{StaticResource MaterialDesignOutlinedTextBox}"" />
     <PasswordBox Style=""{StaticResource MaterialDesignOutlinedPasswordBox}"" />
@@ -90,21 +90,20 @@ namespace MaterialDesignThemes.UITests.WPF
     <materialDesign:TimePicker Style=""{StaticResource MaterialDesignOutlinedTimePicker}"" />
 </StackPanel>");
 
-            var height = await GetHeight(stackPanel, "TextBox");
-            Assert.True(height > 0);
-            Assert.Equal(height, await GetHeight(stackPanel, "PasswordBox"), Precision);
-            Assert.Equal(height, await GetHeight(stackPanel, "DatePicker"), Precision);
-            Assert.Equal(height, await GetHeight(stackPanel, "TimePicker"), Precision);
+        var height = await GetHeight(stackPanel, "TextBox");
+        Assert.True(height > 0);
+        Assert.Equal(height, await GetHeight(stackPanel, "PasswordBox"), Precision);
+        Assert.Equal(height, await GetHeight(stackPanel, "DatePicker"), Precision);
+        Assert.Equal(height, await GetHeight(stackPanel, "TimePicker"), Precision);
 
-            recorder.Success();
-        }
+        recorder.Success();
+    }
 
-        private static async Task<double> GetHeight(IVisualElement container, string type)
-        {
-            var element = await container.GetElement<FrameworkElement>("/" + type);
-            var height = await element.GetActualHeight();
-            Assert.True(height > 0);
-            return height;
-        }
+    private static async Task<double> GetHeight(IVisualElement container, string type)
+    {
+        var element = await container.GetElement<FrameworkElement>("/" + type);
+        var height = await element.GetActualHeight();
+        Assert.True(height > 0);
+        return height;
     }
 }

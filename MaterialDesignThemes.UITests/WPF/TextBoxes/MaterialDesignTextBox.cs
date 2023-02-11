@@ -1,7 +1,6 @@
-﻿namespace MaterialDesignThemes.UITests.WPF.TextBoxes
+﻿namespace MaterialDesignThemes.UITests.WPF.TextBoxes;
+
+public static class MaterialDesignTextBox
 {
-    public static class MaterialDesignTextBox
-    {
-        public static TimeSpan FocusedAnimationTime { get; } = TimeSpan.FromSeconds(0.45);
-    }
+    public static TimeSpan FocusedAnimationTime { get; } = TimeSpan.FromSeconds(0.45);
 }
