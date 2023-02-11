@@ -35,7 +35,10 @@ public class ContentControlTests : TestBase
 
         //Assert
         Assert.Equal("Some Text", initial);
-        Assert.True(string.IsNullOrEmpty(await textBox.GetText()));
+        await Wait.For(async () =>
+        {
+            Assert.True(string.IsNullOrEmpty(await textBox.GetText()));
+        });
 
         recorder.Success();
     }

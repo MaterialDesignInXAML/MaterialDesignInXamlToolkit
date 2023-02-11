@@ -1,190 +1,189 @@
 ﻿using System.ComponentModel;
 using MaterialDesignThemes.UITests.Samples.PasswordBox;
 
-namespace MaterialDesignThemes.UITests.WPF.PasswordBoxes
+namespace MaterialDesignThemes.UITests.WPF.PasswordBoxes;
+
+public class PasswordBoxTests : TestBase
 {
-    public class PasswordBoxTests : TestBase
+    public PasswordBoxTests(ITestOutputHelper output)
+        : base(output)
     {
-        public PasswordBoxTests(ITestOutputHelper output)
-            : base(output)
-        {
-        }
+    }
 
-        [Fact]
-        public async Task OnClearButtonShown_LayoutDoesNotChange()
-        {
-            await using var recorder = new TestRecorder(App);
+    [Fact]
+    public async Task OnClearButtonShown_LayoutDoesNotChange()
+    {
+        await using var recorder = new TestRecorder(App);
 
-            //Arrange
-            var stackPanel = await LoadXaml<StackPanel>(@"
+        //Arrange
+        var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <PasswordBox materialDesign:TextFieldAssist.HasClearButton=""True""/>
 </StackPanel>");
-            var passwordBox = await stackPanel.GetElement<PasswordBox>("/PasswordBox");
+        var passwordBox = await stackPanel.GetElement<PasswordBox>("/PasswordBox");
 
-            var initialRect = await passwordBox.GetCoordinates();
+        var initialRect = await passwordBox.GetCoordinates();
 
-            //Act
-            await passwordBox.SetPassword("x");
+        //Act
+        await passwordBox.SetPassword("x");
 
-            //Assert
-            var rect = await passwordBox.GetCoordinates();
-            Assert.Equal(initialRect, rect);
+        //Assert
+        var rect = await passwordBox.GetCoordinates();
+        Assert.Equal(initialRect, rect);
 
-            recorder.Success();
-        }
+        recorder.Success();
+    }
 
-        [Fact]
-        [Description("Pull Request 2192")]
-        public async Task OnPasswordBoxHelperTextFontSize_ChangesHelperTextFontSize()
-        {
-            await using var recorder = new TestRecorder(App);
+    [Fact]
+    [Description("Pull Request 2192")]
+    public async Task OnPasswordBoxHelperTextFontSize_ChangesHelperTextFontSize()
+    {
+        await using var recorder = new TestRecorder(App);
 
-            var stackPanel = await LoadXaml<StackPanel>(@"
+        var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <PasswordBox materialDesign:HintAssist.HelperTextFontSize=""20""/>
 </StackPanel>");
-            var passwordBox = await stackPanel.GetElement<PasswordBox>("/PasswordBox");
-            var helpTextBlock = await passwordBox.GetElement<TextBlock>("/Grid/Canvas/TextBlock");
+        var passwordBox = await stackPanel.GetElement<PasswordBox>("/PasswordBox");
+        var helpTextBlock = await passwordBox.GetElement<TextBlock>("/Grid/Canvas/TextBlock");
 
-            double fontSize = await helpTextBlock.GetFontSize();
+        double fontSize = await helpTextBlock.GetFontSize();
 
-            Assert.Equal(20, fontSize);
-            recorder.Success();
-        }
+        Assert.Equal(20, fontSize);
+        recorder.Success();
+    }
 
-        [Fact]
-        [Description("Issue 2495")]
-        public async Task OnPasswordBox_WithClearButton_ClearsPassword()
-        {
-            await using var recorder = new TestRecorder(App);
+    [Fact]
+    [Description("Issue 2495")]
+    public async Task OnPasswordBox_WithClearButton_ClearsPassword()
+    {
+        await using var recorder = new TestRecorder(App);
 
-            var grid = await LoadXaml<Grid>(@"
+        var grid = await LoadXaml<Grid>(@"
 <Grid Margin=""30"">
     <PasswordBox materialDesign:TextFieldAssist.HasClearButton=""True"" />
 </Grid>");
-            var passwordBox = await grid.GetElement<PasswordBox>("/PasswordBox");
-            var clearButton = await passwordBox.GetElement<Button>("PART_ClearButton");
+        var passwordBox = await grid.GetElement<PasswordBox>("/PasswordBox");
+        var clearButton = await passwordBox.GetElement<Button>("PART_ClearButton");
 
-            await passwordBox.SendKeyboardInput($"Test");
+        await passwordBox.SendKeyboardInput($"Test");
 
-            string? password = await passwordBox.GetPassword();
+        string? password = await passwordBox.GetPassword();
 
-            Assert.NotNull(password);
+        Assert.NotNull(password);
 
-            await clearButton.LeftClick();
+        await clearButton.LeftClick();
 
-            await Wait.For(async () =>
-            {
-                password = await passwordBox.GetPassword();
-                Assert.Null(password);
-            });
-
-            recorder.Success();
-        }
-
-        [Fact]
-        [Description("PR 2828 and Issue 2930")]
-        public async Task RevealPasswordBox_WithBoundPasswordProperty_RespectsThreeWayBinding()
+        await Wait.For(async () =>
         {
-            await using var recorder = new TestRecorder(App);
+            password = await passwordBox.GetPassword();
+            Assert.Null(password);
+        });
 
-            await App.InitializeWithMaterialDesign();
-            IWindow window = await App.CreateWindow<BoundPasswordBoxWindow>();
-            var userControl = await window.GetElement<BoundPasswordBox>();
-            await userControl.SetProperty(nameof(BoundPasswordBox.UseRevealStyle), true);
-            var passwordBox = await userControl.GetElement<PasswordBox>("PasswordBox");
-            var clearTextPasswordTextBox = await passwordBox.GetElement<TextBox>("RevealPasswordTextBox");
-            var revealPasswordButton = await passwordBox.GetElement<ToggleButton>("RevealPasswordButton");
+        recorder.Success();
+    }
 
-            // Act 1 (Update in PasswordBox updates VM and RevealPasswordTextBox)
-            await passwordBox.SendKeyboardInput($"1");
-            string? boundText1 = await userControl.GetProperty<string>(nameof(BoundPasswordBox.ViewModelPassword));
-            string? password1 = await passwordBox.GetProperty<string>(nameof(PasswordBox.Password));
-            string? clearTextPassword1 = await clearTextPasswordTextBox.GetProperty<string>(TextBox.TextProperty);
+    [Fact]
+    [Description("PR 2828 and Issue 2930")]
+    public async Task RevealPasswordBox_WithBoundPasswordProperty_RespectsThreeWayBinding()
+    {
+        await using var recorder = new TestRecorder(App);
 
-            // Act 2 (Update in RevealPasswordTextBox updates PasswordBox and VM)
-            await revealPasswordButton.LeftClick();
-            await Task.Delay(50);   // Wait for the "clear text TextBox" to become visible
-            await clearTextPasswordTextBox.SendKeyboardInput($"2");
-            string? boundText2 = await userControl.GetProperty<string>(nameof(BoundPasswordBox.ViewModelPassword));
-            string? password2 = await passwordBox.GetProperty<string>(nameof(PasswordBox.Password));
-            string? clearTextPassword2 = await clearTextPasswordTextBox.GetProperty<string>(TextBox.TextProperty);
+        await App.InitializeWithMaterialDesign();
+        IWindow window = await App.CreateWindow<BoundPasswordBoxWindow>();
+        var userControl = await window.GetElement<BoundPasswordBox>();
+        await userControl.SetProperty(nameof(BoundPasswordBox.UseRevealStyle), true);
+        var passwordBox = await userControl.GetElement<PasswordBox>("PasswordBox");
+        var clearTextPasswordTextBox = await passwordBox.GetElement<TextBox>("RevealPasswordTextBox");
+        var revealPasswordButton = await passwordBox.GetElement<ToggleButton>("RevealPasswordButton");
 
-            // Act 3 (Update in VM updates PasswordBox and RevealPasswordTextBox)
-            await userControl.SetProperty(nameof(BoundPasswordBox.ViewModelPassword), "3");
-            string? boundText3 = await userControl.GetProperty<string>(nameof(BoundPasswordBox.ViewModelPassword));
-            string? password3 = await passwordBox.GetProperty<string>(nameof(PasswordBox.Password));
-            string? clearTextPassword3 = await clearTextPasswordTextBox.GetProperty<string>(TextBox.TextProperty);
+        // Act 1 (Update in PasswordBox updates VM and RevealPasswordTextBox)
+        await passwordBox.SendKeyboardInput($"1");
+        string? boundText1 = await userControl.GetProperty<string>(nameof(BoundPasswordBox.ViewModelPassword));
+        string? password1 = await passwordBox.GetProperty<string>(nameof(PasswordBox.Password));
+        string? clearTextPassword1 = await clearTextPasswordTextBox.GetProperty<string>(TextBox.TextProperty);
 
-            // Assert
-            Assert.Equal("1", boundText1);
-            Assert.Equal("1", password1);
-            Assert.Equal("1", clearTextPassword1);
+        // Act 2 (Update in RevealPasswordTextBox updates PasswordBox and VM)
+        await revealPasswordButton.LeftClick();
+        await Task.Delay(50);   // Wait for the "clear text TextBox" to become visible
+        await clearTextPasswordTextBox.SendKeyboardInput($"2");
+        string? boundText2 = await userControl.GetProperty<string>(nameof(BoundPasswordBox.ViewModelPassword));
+        string? password2 = await passwordBox.GetProperty<string>(nameof(PasswordBox.Password));
+        string? clearTextPassword2 = await clearTextPasswordTextBox.GetProperty<string>(TextBox.TextProperty);
 
-            Assert.Equal("12", boundText2);
-            Assert.Equal("12", password2);
-            Assert.Equal("12", clearTextPassword2);
+        // Act 3 (Update in VM updates PasswordBox and RevealPasswordTextBox)
+        await userControl.SetProperty(nameof(BoundPasswordBox.ViewModelPassword), "3");
+        string? boundText3 = await userControl.GetProperty<string>(nameof(BoundPasswordBox.ViewModelPassword));
+        string? password3 = await passwordBox.GetProperty<string>(nameof(PasswordBox.Password));
+        string? clearTextPassword3 = await clearTextPasswordTextBox.GetProperty<string>(TextBox.TextProperty);
 
-            Assert.Equal("3", boundText3);
-            Assert.Equal("3", password3);
-            Assert.Equal("3", clearTextPassword3);
+        // Assert
+        Assert.Equal("1", boundText1);
+        Assert.Equal("1", password1);
+        Assert.Equal("1", clearTextPassword1);
 
-            recorder.Success();
-        }
+        Assert.Equal("12", boundText2);
+        Assert.Equal("12", password2);
+        Assert.Equal("12", clearTextPassword2);
 
-        [Fact]
-        [Description("Issue 2930")]
-        public async Task PasswordBox_WithBoundPasswordProperty_RespectsBinding()
-        {
-            await using var recorder = new TestRecorder(App);
+        Assert.Equal("3", boundText3);
+        Assert.Equal("3", password3);
+        Assert.Equal("3", clearTextPassword3);
 
-            await App.InitializeWithMaterialDesign();
-            IWindow window = await App.CreateWindow<BoundPasswordBoxWindow>();
-            var userControl = await window.GetElement<BoundPasswordBox>();
-            await userControl.SetProperty(nameof(BoundPasswordBox.UseRevealStyle), false);
-            var passwordBox = await userControl.GetElement<PasswordBox>("PasswordBox");
+        recorder.Success();
+    }
 
-            // Act 1 (Update in PasswordBox updates VM)
-            await passwordBox.SendKeyboardInput($"1");
-            string? boundText1 = await userControl.GetProperty<string>(nameof(BoundPasswordBox.ViewModelPassword));
-            string? password1 = await passwordBox.GetProperty<string>(nameof(PasswordBox.Password));
+    [Fact]
+    [Description("Issue 2930")]
+    public async Task PasswordBox_WithBoundPasswordProperty_RespectsBinding()
+    {
+        await using var recorder = new TestRecorder(App);
 
-            // Act 2 (Update in VM updates PasswordBox)
-            await userControl.SetProperty(nameof(BoundPasswordBox.ViewModelPassword), "2");
-            string? boundText2 = await userControl.GetProperty<string>(nameof(BoundPasswordBox.ViewModelPassword));
-            string? password2 = await passwordBox.GetProperty<string>(nameof(PasswordBox.Password));
+        await App.InitializeWithMaterialDesign();
+        IWindow window = await App.CreateWindow<BoundPasswordBoxWindow>();
+        var userControl = await window.GetElement<BoundPasswordBox>();
+        await userControl.SetProperty(nameof(BoundPasswordBox.UseRevealStyle), false);
+        var passwordBox = await userControl.GetElement<PasswordBox>("PasswordBox");
 
-            // Assert
-            Assert.Equal("1", boundText1);
-            Assert.Equal("1", password1);
+        // Act 1 (Update in PasswordBox updates VM)
+        await passwordBox.SendKeyboardInput($"1");
+        string? boundText1 = await userControl.GetProperty<string>(nameof(BoundPasswordBox.ViewModelPassword));
+        string? password1 = await passwordBox.GetProperty<string>(nameof(PasswordBox.Password));
 
-            Assert.Equal("2", boundText2);
-            Assert.Equal("2", password2);
+        // Act 2 (Update in VM updates PasswordBox)
+        await userControl.SetProperty(nameof(BoundPasswordBox.ViewModelPassword), "2");
+        string? boundText2 = await userControl.GetProperty<string>(nameof(BoundPasswordBox.ViewModelPassword));
+        string? password2 = await passwordBox.GetProperty<string>(nameof(PasswordBox.Password));
 
-            recorder.Success();
-        }
+        // Assert
+        Assert.Equal("1", boundText1);
+        Assert.Equal("1", password1);
 
-        [Fact]
-        [Description("Issue 2998")]
-        public async Task PasswordBox_WithRevealStyle_RespectsMaxLength()
-        {
-            await using var recorder = new TestRecorder(App);
+        Assert.Equal("2", boundText2);
+        Assert.Equal("2", password2);
 
-            var grid = await LoadXaml<Grid>(@"
+        recorder.Success();
+    }
+
+    [Fact]
+    [Description("Issue 2998")]
+    public async Task PasswordBox_WithRevealStyle_RespectsMaxLength()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        var grid = await LoadXaml<Grid>(@"
 <Grid Margin=""30"">
     <PasswordBox MaxLength=""5"" Style=""{StaticResource MaterialDesignFloatingHintRevealPasswordBox}"" />
 </Grid>");
-            var passwordBox = await grid.GetElement<PasswordBox>("/PasswordBox");
-            var revealPasswordTextBox = await passwordBox.GetElement<TextBox>("RevealPasswordTextBox");
+        var passwordBox = await grid.GetElement<PasswordBox>("/PasswordBox");
+        var revealPasswordTextBox = await passwordBox.GetElement<TextBox>("RevealPasswordTextBox");
 
-            int maxLength1 = await passwordBox.GetMaxLength();
-            int maxLength2 = await revealPasswordTextBox.GetMaxLength();
+        int maxLength1 = await passwordBox.GetMaxLength();
+        int maxLength2 = await revealPasswordTextBox.GetMaxLength();
 
-            // Assert
-            Assert.Equal(maxLength1, maxLength2);
+        // Assert
+        Assert.Equal(maxLength1, maxLength2);
 
-            recorder.Success();
-        }
+        recorder.Success();
     }
 }
