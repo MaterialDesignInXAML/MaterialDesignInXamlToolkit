@@ -4,6 +4,7 @@ namespace MaterialDesignDemo.Domain;
 
 internal class SmartHintViewModel : ViewModelBase
 {
+    private bool _floatHint = true;
     private FloatingHintHorizontalAlignment _selectedAlignment = FloatingHintHorizontalAlignment.Inherit;
     private double _selectedFloatingScale = 0.75;
     private bool _showClearButton = true;
@@ -17,6 +18,16 @@ internal class SmartHintViewModel : ViewModelBase
     public IEnumerable<Point> FloatingOffsetOptions { get; } = new[] { new Point(0, -16), new Point(0, 16), new Point(16, 16), new Point(-16, -16) };
 
     public IEnumerable<string> ComboBoxOptions { get; } = new[] {"Option 1", "Option 2", "Option 3"};
+
+    public bool FloatHint
+    {
+        get => _floatHint;
+        set
+        {
+            _floatHint = value;
+            OnPropertyChanged();
+        }
+    }
 
     public FloatingHintHorizontalAlignment SelectedAlignment
     {

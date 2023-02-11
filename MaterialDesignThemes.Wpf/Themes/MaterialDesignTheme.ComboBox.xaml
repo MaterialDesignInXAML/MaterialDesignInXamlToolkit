@@ -481,7 +481,6 @@
     </AdornerDecorator>
     <ControlTemplate.Triggers>
       <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
-        <Setter Property="Padding" Value="16,8,12,8" />
         <Setter TargetName="HelperTextWrapper" Property="Margin" Value="16,0,0,0" />
       </Trigger>
       <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
@@ -880,7 +879,7 @@
          TargetType="{x:Type ComboBox}"
          BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxBackground}" />
-    <Setter Property="Padding" Value="12,8,8,8" />
+    <Setter Property="Padding" Value="{x:Static wpf:Constants.FilledTextBoxDefaultPadding}" />
     <Setter Property="VerticalAlignment" Value="Stretch" />
     <Setter Property="VerticalContentAlignment" Value="Stretch" />
     <Setter Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="True" />
