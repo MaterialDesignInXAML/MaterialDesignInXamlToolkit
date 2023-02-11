@@ -68,7 +68,7 @@
                       UniqueKey="groupbox_4">
       <GroupBox Margin="16"
                 materialDesign:ColorZoneAssist.Mode="SecondaryMid"
-                Header="Accent Header"
+                Header="Secondary Header"
                 Style="{StaticResource MaterialDesignGroupBox}">
         <TextBlock Text="My Content" />
       </GroupBox>
@@ -120,7 +120,7 @@
                       UniqueKey="groupbox_7">
       <GroupBox Margin="16"
                 materialDesign:ColorZoneAssist.Mode="SecondaryMid"
-                Header="Card Group Box Accent"
+                Header="Card Group Box Secondary"
                 Style="{StaticResource MaterialDesignCardGroupBox}">
         <GroupBox.HeaderTemplate>
           <DataTemplate>

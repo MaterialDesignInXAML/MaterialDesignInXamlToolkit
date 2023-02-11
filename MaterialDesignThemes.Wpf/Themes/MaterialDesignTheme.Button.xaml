@@ -168,6 +168,7 @@
     <Setter Property="Foreground" Value="{DynamicResource SecondaryHueDarkForegroundBrush}" />
   </Style>
 
+  <!-- Obsolete -->
   <Style x:Key="MaterialDesignRaisedAccentButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignRaisedSecondaryButton}" />
@@ -295,6 +296,7 @@
     <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource SecondaryHueDarkBrush}" />
   </Style>
 
+  <!-- Obsolete -->
   <Style x:Key="MaterialDesignFlatAccentButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignFlatSecondaryButton}" />
@@ -338,6 +340,7 @@
     <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp0" />
   </Style>
 
+  <!-- Obsolete -->
   <Style x:Key="MaterialDesignFlatAccentBgButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignFlatSecondaryMidBgButton}" />
@@ -673,6 +676,7 @@
     <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource SecondaryHueLightBrush}" />
   </Style>
 
+  <!-- Obsolete -->
   <Style x:Key="MaterialDesignFloatingActionMiniAccentButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}" />
@@ -722,6 +726,7 @@
     <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource SecondaryHueLightBrush}" />
   </Style>
 
+  <!-- Obsolete -->
   <Style x:Key="MaterialDesignFloatingActionAccentButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignFloatingActionSecondaryButton}" />
