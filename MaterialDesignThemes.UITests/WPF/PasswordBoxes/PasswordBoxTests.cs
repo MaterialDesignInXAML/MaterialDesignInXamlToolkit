@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using MaterialDesignThemes.UITests.Samples.PasswordBox;
+using MaterialDesignThemes.UITests.WPF.TextBoxes;
 
 namespace MaterialDesignThemes.UITests.WPF.PasswordBoxes;
 
@@ -183,6 +184,114 @@ public class PasswordBoxTests : TestBase
 
         // Assert
         Assert.Equal(maxLength1, maxLength2);
+
+        recorder.Success();
+    }
+
+    [Theory]
+    [InlineData("MaterialDesignFloatingHintPasswordBox", null)]
+    [InlineData("MaterialDesignFloatingHintPasswordBox", 5)]
+    [InlineData("MaterialDesignFloatingHintPasswordBox", 20)]
+    [InlineData("MaterialDesignFloatingHintRevealPasswordBox", null)]
+    [InlineData("MaterialDesignFloatingHintRevealPasswordBox", 5)]
+    [InlineData("MaterialDesignFloatingHintRevealPasswordBox", 20)]
+    [InlineData("MaterialDesignFilledPasswordBox", null)]
+    [InlineData("MaterialDesignFilledPasswordBox", 5)]
+    [InlineData("MaterialDesignFilledPasswordBox", 20)]
+    [InlineData("MaterialDesignFilledRevealPasswordBox", null)]
+    [InlineData("MaterialDesignFilledRevealPasswordBox", 5)]
+    [InlineData("MaterialDesignFilledRevealPasswordBox", 20)]
+    [InlineData("MaterialDesignOutlinedPasswordBox", null)]
+    [InlineData("MaterialDesignOutlinedPasswordBox", 5)]
+    [InlineData("MaterialDesignOutlinedPasswordBox", 20)]
+    [InlineData("MaterialDesignOutlinedRevealPasswordBox", null)]
+    [InlineData("MaterialDesignOutlinedRevealPasswordBox", 5)]
+    [InlineData("MaterialDesignOutlinedRevealPasswordBox", 20)]
+    public async Task PasswordBox_WithHintAndHelperText_RespectsPadding(string styleName, int? padding)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // FIXME: Tolerance needed because TextFieldAssist.TextBoxViewMargin is in play and slightly modifies the hint text placement in certain cases.
+        double tolerance = 1.5;
+
+        string styleAttribute = $"Style=\"{{StaticResource {styleName}}}\"";
+        string paddingAttribute = padding.HasValue ? $"Padding=\"{padding.Value}\"" : string.Empty;
+
+        var passwordBox = await LoadXaml<PasswordBox>($@"
+<PasswordBox {styleAttribute} {paddingAttribute}
+  materialDesign:HintAssist.Hint=""Hint text""
+  materialDesign:HintAssist.HelperText=""Helper text""
+  Width=""200"" VerticalAlignment=""Center"" HorizontalAlignment=""Center"" />
+");
+
+        var contentHost = await passwordBox.GetElement<ScrollViewer>("PART_ContentHost");
+        var hint = await passwordBox.GetElement<SmartHint>("Hint");
+        var helperText = await passwordBox.GetElement<TextBlock>("HelperTextTextBlock");
+
+        Rect? contentHostCoordinates = await contentHost.GetCoordinates();
+        Rect? hintCoordinates = await hint.GetCoordinates();
+        Rect? helperTextCoordinates = await helperText.GetCoordinates();
+
+        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left), 0, tolerance);
+        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - helperTextCoordinates.Value.Left), 0, tolerance);
+
+        recorder.Success();
+    }
+
+    [Theory]
+    [InlineData("MaterialDesignFloatingHintPasswordBox", null)]
+    [InlineData("MaterialDesignFloatingHintPasswordBox", 5)]
+    [InlineData("MaterialDesignFloatingHintPasswordBox", 20)]
+    [InlineData("MaterialDesignFloatingHintRevealPasswordBox", null)]
+    [InlineData("MaterialDesignFloatingHintRevealPasswordBox", 5)]
+    [InlineData("MaterialDesignFloatingHintRevealPasswordBox", 20)]
+    [InlineData("MaterialDesignFilledPasswordBox", null)]
+    [InlineData("MaterialDesignFilledPasswordBox", 5)]
+    [InlineData("MaterialDesignFilledPasswordBox", 20)]
+    [InlineData("MaterialDesignFilledRevealPasswordBox", null)]
+    [InlineData("MaterialDesignFilledRevealPasswordBox", 5)]
+    [InlineData("MaterialDesignFilledRevealPasswordBox", 20)]
+    [InlineData("MaterialDesignOutlinedPasswordBox", null)]
+    [InlineData("MaterialDesignOutlinedPasswordBox", 5)]
+    [InlineData("MaterialDesignOutlinedPasswordBox", 20)]
+    [InlineData("MaterialDesignOutlinedRevealPasswordBox", null)]
+    [InlineData("MaterialDesignOutlinedRevealPasswordBox", 5)]
+    [InlineData("MaterialDesignOutlinedRevealPasswordBox", 20)]
+    public async Task PasswordBox_WithHintAndValidationError_RespectsPadding(string styleName, int? padding)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // FIXME: Tolerance needed because TextFieldAssist.TextBoxViewMargin is in play and slightly modifies the hint text placement in certain cases.
+        double tolerance = 1.5;
+
+        string styleAttribute = $"Style=\"{{StaticResource {styleName}}}\"";
+        string paddingAttribute = padding.HasValue ? $"Padding=\"{padding.Value}\"" : string.Empty;
+
+        var passwordBox = await LoadXaml<PasswordBox>($@"
+<PasswordBox {styleAttribute} {paddingAttribute}
+  materialDesign:HintAssist.Hint=""Hint text""
+  materialDesign:HintAssist.HelperText=""Helper text""
+  Width=""200"" VerticalAlignment=""Center"" HorizontalAlignment=""Center"">
+  <materialDesign:PasswordBoxAssist.Password>
+    <Binding RelativeSource=""{{RelativeSource Self}}"" Path=""Tag"" UpdateSourceTrigger=""PropertyChanged"">
+      <Binding.ValidationRules>
+        <local:NotEmptyValidationRule ValidatesOnTargetUpdated=""True""/>
+      </Binding.ValidationRules>
+    </Binding>
+  </materialDesign:PasswordBoxAssist.Password>
+</PasswordBox>
+", ("local", typeof(NotEmptyValidationRule)));
+
+        var contentHost = await passwordBox.GetElement<ScrollViewer>("PART_ContentHost");
+        var hint = await passwordBox.GetElement<SmartHint>("Hint");
+        var errorViewer = await passwordBox.GetElement<Border>("DefaultErrorViewer");
+
+        Rect? contentHostCoordinates = await contentHost.GetCoordinates();
+        Rect? hintCoordinates = await hint.GetCoordinates();
+        Rect? errorViewerCoordinates = await errorViewer.GetCoordinates();
+
+        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left), 0, tolerance);
+        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left), 0, tolerance);
 
         recorder.Success();
     }
