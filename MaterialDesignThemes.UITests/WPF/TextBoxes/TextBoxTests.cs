@@ -472,6 +472,47 @@ public class TextBoxTests : TestBase
 
         recorder.Success();
     }
+
+    [Theory]
+    [InlineData("MaterialDesignFloatingHintTextBox", null)]
+    [InlineData("MaterialDesignFloatingHintTextBox", 5)]
+    [InlineData("MaterialDesignFloatingHintTextBox", 20)]
+    [InlineData("MaterialDesignFilledTextBox", null)]
+    [InlineData("MaterialDesignFilledTextBox", 5)]
+    [InlineData("MaterialDesignFilledTextBox", 20)]
+    [InlineData("MaterialDesignOutlinedTextBox", null)]
+    [InlineData("MaterialDesignOutlinedTextBox", 5)]
+    [InlineData("MaterialDesignOutlinedTextBox", 20)]
+    public async Task TextBox_WithHintAndHelperText_RespectsPadding(string styleName, int? padding)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // FIXME: Tolerance needed because TextFieldAssist.TextBoxViewMargin is in play and slightly modifies the hint text placement in certain cases.
+        double tolerance = 1.5;
+
+        string styleAttribute = $"Style=\"{{StaticResource {styleName}}}\"";
+        string paddingAttribute = padding.HasValue ? $"Padding=\"{padding.Value}\"" : string.Empty;
+
+        var textBox = await LoadXaml<TextBox>($@"
+<TextBox {styleAttribute} {paddingAttribute}
+  materialDesign:HintAssist.Hint=""Hint text""
+  materialDesign:HintAssist.HelperText=""Helper text""
+  Width=""200"" VerticalAlignment=""Center"" HorizontalAlignment=""Center"" />
+");
+
+        var contentHost = await textBox.GetElement<ScrollViewer>("PART_ContentHost");
+        var hint = await textBox.GetElement<SmartHint>("Hint");
+        var helperText = await textBox.GetElement<TextBlock>("HelperTextTextBlock");
+
+        Rect? contentHostCoordinates = await contentHost.GetCoordinates();
+        Rect? hintCoordinates = await hint.GetCoordinates();
+        Rect? helperTextCoordinates = await helperText.GetCoordinates();
+
+        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left), 0, tolerance);
+        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - helperTextCoordinates.Value.Left), 0, tolerance);
+
+        recorder.Success();
+    }
 }
 
 public class NotEmptyValidationRule : ValidationRule
