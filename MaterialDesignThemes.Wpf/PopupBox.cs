@@ -381,7 +381,7 @@ namespace MaterialDesignThemes.Wpf
             EventManager.RegisterRoutedEvent(
                 "Opened",
                 RoutingStrategy.Bubble,
-                typeof(EventHandler),
+                typeof(RoutedEventHandler),
                 typeof(PopupBox));
 
         /// <summary>
@@ -406,7 +406,7 @@ namespace MaterialDesignThemes.Wpf
             EventManager.RegisterRoutedEvent(
                 "Closed",
                 RoutingStrategy.Bubble,
-                typeof(EventHandler),
+                typeof(RoutedEventHandler),
                 typeof(PopupBox));
 
         /// <summary>
