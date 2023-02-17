@@ -58,6 +58,10 @@ public partial class SmartHint : UserControl
             return passwordBox.GetBindingExpression(PasswordBoxAssist.PasswordProperty);
         if (element is ComboBox comboBox)
             return comboBox.GetBindingExpression(ComboBox.TextProperty);
+        if (element is DatePicker datePicker)
+            return datePicker.GetBindingExpression(DatePicker.TextProperty);
+        if (element is TimePicker timePicker)
+            return timePicker.GetBindingExpression(TimePicker.TextProperty);
         return default;
     }
 
