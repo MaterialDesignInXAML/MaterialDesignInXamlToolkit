@@ -19,6 +19,7 @@
   <converters:FloatingHintOffsetCalculationConverter x:Key="FloatingHintOffsetCalculationConverter" />
   <converters:PickerInnerPaddingConverter x:Key="PickerInnerPaddingConverter" />
   <converters:OutlinedDateTimePickerActiveBorderThicknessConverter x:Key="OutlinedDateTimePickerActiveBorderThicknessConverter" />
+  <converters:ThicknessCloneConverter x:Key="HelperTextMarginConverter" CloneEdges="Left" />
 
   <Style x:Key="MaterialDesignDatePickerTextBox" TargetType="{x:Type DatePickerTextBox}">
     <Setter Property="AllowDrop" Value="true" />
@@ -211,7 +212,7 @@
                            Background="{TemplateBinding wpf:TextFieldAssist.UnderlineBrush}"
                            CornerRadius="{TemplateBinding wpf:TextFieldAssist.UnderlineCornerRadius}"
                            Visibility="{TemplateBinding wpf:TextFieldAssist.DecorationVisibility}" />
-            <Canvas x:Name="HelperTextWrapper" VerticalAlignment="Bottom">
+            <Canvas x:Name="HelperTextWrapper" VerticalAlignment="Bottom" Margin="{TemplateBinding Padding, Converter={StaticResource HelperTextMarginConverter}}">
               <TextBlock x:Name="HelperTextTextBlock" Canvas.Top="2"
                          MaxWidth="{Binding ActualWidth, ElementName=border}"
                          FontSize="{TemplateBinding wpf:HintAssist.HelperTextFontSize}"
@@ -256,13 +257,11 @@
             </MultiTrigger>
             <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
               <Setter Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxBackground}" />
-              <Setter TargetName="HelperTextWrapper" Property="Margin" Value="16,0,0,0" />
             </Trigger>
             <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
               <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaBorder}" />
               <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:DatePickerAssist.OutlinedBorderInactiveThickness)}" />
               <Setter Property="VerticalContentAlignment" Value="Top" />
-              <Setter TargetName="HelperTextWrapper" Property="Margin" Value="16,0,0,0" />
               <Setter TargetName="Hint" Property="FloatingOffset">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
