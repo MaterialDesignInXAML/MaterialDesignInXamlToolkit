@@ -100,6 +100,12 @@
       <ComboBox x:Name="MaterialDesignFloatingHintComboBoxDefaults" Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
       <ComboBox x:Name="MaterialDesignFilledComboBoxDefaults" Style="{StaticResource MaterialDesignFilledComboBox}" />
       <ComboBox x:Name="MaterialDesignOutlinedComboBoxDefaults" Style="{StaticResource MaterialDesignOutlinedComboBox}" />
+      <DatePicker x:Name="MaterialDesignFloatingHintDatePickerDefaults" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+      <DatePicker x:Name="MaterialDesignFilledDatePickerDefaults" Style="{StaticResource MaterialDesignFilledDatePicker}" />
+      <DatePicker x:Name="MaterialDesignOutlinedDatePickerDefaults" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+      <materialDesign:TimePicker x:Name="MaterialDesignFloatingHintTimePickerDefaults" Style="{StaticResource MaterialDesignFloatingHintTimePicker}" />
+      <materialDesign:TimePicker x:Name="MaterialDesignFilledTimePickerDefaults" Style="{StaticResource MaterialDesignFilledTimePicker}" />
+      <materialDesign:TimePicker x:Name="MaterialDesignOutlinedTimePickerDefaults" Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
     </StackPanel>
 
     <ScrollViewer Grid.Row="2" VerticalAlignment="Top" materialDesign:ScrollViewerAssist.BubbleVerticalScroll="False" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Margin="0,20,0,0"
@@ -656,6 +662,252 @@
           </smtx:XamlDisplay>
           <smtx:XamlDisplay Grid.Column="4" UniqueKey="combobox_outlined_stretch">
             <ComboBox HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+
+        <!-- DatePicker variants -->
+        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="DatePicker styles" Margin="0,40,0,0" />
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignFloatingHintDatePicker}">
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignFloatingHintDatePickerDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFloatingHintDatePicker</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="datepicker_floating_left">
+            <DatePicker HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="datepicker_floating_center">
+            <DatePicker HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="datepicker_floating_right">
+            <DatePicker HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="datepicker_floating_stretch">
+            <DatePicker HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignFilledDatePicker}">
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignFilledDatePickerDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFilledDatePicker</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="datepicker_filled_left">
+            <DatePicker HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="datepicker_filled_center">
+            <DatePicker HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="datepicker_filled_right">
+            <DatePicker HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="datepicker_filled_stretch">
+            <DatePicker HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignOutlinedDatePicker}">
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignOutlinedDatePickerDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignOutlinedDatePicker</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="datepicker_outlined_left">
+            <DatePicker HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="datepicker_outlined_center">
+            <DatePicker HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="datepicker_outlined_right">
+            <DatePicker HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="datepicker_outlined_stretch">
+            <DatePicker HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+
+        <!-- TimePicker variants -->
+        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="TimePicker styles" Margin="0,40,0,0" />
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type materialDesign:TimePicker}" BasedOn="{StaticResource MaterialDesignFloatingHintTimePicker}">
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignFloatingHintTimePickerDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFloatingHintTimePicker</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="timepicker_floating_left">
+            <materialDesign:TimePicker HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="timepicker_floating_center">
+            <materialDesign:TimePicker HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="timepicker_floating_right">
+            <materialDesign:TimePicker HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="timepicker_floating_stretch">
+            <materialDesign:TimePicker HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type materialDesign:TimePicker}" BasedOn="{StaticResource MaterialDesignFilledTimePicker}">
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignFilledTimePickerDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFilledTimePicker</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="timepicker_filled_left">
+            <materialDesign:TimePicker HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="timepicker_filled_center">
+            <materialDesign:TimePicker HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="timepicker_filled_right">
+            <materialDesign:TimePicker HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="timepicker_filled_stretch">
+            <materialDesign:TimePicker HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type materialDesign:TimePicker}" BasedOn="{StaticResource MaterialDesignOutlinedTimePicker}">
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignOutlinedTimePickerDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignOutlinedTimePicker</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="timepicker_outlined_left">
+            <materialDesign:TimePicker HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="timepicker_outlined_center">
+            <materialDesign:TimePicker HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="timepicker_outlined_right">
+            <materialDesign:TimePicker HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="timepicker_outlined_stretch">
+            <materialDesign:TimePicker HorizontalContentAlignment="Stretch" />
           </smtx:XamlDisplay>
         </Grid>
       </StackPanel>
