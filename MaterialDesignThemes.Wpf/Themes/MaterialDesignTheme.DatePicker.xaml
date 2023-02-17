@@ -159,7 +159,6 @@
                                   VerticalScrollBarVisibility="Hidden" />
                     <wpf:SmartHint x:Name="Hint"
                                    Grid.Column="1"
-                                   Margin="{TemplateBinding wpf:TextFieldAssist.TextBoxViewMargin}"
                                    FloatingOffset="{TemplateBinding wpf:HintAssist.FloatingOffset}"
                                    FloatingScale="{TemplateBinding wpf:HintAssist.FloatingScale}"
                                    FontFamily="{TemplateBinding wpf:HintAssist.FontFamily}"
@@ -530,11 +529,9 @@
           <ControlTemplate.Triggers>
             <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
               <Setter Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxBackground}" />
-              <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMarginEmbedded}" />
             </Trigger>
             <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
               <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaBorder}" />
-              <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMarginEmbedded}" />
             </Trigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
