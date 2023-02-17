@@ -488,7 +488,7 @@ public class TextBoxTests : TestBase
         await using var recorder = new TestRecorder(App);
 
         // FIXME: Tolerance needed because TextFieldAssist.TextBoxViewMargin is in play and slightly modifies the hint text placement in certain cases.
-        double tolerance = 1.5;
+        const double tolerance = 1.5;
 
         string styleAttribute = $"Style=\"{{StaticResource {styleName}}}\"";
         string paddingAttribute = padding.HasValue ? $"Padding=\"{padding.Value}\"" : string.Empty;
@@ -529,7 +529,7 @@ public class TextBoxTests : TestBase
         await using var recorder = new TestRecorder(App);
 
         // FIXME: Tolerance needed because TextFieldAssist.TextBoxViewMargin is in play and slightly modifies the hint text placement in certain cases.
-        double tolerance = 1.5;
+        const double tolerance = 1.5;
 
         string styleAttribute = $"Style=\"{{StaticResource {styleName}}}\"";
         string paddingAttribute = padding.HasValue ? $"Padding=\"{padding.Value}\"" : string.Empty;

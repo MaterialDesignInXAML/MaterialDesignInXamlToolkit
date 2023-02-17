@@ -7,7 +7,7 @@ public class ThicknessCloneConverter : IValueConverter
 {
     public ThicknessEdges CloneEdges { get; set; } = ThicknessEdges.All;
 
-    public double NonClonedEdgeValue { get; set; } = 0;
+    public double NonClonedEdgeValue { get; set; }
 
     public double? FixedLeft { get; set; }
     public double? FixedTop { get; set; }
