@@ -854,10 +854,10 @@ namespace MaterialDesignThemes.Wpf
         {
             foreach (var weakRef in LoadedInstances.ToList())
             {
-                if (!weakRef.TryGetTarget(out DialogHost? dialogHost) ||
-                    Equals(dialogHost, this))
+                if (weakRef.TryGetTarget(out DialogHost? dialogHost) && Equals(dialogHost, this))
                 {
                     LoadedInstances.Remove(weakRef);
+                    break;
                 }
             }
         }
@@ -866,16 +866,20 @@ namespace MaterialDesignThemes.Wpf
         {
             foreach (var weakRef in LoadedInstances.ToList())
             {
-                if (!weakRef.TryGetTarget(out DialogHost? dialogHost))
-                {
-                    LoadedInstances.Remove(weakRef);
-                }
-                if (Equals(dialogHost, this))
-                {
+                if (weakRef.TryGetTarget(out DialogHost? dialogHost) && Equals(dialogHost, this))
                     return;
+            }
+
+            LoadedInstances.Add(new WeakReference<DialogHost>(this));
+
+            if (IsOpen && _popup is { } popup)
+            {
+                if (!popup.IsOpen)
+                {
+                    popup.IsOpen = true;
+                    (popup as PopupEx)?.RefreshPosition();
                 }
             }
-            LoadedInstances.Add(new WeakReference<DialogHost>(this));
         }
     }
 }
