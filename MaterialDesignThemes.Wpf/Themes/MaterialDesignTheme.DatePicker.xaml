@@ -212,7 +212,7 @@
                            CornerRadius="{TemplateBinding wpf:TextFieldAssist.UnderlineCornerRadius}"
                            Visibility="{TemplateBinding wpf:TextFieldAssist.DecorationVisibility}" />
             <Canvas x:Name="HelperTextWrapper" VerticalAlignment="Bottom">
-              <TextBlock Canvas.Top="2"
+              <TextBlock x:Name="HelperTextTextBlock" Canvas.Top="2"
                          MaxWidth="{Binding ActualWidth, ElementName=border}"
                          FontSize="{TemplateBinding wpf:HintAssist.HelperTextFontSize}"
                          Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
