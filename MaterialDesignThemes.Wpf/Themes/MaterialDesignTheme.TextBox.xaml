@@ -18,6 +18,7 @@
   <converters:CursorConverter x:Key="ArrowCursorConverter" FallbackCursor="Arrow" />
   <converters:CursorConverter x:Key="IBeamCursorConverter" FallbackCursor="IBeam" />
   <converters:StringLengthValueConverter x:Key="StringLengthValueConverter" />
+  <converters:ThicknessCloneConverter x:Key="HelperTextMarginConverter" CloneEdges="Left" />
 
   <Style x:Key="MaterialDesignCharacterCounterTextBlock"
          TargetType="TextBlock"
@@ -191,7 +192,6 @@
 
                     <wpf:SmartHint x:Name="Hint"
                                    Grid.Column="0"
-                                   Margin="{TemplateBinding wpf:TextFieldAssist.TextBoxViewMargin}"
                                    FloatingOffset="{TemplateBinding wpf:HintAssist.FloatingOffset}"
                                    FloatingScale="{TemplateBinding wpf:HintAssist.FloatingScale}"
                                    FontFamily="{TemplateBinding wpf:HintAssist.FontFamily}"
@@ -259,7 +259,8 @@
                   <ColumnDefinition />
                   <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Name="HelperTextTextBlock" Style="{Binding Path=(wpf:HintAssist.HelperTextStyle), RelativeSource={RelativeSource TemplatedParent}}" />
+                <TextBlock x:Name="HelperTextTextBlock" Style="{Binding Path=(wpf:HintAssist.HelperTextStyle), RelativeSource={RelativeSource TemplatedParent}}"
+                           Margin="{TemplateBinding Padding, Converter={StaticResource HelperTextMarginConverter}}"/>
                 <Border x:Name="CharacterCounterContainer" Grid.Column="1">
                   <TextBlock x:Name="CharacterCounterTextBlock" Style="{Binding Path=(wpf:TextFieldAssist.CharacterCounterStyle), RelativeSource={RelativeSource TemplatedParent}}" />
                 </Border>
@@ -303,14 +304,10 @@
             </MultiTrigger>
             <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
               <Setter Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxBackground}" />
-              <Setter TargetName="Hint" Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMarginEmbedded}" />
-              <Setter TargetName="HelperTextTextBlock" Property="Margin" Value="16,0,0,0" />
             </Trigger>
             <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
               <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaBorder}" />
               <Setter Property="BorderThickness" Value="1" />
-              <Setter TargetName="Hint" Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMarginEmbedded}" />
-              <Setter TargetName="HelperTextTextBlock" Property="Margin" Value="16,0,0,0" />
               <Setter TargetName="Hint" Property="FloatingOffset">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">

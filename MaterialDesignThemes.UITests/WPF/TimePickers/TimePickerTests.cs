@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Globalization;
+using MaterialDesignThemes.UITests.WPF.TextBoxes;
+
 namespace MaterialDesignThemes.UITests.WPF.TimePickers;
 
 public class TimePickerTests : TestBase
@@ -387,6 +389,96 @@ public class TimePickerTests : TestBase
         Assert.Equal(expectedActiveBorderThickness, hoverBorderThickness);
         Assert.Equal(expectedActiveBorderThickness, focusedBorderThickness);
         Assert.Equal(expectedActiveBorderThickness, withErrorBorderThickness);
+
+        recorder.Success();
+    }
+
+    [Theory]
+    [InlineData("MaterialDesignFloatingHintTimePicker", null)]
+    [InlineData("MaterialDesignFloatingHintTimePicker", 5)]
+    [InlineData("MaterialDesignFloatingHintTimePicker", 20)]
+    [InlineData("MaterialDesignFilledTimePicker", null)]
+    [InlineData("MaterialDesignFilledTimePicker", 5)]
+    [InlineData("MaterialDesignFilledTimePicker", 20)]
+    [InlineData("MaterialDesignOutlinedTimePicker", null)]
+    [InlineData("MaterialDesignOutlinedTimePicker", 5)]
+    [InlineData("MaterialDesignOutlinedTimePicker", 20)]
+    public async Task TimePicker_WithHintAndHelperText_RespectsPadding(string styleName, int? padding)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // FIXME: Tolerance needed because TextFieldAssist.TextBoxViewMargin is in play and slightly modifies the hint text placement in certain cases.
+        const double tolerance = 1.5;
+
+        string styleAttribute = $"Style=\"{{StaticResource {styleName}}}\"";
+        string paddingAttribute = padding.HasValue ? $"Padding=\"{padding.Value}\"" : string.Empty;
+
+        var timePicker = await LoadXaml<TimePicker>($@"
+<materialDesign:TimePicker {styleAttribute} {paddingAttribute}
+  materialDesign:HintAssist.Hint=""Hint text""
+  materialDesign:HintAssist.HelperText=""Helper text""
+  Width=""200"" VerticalAlignment=""Center"" HorizontalAlignment=""Center"" />
+");
+
+        var contentHost = await timePicker.GetElement<ScrollViewer>("PART_ContentHost");
+        var hint = await timePicker.GetElement<SmartHint>("Hint");
+        var helperText = await timePicker.GetElement<TextBlock>("HelperTextTextBlock");
+
+        Rect? contentHostCoordinates = await contentHost.GetCoordinates();
+        Rect? hintCoordinates = await hint.GetCoordinates();
+        Rect? helperTextCoordinates = await helperText.GetCoordinates();
+
+        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left), 0, tolerance);
+        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - helperTextCoordinates.Value.Left), 0, tolerance);
+
+        recorder.Success();
+    }
+
+    [Theory]
+    [InlineData("MaterialDesignFloatingHintTimePicker", null)]
+    [InlineData("MaterialDesignFloatingHintTimePicker", 5)]
+    [InlineData("MaterialDesignFloatingHintTimePicker", 20)]
+    [InlineData("MaterialDesignFilledTimePicker", null)]
+    [InlineData("MaterialDesignFilledTimePicker", 5)]
+    [InlineData("MaterialDesignFilledTimePicker", 20)]
+    [InlineData("MaterialDesignOutlinedTimePicker", null)]
+    [InlineData("MaterialDesignOutlinedTimePicker", 5)]
+    [InlineData("MaterialDesignOutlinedTimePicker", 20)]
+    public async Task TimePicker_WithHintAndValidationError_RespectsPadding(string styleName, int? padding)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // FIXME: Tolerance needed because TextFieldAssist.TextBoxViewMargin is in play and slightly modifies the hint text placement in certain cases.
+        const double tolerance = 1.5;
+
+        string styleAttribute = $"Style=\"{{StaticResource {styleName}}}\"";
+        string paddingAttribute = padding.HasValue ? $"Padding=\"{padding.Value}\"" : string.Empty;
+
+        var timePicker = await LoadXaml<TimePicker>($@"
+<materialDesign:TimePicker {styleAttribute} {paddingAttribute}
+  materialDesign:HintAssist.Hint=""Hint text""
+  materialDesign:HintAssist.HelperText=""Helper text""
+  Width=""200"" VerticalAlignment=""Center"" HorizontalAlignment=""Center"">
+  <materialDesign:TimePicker.Text>
+    <Binding RelativeSource=""{{RelativeSource Self}}"" Path=""Tag"" UpdateSourceTrigger=""PropertyChanged"">
+      <Binding.ValidationRules>
+        <local:NotEmptyValidationRule ValidatesOnTargetUpdated=""True""/>
+      </Binding.ValidationRules>
+    </Binding>
+  </materialDesign:TimePicker.Text>
+</materialDesign:TimePicker>
+", ("local", typeof(NotEmptyValidationRule)));
+
+        var contentHost = await timePicker.GetElement<ScrollViewer>("PART_ContentHost");
+        var hint = await timePicker.GetElement<SmartHint>("Hint");
+        var errorViewer = await timePicker.GetElement<Border>("DefaultErrorViewer");
+
+        Rect? contentHostCoordinates = await contentHost.GetCoordinates();
+        Rect? hintCoordinates = await hint.GetCoordinates();
+        Rect? errorViewerCoordinates = await errorViewer.GetCoordinates();
+
+        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left), 0, tolerance);
+        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left), 0, tolerance);
 
         recorder.Success();
     }

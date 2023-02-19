@@ -6,6 +6,7 @@
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
+             xmlns:local="clr-namespace:MaterialDesignDemo"
              mc:Ignorable="d"
              x:Name="_root"
              d:DataContext="{d:DesignInstance domain:SmartHintViewModel, IsDesignTimeCreatable=False}"
@@ -13,8 +14,9 @@
   <Grid Grid.IsSharedSizeScope="True">
     <Grid.Resources>
       <materialDesign:MathConverter x:Key="SubtractConverter" Operation="Subtract" />
+      <local:CustomPaddingConverter x:Key="CustomPaddingConverter" />
       <Style TargetType="{x:Type smtx:XamlDisplay}" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
-        <Setter Property="Margin" Value="0,10,16,0" />
+        <Setter Property="Margin" Value="0,10,16,16" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="Width" Value="186" />
@@ -22,6 +24,7 @@
         <Setter Property="materialDesign:HintAssist.FloatingScale" Value="{Binding SelectedFloatingScale}" />
         <Setter Property="materialDesign:HintAssist.FloatingOffset" Value="{Binding SelectedFloatingOffset}" />
         <Setter Property="materialDesign:HintAssist.Hint" Value="{Binding HintText}" />
+        <Setter Property="materialDesign:HintAssist.HelperText" Value="{Binding HelperText}" />
       </Style>
       <Style x:Key="StyleNameIndicator" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}">
         <Setter Property="Margin" Value="0,10,16,0" />
@@ -39,17 +42,26 @@
     </Grid.RowDefinitions>
 
     <GroupBox Grid.Row="0" Margin="8,0,16,16" Header="Hint Settings" Style="{StaticResource MaterialDesignCardGroupBox}">
-      <StackPanel Orientation="Horizontal" Margin="10">
-        <CheckBox Content="IsFloating" IsChecked="{Binding FloatHint}" />
-        <TextBlock Text="Alignment:" VerticalAlignment="Center" Margin="20,0,0,0" />
-        <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding HorizontalAlignmentOptions}" SelectedItem="{Binding SelectedAlignment, Mode=TwoWay}" />
-        <TextBlock Text="FloatingScale:" VerticalAlignment="Center" Margin="20,0,0,0" />
-        <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding FloatingScaleOptions}" SelectedItem="{Binding SelectedFloatingScale, Mode=TwoWay}" ItemStringFormat="F2" />
-        <TextBlock Text="FloatingOffset:" VerticalAlignment="Center" Margin="20,0,0,0" />
-        <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding FloatingOffsetOptions}" SelectedItem="{Binding SelectedFloatingOffset, Mode=TwoWay}" />
-        <CheckBox Content="HasClearButton" IsChecked="{Binding ShowClearButton}" Margin="20,0,0,0" />
-        <CheckBox Content="HasLeadingIcon" IsChecked="{Binding ShowLeadingIcon}" Margin="20,0,0,0" />
-        <TextBox Text="{Binding HintText, UpdateSourceTrigger=PropertyChanged}" Margin="20,0,0,0" Width="180" />
+      <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal" Margin="10">
+          <CheckBox Content="IsFloating" IsChecked="{Binding FloatHint}" />
+          <TextBlock Text="Alignment:" VerticalAlignment="Center" Margin="20,0,0,0" />
+          <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding HorizontalAlignmentOptions}" SelectedItem="{Binding SelectedAlignment, Mode=TwoWay}" />
+          <TextBlock Text="FloatingScale:" VerticalAlignment="Center" Margin="20,0,0,0" />
+          <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding FloatingScaleOptions}" SelectedItem="{Binding SelectedFloatingScale, Mode=TwoWay}" ItemStringFormat="F2" />
+          <TextBlock Text="FloatingOffset:" VerticalAlignment="Center" Margin="20,0,0,0" />
+          <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding FloatingOffsetOptions}" SelectedItem="{Binding SelectedFloatingOffset, Mode=TwoWay}" />
+          <CheckBox Content="HasClearButton" IsChecked="{Binding ShowClearButton}" Margin="20,0,0,0" />
+          <CheckBox Content="HasLeadingIcon" IsChecked="{Binding ShowLeadingIcon}" Margin="20,0,0,0" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="10">
+          <TextBox Text="{Binding HintText, UpdateSourceTrigger=PropertyChanged}"  Width="200" />
+          <TextBox Text="{Binding HelperText, UpdateSourceTrigger=PropertyChanged}" Margin="20,0,0,0" Width="200" />
+          <CheckBox x:Name="CustomPaddingCheckBox" Content="Custom Padding" IsChecked="{Binding ApplyCustomPadding}" Margin="20,0,0,0" />
+          <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding CustomPaddingOptions}" SelectedItem="{Binding SelectedCustomPadding, Mode=TwoWay}" IsEnabled="{Binding ElementName=CustomPaddingCheckBox, Path=IsChecked}" />
+          <CheckBox Content="HasErrors" IsChecked="False" Checked="HasErrors_OnToggled" Unchecked="HasErrors_OnToggled" Margin="20,0,0,0" />
+        </StackPanel>
       </StackPanel>
     </GroupBox>
 
@@ -73,9 +85,32 @@
       <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="Stretch" Grid.Column="4" Grid.Row="1" HorizontalAlignment="Center" />
     </Grid>
 
+    <!-- Invisible controls only used to be able to fallback to default style values -->
+    <StackPanel Grid.Row="2" Visibility="Collapsed">
+      <TextBox x:Name="MaterialDesignFloatingHintTextBoxDefaults" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+      <TextBox x:Name="MaterialDesignFilledTextBoxDefaults" Style="{StaticResource MaterialDesignFilledTextBox}" />
+      <TextBox x:Name="MaterialDesignOutlinedTextBoxDefaults" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+      <RichTextBox x:Name="MaterialDesignRichTextBoxDefaults" Style="{StaticResource MaterialDesignRichTextBox}" />
+      <PasswordBox x:Name="MaterialDesignFloatingHintPasswordBoxDefaults" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
+      <PasswordBox x:Name="MaterialDesignFilledPasswordBoxDefaults" Style="{StaticResource MaterialDesignFilledPasswordBox}" />
+      <PasswordBox x:Name="MaterialDesignOutlinedPasswordBoxDefaults" Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
+      <PasswordBox x:Name="MaterialDesignFloatingHintRevealPasswordBoxDefaults" Style="{StaticResource MaterialDesignFloatingHintRevealPasswordBox}" />
+      <PasswordBox x:Name="MaterialDesignFilledRevealPasswordBoxDefaults" Style="{StaticResource MaterialDesignFilledRevealPasswordBox}" />
+      <PasswordBox x:Name="MaterialDesignOutlinedRevealPasswordBoxDefaults" Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}" />
+      <ComboBox x:Name="MaterialDesignFloatingHintComboBoxDefaults" Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+      <ComboBox x:Name="MaterialDesignFilledComboBoxDefaults" Style="{StaticResource MaterialDesignFilledComboBox}" />
+      <ComboBox x:Name="MaterialDesignOutlinedComboBoxDefaults" Style="{StaticResource MaterialDesignOutlinedComboBox}" />
+      <DatePicker x:Name="MaterialDesignFloatingHintDatePickerDefaults" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+      <DatePicker x:Name="MaterialDesignFilledDatePickerDefaults" Style="{StaticResource MaterialDesignFilledDatePicker}" />
+      <DatePicker x:Name="MaterialDesignOutlinedDatePickerDefaults" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+      <materialDesign:TimePicker x:Name="MaterialDesignFloatingHintTimePickerDefaults" Style="{StaticResource MaterialDesignFloatingHintTimePicker}" />
+      <materialDesign:TimePicker x:Name="MaterialDesignFilledTimePickerDefaults" Style="{StaticResource MaterialDesignFilledTimePicker}" />
+      <materialDesign:TimePicker x:Name="MaterialDesignOutlinedTimePickerDefaults" Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
+    </StackPanel>
+
     <ScrollViewer Grid.Row="2" VerticalAlignment="Top" materialDesign:ScrollViewerAssist.BubbleVerticalScroll="False" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Margin="0,20,0,0"
-                  Height="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ScrollViewer}}, Path=ViewportHeight, Converter={StaticResource SubtractConverter}, ConverterParameter=250}">
-      <StackPanel Margin="8,0,16,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                  Height="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ScrollViewer}}, Path=ViewportHeight, Converter={StaticResource SubtractConverter}, ConverterParameter=290}">
+      <StackPanel x:Name="ControlsPanel" Margin="8,0,16,0" VerticalAlignment="Top" HorizontalAlignment="Left">
 
         <!-- TextBox variants -->
         <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="TextBox styles" />
@@ -86,6 +121,16 @@
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignFloatingHintTextBoxDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -117,6 +162,16 @@
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignFilledTextBoxDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -148,6 +203,16 @@
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignOutlinedTextBoxDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -181,6 +246,16 @@
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="local:SmartHint.RichTextBoxText" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignRichTextBoxDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -215,6 +290,16 @@
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignFloatingHintPasswordDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -246,6 +331,16 @@
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignFilledPasswordBoxDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -277,6 +372,16 @@
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignOutlinedPasswordBoxDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -311,6 +416,16 @@
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignFloatingHintRevealPasswordBoxDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -342,6 +457,16 @@
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignFilledRevealPasswordBoxDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -373,6 +498,16 @@
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignOutlinedRevealPasswordBoxDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -407,8 +542,18 @@
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="ItemsSource" Value="{Binding ComboBoxOptions}" />
               <Setter Property="IsEditable" Value="True" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignFloatingHintComboBoxDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -440,8 +585,18 @@
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="ItemsSource" Value="{Binding ComboBoxOptions}" />
               <Setter Property="IsEditable" Value="True" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignFilledComboBoxDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -473,8 +628,18 @@
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="ItemsSource" Value="{Binding ComboBoxOptions}" />
               <Setter Property="IsEditable" Value="True" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignOutlinedComboBoxDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -497,6 +662,252 @@
           </smtx:XamlDisplay>
           <smtx:XamlDisplay Grid.Column="4" UniqueKey="combobox_outlined_stretch">
             <ComboBox HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+
+        <!-- DatePicker variants -->
+        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="DatePicker styles" Margin="0,40,0,0" />
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignFloatingHintDatePicker}">
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignFloatingHintDatePickerDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFloatingHintDatePicker</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="datepicker_floating_left">
+            <DatePicker HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="datepicker_floating_center">
+            <DatePicker HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="datepicker_floating_right">
+            <DatePicker HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="datepicker_floating_stretch">
+            <DatePicker HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignFilledDatePicker}">
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignFilledDatePickerDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFilledDatePicker</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="datepicker_filled_left">
+            <DatePicker HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="datepicker_filled_center">
+            <DatePicker HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="datepicker_filled_right">
+            <DatePicker HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="datepicker_filled_stretch">
+            <DatePicker HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignOutlinedDatePicker}">
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignOutlinedDatePickerDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignOutlinedDatePicker</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="datepicker_outlined_left">
+            <DatePicker HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="datepicker_outlined_center">
+            <DatePicker HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="datepicker_outlined_right">
+            <DatePicker HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="datepicker_outlined_stretch">
+            <DatePicker HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+
+        <!-- TimePicker variants -->
+        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="TimePicker styles" Margin="0,40,0,0" />
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type materialDesign:TimePicker}" BasedOn="{StaticResource MaterialDesignFloatingHintTimePicker}">
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignFloatingHintTimePickerDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFloatingHintTimePicker</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="timepicker_floating_left">
+            <materialDesign:TimePicker HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="timepicker_floating_center">
+            <materialDesign:TimePicker HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="timepicker_floating_right">
+            <materialDesign:TimePicker HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="timepicker_floating_stretch">
+            <materialDesign:TimePicker HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type materialDesign:TimePicker}" BasedOn="{StaticResource MaterialDesignFilledTimePicker}">
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignFilledTimePickerDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFilledTimePicker</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="timepicker_filled_left">
+            <materialDesign:TimePicker HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="timepicker_filled_center">
+            <materialDesign:TimePicker HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="timepicker_filled_right">
+            <materialDesign:TimePicker HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="timepicker_filled_stretch">
+            <materialDesign:TimePicker HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type materialDesign:TimePicker}" BasedOn="{StaticResource MaterialDesignOutlinedTimePicker}">
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignOutlinedTimePickerDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignOutlinedTimePicker</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="timepicker_outlined_left">
+            <materialDesign:TimePicker HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="timepicker_outlined_center">
+            <materialDesign:TimePicker HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="timepicker_outlined_right">
+            <materialDesign:TimePicker HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="timepicker_outlined_stretch">
+            <materialDesign:TimePicker HorizontalContentAlignment="Stretch" />
           </smtx:XamlDisplay>
         </Grid>
       </StackPanel>

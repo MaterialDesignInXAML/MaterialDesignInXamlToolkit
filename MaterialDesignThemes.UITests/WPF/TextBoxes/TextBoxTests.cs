@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Media;
 
@@ -469,6 +469,96 @@ public class TextBoxTests : TestBase
         Assert.True(helperTextMargin.HasValue);
         Assert.True(Math.Abs(errorMargin.Value.Left - helperTextMargin.Value.Left) < double.Epsilon,
             $"Error text and helper text do not have the same Margin.Left values: Error text Margin.Left ({errorMargin.Value.Left}) == Helper text Margin.Left ({helperTextMargin.Value.Left})");
+
+        recorder.Success();
+    }
+
+    [Theory]
+    [InlineData("MaterialDesignFloatingHintTextBox", null)]
+    [InlineData("MaterialDesignFloatingHintTextBox", 5)]
+    [InlineData("MaterialDesignFloatingHintTextBox", 20)]
+    [InlineData("MaterialDesignFilledTextBox", null)]
+    [InlineData("MaterialDesignFilledTextBox", 5)]
+    [InlineData("MaterialDesignFilledTextBox", 20)]
+    [InlineData("MaterialDesignOutlinedTextBox", null)]
+    [InlineData("MaterialDesignOutlinedTextBox", 5)]
+    [InlineData("MaterialDesignOutlinedTextBox", 20)]
+    public async Task TextBox_WithHintAndHelperText_RespectsPadding(string styleName, int? padding)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // FIXME: Tolerance needed because TextFieldAssist.TextBoxViewMargin is in play and slightly modifies the hint text placement in certain cases.
+        const double tolerance = 1.5;
+
+        string styleAttribute = $"Style=\"{{StaticResource {styleName}}}\"";
+        string paddingAttribute = padding.HasValue ? $"Padding=\"{padding.Value}\"" : string.Empty;
+
+        var textBox = await LoadXaml<TextBox>($@"
+<TextBox {styleAttribute} {paddingAttribute}
+  materialDesign:HintAssist.Hint=""Hint text""
+  materialDesign:HintAssist.HelperText=""Helper text""
+  Width=""200"" VerticalAlignment=""Center"" HorizontalAlignment=""Center"" />
+");
+
+        var contentHost = await textBox.GetElement<ScrollViewer>("PART_ContentHost");
+        var hint = await textBox.GetElement<SmartHint>("Hint");
+        var helperText = await textBox.GetElement<TextBlock>("HelperTextTextBlock");
+
+        Rect? contentHostCoordinates = await contentHost.GetCoordinates();
+        Rect? hintCoordinates = await hint.GetCoordinates();
+        Rect? helperTextCoordinates = await helperText.GetCoordinates();
+
+        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left), 0, tolerance);
+        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - helperTextCoordinates.Value.Left), 0, tolerance);
+
+        recorder.Success();
+    }
+
+    [Theory]
+    [InlineData("MaterialDesignFloatingHintTextBox", null)]
+    [InlineData("MaterialDesignFloatingHintTextBox", 5)]
+    [InlineData("MaterialDesignFloatingHintTextBox", 20)]
+    [InlineData("MaterialDesignFilledTextBox", null)]
+    [InlineData("MaterialDesignFilledTextBox", 5)]
+    [InlineData("MaterialDesignFilledTextBox", 20)]
+    [InlineData("MaterialDesignOutlinedTextBox", null)]
+    [InlineData("MaterialDesignOutlinedTextBox", 5)]
+    [InlineData("MaterialDesignOutlinedTextBox", 20)]
+    public async Task TextBox_WithHintAndValidationError_RespectsPadding(string styleName, int? padding)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // FIXME: Tolerance needed because TextFieldAssist.TextBoxViewMargin is in play and slightly modifies the hint text placement in certain cases.
+        const double tolerance = 1.5;
+
+        string styleAttribute = $"Style=\"{{StaticResource {styleName}}}\"";
+        string paddingAttribute = padding.HasValue ? $"Padding=\"{padding.Value}\"" : string.Empty;
+
+        var textBox = await LoadXaml<TextBox>($@"
+<TextBox {styleAttribute} {paddingAttribute}
+  materialDesign:HintAssist.Hint=""Hint text""
+  materialDesign:HintAssist.HelperText=""Helper text""
+  Width=""200"" VerticalAlignment=""Center"" HorizontalAlignment=""Center"">
+  <TextBox.Text>
+    <Binding RelativeSource=""{{RelativeSource Self}}"" Path=""Tag"" UpdateSourceTrigger=""PropertyChanged"">
+      <Binding.ValidationRules>
+        <local:NotEmptyValidationRule ValidatesOnTargetUpdated=""True""/>
+      </Binding.ValidationRules>
+    </Binding>
+  </TextBox.Text>
+</TextBox>
+", ("local", typeof(NotEmptyValidationRule)));
+
+        var contentHost = await textBox.GetElement<ScrollViewer>("PART_ContentHost");
+        var hint = await textBox.GetElement<SmartHint>("Hint");
+        var errorViewer = await textBox.GetElement<Border>("DefaultErrorViewer");
+
+        Rect? contentHostCoordinates = await contentHost.GetCoordinates();
+        Rect? hintCoordinates = await hint.GetCoordinates();
+        Rect? errorViewerCoordinates = await errorViewer.GetCoordinates();
+
+        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left), 0, tolerance);
+        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left), 0, tolerance);
 
         recorder.Success();
     }

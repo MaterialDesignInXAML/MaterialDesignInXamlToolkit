@@ -19,6 +19,7 @@
   <converters:FloatingHintOffsetCalculationConverter x:Key="FloatingHintOffsetCalculationConverter" />
   <converters:PickerInnerPaddingConverter x:Key="PickerInnerPaddingConverter" />
   <converters:OutlinedDateTimePickerActiveBorderThicknessConverter x:Key="OutlinedDateTimePickerActiveBorderThicknessConverter" />
+  <converters:ThicknessCloneConverter x:Key="HelperTextMarginConverter" CloneEdges="Left" />
 
   <Style x:Key="MaterialDesignDatePickerTextBox" TargetType="{x:Type DatePickerTextBox}">
     <Setter Property="AllowDrop" Value="true" />
@@ -123,14 +124,15 @@
                       BorderThickness="{TemplateBinding BorderThickness}"
                       CornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}"
                       SnapsToDevicePixels="True">
-                <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                   <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition Width="Auto" />
                   </Grid.ColumnDefinitions>
                   <Grid x:Name="grid"
                         MinWidth="1"
-                        VerticalAlignment="Center">
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
                       <ColumnDefinition Width="Auto" />
                       <ColumnDefinition Width="*" />
@@ -158,14 +160,14 @@
                                   VerticalScrollBarVisibility="Hidden" />
                     <wpf:SmartHint x:Name="Hint"
                                    Grid.Column="1"
-                                   Margin="{TemplateBinding wpf:TextFieldAssist.TextBoxViewMargin}"
                                    FloatingOffset="{TemplateBinding wpf:HintAssist.FloatingOffset}"
                                    FloatingScale="{TemplateBinding wpf:HintAssist.FloatingScale}"
                                    FontFamily="{TemplateBinding wpf:HintAssist.FontFamily}"
                                    FontSize="{TemplateBinding FontSize}"
                                    HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                    HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
-                                   UseFloating="{TemplateBinding wpf:HintAssist.IsFloating}">
+                                   UseFloating="{TemplateBinding wpf:HintAssist.IsFloating}"
+                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}">
                       <wpf:SmartHint.Hint>
                         <Border x:Name="HintBackgroundBorder"
                                 Background="{TemplateBinding wpf:HintAssist.Background}"
@@ -210,8 +212,8 @@
                            Background="{TemplateBinding wpf:TextFieldAssist.UnderlineBrush}"
                            CornerRadius="{TemplateBinding wpf:TextFieldAssist.UnderlineCornerRadius}"
                            Visibility="{TemplateBinding wpf:TextFieldAssist.DecorationVisibility}" />
-            <Canvas x:Name="HelperTextWrapper" VerticalAlignment="Bottom">
-              <TextBlock Canvas.Top="2"
+            <Canvas x:Name="HelperTextWrapper" VerticalAlignment="Bottom" Margin="{TemplateBinding Padding, Converter={StaticResource HelperTextMarginConverter}}">
+              <TextBlock x:Name="HelperTextTextBlock" Canvas.Top="2"
                          MaxWidth="{Binding ActualWidth, ElementName=border}"
                          FontSize="{TemplateBinding wpf:HintAssist.HelperTextFontSize}"
                          Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
@@ -255,15 +257,11 @@
             </MultiTrigger>
             <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
               <Setter Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxBackground}" />
-              <Setter Property="Padding" Value="16,8,12,8" />
-              <Setter TargetName="HelperTextWrapper" Property="Margin" Value="16,0,0,0" />
             </Trigger>
             <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
               <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaBorder}" />
               <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:DatePickerAssist.OutlinedBorderInactiveThickness)}" />
-              <Setter Property="Padding" Value="16,16,12,16" />
               <Setter Property="VerticalContentAlignment" Value="Top" />
-              <Setter TargetName="HelperTextWrapper" Property="Margin" Value="16,0,0,0" />
               <Setter TargetName="Hint" Property="FloatingOffset">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
@@ -271,7 +269,7 @@
                     <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingScale)" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingOffset)" RelativeSource="{RelativeSource TemplatedParent}" />
-                    <Binding Path="ActualHeight" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="Padding" RelativeSource="{RelativeSource TemplatedParent}" />
                   </MultiBinding>
                 </Setter.Value>
               </Setter>
@@ -530,13 +528,9 @@
           <ControlTemplate.Triggers>
             <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
               <Setter Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxBackground}" />
-              <Setter Property="Padding" Value="16,8" />
-              <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMarginEmbedded}" />
             </Trigger>
             <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
               <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaBorder}" />
-              <Setter Property="Padding" Value="16" />
-              <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMarginEmbedded}" />
             </Trigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
@@ -616,6 +610,7 @@
     <Setter Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
     <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4,4,0,0" />
     <Setter Property="wpf:TextFieldAssist.UnderlineCornerRadius" Value="0" />
+    <Setter Property="Padding" Value="16,8" />
   </Style>
 
   <Style x:Key="MaterialDesignOutlinedDatePicker"
@@ -623,6 +618,7 @@
          BasedOn="{StaticResource MaterialDesignFloatingHintDatePicker}">
     <Setter Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
     <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4" />
+    <Setter Property="Padding" Value="16" />
   </Style>
 
 </ResourceDictionary>

@@ -26,6 +26,7 @@
   <converters:FloatingHintOffsetCalculationConverter x:Key="FloatingHintOffsetCalculationConverter" />
   <converters:ComboBoxClearButtonMarginConverter x:Key="ComboBoxClearButtonMarginConverter" />
   <converters:DoubleToThicknessConverter x:Key="DoubleToThicknessConverter" />
+  <converters:ThicknessCloneConverter x:Key="HelperTextMarginConverter" CloneEdges="Left" />
 
   <system:Double x:Key="PopupContentPresenterExtend">4</system:Double>
   <system:Double x:Key="PopupTopBottomMargin">8</system:Double>
@@ -363,7 +364,6 @@
 
                 <wpf:SmartHint x:Name="Hint"
                                Grid.Column="1"
-                               Margin="{TemplateBinding wpf:TextFieldAssist.TextBoxViewMargin}"
                                FloatingOffset="{TemplateBinding wpf:HintAssist.FloatingOffset}"
                                FloatingScale="{TemplateBinding wpf:HintAssist.FloatingScale}"
                                FontFamily="{TemplateBinding wpf:HintAssist.FontFamily}"
@@ -400,8 +400,8 @@
                        CornerRadius="{TemplateBinding wpf:TextFieldAssist.UnderlineCornerRadius}"
                        IsActive="{Binding ElementName=PART_EditableTextBox, Path=IsKeyboardFocused}"
                        Visibility="{TemplateBinding wpf:TextFieldAssist.DecorationVisibility}" />
-        <Canvas x:Name="HelperTextWrapper" VerticalAlignment="Bottom">
-          <TextBlock Canvas.Top="2"
+        <Canvas x:Name="HelperTextWrapper" VerticalAlignment="Bottom" Margin="{TemplateBinding Padding, Converter={StaticResource HelperTextMarginConverter}}">
+          <TextBlock x:Name="HelperTextTextBlock" Canvas.Top="2"
                      MaxWidth="{Binding ActualWidth, ElementName=toggleButton}"
                      FontSize="{TemplateBinding wpf:HintAssist.HelperTextFontSize}"
                      Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
@@ -480,11 +480,7 @@
       </Grid>
     </AdornerDecorator>
     <ControlTemplate.Triggers>
-      <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
-        <Setter TargetName="HelperTextWrapper" Property="Margin" Value="16,0,0,0" />
-      </Trigger>
       <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
-        <Setter TargetName="HelperTextWrapper" Property="Margin" Value="16,0,0,0" />
         <Setter TargetName="Hint" Property="FloatingOffset">
           <Setter.Value>
             <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
