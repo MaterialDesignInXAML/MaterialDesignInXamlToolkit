@@ -854,7 +854,7 @@ namespace MaterialDesignThemes.Wpf
         {
             foreach (var weakRef in LoadedInstances.ToList())
             {
-                if (weakRef.TryGetTarget(out DialogHost? dialogHost) && Equals(dialogHost, this))
+                if (!weakRef.TryGetTarget(out DialogHost? dialogHost) || ReferenceEquals(dialogHost, this))
                 {
                     LoadedInstances.Remove(weakRef);
                     break;
@@ -866,8 +866,10 @@ namespace MaterialDesignThemes.Wpf
         {
             foreach (var weakRef in LoadedInstances.ToList())
             {
-                if (weakRef.TryGetTarget(out DialogHost? dialogHost) && Equals(dialogHost, this))
+                if (weakRef.TryGetTarget(out DialogHost? dialogHost) && ReferenceEquals(dialogHost, this))
+                {
                     return;
+                }
             }
 
             LoadedInstances.Add(new WeakReference<DialogHost>(this));

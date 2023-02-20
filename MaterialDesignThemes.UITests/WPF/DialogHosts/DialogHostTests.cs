@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Windows.Media;
 using MaterialDesignThemes.UITests.Samples.DialogHost;
 
@@ -314,5 +314,38 @@ public class DialogHostTests : TestBase
         });
 
         recorder.Success();
+    }
+
+    [Fact]
+    [Description("Issue 3069")]
+    public async Task DialogHost_WithOpenDialog_ShowsPopupWhenLoaded()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> rootGrid = (await LoadUserControl<LoadAndUnloadControl>()).As<Grid>();
+
+        IVisualElement<Button> loadButton = await rootGrid.GetElement<Button>("LoadDialogHost");
+        IVisualElement<Button> unloadButton = await rootGrid.GetElement<Button>("UnloadDialogHost");
+        IVisualElement<Button> toggleButton = await rootGrid.GetElement<Button>("ToggleIsOpen");
+
+        IVisualElement<DialogHost> dialogHost = await rootGrid.GetElement<DialogHost>("DialogHost");
+        IVisualElement<Button> closeButton = await dialogHost.GetElement<Button>("CloseButton");
+
+        await toggleButton.LeftClick();
+
+        await Wait.For(async () => Assert.True(await dialogHost.GetIsOpen()));
+        await Wait.For(async () => Assert.True(await closeButton.GetIsVisible()));
+
+        await unloadButton.LeftClick();
+
+        await Wait.For(async () => Assert.False(await closeButton.GetIsVisible()));
+
+        await loadButton.LeftClick();
+
+        await Wait.For(async () => Assert.True(await closeButton.GetIsVisible()));
+
+        await closeButton.LeftClick();
+
+        await Wait.For(async () => Assert.False(await dialogHost.GetIsOpen()));
     }
 }
