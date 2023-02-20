@@ -6,6 +6,7 @@ using System.Windows.Media;
 [assembly: GenerateHelpers(typeof(TimePicker))]
 [assembly: GenerateHelpers(typeof(DrawerHost))]
 [assembly: GenerateHelpers(typeof(ColorPicker))]
+[assembly: GenerateHelpers(typeof(DialogHost))]
 
 namespace MaterialDesignThemes.UITests;
 
