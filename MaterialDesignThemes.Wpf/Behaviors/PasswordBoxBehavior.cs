@@ -11,7 +11,7 @@ internal class PasswordBoxBehavior : Behavior<PasswordBox>
         if (PasswordBoxAssist.GetIsPasswordRevealed(AssociatedObject) &&
             AssociatedObject.FindChild<TextBox>("RevealPasswordTextBox") is { } revealPasswordTextBox)
         {
-            if (ReferenceEquals(e.OldFocus, revealPasswordTextBox))
+            if (ReferenceEquals(e.OldFocus, revealPasswordTextBox) && ReferenceEquals(e.NewFocus, AssociatedObject))
             {
                 // When password box receives keyboard focus, but it came from the nested reveal TextBox. We request focus transfer to the previous element from the password box's POV
                 TraversalRequest request = new TraversalRequest(FocusNavigationDirection.Previous);
