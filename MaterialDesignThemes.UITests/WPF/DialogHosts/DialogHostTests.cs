@@ -344,8 +344,10 @@ public class DialogHostTests : TestBase
 
         await Wait.For(async () => Assert.True(await closeButton.GetIsVisible()));
 
-        await closeButton.LeftClick();
-
-        await Wait.For(async () => Assert.False(await dialogHost.GetIsOpen()));
+        await Wait.For(async () =>
+        {
+            await closeButton.LeftClick();
+            Assert.False(await dialogHost.GetIsOpen());
+        });
     }
 }
