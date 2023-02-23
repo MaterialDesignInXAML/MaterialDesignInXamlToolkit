@@ -50,7 +50,8 @@
   </Style>
 
   <ControlTemplate x:Key="PopupContentClassicTemplate" TargetType="ContentControl">
-    <Grid MinWidth="{Binding Path=ContentMinWidth, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}" Margin="{Binding Path=ContentMargin, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}">
+    <Grid MinWidth="{Binding Path=ContentMinWidth, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}"
+          Margin="{Binding Path=ContentMargin, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}">
       <Grid.RowDefinitions>
         <RowDefinition Height="*" />
       </Grid.RowDefinitions>
@@ -412,7 +413,6 @@
                            wpf:ColorZoneAssist.Mode="{Binding Path=(wpf:ColorZoneAssist.Mode), RelativeSource={RelativeSource TemplatedParent}}"
                            AllowsTransparency="True"
                            ClassicContentTemplate="{StaticResource PopupContentClassicTemplate}"
-                           ClassicMode="True"
                            ContentMargin="6,0,6,6"
                            ContentMinWidth="{Binding Path=ActualWidth, ElementName=templateRoot}"
                            DefaultVerticalOffset="-1"
@@ -437,7 +437,7 @@
             </MultiBinding>
           </wpf:ComboBoxPopup.Background>
           <wpf:ComboBoxPopup.Style>
-            <Style TargetType="wpf:ComboBoxPopup" BasedOn="{StaticResource {x:Type wpf:ComboBoxPopup}}">
+            <Style TargetType="wpf:ComboBoxPopup">
               <Setter Property="CornerRadius" Value="0,0,4,4" />
               <Style.Triggers>
                 <Trigger Property="OpenDirection" Value="Up">
