@@ -50,6 +50,9 @@ public class DialogHostTests : TestBase
             Assert.True(await contentCover.GetOpacity() > 0.0);
         });
 
+        //Wait before clicking so the animations have time to finish
+        await Task.Delay(100);
+
         await drawerHost.LeftClick();
 
         await Wait.For(async () => await contentCover.GetOpacity() <= 0.0);
