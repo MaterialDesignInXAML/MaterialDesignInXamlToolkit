@@ -105,6 +105,7 @@ public class PasswordBoxTests : TestBase
         string? clearTextPassword1 = await clearTextPasswordTextBox.GetProperty<string>(TextBox.TextProperty);
 
         // Act 2 (Update in RevealPasswordTextBox updates PasswordBox and VM)
+        await Task.Delay(50);
         await revealPasswordButton.LeftClick();
         await Task.Delay(50);   // Wait for the "clear text TextBox" to become visible
         await clearTextPasswordTextBox.SendKeyboardInput($"2");
