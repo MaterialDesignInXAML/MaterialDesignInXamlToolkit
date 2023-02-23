@@ -10,7 +10,31 @@ public class AllStyles : TestBase
     { }
 
     [Theory]
+    [InlineData("Button", "MaterialDesignRaisedButton")]
+    [InlineData("Calendar", "MaterialDesignCalendarPortrait")]
+    [InlineData("CheckBox", "MaterialDesignCheckBox")]
     [InlineData("ComboBox", "MaterialDesignComboBox")]
+    [InlineData("DataGrid", "MaterialDesignDataGrid")]
+    [InlineData("DatePicker", "MaterialDesignDatePicker")]
+    [InlineData("Expander", "MaterialDesignExpander")]
+    [InlineData("GridSplitter", "MaterialDesignGridSplitter")]
+    [InlineData("GroupBox", "MaterialDesignGroupBox")]
+    [InlineData("Label", "MaterialDesignLabel")]
+    [InlineData("ListBox", "MaterialDesignListBox")]
+    [InlineData("ListView", "MaterialDesignListView")]
+    [InlineData("Menu", "MaterialDesignMenu")]
+    [InlineData("PasswordBox", "MaterialDesignPasswordBox")]
+    [InlineData("ProgressBar", "MaterialDesignLinearProgressBar")]
+    [InlineData("RadioButton", "MaterialDesignRadioButton")]
+    [InlineData("RichTextBox", "MaterialDesignRichTextBox")]
+    [InlineData("ScrollBar", "MaterialDesignScrollBar")]
+    [InlineData("ScrollViewer", "MaterialDesignScrollViewer")]
+    [InlineData("Slider", "MaterialDesignSlider")]
+    [InlineData("TabControl", "MaterialDesignTabControl")]
+    [InlineData("TextBox", "MaterialDesignTextBox")]
+    [InlineData("ToggleButton", "MaterialDesignSwitchToggleButton")]
+    [InlineData("ToolBar", "MaterialDesignToolBar")]
+    [InlineData("TreeView", "MaterialDesignTreeView")]
     public async Task LoadStyleInIsolation_CanBeLoaded(string controlName, string styleName)
     {
         await using var recorder = new TestRecorder(App);
@@ -35,7 +59,7 @@ public class AllStyles : TestBase
             Path.GetFullPath("MaterialDesignThemes.Wpf.dll"),
             Assembly.GetExecutingAssembly().Location);
 
-        IWindow window = await App.CreateWindow("""
+        IWindow window = await App.CreateWindow($$"""
              <Window
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -54,6 +78,7 @@ public class AllStyles : TestBase
                     Title="Test Window"
                     Topmost="True"
                     WindowStartupLocation="CenterScreen">
+              <{{controlName}} />
             </Window>
             """);
 
