@@ -325,10 +325,10 @@ public class PasswordBoxTests : TestBase
         Assert.True(await textBox2.GetIsKeyboardFocused());
 
         // Assert Tab backwards
-        await textBox2.SendKeyboardInput($"+{Key.Tab}");
-        //Assert.True(await revealPasswordTextBox.GetIsKeyboardFocused());      FIXME: SHIFT key (+) seems to be unsupported by XAMLTest
-        await revealPasswordTextBox.SendKeyboardInput($"+{Key.Tab}");
-        //Assert.True(await textBox1.GetIsKeyboardFocused());                   FIXME: SHIFT key (+) seems to be unsupported by XAMLTest
+        await textBox2.SendKeyboardInput($"{ModifierKeys.Shift}{Key.Tab}");
+        Assert.True(await revealPasswordTextBox.GetIsKeyboardFocused());
+        await revealPasswordTextBox.SendKeyboardInput($"{Key.Tab}{ModifierKeys.None}");
+        Assert.True(await textBox1.GetIsKeyboardFocused());
 
         recorder.Success();
     }
