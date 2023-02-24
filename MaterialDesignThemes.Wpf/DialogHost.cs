@@ -432,6 +432,15 @@ namespace MaterialDesignThemes.Wpf
             set => SetValue(DialogContentProperty, value);
         }
 
+        public static readonly DependencyProperty DialogContentUniformCornerRadiusProperty = DependencyProperty.Register(
+            nameof(DialogContentUniformCornerRadius), typeof(double), typeof(DialogHost), new PropertyMetadata(4d));
+
+        public double DialogContentUniformCornerRadius
+        {
+            get { return (double)GetValue(DialogContentUniformCornerRadiusProperty); }
+            set { SetValue(DialogContentUniformCornerRadiusProperty, value); }
+        }
+
         public static readonly DependencyProperty DialogContentTemplateProperty = DependencyProperty.Register(
             nameof(DialogContentTemplate), typeof(DataTemplate), typeof(DialogHost), new PropertyMetadata(default(DataTemplate)));
 

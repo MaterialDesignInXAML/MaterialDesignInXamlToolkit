@@ -62,7 +62,8 @@
                         UniqueKey="dialogs_sample1">
         <materialDesign:DialogHost DialogClosed="Sample1_DialogHost_OnDialogClosed"
                                    DialogClosing="Sample1_DialogHost_OnDialogClosing"
-                                   DialogTheme="Inherit">
+                                   DialogTheme="Inherit"
+                                   DialogContentUniformCornerRadius="20">
           <materialDesign:DialogHost.DialogContent>
             <StackPanel Margin="16">
               <TextBlock Text="Add a new fruit." />
