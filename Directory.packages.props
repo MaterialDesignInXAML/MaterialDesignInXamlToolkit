@@ -26,5 +26,7 @@
     <PackageVersion Include="xunit" Version="2.4.2" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="2.4.5" />
     <PackageVersion Include="Xunit.StaFact" Version="1.1.11" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
   </ItemGroup>
 </Project>
