@@ -437,8 +437,8 @@ namespace MaterialDesignThemes.Wpf
 
         public double DialogContentUniformCornerRadius
         {
-            get { return (double)GetValue(DialogContentUniformCornerRadiusProperty); }
-            set { SetValue(DialogContentUniformCornerRadiusProperty, value); }
+            get => (double)GetValue(DialogContentUniformCornerRadiusProperty);
+            set => SetValue(DialogContentUniformCornerRadiusProperty, value);
         }
 
         public static readonly DependencyProperty DialogContentTemplateProperty = DependencyProperty.Register(
