@@ -173,7 +173,7 @@
                           RenderTransformOrigin=".5,.5"
                           Tag="{TemplateBinding DialogBackground}"
                           TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-                          UniformCornerRadius="4">
+                          UniformCornerRadius="{TemplateBinding DialogContentUniformCornerRadius}">
                   <wpf:Card.Style>
                     <Style TargetType="wpf:Card" BasedOn="{StaticResource {x:Type wpf:Card}}">
                       <Setter Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}}" />
@@ -418,7 +418,7 @@
                         RenderTransformOrigin=".5,.5"
                         Tag="{TemplateBinding DialogBackground}"
                         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-                        UniformCornerRadius="4">
+                        UniformCornerRadius="{TemplateBinding DialogContentUniformCornerRadius}">
                 <wpf:Card.RenderTransform>
                   <TransformGroup>
                     <ScaleTransform x:Name="CardScaleTransform" ScaleX="0" ScaleY="0" />
