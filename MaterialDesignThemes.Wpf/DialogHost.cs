@@ -369,19 +369,6 @@ namespace MaterialDesignThemes.Wpf
             var window = Window.GetWindow(dialogHost);
             dialogHost._restoreFocusDialogClose = window != null ? FocusManager.GetFocusedElement(window) : null;
 
-            /* The root cause of the issue is that dialogHost._restoreFocusDialogClose at this point is a TabItem.
-             * So when trying to restore focus when the dialog closes, it will call .Focus() on the TabItem which
-             * effectively does a tab switch if that TabItem is not currently the selected TabItem.
-             *
-             * This IS NOT the right fix, but showcases the issue. How can we go about creating a generic fix for this?
-             * I don't believe TabControl is the only control which is facing this issue. Any control with state similar
-             * to the TabControl would arguably suffer from the same issue.
-             */
-            if (dialogHost._restoreFocusDialogClose is TabItem { Parent: TabControl tabControl })
-            {
-                dialogHost._restoreFocusDialogClose = tabControl;
-            }
-
             //multiple ways of calling back that the dialog has opened:
             // * routed event
             // * the attached property (which should be applied to the button which opened the dialog
