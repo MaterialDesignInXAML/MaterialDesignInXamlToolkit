@@ -369,6 +369,13 @@ namespace MaterialDesignThemes.Wpf
             var window = Window.GetWindow(dialogHost);
             dialogHost._restoreFocusDialogClose = window != null ? FocusManager.GetFocusedElement(window) : null;
 
+            // Check restore focus overrides and optional disabling
+            if (dialogHost._restoreFocusDialogClose is DependencyObject dependencyObj &&
+                GetRestoreFocusElement(dependencyObj) is { } focusOverride)
+            {
+                dialogHost._restoreFocusDialogClose = focusOverride;
+            }
+
             //multiple ways of calling back that the dialog has opened:
             // * routed event
             // * the attached property (which should be applied to the button which opened the dialog
@@ -601,6 +608,15 @@ namespace MaterialDesignThemes.Wpf
 
             base.OnApplyTemplate();
         }
+
+        public static readonly DependencyProperty RestoreFocusElementProperty = DependencyProperty.RegisterAttached(
+            "RestoreFocusElement", typeof(IInputElement), typeof(DialogHost), new PropertyMetadata(default(IInputElement)));
+
+        public static void SetRestoreFocusElement(DependencyObject element, IInputElement value)
+            => element.SetValue(RestoreFocusElementProperty, value);
+
+        public static IInputElement GetRestoreFocusElement(DependencyObject element)
+            => (IInputElement) element.GetValue(RestoreFocusElementProperty);
 
         #region open dialog events/callbacks
 

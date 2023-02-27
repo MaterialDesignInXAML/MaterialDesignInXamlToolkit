@@ -383,6 +383,5 @@ public class DialogHostTests : TestBase
         Assert.False(await tabItem2.GetIsSelected());
 
         recorder.Success();
-
     }
 }
