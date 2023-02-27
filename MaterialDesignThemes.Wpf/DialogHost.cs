@@ -367,13 +367,16 @@ namespace MaterialDesignThemes.Wpf
 
             dialogHost.CurrentSession = new DialogSession(dialogHost);
             var window = Window.GetWindow(dialogHost);
-            dialogHost._restoreFocusDialogClose = window != null ? FocusManager.GetFocusedElement(window) : null;
-
-            // Check restore focus overrides and optional disabling
-            if (dialogHost._restoreFocusDialogClose is DependencyObject dependencyObj &&
-                GetRestoreFocusElement(dependencyObj) is { } focusOverride)
+            if (!dialogHost.IsFocusRestoreDisabled)
             {
-                dialogHost._restoreFocusDialogClose = focusOverride;
+                dialogHost._restoreFocusDialogClose = window != null ? FocusManager.GetFocusedElement(window) : null;
+
+                // Check restore focus overrides
+                if (dialogHost._restoreFocusDialogClose is DependencyObject dependencyObj &&
+                    GetRestoreFocusElement(dependencyObj) is { } focusOverride)
+                {
+                    dialogHost._restoreFocusDialogClose = focusOverride;
+                }
             }
 
             //multiple ways of calling back that the dialog has opened:
@@ -609,6 +612,8 @@ namespace MaterialDesignThemes.Wpf
             base.OnApplyTemplate();
         }
 
+        #region focus restore properties
+
         public static readonly DependencyProperty RestoreFocusElementProperty = DependencyProperty.RegisterAttached(
             "RestoreFocusElement", typeof(IInputElement), typeof(DialogHost), new PropertyMetadata(default(IInputElement)));
 
@@ -617,6 +622,17 @@ namespace MaterialDesignThemes.Wpf
 
         public static IInputElement GetRestoreFocusElement(DependencyObject element)
             => (IInputElement) element.GetValue(RestoreFocusElementProperty);
+
+        public static readonly DependencyProperty IsFocusRestoreDisabledProperty = DependencyProperty.Register(
+            nameof(IsFocusRestoreDisabled), typeof(bool), typeof(DialogHost), new PropertyMetadata(false));
+
+        public bool IsFocusRestoreDisabled
+        {
+            get => (bool) GetValue(IsFocusRestoreDisabledProperty);
+            set => SetValue(IsFocusRestoreDisabledProperty, value);
+        }
+
+        #endregion
 
         #region open dialog events/callbacks
 
