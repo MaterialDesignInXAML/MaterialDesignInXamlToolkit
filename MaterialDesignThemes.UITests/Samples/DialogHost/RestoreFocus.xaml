@@ -14,6 +14,7 @@
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto" />
           <RowDefinition Height="*" />
+          <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <Menu x:Name="Menu" Grid.Row="0" HorizontalAlignment="Right">
@@ -34,6 +35,15 @@
           </TabItem>
           <TabItem x:Name="TabItem2" Header="Tab 2">
             <TextBlock Text="Page 2" />
+          </TabItem>
+        </TabControl>
+
+        <TabControl x:Name="NavigationRail" Grid.Row="2" Style="{StaticResource MaterialDesignNavigationRailTabControl}">
+          <TabItem x:Name="RailItem1" Header="Rail 1">
+            <TextBlock Text="Rail 1 content" />
+          </TabItem>
+          <TabItem x:Name="RailItem2" Header="Rail 2">
+            <TextBlock Text="Rail 2 content" />
           </TabItem>
         </TabControl>
       </Grid>

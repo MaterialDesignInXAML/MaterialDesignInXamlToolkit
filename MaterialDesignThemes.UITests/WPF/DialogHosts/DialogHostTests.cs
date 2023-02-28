@@ -387,11 +387,43 @@ public class DialogHostTests : TestBase
 
     [Fact]
     [Description("Issue 3094")]
+    public async Task DialogHost_ChangesSelectedRailItem_DoesNotPerformRailChangeWhenRestoringFocus()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> rootGrid = (await LoadUserControl<RestoreFocus>()).As<Grid>();
+        IVisualElement<TabItem> railItem1 = await rootGrid.GetElement<TabItem>("RailItem1");
+        IVisualElement<TabItem> railItem2 = await rootGrid.GetElement<TabItem>("RailItem2");
+        IVisualElement<Button> navigateHomeButton = await rootGrid.GetElement<Button>("NavigateHomeButton");
+
+        // Select TabItem2
+        await railItem2.LeftClick();
+
+        // Open menu
+        IVisualElement<MenuItem> menuItem1 = await rootGrid.GetElement<MenuItem>("MenuItem1");
+        await menuItem1.LeftClick();
+        await Task.Delay(1000); // Wait for menu to open
+        IVisualElement<MenuItem> menuItem2 = await rootGrid.GetElement<MenuItem>("MenuItem2");
+        await menuItem2.LeftClick();
+        await Task.Delay(1000); // Wait for dialog content to show
+
+        // Click navigate button
+        await navigateHomeButton.LeftClick();
+        await Task.Delay(1000); // Wait for dialog content to close
+
+        Assert.True(await railItem1.GetIsSelected());
+        Assert.False(await railItem2.GetIsSelected());
+
+        recorder.Success();
+    }
+
+    [Fact]
+    [Description("Issue 3094")]
     public async Task DialogHost_ChangesSelectedTabItem_DoesNotPerformTabChangeWhenRestoreFocusIsDisabled()
     {
         await using var recorder = new TestRecorder(App);
 
-        IVisualElement<Grid> rootGrid = (await LoadUserControl<RestoreFocusNoOverride>()).As<Grid>();
+        IVisualElement<Grid> rootGrid = (await LoadUserControl<RestoreFocusDisabled>()).As<Grid>();
         IVisualElement<TabItem> tabItem1 = await rootGrid.GetElement<TabItem>("TabItem1");
         IVisualElement<TabItem> tabItem2 = await rootGrid.GetElement<TabItem>("TabItem2");
         IVisualElement<Button> navigateHomeButton = await rootGrid.GetElement<Button>("NavigateHomeButton");
@@ -413,6 +445,38 @@ public class DialogHostTests : TestBase
 
         Assert.True(await tabItem1.GetIsSelected());
         Assert.False(await tabItem2.GetIsSelected());
+
+        recorder.Success();
+    }
+
+    [Fact]
+    [Description("Issue 3094")]
+    public async Task DialogHost_ChangesSelectedRailItem_DoesNotPerformRailChangeWhenRestoreFocusIsDisabled()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> rootGrid = (await LoadUserControl<RestoreFocusDisabled>()).As<Grid>();
+        IVisualElement<TabItem> railItem1 = await rootGrid.GetElement<TabItem>("RailItem1");
+        IVisualElement<TabItem> railItem2 = await rootGrid.GetElement<TabItem>("RailItem2");
+        IVisualElement<Button> navigateHomeButton = await rootGrid.GetElement<Button>("NavigateHomeButton");
+
+        // Select TabItem2
+        await railItem2.LeftClick();
+
+        // Open menu
+        IVisualElement<MenuItem> menuItem1 = await rootGrid.GetElement<MenuItem>("MenuItem1");
+        await menuItem1.LeftClick();
+        await Task.Delay(1000); // Wait for menu to open
+        IVisualElement<MenuItem> menuItem2 = await rootGrid.GetElement<MenuItem>("MenuItem2");
+        await menuItem2.LeftClick();
+        await Task.Delay(1000); // Wait for dialog content to show
+
+        // Click navigate button
+        await navigateHomeButton.LeftClick();
+        await Task.Delay(1000); // Wait for dialog content to close
+
+        Assert.True(await railItem1.GetIsSelected());
+        Assert.False(await railItem2.GetIsSelected());
 
         recorder.Success();
     }

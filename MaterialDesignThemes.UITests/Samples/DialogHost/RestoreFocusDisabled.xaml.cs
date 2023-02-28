@@ -1,8 +1,8 @@
 ﻿namespace MaterialDesignThemes.UITests.Samples.DialogHost;
 
-public partial class RestoreFocusNoOverride : UserControl
+public partial class RestoreFocusDisabled : UserControl
 {
-    public RestoreFocusNoOverride()
+    public RestoreFocusDisabled()
     {
         InitializeComponent();
     }
@@ -10,6 +10,7 @@ public partial class RestoreFocusNoOverride : UserControl
     private void NavigateHomeButton_OnClick(object sender, RoutedEventArgs e)
     {
         Wpf.DialogHost.CloseDialogCommand.Execute(null, null);
+        NavigationRail.SelectedItem = RailItem1;
         TabControl.SelectedItem = TabItem1;
     }
 }
