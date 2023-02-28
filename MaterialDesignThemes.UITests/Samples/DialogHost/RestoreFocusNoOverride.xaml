@@ -15,7 +15,7 @@
   </UserControl.Resources>
 
   <Grid>
-    <materialDesign:DialogHost x:Name="DialogHost" IsFocusRestoreDisabled="True">
+    <materialDesign:DialogHost x:Name="DialogHost" IsRestoreFocusDisabled="True">
       <Grid>
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto" />

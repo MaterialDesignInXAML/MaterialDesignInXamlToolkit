@@ -367,11 +367,11 @@ namespace MaterialDesignThemes.Wpf
 
             dialogHost.CurrentSession = new DialogSession(dialogHost);
             var window = Window.GetWindow(dialogHost);
-            if (!dialogHost.IsFocusRestoreDisabled)
+            if (!dialogHost.IsRestoreFocusDisabled)
             {
                 dialogHost._restoreFocusDialogClose = window != null ? FocusManager.GetFocusedElement(window) : null;
 
-                // Check restore focus overrides
+                // Check restore focus override
                 if (dialogHost._restoreFocusDialogClose is DependencyObject dependencyObj &&
                     GetRestoreFocusElement(dependencyObj) is { } focusOverride)
                 {
@@ -623,13 +623,13 @@ namespace MaterialDesignThemes.Wpf
         public static IInputElement GetRestoreFocusElement(DependencyObject element)
             => (IInputElement) element.GetValue(RestoreFocusElementProperty);
 
-        public static readonly DependencyProperty IsFocusRestoreDisabledProperty = DependencyProperty.Register(
-            nameof(IsFocusRestoreDisabled), typeof(bool), typeof(DialogHost), new PropertyMetadata(false));
+        public static readonly DependencyProperty IsRestoreFocusDisabledProperty = DependencyProperty.Register(
+            nameof(IsRestoreFocusDisabled), typeof(bool), typeof(DialogHost), new PropertyMetadata(false));
 
-        public bool IsFocusRestoreDisabled
+        public bool IsRestoreFocusDisabled
         {
-            get => (bool) GetValue(IsFocusRestoreDisabledProperty);
-            set => SetValue(IsFocusRestoreDisabledProperty, value);
+            get => (bool) GetValue(IsRestoreFocusDisabledProperty);
+            set => SetValue(IsRestoreFocusDisabledProperty, value);
         }
 
         #endregion
