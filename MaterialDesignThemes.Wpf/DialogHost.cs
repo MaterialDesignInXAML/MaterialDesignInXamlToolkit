@@ -612,7 +612,7 @@ namespace MaterialDesignThemes.Wpf
             base.OnApplyTemplate();
         }
 
-        #region focus restore properties
+        #region restore focus properties
 
         public static readonly DependencyProperty RestoreFocusElementProperty = DependencyProperty.RegisterAttached(
             "RestoreFocusElement", typeof(IInputElement), typeof(DialogHost), new PropertyMetadata(default(IInputElement)));
