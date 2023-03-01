@@ -45,7 +45,29 @@ namespace MaterialDesignThemes.Wpf
         {
             // Get mouse offset inside source
             Point p = Mouse.GetPosition(ratingBarButton);
-            double percentSelected = Orientation == Orientation.Horizontal ? p.X / ratingBarButton.ActualWidth : p.Y / ratingBarButton.ActualHeight;
+            double percentSelected;
+            switch (Orientation)
+            {
+                case Orientation.Horizontal:
+                    if (InvertDirection)
+                    {
+                        percentSelected = 1 - (p.X / ratingBarButton.ActualWidth);
+                        break;
+                    }
+                    percentSelected = p.X / ratingBarButton.ActualWidth;
+                    break;
+                case Orientation.Vertical:
+                    if (InvertDirection)
+                    {
+                        percentSelected = 1 - (p.Y / ratingBarButton.ActualHeight);
+                        break;
+                    }
+                    percentSelected = p.Y / ratingBarButton.ActualHeight;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            
             return ratingBarButton.Value - 1 + percentSelected;
         }
 
@@ -243,6 +265,15 @@ namespace MaterialDesignThemes.Wpf
             set => SetValue(OrientationProperty, value);
         }
 
+        public static readonly DependencyProperty InvertDirectionProperty = DependencyProperty.Register(
+            nameof(InvertDirection), typeof(bool), typeof(RatingBar), new PropertyMetadata(default(bool)));
+
+        public bool InvertDirection
+        {
+            get => (bool) GetValue(InvertDirectionProperty);
+            set => SetValue(InvertDirectionProperty, value);
+        }
+
         public static readonly DependencyProperty IsReadOnlyProperty = DependencyProperty.Register(
             nameof(IsReadOnly), typeof(bool), typeof(RatingBar), new PropertyMetadata(default(bool)));
 
@@ -289,21 +320,44 @@ namespace MaterialDesignThemes.Wpf
             // When fractional values are enabled, the first rating button represents the value Min when not selected at all and Min+1 when fully selected;
             // thus we start with the value Min+1 for the values of the rating buttons.
             int start = IsFractionalValueEnabled ? Min + 1 : Min;
-            for (int i = start; i <= Max; i++)
+
+            if (InvertDirection)
             {
-                var ratingBarButton = new RatingBarButton
+                for (int i = Max; i >= start; i--)
                 {
-                    Content = i,
-                    ContentTemplate = ValueItemTemplate,
-                    ContentTemplateSelector = ValueItemTemplateSelector,
+                    var ratingBarButton = new RatingBarButton
+                    {
+                        Content = i,
+                        ContentTemplate = ValueItemTemplate,
+                        ContentTemplateSelector = ValueItemTemplateSelector,
 #pragma warning disable CS0618 // Type or member is obsolete
-                    IsWithinSelectedValue = i <= Value,
+                        IsWithinSelectedValue = i <= Value,
 #pragma warning restore CS0618 // Type or member is obsolete
-                    Style = ValueItemContainerButtonStyle,
-                    Value = i,
-                };
-                ratingBarButton.MouseMove += RatingBarButton_MouseMove;
-                _ratingButtonsInternal.Add(ratingBarButton);
+                        Style = ValueItemContainerButtonStyle,
+                        Value = i,
+                    };
+                    ratingBarButton.MouseMove += RatingBarButton_MouseMove;
+                    _ratingButtonsInternal.Add(ratingBarButton);
+                }
+            }
+            else
+            {
+                for (int i = start; i <= Max; i++)
+                {
+                    var ratingBarButton = new RatingBarButton
+                    {
+                        Content = i,
+                        ContentTemplate = ValueItemTemplate,
+                        ContentTemplateSelector = ValueItemTemplateSelector,
+#pragma warning disable CS0618 // Type or member is obsolete
+                        IsWithinSelectedValue = i <= Value,
+#pragma warning restore CS0618 // Type or member is obsolete
+                        Style = ValueItemContainerButtonStyle,
+                        Value = i,
+                    };
+                    ratingBarButton.MouseMove += RatingBarButton_MouseMove;
+                    _ratingButtonsInternal.Add(ratingBarButton);
+                }
             }
         }
 
@@ -333,11 +387,12 @@ namespace MaterialDesignThemes.Wpf
 
             public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
             {
-                if (values?.Length == 4
+                if (values?.Length == 5
                     && values[0] is SolidColorBrush brush
                     && values[1] is Orientation orientation
-                    && values[2] is double value
-                    && values[3] is int buttonValue)
+                    && values[2] is bool invertDirection
+                    && values[3] is double value
+                    && values[4] is int buttonValue)
                 {
                     if (value >= buttonValue)
                         return brush;
@@ -348,18 +403,36 @@ namespace MaterialDesignThemes.Wpf
                     if (value > buttonValue - 1.0)
                     {
                         double offset = value - buttonValue + 1;
+                        if (invertDirection)
+                        {
+                            offset = 1 - offset;
+                        }
                         return new LinearGradientBrush
                         {
                             StartPoint = orientation == Orientation.Horizontal ? new Point(0, 0.5) : new Point(0.5, 0),
                             EndPoint = orientation == Orientation.Horizontal ? new Point(1, 0.5) : new Point(0.5, 1),
-                            GradientStops = new()
-                            {
-                                new GradientStop { Color = originalColor, Offset = offset },
-                                new GradientStop { Color = semiTransparent, Offset = offset }
-                            }
+
+                            GradientStops = CreateGradientStopCollection(originalColor, semiTransparent, offset, invertDirection)
                         };
                     }
                     return new SolidColorBrush(semiTransparent);
+                }
+
+                GradientStopCollection CreateGradientStopCollection(Color originalColor, Color semiTransparent, double offset, bool invertDirection)
+                {
+                    if (invertDirection)
+                    {
+                        return new()
+                        {
+                            new GradientStop {Color = semiTransparent, Offset = offset},
+                            new GradientStop {Color = originalColor, Offset = offset},
+                        };
+                    }
+                    return new()
+                    {
+                        new GradientStop {Color = originalColor, Offset = offset},
+                        new GradientStop {Color = semiTransparent, Offset = offset}
+                    };
                 }
 
                 // This should never happen (returning actual brush to avoid the compilers squiggly line warning)
@@ -377,13 +450,14 @@ namespace MaterialDesignThemes.Wpf
 
             public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
             {
-                if (values.Length >= 6
+                if (values.Length >= 7
                     && values[0] is double ratingBarButtonActualWidth
                     && values[1] is double previewValueActualWidth
                     && values[2] is Orientation ratingBarOrientation
-                    && values[3] is bool isFractionalValueEnabled
-                    && values[4] is double previewValue
-                    && values[5] is int ratingButtonValue)
+                    && values[3] is bool ratingBarInvertDirection
+                    && values[4] is bool isFractionalValueEnabled
+                    && values[5] is double previewValue
+                    && values[6] is int ratingButtonValue)
                 {
                     if (!isFractionalValueEnabled)
                     {
@@ -404,7 +478,10 @@ namespace MaterialDesignThemes.Wpf
 
                     return ratingBarOrientation switch
                     {
-                        Orientation.Horizontal => percent * ratingBarButtonActualWidth - (previewValueActualWidth / 2),
+                        Orientation.Horizontal => ratingBarInvertDirection ?
+                            (1 - percent) * ratingBarButtonActualWidth - (previewValueActualWidth / 2) :
+                            percent * ratingBarButtonActualWidth - (previewValueActualWidth / 2)
+                        ,
                         Orientation.Vertical => -previewValueActualWidth - Margin,
                         _ => throw new ArgumentOutOfRangeException()
                     };
@@ -423,13 +500,14 @@ namespace MaterialDesignThemes.Wpf
 
             public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
             {
-                if (values.Length >= 6
+                if (values.Length >= 7
                     && values[0] is double ratingBarButtonActualHeight
                     && values[1] is double previewValueActualHeight
                     && values[2] is Orientation ratingBarOrientation
-                    && values[3] is bool isFractionalValueEnabled
-                    && values[4] is double previewValue
-                    && values[5] is int ratingButtonValue)
+                    && values[3] is bool ratingBarInvertDirection
+                    && values[4] is bool isFractionalValueEnabled
+                    && values[5] is double previewValue
+                    && values[6] is int ratingButtonValue)
                 {
                     if (!isFractionalValueEnabled)
                     {
@@ -451,7 +529,9 @@ namespace MaterialDesignThemes.Wpf
                     return ratingBarOrientation switch
                     {
                         Orientation.Horizontal => -previewValueActualHeight - Margin,
-                        Orientation.Vertical => percent * ratingBarButtonActualHeight - (previewValueActualHeight / 2),
+                        Orientation.Vertical => ratingBarInvertDirection ?
+                            (1 - percent) * ratingBarButtonActualHeight - (previewValueActualHeight / 2) :
+                            percent * ratingBarButtonActualHeight - (previewValueActualHeight / 2),
                         _ => throw new ArgumentOutOfRangeException()
                     };
                 }
