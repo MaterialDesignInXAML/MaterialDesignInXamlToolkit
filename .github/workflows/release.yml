@@ -229,6 +229,10 @@ jobs:
     environment: production
 
     steps:
+      # Doing a checkout, until this issue is resolved.
+      # https://github.com/valeriobelli/gh-milestone/issues/15
+      - uses: actions/checkout@v3
+
       - name: Close Milestone
         run: |
           gh extension install valeriobelli/gh-milestone
@@ -243,6 +247,9 @@ jobs:
     environment: production
 
     steps:
+      # Checkout is needed so that we can update the get_versions.yml file
+      - uses: actions/checkout@v3
+        
       - name: Increment Version Numbers
         run: |
           function Update-Version {
