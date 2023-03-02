@@ -408,7 +408,11 @@
         </Grid>
 
         <!-- Reveal style PasswordBox variants -->
-        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="PasswordBox 'reveal' styles" Margin="0,40,0,0" />
+        <StackPanel Orientation="Horizontal" Margin="0,40,0,0">
+          <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="PasswordBox 'reveal' styles" />
+          <CheckBox x:Name="PasswordBoxesRevealedCheckBox" Content="IsPasswordRevealed" Margin="20,0,0,0" />
+        </StackPanel>
+        
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignFloatingHintRevealPasswordBox}">
@@ -417,6 +421,7 @@
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="materialDesign:PasswordBoxAssist.IsPasswordRevealed" Value="{Binding ElementName=PasswordBoxesRevealedCheckBox, Path=IsChecked}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -458,6 +463,7 @@
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="materialDesign:PasswordBoxAssist.IsPasswordRevealed" Value="{Binding ElementName=PasswordBoxesRevealedCheckBox, Path=IsChecked}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -499,6 +505,7 @@
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="materialDesign:PasswordBoxAssist.IsPasswordRevealed" Value="{Binding ElementName=PasswordBoxesRevealedCheckBox, Path=IsChecked}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -534,7 +541,10 @@
         </Grid>
 
         <!-- ComboBox variants -->
-        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="ComboBox styles" Margin="0,40,0,0" />
+        <StackPanel Orientation="Horizontal" Margin="0,40,0,0">
+          <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="ComboBox styles"  />
+          <CheckBox x:Name="ComboBoxesEditableCheckBox" Content="IsEditable" Margin="20,0,0,0" />
+        </StackPanel>
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
@@ -544,7 +554,7 @@
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="ItemsSource" Value="{Binding ComboBoxOptions}" />
-              <Setter Property="IsEditable" Value="True" />
+              <Setter Property="IsEditable" Value="{Binding ElementName=ComboBoxesEditableCheckBox, Path=IsChecked}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -587,7 +597,7 @@
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="ItemsSource" Value="{Binding ComboBoxOptions}" />
-              <Setter Property="IsEditable" Value="True" />
+              <Setter Property="IsEditable" Value="{Binding ElementName=ComboBoxesEditableCheckBox, Path=IsChecked}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -630,7 +640,7 @@
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="ItemsSource" Value="{Binding ComboBoxOptions}" />
-              <Setter Property="IsEditable" Value="True" />
+              <Setter Property="IsEditable" Value="{Binding ElementName=ComboBoxesEditableCheckBox, Path=IsChecked}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
