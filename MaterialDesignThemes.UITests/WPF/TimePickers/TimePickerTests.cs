@@ -502,6 +502,7 @@ public class TimePickerTests : TestBase
 
         // Act
         await clearButton.LeftClick();
+        await Task.Delay(50);
 
         // Assert
         Assert.Null(await timePicker.GetSelectedTime());

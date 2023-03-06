@@ -40,6 +40,9 @@ public static class ClearText
                 case DatePicker datePicker:
                     datePicker.SetCurrentValue(DatePicker.SelectedDateProperty, null);
                     break;
+                case TimePicker timePicker:
+                    timePicker.SetCurrentValue(TimePicker.SelectedTimeProperty, null);
+                    break;
                 case TextBox textBox:
                     textBox.SetCurrentValue(TextBox.TextProperty, null);
                     break;
