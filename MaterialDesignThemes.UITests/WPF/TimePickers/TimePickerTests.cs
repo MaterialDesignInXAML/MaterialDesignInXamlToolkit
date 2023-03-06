@@ -482,6 +482,32 @@ public class TimePickerTests : TestBase
 
         recorder.Success();
     }
+
+    [Fact]
+    [Description("Issue 3119")]
+    public async Task TimePicker_WithClearButton_ClearButtonClearsSelectedTime()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // Arrange
+        var stackPanel = await LoadXaml<StackPanel>($@"
+<StackPanel>
+  <materialDesign:TimePicker
+    SelectedTime=""08:30""
+    materialDesign:TextFieldAssist.HasClearButton=""True"" />
+</StackPanel>");
+        var timePicker = await stackPanel.GetElement<TimePicker>("/TimePicker");
+        var clearButton = await timePicker.GetElement<Button>("PART_ClearButton");
+        Assert.NotNull(await timePicker.GetSelectedTime());
+
+        // Act
+        await clearButton.LeftClick();
+
+        // Assert
+        Assert.Null(await timePicker.GetSelectedTime());
+
+        recorder.Success();
+    }
 }
 
 public class OnlyTenOClockValidationRule : ValidationRule
