@@ -31,10 +31,8 @@
                 <Border x:Name="PART_ClipBorder"
                         Padding="{TemplateBinding Padding}"
                         Background="{TemplateBinding Background}"
-                        Clip="{TemplateBinding ContentClip}" />
-              </Border>
-            </AdornerDecorator>
-            <ContentPresenter x:Name="ContentPresenter"
+                        Clip="{TemplateBinding ContentClip}">
+                  <ContentPresenter x:Name="ContentPresenter"
                               Margin="{TemplateBinding Padding}"
                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -42,6 +40,9 @@
                               ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
                               ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
                               ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}" />
+                </Border>
+              </Border>
+            </AdornerDecorator>
           </Grid>
           <ControlTemplate.Triggers>
             <Trigger Property="ClipContent" Value="True">
