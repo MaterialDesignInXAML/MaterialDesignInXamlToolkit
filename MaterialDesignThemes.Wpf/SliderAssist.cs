@@ -2,6 +2,18 @@
 {
     public static class SliderAssist
     {
+        public static readonly DependencyProperty ShowActiveTrackProperty
+            = DependencyProperty.RegisterAttached(
+                "ShowActiveTrack",
+                typeof(bool),
+                typeof(SliderAssist),
+                new PropertyMetadata(true));
+
+        public static bool GetShowActiveTrack(DependencyObject element)
+            => (bool)element.GetValue(ShowActiveTrackProperty);
+        public static void SetShowActiveTrack(DependencyObject element, bool value)
+            => element.SetValue(ShowActiveTrackProperty, value);
+
         public static readonly DependencyProperty OnlyShowFocusVisualWhileDraggingProperty
             = DependencyProperty.RegisterAttached(
                 "OnlyShowFocusVisualWhileDragging",
