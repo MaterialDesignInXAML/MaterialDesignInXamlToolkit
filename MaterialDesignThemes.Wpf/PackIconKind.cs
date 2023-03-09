@@ -1468,6 +1468,8 @@ namespace MaterialDesignThemes.Wpf
         ArrowVerticalLock,
         ScrollVerticalLock=ArrowVerticalLock,
         Artboard,
+        Canvas=Artboard,
+        Frame=Artboard,
         Artstation,
         AspectRatio,
         Assistant,
