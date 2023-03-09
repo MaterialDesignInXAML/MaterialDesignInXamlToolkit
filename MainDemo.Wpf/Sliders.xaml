@@ -68,6 +68,13 @@
                   Value="10" />
         </smtx:XamlDisplay>
 
+        <smtx:XamlDisplay Margin="0,16,0,0" UniqueKey="continuous_slider_h_5">
+          <Slider Maximum="50"
+                  Minimum="0"
+                  Value="35"
+                  materialDesign:SliderAssist.HideActiveTrack="True" />
+        </smtx:XamlDisplay>
+
       </StackPanel>
     </GroupBox>
 
@@ -109,6 +116,14 @@
                   TickFrequency="10"
                   TickPlacement="TopLeft"
                   Value="30" />
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Margin="16,0,0,0" UniqueKey="continuous_slider_v_5">
+          <Slider Maximum="50"
+                  Minimum="0"
+                  Orientation="Vertical"
+                  Value="25"
+                  materialDesign:SliderAssist.HideActiveTrack="True" />
         </smtx:XamlDisplay>
 
       </StackPanel>
@@ -173,6 +188,17 @@
                     Value="50" />
           </smtx:XamlDisplay>
 
+          <smtx:XamlDisplay Margin="0,24,0,0" UniqueKey="discrete_slider_h_5">
+            <Slider Maximum="{Binding DiscreteHorizontal.Maximum}"
+                    Minimum="0"
+                    Style="{StaticResource MaterialDesignDiscreteSlider}"
+                    TickFrequency="{Binding DiscreteHorizontal.TickFrequency}"
+                    TickPlacement="BottomRight"
+                    Value="40"
+                    materialDesign:SliderAssist.HideActiveTrack="True" />
+          </smtx:XamlDisplay>
+
+          
         </StackPanel>
 
       </StackPanel>
@@ -259,7 +285,7 @@
                     Value="70000" />
           </smtx:XamlDisplay>
 
-          <smtx:XamlDisplay UniqueKey="discrete_slider_v_6">
+          <smtx:XamlDisplay Margin="20,0,0,0" UniqueKey="discrete_slider_v_6">
             <Slider materialDesign:SliderAssist.OnlyShowFocusVisualWhileDragging="True"
                     Maximum="{Binding DiscreteVertical.Maximum}"
                     Minimum="0"
@@ -270,6 +296,16 @@
                     Value="70000" />
           </smtx:XamlDisplay>
 
+          <smtx:XamlDisplay Margin="20,0,0,0" UniqueKey="discrete_slider_v_7">
+            <Slider Maximum="{Binding DiscreteVertical.Maximum}"
+                    Minimum="0"
+                    Orientation="Vertical"
+                    Style="{StaticResource MaterialDesignDiscreteSlider}"
+                    TickFrequency="{Binding DiscreteVertical.TickFrequency}"
+                    TickPlacement="BottomRight"
+                    Value="70000"
+                    materialDesign:SliderAssist.HideActiveTrack="True" />
+          </smtx:XamlDisplay>
         </StackPanel>
       </Grid>
     </GroupBox>
