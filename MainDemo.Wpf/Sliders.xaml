@@ -72,7 +72,7 @@
           <Slider Maximum="50"
                   Minimum="0"
                   Value="35"
-                  materialDesign:SliderAssist.ShowActiveTrack="False" />
+                  materialDesign:SliderAssist.HideActiveTrack="True" />
         </smtx:XamlDisplay>
 
       </StackPanel>
@@ -123,7 +123,7 @@
                   Minimum="0"
                   Orientation="Vertical"
                   Value="25"
-                  materialDesign:SliderAssist.ShowActiveTrack="False" />
+                  materialDesign:SliderAssist.HideActiveTrack="True" />
         </smtx:XamlDisplay>
 
       </StackPanel>
@@ -195,7 +195,7 @@
                     TickFrequency="{Binding DiscreteHorizontal.TickFrequency}"
                     TickPlacement="BottomRight"
                     Value="40"
-                    materialDesign:SliderAssist.ShowActiveTrack="False" />
+                    materialDesign:SliderAssist.HideActiveTrack="True" />
           </smtx:XamlDisplay>
 
           
@@ -304,7 +304,7 @@
                     TickFrequency="{Binding DiscreteVertical.TickFrequency}"
                     TickPlacement="BottomRight"
                     Value="70000"
-                    materialDesign:SliderAssist.ShowActiveTrack="False" />
+                    materialDesign:SliderAssist.HideActiveTrack="True" />
           </smtx:XamlDisplay>
         </StackPanel>
       </Grid>
