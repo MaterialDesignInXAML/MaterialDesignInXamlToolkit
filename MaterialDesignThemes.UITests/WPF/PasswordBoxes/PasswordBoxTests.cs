@@ -319,17 +319,22 @@ public class PasswordBoxTests : TestBase
 
         // Assert Tab forward
         await textBox1.MoveKeyboardFocus();
-        Assert.True(await textBox1.GetIsKeyboardFocused());
+        await Wait.For(() => textBox1.GetIsKeyboardFocused());
+
         await textBox1.SendKeyboardInput($"{Key.Tab}");
-        Assert.True(await revealPasswordTextBox.GetIsKeyboardFocused());
+        await Wait.For(() => revealPasswordTextBox.GetIsKeyboardFocused());
+
         await revealPasswordTextBox.SendKeyboardInput($"{Key.Tab}");
-        Assert.True(await textBox2.GetIsKeyboardFocused());
+        await Wait.For(() => textBox2.GetIsKeyboardFocused());
 
         // Assert Tab backwards
         await textBox2.SendKeyboardInput($"{ModifierKeys.Shift}{Key.Tab}");
-        Assert.True(await revealPasswordTextBox.GetIsKeyboardFocused());
-        await revealPasswordTextBox.SendKeyboardInput($"{Key.Tab}{ModifierKeys.None}");
-        Assert.True(await textBox1.GetIsKeyboardFocused());
+        await Wait.For(() => revealPasswordTextBox.GetIsKeyboardFocused());
+
+        await revealPasswordTextBox.SendKeyboardInput($"{Key.Tab}");
+        await Wait.For(() => textBox1.GetIsKeyboardFocused());
+
+        await textBox1.SendKeyboardInput($"{ModifierKeys.None}");
 
         recorder.Success();
     }
