@@ -328,13 +328,11 @@ public class PasswordBoxTests : TestBase
         await Wait.For(() => textBox2.GetIsKeyboardFocused());
 
         // Assert Tab backwards
-        await textBox2.SendKeyboardInput($"{ModifierKeys.Shift}{Key.Tab}");
+        await textBox2.SendKeyboardInput($"{ModifierKeys.Shift}{Key.Tab}{ModifierKeys.None}");
         await Wait.For(() => revealPasswordTextBox.GetIsKeyboardFocused());
 
-        await revealPasswordTextBox.SendKeyboardInput($"{Key.Tab}");
+        await revealPasswordTextBox.SendKeyboardInput($"{ModifierKeys.Shift}{Key.Tab}{ModifierKeys.None}");
         await Wait.For(() => textBox1.GetIsKeyboardFocused());
-
-        await textBox1.SendKeyboardInput($"{ModifierKeys.None}");
 
         recorder.Success();
     }
