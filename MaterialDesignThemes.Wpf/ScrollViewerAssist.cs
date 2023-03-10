@@ -71,6 +71,9 @@ public static class ScrollViewerAssist
     private static readonly DependencyProperty HorizontalScrollHookProperty = DependencyProperty.RegisterAttached(
         "HorizontalScrollHook", typeof(HwndSourceHook), typeof(ScrollViewerAssist), new PropertyMetadata(null));
 
+    private static readonly DependencyProperty HorizontalScrollSourceProperty = DependencyProperty.RegisterAttached(
+        "HorizontalScrollSource", typeof(HwndSource), typeof(ScrollViewerAssist), new PropertyMetadata(null));
+
     public static readonly DependencyProperty SupportHorizontalScrollProperty = DependencyProperty.RegisterAttached(
         "SupportHorizontalScroll", typeof(bool), typeof(ScrollViewerAssist), new PropertyMetadata(false, OnSupportHorizontalScrollChanged));
 
@@ -88,6 +91,8 @@ public static class ScrollViewerAssist
                         RegisterHook(sv);
                     }
                 });
+
+                OnUnloaded(scrollViewer, RemoveHook);
             }
             else
             {
@@ -119,10 +124,24 @@ public static class ScrollViewerAssist
             }
         }
 
+        static void OnUnloaded(ScrollViewer scrollViewer, Action<ScrollViewer> doOnUnloaded)
+        {
+            if (!scrollViewer.IsLoaded)
+            {
+                RoutedEventHandler? onUnloaded = null;
+                onUnloaded = (_, _) =>
+                {
+                    scrollViewer.Unloaded -= onUnloaded;
+                    doOnUnloaded(scrollViewer);
+                };
+                scrollViewer.Unloaded += onUnloaded;
+            }
+        }
+
         static void RemoveHook(ScrollViewer scrollViewer)
         {
             if (scrollViewer.GetValue(HorizontalScrollHookProperty) is HwndSourceHook hook &&
-                PresentationSource.FromVisual(scrollViewer) is HwndSource source)
+                scrollViewer.GetValue(HorizontalScrollSourceProperty) is HwndSource source)
             {
                 source.RemoveHook(hook);
                 scrollViewer.SetValue(HorizontalScrollHookProperty, null);
@@ -135,6 +154,7 @@ public static class ScrollViewerAssist
             if (PresentationSource.FromVisual(scrollViewer) is HwndSource source)
             {
                 HwndSourceHook hook = Hook;
+                scrollViewer.SetValue(HorizontalScrollSourceProperty, source);
                 scrollViewer.SetValue(HorizontalScrollHookProperty, hook);
                 source.AddHook(hook);
             }
@@ -175,6 +195,8 @@ public static class ScrollViewerAssist
                         RegisterHook(sv);
                     }
                 });
+
+                OnUnloaded(scrollViewer, RemoveHook);
             }
             else
             {
@@ -203,6 +225,20 @@ public static class ScrollViewerAssist
                     doOnLoaded(scrollViewer);
                 };
                 scrollViewer.Loaded += onLoaded;
+            }
+        }
+
+        static void OnUnloaded(ScrollViewer scrollViewer, Action<ScrollViewer> doOnUnloaded)
+        {
+            if (!scrollViewer.IsLoaded)
+            {
+                RoutedEventHandler? onUnloaded = null;
+                onUnloaded = (_, _) =>
+                {
+                    scrollViewer.Unloaded -= onUnloaded;
+                    doOnUnloaded(scrollViewer);
+                };
+                scrollViewer.Unloaded += onUnloaded;
             }
         }
 
