@@ -1,4 +1,6 @@
-﻿using System.Windows.Media.Effects;
+﻿using System.Globalization;
+using System.Windows.Data;
+using System.Windows.Media.Effects;
 
 namespace MaterialDesignThemes.Wpf;
 
@@ -60,4 +62,36 @@ public static class ElevationAssist
     public static Elevation GetElevation(DependencyObject element) => (Elevation)element.GetValue(ElevationProperty);
 
     public static DropShadowEffect? GetDropShadow(Elevation elevation) => ElevationInfo.GetDropShadow(elevation);
+}
+
+public class ElevationMarginConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        if (value is Elevation elevation && elevation != Elevation.Dp0)
+        {
+            return new Thickness(ElevationInfo.GetDropShadow(elevation)!.BlurRadius);
+        }
+        return new Thickness(0);
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        => throw new NotImplementedException();
+}
+
+public class ElevationRadiusConverter : IValueConverter
+{
+    public double Multiplier { get; set; } = 1.0;
+
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        if (value is Elevation elevation && elevation != Elevation.Dp0)
+        {
+            return ElevationInfo.GetDropShadow(elevation)!.BlurRadius * Multiplier;
+        }
+        return 0;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        => throw new NotImplementedException();
 }

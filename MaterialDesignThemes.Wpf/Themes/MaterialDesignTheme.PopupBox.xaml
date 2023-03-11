@@ -9,6 +9,10 @@
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToolTip.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
+  <wpf:ElevationMarginConverter x:Key="ElevationMarginConverter" />
+  <wpf:ElevationRadiusConverter x:Key="ElevationRadiusConverter" Multiplier="-1" />
+  <wpf:ElevationRadiusConverter x:Key="RtlElevationRadiusConverter" Multiplier="1" />
+
   <Style x:Key="MaterialDesignPopupBoxButton" TargetType="{x:Type Button}">
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
     <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -84,9 +88,9 @@
     <Setter Property="Focusable" Value="True" />
     <Setter Property="HorizontalAlignment" Value="Left" />
     <Setter Property="Padding" Value="0,8,0,8" />
-    <Setter Property="PopupHorizontalOffset" Value="5" />
+    <Setter Property="PopupHorizontalOffset" Value="0" />
     <Setter Property="PopupUniformCornerRadius" Value="2" />
-    <Setter Property="PopupVerticalOffset" Value="5" />
+    <Setter Property="PopupVerticalOffset" Value="0" />
     <Setter Property="ToolTipService.IsEnabled" Value="{Binding IsPopupOpen, RelativeSource={RelativeSource Self}, Converter={StaticResource NotConverter}}"/>
     <Setter Property="Template">
       <Setter.Value>
@@ -126,19 +130,20 @@
             <wpf:PopupEx x:Name="PART_Popup"
                          AllowsTransparency="True"
                          CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"
-                         HorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupHorizontalOffset}"
+                         HorizontalOffset="{TemplateBinding wpf:ElevationAssist.Elevation, Converter={StaticResource ElevationRadiusConverter}}"
+                         VerticalOffset="{TemplateBinding wpf:ElevationAssist.Elevation, Converter={StaticResource ElevationRadiusConverter}}"
                          IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
                          Placement="Custom"
                          PlacementTarget="{Binding ElementName=PART_Toggle}"
-                         PopupAnimation="Fade"
-                         VerticalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupVerticalOffset}">
-              <wpf:Card Margin="5"
+                         PopupAnimation="Fade">
+              <wpf:Card Margin="{TemplateBinding wpf:ElevationAssist.Elevation, Converter={StaticResource ElevationMarginConverter}}"
                         Padding="{TemplateBinding Padding}"
                         Content="{TemplateBinding PopupContent}"
                         ContentTemplate="{TemplateBinding PopupContentTemplate}"
                         Foreground="{DynamicResource MaterialDesignBody}"
                         RenderOptions.ClearTypeHint="Enabled"
-                        UniformCornerRadius="{TemplateBinding PopupUniformCornerRadius}">
+                        UniformCornerRadius="{TemplateBinding PopupUniformCornerRadius}"
+                        wpf:ElevationAssist.Elevation="{TemplateBinding wpf:ElevationAssist.Elevation}">
                 <wpf:Card.Resources>
                   <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignPopupBoxButton}" />
                 </wpf:Card.Resources>
@@ -148,6 +153,9 @@
           <ControlTemplate.Triggers>
             <Trigger Property="IsEnabled" Value="false">
               <Setter Property="Opacity" Value="0.38" />
+            </Trigger>
+            <Trigger Property="FlowDirection" Value="RightToLeft">
+              <Setter TargetName="PART_Popup" Property="HorizontalOffset" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation), Converter={StaticResource RtlElevationRadiusConverter}}" />
             </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
