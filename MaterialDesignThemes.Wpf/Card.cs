@@ -17,7 +17,14 @@ namespace MaterialDesignThemes.Wpf
         }
         public static readonly DependencyProperty UniformCornerRadiusProperty
             = DependencyProperty.Register(nameof(UniformCornerRadius), typeof(double), typeof(Card),
-                new FrameworkPropertyMetadata(DefaultUniformCornerRadius, FrameworkPropertyMetadataOptions.AffectsMeasure));
+                new FrameworkPropertyMetadata(DefaultUniformCornerRadius, FrameworkPropertyMetadataOptions.AffectsMeasure, UniformCornerRadiusChangedCallback));
+
+        private static void UniformCornerRadiusChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            Card card = (Card) d;
+            card.UpdateContentClip();
+        }
+
         #endregion
 
         #region DependencyProperty : ContentClipProperty
@@ -59,7 +66,11 @@ namespace MaterialDesignThemes.Wpf
         protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
         {
             base.OnRenderSizeChanged(sizeInfo);
+            UpdateContentClip();
+        }
 
+        private void UpdateContentClip()
+        {
             if (_clipBorder is null)
             {
                 return;
