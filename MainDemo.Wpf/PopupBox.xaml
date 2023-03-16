@@ -16,15 +16,8 @@
       </ResourceDictionary.MergedDictionaries>
 
       <DataTemplate x:Key="ContentTemplateGrid">
-        <Grid Width="200" Height="100">
-          <TextBlock Text="Popup content in grid" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <!-- This explicit style should not be needed; possibly because the MaterialDesignMultiFloatingActionPopupBox style enforces special brushes? Or perhaps an issue with correctly applying theming? -->
-            <TextBlock.Style>
-              <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignTextBlock}">
-                <Setter Property="TextElement.Foreground" Value="{StaticResource MaterialDesignLightForeground}" />
-              </Style>
-            </TextBlock.Style>
-          </TextBlock>
+        <Grid Width="200" Height="100" TextElement.Foreground="{DynamicResource MaterialDesignLightForeground}">
+          <TextBlock Text="Popup content in grid" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Grid>
       </DataTemplate>
 
