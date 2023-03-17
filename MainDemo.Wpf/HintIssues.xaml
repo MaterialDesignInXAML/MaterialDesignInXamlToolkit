@@ -1,0 +1,182 @@
+﻿<UserControl x:Class="MaterialDesignDemo.HintIssues"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MaterialDesignDemo"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+  <UserControl.Resources>
+    <local:FixedWidthConverter x:Key="FixedWidthConverter" FixedWidth="200" />
+    <local:BoolToParameterConverter x:Key="BoolToParameterConverter" />
+
+    <system:String x:Key="ShortHint">Hint</system:String>
+    <system:String x:Key="MediumHint">Medium length hint</system:String>
+    <system:String x:Key="LongHint">Long hint that will not fit within the bounds of the container when fixed width</system:String>
+
+    <system:String x:Key="ShortHelper">Helper</system:String>
+    <system:String x:Key="MediumHelper">Medium length helper</system:String>
+    <system:String x:Key="LongHelper">Long helper text that will not fit within the bounds of the container when fixed width</system:String>
+  </UserControl.Resources>
+
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition />
+      <ColumnDefinition />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+
+    <Grid Grid.ColumnSpan="2" Margin="0,0,0,15">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <TextBlock Text="Hint and helper text issues" Style="{StaticResource MaterialDesignHeadline5TextBlock}" />
+
+      <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+        <CheckBox x:Name="ApplyFixedWidth" Content="Apply fixed widths on containers" Margin="5,0" />
+        <CheckBox x:Name="ApplyHintText" Content="Apply hint text" IsChecked="True" Margin="5,0" />
+        <CheckBox x:Name="ApplyHelperText" Content="Apply helper text" IsChecked="True" Margin="5,0" />
+      </StackPanel>
+    </Grid>
+
+    <TextBlock Grid.Column="0" Grid.Row="1" Text="Laid out in StackPanels" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+    <TextBlock Grid.Column="1" Grid.Row="1" Text="Laid out in Grids" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" HorizontalAlignment="Center" />
+
+
+    <!-- LEFT column (laid out in StackPanels) -->
+
+    <!-- Default style -->
+    <StackPanel Grid.Column="0" Grid.Row="2" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ElementName=ApplyFixedWidth, Path=IsChecked, Converter={StaticResource FixedWidthConverter}}">
+      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHint}}"
+               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHelper}}"
+               Margin="0,0,0,0"/>
+      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHint}}"
+               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHelper}}"
+               Margin="0,20,0,0" />
+      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHint}}"
+               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHelper}}"
+               Margin="0,20,0,0" />
+    </StackPanel>
+    <!-- MaterialDesignFloatingHintTextBox style -->
+    <StackPanel Grid.Column="0" Grid.Row="3" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ElementName=ApplyFixedWidth, Path=IsChecked, Converter={StaticResource FixedWidthConverter}}">
+      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHint}}"
+               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHelper}}"
+               Margin="0,0,0,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHint}}"
+               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHelper}}"
+               Margin="0,15,0,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHint}}"
+               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHelper}}"
+               Margin="0,15,0,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+    </StackPanel>
+    <!-- MaterialDesignFilledTextBox style -->
+    <StackPanel Grid.Column="0" Grid.Row="4" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ElementName=ApplyFixedWidth, Path=IsChecked, Converter={StaticResource FixedWidthConverter}}">
+      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHint}}"
+               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHelper}}"
+               Margin="0,0,0,0" Style="{StaticResource MaterialDesignFilledTextBox}" />
+      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHint}}"
+               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHelper}}"
+               Margin="0,20,0,0" Style="{StaticResource MaterialDesignFilledTextBox}" />
+      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHint}}"
+               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHelper}}"
+               Margin="0,20,0,0" Style="{StaticResource MaterialDesignFilledTextBox}" />
+    </StackPanel>
+    <!-- MaterialDesignOutlinedTextBox style -->
+    <StackPanel Grid.Column="0" Grid.Row="5" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ElementName=ApplyFixedWidth, Path=IsChecked, Converter={StaticResource FixedWidthConverter}}">
+      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHint}}"
+               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHelper}}"
+               Margin="0,0,0,0" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHint}}"
+               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHelper}}"
+               Margin="0,20,0,0" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHint}}"
+               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHelper}}"
+               Margin="0,20,0,0" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+    </StackPanel>
+
+
+    <!-- RIGHT column (laid out in Grids) -->
+
+    <!-- Default style -->
+    <Grid Grid.Column="1" Grid.Row="2" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ElementName=ApplyFixedWidth, Path=IsChecked, Converter={StaticResource FixedWidthConverter}}">
+      <Grid.RowDefinitions>
+        <RowDefinition />
+        <RowDefinition />
+        <RowDefinition />
+      </Grid.RowDefinitions>
+      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHint}}"
+               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHelper}}"
+               Grid.Row="0" Margin="0,0,0,0" />
+      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHint}}"
+               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHelper}}"
+               Grid.Row="1" Margin="0,20,0,0" />
+      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHint}}"
+               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHelper}}"
+               Grid.Row="2" Margin="0,20,0,0" />
+    </Grid>
+    <!-- MaterialDesignFloatingHintTextBox style -->
+    <Grid Grid.Column="1" Grid.Row="3" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ElementName=ApplyFixedWidth, Path=IsChecked, Converter={StaticResource FixedWidthConverter}}">
+      <Grid.RowDefinitions>
+        <RowDefinition />
+        <RowDefinition />
+        <RowDefinition />
+      </Grid.RowDefinitions>
+      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHint}}"
+               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHelper}}"
+               Grid.Row="0" Margin="0,0,0,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHint}}"
+               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHelper}}"
+               Grid.Row="1" Margin="0,15,0,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHint}}"
+               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHelper}}"
+               Grid.Row="2" Margin="0,15,0,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+    </Grid>
+    <!-- MaterialDesignFilledTextBox style -->
+    <Grid Grid.Column="1" Grid.Row="4" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ElementName=ApplyFixedWidth, Path=IsChecked, Converter={StaticResource FixedWidthConverter}}">
+      <Grid.RowDefinitions>
+        <RowDefinition />
+        <RowDefinition />
+        <RowDefinition />
+      </Grid.RowDefinitions>
+      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHint}}"
+               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHelper}}"
+               Grid.Row="0" Margin="0,0,0,0" Style="{StaticResource MaterialDesignFilledTextBox}" />
+      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHint}}"
+               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHelper}}"
+               Grid.Row="1" Margin="0,20,0,0" Style="{StaticResource MaterialDesignFilledTextBox}" />
+      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHint}}"
+               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHelper}}"
+               Grid.Row="2" Margin="0,20,0,0" Style="{StaticResource MaterialDesignFilledTextBox}" />
+    </Grid>
+    <!-- MaterialDesignOutlinedTextBox style -->
+    <Grid Grid.Column="1" Grid.Row="5" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ElementName=ApplyFixedWidth, Path=IsChecked, Converter={StaticResource FixedWidthConverter}}">
+      <Grid.RowDefinitions>
+        <RowDefinition />
+        <RowDefinition />
+        <RowDefinition />
+      </Grid.RowDefinitions>
+      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHint}}"
+               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHelper}}"
+               Grid.Row="0" Margin="0,0,0,0" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHint}}"
+               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHelper}}"
+               Grid.Row="1" Margin="0,20,0,0" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHint}}"
+               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHelper}}"
+               Grid.Row="2" Margin="0,20,0,0" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+    </Grid>
+
+  </Grid>
+</UserControl>
