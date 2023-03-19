@@ -91,7 +91,7 @@
                       <VisualTransition From="*" To="HintFloatingPosition">
                         <Storyboard>
                           <DoubleAnimation EasingFunction="{StaticResource AnimationEasingFunction}"
-                                           Storyboard.TargetName="FloatingHintContent"
+                                           Storyboard.TargetName="FloatingHintTextBlock"
                                            Storyboard.TargetProperty="Opacity"
                                            To="{TemplateBinding HintOpacity}"
                                            Duration="0:0:0.15" />
@@ -105,7 +105,7 @@
                       <VisualTransition From="*" To="HintRestingPosition">
                         <Storyboard>
                           <DoubleAnimation EasingFunction="{StaticResource AnimationEasingFunction}"
-                                           Storyboard.TargetName="FloatingHintContent"
+                                           Storyboard.TargetName="FloatingHintTextBlock"
                                            Storyboard.TargetProperty="Opacity"
                                            Duration="0:0:0.15" />
                           <DoubleAnimation EasingFunction="{StaticResource AnimationEasingFunction}"
@@ -117,7 +117,7 @@
                     </VisualStateGroup.Transitions>
                     <VisualState x:Name="HintFloatingPosition">
                       <Storyboard>
-                        <DoubleAnimation Storyboard.TargetName="FloatingHintContent"
+                        <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock"
                                          Storyboard.TargetProperty="Opacity"
                                          To="{TemplateBinding HintOpacity}"
                                          Duration="0" />
@@ -129,7 +129,7 @@
                     </VisualState>
                     <VisualState x:Name="HintRestingPosition">
                       <Storyboard>
-                        <DoubleAnimation Storyboard.TargetName="FloatingHintContent"
+                        <DoubleAnimation Storyboard.TargetName="FloatingHintTextBlock"
                                          Storyboard.TargetProperty="Opacity"
                                          Duration="0" />
                         <DoubleAnimation Storyboard.TargetName="ScaleHost"
@@ -140,16 +140,16 @@
                   </VisualStateGroup>
                 </VisualStateManager.VisualStateGroups>
                 <wpf:ScaleHost x:Name="ScaleHost" />
-                <Grid ClipToBounds="True" HorizontalAlignment="Stretch" Height="{Binding ElementName=FloatingHintContent, Path=ActualHeight}">
-                  <Grid.RenderTransform>
+                <Canvas ClipToBounds="True" HorizontalAlignment="Stretch" Height="{Binding ElementName=FloatingHintTextBlock, Path=ActualHeight}">
+                  <Canvas.RenderTransform>
                     <MultiBinding Converter="{StaticResource FloatingHintCanvasTransformConverter}">
                       <Binding ElementName="ScaleHost" Path="Scale" />
                       <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}" />
                       <Binding Source="{StaticResource NoContentFloatingScale}" />
                       <Binding Path="FloatingOffset" RelativeSource="{RelativeSource TemplatedParent}" />
                     </MultiBinding>
-                  </Grid.RenderTransform>
-                  <ContentControl x:Name="FloatingHintContent"
+                  </Canvas.RenderTransform>
+                  <ContentControl x:Name="FloatingHintTextBlock"
                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                   Content="{TemplateBinding Hint}"
@@ -183,7 +183,7 @@
                       </MultiBinding>
                     </ContentControl.RenderTransform>
                   </ContentControl>
-                </Grid>
+                </Canvas>
               </Grid>
             </ControlTemplate>
           </Setter.Value>
