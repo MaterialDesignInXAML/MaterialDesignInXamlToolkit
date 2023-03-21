@@ -9,7 +9,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
   <UserControl.Resources>
-    <local:FixedWidthConverter x:Key="FixedWidthConverter" FixedWidth="200" />
+    <local:FixedWidthConverter x:Key="FixedWidthConverter" FixedWidth="300" />
     <local:BoolToParameterConverter x:Key="BoolToParameterConverter" />
 
     <system:String x:Key="ShortHint">Hint</system:String>
@@ -19,15 +19,17 @@
     <system:String x:Key="ShortHelper">Helper</system:String>
     <system:String x:Key="MediumHelper">Medium length helper</system:String>
     <system:String x:Key="LongHelper">Long helper text that will not fit within the bounds of the container when fixed width</system:String>
+
+    <system:String x:Key="PrefixText">PRE</system:String>
+    <system:String x:Key="SuffixText">POST</system:String>
+
+    <md:PackIconKind x:Key="LeadingIcon">Github</md:PackIconKind>
+    <md:PackIconKind x:Key="TrailingIcon">Settings</md:PackIconKind>
+
   </UserControl.Resources>
 
   <Grid>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition />
-      <ColumnDefinition />
-    </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
-      <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
@@ -36,7 +38,7 @@
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
 
-    <Grid Grid.ColumnSpan="2" Margin="0,0,0,15">
+    <Grid Margin="0,0,0,15">
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="Auto" />
         <ColumnDefinition Width="*" />
@@ -44,139 +46,155 @@
 
       <TextBlock Text="Hint and helper text issues" Style="{StaticResource MaterialDesignHeadline5TextBlock}" />
 
-      <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-        <CheckBox x:Name="ApplyFixedWidth" Content="Apply fixed widths on containers" Margin="5,0" />
-        <CheckBox x:Name="ApplyHintText" Content="Apply hint text" IsChecked="True" Margin="5,0" />
-        <CheckBox x:Name="ApplyHelperText" Content="Apply helper text" IsChecked="True" Margin="5,0" />
+
+      <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Right">
+        <StackPanel Orientation="Horizontal">
+          <CheckBox x:Name="ApplyFixedWidth" Content="Apply fixed widths on containers" Margin="5,0" />
+          <CheckBox x:Name="ApplyHintText" Content="Show hint text" IsChecked="True" Margin="5,0" />
+          <CheckBox x:Name="ApplyHelperText" Content="Show helper text" IsChecked="True" Margin="5,0" />
+          <CheckBox x:Name="ApplyClearButton" Content="Show clear button" Margin="5,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,5">
+          <CheckBox x:Name="ApplyLeadingIcon" Content="Show leading icon" Margin="5,0" />
+          <CheckBox x:Name="ApplyTrailingIcon" Content="Show trailing icon" Margin="5,0" />
+          <CheckBox x:Name="ApplyPrefixText" Content="Show prefix text" Margin="5,0" />
+          <CheckBox x:Name="ApplySuffixText" Content="Show suffix text"  Margin="5,0" />
+        </StackPanel>
       </StackPanel>
     </Grid>
 
-    <TextBlock Grid.Column="0" Grid.Row="1" Text="Laid out in StackPanels" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
-    <TextBlock Grid.Column="1" Grid.Row="1" Text="Laid out in Grids" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" HorizontalAlignment="Center" />
-
-
-    <!-- LEFT column (laid out in StackPanels) -->
-
     <!-- Default style -->
-    <StackPanel Grid.Column="0" Grid.Row="2" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ElementName=ApplyFixedWidth, Path=IsChecked, Converter={StaticResource FixedWidthConverter}}">
+    <StackPanel Grid.Column="0" Grid.Row="1" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ElementName=ApplyFixedWidth, Path=IsChecked, Converter={StaticResource FixedWidthConverter}}">
       <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHint}}"
                md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHelper}}"
+               md:TextFieldAssist.HasClearButton="{Binding ElementName=ApplyClearButton, Path=IsChecked}"
+               md:TextFieldAssist.HasLeadingIcon="{Binding ElementName=ApplyLeadingIcon, Path=IsChecked}"
+               md:TextFieldAssist.LeadingIcon="{Binding ElementName=ApplyLeadingIcon, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LeadingIcon}}"
+               md:TextFieldAssist.HasTrailingIcon="{Binding ElementName=ApplyTrailingIcon, Path=IsChecked}"
+               md:TextFieldAssist.TrailingIcon="{Binding ElementName=ApplyTrailingIcon, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource TrailingIcon}}"
+               md:TextFieldAssist.PrefixText="{Binding ElementName=ApplyPrefixText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource PrefixText}}"
+               md:TextFieldAssist.SuffixText="{Binding ElementName=ApplySuffixText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource SuffixText}}"
                Margin="0,0,0,0"/>
       <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHint}}"
                md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHelper}}"
+               md:TextFieldAssist.HasClearButton="{Binding ElementName=ApplyClearButton, Path=IsChecked}"
+               md:TextFieldAssist.HasLeadingIcon="{Binding ElementName=ApplyLeadingIcon, Path=IsChecked}"
+               md:TextFieldAssist.LeadingIcon="{Binding ElementName=ApplyLeadingIcon, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LeadingIcon}}"
+               md:TextFieldAssist.HasTrailingIcon="{Binding ElementName=ApplyTrailingIcon, Path=IsChecked}"
+               md:TextFieldAssist.TrailingIcon="{Binding ElementName=ApplyTrailingIcon, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource TrailingIcon}}"
+               md:TextFieldAssist.PrefixText="{Binding ElementName=ApplyPrefixText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource PrefixText}}"
+               md:TextFieldAssist.SuffixText="{Binding ElementName=ApplySuffixText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource SuffixText}}"
                Margin="0,20,0,0" />
       <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHint}}"
                md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHelper}}"
+               md:TextFieldAssist.HasClearButton="{Binding ElementName=ApplyClearButton, Path=IsChecked}"
+               md:TextFieldAssist.HasLeadingIcon="{Binding ElementName=ApplyLeadingIcon, Path=IsChecked}"
+               md:TextFieldAssist.LeadingIcon="{Binding ElementName=ApplyLeadingIcon, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LeadingIcon}}"
+               md:TextFieldAssist.HasTrailingIcon="{Binding ElementName=ApplyTrailingIcon, Path=IsChecked}"
+               md:TextFieldAssist.TrailingIcon="{Binding ElementName=ApplyTrailingIcon, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource TrailingIcon}}"
+               md:TextFieldAssist.PrefixText="{Binding ElementName=ApplyPrefixText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource PrefixText}}"
+               md:TextFieldAssist.SuffixText="{Binding ElementName=ApplySuffixText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource SuffixText}}"
                Margin="0,20,0,0" />
     </StackPanel>
     <!-- MaterialDesignFloatingHintTextBox style -->
-    <StackPanel Grid.Column="0" Grid.Row="3" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ElementName=ApplyFixedWidth, Path=IsChecked, Converter={StaticResource FixedWidthConverter}}">
+    <StackPanel Grid.Column="0" Grid.Row="2" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ElementName=ApplyFixedWidth, Path=IsChecked, Converter={StaticResource FixedWidthConverter}}">
       <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHint}}"
                md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHelper}}"
+               md:TextFieldAssist.HasClearButton="{Binding ElementName=ApplyClearButton, Path=IsChecked}"
+               md:TextFieldAssist.HasLeadingIcon="{Binding ElementName=ApplyLeadingIcon, Path=IsChecked}"
+               md:TextFieldAssist.LeadingIcon="{Binding ElementName=ApplyLeadingIcon, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LeadingIcon}}"
+               md:TextFieldAssist.HasTrailingIcon="{Binding ElementName=ApplyTrailingIcon, Path=IsChecked}"
+               md:TextFieldAssist.TrailingIcon="{Binding ElementName=ApplyTrailingIcon, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource TrailingIcon}}"
+               md:TextFieldAssist.PrefixText="{Binding ElementName=ApplyPrefixText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource PrefixText}}"
+               md:TextFieldAssist.SuffixText="{Binding ElementName=ApplySuffixText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource SuffixText}}"
                Margin="0,0,0,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
       <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHint}}"
                md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHelper}}"
+               md:TextFieldAssist.HasClearButton="{Binding ElementName=ApplyClearButton, Path=IsChecked}"
+               md:TextFieldAssist.HasLeadingIcon="{Binding ElementName=ApplyLeadingIcon, Path=IsChecked}"
+               md:TextFieldAssist.LeadingIcon="{Binding ElementName=ApplyLeadingIcon, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LeadingIcon}}"
+               md:TextFieldAssist.HasTrailingIcon="{Binding ElementName=ApplyTrailingIcon, Path=IsChecked}"
+               md:TextFieldAssist.TrailingIcon="{Binding ElementName=ApplyTrailingIcon, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource TrailingIcon}}"
+               md:TextFieldAssist.PrefixText="{Binding ElementName=ApplyPrefixText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource PrefixText}}"
+               md:TextFieldAssist.SuffixText="{Binding ElementName=ApplySuffixText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource SuffixText}}"
                Margin="0,15,0,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
       <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHint}}"
                md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHelper}}"
+               md:TextFieldAssist.HasClearButton="{Binding ElementName=ApplyClearButton, Path=IsChecked}"
+               md:TextFieldAssist.HasLeadingIcon="{Binding ElementName=ApplyLeadingIcon, Path=IsChecked}"
+               md:TextFieldAssist.LeadingIcon="{Binding ElementName=ApplyLeadingIcon, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LeadingIcon}}"
+               md:TextFieldAssist.HasTrailingIcon="{Binding ElementName=ApplyTrailingIcon, Path=IsChecked}"
+               md:TextFieldAssist.TrailingIcon="{Binding ElementName=ApplyTrailingIcon, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource TrailingIcon}}"
+               md:TextFieldAssist.PrefixText="{Binding ElementName=ApplyPrefixText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource PrefixText}}"
+               md:TextFieldAssist.SuffixText="{Binding ElementName=ApplySuffixText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource SuffixText}}"
                Margin="0,15,0,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
     </StackPanel>
     <!-- MaterialDesignFilledTextBox style -->
-    <StackPanel Grid.Column="0" Grid.Row="4" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ElementName=ApplyFixedWidth, Path=IsChecked, Converter={StaticResource FixedWidthConverter}}">
+    <StackPanel Grid.Column="0" Grid.Row="3" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ElementName=ApplyFixedWidth, Path=IsChecked, Converter={StaticResource FixedWidthConverter}}">
       <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHint}}"
                md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHelper}}"
+               md:TextFieldAssist.HasClearButton="{Binding ElementName=ApplyClearButton, Path=IsChecked}"
+               md:TextFieldAssist.HasLeadingIcon="{Binding ElementName=ApplyLeadingIcon, Path=IsChecked}"
+               md:TextFieldAssist.LeadingIcon="{Binding ElementName=ApplyLeadingIcon, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LeadingIcon}}"
+               md:TextFieldAssist.HasTrailingIcon="{Binding ElementName=ApplyTrailingIcon, Path=IsChecked}"
+               md:TextFieldAssist.TrailingIcon="{Binding ElementName=ApplyTrailingIcon, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource TrailingIcon}}"
+               md:TextFieldAssist.PrefixText="{Binding ElementName=ApplyPrefixText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource PrefixText}}"
+               md:TextFieldAssist.SuffixText="{Binding ElementName=ApplySuffixText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource SuffixText}}"
                Margin="0,0,0,0" Style="{StaticResource MaterialDesignFilledTextBox}" />
       <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHint}}"
                md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHelper}}"
+               md:TextFieldAssist.HasClearButton="{Binding ElementName=ApplyClearButton, Path=IsChecked}"
+               md:TextFieldAssist.HasLeadingIcon="{Binding ElementName=ApplyLeadingIcon, Path=IsChecked}"
+               md:TextFieldAssist.LeadingIcon="{Binding ElementName=ApplyLeadingIcon, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LeadingIcon}}"
+               md:TextFieldAssist.HasTrailingIcon="{Binding ElementName=ApplyTrailingIcon, Path=IsChecked}"
+               md:TextFieldAssist.TrailingIcon="{Binding ElementName=ApplyTrailingIcon, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource TrailingIcon}}"
+               md:TextFieldAssist.PrefixText="{Binding ElementName=ApplyPrefixText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource PrefixText}}"
+               md:TextFieldAssist.SuffixText="{Binding ElementName=ApplySuffixText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource SuffixText}}"
                Margin="0,20,0,0" Style="{StaticResource MaterialDesignFilledTextBox}" />
       <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHint}}"
                md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHelper}}"
+               md:TextFieldAssist.HasClearButton="{Binding ElementName=ApplyClearButton, Path=IsChecked}"
+               md:TextFieldAssist.HasLeadingIcon="{Binding ElementName=ApplyLeadingIcon, Path=IsChecked}"
+               md:TextFieldAssist.LeadingIcon="{Binding ElementName=ApplyLeadingIcon, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LeadingIcon}}"
+               md:TextFieldAssist.HasTrailingIcon="{Binding ElementName=ApplyTrailingIcon, Path=IsChecked}"
+               md:TextFieldAssist.TrailingIcon="{Binding ElementName=ApplyTrailingIcon, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource TrailingIcon}}"
+               md:TextFieldAssist.PrefixText="{Binding ElementName=ApplyPrefixText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource PrefixText}}"
+               md:TextFieldAssist.SuffixText="{Binding ElementName=ApplySuffixText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource SuffixText}}"
                Margin="0,20,0,0" Style="{StaticResource MaterialDesignFilledTextBox}" />
     </StackPanel>
     <!-- MaterialDesignOutlinedTextBox style -->
-    <StackPanel Grid.Column="0" Grid.Row="5" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ElementName=ApplyFixedWidth, Path=IsChecked, Converter={StaticResource FixedWidthConverter}}">
+    <StackPanel Grid.Column="0" Grid.Row="4" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ElementName=ApplyFixedWidth, Path=IsChecked, Converter={StaticResource FixedWidthConverter}}">
       <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHint}}"
                md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHelper}}"
+               md:TextFieldAssist.HasClearButton="{Binding ElementName=ApplyClearButton, Path=IsChecked}"
+               md:TextFieldAssist.HasLeadingIcon="{Binding ElementName=ApplyLeadingIcon, Path=IsChecked}"
+               md:TextFieldAssist.LeadingIcon="{Binding ElementName=ApplyLeadingIcon, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LeadingIcon}}"
+               md:TextFieldAssist.HasTrailingIcon="{Binding ElementName=ApplyTrailingIcon, Path=IsChecked}"
+               md:TextFieldAssist.TrailingIcon="{Binding ElementName=ApplyTrailingIcon, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource TrailingIcon}}"
+               md:TextFieldAssist.PrefixText="{Binding ElementName=ApplyPrefixText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource PrefixText}}"
+               md:TextFieldAssist.SuffixText="{Binding ElementName=ApplySuffixText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource SuffixText}}"
                Margin="0,0,0,0" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
       <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHint}}"
                md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHelper}}"
+               md:TextFieldAssist.HasClearButton="{Binding ElementName=ApplyClearButton, Path=IsChecked}"
+               md:TextFieldAssist.HasLeadingIcon="{Binding ElementName=ApplyLeadingIcon, Path=IsChecked}"
+               md:TextFieldAssist.LeadingIcon="{Binding ElementName=ApplyLeadingIcon, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LeadingIcon}}"
+               md:TextFieldAssist.HasTrailingIcon="{Binding ElementName=ApplyTrailingIcon, Path=IsChecked}"
+               md:TextFieldAssist.TrailingIcon="{Binding ElementName=ApplyTrailingIcon, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource TrailingIcon}}"
+               md:TextFieldAssist.PrefixText="{Binding ElementName=ApplyPrefixText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource PrefixText}}"
+               md:TextFieldAssist.SuffixText="{Binding ElementName=ApplySuffixText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource SuffixText}}"
                Margin="0,20,0,0" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
       <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHint}}"
                md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHelper}}"
+               md:TextFieldAssist.HasClearButton="{Binding ElementName=ApplyClearButton, Path=IsChecked}"
+               md:TextFieldAssist.HasLeadingIcon="{Binding ElementName=ApplyLeadingIcon, Path=IsChecked}"
+               md:TextFieldAssist.LeadingIcon="{Binding ElementName=ApplyLeadingIcon, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LeadingIcon}}"
+               md:TextFieldAssist.HasTrailingIcon="{Binding ElementName=ApplyTrailingIcon, Path=IsChecked}"
+               md:TextFieldAssist.TrailingIcon="{Binding ElementName=ApplyTrailingIcon, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource TrailingIcon}}"
+               md:TextFieldAssist.PrefixText="{Binding ElementName=ApplyPrefixText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource PrefixText}}"
+               md:TextFieldAssist.SuffixText="{Binding ElementName=ApplySuffixText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource SuffixText}}"
                Margin="0,20,0,0" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
     </StackPanel>
-
-
-    <!-- RIGHT column (laid out in Grids) -->
-
-    <!-- Default style -->
-    <Grid Grid.Column="1" Grid.Row="2" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ElementName=ApplyFixedWidth, Path=IsChecked, Converter={StaticResource FixedWidthConverter}}">
-      <Grid.RowDefinitions>
-        <RowDefinition />
-        <RowDefinition />
-        <RowDefinition />
-      </Grid.RowDefinitions>
-      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHint}}"
-               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHelper}}"
-               Grid.Row="0" Margin="0,0,0,0" />
-      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHint}}"
-               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHelper}}"
-               Grid.Row="1" Margin="0,20,0,0" />
-      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHint}}"
-               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHelper}}"
-               Grid.Row="2" Margin="0,20,0,0" />
-    </Grid>
-    <!-- MaterialDesignFloatingHintTextBox style -->
-    <Grid Grid.Column="1" Grid.Row="3" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ElementName=ApplyFixedWidth, Path=IsChecked, Converter={StaticResource FixedWidthConverter}}">
-      <Grid.RowDefinitions>
-        <RowDefinition />
-        <RowDefinition />
-        <RowDefinition />
-      </Grid.RowDefinitions>
-      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHint}}"
-               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHelper}}"
-               Grid.Row="0" Margin="0,0,0,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHint}}"
-               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHelper}}"
-               Grid.Row="1" Margin="0,15,0,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHint}}"
-               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHelper}}"
-               Grid.Row="2" Margin="0,15,0,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-    </Grid>
-    <!-- MaterialDesignFilledTextBox style -->
-    <Grid Grid.Column="1" Grid.Row="4" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ElementName=ApplyFixedWidth, Path=IsChecked, Converter={StaticResource FixedWidthConverter}}">
-      <Grid.RowDefinitions>
-        <RowDefinition />
-        <RowDefinition />
-        <RowDefinition />
-      </Grid.RowDefinitions>
-      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHint}}"
-               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHelper}}"
-               Grid.Row="0" Margin="0,0,0,0" Style="{StaticResource MaterialDesignFilledTextBox}" />
-      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHint}}"
-               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHelper}}"
-               Grid.Row="1" Margin="0,20,0,0" Style="{StaticResource MaterialDesignFilledTextBox}" />
-      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHint}}"
-               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHelper}}"
-               Grid.Row="2" Margin="0,20,0,0" Style="{StaticResource MaterialDesignFilledTextBox}" />
-    </Grid>
-    <!-- MaterialDesignOutlinedTextBox style -->
-    <Grid Grid.Column="1" Grid.Row="5" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ElementName=ApplyFixedWidth, Path=IsChecked, Converter={StaticResource FixedWidthConverter}}">
-      <Grid.RowDefinitions>
-        <RowDefinition />
-        <RowDefinition />
-        <RowDefinition />
-      </Grid.RowDefinitions>
-      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHint}}"
-               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource ShortHelper}}"
-               Grid.Row="0" Margin="0,0,0,0" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHint}}"
-               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource MediumHelper}}"
-               Grid.Row="1" Margin="0,20,0,0" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-      <TextBox md:HintAssist.Hint="{Binding ElementName=ApplyHintText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHint}}"
-               md:HintAssist.HelperText="{Binding ElementName=ApplyHelperText, Path=IsChecked, Converter={StaticResource BoolToParameterConverter}, ConverterParameter={StaticResource LongHelper}}"
-               Grid.Row="2" Margin="0,20,0,0" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-    </Grid>
 
   </Grid>
 </UserControl>
