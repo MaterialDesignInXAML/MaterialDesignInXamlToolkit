@@ -94,12 +94,12 @@
                                            Storyboard.TargetName="FloatingHintTextBlock"
                                            Storyboard.TargetProperty="Opacity"
                                            To="{TemplateBinding HintOpacity}"
-                                           Duration="0:0:0.75" />
+                                           Duration="0:0:0.15" />
                           <DoubleAnimation EasingFunction="{StaticResource AnimationEasingFunction}"
                                            Storyboard.TargetName="ScaleHost"
                                            Storyboard.TargetProperty="Scale"
                                            To="1"
-                                           Duration="0:0:0.75" />
+                                           Duration="0:0:0.15" />
                         </Storyboard>
                       </VisualTransition>
                       <VisualTransition From="*" To="HintRestingPosition">

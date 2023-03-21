@@ -31,7 +31,7 @@ public class MainWindowViewModel : ViewModelBase
         {
             DemoItems.Add(item);
         }
-        SelectedItem = DemoItems.First(d => d.Name == "Hint and helper issues");
+        SelectedItem = DemoItems.First();
         _demoItemsView = CollectionViewSource.GetDefaultView(DemoItems);
         _demoItemsView.Filter = DemoItemsFilter;
         
@@ -428,11 +428,6 @@ public class MainWindowViewModel : ViewModelBase
                 DocumentationLink.DemoPageLink<SmartHint>(),
                 DocumentationLink.StyleLink("SmartHint"),
             });
-
-        yield return new DemoItem(
-            "Hint and helper issues",
-            typeof(HintIssues),
-            Enumerable.Empty<DocumentationLink>());
     }
 
     private bool DemoItemsFilter(object obj)
