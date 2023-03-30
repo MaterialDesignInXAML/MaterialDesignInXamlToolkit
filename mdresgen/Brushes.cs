@@ -102,6 +102,7 @@ public static partial class Brushes
     private static void GenerateObsoleteBrushesDictionary(IEnumerable<Brush> brushes, DirectoryInfo repoRoot)
     {
         StringBuilder output = new();
+
         foreach (Brush brush in brushes)
         {
             foreach (string obsoleteKey in brush.ObsoleteKeys ?? Enumerable.Empty<string>())

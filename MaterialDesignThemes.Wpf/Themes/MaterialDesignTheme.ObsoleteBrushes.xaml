@@ -5,17 +5,20 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
   <system:Boolean x:Key="MaterialDesign.Resources.RecreateOnThemeChange">True</system:Boolean>
-  
-  <colors:StaticResource x:Key="PrimaryHueLightBrush" ResourceKey="Primary200" po:Freeze="True" />
-  <colors:StaticResource x:Key="PrimaryHueLightForegroundBrush" ResourceKey="Primary200Foreground" po:Freeze="True" />
-  <colors:StaticResource x:Key="PrimaryHueMidBrush" ResourceKey="Primary500" po:Freeze="True" />
-  <colors:StaticResource x:Key="PrimaryHueMidForegroundBrush" ResourceKey="Primary500Foreground" po:Freeze="True" />
-  <colors:StaticResource x:Key="PrimaryHueDarkBrush" ResourceKey="Primary700" po:Freeze="True" />
-  <colors:StaticResource x:Key="PrimaryHueDarkForegroundBrush" ResourceKey="Primary700Foreground" po:Freeze="True" />
 
-  <colors:StaticResource x:Key="SecondaryHueMidBrush" ResourceKey="Accent700" po:Freeze="True" />
-  <colors:StaticResource x:Key="SecondaryHueMidForegroundBrush" ResourceKey="Accent700Foreground" po:Freeze="True" />
-  
+  <colors:StaticResource x:Key="PrimaryHueLightBrush" ResourceKey="MaterialDesign.Brush.Primary.Light" po:Freeze="True" />
+  <colors:StaticResource x:Key="PrimaryHueLightForegroundBrush" ResourceKey="MaterialDesign.Brush.Primary.Light.Foreground" po:Freeze="True" />
+  <colors:StaticResource x:Key="PrimaryHueMidBrush" ResourceKey="MaterialDesign.Brush.Primary" po:Freeze="True" />
+  <colors:StaticResource x:Key="PrimaryHueMidForegroundBrush" ResourceKey="MaterialDesign.Brush.Primary.Foreground" po:Freeze="True" />
+  <colors:StaticResource x:Key="PrimaryHueDarkBrush" ResourceKey="MaterialDesign.Brush.Primary.Dark" po:Freeze="True" />
+  <colors:StaticResource x:Key="PrimaryHueDarkForegroundBrush" ResourceKey="MaterialDesign.Brush.Primary.Dark.Foreground" po:Freeze="True" />
+
+  <colors:StaticResource x:Key="SecondaryHueLightBrush" ResourceKey="MaterialDesign.Brush.Secondary.Light" po:Freeze="True" />
+  <colors:StaticResource x:Key="SecondaryHueLightForegroundBrush" ResourceKey="MaterialDesign.Brush.Secondary.Light.Foreground" po:Freeze="True" />
+  <colors:StaticResource x:Key="SecondaryHueMidBrush" ResourceKey="MaterialDesign.Brush.Secondary" po:Freeze="True" />
+  <colors:StaticResource x:Key="SecondaryHueMidForegroundBrush" ResourceKey="MaterialDesign.Brush.Secondary.Foreground" po:Freeze="True" />
+  <colors:StaticResource x:Key="SecondaryHueDarkBrush" ResourceKey="MaterialDesign.Brush.Secondary.Dark" po:Freeze="True" />
+  <colors:StaticResource x:Key="SecondaryHueDarkForegroundBrush" ResourceKey="MaterialDesign.Brush.Secondary.Dark.Foreground" po:Freeze="True" />
   <colors:StaticResource x:Key="MaterialDesignPaper" ResourceKey="MaterialDesign.Brush.Background" />
   <colors:StaticResource x:Key="MaterialDesignFlatButtonClick" ResourceKey="MaterialDesign.Brush.Button.FlatClick" />
   <colors:StaticResource x:Key="MaterialDesignFlatButtonRipple" ResourceKey="MaterialDesign.Brush.Button.Ripple" />

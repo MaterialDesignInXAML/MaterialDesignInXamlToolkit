@@ -36,22 +36,19 @@ public static partial class ResourceDictionaryExtensions
             }
         }
 
-        SetSolidColorBrush(resourceDictionary, "PrimaryHueLightBrush", primaryLight);
-        SetSolidColorBrush(resourceDictionary, "PrimaryHueLightForegroundBrush", theme.PrimaryLight.ForegroundColor ?? primaryLight.ContrastingForegroundColor());
-        SetSolidColorBrush(resourceDictionary, "PrimaryHueMidBrush", primaryMid);
-        SetSolidColorBrush(resourceDictionary, "PrimaryHueMidForegroundBrush", theme.PrimaryMid.ForegroundColor ?? primaryMid.ContrastingForegroundColor());
-        SetSolidColorBrush(resourceDictionary, "PrimaryHueDarkBrush", primaryDark);
-        SetSolidColorBrush(resourceDictionary, "PrimaryHueDarkForegroundBrush", theme.PrimaryDark.ForegroundColor ?? primaryDark.ContrastingForegroundColor());
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Primary.Light", primaryLight);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Primary.Light.Foreground", theme.PrimaryLight.ForegroundColor ?? primaryLight.ContrastingForegroundColor());
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Primary", primaryMid);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Primary.Foreground", theme.PrimaryMid.ForegroundColor ?? primaryMid.ContrastingForegroundColor());
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Primary.Dark", primaryDark);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Primary.Dark.Foreground", theme.PrimaryDark.ForegroundColor ?? primaryDark.ContrastingForegroundColor());
 
-        SetSolidColorBrush(resourceDictionary, "SecondaryHueLightBrush", secondaryLight);
-        SetSolidColorBrush(resourceDictionary, "SecondaryHueLightForegroundBrush", theme.SecondaryLight.ForegroundColor ?? secondaryLight.ContrastingForegroundColor());
-        SetSolidColorBrush(resourceDictionary, "SecondaryHueMidBrush", secondaryMid);
-        SetSolidColorBrush(resourceDictionary, "SecondaryHueMidForegroundBrush", theme.SecondaryMid.ForegroundColor ?? secondaryMid.ContrastingForegroundColor());
-        SetSolidColorBrush(resourceDictionary, "SecondaryHueDarkBrush", secondaryDark);
-        SetSolidColorBrush(resourceDictionary, "SecondaryHueDarkForegroundBrush", theme.SecondaryDark.ForegroundColor ?? secondaryDark.ContrastingForegroundColor());
-
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignValidationErrorBrush", theme.ValidationError);
-        resourceDictionary["MaterialDesignValidationErrorColor"] = theme.ValidationError;
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Secondary.Light", secondaryLight);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Secondary.Light.Foreground", theme.SecondaryLight.ForegroundColor ?? secondaryLight.ContrastingForegroundColor());
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Secondary", secondaryMid);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Secondary.Foreground", theme.SecondaryMid.ForegroundColor ?? secondaryMid.ContrastingForegroundColor());
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Secondary.Dark", secondaryDark);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Secondary.Dark.Foreground", theme.SecondaryDark.ForegroundColor ?? secondaryDark.ContrastingForegroundColor());
 
         ApplyThemeColors(resourceDictionary, theme);
 
@@ -89,36 +86,21 @@ public static partial class ResourceDictionaryExtensions
             return theme;
         }
 
-        Color secondaryMid = GetColor(resourceDictionary, "SecondaryHueMidBrush");
-        Color secondaryMidForeground = GetColor(resourceDictionary, "SecondaryHueMidForegroundBrush");
-
-        if (!TryGetColor(resourceDictionary, "SecondaryHueLightBrush", out Color secondaryLight))
-        {
-            secondaryLight = secondaryMid.Lighten();
-        }
-        if (!TryGetColor(resourceDictionary, "SecondaryHueLightForegroundBrush", out Color secondaryLightForeground))
-        {
-            secondaryLightForeground = secondaryLight.ContrastingForegroundColor();
-        }
-
-        if (!TryGetColor(resourceDictionary, "SecondaryHueDarkBrush", out Color secondaryDark))
-        {
-            secondaryDark = secondaryMid.Darken();
-        }
-        if (!TryGetColor(resourceDictionary, "SecondaryHueDarkForegroundBrush", out Color secondaryDarkForeground))
-        {
-            secondaryDarkForeground = secondaryDark.ContrastingForegroundColor();
-        }
-
         theme = new Theme
         {
-            PrimaryLight = new ColorPair(GetColor(resourceDictionary, "PrimaryHueLightBrush"), GetColor(resourceDictionary, "PrimaryHueLightForegroundBrush")),
-            PrimaryMid = new ColorPair(GetColor(resourceDictionary, "PrimaryHueMidBrush"), GetColor(resourceDictionary, "PrimaryHueMidForegroundBrush")),
-            PrimaryDark = new ColorPair(GetColor(resourceDictionary, "PrimaryHueDarkBrush"), GetColor(resourceDictionary, "PrimaryHueDarkForegroundBrush")),
+            PrimaryLight = new ColorPair(GetColor(resourceDictionary, "MaterialDesign.Brush.Primary.Light"),
+                                         GetColor(resourceDictionary, "MaterialDesign.Brush.Primary.Light.Foreground")),
+            PrimaryMid = new ColorPair(GetColor(resourceDictionary, "MaterialDesign.Brush.Primary"),
+                                       GetColor(resourceDictionary, "MaterialDesign.Brush.Primary.Foreground")),
+            PrimaryDark = new ColorPair(GetColor(resourceDictionary, "MaterialDesign.Brush.Primary.Dark"),
+                                        GetColor(resourceDictionary, "MaterialDesign.Brush.Primary.Dark.Foreground")),
 
-            SecondaryLight = new ColorPair(secondaryLight, secondaryLightForeground),
-            SecondaryMid = new ColorPair(secondaryMid, secondaryMidForeground),
-            SecondaryDark = new ColorPair(secondaryDark, secondaryDarkForeground),
+            SecondaryLight = new ColorPair(GetColor(resourceDictionary, "MaterialDesign.Brush.Secondary.Light"),
+                                           GetColor(resourceDictionary, "MaterialDesign.Brush.Secondary.Light.Foreground")),
+            SecondaryMid = new ColorPair(GetColor(resourceDictionary, "MaterialDesign.Brush.Secondary"),
+                                         GetColor(resourceDictionary, "MaterialDesign.Brush.Secondary.Foreground")),
+            SecondaryDark = new ColorPair(GetColor(resourceDictionary, "MaterialDesign.Brush.Secondary.Dark"),
+                                          GetColor(resourceDictionary, "MaterialDesign.Brush.Secondary.Dark.Foreground")),
         };
         LoadThemeColors(resourceDictionary, theme);
         return theme;
@@ -159,8 +141,6 @@ public static partial class ResourceDictionaryExtensions
     {
         if (sourceDictionary is null) throw new ArgumentNullException(nameof(sourceDictionary));
         if (name is null) throw new ArgumentNullException(nameof(name));
-
-        sourceDictionary[name + "Color"] = value;
 
         if (sourceDictionary[name] is SolidColorBrush brush)
         {
