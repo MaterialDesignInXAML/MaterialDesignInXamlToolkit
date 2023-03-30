@@ -2,15 +2,11 @@
     {
         "name": "MaterialDesign.Brush.Background",
         "themeValues": {
-            "light": "White1000",
-            "dark": "Black1000"
+            "light": "Neutral900",
+            "dark": "Neutral100"
         },
-        "alternateKeys": [
-            "MaterialDesign.Brush.Card.Background"
-        ],
+        "alternateKeys": [],
         "obsoleteKeys": [
-            "MaterialDesignBackground",
-            "MaterialDesignCardBackground",
             "MaterialDesignPaper"
         ]
     },
@@ -76,6 +72,18 @@
         "obsoleteKeys": [
             "MaterialDesignFlatButtonRipple",
             "MaterialDesignSnackbarRipple"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.Card.Background",
+        "themeValues": {
+            "light": "White1000",
+            "dark": "Neutral200"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": [
+            "MaterialDesignBackground",
+            "MaterialDesignCardBackground"
         ]
     },
     {

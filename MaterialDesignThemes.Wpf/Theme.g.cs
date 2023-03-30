@@ -19,11 +19,11 @@ partial class Theme
 
     public Color ValidationError { get; set; }
 
-    public Card Cards { get; set; } = new();
-
     public Button Buttons { get; set; } = new();
 
     public SnackBar SnackBars { get; set; } = new();
+
+    public Card Cards { get; set; } = new();
 
     public CheckBox CheckBoxes { get; set; } = new();
 
@@ -47,12 +47,6 @@ partial class Theme
 
     public ToolTip ToolTips { get; set; } = new();
 
-    public class Card
-    {
-        public Color Background { get; set; }
-
-    }
-
     public class Button
     {
         public Color FlatClick { get; set; }
@@ -70,6 +64,12 @@ partial class Theme
         public Color Background { get; set; }
 
         public Color MouseOver { get; set; }
+
+    }
+
+    public class Card
+    {
+        public Color Background { get; set; }
 
     }
 

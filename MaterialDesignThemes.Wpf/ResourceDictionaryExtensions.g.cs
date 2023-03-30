@@ -10,17 +10,17 @@ static partial class ResourceDictionaryExtensions
 {
     private static partial void LoadThemeColors(ResourceDictionary resourceDictionary, Theme theme)
     {
-        theme.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.Background", "MaterialDesignBackground", "MaterialDesignCardBackground", "MaterialDesignPaper");
+        theme.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.Background", "MaterialDesignPaper");
         theme.Foreground = GetColor(resourceDictionary, "MaterialDesign.Brush.Foreground", "MaterialDesignBody");
         theme.ForegroundLight = GetColor(resourceDictionary, "MaterialDesign.Brush.ForegroundLight", "MaterialDesignBodyLight", "MaterialDesignCheckBoxOff", "MaterialDesignTextBoxBorder");
         theme.ValidationError = GetColor(resourceDictionary, "MaterialDesign.Brush.ValidationError", "MaterialDesignValidationErrorBrush");
-        theme.Cards.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.Card.Background", "MaterialDesignBackground", "MaterialDesignCardBackground", "MaterialDesignPaper");
         theme.Buttons.FlatClick = GetColor(resourceDictionary, "MaterialDesign.Brush.Button.FlatClick", "MaterialDesignFlatButtonClick");
         theme.Buttons.Ripple = GetColor(resourceDictionary, "MaterialDesign.Brush.Button.Ripple", "MaterialDesignFlatButtonRipple", "MaterialDesignSnackbarRipple");
         theme.Buttons.FlatRipple = GetColor(resourceDictionary, "MaterialDesign.Brush.Button.FlatRipple", "MaterialDesignFlatButtonRipple", "MaterialDesignSnackbarRipple");
         theme.SnackBars.Ripple = GetColor(resourceDictionary, "MaterialDesign.Brush.SnackBar.Ripple", "MaterialDesignFlatButtonRipple", "MaterialDesignSnackbarRipple");
         theme.SnackBars.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.SnackBar.Background", "MaterialDesignSnackbarBackground");
         theme.SnackBars.MouseOver = GetColor(resourceDictionary, "MaterialDesign.Brush.SnackBar.MouseOver", "MaterialDesignSnackbarMouseOver");
+        theme.Cards.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.Card.Background", "MaterialDesignBackground", "MaterialDesignCardBackground");
         theme.CheckBoxes.Disabled = GetColor(resourceDictionary, "MaterialDesign.Brush.CheckBox.Disabled", "MaterialDesignCheckBoxDisabled");
         theme.CheckBoxes.Off = GetColor(resourceDictionary, "MaterialDesign.Brush.CheckBox.Off", "MaterialDesignBodyLight", "MaterialDesignCheckBoxOff", "MaterialDesignTextBoxBorder");
         theme.Chips.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.Chip.Background", "MaterialDesignChipBackground");
@@ -50,8 +50,6 @@ static partial class ResourceDictionaryExtensions
     private static partial void ApplyThemeColors(ResourceDictionary resourceDictionary, Theme theme)
     {
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Background", theme.Background);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignBackground", theme.Background);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignCardBackground", theme.Background);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignPaper", theme.Background);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Foreground", theme.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignBody", theme.Foreground);
@@ -61,10 +59,6 @@ static partial class ResourceDictionaryExtensions
         SetSolidColorBrush(resourceDictionary, "MaterialDesignTextBoxBorder", theme.ForegroundLight);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ValidationError", theme.ValidationError);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignValidationErrorBrush", theme.ValidationError);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Card.Background", theme.Cards.Background);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignBackground", theme.Cards.Background);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignCardBackground", theme.Cards.Background);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignPaper", theme.Cards.Background);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Button.FlatClick", theme.Buttons.FlatClick);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignFlatButtonClick", theme.Buttons.FlatClick);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Button.Ripple", theme.Buttons.Ripple);
@@ -80,6 +74,9 @@ static partial class ResourceDictionaryExtensions
         SetSolidColorBrush(resourceDictionary, "MaterialDesignSnackbarBackground", theme.SnackBars.Background);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.SnackBar.MouseOver", theme.SnackBars.MouseOver);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignSnackbarMouseOver", theme.SnackBars.MouseOver);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Card.Background", theme.Cards.Background);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesignBackground", theme.Cards.Background);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesignCardBackground", theme.Cards.Background);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.CheckBox.Disabled", theme.CheckBoxes.Disabled);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignCheckBoxDisabled", theme.CheckBoxes.Disabled);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.CheckBox.Off", theme.CheckBoxes.Off);

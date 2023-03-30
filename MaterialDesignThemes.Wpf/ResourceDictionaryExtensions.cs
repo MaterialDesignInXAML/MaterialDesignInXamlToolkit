@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.Runtime.CompilerServices;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using MaterialDesignColors;
 using MaterialDesignColors.ColorManipulation;
@@ -11,17 +12,9 @@ public static partial class ResourceDictionaryExtensions
     private const string ThemeManagerKey = nameof(MaterialDesignThemes) + "." + nameof(ThemeManagerKey);
 
     public static void SetTheme(this ResourceDictionary resourceDictionary, Theme theme)
-        => SetTheme(resourceDictionary, theme, null);
-
-    public static void SetTheme(this ResourceDictionary resourceDictionary, Theme theme, ColorAdjustment? colorAdjustment)
     {
         if (resourceDictionary is null) throw new ArgumentNullException(nameof(resourceDictionary));
-
-        if (theme is Theme internalTheme)
-        {
-            colorAdjustment ??= internalTheme.ColorAdjustment;
-            internalTheme.ColorAdjustment = colorAdjustment;
-        }
+        if (theme is null) throw new ArgumentNullException(nameof(theme));
 
         Color primaryLight = theme.PrimaryLight.Color;
         Color primaryMid = theme.PrimaryMid.Color;
@@ -31,7 +24,7 @@ public static partial class ResourceDictionaryExtensions
         Color secondaryMid = theme.SecondaryMid.Color;
         Color secondaryDark = theme.SecondaryDark.Color;
 
-        if (colorAdjustment is { })
+        if (theme.ColorAdjustment is { } colorAdjustment)
         {
             if (colorAdjustment.Colors.HasFlag(ColorSelection.Primary))
             {
@@ -71,8 +64,22 @@ public static partial class ResourceDictionaryExtensions
 
         themeManager.OnThemeChange(oldTheme, theme);
     }
-
     private static partial void ApplyThemeColors(ResourceDictionary resourceDictionary, Theme theme);
+
+    public static void SetObsoleteBrushes(this ResourceDictionary resourceDictionary, Theme theme)
+    {
+        if (resourceDictionary is null) throw new ArgumentNullException(nameof(resourceDictionary));
+        if (theme is null) throw new ArgumentNullException(nameof(theme));
+
+        foreach (object? key in resourceDictionary.Keys)
+        {
+            if (resourceDictionary[key] is MaterialDesignColors.StaticResourceExtension staticResource)
+            {
+                resourceDictionary[key] = new MaterialDesignColors.StaticResourceExtension(staticResource.ResourceKey);
+            }
+        }
+    }
+
 
     public static Theme GetTheme(this ResourceDictionary resourceDictionary)
     {

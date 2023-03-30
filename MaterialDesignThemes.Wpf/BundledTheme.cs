@@ -69,11 +69,12 @@ public class BundledTheme : ResourceDictionary, IMaterialDesignThemeDictionary
             Theme theme = Theme.Create(baseTheme,
                 SwatchHelper.Lookup[(MaterialDesignColor)primaryColor],
                 SwatchHelper.Lookup[(MaterialDesignColor)secondaryColor]);
+            theme.ColorAdjustment = ColorAdjustment;
 
             ApplyTheme(theme);
         }
     }
 
     protected virtual void ApplyTheme(Theme theme) =>
-        this.SetTheme(theme, ColorAdjustment);
+        this.SetTheme(theme);
 }

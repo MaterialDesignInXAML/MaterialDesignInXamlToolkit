@@ -67,10 +67,11 @@ public class CustomColorTheme : ResourceDictionary, IMaterialDesignThemeDictiona
             SecondaryColor is Color secondaryColor)
         {
             var theme = Theme.Create(baseTheme, primaryColor, secondaryColor);
+            theme.ColorAdjustment = ColorAdjustment;
             ApplyTheme(theme);
         }
     }
 
     protected virtual void ApplyTheme(Theme theme) =>
-        this.SetTheme(theme, ColorAdjustment);
+        this.SetTheme(theme);
 }

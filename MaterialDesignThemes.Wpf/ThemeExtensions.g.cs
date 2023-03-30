@@ -15,17 +15,17 @@ static partial class ThemeExtensions
 {
     public static partial void SetLightTheme(this Theme theme)
     {
-        theme.Background = BaseThemeColors.White1000;
+        theme.Background = BaseThemeColors.Neutral900;
         theme.Foreground = BaseThemeColors.Black900;
         theme.ForegroundLight = BaseThemeColors.Black500;
         theme.ValidationError = Color.FromArgb(0xFF, 0xB0, 0x00, 0x20);
-        theme.Cards.Background = BaseThemeColors.White1000;
         theme.Buttons.FlatClick = BaseThemeColors.Neutral800;
         theme.Buttons.Ripple = BaseThemeColors.Neutral700;
         theme.Buttons.FlatRipple = BaseThemeColors.Neutral700;
         theme.SnackBars.Ripple = BaseThemeColors.Neutral700;
         theme.SnackBars.Background = BaseThemeColors.Neutral100;
         theme.SnackBars.MouseOver = BaseThemeColors.Neutral200;
+        theme.Cards.Background = BaseThemeColors.White1000;
         theme.CheckBoxes.Disabled = BaseThemeColors.Neutral700;
         theme.CheckBoxes.Off = BaseThemeColors.Black500;
         theme.Chips.Background = Color.FromArgb(0x12, 0x00, 0x00, 0x00);
@@ -54,17 +54,17 @@ static partial class ThemeExtensions
 
     public static partial void SetDarkTheme(this Theme theme)
     {
-        theme.Background = BaseThemeColors.Black1000;
+        theme.Background = BaseThemeColors.Neutral100;
         theme.Foreground = BaseThemeColors.White900;
         theme.ForegroundLight = BaseThemeColors.White500;
         theme.ValidationError = Color.FromArgb(0xFF, 0xCF, 0x66, 0x79);
-        theme.Cards.Background = BaseThemeColors.Black1000;
         theme.Buttons.FlatClick = Color.FromArgb(0x19, 0x75, 0x75, 0x75);
         theme.Buttons.Ripple = BaseThemeColors.Neutral700;
         theme.Buttons.FlatRipple = BaseThemeColors.Neutral700;
         theme.SnackBars.Ripple = BaseThemeColors.Neutral700;
         theme.SnackBars.Background = BaseThemeColors.Neutral800;
         theme.SnackBars.MouseOver = BaseThemeColors.Neutral700;
+        theme.Cards.Background = BaseThemeColors.Neutral200;
         theme.CheckBoxes.Disabled = BaseThemeColors.Neutral300;
         theme.CheckBoxes.Off = BaseThemeColors.White500;
         theme.Chips.Background = Color.FromArgb(0xFF, 0x2E, 0x3C, 0x43);

@@ -111,7 +111,7 @@ namespace MaterialDesignDemo.Domain
         {
             var helper = new PaletteHelper();
             Theme theme = helper.GetTheme();
-            GeneratedIconBackground = theme.Paper;
+            GeneratedIconBackground = theme.Background;
             GeneratedIconForeground = theme.PrimaryMid.Color;
         }
 

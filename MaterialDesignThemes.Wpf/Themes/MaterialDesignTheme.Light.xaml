@@ -5,12 +5,12 @@
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="./Internal/MaterialDesignTheme.BaseThemeColors.xaml" />
   </ResourceDictionary.MergedDictionaries>
-  <colors:StaticResource x:Key="MaterialDesign.Brush.Background" ResourceKey="White1000" />
-  <colors:StaticResource x:Key="MaterialDesign.Brush.Card.Background" ResourceKey="White1000" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.Background" ResourceKey="Neutral900" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.Button.FlatClick" ResourceKey="Neutral800" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.Button.Ripple" ResourceKey="Neutral700" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.Button.FlatRipple" ResourceKey="Neutral700" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.SnackBar.Ripple" ResourceKey="Neutral700" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.Card.Background" ResourceKey="White1000" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.CheckBox.Disabled" ResourceKey="Neutral700" />
   <SolidColorBrush x:Key="MaterialDesign.Brush.Chip.Background" Color="#12000000" po:Freeze="True" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.ButtonPressed" ResourceKey="Neutral800" />

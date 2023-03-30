@@ -69,7 +69,7 @@ public static class MaterialDesignAssist
         resourceDictionary.SetBrush("MahApps.Brushes.Gray.MouseOver", (Color)resourceDictionary["MahApps.Colors.Gray.MouseOver"]);
         resourceDictionary.SetBrush("MahApps.Brushes.Gray.SemiTransparent", (Color)resourceDictionary["MahApps.Colors.Gray.SemiTransparent"]);
 
-        resourceDictionary.SetBrush("MahApps.Brushes.TextBox.Border", theme.TextBoxBorder);
+        resourceDictionary.SetBrush("MahApps.Brushes.TextBox.Border", theme.TextBoxes.Border);
         resourceDictionary.SetBrush("MahApps.Brushes.TextBox.Border.Focus", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
         resourceDictionary.SetBrush("MahApps.Brushes.TextBox.Border.MouseOver", theme.PrimaryMid.Color);
 

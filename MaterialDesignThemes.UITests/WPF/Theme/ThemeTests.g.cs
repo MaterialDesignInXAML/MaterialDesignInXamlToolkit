@@ -25,13 +25,13 @@ partial class ThemeTests
           <TextBlock Text="Foreground" Background="{StaticResource MaterialDesign.Brush.Foreground}" />
           <TextBlock Text="ForegroundLight" Background="{StaticResource MaterialDesign.Brush.ForegroundLight}" />
           <TextBlock Text="ValidationError" Background="{StaticResource MaterialDesign.Brush.ValidationError}" />
-          <TextBlock Text="Card.Background" Background="{StaticResource MaterialDesign.Brush.Card.Background}" />
           <TextBlock Text="Button.FlatClick" Background="{StaticResource MaterialDesign.Brush.Button.FlatClick}" />
           <TextBlock Text="Button.Ripple" Background="{StaticResource MaterialDesign.Brush.Button.Ripple}" />
           <TextBlock Text="Button.FlatRipple" Background="{StaticResource MaterialDesign.Brush.Button.FlatRipple}" />
           <TextBlock Text="SnackBar.Ripple" Background="{StaticResource MaterialDesign.Brush.SnackBar.Ripple}" />
           <TextBlock Text="SnackBar.Background" Background="{StaticResource MaterialDesign.Brush.SnackBar.Background}" />
           <TextBlock Text="SnackBar.MouseOver" Background="{StaticResource MaterialDesign.Brush.SnackBar.MouseOver}" />
+          <TextBlock Text="Card.Background" Background="{StaticResource MaterialDesign.Brush.Card.Background}" />
           <TextBlock Text="CheckBox.Disabled" Background="{StaticResource MaterialDesign.Brush.CheckBox.Disabled}" />
           <TextBlock Text="CheckBox.Off" Background="{StaticResource MaterialDesign.Brush.CheckBox.Off}" />
           <TextBlock Text="Chip.Background" Background="{StaticResource MaterialDesign.Brush.Chip.Background}" />
@@ -94,14 +94,6 @@ partial class ThemeTests
             Assert.Equal(brush?.Color, textBlockBackground);
         }
         {
-            IResource resource = await App.GetResource("MaterialDesign.Brush.Card.Background");
-            SolidColorBrush? brush = resource.GetAs<SolidColorBrush>();
-            Assert.NotNull(brush);
-            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Card.Background\"]");
-            Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(brush?.Color, textBlockBackground);
-        }
-        {
             IResource resource = await App.GetResource("MaterialDesign.Brush.Button.FlatClick");
             SolidColorBrush? brush = resource.GetAs<SolidColorBrush>();
             Assert.NotNull(brush);
@@ -146,6 +138,14 @@ partial class ThemeTests
             SolidColorBrush? brush = resource.GetAs<SolidColorBrush>();
             Assert.NotNull(brush);
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"SnackBar.MouseOver\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(brush?.Color, textBlockBackground);
+        }
+        {
+            IResource resource = await App.GetResource("MaterialDesign.Brush.Card.Background");
+            SolidColorBrush? brush = resource.GetAs<SolidColorBrush>();
+            Assert.NotNull(brush);
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Card.Background\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(brush?.Color, textBlockBackground);
         }

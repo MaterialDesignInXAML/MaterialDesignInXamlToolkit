@@ -555,11 +555,6 @@
     <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
   </Style>
 
-  <!-- Obsolete -->
-  <Style x:Key="MaterialDesignSwitchAccentToggleButton"
-         TargetType="{x:Type ToggleButton}"
-         BasedOn="{StaticResource MaterialDesignSwitchSecondaryToggleButton}" />
-
   <Style x:Key="MaterialDesignHamburgerToggleButton" TargetType="{x:Type ToggleButton}">
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="BorderThickness" Value="1" />
