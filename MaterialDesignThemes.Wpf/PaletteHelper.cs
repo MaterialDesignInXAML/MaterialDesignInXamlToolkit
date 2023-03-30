@@ -40,7 +40,7 @@ public class PaletteHelper
         for (int i = 0; i < root.MergedDictionaries.Count; i++)
         {
             ResourceDictionary dictionary = root.MergedDictionaries[i];
-            if (dictionary["MaterialDesign.Resources.RecreateOnThemeChange"] is bool hasObsoleteBrushes && hasObsoleteBrushes)
+            if (dictionary["MaterialDesign.Resources.RecreateOnThemeChange"] is bool recreateOnThemeChange && recreateOnThemeChange)
             {
                 root.MergedDictionaries.RemoveAt(i);
                 root.MergedDictionaries.Insert(i, new ResourceDictionary()
