@@ -8,6 +8,10 @@
             "commandName": "Project",
             "commandLineArgs": "all-swatches"
         },
+        "Generate brushes": {
+            "commandName": "Project",
+            "commandLineArgs": "brushes"
+        },
         "Diff icons": {
             "commandName": "Project",
             "commandLineArgs": "icon-diff"

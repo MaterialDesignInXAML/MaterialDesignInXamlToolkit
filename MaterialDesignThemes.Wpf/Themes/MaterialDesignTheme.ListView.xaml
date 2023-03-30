@@ -165,7 +165,7 @@
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
       </Trigger>
       <Trigger Property="IsSelected" Value="True">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ListView.Selected}" />
       </Trigger>
       <Trigger Property="IsMouseOver" Value="True">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignDivider}" />
@@ -175,7 +175,7 @@
           <Condition Property="IsSelected" Value="True" />
           <Condition Property="Selector.IsSelectionActive" Value="False" />
         </MultiTrigger.Conditions>
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ListView.Selected}" />
       </MultiTrigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>

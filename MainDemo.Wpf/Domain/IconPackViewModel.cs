@@ -110,7 +110,7 @@ namespace MaterialDesignDemo.Domain
         private void SetDefaultIconColors()
         {
             var helper = new PaletteHelper();
-            ITheme theme = helper.GetTheme();
+            Theme theme = helper.GetTheme();
             GeneratedIconBackground = theme.Paper;
             GeneratedIconForeground = theme.PrimaryMid.Color;
         }

@@ -66,9 +66,8 @@ internal class ColorToolViewModel : ViewModelBase
 
     private void ApplyBase(bool isDark)
     {
-        ITheme theme = _paletteHelper.GetTheme();
-        IBaseTheme baseTheme = isDark ? new MaterialDesignDarkTheme() : (IBaseTheme)new MaterialDesignLightTheme();
-        theme.SetBaseTheme(baseTheme);
+        Theme theme = _paletteHelper.GetTheme();
+        theme.SetBaseTheme(isDark ? BaseTheme.Dark : BaseTheme.Light);
         _paletteHelper.SetTheme(theme);
     }
 
@@ -83,7 +82,7 @@ internal class ColorToolViewModel : ViewModelBase
         ChangeToSecondaryForegroundCommand = new AnotherCommandImplementation(o => ChangeScheme(ColorScheme.SecondaryForeground));
 
 
-        ITheme theme = _paletteHelper.GetTheme();
+        Theme theme = _paletteHelper.GetTheme();
 
         _primaryColor = theme.PrimaryMid.Color;
         _secondaryColor = theme.SecondaryMid.Color;
@@ -177,7 +176,7 @@ internal class ColorToolViewModel : ViewModelBase
 
     private void SetPrimaryForegroundToSingleColor(Color color)
     {
-        ITheme theme = _paletteHelper.GetTheme();
+        Theme theme = _paletteHelper.GetTheme();
 
         theme.PrimaryLight = new ColorPair(theme.PrimaryLight.Color, color);
         theme.PrimaryMid = new ColorPair(theme.PrimaryMid.Color, color);
@@ -188,7 +187,7 @@ internal class ColorToolViewModel : ViewModelBase
 
     private void SetSecondaryForegroundToSingleColor(Color color)
     {
-        ITheme theme = _paletteHelper.GetTheme();
+        Theme theme = _paletteHelper.GetTheme();
 
         theme.SecondaryLight = new ColorPair(theme.SecondaryLight.Color, color);
         theme.SecondaryMid = new ColorPair(theme.SecondaryMid.Color, color);

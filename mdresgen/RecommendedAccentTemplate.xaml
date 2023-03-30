@@ -6,7 +6,11 @@
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.$COLOR.Accent.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
-  <SolidColorBrush x:Key="SecondaryHueMidBrush" Color="{StaticResource Accent700}" po:Freeze="True" />
-  <SolidColorBrush x:Key="SecondaryHueMidForegroundBrush" Color="{StaticResource Accent700Foreground}" po:Freeze="True" />
+  <SolidColorBrush x:Key="MaterialDesign.Brush.Secondary.Light" Color="{StaticResource Accent200}" po:Freeze="True" />
+  <SolidColorBrush x:Key="MaterialDesign.Brush.Secondary.Light.Foreground" Color="{StaticResource Accent200Foreground}" po:Freeze="True" />
+  <SolidColorBrush x:Key="MaterialDesign.Brush.Secondary" Color="{StaticResource Accent500}" po:Freeze="True" />
+  <SolidColorBrush x:Key="MaterialDesign.Brush.Secondary.Foreground" Color="{StaticResource Accent500Foreground}" po:Freeze="True" />
+  <SolidColorBrush x:Key="MaterialDesign.Brush.Secondary.Dark" Color="{StaticResource Accent700}" po:Freeze="True" />
+  <SolidColorBrush x:Key="MaterialDesign.Brush.Secondary.Dark.Foreground" Color="{StaticResource Accent700Foreground}" po:Freeze="True" />
 
 </ResourceDictionary>

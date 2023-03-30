@@ -13,11 +13,11 @@
             var theme = helper.GetTheme();
             if (((ToggleButton)sender).IsChecked == true)
             {
-                theme.SetBaseTheme(Wpf.Theme.Dark);
+                theme.SetBaseTheme(BaseTheme.Dark);
             }
             else
             {
-                theme.SetBaseTheme(Wpf.Theme.Light);
+                theme.SetBaseTheme(BaseTheme.Light);
             }
             helper.SetTheme(theme);
         }

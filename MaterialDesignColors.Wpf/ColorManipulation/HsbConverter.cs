@@ -6,9 +6,9 @@ public static class HsbConverter
 {
     public static Color ToColor(this Hsb hsv)
     {
-        var h = hsv.Hue;
-        var s = hsv.Saturation;
-        var b = hsv.Brightness;
+        double h = hsv.Hue;
+        double s = hsv.Saturation;
+        double b = hsv.Brightness;
 
         b *= 255;
 
@@ -20,20 +20,22 @@ public static class HsbConverter
 
         h /= 60;
 
-        var i = (int)Math.Floor(h);
-        var f = h - i;
-        var p = b * (1 - s);
-        var q = b * (1 - s * f);
-        var t = b * (1 - s * (1 - f));
+        int i = (int)Math.Floor(h);
+        double f = h - i;
+        double p = b * (1 - s);
+        double q = b * (1 - s * f);
+        double t = b * (1 - s * (1 - f));
 
-        if (i == 0) return Color.FromRgb((byte)b, (byte)t, (byte)p);
-        if (i == 1) return Color.FromRgb((byte)q, (byte)b, (byte)p);
-        if (i == 2) return Color.FromRgb((byte)p, (byte)b, (byte)t);
-        if (i == 3) return Color.FromRgb((byte)p, (byte)q, (byte)b);
-        if (i == 4) return Color.FromRgb((byte)t, (byte)p, (byte)b);
-        if (i == 5) return Color.FromRgb((byte)b, (byte)p, (byte)q);
-
-        throw new Exception("Invalid HSB values");
+        return i switch
+        {
+            0 => Color.FromRgb((byte)b, (byte)t, (byte)p),
+            1 => Color.FromRgb((byte)q, (byte)b, (byte)p),
+            2 => Color.FromRgb((byte)p, (byte)b, (byte)t),
+            3 => Color.FromRgb((byte)p, (byte)q, (byte)b),
+            4 => Color.FromRgb((byte)t, (byte)p, (byte)b),
+            5 => Color.FromRgb((byte)b, (byte)p, (byte)q),
+            _ => throw new InvalidOperationException("Invalid HSB values"),
+        };
     }
 
     public static Hsb ToHsb(this Color color)
@@ -46,14 +48,14 @@ public static class HsbConverter
         g = g / 255;
         b = b / 255;
 
-        var rgb = new[] { r, g, b };
-        var max = rgb.Max();
-        var min = rgb.Min();
+        double[] rgb = new[] { r, g, b };
+        double max = rgb.Max();
+        double min = rgb.Min();
         double v = max;
         double h = max;
 
-        var d = max - min;
-        var s = max.IsCloseTo(0) ? 0 : d / max;
+        double d = max - min;
+        double s = max.IsCloseTo(0) ? 0 : d / max;
 
         if (max.IsCloseTo(min))
         {

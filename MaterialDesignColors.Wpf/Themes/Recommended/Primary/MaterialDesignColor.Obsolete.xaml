@@ -1,0 +1,12 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:MaterialDesignColors">
+
+  <local:StaticResource x:Key="PrimaryHueLightBrush" ResourceKey="MaterialDesign.Brush.Primary.Light" />
+  <local:StaticResource x:Key="PrimaryHueLightForegroundBrush" ResourceKey="MaterialDesign.Brush.Primary.Light.Foreground" />
+  <local:StaticResource x:Key="PrimaryHueMidBrush" ResourceKey="MaterialDesign.Brush.Primary" />
+  <local:StaticResource x:Key="PrimaryHueMidForegroundBrush" ResourceKey="MaterialDesign.Brush.Primary.Foreground" />
+  <local:StaticResource x:Key="PrimaryHueDarkBrush" ResourceKey="MaterialDesign.Brush.Primary.Dark" />
+  <local:StaticResource x:Key="PrimaryHueDarkForegroundBrush" ResourceKey="MaterialDesign.Brush.Primary.Dark.Foreground" />
+
+</ResourceDictionary>

@@ -5,15 +5,15 @@ using MaterialDesignColors.ColorManipulation;
 
 namespace MaterialDesignThemes.Wpf;
 
-public static class ResourceDictionaryMixins
+public static partial class ResourceDictionaryExtensions
 {
     private const string CurrentThemeKey = nameof(MaterialDesignThemes) + "." + nameof(CurrentThemeKey);
     private const string ThemeManagerKey = nameof(MaterialDesignThemes) + "." + nameof(ThemeManagerKey);
 
-    public static void SetTheme(this ResourceDictionary resourceDictionary, ITheme theme)
+    public static void SetTheme(this ResourceDictionary resourceDictionary, Theme theme)
         => SetTheme(resourceDictionary, theme, null);
 
-    public static void SetTheme(this ResourceDictionary resourceDictionary, ITheme theme, ColorAdjustment? colorAdjustment)
+    public static void SetTheme(this ResourceDictionary resourceDictionary, Theme theme, ColorAdjustment? colorAdjustment)
     {
         if (resourceDictionary is null) throw new ArgumentNullException(nameof(resourceDictionary));
 
@@ -35,11 +35,11 @@ public static class ResourceDictionaryMixins
         {
             if (colorAdjustment.Colors.HasFlag(ColorSelection.Primary))
             {
-                AdjustColors(theme.Paper, colorAdjustment, ref primaryLight, ref primaryMid, ref primaryDark);
+                AdjustColors(theme.Background, colorAdjustment, ref primaryLight, ref primaryMid, ref primaryDark);
             }
             if (colorAdjustment.Colors.HasFlag(ColorSelection.Secondary))
             {
-                AdjustColors(theme.Paper, colorAdjustment, ref secondaryLight, ref secondaryMid, ref secondaryDark);
+                AdjustColors(theme.Background, colorAdjustment, ref secondaryLight, ref secondaryMid, ref secondaryDark);
             }
         }
 
@@ -60,136 +60,86 @@ public static class ResourceDictionaryMixins
         SetSolidColorBrush(resourceDictionary, "MaterialDesignValidationErrorBrush", theme.ValidationError);
         resourceDictionary["MaterialDesignValidationErrorColor"] = theme.ValidationError;
 
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignBackground", theme.Background);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignPaper", theme.Paper);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignCardBackground", theme.CardBackground);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignToolBarBackground", theme.ToolBarBackground);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignBody", theme.Body);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignBodyLight", theme.BodyLight);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignColumnHeader", theme.ColumnHeader);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignCheckBoxOff", theme.CheckBoxOff);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignCheckBoxDisabled", theme.CheckBoxDisabled);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignTextBoxBorder", theme.TextBoxBorder);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignDivider", theme.Divider);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignSelection", theme.Selection);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignToolForeground", theme.ToolForeground);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignToolBackground", theme.ToolBackground);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignFlatButtonClick", theme.FlatButtonClick);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignFlatButtonRipple", theme.FlatButtonRipple);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignToolTipBackground", theme.ToolTipBackground);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignChipBackground", theme.ChipBackground);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignSnackbarBackground", theme.SnackbarBackground);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignSnackbarMouseOver", theme.SnackbarMouseOver);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignSnackbarRipple", theme.SnackbarRipple);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignTextFieldBoxBackground", theme.TextFieldBoxBackground);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignTextFieldBoxHoverBackground", theme.TextFieldBoxHoverBackground);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignTextFieldBoxDisabledBackground", theme.TextFieldBoxDisabledBackground);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignTextAreaBorder", theme.TextAreaBorder);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignTextAreaInactiveBorder", theme.TextAreaInactiveBorder);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignDataGridRowHoverBackground", theme.DataGridRowHoverBackground);
+        ApplyThemeColors(resourceDictionary, theme);
 
-        if (!(resourceDictionary.GetThemeManager() is ThemeManager themeManager))
+        if (resourceDictionary.GetThemeManager() is not ThemeManager themeManager)
         {
             resourceDictionary[ThemeManagerKey] = themeManager = new ThemeManager(resourceDictionary);
         }
-        ITheme oldTheme = resourceDictionary.GetTheme();
+        Theme oldTheme = resourceDictionary.GetTheme();
         resourceDictionary[CurrentThemeKey] = theme;
 
         themeManager.OnThemeChange(oldTheme, theme);
     }
 
-    public static ITheme GetTheme(this ResourceDictionary resourceDictionary)
+    private static partial void ApplyThemeColors(ResourceDictionary resourceDictionary, Theme theme);
+
+    public static Theme GetTheme(this ResourceDictionary resourceDictionary)
     {
         if (resourceDictionary is null) throw new ArgumentNullException(nameof(resourceDictionary));
-        if (resourceDictionary[CurrentThemeKey] is ITheme theme)
+        if (resourceDictionary[CurrentThemeKey] is Theme theme)
         {
             return theme;
         }
 
-        Color secondaryMid = GetColor("SecondaryHueMidBrush");
-        Color secondaryMidForeground = GetColor("SecondaryHueMidForegroundBrush");
+        Color secondaryMid = GetColor(resourceDictionary, "SecondaryHueMidBrush");
+        Color secondaryMidForeground = GetColor(resourceDictionary, "SecondaryHueMidForegroundBrush");
 
-        if (!TryGetColor("SecondaryHueLightBrush", out Color secondaryLight))
+        if (!TryGetColor(resourceDictionary, "SecondaryHueLightBrush", out Color secondaryLight))
         {
             secondaryLight = secondaryMid.Lighten();
         }
-        if (!TryGetColor("SecondaryHueLightForegroundBrush", out Color secondaryLightForeground))
+        if (!TryGetColor(resourceDictionary, "SecondaryHueLightForegroundBrush", out Color secondaryLightForeground))
         {
             secondaryLightForeground = secondaryLight.ContrastingForegroundColor();
         }
 
-        if (!TryGetColor("SecondaryHueDarkBrush", out Color secondaryDark))
+        if (!TryGetColor(resourceDictionary, "SecondaryHueDarkBrush", out Color secondaryDark))
         {
             secondaryDark = secondaryMid.Darken();
         }
-        if (!TryGetColor("SecondaryHueDarkForegroundBrush", out Color secondaryDarkForeground))
+        if (!TryGetColor(resourceDictionary, "SecondaryHueDarkForegroundBrush", out Color secondaryDarkForeground))
         {
             secondaryDarkForeground = secondaryDark.ContrastingForegroundColor();
         }
 
-        //Attempt to simply look up the appropriate resources
-        return new Theme
+        theme = new Theme
         {
-            PrimaryLight = new ColorPair(GetColor("PrimaryHueLightBrush"), GetColor("PrimaryHueLightForegroundBrush")),
-            PrimaryMid = new ColorPair(GetColor("PrimaryHueMidBrush"), GetColor("PrimaryHueMidForegroundBrush")),
-            PrimaryDark = new ColorPair(GetColor("PrimaryHueDarkBrush"), GetColor("PrimaryHueDarkForegroundBrush")),
+            PrimaryLight = new ColorPair(GetColor(resourceDictionary, "PrimaryHueLightBrush"), GetColor(resourceDictionary, "PrimaryHueLightForegroundBrush")),
+            PrimaryMid = new ColorPair(GetColor(resourceDictionary, "PrimaryHueMidBrush"), GetColor(resourceDictionary, "PrimaryHueMidForegroundBrush")),
+            PrimaryDark = new ColorPair(GetColor(resourceDictionary, "PrimaryHueDarkBrush"), GetColor(resourceDictionary, "PrimaryHueDarkForegroundBrush")),
 
             SecondaryLight = new ColorPair(secondaryLight, secondaryLightForeground),
             SecondaryMid = new ColorPair(secondaryMid, secondaryMidForeground),
             SecondaryDark = new ColorPair(secondaryDark, secondaryDarkForeground),
-
-            Background = GetColor("MaterialDesignBackground"),
-            Body = GetColor("MaterialDesignBody"),
-            BodyLight = GetColor("MaterialDesignBodyLight"),
-            CardBackground = GetColor("MaterialDesignCardBackground"),
-            CheckBoxDisabled = GetColor("MaterialDesignCheckBoxDisabled"),
-            CheckBoxOff = GetColor("MaterialDesignCheckBoxOff"),
-            ChipBackground = GetColor("MaterialDesignChipBackground"),
-            ColumnHeader = GetColor("MaterialDesignColumnHeader"),
-            DataGridRowHoverBackground = GetColor("MaterialDesignDataGridRowHoverBackground"),
-            Divider = GetColor("MaterialDesignDivider"),
-            FlatButtonClick = GetColor("MaterialDesignFlatButtonClick"),
-            FlatButtonRipple = GetColor("MaterialDesignFlatButtonRipple"),
-            Selection = GetColor("MaterialDesignSelection"),
-            SnackbarBackground = GetColor("MaterialDesignSnackbarBackground"),
-            SnackbarMouseOver = GetColor("MaterialDesignSnackbarMouseOver"),
-            SnackbarRipple = GetColor("MaterialDesignSnackbarRipple"),
-            TextAreaBorder = GetColor("MaterialDesignTextAreaBorder"),
-            TextAreaInactiveBorder = GetColor("MaterialDesignTextAreaInactiveBorder"),
-            TextBoxBorder = GetColor("MaterialDesignTextBoxBorder"),
-            TextFieldBoxBackground = GetColor("MaterialDesignTextFieldBoxBackground"),
-            TextFieldBoxDisabledBackground = GetColor("MaterialDesignTextFieldBoxDisabledBackground"),
-            TextFieldBoxHoverBackground = GetColor("MaterialDesignTextFieldBoxHoverBackground"),
-            ToolBackground = GetColor("MaterialDesignToolBackground"),
-            ToolBarBackground = GetColor("MaterialDesignToolBarBackground"),
-            ToolForeground = GetColor("MaterialDesignToolForeground"),
-            ToolTipBackground = GetColor("MaterialDesignToolTipBackground"),
-            Paper = GetColor("MaterialDesignPaper"),
-            ValidationError = GetColor("MaterialDesignValidationErrorBrush")
         };
+        LoadThemeColors(resourceDictionary, theme);
+        return theme;
+    }
 
-        Color GetColor(params string[] keys)
-        {
-            foreach (string key in keys)
-            {
-                if (TryGetColor(key, out Color color))
-                {
-                    return color;
-                }
-            }
-            throw new InvalidOperationException($"Could not locate required resource with key(s) '{string.Join(", ", keys)}'");
-        }
+    private static partial void LoadThemeColors(ResourceDictionary resourceDictionary, Theme theme);
 
-        bool TryGetColor(string key, out Color color)
+    private static Color GetColor(ResourceDictionary resourceDictionary, params string[] keys)
+    {
+        foreach (string key in keys)
         {
-            if (resourceDictionary[key] is SolidColorBrush brush)
+            if (TryGetColor(resourceDictionary, key, out Color color))
             {
-                color = brush.Color;
-                return true;
+                return color;
             }
-            color = default;
-            return false;
         }
+        throw new InvalidOperationException($"Could not locate required resource with key(s) '{string.Join(", ", keys)}'");
+    }
+
+    private static bool TryGetColor(ResourceDictionary resourceDictionary, string key, out Color color)
+    {
+        if (resourceDictionary[key] is SolidColorBrush brush)
+        {
+            color = brush.Color;
+            return true;
+        }
+        color = default;
+        return false;
     }
 
     public static IThemeManager? GetThemeManager(this ResourceDictionary resourceDictionary)
@@ -285,14 +235,14 @@ public static class ResourceDictionaryMixins
 
     private class ThemeManager : IThemeManager
     {
-        private ResourceDictionary _ResourceDictionary;
+        private readonly ResourceDictionary _resourceDictionary;
 
         public ThemeManager(ResourceDictionary resourceDictionary)
-            => _ResourceDictionary = resourceDictionary ?? throw new ArgumentNullException(nameof(resourceDictionary));
+            => _resourceDictionary = resourceDictionary ?? throw new ArgumentNullException(nameof(resourceDictionary));
 
         public event EventHandler<ThemeChangedEventArgs>? ThemeChanged;
 
-        public void OnThemeChange(ITheme oldTheme, ITheme newTheme)
-            => ThemeChanged?.Invoke(this, new ThemeChangedEventArgs(_ResourceDictionary, oldTheme, newTheme));
+        public void OnThemeChange(Theme oldTheme, Theme newTheme)
+            => ThemeChanged?.Invoke(this, new ThemeChangedEventArgs(_resourceDictionary, oldTheme, newTheme));
     }
 }

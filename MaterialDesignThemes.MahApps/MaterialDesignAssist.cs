@@ -2,18 +2,19 @@
 using System.Windows.Media.Animation;
 using ControlzEx.Theming;
 using MaterialDesignThemes.Wpf;
-using Theme = ControlzEx.Theming.Theme;
+using ControlzExTheme = ControlzEx.Theming.Theme;
+using Theme = MaterialDesignThemes.Wpf.Theme;
 
 namespace MaterialDesignThemes.MahApps;
 
 public static class MaterialDesignAssist
 {
-    public static void SetMahApps(this ResourceDictionary resourceDictionary, ITheme theme, BaseTheme baseTheme)
+    public static void SetMahApps(this ResourceDictionary resourceDictionary, Theme theme, BaseTheme baseTheme)
     {
         resourceDictionary.SetMahAppsBaseTheme(baseTheme);
 
-        resourceDictionary.SetBrush(Theme.ThemeShowcaseBrushKey, new SolidColorBrush(theme.SecondaryMid.Color));
-        resourceDictionary.SetColor(Theme.ThemePrimaryAccentColorKey, theme.SecondaryMid.Color);
+        resourceDictionary.SetBrush(ControlzExTheme.ThemeShowcaseBrushKey, new SolidColorBrush(theme.SecondaryMid.Color));
+        resourceDictionary.SetColor(ControlzExTheme.ThemePrimaryAccentColorKey, theme.SecondaryMid.Color);
 
         resourceDictionary.SetColor("MahApps.Colors.HighlightLight", theme.PrimaryLight.Color);
         resourceDictionary.SetColor("MahApps.Colors.Highlight", theme.PrimaryMid.Color);

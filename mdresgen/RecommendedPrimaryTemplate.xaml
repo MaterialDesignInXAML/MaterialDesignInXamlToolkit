@@ -6,11 +6,11 @@
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.$COLOR.Primary.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
-  <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="{StaticResource Primary200}" po:Freeze="True" />
-  <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="{StaticResource Primary200Foreground}" po:Freeze="True" />
-  <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="{StaticResource Primary500}" po:Freeze="True" />
-  <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="{StaticResource Primary500Foreground}" po:Freeze="True" />
-  <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="{StaticResource Primary700}" po:Freeze="True" />
-  <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="{StaticResource Primary700Foreground}" po:Freeze="True" />
-
+  <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Light" Color="{StaticResource Primary200}" po:Freeze="True" />
+  <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Light.Foreground" Color="{StaticResource Primary200Foreground}" po:Freeze="True" />
+  <SolidColorBrush x:Key="MaterialDesign.Brush.Primary" Color="{StaticResource Primary500}" po:Freeze="True" />
+  <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Foreground" Color="{StaticResource Primary500Foreground}" po:Freeze="True" />
+  <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Dark" Color="{StaticResource Primary700}" po:Freeze="True" />
+  <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Dark.Foreground" Color="{StaticResource Primary700Foreground}" po:Freeze="True" />
+  
 </ResourceDictionary>
