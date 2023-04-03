@@ -20,7 +20,7 @@ public class PopupBoxTests : TestBase
         //Arrange
         IVisualElement<Wpf.PopupBox> popupBox = await LoadXaml<Wpf.PopupBox>($@"
 <materialDesign:PopupBox VerticalAlignment=""Top""
-                         materialDesign:ElevationAssist.Elevation=""{elevation}"">
+                         PopupElevation=""{elevation}"">
   <StackPanel>
     <Button Content=""More"" />
     <Button Content=""Options"" />
