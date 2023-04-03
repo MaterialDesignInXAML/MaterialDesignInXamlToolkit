@@ -353,6 +353,21 @@ namespace MaterialDesignThemes.Wpf
         }
 
         /// <summary>
+        /// Gets or sets the elevation of the popup card.
+        /// </summary>
+        public static readonly DependencyProperty PopupElevationProperty = DependencyProperty.Register(
+            nameof(PopupElevation), typeof(Elevation), typeof(PopupBox), new PropertyMetadata(Elevation.Dp0));
+
+        /// <summary>
+        /// Gets or sets the elevation of the popup card.
+        /// </summary>
+        public Elevation PopupElevation
+        {
+            get { return (Elevation) GetValue(PopupElevationProperty); }
+            set { SetValue(PopupElevationProperty, value); }
+        }
+
+        /// <summary>
         /// Framework use. Provides the method used to position the popup.
         /// </summary>
         public CustomPopupPlacementCallback PopupPlacementMethod => GetPopupPlacement;

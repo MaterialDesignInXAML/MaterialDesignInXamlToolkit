@@ -90,6 +90,7 @@
     <Setter Property="Padding" Value="0,8,0,8" />
     <Setter Property="PopupHorizontalOffset" Value="0" />
     <Setter Property="PopupUniformCornerRadius" Value="2" />
+    <Setter Property="PopupElevation" Value="Dp6" />
     <Setter Property="PopupVerticalOffset" Value="0" />
     <Setter Property="ToolTipService.IsEnabled" Value="{Binding IsPopupOpen, RelativeSource={RelativeSource Self}, Converter={StaticResource NotConverter}}"/>
     <Setter Property="Template">
@@ -130,20 +131,20 @@
             <wpf:PopupEx x:Name="PART_Popup"
                          AllowsTransparency="True"
                          CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"
-                         HorizontalOffset="{TemplateBinding wpf:ElevationAssist.Elevation, Converter={StaticResource ElevationRadiusConverter}}"
-                         VerticalOffset="{TemplateBinding wpf:ElevationAssist.Elevation, Converter={StaticResource ElevationRadiusConverter}}"
+                         HorizontalOffset="{TemplateBinding PopupElevation, Converter={StaticResource ElevationRadiusConverter}}"
+                         VerticalOffset="{TemplateBinding PopupElevation, Converter={StaticResource ElevationRadiusConverter}}"
                          IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
                          Placement="Custom"
                          PlacementTarget="{Binding ElementName=PART_Toggle}"
                          PopupAnimation="Fade">
-              <wpf:Card Margin="{TemplateBinding wpf:ElevationAssist.Elevation, Converter={StaticResource ElevationMarginConverter}}"
+              <wpf:Card Margin="{TemplateBinding PopupElevation, Converter={StaticResource ElevationMarginConverter}}"
                         Padding="{TemplateBinding Padding}"
                         Content="{TemplateBinding PopupContent}"
                         ContentTemplate="{TemplateBinding PopupContentTemplate}"
                         Foreground="{DynamicResource MaterialDesignBody}"
                         RenderOptions.ClearTypeHint="Enabled"
                         UniformCornerRadius="{TemplateBinding PopupUniformCornerRadius}"
-                        wpf:ElevationAssist.Elevation="{TemplateBinding wpf:ElevationAssist.Elevation}">
+                        wpf:ElevationAssist.Elevation="{TemplateBinding PopupElevation}">
                 <wpf:Card.Resources>
                   <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignPopupBoxButton}" />
                 </wpf:Card.Resources>
@@ -163,7 +164,6 @@
     </Setter>
     <Setter Property="TextElement.FontWeight" Value="Normal" />
     <Setter Property="ToggleContent" Value="{StaticResource MaterialDesignPopupBoxToggleContent}" />
-    <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp6" />
     <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
   </Style>
 
@@ -411,8 +411,6 @@
                 -->
                 <Border Background="White" Opacity="0.002" />
                 <ContentControl x:Name="PART_PopupContentControl"
-                                Margin="5"
-                                Padding="8"
                                 Content="{TemplateBinding PopupContent}"
                                 ContentTemplate="{TemplateBinding PopupContentTemplate}"
                                 Opacity="0"

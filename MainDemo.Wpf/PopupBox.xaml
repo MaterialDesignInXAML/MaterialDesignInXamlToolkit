@@ -38,6 +38,28 @@
         </StackPanel>
       </DataTemplate>
 
+      <DataTemplate x:Key="ContentTemplateButtonStackWithBackground">
+        <Grid Background="Fuchsia">
+          <StackPanel Margin="10">
+            <Button Content="1"
+                    Opacity="0.5"
+                    ToolTip="One with custom opacity" />
+            <Button Content="2" ToolTip="Two" />
+            <Button Content="3" ToolTip="Three" />
+          </StackPanel>
+        </Grid>
+      </DataTemplate>
+
+      <x:Array x:Key="{x:Static local:PopupBox.DefaultStyleContentKey}" Type="ComboBoxItem">
+        <ComboBoxItem Tag="{StaticResource ContentTemplateGrid}" materialDesign:HintAssist.HelperText="Selected content works best when used with the MaterialDesignPopupBox style">Grid</ComboBoxItem>
+        <ComboBoxItem Tag="{StaticResource ContentTemplateGridWithBackground}">Colored grid</ComboBoxItem>
+      </x:Array>
+
+      <x:Array x:Key="{x:Static local:PopupBox.MultiFloatingActionStyleContentKey}" Type="ComboBoxItem">
+        <ComboBoxItem Tag="{StaticResource ContentTemplateButtonStack}" materialDesign:HintAssist.HelperText="Margin in the selected content (stack of buttons) needs to be compensated for in certain alignments (left/right)">Stack of buttons</ComboBoxItem>
+        <ComboBoxItem Tag="{StaticResource ContentTemplateButtonStackWithBackground}">Stack of buttons in colored grid</ComboBoxItem>
+      </x:Array>
+
       <local:ComboBoxItemToDataTemplateConverter x:Key="ComboBoxItemToDataTemplateConverter" />
       <local:ComboBoxItemToStyleConverter x:Key="ComboBoxItemToStyleConverter" />
       <local:ComboBoxItemToHelperTextConverter x:Key="ComboBoxItemToHelperTextConverter" />
@@ -56,13 +78,13 @@
         <RowDefinition Height="Auto" />
         <RowDefinition Height="*" />
       </Grid.RowDefinitions>
-
+  
       <TextBlock Grid.Row="0" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
                  Text="{Binding ElementName=ContentComboBox, Path=SelectedItem, Converter={StaticResource ComboBoxItemToHelperTextConverter}}" />
 
       <materialDesign:PopupBox Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" SnapsToDevicePixels="True" Padding="0"
                                Style="{Binding ElementName=StyleComboBox, Path=SelectedItem, Converter={StaticResource ComboBoxItemToStyleConverter}}"
-                               materialDesign:ElevationAssist.Elevation="{Binding ElementName=ElevationComboBox, Path=SelectedItem}"
+                               PopupElevation="{Binding ElementName=ElevationComboBox, Path=SelectedItem}"
                                PopupUniformCornerRadius="{Binding ElementName=UniformCornerRadiusComboBox, Path=SelectedItem}"
                                PopupHorizontalOffset="{Binding ElementName=HorizontalOffsetComboBox, Path=SelectedItem}"
                                PopupVerticalOffset="{Binding ElementName=VerticalOffsetComboBox, Path=SelectedItem}"
@@ -75,7 +97,7 @@
       <GroupBox Header="Properties" Padding="10">
         <StackPanel Orientation="Vertical">
           <TextBlock Text="Style:" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" />
-          <ComboBox x:Name="StyleComboBox" SelectedIndex="0">
+          <ComboBox x:Name="StyleComboBox" SelectionChanged="StyleComboBox_OnSelectionChanged">
             <ComboBoxItem Tag="{StaticResource MaterialDesignPopupBox}">MaterialDesignPopupBox</ComboBoxItem>
             <ComboBoxItem Tag="{StaticResource MaterialDesignMultiFloatingActionPopupBox}">MaterialDesignMultiFloatingActionPopupBox</ComboBoxItem>
           </ComboBox>
@@ -178,12 +200,7 @@
       <GroupBox Header="Popup" Margin="{StaticResource Spacer}" Padding="10">
         <StackPanel Orientation="Vertical">
           <TextBlock Text="Popup Content:" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" />
-          <ComboBox x:Name="ContentComboBox" SelectedIndex="0">
-            <ComboBoxItem Tag="{StaticResource ContentTemplateGrid}" materialDesign:HintAssist.HelperText="Selected content works best when used with the MaterialDesignPopupBox style">Grid</ComboBoxItem>
-            <ComboBoxItem Tag="{StaticResource ContentTemplateGridWithBackground}">Colored grid</ComboBoxItem>
-            <ComboBoxItem Tag="{StaticResource ContentTemplateButtonStack}" materialDesign:HintAssist.HelperText="Margin in the selected content (stack of buttons) needs to be compensated for in certain alignments (left/right)">Stack of buttons</ComboBoxItem>
-          </ComboBox>
-
+          <ComboBox x:Name="ContentComboBox" />
         </StackPanel>
       </GroupBox>
     </StackPanel>
