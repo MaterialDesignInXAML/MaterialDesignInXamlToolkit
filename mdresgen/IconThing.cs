@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+using System.Globalization;
+using System.Net.Http;
 using Humanizer;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -148,7 +149,8 @@ static class IconThing
             var emptyAttributes = new SyntaxList<AttributeListSyntax>();
             SyntaxToken iconIdentifierToken = SyntaxFactory.Identifier(leadingTriviaList, icon.Name, SyntaxTriviaList.Empty);
 
-            yield return SyntaxFactory.EnumMemberDeclaration(iconIdentifierToken);
+            EqualsValueClauseSyntax equalsValueClauseSyntax = SyntaxFactory.EqualsValueClause(SyntaxFactory.ParseToken("="), SyntaxFactory.ParseExpression(icon.Ordinal.ToString(CultureInfo.InvariantCulture)));
+            yield return SyntaxFactory.EnumMemberDeclaration(default, iconIdentifierToken, equalsValueClauseSyntax);
             foreach (string alias in icon.Aliases.OrderBy(x => x))
             {
                 yield return SyntaxFactory.EnumMemberDeclaration(emptyAttributes,
