@@ -11,6 +11,7 @@
   <converters:FloatingHintTransformConverter x:Key="FloatingHintClippingGridTransformConverter" ApplyScaleTransform="False" />
   <converters:FloatingHintTransformConverter x:Key="FloatingHintTransformConverter" ApplyTranslateTransform="False" />
   <converters:FloatingHintTextBlockMarginConverter x:Key="FloatingHintTextBlockMarginConverter" />
+  <wpf:VerticalAlignmentConverter x:Key="VerticalAlignmentConverter" />
   <system:Double x:Key="NoContentFloatingScale">1.0</system:Double>
   <CubicEase x:Key="AnimationEasingFunction" EasingMode="EaseInOut" />
 
@@ -140,7 +141,7 @@
                   </VisualStateGroup>
                 </VisualStateManager.VisualStateGroups>
                 <wpf:ScaleHost x:Name="ScaleHost" />
-                <Grid ClipToBounds="True">
+                <Grid ClipToBounds="True" VerticalAlignment="{TemplateBinding VerticalContentAlignment, Converter={StaticResource VerticalAlignmentConverter}}">
                   <Grid.RenderTransform>
                     <MultiBinding Converter="{StaticResource FloatingHintClippingGridTransformConverter}">
                       <Binding ElementName="ScaleHost" Path="Scale" />
@@ -149,7 +150,7 @@
                       <Binding Path="FloatingOffset" RelativeSource="{RelativeSource TemplatedParent}" />
                     </MultiBinding>
                   </Grid.RenderTransform>
-                  <Canvas HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="{Binding ElementName=FloatingHintTextBlock, Path= ActualWidth}" Height="{Binding ElementName=FloatingHintTextBlock, Path=ActualHeight}">
+                  <Canvas HorizontalAlignment="Left" Width="{Binding ElementName=FloatingHintTextBlock, Path= ActualWidth}" Height="{Binding ElementName=FloatingHintTextBlock, Path=ActualHeight}">
                     <ContentControl x:Name="FloatingHintTextBlock"
                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
