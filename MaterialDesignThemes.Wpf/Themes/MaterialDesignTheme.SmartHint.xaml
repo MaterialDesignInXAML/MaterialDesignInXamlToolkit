@@ -141,7 +141,7 @@
                   </VisualStateGroup>
                 </VisualStateManager.VisualStateGroups>
                 <wpf:ScaleHost x:Name="ScaleHost" />
-                <Grid ClipToBounds="True" VerticalAlignment="{TemplateBinding VerticalContentAlignment, Converter={StaticResource VerticalAlignmentConverter}}">
+                <Grid x:Name="HintClippingGrid" ClipToBounds="True" VerticalAlignment="{TemplateBinding VerticalContentAlignment, Converter={StaticResource VerticalAlignmentConverter}}">
                   <Grid.RenderTransform>
                     <MultiBinding Converter="{StaticResource FloatingHintClippingGridTransformConverter}">
                       <Binding ElementName="ScaleHost" Path="Scale" />

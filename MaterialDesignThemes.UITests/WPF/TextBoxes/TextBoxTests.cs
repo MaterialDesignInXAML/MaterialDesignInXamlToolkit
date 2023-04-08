@@ -562,6 +562,34 @@ public class TextBoxTests : TestBase
 
         recorder.Success();
     }
+
+    [Theory]
+    [InlineData(VerticalAlignment.Stretch, VerticalAlignment.Top)]
+    [InlineData(VerticalAlignment.Top, VerticalAlignment.Top)]
+    [InlineData(VerticalAlignment.Bottom, VerticalAlignment.Bottom)]
+    [InlineData(VerticalAlignment.Center, VerticalAlignment.Center)]
+    [Description("Issue 3161")]
+    public async Task TextBox_MultiLineAndFixedHeight_RespectsVerticalContentAlignment(VerticalAlignment alignment, VerticalAlignment expectedFloatingHintAlignment)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        var stackPanel = await LoadXaml<StackPanel>($$"""
+            <StackPanel>
+              <TextBox Style="{StaticResource MaterialDesignFilledTextBox}"
+                materialDesign:HintAssist.Hint="Hint text"
+                VerticalContentAlignment="{{alignment}}"
+                AcceptsReturn="True"
+                Height="200" />
+            </StackPanel>
+            """);
+
+        IVisualElement<TextBox> textBox = await stackPanel.GetElement<TextBox>("/TextBox");
+        IVisualElement<Grid> hintClippingGrid = await textBox.GetElement<Grid>("HintClippingGrid");
+
+        Assert.Equal(expectedFloatingHintAlignment, await hintClippingGrid.GetVerticalAlignment());
+
+        recorder.Success();
+    }
 }
 
 public class NotEmptyValidationRule : ValidationRule
