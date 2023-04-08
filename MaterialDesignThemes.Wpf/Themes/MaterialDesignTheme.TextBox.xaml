@@ -147,7 +147,6 @@
                   <Grid x:Name="grid"
                         Grid.Column="1"
                         MinWidth="1"
-                        VerticalAlignment="Center"
                         HorizontalAlignment="Stretch">
                     <Grid Grid.Column="0">
                       <Grid.ColumnDefinitions>
