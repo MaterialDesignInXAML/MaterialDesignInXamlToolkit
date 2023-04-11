@@ -391,7 +391,7 @@ public class TextBoxTests : TestBase
         foreach (var alignment in Enum.GetValues<VerticalAlignment>())
         {
             await textBox.SetVerticalContentAlignment(alignment);
-            Assert.Equal(alignment, await scrollViewer.GetVerticalAlignment());
+            Assert.Equal(alignment, await scrollViewer.GetVerticalContentAlignment());
         }
 
         recorder.Success();
