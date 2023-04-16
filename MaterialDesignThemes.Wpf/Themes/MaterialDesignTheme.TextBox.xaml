@@ -128,7 +128,7 @@
                       BorderThickness="{TemplateBinding BorderThickness}"
                       CornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}"
                       SnapsToDevicePixels="True">
-                <Grid HorizontalAlignment="Stretch" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                   <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
@@ -147,7 +147,7 @@
                   <Grid x:Name="grid"
                         Grid.Column="1"
                         MinWidth="1"
-                        VerticalAlignment="Center"
+                        VerticalAlignment="Stretch"
                         HorizontalAlignment="Stretch">
                     <Grid Grid.Column="0">
                       <Grid.ColumnDefinitions>
@@ -172,7 +172,8 @@
 
                       <ScrollViewer x:Name="PART_ContentHost"
                                     Grid.Column="1"
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    VerticalAlignment="Stretch"
+                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                     HorizontalAlignment="Stretch"
                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                     Panel.ZIndex="1"
@@ -200,6 +201,8 @@
                                    HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                    HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
                                    UseFloating="{TemplateBinding wpf:HintAssist.IsFloating}"
+                                   VerticalAlignment="Stretch"
+                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}">
                       <wpf:SmartHint.Hint>
                         <Border x:Name="HintBackgroundBorder"

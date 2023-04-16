@@ -391,7 +391,7 @@ public class TextBoxTests : TestBase
         foreach (var alignment in Enum.GetValues<VerticalAlignment>())
         {
             await textBox.SetVerticalContentAlignment(alignment);
-            Assert.Equal(alignment, await scrollViewer.GetVerticalAlignment());
+            Assert.Equal(alignment, await scrollViewer.GetVerticalContentAlignment());
         }
 
         recorder.Success();
@@ -559,6 +559,34 @@ public class TextBoxTests : TestBase
 
         Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left), 0, tolerance);
         Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left), 0, tolerance);
+
+        recorder.Success();
+    }
+
+    [Theory]
+    [InlineData(VerticalAlignment.Stretch, VerticalAlignment.Top)]
+    [InlineData(VerticalAlignment.Top, VerticalAlignment.Top)]
+    [InlineData(VerticalAlignment.Bottom, VerticalAlignment.Bottom)]
+    [InlineData(VerticalAlignment.Center, VerticalAlignment.Center)]
+    [Description("Issue 3161")]
+    public async Task TextBox_MultiLineAndFixedHeight_RespectsVerticalContentAlignment(VerticalAlignment alignment, VerticalAlignment expectedFloatingHintAlignment)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        var stackPanel = await LoadXaml<StackPanel>($$"""
+            <StackPanel>
+              <TextBox Style="{StaticResource MaterialDesignFilledTextBox}"
+                materialDesign:HintAssist.Hint="Hint text"
+                VerticalContentAlignment="{{alignment}}"
+                AcceptsReturn="True"
+                Height="200" />
+            </StackPanel>
+            """);
+
+        IVisualElement<TextBox> textBox = await stackPanel.GetElement<TextBox>("/TextBox");
+        IVisualElement<Grid> hintClippingGrid = await textBox.GetElement<Grid>("HintClippingGrid");
+
+        Assert.Equal(expectedFloatingHintAlignment, await hintClippingGrid.GetVerticalAlignment());
 
         recorder.Success();
     }
