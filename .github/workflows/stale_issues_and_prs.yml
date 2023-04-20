@@ -21,5 +21,5 @@ jobs:
           days-before-pr-stale: 60
           days-before-close: 14
           ascending: true                                   # Start with the oldest issues/PRs first
-          debug-only: true                                  # Currently only doing "dry runs" until we're satisfied with the configuration
-          operations-per-run: 1000                          # GitHub API calls are rate limited. When debug-only is "false", this value should be approx. 30 (default) or less
+          debug-only: false                                 # Currently only doing "dry runs" until we're satisfied with the configuration
+          operations-per-run: 30                            # GitHub API calls are rate limited. When debug-only is "false", this value should be approx. 30 (default) or less
