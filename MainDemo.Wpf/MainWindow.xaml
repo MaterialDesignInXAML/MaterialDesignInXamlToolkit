@@ -7,7 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         Title="Material Design in XAML"
-        Width="1100"
+        Width="1150"
         MaxHeight="{Binding Source={x:Static SystemParameters.MaximizedPrimaryScreenHeight}}"
         d:DataContext="{d:DesignInstance domain:MainWindowViewModel}"
         AutomationProperties.Name="{Binding Title, RelativeSource={RelativeSource Self}}"

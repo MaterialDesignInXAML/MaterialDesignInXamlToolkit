@@ -148,6 +148,7 @@
                       <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}" />
                       <Binding Source="{StaticResource NoContentFloatingScale}" />
                       <Binding Path="FloatingOffset" RelativeSource="{RelativeSource TemplatedParent}" />
+                      <Binding Path="InitialVerticalOffset" RelativeSource="{RelativeSource TemplatedParent}" />
                     </MultiBinding>
                   </Grid.RenderTransform>
                   <Canvas HorizontalAlignment="Left" Width="{Binding ElementName=FloatingHintTextBlock, Path= ActualWidth}" Height="{Binding ElementName=FloatingHintTextBlock, Path=ActualHeight}">
@@ -182,6 +183,7 @@
                           <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}" />
                           <Binding Source="{StaticResource NoContentFloatingScale}" />
                           <Binding Path="FloatingOffset" RelativeSource="{RelativeSource TemplatedParent}" />
+                          <Binding Path="InitialVerticalOffset" RelativeSource="{RelativeSource TemplatedParent}" />
                         </MultiBinding>
                       </ContentControl.RenderTransform>
                     </ContentControl>

@@ -16,10 +16,8 @@
       <materialDesign:MathConverter x:Key="SubtractConverter" Operation="Subtract" />
       <local:CustomPaddingConverter x:Key="CustomPaddingConverter" />
       <Style TargetType="{x:Type smtx:XamlDisplay}" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
-        <Setter Property="Margin" Value="0,10,16,16" />
+        <Setter Property="Margin" Value="10,10,10,16" />
         <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="Width" Value="186" />
         <Setter Property="materialDesign:HintAssist.FloatingHintHorizontalAlignment" Value="{Binding SelectedAlignment}" />
         <Setter Property="materialDesign:HintAssist.FloatingScale" Value="{Binding SelectedFloatingScale}" />
         <Setter Property="materialDesign:HintAssist.FloatingOffset" Value="{Binding SelectedFloatingOffset}" />
@@ -27,21 +25,22 @@
         <Setter Property="materialDesign:HintAssist.HelperText" Value="{Binding HelperText}" />
       </Style>
       <Style x:Key="StyleNameIndicator" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}">
-        <Setter Property="Margin" Value="0,10,16,0" />
+        <Setter Property="Margin" Value="0,10,0,0" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="TextWrapping" Value="Wrap" />
       </Style>
       <materialDesign:PackIconKind x:Key="LeadingIcon">Github</materialDesign:PackIconKind>
+      <materialDesign:PackIconKind x:Key="TrailingIcon">Fungus</materialDesign:PackIconKind>
     </Grid.Resources>
 
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
 
-    <GroupBox Grid.Row="0" Margin="8,0,16,16" Header="Hint Settings" Style="{StaticResource MaterialDesignCardGroupBox}">
+    <GroupBox Grid.Row="0" Margin="8,0,16,4" Header="Hint Settings" Style="{StaticResource MaterialDesignCardGroupBox}">
       <StackPanel Orientation="Vertical">
         <StackPanel Orientation="Horizontal" Margin="10">
           <CheckBox Content="IsFloating" IsChecked="{Binding FloatHint}" />
@@ -52,41 +51,52 @@
           <TextBlock Text="FloatingOffset:" VerticalAlignment="Center" Margin="20,0,0,0" />
           <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding FloatingOffsetOptions}" SelectedItem="{Binding SelectedFloatingOffset, Mode=TwoWay}" />
           <CheckBox Content="HasClearButton" IsChecked="{Binding ShowClearButton}" Margin="20,0,0,0" />
-          <CheckBox Content="HasLeadingIcon" IsChecked="{Binding ShowLeadingIcon}" Margin="20,0,0,0" />
+          <CheckBox Content="HasErrors" IsChecked="False" Checked="HasErrors_OnToggled" Unchecked="HasErrors_OnToggled" Margin="20,0,0,0" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="10">
-          <TextBox Text="{Binding HintText, UpdateSourceTrigger=PropertyChanged}"  Width="200" />
-          <TextBox Text="{Binding HelperText, UpdateSourceTrigger=PropertyChanged}" Margin="20,0,0,0" Width="200" />
-          <CheckBox x:Name="CustomPaddingCheckBox" Content="Custom Padding" IsChecked="{Binding ApplyCustomPadding}" Margin="20,0,0,0" />
-          <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding CustomPaddingOptions}" SelectedItem="{Binding SelectedCustomPadding, Mode=TwoWay}" IsEnabled="{Binding ElementName=CustomPaddingCheckBox, Path=IsChecked}" />
-          <CheckBox Content="HasErrors" IsChecked="False" Checked="HasErrors_OnToggled" Unchecked="HasErrors_OnToggled" Margin="20,0,0,0" />
+          <TextBox Text="{Binding HintText, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Hint text" materialDesign:TextFieldAssist.HasClearButton="True" Width="200" />
+          <TextBox Text="{Binding HelperText, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Helper text" materialDesign:TextFieldAssist.HasClearButton="True" Margin="20,0,0,0" Width="200" />
+          <CheckBox x:Name="CheckBoxLeadingIcon" Content="HasLeadingIcon" IsChecked="{Binding ShowLeadingIcon}" Margin="20,0,0,0" />
+          <TextBlock Text="Size:" VerticalAlignment="Center" Margin="10,2,0,0" />
+          <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding IconSizeOptions}" SelectedItem="{Binding SelectedLeadingIconSize, Mode=TwoWay}" IsEnabled="{Binding ElementName=CheckBoxLeadingIcon, Path=IsChecked}" />
+          <CheckBox x:Name="CheckBoxTrailingIcon" Content="HasLeadingIcon" IsChecked="{Binding ShowTrailingIcon}" Margin="20,0,0,0" />
+          <TextBlock Text="Size:" VerticalAlignment="Center" Margin="10,2,0,0" />
+          <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding IconSizeOptions}" SelectedItem="{Binding SelectedTrailingIconSize, Mode=TwoWay}" IsEnabled="{Binding ElementName=CheckBoxTrailingIcon, Path=IsChecked}" />
         </StackPanel>
       </StackPanel>
     </GroupBox>
 
-    <Grid Grid.Row="1" Margin="0,16,0,0">
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" Width="200" />
-        <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
-        <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
-        <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
-        <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
-      </Grid.ColumnDefinitions>
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-      </Grid.RowDefinitions>
+    <GroupBox Grid.Row="1" Margin="8,0,16,16" Header="Control Settings" Style="{StaticResource MaterialDesignCardGroupBox}">
+      <StackPanel Orientation="Horizontal" Margin="10">
+        <CheckBox x:Name="CustomPaddingCheckBox" Content="Custom Padding" IsChecked="{Binding ApplyCustomPadding}" />
+        <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding CustomPaddingOptions}" SelectedItem="{Binding SelectedCustomPadding, Mode=TwoWay}" IsEnabled="{Binding ElementName=CustomPaddingCheckBox, Path=IsChecked}" />
+        <TextBlock Text="Custom Height:" VerticalAlignment="Center" Margin="20,0,0,0" />
+        <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding CustomHeightOptions}" SelectedItem="{Binding SelectedCustomHeight, Mode=TwoWay}" />
+        <TextBlock Text="VerticalContentAlignment:" VerticalAlignment="Center" Margin="20,0,0,0" />
+        <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding VerticalAlignmentOptions}" SelectedItem="{Binding SelectedVerticalAlignment, Mode=TwoWay}" />
+        <TextBox Text="{Binding PrefixText, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Prefix text" materialDesign:TextFieldAssist.HasClearButton="True" Margin="20,0,0,0" Width="200" MaxLength="3" />
+        <TextBox Text="{Binding SuffixText, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Suffix text" materialDesign:TextFieldAssist.HasClearButton="True" Margin="20,0,0,0" Width="200" MaxLength="3" />
+      </StackPanel>
+    </GroupBox>
 
-      <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="--- Alignments ---" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" Margin="0,0,0,10" />
-      <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="Left" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" />
-      <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="Center" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" />
-      <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="Right" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" />
-      <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="Stretch" Grid.Column="4" Grid.Row="1" HorizontalAlignment="Center" />
+    <Grid Grid.Row="2" Margin="8,16,36,0">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="Left" Grid.Column="1" HorizontalAlignment="Stretch" TextAlignment="Center" Margin="10,0,20,0" />
+      <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="Center" Grid.Column="2" HorizontalAlignment="Stretch" TextAlignment="Center" Margin="10,0,20,0" />
+      <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="Right" Grid.Column="3" HorizontalAlignment="Stretch" TextAlignment="Center" Margin="10,0,20,0" />
+      <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="Stretch" Grid.Column="4" HorizontalAlignment="Stretch" TextAlignment="Center" Margin="10,0,20,0" />
     </Grid>
 
     <!-- Invisible controls only used to be able to fallback to default style values -->
-    <StackPanel Grid.Row="2" Visibility="Collapsed">
+    <StackPanel Grid.Row="3" Visibility="Collapsed">
       <TextBox x:Name="MaterialDesignFloatingHintTextBoxDefaults" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
       <TextBox x:Name="MaterialDesignFilledTextBoxDefaults" Style="{StaticResource MaterialDesignFilledTextBox}" />
       <TextBox x:Name="MaterialDesignOutlinedTextBoxDefaults" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
@@ -108,20 +118,28 @@
       <materialDesign:TimePicker x:Name="MaterialDesignOutlinedTimePickerDefaults" Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
     </StackPanel>
 
-    <ScrollViewer Grid.Row="2" VerticalAlignment="Top" materialDesign:ScrollViewerAssist.BubbleVerticalScroll="False" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Margin="0,20,0,0"
-                  Height="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ScrollViewer}}, Path=ViewportHeight, Converter={StaticResource SubtractConverter}, ConverterParameter=290}">
-      <StackPanel x:Name="ControlsPanel" Margin="8,0,16,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+    <ScrollViewer Grid.Row="3" VerticalAlignment="Top" materialDesign:ScrollViewerAssist.BubbleVerticalScroll="False" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Margin="0,20,0,0"
+                  Height="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ScrollViewer}}, Path=ViewportHeight, Converter={StaticResource SubtractConverter}, ConverterParameter=350}">
+      <StackPanel x:Name="ControlsPanel" Margin="8,0,16,0" VerticalAlignment="Top" HorizontalAlignment="Stretch">
 
         <!-- TextBox variants -->
         <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="TextBox styles" />
-        <Grid>
+        <Grid HorizontalAlignment="Stretch">
           <Grid.Resources>
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
               <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -135,10 +153,10 @@
           </Grid.Resources>
           <Grid.ColumnDefinitions>
             <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFloatingHintTextBox</TextBlock>
@@ -161,8 +179,16 @@
               <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -176,10 +202,10 @@
           </Grid.Resources>
           <Grid.ColumnDefinitions>
             <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFilledTextBox</TextBlock>
@@ -202,8 +228,16 @@
               <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -217,10 +251,10 @@
           </Grid.Resources>
           <Grid.ColumnDefinitions>
             <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignOutlinedTextBox</TextBlock>
@@ -245,8 +279,16 @@
             <Style TargetType="{x:Type RichTextBox}" BasedOn="{StaticResource MaterialDesignRichTextBox}">
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="local:SmartHint.RichTextBoxText" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="HorizontalContentAlignment" Value="Stretch" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -256,19 +298,24 @@
                   </MultiBinding>
                 </Setter.Value>
               </Setter>
+
+              <!-- TODO: This is needed in order to avoid the RichTextBox only showing a single character per line?!?! There must be a bug somewhere! Min/MinWidth both "work" -->
+              <!--       Also note that it does not work correctly, it now simply allows characters up to the width defined below before wrapping to the next line. -->
+              <Setter Property="MinWidth" Value="100" />
+
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
             <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignRichTextBox</TextBlock>
           <smtx:XamlDisplay Grid.Column="1" UniqueKey="richtextbox_left">
-            <RichTextBox HorizontalContentAlignment="Left" />
+            <RichTextBox />
           </smtx:XamlDisplay>
           <smtx:XamlDisplay Grid.Column="2" UniqueKey="richtextbox_center">
             <RichTextBox HorizontalContentAlignment="Center" />
@@ -289,12 +336,19 @@
               <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
-                    <Binding ElementName="MaterialDesignFloatingHintPasswordDefaults" Path="Padding" />
+                    <Binding ElementName="MaterialDesignFloatingHintPasswordBoxDefaults" Path="Padding" />
                     <Binding Path="ApplyCustomPadding" />
                     <Binding Path="SelectedCustomPadding" />
                   </MultiBinding>
@@ -304,10 +358,10 @@
           </Grid.Resources>
           <Grid.ColumnDefinitions>
             <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFloatingHintPasswordBox</TextBlock>
@@ -330,8 +384,15 @@
               <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -345,10 +406,10 @@
           </Grid.Resources>
           <Grid.ColumnDefinitions>
             <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFilledPasswordBox</TextBlock>
@@ -371,8 +432,15 @@
               <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -386,10 +454,10 @@
           </Grid.Resources>
           <Grid.ColumnDefinitions>
             <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignOutlinedPasswordBox</TextBlock>
@@ -419,9 +487,16 @@
               <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="materialDesign:PasswordBoxAssist.IsPasswordRevealed" Value="{Binding ElementName=PasswordBoxesRevealedCheckBox, Path=IsChecked}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -435,10 +510,10 @@
           </Grid.Resources>
           <Grid.ColumnDefinitions>
             <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFloatingHintRevealPasswordBox</TextBlock>
@@ -461,9 +536,16 @@
               <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="materialDesign:PasswordBoxAssist.IsPasswordRevealed" Value="{Binding ElementName=PasswordBoxesRevealedCheckBox, Path=IsChecked}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -477,10 +559,10 @@
           </Grid.Resources>
           <Grid.ColumnDefinitions>
             <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFilledRevealPasswordBox</TextBlock>
@@ -503,9 +585,16 @@
               <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="materialDesign:PasswordBoxAssist.IsPasswordRevealed" Value="{Binding ElementName=PasswordBoxesRevealedCheckBox, Path=IsChecked}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -519,10 +608,10 @@
           </Grid.Resources>
           <Grid.ColumnDefinitions>
             <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignOutlinedRevealPasswordBox</TextBlock>
@@ -551,10 +640,17 @@
               <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="ItemsSource" Value="{Binding ComboBoxOptions}" />
               <Setter Property="IsEditable" Value="{Binding ElementName=ComboBoxesEditableCheckBox, Path=IsChecked}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -568,10 +664,10 @@
           </Grid.Resources>
           <Grid.ColumnDefinitions>
             <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFloatingHintComboBox</TextBlock>
@@ -594,10 +690,17 @@
               <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="ItemsSource" Value="{Binding ComboBoxOptions}" />
               <Setter Property="IsEditable" Value="{Binding ElementName=ComboBoxesEditableCheckBox, Path=IsChecked}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -611,10 +714,10 @@
           </Grid.Resources>
           <Grid.ColumnDefinitions>
             <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFilledComboBox</TextBlock>
@@ -637,10 +740,17 @@
               <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="ItemsSource" Value="{Binding ComboBoxOptions}" />
               <Setter Property="IsEditable" Value="{Binding ElementName=ComboBoxesEditableCheckBox, Path=IsChecked}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -654,10 +764,10 @@
           </Grid.Resources>
           <Grid.ColumnDefinitions>
             <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignOutlinedComboBox</TextBlock>
@@ -682,8 +792,15 @@
             <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignFloatingHintDatePicker}">
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -697,10 +814,10 @@
           </Grid.Resources>
           <Grid.ColumnDefinitions>
             <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFloatingHintDatePicker</TextBlock>
@@ -722,8 +839,15 @@
             <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignFilledDatePicker}">
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -737,10 +861,10 @@
           </Grid.Resources>
           <Grid.ColumnDefinitions>
             <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFilledDatePicker</TextBlock>
@@ -762,8 +886,15 @@
             <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignOutlinedDatePicker}">
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -777,10 +908,10 @@
           </Grid.Resources>
           <Grid.ColumnDefinitions>
             <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignOutlinedDatePicker</TextBlock>
@@ -805,8 +936,15 @@
             <Style TargetType="{x:Type materialDesign:TimePicker}" BasedOn="{StaticResource MaterialDesignFloatingHintTimePicker}">
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -820,10 +958,10 @@
           </Grid.Resources>
           <Grid.ColumnDefinitions>
             <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFloatingHintTimePicker</TextBlock>
@@ -845,8 +983,15 @@
             <Style TargetType="{x:Type materialDesign:TimePicker}" BasedOn="{StaticResource MaterialDesignFilledTimePicker}">
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -860,10 +1005,10 @@
           </Grid.Resources>
           <Grid.ColumnDefinitions>
             <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFilledTimePicker</TextBlock>
@@ -885,8 +1030,15 @@
             <Style TargetType="{x:Type materialDesign:TimePicker}" BasedOn="{StaticResource MaterialDesignOutlinedTimePicker}">
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -900,10 +1052,10 @@
           </Grid.Resources>
           <Grid.ColumnDefinitions>
             <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupLeftAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupCenterAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupRightAlignment" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="SizeGroupStretchAlignment" Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignOutlinedTimePicker</TextBlock>
