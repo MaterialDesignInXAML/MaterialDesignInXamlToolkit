@@ -288,6 +288,7 @@
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="local:SmartHint.RichTextBoxText" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="HorizontalContentAlignment" Value="Stretch" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -345,6 +346,7 @@
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -393,6 +395,7 @@
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -441,6 +444,7 @@
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -497,6 +501,7 @@
               <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="materialDesign:PasswordBoxAssist.IsPasswordRevealed" Value="{Binding ElementName=PasswordBoxesRevealedCheckBox, Path=IsChecked}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -546,6 +551,7 @@
               <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="materialDesign:PasswordBoxAssist.IsPasswordRevealed" Value="{Binding ElementName=PasswordBoxesRevealedCheckBox, Path=IsChecked}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -595,6 +601,7 @@
               <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="materialDesign:PasswordBoxAssist.IsPasswordRevealed" Value="{Binding ElementName=PasswordBoxesRevealedCheckBox, Path=IsChecked}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -651,6 +658,7 @@
               <Setter Property="ItemsSource" Value="{Binding ComboBoxOptions}" />
               <Setter Property="IsEditable" Value="{Binding ElementName=ComboBoxesEditableCheckBox, Path=IsChecked}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -701,6 +709,7 @@
               <Setter Property="ItemsSource" Value="{Binding ComboBoxOptions}" />
               <Setter Property="IsEditable" Value="{Binding ElementName=ComboBoxesEditableCheckBox, Path=IsChecked}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -751,6 +760,7 @@
               <Setter Property="ItemsSource" Value="{Binding ComboBoxOptions}" />
               <Setter Property="IsEditable" Value="{Binding ElementName=ComboBoxesEditableCheckBox, Path=IsChecked}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -801,6 +811,7 @@
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -848,6 +859,7 @@
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -895,6 +907,7 @@
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -945,6 +958,7 @@
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -992,6 +1006,7 @@
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
@@ -1039,6 +1054,7 @@
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
