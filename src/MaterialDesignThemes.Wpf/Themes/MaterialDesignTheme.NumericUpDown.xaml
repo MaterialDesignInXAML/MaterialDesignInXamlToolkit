@@ -19,20 +19,34 @@
   </ResourceDictionary.MergedDictionaries>
   <!-- set up default styles for our custom Material Design in XAML Toolkit controls -->
   <Style TargetType="{x:Type wpf:NumericUpDown}">
-    <Setter Property="MinWidth" Value="50"/>
-    <Setter Property="MinHeight" Value="30"/>
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
-    <Setter Property="FontSize" Value="12"/>
+    <Setter Property="MinWidth" Value="100"/>
+    <Setter Property="Padding" Value="4"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type wpf:NumericUpDown}">
-          <Border Grid.Column="0" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10" ClipToBounds="True">
+          <Border Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  Padding="{TemplateBinding Padding}"
+                  CornerRadius="10"
+                  ClipToBounds="True">
             <DockPanel>
 
-              <RepeatButton x:Name="PART_IncreaseButton" Content="+" DockPanel.Dock="Left" Command="{TemplateBinding IncreaseCommand}"/>
-              <RepeatButton x:Name="PART_DecreaseButton" Content="-" DockPanel.Dock="Right" Command="{TemplateBinding DecreaseCommand}"/>
-              <TextBox x:Name="PART_TextBoxField" Margin="4 0" VerticalAlignment="Center" HorizontalContentAlignment="Center" Text="{TemplateBinding Value}" DockPanel.Dock="Top" MinWidth="50"/>
+              <RepeatButton x:Name="PART_IncreaseButton"
+                            Content="{local:PackIcon Kind=Plus}"
+                            DockPanel.Dock="Right"
+                            Padding="8,4"
+                            Command="{TemplateBinding IncreaseCommand}"/>
+              <RepeatButton x:Name="PART_DecreaseButton"
+                            Content="{local:PackIcon Kind=Minus}"
+                            DockPanel.Dock="Left"
+                            Padding="8,4"
+                            Command="{TemplateBinding DecreaseCommand}"/>
+              
+              <TextBox x:Name="PART_TextBoxField"
+                       Margin="4 0"
+                       VerticalAlignment="Center"
+                       HorizontalContentAlignment="Center" />
 
             </DockPanel>
           </Border>
