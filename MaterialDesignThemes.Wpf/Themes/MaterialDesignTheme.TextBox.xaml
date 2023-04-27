@@ -172,6 +172,7 @@
                       <TextBlock x:Name="PrefixTextBlock"
                                  Grid.Column="0"
                                  Margin="0,0,2,0"
+                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                  FontSize="{TemplateBinding FontSize}"
                                  Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                  Text="{TemplateBinding wpf:TextFieldAssist.PrefixText}">
@@ -200,6 +201,7 @@
 
                       <TextBlock x:Name="SuffixTextBlock"
                                  Grid.Column="2"
+                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                  FontSize="{TemplateBinding FontSize}"
                                  Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                  Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}" />
