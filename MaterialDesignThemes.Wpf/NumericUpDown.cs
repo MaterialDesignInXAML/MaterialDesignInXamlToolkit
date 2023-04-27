@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
+using System.Globalization;
+using System.Runtime.CompilerServices;
 
 namespace MaterialDesignThemes.Wpf;
 
@@ -46,10 +48,38 @@ public class NumericUpDown : Control
     public int Value
     {
         get => (int)GetValue(ValueProperty);
-        set => SetValue(ValueProperty, ValidateInput(value, nameof(Value)));
+        set => SetValue(ValueProperty, value);
     }
     public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register(nameof(Value), typeof(int), typeof(NumericUpDown), new PropertyMetadata(0, OnValueChanged));
+            DependencyProperty.Register(nameof(Value), typeof(int), typeof(NumericUpDown), new FrameworkPropertyMetadata(0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnNumericValueChanged, CoerceNumericValue));
+
+    private static void OnNumericValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is NumericUpDown numericUpDown)
+        {
+            var args = new RoutedPropertyChangedEventArgs<int>((int)e.OldValue, (int)e.NewValue)
+            {
+                RoutedEvent = ValueChangedEvent
+            };
+            numericUpDown.RaiseEvent(args);
+            if (numericUpDown._textBoxField is { } textBox)
+            {
+                textBox.Text = ((int)e.NewValue).ToString(CultureInfo.CurrentUICulture);
+            }
+        }
+    }
+
+    private static object CoerceNumericValue(DependencyObject d, object value)
+    {
+        if (d is NumericUpDown numericUpDown &&
+            value is int numericValue)
+        {
+            numericValue = Math.Min(numericUpDown.Maximum, numericValue);
+            numericValue = Math.Max(numericUpDown.Minimum, numericValue);
+            return numericValue;
+        }
+        return value;
+    }
     #endregion ValueProperty
 
     #region DependencyProperty : IncreaseCommandProperty
@@ -72,7 +102,7 @@ public class NumericUpDown : Control
             DependencyProperty.Register(nameof(DecreaseCommand), typeof(ICommand), typeof(NumericUpDown), new PropertyMetadata(default(ICommand?)));
     #endregion DependencyProperty : DecreaseCommandProperty
 
-    #endregion DependencyProperty : DependencyProperties
+    #endregion DependencyProperties
 
     #region Event : ValueChangedEvent
     [Category("Behavior")]
@@ -85,35 +115,13 @@ public class NumericUpDown : Control
     }
     #endregion Event : ValueChangedEvent
 
-    private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        var control = d as NumericUpDown;
-        var args = new RoutedPropertyChangedEventArgs<int>((int)e.OldValue, (int)e.NewValue)
-        {
-            RoutedEvent = ValueChangedEvent
-        };
-        control?.RaiseEvent(args);
-    }
-
-    private object ValidateInput(object input, string propertyName = "Value")
-    {
-        if (!int.TryParse(input.ToString(), out int value))
-            return Value;
-
-        value = Math.Min(Maximum, value);
-        value = Math.Max(Minimum, value);
-
-        return value;
-    }
-
     public override void OnApplyTemplate()
     {
         if (_increaseButton != null)
-            _increaseButton!.Click -= IncreaseButtonOnClick;
+            _increaseButton.Click -= IncreaseButtonOnClick;
 
         if (_decreaseButton != null)
-            _decreaseButton!.Click -= DecreaseButtonOnClick;
-
+            _decreaseButton.Click -= DecreaseButtonOnClick;
         if (_textBoxField != null)
             _textBoxField!.TextChanged -= OnTextBoxFocusLost;
 
@@ -122,7 +130,7 @@ public class NumericUpDown : Control
         _textBoxField = GetTemplateChild(TextFieldBoxPartName) as TextBox;
 
         if (_increaseButton != null)
-            _increaseButton!.Click += IncreaseButtonOnClick;
+            _increaseButton.Click += IncreaseButtonOnClick;
 
         if (_decreaseButton != null)
             _decreaseButton!.Click += DecreaseButtonOnClick;
@@ -130,64 +138,44 @@ public class NumericUpDown : Control
         if (_textBoxField != null)
         {
             _textBoxField!.LostFocus += OnTextBoxFocusLost;
-            _textBoxField.Text = Value.ToString();
+            _textBoxField.Text = Value.ToString(CultureInfo.CurrentUICulture);
         }
-
-        ValueChanged += NumericUpDown_ValueChanged;
 
         base.OnApplyTemplate();
     }
 
-    private void NumericUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<int> e)
-    {
-        if (sender == null) return;
-        if (sender is not NumericUpDown) return;
-
-        var tBox = (sender! as NumericUpDown)!._textBoxField;
-        if (tBox == null) return;
-
-        tBox.Text = Value.ToString();
-
-    }
-
     private void OnTextBoxFocusLost(object sender, EventArgs e)
     {
-        if (sender == null) return;
+        if (int.TryParse(_textBoxField?.Text, NumberStyles.Integer, CultureInfo.CurrentUICulture, out int numericValue))
+        {
+            SetCurrentValue(ValueProperty, numericValue);
+        }
 
-        TextBox? tbox = sender as TextBox;
-        if (tbox == null) return;
-
-        Value = (int)ValidateInput(tbox.Text);
     }
-
     private void IncreaseButtonOnClick(object sender, RoutedEventArgs e)
     {
         OnIncrease();
-        e.Handled = true;
     }
 
     private void DecreaseButtonOnClick(object sender, RoutedEventArgs e)
     {
         OnDecrease();
-        e.Handled = true;
     }
 
     private void OnIncrease()
     {
-        if (IncreaseCommand?.CanExecute(this) ?? false)
-            IncreaseCommand.Execute(this);
+        SetCurrentValue(ValueProperty, Value + 1);
 
-        Value += 1;
-        if (Value > Maximum) Value = Maximum;
+        if (IncreaseCommand?.CanExecute(null) ?? false)
+            IncreaseCommand.Execute(null);
     }
 
     private void OnDecrease()
     {
+        SetCurrentValue(ValueProperty, Value - 1);
+
         if (DecreaseCommand?.CanExecute(this) ?? false)
             DecreaseCommand.Execute(this);
-
-        Value -= 1;
-        if (Value < Minimum) Value = Minimum;
     }
 
     protected override void OnPreviewKeyDown(KeyEventArgs e)
@@ -207,15 +195,18 @@ public class NumericUpDown : Control
 
     protected override void OnPreviewMouseWheel(MouseWheelEventArgs e)
     {
-        if (e.Delta > 0)
+        if (IsKeyboardFocusWithin)
         {
-            OnIncrease();
-            e.Handled = true;
-        }
-        else if (e.Delta < 0)
-        {
-            OnDecrease();
-            e.Handled = true;
+            if (e.Delta > 0)
+            {
+                OnIncrease();
+                e.Handled = true;
+            }
+            else if (e.Delta < 0)
+            {
+                OnDecrease();
+                e.Handled = true;
+            }
         }
         base.OnPreviewMouseWheel(e);
     }
