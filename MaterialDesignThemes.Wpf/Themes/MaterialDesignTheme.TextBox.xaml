@@ -390,7 +390,9 @@
                     <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingScale)" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingOffset)" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="ActualHeight" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="Padding" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="VerticalContentAlignment" RelativeSource="{RelativeSource TemplatedParent}" />
                   </MultiBinding>
                 </Setter.Value>
               </Setter>
