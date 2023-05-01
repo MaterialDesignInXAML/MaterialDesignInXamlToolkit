@@ -231,7 +231,7 @@
 
                   </Grid>
 
-                  <StackPanel x:Name="TrailingGrid" Orientation="Horizontal" Grid.Column="2" VerticalAlignment="{TemplateBinding VerticalContentAlignment, Converter={StaticResource VerticalAlignmentConverter}}">
+                  <StackPanel x:Name="TrailingPanel" Orientation="Horizontal" Grid.Column="2" VerticalAlignment="{TemplateBinding VerticalContentAlignment, Converter={StaticResource VerticalAlignmentConverter}}">
                     <wpf:PackIcon x:Name="TrailingPackIcon"
                                   Width="{TemplateBinding wpf:TextFieldAssist.TrailingIconSize}"
                                   Height="{TemplateBinding wpf:TextFieldAssist.TrailingIconSize}"
@@ -332,7 +332,7 @@
               </MultiTrigger.Conditions>
               <Setter TargetName="Hint" Property="InitialVerticalOffset" Value="-6" />
               <Setter TargetName="LeadingPackIcon" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource DefaultOrFilledStyleLeadingIconMarginConverterCenter}}" />
-              <Setter TargetName="TrailingGrid" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource DefaultOrFilledStyleTrailingIconMarginConverterCenter}}" />
+              <Setter TargetName="TrailingPanel" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource DefaultOrFilledStyleTrailingIconMarginConverterCenter}}" />
             </MultiTrigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
@@ -340,7 +340,7 @@
                 <Condition SourceName="LeadingPackIcon" Property="VerticalAlignment" Value="Top" />
               </MultiTrigger.Conditions>
               <Setter TargetName="LeadingPackIcon" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource DefaultOrFilledStyleLeadingIconMarginConverterTop}}" />
-              <Setter TargetName="TrailingGrid" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource DefaultOrFilledStyleTrailingIconMarginConverterTop}}" />
+              <Setter TargetName="TrailingPanel" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource DefaultOrFilledStyleTrailingIconMarginConverterTop}}" />
             </MultiTrigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
@@ -348,7 +348,7 @@
                 <Condition SourceName="LeadingPackIcon" Property="VerticalAlignment" Value="Bottom" />
               </MultiTrigger.Conditions>
               <Setter TargetName="LeadingPackIcon" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource DefaultOrFilledStyleLeadingIconMarginConverterBottom}}" />
-              <Setter TargetName="TrailingGrid" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource DefaultOrFilledStyleTrailingIconMarginConverterBottom}}" />
+              <Setter TargetName="TrailingPanel" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource DefaultOrFilledStyleTrailingIconMarginConverterBottom}}" />
             </MultiTrigger>
 
             <!-- Icon margins adhering to VerticalContentAlignment for outlined style -->
@@ -358,7 +358,7 @@
                 <Condition SourceName="LeadingPackIcon" Property="VerticalAlignment" Value="Center" />
               </MultiTrigger.Conditions>
               <Setter TargetName="LeadingPackIcon" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource OutlinedStyleLeadingIconMarginConverterCenter}}" />
-              <Setter TargetName="TrailingGrid" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource OutlinedStyleTrailingIconMarginConverterCenter}}" />
+              <Setter TargetName="TrailingPanel" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource OutlinedStyleTrailingIconMarginConverterCenter}}" />
             </MultiTrigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
@@ -366,7 +366,7 @@
                 <Condition SourceName="LeadingPackIcon" Property="VerticalAlignment" Value="Top" />
               </MultiTrigger.Conditions>
               <Setter TargetName="LeadingPackIcon" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource OutlinedStyleLeadingIconMarginConverterTop}}" />
-              <Setter TargetName="TrailingGrid" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource OutlinedStyleTrailingIconMarginConverterTop}}" />
+              <Setter TargetName="TrailingPanel" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource OutlinedStyleTrailingIconMarginConverterTop}}" />
             </MultiTrigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
@@ -374,7 +374,7 @@
                 <Condition SourceName="LeadingPackIcon" Property="VerticalAlignment" Value="Bottom" />
               </MultiTrigger.Conditions>
               <Setter TargetName="LeadingPackIcon" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource OutlinedStyleLeadingIconMarginConverterBottom}}" />
-              <Setter TargetName="TrailingGrid" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource OutlinedStyleTrailingIconMarginConverterBottom}}" />
+              <Setter TargetName="TrailingPanel" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource OutlinedStyleTrailingIconMarginConverterBottom}}" />
             </MultiTrigger>
 
             <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
