@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:internal="clr-namespace:MaterialDesignThemes.Wpf.Internal"
@@ -27,6 +27,9 @@
   <converters:ComboBoxClearButtonMarginConverter x:Key="ComboBoxClearButtonMarginConverter" />
   <converters:DoubleToThicknessConverter x:Key="DoubleToThicknessConverter" />
   <converters:ThicknessCloneConverter x:Key="HelperTextMarginConverter" CloneEdges="Left" />
+  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconPaddingConverterTop" CloneEdges="All" AdditionalOffsetTop="2" />
+  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconPaddingConverterBottom" CloneEdges="All" AdditionalOffsetBottom="4" />
+  <wpf:VerticalAlignmentConverter x:Key="VerticalAlignmentConverter" />
 
   <system:Double x:Key="PopupContentPresenterExtend">4</system:Double>
   <system:Double x:Key="PopupTopBottomMargin">8</system:Double>
@@ -238,7 +241,7 @@
               <Border x:Name="splitBorder"
                       Margin="0"
                       HorizontalAlignment="Right"
-                      VerticalAlignment="Center"
+                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                       BorderBrush="Transparent"
                       BorderThickness="0">
                 <Path x:Name="arrow"
@@ -321,6 +324,7 @@
                           Grid.ColumnSpan="2"
                           Margin="{Binding ElementName=InnerRoot, Path=Margin}"
                           Padding="{TemplateBinding Padding}"
+                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment, Converter={StaticResource VerticalAlignmentConverter}}"
                           BorderBrush="{TemplateBinding BorderBrush}"
                           IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                           Style="{StaticResource MaterialDesignComboBoxToggleButton}" />
@@ -329,7 +333,7 @@
                     Padding="{TemplateBinding Padding}">
               <Grid x:Name="InnerRoot"
                     HorizontalAlignment="Stretch"
-                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                    VerticalAlignment="{TemplateBinding VerticalContentAlignment, Converter={StaticResource VerticalAlignmentConverter}}"
                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                     UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
                 <Grid.ColumnDefinitions>
@@ -564,13 +568,20 @@
         <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
       </MultiTrigger>
 
+      <!-- toggleButton padding adhering to VerticalContentAlignment -->
       <MultiTrigger>
         <MultiTrigger.Conditions>
           <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
-          <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
-          <Condition Property="VerticalContentAlignment" Value="Center" />
+          <Condition SourceName="InnerRoot" Property="VerticalAlignment" Value="Top" />
         </MultiTrigger.Conditions>
-        <Setter TargetName="Hint" Property="InitialVerticalOffset" Value="-6" />
+        <Setter TargetName="toggleButton" Property="Padding" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={StaticResource DefaultOrFilledStyleTrailingIconPaddingConverterTop}}" />
+      </MultiTrigger>
+      <MultiTrigger>
+        <MultiTrigger.Conditions>
+          <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
+          <Condition SourceName="InnerRoot" Property="VerticalAlignment" Value="Bottom" />
+        </MultiTrigger.Conditions>
+        <Setter TargetName="toggleButton" Property="Padding" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={StaticResource DefaultOrFilledStyleTrailingIconPaddingConverterBottom}}" />
       </MultiTrigger>
 
       <!-- IsEnabled -->
