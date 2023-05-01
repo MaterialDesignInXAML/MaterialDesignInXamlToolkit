@@ -1,5 +1,4 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:internal="clr-namespace:MaterialDesignThemes.Wpf.Internal"
@@ -17,9 +16,13 @@
   <converters:NotConverter x:Key="NotConverter" />
   <converters:MathConverter x:Key="MathMultiplyConverter" Operation="Multiply" />
   <converters:FloatingHintOffsetCalculationConverter x:Key="FloatingHintOffsetCalculationConverter" />
-  <converters:PickerInnerPaddingConverter x:Key="PickerInnerPaddingConverter" />
   <converters:OutlinedDateTimePickerActiveBorderThicknessConverter x:Key="OutlinedDateTimePickerActiveBorderThicknessConverter" />
   <converters:ThicknessCloneConverter x:Key="HelperTextMarginConverter" CloneEdges="Left" />
+  <converters:ThicknessCloneConverter x:Key="DatePickerTextBoxPaddingConverter" CloneEdges="All" AdditionalOffsetRight="18" />
+  <converters:ThicknessCloneConverter x:Key="PartButtonMarginConverter" CloneEdges="Top,Right,Bottom" FixedLeft="0" />
+  <converters:ThicknessCloneConverter x:Key="PartButtonMarginConverterTop" CloneEdges="Top,Right,Bottom" FixedLeft="0" AdditionalOffsetTop="12" />
+  <wpf:VerticalAlignmentConverter x:Key="VerticalAlignmentConverter" />
+
 
   <Style x:Key="MaterialDesignDatePickerTextBox" TargetType="{x:Type DatePickerTextBox}">
     <Setter Property="AllowDrop" Value="true" />
@@ -124,14 +127,14 @@
                       BorderThickness="{TemplateBinding BorderThickness}"
                       CornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}"
                       SnapsToDevicePixels="True">
-                <Grid HorizontalAlignment="Stretch" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                   <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition Width="Auto" />
                   </Grid.ColumnDefinitions>
                   <Grid x:Name="grid"
                         MinWidth="1"
-                        VerticalAlignment="Center"
+                        VerticalAlignment="Stretch"
                         HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
                       <ColumnDefinition Width="Auto" />
@@ -140,6 +143,8 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock x:Name="PrefixTextBlock"
                                Grid.Column="0"
+                               Margin="0,0,2,0"
+                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                FontSize="{TemplateBinding FontSize}"
                                Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                Text="{TemplateBinding wpf:TextFieldAssist.PrefixText}" />
@@ -152,6 +157,10 @@
                     <ScrollViewer x:Name="PART_ContentHost"
                                   Grid.Column="1"
                                   Panel.ZIndex="1"
+                                  VerticalAlignment="Stretch"
+                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  HorizontalAlignment="Stretch"
+                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                   wpf:ScrollViewerAssist.IgnorePadding="True"
                                   Focusable="false"
                                   HorizontalScrollBarVisibility="Hidden"
@@ -167,6 +176,8 @@
                                    HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                    HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
                                    UseFloating="{TemplateBinding wpf:HintAssist.IsFloating}"
+                                   VerticalAlignment="Stretch"
+                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}">
                       <wpf:SmartHint.Hint>
                         <Border x:Name="HintBackgroundBorder"
@@ -178,6 +189,8 @@
                     </wpf:SmartHint>
                     <TextBlock x:Name="SuffixTextBlock"
                                Grid.Column="2"
+                               Margin="0,0,2,0"
+                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                FontSize="{TemplateBinding FontSize}"
                                Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}" />
@@ -186,6 +199,7 @@
                           Grid.Column="1"
                           Height="Auto"
                           Padding="2,0,0,0"
+                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                           Command="{x:Static internal:ClearText.ClearCommand}"
                           Focusable="False"
                           Style="{DynamicResource MaterialDesignToolButton}">
@@ -255,6 +269,16 @@
                 </Setter.Value>
               </Setter>
             </MultiTrigger>
+
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
+                <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
+                <Condition Property="VerticalContentAlignment" Value="Center" />
+              </MultiTrigger.Conditions>
+              <Setter TargetName="Hint" Property="InitialVerticalOffset" Value="-6" />
+            </MultiTrigger>
+
             <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
               <Setter Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxBackground}" />
             </Trigger>
@@ -473,11 +497,11 @@
           </ControlTemplate.Resources>
           <Grid x:Name="PART_Root">
             <DatePickerTextBox x:Name="PART_TextBox"
-                               Grid.Row="0"
-                               Grid.Column="0"
+                               Padding="{TemplateBinding Padding, Converter={StaticResource DatePickerTextBoxPaddingConverter}}"
                                HorizontalAlignment="Stretch"
+                               VerticalAlignment="Stretch"
                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                               VerticalContentAlignment="Center"
+                               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                wpf:HintAssist.FloatingOffset="{TemplateBinding wpf:HintAssist.FloatingOffset}"
                                wpf:HintAssist.FloatingScale="{TemplateBinding wpf:HintAssist.FloatingScale}"
                                wpf:HintAssist.Foreground="{TemplateBinding wpf:HintAssist.Foreground}"
@@ -501,21 +525,12 @@
                                Background="{TemplateBinding Background}"
                                BorderBrush="{TemplateBinding BorderBrush}"
                                Focusable="{TemplateBinding Focusable}"
-                               Style="{DynamicResource MaterialDesignDatePickerTextBox}">
-              <DatePickerTextBox.Padding>
-                <MultiBinding Converter="{StaticResource PickerInnerPaddingConverter}">
-                  <Binding Path="Padding" RelativeSource="{RelativeSource TemplatedParent}" />
-                  <Binding ElementName="PART_Button"
-                           Mode="OneWay"
-                           Path="ActualWidth" />
-                </MultiBinding>
-              </DatePickerTextBox.Padding>
-            </DatePickerTextBox>
+                               Style="{DynamicResource MaterialDesignDatePickerTextBox}" />
             <Button x:Name="PART_Button"
                     Height="16"
-                    Margin="{TemplateBinding Padding, Converter={StaticResource PickerInnerPaddingConverter}}"
+                    Margin="{TemplateBinding Padding, Converter={StaticResource PartButtonMarginConverter}}"
                     HorizontalAlignment="Right"
-                    VerticalAlignment="Center"
+                    VerticalAlignment="{TemplateBinding VerticalContentAlignment, Converter={StaticResource VerticalAlignmentConverter}}"
                     Focusable="False"
                     Foreground="{TemplateBinding BorderBrush}"
                     Template="{StaticResource CalendarButtonTemplate}" />
@@ -528,6 +543,16 @@
                    StaysOpen="False" />
           </Grid>
           <ControlTemplate.Triggers>
+
+            <!-- PART_Button margins adhering to VerticalContentAlignment for default/filled style when VerticalContentAlignment=Top (other cases handled by default value) -->
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition SourceName="PART_Button" Property="VerticalAlignment" Value="Top" />
+                <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
+              </MultiTrigger.Conditions>
+              <Setter TargetName="PART_Button" Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={StaticResource PartButtonMarginConverterTop}}" />
+            </MultiTrigger>
+
             <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
               <Setter Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxBackground}" />
             </Trigger>
