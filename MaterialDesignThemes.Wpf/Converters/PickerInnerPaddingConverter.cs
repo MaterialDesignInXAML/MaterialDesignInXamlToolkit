@@ -3,6 +3,7 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters
 {
+    [Obsolete("No longer used internally by MDIX, but since it is public I have chosen to keep it here. Will be removed in the 5.0 release")]
     public class PickerInnerPaddingConverter : IValueConverter, IMultiValueConverter
     {
         private readonly FloatingHintOffsetCalculationConverter _offsetCalculation = new FloatingHintOffsetCalculationConverter();
