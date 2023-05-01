@@ -23,6 +23,7 @@ internal class SmartHintViewModel : ViewModelBase
     private double _selectedTrailingIconSize = 20;
     private string? _prefixText;
     private string? _suffixText;
+    private double _selectedFontSize = double.NaN;
 
     public IEnumerable<FloatingHintHorizontalAlignment> HorizontalAlignmentOptions { get; } = Enum.GetValues(typeof(FloatingHintHorizontalAlignment)).OfType<FloatingHintHorizontalAlignment>();
     public IEnumerable<double> FloatingScaleOptions { get; } = new[] {0.25, 0.5, 0.75, 1.0};
@@ -32,6 +33,7 @@ internal class SmartHintViewModel : ViewModelBase
     public IEnumerable<double> CustomHeightOptions { get; } = new[] { double.NaN, 50, 75, 100 };
     public IEnumerable<VerticalAlignment> VerticalAlignmentOptions { get; } = (VerticalAlignment[])Enum.GetValues(typeof(VerticalAlignment));
     public IEnumerable<double> IconSizeOptions { get; } = new[] { 10.0, 15, 20, 30, 50, 75 };
+    public IEnumerable<double> FontSizeOptions { get; } = new[] { double.NaN, 8, 12, 16, 20, 24, 28 };
 
     public bool FloatHint
     {
@@ -199,6 +201,16 @@ internal class SmartHintViewModel : ViewModelBase
         set
         {
             _suffixText = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public double SelectedFontSize
+    {
+        get => _selectedFontSize;
+        set
+        {
+            _selectedFontSize = value;
             OnPropertyChanged();
         }
     }
