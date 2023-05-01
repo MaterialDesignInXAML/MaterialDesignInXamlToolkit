@@ -97,3 +97,26 @@ internal class CustomPaddingConverter : IMultiValueConverter
     public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         => throw new NotImplementedException();
 }
+
+internal abstract class OptionToStringConverter<TOptionType> : IValueConverter where TOptionType : notnull 
+{
+    public TOptionType? DefaultValue { get; set; }
+
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => Equals(value, DefaultValue) ? "Default" : ToString((TOptionType)value!, culture);
+
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => throw new NotImplementedException();
+
+    protected abstract string ToString(TOptionType? value, CultureInfo culture);
+}
+
+internal class DoubleOptionToStringConverter : OptionToStringConverter<double>
+{
+    protected override string ToString(double value, CultureInfo culture) => value.ToString(culture);
+}
+
+internal class PointOptionToStringConverter : OptionToStringConverter<Point>
+{
+    protected override string ToString(Point value, CultureInfo culture) => value.ToString(culture);
+}

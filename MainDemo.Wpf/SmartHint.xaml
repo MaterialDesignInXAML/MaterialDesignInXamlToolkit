@@ -7,6 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
              xmlns:local="clr-namespace:MaterialDesignDemo"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
              mc:Ignorable="d"
              x:Name="_root"
              d:DataContext="{d:DesignInstance domain:SmartHintViewModel, IsDesignTimeCreatable=False}"
@@ -31,6 +32,16 @@
       </Style>
       <materialDesign:PackIconKind x:Key="LeadingIcon">Github</materialDesign:PackIconKind>
       <materialDesign:PackIconKind x:Key="TrailingIcon">Fungus</materialDesign:PackIconKind>
+
+      <local:DoubleOptionToStringConverter x:Key="DoubleOptionToStringConverter" DefaultValue="{x:Static system:Double.NaN}" />
+      <DataTemplate x:Key="CustomHeightTemplate" DataType="{x:Type system:Double}">
+        <TextBlock Text="{Binding Converter={StaticResource DoubleOptionToStringConverter}}" />
+      </DataTemplate>
+
+      <local:PointOptionToStringConverter x:Key="FloatingOffsetOptionToStringConverter" DefaultValue="{x:Static domain:SmartHintViewModel.DefaultFloatingOffset}" />
+      <DataTemplate x:Key="FloatingOffsetTemplate">
+        <TextBlock Text="{Binding Converter={StaticResource FloatingOffsetOptionToStringConverter}}" />
+      </DataTemplate>
     </Grid.Resources>
 
     <Grid.RowDefinitions>
@@ -49,7 +60,7 @@
           <TextBlock Text="FloatingScale:" VerticalAlignment="Center" Margin="20,0,0,0" />
           <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding FloatingScaleOptions}" SelectedItem="{Binding SelectedFloatingScale, Mode=TwoWay}" ItemStringFormat="F2" />
           <TextBlock Text="FloatingOffset:" VerticalAlignment="Center" Margin="20,0,0,0" />
-          <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding FloatingOffsetOptions}" SelectedItem="{Binding SelectedFloatingOffset, Mode=TwoWay}" />
+          <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding FloatingOffsetOptions}" SelectedItem="{Binding SelectedFloatingOffset, Mode=TwoWay}" ItemTemplate="{StaticResource FloatingOffsetTemplate}" />
           <CheckBox Content="HasClearButton" IsChecked="{Binding ShowClearButton}" Margin="20,0,0,0" />
           <CheckBox Content="HasErrors" IsChecked="False" Checked="HasErrors_OnToggled" Unchecked="HasErrors_OnToggled" Margin="20,0,0,0" />
         </StackPanel>
@@ -71,8 +82,8 @@
       <StackPanel Orientation="Horizontal" Margin="10">
         <CheckBox x:Name="CustomPaddingCheckBox" Content="Custom Padding" IsChecked="{Binding ApplyCustomPadding}" />
         <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding CustomPaddingOptions}" SelectedItem="{Binding SelectedCustomPadding, Mode=TwoWay}" IsEnabled="{Binding ElementName=CustomPaddingCheckBox, Path=IsChecked}" />
-        <TextBlock Text="Custom Height:" VerticalAlignment="Center" Margin="20,0,0,0" />
-        <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding CustomHeightOptions}" SelectedItem="{Binding SelectedCustomHeight, Mode=TwoWay}" />
+        <TextBlock Text="Height:" VerticalAlignment="Center" Margin="20,0,0,0" />
+        <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding CustomHeightOptions}" SelectedItem="{Binding SelectedCustomHeight, Mode=TwoWay}" ItemTemplate="{StaticResource CustomHeightTemplate}"/>
         <TextBlock Text="VerticalContentAlignment:" VerticalAlignment="Center" Margin="20,0,0,0" />
         <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding VerticalAlignmentOptions}" SelectedItem="{Binding SelectedVerticalAlignment, Mode=TwoWay}" />
         <TextBox Text="{Binding PrefixText, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Prefix text" materialDesign:TextFieldAssist.HasClearButton="True" Margin="20,0,0,0" Width="200" MaxLength="3" />
