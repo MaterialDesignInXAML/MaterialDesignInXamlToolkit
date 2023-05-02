@@ -85,7 +85,7 @@
           <CheckBox x:Name="CheckBoxLeadingIcon" Content="HasLeadingIcon" IsChecked="{Binding ShowLeadingIcon}" Margin="20,0,0,0" />
           <TextBlock Text="Size:" VerticalAlignment="Center" Margin="10,2,0,0" />
           <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding IconSizeOptions}" SelectedItem="{Binding SelectedLeadingIconSize, Mode=TwoWay}" IsEnabled="{Binding ElementName=CheckBoxLeadingIcon, Path=IsChecked}" />
-          <CheckBox x:Name="CheckBoxTrailingIcon" Content="HasLeadingIcon" IsChecked="{Binding ShowTrailingIcon}" Margin="20,0,0,0" />
+          <CheckBox x:Name="CheckBoxTrailingIcon" Content="HasTrailingIcon" IsChecked="{Binding ShowTrailingIcon}" Margin="20,0,0,0" />
           <TextBlock Text="Size:" VerticalAlignment="Center" Margin="10,2,0,0" />
           <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding IconSizeOptions}" SelectedItem="{Binding SelectedTrailingIconSize, Mode=TwoWay}" IsEnabled="{Binding ElementName=CheckBoxTrailingIcon, Path=IsChecked}" />
         </StackPanel>
