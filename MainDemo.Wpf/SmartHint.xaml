@@ -16,6 +16,10 @@
     <Grid.Resources>
       <materialDesign:MathConverter x:Key="SubtractConverter" Operation="Subtract" />
       <local:CustomPaddingConverter x:Key="CustomPaddingConverter" />
+      <!--
+      Ideally I would like to use ShowMeTheXaml to show the "dynamic" properties being applied to the elements. Currently it only shows
+      the static properties set in the XAML, which in this case is very little; actually only HorizontalContentAlignment. 
+      -->
       <Style TargetType="{x:Type smtx:XamlDisplay}" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
         <Setter Property="Margin" Value="10,10,10,16" />
         <Setter Property="VerticalAlignment" Value="Top" />
