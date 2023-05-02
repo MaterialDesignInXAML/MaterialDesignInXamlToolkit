@@ -866,7 +866,7 @@
     <Setter Property="Template" Value="{StaticResource MaterialDesignFloatingHintComboBoxTemplate}" />
     <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}" />
     <Setter Property="VerticalAlignment" Value="Center" />
-    <Setter Property="VerticalContentAlignment" Value="Top" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
     <Setter Property="internal:ClearText.HandlesClearCommand" Value="True" />
     <Setter Property="wpf:ColorZoneAssist.Mode" Value="Standard" />
     <Setter Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="True" />
