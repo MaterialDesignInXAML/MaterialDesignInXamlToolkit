@@ -484,6 +484,7 @@
     <Setter Property="CalendarStyle" Value="{StaticResource MaterialDesignDatePickerCalendarPortrait}" />
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
     <Setter Property="IsTodayHighlighted" Value="True" />
     <Setter Property="Padding" Value="{x:Static wpf:Constants.TextBoxDefaultPadding}" />
     <Setter Property="SelectedDateFormat" Value="Short" />
