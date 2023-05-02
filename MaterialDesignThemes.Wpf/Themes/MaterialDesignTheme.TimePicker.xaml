@@ -248,7 +248,7 @@
               <Setter TargetName="Hint" Property="FloatingOffset">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
-                    <Binding Path="FontFamily" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="FontFamily" ElementName="Hint" />
                     <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingScale)" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingOffset)" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -258,7 +258,7 @@
               <Setter TargetName="grid" Property="Margin">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
-                    <Binding Path="FontFamily" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="FontFamily" ElementName="Hint" />
                     <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingScale)" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingOffset)" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -286,7 +286,7 @@
               <Setter TargetName="Hint" Property="FloatingOffset">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
-                    <Binding Path="FontFamily" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="FontFamily" ElementName="Hint" />
                     <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingScale)" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingOffset)" RelativeSource="{RelativeSource TemplatedParent}" />
