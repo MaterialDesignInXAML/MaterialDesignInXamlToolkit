@@ -30,6 +30,7 @@
   <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconPaddingConverterTop" CloneEdges="All" AdditionalOffsetTop="2" />
   <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconPaddingConverterBottom" CloneEdges="All" AdditionalOffsetBottom="4" />
   <wpf:VerticalAlignmentConverter x:Key="VerticalAlignmentConverter" />
+  <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
 
   <system:Double x:Key="PopupContentPresenterExtend">4</system:Double>
   <system:Double x:Key="PopupTopBottomMargin">8</system:Double>
@@ -343,10 +344,12 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock x:Name="PrefixTextBlock"
                            Grid.Column="0"
+                           Margin="0,0,2,0"
                            FontSize="{TemplateBinding FontSize}"
                            IsHitTestVisible="False"
                            Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                           Text="{TemplateBinding wpf:TextFieldAssist.PrefixText}" />
+                           Text="{TemplateBinding wpf:TextFieldAssist.PrefixText}"
+                           Visibility="{TemplateBinding wpf:TextFieldAssist.PrefixText, Converter={StaticResource NullableToVisibilityConverter}}"/>
 
                 <ContentPresenter x:Name="contentPresenter"
                                   Grid.Column="1"
@@ -394,7 +397,8 @@
                            FontSize="{TemplateBinding FontSize}"
                            IsHitTestVisible="False"
                            Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                           Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}" />
+                           Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}"
+                           Visibility="{TemplateBinding wpf:TextFieldAssist.SuffixText, Converter={StaticResource NullableToVisibilityConverter}}" />
               </Grid>
             </Border>
           </Grid>
