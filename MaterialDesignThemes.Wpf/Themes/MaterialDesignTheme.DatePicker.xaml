@@ -510,6 +510,7 @@
                                wpf:HintAssist.Hint="{TemplateBinding wpf:HintAssist.Hint}"
                                wpf:HintAssist.HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                wpf:HintAssist.IsFloating="{TemplateBinding wpf:HintAssist.IsFloating}"
+                               wpf:HintAssist.FontFamily="{TemplateBinding wpf:HintAssist.FontFamily}"
                                wpf:TextFieldAssist.DecorationVisibility="{TemplateBinding wpf:TextFieldAssist.DecorationVisibility}"
                                wpf:TextFieldAssist.HasClearButton="{TemplateBinding wpf:TextFieldAssist.HasClearButton}"
                                wpf:TextFieldAssist.HasFilledTextField="{TemplateBinding wpf:TextFieldAssist.HasFilledTextField}"

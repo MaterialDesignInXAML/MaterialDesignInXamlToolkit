@@ -108,7 +108,7 @@ internal abstract class OptionToStringConverter<TOptionType> : IValueConverter w
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         => throw new NotImplementedException();
 
-    protected abstract string ToString(TOptionType? value, CultureInfo culture);
+    protected abstract string ToString(TOptionType value, CultureInfo culture);
 }
 
 internal class DoubleOptionToStringConverter : OptionToStringConverter<double>
@@ -119,4 +119,9 @@ internal class DoubleOptionToStringConverter : OptionToStringConverter<double>
 internal class PointOptionToStringConverter : OptionToStringConverter<Point>
 {
     protected override string ToString(Point value, CultureInfo culture) => value.ToString(culture);
+}
+
+internal class FontFamilyOptionToStringConverter : OptionToStringConverter<FontFamily>
+{
+    protected override string ToString(FontFamily value, CultureInfo culture) => value.Source.ToString(culture);
 }

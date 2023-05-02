@@ -45,6 +45,11 @@
       <DataTemplate x:Key="FloatingOffsetTemplate">
         <TextBlock Text="{Binding Converter={StaticResource FloatingOffsetOptionToStringConverter}}" />
       </DataTemplate>
+
+      <local:FontFamilyOptionToStringConverter x:Key="FontFamilyOptionToStringConverter" DefaultValue="{x:Static domain:SmartHintViewModel.DefaultFontFamily}" />
+      <DataTemplate x:Key="FontFamilyTemplate">
+        <TextBlock Text="{Binding Converter={StaticResource FontFamilyOptionToStringConverter}}" />
+      </DataTemplate>
     </Grid.Resources>
 
     <Grid.RowDefinitions>
@@ -66,6 +71,8 @@
           <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding FloatingOffsetOptions}" SelectedItem="{Binding SelectedFloatingOffset, Mode=TwoWay}" ItemTemplate="{StaticResource FloatingOffsetTemplate}" />
           <CheckBox Content="HasClearButton" IsChecked="{Binding ShowClearButton}" Margin="20,0,0,0" />
           <CheckBox Content="HasErrors" IsChecked="False" Checked="HasErrors_OnToggled" Unchecked="HasErrors_OnToggled" Margin="20,0,0,0" />
+          <TextBlock Text="FontFamily:" VerticalAlignment="Center" Margin="20,0,0,0"/>
+          <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding FontFamilyOptions}" SelectedItem="{Binding SelectedFontFamily, Mode=TwoWay}" ItemTemplate="{StaticResource FontFamilyTemplate}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="10">
@@ -153,6 +160,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
@@ -203,6 +211,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
@@ -253,6 +262,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
@@ -305,6 +315,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="local:SmartHint.RichTextBoxText" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
@@ -363,6 +374,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
@@ -413,6 +425,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
@@ -463,6 +476,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
@@ -520,6 +534,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="materialDesign:PasswordBoxAssist.IsPasswordRevealed" Value="{Binding ElementName=PasswordBoxesRevealedCheckBox, Path=IsChecked}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
@@ -571,6 +586,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="materialDesign:PasswordBoxAssist.IsPasswordRevealed" Value="{Binding ElementName=PasswordBoxesRevealedCheckBox, Path=IsChecked}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
@@ -622,6 +638,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="materialDesign:PasswordBoxAssist.Password" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="materialDesign:PasswordBoxAssist.IsPasswordRevealed" Value="{Binding ElementName=PasswordBoxesRevealedCheckBox, Path=IsChecked}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
@@ -679,6 +696,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="ItemsSource" Value="{Binding ComboBoxOptions}" />
               <Setter Property="IsEditable" Value="{Binding ElementName=ComboBoxesEditableCheckBox, Path=IsChecked}" />
@@ -731,6 +749,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="ItemsSource" Value="{Binding ComboBoxOptions}" />
               <Setter Property="IsEditable" Value="{Binding ElementName=ComboBoxesEditableCheckBox, Path=IsChecked}" />
@@ -783,6 +802,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="ItemsSource" Value="{Binding ComboBoxOptions}" />
               <Setter Property="IsEditable" Value="{Binding ElementName=ComboBoxesEditableCheckBox, Path=IsChecked}" />
@@ -837,6 +857,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
@@ -886,6 +907,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
@@ -935,6 +957,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
@@ -987,6 +1010,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
@@ -1036,6 +1060,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
@@ -1085,6 +1110,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
