@@ -32,6 +32,7 @@
   <converters:ThicknessCloneConverter x:Key="OutlinedStyleTrailingIconMarginConverterCenter" CloneEdges="Top" AdditionalOffsetTop="0" />
   <converters:ThicknessCloneConverter x:Key="OutlinedStyleTrailingIconMarginConverterBottom" CloneEdges="Top" FixedBottom="-2" AdditionalOffsetTop="0" />
   <wpf:VerticalAlignmentConverter x:Key="VerticalAlignmentConverter" />
+  <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
 
   <Style x:Key="MaterialDesignCharacterCounterTextBlock"
          TargetType="TextBlock"
@@ -205,7 +206,8 @@
                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                  FontSize="{TemplateBinding FontSize}"
                                  Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                                 Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}" />
+                                 Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}"
+                                 Visibility="{TemplateBinding wpf:TextFieldAssist.SuffixText, Converter={StaticResource NullableToVisibilityConverter}}" />
                     </Grid>
 
                     <wpf:SmartHint x:Name="Hint"
