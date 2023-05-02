@@ -414,7 +414,8 @@
                      MaxWidth="{Binding ActualWidth, ElementName=toggleButton}"
                      FontSize="{TemplateBinding wpf:HintAssist.HelperTextFontSize}"
                      Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                     Text="{TemplateBinding wpf:HintAssist.HelperText}" />
+                     Text="{TemplateBinding wpf:HintAssist.HelperText}"
+                     Style="{Binding Path=(wpf:HintAssist.HelperTextStyle), RelativeSource={RelativeSource TemplatedParent}}"/>
         </Canvas>
         <wpf:ComboBoxPopup x:Name="PART_Popup"
                            Grid.Column="0"

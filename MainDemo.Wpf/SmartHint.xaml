@@ -42,8 +42,11 @@
         <TextBlock Text="{Binding Converter={StaticResource DoubleOptionToStringConverter}}" />
       </DataTemplate>
       <DataTemplate x:Key="FontSizeTemplate" DataType="{x:Type system:Double}">
-        <TextBlock Text="{Binding Converter={StaticResource DoubleOptionToStringConverter}}" Foreground="DarkRed" />
+        <TextBlock Text="{Binding Converter={StaticResource DoubleOptionToStringConverter}}" />
       </DataTemplate>
+      <Style x:Key="FontSizeHelperTextStyle" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHelperTextBlock}">
+        <Setter Property="Foreground" Value="DarkRed" />
+      </Style>
 
       <local:PointOptionToStringConverter x:Key="FloatingOffsetOptionToStringConverter" DefaultValue="{x:Static domain:SmartHintViewModel.DefaultFloatingOffset}" />
       <DataTemplate x:Key="FloatingOffsetTemplate">
@@ -102,8 +105,10 @@
         <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding VerticalAlignmentOptions}" SelectedItem="{Binding SelectedVerticalAlignment, Mode=TwoWay}" />
         <TextBox Text="{Binding PrefixText, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Prefix text" materialDesign:TextFieldAssist.HasClearButton="True" Margin="20,0,0,0" Width="50" MaxLength="3" />
         <TextBox Text="{Binding SuffixText, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Suffix text" materialDesign:TextFieldAssist.HasClearButton="True" Margin="20,0,0,0" Width="50" MaxLength="3" />
-        <TextBlock Text="FontSize:" VerticalAlignment="Center" Margin="20,0,0,0" Foreground="DarkRed"/>
-        <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding FontSizeOptions}" SelectedItem="{Binding SelectedFontSize, Mode=TwoWay}" ItemTemplate="{StaticResource FontSizeTemplate}" />
+        <TextBlock Text="FontSize:" VerticalAlignment="Center" Margin="20,0,0,0" />
+        <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" ItemsSource="{Binding FontSizeOptions}" SelectedItem="{Binding SelectedFontSize, Mode=TwoWay}" ItemTemplate="{StaticResource FontSizeTemplate}" Width="160"
+                  materialDesign:HintAssist.HelperText="Currently only 'Default' is supported"
+                  materialDesign:HintAssist.HelperTextStyle="{StaticResource FontSizeHelperTextStyle}"/>
       </StackPanel>
     </GroupBox>
 

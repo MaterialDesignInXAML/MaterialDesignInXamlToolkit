@@ -233,7 +233,8 @@
                          MaxWidth="{Binding ActualWidth, ElementName=border}"
                          FontSize="{TemplateBinding wpf:HintAssist.HelperTextFontSize}"
                          Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                         Text="{TemplateBinding wpf:HintAssist.HelperText}" />
+                         Text="{TemplateBinding wpf:HintAssist.HelperText}"
+                         Style="{Binding Path=(wpf:HintAssist.HelperTextStyle), RelativeSource={RelativeSource TemplatedParent}}"/>
             </Canvas>
           </Grid>
           <ControlTemplate.Triggers>
@@ -509,6 +510,7 @@
                                wpf:HintAssist.Foreground="{TemplateBinding wpf:HintAssist.Foreground}"
                                wpf:HintAssist.HelperText="{TemplateBinding wpf:HintAssist.HelperText}"
                                wpf:HintAssist.HelperTextFontSize="{TemplateBinding wpf:HintAssist.HelperTextFontSize}"
+                               wpf:HintAssist.HelperTextStyle="{TemplateBinding wpf:HintAssist.HelperTextStyle}"
                                wpf:HintAssist.Hint="{TemplateBinding wpf:HintAssist.Hint}"
                                wpf:HintAssist.HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                wpf:HintAssist.IsFloating="{TemplateBinding wpf:HintAssist.IsFloating}"
