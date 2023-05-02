@@ -22,7 +22,7 @@
   <converters:ThicknessCloneConverter x:Key="PartButtonMarginConverter" CloneEdges="Top,Right,Bottom" FixedLeft="0" />
   <converters:ThicknessCloneConverter x:Key="PartButtonMarginConverterTop" CloneEdges="Top,Right,Bottom" FixedLeft="0" AdditionalOffsetTop="12" />
   <wpf:VerticalAlignmentConverter x:Key="VerticalAlignmentConverter" />
-
+  <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
 
   <Style x:Key="MaterialDesignDatePickerTextBox" TargetType="{x:Type DatePickerTextBox}">
     <Setter Property="AllowDrop" Value="true" />
@@ -147,7 +147,8 @@
                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                FontSize="{TemplateBinding FontSize}"
                                Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                               Text="{TemplateBinding wpf:TextFieldAssist.PrefixText}" />
+                               Text="{TemplateBinding wpf:TextFieldAssist.PrefixText}"
+                               Visibility="{TemplateBinding wpf:TextFieldAssist.PrefixText, Converter={StaticResource NullableToVisibilityConverter}}" />
                     <ContentControl x:Name="PART_Watermark"
                                     Grid.Column="1"
                                     Focusable="False"
@@ -193,7 +194,8 @@
                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                FontSize="{TemplateBinding FontSize}"
                                Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                               Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}" />
+                               Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}"
+                               Visibility="{TemplateBinding wpf:TextFieldAssist.SuffixText, Converter={StaticResource NullableToVisibilityConverter}}" />
                   </Grid>
                   <Button x:Name="PART_ClearButton"
                           Grid.Column="1"
