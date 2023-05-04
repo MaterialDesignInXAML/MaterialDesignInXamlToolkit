@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Media;
+using MaterialDesignThemes.UITests.Samples.Validation;
 
 namespace MaterialDesignThemes.UITests.WPF.TextBoxes;
 
@@ -589,6 +590,26 @@ public class TextBoxTests : TestBase
         Assert.Equal(expectedFloatingHintAlignment, await hintClippingGrid.GetVerticalAlignment());
 
         recorder.Success();
+    }
+
+    [Fact]
+    [Description("Issue 3176")]
+    public async Task ValidationErrorTemplate_WithChangingErrors_UpdatesValidation()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement userControl = await LoadUserControl<ValidationUpdates>();
+        var textBox = await userControl.GetElement<TextBox>();
+        var button = await userControl.GetElement<Button>();
+        await button.LeftClick();
+
+        await Wait.For(async() =>
+        {
+            var errorViewer = await textBox.GetElement("DefaultErrorViewer");
+            var textBlock = await errorViewer.GetElement<TextBlock>();
+
+            Assert.Equal("Some error + more", await textBlock.GetText());
+        });
     }
 }
 
