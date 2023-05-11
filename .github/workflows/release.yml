@@ -23,7 +23,21 @@ jobs:
     uses: ./.github/workflows/get_versions.yml
     with:
       is-full-release: true
-    
+
+  version_number_check:
+    needs: [get_versions]
+    name: Version matches milestone
+
+    steps:
+      - name: Check versions
+        run: |
+          if ('${{ inputs.milestone }}' -ne '${{ needs.get_versions.outputs.mdix-version }}') {
+              Write-Error "Milestone ${{ inputs.milestone }} does not match MDIX ${{ needs.get_versions.outputs.mdix-version }}"
+              exit 1
+          } else {
+              Write-Host "Versions match"
+          }
+
   build_release_notes:
     runs-on: ubuntu-latest
     name: Generate Release Notes
@@ -246,6 +260,9 @@ jobs:
     name: Update Version Numbers
     environment: production
 
+    permissions:
+      actions: write
+
     steps:
       # Checkout is needed so that we can update the get_versions.yml file
       - uses: actions/checkout@v3
@@ -266,6 +283,7 @@ jobs:
               if ($match[0] -match $versionPattern) {
                   $newVersion = $Matches[1] + ([int]$Matches[2] + 1)
                   $workflowContent = $workflowContent -replace $pattern,"$Prefix`: `"$newVersion`""
+                  Write-Host "$Prefix updated to $newVersion"
               } else {
                   Write-Error "Failed to update $Prefix version"
               }
