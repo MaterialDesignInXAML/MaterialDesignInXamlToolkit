@@ -129,6 +129,15 @@ public class SmartHint : Control
 
     #endregion
 
+    public static readonly DependencyProperty InitialVerticalOffsetProperty = DependencyProperty.Register(
+        nameof(InitialVerticalOffset), typeof(double), typeof(SmartHint), new PropertyMetadata(default(double)));
+
+    public double InitialVerticalOffset
+    {
+        get { return (double) GetValue(InitialVerticalOffsetProperty); }
+        set { SetValue(InitialVerticalOffsetProperty, value); }
+    }
+
     static SmartHint()
     {
         DefaultStyleKeyProperty.OverrideMetadata(typeof(SmartHint), new FrameworkPropertyMetadata(typeof(SmartHint)));

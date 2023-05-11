@@ -14,14 +14,19 @@ public class ThicknessCloneConverter : IValueConverter
     public double? FixedRight { get; set; }
     public double? FixedBottom { get; set; }
 
+    public double AdditionalOffsetLeft { get; set; }
+    public double AdditionalOffsetTop { get; set; }
+    public double AdditionalOffsetRight { get; set; }
+    public double AdditionalOffsetBottom { get; set; }
+
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         if (value is Thickness thickness)
         {
-            double left = FixedLeft ?? (CloneEdges.HasFlag(ThicknessEdges.Left) ? thickness.Left : NonClonedEdgeValue);
-            double top = FixedTop ?? (CloneEdges.HasFlag(ThicknessEdges.Top) ? thickness.Top : NonClonedEdgeValue);
-            double right = FixedRight ?? (CloneEdges.HasFlag(ThicknessEdges.Right) ? thickness.Right : NonClonedEdgeValue);
-            double bottom = FixedBottom ?? (CloneEdges.HasFlag(ThicknessEdges.Bottom) ? thickness.Bottom : NonClonedEdgeValue);
+            double left = (FixedLeft ?? (CloneEdges.HasFlag(ThicknessEdges.Left) ? thickness.Left : NonClonedEdgeValue)) + AdditionalOffsetLeft;
+            double top = (FixedTop ?? (CloneEdges.HasFlag(ThicknessEdges.Top) ? thickness.Top : NonClonedEdgeValue)) + AdditionalOffsetTop;
+            double right = (FixedRight ?? (CloneEdges.HasFlag(ThicknessEdges.Right) ? thickness.Right : NonClonedEdgeValue)) + AdditionalOffsetRight;
+            double bottom = (FixedBottom ?? (CloneEdges.HasFlag(ThicknessEdges.Bottom) ? thickness.Bottom : NonClonedEdgeValue)) + AdditionalOffsetBottom;
             return new Thickness(left, top, right, bottom);
         }
         return DependencyProperty.UnsetValue;

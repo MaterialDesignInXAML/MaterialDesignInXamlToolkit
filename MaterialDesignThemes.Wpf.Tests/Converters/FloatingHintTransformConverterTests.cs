@@ -34,13 +34,13 @@ public class FloatingHintTransformConverterTests
     }
 
     [Theory]
-    [InlineData(2.0, 1.5, 3.0, 3.0, 4.0)]
-    [InlineData(1.5, 2.0, 3.0, 2.0, 3.0)]
+    [InlineData(2.0, 1.5, 3.0, 3.0, -4.0)]
+    [InlineData(1.5, 2.0, 3.0, 2.0, -3.0)]
     public void WhenParametersAreSpecifiedItReturnsTransforms(double scale, double lower, double upper, double x, double y)
     {
         var converter = new FloatingHintTransformConverter();
 
-        var result = (TransformGroup?)converter.Convert(new object?[] { scale, lower, upper, new Point(x, y) }, typeof(Transform), null, CultureInfo.CurrentUICulture);
+        var result = (TransformGroup?)converter.Convert(new object?[] { scale, lower, upper, new Point(x, y), 0 }, typeof(Transform), null, CultureInfo.CurrentUICulture);
 
         Assert.NotNull(result);
         var scaleTransform = (ScaleTransform)result!.Children[0];
@@ -60,7 +60,7 @@ public class FloatingHintTransformConverterTests
     {
         var converter = new FloatingHintTransformConverter { ApplyScaleTransform = false };
 
-        var result = (TransformGroup?)converter.Convert(new object?[] { scale, lower, upper, new Point(x, y) }, typeof(Transform), null, CultureInfo.CurrentUICulture);
+        var result = (TransformGroup?)converter.Convert(new object?[] { scale, lower, upper, new Point(x, y), 0 }, typeof(Transform), null, CultureInfo.CurrentUICulture);
 
         Assert.NotNull(result);
         Assert.Single(result.Children);
@@ -74,7 +74,7 @@ public class FloatingHintTransformConverterTests
     {
         var converter = new FloatingHintTransformConverter { ApplyTranslateTransform = false };
 
-        var result = (TransformGroup?)converter.Convert(new object?[] { scale, lower, upper, new Point(x, y) }, typeof(Transform), null, CultureInfo.CurrentUICulture);
+        var result = (TransformGroup?)converter.Convert(new object?[] { scale, lower, upper, new Point(x, y), 0 }, typeof(Transform), null, CultureInfo.CurrentUICulture);
 
         Assert.NotNull(result);
         Assert.Single(result.Children);
