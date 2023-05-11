@@ -112,7 +112,7 @@ jobs:
           path: "IconChanges*.md"
 
   create_release:
-    needs: [build_release_notes, build_artifacts, build_icon_changes]
+    needs: [build_release_notes, build_artifacts, build_icon_changes, version_number_check]
     runs-on: ubuntu-latest
     name: Create Draft Release
 
