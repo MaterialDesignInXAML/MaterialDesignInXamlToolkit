@@ -26,6 +26,7 @@ jobs:
 
   version_number_check:
     needs: [get_versions]
+    runs-on: ubuntu-latest
     name: Version matches milestone
 
     steps:
