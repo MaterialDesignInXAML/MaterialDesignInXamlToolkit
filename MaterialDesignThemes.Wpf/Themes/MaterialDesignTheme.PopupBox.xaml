@@ -89,6 +89,8 @@
     <Setter Property="PopupElevation" Value="Dp6" />
     <Setter Property="PopupVerticalOffset" Value="0" />
     <Setter Property="ToolTipService.IsEnabled" Value="{Binding IsPopupOpen, RelativeSource={RelativeSource Self}, Converter={StaticResource NotConverter}}"/>
+    <Setter Property="wpf:RippleAssist.ClipToBounds" Value="False" />
+    <Setter Property="wpf:RippleAssist.IsCentered" Value="True" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type wpf:PopupBox}">
@@ -105,8 +107,6 @@
                     <wpf:Ripple Padding="{TemplateBinding Padding}"
                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                wpf:RippleAssist.IsCentered="True"
-                                ClipToBounds="False"
                                 Content="{TemplateBinding Content}"
                                 ContentTemplate="{TemplateBinding ContentTemplate}"
                                 Focusable="False"
@@ -198,6 +198,7 @@
     <Setter Property="HorizontalAlignment" Value="Left" />
     <Setter Property="PlacementMode" Value="TopAndAlignCentres" />
     <Setter Property="PopupMode" Value="Click" />
+    <Setter Property="wpf:RippleAssist.IsCentered" Value="True" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type wpf:PopupBox}">
@@ -268,7 +269,6 @@
                       <wpf:Ripple Padding="{TemplateBinding Padding}"
                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                  wpf:RippleAssist.IsCentered="True"
                                   Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}"
                                   ClipToBounds="True"
                                   Focusable="False"
