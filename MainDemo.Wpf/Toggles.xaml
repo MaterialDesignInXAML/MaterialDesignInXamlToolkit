@@ -6,73 +6,62 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
-             d:DesignHeight="700"
-             d:DesignWidth="800"
+             d:DesignHeight="4096"
+             d:DesignWidth="1920"
              mc:Ignorable="d">
-  <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-    </Grid.RowDefinitions>
+  <StackPanel>
+    <TextBlock Style="{StaticResource PageTitleTextBlock}"
+               Text="Toggles" />
 
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="Auto" />
-      <ColumnDefinition Width="1*" />
-    </Grid.ColumnDefinitions>
+    <TextBlock Text="Action"
+               Style="{StaticResource PageSectionTitleTextBlock}" />
 
-    <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Toggles" />
-
-    <StackPanel Grid.Row="1"
-                Grid.Column="0"
-                Margin="0,24,0,0"
-                Orientation="Horizontal">
-      <smtx:XamlDisplay Margin="5,5,8,8" UniqueKey="buttons_33">
+    <WrapPanel Margin="0 0 0 16"
+               Orientation="Horizontal">
+      <smtx:XamlDisplay Margin="0,0,8,8"
+                        UniqueKey="buttons_33">
         <ToggleButton Content="C"
                       IsChecked="True"
                       Style="{StaticResource MaterialDesignActionLightToggleButton}"
                       ToolTip="MaterialDesignActionLightToggleButton" />
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,5,8,8" UniqueKey="buttons_34">
+      <smtx:XamlDisplay Margin="0,0,8,8"
+                        UniqueKey="buttons_34">
         <ToggleButton materialDesign:ElevationAssist.Elevation="Dp8"
                       Content="H"
                       Style="{StaticResource MaterialDesignActionToggleButton}"
                       ToolTip="MaterialDesignActionToggleButton" />
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,5,8,8" UniqueKey="buttons_35">
+      <smtx:XamlDisplay Margin="0,0,8,8"
+                        UniqueKey="buttons_35">
         <!-- checkbox style same as toggle button -->
         <CheckBox Content="E"
                   Style="{StaticResource MaterialDesignActionDarkCheckBox}"
                   ToolTip="MaterialDesignActionDarkCheckBox" />
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,5,8,8" UniqueKey="buttons_36">
+      <smtx:XamlDisplay Margin="0,0,8,8"
+                        UniqueKey="buttons_36">
         <ToggleButton Content="C"
                       IsChecked="True"
                       Style="{StaticResource MaterialDesignActionSecondaryToggleButton}"
                       ToolTip="MaterialDesignActionSecondaryToggleButton" />
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,5,8,8" UniqueKey="buttons_37">
+      <smtx:XamlDisplay Margin="0,0,8,8"
+                        UniqueKey="buttons_37">
         <ToggleButton Content="K"
                       IsEnabled="False"
                       Style="{StaticResource MaterialDesignActionToggleButton}"
                       ToolTip="MaterialDesignActionToggleButton" />
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,5,8,8" UniqueKey="buttons_38">
-        <ToggleButton Style="{StaticResource MaterialDesignActionToggleButton}" ToolTip="MaterialDesignActionToggleButton">
+      <smtx:XamlDisplay Margin="0,0,8,8"
+                        UniqueKey="buttons_38">
+        <ToggleButton Style="{StaticResource MaterialDesignActionToggleButton}"
+                      ToolTip="MaterialDesignActionToggleButton">
           <Image Source="Resources/ProfilePic.jpg" />
         </ToggleButton>
       </smtx:XamlDisplay>
@@ -87,212 +76,21 @@
                       Style="{StaticResource MaterialDesignActionToggleButton}"
                       ToolTip="MaterialDesignActionLightToggleButton" />
       </smtx:XamlDisplay>
-    </StackPanel>
+    </WrapPanel>
 
-    <StackPanel Grid.Row="2"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Margin="0,24,0,0"
-                Orientation="Horizontal">
-      <smtx:XamlDisplay Margin="5,5,8,8"
-                        VerticalAlignment="Center"
-                        UniqueKey="buttons_40">
-        <RadioButton Content="Radio"
-                     Style="{StaticResource MaterialDesignRadioButton}"
-                     Tag="True">
-          <RadioButton.IsChecked>
-            <Binding Path="Tag" RelativeSource="{RelativeSource Self}">
-              <Binding.ValidationRules>
-                <domain:IsCheckedValidationRule />
-              </Binding.ValidationRules>
-            </Binding>
-          </RadioButton.IsChecked>
-        </RadioButton>
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="0,5,8,8"
-                        VerticalAlignment="Center"
-                        UniqueKey="buttons_41">
-        <RadioButton Content="Ga Ga" Style="{StaticResource MaterialDesignRadioButton}" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="0,5,8,8"
-                        VerticalAlignment="Center"
-                        UniqueKey="buttons_42">
-        <RadioButton Content="Disabled"
-                     IsEnabled="False"
-                     Style="{StaticResource MaterialDesignRadioButton}" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="0,5,8,8"
-                        VerticalAlignment="Center"
-                        UniqueKey="buttons_43">
-        <CheckBox Content="Check" Style="{StaticResource MaterialDesignCheckBox}" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="0,5,8,8"
-                        VerticalAlignment="Center"
-                        UniqueKey="buttons_44">
-        <CheckBox Content="Mate"
-                  Style="{StaticResource MaterialDesignCheckBox}"
-                  Tag="True">
-          <CheckBox.IsChecked>
-            <Binding Path="Tag" RelativeSource="{RelativeSource Self}">
-              <Binding.ValidationRules>
-                <domain:IsCheckedValidationRule />
-              </Binding.ValidationRules>
-            </Binding>
-          </CheckBox.IsChecked>
-        </CheckBox>
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="0,5,8,8"
-                        VerticalAlignment="Center"
-                        UniqueKey="buttons_45">
-        <CheckBox Content="Disabled"
-                  IsChecked="True"
-                  IsEnabled="False"
-                  Style="{StaticResource MaterialDesignCheckBox}" />
-      </smtx:XamlDisplay>
-    </StackPanel>
-
-    <StackPanel Grid.Row="3"
-                Grid.Column="0"
-                Margin="5,8,0,8"
-                Orientation="Horizontal">
-      <smtx:XamlDisplay UniqueKey="buttons_65">
-        <RadioButton Content="Light"
-                     IsChecked="True"
-                     Style="{StaticResource MaterialDesignLightRadioButton}" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="8,0,0,0" UniqueKey="buttons_66">
-        <RadioButton Content="Dark"
-                     IsChecked="True"
-                     Style="{StaticResource MaterialDesignDarkRadioButton}" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="8,0,0,0" UniqueKey="buttons_67">
-        <RadioButton Content="Secondary"
-                     IsChecked="True"
-                     Style="{StaticResource MaterialDesignSecondaryRadioButton}" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="8,0,0,0" UniqueKey="buttons_68">
-        <CheckBox Content="Light"
-                  IsChecked="True"
-                  Style="{StaticResource MaterialDesignLightCheckBox}" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="8,0,0,0" UniqueKey="buttons_69">
-        <CheckBox Content="Dark"
-                  IsChecked="True"
-                  Style="{StaticResource MaterialDesignDarkCheckBox}" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="8,0,0,0" UniqueKey="buttons_70">
-        <CheckBox Content="Secondary"
-                  IsChecked="True"
-                  Style="{StaticResource MaterialDesignSecondaryCheckBox}" />
-      </smtx:XamlDisplay>
-    </StackPanel>
-
-    <StackPanel Grid.Row="4"
-                Grid.Column="0"
-                Margin="0,24,0,0"
-                Orientation="Horizontal">
-      <smtx:XamlDisplay Margin="5,0,0,0"
-                        VerticalAlignment="Center"
-                        UniqueKey="buttons_46">
-        <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="8,0,0,0"
-                        VerticalAlignment="Center"
-                        UniqueKey="buttons_47">
-        <ToggleButton IsEnabled="False" Style="{StaticResource MaterialDesignSwitchToggleButton}" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="8,0,0,0"
-                        VerticalAlignment="Center"
-                        UniqueKey="buttons_48">
-        <ToggleButton IsChecked="True"
-                      Style="{StaticResource MaterialDesignSwitchLightToggleButton}"
-                      ToolTip="MaterialDesignSwitchLightToggleButton" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="8,0,0,0"
-                        VerticalAlignment="Center"
-                        UniqueKey="buttons_49">
-        <ToggleButton IsChecked="True"
-                      Style="{StaticResource MaterialDesignSwitchToggleButton}"
-                      ToolTip="MaterialDesignSwitchToggleButton" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="8,0,0,0"
-                        VerticalAlignment="Center"
-                        UniqueKey="buttons_50">
-        <ToggleButton IsChecked="True"
-                      Style="{StaticResource MaterialDesignSwitchDarkToggleButton}"
-                      ToolTip="MaterialDesignSwitchDarkToggleButton" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="8,0,0,0"
-                        VerticalAlignment="Center"
-                        UniqueKey="buttons_51">
-        <ToggleButton IsChecked="True"
-                      Style="{StaticResource MaterialDesignSwitchSecondaryToggleButton}"
-                      ToolTip="MaterialDesignSwitchSecondaryToggleButton" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="8,0,0,0"
-                        VerticalAlignment="Center"
-                        UniqueKey="buttons_52">
-        <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="MaterialDesignSwitchToggleButton with Content and ToggleButtonAssist.OnContent">
-          <materialDesign:PackIcon Kind="Pin" RenderTransformOrigin=".5,.5">
-            <materialDesign:PackIcon.RenderTransform>
-              <RotateTransform Angle="45" />
-            </materialDesign:PackIcon.RenderTransform>
-          </materialDesign:PackIcon>
-
-          <materialDesign:ToggleButtonAssist.OnContent>
-            <materialDesign:PackIcon Kind="Pin" />
-          </materialDesign:ToggleButtonAssist.OnContent>
-        </ToggleButton>
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="8,0,0,0"
-                        VerticalAlignment="Center"
-                        UniqueKey="buttons_64">
-        <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}"
-                      Width="60"
-                      ToolTip="MaterialDesignSwitchToggleButton with Custom Track Background">
-          <materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
-            <SolidColorBrush Color="Green" />
-          </materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
-
-          <materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
-            <SolidColorBrush Color="Red" />
-          </materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
-        </ToggleButton>
-      </smtx:XamlDisplay>
-    </StackPanel>
-
-    <StackPanel Grid.Row="5"
-                Grid.Column="0"
-                Margin="0,24,0,0"
-                Orientation="Horizontal">
-      <smtx:XamlDisplay Margin="5,0,0,0"
+    <WrapPanel>
+      <smtx:XamlDisplay Margin="0 0 16 16"
                         VerticalAlignment="Center"
                         UniqueKey="buttons_53">
-        <ToggleButton Style="{StaticResource MaterialDesignFlatToggleButton}" ToolTip="MaterialDesignFlatToggleButton">
+        <ToggleButton Style="{StaticResource MaterialDesignFlatToggleButton}"
+                      ToolTip="MaterialDesignFlatToggleButton">
           <materialDesign:PackIcon Width="21"
                                    Height="21"
                                    Kind="Paperclip" />
         </ToggleButton>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="8,0,0,0"
+      <smtx:XamlDisplay Margin="0 0 16 16"
                         VerticalAlignment="Center"
                         UniqueKey="buttons_54">
         <ToggleButton Content="{materialDesign:PackIcon Kind=Heart,
@@ -302,7 +100,7 @@
                       ToolTip="MaterialDesignFlatPrimaryToggleButton" />
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="8,0,0,0"
+      <smtx:XamlDisplay Margin="0 0 16 16"
                         VerticalAlignment="Center"
                         UniqueKey="buttons_55">
         <ToggleButton Content="{materialDesign:PackIcon Kind=Heart,
@@ -311,17 +109,20 @@
                       Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
                       ToolTip="MaterialDesignFlatPrimaryToggleButton" />
       </smtx:XamlDisplay>
-    </StackPanel>
+    </WrapPanel>
 
-    <StackPanel Grid.Row="1"
-                Grid.Column="1"
-                Margin="25,24,0,0"
-                Orientation="Horizontal">
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Text="Tool toggles"
+               Style="{StaticResource PageSectionTitleTextBlock}" />
+
+    <StackPanel Orientation="Horizontal">
       <smtx:XamlDisplay HorizontalAlignment="Left"
+                        Margin="0 0 16 16"
                         VerticalAlignment="Top"
                         UniqueKey="buttons_56">
         <!-- the following based on https://material.io/guidelines/components/buttons.html#buttons-toggle-buttons -->
-        <ListBox SelectedIndex="0" Style="{StaticResource MaterialDesignToolToggleListBox}">
+        <ListBox SelectedIndex="0"
+                 Style="{StaticResource MaterialDesignToolToggleListBox}">
           <ListBox.ToolTip>
             <StackPanel>
               <TextBlock Text="MaterialDesignToolToggleListBox" />
@@ -336,9 +137,12 @@
         </ListBox>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="buttons_63">
+      <smtx:XamlDisplay Margin="0 0 16 16"
+                        HorizontalAlignment="Left"
+                        UniqueKey="buttons_63">
         <!-- the following based on https://material.io/guidelines/components/buttons.html#buttons-toggle-buttons -->
-        <ListBox SelectedIndex="0" Style="{StaticResource MaterialDesignToolVerticalToggleListBox}">
+        <ListBox SelectedIndex="0"
+                 Style="{StaticResource MaterialDesignToolVerticalToggleListBox}">
           <ListBox.ToolTip>
             <StackPanel>
               <TextBlock Text="MaterialDesignToolToggleListBox" />
@@ -350,53 +154,160 @@
           <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatAlignCenter}" />
           <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatAlignRight}" />
           <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatAlignJustify}" />
+        </ListBox>
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay Margin="0 0 16 16"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"
+                        UniqueKey="buttons_57">
+        <ListBox SelectionMode="Extended"
+                 Style="{StaticResource MaterialDesignToolToggleFlatListBox}">
+          <ListBox.ToolTip>
+            <StackPanel>
+              <TextBlock Text="MaterialDesignToolToggleListBox" />
+              <TextBlock Text="Multiple selection" />
+              <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+            </StackPanel>
+          </ListBox.ToolTip>
+          <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatBold}" />
+          <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatItalic}" />
+          <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatUnderline}" />
         </ListBox>
       </smtx:XamlDisplay>
     </StackPanel>
 
-    <smtx:XamlDisplay Grid.Row="4"
-                      Grid.Column="1"
-                      Margin="0,24,0,0"
-                      HorizontalAlignment="Left"
-                      UniqueKey="buttons_57">
-      <ListBox SelectionMode="Extended" Style="{StaticResource MaterialDesignToolToggleFlatListBox}">
-        <ListBox.ToolTip>
-          <StackPanel>
-            <TextBlock Text="MaterialDesignToolToggleListBox" />
-            <TextBlock Text="Multiple selection" />
-            <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
-          </StackPanel>
-        </ListBox.ToolTip>
-  <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatBold}" />
-  <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatItalic}" />
-  <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatUnderline}" />
-</ListBox>
-    </smtx:XamlDisplay>
 
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Text="Radiobuttons"
+               Style="{StaticResource PageSectionTitleTextBlock}" />
 
-    <Border Grid.Row="6"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            Margin="0,24,0,0"
-            BorderBrush="{DynamicResource MaterialDesignDivider}"
-            BorderThickness="0,1,0,0" />
+    <WrapPanel>
+      <smtx:XamlDisplay Margin="0 0 16 16"
+                        VerticalAlignment="Center"
+                        UniqueKey="buttons_40">
+        <RadioButton Content="Radio"
+                     Style="{StaticResource MaterialDesignRadioButton}"
+                     Tag="True">
+          <RadioButton.IsChecked>
+            <Binding Path="Tag"
+                     RelativeSource="{RelativeSource Self}">
+              <Binding.ValidationRules>
+                <domain:IsCheckedValidationRule />
+              </Binding.ValidationRules>
+            </Binding>
+          </RadioButton.IsChecked>
+        </RadioButton>
+      </smtx:XamlDisplay>
 
-    <TextBlock Grid.Row="7"
-               Grid.Column="0"
-               Margin="0,24"
-               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-               Text="Checkboxes" />
+      <smtx:XamlDisplay Margin="0 0 16 16"
+                        VerticalAlignment="Center"
+                        UniqueKey="buttons_41">
+        <RadioButton Content="Ga Ga"
+                     Style="{StaticResource MaterialDesignRadioButton}" />
+      </smtx:XamlDisplay>
 
-    <smtx:XamlDisplay Grid.Row="8"
-                      Grid.Column="0"
-                      HorizontalAlignment="Left"
+      <smtx:XamlDisplay Margin="0 0 16 16"
+                        VerticalAlignment="Center"
+                        UniqueKey="buttons_42">
+        <RadioButton Content="Disabled"
+                     IsEnabled="False"
+                     Style="{StaticResource MaterialDesignRadioButton}" />
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay Margin="0 0 16 16"
+                        UniqueKey="buttons_65">
+        <RadioButton Content="Light"
+                     IsChecked="True"
+                     Style="{StaticResource MaterialDesignLightRadioButton}" />
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay Margin="0 0 16 16"
+                        UniqueKey="buttons_66">
+        <RadioButton Content="Dark"
+                     IsChecked="True"
+                     Style="{StaticResource MaterialDesignDarkRadioButton}" />
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay Margin="0 0 16 16"
+                        UniqueKey="buttons_67">
+        <RadioButton Content="Secondary"
+                     IsChecked="True"
+                     Style="{StaticResource MaterialDesignSecondaryRadioButton}" />
+      </smtx:XamlDisplay>
+    </WrapPanel>
+
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Text="Checkboxes"
+               Style="{StaticResource PageSectionTitleTextBlock}" />
+
+    <WrapPanel>
+      <smtx:XamlDisplay Margin="0 0 16 16"
+                        VerticalAlignment="Center"
+                        UniqueKey="buttons_43">
+        <CheckBox Content="Check"
+                  Style="{StaticResource MaterialDesignCheckBox}" />
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay Margin="0 0 16 16"
+                        VerticalAlignment="Center"
+                        UniqueKey="buttons_44">
+        <CheckBox Content="Mate"
+                  Style="{StaticResource MaterialDesignCheckBox}"
+                  Tag="True">
+          <CheckBox.IsChecked>
+            <Binding Path="Tag"
+                     RelativeSource="{RelativeSource Self}">
+              <Binding.ValidationRules>
+                <domain:IsCheckedValidationRule />
+              </Binding.ValidationRules>
+            </Binding>
+          </CheckBox.IsChecked>
+        </CheckBox>
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay Margin="0 0 16 16"
+                        VerticalAlignment="Center"
+                        UniqueKey="buttons_45">
+        <CheckBox Content="Disabled"
+                  IsChecked="True"
+                  IsEnabled="False"
+                  Style="{StaticResource MaterialDesignCheckBox}" />
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay Margin="0 0 16 16"
+                        UniqueKey="buttons_68">
+        <CheckBox Content="Light"
+                  IsChecked="True"
+                  Style="{StaticResource MaterialDesignLightCheckBox}" />
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay Margin="0 0 16 16"
+                        UniqueKey="buttons_69">
+        <CheckBox Content="Dark"
+                  IsChecked="True"
+                  Style="{StaticResource MaterialDesignDarkCheckBox}" />
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay Margin="0 0 16 16"
+                        UniqueKey="buttons_70">
+        <CheckBox Content="Secondary"
+                  IsChecked="True"
+                  Style="{StaticResource MaterialDesignSecondaryCheckBox}" />
+      </smtx:XamlDisplay>
+    </WrapPanel>
+
+    <smtx:XamlDisplay Margin="0 0 0 8"
                       UniqueKey="checkboxes_1">
-      <StackPanel Margin="8,0">
-        <CheckBox Content="Checked" IsChecked="True" />
+      <StackPanel>
+        <CheckBox Content="Checked"
+                  IsChecked="True" />
 
-        <CheckBox Content="Unchecked" IsChecked="False" />
+        <CheckBox Content="Unchecked"
+                  IsChecked="False" />
 
-        <CheckBox Content="Indeterminate" IsChecked="{x:Null}" />
+        <CheckBox Content="Indeterminate"
+                  IsChecked="{x:Null}" />
 
         <CheckBox Content="Disabled Checked"
                   IsChecked="True"
@@ -415,13 +326,10 @@
       </StackPanel>
     </smtx:XamlDisplay>
 
-    <smtx:XamlDisplay Grid.Row="8"
-                      Grid.Column="1"
-                      HorizontalAlignment="Left"
-                      VerticalAlignment="Top"
-                      UniqueKey="checkboxes_2">
-      <StackPanel Margin="8,0">
-        <CheckBox materialDesign:CheckBoxAssist.CheckBoxSize="30"
+    <smtx:XamlDisplay                      UniqueKey="checkboxes_2">
+      <StackPanel>
+        <CheckBox Margin="0 0 0 8"
+                  materialDesign:CheckBoxAssist.CheckBoxSize="30"
                   Content="Custom Size"
                   IsChecked="True" />
         <CheckBox materialDesign:RippleAssist.IsDisabled="True"
@@ -431,24 +339,104 @@
     </smtx:XamlDisplay>
 
 
-    <TextBlock Grid.Row="10"
-               Grid.Column="0"
-               Margin="0,24"
-               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Text="Switch"
+               Style="{StaticResource PageSectionTitleTextBlock}" />
+
+    <WrapPanel Orientation="Horizontal">
+      <smtx:XamlDisplay Margin="0 0 16 16"
+                        VerticalAlignment="Center"
+                        UniqueKey="buttons_46">
+        <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                      ToolTip="Default ToggleButton Style" />
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay Margin="0 0 16 16"
+                        VerticalAlignment="Center"
+                        UniqueKey="buttons_47">
+        <ToggleButton IsEnabled="False"
+                      Style="{StaticResource MaterialDesignSwitchToggleButton}" />
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay Margin="0 0 16 16"
+                        VerticalAlignment="Center"
+                        UniqueKey="buttons_48">
+        <ToggleButton IsChecked="True"
+                      Style="{StaticResource MaterialDesignSwitchLightToggleButton}"
+                      ToolTip="MaterialDesignSwitchLightToggleButton" />
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay Margin="0 0 16 16"
+                        VerticalAlignment="Center"
+                        UniqueKey="buttons_49">
+        <ToggleButton IsChecked="True"
+                      Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                      ToolTip="MaterialDesignSwitchToggleButton" />
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay Margin="0 0 16 16"
+                        VerticalAlignment="Center"
+                        UniqueKey="buttons_50">
+        <ToggleButton IsChecked="True"
+                      Style="{StaticResource MaterialDesignSwitchDarkToggleButton}"
+                      ToolTip="MaterialDesignSwitchDarkToggleButton" />
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay Margin="0 0 16 16"
+                        VerticalAlignment="Center"
+                        UniqueKey="buttons_51">
+        <ToggleButton IsChecked="True"
+                      Style="{StaticResource MaterialDesignSwitchSecondaryToggleButton}"
+                      ToolTip="MaterialDesignSwitchSecondaryToggleButton" />
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay Margin="0 0 16 16"
+                        VerticalAlignment="Center"
+                        UniqueKey="buttons_52">
+        <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                      ToolTip="MaterialDesignSwitchToggleButton with Content and ToggleButtonAssist.OnContent">
+          <materialDesign:PackIcon Kind="Pin"
+                                   RenderTransformOrigin=".5,.5">
+            <materialDesign:PackIcon.RenderTransform>
+              <RotateTransform Angle="45" />
+            </materialDesign:PackIcon.RenderTransform>
+          </materialDesign:PackIcon>
+
+          <materialDesign:ToggleButtonAssist.OnContent>
+            <materialDesign:PackIcon Kind="Pin" />
+          </materialDesign:ToggleButtonAssist.OnContent>
+        </ToggleButton>
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay Margin="0 0 16 16"
+                        VerticalAlignment="Center"
+                        UniqueKey="buttons_64">
+        <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                      Width="60"
+                      ToolTip="MaterialDesignSwitchToggleButton with Custom Track Background">
+          <materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+            <SolidColorBrush Color="Green" />
+          </materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+
+          <materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+            <SolidColorBrush Color="Red" />
+          </materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+        </ToggleButton>
+      </smtx:XamlDisplay>
+    </WrapPanel>
+
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
                Text="Tabs" />
 
-    <Border Grid.Row="9"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            Margin="0,24,0,0"
-            BorderBrush="{DynamicResource MaterialDesignDivider}"
-            BorderThickness="0,1,0,0" />
-
-    <StackPanel Grid.Row="11">
+    <StackPanel>
       <WrapPanel Orientation="Horizontal">
         <StackPanel>
-          <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="buttons_60">
-            <StackPanel Margin="4" Orientation="Horizontal">
+          <smtx:XamlDisplay HorizontalAlignment="Left"
+                            UniqueKey="buttons_60">
+            <StackPanel Margin="4"
+                        Orientation="Horizontal">
               <RadioButton Margin="4"
                            Content="FIRST"
                            IsChecked="True"
@@ -467,9 +455,11 @@
             </StackPanel>
           </smtx:XamlDisplay>
 
-          <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="buttons_61">
+          <smtx:XamlDisplay HorizontalAlignment="Left"
+                            UniqueKey="buttons_61">
             <materialDesign:ColorZone Mode="PrimaryMid">
-              <StackPanel Margin="2" Orientation="Horizontal">
+              <StackPanel Margin="2"
+                          Orientation="Horizontal">
                 <RadioButton Margin="4"
                              Content="FIRST"
                              IsChecked="True"
@@ -491,8 +481,10 @@
         </StackPanel>
 
         <StackPanel>
-          <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="buttons_71">
-            <StackPanel Margin="4" Orientation="Horizontal">
+          <smtx:XamlDisplay HorizontalAlignment="Left"
+                            UniqueKey="buttons_71">
+            <StackPanel Margin="4"
+                        Orientation="Horizontal">
               <RadioButton Margin="4"
                            BorderBrush="{DynamicResource PrimaryHueMidBrush}"
                            Content="FIRST"
@@ -514,9 +506,11 @@
             </StackPanel>
           </smtx:XamlDisplay>
 
-          <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="buttons_72">
+          <smtx:XamlDisplay HorizontalAlignment="Left"
+                            UniqueKey="buttons_72">
             <materialDesign:ColorZone Mode="SecondaryMid">
-              <StackPanel Margin="2" Orientation="Horizontal">
+              <StackPanel Margin="2"
+                          Orientation="Horizontal">
                 <RadioButton Margin="4"
                              BorderBrush="{DynamicResource PrimaryHueMidBrush}"
                              Content="FIRST"
@@ -541,16 +535,21 @@
         </StackPanel>
 
       </WrapPanel>
-      <WrapPanel Margin="0,24,0,0" Orientation="Horizontal">
+      <WrapPanel Margin="0,24,0,0"
+                 Orientation="Horizontal">
         <StackPanel>
-          <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="buttons_73">
-            <StackPanel Margin="4" Orientation="Horizontal">
+          <smtx:XamlDisplay HorizontalAlignment="Left"
+                            UniqueKey="buttons_73">
+            <StackPanel Margin="4"
+                        Orientation="Horizontal">
               <RadioButton Margin="4"
                            IsChecked="True"
                            Style="{StaticResource MaterialDesignTabRadioButton}">
                 <StackPanel>
-                  <materialDesign:PackIcon HorizontalAlignment="Center" Kind="Star" />
-                  <TextBlock Margin="0,4,0,0" Text="FIRST" />
+                  <materialDesign:PackIcon HorizontalAlignment="Center"
+                                           Kind="Star" />
+                  <TextBlock Margin="0,4,0,0"
+                             Text="FIRST" />
                 </StackPanel>
               </RadioButton>
 
@@ -558,8 +557,10 @@
                            IsChecked="False"
                            Style="{StaticResource MaterialDesignTabRadioButton}">
                 <StackPanel>
-                  <materialDesign:PackIcon HorizontalAlignment="Center" Kind="Heart" />
-                  <TextBlock Margin="0,4,0,0" Text="SECOND" />
+                  <materialDesign:PackIcon HorizontalAlignment="Center"
+                                           Kind="Heart" />
+                  <TextBlock Margin="0,4,0,0"
+                             Text="SECOND" />
                 </StackPanel>
               </RadioButton>
 
@@ -568,20 +569,25 @@
                            IsEnabled="False"
                            Style="{StaticResource MaterialDesignTabRadioButton}">
                 <StackPanel>
-                  <materialDesign:PackIcon HorizontalAlignment="Center" Kind="Smiley" />
-                  <TextBlock Margin="0,4,0,0" Text="THIRD" />
+                  <materialDesign:PackIcon HorizontalAlignment="Center"
+                                           Kind="Smiley" />
+                  <TextBlock Margin="0,4,0,0"
+                             Text="THIRD" />
                 </StackPanel>
               </RadioButton>
             </StackPanel>
           </smtx:XamlDisplay>
-          <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="buttons_74">
-            <StackPanel Margin="4" Orientation="Horizontal">
+          <smtx:XamlDisplay HorizontalAlignment="Left"
+                            UniqueKey="buttons_74">
+            <StackPanel Margin="4"
+                        Orientation="Horizontal">
               <RadioButton Margin="4"
                            IsChecked="True"
                            Style="{StaticResource MaterialDesignTabRadioButton}">
                 <StackPanel Orientation="Horizontal">
                   <materialDesign:PackIcon Kind="Star" />
-                  <TextBlock Margin="4,0,0,0" Text="FIRST" />
+                  <TextBlock Margin="4,0,0,0"
+                             Text="FIRST" />
                 </StackPanel>
               </RadioButton>
 
@@ -590,7 +596,8 @@
                            Style="{StaticResource MaterialDesignTabRadioButton}">
                 <StackPanel Orientation="Horizontal">
                   <materialDesign:PackIcon Kind="Heart" />
-                  <TextBlock Margin="4,0,0,0" Text="SECOND" />
+                  <TextBlock Margin="4,0,0,0"
+                             Text="SECOND" />
                 </StackPanel>
               </RadioButton>
 
@@ -600,17 +607,21 @@
                            Style="{StaticResource MaterialDesignTabRadioButton}">
                 <StackPanel Orientation="Horizontal">
                   <materialDesign:PackIcon Kind="Smiley" />
-                  <TextBlock Margin="4,0,0,0" Text="THIRD" />
+                  <TextBlock Margin="4,0,0,0"
+                             Text="THIRD" />
                 </StackPanel>
               </RadioButton>
             </StackPanel>
           </smtx:XamlDisplay>
         </StackPanel>
       </WrapPanel>
-      <WrapPanel Margin="0,24,0,0" Orientation="Horizontal">
+      <WrapPanel Margin="0,24,0,0"
+                 Orientation="Horizontal">
         <StackPanel Orientation="Horizontal">
-          <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="buttons_75">
-            <StackPanel Margin="4" Orientation="Vertical">
+          <smtx:XamlDisplay HorizontalAlignment="Left"
+                            UniqueKey="buttons_75">
+            <StackPanel Margin="4"
+                        Orientation="Vertical">
               <RadioButton Margin="4"
                            Content="FIRST"
                            IsChecked="True"
@@ -631,8 +642,10 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal">
-          <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="buttons_76">
-            <StackPanel Margin="4" Orientation="Vertical">
+          <smtx:XamlDisplay HorizontalAlignment="Left"
+                            UniqueKey="buttons_76">
+            <StackPanel Margin="4"
+                        Orientation="Vertical">
               <RadioButton Margin="4"
                            Content="FIRST"
                            IsChecked="True"
@@ -654,8 +667,10 @@
         </StackPanel>
 
         <StackPanel>
-          <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="buttons_77">
-            <StackPanel Margin="4" Orientation="Horizontal">
+          <smtx:XamlDisplay HorizontalAlignment="Left"
+                            UniqueKey="buttons_77">
+            <StackPanel Margin="4"
+                        Orientation="Horizontal">
               <RadioButton Margin="4"
                            Content="FIRST"
                            IsChecked="True"
@@ -674,8 +689,10 @@
             </StackPanel>
           </smtx:XamlDisplay>
 
-          <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="buttons_78">
-            <StackPanel Margin="4" Orientation="Horizontal">
+          <smtx:XamlDisplay HorizontalAlignment="Left"
+                            UniqueKey="buttons_78">
+            <StackPanel Margin="4"
+                        Orientation="Horizontal">
               <RadioButton Margin="4"
                            Content="FIRST"
                            IsChecked="True"
@@ -697,5 +714,6 @@
         </StackPanel>
       </WrapPanel>
     </StackPanel>
-  </Grid>
+
+  </StackPanel>
 </UserControl>
