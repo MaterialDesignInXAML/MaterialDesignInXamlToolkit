@@ -4,8 +4,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:transitionsDemo="clr-namespace:MaterialDesignDemo.TransitionsDemo"
-             d:DesignHeight="300"
-             d:DesignWidth="300"
+             d:DesignHeight="1080"
+             d:DesignWidth="1920"
              mc:Ignorable="d">
-  <transitionsDemo:TransitionsDemoHome />
+  <StackPanel>
+    <transitionsDemo:TransitionsDemoHome />
+
+  </StackPanel>
 </UserControl>
