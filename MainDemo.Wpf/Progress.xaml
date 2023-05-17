@@ -5,8 +5,8 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
-             d:DesignHeight="300"
-             d:DesignWidth="300"
+             d:DesignHeight="1080"
+             d:DesignWidth="1920"
              mc:Ignorable="d">
 
   <UserControl.Resources>
@@ -17,257 +17,6 @@
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </UserControl.Resources>
-
-  <Grid>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="Auto" />
-      <ColumnDefinition Width="Auto" />
-      <ColumnDefinition Width="*" />
-    </Grid.ColumnDefinitions>
-
-    <Grid.RowDefinitions>
-      <RowDefinition Height="*" />
-      <RowDefinition Height="*" />
-    </Grid.RowDefinitions>
-
-    <smtx:XamlDisplay Grid.RowSpan="2"
-                      Margin="24"
-                      UniqueKey="progress_1">
-      <!-- linear progress bars (the default style -->
-      <ProgressBar Orientation="Vertical" Value="25" />
-    </smtx:XamlDisplay>
-
-    <smtx:XamlDisplay Grid.Row="0"
-                      Grid.RowSpan="2"
-                      Grid.Column="1"
-                      Margin="24"
-                      UniqueKey="progress_2">
-      <ProgressBar Height="10"
-                   IsIndeterminate="True"
-                   Orientation="Vertical" />
-    </smtx:XamlDisplay>
-
-    <StackPanel Grid.Row="0"
-                Grid.Column="2"
-                HorizontalAlignment="Stretch">
-      <smtx:XamlDisplay Margin="24" UniqueKey="progress_3">
-        <ProgressBar Height="10" Value="25" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="24" UniqueKey="progress_4">
-        <ProgressBar materialDesign:TransitionAssist.DisableTransitions="True" Value="50" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="24" UniqueKey="progress_5">
-        <!-- should disable on 2nd transition... -->
-        <ProgressBar Value="75" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="24" UniqueKey="progress_6">
-        <ProgressBar IsIndeterminate="True" />
-      </smtx:XamlDisplay>
-    </StackPanel>
-
-    <!-- circular progress bars.. specify the MaterialDesignCircularProgressBar resource -->
-    <Grid Grid.Row="1"
-          Grid.Column="2"
-          VerticalAlignment="Top">
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-      </Grid.RowDefinitions>
-
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="*" />
-      </Grid.ColumnDefinitions>
-
-      <TextBlock Grid.ColumnSpan="2"
-                 Margin="0,0,0,16"
-                 HorizontalAlignment="Stretch"
-                 FontSize="16"
-                 Text="No extra control is required for the circular style, it is purely a standard ProgressBar, with the MaterialDesignCircularProgressBar style applied."
-                 TextAlignment="Center"
-                 TextWrapping="Wrap" />
-
-      <smtx:XamlDisplay Grid.Row="1"
-                        Grid.Column="0"
-                        Margin="12"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        UniqueKey="progress_7">
-        <ProgressBar x:Name="DeterminateCircularProgress" Style="{StaticResource MaterialDesignCircularProgressBar}" />
-      </smtx:XamlDisplay>
-
-      <TextBlock Grid.Row="1"
-                 Grid.Column="1"
-                 VerticalAlignment="Center"
-                 Text="Standard deterministic progress bar, running from 0 to 100%. &#160;For the purpose of the demo, a storyboard is used to animate the .Value property."
-                 TextWrapping="Wrap" />
-
-      <smtx:XamlDisplay Grid.Row="2"
-                        Grid.Column="0"
-                        Margin="12"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        UniqueKey="progress_8">
-        <ProgressBar IsIndeterminate="True"
-                     Style="{StaticResource MaterialDesignCircularProgressBar}"
-                     Value="35" />
-      </smtx:XamlDisplay>
-
-      <TextBlock Grid.Row="2"
-                 Grid.Column="1"
-                 VerticalAlignment="Center"
-                 Text="Indeterminate progress bar, at 35%."
-                 TextWrapping="Wrap" />
-
-      <smtx:XamlDisplay Grid.Row="3"
-                        Grid.Column="0"
-                        Margin="12"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        UniqueKey="progress_9">
-        <ProgressBar IsIndeterminate="True"
-                     Style="{StaticResource MaterialDesignCircularProgressBar}"
-                     Value="0" />
-      </smtx:XamlDisplay>
-
-      <TextBlock Grid.Row="3"
-                 Grid.Column="1"
-                 VerticalAlignment="Center"
-                 Text="Fully indeterminate progress bar, using .Value=0 to inform the theme."
-                 TextWrapping="Wrap" />
-
-      <smtx:XamlDisplay Grid.Row="4"
-                        Grid.Column="0"
-                        Margin="12"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        UniqueKey="progress_10">
-        <ProgressBar x:Name="IndeterminateToDeterminateCircularProgress"
-                     IsIndeterminate="True"
-                     Style="{StaticResource MaterialDesignCircularProgressBar}"
-                     Value="20" />
-      </smtx:XamlDisplay>
-
-      <TextBlock Grid.Row="4"
-                 Grid.Column="1"
-                 VerticalAlignment="Center"
-                 Text="An indeterminate job transitioning to a determinate job, completing to 100%. &#160;For the purpose of the demo, a storyboard is used to animate the .Value and .IsIndeterminate properties."
-                 TextWrapping="Wrap" />
-
-      <smtx:XamlDisplay Grid.Row="5"
-                        Grid.Column="0"
-                        Margin="12"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        UniqueKey="progress_11">
-        <materialDesign:Card Padding="4" UniformCornerRadius="14">
-          <ProgressBar IsIndeterminate="True"
-                       Style="{StaticResource MaterialDesignCircularProgressBar}"
-                       Value="50" />
-        </materialDesign:Card>
-      </smtx:XamlDisplay>
-
-      <TextBlock Grid.Row="5"
-                 Grid.Column="1"
-                 VerticalAlignment="Center"
-                 Text="Wrap in a Card control to raise the material."
-                 TextWrapping="Wrap" />
-
-      <smtx:XamlDisplay Grid.Row="6"
-                        Grid.Column="0"
-                        Margin="12"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        UniqueKey="progress_12">
-        <materialDesign:Card Padding="4"
-                             RenderTransformOrigin=".5,.5"
-                             UniformCornerRadius="14">
-          <ProgressBar x:Name="AnimatedProgressInCard" Style="{StaticResource MaterialDesignCircularProgressBar}" />
-          <materialDesign:Card.RenderTransform>
-            <TransformGroup>
-              <ScaleTransform x:Name="ScaleTransform" ScaleX="0" ScaleY="0" />
-            </TransformGroup>
-          </materialDesign:Card.RenderTransform>
-
-          <materialDesign:Card.Style>
-            <Style TargetType="materialDesign:Card" BasedOn="{StaticResource {x:Type materialDesign:Card}}">
-              <Style.Resources>
-                <Storyboard x:Key="FadeIn" FillBehavior="HoldEnd">
-                  <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
-                    <EasingDoubleKeyFrame Value="0" />
-                    <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="1">
-                      <EasingDoubleKeyFrame.EasingFunction>
-                        <CircleEase EasingMode="EaseOut" />
-                      </EasingDoubleKeyFrame.EasingFunction>
-                    </EasingDoubleKeyFrame>
-                  </DoubleAnimationUsingKeyFrames>
-
-                  <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
-                    <EasingDoubleKeyFrame Value="0" />
-                    <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="1">
-                      <EasingDoubleKeyFrame.EasingFunction>
-                        <CircleEase EasingMode="EaseOut" />
-                      </EasingDoubleKeyFrame.EasingFunction>
-                    </EasingDoubleKeyFrame>
-                  </DoubleAnimationUsingKeyFrames>
-                </Storyboard>
-
-                <Storyboard x:Key="FadeOut">
-                  <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
-                    <EasingDoubleKeyFrame Value="1" />
-                    <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0">
-                      <EasingDoubleKeyFrame.EasingFunction>
-                        <CircleEase EasingMode="EaseOut" />
-                      </EasingDoubleKeyFrame.EasingFunction>
-                    </EasingDoubleKeyFrame>
-                  </DoubleAnimationUsingKeyFrames>
-                  <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
-                    <EasingDoubleKeyFrame Value="1" />
-                    <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0">
-                      <EasingDoubleKeyFrame.EasingFunction>
-                        <CircleEase EasingMode="EaseOut" />
-                      </EasingDoubleKeyFrame.EasingFunction>
-                    </EasingDoubleKeyFrame>
-                  </DoubleAnimationUsingKeyFrames>
-                </Storyboard>
-              </Style.Resources>
-
-              <Style.Triggers>
-                <DataTrigger Binding="{Binding ElementName=AnimatedProgressInCard, Path=Value}" Value="20">
-                  <DataTrigger.EnterActions>
-                    <RemoveStoryboard BeginStoryboardName="FadeOut" />
-                    <BeginStoryboard Name="FadeIn" Storyboard="{StaticResource FadeIn}" />
-                  </DataTrigger.EnterActions>
-                </DataTrigger>
-
-                <DataTrigger Binding="{Binding ElementName=AnimatedProgressInCard, Path=Value}" Value="100">
-                  <DataTrigger.EnterActions>
-                    <RemoveStoryboard BeginStoryboardName="FadeIn" />
-                    <BeginStoryboard Name="FadeOut" Storyboard="{StaticResource FadeOut}" />
-                  </DataTrigger.EnterActions>
-                </DataTrigger>
-              </Style.Triggers>
-            </Style>
-          </materialDesign:Card.Style>
-        </materialDesign:Card>
-      </smtx:XamlDisplay>
-
-      <TextBlock Grid.Row="6"
-                 Grid.Column="1"
-                 VerticalAlignment="Center"
-                 Text="Apply some animations to the card to get funky!"
-                 TextWrapping="Wrap" />
-    </Grid>
-  </Grid>
-
   <!--
     these animations are used to control the circular progress bars' values, so we don't need
     code-behind or a view model to illustrate them in action.
@@ -296,7 +45,8 @@
                       TargetName="IndeterminateToDeterminateCircularProgress"
                       Duration="0:0:9">
             <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="IsIndeterminate">
-              <DiscreteBooleanKeyFrame KeyTime="0:0:4" Value="False" />
+              <DiscreteBooleanKeyFrame KeyTime="0:0:4"
+                                       Value="False" />
             </BooleanAnimationUsingKeyFrames>
 
             <DoubleAnimation BeginTime="0:0:4"
@@ -314,29 +64,320 @@
         </BeginStoryboard>
 
         <BeginStoryboard>
-          <Storyboard RepeatBehavior="Forever" TargetName="AnimatedProgressInCard">
+          <Storyboard RepeatBehavior="Forever"
+                      TargetName="AnimatedProgressInCard">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Value">
-              <DiscreteDoubleKeyFrame KeyTime="0" Value="0" />
-              <DiscreteDoubleKeyFrame KeyTime="0:0:0.1" Value="1" />
+              <DiscreteDoubleKeyFrame KeyTime="0"
+                                      Value="0" />
+              <DiscreteDoubleKeyFrame KeyTime="0:0:0.1"
+                                      Value="1" />
               <!-- we have used a 20% startup to fade in on the actual control -->
-              <DiscreteDoubleKeyFrame KeyTime="0:0:1" Value="20" />
+              <DiscreteDoubleKeyFrame KeyTime="0:0:1"
+                                      Value="20" />
               <!-- pretend we are indeterminate for 4 seconds -->
-              <DiscreteDoubleKeyFrame KeyTime="0:0:4" Value="20" />
+              <DiscreteDoubleKeyFrame KeyTime="0:0:4"
+                                      Value="20" />
               <!-- now we become determinate and complete to 100% -->
-              <SplineDoubleKeyFrame KeyTime="0:0:8" Value="100" />
-              <SplineDoubleKeyFrame KeyTime="0:0:9" Value="100" />
+              <SplineDoubleKeyFrame KeyTime="0:0:8"
+                                    Value="100" />
+              <SplineDoubleKeyFrame KeyTime="0:0:9"
+                                    Value="100" />
             </DoubleAnimationUsingKeyFrames>
 
-            <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="IsIndeterminate" Duration="0:0:10">
-              <DiscreteBooleanKeyFrame KeyTime="0:0:0.1" Value="True" />
-              <DiscreteBooleanKeyFrame KeyTime="0:0:3.9" Value="True" />
+            <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="IsIndeterminate"
+                                            Duration="0:0:10">
+              <DiscreteBooleanKeyFrame KeyTime="0:0:0.1"
+                                       Value="True" />
+              <DiscreteBooleanKeyFrame KeyTime="0:0:3.9"
+                                       Value="True" />
               <!-- now we become determinate and complete to 100% -->
-              <DiscreteBooleanKeyFrame KeyTime="0:0:4" Value="False" />
+              <DiscreteBooleanKeyFrame KeyTime="0:0:4"
+                                       Value="False" />
             </BooleanAnimationUsingKeyFrames>
           </Storyboard>
         </BeginStoryboard>
       </EventTrigger.Actions>
     </EventTrigger>
   </UserControl.Triggers>
+
+  <StackPanel>
+    <TextBlock Text="Progress indicators"
+               Style="{StaticResource PageTitleTextBlock}" />
+
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+        <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+
+      <smtx:XamlDisplay Grid.RowSpan="2"
+                        Margin="24"
+                        UniqueKey="progress_1">
+        <!-- linear progress bars (the default style -->
+        <ProgressBar Orientation="Vertical"
+                     Value="25" />
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Grid.Column="1"
+                        Margin="24"
+                        UniqueKey="progress_2">
+        <ProgressBar Height="10"
+                     IsIndeterminate="True"
+                     Orientation="Vertical" />
+      </smtx:XamlDisplay>
+
+      <StackPanel Grid.Row="0"
+                  Grid.Column="2"
+                  HorizontalAlignment="Stretch">
+        <smtx:XamlDisplay Margin="24"
+                          UniqueKey="progress_3">
+          <ProgressBar Height="10"
+                       Value="25" />
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Margin="24"
+                          UniqueKey="progress_4">
+          <ProgressBar materialDesign:TransitionAssist.DisableTransitions="True"
+                       Value="50" />
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Margin="24"
+                          UniqueKey="progress_5">
+          <!-- should disable on 2nd transition... -->
+          <ProgressBar Value="75" />
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Margin="24"
+                          UniqueKey="progress_6">
+          <ProgressBar IsIndeterminate="True" />
+        </smtx:XamlDisplay>
+      </StackPanel>
+
+      <!-- circular progress bars.. specify the MaterialDesignCircularProgressBar resource -->
+      <Grid Grid.Row="1"
+            Grid.Column="2"
+            VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.ColumnSpan="2"
+                   Margin="0,0,0,16"
+                   HorizontalAlignment="Stretch"
+                   FontSize="16"
+                   Text="No extra control is required for the circular style, it is purely a standard ProgressBar, with the MaterialDesignCircularProgressBar style applied."
+                   TextAlignment="Center"
+                   TextWrapping="Wrap" />
+
+        <smtx:XamlDisplay Grid.Row="1"
+                          Grid.Column="0"
+                          Margin="12"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          UniqueKey="progress_7">
+          <ProgressBar x:Name="DeterminateCircularProgress"
+                       Style="{StaticResource MaterialDesignCircularProgressBar}" />
+        </smtx:XamlDisplay>
+
+        <TextBlock Grid.Row="1"
+                   Grid.Column="1"
+                   VerticalAlignment="Center"
+                   Text="Standard deterministic progress bar, running from 0 to 100%. &#160;For the purpose of the demo, a storyboard is used to animate the .Value property."
+                   TextWrapping="Wrap" />
+
+        <smtx:XamlDisplay Grid.Row="2"
+                          Grid.Column="0"
+                          Margin="12"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          UniqueKey="progress_8">
+          <ProgressBar IsIndeterminate="True"
+                       Style="{StaticResource MaterialDesignCircularProgressBar}"
+                       Value="35" />
+        </smtx:XamlDisplay>
+
+        <TextBlock Grid.Row="2"
+                   Grid.Column="1"
+                   VerticalAlignment="Center"
+                   Text="Indeterminate progress bar, at 35%."
+                   TextWrapping="Wrap" />
+
+        <smtx:XamlDisplay Grid.Row="3"
+                          Grid.Column="0"
+                          Margin="12"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          UniqueKey="progress_9">
+          <ProgressBar IsIndeterminate="True"
+                       Style="{StaticResource MaterialDesignCircularProgressBar}"
+                       Value="0" />
+        </smtx:XamlDisplay>
+
+        <TextBlock Grid.Row="3"
+                   Grid.Column="1"
+                   VerticalAlignment="Center"
+                   Text="Fully indeterminate progress bar, using .Value=0 to inform the theme."
+                   TextWrapping="Wrap" />
+
+        <smtx:XamlDisplay Grid.Row="4"
+                          Grid.Column="0"
+                          Margin="12"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          UniqueKey="progress_10">
+          <ProgressBar x:Name="IndeterminateToDeterminateCircularProgress"
+                       IsIndeterminate="True"
+                       Style="{StaticResource MaterialDesignCircularProgressBar}"
+                       Value="20" />
+        </smtx:XamlDisplay>
+
+        <TextBlock Grid.Row="4"
+                   Grid.Column="1"
+                   VerticalAlignment="Center"
+                   Text="An indeterminate job transitioning to a determinate job, completing to 100%. &#160;For the purpose of the demo, a storyboard is used to animate the .Value and .IsIndeterminate properties."
+                   TextWrapping="Wrap" />
+
+        <smtx:XamlDisplay Grid.Row="5"
+                          Grid.Column="0"
+                          Margin="12"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          UniqueKey="progress_11">
+          <materialDesign:Card Padding="4"
+                               UniformCornerRadius="14">
+            <ProgressBar IsIndeterminate="True"
+                         Style="{StaticResource MaterialDesignCircularProgressBar}"
+                         Value="50" />
+          </materialDesign:Card>
+        </smtx:XamlDisplay>
+
+        <TextBlock Grid.Row="5"
+                   Grid.Column="1"
+                   VerticalAlignment="Center"
+                   Text="Wrap in a Card control to raise the material."
+                   TextWrapping="Wrap" />
+
+        <smtx:XamlDisplay Grid.Row="6"
+                          Grid.Column="0"
+                          Margin="12"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          UniqueKey="progress_12">
+          <materialDesign:Card Padding="4"
+                               RenderTransformOrigin=".5,.5"
+                               UniformCornerRadius="14">
+            <ProgressBar x:Name="AnimatedProgressInCard"
+                         Style="{StaticResource MaterialDesignCircularProgressBar}" />
+            <materialDesign:Card.RenderTransform>
+              <TransformGroup>
+                <ScaleTransform x:Name="ScaleTransform"
+                                ScaleX="0"
+                                ScaleY="0" />
+              </TransformGroup>
+            </materialDesign:Card.RenderTransform>
+
+            <materialDesign:Card.Style>
+              <Style TargetType="materialDesign:Card"
+                     BasedOn="{StaticResource {x:Type materialDesign:Card}}">
+                <Style.Resources>
+                  <Storyboard x:Key="FadeIn"
+                              FillBehavior="HoldEnd">
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                      <EasingDoubleKeyFrame Value="0" />
+                      <EasingDoubleKeyFrame KeyTime="0:0:0.8"
+                                            Value="1">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                          <CircleEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                      </EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                      <EasingDoubleKeyFrame Value="0" />
+                      <EasingDoubleKeyFrame KeyTime="0:0:0.8"
+                                            Value="1">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                          <CircleEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                      </EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+                  </Storyboard>
+
+                  <Storyboard x:Key="FadeOut">
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                      <EasingDoubleKeyFrame Value="1" />
+                      <EasingDoubleKeyFrame KeyTime="0:0:0.8"
+                                            Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                          <CircleEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                      </EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                      <EasingDoubleKeyFrame Value="1" />
+                      <EasingDoubleKeyFrame KeyTime="0:0:0.8"
+                                            Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                          <CircleEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                      </EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+                  </Storyboard>
+                </Style.Resources>
+
+                <Style.Triggers>
+                  <DataTrigger Binding="{Binding ElementName=AnimatedProgressInCard, Path=Value}"
+                               Value="20">
+                    <DataTrigger.EnterActions>
+                      <RemoveStoryboard BeginStoryboardName="FadeOut" />
+                      <BeginStoryboard Name="FadeIn"
+                                       Storyboard="{StaticResource FadeIn}" />
+                    </DataTrigger.EnterActions>
+                  </DataTrigger>
+
+                  <DataTrigger Binding="{Binding ElementName=AnimatedProgressInCard, Path=Value}"
+                               Value="100">
+                    <DataTrigger.EnterActions>
+                      <RemoveStoryboard BeginStoryboardName="FadeIn" />
+                      <BeginStoryboard Name="FadeOut"
+                                       Storyboard="{StaticResource FadeOut}" />
+                    </DataTrigger.EnterActions>
+                  </DataTrigger>
+                </Style.Triggers>
+              </Style>
+            </materialDesign:Card.Style>
+          </materialDesign:Card>
+        </smtx:XamlDisplay>
+
+        <TextBlock Grid.Row="6"
+                   Grid.Column="1"
+                   VerticalAlignment="Center"
+                   Text="Apply some animations to the card to get funky!"
+                   TextWrapping="Wrap" />
+      </Grid>
+    </Grid>
+
+  </StackPanel>
+
+
 </UserControl>
 
