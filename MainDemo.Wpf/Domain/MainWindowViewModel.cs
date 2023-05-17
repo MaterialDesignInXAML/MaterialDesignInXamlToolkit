@@ -215,7 +215,10 @@ public class MainWindowViewModel : ViewModelBase
                 DocumentationLink.StyleLink("Clock"),
                 DocumentationLink.StyleLink("DatePicker"),
                 DocumentationLink.ApiLink<TimePicker>()
-            });
+            })
+        {
+            HorizontalScrollBarVisibilityRequirement = ScrollBarVisibility.Disabled,
+        };
 
         yield return new DemoItem(
             "Slider",
@@ -439,7 +442,10 @@ public class MainWindowViewModel : ViewModelBase
                 DocumentationLink.DemoPageLink<Elevation>(),
                 DocumentationLink.StyleLink("Shadows"),
                 DocumentationLink.SpecsLink("https://material.io/design/environment/elevation.html", "Elevation")
-            });
+            })
+        {
+            HorizontalScrollBarVisibilityRequirement = ScrollBarVisibility.Disabled,
+        };
 
         yield return new DemoItem(
             "Smart Hint",
