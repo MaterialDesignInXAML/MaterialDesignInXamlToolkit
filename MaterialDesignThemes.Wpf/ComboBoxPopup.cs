@@ -250,6 +250,16 @@ namespace MaterialDesignThemes.Wpf
             DependencyProperty.Register(nameof(OpenDirection), typeof(PopupDirection),
                 typeof(ComboBoxPopup), new PropertyMetadata(PopupDirection.None));
 
+        public static readonly DependencyProperty CustomPopupPlacementCallbackOverrideProperty =
+            DependencyProperty.Register(nameof(CustomPopupPlacementCallbackOverride), typeof(CustomPopupPlacementCallback),
+                typeof(ComboBoxPopup), new PropertyMetadata(default(CustomPopupPlacementCallback)));
+
+        public CustomPopupPlacementCallback? CustomPopupPlacementCallbackOverride
+        {
+            get => (CustomPopupPlacementCallback?) GetValue(CustomPopupPlacementCallbackOverrideProperty); 
+            set => SetValue(CustomPopupPlacementCallbackOverrideProperty, value);
+        }
+
         public ComboBoxPopup()
             => CustomPopupPlacementCallback = ComboBoxCustomPopupPlacementCallback;
 
@@ -273,6 +283,11 @@ namespace MaterialDesignThemes.Wpf
         private CustomPopupPlacement[] ComboBoxCustomPopupPlacementCallback(
             Size popupSize, Size targetSize, Point offset)
         {
+            if (CustomPopupPlacementCallbackOverride != null)
+            {
+                return CustomPopupPlacementCallbackOverride(popupSize, targetSize, offset);
+            }
+
             var visualAncestry = PlacementTarget.GetVisualAncestry().ToList();
 
             var parent = visualAncestry.OfType<Panel>().ElementAt(1);
@@ -303,10 +318,10 @@ namespace MaterialDesignThemes.Wpf
                 var locationFromScreen = PlacementTarget.PointToScreen(new Point(0, 0));
 
                 var mainVisual = visualAncestry.OfType<Visual>().LastOrDefault();
-                if (mainVisual is null) throw new ArgumentException($"{nameof(visualAncestry)} must contains unless one {nameof(Visual)} control inside.");
+                if (mainVisual is null) throw new ArgumentException($"{nameof(visualAncestry)} must contains at least one {nameof(Visual)} control inside.");
 
                 var controlVisual = visualAncestry.OfType<Visual>().FirstOrDefault();
-                if (controlVisual == null) throw new ArgumentException($"{nameof(visualAncestry)} must contains unless one {nameof(Visual)} control inside.");
+                if (controlVisual == null) throw new ArgumentException($"{nameof(visualAncestry)} must contains at least one {nameof(Visual)} control inside.");
 
                 var screen = Screen.FromPoint(locationFromScreen);
                 var screenWidth = (int)screen.Bounds.Width;

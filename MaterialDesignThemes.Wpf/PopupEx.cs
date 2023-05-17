@@ -92,7 +92,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         private void PopupEx_Opened(object? sender, EventArgs e)
-            => SetTopmostState(_hostWindow?.IsActive ?? true);
+            => SetTopmostState(_hostWindow is null || _hostWindow is { IsActive: true } || _hostWindow is { Topmost: true });
 
         private void HostWindow_Activated(object? sender, EventArgs e)
             => SetTopmostState(true);

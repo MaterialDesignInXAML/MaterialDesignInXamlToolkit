@@ -384,7 +384,7 @@
                     Content="MID"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignFlatSecondaryMidBgButton}"
-                    ToolTip="MaterialDesignFlatAccentBackgroundButton" />
+                    ToolTip="MaterialDesignFlatSecondaryMidBgButton" />
           </smtx:XamlDisplay>
 
           <smtx:XamlDisplay Margin="8,0" UniqueKey="buttons_flat_bg_6">
@@ -449,8 +449,8 @@
                     materialDesign:RippleAssist.Feedback="#DD000000"
                     Content="CUSTOM RIPPLE"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                    Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                    ToolTip="Resource name: MaterialDesignRaisedAccentButton" />
+                    Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                    ToolTip="Resource name: MaterialDesignRaisedSecondaryButton" />
           </smtx:XamlDisplay>
 
           <smtx:XamlDisplay Margin="8,0" UniqueKey="buttons_22">
@@ -458,8 +458,8 @@
                     materialDesign:RippleAssist.IsDisabled="True"
                     Content="NO RIPPLE"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                    Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                    ToolTip="Resource name: MaterialDesignRaisedAccentButton" />
+                    Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                    ToolTip="Resource name: MaterialDesignRaisedSecondaryButton" />
           </smtx:XamlDisplay>
 
           <smtx:XamlDisplay Margin="8,0" UniqueKey="buttons_23">
@@ -549,8 +549,8 @@
           <Button Height="{StaticResource ButtonHeight}"
                   materialDesign:ButtonAssist.CornerRadius="25 25 0 0"
                   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                  Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                  ToolTip="MaterialDesignRaisedAccentButton with Round Top Corners">
+                  Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                  ToolTip="MaterialDesignRaisedSecondaryButton with Round Top Corners">
             <TextBlock Text="25/50 Radius" />
           </Button>
         </Grid>
@@ -725,7 +725,7 @@
                   materialDesign:ButtonProgressAssist.Value="50"
                   Content="{materialDesign:PackIcon DotsHorizontal}"
                   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                  Style="{StaticResource MaterialDesignFloatingActionAccentButton}" />
+                  Style="{StaticResource MaterialDesignFloatingActionSecondaryButton}" />
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay Margin="8,0" UniqueKey="buttons_31">
@@ -856,10 +856,10 @@
       <smtx:XamlDisplay Margin="8,0" UniqueKey="buttons_11">
         <materialDesign:PopupBox IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                  PlacementMode="BottomAndAlignCentres"
-                                 Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}"
+                                 Style="{StaticResource MaterialDesignMultiFloatingActionSecondaryPopupBox}"
                                  ToggleCheckedContentCommand="{Binding FloatingActionDemoCommand}"
                                  ToggleCheckedContentCommandParameter="wowsers"
-                                 ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
+                                 ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionSecondaryPopupBox">
           <materialDesign:PopupBox.ToggleCheckedContent>
             <materialDesign:PackIcon Width="24"
                                      Height="24"

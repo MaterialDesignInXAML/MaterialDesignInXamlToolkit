@@ -62,17 +62,17 @@
           <DockPanel Width="64"
                      Height="64"
                      Background="Transparent"
-                     ToolTip="{Binding Aliases, Converter={StaticResource StringJoinConverter}}">
+                     ToolTip="{Binding Aliases, Converter={StaticResource StringJoinConverter}, Mode=OneTime}">
             <TextBlock HorizontalAlignment="Center"
                        DockPanel.Dock="Bottom"
-                       Text="{Binding Kind}"
+                       Text="{Binding Kind, Mode=OneTime}"
                        TextTrimming="CharacterEllipsis" />
 
             <materialDesign:PackIcon Width="32"
                                      Height="32"
                                      HorizontalAlignment="Center"
                                      VerticalAlignment="Center"
-                                     Kind="{Binding Kind}" />
+                                     Kind="{Binding Kind,Mode=OneTime}" />
           </DockPanel>
         </DataTemplate>
       </ListBox.ItemTemplate>

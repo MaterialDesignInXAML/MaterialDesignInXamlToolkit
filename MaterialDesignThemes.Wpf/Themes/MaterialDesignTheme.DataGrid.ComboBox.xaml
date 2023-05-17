@@ -378,6 +378,7 @@
                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                    IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
+                   CaretBrush="{TemplateBinding Foreground}"
                    Style="{StaticResource MaterialDesignDataGridComboBoxEditableTextBox}" />
         </Grid>
       </Border>

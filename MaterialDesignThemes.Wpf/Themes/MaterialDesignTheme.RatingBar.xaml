@@ -49,6 +49,7 @@
                         <MultiBinding Converter="{x:Static wpf:RatingBar+TextBlockForegroundConverter.Instance}">
                           <Binding Path="Tag" RelativeSource="{RelativeSource Self}" />
                           <Binding Path="Orientation" RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" />
+                          <Binding Path="InvertDirection" RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" />
                           <Binding Path="Value" RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" />
                           <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}" />
                         </MultiBinding>
@@ -70,6 +71,7 @@
                                   <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}" />
                                   <Binding ElementName="previewValueHorizontal" Path="ActualWidth" />
                                   <Binding Path="Orientation" RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" />
+                                  <Binding Path="InvertDirection" RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" />
                                   <Binding Path="IsFractionalValueEnabled" RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" />
                                   <Binding Path="PreviewValue" RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" />
                                   <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -81,6 +83,7 @@
                                   <Binding Path="ActualHeight" RelativeSource="{RelativeSource TemplatedParent}" />
                                   <Binding ElementName="previewValueHorizontal" Path="ActualHeight" />
                                   <Binding Path="Orientation" RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" />
+                                  <Binding Path="InvertDirection" RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" />
                                   <Binding Path="IsFractionalValueEnabled" RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" />
                                   <Binding Path="PreviewValue" RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" />
                                   <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -124,6 +127,7 @@
                                   <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}" />
                                   <Binding ElementName="previewValueVertical" Path="ActualWidth" />
                                   <Binding Path="Orientation" RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" />
+                                  <Binding Path="InvertDirection" RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" />
                                   <Binding Path="IsFractionalValueEnabled" RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" />
                                   <Binding Path="PreviewValue" RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" />
                                   <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -135,6 +139,7 @@
                                   <Binding Path="ActualHeight" RelativeSource="{RelativeSource TemplatedParent}" />
                                   <Binding ElementName="previewValueVertical" Path="ActualHeight" />
                                   <Binding Path="Orientation" RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" />
+                                  <Binding Path="InvertDirection" RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" />
                                   <Binding Path="IsFractionalValueEnabled" RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" />
                                   <Binding Path="PreviewValue" RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" />
                                   <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -245,6 +250,7 @@
                         <MultiBinding Converter="{x:Static wpf:RatingBar+TextBlockForegroundConverter.Instance}">
                           <Binding Path="Tag" RelativeSource="{RelativeSource Self}" />
                           <Binding Path="Orientation" RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" />
+                          <Binding Path="InvertDirection" RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" />
                           <Binding Path="Value" RelativeSource="{RelativeSource FindAncestor, AncestorType=wpf:RatingBar}" />
                           <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}" />
                         </MultiBinding>

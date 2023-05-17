@@ -14,9 +14,12 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.GroupBox.xaml" />
 
         <ResourceDictionary>
-          <Style TargetType="smtx:XamlDisplay" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="Margin" Value="0,0,16,16" />
+          <Style TargetType="smtx:XamlDisplay"
+                 BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
+            <Setter Property="HorizontalAlignment"
+                    Value="Left" />
+            <Setter Property="Margin"
+                    Value="0,0,16,16" />
           </Style>
         </ResourceDictionary>
       </ResourceDictionary.MergedDictionaries>
@@ -25,29 +28,35 @@
   </UserControl.Resources>
 
   <StackPanel>
-    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="GroupBox" />
-    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Default" />
+    <TextBlock Style="{StaticResource PageTitleTextBlock}"
+               Text="GroupBox" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
+               Text="Default" />
 
     <smtx:XamlDisplay UniqueKey="groupbox_1">
-      <GroupBox Width="300" Header="Header">
+      <GroupBox Width="300"
+                Header="Header">
         <TextBlock Text="Content" />
       </GroupBox>
     </smtx:XamlDisplay>
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
-    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Shadow Header" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
+               Text="Shadow Header" />
 
     <smtx:XamlDisplay UniqueKey="groupbox_2">
       <GroupBox Width="300"
                 materialDesign:ElevationAssist.Elevation="Dp6"
                 BorderThickness="0"
                 Header="Shadow Header">
-        <TextBlock Text="Short loin picanha boudin pork belly. Ground round porchetta biltong, cow t-bone tri-tip strip steak chuck filet mignon jowl turducken. Landjaeger strip steak pork chop, jowl sirloin pork capicola andouille. Kevin ribeye tongue, drumstick hamburger frankfurter t-bone corned beef beef biltong cow venison. Biltong picanha bresaola pork belly, filet mignon spare ribs doner pork chop kielbasa. Swine flank drumstick pork belly pancetta spare ribs rump filet mignon." TextWrapping="Wrap" />
+        <TextBlock Text="Short loin picanha boudin pork belly. Ground round porchetta biltong, cow t-bone tri-tip strip steak chuck filet mignon jowl turducken. Landjaeger strip steak pork chop, jowl sirloin pork capicola andouille. Kevin ribeye tongue, drumstick hamburger frankfurter t-bone corned beef beef biltong cow venison. Biltong picanha bresaola pork belly, filet mignon spare ribs doner pork chop kielbasa. Swine flank drumstick pork belly pancetta spare ribs rump filet mignon."
+                   TextWrapping="Wrap" />
       </GroupBox>
     </smtx:XamlDisplay>
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
-    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Transparent Background" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
+               Text="Transparent Background" />
 
     <smtx:XamlDisplay UniqueKey="groupbox_3">
       <Border Background="{DynamicResource MaterialDesignBackground}">
@@ -60,12 +69,23 @@
         </GroupBox>
       </Border>
     </smtx:XamlDisplay>
+    <smtx:XamlDisplay Grid.Row="1"
+                      Grid.Column="0"
+                      UniqueKey="groupbox_4">
+      <GroupBox Margin="16"
+                materialDesign:ColorZoneAssist.Mode="SecondaryMid"
+                Header="Secondary Header"
+                Style="{StaticResource MaterialDesignGroupBox}">
+        <TextBlock Text="My Content" />
+      </GroupBox>
+    </smtx:XamlDisplay>
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
-    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Different Headers" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
+               Text="Different Headers" />
 
     <WrapPanel>
-      <smtx:XamlDisplay UniqueKey="groupbox_4">
+      <smtx:XamlDisplay UniqueKey="groupbox_5">
         <GroupBox Width="300"
                   materialDesign:ColorZoneAssist.Mode="SecondaryMid"
                   Header="Accent Header"
@@ -74,7 +94,7 @@
         </GroupBox>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay UniqueKey="groupbox_5">
+      <smtx:XamlDisplay UniqueKey="groupbox_6">
         <GroupBox Width="300"
                   materialDesign:ColorZoneAssist.Background="Black"
                   materialDesign:ColorZoneAssist.Foreground="White"
@@ -87,12 +107,31 @@
     </WrapPanel>
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
-    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Card" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
+               Text="Card" />
 
     <WrapPanel>
-      <smtx:XamlDisplay UniqueKey="groupbox_6">
+      <smtx:XamlDisplay UniqueKey="groupbox_7">
         <GroupBox Width="300"
                   Header="Card Group Box"
+                  Style="{StaticResource MaterialDesignCardGroupBox}">
+          <GroupBox.HeaderTemplate>
+            <DataTemplate>
+              <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Width="32"
+                                         Height="32"
+                                         VerticalAlignment="Center"
+                                         Kind="ImageArea" />
+              </StackPanel>
+            </DataTemplate>
+          </GroupBox.HeaderTemplate>
+        </GroupBox>
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay UniqueKey="groupbox_8">
+        <GroupBox Width="300"
+                  materialDesign:ColorZoneAssist.Mode="SecondaryMid"
+                  Header="Card Group Box Secondary"
                   Style="{StaticResource MaterialDesignCardGroupBox}">
           <GroupBox.HeaderTemplate>
             <DataTemplate>
@@ -116,7 +155,7 @@
         </GroupBox>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay UniqueKey="groupbox_7">
+      <smtx:XamlDisplay UniqueKey="groupbox_9">
         <GroupBox Width="300"
                   materialDesign:ColorZoneAssist.Mode="SecondaryMid"
                   Header="Card Group Box Accent"
@@ -143,7 +182,7 @@
         </GroupBox>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay UniqueKey="groupbox_8">
+      <smtx:XamlDisplay UniqueKey="groupbox_10">
         <GroupBox Width="300"
                   materialDesign:ColorZoneAssist.Background="Black"
                   materialDesign:ColorZoneAssist.Foreground="White"
@@ -172,7 +211,6 @@
         </GroupBox>
       </smtx:XamlDisplay>
     </WrapPanel>
-
   </StackPanel>
 </UserControl>
 

@@ -31,6 +31,14 @@ namespace MaterialDesignThemes.Wpf
             return TransformToDeviceY(y);
         }
 
+        public static double TransformFromDeviceY(Visual visual, double y)
+        {
+            var source = PresentationSource.FromVisual(visual);
+            if (source?.CompositionTarget != null) return y / source.CompositionTarget.TransformToDevice.M22;
+
+            return TransformFromDeviceY(y);
+        }
+
         public static double TransformToDeviceX(Visual visual, double x)
         {
             var source = PresentationSource.FromVisual(visual);
@@ -39,8 +47,20 @@ namespace MaterialDesignThemes.Wpf
             return TransformToDeviceX(x);
         }
 
+        public static double TransformFromDeviceX(Visual visual, double x)
+        {
+            var source = PresentationSource.FromVisual(visual);
+            if (source?.CompositionTarget != null) return x / source.CompositionTarget.TransformToDevice.M11;
+
+            return TransformFromDeviceX(x);
+        }
+
         public static double TransformToDeviceY(double y) => y * DpiY / StandardDpiY;
 
+        public static double TransformFromDeviceY(double y) => y / DpiY * StandardDpiY;
+
         public static double TransformToDeviceX(double x) => x * DpiX / StandardDpiX;
+
+        public static double TransformFromDeviceX(double x) => x / DpiX * StandardDpiX;
     }
 }

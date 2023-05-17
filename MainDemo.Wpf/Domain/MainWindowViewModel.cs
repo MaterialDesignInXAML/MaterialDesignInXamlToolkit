@@ -123,7 +123,7 @@ public class MainWindowViewModel : ViewModelBase
                 DocumentationLink.WikiLink("Custom-Palette-Hues", "Custom Palettes"),
                 DocumentationLink.WikiLink("Swatches-and-Recommended-Colors", "Swatches"),
                 DocumentationLink.DemoPageLink<PaletteSelector>("Demo View"),
-                DocumentationLink.DemoPageLink<PaletteSelectorViewModel>("Demo View Model"),
+                DocumentationLink.DemoPageLink<PaletteSelectorViewModel>("Demo View Model","Domain"),
                 DocumentationLink.ApiLink<PaletteHelper>()
             })
         {
@@ -139,7 +139,7 @@ public class MainWindowViewModel : ViewModelBase
                 DocumentationLink.WikiLink("Custom-Palette-Hues", "Custom Palettes"),
                 DocumentationLink.WikiLink("Swatches-and-Recommended-Colors", "Swatches"),
                 DocumentationLink.DemoPageLink<ColorTool>("Demo View"),
-                DocumentationLink.DemoPageLink<ColorToolViewModel>("Demo View Model"),
+                DocumentationLink.DemoPageLink<ColorToolViewModel>("Demo View Model","Domain"),
                 DocumentationLink.ApiLink<PaletteHelper>()
             });
 
@@ -150,7 +150,7 @@ public class MainWindowViewModel : ViewModelBase
             {
                 DocumentationLink.WikiLink("Button-Styles", "Buttons"),
                 DocumentationLink.DemoPageLink<Buttons>("Demo View"),
-                DocumentationLink.DemoPageLink<ButtonsViewModel>("Demo View Model"),
+                DocumentationLink.DemoPageLink<ButtonsViewModel>("Demo View Model", "Domain"),
                 DocumentationLink.StyleLink("Button"),
                 DocumentationLink.StyleLink("PopupBox"),
                 DocumentationLink.ApiLink<PopupBox>()
@@ -267,7 +267,7 @@ public class MainWindowViewModel : ViewModelBase
             new[]
             {
                 DocumentationLink.DemoPageLink<IconPack>("Demo View"),
-                DocumentationLink.DemoPageLink<IconPackViewModel>("Demo View Model"),
+                DocumentationLink.DemoPageLink<IconPackViewModel>("Demo View Model", "Domain"),
                 DocumentationLink.ApiLink<PackIcon>()
             },
             new IconPackViewModel(snackbarMessageQueue))
@@ -315,7 +315,7 @@ public class MainWindowViewModel : ViewModelBase
             new[]
             {
                 DocumentationLink.DemoPageLink<Trees>("Demo View"),
-                DocumentationLink.DemoPageLink<TreesViewModel>("Demo View Model"),
+                DocumentationLink.DemoPageLink<TreesViewModel>("Demo View Model", "Domain"),
                 DocumentationLink.StyleLink("TreeView")
             });
 
@@ -439,10 +439,25 @@ public class MainWindowViewModel : ViewModelBase
                 DocumentationLink.DemoPageLink<Elevation>(),
                 DocumentationLink.StyleLink("Shadows"),
                 DocumentationLink.SpecsLink("https://material.io/design/environment/elevation.html", "Elevation")
-            })
-        {
-            HorizontalScrollBarVisibilityRequirement = ScrollBarVisibility.Disabled
-        };
+            });
+
+        yield return new DemoItem(
+            "Smart Hint",
+            typeof(SmartHint),
+            new[]
+            {
+                DocumentationLink.DemoPageLink<SmartHint>(),
+                DocumentationLink.StyleLink("SmartHint"),
+            });
+
+        yield return new DemoItem(
+            "PopupBox",
+            typeof(PopupBox),
+            new[]
+            {
+                DocumentationLink.DemoPageLink<PopupBox>(),
+                DocumentationLink.StyleLink("PopupBox"), 
+            });
     }
 
     private bool DemoItemsFilter(object obj)

@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:internal="clr-namespace:MaterialDesignThemes.Wpf.Internal"
@@ -17,6 +17,22 @@
   <converters:FloatingHintOffsetCalculationConverter x:Key="FloatingHintOffsetCalculationConverter" />
   <converters:CursorConverter x:Key="ArrowCursorConverter" FallbackCursor="Arrow" />
   <converters:CursorConverter x:Key="IBeamCursorConverter" FallbackCursor="IBeam" />
+  <converters:StringLengthValueConverter x:Key="StringLengthValueConverter" />
+  <converters:ThicknessCloneConverter x:Key="HelperTextMarginConverter" CloneEdges="Left" />
+  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleLeadingIconMarginConverterTop" CloneEdges="Top" FixedRight="6" AdditionalOffsetTop="-2" />
+  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleLeadingIconMarginConverterCenter" CloneEdges="Top" FixedRight="6" AdditionalOffsetTop="-12" />
+  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleLeadingIconMarginConverterBottom" CloneEdges="Top" FixedRight="6" FixedBottom="-2" />
+  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconMarginConverterTop" CloneEdges="Top" AdditionalOffsetTop="-2" />
+  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconMarginConverterCenter" CloneEdges="Top" AdditionalOffsetTop="-12" />
+  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconMarginConverterBottom" CloneEdges="Top" FixedBottom="-2" />
+  <converters:ThicknessCloneConverter x:Key="OutlinedStyleLeadingIconMarginConverterTop" CloneEdges="Top" FixedRight="6" AdditionalOffsetTop="-2" />
+  <converters:ThicknessCloneConverter x:Key="OutlinedStyleLeadingIconMarginConverterCenter" CloneEdges="Top" FixedRight="6" AdditionalOffsetTop="0" />
+  <converters:ThicknessCloneConverter x:Key="OutlinedStyleLeadingIconMarginConverterBottom" CloneEdges="Top" FixedRight="6" FixedBottom="-2" AdditionalOffsetTop="0" />
+  <converters:ThicknessCloneConverter x:Key="OutlinedStyleTrailingIconMarginConverterTop" CloneEdges="Top" AdditionalOffsetTop="-2" />
+  <converters:ThicknessCloneConverter x:Key="OutlinedStyleTrailingIconMarginConverterCenter" CloneEdges="Top" AdditionalOffsetTop="0" />
+  <converters:ThicknessCloneConverter x:Key="OutlinedStyleTrailingIconMarginConverterBottom" CloneEdges="Top" FixedBottom="-2" AdditionalOffsetTop="0" />
+  <wpf:VerticalAlignmentConverter x:Key="VerticalAlignmentConverter" />
+  <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
 
   <Style x:Key="MaterialDesignCharacterCounterTextBlock"
          TargetType="TextBlock"
@@ -27,7 +43,8 @@
     <Setter Property="Text">
       <Setter.Value>
         <MultiBinding StringFormat="{}{0} / {1}">
-          <Binding Path="Text.Length" RelativeSource="{RelativeSource FindAncestor, AncestorType=TextBoxBase}" />
+          <Binding Path="Text" Converter="{StaticResource StringLengthValueConverter}"
+                   RelativeSource="{RelativeSource FindAncestor, AncestorType=TextBoxBase}" />
           <Binding Path="MaxLength" RelativeSource="{RelativeSource FindAncestor, AncestorType=TextBoxBase}" />
         </MultiBinding>
       </Setter.Value>
@@ -125,7 +142,7 @@
                       BorderThickness="{TemplateBinding BorderThickness}"
                       CornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}"
                       SnapsToDevicePixels="True">
-                <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                   <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
@@ -136,14 +153,16 @@
                                 Width="{TemplateBinding wpf:TextFieldAssist.LeadingIconSize}"
                                 Height="{TemplateBinding wpf:TextFieldAssist.LeadingIconSize}"
                                 Margin="0,0,6,0"
-                                VerticalAlignment="Center"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment, Converter={StaticResource VerticalAlignmentConverter}}"
                                 Kind="{TemplateBinding wpf:TextFieldAssist.LeadingIcon}"
                                 Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                 Visibility="{TemplateBinding wpf:TextFieldAssist.HasLeadingIcon, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
                   <Grid x:Name="grid"
                         Grid.Column="1"
-                        MinWidth="1">
+                        MinWidth="1"
+                        VerticalAlignment="Stretch"
+                        HorizontalAlignment="Stretch">
                     <Grid Grid.Column="0">
                       <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -154,6 +173,7 @@
                       <TextBlock x:Name="PrefixTextBlock"
                                  Grid.Column="0"
                                  Margin="0,0,2,0"
+                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                  FontSize="{TemplateBinding FontSize}"
                                  Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                  Text="{TemplateBinding wpf:TextFieldAssist.PrefixText}">
@@ -167,7 +187,10 @@
 
                       <ScrollViewer x:Name="PART_ContentHost"
                                     Grid.Column="1"
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    VerticalAlignment="Stretch"
+                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                     Panel.ZIndex="1"
                                     wpf:ScrollViewerAssist.IgnorePadding="True"
                                     Cursor="{TemplateBinding Cursor, Converter={StaticResource IBeamCursorConverter}}"
@@ -179,21 +202,26 @@
 
                       <TextBlock x:Name="SuffixTextBlock"
                                  Grid.Column="2"
+                                 Margin="0,0,2,0"
+                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                  FontSize="{TemplateBinding FontSize}"
                                  Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                                 Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}" />
+                                 Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}"
+                                 Visibility="{TemplateBinding wpf:TextFieldAssist.SuffixText, Converter={StaticResource NullableToVisibilityConverter}}" />
                     </Grid>
 
                     <wpf:SmartHint x:Name="Hint"
                                    Grid.Column="0"
-                                   Margin="{TemplateBinding wpf:TextFieldAssist.TextBoxViewMargin}"
                                    FloatingOffset="{TemplateBinding wpf:HintAssist.FloatingOffset}"
                                    FloatingScale="{TemplateBinding wpf:HintAssist.FloatingScale}"
                                    FontFamily="{TemplateBinding wpf:HintAssist.FontFamily}"
                                    FontSize="{TemplateBinding FontSize}"
                                    HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                    HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
-                                   UseFloating="{TemplateBinding wpf:HintAssist.IsFloating}">
+                                   UseFloating="{TemplateBinding wpf:HintAssist.IsFloating}"
+                                   VerticalAlignment="Stretch"
+                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}">
                       <wpf:SmartHint.Hint>
                         <Border x:Name="HintBackgroundBorder"
                                 Background="{TemplateBinding wpf:HintAssist.Background}"
@@ -205,31 +233,31 @@
 
                   </Grid>
 
-                  <wpf:PackIcon x:Name="TrailingPackIcon"
-                                Grid.Column="2"
-                                Width="{TemplateBinding wpf:TextFieldAssist.TrailingIconSize}"
-                                Height="{TemplateBinding wpf:TextFieldAssist.TrailingIconSize}"
-                                Margin="4,0,0,0"
-                                VerticalAlignment="Center"
-                                Kind="{TemplateBinding wpf:TextFieldAssist.TrailingIcon}"
-                                Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                                Visibility="{TemplateBinding wpf:TextFieldAssist.HasTrailingIcon, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                  <StackPanel x:Name="TrailingPanel" Orientation="Horizontal" Grid.Column="2" VerticalAlignment="{TemplateBinding VerticalContentAlignment, Converter={StaticResource VerticalAlignmentConverter}}">
+                    <wpf:PackIcon x:Name="TrailingPackIcon"
+                                  Width="{TemplateBinding wpf:TextFieldAssist.TrailingIconSize}"
+                                  Height="{TemplateBinding wpf:TextFieldAssist.TrailingIconSize}"
+                                  Margin="4,0,0,0"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  Kind="{TemplateBinding wpf:TextFieldAssist.TrailingIcon}"
+                                  Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
+                                  Visibility="{TemplateBinding wpf:TextFieldAssist.HasTrailingIcon, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-                  <Button x:Name="PART_ClearButton"
-                          Grid.Column="2"
-                          Height="Auto"
-                          Padding="2,0,0,0"
-                          Command="{x:Static internal:ClearText.ClearCommand}"
-                          Focusable="False"
-                          Style="{StaticResource MaterialDesignToolButton}">
-                    <Button.Visibility>
-                      <MultiBinding Converter="{StaticResource ClearButtonVisibilityConverter}">
-                        <Binding Path="(wpf:TextFieldAssist.HasClearButton)" RelativeSource="{RelativeSource TemplatedParent}" />
-                        <Binding ElementName="Hint" Path="IsContentNullOrEmpty" />
-                      </MultiBinding>
-                    </Button.Visibility>
-                    <wpf:PackIcon Margin="0" Kind="CloseCircle" />
-                  </Button>
+                    <Button x:Name="PART_ClearButton"
+                            Height="Auto"
+                            Padding="2,0,0,0"
+                            Command="{x:Static internal:ClearText.ClearCommand}"
+                            Focusable="False"
+                            Style="{StaticResource MaterialDesignToolButton}">
+                      <Button.Visibility>
+                        <MultiBinding Converter="{StaticResource ClearButtonVisibilityConverter}">
+                          <Binding Path="(wpf:TextFieldAssist.HasClearButton)" RelativeSource="{RelativeSource TemplatedParent}" />
+                          <Binding ElementName="Hint" Path="IsContentNullOrEmpty" />
+                        </MultiBinding>
+                      </Button.Visibility>
+                      <wpf:PackIcon Margin="0" Kind="CloseCircle" />
+                    </Button>
+                  </StackPanel>
                 </Grid>
               </Border>
             </AdornerDecorator>
@@ -253,7 +281,8 @@
                   <ColumnDefinition />
                   <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Name="HelperTextTextBlock" Style="{Binding Path=(wpf:HintAssist.HelperTextStyle), RelativeSource={RelativeSource TemplatedParent}}" />
+                <TextBlock x:Name="HelperTextTextBlock" Style="{Binding Path=(wpf:HintAssist.HelperTextStyle), RelativeSource={RelativeSource TemplatedParent}}"
+                           Margin="{TemplateBinding Padding, Converter={StaticResource HelperTextMarginConverter}}"/>
                 <Border x:Name="CharacterCounterContainer" Grid.Column="1">
                   <TextBlock x:Name="CharacterCounterTextBlock" Style="{Binding Path=(wpf:TextFieldAssist.CharacterCounterStyle), RelativeSource={RelativeSource TemplatedParent}}" />
                 </Border>
@@ -277,7 +306,7 @@
               <Setter TargetName="Hint" Property="FloatingOffset">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
-                    <Binding Path="FontFamily" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="FontFamily" ElementName="Hint" />
                     <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingScale)" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingOffset)" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -287,7 +316,7 @@
               <Setter TargetName="grid" Property="Margin">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
-                    <Binding Path="FontFamily" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="FontFamily" ElementName="Hint" />
                     <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingScale)" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingOffset)" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -295,26 +324,77 @@
                 </Setter.Value>
               </Setter>
             </MultiTrigger>
+
+            <!-- Icon margins adhering to VerticalContentAlignment for default/filled style -->
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
+                <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
+                <Condition SourceName="LeadingPackIcon" Property="VerticalAlignment" Value="Center" />
+              </MultiTrigger.Conditions>
+              <Setter TargetName="Hint" Property="InitialVerticalOffset" Value="-6" />
+              <Setter TargetName="LeadingPackIcon" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource DefaultOrFilledStyleLeadingIconMarginConverterCenter}}" />
+              <Setter TargetName="TrailingPanel" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource DefaultOrFilledStyleTrailingIconMarginConverterCenter}}" />
+            </MultiTrigger>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
+                <Condition SourceName="LeadingPackIcon" Property="VerticalAlignment" Value="Top" />
+              </MultiTrigger.Conditions>
+              <Setter TargetName="LeadingPackIcon" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource DefaultOrFilledStyleLeadingIconMarginConverterTop}}" />
+              <Setter TargetName="TrailingPanel" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource DefaultOrFilledStyleTrailingIconMarginConverterTop}}" />
+            </MultiTrigger>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
+                <Condition SourceName="LeadingPackIcon" Property="VerticalAlignment" Value="Bottom" />
+              </MultiTrigger.Conditions>
+              <Setter TargetName="LeadingPackIcon" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource DefaultOrFilledStyleLeadingIconMarginConverterBottom}}" />
+              <Setter TargetName="TrailingPanel" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource DefaultOrFilledStyleTrailingIconMarginConverterBottom}}" />
+            </MultiTrigger>
+
+            <!-- Icon margins adhering to VerticalContentAlignment for outlined style -->
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
+                <Condition SourceName="LeadingPackIcon" Property="VerticalAlignment" Value="Center" />
+              </MultiTrigger.Conditions>
+              <Setter TargetName="LeadingPackIcon" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource OutlinedStyleLeadingIconMarginConverterCenter}}" />
+              <Setter TargetName="TrailingPanel" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource OutlinedStyleTrailingIconMarginConverterCenter}}" />
+            </MultiTrigger>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
+                <Condition SourceName="LeadingPackIcon" Property="VerticalAlignment" Value="Top" />
+              </MultiTrigger.Conditions>
+              <Setter TargetName="LeadingPackIcon" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource OutlinedStyleLeadingIconMarginConverterTop}}" />
+              <Setter TargetName="TrailingPanel" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource OutlinedStyleTrailingIconMarginConverterTop}}" />
+            </MultiTrigger>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
+                <Condition SourceName="LeadingPackIcon" Property="VerticalAlignment" Value="Bottom" />
+              </MultiTrigger.Conditions>
+              <Setter TargetName="LeadingPackIcon" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource OutlinedStyleLeadingIconMarginConverterBottom}}" />
+              <Setter TargetName="TrailingPanel" Property="Margin" Value="{Binding ElementName=grid, Path=Margin, Converter={StaticResource OutlinedStyleTrailingIconMarginConverterBottom}}" />
+            </MultiTrigger>
+
             <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
               <Setter Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxBackground}" />
-              <Setter Property="Padding" Value="16,8,12,8" />
-              <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMarginEmbedded}" />
-              <Setter TargetName="HelperTextTextBlock" Property="Margin" Value="16,0,0,0" />
             </Trigger>
             <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
               <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaBorder}" />
               <Setter Property="BorderThickness" Value="1" />
-              <Setter Property="Padding" Value="16,16,12,16" />
-              <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMarginEmbedded}" />
-              <Setter TargetName="HelperTextTextBlock" Property="Margin" Value="16,0,0,0" />
               <Setter TargetName="Hint" Property="FloatingOffset">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
-                    <Binding Path="FontFamily" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="FontFamily" ElementName="Hint" />
                     <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingScale)" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingOffset)" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="ActualHeight" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="Padding" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="VerticalContentAlignment" RelativeSource="{RelativeSource TemplatedParent}" />
                   </MultiBinding>
                 </Setter.Value>
               </Setter>
@@ -506,6 +586,7 @@
     <Setter Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
     <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4,4,0,0" />
     <Setter Property="wpf:TextFieldAssist.UnderlineCornerRadius" Value="0" />
+    <Setter Property="Padding" Value="{x:Static wpf:Constants.FilledTextBoxDefaultPadding}" />
   </Style>
 
   <Style x:Key="MaterialDesignOutlinedTextBox"
@@ -513,6 +594,7 @@
          BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
     <Setter Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
     <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4" />
+    <Setter Property="Padding" Value="{x:Static wpf:Constants.OutlinedTextBoxDefaultPadding}" />
   </Style>
 
 </ResourceDictionary>

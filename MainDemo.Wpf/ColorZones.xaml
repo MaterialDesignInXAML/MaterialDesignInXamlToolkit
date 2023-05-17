@@ -75,7 +75,7 @@
         <DockPanel>
           <ToggleButton VerticalAlignment="Center"
                         DockPanel.Dock="Right"
-                        Style="{StaticResource MaterialDesignSwitchAccentToggleButton}" />
+                        Style="{StaticResource MaterialDesignSwitchSecondaryToggleButton}" />
 
           <StackPanel materialDesign:RippleAssist.IsCentered="True" Orientation="Horizontal">
             <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" />

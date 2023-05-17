@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using MaterialDesignThemes.UITests.WPF.TextBoxes;
 
 namespace MaterialDesignThemes.UITests.WPF.ComboBoxes;
 
@@ -163,6 +164,96 @@ public class ComboBoxTests : TestBase
         Assert.False(wasOpenAfterClickOnEditableTextBox, "ComboBox should not have opened drop down when clicking the editable TextBox");
         Assert.True(textBoxHasFocus, "Editable TextBox should have focus");
         Assert.True(textBoxHasKeyboardFocus, "Editable TextBox should have keyboard focus");
+
+        recorder.Success();
+    }
+
+    [Theory]
+    [InlineData("MaterialDesignFloatingHintComboBox", null)]
+    [InlineData("MaterialDesignFloatingHintComboBox", 5)]
+    [InlineData("MaterialDesignFloatingHintComboBox", 20)]
+    [InlineData("MaterialDesignFilledComboBox", null)]
+    [InlineData("MaterialDesignFilledComboBox", 5)]
+    [InlineData("MaterialDesignFilledComboBox", 20)]
+    [InlineData("MaterialDesignOutlinedComboBox", null)]
+    [InlineData("MaterialDesignOutlinedComboBox", 5)]
+    [InlineData("MaterialDesignOutlinedComboBox", 20)]
+    public async Task ComboBox_WithHintAndHelperText_RespectsPadding(string styleName, int? padding)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // FIXME: Tolerance needed because TextFieldAssist.TextBoxViewMargin is in play and slightly modifies the hint text placement in certain cases.
+        const double tolerance = 1.5;
+
+        string styleAttribute = $"Style=\"{{StaticResource {styleName}}}\"";
+        string paddingAttribute = padding.HasValue ? $"Padding=\"{padding.Value}\"" : string.Empty;
+
+        var comboBox = await LoadXaml<ComboBox>($@"
+<ComboBox {styleAttribute} {paddingAttribute}
+  materialDesign:HintAssist.Hint=""Hint text""
+  materialDesign:HintAssist.HelperText=""Helper text""
+  Width=""200"" VerticalAlignment=""Center"" HorizontalAlignment=""Center"" />
+");
+
+        var contentHost = await comboBox.GetElement<ScrollViewer>("PART_ContentHost");
+        var hint = await comboBox.GetElement<SmartHint>("Hint");
+        var helperText = await comboBox.GetElement<TextBlock>("HelperTextTextBlock");
+
+        Rect? contentHostCoordinates = await contentHost.GetCoordinates();
+        Rect? hintCoordinates = await hint.GetCoordinates();
+        Rect? helperTextCoordinates = await helperText.GetCoordinates();
+
+        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left), 0, tolerance);
+        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - helperTextCoordinates.Value.Left), 0, tolerance);
+
+        recorder.Success();
+    }
+
+    [Theory]
+    [InlineData("MaterialDesignFloatingHintComboBox", null)]
+    [InlineData("MaterialDesignFloatingHintComboBox", 5)]
+    [InlineData("MaterialDesignFloatingHintComboBox", 20)]
+    [InlineData("MaterialDesignFilledComboBox", null)]
+    [InlineData("MaterialDesignFilledComboBox", 5)]
+    [InlineData("MaterialDesignFilledComboBox", 20)]
+    [InlineData("MaterialDesignOutlinedComboBox", null)]
+    [InlineData("MaterialDesignOutlinedComboBox", 5)]
+    [InlineData("MaterialDesignOutlinedComboBox", 20)]
+    public async Task ComboBox_WithHintAndValidationError_RespectsPadding(string styleName, int? padding)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // FIXME: Tolerance needed because TextFieldAssist.TextBoxViewMargin is in play and slightly modifies the hint text placement in certain cases.
+        const double tolerance = 1.5;
+
+        string styleAttribute = $"Style=\"{{StaticResource {styleName}}}\"";
+        string paddingAttribute = padding.HasValue ? $"Padding=\"{padding.Value}\"" : string.Empty;
+
+        var comboBox = await LoadXaml<ComboBox>($@"
+<ComboBox {styleAttribute} {paddingAttribute}
+  materialDesign:HintAssist.Hint=""Hint text""
+  materialDesign:HintAssist.HelperText=""Helper text""
+  Width=""200"" VerticalAlignment=""Center"" HorizontalAlignment=""Center"">
+  <ComboBox.Text>
+    <Binding RelativeSource=""{{RelativeSource Self}}"" Path=""Tag"" UpdateSourceTrigger=""PropertyChanged"">
+      <Binding.ValidationRules>
+        <local:NotEmptyValidationRule ValidatesOnTargetUpdated=""True""/>
+      </Binding.ValidationRules>
+    </Binding>
+  </ComboBox.Text>
+</ComboBox>
+", ("local", typeof(NotEmptyValidationRule)));
+
+        var contentHost = await comboBox.GetElement<ScrollViewer>("PART_ContentHost");
+        var hint = await comboBox.GetElement<SmartHint>("Hint");
+        var errorViewer = await comboBox.GetElement<Border>("DefaultErrorViewer");
+
+        Rect? contentHostCoordinates = await contentHost.GetCoordinates();
+        Rect? hintCoordinates = await hint.GetCoordinates();
+        Rect? errorViewerCoordinates = await errorViewer.GetCoordinates();
+
+        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left), 0, tolerance);
+        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left), 0, tolerance);
 
         recorder.Success();
     }

@@ -6,6 +6,7 @@ using System.Windows.Media;
 [assembly: GenerateHelpers(typeof(TimePicker))]
 [assembly: GenerateHelpers(typeof(DrawerHost))]
 [assembly: GenerateHelpers(typeof(ColorPicker))]
+[assembly: GenerateHelpers(typeof(DialogHost))]
 
 namespace MaterialDesignThemes.UITests;
 
@@ -42,7 +43,7 @@ public abstract class TestBase : IAsyncLifetime
         App = await XamlTest.App.StartRemote(new AppOptions
         {
             AllowVisualStudioDebuggerAttach = true,
-            LogMessage = message => Output.WriteLine(message)
+            LogMessage = Output.WriteLine
         });
     public async Task DisposeAsync() => await App.DisposeAsync();
 }

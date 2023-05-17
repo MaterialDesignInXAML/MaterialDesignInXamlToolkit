@@ -59,4 +59,17 @@ public static class ComboBoxAssist
     public static int GetMaxLength(DependencyObject element) => (int)element.GetValue(MaxLengthProperty);
     public static void SetMaxLength(DependencyObject element, int value) => element.SetValue(MaxLengthProperty, value);
     #endregion
+
+    #region AttachedProperty : CustomPopupPlacementCallback
+    public static readonly DependencyProperty CustomPopupPlacementCallbackProperty =
+        DependencyProperty.RegisterAttached(
+            "CustomPopupPlacementCallback",
+            typeof(CustomPopupPlacementCallback),
+            typeof(ComboBoxAssist),
+            new FrameworkPropertyMetadata(default(CustomPopupPlacementCallback),
+                FrameworkPropertyMetadataOptions.AffectsRender));
+
+    public static void SetCustomPopupPlacementCallback(DependencyObject element, CustomPopupPlacementCallback value) => element.SetValue(CustomPopupPlacementCallbackProperty, value);
+    public static CustomPopupPlacementCallback GetCustomPopupPlacementCallback(DependencyObject element) => (CustomPopupPlacementCallback) element.GetValue(CustomPopupPlacementCallbackProperty);
+    #endregion
 }

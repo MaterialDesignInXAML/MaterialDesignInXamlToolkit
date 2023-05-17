@@ -1,0 +1,12 @@
+{
+    "profiles": {
+        "Generate icons": {
+            "commandName": "Project",
+            "commandLineArgs": "icons"
+        },
+        "Diff icons": {
+            "commandName": "Project",
+            "commandLineArgs": "icon-diff"
+        }
+    }
+}

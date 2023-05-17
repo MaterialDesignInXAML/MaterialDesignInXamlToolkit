@@ -22,14 +22,27 @@ Nulla a porta libero, quis hendrerit ex. In ut pharetra sem. Nunc gravida ante r
     public TabsViewModel() =>
         CustomTabs = new()
         {
-            new CustomTab { CustomHeader = "Custom tab 1", CustomContent = "Custom tab 1 content" },
-            new CustomTab { CustomHeader = "Custom tab 2", CustomContent = "Custom tab 2 content" }
+            new CustomTab {CustomHeader = "Custom tab 1"},
+            new CustomTab {CustomHeader = "Custom tab 2"}
         };
 }
 
-internal class CustomTab
+internal class CustomTab: ViewModelBase
 {
+    public ICommand CloseCommand { get; }
+
     public string? CustomHeader { get; set; }
 
-    public string? CustomContent { get; set; }
+    public string? CustomContent => CustomHeader + ", close clicked: " + CloseClickCount;
+
+    public int CloseClickCount { get; private set; }
+
+    internal CustomTab()
+    {
+        CloseCommand = new AnotherCommandImplementation(_ =>
+            {
+                CloseClickCount++;
+                OnPropertyChanged(nameof(CustomContent));
+            });
+    }
 }

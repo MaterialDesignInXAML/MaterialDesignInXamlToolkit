@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MaterialDesignDemo.Toggles"
+<UserControl x:Class="MaterialDesignDemo.Toggles"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -60,8 +60,8 @@
       <smtx:XamlDisplay Margin="0,5,8,8" UniqueKey="buttons_36">
         <ToggleButton Content="C"
                       IsChecked="True"
-                      Style="{StaticResource MaterialDesignActionAccentToggleButton}"
-                      ToolTip="MaterialDesignActionAccentToggleButton" />
+                      Style="{StaticResource MaterialDesignActionSecondaryToggleButton}"
+                      ToolTip="MaterialDesignActionSecondaryToggleButton" />
       </smtx:XamlDisplay>
 
       <smtx:XamlDisplay Margin="0,5,8,8" UniqueKey="buttons_37">
@@ -173,9 +173,9 @@
       </smtx:XamlDisplay>
 
       <smtx:XamlDisplay Margin="8,0,0,0" UniqueKey="buttons_67">
-        <RadioButton Content="Accent"
+        <RadioButton Content="Secondary"
                      IsChecked="True"
-                     Style="{StaticResource MaterialDesignAccentRadioButton}" />
+                     Style="{StaticResource MaterialDesignSecondaryRadioButton}" />
       </smtx:XamlDisplay>
 
       <smtx:XamlDisplay Margin="8,0,0,0" UniqueKey="buttons_68">
@@ -191,9 +191,9 @@
       </smtx:XamlDisplay>
 
       <smtx:XamlDisplay Margin="8,0,0,0" UniqueKey="buttons_70">
-        <CheckBox Content="Accent"
+        <CheckBox Content="Secondary"
                   IsChecked="True"
-                  Style="{StaticResource MaterialDesignAccentCheckBox}" />
+                  Style="{StaticResource MaterialDesignSecondaryCheckBox}" />
       </smtx:XamlDisplay>
     </StackPanel>
 
@@ -241,8 +241,8 @@
                         VerticalAlignment="Center"
                         UniqueKey="buttons_51">
         <ToggleButton IsChecked="True"
-                      Style="{StaticResource MaterialDesignSwitchAccentToggleButton}"
-                      ToolTip="MaterialDesignSwitchAccentToggleButton" />
+                      Style="{StaticResource MaterialDesignSwitchSecondaryToggleButton}"
+                      ToolTip="MaterialDesignSwitchSecondaryToggleButton" />
       </smtx:XamlDisplay>
 
       <smtx:XamlDisplay Margin="8,0,0,0"
@@ -264,7 +264,9 @@
       <smtx:XamlDisplay Margin="8,0,0,0"
                         VerticalAlignment="Center"
                         UniqueKey="buttons_64">
-        <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="MaterialDesignSwitchToggleButton with Custom Track Background">
+        <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                      Width="60"
+                      ToolTip="MaterialDesignSwitchToggleButton with Custom Track Background">
           <materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
             <SolidColorBrush Color="Green" />
           </materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
@@ -365,10 +367,10 @@
             <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
           </StackPanel>
         </ListBox.ToolTip>
-        <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatBold}" />
-        <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatItalic}" />
-        <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatUnderline}" />
-      </ListBox>
+  <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatBold}" />
+  <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatItalic}" />
+  <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatUnderline}" />
+</ListBox>
     </smtx:XamlDisplay>
 
 

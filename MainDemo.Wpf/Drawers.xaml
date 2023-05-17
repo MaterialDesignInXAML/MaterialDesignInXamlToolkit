@@ -121,7 +121,7 @@
                       Orientation="Horizontal">
             <TextBlock Margin="4"
                        VerticalAlignment="Center"
-                       Foreground="{DynamicResource SecondaryHueLightBrushForeground}"
+                       Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"
                        Text="BOTTOM BRACKET" />
 
             <Button Margin="4"
@@ -185,7 +185,7 @@
                   Margin="4"
                   Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
                   Content="{materialDesign:PackIcon Kind=ArrowAll}"
-                  Style="{StaticResource MaterialDesignRaisedAccentButton}" />
+                  Style="{StaticResource MaterialDesignRaisedSecondaryButton}" />
         </Grid>
 
       </materialDesign:DrawerHost>

@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <TargetFrameworks>net462;netcoreapp3.1;net6.0-windows</TargetFrameworks>
+    <TargetFrameworks>net462;netcoreapp3.1;net6.0-windows;net7.0-windows</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <MDIXVersion Condition="$(MDIXVersion) == '' Or $(MDIXVersion) == '*Undefined*'">1.0.1</MDIXVersion>
+    <MDIXVersion>$([System.Text.RegularExpressions.Regex]::Replace("$(MDIXVersion)", "-ci\d+$", ""))</MDIXVersion>
     <AssemblyTitle>MaterialDesignThemes.Wpf</AssemblyTitle>
     <Product>MaterialDesignColors.Wpf</Product>
     <Description>Material Design in XAML Toolkit - WPF Themes</Description>
@@ -23,6 +24,9 @@
     <Content Include="Resources\Noto\*.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" />

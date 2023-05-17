@@ -1,0 +1,54 @@
+name: Setup Versions
+
+on:
+  workflow_call:
+    inputs: 
+      is-full-release:
+        required: false
+        type: boolean
+        default: false
+
+    outputs:
+      mdix-version:
+        description: "The version for the MaterialDesignThemes library"
+        value: ${{ jobs.getting_versions.outputs.mdix-version }}
+      mdix-colors-version:
+        description: "The version for the MaterialDesignColors library"
+        value: ${{ jobs.getting_versions.outputs.mdix-colors-version }}
+      mdix-mahapps-version:
+        description: "The version for the MaterialDesignThemes.MahApps library"
+        value: ${{ jobs.getting_versions.outputs.mdix-mahapps-version }}
+
+jobs:
+  getting_versions:
+    env:
+      #Update these base version numbers
+      mdix-version: "4.9.0"
+      mdix-colors-version: "2.1.4"
+      mdix-mahapps-version: "0.3.0"
+    name: Set version numbers
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: pwsh
+    # Map the job outputs to step outputs
+    outputs:
+      mdix-version: ${{ steps.output_versions.outputs.mdix-version }}
+      mdix-colors-version: ${{ steps.output_versions.outputs.mdix-colors-version }}
+      mdix-mahapps-version: ${{ steps.output_versions.outputs.mdix-mahapps-version }}
+    steps:
+      - name: Set preview version numbers
+        if: ${{ !inputs.is-full-release }}
+        run: |
+          "mdix-version=${{ env.mdix-version }}-ci${{ github.run_number }}" >> $env:GITHUB_ENV
+          "mdix-colors-version=${{ env.mdix-colors-version }}-ci${{ github.run_number }}" >> $env:GITHUB_ENV
+          "mdix-mahapps-version=${{ env.mdix-mahapps-version }}-ci${{ github.run_number }}" >> $env:GITHUB_ENV
+      - name: Output Versions
+        id: output_versions
+        run: |
+          echo ${{ env.mdix-version }}
+          "mdix-version=${{ env.mdix-version }}" >> $env:GITHUB_OUTPUT
+          echo ${{ env.mdix-colors-version }}
+          "mdix-colors-version=${{ env.mdix-colors-version }}" >> $env:GITHUB_OUTPUT
+          echo ${{ env.mdix-mahapps-version }}
+          "mdix-mahapps-version=${{ env.mdix-mahapps-version }}" >> $env:GITHUB_OUTPUT

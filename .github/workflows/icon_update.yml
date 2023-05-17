@@ -3,10 +3,18 @@ name: Icon Update
 on:
   workflow_dispatch:
   schedule:
-    - cron:  '0 3 * * *'
+    - cron: '0 3 * * *'
+
+env:
+  GH_TOKEN: ${{ secrets.SA_PAT }}
+
+defaults:
+  run:
+    shell: pwsh
 
 jobs:
   build:
+    #This check prevents this from running on forks
     if: ${{ github.repository == 'MaterialDesignInXAML/MaterialDesignInXamlToolkit' }}
 
     runs-on: windows-latest
@@ -17,24 +25,25 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 6.x
+        dotnet-version: 7.x
 
     - name: Run Icon Generation
       run: dotnet run -c Release -- icons
       working-directory: ./mdresgen
 
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v4
-      with:
-        commit-message: >
-          [Icon update detected by Github Action].
-          Auto generated pull request.
-        committer: Material Design Service Account <mdixsa@outlook.com>
-        author: Material Design Service Account <mdixsa@outlook.com>
-        branch: pipeline/icons
-        delete-branch: true
-        base: master
-        title: Update Icons [GitHub Action]
-        body: >
-          [Icon update detected by Github Action].
-          Auto generated pull request.
+    - name: Check for changes
+      id: check_for_changes
+      run: |
+        $hasChanges = $((git status --porcelain).Length -gt 0).ToString().ToLower()
+        "has_changes=$hasChanges" >> $env:GITHUB_OUTPUT
+
+    - name: Open Pull Request
+      if: ${{ steps.check_for_changes.outputs.has_changes == 'true' }}
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git checkout -b "automated/icon_update"
+        git commit -m "[bot] Pack Icon update" --all
+        git push -f --set-upstream origin automated/icon_update
+        gh pr create --fill
+        gh pr merge automated/icon_update --delete-branch --auto --squash

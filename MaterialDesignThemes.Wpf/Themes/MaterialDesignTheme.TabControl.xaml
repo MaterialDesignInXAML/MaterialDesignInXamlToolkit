@@ -50,14 +50,14 @@
                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                Focusable="False"
-                               IsItemsHost="True"
+                               wpf:TabAssist.BindableIsItemsHost="{Binding Visibility, RelativeSource={RelativeSource Self}}"
                                KeyboardNavigation.TabIndex="1"
                                Rows="1" />
                   <VirtualizingStackPanel x:Name="HeaderPanel"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           Focusable="False"
-                                          IsItemsHost="True"
+                                          wpf:TabAssist.BindableIsItemsHost="{Binding Visibility, RelativeSource={RelativeSource Self}}"
                                           KeyboardNavigation.TabIndex="1"
                                           Orientation="Horizontal" />
                 </StackPanel>
@@ -86,6 +86,7 @@
               <Setter TargetName="CenteredHeaderPanel" Property="Visibility" Value="Visible" />
               <Setter TargetName="HeaderPanel" Property="Visibility" Value="Collapsed" />
             </Trigger>
+            
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="HorizontalContentAlignment" Value="Center" />
@@ -127,6 +128,7 @@
                 <Setter TargetName="CenteredHeaderPanel" Property="Visibility" Value="Visible" />
               </MultiTrigger.Setters>
             </MultiTrigger>
+            
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="HorizontalContentAlignment" Value="Right" />
@@ -147,6 +149,7 @@
                 <Setter TargetName="CenteredHeaderPanel" Property="Visibility" Value="Visible" />
               </MultiTrigger.Setters>
             </MultiTrigger>
+            
             <Trigger Property="TabStripPlacement" Value="Bottom">
               <Setter Property="wpf:ShadowAssist.ShadowEdges" Value="Top" />
               <Setter TargetName="PART_HeaderZone" Property="DockPanel.Dock" Value="Bottom" />
@@ -244,9 +247,9 @@
     <!-- Foreground is for the content, not the header -->
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabControl}}, Path=(TextElement.Foreground)}" />
     <Setter Property="Height" Value="48" />
-    <Setter Property="MaxWidth" Value="360" />
     <Setter Property="MinWidth" Value="90" />
     <Setter Property="Padding" Value="16,12" />
+    <Setter Property="wpf:DialogHost.RestoreFocusElement" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=TabControl}}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type TabItem}">
@@ -330,6 +333,7 @@
                 <ScaleTransform x:Name="ScaleTransform" ScaleX="0" ScaleY="0" />
               </Border.RenderTransform>
               <Rectangle x:Name="PART_BackgroundSelection"
+                         IsHitTestVisible="False"
                          Fill="{TemplateBinding Background}"
                          Opacity="0.0" />
             </Border>
@@ -341,6 +345,7 @@
             <Trigger Property="IsSelected" Value="True">
               <Setter TargetName="SelectionHighlightBorder" Property="Visibility" Value="Visible" />
               <Setter TargetName="contentPresenter" Property="Opacity" Value="1" />
+              <Setter TargetName="contentPresenter" Property="wpf:RippleAssist.IsDisabled" Value="True"/>
             </Trigger>
             <DataTrigger Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Bottom">
               <Setter TargetName="SelectionHighlightBorder" Property="BorderThickness" Value="0,2,0,0" />
@@ -479,6 +484,7 @@
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
     <Setter Property="Height" Value="72" />
     <Setter Property="Padding" Value="0" />
+    <Setter Property="wpf:DialogHost.RestoreFocusElement" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=TabControl}}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type TabItem}">
@@ -528,6 +534,7 @@
             </Grid>
             <Border x:Name="SelectionHighlightBorder" Visibility="Hidden">
               <Border x:Name="PART_BackgroundSelection"
+                      IsHitTestVisible="False"
                       Background="{TemplateBinding Background}"
                       CornerRadius="{Binding Path=(wpf:NavigationRailAssist.SelectionCornerRadius), RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"
                       Opacity="0.12" />
@@ -542,6 +549,7 @@
             </Trigger>
             <Trigger Property="IsSelected" Value="True">
               <Setter TargetName="contentPresenter" Property="Opacity" Value="1" />
+              <Setter TargetName="contentPresenter" Property="wpf:RippleAssist.IsDisabled" Value="True"/>  
             </Trigger>
 
             <MultiTrigger>

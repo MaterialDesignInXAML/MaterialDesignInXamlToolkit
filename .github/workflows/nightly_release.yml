@@ -1,0 +1,70 @@
+name: Nightly Release
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '0 9 * * *'
+
+env:
+  GH_TOKEN: ${{ github.token }}
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  check_for_changes:
+    #This check prevents this from running on forks
+    if: ${{ github.repository == 'MaterialDesignInXAML/MaterialDesignInXamlToolkit' }}
+    runs-on: ubuntu-latest
+
+    outputs:
+      should_run: ${{ steps.check_for_changes.outputs.has_changed }}
+
+    steps:
+    - id: check_for_changes
+      name: Check for changes
+      run: |
+        # Grab the last two run, since the latest run will be the current one executing
+        $workflowList = gh run list --workflow "${{ github.workflow }}" --branch "${{ github.ref_name }}" --json databaseId --limit 2 --repo "${{ github.repository }}"
+        $runId = ($workflowList | ConvertFrom-Json)[1].databaseId
+        $lastRunHash = ((gh run view $runId --json headSha --repo "${{ github.repository }}") | ConvertFrom-Json).headSha
+
+        echo "Last hash $lastRunHash"
+        echo "Current hash ${{ github.sha }}"
+
+        $hasChanged = ($lastRunHash -ne "${{ github.sha }}").ToString().ToLower()
+        echo "Has updates $hasChanged"
+        "has_changed=$hasChanged" >> $env:GITHUB_OUTPUT
+        
+  get_versions:
+    needs: [check_for_changes]
+    if: ${{ needs.check_for_changes.outputs.should_run == 'true' }}
+    name: Get Versions
+    uses: ./.github/workflows/get_versions.yml
+
+  build_artifacts:
+    name: Build artifacts
+    needs: [get_versions, check_for_changes]
+    if: ${{ needs.check_for_changes.outputs.should_run == 'true' }}
+    uses: ./.github/workflows/build_artifacts.yml
+    with:
+      mdix-version: ${{ needs.get_versions.outputs.mdix-version }}
+      mdix-colors-version: ${{ needs.get_versions.outputs.mdix-colors-version }}
+      mdix-mahapps-version: ${{ needs.get_versions.outputs.mdix-colors-version }}
+
+  push_nugets:
+    needs: [build_artifacts]
+    runs-on: ubuntu-latest
+    name: Push NuGets
+
+    steps:
+      - name: Download NuGet Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: NuGets
+          path: nugets
+
+      - name: Push NuGets
+        run: |
+          dotnet nuget push nugets/*.nupkg --api-key ${{ secrets.PAT }} --source https://api.nuget.org/v3/index.json --skip-duplicate

@@ -3,7 +3,8 @@
                     xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
 
   <Color x:Key="MaterialDesignShadow">#000000</Color>
-  <SolidColorBrush x:Key="MaterialDesignShadowBrush" Color="{StaticResource MaterialDesignShadow}" />
+  <SolidColorBrush x:Key="MaterialDesignShadowBrush" Color="{StaticResource MaterialDesignShadow}"
+                   po:Freeze="True"/>
 
   <!--#region Obsolete-->
   <!-- thanks: http://web.archive.org/web/20180102031859/http://marcangers.com/material-design-shadows-in-wpf/ -->

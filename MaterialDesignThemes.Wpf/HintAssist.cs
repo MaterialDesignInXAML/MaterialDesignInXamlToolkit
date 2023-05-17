@@ -66,6 +66,17 @@ namespace MaterialDesignThemes.Wpf
             => element.SetValue(HintOpacityProperty, value);
         #endregion
 
+        #region AttachedProperty : FloatingHintHorizontalAlignment
+        public static readonly DependencyProperty FloatingHintHorizontalAlignmentProperty
+            = DependencyProperty.RegisterAttached("FloatingHintHorizontalAlignment", typeof(FloatingHintHorizontalAlignment), typeof(HintAssist),
+                new FrameworkPropertyMetadata(FloatingHintHorizontalAlignment.Inherit, FrameworkPropertyMetadataOptions.Inherits));
+
+        public static void SetFloatingHintHorizontalAlignment(DependencyObject element, FloatingHintHorizontalAlignment value)
+            => element.SetValue(FloatingHintHorizontalAlignmentProperty, value);
+        public static FloatingHintHorizontalAlignment GetFloatingHintHorizontalAlignment(DependencyObject element)
+            => (FloatingHintHorizontalAlignment) element.GetValue(FloatingHintHorizontalAlignmentProperty);
+        #endregion
+
         #region AttachedProperty : HintFontFamilyProperty
         public static readonly DependencyProperty FontFamilyProperty
             = DependencyProperty.RegisterAttached("FontFamily", typeof(FontFamily), typeof(HintAssist),

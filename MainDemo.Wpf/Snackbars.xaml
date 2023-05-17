@@ -236,7 +236,7 @@
 
         <smtx:XamlDisplay Margin="0,8,0,0" UniqueKey="snackbar_6">
           <materialDesign:Snackbar IsActive="True">
-            <materialDesign:SnackbarMessage ActionContent="ACCENT" Content="Default - accent" />
+            <materialDesign:SnackbarMessage ActionContent="SECONDARY" Content="Default - secondary" />
           </materialDesign:Snackbar>
         </smtx:XamlDisplay>
         <smtx:XamlDisplay Margin="0,8,0,0" UniqueKey="snackbar_7">

@@ -232,6 +232,29 @@ public class RatingBarTests
     }
 
     [Fact]
+    public void TextBlockForegroundConverter_ShouldReturnFractionalGradientStops_WhenValueCovers10PercentOfButtonValueAndDirectionIsInverted()
+    {
+        // Arrange
+        SolidColorBrush brush = Brushes.Red;
+        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
+        object[] values = Arrange_TextBlockForegroundConverterValues(brush, value: 1.1, buttonValue: 2, invertDirection: true);
+
+        // Act
+        var result = converter.Convert(values, typeof(Brush), null, CultureInfo.CurrentCulture) as Brush;
+
+        // Assert
+        Assert.IsAssignableFrom<LinearGradientBrush>(result);
+        LinearGradientBrush resultBrush = (LinearGradientBrush)result!;
+        Assert.Equal(2, resultBrush.GradientStops.Count);
+        GradientStop stop1 = resultBrush.GradientStops[0];
+        GradientStop stop2 = resultBrush.GradientStops[1];
+        Assert.Equal(0.9, stop1.Offset, 10);
+        Assert.Equal(brush.Color.WithAlphaChannel(RatingBar.TextBlockForegroundConverter.SemiTransparent), stop1.Color);
+        Assert.Equal(0.9, stop2.Offset, 10);
+        Assert.Equal(brush.Color, stop2.Color);
+    }
+
+    [Fact]
     public void TextBlockForegroundConverter_ShouldReturnFractionalGradientStops_WhenValueCovers42PercentOfButtonValue()
     {
         // Arrange
@@ -277,15 +300,15 @@ public class RatingBarTests
         Assert.Equal(brush.Color.WithAlphaChannel(RatingBar.TextBlockForegroundConverter.SemiTransparent), stop2.Color);
     }
 
-    private static object[] Arrange_TextBlockForegroundConverterValues(SolidColorBrush brush, double value, int buttonValue, Orientation orientation = Orientation.Horizontal) =>
-        new object[] { brush, orientation, value, buttonValue };
+    private static object[] Arrange_TextBlockForegroundConverterValues(SolidColorBrush brush, double value, int buttonValue, Orientation orientation = Orientation.Horizontal, bool invertDirection = false) =>
+        new object[] { brush, orientation, invertDirection, value, buttonValue };
 
     [Fact]
     public void PreviewIndicatorTransformXConverter_ShouldCenterPreviewIndicator_WhenFractionalValuesAreDisabledAndOrientationIsHorizontal()
     {
         // Arrange
         IMultiValueConverter converter = RatingBar.PreviewIndicatorTransformXConverter.Instance;
-        object[] values = Arrange_PreviewIndicatorTransformXConverterValues(100, 20, Orientation.Horizontal, false, 1, 1);
+        object[] values = Arrange_PreviewIndicatorTransformXConverterValues(100, 20, Orientation.Horizontal, false, false, 1, 1);
 
         // Act
         double? result = converter.Convert(values, typeof(double), null, CultureInfo.CurrentCulture) as double?;
@@ -295,19 +318,21 @@ public class RatingBarTests
         Assert.Equal(40.0, result); // 50% of 100 minus 20/2
     }
 
-    [Fact]
-    public void PreviewIndicatorTransformXConverter_ShouldOffsetPreviewIndicatorByPercentage_WhenFractionalValuesAreEnabledAndOrientationIsHorizontal()
+    [Theory]
+    [InlineData(false, 15.0)] // 25% of 100 minus 20/2
+    [InlineData(true, 65.0)]  // 75% of 100 minus 20/2
+    public void PreviewIndicatorTransformXConverter_ShouldOffsetPreviewIndicatorByPercentage_WhenFractionalValuesAreEnabledAndOrientationIsHorizontal(bool invertDirection, double expectedValue)
     {
         // Arrange
         IMultiValueConverter converter = RatingBar.PreviewIndicatorTransformXConverter.Instance;
-        object[] values = Arrange_PreviewIndicatorTransformXConverterValues(100, 20, Orientation.Horizontal, true, 1.25, 1);
+        object[] values = Arrange_PreviewIndicatorTransformXConverterValues(100, 20, Orientation.Horizontal, invertDirection, true, 1.25, 1);
 
         // Act
         double? result = converter.Convert(values, typeof(double), null, CultureInfo.CurrentCulture) as double?;
 
         // Assert
         Assert.NotNull(result);
-        Assert.Equal(15.0, result); // 25% of 100 minus 20/2
+        Assert.Equal(expectedValue, result); 
     }
 
     [Fact]
@@ -315,7 +340,7 @@ public class RatingBarTests
     {
         // Arrange
         IMultiValueConverter converter = RatingBar.PreviewIndicatorTransformXConverter.Instance;
-        object[] values = Arrange_PreviewIndicatorTransformXConverterValues(100, 20, Orientation.Vertical, false, 1, 1);
+        object[] values = Arrange_PreviewIndicatorTransformXConverterValues(100, 20, Orientation.Vertical, false, false, 1, 1);
         double expectedValue = -20 - RatingBar.PreviewIndicatorTransformXConverter.Margin;
 
         // Act
@@ -331,7 +356,7 @@ public class RatingBarTests
     {
         // Arrange
         IMultiValueConverter converter = RatingBar.PreviewIndicatorTransformXConverter.Instance;
-        object[] values = Arrange_PreviewIndicatorTransformXConverterValues(100, 20, Orientation.Vertical, true, 1.25, 1);
+        object[] values = Arrange_PreviewIndicatorTransformXConverterValues(100, 20, Orientation.Vertical, false, true, 1.25, 1);
         double expectedValue = -20 - RatingBar.PreviewIndicatorTransformXConverter.Margin;
 
         // Act
@@ -344,15 +369,15 @@ public class RatingBarTests
 
 
 
-    private static object[] Arrange_PreviewIndicatorTransformXConverterValues(double ratingBarButtonActualWidth, double previewValueActualWidth, Orientation orientation, bool isFractionalValueEnabled, double previewValue, int buttonValue) =>
-        new object[] { ratingBarButtonActualWidth, previewValueActualWidth, orientation, isFractionalValueEnabled, previewValue, buttonValue };
+    private static object[] Arrange_PreviewIndicatorTransformXConverterValues(double ratingBarButtonActualWidth, double previewValueActualWidth, Orientation orientation, bool invertDirection, bool isFractionalValueEnabled, double previewValue, int buttonValue) =>
+        new object[] { ratingBarButtonActualWidth, previewValueActualWidth, orientation, invertDirection, isFractionalValueEnabled, previewValue, buttonValue };
 
     [Fact]
     public void PreviewIndicatorTransformYConverter_ShouldPlacePreviewIndicatorWithSmallMargin_WhenFractionalValuesAreDisabledAndOrientationIsHorizontal()
     {
         // Arrange
         IMultiValueConverter converter = RatingBar.PreviewIndicatorTransformYConverter.Instance;
-        object[] values = Arrange_PreviewIndicatorTransformYConverterValues(100, 20, Orientation.Horizontal, false, 1, 1);
+        object[] values = Arrange_PreviewIndicatorTransformYConverterValues(100, 20, Orientation.Horizontal, false, false, 1, 1);
         double expectedValue = -20 - RatingBar.PreviewIndicatorTransformYConverter.Margin;
 
         // Act
@@ -368,7 +393,7 @@ public class RatingBarTests
     {
         // Arrange
         IMultiValueConverter converter = RatingBar.PreviewIndicatorTransformYConverter.Instance;
-        object[] values = Arrange_PreviewIndicatorTransformYConverterValues(100, 20, Orientation.Horizontal, true, 1.25, 1);
+        object[] values = Arrange_PreviewIndicatorTransformYConverterValues(100, 20, Orientation.Horizontal, false, true, 1.25, 1);
         double expectedValue = -20 - RatingBar.PreviewIndicatorTransformYConverter.Margin;
 
         // Act
@@ -384,7 +409,7 @@ public class RatingBarTests
     {
         // Arrange
         IMultiValueConverter converter = RatingBar.PreviewIndicatorTransformYConverter.Instance;
-        object[] values = Arrange_PreviewIndicatorTransformYConverterValues(100, 20, Orientation.Vertical, false, 1, 1);
+        object[] values = Arrange_PreviewIndicatorTransformYConverterValues(100, 20, Orientation.Vertical, false, false, 1, 1);
 
         // Act
         double? result = converter.Convert(values, typeof(double), null, CultureInfo.CurrentCulture) as double?;
@@ -394,23 +419,25 @@ public class RatingBarTests
         Assert.Equal(40.0, result); // 50% of 100 minus 20/2
     }
 
-    [Fact]
-    public void PreviewIndicatorTransformYConverter_ShouldPreviewIndicatorByPercentage_WhenFractionalValuesAreEnabledAndOrientationIsVertical()
+    [Theory]
+    [InlineData(false, 15.0)] // 25% of 100 minus 20/2
+    [InlineData(true, 65.0)]  // 75% of 100 minus 20/2
+    public void PreviewIndicatorTransformYConverter_ShouldPreviewIndicatorByPercentage_WhenFractionalValuesAreEnabledAndOrientationIsVertical(bool invertDirection, double expectedValue)
     {
         // Arrange
         IMultiValueConverter converter = RatingBar.PreviewIndicatorTransformYConverter.Instance;
-        object[] values = Arrange_PreviewIndicatorTransformYConverterValues(100, 20, Orientation.Vertical, true, 1.25, 1);
+        object[] values = Arrange_PreviewIndicatorTransformYConverterValues(100, 20, Orientation.Vertical, invertDirection, true, 1.25, 1);
 
         // Act
         double? result = converter.Convert(values, typeof(double), null, CultureInfo.CurrentCulture) as double?;
 
         // Assert
         Assert.NotNull(result);
-        Assert.Equal(15.0, result); // 25% of 100 minus 20/2
+        Assert.Equal(expectedValue, result);
     }
 
-    private static object[] Arrange_PreviewIndicatorTransformYConverterValues(double ratingBarButtonActualHeight, double previewValueActualHeight, Orientation orientation, bool isFractionalValueEnabled, double previewValue, int buttonValue) =>
-        new object[] { ratingBarButtonActualHeight, previewValueActualHeight, orientation, isFractionalValueEnabled, previewValue, buttonValue };
+    private static object[] Arrange_PreviewIndicatorTransformYConverterValues(double ratingBarButtonActualHeight, double previewValueActualHeight, Orientation orientation, bool invertDirection, bool isFractionalValueEnabled, double previewValue, int buttonValue) =>
+        new object[] { ratingBarButtonActualHeight, previewValueActualHeight, orientation, invertDirection, isFractionalValueEnabled, previewValue, buttonValue };
 }
 
 internal static class ColorExtensions
