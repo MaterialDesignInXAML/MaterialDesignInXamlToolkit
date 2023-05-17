@@ -102,6 +102,7 @@
 
   <StackPanel>
     <TextBlock Text="Progress indicators"
+               
                Style="{StaticResource PageTitleTextBlock}" />
 
     <Grid>
