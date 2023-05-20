@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
              xmlns:domain1="clr-namespace:MaterialDesignDemo.Domain"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
@@ -756,6 +757,84 @@
           </TextBox>
         </smtx:XamlDisplay>
       </StackPanel>
+    </Grid>
+
+    <Grid Margin="0,48,0,0"
+          HorizontalAlignment="Left"
+          VerticalAlignment="Top">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="300" />
+        <ColumnDefinition Width="300" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <TextBlock Grid.Row="0"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="3"
+                 Margin="0,0,0,10"
+                 VerticalAlignment="Center"
+                 Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                 Text="TextBox With AutoSuggestion" />
+      <TextBlock Grid.Row="1"
+                 Grid.Column="0"
+                 VerticalAlignment="Center"
+                 Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                 Text="Simple source list" />
+      <smtx:XamlDisplay Grid.Row="2"
+                        Grid.Column="0"
+                        UniqueKey="fields_autosuggestion_1">
+        <TextBox materialDesign:TextFieldAssist.AutoSuggestionEnabled="True"
+                 materialDesign:TextFieldAssist.AutoSuggestionItemsSource="{Binding ListSuggestion}"
+                 Text="{Binding AutoSuggestionTextBox1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+          <i:Interaction.Triggers>
+            <i:EventTrigger EventName="TextChanged">
+              <i:InvokeCommandAction Command="{Binding AutoSuggestionTextBox1ChangedCommand}" />
+            </i:EventTrigger>
+          </i:Interaction.Triggers>
+        </TextBox>
+      </smtx:XamlDisplay>
+
+      <TextBlock Grid.Row="1"
+                 Grid.Column="1"
+                 Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                 Text="AutoSuggestionItemTemplate" />
+      <smtx:XamlDisplay Grid.Row="2"
+                        Grid.Column="1"
+                        UniqueKey="fields_autosuggestion_2">
+        <TextBox materialDesign:TextFieldAssist.AutoSuggestionEnabled="True"
+                 materialDesign:TextFieldAssist.AutoSuggestionItemsSource="{Binding ListColors}"
+                 materialDesign:TextFieldAssist.AutoSuggestionValueMember="Key"
+                 materialDesign:ValidationAssist.HasError="False"
+                 Text="{Binding AutoSuggestionTextBox2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+          <i:Interaction.Triggers>
+            <i:EventTrigger EventName="TextChanged">
+              <i:InvokeCommandAction Command="{Binding AutoSuggestionTextBox2ChangedCommand}" />
+            </i:EventTrigger>
+          </i:Interaction.Triggers>
+          <TextBox.Style>
+            <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+              <Setter Property="Margin" Value="0,8" />
+              <Setter Property="VerticalAlignment" Value="Center" />
+              <Setter Property="materialDesign:TextFieldAssist.AutoSuggestionItemTemplate">
+                <Setter.Value>
+                  <DataTemplate>
+                    <DockPanel>
+                      <Border Width="20"
+                              Height="20"
+                              Background="{Binding Value}"
+                              CornerRadius="10" />
+                      <TextBlock Margin="10,0,0,0" Text="{Binding Key}" />
+                    </DockPanel>
+                  </DataTemplate>
+                </Setter.Value>
+              </Setter>
+            </Style>
+          </TextBox.Style>
+        </TextBox>
+      </smtx:XamlDisplay>
     </Grid>
   </StackPanel>
 </UserControl>

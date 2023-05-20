@@ -1,6 +1,8 @@
-namespace MaterialDesignDemo.Domain;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows.Media;
 
-public class FieldsViewModel : ViewModelBase
+namespace MaterialDesignDemo.Domain
 {
     private string? _name;
     private string? _name2;
@@ -13,9 +15,16 @@ public class FieldsViewModel : ViewModelBase
 
     public string? Name
     {
-        get => _name;
-        set => SetProperty(ref _name, value);
-    }
+        private string? _name;
+        private string? _name2;
+        private string? _password1 = string.Empty;
+        private string? _password2 = "pre-filled";
+        private string? _password1Validated = "pre-filled";
+        private string? _password2Validated = "pre-filled";
+        private string? _text1;
+        private string? _text2;
+        private string? _autoSuggestionTextBox1 = string.Empty;
+        private string? _autoSuggestionTextBox2 = string.Empty;
 
     public string? Name2
     {
@@ -71,13 +80,82 @@ public class FieldsViewModel : ViewModelBase
 
     public FieldsTestObject TestObject => new() { Name = "Mr. Test" };
 
-    public ICommand SetPassword1FromViewModelCommand { get; }
-    public ICommand SetPassword2FromViewModelCommand { get; }
 
-    public FieldsViewModel()
-    {
-        SetPassword1FromViewModelCommand = new AnotherCommandImplementation(_ => Password1 = "Set from ViewModel!");
-        SetPassword2FromViewModelCommand = new AnotherCommandImplementation(_ => Password2 = "Set from ViewModel!");
+        public string? AutoSuggestionTextBox1
+        {
+            get { return _autoSuggestionTextBox1; }
+            set { SetProperty(ref _autoSuggestionTextBox1, value); }
+        }        
+
+
+        public string? AutoSuggestionTextBox2
+        {
+            get { return _autoSuggestionTextBox2; }
+            set { SetProperty(ref _autoSuggestionTextBox2, value); }
+        }
+
+
+        private ObservableCollection<string> listSuggestion;
+
+        public ObservableCollection<string> ListSuggestion
+        {
+            get { return listSuggestion; }
+            set { SetProperty(ref listSuggestion, value); }
+        }
+
+
+        private ObservableCollection<string> baseListSuggestion;
+
+        public ObservableCollection<string> BaseListSuggestion
+        {
+            get { return baseListSuggestion; }
+            set { SetProperty(ref baseListSuggestion, value); }
+        }
+
+        private ObservableCollection<KeyValuePair<string, Brush>> listColors;
+
+        public ObservableCollection<KeyValuePair<string, Brush>> ListColors
+        {
+            get { return listColors; }
+            set { SetProperty(ref listColors, value); }
+        }
+
+        public FieldsTestObject TestObject => new() { Name = "Mr. Test" };
+
+        public ICommand AutoSuggestionTextBox1ChangedCommand { get; }
+        public ICommand AutoSuggestionTextBox2ChangedCommand { get; }
+        public ICommand SetPassword1FromViewModelCommand { get; }
+        public ICommand SetPassword2FromViewModelCommand { get; }
+
+        public FieldsViewModel()
+        {
+            SetPassword1FromViewModelCommand = new AnotherCommandImplementation(_ => Password1 = "Set from ViewModel!");
+            SetPassword2FromViewModelCommand = new AnotherCommandImplementation(_ => Password2 = "Set from ViewModel!");
+            BaseListSuggestion = new ObservableCollection<string>()
+            {
+                "Burger", "Fries", "Shake", "Lettuce"
+            };
+            ListColors = new ObservableCollection<KeyValuePair<string, Brush>>(GetColors());
+            ListSuggestion = BaseListSuggestion;
+            AutoSuggestionTextBox1ChangedCommand = new AnotherCommandImplementation(_ =>
+            {
+                ListSuggestion = new ObservableCollection<string>(BaseListSuggestion.Where(s => s.ToLower().Contains(AutoSuggestionTextBox1.ToLower())));
+            });
+            AutoSuggestionTextBox2ChangedCommand = new AnotherCommandImplementation(_ =>
+            {
+                ListColors = new ObservableCollection<KeyValuePair<string, Brush>>(GetColors().Where(s => s.Key.StartsWith(AutoSuggestionTextBox2)));
+            });
+        }
+
+        private IEnumerable<KeyValuePair<string, Brush>> GetColors()
+        {
+            return typeof(Colors)
+                .GetProperties()
+                .Where(prop =>
+                    typeof(Color).IsAssignableFrom(prop.PropertyType))
+                .Select(prop =>
+                    new KeyValuePair<string, Brush>(prop.Name, new SolidColorBrush((Color)prop.GetValue(null))));
+        }
     }
 }
 

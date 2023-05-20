@@ -182,6 +182,10 @@
                     <ColumnDefinition />
                     <ColumnDefinition Width="Auto" />
                   </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                  </Grid.RowDefinitions>
                   <wpf:PackIcon x:Name="LeadingPackIcon"
                                 Grid.Column="0"
                                 Width="{TemplateBinding wpf:TextFieldAssist.LeadingIconSize}"
@@ -298,6 +302,23 @@
                 </Grid>
               </Border>
             </AdornerDecorator>
+            <Popup x:Name="PART_AutoSuggestion"
+                   MaxHeight="200"
+                   AllowsTransparency="True"
+                   Focusable="False"
+                   HorizontalOffset="0"
+                   PopupAnimation="Slide"
+                   StaysOpen="False">
+              <ListBox x:Name="AutoSuggestionListBox"
+                       Width="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ActualWidth}"
+                       Background="White"
+                       DisplayMemberPath="{TemplateBinding wpf:TextFieldAssist.AutoSuggestionDisplayMember}"
+                       Focusable="False"
+                       ItemTemplate="{TemplateBinding wpf:TextFieldAssist.AutoSuggestionItemTemplate}"
+                       ItemTemplateSelector="{TemplateBinding wpf:TextFieldAssist.AutoSuggestionItemTemplateSelector}"
+                       ItemsSource="{TemplateBinding wpf:TextFieldAssist.AutoSuggestionItemsSource}"
+                       SelectedValuePath="{TemplateBinding wpf:TextFieldAssist.AutoSuggestionValueMember}" />
+            </Popup>
             <Border x:Name="borderUnderline"
                     Height="0"
                     HorizontalAlignment="Stretch"
