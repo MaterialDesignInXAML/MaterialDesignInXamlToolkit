@@ -35,6 +35,7 @@ namespace MaterialDesignThemes.Wpf
             listBoxItem.SetCurrentValue(ListBoxItem.IsSelectedProperty, !listBoxItem.IsSelected);
             mouseButtonEventArgs.Handled = true;
 
+            listBoxItem.Focus();
             if (ripple != null && listBoxItem.IsSelected)
             {
                 ripple.RaiseEvent(
