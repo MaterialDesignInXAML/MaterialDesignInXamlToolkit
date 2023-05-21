@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Media;
 
 namespace MaterialDesignDemo.Domain
@@ -154,7 +155,14 @@ namespace MaterialDesignDemo.Domain
                 .Where(prop =>
                     typeof(Color).IsAssignableFrom(prop.PropertyType))
                 .Select(prop =>
-                    new KeyValuePair<string, Brush>(prop.Name, new SolidColorBrush((Color)prop.GetValue(null))));
+                    new KeyValuePair<string, Brush>(prop.Name, GenerateColorBrush(prop.GetValue(null))));
+        }
+
+        private SolidColorBrush GenerateColorBrush(object? prop)
+        {
+            if (prop is Color color)
+                return new SolidColorBrush(color);
+            return new SolidColorBrush(Colors.White);
         }
     }
 }
