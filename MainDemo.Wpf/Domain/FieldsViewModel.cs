@@ -23,8 +23,8 @@ namespace MaterialDesignDemo.Domain
         private string? _password2Validated = "pre-filled";
         private string? _text1;
         private string? _text2;
-        private string? _autoSuggestionTextBox1 = string.Empty;
-        private string? _autoSuggestionTextBox2 = string.Empty;
+        private string _autoSuggestionTextBox1 = string.Empty;
+        private string _autoSuggestionTextBox2 = string.Empty;
 
     public string? Name2
     {
@@ -81,21 +81,21 @@ namespace MaterialDesignDemo.Domain
     public FieldsTestObject TestObject => new() { Name = "Mr. Test" };
 
 
-        public string? AutoSuggestionTextBox1
+        public string AutoSuggestionTextBox1
         {
             get { return _autoSuggestionTextBox1; }
             set { SetProperty(ref _autoSuggestionTextBox1, value); }
-        }        
+        }
 
 
-        public string? AutoSuggestionTextBox2
+        public string AutoSuggestionTextBox2
         {
             get { return _autoSuggestionTextBox2; }
             set { SetProperty(ref _autoSuggestionTextBox2, value); }
         }
 
 
-        private ObservableCollection<string> listSuggestion;
+        private ObservableCollection<string> listSuggestion = new ObservableCollection<string>();
 
         public ObservableCollection<string> ListSuggestion
         {
@@ -104,7 +104,7 @@ namespace MaterialDesignDemo.Domain
         }
 
 
-        private ObservableCollection<string> baseListSuggestion;
+        private ObservableCollection<string> baseListSuggestion = new ObservableCollection<string>();
 
         public ObservableCollection<string> BaseListSuggestion
         {
@@ -112,7 +112,7 @@ namespace MaterialDesignDemo.Domain
             set { SetProperty(ref baseListSuggestion, value); }
         }
 
-        private ObservableCollection<KeyValuePair<string, Brush>> listColors;
+        private ObservableCollection<KeyValuePair<string, Brush>> listColors = new ObservableCollection<KeyValuePair<string, Brush>>();
 
         public ObservableCollection<KeyValuePair<string, Brush>> ListColors
         {

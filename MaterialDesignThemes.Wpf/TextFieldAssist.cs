@@ -308,17 +308,6 @@ public static class TextFieldAssist
         public static readonly DependencyProperty AutoSuggestionItemsSourceProperty = DependencyProperty.RegisterAttached(
             "AutoSuggestionItemsSource", typeof(object), typeof(TextFieldAssist), new PropertyMetadata(null, AutoSuggestionItemsSourceChanged));
 
-        private static void AutoSuggestionItemsSourceChanged(DependencyObject element, DependencyPropertyChangedEventArgs e)
-        {
-            if (element is TextBox textBox && textBox.Template.FindName(AutoSuggestionPart, textBox) is Popup popup && e.NewValue is ICollection items)
-            {
-                if ((textBox.Text.Length == 0 || items.Count == 0) && popup.IsOpen)
-                    popup.IsOpen = false;
-                else if (textBox.Text.Length > 0 && !popup.IsOpen && textBox.IsFocused && items.Count > 0)
-                    popup.IsOpen = true;
-
-            }
-        }
         public static void SetAutoSuggestionItemsSource(DependencyObject element, object value)
             => element.SetValue(AutoSuggestionItemsSourceProperty, value);
 
@@ -571,6 +560,23 @@ public static class TextFieldAssist
             }
         }
 
+        /// <summary>
+        /// The AutoSuggestion ItemsSource property changed callback.
+        /// </summary>
+        /// <param name="element">The dependency object.</param>
+        /// <param name="e">The dependency property changed event args.</param>
+        private static void AutoSuggestionItemsSourceChanged(DependencyObject element, DependencyPropertyChangedEventArgs e)
+        {
+            if (element is TextBox textBox && GetAutoSuggestionEnabled(textBox) && textBox.Template.FindName(AutoSuggestionPart, textBox) is Popup popup && e.NewValue is ICollection items)
+            {
+                if ((textBox.Text.Length == 0 || items.Count == 0) && popup.IsOpen)
+                    popup.IsOpen = false;
+                else if (textBox.Text.Length > 0 && !popup.IsOpen && textBox.IsFocused && items.Count > 0)
+                    popup.IsOpen = true;
+
+            }
+        }
+
         private static void AutoSuggestionTextBox_Loaded(object sender, RoutedEventArgs e)
         {
             if (sender is TextBox textBox && textBox.Template.FindName(AutoSuggestionListBoxName, textBox) is ListBox listBox)
@@ -581,13 +587,11 @@ public static class TextFieldAssist
 
         private static void AutoSuggestionListBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (sender is ListBox listBox && listBox.TemplatedParent is TextBox textBox)
+            if (sender is ListBox listBox && listBox.TemplatedParent is TextBox textBox && e.OriginalSource is FrameworkElement element)
             {
-                if ((e.OriginalSource as FrameworkElement)?.DataContext == null)
+                if (!listBox.Items.Contains(element.DataContext))
                     return;
-                if (!listBox.Items.Contains(((FrameworkElement)e.OriginalSource)?.DataContext))
-                    return;
-                listBox.SelectedItem = ((FrameworkElement)e.OriginalSource)?.DataContext;
+                listBox.SelectedItem = element.DataContext;
                 CommitValueSelection(textBox);
             }
         }
@@ -639,15 +643,16 @@ public static class TextFieldAssist
         }
 
         /// <summary>
-        /// Validate value
+        /// Commit the selected value
         /// </summary>
         /// <param name="textBox"></param>
         private static void CommitValueSelection(TextBox textBox)
         {
-            if (textBox.Template.FindName(AutoSuggestionListBoxName, textBox) is ListBox listBox)
+            if (textBox.Template.FindName(AutoSuggestionListBoxName, textBox) is ListBox listBox && listBox.SelectedValue != null)
             {
                 textBox.Text = listBox.SelectedValue.ToString();
-                textBox.CaretIndex = textBox.Text.Length;
+                if (textBox.Text != null)
+                    textBox.CaretIndex = textBox.Text.Length;
                 CloseAutoSuggestionPopUp(textBox);
             }
         }
@@ -660,7 +665,7 @@ public static class TextFieldAssist
         {
             if (textBox.Template.FindName(AutoSuggestionListBoxName, textBox) is ListBox listBox)
             {
-                if (listBox.SelectedIndex == 0)
+                if (listBox.SelectedIndex == 0 || listBox.SelectedIndex == -1)
                     listBox.SelectedIndex = listBox.Items.Count - 1;
                 else
                     listBox.SelectedIndex -= 1;
