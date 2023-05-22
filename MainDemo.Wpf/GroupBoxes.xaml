@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MaterialDesignDemo.GroupBoxes"
+<UserControl x:Class="MaterialDesignDemo.GroupBoxes"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -185,6 +185,7 @@
                       UniqueKey="groupbox_9">
       <GroupBox Margin="16"
                 Header="Elevation"
+                Background="White"
                 materialDesign:ElevationAssist.Elevation="Dp6"
                 Style="{StaticResource MaterialDesignGroupBox}">
         <Grid Height="50">
@@ -197,6 +198,7 @@
                       UniqueKey="groupbox_10">
       <GroupBox Margin="16"
                 Header="Elevation (no border)"
+                Background="White"
                 materialDesign:ElevationAssist.Elevation="Dp6"
                 BorderThickness="0"
                 Style="{StaticResource MaterialDesignGroupBox}">
