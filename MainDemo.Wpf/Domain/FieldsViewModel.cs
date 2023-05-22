@@ -26,6 +26,9 @@ namespace MaterialDesignDemo.Domain
         private string? _text2;
         private string _autoSuggestionTextBox1 = string.Empty;
         private string _autoSuggestionTextBox2 = string.Empty;
+        private ObservableCollection<string> _listSuggestion = new ObservableCollection<string>();
+        private ObservableCollection<string> _baseListSuggestion = new ObservableCollection<string>();
+        private ObservableCollection<KeyValuePair<string, Brush>> _listColors = new ObservableCollection<KeyValuePair<string, Brush>>();
 
     public string? Name2
     {
@@ -96,29 +99,26 @@ namespace MaterialDesignDemo.Domain
         }
 
 
-        private ObservableCollection<string> listSuggestion = new ObservableCollection<string>();
 
         public ObservableCollection<string> ListSuggestion
         {
-            get { return listSuggestion; }
-            set { SetProperty(ref listSuggestion, value); }
+            get { return _listSuggestion; }
+            set { SetProperty(ref _listSuggestion, value); }
         }
 
 
-        private ObservableCollection<string> baseListSuggestion = new ObservableCollection<string>();
 
         public ObservableCollection<string> BaseListSuggestion
         {
-            get { return baseListSuggestion; }
-            set { SetProperty(ref baseListSuggestion, value); }
+            get { return _baseListSuggestion; }
+            set { SetProperty(ref _baseListSuggestion, value); }
         }
 
-        private ObservableCollection<KeyValuePair<string, Brush>> listColors = new ObservableCollection<KeyValuePair<string, Brush>>();
 
         public ObservableCollection<KeyValuePair<string, Brush>> ListColors
         {
-            get { return listColors; }
-            set { SetProperty(ref listColors, value); }
+            get { return _listColors; }
+            set { SetProperty(ref _listColors, value); }
         }
 
         public FieldsTestObject TestObject => new() { Name = "Mr. Test" };
