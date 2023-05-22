@@ -143,4 +143,39 @@ ScrollViewer.VerticalScrollBarVisibility=""Visible"">
 
         recorder.Success();
     }
+
+    [Fact]
+    [Description("Issue 3188")]
+    public async Task OnToggle_ShouldGrabFocus()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        var stackPanel = await LoadXaml<StackPanel>("""
+            <StackPanel Orientation="Vertical">
+                <ListBox MinWidth="200"
+                         materialDesign:ListBoxAssist.IsToggle="True">
+                    <ListBoxItem Content="Item1" />
+                    <ListBoxItem Content="Item2" />
+                    <ListBoxItem Content="Item3" />
+                    <ListBoxItem Content="Item4" />
+                </ListBox>
+                <TextBox />
+            </StackPanel>
+            """);
+
+        var listBox = await stackPanel.GetElement<ListBox>("/ListBox");
+        var textBox = await stackPanel.GetElement<TextBox>("/TextBox");
+        var listBoxItem = await listBox.GetElement<ListBoxItem>("/ListBoxItem[2]");
+
+        await textBox.LeftClick();
+        Assert.True(await textBox.GetIsKeyboardFocusWithin());
+
+        // Act
+        await listBoxItem.LeftClick();
+
+        // Assert
+        await Wait.For(async () => Assert.True(await listBox.GetIsKeyboardFocusWithin()));
+
+        recorder.Success();
+    }
 }
