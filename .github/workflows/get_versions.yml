@@ -23,9 +23,9 @@ jobs:
   getting_versions:
     env:
       #Update these base version numbers
-      mdix-version: "4.9.0"
-      mdix-colors-version: "2.1.4"
-      mdix-mahapps-version: "0.3.0"
+      mdix-version: "4.10.0"
+      mdix-colors-version: "2.1.5"
+      mdix-mahapps-version: "0.3.1"
     name: Set version numbers
     runs-on: ubuntu-latest
     defaults:
