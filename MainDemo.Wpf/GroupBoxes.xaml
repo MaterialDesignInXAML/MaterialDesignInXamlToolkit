@@ -14,6 +14,10 @@
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.GroupBox.xaml" />
       </ResourceDictionary.MergedDictionaries>
+
+      <Style TargetType="smtx:XamlDisplay" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
+        <Setter Property="MaxWidth" Value="350" />
+      </Style>
     </ResourceDictionary>
   </UserControl.Resources>
 
