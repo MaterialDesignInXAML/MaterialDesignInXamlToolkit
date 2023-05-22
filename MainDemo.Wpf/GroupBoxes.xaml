@@ -32,6 +32,7 @@
       <RowDefinition />
       <RowDefinition />
       <RowDefinition />
+      <RowDefinition />
     </Grid.RowDefinitions>
     <smtx:XamlDisplay Grid.Row="0"
                       Grid.Column="0"
@@ -176,6 +177,44 @@
         <Image HorizontalAlignment="Center"
                VerticalAlignment="Center"
                Source="Resources/Contact.png" />
+      </GroupBox>
+    </smtx:XamlDisplay>
+
+    <smtx:XamlDisplay Grid.Row="3"
+                      Grid.Column="0"
+                      UniqueKey="groupbox_9">
+      <GroupBox Margin="16"
+                Header="Elevation"
+                materialDesign:ElevationAssist.Elevation="Dp6"
+                Style="{StaticResource MaterialDesignGroupBox}">
+        <Grid Height="50">
+          <TextBlock Text="GroupBox (with border) and elevation" VerticalAlignment="Center" />
+        </Grid>
+      </GroupBox>
+    </smtx:XamlDisplay>
+    <smtx:XamlDisplay Grid.Row="3"
+                      Grid.Column="1"
+                      UniqueKey="groupbox_10">
+      <GroupBox Margin="16"
+                Header="Elevation (no border)"
+                materialDesign:ElevationAssist.Elevation="Dp6"
+                BorderThickness="0"
+                Style="{StaticResource MaterialDesignGroupBox}">
+        <Grid Height="50">
+          <TextBlock Text="GroupBox (without border) and elevation" VerticalAlignment="Center" />
+        </Grid>
+      </GroupBox>
+    </smtx:XamlDisplay>
+    <smtx:XamlDisplay Grid.Row="3"
+                      Grid.Column="2"
+                      UniqueKey="groupbox_11">
+      <GroupBox Margin="16"
+                Header="Elevation on Card"
+                materialDesign:ElevationAssist.Elevation="Dp6"
+                Style="{StaticResource MaterialDesignCardGroupBox}">
+        <Grid Height="50">
+          <TextBlock Text="GroupBox (using Card style) and elevation" VerticalAlignment="Center" />
+        </Grid>
       </GroupBox>
     </smtx:XamlDisplay>
   </Grid>
