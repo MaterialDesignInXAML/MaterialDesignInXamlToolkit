@@ -9,25 +9,11 @@
              d:DesignWidth="1920"
              mc:Ignorable="d">
   <StackPanel>
-    <TextBlock Margin="0,0,0,16"
-               Style="{StaticResource MaterialDesignHeadline4TextBlock}"
-               Text="NavigationRail" />
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="NavigationRail" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="General" />
 
-    <TextBlock Margin="0,0,0,8"
-               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-               Text="General" />
-
-    <Grid>
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*" />
-        <ColumnDefinition Width="*" />
-      </Grid.ColumnDefinitions>
-      <Grid.RowDefinitions>
-        <RowDefinition Height="*" />
-        <RowDefinition Height="*" />
-      </Grid.RowDefinitions>
-
-      <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="navrail_1">
+    <WrapPanel ItemWidth="516">
+      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="navrail_1">
         <materialDesign:Card>
           <TabControl materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
                       SnapsToDevicePixels="True"
@@ -145,9 +131,7 @@
           </TabControl>
         </materialDesign:Card>
       </smtx:XamlDisplay>
-      <smtx:XamlDisplay Grid.Column="1"
-                        Margin="8,0,0,8"
-                        UniqueKey="navrail_4">
+      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="navrail_4">
         <materialDesign:Card>
           <TabControl HorizontalContentAlignment="Center"
                       materialDesign:ColorZoneAssist.Mode="PrimaryLight"
@@ -166,14 +150,19 @@
                   <TextBlock HorizontalAlignment="Center" Text="Recent" />
                 </StackPanel>
               </TabItem.Header>
-              <TextBlock>
-                <Run Text="tab 2 content. Default look and behaviors." />
-                <LineBreak />
-                <LineBreak />
-                <Run FontStyle="Italic">
-                  Praesent sed dui arcu. Vivamus porta auctor sagittis
-                </Run>
-              </TextBlock>
+              <StackPanel Margin="16">
+                <TextBlock Margin="0,0,0,8"
+                           Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                           Text="Recent" />
+                <TextBlock>
+                  <Run Text="tab 2 content. Default look and behaviors." />
+                  <LineBreak />
+                  <LineBreak />
+                  <Run FontStyle="Italic">
+                    Praesent sed dui arcu. Vivamus porta auctor sagittis
+                  </Run>
+                </TextBlock>
+              </StackPanel>
             </TabItem>
 
             <TabItem>
@@ -186,14 +175,21 @@
                   <TextBlock HorizontalAlignment="Center" Text="Photos" />
                 </StackPanel>
               </TabItem.Header>
-              <TextBlock>
-                <Run Text="tab 3 content. Default look and behaviors." />
-                <LineBreak />
-                <LineBreak />
-                <Run FontStyle="Italic">
-                  Praesevzddvvvvvvvvvv
-                </Run>
-              </TextBlock>
+              <StackPanel Margin="16">
+                <TextBlock Margin="0,0,0,8"
+                           Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                           Text="Photos" />
+
+                <TextBlock>
+                  <Run Text="tab 3 content. Default look and behaviors." />
+                  <LineBreak />
+                  <LineBreak />
+                  <Run FontStyle="Italic">
+                    Praesevzddvvvvvvvvvv
+                  </Run>
+                </TextBlock>
+
+              </StackPanel>
             </TabItem>
 
             <TabItem>
@@ -206,21 +202,25 @@
                   <TextBlock HorizontalAlignment="Center" Text="Sounds" />
                 </StackPanel>
               </TabItem.Header>
-              <TextBlock>
-                <Run Text="tab 4 content. Default look and behaviors." />
-                <LineBreak />
-                <LineBreak />
-                <Run FontStyle="Italic">
-                  Prfadsssssssssssssssbvdcas
-                </Run>
-              </TextBlock>
+              <StackPanel Margin="16">
+                <TextBlock Margin="0,0,0,8"
+                           Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                           Text="Sounds" />
+                <TextBlock>
+                  <Run Text="tab 4 content. Default look and behaviors." />
+                  <LineBreak />
+                  <LineBreak />
+                  <Run FontStyle="Italic">
+                    Prfadsssssssssssssssbvdcas
+                  </Run>
+                </TextBlock>
+
+              </StackPanel>
             </TabItem>
           </TabControl>
         </materialDesign:Card>
       </smtx:XamlDisplay>
-      <smtx:XamlDisplay Grid.Row="1"
-                        Margin="0,8,8,0"
-                        UniqueKey="navrail_2">
+      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="navrail_2">
         <materialDesign:Card>
           <TabControl Style="{StaticResource MaterialDesignNavigationRailTabControl}" TabStripPlacement="Right">
             <TabItem>
@@ -233,14 +233,21 @@
                   <TextBlock HorizontalAlignment="Center" Text="All Files" />
                 </StackPanel>
               </TabItem.Header>
-              <TextBlock>
-                <Run Text="tab 1 content. Default look and behaviors." />
-                <LineBreak />
-                <LineBreak />
-                <Run FontStyle="Italic">
-                  Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
-                </Run>
-              </TextBlock>
+              <StackPanel Margin="16">
+                <TextBlock Margin="0,0,0,8"
+                           Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                           Text="All files" />
+
+                <TextBlock>
+                  <Run Text="tab 1 content. Default look and behaviors." />
+                  <LineBreak />
+                  <LineBreak />
+                  <Run FontStyle="Italic">
+                    Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+                  </Run>
+                </TextBlock>
+
+              </StackPanel>
             </TabItem>
 
             <TabItem>
@@ -253,14 +260,20 @@
                   <TextBlock HorizontalAlignment="Center" Text="Recent" />
                 </StackPanel>
               </TabItem.Header>
-              <TextBlock>
-                <Run Text="tab 2 content. Default look and behaviors." />
-                <LineBreak />
-                <LineBreak />
-                <Run FontStyle="Italic">
-                  Praesent sed dui arcu. Vivamus porta auctor sagittis
-                </Run>
-              </TextBlock>
+              <StackPanel Margin="16">
+                <TextBlock Margin="0,0,0,8"
+                           Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                           Text="Recent" />
+                <TextBlock>
+                  <Run Text="tab 2 content. Default look and behaviors." />
+                  <LineBreak />
+                  <LineBreak />
+                  <Run FontStyle="Italic">
+                    Praesent sed dui arcu. Vivamus porta auctor sagittis
+                  </Run>
+                </TextBlock>
+
+              </StackPanel>
             </TabItem>
 
             <TabItem>
@@ -273,11 +286,18 @@
                   <TextBlock HorizontalAlignment="Center" Text="Photos" />
                 </StackPanel>
               </TabItem.Header>
-              <TextBlock>
-                <Run Text="tab 3 content. Default look and behaviors." />
-                <LineBreak />
-                <LineBreak />
-              </TextBlock>
+
+              <StackPanel Margin="16">
+                <TextBlock Margin="0,0,0,8"
+                           Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                           Text="Photos" />
+                <TextBlock>
+                  <Run Text="tab 3 content. Default look and behaviors." />
+                  <LineBreak />
+                  <LineBreak />
+                </TextBlock>
+
+              </StackPanel>
             </TabItem>
 
             <TabItem>
@@ -290,19 +310,24 @@
                   <TextBlock HorizontalAlignment="Center" Text="Sounds" />
                 </StackPanel>
               </TabItem.Header>
-              <TextBlock>
-                <Run Text="tab 4 content. Default look and behaviors." />
-                <LineBreak />
-                <LineBreak />
-              </TextBlock>
+
+              <StackPanel Margin="16">
+                <TextBlock Margin="0,0,0,8"
+                           Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                           Text="Sounds" />
+
+                <TextBlock>
+                  <Run Text="tab 4 content. Default look and behaviors." />
+                  <LineBreak />
+                  <LineBreak />
+                </TextBlock>
+
+              </StackPanel>
             </TabItem>
           </TabControl>
         </materialDesign:Card>
       </smtx:XamlDisplay>
-      <smtx:XamlDisplay Grid.Row="1"
-                        Grid.Column="1"
-                        Margin="8,8,0,0"
-                        UniqueKey="navrail_3">
+      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="navrail_3">
         <materialDesign:Card>
           <TabControl VerticalContentAlignment="Bottom"
                       materialDesign:ColorZoneAssist.Mode="PrimaryMid"
@@ -317,14 +342,21 @@
                   <TextBlock HorizontalAlignment="Center" Text="All Files" />
                 </StackPanel>
               </TabItem.Header>
-              <TextBlock>
-                <Run Text="tab 1 content. Default look and behaviors." />
-                <LineBreak />
-                <LineBreak />
-                <Run FontStyle="Italic">
-                  Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
-                </Run>
-              </TextBlock>
+              <StackPanel Margin="16">
+                <TextBlock Margin="0,0,0,8"
+                           Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                           Text="All files" />
+
+                <TextBlock>
+                  <Run Text="tab 1 content. Default look and behaviors." />
+                  <LineBreak />
+                  <LineBreak />
+                  <Run FontStyle="Italic">
+                    Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+                  </Run>
+                </TextBlock>
+
+              </StackPanel>
             </TabItem>
 
             <TabItem>
@@ -337,14 +369,20 @@
                   <TextBlock HorizontalAlignment="Center" Text="Recent" />
                 </StackPanel>
               </TabItem.Header>
-              <TextBlock>
-                <Run Text="tab 2 content. Default look and behaviors." />
-                <LineBreak />
-                <LineBreak />
-                <Run FontStyle="Italic">
-                  Praesent sed dui arcu. Vivamus porta auctor sagittis
-                </Run>
-              </TextBlock>
+              <StackPanel Margin="16">
+                <TextBlock Margin="0,0,0,8"
+                           Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                           Text="Recent" />
+                <TextBlock>
+                  <Run Text="tab 2 content. Default look and behaviors." />
+                  <LineBreak />
+                  <LineBreak />
+                  <Run FontStyle="Italic">
+                    Praesent sed dui arcu. Vivamus porta auctor sagittis
+                  </Run>
+                </TextBlock>
+
+              </StackPanel>
             </TabItem>
 
             <TabItem>
@@ -357,11 +395,18 @@
                   <TextBlock HorizontalAlignment="Center" Text="Photos" />
                 </StackPanel>
               </TabItem.Header>
-              <TextBlock>
-                <Run Text="tab 3 content. Default look and behaviors." />
-                <LineBreak />
-                <LineBreak />
-              </TextBlock>
+
+              <StackPanel Margin="16">
+
+                <TextBlock Margin="0,0,0,8"
+                           Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                           Text="Photos" />
+                <TextBlock>
+                  <Run Text="tab 3 content. Default look and behaviors." />
+                  <LineBreak />
+                  <LineBreak />
+                </TextBlock>
+              </StackPanel>
             </TabItem>
 
             <TabItem>
@@ -374,26 +419,32 @@
                   <TextBlock HorizontalAlignment="Center" Text="Sounds" />
                 </StackPanel>
               </TabItem.Header>
-              <TextBlock>
-                <Run Text="tab 4 content. Default look and behaviors." />
-                <LineBreak />
-                <LineBreak />
-              </TextBlock>
+
+              <StackPanel Margin="16">
+                <TextBlock Margin="0,0,0,8"
+                           Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                           Text="Sounds" />
+                <TextBlock>
+                  <Run Text="tab 4 content. Default look and behaviors." />
+                  <LineBreak />
+                  <LineBreak />
+                </TextBlock>
+
+              </StackPanel>
             </TabItem>
           </TabControl>
         </materialDesign:Card>
       </smtx:XamlDisplay>
-    </Grid>
+    </WrapPanel>
 
-    <Separator Margin="0,16" />
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Margin="0,0,0,8"
-               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-               Text="Floating Action Button" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Floating Action Button" />
 
     <smtx:XamlDisplay UniqueKey="navrail_floating_1">
       <materialDesign:Card>
-        <TabControl materialDesign:ColorZoneAssist.Mode="PrimaryMid"
+        <TabControl MinHeight="200"
+                    materialDesign:ColorZoneAssist.Mode="PrimaryMid"
                     materialDesign:NavigationRailAssist.SelectionCornerRadius="50 10 10 10"
                     materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
                     Style="{StaticResource MaterialDesignNavigationRailTabControl}"
@@ -416,14 +467,20 @@
                 <TextBlock HorizontalAlignment="Center" Text="All Files" />
               </StackPanel>
             </TabItem.Header>
-            <TextBlock>
-              <Run Text="tab 1 content. Default look and behaviors." />
-              <LineBreak />
-              <LineBreak />
-              <Run FontStyle="Italic">
-                Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
-              </Run>
-            </TextBlock>
+            <StackPanel Margin="16">
+              <TextBlock Margin="0,0,0,8"
+                         Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                         Text="All files" />
+              <TextBlock>
+                <Run Text="tab 1 content. Default look and behaviors." />
+                <LineBreak />
+                <LineBreak />
+                <Run FontStyle="Italic">
+                  Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+                </Run>
+              </TextBlock>
+
+            </StackPanel>
           </TabItem>
 
           <TabItem>
@@ -436,14 +493,21 @@
                 <TextBlock HorizontalAlignment="Center" Text="Recent" />
               </StackPanel>
             </TabItem.Header>
-            <TextBlock>
-              <Run Text="tab 2 content. Default look and behaviors." />
-              <LineBreak />
-              <LineBreak />
-              <Run FontStyle="Italic">
-                Praesent sed dui arcu. Vivamus porta auctor sagittis
-              </Run>
-            </TextBlock>
+
+            <StackPanel Margin="16">
+              <TextBlock Margin="0,0,0,8"
+                         Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                         Text="Recent" />
+              <TextBlock>
+                <Run Text="tab 2 content. Default look and behaviors." />
+                <LineBreak />
+                <LineBreak />
+                <Run FontStyle="Italic">
+                  Praesent sed dui arcu. Vivamus porta auctor sagittis
+                </Run>
+              </TextBlock>
+
+            </StackPanel>
           </TabItem>
 
           <TabItem>
@@ -456,11 +520,17 @@
                 <TextBlock HorizontalAlignment="Center" Text="Photos" />
               </StackPanel>
             </TabItem.Header>
-            <TextBlock>
-              <Run Text="tab 3 content. Default look and behaviors." />
-              <LineBreak />
-              <LineBreak />
-            </TextBlock>
+            <StackPanel Margin="16">
+              <TextBlock Margin="0,0,0,8"
+                         Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                         Text="Photos" />
+              <TextBlock>
+                <Run Text="tab 3 content. Default look and behaviors." />
+                <LineBreak />
+                <LineBreak />
+              </TextBlock>
+            </StackPanel>
+
           </TabItem>
 
           <TabItem>
@@ -473,21 +543,25 @@
                 <TextBlock HorizontalAlignment="Center" Text="Sounds" />
               </StackPanel>
             </TabItem.Header>
-            <TextBlock>
-              <Run Text="tab 4 content. Default look and behaviors." />
-              <LineBreak />
-              <LineBreak />
-            </TextBlock>
+            <StackPanel Margin="16">
+              <TextBlock Margin="0,0,0,8"
+                         Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                         Text="Sounds" />
+              <TextBlock>
+                <Run Text="tab 4 content. Default look and behaviors." />
+                <LineBreak />
+                <LineBreak />
+              </TextBlock>
+            </StackPanel>
+
           </TabItem>
         </TabControl>
       </materialDesign:Card>
     </smtx:XamlDisplay>
 
-    <Separator Margin="0,16" />
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Margin="0,0,0,8"
-               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-               Text="Shadow" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Shadow" />
 
     <StackPanel Orientation="Horizontal">
       <smtx:XamlDisplay UniqueKey="navrail_noshadow_1">

@@ -22,7 +22,7 @@
       <RowDefinition Height="Auto" />
       <RowDefinition Height="256" />
     </Grid.RowDefinitions>
-    <TextBlock Style="{StaticResource MaterialDesignHeadline3TextBlock}">Transitions Demo</TextBlock>
+    <TextBlock Style="{StaticResource PageTitleTextBlock}">Transitions Demo</TextBlock>
 
     <smtx:XamlDisplay Grid.Row="1" UniqueKey="transitions">
       <!-- the transitioner will manage your transitions. notice how SelectedIndex is set to zero: the first slide (instead of the default of -1) -->
