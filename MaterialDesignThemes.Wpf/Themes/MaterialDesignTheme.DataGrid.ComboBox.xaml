@@ -432,6 +432,7 @@
     <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
     <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
     <Setter Property="Template" Value="{StaticResource MaterialDesignDataGridComboBoxTemplate}" />
+    <Setter Property="IsSynchronizedWithCurrentItem" Value="False"/>
     <Style.Triggers>
       <Trigger Property="IsEditable" Value="true">
         <Setter Property="IsTabStop" Value="false" />
