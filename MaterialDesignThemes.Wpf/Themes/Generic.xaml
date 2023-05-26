@@ -525,7 +525,6 @@
                 <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}" />
                 <Binding Path="ActualHeight" RelativeSource="{RelativeSource TemplatedParent}" />
                 <Binding Path="(local:ElevationAssist.Elevation)" RelativeSource="{RelativeSource TemplatedParent}" />
-                <Binding Path="(local:ShadowAssist.ShadowEdges)" RelativeSource="{RelativeSource TemplatedParent}" />
               </MultiBinding>
             </Grid.OpacityMask>
             <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(local:ShadowAssist.CacheMode)}">

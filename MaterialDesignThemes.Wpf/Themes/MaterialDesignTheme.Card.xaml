@@ -24,7 +24,6 @@
                   <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}" />
                   <Binding Path="ActualHeight" RelativeSource="{RelativeSource TemplatedParent}" />
                   <Binding Path="(wpf:ElevationAssist.Elevation)" RelativeSource="{RelativeSource TemplatedParent}" />
-                  <Binding Path="(wpf:ShadowAssist.ShadowEdges)" RelativeSource="{RelativeSource TemplatedParent}" />
                 </MultiBinding>
               </AdornerDecorator.OpacityMask>
               <Border CornerRadius="{TemplateBinding UniformCornerRadius, Converter={x:Static converters:DoubleToCornerRadiusConverter.Instance}}" Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}">

@@ -137,7 +137,6 @@
               <Setter Property="materialDesign:ElevationAssist.Elevation" Value="Dp0" />
               <Setter Property="materialDesign:RippleAssist.Feedback" Value="LightGray" />
               <Setter Property="materialDesign:RippleAssist.RippleOnTop" Value="True" />
-              <Setter Property="materialDesign:ShadowAssist.ShadowEdges" Value="All" />
             </Style>
           </Grid.Resources>
 

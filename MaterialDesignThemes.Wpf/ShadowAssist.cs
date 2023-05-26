@@ -4,17 +4,6 @@ using System.Windows.Media.Effects;
 
 namespace MaterialDesignThemes.Wpf;
 
-[Flags]
-public enum ShadowEdges
-{
-    None = 0,
-    Left = 1,
-    Top = 2,
-    Right = 4,
-    Bottom = 8,
-    All = Left | Top | Right | Bottom
-}
-
 public static class ShadowAssist
 {
     #region AttachedProperty : LocalInfoPropertyKey
@@ -100,21 +89,6 @@ public static class ShadowAssist
     public static CacheMode GetCacheMode(DependencyObject element)
     {
         return (CacheMode)element.GetValue(CacheModeProperty);
-    }
-    #endregion
-
-    #region AttachedProperty : ShadowEdgesProperty
-    public static readonly DependencyProperty ShadowEdgesProperty = DependencyProperty.RegisterAttached(
-        "ShadowEdges", typeof(ShadowEdges), typeof(ShadowAssist), new PropertyMetadata(ShadowEdges.All));
-
-    public static void SetShadowEdges(DependencyObject element, ShadowEdges value)
-    {
-        element.SetValue(ShadowEdgesProperty, value);
-    }
-
-    public static ShadowEdges GetShadowEdges(DependencyObject element)
-    {
-        return (ShadowEdges)element.GetValue(ShadowEdgesProperty);
     }
     #endregion
 
