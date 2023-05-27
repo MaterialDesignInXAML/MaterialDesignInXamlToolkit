@@ -5,7 +5,7 @@ using System.Windows.Media.Effects;
 
 namespace MaterialDesignThemes.Wpf.Converters;
 
-public class ShadowEdgeConverter : IMultiValueConverter
+public class ShadowOpacityMaskConverter : IMultiValueConverter
 {
     public object? Convert(object[]? values, Type targetType, object? parameter, CultureInfo culture)
     {

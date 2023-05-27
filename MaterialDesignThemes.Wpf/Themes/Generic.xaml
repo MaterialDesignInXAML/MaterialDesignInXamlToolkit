@@ -509,7 +509,7 @@
 
   <Style TargetType="{x:Type local:ColorZone}">
     <Style.Resources>
-      <converters:ShadowEdgeConverter x:Key="ShadowEdgeConverter" />
+      <converters:ShadowOpacityMaskConverter x:Key="ShadowEdgeConverter" />
     </Style.Resources>
     <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
     <Setter Property="ClipToBounds" Value="False" />
