@@ -19,50 +19,18 @@
   <converters:CursorConverter x:Key="IBeamCursorConverter" FallbackCursor="IBeam" />
   <converters:StringLengthValueConverter x:Key="StringLengthValueConverter" />
   <converters:ThicknessCloneConverter x:Key="HelperTextMarginConverter" CloneEdges="Left" />
-  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleLeadingIconMarginConverterTop"
-                                      AdditionalOffsetTop="-2"
-                                      CloneEdges="Top"
-                                      FixedRight="6" />
-  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleLeadingIconMarginConverterCenter"
-                                      AdditionalOffsetTop="-12"
-                                      CloneEdges="Top"
-                                      FixedRight="6" />
-  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleLeadingIconMarginConverterBottom"
-                                      CloneEdges="Top"
-                                      FixedBottom="-2"
-                                      FixedRight="6" />
-  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconMarginConverterTop"
-                                      AdditionalOffsetTop="-2"
-                                      CloneEdges="Top" />
-  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconMarginConverterCenter"
-                                      AdditionalOffsetTop="-12"
-                                      CloneEdges="Top" />
-  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconMarginConverterBottom"
-                                      CloneEdges="Top"
-                                      FixedBottom="-2" />
-  <converters:ThicknessCloneConverter x:Key="OutlinedStyleLeadingIconMarginConverterTop"
-                                      AdditionalOffsetTop="-2"
-                                      CloneEdges="Top"
-                                      FixedRight="6" />
-  <converters:ThicknessCloneConverter x:Key="OutlinedStyleLeadingIconMarginConverterCenter"
-                                      AdditionalOffsetTop="0"
-                                      CloneEdges="Top"
-                                      FixedRight="6" />
-  <converters:ThicknessCloneConverter x:Key="OutlinedStyleLeadingIconMarginConverterBottom"
-                                      AdditionalOffsetTop="0"
-                                      CloneEdges="Top"
-                                      FixedBottom="-2"
-                                      FixedRight="6" />
-  <converters:ThicknessCloneConverter x:Key="OutlinedStyleTrailingIconMarginConverterTop"
-                                      AdditionalOffsetTop="-2"
-                                      CloneEdges="Top" />
-  <converters:ThicknessCloneConverter x:Key="OutlinedStyleTrailingIconMarginConverterCenter"
-                                      AdditionalOffsetTop="0"
-                                      CloneEdges="Top" />
-  <converters:ThicknessCloneConverter x:Key="OutlinedStyleTrailingIconMarginConverterBottom"
-                                      AdditionalOffsetTop="0"
-                                      CloneEdges="Top"
-                                      FixedBottom="-2" />
+  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleLeadingIconMarginConverterTop" CloneEdges="Top" FixedRight="6" AdditionalOffsetTop="-2" />
+  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleLeadingIconMarginConverterCenter" CloneEdges="Top" FixedRight="6" AdditionalOffsetTop="-12" />
+  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleLeadingIconMarginConverterBottom" CloneEdges="Top" FixedRight="6" FixedBottom="-2" />
+  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconMarginConverterTop" CloneEdges="Top" AdditionalOffsetTop="-2" />
+  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconMarginConverterCenter" CloneEdges="Top" AdditionalOffsetTop="-12" />
+  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconMarginConverterBottom" CloneEdges="Top" FixedBottom="-2" />
+  <converters:ThicknessCloneConverter x:Key="OutlinedStyleLeadingIconMarginConverterTop" CloneEdges="Top" FixedRight="6" AdditionalOffsetTop="-2" />
+  <converters:ThicknessCloneConverter x:Key="OutlinedStyleLeadingIconMarginConverterCenter" CloneEdges="Top" FixedRight="6" AdditionalOffsetTop="0" />
+  <converters:ThicknessCloneConverter x:Key="OutlinedStyleLeadingIconMarginConverterBottom" CloneEdges="Top" FixedRight="6" FixedBottom="-2" AdditionalOffsetTop="0" />
+  <converters:ThicknessCloneConverter x:Key="OutlinedStyleTrailingIconMarginConverterTop" CloneEdges="Top" AdditionalOffsetTop="-2" />
+  <converters:ThicknessCloneConverter x:Key="OutlinedStyleTrailingIconMarginConverterCenter" CloneEdges="Top" AdditionalOffsetTop="0" />
+  <converters:ThicknessCloneConverter x:Key="OutlinedStyleTrailingIconMarginConverterBottom" CloneEdges="Top" FixedBottom="-2" AdditionalOffsetTop="0" />
   <wpf:VerticalAlignmentConverter x:Key="VerticalAlignmentConverter" />
   <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
 
@@ -75,10 +43,8 @@
     <Setter Property="Text">
       <Setter.Value>
         <MultiBinding StringFormat="{}{0} / {1}">
-          <Binding Converter="{StaticResource StringLengthValueConverter}"
-                   Path="Text"
-                   RelativeSource="{RelativeSource FindAncestor,
-                                                   AncestorType=TextBoxBase}" />
+          <Binding Path="Text" Converter="{StaticResource StringLengthValueConverter}"
+                   RelativeSource="{RelativeSource FindAncestor, AncestorType=TextBoxBase}" />
           <Binding Path="MaxLength" RelativeSource="{RelativeSource FindAncestor, AncestorType=TextBoxBase}" />
         </MultiBinding>
       </Setter.Value>
@@ -182,10 +148,6 @@
                     <ColumnDefinition />
                     <ColumnDefinition Width="Auto" />
                   </Grid.ColumnDefinitions>
-                  <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                  </Grid.RowDefinitions>
                   <wpf:PackIcon x:Name="LeadingPackIcon"
                                 Grid.Column="0"
                                 Width="{TemplateBinding wpf:TextFieldAssist.LeadingIconSize}"
@@ -199,8 +161,8 @@
                   <Grid x:Name="grid"
                         Grid.Column="1"
                         MinWidth="1"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch">
+                        VerticalAlignment="Stretch"
+                        HorizontalAlignment="Stretch">
                     <Grid Grid.Column="0">
                       <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -225,10 +187,10 @@
 
                       <ScrollViewer x:Name="PART_ContentHost"
                                     Grid.Column="1"
-                                    HorizontalAlignment="Stretch"
                                     VerticalAlignment="Stretch"
-                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                     Panel.ZIndex="1"
                                     wpf:ScrollViewerAssist.IgnorePadding="True"
                                     Cursor="{TemplateBinding Cursor, Converter={StaticResource IBeamCursorConverter}}"
@@ -250,16 +212,16 @@
 
                     <wpf:SmartHint x:Name="Hint"
                                    Grid.Column="0"
-                                   VerticalAlignment="Stretch"
-                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                    FloatingOffset="{TemplateBinding wpf:HintAssist.FloatingOffset}"
                                    FloatingScale="{TemplateBinding wpf:HintAssist.FloatingScale}"
                                    FontFamily="{TemplateBinding wpf:HintAssist.FontFamily}"
                                    FontSize="{TemplateBinding FontSize}"
                                    HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                    HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
-                                   UseFloating="{TemplateBinding wpf:HintAssist.IsFloating}">
+                                   UseFloating="{TemplateBinding wpf:HintAssist.IsFloating}"
+                                   VerticalAlignment="Stretch"
+                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}">
                       <wpf:SmartHint.Hint>
                         <Border x:Name="HintBackgroundBorder"
                                 Background="{TemplateBinding wpf:HintAssist.Background}"
@@ -271,10 +233,7 @@
 
                   </Grid>
 
-                  <StackPanel x:Name="TrailingPanel"
-                              Grid.Column="2"
-                              VerticalAlignment="{TemplateBinding VerticalContentAlignment, Converter={StaticResource VerticalAlignmentConverter}}"
-                              Orientation="Horizontal">
+                  <StackPanel x:Name="TrailingPanel" Orientation="Horizontal" Grid.Column="2" VerticalAlignment="{TemplateBinding VerticalContentAlignment, Converter={StaticResource VerticalAlignmentConverter}}">
                     <wpf:PackIcon x:Name="TrailingPackIcon"
                                   Width="{TemplateBinding wpf:TextFieldAssist.TrailingIconSize}"
                                   Height="{TemplateBinding wpf:TextFieldAssist.TrailingIconSize}"
@@ -302,23 +261,6 @@
                 </Grid>
               </Border>
             </AdornerDecorator>
-            <Popup x:Name="PART_AutoSuggestion"
-                   MaxHeight="200"
-                   AllowsTransparency="True"
-                   Focusable="False"
-                   HorizontalOffset="0"
-                   PopupAnimation="Slide"
-                   StaysOpen="False">
-              <ListBox x:Name="AutoSuggestionListBox"
-                       Width="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ActualWidth}"
-                       Background="White"
-                       DisplayMemberPath="{TemplateBinding wpf:TextFieldAssist.AutoSuggestionDisplayMember}"
-                       Focusable="False"
-                       ItemTemplate="{TemplateBinding wpf:TextFieldAssist.AutoSuggestionItemTemplate}"
-                       ItemTemplateSelector="{TemplateBinding wpf:TextFieldAssist.AutoSuggestionItemTemplateSelector}"
-                       ItemsSource="{TemplateBinding wpf:TextFieldAssist.AutoSuggestionItemsSource}"
-                       SelectedValuePath="{TemplateBinding wpf:TextFieldAssist.AutoSuggestionValueMember}" />
-            </Popup>
             <Border x:Name="borderUnderline"
                     Height="0"
                     HorizontalAlignment="Stretch"
@@ -339,9 +281,8 @@
                   <ColumnDefinition />
                   <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Name="HelperTextTextBlock"
-                           Margin="{TemplateBinding Padding, Converter={StaticResource HelperTextMarginConverter}}"
-                           Style="{Binding Path=(wpf:HintAssist.HelperTextStyle), RelativeSource={RelativeSource TemplatedParent}}" />
+                <TextBlock x:Name="HelperTextTextBlock" Style="{Binding Path=(wpf:HintAssist.HelperTextStyle), RelativeSource={RelativeSource TemplatedParent}}"
+                           Margin="{TemplateBinding Padding, Converter={StaticResource HelperTextMarginConverter}}"/>
                 <Border x:Name="CharacterCounterContainer" Grid.Column="1">
                   <TextBlock x:Name="CharacterCounterTextBlock" Style="{Binding Path=(wpf:TextFieldAssist.CharacterCounterStyle), RelativeSource={RelativeSource TemplatedParent}}" />
                 </Border>
@@ -365,7 +306,7 @@
               <Setter TargetName="Hint" Property="FloatingOffset">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
-                    <Binding ElementName="Hint" Path="FontFamily" />
+                    <Binding Path="FontFamily" ElementName="Hint" />
                     <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingScale)" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingOffset)" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -375,7 +316,7 @@
               <Setter TargetName="grid" Property="Margin">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
-                    <Binding ElementName="Hint" Path="FontFamily" />
+                    <Binding Path="FontFamily" ElementName="Hint" />
                     <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingScale)" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingOffset)" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -447,7 +388,7 @@
               <Setter TargetName="Hint" Property="FloatingOffset">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
-                    <Binding ElementName="Hint" Path="FontFamily" />
+                    <Binding Path="FontFamily" ElementName="Hint" />
                     <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingScale)" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingOffset)" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -642,18 +583,18 @@
   <Style x:Key="MaterialDesignFilledTextBox"
          TargetType="{x:Type TextBox}"
          BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
-    <Setter Property="Padding" Value="{x:Static wpf:Constants.FilledTextBoxDefaultPadding}" />
     <Setter Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
     <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4,4,0,0" />
     <Setter Property="wpf:TextFieldAssist.UnderlineCornerRadius" Value="0" />
+    <Setter Property="Padding" Value="{x:Static wpf:Constants.FilledTextBoxDefaultPadding}" />
   </Style>
 
   <Style x:Key="MaterialDesignOutlinedTextBox"
          TargetType="{x:Type TextBox}"
          BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
-    <Setter Property="Padding" Value="{x:Static wpf:Constants.OutlinedTextBoxDefaultPadding}" />
     <Setter Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
     <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4" />
+    <Setter Property="Padding" Value="{x:Static wpf:Constants.OutlinedTextBoxDefaultPadding}" />
   </Style>
 
 </ResourceDictionary>

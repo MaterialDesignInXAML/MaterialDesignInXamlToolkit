@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.IO.Packaging;
-using System.Windows.Controls;
 using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf;
@@ -18,9 +13,6 @@ public static class TextFieldAssist
     /// </summary>
     public static class TextFieldAssist
     {
-        private const string AutoSuggestionListBoxName = "AutoSuggestionListBox";
-        private const string AutoSuggestionPart = "PART_AutoSuggestion";
-
         /// <summary>
         /// The text box view margin property
         /// </summary>
@@ -300,80 +292,7 @@ public static class TextFieldAssist
         internal static readonly DependencyProperty PasswordBoxCharacterCountProperty = DependencyProperty.RegisterAttached(
             "PasswordBoxCharacterCount", typeof(int), typeof(TextFieldAssist), new PropertyMetadata(default(int)));
         internal static void SetPasswordBoxCharacterCount(DependencyObject element, int value) => element.SetValue(PasswordBoxCharacterCountProperty, value);
-        internal static int GetPasswordBoxCharacterCount(DependencyObject element) => (int)element.GetValue(PasswordBoxCharacterCountProperty);
-
-        /// <summary>
-        /// List AutoSuggestion
-        /// </summary>
-        public static readonly DependencyProperty AutoSuggestionItemsSourceProperty = DependencyProperty.RegisterAttached(
-            "AutoSuggestionItemsSource", typeof(object), typeof(TextFieldAssist), new PropertyMetadata(null, AutoSuggestionItemsSourceChanged));
-
-        public static void SetAutoSuggestionItemsSource(DependencyObject element, object value)
-            => element.SetValue(AutoSuggestionItemsSourceProperty, value);
-
-        public static object GetAutoSuggestionItemsSource(DependencyObject element)
-            => element.GetValue(AutoSuggestionItemsSourceProperty);
-
-        /// <summary>
-        /// Controls the AutoSuggestion for a TextBox
-        /// </summary>
-        public static readonly DependencyProperty AutoSuggestionEnabledProperty = DependencyProperty.RegisterAttached(
-            "AutoSuggestionEnabled", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(default(bool), AutoSuggestionEnabledChanged));
-
-        public static void SetAutoSuggestionEnabled(DependencyObject element, bool value)
-            => element.SetValue(AutoSuggestionEnabledProperty, value);
-
-        public static bool GetAutoSuggestionEnabled(DependencyObject element)
-            => (bool)element.GetValue(AutoSuggestionEnabledProperty);
-
-        /// <summary>
-        /// Controls the AutoSuggestion item template
-        /// </summary>
-        public static readonly DependencyProperty AutoSuggestionItemTemplateProperty = DependencyProperty.RegisterAttached(
-            "AutoSuggestionItemTemplate", typeof(DataTemplate), typeof(TextFieldAssist), new PropertyMetadata(null));
-
-        public static void SetAutoSuggestionItemTemplate(DependencyObject element, DataTemplate value)
-            => element.SetValue(AutoSuggestionItemTemplateProperty, value);
-
-        public static DataTemplate GetAutoSuggestionItemTemplate(DependencyObject element)
-            => (DataTemplate)element.GetValue(AutoSuggestionItemTemplateProperty);
-
-
-        /// <summary>
-        /// Controls the AutoSuggestion Item template selector
-        /// </summary>
-        public static readonly DependencyProperty AutoSuggestionItemTemplateSelectorProperty = DependencyProperty.RegisterAttached(
-            "AutoSuggestionItemTemplateSelector", typeof(DataTemplate), typeof(TextFieldAssist), new PropertyMetadata(null));
-
-        public static void SetAutoSuggestionItemTemplateSelector(DependencyObject element, DataTemplate value)
-            => element.SetValue(AutoSuggestionItemTemplateSelectorProperty, value);
-
-        public static DataTemplate GetAutoSuggestionItemTemplateSelector(DependencyObject element)
-            => (DataTemplate)element.GetValue(AutoSuggestionItemTemplateSelectorProperty);
-
-        /// <summary>
-        /// Controls the AutoSuggestion value member
-        /// </summary>
-        public static readonly DependencyProperty AutoSuggestionValueMemberProperty = DependencyProperty.RegisterAttached(
-            "AutoSuggestionValueMember", typeof(string), typeof(TextFieldAssist), new PropertyMetadata(default(string)));
-
-        public static void SetAutoSuggestionValueMember(DependencyObject element, string value)
-            => element.SetValue(AutoSuggestionValueMemberProperty, value);
-
-        public static string GetAutoSuggestionValueMember(DependencyObject element)
-            => (string)element.GetValue(AutoSuggestionValueMemberProperty);
-
-        /// <summary>
-        /// Controls the AutoSuggestion display member
-        /// </summary>
-        public static readonly DependencyProperty AutoSuggestionDisplayMemberProperty = DependencyProperty.RegisterAttached(
-            "AutoSuggestionDisplayMember", typeof(string), typeof(TextFieldAssist), new PropertyMetadata(default(string)));
-
-        public static void SetAutoSuggestionDisplayMember(DependencyObject element, string value)
-            => element.SetValue(AutoSuggestionDisplayMemberProperty, value);
-
-        public static string GetAutoSuggestionDisplayMember(DependencyObject element)
-            => (string)element.GetValue(AutoSuggestionDisplayMemberProperty);
+        internal static int GetPasswordBoxCharacterCount(DependencyObject element) => (int) element.GetValue(PasswordBoxCharacterCountProperty);
 
         #region Methods
 
@@ -532,161 +451,7 @@ public static class TextFieldAssist
         {
             return;
         }
-        /// <summary>
-        /// The AutoSuggestion enabled property changed callback.
-        /// </summary>
-        /// <param name="element">The dependency object.</param>
-        /// <param name="e">The dependency property changed event args.</param>
-        private static void AutoSuggestionEnabledChanged(DependencyObject element, DependencyPropertyChangedEventArgs e)
-        {
-            if (element is TextBox textBox)
-            {
-                if ((bool)e.NewValue)
-                {
-                    textBox.LostFocus += AutoSuggestionTextBox_LostFocus;
-                    textBox.PreviewKeyDown += AutoSuggestionTextBox_KeyDown;
-                    textBox.Loaded += AutoSuggestionTextBox_Loaded;
-                }
-                else
-                {
-                    textBox.LostFocus -= AutoSuggestionTextBox_LostFocus;
-                    textBox.PreviewKeyDown -= AutoSuggestionTextBox_KeyDown;
-                    textBox.Loaded -= AutoSuggestionTextBox_Loaded;
-                    if (textBox.Template != null && textBox.Template.FindName(AutoSuggestionListBoxName, textBox) is ListBox listBox)
-                    {
-                        listBox.PreviewMouseDown -= AutoSuggestionListBox_PreviewMouseDown;
-                    }
-                }
-            }
-        }
 
-        /// <summary>
-        /// The AutoSuggestion ItemsSource property changed callback.
-        /// </summary>
-        /// <param name="element">The dependency object.</param>
-        /// <param name="e">The dependency property changed event args.</param>
-        private static void AutoSuggestionItemsSourceChanged(DependencyObject element, DependencyPropertyChangedEventArgs e)
-        {
-            if (element is TextBox textBox && GetAutoSuggestionEnabled(textBox) && textBox.Template.FindName(AutoSuggestionPart, textBox) is Popup popup && e.NewValue is ICollection items)
-            {
-                if ((textBox.Text.Length == 0 || items.Count == 0) && popup.IsOpen)
-                    popup.IsOpen = false;
-                else if (textBox.Text.Length > 0 && !popup.IsOpen && textBox.IsFocused && items.Count > 0)
-                    popup.IsOpen = true;
-
-            }
-        }
-
-        private static void AutoSuggestionTextBox_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (sender is TextBox textBox && textBox.Template.FindName(AutoSuggestionListBoxName, textBox) is ListBox listBox)
-            {
-                listBox.PreviewMouseDown += AutoSuggestionListBox_PreviewMouseDown;
-            }
-        }
-
-        private static void AutoSuggestionListBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (sender is ListBox listBox && listBox.TemplatedParent is TextBox textBox && e.OriginalSource is FrameworkElement element)
-            {
-                if (!listBox.Items.Contains(element.DataContext))
-                    return;
-                listBox.SelectedItem = element.DataContext;
-                CommitValueSelection(textBox);
-            }
-        }
-
-        private static void AutoSuggestionTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (sender is TextBox textBox)
-            {
-                switch (e.Key)
-                {
-                    case Key.Down:
-                        IncrementSelection(textBox);
-                        break;
-                    case Key.Up:
-                        DecrementSelection(textBox);
-                        break;
-                    case Key.Enter:
-                        CommitValueSelection(textBox);
-                        break;
-                    case Key.Escape:
-                        CloseAutoSuggestionPopUp(textBox);
-                        break;
-                    case Key.Tab:
-                        CommitValueSelection(textBox);
-                        break;
-                    default:
-                        return;
-                }
-            }
-            e.Handled = true;
-        }
-
-        private static void AutoSuggestionTextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (sender is TextBox textBox)
-            {
-                CloseAutoSuggestionPopUp(textBox);
-            }
-        }
-
-        /// <summary>
-        /// Close AutoSuggestion Popup
-        /// </summary>
-        /// <param name="textBox">TextBox used</param>
-        private static void CloseAutoSuggestionPopUp(TextBox textBox)
-        {
-            if (textBox.Template.FindName(AutoSuggestionPart, textBox) is Popup popup && popup.IsOpen)
-                popup.IsOpen = false;
-        }
-
-        /// <summary>
-        /// Commit the selected value
-        /// </summary>
-        /// <param name="textBox"></param>
-        private static void CommitValueSelection(TextBox textBox)
-        {
-            if (textBox.Template.FindName(AutoSuggestionListBoxName, textBox) is ListBox listBox && listBox.SelectedValue != null)
-            {
-                textBox.Text = listBox.SelectedValue.ToString();
-                if (textBox.Text != null)
-                    textBox.CaretIndex = textBox.Text.Length;
-                CloseAutoSuggestionPopUp(textBox);
-            }
-        }
-
-        /// <summary>
-        /// The Keyup navigation for the ListBox.
-        /// </summary>
-        /// <param name="textBox">The current TextBox.</param>
-        private static void DecrementSelection(TextBox textBox)
-        {
-            if (textBox.Template.FindName(AutoSuggestionListBoxName, textBox) is ListBox listBox)
-            {
-                if (listBox.SelectedIndex == 0 || listBox.SelectedIndex == -1)
-                    listBox.SelectedIndex = listBox.Items.Count - 1;
-                else
-                    listBox.SelectedIndex -= 1;
-                listBox.ScrollIntoView(listBox.SelectedItem);
-            }
-        }
-        /// <summary>
-        /// The Keydown navigation for the ListBox
-        /// </summary>
-        /// <param name="textBox">The current TextBox.</param>
-        private static void IncrementSelection(TextBox textBox)
-        {
-            if (textBox.Template.FindName(AutoSuggestionListBoxName, textBox) is ListBox listBox)
-            {
-                if (listBox.SelectedIndex == listBox.Items.Count - 1)
-                    listBox.SelectedIndex = 0;
-                else
-                    listBox.SelectedIndex += 1;
-                listBox.ScrollIntoView(listBox.SelectedItem);
-            }
-        }
         #endregion
     }
 
