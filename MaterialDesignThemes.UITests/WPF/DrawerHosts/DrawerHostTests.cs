@@ -1,4 +1,6 @@
-﻿using MaterialDesignThemes.UITests.Samples.DrawHost;
+﻿using System.ComponentModel;
+using MaterialDesignThemes.UITests.Samples.DrawHost;
+using Xunit.Sdk;
 
 namespace MaterialDesignThemes.UITests.WPF.DrawerHosts;
 
@@ -124,5 +126,73 @@ public class DialogHostTests : TestBase
 
 
         recorder.Success();
+    }
+
+    [Fact]
+    [Description("Issue 3224")]
+    public async Task DrawerHost_ShouldInvokeCustomContentTemplateSelector_WhenSetExplicitly()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // Arrange
+        IVisualElement<Grid> grid = await LoadXaml<Grid>("""
+            <Grid>
+              <Grid.Resources>
+                <local:CustomContentTemplateSelector x:Key="LeftDrawerContentTemplateSelector" ContentText="LeftDrawerContent" />
+                <local:CustomContentTemplateSelector x:Key="TopDrawerContentTemplateSelector" ContentText="TopDrawerContent" />
+                <local:CustomContentTemplateSelector x:Key="RightDrawerContentTemplateSelector" ContentText="RightDrawerContent" />
+                <local:CustomContentTemplateSelector x:Key="BottomDrawerContentTemplateSelector" ContentText="BottomDrawerContent" />
+              </Grid.Resources>
+              <materialDesign:DrawerHost
+                LeftDrawerContentTemplateSelector="{StaticResource LeftDrawerContentTemplateSelector}"
+                TopDrawerContentTemplateSelector="{StaticResource TopDrawerContentTemplateSelector}"
+                RightDrawerContentTemplateSelector="{StaticResource RightDrawerContentTemplateSelector}"
+                BottomDrawerContentTemplateSelector="{StaticResource BottomDrawerContentTemplateSelector}">
+              </materialDesign:DrawerHost>
+            </Grid>
+            """, ("local", typeof(CustomContentTemplateSelector)));
+        IVisualElement<DrawerHost> drawerHost = await grid.GetElement<DrawerHost>();
+
+        // Act
+        string? leftDrawerContent = await GetDrawerContent("PART_LeftDrawer");
+        string? topDrawerContent = await GetDrawerContent("PART_TopDrawer");
+        string? rightDrawerContent = await GetDrawerContent("PART_RightDrawer");
+        string? bottomDrawerContent = await GetDrawerContent("PART_BottomDrawer");
+
+        async Task<string?> GetDrawerContent(string drawerElementKey)
+        {
+            var drawer = await drawerHost.GetElement<Grid>(drawerElementKey);
+            try
+            {
+                var contentElement = await drawer.GetElement<TextBlock>();
+                return await contentElement.GetText();
+            }
+            catch
+            {
+                throw new FailException($"Failed to find 'TextBlock' content in '{drawerElementKey}'. ContentTemplateSelector not properly applied.");
+            }
+        }
+
+        // Assert
+        Assert.Equal("LeftDrawerContent", leftDrawerContent);
+        Assert.Equal("TopDrawerContent", topDrawerContent);
+        Assert.Equal("RightDrawerContent", rightDrawerContent);
+        Assert.Equal("BottomDrawerContent", bottomDrawerContent);
+
+        recorder.Success();
+    }
+}
+
+public class CustomContentTemplateSelector : DataTemplateSelector
+{
+    public string? ContentText { get; set; }
+
+    public override DataTemplate? SelectTemplate(object? item, DependencyObject container)
+    {
+        var template = new DataTemplate();
+        FrameworkElementFactory content = new FrameworkElementFactory(typeof(TextBlock));
+        content.SetValue(TextBlock.TextProperty, ContentText);
+        template.VisualTree = content;
+        return template;
     }
 }
