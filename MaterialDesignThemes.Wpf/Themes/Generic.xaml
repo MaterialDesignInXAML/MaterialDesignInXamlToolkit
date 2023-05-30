@@ -1009,6 +1009,7 @@
                 <ContentPresenter Content="{TemplateBinding LeftDrawerContent}"
                                   ContentStringFormat="{TemplateBinding LeftDrawerContentStringFormat}"
                                   ContentTemplate="{TemplateBinding LeftDrawerContentTemplate}"
+                                  ContentTemplateSelector="{TemplateBinding LeftDrawerContentTemplateSelector}"
                                   IsEnabled="{TemplateBinding IsLeftDrawerOpen}" />
               </Grid>
               <Grid x:Name="PART_RightDrawer"
@@ -1050,6 +1051,7 @@
                 <ContentPresenter Content="{TemplateBinding RightDrawerContent}"
                                   ContentStringFormat="{TemplateBinding RightDrawerContentStringFormat}"
                                   ContentTemplate="{TemplateBinding RightDrawerContentTemplate}"
+                                  ContentTemplateSelector="{TemplateBinding RightDrawerContentTemplateSelector}"
                                   IsEnabled="{TemplateBinding IsRightDrawerOpen}" />
               </Grid>
               <Grid x:Name="PART_TopDrawer"
@@ -1091,6 +1093,7 @@
                 <ContentPresenter Content="{TemplateBinding TopDrawerContent}"
                                   ContentStringFormat="{TemplateBinding TopDrawerContentStringFormat}"
                                   ContentTemplate="{TemplateBinding TopDrawerContentTemplate}"
+                                  ContentTemplateSelector="{TemplateBinding TopDrawerContentTemplateSelector}"
                                   IsEnabled="{TemplateBinding IsTopDrawerOpen}" />
               </Grid>
               <Grid x:Name="PART_BottomDrawer"
@@ -1132,6 +1135,7 @@
                 <ContentPresenter Content="{TemplateBinding BottomDrawerContent}"
                                   ContentStringFormat="{TemplateBinding BottomDrawerContentStringFormat}"
                                   ContentTemplate="{TemplateBinding BottomDrawerContentTemplate}"
+                                  ContentTemplateSelector="{TemplateBinding BottomDrawerContentTemplateSelector}"
                                   IsEnabled="{TemplateBinding IsBottomDrawerOpen}" />
               </Grid>
             </Grid>
