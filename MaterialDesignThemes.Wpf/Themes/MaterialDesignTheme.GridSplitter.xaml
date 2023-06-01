@@ -10,7 +10,7 @@
     </Setter>
   </Style>
   <Style x:Key="MaterialDesignGridSplitter" TargetType="{x:Type GridSplitter}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignDivider}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
     <Setter Property="Opacity" Value=".56" />
     <Setter Property="PreviewStyle" Value="{StaticResource MaterialDesignGridSplitterPreview}" />
     <Setter Property="Template">

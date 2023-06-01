@@ -50,7 +50,7 @@
                 <Condition Property="IsMouseOver" Value="True" />
                 <Condition Property="IsKeyboardFocused" Value="False" />
               </MultiTrigger.Conditions>
-              <Setter TargetName="Bd" Property="Background" Value="{DynamicResource MaterialDesignDivider}" />
+              <Setter TargetName="Bd" Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
             </MultiTrigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
@@ -81,7 +81,7 @@
                 <Condition Property="IsMouseOver" Value="False" />
                 <Condition Property="IsKeyboardFocused" Value="True" />
               </MultiTrigger.Conditions>
-              <Setter TargetName="Bd" Property="Background" Value="{DynamicResource MaterialDesignDivider}" />
+              <Setter TargetName="Bd" Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
             </MultiTrigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
@@ -89,7 +89,7 @@
                 <Condition Property="IsMouseOver" Value="True" />
                 <Condition Property="IsKeyboardFocused" Value="True" />
               </MultiTrigger.Conditions>
-              <Setter TargetName="Bd" Property="Background" Value="{DynamicResource MaterialDesignDivider}" />
+              <Setter TargetName="Bd" Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
             </MultiTrigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
@@ -145,28 +145,28 @@
                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
                 <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="true" />
               </MultiDataTrigger.Conditions>
-              <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
             </MultiDataTrigger>
             <Trigger Property="IsPressed" Value="true">
-              <Setter TargetName="arrow" Property="Fill" Value="{DynamicResource PrimaryHueDarkBrush}" />
+              <Setter TargetName="arrow" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
-              <Setter TargetName="arrow" Property="Fill" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+              <Setter TargetName="arrow" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.CheckBox.Disabled}" />
             </Trigger>
             <MultiDataTrigger>
               <MultiDataTrigger.Conditions>
                 <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="false" />
                 <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="false" />
               </MultiDataTrigger.Conditions>
-              <Setter TargetName="templateRoot" Property="BorderBrush" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+              <Setter TargetName="templateRoot" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.CheckBox.Disabled}" />
             </MultiDataTrigger>
             <MultiDataTrigger>
               <MultiDataTrigger.Conditions>
                 <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="false" />
                 <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="true" />
               </MultiDataTrigger.Conditions>
-              <Setter TargetName="splitBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
-              <Setter TargetName="templateRoot" Property="BorderBrush" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+              <Setter TargetName="splitBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.CheckBox.Disabled}" />
+              <Setter TargetName="templateRoot" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.CheckBox.Disabled}" />
             </MultiDataTrigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
@@ -191,7 +191,7 @@
         <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" UseLayoutRounding="True">
           <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
             <Border x:Name="shadow"
-                    Background="{DynamicResource MaterialDesignPaper}"
+                    Background="{DynamicResource MaterialDesign.Brush.Background}"
                     BorderThickness="1"
                     CornerRadius="2"
                     Effect="{DynamicResource MaterialDesignShadowDepth2}" />
@@ -200,7 +200,7 @@
                   MinWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=DataGridCell}}"
                   Margin="{Binding ElementName=shadow, Path=Margin, Mode=OneWay}"
                   Background="Transparent"
-                  BorderBrush="{DynamicResource MaterialDesignDivider}"
+                  BorderBrush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
                   BorderThickness="1"
                   CornerRadius="2">
             <ScrollViewer x:Name="DropDownScrollViewer">
@@ -317,7 +317,7 @@
         <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" UseLayoutRounding="True">
           <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
             <Border x:Name="shadow"
-                    Background="{DynamicResource MaterialDesignPaper}"
+                    Background="{DynamicResource MaterialDesign.Brush.Background}"
                     BorderThickness="1"
                     CornerRadius="2"
                     Effect="{DynamicResource MaterialDesignShadowDepth2}" />
@@ -326,7 +326,7 @@
                   MinWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=DataGridCell}}"
                   Margin="{Binding ElementName=shadow, Path=Margin, Mode=OneWay}"
                   Background="Transparent"
-                  BorderBrush="{DynamicResource MaterialDesignDivider}"
+                  BorderBrush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
                   BorderThickness="1"
                   CornerRadius="2">
             <ScrollViewer x:Name="DropDownScrollViewer">
@@ -411,7 +411,7 @@
 
   <Style x:Key="MaterialDesignDataGridComboBox" TargetType="{x:Type ComboBox}">
     <Setter Property="Background" Value="Transparent" />
-    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
     <Setter Property="BorderThickness" Value="0,0,0,0" />
     <!-- Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/ -->
     <Setter Property="FocusVisualStyle" Value="{x:Null}" />

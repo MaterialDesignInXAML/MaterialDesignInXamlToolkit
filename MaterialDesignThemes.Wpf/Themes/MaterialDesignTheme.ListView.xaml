@@ -33,7 +33,7 @@
                             Focusable="false"
                             HorizontalScrollBarVisibility="Hidden"
                             VerticalScrollBarVisibility="Hidden">
-                <Border BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0,0,0,1">
+                <Border BorderBrush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" BorderThickness="0,0,0,1">
                   <StackPanel Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ListViewAssist.HeaderRowBackground)}" Orientation="Horizontal">
                     <GridViewHeaderRowPresenter x:Name="PART_GridViewHeaderRowPresenter"
                                                 AllowsColumnReorder="{Binding Path=TemplatedParent.View.AllowsColumnReorder, RelativeSource={RelativeSource TemplatedParent}}"
@@ -81,7 +81,7 @@
   </Style>
 
   <Style x:Key="{x:Type GridViewColumnHeader}" TargetType="GridViewColumnHeader">
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignColumnHeader}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Header.Foreground}" />
     <Setter Property="HorizontalContentAlignment" Value="Left" />
     <Setter Property="OverridesDefaultStyle" Value="True" />
     <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:DataGridAssist.ColumnHeaderPadding)}" />
@@ -107,7 +107,7 @@
           </DockPanel>
           <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-              <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+              <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
             </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
@@ -122,7 +122,7 @@
           <Setter.Value>
             <ControlTemplate TargetType="GridViewColumnHeader">
               <DockPanel Name="PART_FloatingHeaderCanvas">
-                <Border BorderBrush="{DynamicResource PrimaryHueMidBrush}" BorderThickness="1" />
+                <Border BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}" BorderThickness="1" />
               </DockPanel>
             </ControlTemplate>
           </Setter.Value>
@@ -152,7 +152,7 @@
           <Border x:Name="Border"
                   Padding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ListViewAssist.ListViewItemPadding)}"
                   Background="{TemplateBinding Background}"
-                  BorderBrush="{DynamicResource MaterialDesignDivider}"
+                  BorderBrush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
                   BorderThickness="0,0,0,1"
                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
             <GridViewRowPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
@@ -162,13 +162,13 @@
     </Setter>
     <Style.Triggers>
       <Trigger Property="IsKeyboardFocusWithin" Value="True">
-        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
       </Trigger>
       <Trigger Property="IsSelected" Value="True">
         <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ListView.Selected}" />
       </Trigger>
       <Trigger Property="IsMouseOver" Value="True">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignDivider}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
       </Trigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
@@ -182,13 +182,13 @@
           <Condition Property="IsSelected" Value="True" />
           <Condition Property="Selector.IsSelectionActive" Value="True" />
         </MultiTrigger.Conditions>
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
       </MultiTrigger>
       <Trigger Property="IsEnabled" Value="false">
         <Setter Property="Opacity" Value=".56" />
       </Trigger>
       <Trigger Property="ItemsControl.AlternationIndex" Value="1">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignDivider}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
       </Trigger>
     </Style.Triggers>
   </Style>
@@ -225,11 +225,11 @@
   </converters:ListViewGridViewConverter>
 
   <Style x:Key="MaterialDesignListView" TargetType="{x:Type ListView}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="FontSize" Value="13" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="ItemContainerStyle" Value="{Binding RelativeSource={RelativeSource Self}, Path=View, Converter={StaticResource MaterialDesignListViewItemContainerStyleConverter}}" />
     <Setter Property="OverridesDefaultStyle" Value="False" />
     <Setter Property="ScrollViewer.CanContentScroll" Value="True" />

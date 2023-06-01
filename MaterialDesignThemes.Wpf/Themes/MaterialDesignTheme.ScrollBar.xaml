@@ -28,12 +28,12 @@
           </Border>
           <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-              <Setter Property="Background" Value="{DynamicResource MaterialDesignDivider}" />
-              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
+              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
             </Trigger>
             <Trigger Property="IsPressed" Value="true">
-              <Setter Property="Background" Value="{DynamicResource MaterialDesignDivider}" />
-              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
+              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
               <Setter TargetName="contentPresenter" Property="Opacity" Value="0.56" />
@@ -72,7 +72,7 @@
             <Border x:Name="border"
                     Width="{TemplateBinding Width}"
                     Height="{TemplateBinding Height}"
-                    Background="{DynamicResource MaterialDesignBody}"
+                    Background="{DynamicResource MaterialDesign.Brush.Foreground}"
                     BorderThickness="0"
                     CornerRadius="{Binding Path=(wpf:ScrollBarAssist.ThumbCornerRadius), RelativeSource={RelativeSource FindAncestor, AncestorType=ScrollBar}}"
                     Opacity="0.5"
@@ -149,7 +149,7 @@
                 <Canvas Width="24" Height="24">
                   <Path x:Name="ArrowTop"
                         Data="M13,20H11V8L5.5,13.5L4.08,12.08L12,4.16L19.92,12.08L18.5,13.5L13,8V20Z"
-                        Fill="{DynamicResource MaterialDesignBody}"
+                        Fill="{DynamicResource MaterialDesign.Brush.Foreground}"
                         Stretch="Uniform" />
                 </Canvas>
               </Viewbox>
@@ -179,7 +179,7 @@
                 <Canvas Width="24" Height="24">
                   <Path x:Name="ArrowBottom"
                         Data="M11,4H13V16L18.5,10.5L19.92,11.92L12,19.84L4.08,11.92L5.5,10.5L11,16V4Z"
-                        Fill="{DynamicResource MaterialDesignBody}"
+                        Fill="{DynamicResource MaterialDesign.Brush.Foreground}"
                         Stretch="Uniform" />
                 </Canvas>
               </Viewbox>
@@ -245,7 +245,7 @@
                     <Canvas Width="24" Height="24">
                       <Path x:Name="ArrowLeft"
                             Data="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"
-                            Fill="{DynamicResource MaterialDesignBody}"
+                            Fill="{DynamicResource MaterialDesign.Brush.Foreground}"
                             Stretch="Uniform" />
                     </Canvas>
                   </Viewbox>
@@ -274,7 +274,7 @@
                     <Canvas Width="24" Height="24">
                       <Path x:Name="ArrowRight"
                             Data="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
-                            Fill="{DynamicResource MaterialDesignBody}"
+                            Fill="{DynamicResource MaterialDesign.Brush.Foreground}"
                             Stretch="Uniform" />
                     </Canvas>
                   </Viewbox>
@@ -286,32 +286,32 @@
                     <Condition Binding="{Binding IsMouseOver, ElementName=PART_LineRightButton}" Value="true" />
                     <Condition Binding="{Binding IsPressed, ElementName=PART_LineRightButton}" Value="true" />
                   </MultiDataTrigger.Conditions>
-                  <Setter TargetName="ArrowRight" Property="Fill" Value="{DynamicResource MaterialDesignBody}" />
+                  <Setter TargetName="ArrowRight" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
                 </MultiDataTrigger>
                 <MultiDataTrigger>
                   <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding IsMouseOver, ElementName=PART_LineLeftButton}" Value="true" />
                     <Condition Binding="{Binding IsPressed, ElementName=PART_LineLeftButton}" Value="true" />
                   </MultiDataTrigger.Conditions>
-                  <Setter TargetName="ArrowLeft" Property="Fill" Value="{DynamicResource MaterialDesignBody}" />
+                  <Setter TargetName="ArrowLeft" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
                 </MultiDataTrigger>
                 <MultiDataTrigger>
                   <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding IsMouseOver, ElementName=PART_LineRightButton}" Value="true" />
                     <Condition Binding="{Binding IsPressed, ElementName=PART_LineRightButton}" Value="false" />
                   </MultiDataTrigger.Conditions>
-                  <Setter TargetName="ArrowRight" Property="Fill" Value="{DynamicResource MaterialDesignBody}" />
+                  <Setter TargetName="ArrowRight" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
                 </MultiDataTrigger>
                 <MultiDataTrigger>
                   <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding IsMouseOver, ElementName=PART_LineLeftButton}" Value="true" />
                     <Condition Binding="{Binding IsPressed, ElementName=PART_LineLeftButton}" Value="false" />
                   </MultiDataTrigger.Conditions>
-                  <Setter TargetName="ArrowLeft" Property="Fill" Value="{DynamicResource MaterialDesignBody}" />
+                  <Setter TargetName="ArrowLeft" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
                 </MultiDataTrigger>
                 <Trigger Property="IsEnabled" Value="false">
-                  <Setter TargetName="ArrowLeft" Property="Fill" Value="{DynamicResource MaterialDesignBody}" />
-                  <Setter TargetName="ArrowRight" Property="Fill" Value="{DynamicResource MaterialDesignBody}" />
+                  <Setter TargetName="ArrowLeft" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
+                  <Setter TargetName="ArrowRight" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
                 </Trigger>
               </ControlTemplate.Triggers>
             </ControlTemplate>

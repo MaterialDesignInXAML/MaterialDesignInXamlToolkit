@@ -125,8 +125,8 @@
         </Trigger.ExitActions>
       </Trigger>
       <Trigger Property="IsEnabled" Value="false">
-        <Setter TargetName="grip" Property="Fill" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
-        <Setter TargetName="grip" Property="Stroke" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+        <Setter TargetName="grip" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.CheckBox.Disabled}" />
+        <Setter TargetName="grip" Property="Stroke" Value="{DynamicResource MaterialDesign.Brush.CheckBox.Disabled}" />
       </Trigger>
     </ControlTemplate.Triggers>
   </ControlTemplate>
@@ -272,7 +272,7 @@
         <Setter Property="Template" Value="{StaticResource MaterialDesignColorSliderVertical}" />
       </Trigger>
       <Trigger Property="IsEnabled" Value="False">
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.CheckBox.Disabled}" />
       </Trigger>
     </Style.Triggers>
   </Style>

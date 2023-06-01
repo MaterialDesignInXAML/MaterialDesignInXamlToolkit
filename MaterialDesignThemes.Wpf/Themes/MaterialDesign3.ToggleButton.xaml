@@ -47,11 +47,11 @@
         </Style>
       </ResourceDictionary>
     </Style.Resources>
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Cursor" Value="Hand" />
     <Setter Property="FontSize" Value="18" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
     <Setter Property="Height" Value="32" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />
     <Setter Property="Template">
@@ -207,25 +207,25 @@
   <Style x:Key="MaterialDesignActionLightToggleButton"
          TargetType="{x:Type ToggleButton}"
          BasedOn="{StaticResource MaterialDesignActionToggleButton}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightForegroundBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Light.Foreground}" />
   </Style>
 
   <Style x:Key="MaterialDesignActionDarkToggleButton"
          TargetType="{x:Type ToggleButton}"
          BasedOn="{StaticResource MaterialDesignActionToggleButton}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueDarkBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}" />
   </Style>
 
   <Style x:Key="MaterialDesignActionSecondaryToggleButton"
          TargetType="{x:Type ToggleButton}"
          BasedOn="{StaticResource MaterialDesignActionToggleButton}">
-    <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
   </Style>
 
   <!-- Obsolete -->
@@ -234,9 +234,9 @@
          BasedOn="{StaticResource MaterialDesignActionSecondaryToggleButton}"/>
 
   <Style x:Key="MaterialDesignFlatToggleButton" TargetType="{x:Type ToggleButton}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignToolBackground}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ToolBar.Item.Background}" />
     <Setter Property="FontSize" Value="18" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignToolForeground}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.ToolBar.Item.Foreground}" />
     <Setter Property="Height" Value="40" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />
     <Setter Property="Padding" Value="0" />
@@ -356,17 +356,17 @@
   <Style x:Key="MaterialDesignFlatPrimaryToggleButton"
          TargetType="{x:Type ToggleButton}"
          BasedOn="{StaticResource MaterialDesignFlatToggleButton}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
   </Style>
 
   <Style x:Key="MaterialDesignSwitchToggleButton" TargetType="{x:Type ToggleButton}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignCheckBoxOff}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
     <Setter Property="BorderThickness" Value="2" />
     <Setter Property="Cursor" Value="Hand" />
     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="Height" Value="32" />
     <Setter Property="Template">
       <Setter.Value>
@@ -561,7 +561,7 @@
                        Height="16"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
-                       Fill="{DynamicResource MaterialDesignBody}"
+                       Fill="{DynamicResource MaterialDesign.Brush.Foreground}"
                        IsHitTestVisible="False"
                        Opacity="0.12"
                        RenderTransformOrigin="0.5,0.5">
@@ -596,14 +596,14 @@
               <Setter TargetName="Track" Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ToggleButtonAssist.SwitchTrackOnBackground)}" />
             </Trigger>
             <Trigger Property="IsChecked" Value="False">
-              <Setter Property="Foreground" Value="{DynamicResource MaterialDesignPaper}" />
+              <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Background}" />
             </Trigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="IsChecked" Value="False" />
                 <Condition Property="IsMouseOver" Value="True" />
               </MultiTrigger.Conditions>
-              <Setter TargetName="Thumb" Property="Fill" Value="{DynamicResource MaterialDesignBody}" />
+              <Setter TargetName="Thumb" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
             </MultiTrigger>
             <Trigger Property="Content" Value="{x:Null}">
               <Setter TargetName="SwitchGrid" Property="Tag">
@@ -633,22 +633,22 @@
     <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}" />
     <Setter Property="Width" Value="52" />
     <Setter Property="wpf:ToggleButtonAssist.OnContent" Value="{StaticResource SwitchCheckMarkIcon}" />
-    <Setter Property="wpf:ToggleButtonAssist.SwitchTrackOffBackground" Value="{DynamicResource MaterialDesignCardBackground}" />
-    <Setter Property="wpf:ToggleButtonAssist.SwitchTrackOnBackground" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="wpf:ToggleButtonAssist.SwitchTrackOffBackground" Value="{DynamicResource MaterialDesign.Brush.Card.Background}" />
+    <Setter Property="wpf:ToggleButtonAssist.SwitchTrackOnBackground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
   </Style>
 
   <Style x:Key="MaterialDesignSwitchLightToggleButton"
          TargetType="{x:Type ToggleButton}"
          BasedOn="{StaticResource MaterialDesignSwitchToggleButton}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightForegroundBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Light.Foreground}" />
   </Style>
 
   <Style x:Key="MaterialDesignSwitchDarkToggleButton"
          TargetType="{x:Type ToggleButton}"
          BasedOn="{StaticResource MaterialDesignSwitchToggleButton}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}" />
   </Style>
 
   <!-- Obsolete -->
@@ -659,8 +659,8 @@
   <Style x:Key="MaterialDesignSwitchSecondaryToggleButton"
          TargetType="{x:Type ToggleButton}"
          BasedOn="{StaticResource MaterialDesignSwitchToggleButton}">
-    <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
   </Style>
 
   <Style x:Key="MaterialDesignHamburgerToggleButton" TargetType="{x:Type ToggleButton}">

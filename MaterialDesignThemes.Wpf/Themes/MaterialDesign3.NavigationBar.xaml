@@ -12,11 +12,11 @@
   <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
 
   <Style x:Key="MaterialDesign3.NavigationBarListBoxItem" TargetType="{x:Type ListBoxItem}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignBodyLight}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="FontSize" Value="12" />
     <Setter Property="FontWeight" Value="Regular" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     <Setter Property="Margin" Value="0" />
     <Setter Property="MinHeight" Value="62" />
@@ -177,13 +177,13 @@
     <Setter Property="wpf:NavigationBarAssist.SelectionHeight" Value="32" />
     <Setter Property="wpf:NavigationBarAssist.SelectionWidth" Value="64" />
     <Setter Property="wpf:NavigationBarAssist.UnselectedIcon" Value="CircleOutline" />
-    <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesign.Brush.Background}" />
   </Style>
 
   <Style x:Key="MaterialDesign3.NavigationBarPrimaryListBoxItem"
          TargetType="{x:Type ListBoxItem}"
          BasedOn="{StaticResource MaterialDesign3.NavigationBarListBoxItem}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
   </Style>
 
   <Style x:Key="MaterialDesign3.NavigationBarListBox"

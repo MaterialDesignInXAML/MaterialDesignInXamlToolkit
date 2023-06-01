@@ -1,4 +1,4 @@
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:internal="clr-namespace:MaterialDesignThemes.Wpf.Internal"
@@ -273,10 +273,10 @@
               <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" />
             </MultiDataTrigger>
             <Trigger Property="IsPressed" Value="True">
-              <Setter TargetName="arrow" Property="Fill" Value="{DynamicResource PrimaryHueMidBrush}" />
+              <Setter TargetName="arrow" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-              <Setter TargetName="arrow" Property="Fill" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+              <Setter TargetName="arrow" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.CheckBox.Disabled}" />
             </Trigger>
             <MultiDataTrigger>
               <MultiDataTrigger.Conditions>
@@ -291,7 +291,7 @@
                 <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="True" />
               </MultiDataTrigger.Conditions>
               <Setter TargetName="ToggleTemplateRoot" Property="BorderBrush" Value="Transparent" />
-              <Setter TargetName="splitBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+              <Setter TargetName="splitBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.CheckBox.Disabled}" />
             </MultiDataTrigger>
             <Trigger Property="IsChecked" Value="True">
               <Setter TargetName="arrow" Property="RenderTransform">
@@ -434,7 +434,7 @@
                            PopupAnimation="Fade"
                            RelativeHorizontalOffset="-6"
                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                           Tag="{DynamicResource MaterialDesignPaper}"
+                           Tag="{DynamicResource MaterialDesign.Brush.Background}"
                            UpVerticalOffset="15"
                            UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
                            VerticalOffset="0"
@@ -561,7 +561,7 @@
           <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
           <Condition SourceName="Hint" Property="IsHintInFloatingPosition" Value="True" />
         </MultiTrigger.Conditions>
-        <Setter Property="wpf:HintAssist.Background" Value="{DynamicResource MaterialDesignPaper}" />
+        <Setter Property="wpf:HintAssist.Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
         <Setter TargetName="HintBackgroundBorder" Property="Padding" Value="4,0" />
       </MultiTrigger>
       <MultiTrigger>
@@ -609,7 +609,7 @@
           <Condition Property="IsEnabled" Value="False" />
           <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
         </MultiTrigger.Conditions>
-        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaInactiveBorder}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.OutlineInactiveBorder}" />
         <Setter TargetName="HintWrapper" Property="Opacity">
           <Setter.Value>
             <Binding Converter="{StaticResource MathMultiplyConverter}"
@@ -738,15 +738,15 @@
 
       <!-- Validation.HasError -->
       <Trigger Property="Validation.HasError" Value="True">
-        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
-        <Setter TargetName="Underline" Property="Background" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
+        <Setter TargetName="Underline" Property="Background" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
       </Trigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
           <Condition Property="Validation.HasError" Value="True" />
           <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
         </MultiTrigger.Conditions>
-        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
         <Setter TargetName="templateRoot" Property="BorderThickness" Value="2" />
         <Setter TargetName="templateRoot" Property="Margin" Value="-1" />
       </MultiTrigger>
@@ -757,72 +757,72 @@
           <Condition SourceName="PART_Popup" Property="IsOpen" Value="True" />
           <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Standard" />
         </MultiTrigger.Conditions>
-        <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesignBody}" />
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
         <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
-        <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesignPaper}" />
+        <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesign.Brush.Background}" />
       </MultiTrigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
           <Condition SourceName="PART_Popup" Property="IsOpen" Value="True" />
           <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Inverted" />
         </MultiTrigger.Conditions>
-        <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesignPaper}" />
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesign.Brush.Background}" />
         <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
-        <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesignBody}" />
+        <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
       </MultiTrigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
           <Condition SourceName="PART_Popup" Property="IsOpen" Value="True" />
           <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="PrimaryLight" />
         </MultiTrigger.Conditions>
-        <Setter Property="TextElement.Foreground" Value="{DynamicResource PrimaryHueLightForegroundBrush}" />
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Light.Foreground}" />
         <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
-        <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource PrimaryHueLightBrush}" />
+        <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
       </MultiTrigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
           <Condition SourceName="PART_Popup" Property="IsOpen" Value="True" />
           <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="PrimaryMid" />
         </MultiTrigger.Conditions>
-        <Setter Property="TextElement.Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
         <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
-        <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource PrimaryHueMidBrush}" />
+        <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
       </MultiTrigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
           <Condition SourceName="PART_Popup" Property="IsOpen" Value="True" />
           <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="PrimaryDark" />
         </MultiTrigger.Conditions>
-        <Setter Property="TextElement.Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}" />
         <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
-        <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource PrimaryHueDarkBrush}" />
+        <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
       </MultiTrigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
           <Condition SourceName="PART_Popup" Property="IsOpen" Value="True" />
           <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="SecondaryLight" />
         </MultiTrigger.Conditions>
-        <Setter Property="TextElement.Foreground" Value="{DynamicResource SecondaryHueLightForegroundBrush}" />
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light.Foreground}" />
         <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
-        <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource SecondaryHueLightBrush}" />
+        <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
       </MultiTrigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
           <Condition SourceName="PART_Popup" Property="IsOpen" Value="True" />
           <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="SecondaryMid" />
         </MultiTrigger.Conditions>
-        <Setter Property="TextElement.Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
         <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
-        <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource SecondaryHueMidBrush}" />
+        <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
       </MultiTrigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
           <Condition SourceName="PART_Popup" Property="IsOpen" Value="True" />
           <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="SecondaryDark" />
         </MultiTrigger.Conditions>
-        <Setter Property="TextElement.Foreground" Value="{DynamicResource SecondaryHueDarkForegroundBrush}" />
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark.Foreground}" />
         <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
-        <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource SecondaryHueDarkBrush}" />
+        <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
       </MultiTrigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
@@ -847,7 +847,7 @@
 
   <Style x:Key="MaterialDesignComboBox" TargetType="{x:Type ComboBox}">
     <Setter Property="Background" Value="Transparent" />
-    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
     <Setter Property="BorderThickness" Value="0,0,0,1" />
     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
@@ -875,9 +875,9 @@
     <Setter Property="internal:ClearText.HandlesClearCommand" Value="True" />
     <Setter Property="wpf:ColorZoneAssist.Mode" Value="Standard" />
     <Setter Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="True" />
-    <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMargin}" />
-    <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Style.Triggers>
       <Trigger Property="IsEditable" Value="True">
         <Setter Property="ContextMenu" Value="{StaticResource MaterialDesignDefaultContextMenu}" />
@@ -901,7 +901,7 @@
   <Style x:Key="MaterialDesignFilledComboBox"
          TargetType="{x:Type ComboBox}"
          BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxBackground}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.FilledBackground}" />
     <Setter Property="Padding" Value="{x:Static wpf:Constants.FilledTextBoxDefaultPadding}" />
     <Setter Property="VerticalAlignment" Value="Stretch" />
     <Setter Property="VerticalContentAlignment" Value="Stretch" />
@@ -910,7 +910,7 @@
     <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4,4,0,0" />
     <Style.Triggers>
       <Trigger Property="IsMouseOver" Value="True">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxHoverBackground}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
       </Trigger>
     </Style.Triggers>
   </Style>
@@ -918,7 +918,7 @@
   <Style x:Key="MaterialDesignOutlinedComboBox"
          TargetType="ComboBox"
          BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
-    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaBorder}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Header.Foreground}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Padding" Value="16" />
     <Setter Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />

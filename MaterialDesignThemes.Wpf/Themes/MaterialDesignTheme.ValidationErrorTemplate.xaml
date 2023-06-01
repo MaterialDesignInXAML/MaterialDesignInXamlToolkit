@@ -15,7 +15,7 @@
                    Margin="2"
                    HorizontalAlignment="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.HorizontalAlignment)}"
                    FontSize="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.FontSize)}"
-                   Foreground="{DynamicResource MaterialDesignValidationErrorBrush}"
+                   Foreground="{DynamicResource MaterialDesign.Brush.ValidationError}"
                    Text="{Binding ErrorContent, Mode=OneTime}"
                    TextWrapping="Wrap"
                    UseLayoutRounding="false" />
@@ -31,7 +31,7 @@
                    Margin="0,2"
                    HorizontalAlignment="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.HorizontalAlignment)}"
                    FontSize="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.FontSize)}"
-                   Foreground="{DynamicResource MaterialDesignValidationErrorBrush}"
+                   Foreground="{DynamicResource MaterialDesign.Brush.ValidationError}"
                    Text="{Binding /ErrorContent, Mode=OneTime}"
                    TextWrapping="Wrap"
                    UseLayoutRounding="false" />
@@ -45,7 +45,7 @@
           <TextBlock Margin="0,2"
                      HorizontalAlignment="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.HorizontalAlignment)}"
                      FontSize="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.FontSize)}"
-                     Foreground="{DynamicResource MaterialDesignValidationErrorBrush}"
+                     Foreground="{DynamicResource MaterialDesign.Brush.ValidationError}"
                      Text="{Binding /ErrorContent, Mode=OneTime}"
                      TextWrapping="Wrap"
                      UseLayoutRounding="false" />
@@ -96,8 +96,8 @@
       </MultiDataTrigger>
 
       <DataTrigger Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.Background)}" Value="{x:Null}">
-        <Setter TargetName="DefaultErrorViewer" Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
-        <Setter TargetName="PopupBorder" Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+        <Setter TargetName="DefaultErrorViewer" Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
+        <Setter TargetName="PopupBorder" Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
       </DataTrigger>
 
       <DataTrigger Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:TextFieldAssist.HasOutlinedTextField)}" Value="True">

@@ -6,10 +6,10 @@
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
   <Style x:Key="MaterialDesignLinearProgressBar" TargetType="{x:Type ProgressBar}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
     <Setter Property="BorderThickness" Value="1" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
     <Setter Property="Height" Value="4" />
     <Setter Property="Template">
       <Setter.Value>
@@ -141,7 +141,7 @@
 
   <Style x:Key="MaterialDesignCircularProgressBar" TargetType="{x:Type ProgressBar}">
     <Setter Property="Background" Value="Transparent" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="Height" Value="20" />
     <Setter Property="Template">
       <Setter.Value>

@@ -27,7 +27,7 @@
     <Setter Property="FocusVisualStyle"
             Value="{StaticResource FocusVisual}" />
     <Setter Property="Foreground"
-            Value="{DynamicResource SecondaryHueMidBrush}" />
+            Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
     <Setter Property="Height"
             Value="36" />
     <Setter Property="HorizontalContentAlignment"
@@ -53,7 +53,7 @@
             <Trigger Property="IsMouseOver"
                      Value="true">
               <Setter Property="Background"
-                      Value="{DynamicResource MaterialDesignSnackbarMouseOver}" />
+                      Value="{DynamicResource MaterialDesign.Brush.SnackBar.MouseOver}" />
             </Trigger>
             <Trigger Property="IsEnabled"
                      Value="false">
@@ -78,28 +78,28 @@
     <Setter Property="VerticalContentAlignment"
             Value="Center" />
     <Setter Property="wpf:RippleAssist.Feedback"
-            Value="{DynamicResource MaterialDesignSnackbarRipple}" />
+            Value="{DynamicResource MaterialDesign.Brush.Button.Ripple}" />
   </Style>
 
   <Style x:Key="MaterialDesignSnackbarActionLightButton"
          TargetType="Button"
          BasedOn="{StaticResource MaterialDesignSnackbarActionButton}">
     <Setter Property="Foreground"
-            Value="{DynamicResource PrimaryHueLightBrush}" />
+            Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
   </Style>
 
   <Style x:Key="MaterialDesignSnackbarActionMidButton"
          TargetType="Button"
          BasedOn="{StaticResource MaterialDesignSnackbarActionButton}">
     <Setter Property="Foreground"
-            Value="{DynamicResource PrimaryHueMidBrush}" />
+            Value="{DynamicResource MaterialDesign.Brush.Primary}" />
   </Style>
 
   <Style x:Key="MaterialDesignSnackbarActionDarkButton"
          TargetType="Button"
          BasedOn="{StaticResource MaterialDesignSnackbarActionButton}">
     <Setter Property="Foreground"
-            Value="{DynamicResource PrimaryHueDarkBrush}" />
+            Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
   </Style>
 
   <Style TargetType="wpf:SnackbarMessage">
@@ -172,13 +172,13 @@
     <Setter Property="ActionButtonStyle"
             Value="{StaticResource MaterialDesignSnackbarActionButton}" />
     <Setter Property="Background"
-            Value="{DynamicResource MaterialDesignSnackbarBackground}" />
+            Value="{DynamicResource MaterialDesign.Brush.SnackBar.Background}" />
     <Setter Property="ClipToBounds"
             Value="True" />
     <Setter Property="FontSize"
             Value="14" />
     <Setter Property="Foreground"
-            Value="{DynamicResource MaterialDesignPaper}" />
+            Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="HorizontalAlignment"
             Value="Center" />
     <Setter Property="MaxWidth"

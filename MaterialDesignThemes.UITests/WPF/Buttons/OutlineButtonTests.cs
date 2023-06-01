@@ -16,7 +16,7 @@ public class OutlineButtonTests : TestBase
         //Arrange
         IVisualElement<Button> button = await LoadXaml<Button>(
             @"<Button Content=""Button"" Style=""{StaticResource MaterialDesignOutlinedButton}""/>");
-        Color midColor = await GetThemeColor("PrimaryHueMidBrush");
+        Color midColor = await GetThemeColor("MaterialDesign.Brush.Primary");
         IVisualElement<Border> internalBorder = await button.GetElement<Border>("border");
 
         //Act
@@ -42,7 +42,7 @@ public class OutlineButtonTests : TestBase
                           BorderThickness=""5""
                           BorderBrush=""Red""
                     />");
-        Color midColor = await GetThemeColor("PrimaryHueMidBrush");
+        Color midColor = await GetThemeColor("MaterialDesign.Brush.Primary");
         IVisualElement<Border> internalBorder = await button.GetElement<Border>("border");
 
         //Act
@@ -64,7 +64,7 @@ public class OutlineButtonTests : TestBase
         //Arrange
         IVisualElement<Button> button = await LoadXaml<Button>(
             @"<Button Content=""Button"" Style=""{StaticResource MaterialDesignOutlinedButton}""/>");
-        Color midColor = await GetThemeColor("PrimaryHueMidBrush");
+        Color midColor = await GetThemeColor("MaterialDesign.Brush.Primary");
         IVisualElement<Border> internalBorder = await button.GetElement<Border>("border");
 
         //Act

@@ -27,9 +27,9 @@
   <Style x:Key="MaterialDesignDatePickerTextBox" TargetType="{x:Type DatePickerTextBox}">
     <Setter Property="AllowDrop" Value="true" />
     <Setter Property="Background" Value="Transparent" />
-    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
     <Setter Property="BorderThickness" Value="0,0,0,1" />
-    <Setter Property="CaretBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="CaretBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="ContextMenu" Value="{StaticResource MaterialDesignDefaultContextMenu}" />
     <Setter Property="Cursor" Value="IBeam" />
     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
@@ -109,7 +109,7 @@
             </VisualStateManager.VisualStateGroups>
             <Border HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
-                    Background="{DynamicResource MaterialDesignTextFieldBoxHoverBackground}"
+                    Background="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
                     CornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}"
                     RenderTransformOrigin="0.5,0.5"
                     Visibility="{TemplateBinding wpf:TextFieldAssist.RippleOnFocusEnabled, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -283,10 +283,10 @@
             </MultiTrigger>
 
             <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
-              <Setter Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxBackground}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.FilledBackground}" />
             </Trigger>
             <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
-              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaBorder}" />
+              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Header.Foreground}" />
               <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:DatePickerAssist.OutlinedBorderInactiveThickness)}" />
               <Setter Property="VerticalContentAlignment" Value="Top" />
               <Setter TargetName="Hint" Property="FloatingOffset">
@@ -312,7 +312,7 @@
                 <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
                 <Condition SourceName="Hint" Property="IsHintInFloatingPosition" Value="True" />
               </MultiTrigger.Conditions>
-              <Setter Property="wpf:HintAssist.Background" Value="{DynamicResource MaterialDesignPaper}" />
+              <Setter Property="wpf:HintAssist.Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
               <Setter TargetName="HintBackgroundBorder" Property="Padding" Value="4,0" />
             </MultiTrigger>
             <MultiTrigger>
@@ -356,7 +356,7 @@
                 <Condition Property="IsEnabled" Value="False" />
                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
               </MultiTrigger.Conditions>
-              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaInactiveBorder}" />
+              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.OutlineInactiveBorder}" />
               <Setter TargetName="HintWrapper" Property="Opacity">
                 <Setter.Value>
                   <Binding Converter="{StaticResource MathMultiplyConverter}"
@@ -420,7 +420,7 @@
                 <Condition Property="IsMouseOver" Value="True" />
                 <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
               </MultiTrigger.Conditions>
-              <Setter Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxHoverBackground}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
               <Setter TargetName="borderUnderline" Property="Height" Value="1" />
             </MultiTrigger>
             <MultiTrigger>
@@ -441,15 +441,15 @@
 
             <!-- Validation.HasError -->
             <Trigger Property="Validation.HasError" Value="true">
-              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
-              <Setter TargetName="Underline" Property="Background" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
+              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
+              <Setter TargetName="Underline" Property="Background" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
             </Trigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="Validation.HasError" Value="True" />
                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
               </MultiTrigger.Conditions>
-              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
+              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
               <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:DatePickerAssist.OutlinedBorderActiveThickness)}" />
               <Setter TargetName="border" Property="Margin">
                 <Setter.Value>
@@ -466,9 +466,9 @@
     </Setter>
     <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}" />
     <Setter Property="VerticalContentAlignment" Value="Top" />
-    <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMargin}" />
-    <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
   </Style>
 
   <Style x:Key="MaterialDesignDatePickerCalendarPortrait"
@@ -479,7 +479,7 @@
   </Style>
 
   <Style x:Key="MaterialDesignDatePicker" TargetType="{x:Type DatePicker}">
-    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
     <Setter Property="BorderThickness" Value="0,0,0,1" />
     <Setter Property="CalendarStyle" Value="{StaticResource MaterialDesignDatePickerCalendarPortrait}" />
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
@@ -560,10 +560,10 @@
             </MultiTrigger>
 
             <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
-              <Setter Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxBackground}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.FilledBackground}" />
             </Trigger>
             <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
-              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaBorder}" />
+              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Header.Foreground}" />
             </Trigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
@@ -571,14 +571,14 @@
                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
                 <Condition Property="IsMouseOver" Value="True" />
               </MultiTrigger.Conditions>
-              <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
             </MultiTrigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="IsEnabled" Value="True" />
                 <Condition SourceName="PART_Button" Property="IsMouseOver" Value="True" />
               </MultiTrigger.Conditions>
-              <Setter TargetName="PART_Button" Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+              <Setter TargetName="PART_Button" Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
             </MultiTrigger>
             <Trigger Property="IsEnabled" Value="False">
               <Setter TargetName="PART_Button" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
@@ -588,7 +588,7 @@
                 <Condition Property="IsEnabled" Value="False" />
                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
               </MultiTrigger.Conditions>
-              <Setter TargetName="PART_TextBox" Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaInactiveBorder}" />
+              <Setter TargetName="PART_TextBox" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.OutlineInactiveBorder}" />
             </MultiTrigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
@@ -612,11 +612,11 @@
                 <Condition Property="IsMouseOver" Value="True" />
                 <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
               </MultiTrigger.Conditions>
-              <Setter Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxHoverBackground}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
             </MultiTrigger>
 
             <Trigger Property="Validation.HasError" Value="True">
-              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
+              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
               <Setter TargetName="PART_TextBox" Property="wpf:ValidationAssist.HasError" Value="True" />
             </Trigger>
           </ControlTemplate.Triggers>
@@ -626,9 +626,9 @@
     <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}" />
     <Setter Property="VerticalAlignment" Value="Center" />
     <Setter Property="internal:ClearText.HandlesClearCommand" Value="True" />
-    <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMargin}" />
-    <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
   </Style>
 
   <Style x:Key="MaterialDesignFloatingHintDatePicker"

@@ -288,7 +288,7 @@
       </Setter.Value>
     </Setter>
     <Setter Property="VerticalAlignment" Value="Bottom" />
-    <Setter Property="local:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="local:TextFieldAssist.UnderlineBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
   </Style>
 
   <Style TargetType="{x:Type local:MaterialDateDisplay}">
@@ -511,9 +511,9 @@
     <Style.Resources>
       <converters:ShadowOpacityMaskConverter x:Key="ShadowEdgeConverter" />
     </Style.Resources>
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="ClipToBounds" Value="False" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     <Setter Property="IsTabStop" Value="False" />
     <Setter Property="Template">
@@ -554,32 +554,32 @@
     <Setter Property="VerticalContentAlignment" Value="Stretch" />
     <Style.Triggers>
       <Trigger Property="Mode" Value="Inverted">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignBody}" />
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignPaper}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Background}" />
       </Trigger>
       <Trigger Property="Mode" Value="PrimaryLight">
-        <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightForegroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Light.Foreground}" />
       </Trigger>
       <Trigger Property="Mode" Value="PrimaryMid">
-        <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
       </Trigger>
       <Trigger Property="Mode" Value="PrimaryDark">
-        <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}" />
       </Trigger>
       <Trigger Property="Mode" Value="SecondaryLight">
-        <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueLightForegroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light.Foreground}" />
       </Trigger>
       <Trigger Property="Mode" Value="SecondaryMid">
-        <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
       </Trigger>
       <Trigger Property="Mode" Value="SecondaryDark">
-        <Setter Property="Background" Value="{DynamicResource SecondaryHueDarkBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueDarkForegroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark.Foreground}" />
       </Trigger>
       <Trigger Property="Mode" Value="Light">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignLightBackground}" />
@@ -599,12 +599,12 @@
   <SolidColorBrush x:Key="BlackBackground" Color="Black" po:Freeze="True" />
 
   <Style TargetType="{x:Type local:DrawerHost}">
-    <Setter Property="BottomDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="BottomDrawerBackground" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="ClipToBounds" Value="True" />
     <Setter Property="IsTabStop" Value="False" />
-    <Setter Property="LeftDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="LeftDrawerBackground" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="OverlayBackground" Value="{StaticResource BlackBackground}" />
-    <Setter Property="RightDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="RightDrawerBackground" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type local:DrawerHost}">
@@ -1142,7 +1142,7 @@
         </ControlTemplate>
       </Setter.Value>
     </Setter>
-    <Setter Property="TopDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="TopDrawerBackground" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="local:ElevationAssist.Elevation" Value="Dp8" />
   </Style>
 

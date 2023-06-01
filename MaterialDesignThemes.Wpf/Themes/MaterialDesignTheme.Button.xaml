@@ -37,12 +37,12 @@
   <!--#region Raised Button-->
 
   <Style x:Key="MaterialDesignRaisedButton" TargetType="{x:Type ButtonBase}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Cursor" Value="Hand" />
     <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
     <Setter Property="Height" Value="32" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />
     <Setter Property="Padding" Value="16,4,16,4" />
@@ -120,8 +120,8 @@
     <Setter Property="TextBlock.FontWeight" Value="Medium" />
     <Setter Property="VerticalContentAlignment" Value="Center" />
     <Setter Property="wpf:ButtonAssist.CornerRadius" Value="2" />
-    <Setter Property="wpf:ButtonProgressAssist.IndicatorBackground" Value="{DynamicResource PrimaryHueMidBrush}" />
-    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+    <Setter Property="wpf:ButtonProgressAssist.IndicatorBackground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
     <Setter Property="wpf:ButtonProgressAssist.IsIndicatorVisible" Value="False" />
     <Setter Property="wpf:ButtonProgressAssist.Opacity" Value=".4" />
     <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp2" />
@@ -131,41 +131,41 @@
   <Style x:Key="MaterialDesignRaisedLightButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignRaisedButton}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightForegroundBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Light.Foreground}" />
   </Style>
 
   <Style x:Key="MaterialDesignRaisedDarkButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignRaisedButton}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueDarkBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}" />
   </Style>
 
   <Style x:Key="MaterialDesignRaisedSecondaryButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignRaisedButton}">
-    <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
   </Style>
 
   <Style x:Key="MaterialDesignRaisedSecondaryLightButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignRaisedButton}">
-    <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueLightBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource SecondaryHueLightForegroundBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light.Foreground}" />
   </Style>
 
   <Style x:Key="MaterialDesignRaisedSecondaryDarkButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignRaisedButton}">
-    <Setter Property="Background" Value="{DynamicResource SecondaryHueDarkBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueDarkBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource SecondaryHueDarkForegroundBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark.Foreground}" />
   </Style>
 
   <!-- Obsolete -->
@@ -181,7 +181,7 @@
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="Cursor" Value="Hand" />
     <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="Height" Value="32" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />
     <Setter Property="Padding" Value="16,4,16,4" />
@@ -253,47 +253,47 @@
     <Setter Property="VerticalContentAlignment" Value="Center" />
     <Setter Property="wpf:ButtonAssist.CornerRadius" Value="2" />
     <Setter Property="wpf:ButtonProgressAssist.IndicatorBackground" Value="Transparent" />
-    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="wpf:ButtonProgressAssist.IsIndicatorVisible" Value="False" />
     <Setter Property="wpf:ButtonProgressAssist.Opacity" Value=".4" />
-    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
   </Style>
 
   <Style x:Key="MaterialDesignFlatLightButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignFlatButton}">
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
-    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource PrimaryHueLightBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
+    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
   </Style>
 
   <Style x:Key="MaterialDesignFlatDarkButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignFlatButton}">
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
-    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource PrimaryHueDarkBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
+    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
   </Style>
 
   <Style x:Key="MaterialDesignFlatSecondaryButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignFlatButton}">
-    <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidBrush}" />
-    <Setter Property="wpf:ButtonProgressAssist.IndicatorBackground" Value="{DynamicResource SecondaryHueMidBrush}" />
-    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
-    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource SecondaryHueMidBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+    <Setter Property="wpf:ButtonProgressAssist.IndicatorBackground" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
+    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
   </Style>
 
   <Style x:Key="MaterialDesignFlatSecondaryLightButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignFlatSecondaryButton}">
-    <Setter Property="Foreground" Value="{DynamicResource SecondaryHueLightBrush}" />
-    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource SecondaryHueLightBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
+    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
   </Style>
 
   <Style x:Key="MaterialDesignFlatSecondaryDarkButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignFlatSecondaryButton}">
-    <Setter Property="Foreground" Value="{DynamicResource SecondaryHueDarkBrush}" />
-    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource SecondaryHueDarkBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
+    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
   </Style>
 
   <!-- Obsolete -->
@@ -351,7 +351,7 @@
   <Style x:Key="MaterialDesignOutlinedButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignFlatButton}">
-    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Template">
       <Setter.Value>
@@ -423,43 +423,43 @@
   <Style x:Key="MaterialDesignOutlinedLightButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignOutlinedButton}">
-    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
-    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource PrimaryHueLightBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
+    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
   </Style>
 
   <Style x:Key="MaterialDesignOutlinedDarkButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignOutlinedButton}">
-    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueDarkBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
-    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource PrimaryHueDarkBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
+    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
   </Style>
 
   <Style x:Key="MaterialDesignOutlinedSecondaryButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignOutlinedButton}">
-    <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidBrush}" />
-    <Setter Property="wpf:ButtonProgressAssist.IndicatorBackground" Value="{DynamicResource SecondaryHueMidBrush}" />
-    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
-    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource SecondaryHueMidBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+    <Setter Property="wpf:ButtonProgressAssist.IndicatorBackground" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
+    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
   </Style>
 
   <Style x:Key="MaterialDesignOutlinedSecondaryLightButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignOutlinedSecondaryButton}">
-    <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueLightBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource SecondaryHueLightBrush}" />
-    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource SecondaryHueLightBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
+    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
   </Style>
 
   <Style x:Key="MaterialDesignOutlinedSecondaryDarkButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignOutlinedSecondaryButton}">
-    <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueDarkBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource SecondaryHueDarkBrush}" />
-    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource SecondaryHueDarkBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
+    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
   </Style>
 
   <!--#endregion-->
@@ -468,7 +468,7 @@
   <Style x:Key="MaterialDesignToolButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignFlatButton}">
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignToolForeground}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.ToolBar.Item.Foreground}" />
     <Setter Property="Padding" Value="4" />
     <Setter Property="Template">
       <Setter.Value>
@@ -504,12 +504,12 @@
   <!--#region FAB-->
 
   <Style x:Key="MaterialDesignFloatingActionMiniButton" TargetType="{x:Type ButtonBase}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Cursor" Value="Hand" />
     <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
     <Setter Property="Height" Value="40" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />
     <Setter Property="Padding" Value="1" />
@@ -617,8 +617,8 @@
     </Setter>
     <Setter Property="VerticalContentAlignment" Value="Center" />
     <Setter Property="Width" Value="40" />
-    <Setter Property="wpf:ButtonProgressAssist.IndicatorBackground" Value="{DynamicResource MaterialDesignDivider}" />
-    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource SecondaryHueMidBrush}" />
+    <Setter Property="wpf:ButtonProgressAssist.IndicatorBackground" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
+    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
     <Setter Property="wpf:ButtonProgressAssist.Opacity" Value="1" />
     <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp6" />
     <Setter Property="wpf:RippleAssist.Feedback" Value="White" />
@@ -634,46 +634,46 @@
   <Style x:Key="MaterialDesignFloatingActionMiniLightButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignFloatingActionMiniButton}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightForegroundBrush}" />
-    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Light.Foreground}" />
+    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
   </Style>
 
   <Style x:Key="MaterialDesignFloatingActionMiniDarkButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignFloatingActionMiniButton}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueDarkBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
-    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource PrimaryHueLightBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}" />
+    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
   </Style>
 
   <Style x:Key="MaterialDesignFloatingActionMiniSecondaryButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignFloatingActionMiniButton}">
-    <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
-    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource SecondaryHueMidBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
+    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
   </Style>
 
   <Style x:Key="MaterialDesignFloatingActionMiniSecondaryLightButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignFloatingActionMiniButton}">
-    <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueLightBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource SecondaryHueLightForegroundBrush}" />
-    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource SecondaryHueDarkBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light.Foreground}" />
+    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
   </Style>
 
   <Style x:Key="MaterialDesignFloatingActionMiniSecondaryDarkButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignFloatingActionMiniButton}">
-    <Setter Property="Background" Value="{DynamicResource SecondaryHueDarkBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueDarkBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource SecondaryHueDarkForegroundBrush}" />
-    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource SecondaryHueLightBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark.Foreground}" />
+    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
   </Style>
 
   <!-- Obsolete -->
@@ -684,46 +684,46 @@
   <Style x:Key="MaterialDesignFloatingActionLightButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignFloatingActionButton}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightForegroundBrush}" />
-    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Light.Foreground}" />
+    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
   </Style>
 
   <Style x:Key="MaterialDesignFloatingActionDarkButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignFloatingActionButton}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueDarkBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
-    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource PrimaryHueLightBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}" />
+    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
   </Style>
 
   <Style x:Key="MaterialDesignFloatingActionSecondaryButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignFloatingActionButton}">
-    <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
-    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
+    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
   </Style>
 
   <Style x:Key="MaterialDesignFloatingActionSecondaryLightButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignFloatingActionButton}">
-    <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueLightBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource SecondaryHueLightForegroundBrush}" />
-    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource SecondaryHueDarkBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light.Foreground}" />
+    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
   </Style>
 
   <Style x:Key="MaterialDesignFloatingActionSecondaryDarkButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignFloatingActionButton}">
-    <Setter Property="Background" Value="{DynamicResource SecondaryHueDarkBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueDarkBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource SecondaryHueDarkForegroundBrush}" />
-    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource SecondaryHueLightBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark.Foreground}" />
+    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
   </Style>
 
   <!-- Obsolete -->
@@ -800,12 +800,12 @@
   <!--#region Paper Button-->
 
   <Style x:Key="MaterialDesignPaperButton" TargetType="{x:Type ButtonBase}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Cursor" Value="Hand" />
     <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="Height" Value="32" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />
     <Setter Property="Padding" Value="16,4,16,4" />
@@ -859,40 +859,40 @@
     <Setter Property="TextBlock.FontWeight" Value="Medium" />
     <Setter Property="VerticalContentAlignment" Value="Center" />
     <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp2" />
-    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
   </Style>
 
   <Style x:Key="MaterialDesignPaperLightButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignPaperButton}">
-    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}" />
-    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource PrimaryHueLightBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
+    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
   </Style>
 
   <Style x:Key="MaterialDesignPaperDarkButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignPaperButton}">
-    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueDarkBrush}" />
-    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource PrimaryHueDarkBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
+    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
   </Style>
 
   <Style x:Key="MaterialDesignPaperSecondaryLightButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignPaperButton}">
-    <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueLightBrush}" />
-    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource SecondaryHueLightBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
+    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
   </Style>
   <Style x:Key="MaterialDesignPaperSecondaryButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignPaperButton}">
-    <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}" />
-    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource SecondaryHueMidBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
   </Style>
   <Style x:Key="MaterialDesignPaperSecondaryDarkButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignPaperButton}">
-    <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueDarkBrush}" />
-    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource SecondaryHueDarkBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
+    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
   </Style>
 
   <!--#endregion-->

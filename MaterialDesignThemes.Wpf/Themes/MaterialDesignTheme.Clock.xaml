@@ -29,7 +29,7 @@
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="FontSize" Value="14" />
     <Setter Property="FontWeight" Value="Medium" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type RadioButton}">
@@ -44,17 +44,17 @@
     </Setter>
     <Style.Triggers>
       <Trigger Property="IsChecked" Value="True">
-        <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
       </Trigger>
     </Style.Triggers>
   </Style>
 
   <Style x:Key="MaterialDesignCalendarMeridiemRadioButtonDefault" TargetType="{x:Type RadioButton}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignBodyLight}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
     <Setter Property="FontSize" Value="14" />
     <Setter Property="FontWeight" Value="Medium" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBodyLight}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type RadioButton}">
@@ -69,17 +69,17 @@
     </Setter>
     <Style.Triggers>
       <Trigger Property="IsChecked" Value="True">
-        <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
       </Trigger>
     </Style.Triggers>
   </Style>
 
   <Style x:Key="MaterialDesignCalendarMeridiemRadioButtonThemed" TargetType="{x:Type RadioButton}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="FontSize" Value="14" />
     <Setter Property="FontWeight" Value="Medium" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type RadioButton}">
@@ -94,14 +94,14 @@
     </Setter>
     <Style.Triggers>
       <Trigger Property="IsChecked" Value="True">
-        <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
       </Trigger>
     </Style.Triggers>
   </Style>
 
   <Style x:Key="MaterialDesignClock" TargetType="{x:Type wpf:Clock}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="ButtonRadiusInnerRatio" Value=".6" />
     <Setter Property="ButtonRadiusRatio" Value=".835" />
@@ -132,11 +132,11 @@
           <Setter Property="Width" Value="32" />
           <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-              <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
             </Trigger>
             <Trigger Property="IsChecked" Value="True">
-              <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
-              <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+              <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
             </Trigger>
           </Style.Triggers>
         </Style>
@@ -174,10 +174,10 @@
           <Setter Property="Width" Value="12" />
           <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-              <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
             </Trigger>
             <Trigger Property="IsChecked" Value="True">
-              <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
             </Trigger>
           </Style.Triggers>
         </Style>
@@ -629,7 +629,7 @@
               </Grid.RowDefinitions>
               <Border Height="120"
                       Margin="0,0,0,12"
-                      Background="{DynamicResource PrimaryHueMidBrush}"
+                      Background="{DynamicResource MaterialDesign.Brush.Primary}"
                       CornerRadius="2 2 0 0"
                       Visibility="{TemplateBinding IsHeaderVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel x:Name="TimeReadoutStackPanel"
@@ -641,7 +641,7 @@
                     <Style x:Key="TimeTextBlock" TargetType="{x:Type TextBlock}">
                       <Setter Property="FontSize" Value="66" />
                       <Setter Property="FontWeight" Value="Normal" />
-                      <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+                      <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
                     </Style>
                   </StackPanel.Resources>
                   <Grid x:Name="PART_HourReadOut">
@@ -702,7 +702,7 @@
                              Margin="2,0,0,8"
                              VerticalAlignment="Bottom"
                              FontSize="20"
-                             Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                             Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
                              Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0:tt}}" />
                 </StackPanel>
               </Border>
@@ -716,7 +716,7 @@
                 <Ellipse x:Name="BackgroundEllipse"
                          Width="230"
                          Height="230"
-                         Fill="{DynamicResource PrimaryHueLightBrush}"
+                         Fill="{DynamicResource MaterialDesign.Brush.Primary.Light}"
                          Opacity=".23" />
                 <Canvas x:Name="PART_HoursCanvas"
                         Width="230"
@@ -728,10 +728,10 @@
                         Width="3"
                         Height="96.959"
                         Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001"
-                        Fill="{DynamicResource PrimaryHueMidBrush}"
+                        Fill="{DynamicResource MaterialDesign.Brush.Primary}"
                         RenderTransformOrigin="0.5,0.985"
                         Stretch="Fill"
-                        Stroke="{DynamicResource PrimaryHueMidBrush}">
+                        Stroke="{DynamicResource MaterialDesign.Brush.Primary}">
                     <Path.RenderTransform>
                       <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockHourLineConverter}}" />
                     </Path.RenderTransform>
@@ -752,10 +752,10 @@
                         Width="3"
                         Height="96.959"
                         Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001"
-                        Fill="{DynamicResource PrimaryHueMidBrush}"
+                        Fill="{DynamicResource MaterialDesign.Brush.Primary}"
                         RenderTransformOrigin="0.5,0.985"
                         Stretch="Fill"
-                        Stroke="{DynamicResource PrimaryHueMidBrush}">
+                        Stroke="{DynamicResource MaterialDesign.Brush.Primary}">
                     <Path.RenderTransform>
                       <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockMinuteLineConverter}}" />
                     </Path.RenderTransform>
@@ -776,10 +776,10 @@
                         Width="3"
                         Height="96.959"
                         Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001"
-                        Fill="{DynamicResource PrimaryHueMidBrush}"
+                        Fill="{DynamicResource MaterialDesign.Brush.Primary}"
                         RenderTransformOrigin="0.5,0.985"
                         Stretch="Fill"
-                        Stroke="{DynamicResource PrimaryHueMidBrush}">
+                        Stroke="{DynamicResource MaterialDesign.Brush.Primary}">
                     <Path.RenderTransform>
                       <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockSecondLineConverter}}" />
                     </Path.RenderTransform>
@@ -860,7 +860,7 @@
 
 
   <Style x:Key="MaterialDesignClockVertical" TargetType="{x:Type wpf:Clock}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="ButtonRadiusInnerRatio" Value=".6" />
     <Setter Property="ButtonRadiusRatio" Value=".835" />
@@ -891,11 +891,11 @@
           <Setter Property="Width" Value="32" />
           <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-              <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
             </Trigger>
             <Trigger Property="IsChecked" Value="True">
-              <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
-              <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+              <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
             </Trigger>
           </Style.Triggers>
         </Style>
@@ -934,10 +934,10 @@
           <Setter Property="Width" Value="12" />
           <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-              <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
             </Trigger>
             <Trigger Property="IsChecked" Value="True">
-              <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
             </Trigger>
           </Style.Triggers>
         </Style>
@@ -1402,7 +1402,7 @@
                       <Style x:Key="TimeTextBlock" TargetType="{x:Type TextBlock}">
                         <Setter Property="FontSize" Value="48" />
                         <Setter Property="FontWeight" Value="Normal" />
-                        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+                        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
                       </Style>
                     </StackPanel.Resources>
 
@@ -1414,10 +1414,10 @@
                               Opacity=".12">
                         <Border.Style>
                           <Style TargetType="Border">
-                            <Setter Property="Background" Value="{DynamicResource MaterialDesignBodyLight}" />
+                            <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Hours}">
-                                <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -1431,7 +1431,7 @@
                           <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TimeTextBlock}">
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Hours}">
-                                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -1441,7 +1441,7 @@
 
                     <TextBlock Margin="-6,0,-6,0"
                                VerticalAlignment="Center"
-                               Foreground="{DynamicResource MaterialDesignBody}"
+                               Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
                                Style="{StaticResource TimeTextBlock}"
                                Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0: : }}" />
 
@@ -1453,10 +1453,10 @@
                               Opacity=".12">
                         <Border.Style>
                           <Style TargetType="Border">
-                            <Setter Property="Background" Value="{DynamicResource MaterialDesignBodyLight}" />
+                            <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Minutes}">
-                                <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -1470,7 +1470,7 @@
                           <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TimeTextBlock}">
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Minutes}">
-                                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -1481,7 +1481,7 @@
                     <TextBlock x:Name="PART_SecondColonPrefix"
                                Margin="-6,0,-6,0"
                                VerticalAlignment="Center"
-                               Foreground="{DynamicResource MaterialDesignBody}"
+                               Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
                                Style="{StaticResource TimeTextBlock}"
                                Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0: : }}" />
 
@@ -1493,10 +1493,10 @@
                               Opacity=".12">
                         <Border.Style>
                           <Style TargetType="Border">
-                            <Setter Property="Background" Value="{DynamicResource MaterialDesignBodyLight}" />
+                            <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Seconds}">
-                                <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -1510,7 +1510,7 @@
                           <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TimeTextBlock}">
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Seconds}">
-                                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -1559,7 +1559,7 @@
                 <Ellipse x:Name="BackgroundEllipse"
                          Width="230"
                          Height="230"
-                         Fill="{DynamicResource MaterialDesignBodyLight}"
+                         Fill="{DynamicResource MaterialDesign.Brush.ForegroundLight}"
                          Opacity=".12" />
                 <Canvas x:Name="PART_HoursCanvas"
                         Width="230"
@@ -1571,10 +1571,10 @@
                         Width="3"
                         Height="96.959"
                         Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001"
-                        Fill="{DynamicResource PrimaryHueMidBrush}"
+                        Fill="{DynamicResource MaterialDesign.Brush.Primary}"
                         RenderTransformOrigin="0.5,0.985"
                         Stretch="Fill"
-                        Stroke="{DynamicResource PrimaryHueMidBrush}">
+                        Stroke="{DynamicResource MaterialDesign.Brush.Primary}">
                     <Path.RenderTransform>
                       <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockHourLineConverter}}" />
                     </Path.RenderTransform>
@@ -1595,10 +1595,10 @@
                         Width="3"
                         Height="96.959"
                         Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001"
-                        Fill="{DynamicResource PrimaryHueMidBrush}"
+                        Fill="{DynamicResource MaterialDesign.Brush.Primary}"
                         RenderTransformOrigin="0.5,0.985"
                         Stretch="Fill"
-                        Stroke="{DynamicResource PrimaryHueMidBrush}">
+                        Stroke="{DynamicResource MaterialDesign.Brush.Primary}">
                     <Path.RenderTransform>
                       <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockMinuteLineConverter}}" />
                     </Path.RenderTransform>
@@ -1619,10 +1619,10 @@
                         Width="3"
                         Height="96.959"
                         Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001"
-                        Fill="{DynamicResource PrimaryHueMidBrush}"
+                        Fill="{DynamicResource MaterialDesign.Brush.Primary}"
                         RenderTransformOrigin="0.5,0.985"
                         Stretch="Fill"
-                        Stroke="{DynamicResource PrimaryHueMidBrush}">
+                        Stroke="{DynamicResource MaterialDesign.Brush.Primary}">
                     <Path.RenderTransform>
                       <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockSecondLineConverter}}" />
                     </Path.RenderTransform>
@@ -1682,7 +1682,7 @@
   </Style>
 
   <Style x:Key="MaterialDesignClockVerticalThemed" TargetType="{x:Type wpf:Clock}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="ButtonRadiusInnerRatio" Value=".6" />
     <Setter Property="ButtonRadiusRatio" Value=".835" />
@@ -1713,11 +1713,11 @@
           <Setter Property="Width" Value="32" />
           <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-              <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
             </Trigger>
             <Trigger Property="IsChecked" Value="True">
-              <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
-              <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+              <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
             </Trigger>
           </Style.Triggers>
         </Style>
@@ -1756,10 +1756,10 @@
           <Setter Property="Width" Value="12" />
           <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-              <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
             </Trigger>
             <Trigger Property="IsChecked" Value="True">
-              <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
             </Trigger>
           </Style.Triggers>
         </Style>
@@ -2224,7 +2224,7 @@
                       <Style x:Key="TimeTextBlock" TargetType="{x:Type TextBlock}">
                         <Setter Property="FontSize" Value="48" />
                         <Setter Property="FontWeight" Value="Normal" />
-                        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+                        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
                       </Style>
                     </StackPanel.Resources>
 
@@ -2234,10 +2234,10 @@
                       <Border x:Name="PART_HourReadOutBorder" CornerRadius="{TemplateBinding CornerRadius}">
                         <Border.Style>
                           <Style TargetType="Border">
-                            <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                            <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Hours}">
-                                <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
+                                <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -2251,7 +2251,7 @@
                           <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TimeTextBlock}">
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Hours}">
-                                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -2261,7 +2261,7 @@
 
                     <TextBlock Margin="-6,0,-6,0"
                                VerticalAlignment="Center"
-                               Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                               Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"
                                Style="{StaticResource TimeTextBlock}"
                                Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0: : }}" />
 
@@ -2271,10 +2271,10 @@
                       <Border x:Name="PART_MinuteReadOutBorder" CornerRadius="{TemplateBinding CornerRadius}">
                         <Border.Style>
                           <Style TargetType="Border">
-                            <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                            <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Minutes}">
-                                <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
+                                <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -2288,7 +2288,7 @@
                           <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TimeTextBlock}">
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Minutes}">
-                                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -2299,7 +2299,7 @@
                     <TextBlock x:Name="PART_SecondColonPrefix"
                                Margin="-6,0,-6,0"
                                VerticalAlignment="Center"
-                               Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                               Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"
                                Style="{StaticResource TimeTextBlock}"
                                Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0: : }}" />
 
@@ -2309,10 +2309,10 @@
                       <Border x:Name="PART_SecondReadOutBorder" CornerRadius="{TemplateBinding CornerRadius}">
                         <Border.Style>
                           <Style TargetType="Border">
-                            <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                            <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Seconds}">
-                                <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
+                                <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -2326,7 +2326,7 @@
                           <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TimeTextBlock}">
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Seconds}">
-                                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -2375,7 +2375,7 @@
                 <Ellipse x:Name="BackgroundEllipse"
                          Width="230"
                          Height="230"
-                         Fill="{DynamicResource PrimaryHueMidBrush}" />
+                         Fill="{DynamicResource MaterialDesign.Brush.Primary}" />
                 <Canvas x:Name="PART_HoursCanvas"
                         Width="230"
                         Height="230"
@@ -2386,10 +2386,10 @@
                         Width="3"
                         Height="96.959"
                         Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001"
-                        Fill="{DynamicResource SecondaryHueMidBrush}"
+                        Fill="{DynamicResource MaterialDesign.Brush.Secondary}"
                         RenderTransformOrigin="0.5,0.985"
                         Stretch="Fill"
-                        Stroke="{DynamicResource SecondaryHueMidBrush}">
+                        Stroke="{DynamicResource MaterialDesign.Brush.Secondary}">
                     <Path.RenderTransform>
                       <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockHourLineConverter}}" />
                     </Path.RenderTransform>
@@ -2410,10 +2410,10 @@
                         Width="3"
                         Height="96.959"
                         Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001"
-                        Fill="{DynamicResource SecondaryHueMidBrush}"
+                        Fill="{DynamicResource MaterialDesign.Brush.Secondary}"
                         RenderTransformOrigin="0.5,0.985"
                         Stretch="Fill"
-                        Stroke="{DynamicResource SecondaryHueMidBrush}">
+                        Stroke="{DynamicResource MaterialDesign.Brush.Secondary}">
                     <Path.RenderTransform>
                       <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockMinuteLineConverter}}" />
                     </Path.RenderTransform>
@@ -2434,10 +2434,10 @@
                         Width="3"
                         Height="96.959"
                         Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001"
-                        Fill="{DynamicResource SecondaryHueMidBrush}"
+                        Fill="{DynamicResource MaterialDesign.Brush.Secondary}"
                         RenderTransformOrigin="0.5,0.985"
                         Stretch="Fill"
-                        Stroke="{DynamicResource SecondaryHueMidBrush}">
+                        Stroke="{DynamicResource MaterialDesign.Brush.Secondary}">
                     <Path.RenderTransform>
                       <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockSecondLineConverter}}" />
                     </Path.RenderTransform>
@@ -2497,7 +2497,7 @@
   </Style>
 
   <Style x:Key="MaterialDesignClockHorizontal" TargetType="{x:Type wpf:Clock}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="ButtonRadiusInnerRatio" Value=".6" />
     <Setter Property="ButtonRadiusRatio" Value=".835" />
@@ -2528,11 +2528,11 @@
           <Setter Property="Width" Value="32" />
           <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-              <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
             </Trigger>
             <Trigger Property="IsChecked" Value="True">
-              <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
-              <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+              <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
             </Trigger>
           </Style.Triggers>
         </Style>
@@ -2571,10 +2571,10 @@
           <Setter Property="Width" Value="12" />
           <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-              <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
             </Trigger>
             <Trigger Property="IsChecked" Value="True">
-              <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
             </Trigger>
           </Style.Triggers>
         </Style>
@@ -3036,7 +3036,7 @@
                       <Style x:Key="TimeTextBlock" TargetType="{x:Type TextBlock}">
                         <Setter Property="FontSize" Value="48" />
                         <Setter Property="FontWeight" Value="Normal" />
-                        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+                        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
                       </Style>
                     </StackPanel.Resources>
 
@@ -3048,10 +3048,10 @@
                               Opacity=".12">
                         <Border.Style>
                           <Style TargetType="Border">
-                            <Setter Property="Background" Value="{DynamicResource MaterialDesignBodyLight}" />
+                            <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Hours}">
-                                <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -3065,7 +3065,7 @@
                           <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TimeTextBlock}">
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Hours}">
-                                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -3075,7 +3075,7 @@
 
                     <TextBlock Margin="-6,0,-6,0"
                                VerticalAlignment="Center"
-                               Foreground="{DynamicResource MaterialDesignBody}"
+                               Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
                                Style="{StaticResource TimeTextBlock}"
                                Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0: : }}" />
 
@@ -3087,10 +3087,10 @@
                               Opacity=".12">
                         <Border.Style>
                           <Style TargetType="Border">
-                            <Setter Property="Background" Value="{DynamicResource MaterialDesignBodyLight}" />
+                            <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Minutes}">
-                                <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -3104,7 +3104,7 @@
                           <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TimeTextBlock}">
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Minutes}">
-                                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -3115,7 +3115,7 @@
                     <TextBlock x:Name="PART_SecondColonPrefix"
                                Margin="-6,0,-6,0"
                                VerticalAlignment="Center"
-                               Foreground="{DynamicResource MaterialDesignBody}"
+                               Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
                                Style="{StaticResource TimeTextBlock}"
                                Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0: : }}" />
 
@@ -3127,10 +3127,10 @@
                               Opacity=".12">
                         <Border.Style>
                           <Style TargetType="Border">
-                            <Setter Property="Background" Value="{DynamicResource MaterialDesignBodyLight}" />
+                            <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Seconds}">
-                                <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -3144,7 +3144,7 @@
                           <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TimeTextBlock}">
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Seconds}">
-                                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -3195,7 +3195,7 @@
                 <Ellipse x:Name="BackgroundEllipse"
                          Width="230"
                          Height="230"
-                         Fill="{DynamicResource MaterialDesignBodyLight}"
+                         Fill="{DynamicResource MaterialDesign.Brush.ForegroundLight}"
                          Opacity=".12" />
                 <Canvas x:Name="PART_HoursCanvas"
                         Width="230"
@@ -3207,10 +3207,10 @@
                         Width="3"
                         Height="96.959"
                         Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001"
-                        Fill="{DynamicResource PrimaryHueMidBrush}"
+                        Fill="{DynamicResource MaterialDesign.Brush.Primary}"
                         RenderTransformOrigin="0.5,0.985"
                         Stretch="Fill"
-                        Stroke="{DynamicResource PrimaryHueMidBrush}">
+                        Stroke="{DynamicResource MaterialDesign.Brush.Primary}">
                     <Path.RenderTransform>
                       <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockHourLineConverter}}" />
                     </Path.RenderTransform>
@@ -3231,10 +3231,10 @@
                         Width="3"
                         Height="96.959"
                         Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001"
-                        Fill="{DynamicResource PrimaryHueMidBrush}"
+                        Fill="{DynamicResource MaterialDesign.Brush.Primary}"
                         RenderTransformOrigin="0.5,0.985"
                         Stretch="Fill"
-                        Stroke="{DynamicResource PrimaryHueMidBrush}">
+                        Stroke="{DynamicResource MaterialDesign.Brush.Primary}">
                     <Path.RenderTransform>
                       <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockMinuteLineConverter}}" />
                     </Path.RenderTransform>
@@ -3255,10 +3255,10 @@
                         Width="3"
                         Height="96.959"
                         Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001"
-                        Fill="{DynamicResource PrimaryHueMidBrush}"
+                        Fill="{DynamicResource MaterialDesign.Brush.Primary}"
                         RenderTransformOrigin="0.5,0.985"
                         Stretch="Fill"
-                        Stroke="{DynamicResource PrimaryHueMidBrush}">
+                        Stroke="{DynamicResource MaterialDesign.Brush.Primary}">
                     <Path.RenderTransform>
                       <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockSecondLineConverter}}" />
                     </Path.RenderTransform>
@@ -3318,7 +3318,7 @@
   </Style>
 
   <Style x:Key="MaterialDesignClockHorizontalThemed" TargetType="{x:Type wpf:Clock}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="ButtonRadiusInnerRatio" Value=".6" />
     <Setter Property="ButtonRadiusRatio" Value=".835" />
@@ -3349,11 +3349,11 @@
           <Setter Property="Width" Value="32" />
           <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-              <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
             </Trigger>
             <Trigger Property="IsChecked" Value="True">
-              <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
-              <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+              <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
             </Trigger>
           </Style.Triggers>
         </Style>
@@ -3392,10 +3392,10 @@
           <Setter Property="Width" Value="12" />
           <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-              <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
             </Trigger>
             <Trigger Property="IsChecked" Value="True">
-              <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
             </Trigger>
           </Style.Triggers>
         </Style>
@@ -3860,7 +3860,7 @@
                       <Style x:Key="TimeTextBlock" TargetType="{x:Type TextBlock}">
                         <Setter Property="FontSize" Value="48" />
                         <Setter Property="FontWeight" Value="Normal" />
-                        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+                        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
                       </Style>
                     </StackPanel.Resources>
 
@@ -3870,10 +3870,10 @@
                       <Border x:Name="PART_HourReadOutBorder" CornerRadius="{TemplateBinding CornerRadius}">
                         <Border.Style>
                           <Style TargetType="Border">
-                            <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                            <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Hours}">
-                                <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
+                                <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -3887,7 +3887,7 @@
                           <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TimeTextBlock}">
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Hours}">
-                                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -3897,7 +3897,7 @@
 
                     <TextBlock Margin="-6,0,-6,0"
                                VerticalAlignment="Center"
-                               Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                               Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"
                                Style="{StaticResource TimeTextBlock}"
                                Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0: : }}" />
 
@@ -3907,10 +3907,10 @@
                       <Border x:Name="PART_MinuteReadOutBorder" CornerRadius="{TemplateBinding CornerRadius}">
                         <Border.Style>
                           <Style TargetType="Border">
-                            <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                            <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Minutes}">
-                                <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
+                                <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -3924,7 +3924,7 @@
                           <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TimeTextBlock}">
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Minutes}">
-                                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -3935,7 +3935,7 @@
                     <TextBlock x:Name="PART_SecondColonPrefix"
                                Margin="-6,0,-6,0"
                                VerticalAlignment="Center"
-                               Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                               Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"
                                Style="{StaticResource TimeTextBlock}"
                                Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Mode=OneWay, StringFormat={}{0: : }}" />
 
@@ -3945,10 +3945,10 @@
                       <Border x:Name="PART_SecondReadOutBorder" CornerRadius="{TemplateBinding CornerRadius}">
                         <Border.Style>
                           <Style TargetType="Border">
-                            <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                            <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Seconds}">
-                                <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
+                                <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -3962,7 +3962,7 @@
                           <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TimeTextBlock}">
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisplayMode}" Value="{x:Static wpf:ClockDisplayMode.Seconds}">
-                                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -4013,7 +4013,7 @@
                 <Ellipse x:Name="BackgroundEllipse"
                          Width="230"
                          Height="230"
-                         Fill="{DynamicResource PrimaryHueMidBrush}" />
+                         Fill="{DynamicResource MaterialDesign.Brush.Primary}" />
                 <Canvas x:Name="PART_HoursCanvas"
                         Width="230"
                         Height="230"
@@ -4024,10 +4024,10 @@
                         Width="3"
                         Height="96.959"
                         Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001"
-                        Fill="{DynamicResource SecondaryHueMidBrush}"
+                        Fill="{DynamicResource MaterialDesign.Brush.Secondary}"
                         RenderTransformOrigin="0.5,0.985"
                         Stretch="Fill"
-                        Stroke="{DynamicResource SecondaryHueMidBrush}">
+                        Stroke="{DynamicResource MaterialDesign.Brush.Secondary}">
                     <Path.RenderTransform>
                       <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockHourLineConverter}}" />
                     </Path.RenderTransform>
@@ -4048,10 +4048,10 @@
                         Width="3"
                         Height="96.959"
                         Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001"
-                        Fill="{DynamicResource SecondaryHueMidBrush}"
+                        Fill="{DynamicResource MaterialDesign.Brush.Secondary}"
                         RenderTransformOrigin="0.5,0.985"
                         Stretch="Fill"
-                        Stroke="{DynamicResource SecondaryHueMidBrush}">
+                        Stroke="{DynamicResource MaterialDesign.Brush.Secondary}">
                     <Path.RenderTransform>
                       <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockMinuteLineConverter}}" />
                     </Path.RenderTransform>
@@ -4072,10 +4072,10 @@
                         Width="3"
                         Height="96.959"
                         Data="M2.25,95.515 C2.25,96.036356 1.8582492,96.459 1.375,96.459 C0.89175084,96.459 0.5,96.036356 0.5,95.515 C0.5,94.993643 0.89175084,94.571 1.375,94.571 C1.8582492,94.571 2.25,94.993643 2.25,95.515 z M1.375,95.469003 L1.375,0.50000001"
-                        Fill="{DynamicResource SecondaryHueMidBrush}"
+                        Fill="{DynamicResource MaterialDesign.Brush.Secondary}"
                         RenderTransformOrigin="0.5,0.985"
                         Stretch="Fill"
-                        Stroke="{DynamicResource SecondaryHueMidBrush}">
+                        Stroke="{DynamicResource MaterialDesign.Brush.Secondary}">
                     <Path.RenderTransform>
                       <RotateTransform Angle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Time, Converter={StaticResource ClockSecondLineConverter}}" />
                     </Path.RenderTransform>

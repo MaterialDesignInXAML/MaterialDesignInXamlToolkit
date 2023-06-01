@@ -158,7 +158,7 @@
   </Style>
 
   <Style x:Key="MaterialDesignExpander" TargetType="{x:Type Expander}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />

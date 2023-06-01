@@ -8,10 +8,10 @@
 
 
   <Style x:Key="MaterialDesign3.NavigationDrawerListBoxItem" TargetType="{x:Type ListBoxItem}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="FontWeight" Value="Medium" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="Height" Value="56" />
     <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
     <Setter Property="Margin" Value="0" />
@@ -140,14 +140,14 @@
     <Setter Property="wpf:NavigationDrawerAssist.IconSize" Value="24" />
     <Setter Property="wpf:NavigationDrawerAssist.SelectedIcon" Value="Circle" />
     <Setter Property="wpf:NavigationDrawerAssist.UnselectedIcon" Value="CircleOutline" />
-    <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesign.Brush.Background}" />
   </Style>
 
   <Style x:Key="MaterialDesign3.NavigationDrawerPrimaryListBoxItem"
          TargetType="{x:Type ListBoxItem}"
          BasedOn="{StaticResource MaterialDesign3.NavigationDrawerListBoxItem}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
-    <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
+    <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesign.Brush.Background}" />
   </Style>
 
 </ResourceDictionary>
