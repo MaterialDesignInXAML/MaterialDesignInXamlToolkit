@@ -3,8 +3,8 @@
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
   <Style x:Key="MaterialDesignScrollBarButton" TargetType="{x:Type RepeatButton}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignSelection}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ScrollBar.RepeatButtonBackground}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ScrollBar.RepeatButtonBackground}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
     <Setter Property="Focusable" Value="false" />
@@ -98,7 +98,7 @@
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="BorderBrush" Value="Transparent" />
     <Setter Property="BorderThickness" Value="1,0" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignSelection}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.ScrollBar.Foreground}" />
     <Setter Property="MinWidth" Value="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" />
     <Setter Property="Stylus.IsFlicksEnabled" Value="false" />
     <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false" />

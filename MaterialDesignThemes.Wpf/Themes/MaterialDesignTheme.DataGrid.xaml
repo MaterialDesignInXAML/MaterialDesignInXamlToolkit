@@ -237,7 +237,7 @@
               <Setter TargetName="Border" Property="Background" Value="{DynamicResource MaterialDesignDataGridRowHoverBackground}" />
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-              <Setter TargetName="Border" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
+              <Setter TargetName="Border" Property="Background" Value="{DynamicResource MaterialDesign.Brush.DataGrid.ButtonPressed}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
               <Setter TargetName="Arrow" Property="Visibility" Value="Collapsed" />
@@ -276,7 +276,7 @@
           <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
           <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=DataGridRow}}" Value="False" />
         </MultiDataTrigger.Conditions>
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.DataGrid.Selected}" />
       </MultiDataTrigger>
       <Trigger Property="IsEnabled" Value="False">
         <Setter Property="Opacity" Value=".56" />
@@ -449,7 +449,7 @@
     </Setter>
     <Style.Triggers>
       <Trigger Property="IsSelected" Value="True">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.DataGrid.Selected}" />
       </Trigger>
       <Trigger Property="IsMouseOver" Value="True">
         <Setter Property="Background" Value="{DynamicResource MaterialDesignDataGridRowHoverBackground}" />

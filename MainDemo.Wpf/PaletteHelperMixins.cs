@@ -9,7 +9,7 @@ public static class PaletteHelperMixins
 {
     public static void ChangePrimaryColor(this PaletteHelper paletteHelper, Color color)
     {
-        ITheme theme = paletteHelper.GetTheme();
+        Theme theme = paletteHelper.GetTheme();
 
         theme.PrimaryLight = new ColorPair(color.Lighten());
         theme.PrimaryMid = new ColorPair(color);
@@ -20,7 +20,7 @@ public static class PaletteHelperMixins
 
     public static void ChangeSecondaryColor(this PaletteHelper paletteHelper, Color color)
     {
-        ITheme theme = paletteHelper.GetTheme();
+        Theme theme = paletteHelper.GetTheme();
 
         theme.SecondaryLight = new ColorPair(color.Lighten());
         theme.SecondaryMid = new ColorPair(color);

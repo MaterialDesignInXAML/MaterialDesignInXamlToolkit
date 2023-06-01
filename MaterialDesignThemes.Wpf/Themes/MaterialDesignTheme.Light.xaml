@@ -1,50 +1,45 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
+                    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+                    xmlns:colors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors">
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="./Internal/MaterialDesignTheme.BaseThemeColors.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+  <colors:StaticResource x:Key="MaterialDesign.Brush.Background" ResourceKey="Neutral900" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.Button.FlatClick" ResourceKey="Neutral800" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.Button.Ripple" ResourceKey="Neutral700" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.Button.FlatRipple" ResourceKey="Neutral700" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.SnackBar.Ripple" ResourceKey="Neutral700" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.Card.Background" ResourceKey="White1000" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.CheckBox.Disabled" ResourceKey="Neutral700" />
+  <SolidColorBrush x:Key="MaterialDesign.Brush.Chip.Background" Color="#12000000" po:Freeze="True" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.ButtonPressed" ResourceKey="Neutral800" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.ComboBoxSelected" ResourceKey="Neutral800" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.RowHoverBackground" ResourceKey="Black50" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.Selected" ResourceKey="Neutral800" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.Foreground" ResourceKey="Black900" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ForegroundLight" ResourceKey="Black500" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.CheckBox.Off" ResourceKey="Black500" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.Border" ResourceKey="Black500" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.GridSplitter.Background" ResourceKey="Neutral800" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.Header.Foreground" ResourceKey="Black700" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.ColumnHeaderForeground" ResourceKey="Black700" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.OutlineBorder" ResourceKey="Black700" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.Ignored" ResourceKey="Neutral800" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ListView.Selected" ResourceKey="Neutral800" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ScrollBar.Foreground" ResourceKey="Neutral800" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ScrollBar.RepeatButtonBackground" ResourceKey="Neutral800" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.Separator.Background" ResourceKey="Neutral800" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.SnackBar.Background" ResourceKey="Neutral100" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.SnackBar.MouseOver" ResourceKey="Neutral200" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.DisabledBackground" ResourceKey="Black50" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.FilledBackground" ResourceKey="Black50" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.HoverBackground" ResourceKey="Black100" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.OutlineInactiveBorder" ResourceKey="Black200" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ToolBar.Background" ResourceKey="Neutral900" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ToolBar.Item.Background" ResourceKey="Neutral800" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ToolBar.Item.Foreground" ResourceKey="Neutral300" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ToolTip.Background" ResourceKey="Neutral400" />
+  <SolidColorBrush x:Key="MaterialDesign.Brush.ValidationError" Color="#FFB00020" po:Freeze="True" />
 
-  <Color x:Key="MaterialDesignValidationErrorColor">#B00020</Color>
-  <SolidColorBrush x:Key="MaterialDesignValidationErrorBrush" Color="{StaticResource MaterialDesignValidationErrorColor}" po:Freeze="True" />
-
-  <SolidColorBrush x:Key="MaterialDesignBackground" Color="#FFFFFFFF" po:Freeze="True" />
-  <SolidColorBrush x:Key="MaterialDesignPaper" Color="#FFfafafa" po:Freeze="True" />
-  <SolidColorBrush x:Key="MaterialDesignCardBackground" Color="#FFFFFFFF" po:Freeze="True" />
-  <SolidColorBrush x:Key="MaterialDesignToolBarBackground" Color="#FFF5F5F5" po:Freeze="True" />
-  <SolidColorBrush x:Key="MaterialDesignBody" Color="#DD000000" po:Freeze="True" />
-  <SolidColorBrush x:Key="MaterialDesignBodyLight" Color="#89000000" po:Freeze="True" />
-  <SolidColorBrush x:Key="MaterialDesignColumnHeader" Color="#BC000000" po:Freeze="True" />
-  <!-- 74% -->
-
-  <SolidColorBrush x:Key="MaterialDesignCheckBoxOff" Color="#89000000" po:Freeze="True" />
-  <SolidColorBrush x:Key="MaterialDesignCheckBoxDisabled" Color="#FFBDBDBD" po:Freeze="True" />
-
-  <SolidColorBrush x:Key="MaterialDesignTextBoxBorder" Color="#89000000" po:Freeze="True" />
-  <SolidColorBrush x:Key="MaterialDesignDivider" Color="#1F000000" po:Freeze="True" />
-  <!-- 12% -->
-  <SolidColorBrush x:Key="MaterialDesignSelection" Color="#FFDeDeDe" po:Freeze="True" />
-
-  <SolidColorBrush x:Key="MaterialDesignToolForeground" Color="#616161" po:Freeze="true" />
-  <SolidColorBrush x:Key="MaterialDesignToolBackground" Color="#e0e0e0" po:Freeze="true" />
-
-  <SolidColorBrush x:Key="MaterialDesignFlatButtonClick" Color="#FFDeDeDe" po:Freeze="True" />
-  <SolidColorBrush x:Key="MaterialDesignFlatButtonRipple" Color="#FFB6B6B6" po:Freeze="True" />
-
-  <SolidColorBrush x:Key="MaterialDesignToolTipBackground" Color="#757575" po:Freeze="True" />
-  <SolidColorBrush x:Key="MaterialDesignChipBackground" Color="#12000000" po:Freeze="True" />
-  <SolidColorBrush x:Key="MaterialDesignSnackbarBackground" Color="#FF323232" po:Freeze="True" />
-  <SolidColorBrush x:Key="MaterialDesignSnackbarMouseOver" Color="#FF464642" po:Freeze="True" />
-  <SolidColorBrush x:Key="MaterialDesignSnackbarRipple" Color="#FFB6B6B6" po:Freeze="True" />
-
-  <SolidColorBrush x:Key="MaterialDesignTextFieldBoxBackground" Color="#0F000000" po:Freeze="True" />
-  <!-- 6% black -->
-  <SolidColorBrush x:Key="MaterialDesignTextFieldBoxHoverBackground" Color="#14000000" po:Freeze="True" />
-  <!-- 8% black -->
-  <SolidColorBrush x:Key="MaterialDesignTextFieldBoxDisabledBackground" Color="#08000000" po:Freeze="True" />
-  <!-- 3% black -->
-  <SolidColorBrush x:Key="MaterialDesignTextAreaBorder" Color="#BC000000" po:Freeze="True" />
-  <!-- 74% black -->
-  <SolidColorBrush x:Key="MaterialDesignTextAreaInactiveBorder" Color="#29000000" po:Freeze="True" />
-  <!-- 41% black (= 74% * 56%) -->
-
-  <SolidColorBrush x:Key="MaterialDesignDataGridRowHoverBackground" Color="#0A000000" po:Freeze="True" />
-  <!-- 4% black -->
 </ResourceDictionary>

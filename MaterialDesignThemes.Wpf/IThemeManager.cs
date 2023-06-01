@@ -1,7 +1,6 @@
-﻿namespace MaterialDesignThemes.Wpf
+﻿namespace MaterialDesignThemes.Wpf;
+
+public interface IThemeManager
 {
-    public interface IThemeManager
-    {
-        event EventHandler<ThemeChangedEventArgs>? ThemeChanged;
-    }
+    event EventHandler<ThemeChangedEventArgs>? ThemeChanged;
 }

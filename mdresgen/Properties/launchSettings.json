@@ -1,5 +1,9 @@
 {
     "profiles": {
+        "Generate theming": {
+            "commandName": "Project",
+            "commandLineArgs": "theming"
+        },
         "Generate icons": {
             "commandName": "Project",
             "commandLineArgs": "icons"
@@ -7,6 +11,10 @@
         "Generate swatches": {
             "commandName": "Project",
             "commandLineArgs": "all-swatches"
+        },
+        "Generate brushes": {
+            "commandName": "Project",
+            "commandLineArgs": "brushes"
         },
         "Diff icons": {
             "commandName": "Project",

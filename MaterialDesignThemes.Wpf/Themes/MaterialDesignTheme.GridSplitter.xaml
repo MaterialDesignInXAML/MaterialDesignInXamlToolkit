@@ -4,7 +4,7 @@
     <Setter Property="Control.Template">
       <Setter.Value>
         <ControlTemplate>
-          <Rectangle Fill="{DynamicResource MaterialDesignSelection}" />
+          <Rectangle Fill="{DynamicResource MaterialDesign.Brush.GridSplitter.Background}" />
         </ControlTemplate>
       </Setter.Value>
     </Setter>

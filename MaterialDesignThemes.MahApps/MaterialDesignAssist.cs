@@ -2,18 +2,19 @@
 using System.Windows.Media.Animation;
 using ControlzEx.Theming;
 using MaterialDesignThemes.Wpf;
-using Theme = ControlzEx.Theming.Theme;
+using ControlzExTheme = ControlzEx.Theming.Theme;
+using Theme = MaterialDesignThemes.Wpf.Theme;
 
 namespace MaterialDesignThemes.MahApps;
 
 public static class MaterialDesignAssist
 {
-    public static void SetMahApps(this ResourceDictionary resourceDictionary, ITheme theme, BaseTheme baseTheme)
+    public static void SetMahApps(this ResourceDictionary resourceDictionary, Theme theme, BaseTheme baseTheme)
     {
         resourceDictionary.SetMahAppsBaseTheme(baseTheme);
 
-        resourceDictionary.SetBrush(Theme.ThemeShowcaseBrushKey, new SolidColorBrush(theme.SecondaryMid.Color));
-        resourceDictionary.SetColor(Theme.ThemePrimaryAccentColorKey, theme.SecondaryMid.Color);
+        resourceDictionary.SetBrush(ControlzExTheme.ThemeShowcaseBrushKey, new SolidColorBrush(theme.SecondaryMid.Color));
+        resourceDictionary.SetColor(ControlzExTheme.ThemePrimaryAccentColorKey, theme.SecondaryMid.Color);
 
         resourceDictionary.SetColor("MahApps.Colors.HighlightLight", theme.PrimaryLight.Color);
         resourceDictionary.SetColor("MahApps.Colors.Highlight", theme.PrimaryMid.Color);
@@ -68,7 +69,7 @@ public static class MaterialDesignAssist
         resourceDictionary.SetBrush("MahApps.Brushes.Gray.MouseOver", (Color)resourceDictionary["MahApps.Colors.Gray.MouseOver"]);
         resourceDictionary.SetBrush("MahApps.Brushes.Gray.SemiTransparent", (Color)resourceDictionary["MahApps.Colors.Gray.SemiTransparent"]);
 
-        resourceDictionary.SetBrush("MahApps.Brushes.TextBox.Border", theme.TextBoxBorder);
+        resourceDictionary.SetBrush("MahApps.Brushes.TextBox.Border", theme.TextBoxes.Border);
         resourceDictionary.SetBrush("MahApps.Brushes.TextBox.Border.Focus", (Color)resourceDictionary["MahApps.Colors.ThemeForeground"]);
         resourceDictionary.SetBrush("MahApps.Brushes.TextBox.Border.MouseOver", theme.PrimaryMid.Color);
 

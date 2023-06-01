@@ -1,8 +1,10 @@
-﻿using System.Windows.Media;
+﻿using System.Diagnostics;
+using System.Windows.Media;
 using MaterialDesignColors.ColorManipulation;
 
 namespace MaterialDesignColors;
 
+[DebuggerDisplay($"Color: {{{nameof(Color)}}}; Foreground: {{{nameof(ForegroundColor)}}}")]
 public struct ColorPair
 {
     public Color Color { get; set; }

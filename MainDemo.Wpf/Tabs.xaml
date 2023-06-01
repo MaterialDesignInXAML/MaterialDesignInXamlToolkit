@@ -605,7 +605,7 @@
             <DataTemplate DataType="domain:CustomTab">
               <TextBlock Margin="10"
                          FontSize="18"
-                         Text="{Binding CustomContent, Mode=OneTime}" />
+                         Text="{Binding CustomContent}" />
             </DataTemplate>
           </TabControl.ContentTemplate>
         </TabControl>

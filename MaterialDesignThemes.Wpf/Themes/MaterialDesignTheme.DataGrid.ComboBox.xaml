@@ -58,14 +58,14 @@
                 <Condition Property="IsMouseOver" Value="False" />
                 <Condition Property="IsKeyboardFocused" Value="True" />
               </MultiTrigger.Conditions>
-              <Setter TargetName="Bd" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
+              <Setter TargetName="Bd" Property="Background" Value="{DynamicResource MaterialDesign.Brush.DataGrid.ComboBoxSelected}" />
             </MultiTrigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="IsSelected" Value="True" />
                 <Condition Property="IsMouseOver" Value="True" />
               </MultiTrigger.Conditions>
-              <Setter TargetName="Bd" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
+              <Setter TargetName="Bd" Property="Background" Value="{DynamicResource MaterialDesign.Brush.DataGrid.ComboBoxSelected}" />
             </MultiTrigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
@@ -73,7 +73,7 @@
                 <Condition Property="IsMouseOver" Value="False" />
                 <Condition Property="IsKeyboardFocused" Value="False" />
               </MultiTrigger.Conditions>
-              <Setter TargetName="Bd" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
+              <Setter TargetName="Bd" Property="Background" Value="{DynamicResource MaterialDesign.Brush.DataGrid.ComboBoxSelected}" />
             </MultiTrigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>

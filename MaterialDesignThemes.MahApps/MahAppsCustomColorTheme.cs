@@ -2,7 +2,8 @@
 using ControlzEx.Theming;
 using MaterialDesignColors.ColorManipulation;
 using MaterialDesignThemes.Wpf;
-using Theme = ControlzEx.Theming.Theme;
+using ControlzExTheme = ControlzEx.Theming.Theme;
+using Theme = MaterialDesignThemes.Wpf.Theme;
 
 namespace MaterialDesignThemes.MahApps;
 
@@ -10,7 +11,7 @@ public class MahAppsCustomColorTheme : CustomColorTheme
 {
     private static Guid GeneratedKey { get; } = Guid.NewGuid();
 
-    protected override void ApplyTheme(ITheme theme)
+    protected override void ApplyTheme(Theme theme)
     {
         base.ApplyTheme(theme);
         if (TryGetResourceDictionaries(theme, out ResourceDictionary? light, out ResourceDictionary? dark))
@@ -32,7 +33,7 @@ public class MahAppsCustomColorTheme : CustomColorTheme
         }
     }
 
-    private bool TryGetResourceDictionaries(ITheme theme, out ResourceDictionary? light, out ResourceDictionary? dark)
+    private bool TryGetResourceDictionaries(Theme theme, out ResourceDictionary? light, out ResourceDictionary? dark)
     {
         if (PrimaryColor is Color primaryColor &&
             SecondaryColor is Color secondaryColor &&
@@ -49,7 +50,7 @@ public class MahAppsCustomColorTheme : CustomColorTheme
             return false;
         }
 
-        static ResourceDictionary GetResourceDictionary(ITheme theme, Color primaryColor, Color secondaryColor, BaseTheme baseTheme)
+        static ResourceDictionary GetResourceDictionary(Theme theme, Color primaryColor, Color secondaryColor, BaseTheme baseTheme)
         {
             string baseColorScheme = baseTheme.GetMahAppsBaseColorScheme();
             string colorScheme = $"MaterialDesign.{primaryColor}.{secondaryColor}";
@@ -68,12 +69,12 @@ public class MahAppsCustomColorTheme : CustomColorTheme
             };
             rv.SetMahApps(theme, baseTheme);
 
-            rv[Theme.ThemeNameKey] = $"MaterialDesign.{primaryColor}.{secondaryColor}.{baseColorScheme}";
-            rv[Theme.ThemeDisplayNameKey] = $"Material Design {primaryColor} with {secondaryColor}";
-            rv[Theme.ThemeColorSchemeKey] = colorScheme;
-            rv[Theme.ThemeBaseColorSchemeKey] = baseColorScheme;
-            var themeInstance = new Theme(new LibraryTheme(rv, null));
-            rv[Theme.ThemeInstanceKey] = themeInstance;
+            rv[ControlzExTheme.ThemeNameKey] = $"MaterialDesign.{primaryColor}.{secondaryColor}.{baseColorScheme}";
+            rv[ControlzExTheme.ThemeDisplayNameKey] = $"Material Design {primaryColor} with {secondaryColor}";
+            rv[ControlzExTheme.ThemeColorSchemeKey] = colorScheme;
+            rv[ControlzExTheme.ThemeBaseColorSchemeKey] = baseColorScheme;
+            var themeInstance = new ControlzExTheme(new LibraryTheme(rv, null));
+            rv[ControlzExTheme.ThemeInstanceKey] = themeInstance;
             ThemeManager.Current.AddTheme(themeInstance);
 
             return rv;
@@ -84,7 +85,7 @@ public class MahAppsCustomColorTheme : CustomColorTheme
     {
         ResourceDictionary resourceDictionary = e.ResourceDictionary;
 
-        ITheme newTheme = e.NewTheme;
+        Theme newTheme = e.NewTheme;
 
         BaseTheme baseTheme = newTheme.Background.IsLightColor()
             ? Wpf.BaseTheme.Light

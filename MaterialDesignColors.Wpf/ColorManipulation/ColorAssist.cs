@@ -29,9 +29,6 @@ public static class ColorAssist
             => colorValue <= 0.03928f ? colorValue / 12.92f : (float)Math.Pow((colorValue + 0.055f) / 1.055f, 2.4);
     }
 
-    [Obsolete("Use RelativeLuminance instead")]
-    public static float RelativeLuninance(this Color color) => RelativeLuminance(color);
-
     /// <summary>
     /// The contrast ratio is calculated as (L1 + 0.05) / (L2 + 0.05), where
     /// L1 is the: relative luminance of the lighter of the colors, and
@@ -80,10 +77,10 @@ public static class ColorAssist
         float ratio = foreground.ContrastRatio(background);
         if (ratio > targetRatio) return foreground;
 
-        var contrastWithWhite = background.ContrastRatio(Colors.White);
-        var contrastWithBlack = background.ContrastRatio(Colors.Black);
+        float contrastWithWhite = background.ContrastRatio(Colors.White);
+        float contrastWithBlack = background.ContrastRatio(Colors.Black);
 
-        var shouldDarken = contrastWithBlack > contrastWithWhite;
+        bool shouldDarken = contrastWithBlack > contrastWithWhite;
 
         //Lighten is negative
         Color finalColor = foreground;
@@ -102,9 +99,9 @@ public static class ColorAssist
                     {
                         adjust /= -2;
                     }
-                    else if (adjust == null)
+                    else
                     {
-                        adjust = 1.0f;
+                        adjust ??= 1.0f;
                     }
                 }
                 else
@@ -113,9 +110,9 @@ public static class ColorAssist
                     {
                         adjust /= -2;
                     }
-                    else if (adjust == null)
+                    else
                     {
-                        adjust = -1.0f;
+                        adjust ??= -1.0f;
                     }
                 }
             }
@@ -128,11 +125,10 @@ public static class ColorAssist
                     {
                         adjust /= -2;
                     }
-                    else if (adjust == null)
+                    else
                     {
-                        adjust = -1.0f;
+                        adjust ??= -1.0f;
                     }
-
                 }
                 else
                 {
@@ -140,9 +136,9 @@ public static class ColorAssist
                     {
                         adjust /= -2;
                     }
-                    else if (adjust == null)
+                    else
                     {
-                        adjust = 1.0f;
+                        adjust ??= 1.0f;
                     }
                 }
             }
@@ -161,22 +157,23 @@ public static class ColorAssist
 
     public static bool IsLightColor(this Color color)
     {
-        double rgb_srgb(double d)
+        static double rgb_srgb(double d)
         {
             d /= 255.0;
             return (d > 0.03928)
                 ? Math.Pow((d + 0.055) / 1.055, 2.4)
                 : d / 12.92;
         }
-        var r = rgb_srgb(color.R);
-        var g = rgb_srgb(color.G);
-        var b = rgb_srgb(color.B);
+        double r = rgb_srgb(color.R);
+        double g = rgb_srgb(color.G);
+        double b = rgb_srgb(color.B);
 
-        var luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+        double luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
         return luminance > 0.179;
     }
 
-    public static bool IsDarkColor(this Color color) => !IsLightColor(color);
+    public static bool IsDarkColor(this Color color)
+        => !IsLightColor(color);
 
     public static Color ShiftLightness(this Color color, double amount = 1.0f)
     {
@@ -192,7 +189,9 @@ public static class ColorAssist
         return shifted.ToColor();
     }
 
-    public static Color Darken(this Color color, int amount = 1) => color.ShiftLightness(amount);
+    public static Color Darken(this Color color, int amount = 1)
+        => color.ShiftLightness(amount);
 
-    public static Color Lighten(this Color color, int amount = 1) => color.ShiftLightness(-amount);
+    public static Color Lighten(this Color color, int amount = 1)
+        => color.ShiftLightness(-amount);
 }

@@ -99,7 +99,7 @@ namespace MaterialDesign3Demo
             var paletteHelper = new PaletteHelper();
             var theme = paletteHelper.GetTheme();
 
-            theme.SetBaseTheme(isDarkTheme ? Theme.Dark : Theme.Light);
+            theme.SetBaseTheme(isDarkTheme ? BaseTheme.Dark : BaseTheme.Light);
             paletteHelper.SetTheme(theme);
         }
 

@@ -20,13 +20,13 @@ internal static class LabConverter
                 return (v * LabConstants.k + 16) / 116;
         }
 
-        var fx = xyz_lab(xyz.X / LabConstants.WhitePointX);
-        var fy = xyz_lab(xyz.Y / LabConstants.WhitePointY);
-        var fz = xyz_lab(xyz.Z / LabConstants.WhitePointZ);
+        double fx = xyz_lab(xyz.X / LabConstants.WhitePointX);
+        double fy = xyz_lab(xyz.Y / LabConstants.WhitePointY);
+        double fz = xyz_lab(xyz.Z / LabConstants.WhitePointZ);
 
-        var l = 116 * fy - 16;
-        var a = 500 * (fx - fy);
-        var b = 200 * (fy - fz);
+        double l = 116 * fy - 16;
+        double a = 500 * (fx - fy);
+        double b = 200 * (fy - fz);
         return new Lab(l, a, b);
     }
 

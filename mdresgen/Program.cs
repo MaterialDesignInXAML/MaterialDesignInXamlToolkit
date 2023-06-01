@@ -1,6 +1,5 @@
 using System.Drawing;
 using System.Xml.Linq;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace mdresgen;
@@ -8,7 +7,7 @@ namespace mdresgen;
 public class Program
 {
     private const string BaseSnippetLocation = "MaterialColourSwatchesSnippet.xml";
-    private const string MdPaletteJsonLocation = "MdPaletteJson.json";
+    private const string PaletteJsonLocation = "Palette.json";
 
     // Legacy
     private const string OldXamlFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.xaml";
@@ -38,12 +37,24 @@ public class Program
 
     static async Task Main(string[] args)
     {
-        
         if (args.Length == 0)
             GenerateXaml(GetXmlRoot());
+        if (args.Contains("theming"))
+        {
+            var palette = System.Text.Json.JsonSerializer.Deserialize<MdPalette>(File.OpenRead(PaletteJsonLocation))!;
+            GenerateClasses(palette);
+
+            var xmlRoot = GetXmlRoot();
+            GenerateXaml(xmlRoot);
+            GenerateXaml(xmlRoot, true);
+            GenerateOldXaml(xmlRoot);
+            GenerateOldXaml(xmlRoot, true);
+
+            await Brushes.GenerateBrushesAsync();
+        }
         if (args.Contains("class-swatches"))
         {
-            var palette = JsonConvert.DeserializeObject<MdPalette>(File.ReadAllText(MdPaletteJsonLocation))!;
+            var palette = System.Text.Json.JsonSerializer.Deserialize<MdPalette>(File.OpenRead(PaletteJsonLocation))!;
             GenerateClasses(palette);
         }
         if (args.Contains("all-swatches"))
@@ -66,6 +77,8 @@ public class Program
             await IconThing.RunAsync();
         if (args.Contains("icon-diff"))
             await IconDiff.RunAsync();
+        if (args.Contains("brushes"))
+            await Brushes.GenerateBrushesAsync();
         
         Console.WriteLine();
         Console.WriteLine();
@@ -75,14 +88,14 @@ public class Program
         {
             var xDocument = XDocument.Load(BaseSnippetLocation);
             return xDocument.Root ??
-                          throw new InvalidDataException("The input document does not contain a root");
+                throw new InvalidDataException("The input document does not contain a root");
         }
     }
 
 
     private static void GenerateClasses(MdPalette palettes)
     {
-        foreach (var palette in palettes.palettes ?? Enumerable.Empty<MdPalette.Palette>())
+        foreach (var palette in palettes.palettes ?? Enumerable.Empty<Palette>())
         {
             var sb = new StringBuilder();
 

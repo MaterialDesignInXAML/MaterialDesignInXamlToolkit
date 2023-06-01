@@ -36,8 +36,8 @@
   </ContextMenu>
 
   <Style x:Key="MaterialDesignSeparator" TargetType="{x:Type Separator}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignSelection}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Separator.Background}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Separator.Background}" />
     <Setter Property="Height" Value="16" />
     <Setter Property="MinHeight" Value="1" />
     <Setter Property="SnapsToDevicePixels" Value="true" />

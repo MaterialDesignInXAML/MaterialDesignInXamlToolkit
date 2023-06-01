@@ -1,18 +1,6 @@
 ﻿namespace MaterialDesignColors.ColorManipulation;
 
-internal struct Lab
-{
-    public double L { get; }
-    public double A { get; }
-    public double B { get; }
-
-    public Lab(double l, double a, double b)
-    {
-        L = l;
-        A = a;
-        B = b;
-    }
-}
+internal record struct Lab(double L, double A, double B);
 
 internal class LabConstants
 {
