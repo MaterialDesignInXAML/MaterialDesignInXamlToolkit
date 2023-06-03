@@ -15,6 +15,8 @@ public partial class ThemeTests : TestBase
     {
         IVisualElement<WrapPanel> panel = await Initialize("""
             <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+            <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+            <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
             """);
 
         await AssertAllThemeBrushesSet(panel);
@@ -25,6 +27,8 @@ public partial class ThemeTests : TestBase
     {
         IVisualElement<WrapPanel> panel = await Initialize("""
             <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
+            <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+            <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
             """);
 
         await AssertAllThemeBrushesSet(panel);
