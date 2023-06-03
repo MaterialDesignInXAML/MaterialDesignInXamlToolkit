@@ -15,7 +15,7 @@ public class RaisedButtonTests : TestBase
 
         //Arrange
         IVisualElement<Button> button = await LoadXaml<Button>(@"<Button Content=""Button"" />");
-        Color midColor = await GetThemeColor("PrimaryHueMidBrush");
+        Color midColor = await GetThemeColor("MaterialDesign.Brush.Primary");
 
         //Act
         Color? color = await button.GetBackgroundColor();
