@@ -205,7 +205,7 @@
                   IsHitTestVisible="False"
                   Visibility="{Binding ElementName=ContentCoverBorder, Path=Visibility}">
               <Grid.OpacityMask>
-                <VisualBrush Visual="{Binding ElementName=ContentCoverBorder}" />
+                <VisualBrush Visual="{x:Reference ContentCoverBorder}" />
               </Grid.OpacityMask>
               <Border x:Name="ContentCoverBorder"
                       Background="{Binding OverlayBackground, RelativeSource={RelativeSource TemplatedParent}}"
@@ -380,7 +380,7 @@
                   IsHitTestVisible="False"
                   Visibility="{Binding ElementName=ContentCoverBorder, Path=Visibility}">
               <Grid.OpacityMask>
-                <VisualBrush Visual="{Binding ElementName=ContentCoverBorder}" />
+                <VisualBrush Visual="{x:Reference ContentCoverBorder}" />
               </Grid.OpacityMask>
               <Border x:Name="ContentCoverBorder"
                       Background="{Binding OverlayBackground, RelativeSource={RelativeSource TemplatedParent}}"
