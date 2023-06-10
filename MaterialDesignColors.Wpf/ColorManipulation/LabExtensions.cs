@@ -2,7 +2,7 @@
 
 namespace MaterialDesignColors.ColorManipulation;
 
-internal static class LabConverter
+internal static class LabExtensions
 {
     public static Lab ToLab(this Color c)
     {
