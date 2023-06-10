@@ -59,8 +59,8 @@ public static partial class Brushes
             writer.WriteLine($"""
                 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                                    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
-                                    xmlns:colors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors">
+                                    xmlns:colors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
+                                    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
                   <ResourceDictionary.MergedDictionaries>
                     <ResourceDictionary Source="./Internal/MaterialDesignTheme.BaseThemeColors.xaml" />
                   </ResourceDictionary.MergedDictionaries>
