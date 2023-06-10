@@ -2,7 +2,7 @@
 
 namespace MaterialDesignColors.ColorManipulation;
 
-internal static class HslConverter
+internal static class HslExtensions
 {
     public static Color ToColor(this Hsl hsl)
     {

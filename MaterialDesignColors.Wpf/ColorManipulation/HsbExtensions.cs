@@ -2,7 +2,7 @@
 
 namespace MaterialDesignColors.ColorManipulation;
 
-public static class HsbConverter
+public static class HsbExtensions
 {
     public static Color ToColor(this Hsb hsv)
     {
@@ -44,9 +44,9 @@ public static class HsbConverter
         double g = color.G;
         double b = color.B;
 
-        r = r / 255;
-        g = g / 255;
-        b = b / 255;
+        r /= 255;
+        g /= 255;
+        b /= 255;
 
         double[] rgb = new[] { r, g, b };
         double max = rgb.Max();

@@ -2,7 +2,7 @@
 
 namespace MaterialDesignColors.ColorManipulation;
 
-internal static class XyzConverter
+internal static class XyzExtensions
 {
     public static Color ToColor(this Xyz xyz)
     {
