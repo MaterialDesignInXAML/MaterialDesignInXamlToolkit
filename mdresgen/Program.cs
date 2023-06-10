@@ -95,18 +95,18 @@ public class Program
 
     private static void GenerateClasses(MdPalette palettes)
     {
-        foreach (var palette in palettes.palettes ?? Enumerable.Empty<Palette>())
+        foreach (var palette in palettes.Palettes ?? Enumerable.Empty<Palette>())
         {
             var sb = new StringBuilder();
 
             var colors = new StringBuilder();
             var hueNames = new StringBuilder();
-            var shortName = palette.name?.Replace(" ", "");
+            var shortName = palette.Name?.Replace(" ", "");
 
-            for (var i = 0; i < palette.hexes?.Length; i++)
+            for (var i = 0; i < palette.Hexes?.Length; i++)
             {
-                var colorName = shortName + palettes.shades?[i];
-                colors.AppendLine($"\t\tpublic static Color {colorName} {{ get; }} = (Color)ColorConverter.ConvertFromString(\"{palette.hexes[i]}\");");
+                var colorName = shortName + palettes.Shades?[i];
+                colors.AppendLine($"\t\tpublic static Color {colorName} {{ get; }} = (Color)ColorConverter.ConvertFromString(\"{palette.Hexes[i]}\");");
                 hueNames.AppendLine($"\t\t\t{{ MaterialDesignColor.{colorName}, {colorName} }},");
             }
 
@@ -120,7 +120,7 @@ public class Program
             sb.AppendLine("\t{");
             sb.Append(colors.ToString());
             sb.AppendLine();
-            sb.AppendLine($"\t\tpublic string Name {{ get; }} = \"{palette.name}\";");
+            sb.AppendLine($"\t\tpublic string Name {{ get; }} = \"{palette.Name}\";");
             sb.AppendLine();
             sb.AppendLine("\t\tpublic IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>");
             sb.AppendLine("\t\t{");
