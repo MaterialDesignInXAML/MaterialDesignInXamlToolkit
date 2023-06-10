@@ -813,7 +813,7 @@
 
   <Style x:Key="MaterialDesignFilterChipAccentOutlineListBox"
          TargetType="{x:Type ListBox}"
-         BasedOn="{StaticResource MaterialDesignFilterChipSecondaryOutlineListBox}"/>
+         BasedOn="{StaticResource MaterialDesignFilterChipSecondaryOutlineListBox}" />
 
   <!--#endregion-->
 
@@ -897,7 +897,7 @@
   <!-- Obsolete -->
   <Style x:Key="MaterialDesignChoiceChipAccentListBoxItem"
          TargetType="{x:Type ListBoxItem}"
-         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryListBoxItem}"/>
+         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryListBoxItem}" />
 
   <Style x:Key="MaterialDesignChoiceChipSecondaryListBox"
          TargetType="{x:Type ListBox}"
@@ -908,7 +908,7 @@
   <!-- Obsolete -->
   <Style x:Key="MaterialDesignChoiceChipAccentListBox"
          TargetType="{x:Type ListBox}"
-         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryListBox}"/>
+         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryListBox}" />
 
   <Style x:Key="MaterialDesignChoiceChipOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
     <Setter Property="Template">
@@ -988,7 +988,7 @@
   <!-- Obsolete -->
   <Style x:Key="MaterialDesignChoiceChipAccentOutlineListBoxItem"
          TargetType="{x:Type ListBoxItem}"
-         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryOutlineListBoxItem}"/>
+         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryOutlineListBoxItem}" />
 
   <Style x:Key="MaterialDesignChoiceChipSecondaryOutlineListBox"
          TargetType="{x:Type ListBox}"

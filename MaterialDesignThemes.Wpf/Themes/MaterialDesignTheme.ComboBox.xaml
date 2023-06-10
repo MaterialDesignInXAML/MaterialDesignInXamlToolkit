@@ -27,8 +27,12 @@
   <converters:ComboBoxClearButtonMarginConverter x:Key="ComboBoxClearButtonMarginConverter" />
   <converters:DoubleToThicknessConverter x:Key="DoubleToThicknessConverter" />
   <converters:ThicknessCloneConverter x:Key="HelperTextMarginConverter" CloneEdges="Left" />
-  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconPaddingConverterTop" CloneEdges="All" AdditionalOffsetTop="2" />
-  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconPaddingConverterBottom" CloneEdges="All" AdditionalOffsetBottom="4" />
+  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconPaddingConverterTop"
+                                      AdditionalOffsetTop="2"
+                                      CloneEdges="All" />
+  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconPaddingConverterBottom"
+                                      AdditionalOffsetBottom="4"
+                                      CloneEdges="All" />
   <wpf:VerticalAlignmentConverter x:Key="VerticalAlignmentConverter" />
   <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
 
@@ -54,8 +58,7 @@
   </Style>
 
   <ControlTemplate x:Key="PopupContentClassicTemplate" TargetType="ContentControl">
-    <Grid MinWidth="{Binding Path=ContentMinWidth, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}"
-          Margin="{Binding Path=ContentMargin, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}">
+    <Grid MinWidth="{Binding Path=ContentMinWidth, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}" Margin="{Binding Path=ContentMargin, RelativeSource={RelativeSource AncestorType=wpf:ComboBoxPopup}}">
       <Grid.RowDefinitions>
         <RowDefinition Height="*" />
       </Grid.RowDefinitions>
@@ -349,7 +352,7 @@
                            IsHitTestVisible="False"
                            Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                            Text="{TemplateBinding wpf:TextFieldAssist.PrefixText}"
-                           Visibility="{TemplateBinding wpf:TextFieldAssist.PrefixText, Converter={StaticResource NullableToVisibilityConverter}}"/>
+                           Visibility="{TemplateBinding wpf:TextFieldAssist.PrefixText, Converter={StaticResource NullableToVisibilityConverter}}" />
 
                 <ContentPresenter x:Name="contentPresenter"
                                   Grid.Column="1"
@@ -372,6 +375,7 @@
 
                 <wpf:SmartHint x:Name="Hint"
                                Grid.Column="1"
+                               HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                FloatingOffset="{TemplateBinding wpf:HintAssist.FloatingOffset}"
                                FloatingScale="{TemplateBinding wpf:HintAssist.FloatingScale}"
                                FontFamily="{TemplateBinding wpf:HintAssist.FontFamily}"
@@ -380,8 +384,7 @@
                                HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                UseFloating="{TemplateBinding wpf:HintAssist.IsFloating}"
-                               UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                               HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}">
+                               UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
                   <wpf:SmartHint.Hint>
                     <Border x:Name="HintBackgroundBorder"
                             Background="{TemplateBinding wpf:HintAssist.Background}"
@@ -409,13 +412,16 @@
                        CornerRadius="{TemplateBinding wpf:TextFieldAssist.UnderlineCornerRadius}"
                        IsActive="{Binding ElementName=PART_EditableTextBox, Path=IsKeyboardFocused}"
                        Visibility="{TemplateBinding wpf:TextFieldAssist.DecorationVisibility}" />
-        <Canvas x:Name="HelperTextWrapper" VerticalAlignment="Bottom" Margin="{TemplateBinding Padding, Converter={StaticResource HelperTextMarginConverter}}">
-          <TextBlock x:Name="HelperTextTextBlock" Canvas.Top="2"
+        <Canvas x:Name="HelperTextWrapper"
+                Margin="{TemplateBinding Padding, Converter={StaticResource HelperTextMarginConverter}}"
+                VerticalAlignment="Bottom">
+          <TextBlock x:Name="HelperTextTextBlock"
+                     Canvas.Top="2"
                      MaxWidth="{Binding ActualWidth, ElementName=toggleButton}"
                      FontSize="{TemplateBinding wpf:HintAssist.HelperTextFontSize}"
                      Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                     Text="{TemplateBinding wpf:HintAssist.HelperText}"
-                     Style="{Binding Path=(wpf:HintAssist.HelperTextStyle), RelativeSource={RelativeSource TemplatedParent}}"/>
+                     Style="{Binding Path=(wpf:HintAssist.HelperTextStyle), RelativeSource={RelativeSource TemplatedParent}}"
+                     Text="{TemplateBinding wpf:HintAssist.HelperText}" />
         </Canvas>
         <wpf:ComboBoxPopup x:Name="PART_Popup"
                            Grid.Column="0"
@@ -424,6 +430,7 @@
                            ClassicContentTemplate="{StaticResource PopupContentClassicTemplate}"
                            ContentMargin="6,0,6,6"
                            ContentMinWidth="{Binding Path=ActualWidth, ElementName=templateRoot}"
+                           CustomPopupPlacementCallbackOverride="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ComboBoxAssist.CustomPopupPlacementCallback)}"
                            DefaultVerticalOffset="-1"
                            DownVerticalOffset="0"
                            Focusable="False"
@@ -437,8 +444,7 @@
                            Tag="{DynamicResource MaterialDesign.Brush.Background}"
                            UpVerticalOffset="15"
                            UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                           VerticalOffset="0"
-                           CustomPopupPlacementCallbackOverride="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ComboBoxAssist.CustomPopupPlacementCallback)}">
+                           VerticalOffset="0">
           <wpf:ComboBoxPopup.Background>
             <MultiBinding Converter="{StaticResource FallbackBrushConverter}">
               <Binding Path="Background" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -493,7 +499,7 @@
         <Setter TargetName="Hint" Property="FloatingOffset">
           <Setter.Value>
             <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
-              <Binding Path="FontFamily" ElementName="Hint" />
+              <Binding ElementName="Hint" Path="FontFamily" />
               <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
               <Binding Path="(wpf:HintAssist.FloatingScale)" RelativeSource="{RelativeSource TemplatedParent}" />
               <Binding Path="(wpf:HintAssist.FloatingOffset)" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -537,7 +543,7 @@
         <Setter TargetName="Hint" Property="FloatingOffset">
           <Setter.Value>
             <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
-              <Binding Path="FontFamily" ElementName="Hint" />
+              <Binding ElementName="Hint" Path="FontFamily" />
               <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
               <Binding Path="(wpf:HintAssist.FloatingScale)" RelativeSource="{RelativeSource TemplatedParent}" />
               <Binding Path="(wpf:HintAssist.FloatingOffset)" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -547,7 +553,7 @@
         <Setter TargetName="InnerRoot" Property="Margin">
           <Setter.Value>
             <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
-              <Binding Path="FontFamily" ElementName="Hint" />
+              <Binding ElementName="Hint" Path="FontFamily" />
               <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
               <Binding Path="(wpf:HintAssist.FloatingScale)" RelativeSource="{RelativeSource TemplatedParent}" />
               <Binding Path="(wpf:HintAssist.FloatingOffset)" RelativeSource="{RelativeSource TemplatedParent}" />

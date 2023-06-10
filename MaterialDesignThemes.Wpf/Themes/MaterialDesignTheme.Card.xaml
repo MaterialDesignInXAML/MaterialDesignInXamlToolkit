@@ -32,13 +32,13 @@
                         Background="{TemplateBinding Background}"
                         Clip="{TemplateBinding ContentClip}">
                   <ContentPresenter x:Name="ContentPresenter"
-                              Margin="{TemplateBinding Padding}"
-                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                              Content="{TemplateBinding ContentControl.Content}"
-                              ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
-                              ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
-                              ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}" />
+                                    Margin="{TemplateBinding Padding}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Content="{TemplateBinding ContentControl.Content}"
+                                    ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
+                                    ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
+                                    ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}" />
                 </Border>
               </Border>
             </AdornerDecorator>

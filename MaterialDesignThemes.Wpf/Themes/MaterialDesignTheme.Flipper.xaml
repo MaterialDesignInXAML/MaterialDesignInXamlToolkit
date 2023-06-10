@@ -1,9 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
-  <SineEase x:Key="FlipEase" EasingMode="EaseInOut" po:Freeze="True" />
+  <SineEase x:Key="FlipEase"
+            EasingMode="EaseInOut"
+            po:Freeze="True" />
 
   <Style TargetType="{x:Type wpf:Flipper}">
     <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />

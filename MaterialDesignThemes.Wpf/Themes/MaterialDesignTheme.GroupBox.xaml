@@ -82,8 +82,7 @@
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type GroupBox}">
-          <wpf:Card VerticalAlignment="Stretch"
-                    wpf:ElevationAssist.Elevation="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation)}">
+          <wpf:Card VerticalAlignment="Stretch" wpf:ElevationAssist.Elevation="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation)}">
             <DockPanel Background="{TemplateBinding Background}">
               <wpf:ColorZone x:Name="PART_ColorZone"
                              Padding="{TemplateBinding Padding}"

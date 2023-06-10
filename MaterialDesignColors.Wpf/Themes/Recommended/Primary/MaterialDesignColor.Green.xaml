@@ -12,5 +12,5 @@
   <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Foreground" Color="{StaticResource Primary500Foreground}" po:Freeze="True" />
   <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Dark" Color="{StaticResource Primary700}" po:Freeze="True" />
   <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Dark.Foreground" Color="{StaticResource Primary700Foreground}" po:Freeze="True" />
-  
+
 </ResourceDictionary>

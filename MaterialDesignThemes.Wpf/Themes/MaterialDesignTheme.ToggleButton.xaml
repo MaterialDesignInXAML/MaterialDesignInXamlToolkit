@@ -1,10 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
-  <SolidColorBrush x:Key="AttentionToActionBrush" Opacity=".23" Color="Black" po:Freeze="True"/>
+  <SolidColorBrush x:Key="AttentionToActionBrush" Opacity=".23" Color="Black" po:Freeze="True" />
 
   <converters:MathConverter x:Key="DivisionMathConverter" Operation="Divide" />
   <converters:PointValueConverter x:Key="PointValueConverter" />
@@ -353,7 +353,6 @@
   </Style>
 
   <Style x:Key="MaterialDesignSwitchToggleButton" TargetType="{x:Type ToggleButton}">
-    <Setter Property="Width" Value="34" />
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
@@ -533,6 +532,7 @@
       </Setter.Value>
     </Setter>
     <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}" />
+    <Setter Property="Width" Value="34" />
     <Setter Property="wpf:ToggleButtonAssist.SwitchTrackOffBackground" Value="Black" />
     <Setter Property="wpf:ToggleButtonAssist.SwitchTrackOnBackground" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
   </Style>

@@ -113,8 +113,8 @@
                    materialDesign:TextFieldAssist.HasClearButton="True"
                    materialDesign:TextFieldAssist.TextFieldCornerRadius="8"
                    DockPanel.Dock="Top"
-                   Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"
-                   Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                   Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                   Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}" />
           <ListBox x:Name="DemoItemsListBox"
                    Margin="12,16,12,16"
                    AutomationProperties.Name="DemoPagesListBox"

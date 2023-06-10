@@ -69,7 +69,7 @@
   <!-- Obsolete -->
   <Style x:Key="MaterialDesignActionAccentCheckBox"
          TargetType="{x:Type CheckBox}"
-         BasedOn="{StaticResource MaterialDesignActionSecondaryCheckBox}"/>
+         BasedOn="{StaticResource MaterialDesignActionSecondaryCheckBox}" />
 
 
   <Style x:Key="MaterialDesignCheckBox" TargetType="{x:Type CheckBox}">
@@ -770,5 +770,5 @@
   <Style x:Key="MaterialDesignFilterChipAccentOutlineCheckBox"
          TargetType="CheckBox"
          BasedOn="{StaticResource MaterialDesignFilterChipSecondaryOutlineCheckBox}" />
-  
+
 </ResourceDictionary>

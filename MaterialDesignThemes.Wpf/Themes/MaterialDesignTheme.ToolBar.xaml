@@ -258,9 +258,9 @@
               <Setter TargetName="Grid" Property="Margin" Value="1,3,1,1" />
               <Setter TargetName="MainPanelBorder" Property="Margin" Value="0,0,0,11" />
               <Setter TargetName="OverflowButton" Property="Style" Value="{StaticResource MaterialDesignToolBarVerticalOverflowButtonStyle}" />
+              <Setter TargetName="OverflowGrid" Property="DockPanel.Dock" Value="Bottom" />
               <Setter TargetName="OverflowGrid" Property="HorizontalAlignment" Value="Stretch" />
               <Setter TargetName="OverflowGrid" Property="VerticalAlignment" Value="Bottom" />
-              <Setter TargetName="OverflowGrid" Property="DockPanel.Dock" Value="Bottom" />
               <Setter TargetName="OverflowPopup" Property="Placement" Value="Right" />
               <Setter TargetName="PART_ToolBarPanel" Property="Margin" Value="1,0,2,2" />
               <Setter TargetName="ToolBarHeader" Property="DockPanel.Dock" Value="Top" />

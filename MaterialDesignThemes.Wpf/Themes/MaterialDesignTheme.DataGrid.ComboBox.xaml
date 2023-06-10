@@ -377,8 +377,8 @@
                    Margin="{TemplateBinding Padding}"
                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                   IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
                    CaretBrush="{TemplateBinding Foreground}"
+                   IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
                    Style="{StaticResource MaterialDesignDataGridComboBoxEditableTextBox}" />
         </Grid>
       </Border>
@@ -416,6 +416,7 @@
     <!-- Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/ -->
     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
+    <Setter Property="IsSynchronizedWithCurrentItem" Value="False" />
     <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignDataGridComboBoxItemStyle}" />
     <!-- Virtualization -->
     <Setter Property="ItemsPanel">
@@ -432,7 +433,6 @@
     <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
     <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
     <Setter Property="Template" Value="{StaticResource MaterialDesignDataGridComboBoxTemplate}" />
-    <Setter Property="IsSynchronizedWithCurrentItem" Value="False"/>
     <Style.Triggers>
       <Trigger Property="IsEditable" Value="true">
         <Setter Property="IsTabStop" Value="false" />

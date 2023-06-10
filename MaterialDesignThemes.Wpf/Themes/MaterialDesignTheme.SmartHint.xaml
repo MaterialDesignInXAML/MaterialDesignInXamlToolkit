@@ -141,7 +141,9 @@
                   </VisualStateGroup>
                 </VisualStateManager.VisualStateGroups>
                 <wpf:ScaleHost x:Name="ScaleHost" />
-                <Grid x:Name="HintClippingGrid" ClipToBounds="True" VerticalAlignment="{TemplateBinding VerticalContentAlignment, Converter={StaticResource VerticalAlignmentConverter}}">
+                <Grid x:Name="HintClippingGrid"
+                      VerticalAlignment="{TemplateBinding VerticalContentAlignment, Converter={StaticResource VerticalAlignmentConverter}}"
+                      ClipToBounds="True">
                   <Grid.RenderTransform>
                     <MultiBinding Converter="{StaticResource FloatingHintClippingGridTransformConverter}">
                       <Binding ElementName="ScaleHost" Path="Scale" />
@@ -151,24 +153,26 @@
                       <Binding Path="InitialVerticalOffset" RelativeSource="{RelativeSource TemplatedParent}" />
                     </MultiBinding>
                   </Grid.RenderTransform>
-                  <Canvas HorizontalAlignment="Left" Width="{Binding ElementName=FloatingHintTextBlock, Path= ActualWidth}" Height="{Binding ElementName=FloatingHintTextBlock, Path=ActualHeight}">
+                  <Canvas Width="{Binding ElementName=FloatingHintTextBlock, Path=ActualWidth}"
+                          Height="{Binding ElementName=FloatingHintTextBlock, Path=ActualHeight}"
+                          HorizontalAlignment="Left">
                     <ContentControl x:Name="FloatingHintTextBlock"
-                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                  Content="{TemplateBinding Hint}"
-                                  FontFamily="{TemplateBinding FontFamily}"
-                                  FontSize="{TemplateBinding FontSize}"
-                                  IsHitTestVisible="False"
-                                  IsTabStop="False"
-                                  Opacity="{TemplateBinding HintOpacity}"
-                                  RenderTransformOrigin="0,0"
-                                  Visibility="{TemplateBinding UseFloating, Converter={StaticResource BoolToVisConverter}}">
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Content="{TemplateBinding Hint}"
+                                    FontFamily="{TemplateBinding FontFamily}"
+                                    FontSize="{TemplateBinding FontSize}"
+                                    IsHitTestVisible="False"
+                                    IsTabStop="False"
+                                    Opacity="{TemplateBinding HintOpacity}"
+                                    RenderTransformOrigin="0,0"
+                                    Visibility="{TemplateBinding UseFloating, Converter={StaticResource BoolToVisConverter}}">
                       <ContentControl.Margin>
                         <MultiBinding Converter="{StaticResource FloatingHintTextBlockMarginConverter}">
-                          <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:HintAssist.FloatingHintHorizontalAlignment)" />
-                          <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="HorizontalContentAlignment" />
-                          <Binding RelativeSource="{RelativeSource Self}" Path="ActualWidth" />
-                          <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualWidth" />
+                          <Binding Path="(wpf:HintAssist.FloatingHintHorizontalAlignment)" RelativeSource="{RelativeSource TemplatedParent}" />
+                          <Binding Path="HorizontalContentAlignment" RelativeSource="{RelativeSource TemplatedParent}" />
+                          <Binding Path="ActualWidth" RelativeSource="{RelativeSource Self}" />
+                          <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}" />
                           <Binding ElementName="ScaleHost" Path="Scale" />
                           <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}" />
                           <Binding Source="{StaticResource NoContentFloatingScale}" />

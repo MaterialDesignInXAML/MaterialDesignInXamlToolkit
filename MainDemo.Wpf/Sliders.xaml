@@ -69,10 +69,10 @@
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay Margin="0,16,0,0" UniqueKey="continuous_slider_h_5">
-          <Slider Maximum="50"
+          <Slider materialDesign:SliderAssist.HideActiveTrack="True"
+                  Maximum="50"
                   Minimum="0"
-                  Value="35"
-                  materialDesign:SliderAssist.HideActiveTrack="True" />
+                  Value="35" />
         </smtx:XamlDisplay>
 
       </StackPanel>
@@ -119,11 +119,11 @@
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay Margin="16,0,0,0" UniqueKey="continuous_slider_v_5">
-          <Slider Maximum="50"
+          <Slider materialDesign:SliderAssist.HideActiveTrack="True"
+                  Maximum="50"
                   Minimum="0"
                   Orientation="Vertical"
-                  Value="25"
-                  materialDesign:SliderAssist.HideActiveTrack="True" />
+                  Value="25" />
         </smtx:XamlDisplay>
 
       </StackPanel>
@@ -189,16 +189,16 @@
           </smtx:XamlDisplay>
 
           <smtx:XamlDisplay Margin="0,24,0,0" UniqueKey="discrete_slider_h_5">
-            <Slider Maximum="{Binding DiscreteHorizontal.Maximum}"
+            <Slider materialDesign:SliderAssist.HideActiveTrack="True"
+                    Maximum="{Binding DiscreteHorizontal.Maximum}"
                     Minimum="0"
                     Style="{StaticResource MaterialDesignDiscreteSlider}"
                     TickFrequency="{Binding DiscreteHorizontal.TickFrequency}"
                     TickPlacement="BottomRight"
-                    Value="40"
-                    materialDesign:SliderAssist.HideActiveTrack="True" />
+                    Value="40" />
           </smtx:XamlDisplay>
 
-          
+
         </StackPanel>
 
       </StackPanel>
@@ -297,14 +297,14 @@
           </smtx:XamlDisplay>
 
           <smtx:XamlDisplay Margin="20,0,0,0" UniqueKey="discrete_slider_v_7">
-            <Slider Maximum="{Binding DiscreteVertical.Maximum}"
+            <Slider materialDesign:SliderAssist.HideActiveTrack="True"
+                    Maximum="{Binding DiscreteVertical.Maximum}"
                     Minimum="0"
                     Orientation="Vertical"
                     Style="{StaticResource MaterialDesignDiscreteSlider}"
                     TickFrequency="{Binding DiscreteVertical.TickFrequency}"
                     TickPlacement="BottomRight"
-                    Value="70000"
-                    materialDesign:SliderAssist.HideActiveTrack="True" />
+                    Value="70000" />
           </smtx:XamlDisplay>
         </StackPanel>
       </Grid>
