@@ -509,7 +509,7 @@
 
   <Style TargetType="{x:Type local:ColorZone}">
     <Style.Resources>
-      <converters:ShadowOpacityMaskConverter x:Key="ShadowEdgeConverter" />
+      <converters:ShadowOpacityMaskConverter x:Key="ShadowOpacityMaskConverter" />
     </Style.Resources>
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="ClipToBounds" Value="False" />
@@ -521,7 +521,7 @@
         <ControlTemplate TargetType="{x:Type local:ColorZone}">
           <Grid Background="Transparent">
             <Grid.OpacityMask>
-              <MultiBinding Converter="{StaticResource ShadowEdgeConverter}">
+              <MultiBinding Converter="{StaticResource ShadowOpacityMaskConverter}">
                 <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}" />
                 <Binding Path="ActualHeight" RelativeSource="{RelativeSource TemplatedParent}" />
                 <Binding Path="(local:ElevationAssist.Elevation)" RelativeSource="{RelativeSource TemplatedParent}" />
