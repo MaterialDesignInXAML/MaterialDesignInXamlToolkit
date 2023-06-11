@@ -19,6 +19,8 @@ partial class Theme
 
     public Color ValidationError { get; set; }
 
+    public Badged Badgeds { get; set; } = new();
+
     public Button Buttons { get; set; } = new();
 
     public SnackBar SnackBars { get; set; } = new();
@@ -28,6 +30,10 @@ partial class Theme
     public CheckBox CheckBoxes { get; set; } = new();
 
     public Chip Chips { get; set; } = new();
+
+    public ColorZone ColorZones { get; set; } = new();
+
+    public ComboBox ComboBoxes { get; set; } = new();
 
     public DataGrid DataGrids { get; set; } = new();
 
@@ -46,6 +52,18 @@ partial class Theme
     public ToolBar ToolBars { get; set; } = new();
 
     public ToolTip ToolTips { get; set; } = new();
+
+    public class Badged
+    {
+        public Color DarkBackground { get; set; }
+
+        public Color DarkForeground { get; set; }
+
+        public Color LightBackground { get; set; }
+
+        public Color LightForeground { get; set; }
+
+    }
 
     public class Button
     {
@@ -84,6 +102,36 @@ partial class Theme
     public class Chip
     {
         public Color Background { get; set; }
+
+    }
+
+    public class ColorZone
+    {
+        public Color DarkBackground { get; set; }
+
+        public Color DarkForeground { get; set; }
+
+        public Color LightBackground { get; set; }
+
+        public Color LightForeground { get; set; }
+
+    }
+
+    public class ComboBox
+    {
+        public Popup Popups { get; set; } = new();
+
+        public class Popup
+        {
+            public Color DarkBackground { get; set; }
+
+            public Color DarkForeground { get; set; }
+
+            public Color LightBackground { get; set; }
+
+            public Color LightForeground { get; set; }
+
+        }
 
     }
 

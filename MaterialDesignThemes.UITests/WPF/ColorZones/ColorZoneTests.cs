@@ -19,8 +19,8 @@ public class ColorZoneTests : TestBase
     [InlineData(ColorZoneMode.SecondaryLight, "MaterialDesign.Brush.Secondary.Light", "MaterialDesign.Brush.Secondary.Light.Foreground")]
     [InlineData(ColorZoneMode.SecondaryMid, "MaterialDesign.Brush.Secondary", "MaterialDesign.Brush.Secondary.Foreground")]
     [InlineData(ColorZoneMode.SecondaryDark, "MaterialDesign.Brush.Secondary.Dark", "MaterialDesign.Brush.Secondary.Dark.Foreground")]
-    [InlineData(ColorZoneMode.Light, "MaterialDesignLightBackground", "MaterialDesignLightForeground")]
-    [InlineData(ColorZoneMode.Dark, "MaterialDesignDarkBackground", "MaterialDesignDarkForeground")]
+    [InlineData(ColorZoneMode.Light, "MaterialDesign.Brush.ColorZone.LightBackground", "MaterialDesign.Brush.ColorZone.LightForeground")]
+    [InlineData(ColorZoneMode.Dark, "MaterialDesign.Brush.ColorZone.DarkBackground", "MaterialDesign.Brush.ColorZone.DarkForeground")]
     public async Task Mode_SetsThemeColors(ColorZoneMode mode, string backgroundBrush, string foregroundBrush)
     {
         await using var recorder = new TestRecorder(App);

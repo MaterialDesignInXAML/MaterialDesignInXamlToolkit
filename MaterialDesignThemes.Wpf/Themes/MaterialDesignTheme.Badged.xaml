@@ -135,12 +135,12 @@
         <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
       </Trigger>
       <Trigger Property="BadgeColorZoneMode" Value="Light">
-        <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesignLightBackground}" />
-        <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesignLightForeground}" />
+        <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesign.Brush.Badged.LightBackground}" />
+        <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesign.Brush.Badged.LightForeground}" />
       </Trigger>
       <Trigger Property="BadgeColorZoneMode" Value="Dark">
-        <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesignDarkBackground}" />
-        <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesignDarkForeground}" />
+        <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesign.Brush.Badged.DarkBackground}" />
+        <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesign.Brush.Badged.DarkForeground}" />
       </Trigger>
     </Style.Triggers>
   </Style>
@@ -248,12 +248,12 @@
         <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
       </Trigger>
       <Trigger Property="BadgeColorZoneMode" Value="Light">
-        <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesignLightBackground}" />
-        <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesignLightForeground}" />
+        <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesign.Brush.Badged.LightBackground}" />
+        <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesign.Brush.Badged.LightForeground}" />
       </Trigger>
       <Trigger Property="BadgeColorZoneMode" Value="Dark">
-        <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesignDarkBackground}" />
-        <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesignDarkForeground}" />
+        <Setter Property="BadgeBackground" Value="{DynamicResource MaterialDesign.Brush.Badged.DarkBackground}" />
+        <Setter Property="BadgeForeground" Value="{DynamicResource MaterialDesign.Brush.Badged.DarkForeground}" />
       </Trigger>
     </Style.Triggers>
   </Style>

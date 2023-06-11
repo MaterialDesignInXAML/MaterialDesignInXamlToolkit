@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:colors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
                     xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
@@ -43,6 +43,11 @@
   <colors:StaticResource x:Key="SecondaryHueDarkForegroundBrush"
                          ResourceKey="MaterialDesign.Brush.Secondary.Dark.Foreground"
                          po:Freeze="True" />
+
+  <SolidColorBrush x:Key="MaterialDesignLightBackground" Color="#FFFAFAFA" />
+  <SolidColorBrush x:Key="MaterialDesignLightForeground" Color="#DD000000" />
+  <SolidColorBrush x:Key="MaterialDesignDarkBackground" Color="#FF303030" />
+  <SolidColorBrush x:Key="MaterialDesignDarkForeground" Color="#FFFAFAFA" />
   <colors:StaticResource x:Key="MaterialDesignPaper" ResourceKey="MaterialDesign.Brush.Background" />
   <colors:StaticResource x:Key="MaterialDesignFlatButtonClick" ResourceKey="MaterialDesign.Brush.Button.FlatClick" />
   <colors:StaticResource x:Key="MaterialDesignFlatButtonRipple" ResourceKey="MaterialDesign.Brush.Button.Ripple" />

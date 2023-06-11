@@ -835,18 +835,18 @@
           <Condition SourceName="PART_Popup" Property="IsOpen" Value="True" />
           <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Light" />
         </MultiTrigger.Conditions>
-        <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesignLightForeground}" />
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesign.Brush.ComboBox.Popup.LightForeground}" />
         <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
-        <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesignLightBackground}" />
+        <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesign.Brush.ComboBox.Popup.LightBackground}" />
       </MultiTrigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
           <Condition SourceName="PART_Popup" Property="IsOpen" Value="True" />
           <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Dark" />
         </MultiTrigger.Conditions>
-        <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesignDarkForeground}" />
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesign.Brush.ComboBox.Popup.DarkForeground}" />
         <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
-        <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesignDarkBackground}" />
+        <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesign.Brush.ComboBox.Popup.DarkBackground}" />
       </MultiTrigger>
     </ControlTemplate.Triggers>
   </ControlTemplate>

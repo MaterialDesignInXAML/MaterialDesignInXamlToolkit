@@ -25,6 +25,10 @@ partial class ThemeTests
           <TextBlock Text="Foreground" Background="{StaticResource MaterialDesign.Brush.Foreground}" />
           <TextBlock Text="ForegroundLight" Background="{StaticResource MaterialDesign.Brush.ForegroundLight}" />
           <TextBlock Text="ValidationError" Background="{StaticResource MaterialDesign.Brush.ValidationError}" />
+          <TextBlock Text="Badged.DarkBackground" Background="{StaticResource MaterialDesign.Brush.Badged.DarkBackground}" />
+          <TextBlock Text="Badged.DarkForeground" Background="{StaticResource MaterialDesign.Brush.Badged.DarkForeground}" />
+          <TextBlock Text="Badged.LightBackground" Background="{StaticResource MaterialDesign.Brush.Badged.LightBackground}" />
+          <TextBlock Text="Badged.LightForeground" Background="{StaticResource MaterialDesign.Brush.Badged.LightForeground}" />
           <TextBlock Text="Button.FlatClick" Background="{StaticResource MaterialDesign.Brush.Button.FlatClick}" />
           <TextBlock Text="Button.Ripple" Background="{StaticResource MaterialDesign.Brush.Button.Ripple}" />
           <TextBlock Text="Button.FlatRipple" Background="{StaticResource MaterialDesign.Brush.Button.FlatRipple}" />
@@ -35,6 +39,14 @@ partial class ThemeTests
           <TextBlock Text="CheckBox.Disabled" Background="{StaticResource MaterialDesign.Brush.CheckBox.Disabled}" />
           <TextBlock Text="CheckBox.Off" Background="{StaticResource MaterialDesign.Brush.CheckBox.Off}" />
           <TextBlock Text="Chip.Background" Background="{StaticResource MaterialDesign.Brush.Chip.Background}" />
+          <TextBlock Text="ColorZone.DarkBackground" Background="{StaticResource MaterialDesign.Brush.ColorZone.DarkBackground}" />
+          <TextBlock Text="ColorZone.DarkForeground" Background="{StaticResource MaterialDesign.Brush.ColorZone.DarkForeground}" />
+          <TextBlock Text="ColorZone.LightBackground" Background="{StaticResource MaterialDesign.Brush.ColorZone.LightBackground}" />
+          <TextBlock Text="ColorZone.LightForeground" Background="{StaticResource MaterialDesign.Brush.ColorZone.LightForeground}" />
+          <TextBlock Text="ComboBox.Popup.DarkBackground" Background="{StaticResource MaterialDesign.Brush.ComboBox.Popup.DarkBackground}" />
+          <TextBlock Text="ComboBox.Popup.DarkForeground" Background="{StaticResource MaterialDesign.Brush.ComboBox.Popup.DarkForeground}" />
+          <TextBlock Text="ComboBox.Popup.LightBackground" Background="{StaticResource MaterialDesign.Brush.ComboBox.Popup.LightBackground}" />
+          <TextBlock Text="ComboBox.Popup.LightForeground" Background="{StaticResource MaterialDesign.Brush.ComboBox.Popup.LightForeground}" />
           <TextBlock Text="DataGrid.ButtonPressed" Background="{StaticResource MaterialDesign.Brush.DataGrid.ButtonPressed}" />
           <TextBlock Text="DataGrid.ComboBoxSelected" Background="{StaticResource MaterialDesign.Brush.DataGrid.ComboBoxSelected}" />
           <TextBlock Text="DataGrid.RowHoverBackground" Background="{StaticResource MaterialDesign.Brush.DataGrid.RowHoverBackground}" />
@@ -135,6 +147,26 @@ partial class ThemeTests
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ValidationError"), textBlockBackground);
         }
         {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Badged.DarkBackground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Badged.DarkBackground"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Badged.DarkForeground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Badged.DarkForeground"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Badged.LightBackground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Badged.LightBackground"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Badged.LightForeground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Badged.LightForeground"), textBlockBackground);
+        }
+        {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Button.FlatClick\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Button.FlatClick"), textBlockBackground);
@@ -183,6 +215,46 @@ partial class ThemeTests
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Chip.Background\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Chip.Background"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ColorZone.DarkBackground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ColorZone.DarkBackground"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ColorZone.DarkForeground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ColorZone.DarkForeground"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ColorZone.LightBackground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ColorZone.LightBackground"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ColorZone.LightForeground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ColorZone.LightForeground"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.Popup.DarkBackground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.Popup.DarkBackground"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.Popup.DarkForeground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.Popup.DarkForeground"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.Popup.LightBackground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.Popup.LightBackground"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.Popup.LightForeground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.Popup.LightForeground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"DataGrid.ButtonPressed\"]");
@@ -501,6 +573,10 @@ partial class ThemeTests
         yield return "MaterialDesign.Brush.Foreground";
         yield return "MaterialDesign.Brush.ForegroundLight";
         yield return "MaterialDesign.Brush.ValidationError";
+        yield return "MaterialDesign.Brush.Badged.DarkBackground";
+        yield return "MaterialDesign.Brush.Badged.DarkForeground";
+        yield return "MaterialDesign.Brush.Badged.LightBackground";
+        yield return "MaterialDesign.Brush.Badged.LightForeground";
         yield return "MaterialDesign.Brush.Button.FlatClick";
         yield return "MaterialDesign.Brush.Button.Ripple";
         yield return "MaterialDesign.Brush.Button.FlatRipple";
@@ -511,6 +587,14 @@ partial class ThemeTests
         yield return "MaterialDesign.Brush.CheckBox.Disabled";
         yield return "MaterialDesign.Brush.CheckBox.Off";
         yield return "MaterialDesign.Brush.Chip.Background";
+        yield return "MaterialDesign.Brush.ColorZone.DarkBackground";
+        yield return "MaterialDesign.Brush.ColorZone.DarkForeground";
+        yield return "MaterialDesign.Brush.ColorZone.LightBackground";
+        yield return "MaterialDesign.Brush.ColorZone.LightForeground";
+        yield return "MaterialDesign.Brush.ComboBox.Popup.DarkBackground";
+        yield return "MaterialDesign.Brush.ComboBox.Popup.DarkForeground";
+        yield return "MaterialDesign.Brush.ComboBox.Popup.LightBackground";
+        yield return "MaterialDesign.Brush.ComboBox.Popup.LightForeground";
         yield return "MaterialDesign.Brush.DataGrid.ButtonPressed";
         yield return "MaterialDesign.Brush.DataGrid.ComboBoxSelected";
         yield return "MaterialDesign.Brush.DataGrid.RowHoverBackground";

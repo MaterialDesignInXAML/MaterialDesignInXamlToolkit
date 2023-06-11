@@ -49,6 +49,42 @@
         ]
     },
     {
+        "name": "MaterialDesign.Brush.Badged.DarkBackground",
+        "themeValues": {
+            "light": "Neutral100",
+            "dark": "Neutral100"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
+        "name": "MaterialDesign.Brush.Badged.DarkForeground",
+        "themeValues": {
+            "light": "Neutral900",
+            "dark": "Neutral900"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
+        "name": "MaterialDesign.Brush.Badged.LightBackground",
+        "themeValues": {
+            "light": "Neutral900",
+            "dark": "Neutral900"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
+        "name": "MaterialDesign.Brush.Badged.LightForeground",
+        "themeValues": {
+            "light": "Black900",
+            "dark": "Black900"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
         "name": "MaterialDesign.Brush.Button.FlatClick",
         "themeValues": {
             "light": "Neutral800",
@@ -107,6 +143,78 @@
         "obsoleteKeys": [
             "MaterialDesignChipBackground"
         ]
+    },
+    {
+        "name": "MaterialDesign.Brush.ColorZone.DarkBackground",
+        "themeValues": {
+            "light": "Neutral100",
+            "dark": "Neutral100"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
+        "name": "MaterialDesign.Brush.ColorZone.DarkForeground",
+        "themeValues": {
+            "light": "Neutral900",
+            "dark": "Neutral900"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
+        "name": "MaterialDesign.Brush.ColorZone.LightBackground",
+        "themeValues": {
+            "light": "Neutral900",
+            "dark": "Neutral900"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
+        "name": "MaterialDesign.Brush.ColorZone.LightForeground",
+        "themeValues": {
+            "light": "Black900",
+            "dark": "Black900"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
+        "name": "MaterialDesign.Brush.ComboBox.Popup.DarkBackground",
+        "themeValues": {
+            "light": "Neutral100",
+            "dark": "Neutral100"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
+        "name": "MaterialDesign.Brush.ComboBox.Popup.DarkForeground",
+        "themeValues": {
+            "light": "Neutral900",
+            "dark": "Neutral900"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
+        "name": "MaterialDesign.Brush.ComboBox.Popup.LightBackground",
+        "themeValues": {
+            "light": "Neutral900",
+            "dark": "Neutral900"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
+        "name": "MaterialDesign.Brush.ComboBox.Popup.LightForeground",
+        "themeValues": {
+            "light": "Black900",
+            "dark": "Black900"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
     },
     {
         "name": "MaterialDesign.Brush.DataGrid.ButtonPressed",

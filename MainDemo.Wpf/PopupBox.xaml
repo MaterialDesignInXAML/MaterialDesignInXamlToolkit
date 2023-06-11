@@ -19,7 +19,7 @@
       <DataTemplate x:Key="ContentTemplateGrid">
         <Grid Width="200"
               Height="100"
-              TextElement.Foreground="{DynamicResource MaterialDesignLightForeground}">
+              TextElement.Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">
           <TextBlock HorizontalAlignment="Center"
                      VerticalAlignment="Center"
                      Text="Popup content in grid" />

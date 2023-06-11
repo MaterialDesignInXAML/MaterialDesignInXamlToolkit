@@ -43,5 +43,11 @@
   <colors:StaticResource x:Key="SecondaryHueDarkForegroundBrush"
                          ResourceKey="MaterialDesign.Brush.Secondary.Dark.Foreground"
                          po:Freeze="True" />
+
+  <SolidColorBrush x:Key="MaterialDesignLightBackground" Color="#FFFAFAFA" />
+  <SolidColorBrush x:Key="MaterialDesignLightForeground" Color="#DD000000" />
+  <SolidColorBrush x:Key="MaterialDesignDarkBackground" Color="#FF303030" />
+  <SolidColorBrush x:Key="MaterialDesignDarkForeground" Color="#FFFAFAFA" />
+  
   <!-- INSERT HERE -->
 </ResourceDictionary>

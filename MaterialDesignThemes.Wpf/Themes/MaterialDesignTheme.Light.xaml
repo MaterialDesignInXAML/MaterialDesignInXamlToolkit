@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:colors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
                     xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
@@ -6,6 +6,10 @@
     <ResourceDictionary Source="./Internal/MaterialDesignTheme.BaseThemeColors.xaml" />
   </ResourceDictionary.MergedDictionaries>
   <colors:StaticResource x:Key="MaterialDesign.Brush.Background" ResourceKey="Neutral900" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.Badged.DarkBackground" ResourceKey="Neutral100" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.Badged.DarkForeground" ResourceKey="Neutral900" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.Badged.LightBackground" ResourceKey="Neutral900" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.Badged.LightForeground" ResourceKey="Black900" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.Button.FlatClick" ResourceKey="Neutral800" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.Button.Ripple" ResourceKey="Neutral700" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.Button.FlatRipple" ResourceKey="Neutral700" />
@@ -13,6 +17,14 @@
   <colors:StaticResource x:Key="MaterialDesign.Brush.Card.Background" ResourceKey="White1000" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.CheckBox.Disabled" ResourceKey="Neutral700" />
   <SolidColorBrush x:Key="MaterialDesign.Brush.Chip.Background" Color="#12000000" po:Freeze="True" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ColorZone.DarkBackground" ResourceKey="Neutral100" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ColorZone.DarkForeground" ResourceKey="Neutral900" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ColorZone.LightBackground" ResourceKey="Neutral900" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ColorZone.LightForeground" ResourceKey="Black900" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ComboBox.Popup.DarkBackground" ResourceKey="Neutral100" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ComboBox.Popup.DarkForeground" ResourceKey="Neutral900" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ComboBox.Popup.LightBackground" ResourceKey="Neutral900" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ComboBox.Popup.LightForeground" ResourceKey="Black900" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.ButtonPressed" ResourceKey="Neutral800" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.ComboBoxSelected" ResourceKey="Neutral800" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.RowHoverBackground" ResourceKey="Black50" />
