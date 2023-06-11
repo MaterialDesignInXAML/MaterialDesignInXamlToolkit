@@ -95,6 +95,8 @@ partial class Theme
     {
         public Color Disabled { get; set; }
 
+        public Color UncheckedBorder { get; set; }
+
         public Color Off { get; set; }
 
     }

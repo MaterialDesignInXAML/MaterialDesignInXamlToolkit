@@ -674,7 +674,7 @@
               <Setter Property="Opacity" Value=".56" />
             </Trigger>
             <Trigger Property="IsChecked" Value="False">
-              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
+              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.CheckBox.UncheckedBorder}" />
               <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
             </Trigger>
           </ControlTemplate.Triggers>
