@@ -18,6 +18,7 @@
   <colors:StaticResource x:Key="MaterialDesign.Brush.CheckBox.Disabled" ResourceKey="Neutral700" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.CheckBox.UncheckedBorder" ResourceKey="Black100" />
   <SolidColorBrush x:Key="MaterialDesign.Brush.Chip.Background" Color="#12000000" po:Freeze="True" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.Chip.OutlineBorder" ResourceKey="Black100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ColorZone.DarkBackground" ResourceKey="Neutral100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ColorZone.DarkForeground" ResourceKey="Neutral900" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ColorZone.LightBackground" ResourceKey="Neutral900" />

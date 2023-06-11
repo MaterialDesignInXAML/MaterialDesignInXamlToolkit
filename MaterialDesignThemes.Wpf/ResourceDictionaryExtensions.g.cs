@@ -29,6 +29,7 @@ static partial class ResourceDictionaryExtensions
         theme.CheckBoxes.UncheckedBorder = GetColor(resourceDictionary, "MaterialDesign.Brush.CheckBox.UncheckedBorder");
         theme.CheckBoxes.Off = GetColor(resourceDictionary, "MaterialDesign.Brush.CheckBox.Off", "MaterialDesignBodyLight", "MaterialDesignCheckBoxOff", "MaterialDesignTextBoxBorder");
         theme.Chips.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.Chip.Background", "MaterialDesignChipBackground");
+        theme.Chips.OutlineBorder = GetColor(resourceDictionary, "MaterialDesign.Brush.Chip.OutlineBorder");
         theme.ColorZones.DarkBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.ColorZone.DarkBackground");
         theme.ColorZones.DarkForeground = GetColor(resourceDictionary, "MaterialDesign.Brush.ColorZone.DarkForeground");
         theme.ColorZones.LightBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.ColorZone.LightBackground");
@@ -103,6 +104,7 @@ static partial class ResourceDictionaryExtensions
         SetSolidColorBrush(resourceDictionary, "MaterialDesignTextBoxBorder", theme.CheckBoxes.Off);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Chip.Background", theme.Chips.Background);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignChipBackground", theme.Chips.Background);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Chip.OutlineBorder", theme.Chips.OutlineBorder);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ColorZone.DarkBackground", theme.ColorZones.DarkBackground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ColorZone.DarkForeground", theme.ColorZones.DarkForeground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ColorZone.LightBackground", theme.ColorZones.LightBackground);

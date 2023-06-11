@@ -180,7 +180,7 @@
 
   <Style x:Key="MaterialDesignOutlineChip" TargetType="{x:Type wpf:Chip}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Chip.OutlineBorder}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="Template">

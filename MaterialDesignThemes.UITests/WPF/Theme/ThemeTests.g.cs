@@ -40,6 +40,7 @@ partial class ThemeTests
           <TextBlock Text="CheckBox.UncheckedBorder" Background="{StaticResource MaterialDesign.Brush.CheckBox.UncheckedBorder}" />
           <TextBlock Text="CheckBox.Off" Background="{StaticResource MaterialDesign.Brush.CheckBox.Off}" />
           <TextBlock Text="Chip.Background" Background="{StaticResource MaterialDesign.Brush.Chip.Background}" />
+          <TextBlock Text="Chip.OutlineBorder" Background="{StaticResource MaterialDesign.Brush.Chip.OutlineBorder}" />
           <TextBlock Text="ColorZone.DarkBackground" Background="{StaticResource MaterialDesign.Brush.ColorZone.DarkBackground}" />
           <TextBlock Text="ColorZone.DarkForeground" Background="{StaticResource MaterialDesign.Brush.ColorZone.DarkForeground}" />
           <TextBlock Text="ColorZone.LightBackground" Background="{StaticResource MaterialDesign.Brush.ColorZone.LightBackground}" />
@@ -221,6 +222,11 @@ partial class ThemeTests
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Chip.Background\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Chip.Background"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Chip.OutlineBorder\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Chip.OutlineBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ColorZone.DarkBackground\"]");
@@ -594,6 +600,7 @@ partial class ThemeTests
         yield return "MaterialDesign.Brush.CheckBox.UncheckedBorder";
         yield return "MaterialDesign.Brush.CheckBox.Off";
         yield return "MaterialDesign.Brush.Chip.Background";
+        yield return "MaterialDesign.Brush.Chip.OutlineBorder";
         yield return "MaterialDesign.Brush.ColorZone.DarkBackground";
         yield return "MaterialDesign.Brush.ColorZone.DarkForeground";
         yield return "MaterialDesign.Brush.ColorZone.LightBackground";

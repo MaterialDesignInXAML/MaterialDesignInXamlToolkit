@@ -154,6 +154,15 @@
         ]
     },
     {
+        "name": "MaterialDesign.Brush.Chip.OutlineBorder",
+        "themeValues": {
+            "light": "Black100",
+            "dark": "White100"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
         "name": "MaterialDesign.Brush.ColorZone.DarkBackground",
         "themeValues": {
             "light": "Neutral100",
@@ -346,17 +355,6 @@
         ]
     },
     {
-        "name": "MaterialDesign.Brush.TextBox.OutlineInactiveBorder",
-        "themeValues": {
-            "light": "Black200",
-            "dark": "White200"
-        },
-        "alternateKeys": [],
-        "obsoleteKeys": [
-            "MaterialDesignTextAreaInactiveBorder"
-        ]
-    },
-    {
         "name": "MaterialDesign.Brush.TextBox.FilledBackground",
         "themeValues": {
             "light": "Black50",
@@ -388,6 +386,17 @@
         "obsoleteKeys": [
             "MaterialDesignTextFieldBoxHoverBackground",
             "MaterialDesignDivider"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.TextBox.OutlineInactiveBorder",
+        "themeValues": {
+            "light": "Black200",
+            "dark": "White200"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": [
+            "MaterialDesignTextAreaInactiveBorder"
         ]
     },
     {

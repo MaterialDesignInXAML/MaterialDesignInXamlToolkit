@@ -105,6 +105,8 @@ partial class Theme
     {
         public Color Background { get; set; }
 
+        public Color OutlineBorder { get; set; }
+
     }
 
     public class ColorZone
