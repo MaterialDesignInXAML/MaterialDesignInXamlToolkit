@@ -44,6 +44,7 @@
   <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.ColumnHeaderForeground" ResourceKey="Black700" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.OutlineBorder" ResourceKey="Black700" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.Ignored" ResourceKey="Neutral800" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ListBoxItem.Border" ResourceKey="Black100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ListView.Selected" ResourceKey="Neutral800" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ScrollBar.Foreground" ResourceKey="Neutral800" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ScrollBar.RepeatButtonBackground" ResourceKey="Neutral800" />

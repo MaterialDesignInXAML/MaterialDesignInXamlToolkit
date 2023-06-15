@@ -66,6 +66,7 @@ partial class ThemeTests
           <TextBlock Text="GridSplitter.Background" Background="{StaticResource MaterialDesign.Brush.GridSplitter.Background}" />
           <TextBlock Text="GridSplitter.PreviewBackground" Background="{StaticResource MaterialDesign.Brush.GridSplitter.PreviewBackground}" />
           <TextBlock Text="Header.Foreground" Background="{StaticResource MaterialDesign.Brush.Header.Foreground}" />
+          <TextBlock Text="ListBoxItem.Border" Background="{StaticResource MaterialDesign.Brush.ListBoxItem.Border}" />
           <TextBlock Text="ListView.Selected" Background="{StaticResource MaterialDesign.Brush.ListView.Selected}" />
           <TextBlock Text="ScrollBar.Foreground" Background="{StaticResource MaterialDesign.Brush.ScrollBar.Foreground}" />
           <TextBlock Text="ScrollBar.RepeatButtonBackground" Background="{StaticResource MaterialDesign.Brush.ScrollBar.RepeatButtonBackground}" />
@@ -356,6 +357,11 @@ partial class ThemeTests
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Header.Foreground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Header.Foreground"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ListBoxItem.Border\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ListBoxItem.Border"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ListView.Selected\"]");
@@ -650,6 +656,7 @@ partial class ThemeTests
         yield return "MaterialDesign.Brush.GridSplitter.Background";
         yield return "MaterialDesign.Brush.GridSplitter.PreviewBackground";
         yield return "MaterialDesign.Brush.Header.Foreground";
+        yield return "MaterialDesign.Brush.ListBoxItem.Border";
         yield return "MaterialDesign.Brush.ListView.Selected";
         yield return "MaterialDesign.Brush.ScrollBar.Foreground";
         yield return "MaterialDesign.Brush.ScrollBar.RepeatButtonBackground";

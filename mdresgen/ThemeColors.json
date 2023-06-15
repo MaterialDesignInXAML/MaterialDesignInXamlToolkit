@@ -333,6 +333,15 @@
         ]
     },
     {
+        "name": "MaterialDesign.Brush.ListBoxItem.Border",
+        "themeValues": {
+            "light": "Black100",
+            "dark": "White100"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
         "name": "MaterialDesign.Brush.ListView.Selected",
         "themeValues": {
             "light": "Neutral800",

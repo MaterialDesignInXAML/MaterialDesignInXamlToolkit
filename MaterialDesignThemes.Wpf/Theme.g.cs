@@ -43,6 +43,8 @@ partial class Theme
 
     public Header Headers { get; set; } = new();
 
+    public ListBoxItem ListBoxItems { get; set; } = new();
+
     public ListView ListViews { get; set; } = new();
 
     public ScrollBar ScrollBars { get; set; } = new();
@@ -186,6 +188,12 @@ partial class Theme
     public class Header
     {
         public Color Foreground { get; set; }
+
+    }
+
+    public class ListBoxItem
+    {
+        public Color Border { get; set; }
 
     }
 
