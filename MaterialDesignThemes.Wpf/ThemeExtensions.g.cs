@@ -44,6 +44,7 @@ static partial class ThemeExtensions
         theme.ComboBoxes.Popups.LightBackground = BaseThemeColors.Neutral900;
         theme.ComboBoxes.Popups.LightForeground = BaseThemeColors.Black900;
         theme.DataGrids.ButtonPressed = BaseThemeColors.Neutral800;
+        theme.DataGrids.ComboBoxHover = BaseThemeColors.Black100;
         theme.DataGrids.ComboBoxSelected = BaseThemeColors.Neutral800;
         theme.DataGrids.RowHoverBackground = BaseThemeColors.Black50;
         theme.DataGrids.Selected = BaseThemeColors.Neutral800;
@@ -97,6 +98,7 @@ static partial class ThemeExtensions
         theme.ComboBoxes.Popups.LightBackground = BaseThemeColors.Neutral900;
         theme.ComboBoxes.Popups.LightForeground = BaseThemeColors.Black900;
         theme.DataGrids.ButtonPressed = BaseThemeColors.Neutral400;
+        theme.DataGrids.ComboBoxHover = BaseThemeColors.White100;
         theme.DataGrids.ComboBoxSelected = BaseThemeColors.Neutral400;
         theme.DataGrids.RowHoverBackground = BaseThemeColors.White100;
         theme.DataGrids.Selected = BaseThemeColors.Neutral400;

@@ -143,6 +143,8 @@ partial class Theme
     {
         public Color ButtonPressed { get; set; }
 
+        public Color ComboBoxHover { get; set; }
+
         public Color ComboBoxSelected { get; set; }
 
         public Color RowHoverBackground { get; set; }

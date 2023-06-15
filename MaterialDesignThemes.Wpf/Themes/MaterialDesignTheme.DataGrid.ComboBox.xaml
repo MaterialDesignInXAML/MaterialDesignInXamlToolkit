@@ -44,52 +44,22 @@
             <Trigger Property="IsEnabled" Value="False">
               <Setter TargetName="Bd" Property="Opacity" Value="0.56" />
             </Trigger>
+            <Trigger Property="IsSelected" Value="True">
+              <Setter TargetName="Bd" Property="Background" Value="{DynamicResource MaterialDesign.Brush.DataGrid.ComboBoxSelected}" />
+            </Trigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="IsSelected" Value="False" />
                 <Condition Property="IsMouseOver" Value="True" />
-                <Condition Property="IsKeyboardFocused" Value="False" />
               </MultiTrigger.Conditions>
-              <Setter TargetName="Bd" Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
-            </MultiTrigger>
-            <MultiTrigger>
-              <MultiTrigger.Conditions>
-                <Condition Property="IsSelected" Value="True" />
-                <Condition Property="IsMouseOver" Value="False" />
-                <Condition Property="IsKeyboardFocused" Value="True" />
-              </MultiTrigger.Conditions>
-              <Setter TargetName="Bd" Property="Background" Value="{DynamicResource MaterialDesign.Brush.DataGrid.ComboBoxSelected}" />
-            </MultiTrigger>
-            <MultiTrigger>
-              <MultiTrigger.Conditions>
-                <Condition Property="IsSelected" Value="True" />
-                <Condition Property="IsMouseOver" Value="True" />
-              </MultiTrigger.Conditions>
-              <Setter TargetName="Bd" Property="Background" Value="{DynamicResource MaterialDesign.Brush.DataGrid.ComboBoxSelected}" />
-            </MultiTrigger>
-            <MultiTrigger>
-              <MultiTrigger.Conditions>
-                <Condition Property="IsSelected" Value="True" />
-                <Condition Property="IsMouseOver" Value="False" />
-                <Condition Property="IsKeyboardFocused" Value="False" />
-              </MultiTrigger.Conditions>
-              <Setter TargetName="Bd" Property="Background" Value="{DynamicResource MaterialDesign.Brush.DataGrid.ComboBoxSelected}" />
+              <Setter TargetName="Bd" Property="Background" Value="{DynamicResource MaterialDesign.Brush.DataGrid.ComboBoxHover}" />
             </MultiTrigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="IsSelected" Value="False" />
-                <Condition Property="IsMouseOver" Value="False" />
                 <Condition Property="IsKeyboardFocused" Value="True" />
               </MultiTrigger.Conditions>
-              <Setter TargetName="Bd" Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
-            </MultiTrigger>
-            <MultiTrigger>
-              <MultiTrigger.Conditions>
-                <Condition Property="IsSelected" Value="False" />
-                <Condition Property="IsMouseOver" Value="True" />
-                <Condition Property="IsKeyboardFocused" Value="True" />
-              </MultiTrigger.Conditions>
-              <Setter TargetName="Bd" Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
+              <Setter TargetName="Bd" Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.ComboBoxHover}" />
             </MultiTrigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
@@ -200,7 +170,7 @@
                   MinWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=DataGridCell}}"
                   Margin="{Binding ElementName=shadow, Path=Margin, Mode=OneWay}"
                   Background="Transparent"
-                  BorderBrush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
+                  BorderBrush="{DynamicResource MaterialDesign.Brush.DataGrid.ComboBoxHover}"
                   BorderThickness="1"
                   CornerRadius="2">
             <ScrollViewer x:Name="DropDownScrollViewer">
@@ -326,7 +296,7 @@
                   MinWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=DataGridCell}}"
                   Margin="{Binding ElementName=shadow, Path=Margin, Mode=OneWay}"
                   Background="Transparent"
-                  BorderBrush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
+                  BorderBrush="{DynamicResource MaterialDesign.Brush.DataGrid.ComboBoxHover}"
                   BorderThickness="1"
                   CornerRadius="2">
             <ScrollViewer x:Name="DropDownScrollViewer">

@@ -253,6 +253,15 @@
         "obsoleteKeys": []
     },
     {
+        "name": "MaterialDesign.Brush.DataGrid.ComboBoxHover",
+        "themeValues": {
+            "light": "Black100",
+            "dark": "White100"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
         "name": "MaterialDesign.Brush.DataGrid.RowHoverBackground",
         "themeValues": {
             "light": "Black50",
