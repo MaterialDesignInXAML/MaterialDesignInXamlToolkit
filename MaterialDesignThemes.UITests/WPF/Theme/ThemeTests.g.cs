@@ -49,9 +49,11 @@ partial class ThemeTests
           <TextBlock Text="ComboBox.Popup.DarkForeground" Background="{StaticResource MaterialDesign.Brush.ComboBox.Popup.DarkForeground}" />
           <TextBlock Text="ComboBox.Popup.LightBackground" Background="{StaticResource MaterialDesign.Brush.ComboBox.Popup.LightBackground}" />
           <TextBlock Text="ComboBox.Popup.LightForeground" Background="{StaticResource MaterialDesign.Brush.ComboBox.Popup.LightForeground}" />
+          <TextBlock Text="DataGrid.Border" Background="{StaticResource MaterialDesign.Brush.DataGrid.Border}" />
           <TextBlock Text="DataGrid.ButtonPressed" Background="{StaticResource MaterialDesign.Brush.DataGrid.ButtonPressed}" />
           <TextBlock Text="DataGrid.ComboBoxHover" Background="{StaticResource MaterialDesign.Brush.DataGrid.ComboBoxHover}" />
           <TextBlock Text="DataGrid.ComboBoxSelected" Background="{StaticResource MaterialDesign.Brush.DataGrid.ComboBoxSelected}" />
+          <TextBlock Text="DataGrid.PopupBorder" Background="{StaticResource MaterialDesign.Brush.DataGrid.PopupBorder}" />
           <TextBlock Text="DataGrid.RowHoverBackground" Background="{StaticResource MaterialDesign.Brush.DataGrid.RowHoverBackground}" />
           <TextBlock Text="DataGrid.Selected" Background="{StaticResource MaterialDesign.Brush.DataGrid.Selected}" />
           <TextBlock Text="DataGrid.ColumnHeaderForeground" Background="{StaticResource MaterialDesign.Brush.DataGrid.ColumnHeaderForeground}" />
@@ -270,6 +272,11 @@ partial class ThemeTests
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.Popup.LightForeground"), textBlockBackground);
         }
         {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"DataGrid.Border\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.DataGrid.Border"), textBlockBackground);
+        }
+        {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"DataGrid.ButtonPressed\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.DataGrid.ButtonPressed"), textBlockBackground);
@@ -283,6 +290,11 @@ partial class ThemeTests
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"DataGrid.ComboBoxSelected\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.DataGrid.ComboBoxSelected"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"DataGrid.PopupBorder\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.DataGrid.PopupBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"DataGrid.RowHoverBackground\"]");
@@ -615,9 +627,11 @@ partial class ThemeTests
         yield return "MaterialDesign.Brush.ComboBox.Popup.DarkForeground";
         yield return "MaterialDesign.Brush.ComboBox.Popup.LightBackground";
         yield return "MaterialDesign.Brush.ComboBox.Popup.LightForeground";
+        yield return "MaterialDesign.Brush.DataGrid.Border";
         yield return "MaterialDesign.Brush.DataGrid.ButtonPressed";
         yield return "MaterialDesign.Brush.DataGrid.ComboBoxHover";
         yield return "MaterialDesign.Brush.DataGrid.ComboBoxSelected";
+        yield return "MaterialDesign.Brush.DataGrid.PopupBorder";
         yield return "MaterialDesign.Brush.DataGrid.RowHoverBackground";
         yield return "MaterialDesign.Brush.DataGrid.Selected";
         yield return "MaterialDesign.Brush.DataGrid.ColumnHeaderForeground";

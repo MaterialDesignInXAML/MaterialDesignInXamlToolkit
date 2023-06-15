@@ -235,10 +235,28 @@
         "obsoleteKeys": []
     },
     {
+        "name": "MaterialDesign.Brush.DataGrid.Border",
+        "themeValues": {
+            "light": "Black100",
+            "dark": "White100"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
         "name": "MaterialDesign.Brush.DataGrid.ButtonPressed",
         "themeValues": {
             "light": "Neutral800",
             "dark": "Neutral400"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
+        "name": "MaterialDesign.Brush.DataGrid.ComboBoxHover",
+        "themeValues": {
+            "light": "Black100",
+            "dark": "White100"
         },
         "alternateKeys": [],
         "obsoleteKeys": []
@@ -253,7 +271,7 @@
         "obsoleteKeys": []
     },
     {
-        "name": "MaterialDesign.Brush.DataGrid.ComboBoxHover",
+        "name": "MaterialDesign.Brush.DataGrid.PopupBorder",
         "themeValues": {
             "light": "Black100",
             "dark": "White100"

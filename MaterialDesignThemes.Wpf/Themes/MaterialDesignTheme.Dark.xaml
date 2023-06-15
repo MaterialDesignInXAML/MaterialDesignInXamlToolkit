@@ -27,9 +27,11 @@
   <colors:StaticResource x:Key="MaterialDesign.Brush.ComboBox.Popup.DarkForeground" ResourceKey="Neutral900" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ComboBox.Popup.LightBackground" ResourceKey="Neutral900" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ComboBox.Popup.LightForeground" ResourceKey="Black900" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.Border" ResourceKey="White100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.ButtonPressed" ResourceKey="Neutral400" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.ComboBoxHover" ResourceKey="White100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.ComboBoxSelected" ResourceKey="Neutral400" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.PopupBorder" ResourceKey="White100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.RowHoverBackground" ResourceKey="White100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.Selected" ResourceKey="Neutral400" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.Foreground" ResourceKey="White900" />

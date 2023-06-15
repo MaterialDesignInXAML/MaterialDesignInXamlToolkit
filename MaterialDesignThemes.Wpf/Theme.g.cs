@@ -141,11 +141,15 @@ partial class Theme
 
     public class DataGrid
     {
+        public Color Border { get; set; }
+
         public Color ButtonPressed { get; set; }
 
         public Color ComboBoxHover { get; set; }
 
         public Color ComboBoxSelected { get; set; }
+
+        public Color PopupBorder { get; set; }
 
         public Color RowHoverBackground { get; set; }
 

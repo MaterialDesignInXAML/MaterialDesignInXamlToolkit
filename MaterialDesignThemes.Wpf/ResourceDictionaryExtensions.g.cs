@@ -38,9 +38,11 @@ static partial class ResourceDictionaryExtensions
         theme.ComboBoxes.Popups.DarkForeground = GetColor(resourceDictionary, "MaterialDesign.Brush.ComboBox.Popup.DarkForeground");
         theme.ComboBoxes.Popups.LightBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.ComboBox.Popup.LightBackground");
         theme.ComboBoxes.Popups.LightForeground = GetColor(resourceDictionary, "MaterialDesign.Brush.ComboBox.Popup.LightForeground");
+        theme.DataGrids.Border = GetColor(resourceDictionary, "MaterialDesign.Brush.DataGrid.Border");
         theme.DataGrids.ButtonPressed = GetColor(resourceDictionary, "MaterialDesign.Brush.DataGrid.ButtonPressed");
         theme.DataGrids.ComboBoxHover = GetColor(resourceDictionary, "MaterialDesign.Brush.DataGrid.ComboBoxHover");
         theme.DataGrids.ComboBoxSelected = GetColor(resourceDictionary, "MaterialDesign.Brush.DataGrid.ComboBoxSelected");
+        theme.DataGrids.PopupBorder = GetColor(resourceDictionary, "MaterialDesign.Brush.DataGrid.PopupBorder");
         theme.DataGrids.RowHoverBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.DataGrid.RowHoverBackground", "MaterialDesignDataGridRowHoverBackground");
         theme.DataGrids.Selected = GetColor(resourceDictionary, "MaterialDesign.Brush.DataGrid.Selected");
         theme.DataGrids.ColumnHeaderForeground = GetColor(resourceDictionary, "MaterialDesign.Brush.DataGrid.ColumnHeaderForeground", "MaterialDesignColumnHeader", "MaterialDesignTextAreaBorder");
@@ -114,9 +116,11 @@ static partial class ResourceDictionaryExtensions
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ComboBox.Popup.DarkForeground", theme.ComboBoxes.Popups.DarkForeground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ComboBox.Popup.LightBackground", theme.ComboBoxes.Popups.LightBackground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ComboBox.Popup.LightForeground", theme.ComboBoxes.Popups.LightForeground);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.DataGrid.Border", theme.DataGrids.Border);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.DataGrid.ButtonPressed", theme.DataGrids.ButtonPressed);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.DataGrid.ComboBoxHover", theme.DataGrids.ComboBoxHover);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.DataGrid.ComboBoxSelected", theme.DataGrids.ComboBoxSelected);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.DataGrid.PopupBorder", theme.DataGrids.PopupBorder);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.DataGrid.RowHoverBackground", theme.DataGrids.RowHoverBackground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignDataGridRowHoverBackground", theme.DataGrids.RowHoverBackground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.DataGrid.Selected", theme.DataGrids.Selected);

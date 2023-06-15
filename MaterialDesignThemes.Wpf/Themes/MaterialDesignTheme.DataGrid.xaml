@@ -130,7 +130,7 @@
                 <Border Margin="5,5,5,5"
                         Padding="16"
                         Background="Transparent"
-                        BorderBrush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
+                        BorderBrush="{DynamicResource MaterialDesign.Brush.DataGrid.PopupBorder}"
                         BorderThickness="1"
                         CornerRadius="2">
                   <Grid>
@@ -463,7 +463,7 @@
 
   <Style x:Key="MaterialDesignDataGrid" TargetType="{x:Type DataGrid}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.DataGrid.Border}" />
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="FontSize" Value="13" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
