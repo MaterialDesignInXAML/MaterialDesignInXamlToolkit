@@ -45,7 +45,9 @@
   <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.OutlineBorder" ResourceKey="White700" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.Ignored" ResourceKey="Neutral400" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ListBoxItem.Border" ResourceKey="White100" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ListView.Hover" ResourceKey="White100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ListView.Selected" ResourceKey="Neutral400" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ListView.Separator" ResourceKey="White100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ScrollBar.Foreground" ResourceKey="Neutral400" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ScrollBar.RepeatButtonBackground" ResourceKey="Neutral400" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.Separator.Background" ResourceKey="Neutral400" />

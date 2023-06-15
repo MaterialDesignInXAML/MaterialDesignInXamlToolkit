@@ -33,7 +33,7 @@
                             Focusable="false"
                             HorizontalScrollBarVisibility="Hidden"
                             VerticalScrollBarVisibility="Hidden">
-                <Border BorderBrush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" BorderThickness="0,0,0,1">
+                <Border BorderBrush="{DynamicResource MaterialDesign.Brush.ListView.Separator}" BorderThickness="0,0,0,1">
                   <StackPanel Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ListViewAssist.HeaderRowBackground)}" Orientation="Horizontal">
                     <GridViewHeaderRowPresenter x:Name="PART_GridViewHeaderRowPresenter"
                                                 AllowsColumnReorder="{Binding Path=TemplatedParent.View.AllowsColumnReorder, RelativeSource={RelativeSource TemplatedParent}}"
@@ -152,7 +152,7 @@
           <Border x:Name="Border"
                   Padding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ListViewAssist.ListViewItemPadding)}"
                   Background="{TemplateBinding Background}"
-                  BorderBrush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
+                  BorderBrush="{DynamicResource MaterialDesign.Brush.ListView.Separator}"
                   BorderThickness="0,0,0,1"
                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
             <GridViewRowPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
@@ -168,7 +168,7 @@
         <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ListView.Selected}" />
       </Trigger>
       <Trigger Property="IsMouseOver" Value="True">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ListView.Hover}" />
       </Trigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
@@ -188,7 +188,7 @@
         <Setter Property="Opacity" Value=".56" />
       </Trigger>
       <Trigger Property="ItemsControl.AlternationIndex" Value="1">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ListView.Hover}" />
       </Trigger>
     </Style.Triggers>
   </Style>

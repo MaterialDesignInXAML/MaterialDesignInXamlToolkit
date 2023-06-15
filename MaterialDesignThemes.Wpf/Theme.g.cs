@@ -199,7 +199,11 @@ partial class Theme
 
     public class ListView
     {
+        public Color Hover { get; set; }
+
         public Color Selected { get; set; }
+
+        public Color Separator { get; set; }
 
     }
 

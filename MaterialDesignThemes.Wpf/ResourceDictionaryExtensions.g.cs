@@ -56,7 +56,9 @@ static partial class ResourceDictionaryExtensions
         theme.GridSplitters.PreviewBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.GridSplitter.PreviewBackground");
         theme.Headers.Foreground = GetColor(resourceDictionary, "MaterialDesign.Brush.Header.Foreground", "MaterialDesignColumnHeader", "MaterialDesignTextAreaBorder");
         theme.ListBoxItems.Border = GetColor(resourceDictionary, "MaterialDesign.Brush.ListBoxItem.Border");
+        theme.ListViews.Hover = GetColor(resourceDictionary, "MaterialDesign.Brush.ListView.Hover");
         theme.ListViews.Selected = GetColor(resourceDictionary, "MaterialDesign.Brush.ListView.Selected");
+        theme.ListViews.Separator = GetColor(resourceDictionary, "MaterialDesign.Brush.ListView.Separator");
         theme.ScrollBars.Foreground = GetColor(resourceDictionary, "MaterialDesign.Brush.ScrollBar.Foreground");
         theme.ScrollBars.RepeatButtonBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.ScrollBar.RepeatButtonBackground");
         theme.Separators.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.Separator.Background");
@@ -151,7 +153,9 @@ static partial class ResourceDictionaryExtensions
         SetSolidColorBrush(resourceDictionary, "MaterialDesignColumnHeader", theme.Headers.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignTextAreaBorder", theme.Headers.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ListBoxItem.Border", theme.ListBoxItems.Border);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ListView.Hover", theme.ListViews.Hover);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ListView.Selected", theme.ListViews.Selected);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ListView.Separator", theme.ListViews.Separator);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ScrollBar.Foreground", theme.ScrollBars.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ScrollBar.RepeatButtonBackground", theme.ScrollBars.RepeatButtonBackground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Separator.Background", theme.Separators.Background);

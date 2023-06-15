@@ -67,7 +67,9 @@ partial class ThemeTests
           <TextBlock Text="GridSplitter.PreviewBackground" Background="{StaticResource MaterialDesign.Brush.GridSplitter.PreviewBackground}" />
           <TextBlock Text="Header.Foreground" Background="{StaticResource MaterialDesign.Brush.Header.Foreground}" />
           <TextBlock Text="ListBoxItem.Border" Background="{StaticResource MaterialDesign.Brush.ListBoxItem.Border}" />
+          <TextBlock Text="ListView.Hover" Background="{StaticResource MaterialDesign.Brush.ListView.Hover}" />
           <TextBlock Text="ListView.Selected" Background="{StaticResource MaterialDesign.Brush.ListView.Selected}" />
+          <TextBlock Text="ListView.Separator" Background="{StaticResource MaterialDesign.Brush.ListView.Separator}" />
           <TextBlock Text="ScrollBar.Foreground" Background="{StaticResource MaterialDesign.Brush.ScrollBar.Foreground}" />
           <TextBlock Text="ScrollBar.RepeatButtonBackground" Background="{StaticResource MaterialDesign.Brush.ScrollBar.RepeatButtonBackground}" />
           <TextBlock Text="Separator.Background" Background="{StaticResource MaterialDesign.Brush.Separator.Background}" />
@@ -364,9 +366,19 @@ partial class ThemeTests
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ListBoxItem.Border"), textBlockBackground);
         }
         {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ListView.Hover\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ListView.Hover"), textBlockBackground);
+        }
+        {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ListView.Selected\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ListView.Selected"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ListView.Separator\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ListView.Separator"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ScrollBar.Foreground\"]");
@@ -657,7 +669,9 @@ partial class ThemeTests
         yield return "MaterialDesign.Brush.GridSplitter.PreviewBackground";
         yield return "MaterialDesign.Brush.Header.Foreground";
         yield return "MaterialDesign.Brush.ListBoxItem.Border";
+        yield return "MaterialDesign.Brush.ListView.Hover";
         yield return "MaterialDesign.Brush.ListView.Selected";
+        yield return "MaterialDesign.Brush.ListView.Separator";
         yield return "MaterialDesign.Brush.ScrollBar.Foreground";
         yield return "MaterialDesign.Brush.ScrollBar.RepeatButtonBackground";
         yield return "MaterialDesign.Brush.Separator.Background";

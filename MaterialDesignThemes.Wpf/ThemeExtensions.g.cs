@@ -61,7 +61,9 @@ static partial class ThemeExtensions
         theme.GridSplitters.PreviewBackground = BaseThemeColors.Neutral800;
         theme.Headers.Foreground = BaseThemeColors.Black700;
         theme.ListBoxItems.Border = BaseThemeColors.Black100;
+        theme.ListViews.Hover = BaseThemeColors.Black100;
         theme.ListViews.Selected = BaseThemeColors.Neutral800;
+        theme.ListViews.Separator = BaseThemeColors.Black100;
         theme.ScrollBars.Foreground = BaseThemeColors.Neutral800;
         theme.ScrollBars.RepeatButtonBackground = BaseThemeColors.Neutral800;
         theme.Separators.Background = BaseThemeColors.Neutral800;
@@ -119,7 +121,9 @@ static partial class ThemeExtensions
         theme.GridSplitters.PreviewBackground = BaseThemeColors.Neutral400;
         theme.Headers.Foreground = BaseThemeColors.White700;
         theme.ListBoxItems.Border = BaseThemeColors.White100;
+        theme.ListViews.Hover = BaseThemeColors.White100;
         theme.ListViews.Selected = BaseThemeColors.Neutral400;
+        theme.ListViews.Separator = BaseThemeColors.White100;
         theme.ScrollBars.Foreground = BaseThemeColors.Neutral400;
         theme.ScrollBars.RepeatButtonBackground = BaseThemeColors.Neutral400;
         theme.Separators.Background = BaseThemeColors.Neutral400;
