@@ -179,6 +179,8 @@ partial class Theme
     {
         public Color Background { get; set; }
 
+        public Color PreviewBackground { get; set; }
+
     }
 
     public class Header

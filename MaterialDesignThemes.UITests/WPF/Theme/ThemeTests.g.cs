@@ -64,6 +64,7 @@ partial class ThemeTests
           <TextBlock Text="TextBox.HoverBackground" Background="{StaticResource MaterialDesign.Brush.TextBox.HoverBackground}" />
           <TextBlock Text="TextBox.OutlineInactiveBorder" Background="{StaticResource MaterialDesign.Brush.TextBox.OutlineInactiveBorder}" />
           <TextBlock Text="GridSplitter.Background" Background="{StaticResource MaterialDesign.Brush.GridSplitter.Background}" />
+          <TextBlock Text="GridSplitter.PreviewBackground" Background="{StaticResource MaterialDesign.Brush.GridSplitter.PreviewBackground}" />
           <TextBlock Text="Header.Foreground" Background="{StaticResource MaterialDesign.Brush.Header.Foreground}" />
           <TextBlock Text="ListView.Selected" Background="{StaticResource MaterialDesign.Brush.ListView.Selected}" />
           <TextBlock Text="ScrollBar.Foreground" Background="{StaticResource MaterialDesign.Brush.ScrollBar.Foreground}" />
@@ -345,6 +346,11 @@ partial class ThemeTests
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"GridSplitter.Background\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.GridSplitter.Background"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"GridSplitter.PreviewBackground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.GridSplitter.PreviewBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Header.Foreground\"]");
@@ -642,6 +648,7 @@ partial class ThemeTests
         yield return "MaterialDesign.Brush.TextBox.HoverBackground";
         yield return "MaterialDesign.Brush.TextBox.OutlineInactiveBorder";
         yield return "MaterialDesign.Brush.GridSplitter.Background";
+        yield return "MaterialDesign.Brush.GridSplitter.PreviewBackground";
         yield return "MaterialDesign.Brush.Header.Foreground";
         yield return "MaterialDesign.Brush.ListView.Selected";
         yield return "MaterialDesign.Brush.ScrollBar.Foreground";

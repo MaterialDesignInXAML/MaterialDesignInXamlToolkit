@@ -38,7 +38,8 @@
   <colors:StaticResource x:Key="MaterialDesign.Brush.ForegroundLight" ResourceKey="Black500" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.CheckBox.Off" ResourceKey="Black500" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.Border" ResourceKey="Black500" />
-  <colors:StaticResource x:Key="MaterialDesign.Brush.GridSplitter.Background" ResourceKey="Neutral800" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.GridSplitter.Background" ResourceKey="Black100" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.GridSplitter.PreviewBackground" ResourceKey="Neutral800" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.Header.Foreground" ResourceKey="Black700" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.ColumnHeaderForeground" ResourceKey="Black700" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.OutlineBorder" ResourceKey="Black700" />

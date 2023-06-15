@@ -4,13 +4,13 @@
     <Setter Property="Control.Template">
       <Setter.Value>
         <ControlTemplate>
-          <Rectangle Fill="{DynamicResource MaterialDesign.Brush.GridSplitter.Background}" />
+          <Rectangle Fill="{DynamicResource MaterialDesign.Brush.GridSplitter.PreviewBackground}" />
         </ControlTemplate>
       </Setter.Value>
     </Setter>
   </Style>
   <Style x:Key="MaterialDesignGridSplitter" TargetType="{x:Type GridSplitter}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.GridSplitter.Background}" />
     <Setter Property="Opacity" Value=".56" />
     <Setter Property="PreviewStyle" Value="{StaticResource MaterialDesignGridSplitterPreview}" />
     <Setter Property="Template">

@@ -53,6 +53,7 @@ static partial class ResourceDictionaryExtensions
         theme.TextBoxes.HoverBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.TextBox.HoverBackground", "MaterialDesignTextFieldBoxHoverBackground", "MaterialDesignDivider");
         theme.TextBoxes.OutlineInactiveBorder = GetColor(resourceDictionary, "MaterialDesign.Brush.TextBox.OutlineInactiveBorder", "MaterialDesignTextAreaInactiveBorder");
         theme.GridSplitters.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.GridSplitter.Background");
+        theme.GridSplitters.PreviewBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.GridSplitter.PreviewBackground");
         theme.Headers.Foreground = GetColor(resourceDictionary, "MaterialDesign.Brush.Header.Foreground", "MaterialDesignColumnHeader", "MaterialDesignTextAreaBorder");
         theme.ListViews.Selected = GetColor(resourceDictionary, "MaterialDesign.Brush.ListView.Selected");
         theme.ScrollBars.Foreground = GetColor(resourceDictionary, "MaterialDesign.Brush.ScrollBar.Foreground");
@@ -144,6 +145,7 @@ static partial class ResourceDictionaryExtensions
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.TextBox.OutlineInactiveBorder", theme.TextBoxes.OutlineInactiveBorder);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignTextAreaInactiveBorder", theme.TextBoxes.OutlineInactiveBorder);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.GridSplitter.Background", theme.GridSplitters.Background);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.GridSplitter.PreviewBackground", theme.GridSplitters.PreviewBackground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Header.Foreground", theme.Headers.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignColumnHeader", theme.Headers.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignTextAreaBorder", theme.Headers.Foreground);

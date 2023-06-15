@@ -57,7 +57,8 @@ static partial class ThemeExtensions
         theme.TextBoxes.FilledBackground = BaseThemeColors.Black50;
         theme.TextBoxes.HoverBackground = BaseThemeColors.Black100;
         theme.TextBoxes.OutlineInactiveBorder = BaseThemeColors.Black200;
-        theme.GridSplitters.Background = BaseThemeColors.Neutral800;
+        theme.GridSplitters.Background = BaseThemeColors.Black100;
+        theme.GridSplitters.PreviewBackground = BaseThemeColors.Neutral800;
         theme.Headers.Foreground = BaseThemeColors.Black700;
         theme.ListViews.Selected = BaseThemeColors.Neutral800;
         theme.ScrollBars.Foreground = BaseThemeColors.Neutral800;
@@ -113,7 +114,8 @@ static partial class ThemeExtensions
         theme.TextBoxes.FilledBackground = BaseThemeColors.White100;
         theme.TextBoxes.HoverBackground = BaseThemeColors.White100;
         theme.TextBoxes.OutlineInactiveBorder = BaseThemeColors.White200;
-        theme.GridSplitters.Background = BaseThemeColors.Neutral400;
+        theme.GridSplitters.Background = BaseThemeColors.White100;
+        theme.GridSplitters.PreviewBackground = BaseThemeColors.Neutral400;
         theme.Headers.Foreground = BaseThemeColors.White700;
         theme.ListViews.Selected = BaseThemeColors.Neutral400;
         theme.ScrollBars.Foreground = BaseThemeColors.Neutral400;
