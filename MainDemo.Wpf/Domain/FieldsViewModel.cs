@@ -1,3 +1,8 @@
+using System.Collections.ObjectModel;
+using System.Windows.Media;
+using System.Xml;
+
+
 namespace MaterialDesignDemo.Domain
 {
     private string? _name;
@@ -19,6 +24,12 @@ namespace MaterialDesignDemo.Domain
         private string? _password2Validated = "pre-filled";
         private string? _text1;
         private string? _text2;
+        private ObservableCollection<string>? _autoSuggestBox1Suggestions;
+        private string? _autoSuggestBox1Text;
+        private List<string>? _originalAutoSuggestBox1Suggestions;
+        private ObservableCollection<KeyValuePair<string, Brush>>? _autoSuggestBox2Suggestions;
+        private string? _autoSuggestBox2Text;
+        private List<KeyValuePair<string, Brush>>? _originalAutoSuggestBox2Suggestions;
 
     public string? Name2
     {
@@ -76,6 +87,49 @@ namespace MaterialDesignDemo.Domain
 
         public FieldsTestObject TestObject => new() { Name = "Mr. Test" };
 
+        public ObservableCollection<string>? AutoSuggestBox1Suggestions
+        {
+            get { return _autoSuggestBox1Suggestions; }
+            set { SetProperty(ref _autoSuggestBox1Suggestions, value); }
+        }
+
+        public ObservableCollection<KeyValuePair<string, Brush>>? AutoSuggestBox2Suggestions
+        {
+            get { return _autoSuggestBox2Suggestions; }
+            set { SetProperty(ref _autoSuggestBox2Suggestions, value); }
+        }
+
+        public string? AutoSuggestBox1Text
+        {
+            get { return _autoSuggestBox1Text; }
+            set
+            {
+                if (value != _autoSuggestBox1Text)
+                {
+                    SetProperty(ref _autoSuggestBox1Text, value);
+                    var searchResult = _originalAutoSuggestBox1Suggestions.Where(x => IsMatch(x, value ?? ""));
+                    AutoSuggestBox1Suggestions = new ObservableCollection<string>(searchResult);
+                }
+            }
+        }
+
+        public string? AutoSuggestBox2Text
+        {
+            get { return _autoSuggestBox2Text; }
+            set
+            {
+                if (value != _autoSuggestBox2Text)
+                {
+                    SetProperty(ref _autoSuggestBox2Text, value);
+                    var searchResult = _originalAutoSuggestBox2Suggestions.Where(x => IsMatch(x.Key, value ?? ""));
+                    AutoSuggestBox2Suggestions = new ObservableCollection<KeyValuePair<string, Brush>>(searchResult);
+                }
+            }
+        }
+
+
+
+
         public ICommand SetPassword1FromViewModelCommand { get; }
         public ICommand SetPassword2FromViewModelCommand { get; }
 
@@ -83,6 +137,41 @@ namespace MaterialDesignDemo.Domain
         {
             SetPassword1FromViewModelCommand = new AnotherCommandImplementation(_ => Password1 = "Set from ViewModel!");
             SetPassword2FromViewModelCommand = new AnotherCommandImplementation(_ => Password2 = "Set from ViewModel!");
+
+            InitializeData();
+        }
+        private void InitializeData()
+        {
+            _originalAutoSuggestBox1Suggestions = new List<string>()
+            {
+                "Burger", "Fries", "Shake", "Lettuce"
+            };
+
+            _originalAutoSuggestBox2Suggestions = new List<KeyValuePair<string, Brush>>(GetColors());
+
+            AutoSuggestBox1Suggestions = new ObservableCollection<string>(_originalAutoSuggestBox1Suggestions);
+        }
+
+        private bool IsMatch(string item, string currentText)
+        {
+            return item.ToLower().Contains(currentText.ToLower());
+        }
+
+        private IEnumerable<KeyValuePair<string, Brush>> GetColors()
+        {
+            return typeof(Colors)
+                .GetProperties()
+                .Where(prop =>
+                    typeof(Color).IsAssignableFrom(prop.PropertyType))
+                .Select(prop =>
+                    new KeyValuePair<string, Brush>(prop.Name, GenerateColorBrush(prop.GetValue(null))));
+        }
+
+        private SolidColorBrush GenerateColorBrush(object? prop)
+        {
+            if (prop is Color color)
+                return new SolidColorBrush(color);
+            return new SolidColorBrush(Colors.White);
         }
     }
 }

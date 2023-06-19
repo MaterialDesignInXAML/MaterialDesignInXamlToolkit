@@ -757,5 +757,67 @@
         </smtx:XamlDisplay>
       </StackPanel>
     </Grid>
+
+    <Grid Margin="0,48,0,0"
+          HorizontalAlignment="Left"
+          VerticalAlignment="Top">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="300" />
+        <ColumnDefinition Width="300" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <TextBlock Grid.Row="0"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="3"
+                 Margin="0,0,0,10"
+                 VerticalAlignment="Center"
+                 Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                 Text="TextBox With AutoSuggestion" />
+      <TextBlock Grid.Row="1"
+                 Grid.Column="0"
+                 VerticalAlignment="Center"
+                 Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                 Text="Simple source list" />
+      <smtx:XamlDisplay Grid.Row="2"
+                        Grid.Column="0"
+                        UniqueKey="fields_autosuggestion_1">
+        <materialDesign:AutoSuggestBox VerticalAlignment="Bottom"
+                                       Suggestions="{Binding AutoSuggestBox1Suggestions}"
+                                       Text="{Binding AutoSuggestBox1Text, UpdateSourceTrigger=PropertyChanged}" />
+      </smtx:XamlDisplay>
+
+      <TextBlock Grid.Row="1"
+                 Grid.Column="1"
+                 Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                 Text="AutoSuggestionItemTemplate" />
+      <smtx:XamlDisplay Grid.Row="2"
+                        Grid.Column="1"
+                        UniqueKey="fields_autosuggestion_2">
+        <materialDesign:AutoSuggestBox materialDesign:HintAssist.HelperText="Select your color"
+                                       materialDesign:TextFieldAssist.HasClearButton="True"
+                                       materialDesign:HintAssist.Hint="Color"
+                                       AutoSuggestBoxElevation="Dp0"
+                                       AutoSuggestBoxValueMember="Key"
+                                       SuggestionChosen="AutoSuggestBox_SuggestionChosen"
+                                       Suggestions="{Binding AutoSuggestBox2Suggestions}"                                       
+                                       Text="{Binding AutoSuggestBox2Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+          <materialDesign:AutoSuggestBox.AutoSuggestBoxItemTemplate>
+            <DataTemplate>
+              <DockPanel>
+                <Border Width="20"
+                        Height="20"
+                        Background="{Binding Value}"
+                        CornerRadius="10" />
+                <TextBlock Margin="10,0,0,0" Text="{Binding Key}" />
+              </DockPanel>
+            </DataTemplate>
+          </materialDesign:AutoSuggestBox.AutoSuggestBoxItemTemplate>
+        </materialDesign:AutoSuggestBox>
+      </smtx:XamlDisplay>
+    </Grid>
   </StackPanel>
 </UserControl>
