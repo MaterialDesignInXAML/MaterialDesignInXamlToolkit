@@ -107,8 +107,11 @@ namespace MaterialDesignDemo.Domain
                 if (value != _autoSuggestBox1Text)
                 {
                     SetProperty(ref _autoSuggestBox1Text, value);
-                    var searchResult = _originalAutoSuggestBox1Suggestions.Where(x => IsMatch(x, value ?? ""));
-                    AutoSuggestBox1Suggestions = new ObservableCollection<string>(searchResult);
+                    if (_originalAutoSuggestBox1Suggestions != null && value != null)
+                    {
+                        var searchResult = _originalAutoSuggestBox1Suggestions.Where(x => IsMatch(x, value));
+                        AutoSuggestBox1Suggestions = new ObservableCollection<string>(searchResult);
+                    }
                 }
             }
         }
@@ -121,8 +124,11 @@ namespace MaterialDesignDemo.Domain
                 if (value != _autoSuggestBox2Text)
                 {
                     SetProperty(ref _autoSuggestBox2Text, value);
-                    var searchResult = _originalAutoSuggestBox2Suggestions.Where(x => IsMatch(x.Key, value ?? ""));
-                    AutoSuggestBox2Suggestions = new ObservableCollection<KeyValuePair<string, Brush>>(searchResult);
+                    if (_originalAutoSuggestBox2Suggestions != null && value != null)
+                    {
+                        var searchResult = _originalAutoSuggestBox2Suggestions.Where(x => IsMatch(x.Key, value));
+                        AutoSuggestBox2Suggestions = new ObservableCollection<KeyValuePair<string, Brush>>(searchResult);
+                    }
                 }
             }
         }

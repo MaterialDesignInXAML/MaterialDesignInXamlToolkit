@@ -224,9 +224,7 @@ namespace MaterialDesignThemes.Wpf
             else if (Text.Length > 0 && !IsPopupOpen && IsFocused && _autoSuggestBoxList.Items.Count > 0)
                 IsPopupOpen = true;
         }
-
-
-
+        
         #endregion
 
         #region Methods
