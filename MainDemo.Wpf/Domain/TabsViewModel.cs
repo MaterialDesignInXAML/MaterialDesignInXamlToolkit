@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace MaterialDesignDemo.Domain;
 
@@ -22,27 +23,42 @@ Nulla a porta libero, quis hendrerit ex. In ut pharetra sem. Nunc gravida ante r
     public TabsViewModel() =>
         CustomTabs = new()
         {
-            new CustomTab {CustomHeader = "Custom tab 1"},
-            new CustomTab {CustomHeader = "Custom tab 2"}
+            new CustomTab
+            {
+                CustomHeader = "Custom tab 1",
+                CustomContent = "Custom content 1",
+                CloseCommand = CloseCommand
+            },
+            new CustomTab
+            {
+                CustomHeader = "Custom tab 2",
+                CustomContent = "Custom content 2",
+                CloseCommand = CloseCommand
+            },
+            new CustomTab
+            {
+                CustomHeader = "Custom tab 3",
+                CustomContent = "Custom content 3",
+                CloseCommand = CloseCommand
+            },
         };
+
+    private ICommand CloseCommand => new AnotherCommandImplementation(_ =>
+    {
+        if (SelectedTab != null)
+            CustomTabs.Remove(SelectedTab);
+    });
+
 }
 
-internal class CustomTab: ViewModelBase
+internal partial class CustomTab : ObservableObject
 {
-    public ICommand CloseCommand { get; }
+    public ICommand CloseCommand { get; set; }
 
-    public string? CustomHeader { get; set; }
+    [ObservableProperty]
+    private string? _customHeader;
 
-    public string? CustomContent => CustomHeader + ", close clicked: " + CloseClickCount;
+    [ObservableProperty]
+    private string? _customContent;
 
-    public int CloseClickCount { get; private set; }
-
-    internal CustomTab()
-    {
-        CloseCommand = new AnotherCommandImplementation(_ =>
-            {
-                CloseClickCount++;
-                OnPropertyChanged(nameof(CustomContent));
-            });
-    }
 }
