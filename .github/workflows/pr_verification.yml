@@ -29,4 +29,4 @@ jobs:
       contents: write
 
     steps:
-      - uses: fastify/github-action-merge-dependabot@v3.8.0  
+      - uses: fastify/github-action-merge-dependabot@v3.9.0  
