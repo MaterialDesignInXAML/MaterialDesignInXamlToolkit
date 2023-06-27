@@ -98,7 +98,7 @@
   <Style x:Key="MaterialDesignTextBoxBase" TargetType="{x:Type TextBoxBase}">
     <Setter Property="AllowDrop" Value="true" />
     <Setter Property="Background" Value="Transparent" />
-    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.Border}" />
     <Setter Property="BorderThickness" Value="0,0,0,1" />
     <Setter Property="CaretBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="ContextMenu" Value="{StaticResource MaterialDesignDefaultContextMenu}" />
@@ -421,7 +421,7 @@
               <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.FilledBackground}" />
             </Trigger>
             <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
-              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Header.Foreground}" />
+              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.OutlineBorder}" />
               <Setter Property="BorderThickness" Value="1" />
               <Setter TargetName="Hint" Property="FloatingOffset">
                 <Setter.Value>
