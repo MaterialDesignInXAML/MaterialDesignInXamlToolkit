@@ -369,6 +369,15 @@
         "obsoleteKeys": []
     },
     {
+        "name": "MaterialDesign.Brush.ScrollBar.ActiveBackground",
+        "themeValues": {
+            "light": "Black100",
+            "dark": "White100"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
         "name": "MaterialDesign.Brush.ScrollBar.Foreground",
         "themeValues": {
             "light": "Neutral800",

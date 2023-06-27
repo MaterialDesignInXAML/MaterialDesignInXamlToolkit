@@ -70,6 +70,7 @@ partial class ThemeTests
           <TextBlock Text="ListView.Hover" Background="{StaticResource MaterialDesign.Brush.ListView.Hover}" />
           <TextBlock Text="ListView.Selected" Background="{StaticResource MaterialDesign.Brush.ListView.Selected}" />
           <TextBlock Text="ListView.Separator" Background="{StaticResource MaterialDesign.Brush.ListView.Separator}" />
+          <TextBlock Text="ScrollBar.ActiveBackground" Background="{StaticResource MaterialDesign.Brush.ScrollBar.ActiveBackground}" />
           <TextBlock Text="ScrollBar.Foreground" Background="{StaticResource MaterialDesign.Brush.ScrollBar.Foreground}" />
           <TextBlock Text="ScrollBar.RepeatButtonBackground" Background="{StaticResource MaterialDesign.Brush.ScrollBar.RepeatButtonBackground}" />
           <TextBlock Text="Separator.Background" Background="{StaticResource MaterialDesign.Brush.Separator.Background}" />
@@ -384,6 +385,11 @@ partial class ThemeTests
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ListView.Separator\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ListView.Separator"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ScrollBar.ActiveBackground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ScrollBar.ActiveBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ScrollBar.Foreground\"]");
@@ -702,6 +708,7 @@ partial class ThemeTests
         yield return "MaterialDesign.Brush.ListView.Hover";
         yield return "MaterialDesign.Brush.ListView.Selected";
         yield return "MaterialDesign.Brush.ListView.Separator";
+        yield return "MaterialDesign.Brush.ScrollBar.ActiveBackground";
         yield return "MaterialDesign.Brush.ScrollBar.Foreground";
         yield return "MaterialDesign.Brush.ScrollBar.RepeatButtonBackground";
         yield return "MaterialDesign.Brush.Separator.Background";

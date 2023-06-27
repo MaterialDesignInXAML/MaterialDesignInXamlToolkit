@@ -28,12 +28,12 @@
           </Border>
           <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
-              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ScrollBar.ActiveBackground}" />
+              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ScrollBar.ActiveBackground}" />
             </Trigger>
             <Trigger Property="IsPressed" Value="true">
-              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
-              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ScrollBar.ActiveBackground}" />
+              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ScrollBar.ActiveBackground}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
               <Setter TargetName="contentPresenter" Property="Opacity" Value="0.56" />

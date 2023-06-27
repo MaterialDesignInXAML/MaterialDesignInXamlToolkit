@@ -211,6 +211,8 @@ partial class Theme
 
     public class ScrollBar
     {
+        public Color ActiveBackground { get; set; }
+
         public Color Foreground { get; set; }
 
         public Color RepeatButtonBackground { get; set; }
