@@ -388,7 +388,7 @@
               </MultiDataTrigger.EnterActions>
             </MultiDataTrigger>
 
-            <!-- Force the header foreground do be MaterialDesignBody by default (only for not filled tabs) -->
+            <!-- Force the header foreground do be MaterialDesign.Brush.Foreground by default (only for not filled tabs) -->
             <Trigger Property="wpf:TabAssist.HasFilledTab" Value="False">
               <Setter TargetName="ColorZoneHeader" Property="wpf:ColorZoneAssist.Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
             </Trigger>
@@ -622,7 +622,7 @@
               <wpf:Card x:Name="shadowCard"
                         wpf:ElevationAssist.Elevation="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation)}"
                         Background="{TemplateBinding Background}"
-                        BorderBrush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
+                        BorderBrush="{DynamicResource MaterialDesign.Brush.TabControl.Divider}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         UniformCornerRadius="0"
                         Visibility="Visible" />
@@ -664,7 +664,7 @@
                              Width="1"
                              Height="Auto"
                              HorizontalAlignment="Right"
-                             Fill="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
+                             Fill="{DynamicResource MaterialDesign.Brush.TabControl.Divider}"
                              Visibility="Collapsed" />
                 </Grid>
               </wpf:ColorZone>

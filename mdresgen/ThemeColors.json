@@ -418,6 +418,15 @@
         ]
     },
     {
+        "name": "MaterialDesign.Brush.TabControl.Divider",
+        "themeValues": {
+            "light": "Black100",
+            "dark": "White100"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
         "name": "MaterialDesign.Brush.TextBox.FilledBackground",
         "themeValues": {
             "light": "Black50",

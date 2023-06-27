@@ -62,11 +62,12 @@ static partial class ResourceDictionaryExtensions
         theme.ScrollBars.Foreground = GetColor(resourceDictionary, "MaterialDesign.Brush.ScrollBar.Foreground");
         theme.ScrollBars.RepeatButtonBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.ScrollBar.RepeatButtonBackground");
         theme.Separators.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.Separator.Background");
+        theme.TabControls.Divider = GetColor(resourceDictionary, "MaterialDesign.Brush.TabControl.Divider");
         theme.ToolBars.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.ToolBar.Background", "MaterialDesignToolBarBackground");
-        theme.ToolBars.Border = GetColor(resourceDictionary, "MaterialDesign.Brush.ToolBar.Border");
         theme.ToolBars.Thumbs.Foreground = GetColor(resourceDictionary, "MaterialDesign.Brush.ToolBar.Thumb.Foreground", "MaterialDesignTextFieldBoxHoverBackground", "MaterialDesignDivider");
         theme.ToolBars.Items.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.ToolBar.Item.Background", "MaterialDesignToolBackground");
         theme.ToolBars.Items.Foreground = GetColor(resourceDictionary, "MaterialDesign.Brush.ToolBar.Item.Foreground", "MaterialDesignToolForeground");
+        theme.ToolBars.Overflows.Border = GetColor(resourceDictionary, "MaterialDesign.Brush.ToolBar.Overflow.Border");
         theme.ToolTips.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.ToolTip.Background", "MaterialDesignToolTipBackground");
     }
 
@@ -161,9 +162,9 @@ static partial class ResourceDictionaryExtensions
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ScrollBar.Foreground", theme.ScrollBars.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ScrollBar.RepeatButtonBackground", theme.ScrollBars.RepeatButtonBackground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Separator.Background", theme.Separators.Background);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.TabControl.Divider", theme.TabControls.Divider);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ToolBar.Background", theme.ToolBars.Background);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignToolBarBackground", theme.ToolBars.Background);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ToolBar.Border", theme.ToolBars.Border);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ToolBar.Thumb.Foreground", theme.ToolBars.Thumbs.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignTextFieldBoxHoverBackground", theme.ToolBars.Thumbs.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignDivider", theme.ToolBars.Thumbs.Foreground);
@@ -171,6 +172,7 @@ static partial class ResourceDictionaryExtensions
         SetSolidColorBrush(resourceDictionary, "MaterialDesignToolBackground", theme.ToolBars.Items.Background);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ToolBar.Item.Foreground", theme.ToolBars.Items.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignToolForeground", theme.ToolBars.Items.Foreground);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ToolBar.Overflow.Border", theme.ToolBars.Overflows.Border);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ToolTip.Background", theme.ToolTips.Background);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignToolTipBackground", theme.ToolTips.Background);
     }

@@ -73,11 +73,12 @@ partial class ThemeTests
           <TextBlock Text="ScrollBar.Foreground" Background="{StaticResource MaterialDesign.Brush.ScrollBar.Foreground}" />
           <TextBlock Text="ScrollBar.RepeatButtonBackground" Background="{StaticResource MaterialDesign.Brush.ScrollBar.RepeatButtonBackground}" />
           <TextBlock Text="Separator.Background" Background="{StaticResource MaterialDesign.Brush.Separator.Background}" />
+          <TextBlock Text="TabControl.Divider" Background="{StaticResource MaterialDesign.Brush.TabControl.Divider}" />
           <TextBlock Text="ToolBar.Background" Background="{StaticResource MaterialDesign.Brush.ToolBar.Background}" />
-          <TextBlock Text="ToolBar.Border" Background="{StaticResource MaterialDesign.Brush.ToolBar.Border}" />
           <TextBlock Text="ToolBar.Thumb.Foreground" Background="{StaticResource MaterialDesign.Brush.ToolBar.Thumb.Foreground}" />
           <TextBlock Text="ToolBar.Item.Background" Background="{StaticResource MaterialDesign.Brush.ToolBar.Item.Background}" />
           <TextBlock Text="ToolBar.Item.Foreground" Background="{StaticResource MaterialDesign.Brush.ToolBar.Item.Foreground}" />
+          <TextBlock Text="ToolBar.Overflow.Border" Background="{StaticResource MaterialDesign.Brush.ToolBar.Overflow.Border}" />
           <TextBlock Text="ToolTip.Background" Background="{StaticResource MaterialDesign.Brush.ToolTip.Background}" />
           <TextBlock Text="MaterialDesignPaper" Background="{StaticResource MaterialDesignPaper}" />
           <TextBlock Text="MaterialDesignBody" Background="{StaticResource MaterialDesignBody}" />
@@ -400,14 +401,14 @@ partial class ThemeTests
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Separator.Background"), textBlockBackground);
         }
         {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"TabControl.Divider\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.TabControl.Divider"), textBlockBackground);
+        }
+        {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToolBar.Background\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Background"), textBlockBackground);
-        }
-        {
-            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToolBar.Border\"]");
-            Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Border"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToolBar.Thumb.Foreground\"]");
@@ -423,6 +424,11 @@ partial class ThemeTests
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToolBar.Item.Foreground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Item.Foreground"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToolBar.Overflow.Border\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Overflow.Border"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToolTip.Background\"]");
@@ -699,11 +705,12 @@ partial class ThemeTests
         yield return "MaterialDesign.Brush.ScrollBar.Foreground";
         yield return "MaterialDesign.Brush.ScrollBar.RepeatButtonBackground";
         yield return "MaterialDesign.Brush.Separator.Background";
+        yield return "MaterialDesign.Brush.TabControl.Divider";
         yield return "MaterialDesign.Brush.ToolBar.Background";
-        yield return "MaterialDesign.Brush.ToolBar.Border";
         yield return "MaterialDesign.Brush.ToolBar.Thumb.Foreground";
         yield return "MaterialDesign.Brush.ToolBar.Item.Background";
         yield return "MaterialDesign.Brush.ToolBar.Item.Foreground";
+        yield return "MaterialDesign.Brush.ToolBar.Overflow.Border";
         yield return "MaterialDesign.Brush.ToolTip.Background";
     }
     private static IEnumerable<string> GetObsoleteBrushResourceNames()

@@ -53,15 +53,16 @@
   <colors:StaticResource x:Key="MaterialDesign.Brush.Separator.Background" ResourceKey="Neutral800" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.SnackBar.Background" ResourceKey="Neutral100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.SnackBar.MouseOver" ResourceKey="Neutral200" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.TabControl.Divider" ResourceKey="Black100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.DisabledBackground" ResourceKey="Black50" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.FilledBackground" ResourceKey="Black50" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.HoverBackground" ResourceKey="Black100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ToolBar.Thumb.Foreground" ResourceKey="Black100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.OutlineInactiveBorder" ResourceKey="Black200" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ToolBar.Background" ResourceKey="Neutral900" />
-  <colors:StaticResource x:Key="MaterialDesign.Brush.ToolBar.Border" ResourceKey="Black100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ToolBar.Item.Background" ResourceKey="Neutral800" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ToolBar.Item.Foreground" ResourceKey="Neutral300" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ToolBar.Overflow.Border" ResourceKey="Black100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ToolTip.Background" ResourceKey="Neutral400" />
   <SolidColorBrush x:Key="MaterialDesign.Brush.ValidationError" Color="#FFB00020" po:Freeze="True" />
 

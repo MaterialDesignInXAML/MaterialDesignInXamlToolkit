@@ -51,6 +51,8 @@ partial class Theme
 
     public Separator Separators { get; set; } = new();
 
+    public TabControl TabControls { get; set; } = new();
+
     public ToolBar ToolBars { get; set; } = new();
 
     public ToolTip ToolTips { get; set; } = new();
@@ -221,15 +223,21 @@ partial class Theme
 
     }
 
+    public class TabControl
+    {
+        public Color Divider { get; set; }
+
+    }
+
     public class ToolBar
     {
         public Color Background { get; set; }
 
-        public Color Border { get; set; }
-
         public Thumb Thumbs { get; set; } = new();
 
         public Item Items { get; set; } = new();
+
+        public Overflow Overflows { get; set; } = new();
 
         public class Thumb
         {
@@ -242,6 +250,12 @@ partial class Theme
             public Color Background { get; set; }
 
             public Color Foreground { get; set; }
+
+        }
+
+        public class Overflow
+        {
+            public Color Border { get; set; }
 
         }
 
