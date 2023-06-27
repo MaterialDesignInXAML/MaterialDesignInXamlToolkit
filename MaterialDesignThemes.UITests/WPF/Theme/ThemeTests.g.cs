@@ -74,6 +74,8 @@ partial class ThemeTests
           <TextBlock Text="ScrollBar.RepeatButtonBackground" Background="{StaticResource MaterialDesign.Brush.ScrollBar.RepeatButtonBackground}" />
           <TextBlock Text="Separator.Background" Background="{StaticResource MaterialDesign.Brush.Separator.Background}" />
           <TextBlock Text="ToolBar.Background" Background="{StaticResource MaterialDesign.Brush.ToolBar.Background}" />
+          <TextBlock Text="ToolBar.Border" Background="{StaticResource MaterialDesign.Brush.ToolBar.Border}" />
+          <TextBlock Text="ToolBar.Thumb.Foreground" Background="{StaticResource MaterialDesign.Brush.ToolBar.Thumb.Foreground}" />
           <TextBlock Text="ToolBar.Item.Background" Background="{StaticResource MaterialDesign.Brush.ToolBar.Item.Background}" />
           <TextBlock Text="ToolBar.Item.Foreground" Background="{StaticResource MaterialDesign.Brush.ToolBar.Item.Foreground}" />
           <TextBlock Text="ToolTip.Background" Background="{StaticResource MaterialDesign.Brush.ToolTip.Background}" />
@@ -115,6 +117,8 @@ partial class ThemeTests
           <TextBlock Text="MaterialDesignColumnHeader" Background="{StaticResource MaterialDesignColumnHeader}" />
           <TextBlock Text="MaterialDesignTextAreaBorder" Background="{StaticResource MaterialDesignTextAreaBorder}" />
           <TextBlock Text="MaterialDesignToolBarBackground" Background="{StaticResource MaterialDesignToolBarBackground}" />
+          <TextBlock Text="MaterialDesignTextFieldBoxHoverBackground" Background="{StaticResource MaterialDesignTextFieldBoxHoverBackground}" />
+          <TextBlock Text="MaterialDesignDivider" Background="{StaticResource MaterialDesignDivider}" />
           <TextBlock Text="MaterialDesignToolBackground" Background="{StaticResource MaterialDesignToolBackground}" />
           <TextBlock Text="MaterialDesignToolForeground" Background="{StaticResource MaterialDesignToolForeground}" />
           <TextBlock Text="MaterialDesignToolTipBackground" Background="{StaticResource MaterialDesignToolTipBackground}" />
@@ -401,6 +405,16 @@ partial class ThemeTests
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Background"), textBlockBackground);
         }
         {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToolBar.Border\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Border"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToolBar.Thumb.Foreground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Thumb.Foreground"), textBlockBackground);
+        }
+        {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToolBar.Item.Background\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Item.Background"), textBlockBackground);
@@ -606,6 +620,16 @@ partial class ThemeTests
             Assert.Equal(await GetResourceColor("MaterialDesignToolBarBackground"), textBlockBackground);
         }
         {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextFieldBoxHoverBackground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesignTextFieldBoxHoverBackground"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignDivider\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesignDivider"), textBlockBackground);
+        }
+        {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignToolBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesignToolBackground"), textBlockBackground);
@@ -676,6 +700,8 @@ partial class ThemeTests
         yield return "MaterialDesign.Brush.ScrollBar.RepeatButtonBackground";
         yield return "MaterialDesign.Brush.Separator.Background";
         yield return "MaterialDesign.Brush.ToolBar.Background";
+        yield return "MaterialDesign.Brush.ToolBar.Border";
+        yield return "MaterialDesign.Brush.ToolBar.Thumb.Foreground";
         yield return "MaterialDesign.Brush.ToolBar.Item.Background";
         yield return "MaterialDesign.Brush.ToolBar.Item.Foreground";
         yield return "MaterialDesign.Brush.ToolTip.Background";
@@ -720,6 +746,8 @@ partial class ThemeTests
         yield return "MaterialDesignColumnHeader";
         yield return "MaterialDesignTextAreaBorder";
         yield return "MaterialDesignToolBarBackground";
+        yield return "MaterialDesignTextFieldBoxHoverBackground";
+        yield return "MaterialDesignDivider";
         yield return "MaterialDesignToolBackground";
         yield return "MaterialDesignToolForeground";
         yield return "MaterialDesignToolTipBackground";

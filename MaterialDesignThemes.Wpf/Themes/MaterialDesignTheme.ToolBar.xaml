@@ -112,9 +112,7 @@
                               Viewport="0,0,4,4"
                               ViewportUnits="Absolute">
                   <DrawingBrush.Drawing>
-                    <DrawingGroup>
-                      <GeometryDrawing Brush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" Geometry="M 0 0 L 0 2 L 2 2 L 2 0 z" />
-                    </DrawingGroup>
+                    <GeometryDrawing Brush="{DynamicResource MaterialDesign.Brush.ToolBar.Thumb.Foreground}" Geometry="M 0 0 L 0 2 L 2 2 L 2 0 z" />
                   </DrawingBrush.Drawing>
                 </DrawingBrush>
               </Rectangle.Fill>
@@ -196,7 +194,7 @@
                 <Border x:Name="ToolBarSubMenuBorder"
                         Margin="1"
                         Background="{DynamicResource MaterialDesign.Brush.ToolBar.Background}"
-                        BorderBrush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
+                        BorderBrush="{DynamicResource MaterialDesign.Brush.ToolBar.Overflow.Border}"
                         BorderThickness="1"
                         CornerRadius="2"
                         Effect="{StaticResource MaterialDesignShadowDepth2}"

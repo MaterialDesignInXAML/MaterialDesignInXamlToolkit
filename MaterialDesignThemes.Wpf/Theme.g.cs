@@ -225,7 +225,17 @@ partial class Theme
     {
         public Color Background { get; set; }
 
+        public Color Border { get; set; }
+
+        public Thumb Thumbs { get; set; } = new();
+
         public Item Items { get; set; } = new();
+
+        public class Thumb
+        {
+            public Color Foreground { get; set; }
+
+        }
 
         public class Item
         {

@@ -63,6 +63,8 @@ static partial class ResourceDictionaryExtensions
         theme.ScrollBars.RepeatButtonBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.ScrollBar.RepeatButtonBackground");
         theme.Separators.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.Separator.Background");
         theme.ToolBars.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.ToolBar.Background", "MaterialDesignToolBarBackground");
+        theme.ToolBars.Border = GetColor(resourceDictionary, "MaterialDesign.Brush.ToolBar.Border");
+        theme.ToolBars.Thumbs.Foreground = GetColor(resourceDictionary, "MaterialDesign.Brush.ToolBar.Thumb.Foreground", "MaterialDesignTextFieldBoxHoverBackground", "MaterialDesignDivider");
         theme.ToolBars.Items.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.ToolBar.Item.Background", "MaterialDesignToolBackground");
         theme.ToolBars.Items.Foreground = GetColor(resourceDictionary, "MaterialDesign.Brush.ToolBar.Item.Foreground", "MaterialDesignToolForeground");
         theme.ToolTips.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.ToolTip.Background", "MaterialDesignToolTipBackground");
@@ -161,6 +163,10 @@ static partial class ResourceDictionaryExtensions
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Separator.Background", theme.Separators.Background);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ToolBar.Background", theme.ToolBars.Background);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignToolBarBackground", theme.ToolBars.Background);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ToolBar.Border", theme.ToolBars.Border);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ToolBar.Thumb.Foreground", theme.ToolBars.Thumbs.Foreground);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesignTextFieldBoxHoverBackground", theme.ToolBars.Thumbs.Foreground);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesignDivider", theme.ToolBars.Thumbs.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ToolBar.Item.Background", theme.ToolBars.Items.Background);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignToolBackground", theme.ToolBars.Items.Background);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ToolBar.Item.Foreground", theme.ToolBars.Items.Foreground);

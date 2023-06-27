@@ -68,6 +68,8 @@ static partial class ThemeExtensions
         theme.ScrollBars.RepeatButtonBackground = BaseThemeColors.Neutral800;
         theme.Separators.Background = BaseThemeColors.Neutral800;
         theme.ToolBars.Background = BaseThemeColors.Neutral900;
+        theme.ToolBars.Border = BaseThemeColors.Black100;
+        theme.ToolBars.Thumbs.Foreground = BaseThemeColors.Black100;
         theme.ToolBars.Items.Background = BaseThemeColors.Neutral800;
         theme.ToolBars.Items.Foreground = BaseThemeColors.Neutral300;
         theme.ToolTips.Background = BaseThemeColors.Neutral400;
@@ -128,6 +130,8 @@ static partial class ThemeExtensions
         theme.ScrollBars.RepeatButtonBackground = BaseThemeColors.Neutral400;
         theme.Separators.Background = BaseThemeColors.Neutral400;
         theme.ToolBars.Background = BaseThemeColors.Neutral50;
+        theme.ToolBars.Border = BaseThemeColors.White100;
+        theme.ToolBars.Thumbs.Foreground = BaseThemeColors.White100;
         theme.ToolBars.Items.Background = BaseThemeColors.Neutral800;
         theme.ToolBars.Items.Foreground = BaseThemeColors.Neutral300;
         theme.ToolTips.Background = BaseThemeColors.Neutral900;

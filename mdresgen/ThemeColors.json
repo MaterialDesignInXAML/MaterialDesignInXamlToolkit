@@ -445,7 +445,9 @@
             "light": "Black100",
             "dark": "White100"
         },
-        "alternateKeys": [],
+        "alternateKeys": [
+            "MaterialDesign.Brush.ToolBar.Thumb.Foreground"
+        ],
         "obsoleteKeys": [
             "MaterialDesignTextFieldBoxHoverBackground",
             "MaterialDesignDivider"
@@ -483,6 +485,15 @@
         "obsoleteKeys": [
             "MaterialDesignToolBarBackground"
         ]
+    },
+    {
+        "name": "MaterialDesign.Brush.ToolBar.Overflow.Border",
+        "themeValues": {
+            "light": "Black100",
+            "dark": "White100"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
     },
     {
         "name": "MaterialDesign.Brush.ToolBar.Item.Foreground",
