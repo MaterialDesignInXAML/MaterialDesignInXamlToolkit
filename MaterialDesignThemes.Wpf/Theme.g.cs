@@ -47,6 +47,8 @@ partial class Theme
 
     public ListView ListViews { get; set; } = new();
 
+    public RadioButton RadioButtons { get; set; } = new();
+
     public ScrollBar ScrollBars { get; set; } = new();
 
     public Separator Separators { get; set; } = new();
@@ -206,6 +208,20 @@ partial class Theme
         public Color Selected { get; set; }
 
         public Color Separator { get; set; }
+
+    }
+
+    public class RadioButton
+    {
+        public Color Outline { get; set; }
+
+        public Chip Chips { get; set; } = new();
+
+        public class Chip
+        {
+            public Color CheckedBackground { get; set; }
+
+        }
 
     }
 

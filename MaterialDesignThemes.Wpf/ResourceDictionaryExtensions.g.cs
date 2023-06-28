@@ -59,6 +59,8 @@ static partial class ResourceDictionaryExtensions
         theme.ListViews.Hover = GetColor(resourceDictionary, "MaterialDesign.Brush.ListView.Hover");
         theme.ListViews.Selected = GetColor(resourceDictionary, "MaterialDesign.Brush.ListView.Selected");
         theme.ListViews.Separator = GetColor(resourceDictionary, "MaterialDesign.Brush.ListView.Separator");
+        theme.RadioButtons.Outline = GetColor(resourceDictionary, "MaterialDesign.Brush.RadioButton.Outline");
+        theme.RadioButtons.Chips.CheckedBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.RadioButton.Chip.CheckedBackground");
         theme.ScrollBars.ActiveBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.ScrollBar.ActiveBackground");
         theme.ScrollBars.Foreground = GetColor(resourceDictionary, "MaterialDesign.Brush.ScrollBar.Foreground");
         theme.ScrollBars.RepeatButtonBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.ScrollBar.RepeatButtonBackground");
@@ -160,6 +162,8 @@ static partial class ResourceDictionaryExtensions
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ListView.Hover", theme.ListViews.Hover);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ListView.Selected", theme.ListViews.Selected);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ListView.Separator", theme.ListViews.Separator);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.RadioButton.Outline", theme.RadioButtons.Outline);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.RadioButton.Chip.CheckedBackground", theme.RadioButtons.Chips.CheckedBackground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ScrollBar.ActiveBackground", theme.ScrollBars.ActiveBackground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ScrollBar.Foreground", theme.ScrollBars.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ScrollBar.RepeatButtonBackground", theme.ScrollBars.RepeatButtonBackground);

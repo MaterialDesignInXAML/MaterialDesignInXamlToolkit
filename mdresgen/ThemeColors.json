@@ -369,6 +369,24 @@
         "obsoleteKeys": []
     },
     {
+        "name": "MaterialDesign.Brush.RadioButton.Outline",
+        "themeValues": {
+            "light": "Black500",
+            "dark": "White500"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
+        "name": "MaterialDesign.Brush.RadioButton.Chip.CheckedBackground",
+        "themeValues": {
+            "light": "Black100",
+            "dark": "White100"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
         "name": "MaterialDesign.Brush.ScrollBar.ActiveBackground",
         "themeValues": {
             "light": "Black100",

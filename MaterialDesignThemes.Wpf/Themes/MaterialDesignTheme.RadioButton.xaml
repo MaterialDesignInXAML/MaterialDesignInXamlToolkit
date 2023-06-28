@@ -84,7 +84,7 @@
               <Canvas Width="24" Height="24">
                 <Path x:Name="Graphic"
                       Data="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
-                      Fill="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
+                      Fill="{DynamicResource MaterialDesign.Brush.RadioButton.Outline}" />
                 <Ellipse x:Name="InteractionEllipse"
                          Canvas.Left="12"
                          Canvas.Top="12"
@@ -786,7 +786,7 @@
               <Setter Property="Opacity" Value=".56" />
             </Trigger>
             <Trigger Property="IsChecked" Value="False">
-              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
+              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.RadioButton.Chip.CheckedBackground}" />
               <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
             </Trigger>
           </ControlTemplate.Triggers>
