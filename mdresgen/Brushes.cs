@@ -1,4 +1,4 @@
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
@@ -46,6 +46,7 @@ public static partial class Brushes
         GenerateThemeExtensionsClass(alternateBrushTree, repoRoot);
         GenerateResourceDictionaryExtensions(alternateBrushTree, repoRoot);
         GenerateThemeBrushTests(alternateBrushTree, repoRoot);
+        GenerateMigrationScript(filteredBrushes, repoRoot);
     }
 
     private static void GenerateBuiltInThemingDictionaries(IEnumerable<Brush> brushes, DirectoryInfo repoRoot)
@@ -463,6 +464,74 @@ public static partial class Brushes
             writer.WriteLine($$"""
                 {{indent}}}
                 """);
+        }
+    }
+
+    private static void GenerateMigrationScript(IEnumerable<Brush> brushes, DirectoryInfo repoRoot)
+    {
+        StringBuilder output = new();
+
+        output.AppendLine("""
+            param(
+                [System.IO.DirectoryInfo]$RootDirectory
+            )
+
+            #NB: This script requires PowerShell 7.1 or later
+
+            """);
+        List<(string ObsoleteBrush, string? Brush)> brushMapping = new()
+        {
+            ("PrimaryHueLightBrush", "MaterialDesign.Brush.Primary.Light"),
+            ("PrimaryHueLightForegroundBrush", "MaterialDesign.Brush.Primary.Light.Foreground"),
+            ("PrimaryHueMidBrush", "MaterialDesign.Brush.Primary"),
+            ("PrimaryHueMidForegroundBrush", "MaterialDesign.Brush.Primary.Foreground"),
+            ("PrimaryHueDarkBrush", "MaterialDesign.Brush.Primary.Dark"),
+            ("PrimaryHueDarkForegroundBrush", "MaterialDesign.Brush.Primary.Dark.Foreground"),
+            ("SecondaryHueLightBrush", "MaterialDesign.Brush.Secondary.Light"),
+            ("SecondaryHueLightForegroundBrush", "MaterialDesign.Brush.Secondary.Light.Foreground"),
+            ("SecondaryHueMidBrush", "MaterialDesign.Brush.Secondary"),
+            ("SecondaryHueMidForegroundBrush", "MaterialDesign.Brush.Secondary.Foreground"),
+            ("SecondaryHueDarkBrush", "MaterialDesign.Brush.Secondary.Dark"),
+            ("SecondaryHueDarkForegroundBrush", "MaterialDesign.Brush.Secondary.Dark.Foreground"),
+        };
+        foreach (Brush brush in brushes)
+        {
+            foreach (string obsoleteKey in brush.ObsoleteKeys ?? Enumerable.Empty<string>())
+            {
+                brushMapping.Add((obsoleteKey, brush.Name));
+            }
+        }
+
+        //ReplaceBrushes("*.xaml", "{DynamicResource {BrushName}}");
+        ReplaceBrushes("*.xaml", "{StaticResource {BrushName}}");
+        //ReplaceBrushes("*.cs", "SetResourceReference(*, `\"{BrushName}`\")");
+        //ReplaceBrushes("*.cs", "[`\"{BrushName}`\"]");
+
+        using var writer = new StreamWriter(Path.Combine(repoRoot.FullName, "Scripts", "MigrateBrushes.ps1"));
+        writer.Write(output);
+
+        void ReplaceBrushes(string fileMatch, string replaceFormat)
+        {
+            output.AppendLine($$"""
+            $files = Get-ChildItem -Recurse -Path $RootDirectory -Include "{{fileMatch}}"
+            foreach ($file in $files) {
+                $fileContents = Get-Content $file -Encoding utf8BOM -Raw
+                $fileLength = $fileContents.Length
+            """);
+            foreach ((string obsoleteBrush, string? brush) in brushMapping)
+            {
+                output.AppendLine($$"""
+                $fileContents = $fileContents -replace "{{Regex.Escape(replaceFormat.Replace("{BrushName}", obsoleteBrush)).Replace(@"\*", "(.+)")}}", "{{replaceFormat.Replace("*", "`$1").Replace("{BrushName}", brush)}}"
+            """);
+            }
+
+            output.AppendLine("""
+                if ($fileContents.Length -ne $fileLength) {
+                    Set-Content -Path $file -Value $fileContents -Encoding utf8BOM -NoNewline
+                }
+            }
+
+            """);
         }
     }
 

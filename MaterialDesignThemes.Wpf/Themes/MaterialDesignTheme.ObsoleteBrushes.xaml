@@ -4,6 +4,7 @@
                     xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
+  <!-- This file will be removed in the future -->
   <system:Boolean x:Key="MaterialDesign.Resources.RecreateOnThemeChange">True</system:Boolean>
 
   <colors:StaticResource x:Key="PrimaryHueLightBrush"

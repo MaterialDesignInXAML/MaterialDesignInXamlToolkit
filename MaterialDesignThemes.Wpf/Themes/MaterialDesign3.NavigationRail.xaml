@@ -167,8 +167,8 @@
     </Setter>
     <Setter Property="VerticalContentAlignment" Value="Stretch" />
     <Setter Property="Width" Value="80" />
-    <Setter Property="wpf:BadgedAssist.BadgeBackground" Value="{StaticResource PrimaryHueLightBrush}" />
-    <Setter Property="wpf:BadgedAssist.BadgeForeground" Value="{StaticResource PrimaryHueLightForegroundBrush}" />
+    <Setter Property="wpf:BadgedAssist.BadgeBackground" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
+    <Setter Property="wpf:BadgedAssist.BadgeForeground" Value="{DynamicResource MaterialDesign.Brush.Primary.Light.Foreground}" />
     <Setter Property="wpf:BadgedAssist.BadgePlacementMode" Value="TopRight" />
     <Setter Property="wpf:NavigationRailAssist.CornerRadius" Value="0" />
     <Setter Property="wpf:NavigationRailAssist.IconSize" Value="24" />

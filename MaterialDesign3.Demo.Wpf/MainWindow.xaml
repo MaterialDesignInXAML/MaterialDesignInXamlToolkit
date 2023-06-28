@@ -75,7 +75,7 @@
                     Height="56"
                     Click="MenuOpen_Click"
                     DockPanel.Dock="Right"
-                    Foreground="{StaticResource MaterialDesignBody}"
+                    Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
                     Style="{StaticResource MaterialDesignIconForegroundButton}">
               <materialDesign:PackIcon Width="36"
                                        Height="36"
