@@ -5,10 +5,7 @@ namespace MaterialDesignColors.ColorManipulation;
 internal static class LabExtensions
 {
     public static Lab ToLab(this Color c)
-    {
-        var xyz = c.ToXyz();
-        return xyz.ToLab();
-    }
+        => c.ToXyz().ToLab();
 
     public static Lab ToLab(this Xyz xyz)
     {
@@ -31,9 +28,5 @@ internal static class LabExtensions
     }
 
     public static Color ToColor(this Lab lab)
-    {
-        var xyz = lab.ToXyz();
-
-        return xyz.ToColor();
-    }
+        => lab.ToXyz().ToColor();
 }
