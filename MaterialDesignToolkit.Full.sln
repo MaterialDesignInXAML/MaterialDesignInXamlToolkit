@@ -37,6 +37,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		MaterialDesignColors.nuspec = MaterialDesignColors.nuspec
 		MaterialDesignThemes.MahApps.nuspec = MaterialDesignThemes.MahApps.nuspec
 		MaterialDesignThemes.nuspec = MaterialDesignThemes.nuspec
+		Scripts\MigrateBrushes.ps1 = Scripts\MigrateBrushes.ps1
 		nuget.config = nuget.config
 		README.md = README.md
 		Settings.XAMLStyler = Settings.XAMLStyler

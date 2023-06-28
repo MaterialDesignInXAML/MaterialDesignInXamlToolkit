@@ -6,19 +6,19 @@ $xamlFiles = Get-ChildItem -Recurse -Path $RootDirectory -Include "*.xaml"
 foreach ($xamlFile in $xamlFiles) {
     $xaml = Get-Content $xamlFile -Encoding utf8BOM
     $xaml = $xaml -replace "{DynamicResource PrimaryHueLightBrush}", "{DynamicResource MaterialDesign.Brush.Primary.Light}"
-    $xaml = $xaml -replace "{DynamicResource MaterialDesign.Brush.Primary.Light}", "{DynamicResource MaterialDesign.Brush.Primary.Light}"
     $xaml = $xaml -replace "{DynamicResource PrimaryHueLightForegroundBrush}", "{DynamicResource MaterialDesign.Brush.Primary.Light.Foreground}"
     $xaml = $xaml -replace "{DynamicResource PrimaryHueMidBrush}", "{DynamicResource MaterialDesign.Brush.Primary}"
     $xaml = $xaml -replace "{DynamicResource PrimaryHueMidForegroundBrush}", "{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
     $xaml = $xaml -replace "{DynamicResource PrimaryHueDarkBrush}", "{DynamicResource MaterialDesign.Brush.Primary.Dark}"
     $xaml = $xaml -replace "{DynamicResource PrimaryHueDarkForegroundBrush}", "{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"
 
-    $xaml = $xaml -replace "{DynamicResource SecondaryHueLightForegroundBrush}", "{DynamicResource MaterialDesign.Brush.Secondary.Light.Foreground}"
     $xaml = $xaml -replace "{DynamicResource SecondaryHueLightBrush}", "{DynamicResource MaterialDesign.Brush.Secondary.Light}"
+    $xaml = $xaml -replace "{DynamicResource SecondaryHueLightForegroundBrush}", "{DynamicResource MaterialDesign.Brush.Secondary.Light.Foreground}"
     $xaml = $xaml -replace "{DynamicResource SecondaryHueMidBrush}", "{DynamicResource MaterialDesign.Brush.Secondary}"
     $xaml = $xaml -replace "{DynamicResource SecondaryHueMidForegroundBrush}", "{DynamicResource MaterialDesign.Brush.Secondary.Foreground}"
     $xaml = $xaml -replace "{DynamicResource SecondaryHueDarkBrush}", "{DynamicResource MaterialDesign.Brush.Secondary.Dark}"
     $xaml = $xaml -replace "{DynamicResource SecondaryHueDarkForegroundBrush}", "{DynamicResource MaterialDesign.Brush.Secondary.Dark.Foreground}"
+
     $xaml = $xaml -replace "{DynamicResource MaterialDesignPaper}", "{DynamicResource MaterialDesign.Brush.Background}"
     $xaml = $xaml -replace "{DynamicResource MaterialDesignFlatButtonClick}", "{DynamicResource MaterialDesign.Brush.Button.FlatClick}"
     $xaml = $xaml -replace "{DynamicResource MaterialDesignFlatButtonRipple}", "{DynamicResource MaterialDesign.Brush.Button.Ripple}"
