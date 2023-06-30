@@ -45,6 +45,7 @@ partial class ThemeTests
           <TextBlock Text="ColorZone.DarkForeground" Background="{StaticResource MaterialDesign.Brush.ColorZone.DarkForeground}" />
           <TextBlock Text="ColorZone.LightBackground" Background="{StaticResource MaterialDesign.Brush.ColorZone.LightBackground}" />
           <TextBlock Text="ColorZone.LightForeground" Background="{StaticResource MaterialDesign.Brush.ColorZone.LightForeground}" />
+          <TextBlock Text="ComboBox.Disabled" Background="{StaticResource MaterialDesign.Brush.ComboBox.Disabled}" />
           <TextBlock Text="ComboBox.Popup.DarkBackground" Background="{StaticResource MaterialDesign.Brush.ComboBox.Popup.DarkBackground}" />
           <TextBlock Text="ComboBox.Popup.DarkForeground" Background="{StaticResource MaterialDesign.Brush.ComboBox.Popup.DarkForeground}" />
           <TextBlock Text="ComboBox.Popup.LightBackground" Background="{StaticResource MaterialDesign.Brush.ComboBox.Popup.LightBackground}" />
@@ -262,6 +263,11 @@ partial class ThemeTests
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ColorZone.LightForeground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ColorZone.LightForeground"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.Disabled\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.Disabled"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.Popup.DarkBackground\"]");
@@ -695,6 +701,7 @@ partial class ThemeTests
         yield return "MaterialDesign.Brush.ColorZone.DarkForeground";
         yield return "MaterialDesign.Brush.ColorZone.LightBackground";
         yield return "MaterialDesign.Brush.ColorZone.LightForeground";
+        yield return "MaterialDesign.Brush.ComboBox.Disabled";
         yield return "MaterialDesign.Brush.ComboBox.Popup.DarkBackground";
         yield return "MaterialDesign.Brush.ComboBox.Popup.DarkForeground";
         yield return "MaterialDesign.Brush.ComboBox.Popup.LightBackground";

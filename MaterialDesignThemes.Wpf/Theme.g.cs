@@ -129,6 +129,8 @@ partial class Theme
 
     public class ComboBox
     {
+        public Color Disabled { get; set; }
+
         public Popup Popups { get; set; } = new();
 
         public class Popup

@@ -199,6 +199,15 @@
         "obsoleteKeys": []
     },
     {
+        "name": "MaterialDesign.Brush.ComboBox.Disabled",
+        "themeValues": {
+            "light": "Neutral700",
+            "dark": "Neutral300"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
         "name": "MaterialDesign.Brush.ComboBox.Popup.DarkBackground",
         "themeValues": {
             "light": "Neutral100",

@@ -294,7 +294,7 @@
                 <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="True" />
               </MultiDataTrigger.Conditions>
               <Setter TargetName="ToggleTemplateRoot" Property="BorderBrush" Value="Transparent" />
-              <Setter TargetName="splitBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.CheckBox.Disabled}" />
+              <Setter TargetName="splitBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ComboBox.Disabled}" />
             </MultiDataTrigger>
             <Trigger Property="IsChecked" Value="True">
               <Setter TargetName="arrow" Property="RenderTransform">
