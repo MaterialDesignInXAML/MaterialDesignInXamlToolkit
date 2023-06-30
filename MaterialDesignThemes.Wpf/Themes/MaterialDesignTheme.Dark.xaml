@@ -70,6 +70,7 @@
   <colors:StaticResource x:Key="MaterialDesign.Brush.ToolBar.Item.Background" ResourceKey="Neutral800" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ToolBar.Item.Foreground" ResourceKey="Neutral300" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ToolBar.Overflow.Border" ResourceKey="White100" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ToolBar.Separator" ResourceKey="White100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ToolTip.Background" ResourceKey="Neutral900" />
   <SolidColorBrush x:Key="MaterialDesign.Brush.ValidationError" Color="#FFCF6679" po:Freeze="True" />
 

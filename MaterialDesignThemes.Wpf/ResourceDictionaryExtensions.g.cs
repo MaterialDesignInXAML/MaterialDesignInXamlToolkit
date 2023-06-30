@@ -71,6 +71,7 @@ static partial class ResourceDictionaryExtensions
         theme.Separators.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.Separator.Background");
         theme.TabControls.Divider = GetColor(resourceDictionary, "MaterialDesign.Brush.TabControl.Divider");
         theme.ToolBars.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.ToolBar.Background", "MaterialDesignToolBarBackground");
+        theme.ToolBars.Separator = GetColor(resourceDictionary, "MaterialDesign.Brush.ToolBar.Separator");
         theme.ToolBars.Thumbs.Foreground = GetColor(resourceDictionary, "MaterialDesign.Brush.ToolBar.Thumb.Foreground", "MaterialDesignTextFieldBoxHoverBackground", "MaterialDesignDivider");
         theme.ToolBars.Items.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.ToolBar.Item.Background", "MaterialDesignToolBackground");
         theme.ToolBars.Items.Foreground = GetColor(resourceDictionary, "MaterialDesign.Brush.ToolBar.Item.Foreground", "MaterialDesignToolForeground");
@@ -179,6 +180,7 @@ static partial class ResourceDictionaryExtensions
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.TabControl.Divider", theme.TabControls.Divider);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ToolBar.Background", theme.ToolBars.Background);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignToolBarBackground", theme.ToolBars.Background);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ToolBar.Separator", theme.ToolBars.Separator);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ToolBar.Thumb.Foreground", theme.ToolBars.Thumbs.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignTextFieldBoxHoverBackground", theme.ToolBars.Thumbs.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignDivider", theme.ToolBars.Thumbs.Foreground);

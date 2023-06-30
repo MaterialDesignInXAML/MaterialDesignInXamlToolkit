@@ -537,17 +537,6 @@
         ]
     },
     {
-        "name": "MaterialDesign.Brush.ToolBar.Item.Background",
-        "themeValues": {
-            "light": "Neutral800",
-            "dark": "Neutral800"
-        },
-        "alternateKeys": [],
-        "obsoleteKeys": [
-            "MaterialDesignToolBackground"
-        ]
-    },
-    {
         "name": "MaterialDesign.Brush.ToolBar.Background",
         "themeValues": {
             "light": "Neutral900",
@@ -559,13 +548,24 @@
         ]
     },
     {
-        "name": "MaterialDesign.Brush.ToolBar.Overflow.Border",
+        "name": "MaterialDesign.Brush.ToolBar.Separator",
         "themeValues": {
             "light": "Black100",
             "dark": "White100"
         },
         "alternateKeys": [],
         "obsoleteKeys": []
+    },
+    {
+        "name": "MaterialDesign.Brush.ToolBar.Item.Background",
+        "themeValues": {
+            "light": "Neutral800",
+            "dark": "Neutral800"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": [
+            "MaterialDesignToolBackground"
+        ]
     },
     {
         "name": "MaterialDesign.Brush.ToolBar.Item.Foreground",
@@ -577,6 +577,15 @@
         "obsoleteKeys": [
             "MaterialDesignToolForeground"
         ]
+    },
+    {
+        "name": "MaterialDesign.Brush.ToolBar.Overflow.Border",
+        "themeValues": {
+            "light": "Black100",
+            "dark": "White100"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
     },
     {
         "name": "MaterialDesign.Brush.ToolTip.Background",

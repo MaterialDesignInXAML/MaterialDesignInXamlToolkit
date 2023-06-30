@@ -259,6 +259,8 @@ partial class Theme
     {
         public Color Background { get; set; }
 
+        public Color Separator { get; set; }
+
         public Thumb Thumbs { get; set; } = new();
 
         public Item Items { get; set; } = new();

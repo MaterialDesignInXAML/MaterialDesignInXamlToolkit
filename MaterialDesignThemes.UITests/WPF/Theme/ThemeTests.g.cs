@@ -82,6 +82,7 @@ partial class ThemeTests
           <TextBlock Text="Separator.Background" Background="{StaticResource MaterialDesign.Brush.Separator.Background}" />
           <TextBlock Text="TabControl.Divider" Background="{StaticResource MaterialDesign.Brush.TabControl.Divider}" />
           <TextBlock Text="ToolBar.Background" Background="{StaticResource MaterialDesign.Brush.ToolBar.Background}" />
+          <TextBlock Text="ToolBar.Separator" Background="{StaticResource MaterialDesign.Brush.ToolBar.Separator}" />
           <TextBlock Text="ToolBar.Thumb.Foreground" Background="{StaticResource MaterialDesign.Brush.ToolBar.Thumb.Foreground}" />
           <TextBlock Text="ToolBar.Item.Background" Background="{StaticResource MaterialDesign.Brush.ToolBar.Item.Background}" />
           <TextBlock Text="ToolBar.Item.Foreground" Background="{StaticResource MaterialDesign.Brush.ToolBar.Item.Foreground}" />
@@ -453,6 +454,11 @@ partial class ThemeTests
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Background"), textBlockBackground);
         }
         {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToolBar.Separator\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Separator"), textBlockBackground);
+        }
+        {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToolBar.Thumb.Foreground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Thumb.Foreground"), textBlockBackground);
@@ -756,6 +762,7 @@ partial class ThemeTests
         yield return "MaterialDesign.Brush.Separator.Background";
         yield return "MaterialDesign.Brush.TabControl.Divider";
         yield return "MaterialDesign.Brush.ToolBar.Background";
+        yield return "MaterialDesign.Brush.ToolBar.Separator";
         yield return "MaterialDesign.Brush.ToolBar.Thumb.Foreground";
         yield return "MaterialDesign.Brush.ToolBar.Item.Background";
         yield return "MaterialDesign.Brush.ToolBar.Item.Foreground";
