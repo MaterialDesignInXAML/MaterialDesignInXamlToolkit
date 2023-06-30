@@ -337,7 +337,7 @@
     <Setter Property="TextBlock.FontWeight" Value="Medium" />
     <Setter Property="VerticalContentAlignment" Value="Center" />
     <Setter Property="wpf:ButtonProgressAssist.IndicatorBackground" Value="Transparent" />
-    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
+    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource MaterialDesign.Brush.RadioButton.Checked}" />
     <Setter Property="wpf:ButtonProgressAssist.IsIndicatorVisible" Value="False" />
     <Setter Property="wpf:ButtonProgressAssist.Opacity" Value=".4" />
     <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Button.Ripple}" />
@@ -370,7 +370,7 @@
 
   <Style x:Key="MaterialDesignToolRadioButton" TargetType="{x:Type RadioButton}">
     <Setter Property="Background" Value="Transparent" />
-    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.RadioButton.Border}" />
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="Padding" Value="14,6,14,6" />
@@ -460,7 +460,7 @@
                       Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
                       Opacity="0" />
               <Border x:Name="CheckedBackgroundBorder"
-                      Background="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
+                      Background="{DynamicResource MaterialDesign.Brush.RadioButton.Checked}"
                       Opacity="0" />
               <wpf:Ripple x:Name="Ripple"
                           Padding="{TemplateBinding Padding}"
@@ -474,7 +474,7 @@
                           Opacity=".56"
                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
               <Border x:Name="CheckedBorder"
-                      BorderBrush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
+                      BorderBrush="{DynamicResource MaterialDesign.Brush.RadioButton.Checked}"
                       BorderThickness="0"
                       Opacity="0"
                       Visibility="{TemplateBinding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
@@ -625,7 +625,7 @@
               <Setter Property="Opacity" Value=".56" />
             </Trigger>
             <Trigger Property="IsChecked" Value="False">
-              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
+              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.RadioButton.Border}" />
               <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
             </Trigger>
           </ControlTemplate.Triggers>

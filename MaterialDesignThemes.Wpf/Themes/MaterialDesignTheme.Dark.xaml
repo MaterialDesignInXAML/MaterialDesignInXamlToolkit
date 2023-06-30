@@ -50,6 +50,8 @@
   <colors:StaticResource x:Key="MaterialDesign.Brush.ListView.Hover" ResourceKey="White100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ListView.Selected" ResourceKey="Neutral400" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ListView.Separator" ResourceKey="White100" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.RadioButton.Border" ResourceKey="White100" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.RadioButton.Checked" ResourceKey="White100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.RadioButton.Chip.CheckedBackground" ResourceKey="White100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.RadioButton.Outline" ResourceKey="White500" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ScrollBar.ActiveBackground" ResourceKey="White100" />

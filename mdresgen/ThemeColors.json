@@ -387,6 +387,24 @@
         "obsoleteKeys": []
     },
     {
+        "name": "MaterialDesign.Brush.RadioButton.Border",
+        "themeValues": {
+            "light": "Black100",
+            "dark": "White100"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
+        "name": "MaterialDesign.Brush.RadioButton.Checked",
+        "themeValues": {
+            "light": "Black100",
+            "dark": "White100"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
         "name": "MaterialDesign.Brush.RadioButton.Outline",
         "themeValues": {
             "light": "Black500",

@@ -72,6 +72,8 @@ partial class ThemeTests
           <TextBlock Text="ListView.Hover" Background="{StaticResource MaterialDesign.Brush.ListView.Hover}" />
           <TextBlock Text="ListView.Selected" Background="{StaticResource MaterialDesign.Brush.ListView.Selected}" />
           <TextBlock Text="ListView.Separator" Background="{StaticResource MaterialDesign.Brush.ListView.Separator}" />
+          <TextBlock Text="RadioButton.Border" Background="{StaticResource MaterialDesign.Brush.RadioButton.Border}" />
+          <TextBlock Text="RadioButton.Checked" Background="{StaticResource MaterialDesign.Brush.RadioButton.Checked}" />
           <TextBlock Text="RadioButton.Outline" Background="{StaticResource MaterialDesign.Brush.RadioButton.Outline}" />
           <TextBlock Text="RadioButton.Chip.CheckedBackground" Background="{StaticResource MaterialDesign.Brush.RadioButton.Chip.CheckedBackground}" />
           <TextBlock Text="ScrollBar.ActiveBackground" Background="{StaticResource MaterialDesign.Brush.ScrollBar.ActiveBackground}" />
@@ -399,6 +401,16 @@ partial class ThemeTests
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ListView.Separator\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ListView.Separator"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"RadioButton.Border\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.RadioButton.Border"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"RadioButton.Checked\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.RadioButton.Checked"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"RadioButton.Outline\"]");
@@ -734,6 +746,8 @@ partial class ThemeTests
         yield return "MaterialDesign.Brush.ListView.Hover";
         yield return "MaterialDesign.Brush.ListView.Selected";
         yield return "MaterialDesign.Brush.ListView.Separator";
+        yield return "MaterialDesign.Brush.RadioButton.Border";
+        yield return "MaterialDesign.Brush.RadioButton.Checked";
         yield return "MaterialDesign.Brush.RadioButton.Outline";
         yield return "MaterialDesign.Brush.RadioButton.Chip.CheckedBackground";
         yield return "MaterialDesign.Brush.ScrollBar.ActiveBackground";

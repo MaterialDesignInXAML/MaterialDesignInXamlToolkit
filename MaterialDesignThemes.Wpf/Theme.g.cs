@@ -217,6 +217,10 @@ partial class Theme
 
     public class RadioButton
     {
+        public Color Border { get; set; }
+
+        public Color Checked { get; set; }
+
         public Color Outline { get; set; }
 
         public Chip Chips { get; set; } = new();
