@@ -57,6 +57,7 @@ static partial class ResourceDictionaryExtensions
         theme.GridSplitters.PreviewBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.GridSplitter.PreviewBackground");
         theme.Headers.Foreground = GetColor(resourceDictionary, "MaterialDesign.Brush.Header.Foreground", "MaterialDesignColumnHeader", "MaterialDesignTextAreaBorder");
         theme.ListBoxItems.Border = GetColor(resourceDictionary, "MaterialDesign.Brush.ListBoxItem.Border");
+        theme.ListBoxItems.Selected = GetColor(resourceDictionary, "MaterialDesign.Brush.ListBoxItem.Selected");
         theme.ListViews.Hover = GetColor(resourceDictionary, "MaterialDesign.Brush.ListView.Hover");
         theme.ListViews.Selected = GetColor(resourceDictionary, "MaterialDesign.Brush.ListView.Selected");
         theme.ListViews.Separator = GetColor(resourceDictionary, "MaterialDesign.Brush.ListView.Separator");
@@ -161,6 +162,7 @@ static partial class ResourceDictionaryExtensions
         SetSolidColorBrush(resourceDictionary, "MaterialDesignColumnHeader", theme.Headers.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignTextAreaBorder", theme.Headers.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ListBoxItem.Border", theme.ListBoxItems.Border);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ListBoxItem.Selected", theme.ListBoxItems.Selected);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ListView.Hover", theme.ListViews.Hover);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ListView.Selected", theme.ListViews.Selected);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ListView.Separator", theme.ListViews.Separator);

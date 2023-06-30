@@ -124,7 +124,7 @@
                       Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
                       Opacity="0" />
               <Border x:Name="SelectedBackgroundBorder"
-                      Background="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
+                      Background="{DynamicResource MaterialDesign.Brush.ListBoxItem.Selected}"
                       Opacity="0" />
               <wpf:Ripple x:Name="Ripple"
                           Padding="{TemplateBinding Padding}"
@@ -138,7 +138,7 @@
                           Opacity=".56"
                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
               <Border x:Name="SelectedBorder"
-                      BorderBrush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
+                      BorderBrush="{DynamicResource MaterialDesign.Brush.ListBoxItem.Selected}"
                       BorderThickness="0"
                       Opacity="0"
                       Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=SelectionMode, Converter={StaticResource EqualityToVisibilityConverter}, ConverterParameter={x:Static SelectionMode.Extended}, Mode=OneWay}" />

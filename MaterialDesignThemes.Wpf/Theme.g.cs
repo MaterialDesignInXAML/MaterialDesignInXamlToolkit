@@ -201,6 +201,8 @@ partial class Theme
     {
         public Color Border { get; set; }
 
+        public Color Selected { get; set; }
+
     }
 
     public class ListView

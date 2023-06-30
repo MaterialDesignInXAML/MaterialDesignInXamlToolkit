@@ -68,6 +68,7 @@ partial class ThemeTests
           <TextBlock Text="GridSplitter.PreviewBackground" Background="{StaticResource MaterialDesign.Brush.GridSplitter.PreviewBackground}" />
           <TextBlock Text="Header.Foreground" Background="{StaticResource MaterialDesign.Brush.Header.Foreground}" />
           <TextBlock Text="ListBoxItem.Border" Background="{StaticResource MaterialDesign.Brush.ListBoxItem.Border}" />
+          <TextBlock Text="ListBoxItem.Selected" Background="{StaticResource MaterialDesign.Brush.ListBoxItem.Selected}" />
           <TextBlock Text="ListView.Hover" Background="{StaticResource MaterialDesign.Brush.ListView.Hover}" />
           <TextBlock Text="ListView.Selected" Background="{StaticResource MaterialDesign.Brush.ListView.Selected}" />
           <TextBlock Text="ListView.Separator" Background="{StaticResource MaterialDesign.Brush.ListView.Separator}" />
@@ -378,6 +379,11 @@ partial class ThemeTests
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ListBoxItem.Border\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ListBoxItem.Border"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ListBoxItem.Selected\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ListBoxItem.Selected"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ListView.Hover\"]");
@@ -724,6 +730,7 @@ partial class ThemeTests
         yield return "MaterialDesign.Brush.GridSplitter.PreviewBackground";
         yield return "MaterialDesign.Brush.Header.Foreground";
         yield return "MaterialDesign.Brush.ListBoxItem.Border";
+        yield return "MaterialDesign.Brush.ListBoxItem.Selected";
         yield return "MaterialDesign.Brush.ListView.Hover";
         yield return "MaterialDesign.Brush.ListView.Selected";
         yield return "MaterialDesign.Brush.ListView.Separator";
