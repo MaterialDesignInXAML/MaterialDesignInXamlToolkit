@@ -60,8 +60,8 @@
       <smtx:XamlDisplay Margin="0,5,8,8" UniqueKey="buttons_36">
         <ToggleButton Content="C"
                       IsChecked="True"
-                      Style="{StaticResource MaterialDesignActionAccentToggleButton}"
-                      ToolTip="MaterialDesignActionAccentToggleButton" />
+                      Style="{StaticResource MaterialDesignActionSecondaryToggleButton}"
+                      ToolTip="MaterialDesignActionSecondaryToggleButton" />
       </smtx:XamlDisplay>
 
       <smtx:XamlDisplay Margin="0,5,8,8" UniqueKey="buttons_37">
