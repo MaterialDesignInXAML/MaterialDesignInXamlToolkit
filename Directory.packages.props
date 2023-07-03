@@ -13,7 +13,7 @@
     <PackageVersion Include="Microsoft.Composition" Version="1.0.31" />
     <PackageVersion Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageVersion Include="Microsoft.NETCore.Platforms" Version="7.0.3" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.6.2" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.6.3" />
     <PackageVersion Include="Microsoft.Toolkit.MVVM" Version="7.1.2" />
     <PackageVersion Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
