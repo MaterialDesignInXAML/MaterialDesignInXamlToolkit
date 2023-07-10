@@ -24,7 +24,7 @@
     <PackageVersion Include="VirtualizingWrapPanel" Version="1.5.7" />
     <PackageVersion Include="XAMLTest" Version="1.0.0-ci417" />
     <PackageVersion Include="xunit" Version="2.4.2" />
-    <PackageVersion Include="xunit.runner.visualstudio" Version="2.4.5" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.0" />
     <PackageVersion Include="Xunit.StaFact" Version="1.1.11" />
   </ItemGroup>
 </Project>
