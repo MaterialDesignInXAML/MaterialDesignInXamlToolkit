@@ -2886,6 +2886,7 @@ namespace MaterialDesignThemes.Wpf
         CarOutline,
         CarParkingLights,
         CarPickup,
+        TruckPickup=CarPickup,
         Carrot,
         CarSearch,
         CarFind=CarSearch,
