@@ -10,37 +10,24 @@
   </ResourceDictionary.MergedDictionaries>
 
   <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
-  <converters:MathMultipleConverter x:Key="MathMultipleConverter"
-                                    Operation="Multiply" />
+  <converters:MathMultipleConverter x:Key="MathMultipleConverter" Operation="Multiply" />
   <converters:SnackbarActionButtonPlacementModeConverter x:Key="SnackbarActionButtonPlacementModeConverter" />
 
-  <Style x:Key="MaterialDesignSnackbarActionButton"
-         TargetType="Button">
-    <Setter Property="Background"
-            Value="Transparent" />
-    <Setter Property="BorderBrush"
-            Value="Transparent" />
-    <Setter Property="BorderThickness"
-            Value="1" />
-    <Setter Property="Cursor"
-            Value="Hand" />
-    <Setter Property="FocusVisualStyle"
-            Value="{StaticResource FocusVisual}" />
-    <Setter Property="Foreground"
-            Value="{DynamicResource SecondaryHueMidBrush}" />
-    <Setter Property="Height"
-            Value="36" />
-    <Setter Property="HorizontalContentAlignment"
-            Value="Center" />
-    <Setter Property="Margin"
-            Value="8,-10,-8,-10" />
-    <Setter Property="Padding"
-            Value="8" />
+  <Style x:Key="MaterialDesignSnackbarActionButton" TargetType="Button">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+    <Setter Property="Height" Value="36" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="Margin" Value="8,-10,-8,-10" />
+    <Setter Property="Padding" Value="8" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type Button}">
-          <Grid x:Name="Root"
-                Background="{TemplateBinding Background}">
+          <Grid x:Name="Root" Background="{TemplateBinding Background}">
             <wpf:Ripple Padding="{TemplateBinding Padding}"
                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -50,63 +37,47 @@
                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
           </Grid>
           <ControlTemplate.Triggers>
-            <Trigger Property="IsMouseOver"
-                     Value="true">
-              <Setter Property="Background"
-                      Value="{DynamicResource MaterialDesignSnackbarMouseOver}" />
+            <Trigger Property="IsMouseOver" Value="true">
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.SnackBar.MouseOver}" />
             </Trigger>
-            <Trigger Property="IsEnabled"
-                     Value="false">
-              <Setter Property="Opacity"
-                      Value="0.38" />
+            <Trigger Property="IsEnabled" Value="false">
+              <Setter Property="Opacity" Value="0.38" />
             </Trigger>
-            <Trigger Property="DockPanel.Dock"
-                     Value="Bottom">
-              <Setter Property="Margin"
-                      Value="0,18,-8,-8" />
+            <Trigger Property="DockPanel.Dock" Value="Bottom">
+              <Setter Property="Margin" Value="0,18,-8,-8" />
             </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
-    <Setter Property="TextBlock.FontSize"
-            Value="14" />
-    <Setter Property="TextBlock.FontWeight"
-            Value="Medium" />
-    <Setter Property="VerticalAlignment"
-            Value="Stretch" />
-    <Setter Property="VerticalContentAlignment"
-            Value="Center" />
-    <Setter Property="wpf:RippleAssist.Feedback"
-            Value="{DynamicResource MaterialDesignSnackbarRipple}" />
+    <Setter Property="TextBlock.FontSize" Value="14" />
+    <Setter Property="TextBlock.FontWeight" Value="Medium" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Button.Ripple}" />
   </Style>
 
   <Style x:Key="MaterialDesignSnackbarActionLightButton"
          TargetType="Button"
          BasedOn="{StaticResource MaterialDesignSnackbarActionButton}">
-    <Setter Property="Foreground"
-            Value="{DynamicResource PrimaryHueLightBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
   </Style>
 
   <Style x:Key="MaterialDesignSnackbarActionMidButton"
          TargetType="Button"
          BasedOn="{StaticResource MaterialDesignSnackbarActionButton}">
-    <Setter Property="Foreground"
-            Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
   </Style>
 
   <Style x:Key="MaterialDesignSnackbarActionDarkButton"
          TargetType="Button"
          BasedOn="{StaticResource MaterialDesignSnackbarActionButton}">
-    <Setter Property="Foreground"
-            Value="{DynamicResource PrimaryHueDarkBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
   </Style>
 
   <Style TargetType="wpf:SnackbarMessage">
-    <Setter Property="HorizontalContentAlignment"
-            Value="Left" />
-    <Setter Property="Margin"
-            Value="16" />
+    <Setter Property="HorizontalContentAlignment" Value="Left" />
+    <Setter Property="Margin" Value="16" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="wpf:SnackbarMessage">
@@ -125,12 +96,9 @@
                     Visibility="{TemplateBinding ActionContent, Converter={StaticResource NullableToVisibilityConverter}}">
               <DockPanel.Dock>
                 <MultiBinding Converter="{StaticResource SnackbarActionButtonPlacementModeConverter}">
-                  <Binding Path="ActionButtonPlacement"
-                           RelativeSource="{RelativeSource AncestorType={x:Type wpf:Snackbar}}" />
-                  <Binding Path="(wpf:SnackbarMessage.InlineActionButtonMaxHeight)"
-                           RelativeSource="{RelativeSource AncestorType={x:Type wpf:Snackbar}}" />
-                  <Binding Path="ActualHeight"
-                           RelativeSource="{RelativeSource AncestorType={x:Type wpf:Snackbar}}" />
+                  <Binding Path="ActionButtonPlacement" RelativeSource="{RelativeSource AncestorType={x:Type wpf:Snackbar}}" />
+                  <Binding Path="(wpf:SnackbarMessage.InlineActionButtonMaxHeight)" RelativeSource="{RelativeSource AncestorType={x:Type wpf:Snackbar}}" />
+                  <Binding Path="ActualHeight" RelativeSource="{RelativeSource AncestorType={x:Type wpf:Snackbar}}" />
                 </MultiBinding>
               </DockPanel.Dock>
             </Button>
@@ -143,19 +111,13 @@
                               ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}">
               <ContentPresenter.Resources>
                 <DataTemplate DataType="{x:Type system:String}">
-                  <TextBlock Padding="0"
-                             Text="{Binding}">
+                  <TextBlock Padding="0" Text="{Binding}">
                     <TextBlock.Style>
-                      <Style TargetType="{x:Type TextBlock}"
-                             BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
-                        <Setter Property="TextTrimming"
-                                Value="CharacterEllipsis" />
-                        <Setter Property="TextWrapping"
-                                Value="WrapWithOverflow" />
-                        <Setter Property="FontSize"
-                                Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type wpf:Snackbar}}, Path=FontSize}" />
-                        <Setter Property="FontWeight"
-                                Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type wpf:Snackbar}}, Path=FontWeight}" />
+                      <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
+                        <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type wpf:Snackbar}}, Path=FontSize}" />
+                        <Setter Property="FontWeight" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type wpf:Snackbar}}, Path=FontWeight}" />
+                        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+                        <Setter Property="TextWrapping" Value="WrapWithOverflow" />
                       </Style>
                     </TextBlock.Style>
                   </TextBlock>
@@ -169,28 +131,19 @@
   </Style>
 
   <Style TargetType="wpf:Snackbar">
-    <Setter Property="ActionButtonStyle"
-            Value="{StaticResource MaterialDesignSnackbarActionButton}" />
-    <Setter Property="Background"
-            Value="{DynamicResource MaterialDesignSnackbarBackground}" />
-    <Setter Property="ClipToBounds"
-            Value="True" />
-    <Setter Property="FontSize"
-            Value="14" />
-    <Setter Property="Foreground"
-            Value="{DynamicResource MaterialDesignPaper}" />
-    <Setter Property="HorizontalAlignment"
-            Value="Center" />
-    <Setter Property="MaxWidth"
-            Value="568" />
-    <Setter Property="MinWidth"
-            Value="288" />
+    <Setter Property="ActionButtonStyle" Value="{StaticResource MaterialDesignSnackbarActionButton}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.SnackBar.Background}" />
+    <Setter Property="ClipToBounds" Value="True" />
+    <Setter Property="FontSize" Value="14" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Background}" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="MaxWidth" Value="568" />
+    <Setter Property="MinWidth" Value="288" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="wpf:Snackbar">
           <ControlTemplate.Resources>
-            <Storyboard x:Key="ActivateStoryboard"
-                        Duration="0:0:0.3">
+            <Storyboard x:Key="ActivateStoryboard" Duration="0:0:0.3">
               <DoubleAnimation Storyboard.TargetName="Root"
                                Storyboard.TargetProperty="Tag"
                                From="0"
@@ -216,8 +169,7 @@
                 </DoubleAnimation.EasingFunction>
               </DoubleAnimation>
             </Storyboard>
-            <Storyboard x:Key="DeactivateStoryboard"
-                        Duration="0:0:0.3">
+            <Storyboard x:Key="DeactivateStoryboard" Duration="0:0:0.3">
               <DoubleAnimation Storyboard.TargetName="Root"
                                Storyboard.TargetProperty="Tag"
                                From="1"
@@ -235,10 +187,8 @@
             </StackPanel.Tag>
             <StackPanel.Height>
               <MultiBinding Converter="{StaticResource MathMultipleConverter}">
-                <Binding ElementName="ContentBorder"
-                         Path="ActualHeight" />
-                <Binding Path="Tag"
-                         RelativeSource="{RelativeSource Self}" />
+                <Binding ElementName="ContentBorder" Path="ActualHeight" />
+                <Binding Path="Tag" RelativeSource="{RelativeSource Self}" />
               </MultiBinding>
             </StackPanel.Height>
             <Border x:Name="ContentBorder"
@@ -254,8 +204,7 @@
             </Border>
           </StackPanel>
           <ControlTemplate.Triggers>
-            <Trigger Property="IsActive"
-                     Value="True">
+            <Trigger Property="IsActive" Value="True">
               <Trigger.EnterActions>
                 <BeginStoryboard Storyboard="{StaticResource ActivateStoryboard}" />
               </Trigger.EnterActions>
@@ -263,25 +212,18 @@
                 <BeginStoryboard Storyboard="{StaticResource DeactivateStoryboard}" />
               </Trigger.ExitActions>
             </Trigger>
-            <Trigger Property="HorizontalAlignment"
-                     Value="Stretch">
-              <Setter TargetName="ContentBorder"
-                      Property="CornerRadius"
-                      Value="0" />
+            <Trigger Property="HorizontalAlignment" Value="Stretch">
+              <Setter TargetName="ContentBorder" Property="CornerRadius" Value="0" />
             </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
-    <Setter Property="VerticalAlignment"
-            Value="Bottom" />
-    <Setter Property="VerticalContentAlignment"
-            Value="Center" />
+    <Setter Property="VerticalAlignment" Value="Bottom" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
     <Style.Triggers>
-      <Trigger Property="HorizontalAlignment"
-               Value="Stretch">
-        <Setter Property="MaxWidth"
-                Value="{x:Static system:Double.MaxValue}" />
+      <Trigger Property="HorizontalAlignment" Value="Stretch">
+        <Setter Property="MaxWidth" Value="{x:Static system:Double.MaxValue}" />
       </Trigger>
     </Style.Triggers>
   </Style>

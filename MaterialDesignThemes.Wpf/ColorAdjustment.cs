@@ -1,13 +1,12 @@
-﻿namespace MaterialDesignThemes.Wpf
+﻿namespace MaterialDesignThemes.Wpf;
+
+public class ColorAdjustment : MarkupExtension
 {
-    public class ColorAdjustment : MarkupExtension
-    {
-        public float DesiredContrastRatio { get; set; } = 4.5f;
+    public float DesiredContrastRatio { get; set; } = 4.5f;
 
-        public Contrast Contrast { get; set; } = Contrast.Medium;
+    public Contrast Contrast { get; set; } = Contrast.Medium;
 
-        public ColorSelection Colors { get; set; } = ColorSelection.All;
+    public ColorSelection Colors { get; set; } = ColorSelection.All;
 
-        public override object ProvideValue(IServiceProvider serviceProvider) => this;
-    }
+    public override object ProvideValue(IServiceProvider serviceProvider) => this;
 }

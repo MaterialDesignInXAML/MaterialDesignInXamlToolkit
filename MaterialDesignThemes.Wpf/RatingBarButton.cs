@@ -20,20 +20,4 @@ public class RatingBarButton : ButtonBase
         get => (int)GetValue(ValueProperty);
         internal set => SetValue(ValuePropertyKey, value);
     }
-
-    private static readonly DependencyPropertyKey IsWithinValuePropertyKey =
-        DependencyProperty.RegisterReadOnly(
-            "IsWithinSelectedValue", typeof(bool), typeof(RatingBarButton),
-            new PropertyMetadata(default(bool)));
-
-    [Obsolete("This will be removed in a future version")]
-    public static readonly DependencyProperty IsWithinSelectedValueProperty =
-        IsWithinValuePropertyKey.DependencyProperty;
-
-    [Obsolete("This will be removed in a future version")]
-    public bool IsWithinSelectedValue
-    {
-        get => (bool)GetValue(IsWithinSelectedValueProperty);
-        internal set => SetValue(IsWithinValuePropertyKey, value);
-    }
 }

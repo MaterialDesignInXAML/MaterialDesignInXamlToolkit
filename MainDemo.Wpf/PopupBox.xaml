@@ -1,13 +1,14 @@
 ﻿<UserControl x:Class="MaterialDesignDemo.PopupBox"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:MaterialDesignDemo"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:system="clr-namespace:System;assembly=System.Runtime"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
   <UserControl.Resources>
     <ResourceDictionary>
       <!-- This is needed to avoid runtime exceptions?! Seems like this might be a bug? -->
@@ -16,14 +17,22 @@
       </ResourceDictionary.MergedDictionaries>
 
       <DataTemplate x:Key="ContentTemplateGrid">
-        <Grid Width="200" Height="100" TextElement.Foreground="{DynamicResource MaterialDesignLightForeground}">
-          <TextBlock Text="Popup content in grid" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Grid Width="200"
+              Height="100"
+              TextElement.Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">
+          <TextBlock HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     Text="Popup content in grid" />
         </Grid>
       </DataTemplate>
 
       <DataTemplate x:Key="ContentTemplateGridWithBackground">
-        <Grid Width="200" Height="100" Background="Fuchsia">
-          <TextBlock Text="Popup content in colored grid" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Grid Width="200"
+              Height="100"
+              Background="Fuchsia">
+          <TextBlock HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     Text="Popup content in colored grid" />
         </Grid>
       </DataTemplate>
 
@@ -51,12 +60,12 @@
       </DataTemplate>
 
       <x:Array x:Key="{x:Static local:PopupBox.DefaultStyleContentKey}" Type="ComboBoxItem">
-        <ComboBoxItem Tag="{StaticResource ContentTemplateGrid}" materialDesign:HintAssist.HelperText="Selected content works best when used with the MaterialDesignPopupBox style">Grid</ComboBoxItem>
+        <ComboBoxItem materialDesign:HintAssist.HelperText="Selected content works best when used with the MaterialDesignPopupBox style" Tag="{StaticResource ContentTemplateGrid}">Grid</ComboBoxItem>
         <ComboBoxItem Tag="{StaticResource ContentTemplateGridWithBackground}">Colored grid</ComboBoxItem>
       </x:Array>
 
       <x:Array x:Key="{x:Static local:PopupBox.MultiFloatingActionStyleContentKey}" Type="ComboBoxItem">
-        <ComboBoxItem Tag="{StaticResource ContentTemplateButtonStack}" materialDesign:HintAssist.HelperText="Margin in the selected content (stack of buttons) needs to be compensated for in certain alignments (left/right)">Stack of buttons</ComboBoxItem>
+        <ComboBoxItem materialDesign:HintAssist.HelperText="Margin in the selected content (stack of buttons) needs to be compensated for in certain alignments (left/right)" Tag="{StaticResource ContentTemplateButtonStack}">Stack of buttons</ComboBoxItem>
         <ComboBoxItem Tag="{StaticResource ContentTemplateButtonStackWithBackground}">Stack of buttons in colored grid</ComboBoxItem>
       </x:Array>
 
@@ -78,31 +87,39 @@
         <RowDefinition Height="Auto" />
         <RowDefinition Height="*" />
       </Grid.RowDefinitions>
-  
-      <TextBlock Grid.Row="0" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
+
+      <TextBlock Grid.Row="0"
+                 HorizontalAlignment="Center"
+                 Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
                  Text="{Binding ElementName=ContentComboBox, Path=SelectedItem, Converter={StaticResource ComboBoxItemToHelperTextConverter}}" />
 
-      <materialDesign:PopupBox Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" SnapsToDevicePixels="True" Padding="0"
-                               Style="{Binding ElementName=StyleComboBox, Path=SelectedItem, Converter={StaticResource ComboBoxItemToStyleConverter}}"
+      <materialDesign:PopupBox Grid.Row="1"
+                               Padding="0"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               PlacementMode="{Binding ElementName=PopupBoxPlacementModeComboBox, Path=SelectedItem}"
                                PopupElevation="{Binding ElementName=ElevationComboBox, Path=SelectedItem}"
-                               PopupUniformCornerRadius="{Binding ElementName=UniformCornerRadiusComboBox, Path=SelectedItem}"
                                PopupHorizontalOffset="{Binding ElementName=HorizontalOffsetComboBox, Path=SelectedItem}"
+                               PopupUniformCornerRadius="{Binding ElementName=UniformCornerRadiusComboBox, Path=SelectedItem}"
                                PopupVerticalOffset="{Binding ElementName=VerticalOffsetComboBox, Path=SelectedItem}"
-                               PlacementMode="{Binding ElementName=PopupBoxPlacementModeComboBox, Path=SelectedItem}">
+                               SnapsToDevicePixels="True"
+                               Style="{Binding ElementName=StyleComboBox, Path=SelectedItem, Converter={StaticResource ComboBoxItemToStyleConverter}}">
         <ContentControl ContentTemplate="{Binding ElementName=ContentComboBox, Path=SelectedItem, Converter={StaticResource ComboBoxItemToDataTemplateConverter}}" />
       </materialDesign:PopupBox>
     </Grid>
-    
+
     <StackPanel Grid.Column="1" Orientation="Vertical">
-      <GroupBox Header="Properties" Padding="10">
+      <GroupBox Padding="10" Header="Properties">
         <StackPanel Orientation="Vertical">
-          <TextBlock Text="Style:" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" />
+          <TextBlock Style="{StaticResource MaterialDesignSubtitle2TextBlock}" Text="Style:" />
           <ComboBox x:Name="StyleComboBox" SelectionChanged="StyleComboBox_OnSelectionChanged">
             <ComboBoxItem Tag="{StaticResource MaterialDesignPopupBox}">MaterialDesignPopupBox</ComboBoxItem>
             <ComboBoxItem Tag="{StaticResource MaterialDesignMultiFloatingActionPopupBox}">MaterialDesignMultiFloatingActionPopupBox</ComboBoxItem>
           </ComboBox>
 
-          <TextBlock Text="Elevation:" Margin="{StaticResource Spacer}" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" />
+          <TextBlock Margin="{StaticResource Spacer}"
+                     Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
+                     Text="Elevation:" />
           <ComboBox x:Name="ElevationComboBox" SelectedIndex="6">
             <materialDesign:Elevation>Dp0</materialDesign:Elevation>
             <materialDesign:Elevation>Dp1</materialDesign:Elevation>
@@ -118,7 +135,9 @@
             <materialDesign:Elevation>Dp24</materialDesign:Elevation>
           </ComboBox>
 
-          <TextBlock Text="PopupUniformCornerRadius:" Margin="{StaticResource Spacer}" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" />
+          <TextBlock Margin="{StaticResource Spacer}"
+                     Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
+                     Text="PopupUniformCornerRadius:" />
           <ComboBox x:Name="UniformCornerRadiusComboBox" SelectedIndex="2">
             <system:Double>0</system:Double>
             <system:Double>2</system:Double>
@@ -129,7 +148,9 @@
             <system:Double>20</system:Double>
           </ComboBox>
 
-          <TextBlock Text="PopupHorizontalOffset:" Margin="{StaticResource Spacer}" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" />
+          <TextBlock Margin="{StaticResource Spacer}"
+                     Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
+                     Text="PopupHorizontalOffset:" />
           <ComboBox x:Name="HorizontalOffsetComboBox" SelectedIndex="10">
             <system:Double>-100</system:Double>
             <system:Double>-50</system:Double>
@@ -154,7 +175,9 @@
             <system:Double>100</system:Double>
           </ComboBox>
 
-          <TextBlock Text="PopupVerticalOffset:" Margin="{StaticResource Spacer}" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" />
+          <TextBlock Margin="{StaticResource Spacer}"
+                     Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
+                     Text="PopupVerticalOffset:" />
           <ComboBox x:Name="VerticalOffsetComboBox" SelectedIndex="10">
             <system:Double>-100</system:Double>
             <system:Double>-50</system:Double>
@@ -179,7 +202,9 @@
             <system:Double>100</system:Double>
           </ComboBox>
 
-          <TextBlock Text="PopupBoxPlacementMode:" Margin="{StaticResource Spacer}" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" />
+          <TextBlock Margin="{StaticResource Spacer}"
+                     Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
+                     Text="PopupBoxPlacementMode:" />
           <ComboBox x:Name="PopupBoxPlacementModeComboBox" SelectedIndex="1">
             <materialDesign:PopupBoxPlacementMode>BottomAndAlignCentres</materialDesign:PopupBoxPlacementMode>
             <materialDesign:PopupBoxPlacementMode>BottomAndAlignLeftEdges</materialDesign:PopupBoxPlacementMode>
@@ -197,9 +222,11 @@
         </StackPanel>
       </GroupBox>
 
-      <GroupBox Header="Popup" Margin="{StaticResource Spacer}" Padding="10">
+      <GroupBox Margin="{StaticResource Spacer}"
+                Padding="10"
+                Header="Popup">
         <StackPanel Orientation="Vertical">
-          <TextBlock Text="Popup Content:" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" />
+          <TextBlock Style="{StaticResource MaterialDesignSubtitle2TextBlock}" Text="Popup Content:" />
           <ComboBox x:Name="ContentComboBox" />
         </StackPanel>
       </GroupBox>

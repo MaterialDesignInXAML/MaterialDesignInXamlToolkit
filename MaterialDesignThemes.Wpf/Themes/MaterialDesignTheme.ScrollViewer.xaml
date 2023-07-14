@@ -16,7 +16,7 @@
       <Rectangle x:Name="PART_Corner"
                  Grid.Row="1"
                  Grid.Column="1"
-                 Fill="{DynamicResource MaterialDesignSelection}"
+                 Fill="{DynamicResource MaterialDesign.Brush.ScrollBar.Foreground}"
                  Visibility="{Binding Path=(wpf:ScrollViewerAssist.CornerRectangleVisibility), RelativeSource={RelativeSource TemplatedParent}}" />
 
       <ScrollContentPresenter x:Name="PART_ScrollContentPresenter"
@@ -33,7 +33,7 @@
                  Grid.Column="0"
                  Margin="0"
                  VerticalAlignment="Top"
-                 Background="{DynamicResource MaterialDesignSelection}"
+                 Background="{DynamicResource MaterialDesign.Brush.Separator.Background}"
                  Opacity="0.4"
                  Visibility="Visible" />
 
@@ -42,7 +42,7 @@
                  Grid.Column="0"
                  Margin="0"
                  VerticalAlignment="Bottom"
-                 Background="{DynamicResource MaterialDesignSelection}"
+                 Background="{DynamicResource MaterialDesign.Brush.Separator.Background}"
                  Opacity="0.4"
                  Visibility="Hidden" />
 

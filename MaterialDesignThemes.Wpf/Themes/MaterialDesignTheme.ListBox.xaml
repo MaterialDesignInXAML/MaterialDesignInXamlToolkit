@@ -34,7 +34,7 @@
 
   <Style x:Key="MaterialDesignToolToggleListBoxItem" TargetType="{x:Type ListBoxItem}">
     <Setter Property="Background" Value="Transparent" />
-    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ListBoxItem.Border}" />
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
     <Setter Property="Padding" Value="14,6,14,6" />
@@ -124,7 +124,7 @@
                       Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
                       Opacity="0" />
               <Border x:Name="SelectedBackgroundBorder"
-                      Background="{DynamicResource MaterialDesignDivider}"
+                      Background="{DynamicResource MaterialDesign.Brush.ListBoxItem.Selected}"
                       Opacity="0" />
               <wpf:Ripple x:Name="Ripple"
                           Padding="{TemplateBinding Padding}"
@@ -138,7 +138,7 @@
                           Opacity=".56"
                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
               <Border x:Name="SelectedBorder"
-                      BorderBrush="{DynamicResource MaterialDesignDivider}"
+                      BorderBrush="{DynamicResource MaterialDesign.Brush.ListBoxItem.Selected}"
                       BorderThickness="0"
                       Opacity="0"
                       Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=SelectionMode, Converter={StaticResource EqualityToVisibilityConverter}, ConverterParameter={x:Static SelectionMode.Extended}, Mode=OneWay}" />
@@ -159,10 +159,10 @@
   </Style>
 
   <Style x:Key="MaterialDesignToolToggleListBox" TargetType="{x:Type ListBox}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignToolBarBackground}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ToolBar.Background}" />
     <Setter Property="BorderBrush" Value="Transparent" />
     <Setter Property="BorderThickness" Value="0" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="HorizontalAlignment" Value="Left" />
     <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignToolToggleListBoxItem}" />
     <Setter Property="ItemsPanel">
@@ -338,7 +338,7 @@
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="BorderBrush" Value="Transparent" />
     <Setter Property="BorderThickness" Value="0" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignListBoxItem}" />
     <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
     <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
@@ -413,10 +413,10 @@
   <!--#region Navigation-->
 
   <Style x:Key="MaterialDesignNavigationListBoxItem" TargetType="{x:Type ListBoxItem}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="FontWeight" Value="Medium" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
     <Setter Property="Margin" Value="4,2,4,2" />
     <Setter Property="Padding" Value="8" />
@@ -507,7 +507,7 @@
             </Trigger>
 
             <Trigger Property="IsSelected" Value="False">
-              <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+              <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
             </Trigger>
 
           </ControlTemplate.Triggers>
@@ -517,16 +517,16 @@
     <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
     <Setter Property="wpf:ListBoxItemAssist.CornerRadius" Value="4" />
 
-    <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesign.Brush.Background}" />
   </Style>
 
   <Style x:Key="MaterialDesignNavigationPrimaryListBoxItem"
          TargetType="{x:Type ListBoxItem}"
          BasedOn="{StaticResource MaterialDesignNavigationListBoxItem}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
 
-    <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesign.Brush.Background}" />
 
     <Style.Triggers>
       <MultiDataTrigger>
@@ -534,8 +534,8 @@
           <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True" />
           <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
         </MultiDataTrigger.Conditions>
-        <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
       </MultiDataTrigger>
     </Style.Triggers>
 
@@ -544,10 +544,10 @@
   <Style x:Key="MaterialDesignNavigationSecondaryListBoxItem"
          TargetType="{x:Type ListBoxItem}"
          BasedOn="{StaticResource MaterialDesignNavigationListBoxItem}">
-    <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
 
-    <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesign.Brush.Background}" />
 
     <Style.Triggers>
       <MultiDataTrigger>
@@ -555,8 +555,8 @@
           <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True" />
           <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
         </MultiDataTrigger.Conditions>
-        <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueLightBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
       </MultiDataTrigger>
     </Style.Triggers>
 
@@ -618,7 +618,7 @@
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="BorderBrush" Value="Transparent" />
     <Setter Property="BorderThickness" Value="0" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipListBoxItem}" />
     <Setter Property="ItemsPanel">
       <Setter.Value>
@@ -813,7 +813,7 @@
 
   <Style x:Key="MaterialDesignFilterChipAccentOutlineListBox"
          TargetType="{x:Type ListBox}"
-         BasedOn="{StaticResource MaterialDesignFilterChipSecondaryOutlineListBox}"/>
+         BasedOn="{StaticResource MaterialDesignFilterChipSecondaryOutlineListBox}" />
 
   <!--#endregion-->
 
@@ -897,7 +897,7 @@
   <!-- Obsolete -->
   <Style x:Key="MaterialDesignChoiceChipAccentListBoxItem"
          TargetType="{x:Type ListBoxItem}"
-         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryListBoxItem}"/>
+         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryListBoxItem}" />
 
   <Style x:Key="MaterialDesignChoiceChipSecondaryListBox"
          TargetType="{x:Type ListBox}"
@@ -908,7 +908,7 @@
   <!-- Obsolete -->
   <Style x:Key="MaterialDesignChoiceChipAccentListBox"
          TargetType="{x:Type ListBox}"
-         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryListBox}"/>
+         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryListBox}" />
 
   <Style x:Key="MaterialDesignChoiceChipOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
     <Setter Property="Template">
@@ -988,7 +988,7 @@
   <!-- Obsolete -->
   <Style x:Key="MaterialDesignChoiceChipAccentOutlineListBoxItem"
          TargetType="{x:Type ListBoxItem}"
-         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryOutlineListBoxItem}"/>
+         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryOutlineListBoxItem}" />
 
   <Style x:Key="MaterialDesignChoiceChipSecondaryOutlineListBox"
          TargetType="{x:Type ListBox}"

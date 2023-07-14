@@ -1,137 +1,136 @@
 ﻿using MaterialDesignThemes.Wpf;
 
-namespace MaterialDesignDemo.Domain
+namespace MaterialDesignDemo.Domain;
+
+public class ThemeSettingsViewModel : ViewModelBase
 {
-    public class ThemeSettingsViewModel : ViewModelBase
+    public ThemeSettingsViewModel()
     {
-        public ThemeSettingsViewModel()
+        PaletteHelper paletteHelper = new PaletteHelper();
+        Theme theme = paletteHelper.GetTheme();
+
+        IsDarkTheme = theme.GetBaseTheme() == BaseTheme.Dark;
+
+        if (theme is Theme internalTheme)
         {
-            PaletteHelper paletteHelper = new PaletteHelper();
-            ITheme theme = paletteHelper.GetTheme();
+            _isColorAdjusted = internalTheme.ColorAdjustment is not null;
 
-            IsDarkTheme = theme.GetBaseTheme() == BaseTheme.Dark;
-
-            if (theme is Theme internalTheme)
-            {
-                _isColorAdjusted = internalTheme.ColorAdjustment is not null;
-
-                var colorAdjustment = internalTheme.ColorAdjustment ?? new ColorAdjustment();
-                _desiredContrastRatio = colorAdjustment.DesiredContrastRatio;
-                _contrastValue = colorAdjustment.Contrast;
-                _colorSelectionValue = colorAdjustment.Colors;
-            }
-
-            if (paletteHelper.GetThemeManager() is { } themeManager)
-            {
-                themeManager.ThemeChanged += (_, e) =>
-                {
-                    IsDarkTheme = e.NewTheme?.GetBaseTheme() == BaseTheme.Dark;
-                };
-            }
+            var colorAdjustment = internalTheme.ColorAdjustment ?? new ColorAdjustment();
+            _desiredContrastRatio = colorAdjustment.DesiredContrastRatio;
+            _contrastValue = colorAdjustment.Contrast;
+            _colorSelectionValue = colorAdjustment.Colors;
         }
 
-        private bool _isDarkTheme;
-        public bool IsDarkTheme
+        if (paletteHelper.GetThemeManager() is { } themeManager)
         {
-            get => _isDarkTheme;
-            set
+            themeManager.ThemeChanged += (_, e) =>
             {
-                if (SetProperty(ref _isDarkTheme, value))
-                {
-                    ModifyTheme(theme => theme.SetBaseTheme(value ? Theme.Dark : Theme.Light));
-                }
+                IsDarkTheme = e.NewTheme?.GetBaseTheme() == BaseTheme.Dark;
+            };
+        }
+    }
+
+    private bool _isDarkTheme;
+    public bool IsDarkTheme
+    {
+        get => _isDarkTheme;
+        set
+        {
+            if (SetProperty(ref _isDarkTheme, value))
+            {
+                ModifyTheme(theme => theme.SetBaseTheme(value ? BaseTheme.Dark : BaseTheme.Light));
             }
         }
+    }
 
-        private bool _isColorAdjusted;
-        public bool IsColorAdjusted
+    private bool _isColorAdjusted;
+    public bool IsColorAdjusted
+    {
+        get => _isColorAdjusted;
+        set
         {
-            get => _isColorAdjusted;
-            set
+            if (SetProperty(ref _isColorAdjusted, value))
             {
-                if (SetProperty(ref _isColorAdjusted, value))
+                ModifyTheme(theme =>
                 {
-                    ModifyTheme(theme =>
+                    if (theme is Theme internalTheme)
                     {
-                        if (theme is Theme internalTheme)
-                        {
-                            internalTheme.ColorAdjustment = value
-                                ? new ColorAdjustment
-                                {
-                                    DesiredContrastRatio = DesiredContrastRatio,
-                                    Contrast = ContrastValue,
-                                    Colors = ColorSelectionValue
-                                }
-                                : null;
-                        }
-                    });
-                }
+                        internalTheme.ColorAdjustment = value
+                            ? new ColorAdjustment
+                            {
+                                DesiredContrastRatio = DesiredContrastRatio,
+                                Contrast = ContrastValue,
+                                Colors = ColorSelectionValue
+                            }
+                            : null;
+                    }
+                });
             }
         }
+    }
 
-        private float _desiredContrastRatio = 4.5f;
-        public float DesiredContrastRatio
+    private float _desiredContrastRatio = 4.5f;
+    public float DesiredContrastRatio
+    {
+        get => _desiredContrastRatio;
+        set
         {
-            get => _desiredContrastRatio;
-            set
+            if (SetProperty(ref _desiredContrastRatio, value))
             {
-                if (SetProperty(ref _desiredContrastRatio, value))
+                ModifyTheme(theme =>
                 {
-                    ModifyTheme(theme =>
-                    {
-                        if (theme is Theme internalTheme && internalTheme.ColorAdjustment != null)
-                            internalTheme.ColorAdjustment.DesiredContrastRatio = value;
-                    });
-                }
+                    if (theme is Theme internalTheme && internalTheme.ColorAdjustment != null)
+                        internalTheme.ColorAdjustment.DesiredContrastRatio = value;
+                });
             }
         }
+    }
 
-        public IEnumerable<Contrast> ContrastValues => Enum.GetValues(typeof(Contrast)).Cast<Contrast>();
+    public IEnumerable<Contrast> ContrastValues => Enum.GetValues(typeof(Contrast)).Cast<Contrast>();
 
-        private Contrast _contrastValue;
-        public Contrast ContrastValue
+    private Contrast _contrastValue;
+    public Contrast ContrastValue
+    {
+        get => _contrastValue;
+        set
         {
-            get => _contrastValue;
-            set
+            if (SetProperty(ref _contrastValue, value))
             {
-                if (SetProperty(ref _contrastValue, value))
+                ModifyTheme(theme =>
                 {
-                    ModifyTheme(theme =>
-                    {
-                        if (theme is Theme internalTheme && internalTheme.ColorAdjustment != null)
-                            internalTheme.ColorAdjustment.Contrast = value;
-                    });
-                }
+                    if (theme is Theme internalTheme && internalTheme.ColorAdjustment != null)
+                        internalTheme.ColorAdjustment.Contrast = value;
+                });
             }
         }
+    }
 
-        public IEnumerable<ColorSelection> ColorSelectionValues => Enum.GetValues(typeof(ColorSelection)).Cast<ColorSelection>();
+    public IEnumerable<ColorSelection> ColorSelectionValues => Enum.GetValues(typeof(ColorSelection)).Cast<ColorSelection>();
 
-        private ColorSelection _colorSelectionValue;
-        public ColorSelection ColorSelectionValue
+    private ColorSelection _colorSelectionValue;
+    public ColorSelection ColorSelectionValue
+    {
+        get => _colorSelectionValue;
+        set
         {
-            get => _colorSelectionValue;
-            set
+            if (SetProperty(ref _colorSelectionValue, value))
             {
-                if (SetProperty(ref _colorSelectionValue, value))
+                ModifyTheme(theme =>
                 {
-                    ModifyTheme(theme =>
-                    {
-                        if (theme is Theme internalTheme && internalTheme.ColorAdjustment != null)
-                            internalTheme.ColorAdjustment.Colors = value;
-                    });
-                }
+                    if (theme is Theme internalTheme && internalTheme.ColorAdjustment != null)
+                        internalTheme.ColorAdjustment.Colors = value;
+                });
             }
         }
+    }
 
-        private static void ModifyTheme(Action<ITheme> modificationAction)
-        {
-            var paletteHelper = new PaletteHelper();
-            ITheme theme = paletteHelper.GetTheme();
+    private static void ModifyTheme(Action<Theme> modificationAction)
+    {
+        var paletteHelper = new PaletteHelper();
+        Theme theme = paletteHelper.GetTheme();
 
-            modificationAction?.Invoke(theme);
+        modificationAction?.Invoke(theme);
 
-            paletteHelper.SetTheme(theme);
-        }
+        paletteHelper.SetTheme(theme);
     }
 }

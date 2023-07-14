@@ -950,8 +950,8 @@
     <StackPanel Grid.Row="13" Orientation="Horizontal">
       <smtx:XamlDisplay Margin="0,0,20,0" UniqueKey="button_duration_1">
         <Button materialDesign:ShadowAssist.ShadowAnimationDuration="0:0:0"
-                Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
-                Content="Instant Duration" />
+                Content="Instant Duration"
+                Style="{StaticResource MaterialDesignRaisedSecondaryButton}" />
       </smtx:XamlDisplay>
       <smtx:XamlDisplay Margin="0,0,20,0" UniqueKey="button_duration_2">
         <Button>

@@ -1,0 +1,42 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
+
+  <SolidColorBrush x:Key="Neutral50" Color="#FF212121" po:Freeze="True" />
+  <SolidColorBrush x:Key="Neutral100" Color="#FF323232" po:Freeze="True" />
+  <SolidColorBrush x:Key="Neutral200" Color="#FF454545" po:Freeze="True" />
+  <SolidColorBrush x:Key="Neutral300" Color="#FF616161" po:Freeze="True" />
+  <SolidColorBrush x:Key="Neutral400" Color="#FF757575" po:Freeze="True" />
+  <SolidColorBrush x:Key="Neutral500" Color="#FF868686" po:Freeze="True" />
+  <SolidColorBrush x:Key="Neutral600" Color="#FFA8A8A8" po:Freeze="True" />
+  <SolidColorBrush x:Key="Neutral700" Color="#FFB9B9B9" po:Freeze="True" />
+  <SolidColorBrush x:Key="Neutral800" Color="#FFD8D8D8" po:Freeze="True" />
+  <SolidColorBrush x:Key="Neutral900" Color="#FFF1F1F1" po:Freeze="True" />
+
+  <SolidColorBrush x:Key="White0" Color="#00FFFFFF" po:Freeze="True" />
+  <SolidColorBrush x:Key="White50" Color="#0CFFFFFF" po:Freeze="True" />
+  <SolidColorBrush x:Key="White100" Color="#19FFFFFF" po:Freeze="True" />
+  <SolidColorBrush x:Key="White200" Color="#33FFFFFF" po:Freeze="True" />
+  <SolidColorBrush x:Key="White300" Color="#4CFFFFFF" po:Freeze="True" />
+  <SolidColorBrush x:Key="White400" Color="#66FFFFFF" po:Freeze="True" />
+  <SolidColorBrush x:Key="White500" Color="#7FFFFFFF" po:Freeze="True" />
+  <SolidColorBrush x:Key="White600" Color="#99FFFFFF" po:Freeze="True" />
+  <SolidColorBrush x:Key="White700" Color="#B2FFFFFF" po:Freeze="True" />
+  <SolidColorBrush x:Key="White800" Color="#CCFFFFFF" po:Freeze="True" />
+  <SolidColorBrush x:Key="White900" Color="#E5FFFFFF" po:Freeze="True" />
+  <SolidColorBrush x:Key="White1000" Color="#FFFFFFFF" po:Freeze="True" />
+
+  <SolidColorBrush x:Key="Black0" Color="#00000000" po:Freeze="True" />
+  <SolidColorBrush x:Key="Black50" Color="#0C000000" po:Freeze="True" />
+  <SolidColorBrush x:Key="Black100" Color="#19000000" po:Freeze="True" />
+  <SolidColorBrush x:Key="Black200" Color="#33000000" po:Freeze="True" />
+  <SolidColorBrush x:Key="Black300" Color="#4C000000" po:Freeze="True" />
+  <SolidColorBrush x:Key="Black400" Color="#66000000" po:Freeze="True" />
+  <SolidColorBrush x:Key="Black500" Color="#7F000000" po:Freeze="True" />
+  <SolidColorBrush x:Key="Black600" Color="#99000000" po:Freeze="True" />
+  <SolidColorBrush x:Key="Black700" Color="#B2000000" po:Freeze="True" />
+  <SolidColorBrush x:Key="Black800" Color="#CC000000" po:Freeze="True" />
+  <SolidColorBrush x:Key="Black900" Color="#E5000000" po:Freeze="True" />
+  <SolidColorBrush x:Key="Black1000" Color="#FF000000" po:Freeze="True" />
+
+</ResourceDictionary>

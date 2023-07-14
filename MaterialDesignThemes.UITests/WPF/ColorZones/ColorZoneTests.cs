@@ -11,16 +11,16 @@ public class ColorZoneTests : TestBase
     }
 
     [Theory]
-    [InlineData(ColorZoneMode.Standard, "MaterialDesignPaper", "MaterialDesignBody")]
-    [InlineData(ColorZoneMode.Inverted, "MaterialDesignBody", "MaterialDesignPaper")]
-    [InlineData(ColorZoneMode.PrimaryLight, "PrimaryHueLightBrush", "PrimaryHueLightForegroundBrush")]
-    [InlineData(ColorZoneMode.PrimaryMid, "PrimaryHueMidBrush", "PrimaryHueMidForegroundBrush")]
-    [InlineData(ColorZoneMode.PrimaryDark, "PrimaryHueDarkBrush", "PrimaryHueDarkForegroundBrush")]
-    [InlineData(ColorZoneMode.SecondaryLight, "SecondaryHueLightBrush", "SecondaryHueLightForegroundBrush")]
-    [InlineData(ColorZoneMode.SecondaryMid, "SecondaryHueMidBrush", "SecondaryHueMidForegroundBrush")]
-    [InlineData(ColorZoneMode.SecondaryDark, "SecondaryHueDarkBrush", "SecondaryHueDarkForegroundBrush")]
-    [InlineData(ColorZoneMode.Light, "MaterialDesignLightBackground", "MaterialDesignLightForeground")]
-    [InlineData(ColorZoneMode.Dark, "MaterialDesignDarkBackground", "MaterialDesignDarkForeground")]
+    [InlineData(ColorZoneMode.Standard, "MaterialDesign.Brush.Background", "MaterialDesign.Brush.Foreground")]
+    [InlineData(ColorZoneMode.Inverted, "MaterialDesign.Brush.Foreground", "MaterialDesign.Brush.Background")]
+    [InlineData(ColorZoneMode.PrimaryLight, "MaterialDesign.Brush.Primary.Light", "MaterialDesign.Brush.Primary.Light.Foreground")]
+    [InlineData(ColorZoneMode.PrimaryMid, "MaterialDesign.Brush.Primary", "MaterialDesign.Brush.Primary.Foreground")]
+    [InlineData(ColorZoneMode.PrimaryDark, "MaterialDesign.Brush.Primary.Dark", "MaterialDesign.Brush.Primary.Dark.Foreground")]
+    [InlineData(ColorZoneMode.SecondaryLight, "MaterialDesign.Brush.Secondary.Light", "MaterialDesign.Brush.Secondary.Light.Foreground")]
+    [InlineData(ColorZoneMode.SecondaryMid, "MaterialDesign.Brush.Secondary", "MaterialDesign.Brush.Secondary.Foreground")]
+    [InlineData(ColorZoneMode.SecondaryDark, "MaterialDesign.Brush.Secondary.Dark", "MaterialDesign.Brush.Secondary.Dark.Foreground")]
+    [InlineData(ColorZoneMode.Light, "MaterialDesign.Brush.ColorZone.LightBackground", "MaterialDesign.Brush.ColorZone.LightForeground")]
+    [InlineData(ColorZoneMode.Dark, "MaterialDesign.Brush.ColorZone.DarkBackground", "MaterialDesign.Brush.ColorZone.DarkForeground")]
     public async Task Mode_SetsThemeColors(ColorZoneMode mode, string backgroundBrush, string foregroundBrush)
     {
         await using var recorder = new TestRecorder(App);

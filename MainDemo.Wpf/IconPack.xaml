@@ -74,7 +74,7 @@
                                      Height="32"
                                      HorizontalAlignment="Center"
                                      VerticalAlignment="Center"
-                                     Kind="{Binding Kind,Mode=OneTime}" />
+                                     Kind="{Binding Kind, Mode=OneTime}" />
           </DockPanel>
         </DataTemplate>
       </ListBox.ItemTemplate>

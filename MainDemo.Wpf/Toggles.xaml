@@ -1,4 +1,4 @@
-<UserControl x:Class="MaterialDesignDemo.Toggles"
+﻿<UserControl x:Class="MaterialDesignDemo.Toggles"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -264,8 +264,8 @@
       <smtx:XamlDisplay Margin="8,0,0,0"
                         VerticalAlignment="Center"
                         UniqueKey="buttons_64">
-        <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}"
-                      Width="60"
+        <ToggleButton Width="60"
+                      Style="{StaticResource MaterialDesignSwitchToggleButton}"
                       ToolTip="MaterialDesignSwitchToggleButton with Custom Track Background">
           <materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
             <SolidColorBrush Color="Green" />
@@ -367,10 +367,10 @@
             <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
           </StackPanel>
         </ListBox.ToolTip>
-  <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatBold}" />
-  <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatItalic}" />
-  <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatUnderline}" />
-</ListBox>
+        <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatBold}" />
+        <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatItalic}" />
+        <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatUnderline}" />
+      </ListBox>
     </smtx:XamlDisplay>
 
 

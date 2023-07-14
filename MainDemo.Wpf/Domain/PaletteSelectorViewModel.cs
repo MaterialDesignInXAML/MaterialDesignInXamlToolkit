@@ -1,40 +1,39 @@
 ﻿using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
 
-namespace MaterialDesignDemo.Domain
+namespace MaterialDesignDemo.Domain;
+
+public class PaletteSelectorViewModel : ViewModelBase
 {
-    public class PaletteSelectorViewModel : ViewModelBase
+    public PaletteSelectorViewModel()
     {
-        public PaletteSelectorViewModel()
+        Swatches = new SwatchesProvider().Swatches;
+    }
+
+    public IEnumerable<Swatch> Swatches { get; }
+
+    public ICommand ApplyPrimaryCommand { get; } = new AnotherCommandImplementation(o => ApplyPrimary((Swatch)o!));
+
+    private static void ApplyPrimary(Swatch swatch)
+        => ModifyTheme(theme => theme.SetPrimaryColor(swatch.ExemplarHue.Color));
+
+    public ICommand ApplyAccentCommand { get; } = new AnotherCommandImplementation(o => ApplyAccent((Swatch)o!));
+
+    private static void ApplyAccent(Swatch swatch)
+    {
+        if (swatch is { AccentExemplarHue: not null })
         {
-            Swatches = new SwatchesProvider().Swatches;
+            ModifyTheme(theme => theme.SetSecondaryColor(swatch.AccentExemplarHue.Color));
         }
+    }
 
-        public IEnumerable<Swatch> Swatches { get; }
+    private static void ModifyTheme(Action<Theme> modificationAction)
+    {
+        var paletteHelper = new PaletteHelper();
+        Theme theme = paletteHelper.GetTheme();
 
-        public ICommand ApplyPrimaryCommand { get; } = new AnotherCommandImplementation(o => ApplyPrimary((Swatch)o!));
+        modificationAction?.Invoke(theme);
 
-        private static void ApplyPrimary(Swatch swatch)
-            => ModifyTheme(theme => theme.SetPrimaryColor(swatch.ExemplarHue.Color));
-
-        public ICommand ApplyAccentCommand { get; } = new AnotherCommandImplementation(o => ApplyAccent((Swatch)o!));
-
-        private static void ApplyAccent(Swatch swatch)
-        {
-            if (swatch is { AccentExemplarHue: not null })
-            {
-                ModifyTheme(theme => theme.SetSecondaryColor(swatch.AccentExemplarHue.Color));
-            }
-        }
-
-        private static void ModifyTheme(Action<ITheme> modificationAction)
-        {
-            var paletteHelper = new PaletteHelper();
-            ITheme theme = paletteHelper.GetTheme();
-
-            modificationAction?.Invoke(theme);
-
-            paletteHelper.SetTheme(theme);
-        }
+        paletteHelper.SetTheme(theme);
     }
 }

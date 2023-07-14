@@ -286,18 +286,18 @@
             </AdornerDecorator.CacheMode>
             <Grid Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}">
               <Rectangle Margin="0,0,0,5"
-                         Fill="{DynamicResource MaterialDesignToolTipBackground}"
+                         Fill="{DynamicResource MaterialDesign.Brush.ToolTip.Background}"
                          RadiusX="2"
                          RadiusY="2" />
               <Polygon HorizontalAlignment="Center"
                        VerticalAlignment="Bottom"
-                       Fill="{DynamicResource MaterialDesignToolTipBackground}"
+                       Fill="{DynamicResource MaterialDesign.Brush.ToolTip.Background}"
                        Points="0,0 4.5,5 9,0" />
             </Grid>
           </AdornerDecorator>
           <TextBlock Margin="12,0,12,5"
                      VerticalAlignment="Center"
-                     Foreground="{DynamicResource MaterialDesignPaper}"
+                     Foreground="{DynamicResource MaterialDesign.Brush.Background}"
                      TextAlignment="Center">
             <TextBlock.Text>
               <MultiBinding Converter="{StaticResource SliderToolTipConverter}"
@@ -504,18 +504,18 @@
             </AdornerDecorator.CacheMode>
             <Grid Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}">
               <Rectangle Margin="0,0,5,0"
-                         Fill="{DynamicResource MaterialDesignToolTipBackground}"
+                         Fill="{DynamicResource MaterialDesign.Brush.ToolTip.Background}"
                          RadiusX="2"
                          RadiusY="2" />
               <Polygon HorizontalAlignment="Right"
                        VerticalAlignment="Center"
-                       Fill="{DynamicResource MaterialDesignToolTipBackground}"
+                       Fill="{DynamicResource MaterialDesign.Brush.ToolTip.Background}"
                        Points="0,0 6,5 0,10" />
             </Grid>
           </AdornerDecorator>
           <TextBlock Margin="12,0,17,0"
                      VerticalAlignment="Center"
-                     Foreground="{DynamicResource MaterialDesignPaper}"
+                     Foreground="{DynamicResource MaterialDesign.Brush.Background}"
                      TextAlignment="Center">
             <TextBlock.Text>
               <MultiBinding Converter="{StaticResource SliderToolTipConverter}"
@@ -979,7 +979,7 @@
     <Setter Property="Background" Value="{x:Null}" />
     <Setter Property="BorderBrush" Value="Transparent" />
     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="IsMoveToPointEnabled" Value="True" />
     <Setter Property="SnapsToDevicePixels" Value="False" />
     <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false" />
@@ -991,7 +991,7 @@
         <Setter Property="Template" Value="{StaticResource MaterialDesignSliderVertical}" />
       </Trigger>
       <Trigger Property="IsEnabled" Value="False">
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.CheckBox.Disabled}" />
       </Trigger>
     </Style.Triggers>
   </Style>
@@ -999,7 +999,7 @@
   <Style x:Key="MaterialDesignDiscreteHorizontalSlider" TargetType="{x:Type Slider}">
     <Setter Property="Background" Value="{x:Null}" />
     <Setter Property="BorderBrush" Value="Transparent" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="IsMoveToPointEnabled" Value="True" />
     <Setter Property="IsSnapToTickEnabled" Value="True" />
     <Setter Property="Orientation" Value="Horizontal" />
@@ -1010,7 +1010,7 @@
     <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp1" />
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.CheckBox.Disabled}" />
       </Trigger>
       <Trigger Property="wpf:SliderAssist.OnlyShowFocusVisualWhileDragging" Value="False">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
@@ -1021,7 +1021,7 @@
   <Style x:Key="MaterialDesignDiscreteVerticalSlider" TargetType="{x:Type Slider}">
     <Setter Property="Background" Value="{x:Null}" />
     <Setter Property="BorderBrush" Value="Transparent" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="IsMoveToPointEnabled" Value="True" />
     <Setter Property="IsSnapToTickEnabled" Value="True" />
     <Setter Property="Orientation" Value="Vertical" />
@@ -1032,7 +1032,7 @@
     <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp1" />
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.CheckBox.Disabled}" />
       </Trigger>
       <Trigger Property="wpf:SliderAssist.OnlyShowFocusVisualWhileDragging" Value="False">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
@@ -1045,7 +1045,7 @@
          BasedOn="{StaticResource MaterialDesignDiscreteHorizontalSlider}">
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.CheckBox.Disabled}" />
       </Trigger>
       <Trigger Property="Orientation" Value="Horizontal">
         <Setter Property="Template" Value="{StaticResource MaterialDesignDiscreteSliderHorizontal}" />

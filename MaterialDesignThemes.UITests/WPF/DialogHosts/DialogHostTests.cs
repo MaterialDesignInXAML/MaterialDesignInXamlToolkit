@@ -210,11 +210,11 @@ public class DialogHostTests : TestBase
         var card1 = await Wait.For(async () => await dialogHost1.GetElement<Card>("PART_PopupContentElement"));
         var card2 = await Wait.For(async () => await dialogHost2.GetElement<Card>("PART_PopupContentElement"));
 
-        IResource paperResource1 = await card1.GetResource("MaterialDesignPaper");
+        IResource paperResource1 = await card1.GetResource("MaterialDesign.Brush.Background");
         var paperBrush1 = paperResource1.GetAs<SolidColorBrush>();
         Assert.NotNull(paperBrush1);
         paperBrush1!.Freeze();
-        IResource paperResource2 = await card1.GetResource("MaterialDesignPaper");
+        IResource paperResource2 = await card1.GetResource("MaterialDesign.Brush.Background");
         var paperBrush2 = paperResource2.GetAs<SolidColorBrush>();
         Assert.NotNull(paperBrush2);
         paperBrush2!.Freeze();

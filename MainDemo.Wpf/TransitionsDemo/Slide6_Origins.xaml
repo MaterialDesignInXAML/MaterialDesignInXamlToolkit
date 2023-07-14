@@ -24,9 +24,9 @@
       <materialDesign:TransitionerSlide>
         <Border Background="#009688">
           <TextBlock Margin="24"
-                   Foreground="Azure"
-                   TextWrapping="Wrap">
-          You can set .DefaultTransitionOrigin, to help with transitions such as the circle wipe, which are triggered from code.
+                     Foreground="Azure"
+                     TextWrapping="Wrap">
+            You can set .DefaultTransitionOrigin, to help with transitions such as the circle wipe, which are triggered from code.
           </TextBlock>
         </Border>
       </materialDesign:TransitionerSlide>

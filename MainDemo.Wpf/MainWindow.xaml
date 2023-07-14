@@ -63,8 +63,8 @@
                    materialDesign:TextFieldAssist.DecorationVisibility="Collapsed"
                    materialDesign:TextFieldAssist.HasClearButton="True"
                    DockPanel.Dock="Top"
-                   Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"
-                   Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                   Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                   Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}" />
 
           <ListBox x:Name="DemoItemsListBox"
                    Margin="0,16,0,16"

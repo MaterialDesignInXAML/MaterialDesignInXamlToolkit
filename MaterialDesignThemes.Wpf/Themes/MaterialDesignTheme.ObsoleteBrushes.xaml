@@ -1,0 +1,80 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:colors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
+                    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+  <!-- This file will be removed in the future -->
+  <system:Boolean x:Key="MaterialDesign.Resources.RecreateOnThemeChange">True</system:Boolean>
+
+  <colors:StaticResource x:Key="PrimaryHueLightBrush"
+                         ResourceKey="MaterialDesign.Brush.Primary.Light"
+                         po:Freeze="True" />
+  <colors:StaticResource x:Key="PrimaryHueLightForegroundBrush"
+                         ResourceKey="MaterialDesign.Brush.Primary.Light.Foreground"
+                         po:Freeze="True" />
+  <colors:StaticResource x:Key="PrimaryHueMidBrush"
+                         ResourceKey="MaterialDesign.Brush.Primary"
+                         po:Freeze="True" />
+  <colors:StaticResource x:Key="PrimaryHueMidForegroundBrush"
+                         ResourceKey="MaterialDesign.Brush.Primary.Foreground"
+                         po:Freeze="True" />
+  <colors:StaticResource x:Key="PrimaryHueDarkBrush"
+                         ResourceKey="MaterialDesign.Brush.Primary.Dark"
+                         po:Freeze="True" />
+  <colors:StaticResource x:Key="PrimaryHueDarkForegroundBrush"
+                         ResourceKey="MaterialDesign.Brush.Primary.Dark.Foreground"
+                         po:Freeze="True" />
+
+  <colors:StaticResource x:Key="SecondaryHueLightBrush"
+                         ResourceKey="MaterialDesign.Brush.Secondary.Light"
+                         po:Freeze="True" />
+  <colors:StaticResource x:Key="SecondaryHueLightForegroundBrush"
+                         ResourceKey="MaterialDesign.Brush.Secondary.Light.Foreground"
+                         po:Freeze="True" />
+  <colors:StaticResource x:Key="SecondaryHueMidBrush"
+                         ResourceKey="MaterialDesign.Brush.Secondary"
+                         po:Freeze="True" />
+  <colors:StaticResource x:Key="SecondaryHueMidForegroundBrush"
+                         ResourceKey="MaterialDesign.Brush.Secondary.Foreground"
+                         po:Freeze="True" />
+  <colors:StaticResource x:Key="SecondaryHueDarkBrush"
+                         ResourceKey="MaterialDesign.Brush.Secondary.Dark"
+                         po:Freeze="True" />
+  <colors:StaticResource x:Key="SecondaryHueDarkForegroundBrush"
+                         ResourceKey="MaterialDesign.Brush.Secondary.Dark.Foreground"
+                         po:Freeze="True" />
+
+  <SolidColorBrush x:Key="MaterialDesignLightBackground" Color="#FFFAFAFA" />
+  <SolidColorBrush x:Key="MaterialDesignLightForeground" Color="#DD000000" />
+  <SolidColorBrush x:Key="MaterialDesignDarkBackground" Color="#FF303030" />
+  <SolidColorBrush x:Key="MaterialDesignDarkForeground" Color="#FFFAFAFA" />
+  <colors:StaticResource x:Key="MaterialDesignPaper" ResourceKey="MaterialDesign.Brush.Background" />
+  <colors:StaticResource x:Key="MaterialDesignFlatButtonClick" ResourceKey="MaterialDesign.Brush.Button.FlatClick" />
+  <colors:StaticResource x:Key="MaterialDesignFlatButtonRipple" ResourceKey="MaterialDesign.Brush.Button.Ripple" />
+  <colors:StaticResource x:Key="MaterialDesignSnackbarRipple" ResourceKey="MaterialDesign.Brush.Button.Ripple" />
+  <colors:StaticResource x:Key="MaterialDesignBackground" ResourceKey="MaterialDesign.Brush.Card.Background" />
+  <colors:StaticResource x:Key="MaterialDesignCardBackground" ResourceKey="MaterialDesign.Brush.Card.Background" />
+  <colors:StaticResource x:Key="MaterialDesignCheckBoxDisabled" ResourceKey="MaterialDesign.Brush.CheckBox.Disabled" />
+  <colors:StaticResource x:Key="MaterialDesignChipBackground" ResourceKey="MaterialDesign.Brush.Chip.Background" />
+  <colors:StaticResource x:Key="MaterialDesignDataGridRowHoverBackground" ResourceKey="MaterialDesign.Brush.DataGrid.RowHoverBackground" />
+  <colors:StaticResource x:Key="MaterialDesignBody" ResourceKey="MaterialDesign.Brush.Foreground" />
+  <colors:StaticResource x:Key="MaterialDesignBodyLight" ResourceKey="MaterialDesign.Brush.ForegroundLight" />
+  <colors:StaticResource x:Key="MaterialDesignCheckBoxOff" ResourceKey="MaterialDesign.Brush.ForegroundLight" />
+  <colors:StaticResource x:Key="MaterialDesignTextBoxBorder" ResourceKey="MaterialDesign.Brush.ForegroundLight" />
+  <colors:StaticResource x:Key="MaterialDesignColumnHeader" ResourceKey="MaterialDesign.Brush.Header.Foreground" />
+  <colors:StaticResource x:Key="MaterialDesignTextAreaBorder" ResourceKey="MaterialDesign.Brush.Header.Foreground" />
+  <colors:StaticResource x:Key="MaterialDesignSnackbarBackground" ResourceKey="MaterialDesign.Brush.SnackBar.Background" />
+  <colors:StaticResource x:Key="MaterialDesignSnackbarMouseOver" ResourceKey="MaterialDesign.Brush.SnackBar.MouseOver" />
+  <colors:StaticResource x:Key="MaterialDesignTextFieldBoxDisabledBackground" ResourceKey="MaterialDesign.Brush.TextBox.DisabledBackground" />
+  <colors:StaticResource x:Key="MaterialDesignTextFieldBoxBackground" ResourceKey="MaterialDesign.Brush.TextBox.FilledBackground" />
+  <colors:StaticResource x:Key="MaterialDesignTextFieldBoxHoverBackground" ResourceKey="MaterialDesign.Brush.TextBox.HoverBackground" />
+  <colors:StaticResource x:Key="MaterialDesignDivider" ResourceKey="MaterialDesign.Brush.TextBox.HoverBackground" />
+  <colors:StaticResource x:Key="MaterialDesignTextAreaInactiveBorder" ResourceKey="MaterialDesign.Brush.TextBox.OutlineInactiveBorder" />
+  <colors:StaticResource x:Key="MaterialDesignToolBarBackground" ResourceKey="MaterialDesign.Brush.ToolBar.Background" />
+  <colors:StaticResource x:Key="MaterialDesignToolBackground" ResourceKey="MaterialDesign.Brush.ToolBar.Item.Background" />
+  <colors:StaticResource x:Key="MaterialDesignToolForeground" ResourceKey="MaterialDesign.Brush.ToolBar.Item.Foreground" />
+  <colors:StaticResource x:Key="MaterialDesignToolTipBackground" ResourceKey="MaterialDesign.Brush.ToolTip.Background" />
+  <colors:StaticResource x:Key="MaterialDesignValidationErrorBrush" ResourceKey="MaterialDesign.Brush.ValidationError" />
+
+</ResourceDictionary>

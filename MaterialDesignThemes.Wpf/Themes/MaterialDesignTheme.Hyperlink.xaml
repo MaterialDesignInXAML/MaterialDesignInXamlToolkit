@@ -5,11 +5,11 @@
   <Style x:Key="MaterialDesignBody1Hyperlink" TargetType="{x:Type Hyperlink}">
     <Setter Property="FontSize" Value="16" />
     <Setter Property="FontWeight" Value="Regular" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="TextDecorations" Value="None" />
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.CheckBox.Disabled}" />
       </Trigger>
       <Trigger Property="IsEnabled" Value="True">
         <Setter Property="Cursor" Value="Hand" />

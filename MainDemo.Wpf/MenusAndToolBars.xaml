@@ -170,9 +170,9 @@
                     Header="Item 3" />
         </MenuItem>
         <MenuItem Foreground="Crimson" Header="(1) Important">
-          <MenuItem Foreground="{DynamicResource MaterialDesignLightForeground}" Header="Item 1" />
+          <MenuItem Foreground="{DynamicResource MaterialDesign.Brush.Foreground}" Header="Item 1" />
           <MenuItem Foreground="Crimson" Header="(1) This is important" />
-          <MenuItem Foreground="{DynamicResource MaterialDesignLightForeground}" Header="Nothing here" />
+          <MenuItem Foreground="{DynamicResource MaterialDesign.Brush.Foreground}" Header="Nothing here" />
         </MenuItem>
       </Menu>
     </smtx:XamlDisplay>

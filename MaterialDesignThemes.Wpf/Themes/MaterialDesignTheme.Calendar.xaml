@@ -155,8 +155,8 @@
     </Setter>
     <Setter Property="VerticalContentAlignment" Value="Center" />
     <Setter Property="Width" Value="48" />
-    <Setter Property="wpf:CalendarAssist.SelectionColor" Value="{DynamicResource PrimaryHueMidBrush}" />
-    <Setter Property="wpf:CalendarAssist.SelectionForegroundColor" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+    <Setter Property="wpf:CalendarAssist.SelectionColor" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+    <Setter Property="wpf:CalendarAssist.SelectionForegroundColor" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
   </Style>
 
   <Style x:Key="MaterialDesignCalendarDayButton" TargetType="{x:Type CalendarDayButton}">
@@ -318,8 +318,8 @@
     </Setter>
     <Setter Property="VerticalContentAlignment" Value="Center" />
     <Setter Property="Width" Value="28" />
-    <Setter Property="wpf:CalendarAssist.SelectionColor" Value="{DynamicResource PrimaryHueMidBrush}" />
-    <Setter Property="wpf:CalendarAssist.SelectionForegroundColor" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+    <Setter Property="wpf:CalendarAssist.SelectionColor" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+    <Setter Property="wpf:CalendarAssist.SelectionForegroundColor" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
     <Style.Triggers>
       <Trigger Property="IsBlackedOut" Value="True">
         <Setter Property="Cursor" Value="Arrow" />
@@ -760,10 +760,10 @@
   </Style>
 
   <Style x:Key="MaterialDesignCalendarPortraitBase" TargetType="{x:Type Calendar}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="CalendarButtonStyle" Value="{StaticResource MaterialDesignCalendarButton}" />
     <Setter Property="CalendarDayButtonStyle" Value="{StaticResource MaterialDesignCalendarDayButton}" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="SnapsToDevicePixels" Value="true" />
     <Setter Property="Template">
       <Setter.Value>
@@ -782,8 +782,8 @@
         </ControlTemplate>
       </Setter.Value>
     </Setter>
-    <Setter Property="wpf:CalendarAssist.HeaderBackground" Value="{DynamicResource PrimaryHueMidBrush}" />
-    <Setter Property="wpf:CalendarAssist.HeaderForeground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+    <Setter Property="wpf:CalendarAssist.HeaderBackground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+    <Setter Property="wpf:CalendarAssist.HeaderForeground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
     <Setter Property="wpf:CalendarAssist.Orientation" Value="Vertical" />
     <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp0" />
   </Style>
@@ -798,6 +798,6 @@
          TargetType="Calendar"
          BasedOn="{StaticResource MaterialDesignCalendarPortrait}">
     <Setter Property="wpf:CalendarAssist.HeaderBackground" Value="Transparent" />
-    <Setter Property="wpf:CalendarAssist.HeaderForeground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="wpf:CalendarAssist.HeaderForeground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
   </Style>
 </ResourceDictionary>

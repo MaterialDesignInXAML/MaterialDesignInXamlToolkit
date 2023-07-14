@@ -1,6 +1,5 @@
 using System.Drawing;
 using System.Xml.Linq;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace mdresgen;
@@ -8,20 +7,20 @@ namespace mdresgen;
 public class Program
 {
     private const string BaseSnippetLocation = "MaterialColourSwatchesSnippet.xml";
-    private const string MdPaletteJsonLocation = "MdPaletteJson.json";
+    private const string PaletteJsonLocation = "Palette.json";
 
     // Legacy
-    private const string OldXamlFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.xaml";
-    private const string OldXamlNamedFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Named.xaml";
+    private const string OldXamlFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.xaml";
+    private const string OldXamlNamedFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Named.xaml";
 
 
-    private const string XamlPrimaryFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Primary.xaml";
-    private const string XamlAccentFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Accent.xaml";
-    private const string XamlPrimaryNamedFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Named.Primary.xaml";
-    private const string XamlAccentNamedFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Named.Accent.xaml";
+    private const string XamlPrimaryFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Primary.xaml";
+    private const string XamlAccentFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Accent.xaml";
+    private const string XamlPrimaryNamedFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Named.Primary.xaml";
+    private const string XamlAccentNamedFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Named.Accent.xaml";
 
-    private const string RecommendedPrimaryFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\Recommended\Primary\MaterialDesignColor.{0}.xaml";
-    private const string RecommendedAccentFileFormat = @"..\..\..\MaterialDesignColors.Wpf\Themes\Recommended\Accent\MaterialDesignColor.{0}.xaml";
+    private const string RecommendedPrimaryFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\Recommended\Primary\MaterialDesignColor.{0}.xaml";
+    private const string RecommendedAccentFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\Recommended\Accent\MaterialDesignColor.{0}.xaml";
     private const string RecommendedPrimaryTemplateLocation = "RecommendedPrimaryTemplate.xaml";
     private const string RecommendedAccentTemplateLocation = "RecommendedAccentTemplate.xaml";
 
@@ -38,12 +37,24 @@ public class Program
 
     static async Task Main(string[] args)
     {
-        
         if (args.Length == 0)
             GenerateXaml(GetXmlRoot());
+        if (args.Contains("theming"))
+        {
+            var palette = System.Text.Json.JsonSerializer.Deserialize<MdPalette>(File.OpenRead(PaletteJsonLocation))!;
+            GenerateClasses(palette);
+
+            var xmlRoot = GetXmlRoot();
+            GenerateXaml(xmlRoot);
+            GenerateXaml(xmlRoot, true);
+            GenerateOldXaml(xmlRoot);
+            GenerateOldXaml(xmlRoot, true);
+
+            await Brushes.GenerateBrushesAsync();
+        }
         if (args.Contains("class-swatches"))
         {
-            var palette = JsonConvert.DeserializeObject<MdPalette>(File.ReadAllText(MdPaletteJsonLocation))!;
+            var palette = System.Text.Json.JsonSerializer.Deserialize<MdPalette>(File.OpenRead(PaletteJsonLocation))!;
             GenerateClasses(palette);
         }
         if (args.Contains("all-swatches"))
@@ -66,6 +77,8 @@ public class Program
             await IconThing.RunAsync();
         if (args.Contains("icon-diff"))
             await IconDiff.RunAsync();
+        if (args.Contains("brushes"))
+            await Brushes.GenerateBrushesAsync();
         
         Console.WriteLine();
         Console.WriteLine();
@@ -75,25 +88,25 @@ public class Program
         {
             var xDocument = XDocument.Load(BaseSnippetLocation);
             return xDocument.Root ??
-                          throw new InvalidDataException("The input document does not contain a root");
+                throw new InvalidDataException("The input document does not contain a root");
         }
     }
 
 
     private static void GenerateClasses(MdPalette palettes)
     {
-        foreach (var palette in palettes.palettes ?? Enumerable.Empty<MdPalette.Palette>())
+        foreach (var palette in palettes.Palettes ?? Enumerable.Empty<Palette>())
         {
             var sb = new StringBuilder();
 
             var colors = new StringBuilder();
             var hueNames = new StringBuilder();
-            var shortName = palette.name?.Replace(" ", "");
+            var shortName = palette.Name?.Replace(" ", "");
 
-            for (var i = 0; i < palette.hexes?.Length; i++)
+            for (var i = 0; i < palette.Hexes?.Length; i++)
             {
-                var colorName = shortName + palettes.shades?[i];
-                colors.AppendLine($"\t\tpublic static Color {colorName} {{ get; }} = (Color)ColorConverter.ConvertFromString(\"{palette.hexes[i]}\");");
+                var colorName = shortName + palettes.Shades?[i];
+                colors.AppendLine($"\t\tpublic static Color {colorName} {{ get; }} = (Color)ColorConverter.ConvertFromString(\"{palette.Hexes[i]}\");");
                 hueNames.AppendLine($"\t\t\t{{ MaterialDesignColor.{colorName}, {colorName} }},");
             }
 
@@ -107,7 +120,7 @@ public class Program
             sb.AppendLine("\t{");
             sb.Append(colors.ToString());
             sb.AppendLine();
-            sb.AppendLine($"\t\tpublic string Name {{ get; }} = \"{palette.name}\";");
+            sb.AppendLine($"\t\tpublic string Name {{ get; }} = \"{palette.Name}\";");
             sb.AppendLine();
             sb.AppendLine("\t\tpublic IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>");
             sb.AppendLine("\t\t{");
@@ -139,24 +152,24 @@ public class Program
             var primary = ToResourceDictionary(color, out primaryEmpty, named, ColorMode.PrimaryOnly);
             var accent = ToResourceDictionary(color, out accentEmpty, named, ColorMode.AccentOnly);
 
-            var longcolor = primary.Item1;
-            var shortcolor = longcolor.Replace(" ", "");
+            var longColor = primary.Item1;
+            var shortColor = longColor.Replace(" ", "");
 
-            if (string.Compare(shortcolor, "black", StringComparison.InvariantCultureIgnoreCase) == 0) continue;
+            if (string.Compare(shortColor, "black", StringComparison.InvariantCultureIgnoreCase) == 0) continue;
 
-            Console.WriteLine("{0} \t Primary: {1} \t Accent: {2}", longcolor.PadRight(15, ' '), !primaryEmpty, !accentEmpty);
+            Console.WriteLine("{0} \t Primary: {1} \t Accent: {2}", longColor.PadRight(15, ' '), !primaryEmpty, !accentEmpty);
 
             if (!primaryEmpty)
             {
                 primary.Item2.Save(
                     string.Format(
                         named ? XamlPrimaryNamedFileFormat : XamlPrimaryFileFormat,
-                        shortcolor
+                        shortColor
                         ));
 
                 File.WriteAllText(
-                    string.Format(RecommendedPrimaryFileFormat, shortcolor),
-                    recommendedPrimary.Replace("$COLOR", shortcolor).Replace("$LONG_COLOR", longcolor)
+                    string.Format(RecommendedPrimaryFileFormat, shortColor),
+                    recommendedPrimary.Replace("$COLOR", shortColor).Replace("$LONG_COLOR", longColor)
                     );
             }
 
@@ -165,12 +178,12 @@ public class Program
                 accent.Item2.Save(
                     string.Format(
                         named ? XamlAccentNamedFileFormat : XamlAccentFileFormat,
-                        shortcolor
+                        shortColor
                         ));
 
                 File.WriteAllText(
-                    string.Format(RecommendedAccentFileFormat, shortcolor),
-                    recommendedAccent.Replace("$COLOR", shortcolor).Replace("$LONG_COLOR", longcolor)
+                    string.Format(RecommendedAccentFileFormat, shortColor),
+                    recommendedAccent.Replace("$COLOR", shortColor).Replace("$LONG_COLOR", longColor)
                     );
             }
         }

@@ -39,8 +39,8 @@
   </Style>
 
   <Style x:Key="MaterialDesignRadioButton" TargetType="{x:Type RadioButton}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
@@ -84,7 +84,7 @@
               <Canvas Width="24" Height="24">
                 <Path x:Name="Graphic"
                       Data="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
-                      Fill="{DynamicResource MaterialDesignCheckBoxOff}" />
+                      Fill="{DynamicResource MaterialDesign.Brush.RadioButton.Outline}" />
                 <Ellipse x:Name="InteractionEllipse"
                          Canvas.Left="12"
                          Canvas.Top="12"
@@ -123,7 +123,7 @@
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
               <Setter Property="Opacity" Value="0.26" />
-              <Setter TargetName="Graphic" Property="Fill" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+              <Setter TargetName="Graphic" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.RadioButton.Disabled}" />
             </Trigger>
             <Trigger Property="IsPressed" Value="true" />
             <Trigger Property="IsChecked" Value="true">
@@ -135,8 +135,8 @@
               <Setter TargetName="Graphic" Property="Opacity" Value="0.56" />
             </Trigger>
             <Trigger Property="Validation.HasError" Value="true">
-              <Setter TargetName="Graphic" Property="Fill" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
-              <Setter TargetName="contentPresenter" Property="Control.Foreground" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
+              <Setter TargetName="Graphic" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
+              <Setter TargetName="contentPresenter" Property="Control.Foreground" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
             </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
@@ -149,22 +149,22 @@
   <Style x:Key="MaterialDesignLightRadioButton"
          TargetType="{x:Type RadioButton}"
          BasedOn="{StaticResource MaterialDesignRadioButton}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueLightBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
   </Style>
 
   <Style x:Key="MaterialDesignDarkRadioButton"
          TargetType="{x:Type RadioButton}"
          BasedOn="{StaticResource MaterialDesignRadioButton}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueDarkBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
   </Style>
 
   <Style x:Key="MaterialDesignSecondaryRadioButton"
          TargetType="{x:Type RadioButton}"
          BasedOn="{StaticResource MaterialDesignRadioButton}">
-    <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
   </Style>
 
   <!-- Obsolete -->
@@ -265,8 +265,8 @@
               <Setter TargetName="Graphic" Property="Opacity" Value="0.56" />
             </Trigger>
             <Trigger Property="Validation.HasError" Value="true">
-              <Setter TargetName="Graphic" Property="Fill" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
-              <Setter TargetName="contentPresenter" Property="Control.Foreground" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
+              <Setter TargetName="Graphic" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
+              <Setter TargetName="contentPresenter" Property="Control.Foreground" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
             </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
@@ -278,7 +278,7 @@
 
   <Style x:Key="MaterialDesignTabRadioButton" TargetType="{x:Type RadioButton}">
     <Setter Property="Background" Value="Transparent" />
-    <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
     <Setter Property="BorderThickness" Value="0,0,0,2" />
     <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
@@ -337,10 +337,10 @@
     <Setter Property="TextBlock.FontWeight" Value="Medium" />
     <Setter Property="VerticalContentAlignment" Value="Center" />
     <Setter Property="wpf:ButtonProgressAssist.IndicatorBackground" Value="Transparent" />
-    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource MaterialDesignDivider}" />
+    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource MaterialDesign.Brush.RadioButton.Checked}" />
     <Setter Property="wpf:ButtonProgressAssist.IsIndicatorVisible" Value="False" />
     <Setter Property="wpf:ButtonProgressAssist.Opacity" Value=".4" />
-    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
+    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Button.Ripple}" />
     <Style.Triggers>
       <Trigger Property="IsChecked" Value="True">
         <Setter Property="Foreground" Value="{Binding BorderBrush, RelativeSource={RelativeSource Mode=Self}}" />
@@ -370,9 +370,9 @@
 
   <Style x:Key="MaterialDesignToolRadioButton" TargetType="{x:Type RadioButton}">
     <Setter Property="Background" Value="Transparent" />
-    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.RadioButton.Border}" />
     <Setter Property="BorderThickness" Value="0" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="Padding" Value="14,6,14,6" />
     <Setter Property="SnapsToDevicePixels" Value="True" />
     <Setter Property="Template">
@@ -460,7 +460,7 @@
                       Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
                       Opacity="0" />
               <Border x:Name="CheckedBackgroundBorder"
-                      Background="{DynamicResource MaterialDesignDivider}"
+                      Background="{DynamicResource MaterialDesign.Brush.RadioButton.Checked}"
                       Opacity="0" />
               <wpf:Ripple x:Name="Ripple"
                           Padding="{TemplateBinding Padding}"
@@ -474,7 +474,7 @@
                           Opacity=".56"
                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
               <Border x:Name="CheckedBorder"
-                      BorderBrush="{DynamicResource MaterialDesignDivider}"
+                      BorderBrush="{DynamicResource MaterialDesign.Brush.RadioButton.Checked}"
                       BorderThickness="0"
                       Opacity="0"
                       Visibility="{TemplateBinding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
@@ -497,11 +497,11 @@
 
 
   <Style x:Key="MaterialDesignChoiceChipRadioButton" TargetType="{x:Type RadioButton}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="Cursor" Value="Hand" />
     <Setter Property="FontSize" Value="13" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="Height" Value="32" />
     <Setter Property="HorizontalAlignment" Value="Left" />
     <Setter Property="Margin" Value="4" />
@@ -595,7 +595,7 @@
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
             <Border Grid.ColumnSpan="2"
-                    Background="{DynamicResource MaterialDesignChipBackground}"
+                    Background="{DynamicResource MaterialDesign.Brush.Chip.Background}"
                     CornerRadius="16" />
             <Border x:Name="MouseOverBorder"
                     Grid.Column="0"
@@ -625,8 +625,8 @@
               <Setter Property="Opacity" Value=".56" />
             </Trigger>
             <Trigger Property="IsChecked" Value="False">
-              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}" />
-              <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.RadioButton.Border}" />
+              <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
             </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
@@ -635,12 +635,12 @@
   </Style>
 
   <Style x:Key="MaterialDesignChoiceChipOutlineRadioButton" TargetType="{x:Type RadioButton}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignBodyLight}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Cursor" Value="Hand" />
     <Setter Property="FontSize" Value="13" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="Height" Value="32" />
     <Setter Property="HorizontalAlignment" Value="Left" />
     <Setter Property="Margin" Value="4" />
@@ -786,8 +786,8 @@
               <Setter Property="Opacity" Value=".56" />
             </Trigger>
             <Trigger Property="IsChecked" Value="False">
-              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}" />
-              <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.RadioButton.Chip.CheckedBackground}" />
+              <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
             </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
@@ -798,18 +798,18 @@
   <Style x:Key="MaterialDesignChoiceChipPrimaryRadioButton"
          TargetType="{x:Type RadioButton}"
          BasedOn="{StaticResource MaterialDesignChoiceChipRadioButton}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
 
-    <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Style.Triggers>
       <MultiDataTrigger>
         <MultiDataTrigger.Conditions>
           <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True" />
           <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
         </MultiDataTrigger.Conditions>
-        <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
       </MultiDataTrigger>
     </Style.Triggers>
   </Style>
@@ -817,18 +817,18 @@
   <Style x:Key="MaterialDesignChoiceChipSecondaryRadioButton"
          TargetType="{x:Type RadioButton}"
          BasedOn="{StaticResource MaterialDesignChoiceChipRadioButton}">
-    <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource SecondaryHueDarkBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
 
-    <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Style.Triggers>
       <MultiDataTrigger>
         <MultiDataTrigger.Conditions>
           <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True" />
           <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
         </MultiDataTrigger.Conditions>
-        <Setter Property="Background" Value="{DynamicResource SecondaryHueDarkBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueLightBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
       </MultiDataTrigger>
     </Style.Triggers>
   </Style>
@@ -841,19 +841,19 @@
   <Style x:Key="MaterialDesignChoiceChipPrimaryOutlineRadioButton"
          TargetType="{x:Type RadioButton}"
          BasedOn="{StaticResource MaterialDesignChoiceChipOutlineRadioButton}">
-    <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
 
-    <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Style.Triggers>
       <MultiDataTrigger>
         <MultiDataTrigger.Conditions>
           <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True" />
           <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
         </MultiDataTrigger.Conditions>
-        <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
       </MultiDataTrigger>
     </Style.Triggers>
   </Style>
@@ -861,19 +861,19 @@
   <Style x:Key="MaterialDesignChoiceChipSecondaryOutlineRadioButton"
          TargetType="{x:Type RadioButton}"
          BasedOn="{StaticResource MaterialDesignChoiceChipOutlineRadioButton}">
-    <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource SecondaryHueDarkBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
 
-    <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Style.Triggers>
       <MultiDataTrigger>
         <MultiDataTrigger.Conditions>
           <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True" />
           <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
         </MultiDataTrigger.Conditions>
-        <Setter Property="Background" Value="{DynamicResource SecondaryHueDarkBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueLightBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
       </MultiDataTrigger>
     </Style.Triggers>
   </Style>

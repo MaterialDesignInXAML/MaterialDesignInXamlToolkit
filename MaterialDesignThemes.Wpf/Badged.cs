@@ -24,7 +24,7 @@ namespace MaterialDesignThemes.Wpf
         private static readonly CornerRadius DefaultCornerRadius = new CornerRadius(9);
 
         public static readonly DependencyProperty BadgeProperty = DependencyProperty.Register(
-            "Badge", typeof(object), typeof(Badged), new FrameworkPropertyMetadata(default(object), FrameworkPropertyMetadataOptions.AffectsArrange, OnBadgeChanged));
+            nameof(Badge), typeof(object), typeof(Badged), new FrameworkPropertyMetadata(default(object), FrameworkPropertyMetadataOptions.AffectsArrange, OnBadgeChanged));
 
         public object? Badge
         {
@@ -33,7 +33,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty BadgeBackgroundProperty = DependencyProperty.Register(
-            "BadgeBackground", typeof(Brush), typeof(Badged), new PropertyMetadata(default(Brush)));
+            nameof(BadgeBackground), typeof(Brush), typeof(Badged), new PropertyMetadata(default(Brush)));
 
         public Brush? BadgeBackground
         {
@@ -42,7 +42,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty BadgeForegroundProperty = DependencyProperty.Register(
-            "BadgeForeground", typeof(Brush), typeof(Badged), new PropertyMetadata(default(Brush)));
+            nameof(BadgeForeground), typeof(Brush), typeof(Badged), new PropertyMetadata(default(Brush)));
 
         public Brush? BadgeForeground
         {
@@ -51,7 +51,7 @@ namespace MaterialDesignThemes.Wpf
         }
 
         public static readonly DependencyProperty BadgePlacementModeProperty = DependencyProperty.Register(
-            "BadgePlacementMode", typeof(BadgePlacementMode), typeof(Badged), new PropertyMetadata(default(BadgePlacementMode)));
+            nameof(BadgePlacementMode), typeof(BadgePlacementMode), typeof(Badged), new PropertyMetadata(default(BadgePlacementMode)));
 
         public BadgePlacementMode BadgePlacementMode
         {
@@ -61,20 +61,20 @@ namespace MaterialDesignThemes.Wpf
 
         public static readonly RoutedEvent BadgeChangedEvent =
             EventManager.RegisterRoutedEvent(
-                "BadgeChanged",
+                nameof(BadgeChanged),
                 RoutingStrategy.Bubble,
                 typeof(RoutedPropertyChangedEventHandler<object>),
                 typeof(Badged));
 
         public event RoutedPropertyChangedEventHandler<object> BadgeChanged
         {
-            add { AddHandler(BadgeChangedEvent, value); }
-            remove { RemoveHandler(BadgeChangedEvent, value); }
+            add => AddHandler(BadgeChangedEvent, value);
+            remove => RemoveHandler(BadgeChangedEvent, value);
         }
 
         private static readonly DependencyPropertyKey IsBadgeSetPropertyKey =
             DependencyProperty.RegisterReadOnly(
-                "IsBadgeSet", typeof(bool), typeof(Badged),
+                nameof(IsBadgeSet), typeof(bool), typeof(Badged),
                 new PropertyMetadata(default(bool)));
 
         public static readonly DependencyProperty IsBadgeSetProperty =

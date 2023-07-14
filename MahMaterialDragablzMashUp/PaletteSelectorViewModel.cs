@@ -2,84 +2,83 @@
 using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
 
-namespace MahMaterialDragablzMashUp
+namespace MahMaterialDragablzMashUp;
+
+public class PaletteSelectorViewModel : INotifyPropertyChanged
 {
-    public class PaletteSelectorViewModel : INotifyPropertyChanged
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+
+    public PaletteSelectorViewModel()
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
+        Swatches = new SwatchesProvider().Swatches;
 
+        PaletteHelper paletteHelper = new PaletteHelper();
+        Theme theme = paletteHelper.GetTheme();
 
-        public PaletteSelectorViewModel()
+        IsDarkTheme = theme.GetBaseTheme() == BaseTheme.Dark;
+    }
+
+    public ICommand ToggleStyleCommand { get; } = new AnotherCommandImplementation(o => ApplyStyle((bool)o!));
+
+    public IEnumerable<Swatch> Swatches { get; }
+
+    public ICommand ApplyPrimaryCommand { get; } = new AnotherCommandImplementation(o => ApplyPrimary((Swatch)o!));
+
+    public ICommand ApplyAccentCommand { get; } = new AnotherCommandImplementation(o => ApplyAccent((Swatch)o!));
+
+    private bool _isDarkTheme;
+    public bool IsDarkTheme
+    {
+        get => _isDarkTheme;
+        set
         {
-            Swatches = new SwatchesProvider().Swatches;
-
-            PaletteHelper paletteHelper = new PaletteHelper();
-            ITheme theme = paletteHelper.GetTheme();
-
-            IsDarkTheme = theme.GetBaseTheme() == BaseTheme.Dark;
-        }
-
-        public ICommand ToggleStyleCommand { get; } = new AnotherCommandImplementation(o => ApplyStyle((bool)o!));
-
-        public IEnumerable<Swatch> Swatches { get; }
-
-        public ICommand ApplyPrimaryCommand { get; } = new AnotherCommandImplementation(o => ApplyPrimary((Swatch)o!));
-
-        public ICommand ApplyAccentCommand { get; } = new AnotherCommandImplementation(o => ApplyAccent((Swatch)o!));
-
-        private bool _isDarkTheme;
-        public bool IsDarkTheme
-        {
-            get => _isDarkTheme;
-            set
+            if (_isDarkTheme != value)
             {
-                if (_isDarkTheme != value)
-                {
-                    _isDarkTheme = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsDarkTheme)));
-                    ApplyBase(value);
-                }
+                _isDarkTheme = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsDarkTheme)));
+                ApplyBase(value);
             }
         }
+    }
 
-        private static void ApplyStyle(bool alternate)
+    private static void ApplyStyle(bool alternate)
+    {
+        var resourceDictionary = new ResourceDictionary
         {
-            var resourceDictionary = new ResourceDictionary
-            {
-                Source = new Uri(@"pack://application:,,,/Dragablz;component/Themes/materialdesign.xaml")
-            };
+            Source = new Uri(@"pack://application:,,,/Dragablz;component/Themes/materialdesign.xaml")
+        };
 
-            var styleKey = alternate ? "MaterialDesignAlternateTabablzControlStyle" : "MaterialDesignTabablzControlStyle";
-            var style = (Style)resourceDictionary[styleKey];
+        var styleKey = alternate ? "MaterialDesignAlternateTabablzControlStyle" : "MaterialDesignTabablzControlStyle";
+        var style = (Style)resourceDictionary[styleKey];
 
-            foreach (var tabablzControl in Dragablz.TabablzControl.GetLoadedInstances())
-            {
-                tabablzControl.Style = style;
-            }
-        }
-
-        private static void ApplyBase(bool isDark)
-            => ModifyTheme(theme => theme.SetBaseTheme(isDark ? Theme.Dark : Theme.Light));
-
-        private static void ApplyPrimary(Swatch swatch)
-            => ModifyTheme(theme => theme.SetPrimaryColor(swatch.ExemplarHue.Color));
-
-        private static void ApplyAccent(Swatch swatch)
+        foreach (var tabablzControl in Dragablz.TabablzControl.GetLoadedInstances())
         {
-            if (swatch.AccentExemplarHue is Hue accentHue)
-            {
-                ModifyTheme(theme => theme.SetSecondaryColor(accentHue.Color));
-            }
+            tabablzControl.Style = style;
         }
+    }
 
-        private static void ModifyTheme(Action<ITheme> modificationAction)
+    private static void ApplyBase(bool isDark)
+        => ModifyTheme(theme => theme.SetBaseTheme(isDark ? BaseTheme.Dark : BaseTheme.Light));
+
+    private static void ApplyPrimary(Swatch swatch)
+        => ModifyTheme(theme => theme.SetPrimaryColor(swatch.ExemplarHue.Color));
+
+    private static void ApplyAccent(Swatch swatch)
+    {
+        if (swatch.AccentExemplarHue is Hue accentHue)
         {
-            PaletteHelper paletteHelper = new PaletteHelper();
-            ITheme theme = paletteHelper.GetTheme();
-
-            modificationAction?.Invoke(theme);
-
-            paletteHelper.SetTheme(theme);
+            ModifyTheme(theme => theme.SetSecondaryColor(accentHue.Color));
         }
+    }
+
+    private static void ModifyTheme(Action<Theme> modificationAction)
+    {
+        PaletteHelper paletteHelper = new PaletteHelper();
+        Theme theme = paletteHelper.GetTheme();
+
+        modificationAction?.Invoke(theme);
+
+        paletteHelper.SetTheme(theme);
     }
 }

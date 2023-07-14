@@ -8,23 +8,22 @@
   </ResourceDictionary.MergedDictionaries>
 
   <Style x:Key="MaterialDesignElevatedCard" TargetType="{x:Type wpf:Card}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignCardBackground}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Card.Background}" />
     <Setter Property="Focusable" Value="False" />
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type wpf:Card}">
           <ControlTemplate.Resources>
-            <converters:ShadowEdgeConverter x:Key="ShadowEdgeConverter" />
+            <converters:ShadowOpacityMaskConverter x:Key="ShadowOpacityMaskConverter" />
           </ControlTemplate.Resources>
           <Grid Background="Transparent">
             <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
               <AdornerDecorator.OpacityMask>
-                <MultiBinding Converter="{StaticResource ShadowEdgeConverter}">
+                <MultiBinding Converter="{StaticResource ShadowOpacityMaskConverter}">
                   <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}" />
                   <Binding Path="ActualHeight" RelativeSource="{RelativeSource TemplatedParent}" />
                   <Binding Path="(wpf:ElevationAssist.Elevation)" RelativeSource="{RelativeSource TemplatedParent}" />
-                  <Binding Path="(wpf:ShadowAssist.ShadowEdges)" RelativeSource="{RelativeSource TemplatedParent}" />
                 </MultiBinding>
               </AdornerDecorator.OpacityMask>
               <Border CornerRadius="{TemplateBinding UniformCornerRadius, Converter={x:Static converters:DoubleToCornerRadiusConverter.Instance}}" Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}">
@@ -33,13 +32,13 @@
                         Background="{TemplateBinding Background}"
                         Clip="{TemplateBinding ContentClip}">
                   <ContentPresenter x:Name="ContentPresenter"
-                              Margin="{TemplateBinding Padding}"
-                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                              Content="{TemplateBinding ContentControl.Content}"
-                              ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
-                              ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
-                              ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}" />
+                                    Margin="{TemplateBinding Padding}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Content="{TemplateBinding ContentControl.Content}"
+                                    ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
+                                    ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
+                                    ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}" />
                 </Border>
               </Border>
             </AdornerDecorator>
@@ -57,14 +56,14 @@
   </Style>
 
   <Style x:Key="MaterialDesignOutlinedCard" TargetType="{x:Type wpf:Card}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignCardBackground}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Card.Background}" />
     <Setter Property="Focusable" Value="False" />
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type wpf:Card}">
           <Grid Background="Transparent">
-            <Border BorderBrush="{DynamicResource MaterialDesignDivider}"
+            <Border BorderBrush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
                     BorderThickness="1"
                     CornerRadius="{TemplateBinding UniformCornerRadius, Converter={x:Static converters:DoubleToCornerRadiusConverter.Instance}}">
               <Border x:Name="PART_ClipBorder"

@@ -134,8 +134,7 @@
                 <Setter Property="materialDesign:TreeViewAssist.ExpanderSize" Value="32" />
                 <Setter Property="materialDesign:TreeViewAssist.ShowSelection" Value="False" />
               </Style>
-              <HierarchicalDataTemplate DataType="{x:Type domain:MovieCategory}"
-                                        ItemsSource="{Binding Movies, Mode=OneTime}">
+              <HierarchicalDataTemplate DataType="{x:Type domain:MovieCategory}" ItemsSource="{Binding Movies, Mode=OneTime}">
                 <TextBlock Margin="3,2" Text="{Binding Name, Mode=OneTime}" />
               </HierarchicalDataTemplate>
 

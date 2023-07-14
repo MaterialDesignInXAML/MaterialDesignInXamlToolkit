@@ -1,16 +1,3 @@
-﻿namespace MaterialDesignColors.ColorManipulation
-{
-    internal struct Xyz
-    {
-        public double X { get; }
-        public double Y { get; }
-        public double Z { get; }
+﻿namespace MaterialDesignColors.ColorManipulation;
 
-        public Xyz(double x, double y, double z)
-        {
-            X = x;
-            Y = y;
-            Z = z;
-        }
-    }
-}
+internal record struct Xyz(double X, double Y, double Z);

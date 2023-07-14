@@ -1,13 +1,20 @@
-﻿namespace mdresgen;
+﻿using System.Text.Json.Serialization;
+
+namespace mdresgen;
 
 public class MdPalette
 {
-    public string[]? shades { get; set; }
-    public Palette[]? palettes { get; set; }
+    [JsonPropertyName("shades")]
+    public string[]? Shades { get; set; }
 
-    public class Palette
-    {
-        public string? name { get; set; }
-        public string[]? hexes { get; set; }
-    }
+    [JsonPropertyName("palettes")]
+    public Palette[]? Palettes { get; set; }
+}
+
+public class Palette
+{
+    [JsonPropertyName("name")]
+    public string? Name { get; set; }
+    [JsonPropertyName("hexes")]
+    public string[]? Hexes { get; set; }
 }
