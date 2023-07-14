@@ -569,6 +569,22 @@
         ]
     },
     {
+        "name": "MaterialDesign.Brush.ToggleButton.Background",
+        "themeValues": {
+            "light": "Neutral800",
+            "dark": "Neutral800"
+        },
+        "alternateKeys": []
+    },
+    {
+        "name": "MaterialDesign.Brush.ToggleButton.Foreground",
+        "themeValues": {
+            "light": "Neutral300",
+            "dark": "Neutral300"
+        },
+        "alternateKeys": []
+    },
+    {
         "name": "MaterialDesign.Brush.ToggleButton.Switch.TrackOffBackground",
         "themeValues": {
             "light": "White1000",

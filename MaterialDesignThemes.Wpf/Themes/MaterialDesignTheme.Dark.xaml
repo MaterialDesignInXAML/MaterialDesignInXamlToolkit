@@ -70,6 +70,8 @@
   <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.HoverBackground" ResourceKey="White100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ToolBar.Thumb.Foreground" ResourceKey="White100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.OutlineInactiveBorder" ResourceKey="White200" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ToggleButton.Background" ResourceKey="Neutral800" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ToggleButton.Foreground" ResourceKey="Neutral300" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ToggleButton.Switch.TrackOffBackground" ResourceKey="Neutral200" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ToolBar.Background" ResourceKey="Neutral50" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ToolBar.Item.Background" ResourceKey="Neutral800" />

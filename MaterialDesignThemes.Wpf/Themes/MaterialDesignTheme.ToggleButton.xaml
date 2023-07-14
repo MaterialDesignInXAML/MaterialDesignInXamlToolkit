@@ -219,9 +219,9 @@
   </Style>
 
   <Style x:Key="MaterialDesignFlatToggleButton" TargetType="{x:Type ToggleButton}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ToolBar.Item.Background}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ToggleButton.Background}" />
     <Setter Property="FontSize" Value="18" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.ToolBar.Item.Foreground}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.ToggleButton.Foreground}" />
     <Setter Property="Height" Value="40" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />
     <Setter Property="Padding" Value="0" />

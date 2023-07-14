@@ -91,6 +91,8 @@ partial class ThemeTests
           <TextBlock Text="ToolBar.Item.Background" Background="{StaticResource MaterialDesign.Brush.ToolBar.Item.Background}" />
           <TextBlock Text="ToolBar.Item.Foreground" Background="{StaticResource MaterialDesign.Brush.ToolBar.Item.Foreground}" />
           <TextBlock Text="ToolBar.Overflow.Border" Background="{StaticResource MaterialDesign.Brush.ToolBar.Overflow.Border}" />
+          <TextBlock Text="ToggleButton.Background" Background="{StaticResource MaterialDesign.Brush.ToggleButton.Background}" />
+          <TextBlock Text="ToggleButton.Foreground" Background="{StaticResource MaterialDesign.Brush.ToggleButton.Foreground}" />
           <TextBlock Text="ToggleButton.Switch.TrackOffBackground" Background="{StaticResource MaterialDesign.Brush.ToggleButton.Switch.TrackOffBackground}" />
           <TextBlock Text="ToolTip.Background" Background="{StaticResource MaterialDesign.Brush.ToolTip.Background}" />
           <TextBlock Text="MaterialDesignPaper" Background="{StaticResource MaterialDesignPaper}" />
@@ -504,6 +506,16 @@ partial class ThemeTests
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Overflow.Border"), textBlockBackground);
         }
         {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToggleButton.Background\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToggleButton.Background"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToggleButton.Foreground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToggleButton.Foreground"), textBlockBackground);
+        }
+        {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToggleButton.Switch.TrackOffBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToggleButton.Switch.TrackOffBackground"), textBlockBackground);
@@ -801,6 +813,8 @@ partial class ThemeTests
         yield return "MaterialDesign.Brush.ToolBar.Item.Background";
         yield return "MaterialDesign.Brush.ToolBar.Item.Foreground";
         yield return "MaterialDesign.Brush.ToolBar.Overflow.Border";
+        yield return "MaterialDesign.Brush.ToggleButton.Background";
+        yield return "MaterialDesign.Brush.ToggleButton.Foreground";
         yield return "MaterialDesign.Brush.ToggleButton.Switch.TrackOffBackground";
         yield return "MaterialDesign.Brush.ToolTip.Background";
     }

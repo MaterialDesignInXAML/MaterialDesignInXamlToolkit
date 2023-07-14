@@ -85,6 +85,8 @@ static partial class ThemeExtensions
         theme.ToolBars.Items.Background = BaseThemeColors.Neutral800;
         theme.ToolBars.Items.Foreground = BaseThemeColors.Neutral300;
         theme.ToolBars.Overflows.Border = BaseThemeColors.Black100;
+        theme.ToggleButtons.Background = BaseThemeColors.Neutral800;
+        theme.ToggleButtons.Foreground = BaseThemeColors.Neutral300;
         theme.ToggleButtons.Switches.TrackOffBackground = BaseThemeColors.White1000;
         theme.ToolTips.Background = BaseThemeColors.Neutral400;
     }
@@ -161,6 +163,8 @@ static partial class ThemeExtensions
         theme.ToolBars.Items.Background = BaseThemeColors.Neutral800;
         theme.ToolBars.Items.Foreground = BaseThemeColors.Neutral300;
         theme.ToolBars.Overflows.Border = BaseThemeColors.White100;
+        theme.ToggleButtons.Background = BaseThemeColors.Neutral800;
+        theme.ToggleButtons.Foreground = BaseThemeColors.Neutral300;
         theme.ToggleButtons.Switches.TrackOffBackground = BaseThemeColors.Neutral200;
         theme.ToolTips.Background = BaseThemeColors.Neutral900;
     }
