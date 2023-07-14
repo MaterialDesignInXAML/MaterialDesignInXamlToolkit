@@ -123,7 +123,7 @@
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
               <Setter Property="Opacity" Value="0.26" />
-              <Setter TargetName="Graphic" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.CheckBox.Disabled}" />
+              <Setter TargetName="Graphic" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.RadioButton.Disabled}" />
             </Trigger>
             <Trigger Property="IsPressed" Value="true" />
             <Trigger Property="IsChecked" Value="true">

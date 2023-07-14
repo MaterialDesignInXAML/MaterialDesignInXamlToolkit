@@ -68,6 +68,7 @@ static partial class ThemeExtensions
         theme.ListViews.Separator = BaseThemeColors.Black100;
         theme.RadioButtons.Border = BaseThemeColors.Black100;
         theme.RadioButtons.Checked = BaseThemeColors.Black100;
+        theme.RadioButtons.Disabled = BaseThemeColors.Neutral700;
         theme.RadioButtons.Outline = BaseThemeColors.Black500;
         theme.RadioButtons.Chips.CheckedBackground = BaseThemeColors.Black100;
         theme.ScrollBars.ActiveBackground = BaseThemeColors.Black100;
@@ -139,6 +140,7 @@ static partial class ThemeExtensions
         theme.ListViews.Separator = BaseThemeColors.White100;
         theme.RadioButtons.Border = BaseThemeColors.White100;
         theme.RadioButtons.Checked = BaseThemeColors.White100;
+        theme.RadioButtons.Disabled = BaseThemeColors.Neutral300;
         theme.RadioButtons.Outline = BaseThemeColors.White500;
         theme.RadioButtons.Chips.CheckedBackground = BaseThemeColors.White100;
         theme.ScrollBars.ActiveBackground = BaseThemeColors.White100;

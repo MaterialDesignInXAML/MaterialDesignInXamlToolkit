@@ -53,6 +53,7 @@
   <colors:StaticResource x:Key="MaterialDesign.Brush.RadioButton.Border" ResourceKey="Black100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.RadioButton.Checked" ResourceKey="Black100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.RadioButton.Chip.CheckedBackground" ResourceKey="Black100" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.RadioButton.Disabled" ResourceKey="Neutral700" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.RadioButton.Outline" ResourceKey="Black500" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ScrollBar.ActiveBackground" ResourceKey="Black100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ScrollBar.Foreground" ResourceKey="Neutral800" />

@@ -63,6 +63,7 @@ static partial class ResourceDictionaryExtensions
         theme.ListViews.Separator = GetColor(resourceDictionary, "MaterialDesign.Brush.ListView.Separator");
         theme.RadioButtons.Border = GetColor(resourceDictionary, "MaterialDesign.Brush.RadioButton.Border");
         theme.RadioButtons.Checked = GetColor(resourceDictionary, "MaterialDesign.Brush.RadioButton.Checked");
+        theme.RadioButtons.Disabled = GetColor(resourceDictionary, "MaterialDesign.Brush.RadioButton.Disabled");
         theme.RadioButtons.Outline = GetColor(resourceDictionary, "MaterialDesign.Brush.RadioButton.Outline");
         theme.RadioButtons.Chips.CheckedBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.RadioButton.Chip.CheckedBackground");
         theme.ScrollBars.ActiveBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.ScrollBar.ActiveBackground");
@@ -171,6 +172,7 @@ static partial class ResourceDictionaryExtensions
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ListView.Separator", theme.ListViews.Separator);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.RadioButton.Border", theme.RadioButtons.Border);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.RadioButton.Checked", theme.RadioButtons.Checked);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.RadioButton.Disabled", theme.RadioButtons.Disabled);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.RadioButton.Outline", theme.RadioButtons.Outline);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.RadioButton.Chip.CheckedBackground", theme.RadioButtons.Chips.CheckedBackground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ScrollBar.ActiveBackground", theme.ScrollBars.ActiveBackground);

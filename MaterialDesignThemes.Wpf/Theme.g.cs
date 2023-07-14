@@ -221,6 +221,8 @@ partial class Theme
 
         public Color Checked { get; set; }
 
+        public Color Disabled { get; set; }
+
         public Color Outline { get; set; }
 
         public Chip Chips { get; set; } = new();

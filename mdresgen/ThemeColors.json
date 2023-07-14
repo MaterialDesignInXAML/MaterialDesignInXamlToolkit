@@ -405,6 +405,14 @@
         "obsoleteKeys": []
     },
     {
+        "name": "MaterialDesign.Brush.RadioButton.Disabled",
+        "themeValues": {
+            "light": "Neutral700",
+            "dark": "Neutral300"
+        },
+        "alternateKeys": []
+    },
+    {
         "name": "MaterialDesign.Brush.RadioButton.Outline",
         "themeValues": {
             "light": "Black500",
