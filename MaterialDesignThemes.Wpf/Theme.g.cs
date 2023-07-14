@@ -133,6 +133,12 @@ partial class Theme
     {
         public Color Disabled { get; set; }
 
+        public Color FilledBackground { get; set; }
+
+        public Color HoverBackground { get; set; }
+
+        public Color OutlineInactiveBorder { get; set; }
+
         public Popup Popups { get; set; } = new();
 
         public class Popup

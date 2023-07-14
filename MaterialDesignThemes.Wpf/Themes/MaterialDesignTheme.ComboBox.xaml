@@ -279,7 +279,7 @@
               <Setter TargetName="arrow" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-              <Setter TargetName="arrow" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.CheckBox.Disabled}" />
+              <Setter TargetName="arrow" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.ComboBox.Disabled}" />
             </Trigger>
             <MultiDataTrigger>
               <MultiDataTrigger.Conditions>
@@ -615,7 +615,7 @@
           <Condition Property="IsEnabled" Value="False" />
           <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
         </MultiTrigger.Conditions>
-        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.OutlineInactiveBorder}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ComboBox.OutlineInactiveBorder}" />
         <Setter TargetName="HintWrapper" Property="Opacity">
           <Setter.Value>
             <Binding Converter="{StaticResource MathMultiplyConverter}"
@@ -907,7 +907,7 @@
   <Style x:Key="MaterialDesignFilledComboBox"
          TargetType="{x:Type ComboBox}"
          BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.FilledBackground}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ComboBox.FilledBackground}" />
     <Setter Property="Padding" Value="{x:Static wpf:Constants.FilledTextBoxDefaultPadding}" />
     <Setter Property="VerticalAlignment" Value="Stretch" />
     <Setter Property="VerticalContentAlignment" Value="Stretch" />
@@ -916,7 +916,7 @@
     <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4,4,0,0" />
     <Style.Triggers>
       <Trigger Property="IsMouseOver" Value="True">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ComboBox.HoverBackground}" />
       </Trigger>
     </Style.Triggers>
   </Style>

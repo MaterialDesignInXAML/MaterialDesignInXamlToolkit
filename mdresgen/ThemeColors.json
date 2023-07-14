@@ -208,6 +208,30 @@
         "obsoleteKeys": []
     },
     {
+        "name": "MaterialDesign.Brush.ComboBox.FilledBackground",
+        "themeValues": {
+            "light": "Black50",
+            "dark": "White100"
+        },
+        "alternateKeys": []
+    },
+    {
+        "name": "MaterialDesign.Brush.ComboBox.HoverBackground",
+        "themeValues": {
+            "light": "Black100",
+            "dark": "White100"
+        },
+        "alternateKeys": []
+    },
+    {
+        "name": "MaterialDesign.Brush.ComboBox.OutlineInactiveBorder",
+        "themeValues": {
+            "light": "Black200",
+            "dark": "White200"
+        },
+        "alternateKeys": []
+    },
+    {
         "name": "MaterialDesign.Brush.ComboBox.Popup.DarkBackground",
         "themeValues": {
             "light": "Neutral100",

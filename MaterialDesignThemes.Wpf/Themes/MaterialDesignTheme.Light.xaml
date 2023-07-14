@@ -24,6 +24,9 @@
   <colors:StaticResource x:Key="MaterialDesign.Brush.ColorZone.LightBackground" ResourceKey="Neutral900" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ColorZone.LightForeground" ResourceKey="Black900" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ComboBox.Disabled" ResourceKey="Neutral700" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ComboBox.FilledBackground" ResourceKey="Black50" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ComboBox.HoverBackground" ResourceKey="Black100" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ComboBox.OutlineInactiveBorder" ResourceKey="Black200" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ComboBox.Popup.DarkBackground" ResourceKey="Neutral100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ComboBox.Popup.DarkForeground" ResourceKey="Neutral900" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ComboBox.Popup.LightBackground" ResourceKey="Neutral900" />

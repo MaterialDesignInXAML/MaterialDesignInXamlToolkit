@@ -46,6 +46,9 @@ partial class ThemeTests
           <TextBlock Text="ColorZone.LightBackground" Background="{StaticResource MaterialDesign.Brush.ColorZone.LightBackground}" />
           <TextBlock Text="ColorZone.LightForeground" Background="{StaticResource MaterialDesign.Brush.ColorZone.LightForeground}" />
           <TextBlock Text="ComboBox.Disabled" Background="{StaticResource MaterialDesign.Brush.ComboBox.Disabled}" />
+          <TextBlock Text="ComboBox.FilledBackground" Background="{StaticResource MaterialDesign.Brush.ComboBox.FilledBackground}" />
+          <TextBlock Text="ComboBox.HoverBackground" Background="{StaticResource MaterialDesign.Brush.ComboBox.HoverBackground}" />
+          <TextBlock Text="ComboBox.OutlineInactiveBorder" Background="{StaticResource MaterialDesign.Brush.ComboBox.OutlineInactiveBorder}" />
           <TextBlock Text="ComboBox.Popup.DarkBackground" Background="{StaticResource MaterialDesign.Brush.ComboBox.Popup.DarkBackground}" />
           <TextBlock Text="ComboBox.Popup.DarkForeground" Background="{StaticResource MaterialDesign.Brush.ComboBox.Popup.DarkForeground}" />
           <TextBlock Text="ComboBox.Popup.LightBackground" Background="{StaticResource MaterialDesign.Brush.ComboBox.Popup.LightBackground}" />
@@ -274,6 +277,21 @@ partial class ThemeTests
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.Disabled\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.Disabled"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.FilledBackground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.FilledBackground"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.HoverBackground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.HoverBackground"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.OutlineInactiveBorder\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.OutlineInactiveBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.Popup.DarkBackground\"]");
@@ -738,6 +756,9 @@ partial class ThemeTests
         yield return "MaterialDesign.Brush.ColorZone.LightBackground";
         yield return "MaterialDesign.Brush.ColorZone.LightForeground";
         yield return "MaterialDesign.Brush.ComboBox.Disabled";
+        yield return "MaterialDesign.Brush.ComboBox.FilledBackground";
+        yield return "MaterialDesign.Brush.ComboBox.HoverBackground";
+        yield return "MaterialDesign.Brush.ComboBox.OutlineInactiveBorder";
         yield return "MaterialDesign.Brush.ComboBox.Popup.DarkBackground";
         yield return "MaterialDesign.Brush.ComboBox.Popup.DarkForeground";
         yield return "MaterialDesign.Brush.ComboBox.Popup.LightBackground";
