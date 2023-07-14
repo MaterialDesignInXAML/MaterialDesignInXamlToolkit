@@ -545,6 +545,14 @@
         ]
     },
     {
+        "name": "MaterialDesign.Brush.ToggleButton.Switch.TrackOffBackground",
+        "themeValues": {
+            "light": "White1000",
+            "dark": "Neutral200"
+        },
+        "alternateKeys": []
+    },
+    {
         "name": "MaterialDesign.Brush.ToolBar.Background",
         "themeValues": {
             "light": "Neutral900",

@@ -77,6 +77,7 @@ static partial class ResourceDictionaryExtensions
         theme.ToolBars.Items.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.ToolBar.Item.Background", "MaterialDesignToolBackground");
         theme.ToolBars.Items.Foreground = GetColor(resourceDictionary, "MaterialDesign.Brush.ToolBar.Item.Foreground", "MaterialDesignToolForeground");
         theme.ToolBars.Overflows.Border = GetColor(resourceDictionary, "MaterialDesign.Brush.ToolBar.Overflow.Border");
+        theme.ToggleButtons.Switches.TrackOffBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.ToggleButton.Switch.TrackOffBackground");
         theme.ToolTips.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.ToolTip.Background", "MaterialDesignToolTipBackground");
     }
 
@@ -191,6 +192,7 @@ static partial class ResourceDictionaryExtensions
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ToolBar.Item.Foreground", theme.ToolBars.Items.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignToolForeground", theme.ToolBars.Items.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ToolBar.Overflow.Border", theme.ToolBars.Overflows.Border);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ToggleButton.Switch.TrackOffBackground", theme.ToggleButtons.Switches.TrackOffBackground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ToolTip.Background", theme.ToolTips.Background);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignToolTipBackground", theme.ToolTips.Background);
     }

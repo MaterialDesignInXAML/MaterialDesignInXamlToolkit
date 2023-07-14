@@ -241,8 +241,8 @@
                         VerticalAlignment="Center"
                         UniqueKey="buttons_51">
         <ToggleButton IsChecked="True"
-                      Style="{StaticResource MaterialDesignSwitchAccentToggleButton}"
-                      ToolTip="MaterialDesignSwitchAccentToggleButton" />
+                      Style="{StaticResource MaterialDesignSwitchSecondaryToggleButton}"
+                      ToolTip="MaterialDesignSwitchSecondaryToggleButton" />
       </smtx:XamlDisplay>
 
       <smtx:XamlDisplay Margin="8,0,0,0"

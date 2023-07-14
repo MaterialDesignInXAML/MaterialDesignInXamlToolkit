@@ -57,6 +57,8 @@ partial class Theme
 
     public ToolBar ToolBars { get; set; } = new();
 
+    public ToggleButton ToggleButtons { get; set; } = new();
+
     public ToolTip ToolTips { get; set; } = new();
 
     public class Badged
@@ -286,6 +288,18 @@ partial class Theme
         public class Overflow
         {
             public Color Border { get; set; }
+
+        }
+
+    }
+
+    public class ToggleButton
+    {
+        public Switch Switches { get; set; } = new();
+
+        public class Switch
+        {
+            public Color TrackOffBackground { get; set; }
 
         }
 

@@ -32,8 +32,6 @@
   <converters:MathConverter x:Key="MathAddConverter" Operation="Add" />
   <system:Int32 x:Key="ProgressRingStrokeWidth">8</system:Int32>
 
-  <SolidColorBrush x:Key="AttentionToActionBrush" Opacity=".23" Color="{StaticResource MaterialDesignShadow}" po:Freeze="True" />
-
   <!--#region Raised Button-->
 
   <Style x:Key="MaterialDesignRaisedButton" TargetType="{x:Type ButtonBase}">

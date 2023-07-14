@@ -88,6 +88,7 @@ partial class ThemeTests
           <TextBlock Text="ToolBar.Item.Background" Background="{StaticResource MaterialDesign.Brush.ToolBar.Item.Background}" />
           <TextBlock Text="ToolBar.Item.Foreground" Background="{StaticResource MaterialDesign.Brush.ToolBar.Item.Foreground}" />
           <TextBlock Text="ToolBar.Overflow.Border" Background="{StaticResource MaterialDesign.Brush.ToolBar.Overflow.Border}" />
+          <TextBlock Text="ToggleButton.Switch.TrackOffBackground" Background="{StaticResource MaterialDesign.Brush.ToggleButton.Switch.TrackOffBackground}" />
           <TextBlock Text="ToolTip.Background" Background="{StaticResource MaterialDesign.Brush.ToolTip.Background}" />
           <TextBlock Text="MaterialDesignPaper" Background="{StaticResource MaterialDesignPaper}" />
           <TextBlock Text="MaterialDesignBody" Background="{StaticResource MaterialDesignBody}" />
@@ -485,6 +486,11 @@ partial class ThemeTests
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Overflow.Border"), textBlockBackground);
         }
         {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToggleButton.Switch.TrackOffBackground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToggleButton.Switch.TrackOffBackground"), textBlockBackground);
+        }
+        {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToolTip.Background\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolTip.Background"), textBlockBackground);
@@ -774,6 +780,7 @@ partial class ThemeTests
         yield return "MaterialDesign.Brush.ToolBar.Item.Background";
         yield return "MaterialDesign.Brush.ToolBar.Item.Foreground";
         yield return "MaterialDesign.Brush.ToolBar.Overflow.Border";
+        yield return "MaterialDesign.Brush.ToggleButton.Switch.TrackOffBackground";
         yield return "MaterialDesign.Brush.ToolTip.Background";
     }
     private static IEnumerable<string> GetObsoleteBrushResourceNames()
