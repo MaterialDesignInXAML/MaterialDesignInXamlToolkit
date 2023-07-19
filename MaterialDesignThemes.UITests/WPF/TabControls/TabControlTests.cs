@@ -121,4 +121,38 @@ public class TabControlTests : TestBase
 
         recorder.Success();
     }
+
+    [Fact]
+    [Description("Issue 3271")]
+    public async Task TabControl_ShouldRespectSelectedContentTemplate_WhenSetDirectlyOnTabItem()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        //Arrange
+        IVisualElement<TabControl> tabControl = await LoadXaml<TabControl>("""
+            <TabControl materialDesign:ColorZoneAssist.Mode="PrimaryMid"
+                        Style="{StaticResource MaterialDesignFilledTabControl}">
+              <TabControl.Resources>
+                <DataTemplate x:Key="CustomContentTemplate">
+                  <Border Background="Fuchsia" Padding="10" Margin="10" CornerRadius="10">
+                    <TextBlock Text="{Binding .}" />
+                  </Border>
+                </DataTemplate>
+              </TabControl.Resources>
+              <TabItem Content="Tab content string" ContentTemplate="{StaticResource CustomContentTemplate}" />
+            </TabControl>
+            """);
+
+        IVisualElement<Border> selectedContentBorder = await tabControl.GetElement<Border>("PART_BorderSelectedContent");
+
+        //Act
+        var customContentBorder = await selectedContentBorder.GetElement<Border>("/Border");
+        IVisualElement<TextBlock> customContent = await customContentBorder.GetElement<TextBlock>(@"/TextBlock");
+
+        //Assert
+        Assert.Equal(Colors.Fuchsia, await customContentBorder.GetBackgroundColor());
+        Assert.Equal("Tab content string", await customContent.GetText());
+
+        recorder.Success();
+    }
 }
