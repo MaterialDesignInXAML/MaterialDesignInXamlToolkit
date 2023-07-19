@@ -339,6 +339,12 @@ public static class DataGridAssist
         => element.SetValue(CornerRadiusProperty, value);
     #endregion
 
+    #region AttachedProperty : ElementStringFormatProperty
+    public static readonly DependencyProperty ElementStringFormatProperty = DependencyProperty.RegisterAttached("ElementStringFormat", typeof(string), typeof(DataGridAssist), new PropertyMetadata(null));
+    public static string? GetElementStringFormat(System.Windows.Controls.DataGridTextColumn element) => element.GetValue(ElementStringFormatProperty) is string s ? s : null;
+    public static void SetElementStringFormat(System.Windows.Controls.DataGridTextColumn element, string? value) => element.SetValue(ElementStringFormatProperty, value);
+    #endregion
+
     private static void EditOnSpacebarPress(object sender, KeyEventArgs e)
     {
         var dataGrid = (DataGrid)sender;
