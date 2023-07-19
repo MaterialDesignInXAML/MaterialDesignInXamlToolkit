@@ -26,6 +26,7 @@
   <converters:FloatingHintOffsetCalculationConverter x:Key="FloatingHintOffsetCalculationConverter" />
   <converters:ComboBoxClearButtonMarginConverter x:Key="ComboBoxClearButtonMarginConverter" />
   <converters:DoubleToThicknessConverter x:Key="DoubleToThicknessConverter" />
+  <!-- The InitialOffset of -8 is to adjust for internal margin/padding between the "selected content (text)" and the combo box chevron arrow -->
   <converters:DoubleToThicknessConverter x:Key="DoubleToThicknessConverterWithNegativeOffset" InitialOffset="-8" />
   <converters:ThicknessCloneConverter x:Key="HelperTextMarginConverter" CloneEdges="Left" />
   <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconPaddingConverterTop"
