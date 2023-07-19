@@ -821,11 +821,7 @@ namespace MaterialDesignThemes.Wpf
 
             if (focusable.IsVisible)
             {
-                focusable.Dispatcher.BeginInvoke (() =>
-                {
-                    if (!focusable.Focus()) return;
-                    focusable.MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
-                }, DispatcherPriority.Background);
+                MoveFocus(focusable);
             }
             else
             {
@@ -833,20 +829,23 @@ namespace MaterialDesignThemes.Wpf
             }
 
             return child;
-        }
 
-        private void FocusableOnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            if (sender is UIElement focusable)
+            void FocusableOnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
             {
-                focusable.Dispatcher.BeginInvoke(
-                    () =>
-                    {
-                        if (!focusable.Focus()) return;
-                        focusable.MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
-                    },
-                    DispatcherPriority.Background);
-                focusable.IsVisibleChanged -= FocusableOnIsVisibleChanged;
+                if (sender is UIElement focusable)
+                {
+                    MoveFocus(focusable);
+                    focusable.IsVisibleChanged -= FocusableOnIsVisibleChanged;
+                }
+            }
+
+            void MoveFocus(UIElement focusable)
+            {
+                focusable.Dispatcher.BeginInvoke(() =>
+                {
+                    if (!focusable.Focus()) return;
+                    focusable.MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
+                }, DispatcherPriority.Background);
             }
         }
 
