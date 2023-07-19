@@ -816,14 +816,37 @@ namespace MaterialDesignThemes.Wpf
             if (child is null) return null;
 
             CommandManager.InvalidateRequerySuggested();
-            var focusable = child.VisualDepthFirstTraversal().OfType<UIElement>().FirstOrDefault(ui => ui.Focusable && ui.IsVisible);
-            focusable?.Dispatcher.InvokeAsync(() =>
+            var focusable = child.VisualDepthFirstTraversal().OfType<UIElement>().FirstOrDefault(ui => ui.Focusable);
+            if (focusable is null) return null;
+
+            if (focusable.IsVisible)
             {
-                if (!focusable.Focus()) return;
-                focusable.MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
-            }, DispatcherPriority.Background);
+                MoveFocus(focusable);
+            }
+            else
+            {
+                focusable.IsVisibleChanged += FocusableOnIsVisibleChanged;
+            }
 
             return child;
+
+            void FocusableOnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+            {
+                if (sender is UIElement focusable)
+                {
+                    MoveFocus(focusable);
+                    focusable.IsVisibleChanged -= FocusableOnIsVisibleChanged;
+                }
+            }
+
+            void MoveFocus(UIElement focusable)
+            {
+                focusable.Dispatcher.BeginInvoke(() =>
+                {
+                    if (!focusable.Focus()) return;
+                    focusable.MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
+                }, DispatcherPriority.Background);
+            }
         }
 
         protected override void OnPreviewMouseDown(MouseButtonEventArgs e)
