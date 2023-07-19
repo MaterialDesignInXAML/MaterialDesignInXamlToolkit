@@ -41,6 +41,7 @@
     <PackageReference Include="BluwolfIcons">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
+    <PackageReference Include="CommunityToolkit.Mvvm" />
     <PackageReference Include="VirtualizingWrapPanel" />
     <PackageReference Include="ShowMeTheXAML" />
     <PackageReference Include="ShowMeTheXAML.AvalonEdit" />
