@@ -20,40 +20,41 @@ Sed placerat sapien non quam fringilla fermentum. Nullam ex leo, condimentum sit
 
 Nulla a porta libero, quis hendrerit ex. In ut pharetra sem. Nunc gravida ante rhoncus commodo aliquet. Integer luctus blandit libero, sed faucibus ligula ornare ut. Mauris facilisis, urna eu fermentum mollis, mauris massa commodo odio, a venenatis nunc nunc sollicitudin nibh. Ut mattis ipsum nec lacus mattis fringilla. Proin vulputate id velit a finibus. Ut nunc ex, elementum porttitor finibus vel, pellentesque vel turpis. Cras fringilla eleifend libero, ac feugiat arcu vehicula ornare. Nullam pretium finibus blandit. Etiam at urna facilisis, posuere felis non, congue velit. Pellentesque tortor erat, mattis at augue eu, egestas interdum nunc. Aliquam tortor lorem, venenatis eget vestibulum vitae, maximus eget nunc. Vestibulum et leo venenatis, rutrum lacus eget, mattis quam.";
 
-    public TabsViewModel() =>
+    public TabsViewModel()
+    {
+        var closeCommand = new AnotherCommandImplementation(_ =>
+        {
+            if (SelectedTab is { } selectedTab)
+                CustomTabs?.Remove(selectedTab);
+        });
+
         CustomTabs = new()
         {
-            new CustomTab
+            new CustomTab(closeCommand)
             {
                 CustomHeader = "Custom tab 1",
-                CustomContent = "Custom content 1",
-                CloseCommand = CloseCommand
+                CustomContent = "Custom content 1"
             },
-            new CustomTab
+            new CustomTab(closeCommand)
             {
                 CustomHeader = "Custom tab 2",
-                CustomContent = "Custom content 2",
-                CloseCommand = CloseCommand
+                CustomContent = "Custom content 2"
             },
-            new CustomTab
+            new CustomTab(closeCommand)
             {
                 CustomHeader = "Custom tab 3",
                 CustomContent = "Custom content 3",
-                CloseCommand = CloseCommand
             },
         };
-
-    private ICommand CloseCommand => new AnotherCommandImplementation(_ =>
-    {
-        if (SelectedTab != null)
-            CustomTabs.Remove(SelectedTab);
-    });
+    }
 
 }
 
 internal partial class CustomTab : ObservableObject
 {
-    public ICommand CloseCommand { get; set; }
+    public ICommand CloseCommand { get; }
+
+    public CustomTab(ICommand closeCommand) => CloseCommand = closeCommand;
 
     [ObservableProperty]
     private string? _customHeader;
