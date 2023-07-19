@@ -1,13 +1,12 @@
-﻿namespace MaterialDesignDemo.TransitionsDemo
+﻿namespace MaterialDesignDemo.TransitionsDemo;
+
+/// <summary>
+/// Interaction logic for TransitionsDemoHome.xaml
+/// </summary>
+public partial class TransitionsDemoHome : UserControl
 {
-    /// <summary>
-    /// Interaction logic for TransitionsDemoHome.xaml
-    /// </summary>
-    public partial class TransitionsDemoHome : UserControl
+    public TransitionsDemoHome()
     {
-        public TransitionsDemoHome()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

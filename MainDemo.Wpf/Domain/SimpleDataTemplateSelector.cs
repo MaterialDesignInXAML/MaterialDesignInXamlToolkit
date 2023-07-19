@@ -1,12 +1,11 @@
-﻿namespace MaterialDesignDemo.Domain
-{
-    public class SimpleDataTemplateSelector : DataTemplateSelector
-    {
-        public DataTemplate? FixedTemplate { get; set; }
+﻿namespace MaterialDesignDemo.Domain;
 
-        public override DataTemplate? SelectTemplate(object item, DependencyObject container)
-        {
-            return FixedTemplate;
-        }
+public class SimpleDataTemplateSelector : DataTemplateSelector
+{
+    public DataTemplate? FixedTemplate { get; set; }
+
+    public override DataTemplate? SelectTemplate(object item, DependencyObject container)
+    {
+        return FixedTemplate;
     }
 }

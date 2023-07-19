@@ -1,13 +1,12 @@
 ﻿using MaterialDesignDemo.Domain;
 
-namespace MaterialDesignDemo
+namespace MaterialDesignDemo;
+
+public partial class DataGrids
 {
-    public partial class DataGrids
+    public DataGrids()
     {
-        public DataGrids()
-        {
-            DataContext = new ListsAndGridsViewModel();
-            InitializeComponent();
-        }
+        DataContext = new ListsAndGridsViewModel();
+        InitializeComponent();
     }
 }

@@ -2,21 +2,20 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace MaterialDesignDemo.Converters
+namespace MaterialDesignDemo.Converters;
+
+public class StringJoinConverter : IValueConverter
 {
-    public class StringJoinConverter : IValueConverter
+    public string? Separator { get; set; }
+
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        public string? Separator { get; set; }
+        IEnumerable values = value as IEnumerable ?? Array.Empty<object>();
+        return string.Join(Separator ?? "", values.OfType<object>());
+    }
 
-        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
-        {
-            IEnumerable values = value as IEnumerable ?? Array.Empty<object>();
-            return string.Join(Separator ?? "", values.OfType<object>());
-        }
-
-        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
     }
 }

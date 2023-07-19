@@ -1,11 +1,10 @@
-﻿namespace MaterialDesignDemo.TransitionsDemo
+﻿namespace MaterialDesignDemo.TransitionsDemo;
+
+public class Slide7_MasterModel
 {
-    public class Slide7_MasterModel
-    {
-    }
+}
 
-    public class Slide8_DetailsModel
-    {
+public class Slide8_DetailsModel
+{
 
-    }
 }

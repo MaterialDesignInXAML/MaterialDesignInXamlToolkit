@@ -1,13 +1,12 @@
-﻿namespace MaterialDesignDemo.Domain
+﻿namespace MaterialDesignDemo.Domain;
+
+/// <summary>
+/// Interaction logic for SampleMessageDialog.xaml
+/// </summary>
+public partial class SampleMessageDialog : UserControl
 {
-    /// <summary>
-    /// Interaction logic for SampleMessageDialog.xaml
-    /// </summary>
-    public partial class SampleMessageDialog : UserControl
+    public SampleMessageDialog()
     {
-        public SampleMessageDialog()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

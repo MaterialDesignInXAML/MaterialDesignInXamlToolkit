@@ -1,13 +1,12 @@
 ﻿using MaterialDesignDemo.Domain;
 
-namespace MaterialDesignDemo
+namespace MaterialDesignDemo;
+
+public partial class ThemeSettings
 {
-    public partial class ThemeSettings
+    public ThemeSettings()
     {
-        public ThemeSettings()
-        {
-            DataContext = new ThemeSettingsViewModel();
-            InitializeComponent();
-        }
+        DataContext = new ThemeSettingsViewModel();
+        InitializeComponent();
     }
 }
