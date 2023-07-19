@@ -26,6 +26,7 @@
   <converters:FloatingHintOffsetCalculationConverter x:Key="FloatingHintOffsetCalculationConverter" />
   <converters:ComboBoxClearButtonMarginConverter x:Key="ComboBoxClearButtonMarginConverter" />
   <converters:DoubleToThicknessConverter x:Key="DoubleToThicknessConverter" />
+  <converters:DoubleToThicknessConverter x:Key="DoubleToThicknessConverterWithNegativeOffset" InitialOffset="-8" />
   <converters:ThicknessCloneConverter x:Key="HelperTextMarginConverter" CloneEdges="Left" />
   <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconPaddingConverterTop"
                                       AdditionalOffsetTop="2"
@@ -848,6 +849,11 @@
         <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
         <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesign.Brush.ComboBox.Popup.DarkBackground}" />
       </MultiTrigger>
+
+      <!-- PART_ClearButton -->
+      <DataTrigger Binding="{Binding ElementName=PART_ClearButton, Path=IsVisible}" Value="True">
+        <Setter TargetName="PART_EditableTextBox" Property="Margin" Value="{Binding ActualWidth, ElementName=PART_ClearButton, Converter={StaticResource DoubleToThicknessConverterWithNegativeOffset}, ConverterParameter={x:Static Dock.Right}}" />
+      </DataTrigger>
     </ControlTemplate.Triggers>
   </ControlTemplate>
 
