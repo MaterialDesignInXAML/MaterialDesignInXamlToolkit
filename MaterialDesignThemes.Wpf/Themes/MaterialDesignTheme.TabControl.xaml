@@ -72,9 +72,9 @@
               <ContentPresenter x:Name="PART_SelectedContentHost"
                                 Margin="{TemplateBinding Padding}"
                                 ContentSource="SelectedContent"
-                                ContentStringFormat="{TemplateBinding ContentStringFormat}"
-                                ContentTemplate="{TemplateBinding ContentTemplate}"
-                                ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                ContentStringFormat="{TemplateBinding SelectedContentStringFormat}"
+                                ContentTemplate="{TemplateBinding SelectedContentTemplate}"
+                                ContentTemplateSelector="{TemplateBinding SelectedContentTemplateSelector}"
                                 Focusable="False"
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
             </Border>
