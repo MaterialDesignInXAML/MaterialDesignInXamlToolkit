@@ -1,13 +1,12 @@
-﻿namespace MaterialDesignDemo.Domain
+﻿namespace MaterialDesignDemo.Domain;
+
+/// <summary>
+/// Interaction logic for DocumentationLinks.xaml
+/// </summary>
+public partial class DocumentationLinks : UserControl
 {
-    /// <summary>
-    /// Interaction logic for DocumentationLinks.xaml
-    /// </summary>
-    public partial class DocumentationLinks : UserControl
+    public DocumentationLinks()
     {
-        public DocumentationLinks()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

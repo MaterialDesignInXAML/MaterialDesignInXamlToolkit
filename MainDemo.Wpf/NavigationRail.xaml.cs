@@ -1,7 +1,6 @@
-﻿namespace MaterialDesignDemo
+﻿namespace MaterialDesignDemo;
+
+public partial class NavigationRail
 {
-    public partial class NavigationRail
-    {
-        public NavigationRail() => InitializeComponent();
-    }
+    public NavigationRail() => InitializeComponent();
 }

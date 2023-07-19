@@ -1,13 +1,12 @@
 ﻿using MaterialDesignDemo.Domain;
 
-namespace MaterialDesignDemo
+namespace MaterialDesignDemo;
+
+public partial class ColorTool
 {
-    public partial class ColorTool
+    public ColorTool()
     {
-        public ColorTool()
-        {
-            DataContext = new ColorToolViewModel();
-            InitializeComponent();
-        }
+        DataContext = new ColorToolViewModel();
+        InitializeComponent();
     }
 }

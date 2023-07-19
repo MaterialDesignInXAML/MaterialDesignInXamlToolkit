@@ -1,13 +1,12 @@
 ﻿using MaterialDesignDemo.Domain;
 
-namespace MaterialDesignDemo
+namespace MaterialDesignDemo;
+
+public partial class Lists
 {
-    public partial class Lists
+    public Lists()
     {
-        public Lists()
-        {
-            DataContext = new ListsAndGridsViewModel();
-            InitializeComponent();
-        }
+        DataContext = new ListsAndGridsViewModel();
+        InitializeComponent();
     }
 }

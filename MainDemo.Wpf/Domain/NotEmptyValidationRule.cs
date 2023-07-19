@@ -1,14 +1,13 @@
 ﻿using System.Globalization;
 
-namespace MaterialDesignDemo.Domain
+namespace MaterialDesignDemo.Domain;
+
+public class NotEmptyValidationRule : ValidationRule
 {
-    public class NotEmptyValidationRule : ValidationRule
+    public override ValidationResult Validate(object value, CultureInfo cultureInfo)
     {
-        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
-        {
-            return string.IsNullOrWhiteSpace((value ?? "").ToString())
-                ? new ValidationResult(false, "Field is required.")
-                : ValidationResult.ValidResult;
-        }
+        return string.IsNullOrWhiteSpace((value ?? "").ToString())
+            ? new ValidationResult(false, "Field is required.")
+            : ValidationResult.ValidResult;
     }
 }

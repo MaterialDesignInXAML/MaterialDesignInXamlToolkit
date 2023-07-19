@@ -1,7 +1,6 @@
-﻿namespace MaterialDesignDemo
+﻿namespace MaterialDesignDemo;
+
+public partial class GroupBoxes
 {
-    public partial class GroupBoxes
-    {
-        public GroupBoxes() => InitializeComponent();
-    }
+    public GroupBoxes() => InitializeComponent();
 }

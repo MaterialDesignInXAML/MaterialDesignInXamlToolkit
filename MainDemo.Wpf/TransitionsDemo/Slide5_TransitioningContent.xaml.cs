@@ -1,13 +1,12 @@
-﻿namespace MaterialDesignDemo.TransitionsDemo
+﻿namespace MaterialDesignDemo.TransitionsDemo;
+
+/// <summary>
+/// Interaction logic for Slide5_TransitioningContent.xaml
+/// </summary>
+public partial class Slide5_TransitioningContent : UserControl
 {
-    /// <summary>
-    /// Interaction logic for Slide5_TransitioningContent.xaml
-    /// </summary>
-    public partial class Slide5_TransitioningContent : UserControl
+    public Slide5_TransitioningContent()
     {
-        public Slide5_TransitioningContent()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

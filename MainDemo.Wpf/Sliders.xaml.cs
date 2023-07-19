@@ -1,13 +1,12 @@
 ﻿using MaterialDesignDemo.Domain;
 
-namespace MaterialDesignDemo
+namespace MaterialDesignDemo;
+
+public partial class Sliders
 {
-    public partial class Sliders
+    public Sliders()
     {
-        public Sliders()
-        {
-            DataContext = new SlidersViewModel();
-            InitializeComponent();
-        }
+        DataContext = new SlidersViewModel();
+        InitializeComponent();
     }
 }

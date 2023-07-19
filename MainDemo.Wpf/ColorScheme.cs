@@ -1,10 +1,9 @@
-﻿namespace MaterialDesignDemo
+﻿namespace MaterialDesignDemo;
+
+enum ColorScheme
 {
-    enum ColorScheme
-    {
-        Primary,
-        Secondary,
-        PrimaryForeground,
-        SecondaryForeground
-    }
+    Primary,
+    Secondary,
+    PrimaryForeground,
+    SecondaryForeground
 }
