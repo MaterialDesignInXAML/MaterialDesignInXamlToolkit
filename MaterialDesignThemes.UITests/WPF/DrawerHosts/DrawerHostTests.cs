@@ -43,7 +43,7 @@ public class DialogHostTests : TestBase
         await Wait.For(async () =>
         {
             var invocations = await openedEvent.GetInvocations();
-            Assert.Equal(1, invocations.Count);
+            Assert.Single(invocations);
         });
 
         await Wait.For(async () =>
@@ -61,7 +61,7 @@ public class DialogHostTests : TestBase
         await Wait.For(async () =>
         {
             var invocations = await closingEvent.GetInvocations();
-            Assert.Equal(1, invocations.Count);
+            Assert.Single(invocations);
         });
 
         await showButton.LeftClick();
@@ -169,7 +169,7 @@ public class DialogHostTests : TestBase
             }
             catch
             {
-                throw new FailException($"Failed to find 'TextBlock' content in '{drawerElementKey}'. ContentTemplateSelector not properly applied.");
+                throw FailException.ForFailure($"Failed to find 'TextBlock' content in '{drawerElementKey}'. ContentTemplateSelector not properly applied.");
             }
         }
 

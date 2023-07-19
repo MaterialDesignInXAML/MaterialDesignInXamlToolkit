@@ -27,7 +27,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         }
 
         [StaFact]
-        [Description("Ensures that GetSnackbaMessage behaves correctly if the queue should discard duplicate items")]
+        [Description("Ensures that GetSnackbarMessage behaves correctly if the queue should discard duplicate items")]
         public void GetSnackbarMessageDiscardDuplicatesQueue()
         {
             _snackbarMessageQueue.DiscardDuplicates = true;
@@ -51,7 +51,7 @@ namespace MaterialDesignThemes.Wpf.Tests
         }
 
         [StaTheory]
-        [Description("Ensures that GetSnackbaMessage behaves correctly if the queue simply outputs items")]
+        [Description("Ensures that GetSnackbarMessage behaves correctly if the queue simply outputs items")]
         [InlineData("String & Action content", "Action content")]
         [InlineData("Different String & Action content", "Action content")]
         [InlineData("", "")]
@@ -63,7 +63,7 @@ namespace MaterialDesignThemes.Wpf.Tests
 
             IReadOnlyList<SnackbarMessageQueueItem> messages = _snackbarMessageQueue.QueuedMessages;
 
-            Assert.Equal(1, messages.Count);
+            Assert.Single(messages);
 
             Assert.Equal(content, messages[0].Content);
             Assert.Equal(actionContent, messages[0].ActionContent);
@@ -76,7 +76,7 @@ namespace MaterialDesignThemes.Wpf.Tests
             _snackbarMessageQueue.Enqueue("Content", "Action Content", actionHandler: null, promote: true);
 
             IReadOnlyList<SnackbarMessageQueueItem> messages = _snackbarMessageQueue.QueuedMessages;
-            Assert.Equal(1, messages.Count);
+            Assert.Single(messages);
             Assert.Equal("Content", messages[0].Content);
             Assert.Equal("Action Content", messages[0].ActionContent);
             Assert.True(messages[0].IsPromoted);
