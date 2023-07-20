@@ -20,9 +20,9 @@ namespace MaterialDesignThemes.Wpf
             var element = base.GenerateElement(cell, dataItem);
 
             if (
-                element is TextBlock t
-                && cell.Column is System.Windows.Controls.DataGridTextColumn col
-                && DataGridAssist.GetElementStringFormat(col) is string stringFormat
+                cell.Column is MaterialDesignThemes.Wpf.DataGridTextColumn col
+                && MarkupExtensions.DataGridAssist.GetElementStringFormat(col) is string stringFormat
+                && element is TextBlock t
                 && t.GetBindingExpression(TextBlock.TextProperty)?.ParentBinding is Binding binding
                 )
             {

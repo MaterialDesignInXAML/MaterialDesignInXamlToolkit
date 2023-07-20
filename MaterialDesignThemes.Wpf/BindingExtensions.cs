@@ -3,7 +3,7 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf
 {
-    internal static class BindingEx
+    internal static class BindingExtensions
     {
         /// <summary>Creates a shallow copy of a System.Windows.Data.Binding object.</summary>
         /// <remarks>Bindings have an isSealed internal field that prevents it from being modified after it has been used.</remarks>

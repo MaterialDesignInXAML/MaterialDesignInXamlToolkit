@@ -341,8 +341,8 @@ public static class DataGridAssist
 
     #region AttachedProperty : ElementStringFormatProperty
     public static readonly DependencyProperty ElementStringFormatProperty = DependencyProperty.RegisterAttached("ElementStringFormat", typeof(string), typeof(DataGridAssist), new PropertyMetadata(null));
-    public static string? GetElementStringFormat(System.Windows.Controls.DataGridTextColumn element) => element.GetValue(ElementStringFormatProperty) is string s ? s : null;
-    public static void SetElementStringFormat(System.Windows.Controls.DataGridTextColumn element, string? value) => element.SetValue(ElementStringFormatProperty, value);
+    public static string? GetElementStringFormat(MaterialDesignThemes.Wpf.DataGridTextColumn element) => element.GetValue(ElementStringFormatProperty) is string s ? s : null;
+    public static void SetElementStringFormat(MaterialDesignThemes.Wpf.DataGridTextColumn element, string? value) => element.SetValue(ElementStringFormatProperty, value);
     #endregion
 
     private static void EditOnSpacebarPress(object sender, KeyEventArgs e)
