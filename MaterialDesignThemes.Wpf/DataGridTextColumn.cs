@@ -22,14 +22,14 @@ namespace MaterialDesignThemes.Wpf
             var element = base.GenerateElement(cell, dataItem);
 
             if (
-                (cell.Column as MaterialDesignThemes.Wpf.DataGridTextColumn)?.ElementStringFormat is string stringFormat
-                && element is TextBlock t
-                && t.GetBindingExpression(TextBlock.TextProperty)?.ParentBinding is Binding binding
+                element is TextBlock textBlock
+                && cell.Column is MaterialDesignThemes.Wpf.DataGridTextColumn dataGridTextColumn
+                && dataGridTextColumn.ElementStringFormat is not null
                 )
             {
-                var NewBinding = binding.Clone();
-                NewBinding.StringFormat = stringFormat;
-                t.SetBinding(TextBlock.TextProperty, NewBinding);
+                var newBinding = textBlock.GetBindingExpression(TextBlock.TextProperty).ParentBinding.Clone();
+                newBinding.StringFormat = dataGridTextColumn.ElementStringFormat;
+                textBlock.SetBinding(TextBlock.TextProperty, newBinding);
             }
 
             return element;
