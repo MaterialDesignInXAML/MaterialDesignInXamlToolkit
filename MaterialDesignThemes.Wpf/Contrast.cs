@@ -1,10 +1,9 @@
-﻿namespace MaterialDesignThemes.Wpf
+﻿namespace MaterialDesignThemes.Wpf;
+
+public enum Contrast
 {
-    public enum Contrast
-    {
-        None,
-        Low,
-        Medium,
-        High
-    }
+    None,
+    Low,
+    Medium,
+    High
 }

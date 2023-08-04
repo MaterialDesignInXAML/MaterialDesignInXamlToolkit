@@ -1,55 +1,54 @@
 ﻿using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 
-namespace MahMaterialDragablzMashUp
+namespace MahMaterialDragablzMashUp;
+
+public class DialogsViewModel
 {
-    public class DialogsViewModel
+    public ICommand ShowInputDialogCommand { get; }
+
+    public ICommand ShowProgressDialogCommand { get; }
+
+    public ICommand ShowLeftFlyoutCommand { get; }
+
+    private ResourceDictionary DialogDictionary = new ResourceDictionary() { Source = new Uri("pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Dialogs.xaml") };
+
+    public DialogsViewModel()
     {
-        public ICommand ShowInputDialogCommand { get; }
+        ShowInputDialogCommand = new AnotherCommandImplementation(_ => InputDialog());
+        ShowProgressDialogCommand = new AnotherCommandImplementation(_ => ProgressDialog());
+        ShowLeftFlyoutCommand = new AnotherCommandImplementation(_ => ShowLeftFlyout());
+    }
 
-        public ICommand ShowProgressDialogCommand { get; }
+    public Flyout? LeftFlyout { get; set; }
 
-        public ICommand ShowLeftFlyoutCommand { get; }
-
-        private ResourceDictionary DialogDictionary = new ResourceDictionary() { Source = new Uri("pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Dialogs.xaml") };
-
-        public DialogsViewModel()
+    private void InputDialog()
+    {
+        var metroDialogSettings = new MetroDialogSettings
         {
-            ShowInputDialogCommand = new AnotherCommandImplementation(_ => InputDialog());
-            ShowProgressDialogCommand = new AnotherCommandImplementation(_ => ProgressDialog());
-            ShowLeftFlyoutCommand = new AnotherCommandImplementation(_ => ShowLeftFlyout());
-        }
+            CustomResourceDictionary = DialogDictionary,
+            NegativeButtonText = "CANCEL"
+        };
 
-        public Flyout? LeftFlyout { get; set; }
+        DialogCoordinator.Instance.ShowInputAsync(this, "MahApps Dialog", "Using Material Design Themes", metroDialogSettings);
+    }
 
-        private void InputDialog()
+    private async void ProgressDialog()
+    {
+        var metroDialogSettings = new MetroDialogSettings
         {
-            var metroDialogSettings = new MetroDialogSettings
-            {
-                CustomResourceDictionary = DialogDictionary,
-                NegativeButtonText = "CANCEL"
-            };
+            CustomResourceDictionary = DialogDictionary,
+            NegativeButtonText = "CANCEL"
+        };
 
-            DialogCoordinator.Instance.ShowInputAsync(this, "MahApps Dialog", "Using Material Design Themes", metroDialogSettings);
-        }
+        var controller = await DialogCoordinator.Instance.ShowProgressAsync(this, "MahApps Dialog", "Using Material Design Themes (WORK IN PROGRESS)", true, metroDialogSettings);
+        controller.SetIndeterminate();
+        await Task.Delay(3000);
+        await controller.CloseAsync();
+    }
 
-        private async void ProgressDialog()
-        {
-            var metroDialogSettings = new MetroDialogSettings
-            {
-                CustomResourceDictionary = DialogDictionary,
-                NegativeButtonText = "CANCEL"
-            };
-
-            var controller = await DialogCoordinator.Instance.ShowProgressAsync(this, "MahApps Dialog", "Using Material Design Themes (WORK IN PROGRESS)", true, metroDialogSettings);
-            controller.SetIndeterminate();
-            await Task.Delay(3000);
-            await controller.CloseAsync();
-        }
-
-        private void ShowLeftFlyout()
-        {
-            ((MainWindow)Application.Current.MainWindow).LeftFlyout.IsOpen = !((MainWindow)Application.Current.MainWindow).LeftFlyout.IsOpen;
-        }
+    private void ShowLeftFlyout()
+    {
+        ((MainWindow)Application.Current.MainWindow).LeftFlyout.IsOpen = !((MainWindow)Application.Current.MainWindow).LeftFlyout.IsOpen;
     }
 }

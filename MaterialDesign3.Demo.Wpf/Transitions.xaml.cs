@@ -1,7 +1,6 @@
-﻿namespace MaterialDesign3Demo
+﻿namespace MaterialDesign3Demo;
+
+public partial class Transitions
 {
-    public partial class Transitions
-    {
-        public Transitions() => InitializeComponent();
-    }
+    public Transitions() => InitializeComponent();
 }

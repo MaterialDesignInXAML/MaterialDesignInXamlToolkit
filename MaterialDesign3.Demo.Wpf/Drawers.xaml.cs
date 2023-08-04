@@ -1,7 +1,6 @@
-﻿namespace MaterialDesign3Demo
+﻿namespace MaterialDesign3Demo;
+
+public partial class Drawers
 {
-    public partial class Drawers
-    {
-        public Drawers() => InitializeComponent();
-    }
+    public Drawers() => InitializeComponent();
 }

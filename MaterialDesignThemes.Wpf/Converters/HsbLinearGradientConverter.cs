@@ -3,20 +3,19 @@ using System.Windows.Data;
 using System.Windows.Media;
 using MaterialDesignColors.ColorManipulation;
 
-namespace MaterialDesignThemes.Wpf.Converters
+namespace MaterialDesignThemes.Wpf.Converters;
+
+public class HsbLinearGradientConverter : IValueConverter
 {
-    public class HsbLinearGradientConverter : IValueConverter
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            var v = (double)value;
+        var v = (double)value;
 
-            return new LinearGradientBrush(Colors.White, new Hsb(v, 1, 1).ToColor(), 0);
-        }
+        return new LinearGradientBrush(Colors.White, new Hsb(v, 1, 1).ToColor(), 0);
+    }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
     }
 }

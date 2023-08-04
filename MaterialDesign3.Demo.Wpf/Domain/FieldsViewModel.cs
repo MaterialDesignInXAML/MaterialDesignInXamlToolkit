@@ -1,40 +1,39 @@
-﻿namespace MaterialDesign3Demo.Domain
+﻿namespace MaterialDesign3Demo.Domain;
+
+public class FieldsViewModel : ViewModelBase
 {
-    public class FieldsViewModel : ViewModelBase
+    private string? _name;
+    private string? _name2;
+
+    public string? Name
     {
-        private string? _name;
-        private string? _name2;
-
-        public string? Name
-        {
-            get => _name;
-            set => SetProperty(ref _name, value);
-        }
-
-        public string? Name2
-        {
-            get => _name2;
-            set => SetProperty(ref _name2, value);
-        }
-
-        public FieldsTestObject TestObject => new() { Name = "Mr. Test" };
+        get => _name;
+        set => SetProperty(ref _name, value);
     }
 
-    public class FieldsTestObject : ViewModelBase
+    public string? Name2
     {
-        private string? _name;
-        private string? _content;
+        get => _name2;
+        set => SetProperty(ref _name2, value);
+    }
 
-        public string? Name
-        {
-            get => _name;
-            set => SetProperty(ref _name, value);
-        }
+    public FieldsTestObject TestObject => new() { Name = "Mr. Test" };
+}
 
-        public string? Content
-        {
-            get => _content;
-            set => SetProperty(ref _content, value);
-        }
+public class FieldsTestObject : ViewModelBase
+{
+    private string? _name;
+    private string? _content;
+
+    public string? Name
+    {
+        get => _name;
+        set => SetProperty(ref _name, value);
+    }
+
+    public string? Content
+    {
+        get => _content;
+        set => SetProperty(ref _content, value);
     }
 }

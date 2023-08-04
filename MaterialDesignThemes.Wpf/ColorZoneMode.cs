@@ -1,17 +1,16 @@
-﻿namespace MaterialDesignThemes.Wpf
+﻿namespace MaterialDesignThemes.Wpf;
+
+public enum ColorZoneMode
 {
-    public enum ColorZoneMode
-    {
-        Standard,
-        Inverted,
-        PrimaryLight,
-        PrimaryMid,
-        PrimaryDark,
-        SecondaryLight,
-        SecondaryMid,
-        SecondaryDark,
-        Light,
-        Dark,
-        Custom
-    }
+    Standard,
+    Inverted,
+    PrimaryLight,
+    PrimaryMid,
+    PrimaryDark,
+    SecondaryLight,
+    SecondaryMid,
+    SecondaryDark,
+    Light,
+    Dark,
+    Custom
 }

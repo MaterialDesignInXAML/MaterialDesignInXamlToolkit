@@ -1,5 +1,4 @@
-﻿namespace MaterialDesignThemes.Wpf
-{
-    public interface IMaterialDesignThemeDictionary
-    { }
-}
+﻿namespace MaterialDesignThemes.Wpf;
+
+public interface IMaterialDesignThemeDictionary
+{ }

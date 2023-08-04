@@ -1,7 +1,6 @@
-﻿namespace MaterialDesign3Demo
+﻿namespace MaterialDesign3Demo;
+
+public partial class Elevation
 {
-    public partial class Elevation
-    {
-        public Elevation() => InitializeComponent();
-    }
+    public Elevation() => InitializeComponent();
 }

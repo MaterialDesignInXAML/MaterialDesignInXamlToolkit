@@ -1,30 +1,29 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace MaterialDesignThemes.Wpf.Converters
+namespace MaterialDesignThemes.Wpf.Converters;
+
+internal class GridLinesVisibilityBorderToThicknessConverter : IValueConverter
 {
-    internal class GridLinesVisibilityBorderToThicknessConverter : IValueConverter
+    private const double GridLinesThickness = 1;
+
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        private const double GridLinesThickness = 1;
+        if (!(value is DataGridGridLinesVisibility visibility))
+            return Binding.DoNothing;
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        var thickness = parameter as double? ?? GridLinesThickness;
+
+        return visibility switch
         {
-            if (!(value is DataGridGridLinesVisibility visibility))
-                return Binding.DoNothing;
-
-            var thickness = parameter as double? ?? GridLinesThickness;
-
-            return visibility switch
-            {
-                DataGridGridLinesVisibility.All => new Thickness(0, 0, thickness, thickness),
-                DataGridGridLinesVisibility.Horizontal => new Thickness(0, 0, 0, thickness),
-                DataGridGridLinesVisibility.Vertical => new Thickness(0, 0, thickness, 0),
-                DataGridGridLinesVisibility.None => new Thickness(0),
-                _ => throw new ArgumentOutOfRangeException()
-            };
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-            => throw new NotSupportedException();
+            DataGridGridLinesVisibility.All => new Thickness(0, 0, thickness, thickness),
+            DataGridGridLinesVisibility.Horizontal => new Thickness(0, 0, 0, thickness),
+            DataGridGridLinesVisibility.Vertical => new Thickness(0, 0, thickness, 0),
+            DataGridGridLinesVisibility.None => new Thickness(0),
+            _ => throw new ArgumentOutOfRangeException()
+        };
     }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        => throw new NotSupportedException();
 }

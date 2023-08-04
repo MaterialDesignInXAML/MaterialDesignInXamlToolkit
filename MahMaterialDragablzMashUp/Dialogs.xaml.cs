@@ -1,13 +1,12 @@
-﻿namespace MahMaterialDragablzMashUp
+﻿namespace MahMaterialDragablzMashUp;
+
+/// <summary>
+/// Interaction logic for Dialogs.xaml
+/// </summary>
+public partial class Dialogs : UserControl
 {
-    /// <summary>
-    /// Interaction logic for Dialogs.xaml
-    /// </summary>
-    public partial class Dialogs : UserControl
+    public Dialogs()
     {
-        public Dialogs()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

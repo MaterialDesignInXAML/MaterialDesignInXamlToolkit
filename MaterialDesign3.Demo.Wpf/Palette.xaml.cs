@@ -1,7 +1,6 @@
-﻿namespace MaterialDesign3Demo
+﻿namespace MaterialDesign3Demo;
+
+public partial class Palette
 {
-    public partial class Palette
-    {
-        public Palette() => InitializeComponent();
-    }
+    public Palette() => InitializeComponent();
 }

@@ -1,7 +1,6 @@
-﻿namespace MaterialDesign3Demo
+﻿namespace MaterialDesign3Demo;
+
+public partial class Typography
 {
-    public partial class Typography
-    {
-        public Typography() => InitializeComponent();
-    }
+    public Typography() => InitializeComponent();
 }

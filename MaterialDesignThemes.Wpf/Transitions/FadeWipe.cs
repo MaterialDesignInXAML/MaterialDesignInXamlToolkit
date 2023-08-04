@@ -1,54 +1,53 @@
 ﻿using System.Windows.Media.Animation;
 
-namespace MaterialDesignThemes.Wpf.Transitions
+namespace MaterialDesignThemes.Wpf.Transitions;
+
+public class FadeWipe : ITransitionWipe
 {
-    public class FadeWipe : ITransitionWipe
+    private readonly SineEase _sineEase = new SineEase();
+    private readonly KeyTime zeroKeyTime = KeyTime.FromTimeSpan(TimeSpan.Zero);
+
+    /// <summary>
+    /// Duration of the animation
+    /// </summary>
+    public TimeSpan Duration { get; set; } = TimeSpan.FromSeconds(0.5);
+
+    public void Wipe(TransitionerSlide fromSlide, TransitionerSlide toSlide, Point origin, IZIndexController zIndexController)
     {
-        private readonly SineEase _sineEase = new SineEase();
-        private readonly KeyTime zeroKeyTime = KeyTime.FromTimeSpan(TimeSpan.Zero);
+        if (fromSlide == null) throw new ArgumentNullException(nameof(fromSlide));
+        if (toSlide == null) throw new ArgumentNullException(nameof(toSlide));
+        if (zIndexController == null) throw new ArgumentNullException(nameof(zIndexController));
 
-        /// <summary>
-        /// Duration of the animation
-        /// </summary>
-        public TimeSpan Duration { get; set; } = TimeSpan.FromSeconds(0.5);
+        // Set up time points
+        var endKeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(Duration.TotalSeconds / 2));
 
-        public void Wipe(TransitionerSlide fromSlide, TransitionerSlide toSlide, Point origin, IZIndexController zIndexController)
+        // From
+        var fromAnimation = new DoubleAnimationUsingKeyFrames();
+        fromAnimation.KeyFrames.Add(new LinearDoubleKeyFrame(1, zeroKeyTime));
+        fromAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(0, endKeyTime, _sineEase));
+
+        // To
+        var toAnimation = new DoubleAnimationUsingKeyFrames();
+        toAnimation.KeyFrames.Add(new LinearDoubleKeyFrame(0, zeroKeyTime));
+        toAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(1, endKeyTime, _sineEase));
+
+        // Preset
+        fromSlide.Opacity = 1;
+        toSlide.Opacity = 0;
+
+        // Set up events
+        toAnimation.Completed += (sender, args) =>
         {
-            if (fromSlide == null) throw new ArgumentNullException(nameof(fromSlide));
-            if (toSlide == null) throw new ArgumentNullException(nameof(toSlide));
-            if (zIndexController == null) throw new ArgumentNullException(nameof(zIndexController));
+            toSlide.BeginAnimation(UIElement.OpacityProperty, null);
+        };
+        fromAnimation.Completed += (sender, args) =>
+        {
+            fromSlide.BeginAnimation(UIElement.OpacityProperty, null);
+            toSlide.BeginAnimation(UIElement.OpacityProperty, toAnimation);
+        };
 
-            // Set up time points
-            var endKeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(Duration.TotalSeconds / 2));
-
-            // From
-            var fromAnimation = new DoubleAnimationUsingKeyFrames();
-            fromAnimation.KeyFrames.Add(new LinearDoubleKeyFrame(1, zeroKeyTime));
-            fromAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(0, endKeyTime, _sineEase));
-
-            // To
-            var toAnimation = new DoubleAnimationUsingKeyFrames();
-            toAnimation.KeyFrames.Add(new LinearDoubleKeyFrame(0, zeroKeyTime));
-            toAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(1, endKeyTime, _sineEase));
-
-            // Preset
-            fromSlide.Opacity = 1;
-            toSlide.Opacity = 0;
-
-            // Set up events
-            toAnimation.Completed += (sender, args) =>
-            {
-                toSlide.BeginAnimation(UIElement.OpacityProperty, null);
-            };
-            fromAnimation.Completed += (sender, args) =>
-            {
-                fromSlide.BeginAnimation(UIElement.OpacityProperty, null);
-                toSlide.BeginAnimation(UIElement.OpacityProperty, toAnimation);
-            };
-
-            // Animate
-            fromSlide.BeginAnimation(UIElement.OpacityProperty, fromAnimation);
-            zIndexController.Stack(toSlide, fromSlide);
-        }
+        // Animate
+        fromSlide.BeginAnimation(UIElement.OpacityProperty, fromAnimation);
+        zIndexController.Stack(toSlide, fromSlide);
     }
 }
