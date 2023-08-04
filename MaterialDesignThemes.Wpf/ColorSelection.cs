@@ -1,11 +1,10 @@
-﻿namespace MaterialDesignThemes.Wpf
+﻿namespace MaterialDesignThemes.Wpf;
+
+[Flags]
+public enum ColorSelection
 {
-    [Flags]
-    public enum ColorSelection
-    {
-        None = 0,
-        Primary = 1,
-        Secondary = 2,
-        All = Primary | Secondary
-    }
+    None = 0,
+    Primary = 1,
+    Secondary = 2,
+    All = Primary | Secondary
 }

@@ -1,12 +1,11 @@
-﻿namespace MaterialDesign3Demo.Domain
+﻿namespace MaterialDesign3Demo.Domain;
+
+public enum DocumentationLinkType
 {
-    public enum DocumentationLinkType
-    {
-        Wiki,
-        DemoPageSource,
-        ControlSource,
-        StyleSource,
-        Video,
-        Specs
-    }
+    Wiki,
+    DemoPageSource,
+    ControlSource,
+    StyleSource,
+    Video,
+    Specs
 }

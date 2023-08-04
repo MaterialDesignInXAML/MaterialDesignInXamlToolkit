@@ -1,29 +1,28 @@
-namespace MaterialDesignThemes.Wpf
+namespace MaterialDesignThemes.Wpf;
+
+public delegate void ClockChoiceMadeEventHandler(object sender, ClockChoiceMadeEventArgs e);
+
+public class ClockChoiceMadeEventArgs : RoutedEventArgs
 {
-    public delegate void ClockChoiceMadeEventHandler(object sender, ClockChoiceMadeEventArgs e);
+    private readonly ClockDisplayMode _displayMode;
 
-    public class ClockChoiceMadeEventArgs : RoutedEventArgs
+    public ClockChoiceMadeEventArgs(ClockDisplayMode displayMode)
     {
-        private readonly ClockDisplayMode _displayMode;
+        _displayMode = displayMode;
+    }
 
-        public ClockChoiceMadeEventArgs(ClockDisplayMode displayMode)
-        {
-            _displayMode = displayMode;
-        }
+    public ClockChoiceMadeEventArgs(ClockDisplayMode displayMode, RoutedEvent routedEvent) : base(routedEvent)
+    {
+        _displayMode = displayMode;
+    }
 
-        public ClockChoiceMadeEventArgs(ClockDisplayMode displayMode, RoutedEvent routedEvent) : base(routedEvent)
-        {
-            _displayMode = displayMode;
-        }
+    public ClockChoiceMadeEventArgs(ClockDisplayMode displayMode, RoutedEvent routedEvent, object source) : base(routedEvent, source)
+    {
+        _displayMode = displayMode;
+    }
 
-        public ClockChoiceMadeEventArgs(ClockDisplayMode displayMode, RoutedEvent routedEvent, object source) : base(routedEvent, source)
-        {
-            _displayMode = displayMode;
-        }
-
-        public ClockDisplayMode Mode
-        {
-            get { return _displayMode; }
-        }
+    public ClockDisplayMode Mode
+    {
+        get { return _displayMode; }
     }
 }

@@ -1,7 +1,6 @@
-namespace MaterialDesignThemes.Wpf.Transitions
+namespace MaterialDesignThemes.Wpf.Transitions;
+
+public interface ITransitionWipe
 {
-    public interface ITransitionWipe
-    {
-        void Wipe(TransitionerSlide fromSlide, TransitionerSlide toSlide, Point origin, IZIndexController zIndexController);
-    }
+    void Wipe(TransitionerSlide fromSlide, TransitionerSlide toSlide, Point origin, IZIndexController zIndexController);
 }

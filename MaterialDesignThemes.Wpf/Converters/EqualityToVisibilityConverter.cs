@@ -1,20 +1,19 @@
 ﻿using System.Globalization;
 using System.Windows.Data;
 
-namespace MaterialDesignThemes.Wpf.Converters
+namespace MaterialDesignThemes.Wpf.Converters;
+
+public class EqualityToVisibilityConverter : IValueConverter
 {
-    public class EqualityToVisibilityConverter : IValueConverter
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value != null && value.Equals(parameter)) return Visibility.Visible;
+        if (value != null && value.Equals(parameter)) return Visibility.Visible;
 
-            return Visibility.Collapsed;
-        }
+        return Visibility.Collapsed;
+    }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
     }
 }

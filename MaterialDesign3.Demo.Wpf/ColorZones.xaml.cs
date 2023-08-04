@@ -1,7 +1,6 @@
-﻿namespace MaterialDesign3Demo
+﻿namespace MaterialDesign3Demo;
+
+public partial class ColorZones
 {
-    public partial class ColorZones
-    {
-        public ColorZones() => InitializeComponent();
-    }
+    public ColorZones() => InitializeComponent();
 }

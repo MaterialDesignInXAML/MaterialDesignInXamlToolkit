@@ -1,13 +1,12 @@
-namespace MaterialDesign3Demo.Domain
-{
-    public class SampleDialogViewModel : ViewModelBase
-    {
-        private string? _name;
+namespace MaterialDesign3Demo.Domain;
 
-        public string? Name
-        {
-            get => _name;
-            set => SetProperty(ref _name, value);
-        }
+public class SampleDialogViewModel : ViewModelBase
+{
+    private string? _name;
+
+    public string? Name
+    {
+        get => _name;
+        set => SetProperty(ref _name, value);
     }
 }

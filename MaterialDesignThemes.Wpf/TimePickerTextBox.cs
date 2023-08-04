@@ -1,10 +1,9 @@
-namespace MaterialDesignThemes.Wpf
+namespace MaterialDesignThemes.Wpf;
+
+public class TimePickerTextBox : TextBox
 {
-    public class TimePickerTextBox : TextBox
+    static TimePickerTextBox()
     {
-        static TimePickerTextBox()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(TimePickerTextBox), new FrameworkPropertyMetadata(typeof(TimePickerTextBox)));
-        }
+        DefaultStyleKeyProperty.OverrideMetadata(typeof(TimePickerTextBox), new FrameworkPropertyMetadata(typeof(TimePickerTextBox)));
     }
 }

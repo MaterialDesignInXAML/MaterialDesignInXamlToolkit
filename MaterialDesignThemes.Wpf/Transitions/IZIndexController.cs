@@ -1,7 +1,6 @@
-namespace MaterialDesignThemes.Wpf.Transitions
+namespace MaterialDesignThemes.Wpf.Transitions;
+
+public interface IZIndexController
 {
-    public interface IZIndexController
-    {
-        void Stack(params TransitionerSlide[] highestToLowest);
-    }
+    void Stack(params TransitionerSlide[] highestToLowest);
 }

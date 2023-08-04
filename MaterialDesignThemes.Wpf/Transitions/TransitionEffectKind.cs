@@ -1,13 +1,12 @@
-namespace MaterialDesignThemes.Wpf.Transitions
+namespace MaterialDesignThemes.Wpf.Transitions;
+
+public enum TransitionEffectKind
 {
-    public enum TransitionEffectKind
-    {
-        None,
-        ExpandIn,
-        FadeIn,
-        SlideInFromLeft,
-        SlideInFromTop,
-        SlideInFromRight,
-        SlideInFromBottom
-    }
+    None,
+    ExpandIn,
+    FadeIn,
+    SlideInFromLeft,
+    SlideInFromTop,
+    SlideInFromRight,
+    SlideInFromBottom
 }

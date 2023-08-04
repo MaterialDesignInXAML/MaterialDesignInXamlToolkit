@@ -1,7 +1,6 @@
-﻿namespace MaterialDesign3Demo
+﻿namespace MaterialDesign3Demo;
+
+public partial class GroupBoxes
 {
-    public partial class GroupBoxes
-    {
-        public GroupBoxes() => InitializeComponent();
-    }
+    public GroupBoxes() => InitializeComponent();
 }
