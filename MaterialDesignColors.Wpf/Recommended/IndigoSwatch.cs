@@ -38,6 +38,4 @@ public class IndigoSwatch : ISwatch
         { MaterialDesignColor.IndigoA400, IndigoA400 },
         { MaterialDesignColor.IndigoA700, IndigoA700 },
     };
-
-    public IEnumerable<Color> Hues => Lookup.Values;
 }

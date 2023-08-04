@@ -38,6 +38,4 @@ public class PinkSwatch : ISwatch
         { MaterialDesignColor.PinkA400, PinkA400 },
         { MaterialDesignColor.PinkA700, PinkA700 },
     };
-
-    public IEnumerable<Color> Hues => Lookup.Values;
 }

@@ -38,6 +38,4 @@ public class LightBlueSwatch : ISwatch
         { MaterialDesignColor.LightBlueA400, LightBlueA400 },
         { MaterialDesignColor.LightBlueA700, LightBlueA700 },
     };
-
-    public IEnumerable<Color> Hues => Lookup.Values;
 }

@@ -38,6 +38,4 @@ public class AmberSwatch : ISwatch
         { MaterialDesignColor.AmberA400, AmberA400 },
         { MaterialDesignColor.AmberA700, AmberA700 },
     };
-
-    public IEnumerable<Color> Hues => Lookup.Values;
 }

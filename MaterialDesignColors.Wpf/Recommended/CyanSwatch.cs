@@ -38,6 +38,4 @@ public class CyanSwatch : ISwatch
         { MaterialDesignColor.CyanA400, CyanA400 },
         { MaterialDesignColor.CyanA700, CyanA700 },
     };
-
-    public IEnumerable<Color> Hues => Lookup.Values;
 }
