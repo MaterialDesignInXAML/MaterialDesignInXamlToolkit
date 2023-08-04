@@ -38,6 +38,4 @@ public class YellowSwatch : ISwatch
         { MaterialDesignColor.YellowA400, YellowA400 },
         { MaterialDesignColor.YellowA700, YellowA700 },
     };
-
-    public IEnumerable<Color> Hues => Lookup.Values;
 }

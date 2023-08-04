@@ -38,6 +38,4 @@ public class OrangeSwatch : ISwatch
         { MaterialDesignColor.OrangeA400, OrangeA400 },
         { MaterialDesignColor.OrangeA700, OrangeA700 },
     };
-
-    public IEnumerable<Color> Hues => Lookup.Values;
 }

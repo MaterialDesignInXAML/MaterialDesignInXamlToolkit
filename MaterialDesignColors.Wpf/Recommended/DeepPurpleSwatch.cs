@@ -38,6 +38,4 @@ public class DeepPurpleSwatch : ISwatch
         { MaterialDesignColor.DeepPurpleA400, DeepPurpleA400 },
         { MaterialDesignColor.DeepPurpleA700, DeepPurpleA700 },
     };
-
-    public IEnumerable<Color> Hues => Lookup.Values;
 }

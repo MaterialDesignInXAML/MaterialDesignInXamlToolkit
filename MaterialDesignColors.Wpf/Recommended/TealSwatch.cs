@@ -38,6 +38,4 @@ public class TealSwatch : ISwatch
         { MaterialDesignColor.TealA400, TealA400 },
         { MaterialDesignColor.TealA700, TealA700 },
     };
-
-    public IEnumerable<Color> Hues => Lookup.Values;
 }

@@ -38,6 +38,4 @@ public class RedSwatch : ISwatch
         { MaterialDesignColor.RedA400, RedA400 },
         { MaterialDesignColor.RedA700, RedA700 },
     };
-
-    public IEnumerable<Color> Hues => Lookup.Values;
 }

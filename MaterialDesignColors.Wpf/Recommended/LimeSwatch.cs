@@ -38,6 +38,4 @@ public class LimeSwatch : ISwatch
         { MaterialDesignColor.LimeA400, LimeA400 },
         { MaterialDesignColor.LimeA700, LimeA700 },
     };
-
-    public IEnumerable<Color> Hues => Lookup.Values;
 }

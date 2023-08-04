@@ -38,6 +38,4 @@ public class GreenSwatch : ISwatch
         { MaterialDesignColor.GreenA400, GreenA400 },
         { MaterialDesignColor.GreenA700, GreenA700 },
     };
-
-    public IEnumerable<Color> Hues => Lookup.Values;
 }

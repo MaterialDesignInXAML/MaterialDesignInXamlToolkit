@@ -30,6 +30,4 @@ public class BrownSwatch : ISwatch
         { MaterialDesignColor.Brown800, Brown800 },
         { MaterialDesignColor.Brown900, Brown900 },
     };
-
-    public IEnumerable<Color> Hues => Lookup.Values;
 }

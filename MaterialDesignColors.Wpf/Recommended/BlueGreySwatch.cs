@@ -30,6 +30,4 @@ public class BlueGreySwatch : ISwatch
         { MaterialDesignColor.BlueGrey800, BlueGrey800 },
         { MaterialDesignColor.BlueGrey900, BlueGrey900 },
     };
-
-    public IEnumerable<Color> Hues => Lookup.Values;
 }
