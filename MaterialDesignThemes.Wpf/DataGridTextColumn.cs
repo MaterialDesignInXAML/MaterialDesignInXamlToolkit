@@ -1,3 +1,5 @@
+using System.Windows.Data;
+
 namespace MaterialDesignThemes.Wpf
 {
     public class DataGridTextColumn : System.Windows.Controls.DataGridTextColumn
@@ -20,7 +22,7 @@ namespace MaterialDesignThemes.Wpf
             var element = base.GenerateElement(cell, dataItem);
 
             if (
-                (cell.Column as Editor.Controls.DataGridTextColumn)?.ElementStringFormat is string stringFormat
+                (cell.Column as MaterialDesignThemes.Wpf.DataGridTextColumn)?.ElementStringFormat is string stringFormat
                 && element is TextBlock t
                 && t.GetBindingExpression(TextBlock.TextProperty)?.ParentBinding is Binding binding
                 )
