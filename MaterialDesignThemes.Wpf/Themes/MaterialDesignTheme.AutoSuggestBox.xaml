@@ -66,9 +66,7 @@
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
             <Border HorizontalAlignment="Stretch"
-                    Background="Red"
                     VerticalAlignment="Stretch"
-                    
                     CornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}"
                     RenderTransformOrigin="0.5,0.5"
                     Visibility="{TemplateBinding wpf:TextFieldAssist.RippleOnFocusEnabled, Converter={StaticResource BooleanToVisibilityConverter}}">

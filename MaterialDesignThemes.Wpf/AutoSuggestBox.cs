@@ -3,13 +3,10 @@ using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf;
 
+[TemplatePart(Name = AutoSuggestBoxListPart, Type=typeof(ListBox))]
 public class AutoSuggestBox : TextBox
 {
-    #region Consts
-
     private const string AutoSuggestBoxListPart = "PART_AutoSuggestBoxList";
-
-    #endregion
 
     #region Properties
 
@@ -18,6 +15,8 @@ public class AutoSuggestBox : TextBox
     #endregion
 
     #region Dependency Properties
+
+    //TODO: Remove "AutoSuggestBox" prefix from all properties
 
     public IEnumerable Suggestions
     {
@@ -139,20 +138,16 @@ public class AutoSuggestBox : TextBox
 
     public event RoutedPropertyChangedEventHandler<object> SuggestionChosen
     {
-        add { AddHandler(SuggestionChosenEvent, value); }
-        remove { RemoveHandler(SuggestionChosenEvent, value); }
+        add => AddHandler(SuggestionChosenEvent, value);
+        remove => RemoveHandler(SuggestionChosenEvent, value);
     }
 
     #endregion
-
-    #region Ctors
 
     static AutoSuggestBox()
     {
         DefaultStyleKeyProperty.OverrideMetadata(typeof(AutoSuggestBox), new FrameworkPropertyMetadata(typeof(AutoSuggestBox)));
     }
-
-    #endregion
 
     #region Override methods
 
@@ -246,17 +241,16 @@ public class AutoSuggestBox : TextBox
 
     private void CommitValueSelection()
     {
-        if (_autoSuggestBoxList is not null && _autoSuggestBoxList.SelectedValue != null)
+        if (_autoSuggestBoxList?.SelectedValue is { } selectedValue)
         {
             var oldValue = Text;
-            Text = _autoSuggestBoxList.SelectedValue.ToString();
+            Text = selectedValue.ToString();
             if (Text != null)
+            {
                 CaretIndex = Text.Length;
+            }
             CloseAutoSuggestionPopUp();
-            var args = new RoutedPropertyChangedEventArgs<object?>(
-            oldValue,
-            Text
-            )
+            var args = new RoutedPropertyChangedEventArgs<object?>(oldValue, Text)
             {
                 RoutedEvent = SuggestionChosenEvent
             };

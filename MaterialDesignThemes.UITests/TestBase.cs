@@ -7,6 +7,7 @@ using System.Windows.Media;
 [assembly: GenerateHelpers(typeof(DrawerHost))]
 [assembly: GenerateHelpers(typeof(ColorPicker))]
 [assembly: GenerateHelpers(typeof(DialogHost))]
+[assembly: GenerateHelpers(typeof(AutoSuggestBox))]
 
 namespace MaterialDesignThemes.UITests;
 
