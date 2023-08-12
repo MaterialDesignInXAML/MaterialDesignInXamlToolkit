@@ -11,16 +11,11 @@ public static class TextFieldAssist
     /// <summary>
     /// The text box view margin property
     /// </summary>
-    public static class TextFieldAssist
-    {
-        /// <summary>
-        /// The text box view margin property
-        /// </summary>
-        public static readonly DependencyProperty TextBoxViewMarginProperty = DependencyProperty.RegisterAttached(
-            "TextBoxViewMargin",
-            typeof(Thickness),
-            typeof(TextFieldAssist),
-            new FrameworkPropertyMetadata(new Thickness(double.NegativeInfinity), FrameworkPropertyMetadataOptions.Inherits, TextBoxViewMarginPropertyChangedCallback));
+    public static readonly DependencyProperty TextBoxViewMarginProperty = DependencyProperty.RegisterAttached(
+        "TextBoxViewMargin",
+        typeof(Thickness),
+        typeof(TextFieldAssist),
+        new FrameworkPropertyMetadata(new Thickness(double.NegativeInfinity), FrameworkPropertyMetadataOptions.Inherits, TextBoxViewMarginPropertyChangedCallback));
 
     /// <summary>
     /// Sets the text box view margin.
@@ -289,12 +284,12 @@ public static class TextFieldAssist
         SetPasswordBoxCharacterCount(passwordBox, passwordBox.SecurePassword.Length);
     }
 
-        internal static readonly DependencyProperty PasswordBoxCharacterCountProperty = DependencyProperty.RegisterAttached(
-            "PasswordBoxCharacterCount", typeof(int), typeof(TextFieldAssist), new PropertyMetadata(default(int)));
-        internal static void SetPasswordBoxCharacterCount(DependencyObject element, int value) => element.SetValue(PasswordBoxCharacterCountProperty, value);
-        internal static int GetPasswordBoxCharacterCount(DependencyObject element) => (int) element.GetValue(PasswordBoxCharacterCountProperty);
+    internal static readonly DependencyProperty PasswordBoxCharacterCountProperty = DependencyProperty.RegisterAttached(
+        "PasswordBoxCharacterCount", typeof(int), typeof(TextFieldAssist), new PropertyMetadata(default(int)));
+    internal static void SetPasswordBoxCharacterCount(DependencyObject element, int value) => element.SetValue(PasswordBoxCharacterCountProperty, value);
+    internal static int GetPasswordBoxCharacterCount(DependencyObject element) => (int)element.GetValue(PasswordBoxCharacterCountProperty);
 
-        #region Methods
+    #region Methods
 
     private static void IncludeSpellingSuggestionsChanged(DependencyObject element, DependencyPropertyChangedEventArgs e)
     {
@@ -452,8 +447,17 @@ public static class TextFieldAssist
             return;
         }
 
-        #endregion
+        if (box.IsLoaded)
+        {
+            ApplyTextBoxViewMargin(box, (Thickness)dependencyPropertyChangedEventArgs.NewValue);
+        }
+
+        box.Loaded += (sender, args) =>
+        {
+            var textBox = (Control)sender;
+            ApplyTextBoxViewMargin(textBox, GetTextBoxViewMargin(textBox));
+        };
     }
 
-    #endregion
+#endregion
 }
