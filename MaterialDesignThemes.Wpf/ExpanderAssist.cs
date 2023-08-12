@@ -2,6 +2,12 @@
 
 namespace MaterialDesignThemes.Wpf;
 
+public enum ExpanderPosition
+{
+    Start,
+    End
+}
+
 public static class ExpanderAssist
 {
     private static readonly Thickness DefaultHorizontalHeaderPadding = new Thickness(24, 12, 24, 12);
@@ -48,5 +54,35 @@ public static class ExpanderAssist
         => (Brush?)element.GetValue(HeaderBackgroundProperty);
     public static void SetHeaderBackground(Expander element, Brush? value)
         => element.SetValue(HeaderBackgroundProperty, value);
+    #endregion
+
+    #region AttachedProperty : ExpandedIconProperty
+    public static readonly DependencyProperty ExpandedIconProperty
+        = DependencyProperty.RegisterAttached("ExpandedIcon", typeof(object), typeof(ExpanderAssist));
+
+    public static object? GetExpandedIcon(Expander element)
+        => (object?)element.GetValue(ExpandedIconProperty);
+    public static void SetExpandedIcon(Expander element, object? value)
+        => element.SetValue(ExpandedIconProperty, value);
+    #endregion
+
+    #region AttachedProperty : ExpanderCollapcedIconProperty
+    public static readonly DependencyProperty CollapcedIconProperty
+        = DependencyProperty.RegisterAttached("CollapcedIcon", typeof(object), typeof(ExpanderAssist));
+
+    public static object? GetCollapcedIcon(Expander element)
+        => (object?)element.GetValue(CollapcedIconProperty);
+    public static void SetCollapcedIcon(Expander element, object? value)
+        => element.SetValue(CollapcedIconProperty, value);
+    #endregion
+
+    #region AttachedProperty : ExpanderPositionProperty
+    public static readonly DependencyProperty ExpanderPositionProperty
+        = DependencyProperty.RegisterAttached("ExpanderPosition", typeof(ExpanderPosition), typeof(ExpanderAssist), new PropertyMetadata(ExpanderPosition.End));
+
+    public static ExpanderPosition GetExpanderPosition(Expander element)
+        => (ExpanderPosition)element.GetValue(ExpanderPositionProperty);
+    public static void SetExpanderPosition(Expander element, ExpanderPosition value)
+        => element.SetValue(ExpanderPositionProperty, value);
     #endregion
 }
