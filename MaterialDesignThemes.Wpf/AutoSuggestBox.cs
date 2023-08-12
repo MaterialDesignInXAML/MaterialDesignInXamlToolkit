@@ -16,8 +16,6 @@ public class AutoSuggestBox : TextBox
 
     #region Dependency Properties
 
-    //TODO: Remove "AutoSuggestBox" prefix from all properties
-
     public IEnumerable Suggestions
     {
         get => (IEnumerable)GetValue(SuggestionsProperty);

@@ -10,10 +10,11 @@
              d:DesignHeight="450" d:DesignWidth="800">
   <!-- TODO SELECTED ITEM -->
   <materialDesign:AutoSuggestBox
-      materialDesign:HintAssist.HelperText="Select your color"
+      materialDesign:HintAssist.HelperText="Name"
       materialDesign:TextFieldAssist.HasClearButton="True"
       Text="{Binding AutoSuggestText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
       Suggestions="{Binding Suggestions}"
+      ValueMember="Name"
       DisplayMember="Name">
   </materialDesign:AutoSuggestBox>
 </UserControl>
