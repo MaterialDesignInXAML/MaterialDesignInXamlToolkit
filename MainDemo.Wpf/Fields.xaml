@@ -804,12 +804,12 @@
         <materialDesign:AutoSuggestBox materialDesign:HintAssist.HelperText="Select your color"
                                        materialDesign:TextFieldAssist.HasClearButton="True"
                                        materialDesign:HintAssist.Hint="Color"
-                                       AutoSuggestBoxElevation="Dp0"
-                                       AutoSuggestBoxValueMember="Key"
+                                       DropDownElevation="Dp0"
+                                       ValueMember="Key"
                                        SuggestionChosen="AutoSuggestBox_SuggestionChosen"
                                        Suggestions="{Binding AutoSuggestBox2Suggestions}"
                                        Text="{Binding AutoSuggestBox2Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
-          <materialDesign:AutoSuggestBox.AutoSuggestBoxItemTemplate>
+          <materialDesign:AutoSuggestBox.ItemTemplate>
             <DataTemplate>
               <DockPanel>
                 <Border Width="20"
@@ -819,7 +819,7 @@
                 <TextBlock Margin="10,0,0,0" Text="{Binding Key}" />
               </DockPanel>
             </DataTemplate>
-          </materialDesign:AutoSuggestBox.AutoSuggestBoxItemTemplate>
+          </materialDesign:AutoSuggestBox.ItemTemplate>
         </materialDesign:AutoSuggestBox>
       </smtx:XamlDisplay>
     </Grid>

@@ -12,7 +12,8 @@
   <materialDesign:AutoSuggestBox
       materialDesign:HintAssist.HelperText="Select your color"
       materialDesign:TextFieldAssist.HasClearButton="True"
+      Text="{Binding AutoSuggestText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
       Suggestions="{Binding Suggestions}"
-      AutoSuggestBoxDisplayMember="Name">
+      DisplayMember="Name">
   </materialDesign:AutoSuggestBox>
 </UserControl>

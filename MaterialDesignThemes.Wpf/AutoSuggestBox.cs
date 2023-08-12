@@ -3,7 +3,7 @@ using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf;
 
-[TemplatePart(Name = AutoSuggestBoxListPart, Type=typeof(ListBox))]
+[TemplatePart(Name = AutoSuggestBoxListPart, Type = typeof(ListBox))]
 public class AutoSuggestBox : TextBox
 {
     private const string AutoSuggestBoxListPart = "PART_AutoSuggestBoxList";
@@ -27,106 +27,81 @@ public class AutoSuggestBox : TextBox
     public static readonly DependencyProperty SuggestionsProperty =
         DependencyProperty.Register("Suggestions", typeof(IEnumerable), typeof(AutoSuggestBox), new PropertyMetadata(null));
 
-    public bool IsAutoSuggestionEnabled
+
+    public string ValueMember
     {
-        get => (bool)GetValue(IsAutoSuggestionEnabledProperty);
-        set => SetValue(IsAutoSuggestionEnabledProperty, value);
+        get => (string)GetValue(ValueMemberProperty);
+        set => SetValue(ValueMemberProperty, value);
     }
+    public static readonly DependencyProperty ValueMemberProperty =
+        DependencyProperty.Register("ValueMember", typeof(string), typeof(AutoSuggestBox), new PropertyMetadata(default(string)));
 
-    public static readonly DependencyProperty IsAutoSuggestionEnabledProperty =
-        DependencyProperty.Register("IsAutoSuggestionEnabled", typeof(bool), typeof(AutoSuggestBox), new PropertyMetadata(true, OnIsAutoSuggestionEnabledChanged));
 
-
-    public string AutoSuggestBoxValueMember
+    public string DisplayMember
     {
-        get => (string)GetValue(AutoSuggestBoxValueMemberProperty);
-        set => SetValue(AutoSuggestBoxValueMemberProperty, value);
+        get => (string)GetValue(DisplayMemberProperty);
+        set => SetValue(DisplayMemberProperty, value);
     }
-    public static readonly DependencyProperty AutoSuggestBoxValueMemberProperty =
-        DependencyProperty.Register("AutoSuggestBoxValueMember", typeof(string), typeof(AutoSuggestBox), new PropertyMetadata(default(string)));
+    public static readonly DependencyProperty DisplayMemberProperty =
+        DependencyProperty.Register("DisplayMember", typeof(string), typeof(AutoSuggestBox), new PropertyMetadata(default(string)));
 
 
-    public string AutoSuggestBoxDisplayMember
+    public CornerRadius CornerRadius
     {
-        get => (string)GetValue(AutoSuggestBoxDisplayMemberProperty);
-        set => SetValue(AutoSuggestBoxDisplayMemberProperty, value);
+        get => (CornerRadius)GetValue(CornerRadiusProperty);
+        set => SetValue(CornerRadiusProperty, value);
     }
-    public static readonly DependencyProperty AutoSuggestBoxDisplayMemberProperty =
-        DependencyProperty.Register("AutoSuggestBoxDisplayMember", typeof(string), typeof(AutoSuggestBox), new PropertyMetadata(default(string)));
+    public static readonly DependencyProperty CornerRadiusProperty =
+        DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(AutoSuggestBox), new PropertyMetadata(default(CornerRadius)));
 
-
-    public CornerRadius AutoSuggestBoxCornerRadius
+    public Brush DropDownBackground
     {
-        get => (CornerRadius)GetValue(AutoSuggestBoxCornerRadiusProperty);
-        set => SetValue(AutoSuggestBoxCornerRadiusProperty, value);
+        get => (Brush)GetValue(DropDownBackgroundProperty);
+        set => SetValue(DropDownBackgroundProperty, value);
     }
-    public static readonly DependencyProperty AutoSuggestBoxCornerRadiusProperty =
-        DependencyProperty.Register("AutoSuggestBoxCornerRadius", typeof(CornerRadius), typeof(AutoSuggestBox), new PropertyMetadata(default(CornerRadius)));
+    public static readonly DependencyProperty DropDownBackgroundProperty =
+        DependencyProperty.Register("DropDownBackground", typeof(Brush), typeof(AutoSuggestBox), new PropertyMetadata(default(Brush)));
 
-    public Brush AutoSuggestBoxBackground
+    public DataTemplate ItemTemplate
     {
-        get => (Brush)GetValue(AutoSuggestBoxBackgroundProperty);
-        set => SetValue(AutoSuggestBoxBackgroundProperty, value);
+        get => (DataTemplate)GetValue(ItemTemplateProperty);
+        set => SetValue(ItemTemplateProperty, value);
     }
-    public static readonly DependencyProperty AutoSuggestBoxBackgroundProperty =
-        DependencyProperty.Register("AutoSuggestBoxBackground", typeof(Brush), typeof(AutoSuggestBox), new PropertyMetadata(default(Brush)));
+    public static readonly DependencyProperty ItemTemplateProperty =
+        DependencyProperty.Register("ItemTemplate", typeof(DataTemplate), typeof(AutoSuggestBox), new PropertyMetadata(default(DataTemplate)));
 
-    public DataTemplate AutoSuggestBoxItemTemplate
+    public Style ItemContainerStyle
     {
-        get => (DataTemplate)GetValue(AutoSuggestBoxItemTemplateProperty);
-        set => SetValue(AutoSuggestBoxItemTemplateProperty, value);
+        get => (Style)GetValue(ItemContainerStyleProperty);
+        set => SetValue(ItemContainerStyleProperty, value);
     }
-    public static readonly DependencyProperty AutoSuggestBoxItemTemplateProperty =
-        DependencyProperty.Register("AutoSuggestBoxItemTemplate", typeof(DataTemplate), typeof(AutoSuggestBox), new PropertyMetadata(default(DataTemplate)));
+    public static readonly DependencyProperty ItemContainerStyleProperty =
+        DependencyProperty.Register("ItemContainerStyle", typeof(Style), typeof(AutoSuggestBox), new PropertyMetadata(default(Style)));
 
-    public Style AutoSuggestBoxItemContainerStyle
+    public Elevation DropDownElevation
     {
-        get => (Style)GetValue(AutoSuggestBoxItemContainerStyleProperty);
-        set => SetValue(AutoSuggestBoxItemContainerStyleProperty, value);
+        get => (Elevation)GetValue(DropDownElevationProperty);
+        set => SetValue(DropDownElevationProperty, value);
     }
-    public static readonly DependencyProperty AutoSuggestBoxItemContainerStyleProperty =
-        DependencyProperty.Register("AutoSuggestBoxItemContainerStyle", typeof(Style), typeof(AutoSuggestBox), new PropertyMetadata(default(Style)));
+    public static readonly DependencyProperty DropDownElevationProperty =
+        DependencyProperty.Register("DropDownElevation", typeof(Elevation), typeof(AutoSuggestBox), new PropertyMetadata(default(Elevation)));
 
-    public Elevation AutoSuggestBoxElevation
+    public double DropDownMaxHeight
     {
-        get => (Elevation)GetValue(AutoSuggestBoxElevationProperty);
-        set => SetValue(AutoSuggestBoxElevationProperty, value);
+        get => (double)GetValue(DropDownMaxHeightProperty);
+        set => SetValue(DropDownMaxHeightProperty, value);
     }
-    public static readonly DependencyProperty AutoSuggestBoxElevationProperty =
-        DependencyProperty.Register("AutoSuggestBoxElevation", typeof(Elevation), typeof(AutoSuggestBox), new PropertyMetadata(default(Elevation)));
+    public static readonly DependencyProperty DropDownMaxHeightProperty =
+        DependencyProperty.Register("DropDownMaxHeight", typeof(double), typeof(AutoSuggestBox), new PropertyMetadata(200.0));
 
-    public Brush AutoSuggestBoxBorderBrush
+
+    public bool IsSuggestionOpen
     {
-        get => (Brush)GetValue(AutoSuggestBoxBorderBrushProperty);
-        set => SetValue(AutoSuggestBoxBorderBrushProperty, value);
+        get => (bool)GetValue(IsSuggestionOpenProperty);
+        set => SetValue(IsSuggestionOpenProperty, value);
     }
-    public static readonly DependencyProperty AutoSuggestBoxBorderBrushProperty =
-        DependencyProperty.Register("AutoSuggestBoxBorderBrush", typeof(Brush), typeof(AutoSuggestBox), new PropertyMetadata(default(Brush)));
-
-    public Thickness AutoSuggestBoxBorderThickness
-    {
-        get => (Thickness)GetValue(AutoSuggestBoxBorderThicknessProperty);
-        set => SetValue(AutoSuggestBoxBorderThicknessProperty, value);
-    }
-    public static readonly DependencyProperty AutoSuggestBoxBorderThicknessProperty =
-        DependencyProperty.Register("AutoSuggestBoxBorderThickness", typeof(Thickness), typeof(AutoSuggestBox), new PropertyMetadata(default(Thickness)));
-
-    public double AutoSuggestBoxMaxHeight
-    {
-        get => (double)GetValue(AutoSuggestBoxMaxHeightProperty);
-        set => SetValue(AutoSuggestBoxMaxHeightProperty, value);
-    }
-    public static readonly DependencyProperty AutoSuggestBoxMaxHeightProperty =
-        DependencyProperty.Register("AutoSuggestBoxMaxHeight", typeof(double), typeof(AutoSuggestBox), new PropertyMetadata(200.0));
-
-
-    public bool IsPopupOpen
-    {
-        get => (bool)GetValue(IsPopupOpenProperty);
-        set => SetValue(IsPopupOpenProperty, value);
-    }
-    public static readonly DependencyProperty IsPopupOpenProperty =
-        DependencyProperty.Register("IsPopupOpen", typeof(bool), typeof(AutoSuggestBox), new PropertyMetadata(default(bool)));
+    public static readonly DependencyProperty IsSuggestionOpenProperty =
+        DependencyProperty.Register("IsSuggestionOpen", typeof(bool), typeof(AutoSuggestBox), new PropertyMetadata(default(bool)));
 
 
     public static readonly RoutedEvent SuggestionChosenEvent =
@@ -202,23 +177,17 @@ public class AutoSuggestBox : TextBox
 
     #region Callback handlers
 
-    private static void OnIsAutoSuggestionEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        if (d is AutoSuggestBox instance)
-            instance.IsPopupOpen = false;
-    }
-
     protected override void OnTextChanged(TextChangedEventArgs e)
     {
         base.OnTextChanged(e);
         if (_autoSuggestBoxList is null)
             return;
-        if ((Text.Length == 0 || _autoSuggestBoxList.Items.Count == 0) && IsPopupOpen)
-            IsPopupOpen = false;
-        else if (Text.Length > 0 && !IsPopupOpen && IsFocused && _autoSuggestBoxList.Items.Count > 0)
-            IsPopupOpen = true;
+        if ((Text.Length == 0 || _autoSuggestBoxList.Items.Count == 0) && IsSuggestionOpen)
+            IsSuggestionOpen = false;
+        else if (Text.Length > 0 && !IsSuggestionOpen && IsFocused && _autoSuggestBoxList.Items.Count > 0)
+            IsSuggestionOpen = true;
     }
-    
+
     #endregion
 
     #region Methods
@@ -236,7 +205,7 @@ public class AutoSuggestBox : TextBox
 
     private void CloseAutoSuggestionPopUp()
     {
-        IsPopupOpen = false;
+        IsSuggestionOpen = false;
     }
 
     private void CommitValueSelection()
