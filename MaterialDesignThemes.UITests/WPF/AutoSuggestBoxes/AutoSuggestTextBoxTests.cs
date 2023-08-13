@@ -1,8 +1,6 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Controls;
+﻿using MaterialDesignThemes.UITests.Samples.AutoSuggestBoxes;
 using MaterialDesignThemes.UITests.Samples.AutoSuggestTextBoxes;
-using XamlTest;
-using static System.Net.Mime.MediaTypeNames;
+using Xunit.Sdk;
 
 namespace MaterialDesignThemes.UITests.WPF.AutoSuggestBoxes;
 
@@ -10,7 +8,8 @@ public class AutoSuggestBoxTests : TestBase
 {
     public AutoSuggestBoxTests(ITestOutputHelper output)
         : base(output)
-    { }
+    {
+    }
 
     [Fact]
     public async Task CanFilterItems_WithSuggestionsAndDisplayMember_FiltersSuggestions()
@@ -44,10 +43,10 @@ public class AutoSuggestBoxTests : TestBase
     }
 
     [Fact]
-    public async Task CanChoiseItem_FromTheSuggestions_AssertTheTextUpdated()
+    public async Task CanChoiceItem_FromTheSuggestions_AssertTheTextUpdated()
     {
         await using var recorder = new TestRecorder(App);
-
+        
         //Arrange
         IVisualElement<AutoSuggestBox> suggestBox = (await LoadUserControl<AutoSuggestTextBoxWithTemplate>()).As<AutoSuggestBox>();
         IVisualElement<Popup> popup = await suggestBox.GetElement<Popup>();
@@ -61,7 +60,7 @@ public class AutoSuggestBoxTests : TestBase
         Assert.True(await suggestBox.GetIsSuggestionOpen());
         Assert.True(await popup.GetIsOpen());
 
-        //Choise Item from the list
+        //Choose Item from the list
         var bananas = await suggestionListBox.GetElement<ListBoxItem>("/ListBoxItem[0]");
         await Task.Delay(100);
         await bananas.LeftClick();
@@ -72,18 +71,50 @@ public class AutoSuggestBoxTests : TestBase
         recorder.Success();
     }
 
+    [Fact(Skip = "This needs ICollectionView")]
+    public async Task CanFilterItems_WithCollectionView_FiltersSuggestions()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        //Arrange
+        IVisualElement userControl = await LoadUserControl<AutoSuggestTextBoxWithCollectionView>();
+        IVisualElement<AutoSuggestBox> suggestBox = await userControl.GetElement<AutoSuggestBox>();
+        IVisualElement<Popup> popup = await suggestBox.GetElement<Popup>();
+        IVisualElement<ListBox> suggestionListBox = await popup.GetElement<ListBox>();
+
+        //Act
+        await suggestBox.MoveKeyboardFocus();
+        await suggestBox.SendInput(new KeyboardInput("B"));
+
+
+        //Assert
+        Assert.True(await suggestBox.GetIsSuggestionOpen());
+        Assert.True(await popup.GetIsOpen());
+
+        //Validates these elements are found
+        await AssertExists(suggestionListBox, "Bananas");
+        await AssertExists(suggestionListBox, "Beans");
+
+        //Validate other items are hidden
+        await AssertExists(suggestionListBox, "Apples", false);
+        await AssertExists(suggestionListBox, "Mtn Dew", false);
+        await AssertExists(suggestionListBox, "Orange", false);
+
+        recorder.Success();
+    }
+
     //TODO: Test case with ICollectionSource
 
-    private async Task AssertExists(IVisualElement<ListBox> suggestionListBox, string text, bool existsOrNotCheck = true)
+    private static async Task AssertExists(IVisualElement<ListBox> suggestionListBox, string text, bool existsOrNotCheck = true)
     {
         try
         {
             _ = await suggestionListBox.GetElement(ElementQuery.PropertyExpression<TextBlock>(x => x.Text, text));
             Assert.True(existsOrNotCheck);
         }
-        catch (Exception)
+        catch (Exception e) when (e is not TrueException)
         {
-            Assert.True(!existsOrNotCheck);
+            Assert.False(existsOrNotCheck);
         }
     }
 }

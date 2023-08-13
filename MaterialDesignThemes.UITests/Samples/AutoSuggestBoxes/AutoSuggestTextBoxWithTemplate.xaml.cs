@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
+using Google.Protobuf.WellKnownTypes;
 
 namespace MaterialDesignThemes.UITests.Samples.AutoSuggestTextBoxes;
 
@@ -14,37 +16,32 @@ public partial class AutoSuggestTextBoxWithTemplate
     }
 }
 
-public partial class AutoSuggestTextBoxWithTemplateViewModel : BaseViewModel
+public partial class AutoSuggestTextBoxWithTemplateViewModel : ObservableObject
 {
-    private List<SuggestionThing> _baseSuggestions { get; }
+    private List<SuggestionThing> BaseSuggestions { get; }
 
+    [ObservableProperty]
     private ObservableCollection<SuggestionThing> _suggestions = new();
-    public ObservableCollection<SuggestionThing> Suggestions
-    {
-        get => _suggestions;
-        set => SetProperty(ref _suggestions, value);
-    }
 
+    [ObservableProperty]
     private string? _autoSuggestText;
 
-    public string? AutoSuggestText
+    partial void OnAutoSuggestTextChanged(string? oldValue, string? newValue)
     {
-        get => _autoSuggestText;
-        set
+        if (!string.IsNullOrWhiteSpace(newValue))
         {
-            if (SetProperty(ref _autoSuggestText, value) && !string.IsNullOrEmpty(value))
-            {
-                var searchResult = _baseSuggestions.Where(x => IsMatch(x.Name, value));
-                //MessageBox.Show(searchResult.Count().ToString(), "Test");
-                Suggestions = new(searchResult);
-            }
+            var searchResult = BaseSuggestions.Where(x => IsMatch(x.Name, newValue));
+            Suggestions = new(searchResult);
+        }
+        else
+        {
+            Suggestions = new(BaseSuggestions);
         }
     }
 
-
     public AutoSuggestTextBoxWithTemplateViewModel()
     {
-        _baseSuggestions = new()
+        BaseSuggestions = new()
         {
             new("Apples"),
             new("Bananas"),
@@ -52,7 +49,7 @@ public partial class AutoSuggestTextBoxWithTemplateViewModel : BaseViewModel
             new("Mtn Dew"),
             new("Orange"),
         };
-        Suggestions = new ObservableCollection<SuggestionThing>(_baseSuggestions);
+        Suggestions = new ObservableCollection<SuggestionThing>(BaseSuggestions);
     }
 
     private static bool IsMatch(string item, string currentText)
