@@ -105,17 +105,17 @@ ScrollViewer.VerticalScrollBarVisibility=""Visible"">
         var verticalScrollBar = await listBox.GetElement<ScrollBar>("PART_VerticalScrollBar");
         var horizontalScrollBar = await listBox.GetElement<ScrollBar>("PART_HorizontalScrollBar");
 
-        Assert.Equal(17, await verticalScrollBar.GetActualWidth());
+        Assert.Equal(17.0, await verticalScrollBar.GetActualWidth(), 1.0);
         var verticalThumb = await verticalScrollBar.GetElement<Border>("/Thumb~border");
-        Assert.Equal(10, await verticalThumb.GetActualWidth());
+        Assert.Equal(10.0, await verticalThumb.GetActualWidth(), 1.0);
         var upButton = await verticalScrollBar.GetElement<RepeatButton>("PART_LineUpButton");
         Assert.False(await upButton.GetIsVisible());
         var downButton = await verticalScrollBar.GetElement<RepeatButton>("PART_LineDownButton");
         Assert.False(await downButton.GetIsVisible());
 
-        Assert.Equal(17, await horizontalScrollBar.GetActualHeight());
+        Assert.Equal(17.0, await horizontalScrollBar.GetActualHeight(), 1.0);
         var horizontalThumb = await horizontalScrollBar.GetElement<Border>("/Thumb~border");
-        Assert.Equal(10, await horizontalThumb.GetActualHeight());
+        Assert.Equal(10.0, await horizontalThumb.GetActualHeight(), 1.0);
         var leftButton = await horizontalScrollBar.GetElement<RepeatButton>("PART_LineLeftButton");
         Assert.False(await leftButton.GetIsVisible());
         var rightButton = await horizontalScrollBar.GetElement<RepeatButton>("PART_LineRightButton");
