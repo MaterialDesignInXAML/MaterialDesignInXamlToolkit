@@ -1,4 +1,7 @@
+using System.Runtime.InteropServices;
+using System.Security;
 using System.Windows.Data;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Threading;
 
@@ -284,6 +287,7 @@ public class DialogHost : ContentControl
     {
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
+        PreviewGotKeyboardFocus += OnPreviewGotKeyboardFocus;
 
         CommandBindings.Add(new CommandBinding(CloseDialogCommand, CloseDialogHandler, CloseDialogCanExecute));
         CommandBindings.Add(new CommandBinding(OpenDialogCommand, OpenDialogHandler));
@@ -947,4 +951,17 @@ public class DialogHost : ContentControl
             }
         }
     }
+
+    private void OnPreviewGotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+    {
+        if (_popup != null &&
+            PresentationSource.FromVisual(_popup.Child) is HwndSource hwndSource)
+        {
+            SetFocus(hwndSource.Handle);
+        }
+    }
+
+    [SecurityCritical]
+    [DllImport("user32.dll", EntryPoint = "SetFocus", SetLastError = true)]
+    private static extern IntPtr SetFocus(IntPtr hWnd);
 }
