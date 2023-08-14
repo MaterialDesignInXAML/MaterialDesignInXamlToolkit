@@ -50,10 +50,7 @@
     </Grid.ColumnDefinitions>
     <smtx:XamlDisplay UniqueKey="explander_1">
       <StackPanel>
-        <Expander HorizontalAlignment="Stretch"
-                  materialDesign:ExpanderAssist.CollapcedIcon="{materialDesign:PackIcon Kind=Plus}"
-                  materialDesign:ExpanderAssist.ExpandedIcon="{materialDesign:PackIcon Kind=Minus}"
-                  Header="Expander Example 1a">
+        <Expander HorizontalAlignment="Stretch" Header="Expander Example 1a">
           <StackPanel Margin="24,8,24,16"
                       Orientation="Vertical"
                       TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
@@ -73,9 +70,7 @@
           </StackPanel>
         </Expander>
 
-        <Expander HorizontalAlignment="Stretch"
-                  materialDesign:ExpanderAssist.ExpanderPosition="Start"
-                  Header="Expander Example 1c">
+        <Expander HorizontalAlignment="Stretch" Header="Expander Example 1c">
           <StackPanel Margin="24,8,24,16"
                       Orientation="Vertical"
                       TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
@@ -133,6 +128,49 @@
               <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
             </StackPanel>
           </Expander>
+
+          <Border Style="{StaticResource HorizontalDividerBorder}" />
+
+          <Expander HorizontalAlignment="Stretch" Header="Expander Example 3a">
+            <Expander.Style>
+              <Style TargetType="Expander" BasedOn="{StaticResource MaterialDesignExpander}">
+                <Setter Property="materialDesign:ExpanderAssist.ExpanderButtonContent" Value="{materialDesign:PackIcon Kind=Plus}" />
+                <Style.Triggers>
+                  <Trigger Property="IsExpanded" Value="True">
+                    <Setter Property="materialDesign:ExpanderAssist.ExpanderButtonContent" Value="{materialDesign:PackIcon Kind=Minus}" />
+                  </Trigger>
+                </Style.Triggers>
+              </Style>
+            </Expander.Style>
+            <StackPanel Margin="24,8,24,16"
+                        Orientation="Vertical"
+                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+              <TextBlock Text="Your Content" />
+              <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
+            </StackPanel>
+          </Expander>
+
+          <Border Style="{StaticResource HorizontalDividerBorder}" />
+
+          <Expander HorizontalAlignment="Stretch" Header="Expander Example 3b" materialDesign:ExpanderAssist.ExpanderButtonPosition="Start">
+            <StackPanel Margin="24,8,24,16"
+                        Orientation="Vertical"
+                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+              <TextBlock Text="Your Content" />
+              <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
+            </StackPanel>
+          </Expander>
+
+          <Border Style="{StaticResource HorizontalDividerBorder}" />
+
+          <Expander HorizontalAlignment="Stretch" Header="Expander Example 3b" materialDesign:ExpanderAssist.ExpanderButtonPosition="End">
+            <StackPanel Margin="24,8,24,16"
+                        Orientation="Vertical"
+                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+              <TextBlock Text="Your Content" />
+              <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
+            </StackPanel>
+          </Expander>
         </StackPanel>
       </materialDesign:Card>
     </smtx:XamlDisplay>
@@ -148,7 +186,7 @@
       <StackPanel Orientation="Horizontal">
         <Expander ExpandDirection="Left">
           <Expander.Header>
-            <TextBlock RenderTransformOrigin=".5,.5" Text="Expander Example 3a">
+            <TextBlock RenderTransformOrigin=".5,.5" Text="Expander Example 4a">
               <TextBlock.LayoutTransform>
                 <RotateTransform Angle="90" />
               </TextBlock.LayoutTransform>
@@ -167,7 +205,7 @@
 
         <Expander ExpandDirection="Right">
           <Expander.Header>
-            <TextBlock RenderTransformOrigin=".5,.5" Text="Expander Example 3b">
+            <TextBlock RenderTransformOrigin=".5,.5" Text="Expander Example 4b">
               <TextBlock.LayoutTransform>
                 <RotateTransform Angle="90" />
               </TextBlock.LayoutTransform>
@@ -186,7 +224,7 @@
 
         <Expander ExpandDirection="Right">
           <Expander.Header>
-            <TextBlock RenderTransformOrigin=".5,.5" Text="Expander Example 3c">
+            <TextBlock RenderTransformOrigin=".5,.5" Text="Expander Example 4c">
               <TextBlock.LayoutTransform>
                 <RotateTransform Angle="90" />
               </TextBlock.LayoutTransform>

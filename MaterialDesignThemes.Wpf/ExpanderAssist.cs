@@ -2,7 +2,7 @@
 
 namespace MaterialDesignThemes.Wpf;
 
-public enum ExpanderPosition
+public enum ExpanderButtonPosition
 {
     Start,
     End
@@ -56,33 +56,23 @@ public static class ExpanderAssist
         => element.SetValue(HeaderBackgroundProperty, value);
     #endregion
 
-    #region AttachedProperty : ExpandedIconProperty
-    public static readonly DependencyProperty ExpandedIconProperty
-        = DependencyProperty.RegisterAttached("ExpandedIcon", typeof(object), typeof(ExpanderAssist));
+    #region AttachedProperty : ExpanderButtonContentProperty
+    public static readonly DependencyProperty ExpanderButtonContentProperty
+        = DependencyProperty.RegisterAttached("ExpanderButtonContent", typeof(object), typeof(ExpanderAssist));
 
-    public static object? GetExpandedIcon(Expander element)
-        => (object?)element.GetValue(ExpandedIconProperty);
-    public static void SetExpandedIcon(Expander element, object? value)
-        => element.SetValue(ExpandedIconProperty, value);
+    public static object? GetExpanderButtonContent(Expander element)
+        => (object?)element.GetValue(ExpanderButtonContentProperty);
+    public static void SetExpanderButtonContent(Expander element, object? value)
+        => element.SetValue(ExpanderButtonContentProperty, value);
     #endregion
 
-    #region AttachedProperty : ExpanderCollapcedIconProperty
-    public static readonly DependencyProperty CollapcedIconProperty
-        = DependencyProperty.RegisterAttached("CollapcedIcon", typeof(object), typeof(ExpanderAssist));
+    #region AttachedProperty : ExpanderButtonPositionProperty
+    public static readonly DependencyProperty ExpanderButtonPositionProperty
+        = DependencyProperty.RegisterAttached("ExpanderButtonPosition", typeof(ExpanderButtonPosition), typeof(ExpanderAssist), new PropertyMetadata(ExpanderButtonPosition.End));
 
-    public static object? GetCollapcedIcon(Expander element)
-        => (object?)element.GetValue(CollapcedIconProperty);
-    public static void SetCollapcedIcon(Expander element, object? value)
-        => element.SetValue(CollapcedIconProperty, value);
-    #endregion
-
-    #region AttachedProperty : ExpanderPositionProperty
-    public static readonly DependencyProperty ExpanderPositionProperty
-        = DependencyProperty.RegisterAttached("ExpanderPosition", typeof(ExpanderPosition), typeof(ExpanderAssist), new PropertyMetadata(ExpanderPosition.End));
-
-    public static ExpanderPosition GetExpanderPosition(Expander element)
-        => (ExpanderPosition)element.GetValue(ExpanderPositionProperty);
-    public static void SetExpanderPosition(Expander element, ExpanderPosition value)
-        => element.SetValue(ExpanderPositionProperty, value);
+    public static ExpanderButtonPosition GetExpanderButtonPosition(Expander element)
+        => (ExpanderButtonPosition)element.GetValue(ExpanderButtonPositionProperty);
+    public static void SetExpanderButtonPosition(Expander element, ExpanderButtonPosition value)
+        => element.SetValue(ExpanderButtonPositionProperty, value);
     #endregion
 }

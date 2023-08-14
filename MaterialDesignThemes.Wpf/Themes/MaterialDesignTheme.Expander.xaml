@@ -9,65 +9,53 @@
   <KeyTime x:Key="ExpandKeyTime">0:0:0.250</KeyTime>
   <KeyTime x:Key="CollapseKeyTime">0:0:0.200</KeyTime>
 
-  <ControlTemplate x:Key="ToggeleTemplate" TargetType="{x:Type ToggleButton}">
-    <Border Background="Transparent">
-      <VisualStateManager.VisualStateGroups>
-        <VisualStateGroup x:Name="CheckStates">
-          <VisualState x:Name="Checked">
-            <Storyboard>
-              <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExpandPathRotateTransform" Storyboard.TargetProperty="Angle">
-                <EasingDoubleKeyFrame KeyTime="{StaticResource ExpandKeyTime}" Value="180" />
-              </DoubleAnimationUsingKeyFrames>
-            </Storyboard>
-          </VisualState>
-          <VisualState x:Name="Unchecked">
-            <Storyboard>
-              <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExpandPathRotateTransform" Storyboard.TargetProperty="Angle">
-                <EasingDoubleKeyFrame KeyTime="{StaticResource CollapseKeyTime}" Value="0" />
-              </DoubleAnimationUsingKeyFrames>
-            </Storyboard>
-          </VisualState>
-        </VisualStateGroup>
-      </VisualStateManager.VisualStateGroups>
-      <wpf:PackIcon x:Name="ExpandPath"
-                    Width="24"
-                    Height="24"
-                    Foreground="{TemplateBinding Foreground}"
-                    Kind="ChevronDown"
-                    Opacity="0.38"
-                    RenderTransformOrigin="0.5 0.5">
-        <wpf:PackIcon.RenderTransform>
-          <RotateTransform x:Name="ExpandPathRotateTransform" />
-        </wpf:PackIcon.RenderTransform>
-      </wpf:PackIcon>
-    </Border>
-  </ControlTemplate>
-
   <Style x:Key="MaterialDesignExpanderToggleButton" TargetType="{x:Type ToggleButton}">
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate TargetType="{x:Type ToggleButton}">
-          <ContentControl>
-            <ContentControl.Style>
-              <Style TargetType="ContentControl">
-                <Setter Property="Content" Value="{Binding RelativeSource={RelativeSource AncestorType=Expander, Mode=FindAncestor}, Path=(wpf:ExpanderAssist.ExpandedIcon)}" />
-                <Style.Triggers>
-                  <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=ToggleButton, Mode=FindAncestor}, Path=IsChecked}" Value="False">
-                    <Setter Property="Content" Value="{Binding RelativeSource={RelativeSource AncestorType=Expander, Mode=FindAncestor}, Path=(wpf:ExpanderAssist.CollapcedIcon)}" />
-                  </DataTrigger>
-                </Style.Triggers>
-              </Style>
-            </ContentControl.Style>
-          </ContentControl>
+        <ControlTemplate>
+          <ContentControl Content="{Binding RelativeSource={RelativeSource AncestorType=Expander, Mode=FindAncestor}, Path=(wpf:ExpanderAssist.ExpanderButtonContent)}" />
         </ControlTemplate>
       </Setter.Value>
     </Setter>
     <Style.Triggers>
-      <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Expander, Mode=FindAncestor}, Path=(wpf:ExpanderAssist.ExpandedIcon)}" Value="{x:Null}">
-        <Setter Property="Template" Value="{StaticResource ToggeleTemplate}" />
-      </DataTrigger>
-      <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Expander, Mode=FindAncestor}, Path=(wpf:ExpanderAssist.CollapcedIcon)}" Value="{x:Null}">
-        <Setter Property="Template" Value="{StaticResource ToggeleTemplate}" />
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Expander, Mode=FindAncestor}, Path=(wpf:ExpanderAssist.ExpanderButtonContent)}" Value="{x:Null}">
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type ToggleButton}">
+              <Border Background="Transparent">
+                <VisualStateManager.VisualStateGroups>
+                  <VisualStateGroup x:Name="CheckStates">
+                    <VisualState x:Name="Checked">
+                      <Storyboard>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExpandPathRotateTransform" Storyboard.TargetProperty="Angle">
+                          <EasingDoubleKeyFrame KeyTime="{StaticResource ExpandKeyTime}" Value="180" />
+                        </DoubleAnimationUsingKeyFrames>
+                      </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Unchecked">
+                      <Storyboard>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExpandPathRotateTransform" Storyboard.TargetProperty="Angle">
+                          <EasingDoubleKeyFrame KeyTime="{StaticResource CollapseKeyTime}" Value="0" />
+                        </DoubleAnimationUsingKeyFrames>
+                      </Storyboard>
+                    </VisualState>
+                  </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <wpf:PackIcon x:Name="ExpandPath"
+                              Width="24"
+                              Height="24"
+                              Foreground="{TemplateBinding Foreground}"
+                              Kind="ChevronDown"
+                              Opacity="0.38"
+                              RenderTransformOrigin="0.5 0.5">
+                  <wpf:PackIcon.RenderTransform>
+                    <RotateTransform x:Name="ExpandPathRotateTransform" />
+                  </wpf:PackIcon.RenderTransform>
+                </wpf:PackIcon>
+              </Border>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
       </DataTrigger>
     </Style.Triggers>
   </Style>
@@ -116,11 +104,11 @@
             </Grid>
           </Border>
           <ControlTemplate.Triggers>
-            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Expander, Mode=FindAncestor}, Path=(wpf:ExpanderAssist.ExpanderPosition)}" Value="Start">
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Expander, Mode=FindAncestor}, Path=(wpf:ExpanderAssist.ExpanderButtonPosition)}" Value="Start">
               <Setter TargetName="ExpanderButton" Property="Grid.Column" Value="0" />
               <Setter TargetName="ExpanderButton" Property="Margin" Value="0,0,10,0" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Expander, Mode=FindAncestor}, Path=(wpf:ExpanderAssist.ExpanderPosition)}" Value="End">
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Expander, Mode=FindAncestor}, Path=(wpf:ExpanderAssist.ExpanderButtonPosition)}" Value="End">
               <Setter TargetName="ExpanderButton" Property="Grid.Column" Value="2" />
               <Setter TargetName="ExpanderButton" Property="Margin" Value="0" />
             </DataTrigger>
