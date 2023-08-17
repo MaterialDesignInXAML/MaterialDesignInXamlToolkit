@@ -168,7 +168,7 @@ ScrollViewer.VerticalScrollBarVisibility=""Visible"">
         var listBoxItem = await listBox.GetElement<ListBoxItem>("/ListBoxItem[2]");
 
         await textBox.LeftClick();
-        Assert.True(await textBox.GetIsKeyboardFocusWithin());
+        await Wait.For(async () => Assert.True(await textBox.GetIsKeyboardFocusWithin()));
 
         // Act
         await listBoxItem.LeftClick();
