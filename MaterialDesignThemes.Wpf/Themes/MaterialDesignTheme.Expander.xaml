@@ -106,11 +106,12 @@
           <ControlTemplate.Triggers>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Expander, Mode=FindAncestor}, Path=(wpf:ExpanderAssist.ExpanderButtonPosition)}" Value="Start">
               <Setter TargetName="ExpanderButton" Property="Grid.Column" Value="0" />
-              <Setter TargetName="ExpanderButton" Property="Margin" Value="0,0,10,0" />
             </DataTrigger>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Expander, Mode=FindAncestor}, Path=(wpf:ExpanderAssist.ExpanderButtonPosition)}" Value="End">
               <Setter TargetName="ExpanderButton" Property="Grid.Column" Value="2" />
-              <Setter TargetName="ExpanderButton" Property="Margin" Value="0" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Expander, Mode=FindAncestor}, Path=(wpf:ExpanderAssist.ExpanderButtonPosition)}" Value="Default">
+              <Setter TargetName="ExpanderButton" Property="Grid.Column" Value="2" />
             </DataTrigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
@@ -120,7 +121,6 @@
 
   <Style x:Key="MaterialDesignVerticalHeaderStyle" TargetType="{x:Type ToggleButton}">
     <Setter Property="Background" Value="Transparent" />
-
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ToggleButton}">
@@ -128,12 +128,11 @@
             <Grid>
               <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="16" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
               </Grid.RowDefinitions>
 
               <ToggleButton x:Name="ExpanderButton"
-                            Grid.Row="0"
                             VerticalAlignment="Center"
                             Foreground="{TemplateBinding Foreground}"
                             IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
@@ -163,7 +162,7 @@
                 </ToggleButton.Style>
               </ToggleButton>
 
-              <ContentPresenter Grid.Row="2"
+              <ContentPresenter Grid.Row="1"
                                 VerticalAlignment="Center"
                                 Content="{TemplateBinding Content}"
                                 ContentStringFormat="{TemplateBinding ContentStringFormat}"
@@ -172,6 +171,17 @@
 
             </Grid>
           </Border>
+          <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Expander, Mode=FindAncestor}, Path=(wpf:ExpanderAssist.ExpanderButtonPosition)}" Value="Start">
+              <Setter TargetName="ExpanderButton" Property="Grid.Row" Value="0" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Expander, Mode=FindAncestor}, Path=(wpf:ExpanderAssist.ExpanderButtonPosition)}" Value="End">
+              <Setter TargetName="ExpanderButton" Property="Grid.Row" Value="2" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Expander, Mode=FindAncestor}, Path=(wpf:ExpanderAssist.ExpanderButtonPosition)}" Value="Default">
+              <Setter TargetName="ExpanderButton" Property="Grid.Row" Value="0" />
+            </DataTrigger>
+          </ControlTemplate.Triggers>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
