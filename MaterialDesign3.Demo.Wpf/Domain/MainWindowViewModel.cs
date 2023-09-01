@@ -41,7 +41,7 @@ public class MainWindowViewModel : ViewModelBase
             DemoItems.First(x => x.Name == "Fields"),
             DemoItems.First(x => x.Name == "Pickers")
         };
-        SelectedItem = DemoItems.FirstOrDefault(di => string.Equals(di.Name, App.StartupItem, StringComparison.CurrentCultureIgnoreCase)) ?? DemoItems.First();
+        SelectedItem = DemoItems.FirstOrDefault(di => string.Equals(di.Name, App.StartupPage, StringComparison.CurrentCultureIgnoreCase)) ?? DemoItems.First();
         _demoItemsView = CollectionViewSource.GetDefaultView(DemoItems);
         _demoItemsView.Filter = DemoItemsFilter;
 

@@ -26,6 +26,22 @@ public partial class MainWindow
         var paletteHelper = new PaletteHelper();
         var theme = paletteHelper.GetTheme();
 
+        switch (App.InitialTheme)
+        {
+            case BaseTheme.Dark:
+                ModifyTheme(true);
+                break;
+            case BaseTheme.Light:
+                ModifyTheme(false);
+                break;
+        }
+
+        if (App.InitialFlowDirection == FlowDirection.RightToLeft)
+        {
+            FlowDirectionToggleButton.IsChecked = true;
+            FlowDirection = FlowDirection.RightToLeft;
+        }
+
         DarkModeToggleButton.IsChecked = theme.GetBaseTheme() == BaseTheme.Dark;
 
         if (paletteHelper.GetThemeManager() is { } themeManager)
@@ -93,6 +109,11 @@ public partial class MainWindow
 
     private void MenuDarkModeButton_Click(object sender, RoutedEventArgs e)
         => ModifyTheme(DarkModeToggleButton.IsChecked == true);
+
+    private void FlowDirectionButton_Click(object sender, RoutedEventArgs e)
+        => FlowDirection = FlowDirectionToggleButton.IsChecked.GetValueOrDefault(false)
+            ? FlowDirection.RightToLeft
+            : FlowDirection.LeftToRight;
 
     private static void ModifyTheme(bool isDarkTheme)
     {

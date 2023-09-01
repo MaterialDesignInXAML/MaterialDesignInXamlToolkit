@@ -31,7 +31,7 @@ public class MainWindowViewModel : ViewModelBase
         {
             DemoItems.Add(item);
         }
-        SelectedItem = DemoItems.FirstOrDefault(di => string.Equals(di.Name, App.StartupItem, StringComparison.CurrentCultureIgnoreCase)) ?? DemoItems.First();
+        SelectedItem = DemoItems.FirstOrDefault(di => string.Equals(di.Name, App.StartupPage, StringComparison.CurrentCultureIgnoreCase)) ?? DemoItems.First();
         _demoItemsView = CollectionViewSource.GetDefaultView(DemoItems);
         _demoItemsView.Filter = DemoItemsFilter;
         

@@ -21,6 +21,7 @@
     <PackageVersion Include="ShowMeTheXAML" Version="2.0.0" />
     <PackageVersion Include="ShowMeTheXAML.AvalonEdit" Version="2.0.0" />
     <PackageVersion Include="ShowMeTheXAML.MSBuild" Version="2.0.0" />
+    <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
     <PackageVersion Include="VirtualizingWrapPanel" Version="1.5.7" />
     <PackageVersion Include="XAMLTest" Version="1.1.0" />
     <PackageVersion Include="xunit" Version="2.5.0" />
