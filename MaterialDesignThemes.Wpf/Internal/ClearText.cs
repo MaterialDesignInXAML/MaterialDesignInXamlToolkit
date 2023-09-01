@@ -53,6 +53,9 @@ public static class ClearText
                 case PasswordBox passwordBox:
                     passwordBox.Password = null;
                     break;
+                case RichTextBox richTextBox:
+                    richTextBox.SetCurrentValue(RichTextBox.TextProperty,null);
+                    break;
             }
             e.Handled = true;
         }
