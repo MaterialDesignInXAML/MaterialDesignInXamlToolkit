@@ -20,7 +20,7 @@
             <wpf:ElevationMarginConverter x:Key="ElevationMarginConverter" />
             <wpf:ElevationRadiusConverter x:Key="ElevationRadiusConverter" Multiplier="-1" />
           </ControlTemplate.Resources>
-          <Grid Cursor="{TemplateBinding Cursor, Converter={StaticResource ArrowCursorConverter}}" VerticalAlignment="Center">
+          <Grid VerticalAlignment="Center" Cursor="{TemplateBinding Cursor, Converter={StaticResource ArrowCursorConverter}}">
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="FocusStates">
                 <VisualState x:Name="Focused">
@@ -207,26 +207,28 @@
             <wpf:PopupEx x:Name="PART_AutoSuggestBoxPopup"
                          MaxHeight="{TemplateBinding DropDownMaxHeight}"
                          AllowsTransparency="True"
-                         Visibility="Collapsed"
                          Focusable="False"
                          IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsSuggestionOpen, Mode=TwoWay}"
                          PopupAnimation="Slide"
                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                         StaysOpen="False">
+                         StaysOpen="False"
+                         Visibility="Collapsed">
               <wpf:Card x:Name="PopupCard"
-                        Background="{TemplateBinding DropDownBackground}"
                         Margin="{TemplateBinding DropDownElevation, Converter={StaticResource ElevationMarginConverter}}"
+                        Background="{TemplateBinding DropDownBackground}"
                         Foreground="{DynamicResource MaterialDesignBody}"
                         RenderOptions.ClearTypeHint="Enabled"
-                        Style="{StaticResource MaterialDesignElevatedCard}"
-                        UniformCornerRadius="{TemplateBinding CornerRadius}">
+                        Style="{StaticResource MaterialDesignElevatedCard}">
                 <ListBox x:Name="PART_AutoSuggestBoxList"
                          Width="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ActualWidth}"
                          DisplayMemberPath="{TemplateBinding DisplayMember}"
                          Focusable="False"
+                         IsSynchronizedWithCurrentItem="True"
                          ItemContainerStyle="{TemplateBinding ItemContainerStyle}"
                          ItemTemplate="{TemplateBinding ItemTemplate}"
                          ItemsSource="{TemplateBinding Suggestions}"
+                         SelectedItem="{TemplateBinding SelectedItem}"
+                         SelectedValue="{TemplateBinding SelectedValue}"
                          SelectedValuePath="{TemplateBinding ValueMember}"
                          Style="{DynamicResource MaterialDesignCardsListBox}" />
               </wpf:Card>
@@ -551,14 +553,13 @@
          BasedOn="{StaticResource MaterialDesignFloatingHintAutoSuggestBox}">
     <Setter Property="Padding" Value="{x:Static wpf:Constants.FilledTextBoxDefaultPadding}" />
     <Setter Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
-    <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4,4,0,0" />
+    <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4" />
     <Setter Property="wpf:TextFieldAssist.UnderlineCornerRadius" Value="0" />
   </Style>
 
   <Style x:Key="MaterialDesignOutlinedAutoSuggestBox"
          TargetType="{x:Type wpf:AutoSuggestBox}"
          BasedOn="{StaticResource MaterialDesignFloatingHintAutoSuggestBox}">
-    <Setter Property="CornerRadius" Value="0 0 4 4" />
     <Setter Property="DropDownElevation" Value="Dp0" />
     <Setter Property="Padding" Value="{x:Static wpf:Constants.OutlinedTextBoxDefaultPadding}" />
     <Setter Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />

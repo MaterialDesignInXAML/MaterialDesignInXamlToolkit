@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using MaterialDesignThemes.UITests.Samples.AutoSuggestTextBoxes;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Data;

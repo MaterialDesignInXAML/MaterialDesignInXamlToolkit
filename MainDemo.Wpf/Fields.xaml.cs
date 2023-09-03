@@ -13,10 +13,4 @@ public partial class Fields
 
     private void Hyperlink_OnRequestNavigate(object sender, RequestNavigateEventArgs e)
         => Link.OpenInBrowser(e.Uri.AbsoluteUri);
-
-    private void AutoSuggestBox_SuggestionChosen(object sender, RoutedPropertyChangedEventArgs<object> e)
-    {
-        MessageBox.Show($"You chose {e.NewValue}");
-    }
-
 }

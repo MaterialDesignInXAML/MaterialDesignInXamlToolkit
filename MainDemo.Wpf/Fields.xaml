@@ -1,8 +1,8 @@
 <UserControl x:Class="MaterialDesignDemo.Fields"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:converters="clr-namespace:MaterialDesignDemo.Converters"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
              xmlns:domain1="clr-namespace:MaterialDesignDemo.Domain"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -765,8 +765,10 @@
           HorizontalAlignment="Left"
           VerticalAlignment="Top">
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="300" />
-        <ColumnDefinition Width="300" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
       </Grid.ColumnDefinitions>
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto" />
@@ -779,13 +781,13 @@
                  Margin="0,0,0,10"
                  VerticalAlignment="Center"
                  Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                 Text="TextBox With AutoSuggestion" />
+                 Text="AutoSuggestBox" />
       <TextBlock Grid.Row="1"
                  Grid.Column="0"
                  VerticalAlignment="Center"
                  Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                  Text="Simple source list" />
-      
+
       <smtx:XamlDisplay Grid.Row="2"
                         Grid.Column="0"
                         UniqueKey="fields_autosuggestion_1">
@@ -797,18 +799,73 @@
       <TextBlock Grid.Row="1"
                  Grid.Column="1"
                  Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
-                 Text="AutoSuggestionItemTemplate" />
+                 Text="AutoSuggestBox with ItemTemplate" />
       <smtx:XamlDisplay Grid.Row="2"
                         Grid.Column="1"
                         UniqueKey="fields_autosuggestion_2">
-        <materialDesign:AutoSuggestBox materialDesign:HintAssist.HelperText="Select your color"
-                                       materialDesign:TextFieldAssist.HasClearButton="True"
+        <materialDesign:AutoSuggestBox materialDesign:HintAssist.HelperText="Select color"
                                        materialDesign:HintAssist.Hint="Color"
+                                       materialDesign:TextFieldAssist.HasClearButton="True"
                                        DropDownElevation="Dp0"
-                                       ValueMember="Key"
-                                       SuggestionChosen="AutoSuggestBox_SuggestionChosen"
                                        Suggestions="{Binding AutoSuggestBox2Suggestions}"
-                                       Text="{Binding AutoSuggestBox2Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                                       Text="{Binding AutoSuggestBox2Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                       ValueMember="Key">
+          <materialDesign:AutoSuggestBox.ItemTemplate>
+            <DataTemplate>
+              <DockPanel>
+                <Border Width="20"
+                        Height="20"
+                        Background="{Binding Value, Converter={StaticResource ColorToBrushConverter}}"
+                        CornerRadius="10" />
+                <TextBlock Margin="10,0,0,0" Text="{Binding Key}" />
+              </DockPanel>
+            </DataTemplate>
+          </materialDesign:AutoSuggestBox.ItemTemplate>
+        </materialDesign:AutoSuggestBox>
+      </smtx:XamlDisplay>
+
+      <TextBlock Grid.Row="1"
+                 Grid.Column="2"
+                 Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                 Text="Filled AutoSuggestBox" />
+      <smtx:XamlDisplay Grid.Row="2"
+                        Grid.Column="2"
+                        UniqueKey="fields_autosuggestion_3">
+        <materialDesign:AutoSuggestBox materialDesign:HintAssist.Hint="Color"
+                                       materialDesign:TextFieldAssist.HasClearButton="True"
+                                       DropDownElevation="Dp0"
+                                       Style="{StaticResource MaterialDesignFilledAutoSuggestBox}"
+                                       Suggestions="{Binding AutoSuggestBox2Suggestions}"
+                                       Text="{Binding AutoSuggestBox2Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                       ValueMember="Key">
+          <materialDesign:AutoSuggestBox.ItemTemplate>
+            <DataTemplate>
+              <DockPanel>
+                <Border Width="20"
+                        Height="20"
+                        Background="{Binding Value, Converter={StaticResource ColorToBrushConverter}}"
+                        CornerRadius="10" />
+                <TextBlock Margin="10,0,0,0" Text="{Binding Key}" />
+              </DockPanel>
+            </DataTemplate>
+          </materialDesign:AutoSuggestBox.ItemTemplate>
+        </materialDesign:AutoSuggestBox>
+      </smtx:XamlDisplay>
+
+      <TextBlock Grid.Row="1"
+                 Grid.Column="2"
+                 Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                 Text="Outlined AutoSuggestBox" />
+      <smtx:XamlDisplay Grid.Row="2"
+                        Grid.Column="2"
+                        UniqueKey="fields_autosuggestion_3">
+        <materialDesign:AutoSuggestBox materialDesign:HintAssist.Hint="Color"
+                                       materialDesign:TextFieldAssist.HasClearButton="True"
+                                       DropDownElevation="Dp0"
+                                       Style="{StaticResource MaterialDesignOutlinedAutoSuggestBox}"
+                                       Suggestions="{Binding AutoSuggestBox2Suggestions}"
+                                       Text="{Binding AutoSuggestBox2Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                       ValueMember="Key">
           <materialDesign:AutoSuggestBox.ItemTemplate>
             <DataTemplate>
               <DockPanel>

@@ -71,7 +71,7 @@ public class AutoSuggestBoxTests : TestBase
         recorder.Success();
     }
 
-    [Fact(Skip = "This needs ICollectionView")]
+    [Fact]
     public async Task CanFilterItems_WithCollectionView_FiltersSuggestions()
     {
         await using var recorder = new TestRecorder(App);
@@ -102,8 +102,6 @@ public class AutoSuggestBoxTests : TestBase
 
         recorder.Success();
     }
-
-    //TODO: Test case with ICollectionSource
 
     private static async Task AssertExists(IVisualElement<ListBox> suggestionListBox, string text, bool existsOrNotCheck = true)
     {

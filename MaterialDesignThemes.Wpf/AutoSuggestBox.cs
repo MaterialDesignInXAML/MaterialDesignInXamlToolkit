@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.ComponentModel;
+using System.Windows.Data;
 using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf;
@@ -42,15 +44,6 @@ public class AutoSuggestBox : TextBox
     }
     public static readonly DependencyProperty DisplayMemberProperty =
         DependencyProperty.Register("DisplayMember", typeof(string), typeof(AutoSuggestBox), new PropertyMetadata(default(string)));
-
-
-    public CornerRadius CornerRadius
-    {
-        get => (CornerRadius)GetValue(CornerRadiusProperty);
-        set => SetValue(CornerRadiusProperty, value);
-    }
-    public static readonly DependencyProperty CornerRadiusProperty =
-        DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(AutoSuggestBox), new PropertyMetadata(default(CornerRadius)));
 
     public Brush DropDownBackground
     {
@@ -101,6 +94,26 @@ public class AutoSuggestBox : TextBox
     public static readonly DependencyProperty IsSuggestionOpenProperty =
         DependencyProperty.Register("IsSuggestionOpen", typeof(bool), typeof(AutoSuggestBox), new PropertyMetadata(default(bool)));
 
+    public object SelectedItem
+    {
+        get => GetValue(SelectedItemProperty);
+        set => SetValue(SelectedItemProperty, value);
+    }
+    public static readonly DependencyProperty SelectedItemProperty =
+        DependencyProperty.Register("SelectedItem", typeof(object), typeof(AutoSuggestBox), new PropertyMetadata(default(object)));
+
+
+    public object SelectedValue
+    {
+        get => GetValue(SelectedValueProperty);
+        set => SetValue(SelectedValueProperty, value);
+    }
+    public static readonly DependencyProperty SelectedValueProperty =
+        DependencyProperty.Register("SelectedValue", typeof(object), typeof(AutoSuggestBox), new PropertyMetadata(default(object)));
+
+
+
+
 
     public static readonly RoutedEvent SuggestionChosenEvent =
         EventManager.RegisterRoutedEvent(
@@ -117,10 +130,7 @@ public class AutoSuggestBox : TextBox
 
     #endregion
 
-    static AutoSuggestBox()
-    {
-        DefaultStyleKeyProperty.OverrideMetadata(typeof(AutoSuggestBox), new FrameworkPropertyMetadata(typeof(AutoSuggestBox)));
-    }
+    static AutoSuggestBox() => DefaultStyleKeyProperty.OverrideMetadata(typeof(AutoSuggestBox), new FrameworkPropertyMetadata(typeof(AutoSuggestBox)));
 
     #region Override methods
 
@@ -170,11 +180,6 @@ public class AutoSuggestBox : TextBox
         base.OnLostFocus(e);
         CloseAutoSuggestionPopUp();
     }
-
-    #endregion
-
-    #region Callback handlers
-
     protected override void OnTextChanged(TextChangedEventArgs e)
     {
         base.OnTextChanged(e);
@@ -188,7 +193,7 @@ public class AutoSuggestBox : TextBox
 
     #endregion
 
-    #region Methods
+    #region Callback handlers
 
     private void AutoSuggestionListBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
     {
@@ -200,6 +205,10 @@ public class AutoSuggestBox : TextBox
             CommitValueSelection();
         }
     }
+
+    #endregion
+
+    #region Methods    
 
     private void CloseAutoSuggestionPopUp()
     {
@@ -229,10 +238,11 @@ public class AutoSuggestBox : TextBox
     {
         if (_autoSuggestBoxList is null)
             return;
-        if (_autoSuggestBoxList.SelectedIndex == 0 || _autoSuggestBoxList.SelectedIndex == -1)
-            _autoSuggestBoxList.SelectedIndex = _autoSuggestBoxList.Items.Count - 1;
+        ICollectionView collectionView = CollectionViewSource.GetDefaultView(Suggestions);
+        if (collectionView.IsCurrentBeforeFirst)
+            collectionView.MoveCurrentToLast();
         else
-            _autoSuggestBoxList.SelectedIndex -= 1;
+            collectionView.MoveCurrentToPrevious();
         _autoSuggestBoxList.ScrollIntoView(_autoSuggestBoxList.SelectedItem);
     }
 
@@ -240,10 +250,11 @@ public class AutoSuggestBox : TextBox
     {
         if (_autoSuggestBoxList is null)
             return;
-        if (_autoSuggestBoxList.SelectedIndex == _autoSuggestBoxList.Items.Count - 1)
-            _autoSuggestBoxList.SelectedIndex = 0;
+        ICollectionView collectionView = CollectionViewSource.GetDefaultView(Suggestions);
+        if (collectionView.IsCurrentAfterLast)
+            collectionView.MoveCurrentToFirst();
         else
-            _autoSuggestBoxList.SelectedIndex += 1;
+            collectionView.MoveCurrentToNext();
         _autoSuggestBoxList.ScrollIntoView(_autoSuggestBoxList.SelectedItem);
     }
 
