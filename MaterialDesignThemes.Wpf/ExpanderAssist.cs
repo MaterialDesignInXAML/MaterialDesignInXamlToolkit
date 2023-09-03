@@ -2,10 +2,17 @@
 
 namespace MaterialDesignThemes.Wpf;
 
+public enum ExpanderButtonPosition
+{
+    Default,
+    Start,
+    End
+}
+
 public static class ExpanderAssist
 {
-    private static readonly Thickness DefaultHorizontalHeaderPadding = new Thickness(24, 12, 24, 12);
-    private static readonly Thickness DefaultVerticalHeaderPadding = new Thickness(12, 24, 12, 24);
+    private static readonly Thickness DefaultHorizontalHeaderPadding = new(24, 12, 24, 12);
+    private static readonly Thickness DefaultVerticalHeaderPadding = new(12, 24, 12, 24);
 
     #region AttachedProperty : HorizontalHeaderPaddingProperty
     public static readonly DependencyProperty HorizontalHeaderPaddingProperty
@@ -48,5 +55,25 @@ public static class ExpanderAssist
         => (Brush?)element.GetValue(HeaderBackgroundProperty);
     public static void SetHeaderBackground(Expander element, Brush? value)
         => element.SetValue(HeaderBackgroundProperty, value);
+    #endregion
+
+    #region AttachedProperty : ExpanderButtonContentProperty
+    public static readonly DependencyProperty ExpanderButtonContentProperty
+        = DependencyProperty.RegisterAttached("ExpanderButtonContent", typeof(object), typeof(ExpanderAssist));
+
+    public static object? GetExpanderButtonContent(Expander element)
+        => (object?)element.GetValue(ExpanderButtonContentProperty);
+    public static void SetExpanderButtonContent(Expander element, object? value)
+        => element.SetValue(ExpanderButtonContentProperty, value);
+    #endregion
+
+    #region AttachedProperty : ExpanderButtonPositionProperty
+    public static readonly DependencyProperty ExpanderButtonPositionProperty
+        = DependencyProperty.RegisterAttached("ExpanderButtonPosition", typeof(ExpanderButtonPosition), typeof(ExpanderAssist), new PropertyMetadata(ExpanderButtonPosition.Default));
+
+    public static ExpanderButtonPosition GetExpanderButtonPosition(Expander element)
+        => (ExpanderButtonPosition)element.GetValue(ExpanderButtonPositionProperty);
+    public static void SetExpanderButtonPosition(Expander element, ExpanderButtonPosition value)
+        => element.SetValue(ExpanderButtonPositionProperty, value);
     #endregion
 }
