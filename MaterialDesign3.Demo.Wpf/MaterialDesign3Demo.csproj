@@ -34,6 +34,7 @@
   <ItemGroup>
     <Resource Include="Resources\*.jpg" />
     <Resource Include="Resources\*.png" />
+    <Compile Include="..\MainDemo.Wpf\CommandLineOptions.cs" Link="CommandLineOptions.cs" />
     <Resource Include="ScreenGrabFromGoogle.gif" />
     <Resource Include="favicon.ico" />
   </ItemGroup>
