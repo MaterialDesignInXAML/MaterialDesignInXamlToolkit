@@ -858,7 +858,7 @@
                  Text="Outlined AutoSuggestBox" />
       <smtx:XamlDisplay Grid.Row="2"
                         Grid.Column="2"
-                        UniqueKey="fields_autosuggestion_3">
+                        UniqueKey="fields_autosuggestion_4">
         <materialDesign:AutoSuggestBox materialDesign:HintAssist.Hint="Color"
                                        materialDesign:TextFieldAssist.HasClearButton="True"
                                        DropDownElevation="Dp0"
