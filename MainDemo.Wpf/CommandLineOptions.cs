@@ -1,44 +1,42 @@
 ﻿using System.CommandLine;
+using System.CommandLine.Parsing;
 using MaterialDesignThemes.Wpf;
 
-namespace MaterialDesignDemo;
+namespace MaterialDesign.Shared;
 
-internal class CommandLineOptions
+internal static class CommandLineOptions
 {
     private static readonly Option<string> PageOption =
-        new(name: "--page", description: "Sets the startup page of the Demo app.");
+        new(aliases: new[] {"--page", "-p"},
+            getDefaultValue: () => "Home",
+            description: "Sets the startup page of the Demo app.");
 
     private static readonly Option<FlowDirection> FlowDirectionOption =
-        new(name: "--flowDirection", description: "Sets the startup flow direction of the Demo app.");
+        new(aliases: new[] { "--flowDirection", "-f" },
+            getDefaultValue: () => FlowDirection.LeftToRight,
+            description: "Sets the startup flow direction of the Demo app.");
 
     private static readonly Option<BaseTheme> ThemeOption =
-        new(name: "--theme", description: "Sets the startup theme of the Demo app.");
+        new(aliases: new[] { "--theme", "-t" },
+            getDefaultValue: () => BaseTheme.Inherit,
+            description: "Sets the startup theme of the Demo app.");
 
-    private static readonly Command ConfigureCommand =
-        new("configure", "Allows for configuration of default startup values used by the Demo app.")
+    private static readonly RootCommand RootCommand =
+        new(description: "MaterialDesignInXamlToolkit Demo app command line options.")
         {
             PageOption,
             FlowDirectionOption,
             ThemeOption
         };
 
-    private static readonly RootCommand RootCommand =
-        new(description: "MaterialDesignInXamlToolkit Demo app command line options.");
-
-    static CommandLineOptions()
+    public static (string StartPage, FlowDirection FlowDirection, BaseTheme BaseTheme) ParseCommandLine(string[] args)
     {
-        PageOption.AddAlias("-p");
-        PageOption.SetDefaultValue("Home");
-        FlowDirectionOption.AddAlias("-f");
-        FlowDirectionOption.SetDefaultValue(FlowDirection.LeftToRight);
-        ThemeOption.AddAlias("-t");
-        ThemeOption.SetDefaultValue(BaseTheme.Inherit);
+        ParseResult parseResult = RootCommand.Parse(args);
 
-        ConfigureCommand.SetHandler(async (page, flowDirection, theme)
-                => await App.SetDefaults(page, flowDirection, theme)
-            , PageOption, FlowDirectionOption, ThemeOption);
-        RootCommand.AddCommand(ConfigureCommand);
+        return new(
+            parseResult.GetValueForOption(PageOption)!,
+            parseResult.GetValueForOption(FlowDirectionOption),
+            parseResult.GetValueForOption(ThemeOption)
+        );
     }
-
-    public static Task ReadCommandLineOptions(string[] args) => RootCommand.InvokeAsync(args);
 }

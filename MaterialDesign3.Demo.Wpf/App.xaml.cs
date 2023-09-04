@@ -1,4 +1,5 @@
-﻿using MaterialDesignThemes.Wpf;
+﻿using MaterialDesign.Shared;
+using MaterialDesignThemes.Wpf;
 using ShowMeTheXAML;
 
 namespace MaterialDesign3Demo;
@@ -8,21 +9,13 @@ namespace MaterialDesign3Demo;
 /// </summary>
 public partial class App : Application
 {
-    internal static string? StartupPage { get; set; }
-    internal static FlowDirection InitialFlowDirection { get; set; }
-    internal static BaseTheme InitialTheme { get; set; }
+    internal string? StartupPage { get; set; }
+    internal FlowDirection InitialFlowDirection { get; set; }
+    internal BaseTheme InitialTheme { get; set; }
 
-    internal static Task SetDefaults(string page, FlowDirection flowDirection, BaseTheme theme)
+    protected override void OnStartup(StartupEventArgs e)
     {
-        App.StartupPage = page;
-        App.InitialFlowDirection = flowDirection;
-        App.InitialTheme = theme;
-        return Task.CompletedTask;
-    }
-
-    protected override async void OnStartup(StartupEventArgs e)
-    {
-        await CommandLineOptions.ReadCommandLineOptions(e.Args);
+        (StartupPage, InitialFlowDirection, InitialTheme) = CommandLineOptions.ParseCommandLine(e.Args);
 
         //This is an alternate way to initialize MaterialDesignInXAML if you don't use the MaterialDesignResourceDictionary in App.xaml
         //Color primaryColor = SwatchHelper.Lookup[MaterialDesignColor.DeepPurple];

@@ -21,12 +21,13 @@ public partial class MainWindow
             MainSnackbar.MessageQueue?.Enqueue("Welcome to Material Design In XAML Toolkit");
         }, TaskScheduler.FromCurrentSynchronizationContext());
 
-        DataContext = new MainWindowViewModel(MainSnackbar.MessageQueue!);
+        App app = (App)Application.Current;
+        DataContext = new MainWindowViewModel(MainSnackbar.MessageQueue!, app.StartupPage);
 
         var paletteHelper = new PaletteHelper();
         var theme = paletteHelper.GetTheme();
 
-        switch (App.InitialTheme)
+        switch (app.InitialTheme)
         {
             case BaseTheme.Dark:
                 ModifyTheme(true);
@@ -36,7 +37,7 @@ public partial class MainWindow
                 break;
         }
 
-        if (App.InitialFlowDirection == FlowDirection.RightToLeft)
+        if (app.InitialFlowDirection == FlowDirection.RightToLeft)
         {
             FlowDirectionToggleButton.IsChecked = true;
             FlowDirection = FlowDirection.RightToLeft;
