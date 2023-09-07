@@ -103,12 +103,9 @@ public class TreeListViewItemContentPresenter : ContentPresenter
         DependencyProperty.Register("Children", typeof(IEnumerable<object?>), typeof(TreeListViewItemContentPresenter),
             new PropertyMetadata(null));
 
-    public DataTemplate? Template { get; set; }
-
     protected override void OnTemplateChanged(DataTemplate oldTemplate, DataTemplate newTemplate)
     {
         base.OnTemplateChanged(oldTemplate, newTemplate);
-        Template = newTemplate;
         
         if (newTemplate is HierarchicalDataTemplate hierarchical)
         {
