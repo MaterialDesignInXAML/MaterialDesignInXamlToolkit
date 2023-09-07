@@ -72,6 +72,8 @@
   <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource MaterialDesignMenuItem}" />
   <Style TargetType="{x:Type mdix:MultiSelectTreeView}" BasedOn="{StaticResource MaterialDesignMultiSelectTreeView}" />
   <Style TargetType="{x:Type mdix:MultiSelectTreeViewItem}" BasedOn="{StaticResource MaterialDesignMultiSelectTreeViewItem}" />
+  <Style TargetType="{x:Type mdix:TreeListView}" BasedOn="{StaticResource MaterialDesignTreeListView}" />
+  <Style TargetType="{x:Type mdix:TreeListViewItem}" BasedOn="{StaticResource MaterialDesignTreeListViewItem}" />
   <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignPasswordBox}" />
   <Style TargetType="{x:Type ProgressBar}" BasedOn="{StaticResource MaterialDesignLinearProgressBar}" />
   <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MaterialDesignRadioButton}" />

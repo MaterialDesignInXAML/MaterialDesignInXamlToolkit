@@ -87,6 +87,8 @@ public sealed class TreesViewModel : ViewModelBase
                 new Movie("EuroTrip", "Jeff Schaffer")
             )
         };
+        MovieCategories.Add(MovieCategories[0]);
+        MovieCategories.Add(MovieCategories[1]);
 
         AddCommand = new AnotherCommandImplementation(
             _ =>
