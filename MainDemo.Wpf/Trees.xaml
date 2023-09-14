@@ -31,7 +31,7 @@
 
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" MaxHeight="450" />
         <RowDefinition Height="Auto" />
         <RowDefinition Height="Auto" />
       </Grid.RowDefinitions>
@@ -180,22 +180,40 @@
                   Grid.Column="2"
                   VerticalContentAlignment="Top"
                   UniqueKey="trees_3">
-        <materialDesign:TreeListView MinWidth="220"
-                                     ItemsSource="{Binding MovieCategories}">
-          <materialDesign:TreeListView.Resources>
-            <HierarchicalDataTemplate DataType="{x:Type domain:MovieCategory}"
-                                      ItemsSource="{Binding Movies, Mode=OneTime}">
-              <TextBlock Margin="3,2" Text="{Binding Name, Mode=OneTime}" />
-            </HierarchicalDataTemplate>
+        <Grid>
+          <materialDesign:TreeListView MinWidth="220" MaxHeight="450"
+                                     ItemsSource="{Binding TreeItems}"
+                                     SelectedItem="{Binding SelectedTreeItem}">
+            <materialDesign:TreeListView.Resources>
+              <HierarchicalDataTemplate DataType="{x:Type domain:TestItem}"
+                          ItemsSource="{Binding Items, Mode=OneTime}">
+                <TextBlock Margin="3,2" Text="{Binding Name, Mode=OneTime}" />
+              </HierarchicalDataTemplate>
 
-            <DataTemplate DataType="{x:Type domain:Movie}">
-              <TextBlock Margin="3,2"
+              <HierarchicalDataTemplate DataType="{x:Type domain:MovieCategory}"
+                                      ItemsSource="{Binding Movies, Mode=OneTime}">
+                <TextBlock Margin="3,2" Text="{Binding Name, Mode=OneTime}" />
+              </HierarchicalDataTemplate>
+
+              <DataTemplate DataType="{x:Type domain:Movie}">
+                <TextBlock Margin="3,2"
                            Text="{Binding Name, Mode=OneTime}"
                            ToolTip="{Binding Director, Mode=OneTime}" />
-            </DataTemplate>
-          </materialDesign:TreeListView.Resources>
+              </DataTemplate>
+            </materialDesign:TreeListView.Resources>
 
-        </materialDesign:TreeListView>
+          </materialDesign:TreeListView>
+          <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+            <Button Command="{Binding AddListTreeItemCommand}"
+                    ToolTip="Add an item"
+                    Content="{materialDesign:PackIcon Kind=Add}"/>
+
+            <Button Command="{Binding RemoveListTreeItemCommand}"
+                    ToolTip="Remove selected item(s)"
+                    Content="{materialDesign:PackIcon Kind=Remove}"/>
+
+          </StackPanel>
+        </Grid>
       </smtx:XamlDisplay>
 
       <TextBlock Grid.Row="2"

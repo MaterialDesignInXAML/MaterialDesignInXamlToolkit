@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections;
+using System.Collections.ObjectModel;
+using System.Windows.Documents;
 using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignDemo.Domain;
@@ -45,6 +47,19 @@ public class Planet
     public double Velocity { get; set; }
 }
 
+public class TestItem
+{
+    public TestItem? Parent { get; set; }
+    public string Name { get; }
+    public ObservableCollection<TestItem> Items { get; }
+
+    public TestItem(string name, IEnumerable<TestItem> items)
+    {
+        Name = name;
+        Items = new ObservableCollection<TestItem>(items);
+    }
+}
+
 public sealed class MovieCategory
 {
     public MovieCategory(string name, params Movie[] movies)
@@ -61,12 +76,25 @@ public sealed class MovieCategory
 public sealed class TreesViewModel : ViewModelBase
 {
     private object? _selectedItem;
+    private TestItem? _selectedTreeItem;
+
+    public ObservableCollection<TestItem> TreeItems { get; } = new();
 
     public ObservableCollection<MovieCategory> MovieCategories { get; }
 
     public AnotherCommandImplementation AddCommand { get; }
 
     public AnotherCommandImplementation RemoveSelectedItemCommand { get; }
+
+    public AnotherCommandImplementation AddListTreeItemCommand { get; }
+
+    public AnotherCommandImplementation RemoveListTreeItemCommand { get; }
+
+    public TestItem? SelectedTreeItem
+    {
+        get => _selectedTreeItem;
+        set => SetProperty(ref _selectedTreeItem, value);
+    }
 
     public object? SelectedItem
     {
@@ -76,6 +104,68 @@ public sealed class TreesViewModel : ViewModelBase
 
     public TreesViewModel()
     {
+        Random random = new();
+        for(int i = 0; i < 10; i++)
+        {
+            TreeItems.Add(CreateTestItem(random, 1));
+        }
+
+        static TestItem CreateTestItem(Random random, int depth)
+        {
+            int numberOfChildren = depth < 5 ? random.Next(0, 6) : 0;
+            var children = Enumerable.Range(0, numberOfChildren).Select(_ => CreateTestItem(random, depth + 1));
+            var rv = new TestItem(GenerateString(random.Next(4, 10)), children); 
+            foreach(var child in rv.Items)
+            {
+                child.Parent = rv;
+            }
+            return rv;
+        }
+
+        AddListTreeItemCommand = new(_ =>
+        {
+            if (SelectedTreeItem is { } treeItem)
+            {
+                var newItem = CreateTestItem(random, 1);
+                newItem.Parent = treeItem;
+                treeItem.Items.Add(newItem);
+            }
+            else
+            {
+                TreeItems.Add(CreateTestItem(random, 1));
+            }
+        });
+
+        RemoveListTreeItemCommand = new(items =>
+        {
+            if (items is IEnumerable enumerable)
+            {
+                foreach(TestItem testItem in enumerable)
+                {
+                    if (testItem.Parent is { } parent)
+                    {
+                        parent.Items.Remove(testItem);
+                    }
+                    else
+                    {
+                        TreeItems.Remove(testItem);
+                    }
+                }
+            }
+            if (SelectedTreeItem is { } selectedItem)
+            {
+                if (selectedItem.Parent is { } parent)
+                {
+                    parent.Items.Remove(selectedItem);
+                }
+                else
+                {
+                    TreeItems.Remove(selectedItem);
+                }
+                SelectedTreeItem = null;
+            }
+        });
+
         MovieCategories = new ObservableCollection<MovieCategory>
         {
             new MovieCategory("Action",
