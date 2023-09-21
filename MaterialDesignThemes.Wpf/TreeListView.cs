@@ -38,12 +38,11 @@ internal class TreeListViewItemsCollection<T> : ObservableCollection<T>
     protected override void RemoveItem(int index)
     {
         int currentLevel = ItemLevels[index];
-        base.RemoveItem(index);
         ItemLevels.RemoveAt(index);
+        base.RemoveItem(index);
         while(index < Count && ItemLevels[index] > currentLevel)
         {
-            RemoveAt(index);
-            ItemLevels.RemoveAt(index);
+            RemoveItem(index);
         }
         if (Count != ItemLevels.Count)
         {
@@ -74,7 +73,7 @@ internal class TreeListViewItemsCollection<T> : ObservableCollection<T>
             case NotifyCollectionChangedAction.Remove:
                 for (int i = 0; i < e.OldItems?.Count; i++)
                 {
-                    RemoveAt(e.OldStartingIndex);
+                    RemoveAt(e.OldStartingIndex + i);
                 }
                 break;
             case NotifyCollectionChangedAction.Replace:
@@ -104,6 +103,7 @@ internal class TreeListViewItemsCollection<T> : ObservableCollection<T>
 //TODO: Implement bindable property for getting selected items
 //TODO: Keyboard commands left/right for expand and collapse
 //TODO: Double click for toggle expanded
+//TODO: Option for retrieving parent item
 //Disallow setting GridView
 public class TreeListView : ListView
 {
@@ -133,7 +133,6 @@ public class TreeListView : ListView
     public TreeListView()
     {
     }
-
 
     private static object CoerceItemsSource(DependencyObject d, object baseValue)
     {
@@ -185,24 +184,54 @@ public class TreeListView : ListView
         }
     }
 
-    internal void ItemsChildrenChanged(TreeListViewItem item)
+    internal void ItemsChildrenChanged(TreeListViewItem item, NotifyCollectionChangedEventArgs e)
     {
         if (item.IsExpanded && InternalItemsSource is { } itemsSource)
         {
             int index = ItemContainerGenerator.IndexFromContainer(item);
             if (index < 0) return;
-            var children = item.GetChildren().ToList();
-            int itemLevel = itemsSource.GetLevel(index);
-
-            while (index + 1 < InternalItemsSource?.Count &&
-                  itemsSource.GetLevel(index + 1) == itemLevel + 1)
+            //We push the index forward by 1 to be on the first element of the item's children
+            index++;
+            switch (e.Action)
             {
-                itemsSource.RemoveAt(index + 1);
-            }
+                case NotifyCollectionChangedAction.Add:
+                    for (int i = 0; i < e.NewItems?.Count; i++)
+                    {
+                        itemsSource.Insert(e.NewStartingIndex + i + index, e.NewItems[i]!);
+                    }
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    for (int i = 0; i < e.OldItems?.Count; i++)
+                    {
+                        itemsSource.RemoveAt(e.OldStartingIndex + i + index);
+                    }
+                    break;
+                case NotifyCollectionChangedAction.Replace:
+                    for (int i = 0; i < e.NewItems?.Count; i++)
+                    {
+                        itemsSource[e.NewStartingIndex + i + index] = e.NewItems[i]!;
+                    }
+                    break;
+                case NotifyCollectionChangedAction.Move:
+                    for (int i = 0; i < e.NewItems?.Count; i++)
+                    {
+                        itemsSource.Move(e.OldStartingIndex + i + index, e.NewStartingIndex + i);
+                    }
+                    break;
+                case NotifyCollectionChangedAction.Reset:
+                    int itemLevel = itemsSource.GetLevel(index - 1);
+                    var children = item.GetChildren().ToList();
+                    while (index < InternalItemsSource?.Count &&
+                          itemsSource.GetLevel(index) == itemLevel + 1)
+                    {
+                        itemsSource.RemoveAt(index);
+                    }
 
-            for (int i = 0; i < children.Count; i++)
-            {
-                itemsSource.Insert(i + index + 1, children[i], itemLevel + 1);
+                    for (int i = 0; i < children.Count; i++)
+                    {
+                        itemsSource.Insert(i + index, children[i], itemLevel + 1);
+                    }
+                    break;
             }
         }
     }
@@ -210,7 +239,7 @@ public class TreeListView : ListView
 
 public class TreeListViewItemContentPresenter : ContentPresenter
 {
-    public event EventHandler? ChildrenChanged;
+    public event NotifyCollectionChangedEventHandler? ChildrenChanged;
 
     public bool HasChildren { get; private set; }
 
@@ -236,16 +265,16 @@ public class TreeListViewItemContentPresenter : ContentPresenter
             collectionChanged.CollectionChanged += presenter.CollectionChanged_CollectionChanged;
         }
 
-        presenter.OnChildrenChanged();
+        presenter.OnChildrenChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
     }
 
     private void CollectionChanged_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
-        => OnChildrenChanged();
+        => OnChildrenChanged(e);
 
-    private void OnChildrenChanged()
+    private void OnChildrenChanged(NotifyCollectionChangedEventArgs e)
     {
         HasChildren = Children?.Any() == true;
-        ChildrenChanged?.Invoke(this, EventArgs.Empty);
+        ChildrenChanged?.Invoke(this, e);
     }
 
     protected override void OnContentTemplateChanged(DataTemplate oldContentTemplate, DataTemplate newContentTemplate)
@@ -283,7 +312,6 @@ public class TreeListViewItem : ListViewItem
     {
         TreeListView = treeListView;
     }
-
 
     public TreeListView? TreeListView { get; }
 
@@ -350,10 +378,10 @@ public class TreeListViewItem : ListViewItem
         }
     }
 
-    private void Presenter_ChildrenChanged(object? sender, EventArgs e)
+    private void Presenter_ChildrenChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
         UpdateHasChildren();
-        TreeListView?.ItemsChildrenChanged(this);
+        TreeListView?.ItemsChildrenChanged(this, e);
     }
 
     private void UpdateHasChildren()
