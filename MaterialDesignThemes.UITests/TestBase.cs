@@ -8,6 +8,8 @@ using System.Windows.Media;
 [assembly: GenerateHelpers(typeof(ColorPicker))]
 [assembly: GenerateHelpers(typeof(DialogHost))]
 [assembly: GenerateHelpers(typeof(AutoSuggestBox))]
+[assembly: GenerateHelpers(typeof(TreeListView))]
+[assembly: GenerateHelpers(typeof(TreeListViewItem))]
 
 namespace MaterialDesignThemes.UITests;
 
