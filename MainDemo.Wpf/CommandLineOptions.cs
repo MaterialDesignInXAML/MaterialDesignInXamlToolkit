@@ -29,12 +29,12 @@ internal static class CommandLineOptions
             ThemeOption
         };
 
-    public static (string StartPage, FlowDirection FlowDirection, BaseTheme BaseTheme) ParseCommandLine(string[] args)
+    public static (string? StartPage, FlowDirection FlowDirection, BaseTheme BaseTheme) ParseCommandLine(string[] args)
     {
         ParseResult parseResult = RootCommand.Parse(args);
 
         return new(
-            parseResult.GetValueForOption(PageOption)!,
+            parseResult.GetValueForOption(PageOption),
             parseResult.GetValueForOption(FlowDirectionOption),
             parseResult.GetValueForOption(ThemeOption)
         );
