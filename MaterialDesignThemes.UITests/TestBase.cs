@@ -7,11 +7,13 @@ using System.Windows.Media;
 [assembly: GenerateHelpers(typeof(DrawerHost))]
 [assembly: GenerateHelpers(typeof(ColorPicker))]
 [assembly: GenerateHelpers(typeof(DialogHost))]
+[assembly: GenerateHelpers(typeof(AutoSuggestBox))]
 
 namespace MaterialDesignThemes.UITests;
 
 public abstract class TestBase : IAsyncLifetime
 {
+    protected bool AttachedDebugger { get; set; } = true;
     protected ITestOutputHelper Output { get; }
 
     [NotNull]
@@ -42,7 +44,7 @@ public abstract class TestBase : IAsyncLifetime
     public async Task InitializeAsync() =>
         App = await XamlTest.App.StartRemote(new AppOptions
         {
-            AllowVisualStudioDebuggerAttach = true,
+            AllowVisualStudioDebuggerAttach = AttachedDebugger,
             LogMessage = Output.WriteLine
         });
     public async Task DisposeAsync() => await App.DisposeAsync();

@@ -4,82 +4,23 @@
                     xmlns:internal="clr-namespace:MaterialDesignThemes.Wpf.Internal"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
   <ResourceDictionary.MergedDictionaries>
-    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ValidationErrorTemplate.xaml" />
-    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Menu.xaml" />
-    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
-  <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-  <converters:TextFieldClearButtonVisibilityConverter x:Key="ClearButtonVisibilityConverter" />
-  <converters:TextFieldPrefixTextVisibilityConverter x:Key="PrefixTextVisibilityConverter" />
-  <converters:NotConverter x:Key="NotConverter" />
-  <converters:MathConverter x:Key="MathMultiplyConverter" Operation="Multiply" />
-  <converters:FloatingHintOffsetCalculationConverter x:Key="FloatingHintOffsetCalculationConverter" />
-  <converters:CursorConverter x:Key="ArrowCursorConverter" FallbackCursor="Arrow" />
-  <converters:CursorConverter x:Key="IBeamCursorConverter" FallbackCursor="IBeam" />
-  <converters:StringLengthValueConverter x:Key="StringLengthValueConverter" />
-  <converters:ThicknessCloneConverter x:Key="HelperTextMarginConverter" CloneEdges="Left" />
-  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleLeadingIconMarginConverterTop" CloneEdges="Top" FixedRight="6" AdditionalOffsetTop="-2" />
-  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleLeadingIconMarginConverterCenter" CloneEdges="Top" FixedRight="6" AdditionalOffsetTop="-12" />
-  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleLeadingIconMarginConverterBottom" CloneEdges="Top" FixedRight="6" FixedBottom="-2" />
-  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconMarginConverterTop" CloneEdges="Top" AdditionalOffsetTop="-2" />
-  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconMarginConverterCenter" CloneEdges="Top" AdditionalOffsetTop="-12" />
-  <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconMarginConverterBottom" CloneEdges="Top" FixedBottom="-2" />
-  <converters:ThicknessCloneConverter x:Key="OutlinedStyleLeadingIconMarginConverterTop" CloneEdges="Top" FixedRight="6" AdditionalOffsetTop="-2" />
-  <converters:ThicknessCloneConverter x:Key="OutlinedStyleLeadingIconMarginConverterCenter" CloneEdges="Top" FixedRight="6" AdditionalOffsetTop="0" />
-  <converters:ThicknessCloneConverter x:Key="OutlinedStyleLeadingIconMarginConverterBottom" CloneEdges="Top" FixedRight="6" FixedBottom="-2" AdditionalOffsetTop="0" />
-  <converters:ThicknessCloneConverter x:Key="OutlinedStyleTrailingIconMarginConverterTop" CloneEdges="Top" AdditionalOffsetTop="-2" />
-  <converters:ThicknessCloneConverter x:Key="OutlinedStyleTrailingIconMarginConverterCenter" CloneEdges="Top" AdditionalOffsetTop="0" />
-  <converters:ThicknessCloneConverter x:Key="OutlinedStyleTrailingIconMarginConverterBottom" CloneEdges="Top" FixedBottom="-2" AdditionalOffsetTop="0" />
-  <wpf:VerticalAlignmentConverter x:Key="VerticalAlignmentConverter" />
-  <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
-
-  <Style x:Key="MaterialDesignCharacterCounterTextBlock"
-         TargetType="TextBlock"
-         BasedOn="{StaticResource {x:Type TextBlock}}">
-    <Setter Property="FontSize" Value="10" />
-    <Setter Property="Margin" Value="0,0,16,0" />
-    <Setter Property="Opacity" Value="0.56" />
-    <Setter Property="Text">
-      <Setter.Value>
-        <MultiBinding StringFormat="{}{0} / {1}">
-          <Binding Path="Text" Converter="{StaticResource StringLengthValueConverter}"
-                   RelativeSource="{RelativeSource FindAncestor, AncestorType=TextBoxBase}" />
-          <Binding Path="MaxLength" RelativeSource="{RelativeSource FindAncestor, AncestorType=TextBoxBase}" />
-        </MultiBinding>
-      </Setter.Value>
-    </Setter>
-    <Setter Property="VerticalAlignment" Value="Center" />
-    <Setter Property="Visibility" Value="{Binding Path=(wpf:TextFieldAssist.CharacterCounterVisibility), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TextBox}}}" />
-  </Style>
-
-  <Style x:Key="MaterialDesignHelperTextBlock"
-         TargetType="TextBlock"
-         BasedOn="{StaticResource {x:Type TextBlock}}">
-    <Setter Property="FontSize" Value="{Binding Path=(wpf:HintAssist.HelperTextFontSize), RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-    <Setter Property="Opacity" Value="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-    <Setter Property="Text" Value="{Binding Path=(wpf:HintAssist.HelperText), RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-  </Style>
-
-  <Style x:Key="MaterialDesignTextBoxBase" TargetType="{x:Type TextBoxBase}">
-    <Setter Property="AllowDrop" Value="true" />
-    <Setter Property="Background" Value="Transparent" />
-    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.Border}" />
-    <Setter Property="BorderThickness" Value="0,0,0,1" />
-    <Setter Property="CaretBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
-    <Setter Property="ContextMenu" Value="{StaticResource MaterialDesignDefaultContextMenu}" />
-    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
-    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-    <Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
-    <Setter Property="Padding" Value="{x:Static wpf:Constants.TextBoxDefaultPadding}" />
-    <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
-    <Setter Property="SelectionBrush" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
-    <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+  <Style x:Key="MaterialDesignAutoSuggestBoxBase"
+         TargetType="{x:Type wpf:AutoSuggestBox}"
+         BasedOn="{StaticResource MaterialDesignTextBoxBase}">
+    <Setter Property="DropDownBackground" Value="White" />
+    <Setter Property="DropDownElevation" Value="Dp2" />
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate TargetType="{x:Type TextBoxBase}">
-          <Grid Cursor="{TemplateBinding Cursor, Converter={StaticResource ArrowCursorConverter}}">
+        <ControlTemplate TargetType="{x:Type wpf:AutoSuggestBox}">
+          <ControlTemplate.Resources>
+            <wpf:ElevationMarginConverter x:Key="ElevationMarginConverter" />
+            <wpf:ElevationRadiusConverter x:Key="ElevationRadiusConverter" Multiplier="-1" />
+          </ControlTemplate.Resources>
+          <Grid VerticalAlignment="Center" Cursor="{TemplateBinding Cursor, Converter={StaticResource ArrowCursorConverter}}">
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="FocusStates">
                 <VisualState x:Name="Focused">
@@ -124,7 +65,6 @@
             </VisualStateManager.VisualStateGroups>
             <Border HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
-                    Background="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
                     CornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}"
                     RenderTransformOrigin="0.5,0.5"
                     Visibility="{TemplateBinding wpf:TextFieldAssist.RippleOnFocusEnabled, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -161,8 +101,8 @@
                   <Grid x:Name="grid"
                         Grid.Column="1"
                         MinWidth="1"
-                        VerticalAlignment="Stretch"
-                        HorizontalAlignment="Stretch">
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
                     <Grid Grid.Column="0">
                       <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -187,10 +127,10 @@
 
                       <ScrollViewer x:Name="PART_ContentHost"
                                     Grid.Column="1"
-                                    VerticalAlignment="Stretch"
-                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                     HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                     Panel.ZIndex="1"
                                     wpf:ScrollViewerAssist.IgnorePadding="True"
                                     Cursor="{TemplateBinding Cursor, Converter={StaticResource IBeamCursorConverter}}"
@@ -212,16 +152,16 @@
 
                     <wpf:SmartHint x:Name="Hint"
                                    Grid.Column="0"
+                                   VerticalAlignment="Stretch"
+                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                    FloatingOffset="{TemplateBinding wpf:HintAssist.FloatingOffset}"
                                    FloatingScale="{TemplateBinding wpf:HintAssist.FloatingScale}"
                                    FontFamily="{TemplateBinding wpf:HintAssist.FontFamily}"
                                    FontSize="{TemplateBinding FontSize}"
                                    HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                    HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
-                                   UseFloating="{TemplateBinding wpf:HintAssist.IsFloating}"
-                                   VerticalAlignment="Stretch"
-                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}">
+                                   UseFloating="{TemplateBinding wpf:HintAssist.IsFloating}">
                       <wpf:SmartHint.Hint>
                         <Border x:Name="HintBackgroundBorder"
                                 Background="{TemplateBinding wpf:HintAssist.Background}"
@@ -233,7 +173,10 @@
 
                   </Grid>
 
-                  <StackPanel x:Name="TrailingPanel" Orientation="Horizontal" Grid.Column="2" VerticalAlignment="{TemplateBinding VerticalContentAlignment, Converter={StaticResource VerticalAlignmentConverter}}">
+                  <StackPanel x:Name="TrailingPanel"
+                              Grid.Column="2"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment, Converter={StaticResource VerticalAlignmentConverter}}"
+                              Orientation="Horizontal">
                     <wpf:PackIcon x:Name="TrailingPackIcon"
                                   Width="{TemplateBinding wpf:TextFieldAssist.TrailingIconSize}"
                                   Height="{TemplateBinding wpf:TextFieldAssist.TrailingIconSize}"
@@ -261,6 +204,35 @@
                 </Grid>
               </Border>
             </AdornerDecorator>
+            <wpf:PopupEx x:Name="PART_AutoSuggestBoxPopup"
+                         MaxHeight="{TemplateBinding DropDownMaxHeight}"
+                         AllowsTransparency="True"
+                         Focusable="False"
+                         IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsSuggestionOpen, Mode=TwoWay}"
+                         PopupAnimation="Slide"
+                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                         StaysOpen="False"
+                         Visibility="Collapsed">
+              <wpf:Card x:Name="PopupCard"
+                        Margin="{TemplateBinding DropDownElevation, Converter={StaticResource ElevationMarginConverter}}"
+                        Background="{TemplateBinding DropDownBackground}"
+                        Foreground="{DynamicResource MaterialDesignBody}"
+                        RenderOptions.ClearTypeHint="Enabled"
+                        Style="{StaticResource MaterialDesignElevatedCard}">
+                <ListBox x:Name="PART_AutoSuggestBoxList"
+                         Width="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ActualWidth}"
+                         DisplayMemberPath="{TemplateBinding DisplayMember}"
+                         Focusable="False"
+                         IsSynchronizedWithCurrentItem="True"
+                         ItemContainerStyle="{TemplateBinding ItemContainerStyle}"
+                         ItemTemplate="{TemplateBinding ItemTemplate}"
+                         ItemsSource="{TemplateBinding Suggestions}"
+                         SelectedItem="{TemplateBinding SelectedItem}"
+                         SelectedValue="{TemplateBinding SelectedValue}"
+                         SelectedValuePath="{TemplateBinding ValueMember}"
+                         Style="{DynamicResource MaterialDesignCardsListBox}" />
+              </wpf:Card>
+            </wpf:PopupEx>
             <Border x:Name="borderUnderline"
                     Height="0"
                     HorizontalAlignment="Stretch"
@@ -281,8 +253,9 @@
                   <ColumnDefinition />
                   <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Name="HelperTextTextBlock" Style="{Binding Path=(wpf:HintAssist.HelperTextStyle), RelativeSource={RelativeSource TemplatedParent}}"
-                           Margin="{TemplateBinding Padding, Converter={StaticResource HelperTextMarginConverter}}"/>
+                <TextBlock x:Name="HelperTextTextBlock"
+                           Margin="{TemplateBinding Padding, Converter={StaticResource HelperTextMarginConverter}}"
+                           Style="{Binding Path=(wpf:HintAssist.HelperTextStyle), RelativeSource={RelativeSource TemplatedParent}}" />
                 <Border x:Name="CharacterCounterContainer" Grid.Column="1">
                   <TextBlock x:Name="CharacterCounterTextBlock" Style="{Binding Path=(wpf:TextFieldAssist.CharacterCounterStyle), RelativeSource={RelativeSource TemplatedParent}}" />
                 </Border>
@@ -306,7 +279,7 @@
               <Setter TargetName="Hint" Property="FloatingOffset">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
-                    <Binding Path="FontFamily" ElementName="Hint" />
+                    <Binding ElementName="Hint" Path="FontFamily" />
                     <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingScale)" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingOffset)" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -316,7 +289,7 @@
               <Setter TargetName="grid" Property="Margin">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
-                    <Binding Path="FontFamily" ElementName="Hint" />
+                    <Binding ElementName="Hint" Path="FontFamily" />
                     <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingScale)" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingOffset)" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -380,15 +353,15 @@
             </MultiTrigger>
 
             <Trigger Property="wpf:TextFieldAssist.HasFilledTextField" Value="True">
-              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.FilledBackground}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxBackground}" />
             </Trigger>
             <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
-              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.OutlineBorder}" />
+              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaBorder}" />
               <Setter Property="BorderThickness" Value="1" />
               <Setter TargetName="Hint" Property="FloatingOffset">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
-                    <Binding Path="FontFamily" ElementName="Hint" />
+                    <Binding ElementName="Hint" Path="FontFamily" />
                     <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingScale)" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:HintAssist.FloatingOffset)" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -408,7 +381,7 @@
                 <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
                 <Condition SourceName="Hint" Property="IsHintInFloatingPosition" Value="True" />
               </MultiTrigger.Conditions>
-              <Setter Property="wpf:HintAssist.Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
+              <Setter Property="wpf:HintAssist.Background" Value="{DynamicResource MaterialDesignPaper}" />
               <Setter TargetName="HintBackgroundBorder" Property="Padding" Value="4,0" />
             </MultiTrigger>
             <MultiTrigger>
@@ -466,7 +439,7 @@
                 <Condition Property="IsEnabled" Value="False" />
                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
               </MultiTrigger.Conditions>
-              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.OutlineInactiveBorder}" />
+              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaInactiveBorder}" />
               <Setter TargetName="HintWrapper" Property="Opacity">
                 <Setter.Value>
                   <Binding Converter="{StaticResource MathMultiplyConverter}"
@@ -527,7 +500,7 @@
                 <Condition Property="IsMouseOver" Value="True" />
                 <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
               </MultiTrigger.Conditions>
-              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesignTextFieldBoxHoverBackground}" />
               <Setter TargetName="borderUnderline" Property="Height" Value="1" />
             </MultiTrigger>
             <MultiTrigger>
@@ -541,60 +514,56 @@
 
             <!-- Validation.HasError -->
             <Trigger Property="Validation.HasError" Value="true">
-              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
-              <Setter TargetName="Underline" Property="Background" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
+              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
+              <Setter TargetName="Underline" Property="Background" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
             </Trigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="Validation.HasError" Value="True" />
                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
               </MultiTrigger.Conditions>
-              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
+              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
               <Setter Property="BorderThickness" Value="2" />
               <Setter TargetName="FooterGrid" Property="Margin" Value="0,0,1,0" />
               <Setter TargetName="border" Property="Margin" Value="-1" />
             </MultiTrigger>
+
+            <!-- Display Shadow -->
+            <Trigger Property="DropDownElevation" Value="Dp0">
+              <Setter TargetName="PopupCard" Property="Style" Value="{StaticResource MaterialDesignOutlinedCard}" />
+            </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
-    <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}" />
-    <Setter Property="VerticalContentAlignment" Value="Stretch" />
-    <Setter Property="internal:ClearText.HandlesClearCommand" Value="True" />
-    <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
-    <Setter Property="wpf:HintAssist.HelperTextStyle" Value="{StaticResource MaterialDesignHelperTextBlock}" />
-    <Setter Property="wpf:TextFieldAssist.CharacterCounterStyle" Value="{StaticResource MaterialDesignCharacterCounterTextBlock}" />
-    <Setter Property="wpf:TextFieldAssist.CharacterCounterVisibility" Value="Visible" />
-    <Setter Property="wpf:TextFieldAssist.IncludeSpellingSuggestions" Value="{Binding RelativeSource={RelativeSource Self}, Path=(SpellCheck.IsEnabled)}" />
-    <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMargin}" />
-    <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
   </Style>
 
-  <Style x:Key="MaterialDesignTextBox"
-         TargetType="{x:Type TextBox}"
-         BasedOn="{StaticResource MaterialDesignTextBoxBase}" />
+  <Style x:Key="MaterialDesignAutoSuggestBox"
+         TargetType="{x:Type wpf:AutoSuggestBox}"
+         BasedOn="{StaticResource MaterialDesignAutoSuggestBoxBase}" />
 
-  <Style x:Key="MaterialDesignFloatingHintTextBox"
-         TargetType="{x:Type TextBox}"
-         BasedOn="{StaticResource MaterialDesignTextBox}">
+  <Style x:Key="MaterialDesignFloatingHintAutoSuggestBox"
+         TargetType="{x:Type wpf:AutoSuggestBox}"
+         BasedOn="{StaticResource MaterialDesignAutoSuggestBox}">
     <Setter Property="wpf:HintAssist.IsFloating" Value="True" />
   </Style>
 
-  <Style x:Key="MaterialDesignFilledTextBox"
-         TargetType="{x:Type TextBox}"
-         BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
-    <Setter Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
-    <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4,4,0,0" />
-    <Setter Property="wpf:TextFieldAssist.UnderlineCornerRadius" Value="0" />
+  <Style x:Key="MaterialDesignFilledAutoSuggestBox"
+         TargetType="{x:Type wpf:AutoSuggestBox}"
+         BasedOn="{StaticResource MaterialDesignFloatingHintAutoSuggestBox}">
     <Setter Property="Padding" Value="{x:Static wpf:Constants.FilledTextBoxDefaultPadding}" />
+    <Setter Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
+    <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4" />
+    <Setter Property="wpf:TextFieldAssist.UnderlineCornerRadius" Value="0" />
   </Style>
 
-  <Style x:Key="MaterialDesignOutlinedTextBox"
-         TargetType="{x:Type TextBox}"
-         BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+  <Style x:Key="MaterialDesignOutlinedAutoSuggestBox"
+         TargetType="{x:Type wpf:AutoSuggestBox}"
+         BasedOn="{StaticResource MaterialDesignFloatingHintAutoSuggestBox}">
+    <Setter Property="DropDownElevation" Value="Dp0" />
+    <Setter Property="Padding" Value="{x:Static wpf:Constants.OutlinedTextBoxDefaultPadding}" />
     <Setter Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
     <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4" />
-    <Setter Property="Padding" Value="{x:Static wpf:Constants.OutlinedTextBoxDefaultPadding}" />
   </Style>
 
 </ResourceDictionary>

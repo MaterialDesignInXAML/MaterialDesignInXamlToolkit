@@ -287,7 +287,7 @@ public static class TextFieldAssist
     internal static readonly DependencyProperty PasswordBoxCharacterCountProperty = DependencyProperty.RegisterAttached(
         "PasswordBoxCharacterCount", typeof(int), typeof(TextFieldAssist), new PropertyMetadata(default(int)));
     internal static void SetPasswordBoxCharacterCount(DependencyObject element, int value) => element.SetValue(PasswordBoxCharacterCountProperty, value);
-    internal static int GetPasswordBoxCharacterCount(DependencyObject element) => (int) element.GetValue(PasswordBoxCharacterCountProperty);
+    internal static int GetPasswordBoxCharacterCount(DependencyObject element) => (int)element.GetValue(PasswordBoxCharacterCountProperty);
 
     #region Methods
 
@@ -459,5 +459,5 @@ public static class TextFieldAssist
         };
     }
 
-    #endregion
+#endregion
 }
