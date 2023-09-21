@@ -9,7 +9,7 @@ public class TreeListViewTests : TestBase
     }
 
     [Fact]
-    public async Task TreeListView_WithHierarchicalDataTemplate_CanRemoveTopLevelElement()
+    public async Task WithHierarchicalDataTemplate_CanRemoveTopLevelElement()
     {
         await using var recorder = new TestRecorder(App);
 
@@ -39,7 +39,7 @@ public class TreeListViewTests : TestBase
     }
 
     [Fact]
-    public async Task TreeListView_WithHierarchicalDataTemplate_CanRemoveNestedElement()
+    public async Task WithHierarchicalDataTemplate_CanRemoveNestedElement()
     {
         await using var recorder = new TestRecorder(App);
 
@@ -82,6 +82,83 @@ public class TreeListViewTests : TestBase
 
         recorder.Success();
     }
+
+    [Fact]
+    public async Task DoubleClickOnTreeListViewItem_TogglesExpansion()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+        IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+        IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
+        IVisualElement<Button> removeButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Remove"));
+
+        IVisualElement<TreeListViewItem> secondItem = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
+
+        //Select and expand second item
+        await AddChildren(secondItem, 3, addButton);
+
+        //Double click to expand
+        await secondItem.LeftClick();
+        await secondItem.LeftClick();
+
+        await Wait.For(() => secondItem.GetIsExpanded());
+
+        //NB: Needs to be long enough delay so the next clicks register as a new double click
+        await Task.Delay(250);
+
+        //Double click to collapse
+        await secondItem.LeftClick();
+        await secondItem.LeftClick();
+
+        await Wait.For(async () => await secondItem.GetIsExpanded() == false);
+
+        recorder.Success();
+    }
+
+    [Fact]
+    public async Task LeftAndRightArrowKeys_CollapseAndExpand()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+        IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+        IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
+        IVisualElement<Button> removeButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Remove"));
+
+        IVisualElement<TreeListViewItem> secondItem = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
+
+        //Select and expand second item
+        await AddChildren(secondItem, 3, addButton);
+
+        //Right arrow to expand
+        await secondItem.LeftClick();
+        await Wait.For(() => secondItem.GetIsSelected());
+        await secondItem.SendKeyboardInput($"{Key.Right}");
+
+        await Wait.For(() => secondItem.GetIsExpanded());
+
+        //Add child items to test double left arrow
+        IVisualElement<TreeListViewItem> nestedItem = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[3]");
+        await AddChildren(nestedItem, 2, addButton);
+
+        await nestedItem.LeftClick();
+        await Wait.For(() => nestedItem.GetIsSelected());
+
+        //Left arrow to collapse
+        await nestedItem.SendKeyboardInput($"{Key.Left}");
+        await Wait.For(async () => await nestedItem.GetIsExpanded() == false);
+
+        //Allow for collapsed animation to complete
+        await Task.Delay(250);
+
+        //Left arrow to jump to parent
+        await nestedItem.SendKeyboardInput($"{Key.Left}");
+        await Wait.For(() => secondItem.GetIsSelected(), message: "Parent item is not selected");
+
+        recorder.Success();
+    }
+
 
     private static async Task AssertTreeItemContent(IVisualElement<TreeListView> treeListView, int index, string content)
     {

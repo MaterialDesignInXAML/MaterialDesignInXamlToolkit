@@ -40,7 +40,7 @@ internal class TreeListViewItemsCollection<T> : ObservableCollection<T>
         int currentLevel = ItemLevels[index];
         ItemLevels.RemoveAt(index);
         base.RemoveItem(index);
-        while(index < Count && ItemLevels[index] > currentLevel)
+        while (index < Count && ItemLevels[index] > currentLevel)
         {
             RemoveItem(index);
         }
@@ -101,9 +101,6 @@ internal class TreeListViewItemsCollection<T> : ObservableCollection<T>
 }
 
 //TODO: Implement bindable property for getting selected items
-//TODO: Keyboard commands left/right for expand and collapse
-//TODO: Double click for toggle expanded
-//TODO: Option for retrieving parent item
 //Disallow setting GridView
 public class TreeListView : ListView
 {
@@ -121,13 +118,10 @@ public class TreeListView : ListView
 
     static TreeListView()
     {
-        var defaultMetadata = ItemsSourceProperty.DefaultMetadata;
-        FrameworkPropertyMetadata metadata = new()
+        ItemsSourceProperty.OverrideMetadata(typeof(TreeListView), new FrameworkPropertyMetadata()
         {
-            DefaultValue = defaultMetadata.DefaultValue,
             CoerceValueCallback = CoerceItemsSource
-        };
-        ItemsSourceProperty.OverrideMetadata(typeof(TreeListView), metadata);
+        });
     }
 
     public TreeListView()
@@ -235,6 +229,29 @@ public class TreeListView : ListView
             }
         }
     }
+
+    internal void MoveSelectionToParent(TreeListViewItem item)
+    {
+        if ((IsKeyboardFocused || IsKeyboardFocusWithin)
+            && InternalItemsSource is { } itemsSource)
+        {
+            int index = ItemContainerGenerator.IndexFromContainer(item);
+            if (index < 0) return;
+            int itemLevel = itemsSource.GetLevel(index);
+            for (int i = index; i > 0; i--)
+            {
+                if (itemsSource.GetLevel(i) == itemLevel - 1)
+                {
+                    SetSelectedItems(new[] { itemsSource[i] });
+                    if (ItemContainerGenerator.ContainerFromIndex(i) is TreeListViewItem container)
+                    {
+                        container.Focus();
+                    }
+                    break;
+                }
+            }
+        }
+    }
 }
 
 public class TreeListViewItemContentPresenter : ContentPresenter
@@ -306,7 +323,8 @@ public class TreeListViewItem : ListViewItem
     private TreeListViewItemContentPresenter? _contentPresenter;
 
     public TreeListViewItem()
-    { }
+    {
+    }
 
     internal TreeListViewItem(TreeListView treeListView)
     {
@@ -387,5 +405,38 @@ public class TreeListViewItem : ListViewItem
     private void UpdateHasChildren()
     {
         SetCurrentValue(HasItemsProperty, _contentPresenter?.HasChildren == true);
+    }
+
+    protected override void OnMouseDoubleClick(MouseButtonEventArgs e)
+    {
+        base.OnMouseDoubleClick(e);
+        if (e.ChangedButton == MouseButton.Left)
+        {
+            IsExpanded = !IsExpanded;
+        }
+    }
+
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        base.OnKeyDown(e);
+        if (!e.Handled)
+        {
+            switch (e.Key)
+            {
+                case Key.Right:
+                    IsExpanded = true;
+                    break;
+                case Key.Left:
+                    if (IsExpanded)
+                    {
+                        IsExpanded = false;
+                    }
+                    else
+                    {
+                        TreeListView?.MoveSelectionToParent(this);
+                    }
+                    break;
+            }
+        }
     }
 }
