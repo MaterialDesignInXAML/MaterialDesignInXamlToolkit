@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace MaterialDesignThemes.UITests.WPF.TreeListViews;
 
@@ -53,6 +54,7 @@ public partial class TreeListViewDataBinding
     }
 }
 
+[DebuggerDisplay("{Value} (Children: {Children.Count})")]
 public class TreeItem
 {
     public string Value { get; }
