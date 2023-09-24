@@ -197,7 +197,7 @@ public class TreeListView : ListView
             int siblingLevel = collection.GetLevel(startingIndex - 1) + 1;
 
             // Iterate while we haven't:
-            //  - Found the expected number of prior siblings, or
+            //  - Exceeded the expected number of prior siblings, or
             //  - Reached the end of the InternalItemsSource, or
             //  - Reached an item with a level less than the sibling level
             while (siblingCount <= expectedPriorSiblingCount)
@@ -227,19 +227,21 @@ public class TreeListView : ListView
             if (index < 0) return;
             //We push the index forward by 1 to be on the first element of the item's children
             index++;
+            int offset = 0;
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    int siblingAndChildrenOffset = GetPriorSiblingsAndChildrenCount(itemsSource, index, e.NewStartingIndex);
+                    offset = GetPriorSiblingsAndChildrenCount(itemsSource, index, e.NewStartingIndex);
                     for (int i = 0; i < e.NewItems?.Count; i++)
                     {
-                        itemsSource.Insert(index + siblingAndChildrenOffset, e.NewItems[i]!);
+                        itemsSource.Insert(index + offset, e.NewItems[i]!);
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:
+                    offset = GetPriorSiblingsAndChildrenCount(itemsSource, index, e.OldStartingIndex) - 1; // The -1 is because the item being removed is also taken into account, which in this case is not needed.
                     for (int i = 0; i < e.OldItems?.Count; i++)
                     {
-                        itemsSource.RemoveAt(e.OldStartingIndex + i + index);
+                        itemsSource.RemoveAt(index + offset);
                     }
                     break;
                 case NotifyCollectionChangedAction.Replace:
