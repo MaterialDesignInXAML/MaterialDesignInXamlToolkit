@@ -180,6 +180,47 @@ public class TreeListView : ListView
 
     internal void ItemsChildrenChanged(TreeListViewItem item, NotifyCollectionChangedEventArgs e)
     {
+        /* TODO: Should probably be refactored so that it can be used for any of the add/remove/replace/move operations
+         *
+         * Helper method used to determine the number of visible items that are prior siblings
+         * or children/grand-children of expanded siblings.
+         *
+         * This is used to determine the correct offset into the InternalItemsSource when adding/removing items
+         */
+        int GetPriorSiblingsAndChildrenCount(TreeListViewItemsCollection<object?> collection, int startingIndex, int expectedPriorSiblingCount)
+        {
+            int additionalOffset = 0;
+            int index = 0;
+            int siblingCount = 0;
+
+            // Determine the level expected of siblings (used for comparison)
+            int siblingLevel = collection.GetLevel(startingIndex - 1) + 1;
+
+            // Iterate while we haven't:
+            //  - Found the expected number of prior siblings, or
+            //  - Reached the end of the InternalItemsSource, or
+            //  - Reached an item with a level less than the sibling level
+            while (siblingCount <= expectedPriorSiblingCount)
+            {
+                // Bail out if we've reached the end of the itemsSource
+                if (startingIndex + index >= collection.Count)
+                    break;
+
+                // Bail out if we've reached an item with a level less than the sibling level
+                int level = collection.GetLevel(startingIndex + index);
+                if (level < siblingLevel)
+                    break;
+
+                if (level == siblingLevel)
+                {
+                    siblingCount++;
+                }
+                additionalOffset++;
+                index++;
+            }
+            return additionalOffset;
+        }
+
         if (item.IsExpanded && InternalItemsSource is { } itemsSource)
         {
             int index = ItemContainerGenerator.IndexFromContainer(item);
@@ -189,9 +230,10 @@ public class TreeListView : ListView
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
+                    int siblingAndChildrenOffset = GetPriorSiblingsAndChildrenCount(itemsSource, index, e.NewStartingIndex);
                     for (int i = 0; i < e.NewItems?.Count; i++)
                     {
-                        itemsSource.Insert(e.NewStartingIndex + i + index, e.NewItems[i]!);
+                        itemsSource.Insert(index + siblingAndChildrenOffset, e.NewItems[i]!);
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:
