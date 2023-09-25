@@ -180,14 +180,12 @@ public class TreeListView : ListView
 
     internal void ItemsChildrenChanged(TreeListViewItem item, NotifyCollectionChangedEventArgs e)
     {
-        /* TODO: Should probably be refactored so that it can be used for any of the add/remove/replace/move operations
-         *
-         * Helper method used to determine the number of visible items that are prior siblings
+        /* Helper method used to determine the number of visible items that are prior siblings
          * or children/grand-children of expanded siblings.
          *
          * This is used to determine the correct offset into the InternalItemsSource when adding/removing items
          */
-        int GetPriorSiblingsAndChildrenCount(TreeListViewItemsCollection<object?> collection, int startingIndex, int expectedPriorSiblingCount)
+        static int GetPriorSiblingsAndChildrenCount(TreeListViewItemsCollection<object?> collection, int startingIndex, int expectedPriorSiblingCount)
         {
             int additionalOffset = 0;
             int index = 0;
