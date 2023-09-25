@@ -19,11 +19,28 @@ public partial class MainWindow
             //need to get the message queue from the snackbar, so need to be on the dispatcher
             MainSnackbar.MessageQueue?.Enqueue("Welcome to Material Design In XAML Toolkit");
         }, TaskScheduler.FromCurrentSynchronizationContext());
+        App app = (App)Application.Current;
 
-        DataContext = new MainWindowViewModel(MainSnackbar.MessageQueue!);
+        DataContext = new MainWindowViewModel(MainSnackbar.MessageQueue!, app.StartupPage);
 
         var paletteHelper = new PaletteHelper();
         var theme = paletteHelper.GetTheme();
+
+        switch (app.InitialTheme)
+        {
+            case BaseTheme.Dark:
+                ModifyTheme(true);
+                break;
+            case BaseTheme.Light:
+                ModifyTheme(false);
+                break;
+        }
+
+        if (app.InitialFlowDirection == FlowDirection.RightToLeft)
+        {
+            FlowDirectionToggleButton.IsChecked = true;
+            FlowDirection = FlowDirection.RightToLeft;
+        }
 
         DarkModeToggleButton.IsChecked = theme.GetBaseTheme() == BaseTheme.Dark;
 

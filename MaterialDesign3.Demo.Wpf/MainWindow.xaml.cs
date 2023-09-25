@@ -21,10 +21,27 @@ public partial class MainWindow
             MainSnackbar.MessageQueue?.Enqueue("Welcome to Material Design In XAML Toolkit");
         }, TaskScheduler.FromCurrentSynchronizationContext());
 
-        DataContext = new MainWindowViewModel(MainSnackbar.MessageQueue!);
+        App app = (App)Application.Current;
+        DataContext = new MainWindowViewModel(MainSnackbar.MessageQueue!, app.StartupPage);
 
         var paletteHelper = new PaletteHelper();
         var theme = paletteHelper.GetTheme();
+
+        switch (app.InitialTheme)
+        {
+            case BaseTheme.Dark:
+                ModifyTheme(true);
+                break;
+            case BaseTheme.Light:
+                ModifyTheme(false);
+                break;
+        }
+
+        if (app.InitialFlowDirection == FlowDirection.RightToLeft)
+        {
+            FlowDirectionToggleButton.IsChecked = true;
+            FlowDirection = FlowDirection.RightToLeft;
+        }
 
         DarkModeToggleButton.IsChecked = theme.GetBaseTheme() == BaseTheme.Dark;
 
@@ -93,6 +110,11 @@ public partial class MainWindow
 
     private void MenuDarkModeButton_Click(object sender, RoutedEventArgs e)
         => ModifyTheme(DarkModeToggleButton.IsChecked == true);
+
+    private void FlowDirectionButton_Click(object sender, RoutedEventArgs e)
+        => FlowDirection = FlowDirectionToggleButton.IsChecked.GetValueOrDefault(false)
+            ? FlowDirection.RightToLeft
+            : FlowDirection.LeftToRight;
 
     private static void ModifyTheme(bool isDarkTheme)
     {

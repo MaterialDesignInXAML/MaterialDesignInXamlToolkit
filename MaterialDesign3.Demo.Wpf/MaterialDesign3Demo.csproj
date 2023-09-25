@@ -34,6 +34,7 @@
   <ItemGroup>
     <Resource Include="Resources\*.jpg" />
     <Resource Include="Resources\*.png" />
+    <Compile Include="..\MainDemo.Wpf\CommandLineOptions.cs" Link="CommandLineOptions.cs" />
     <Resource Include="ScreenGrabFromGoogle.gif" />
     <Resource Include="favicon.ico" />
   </ItemGroup>
@@ -41,6 +42,7 @@
     <PackageReference Include="BluwolfIcons">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
+    <PackageReference Include="System.CommandLine" />
     <PackageReference Include="VirtualizingWrapPanel" />
     <PackageReference Include="ShowMeTheXAML" />
     <PackageReference Include="ShowMeTheXAML.AvalonEdit" />
