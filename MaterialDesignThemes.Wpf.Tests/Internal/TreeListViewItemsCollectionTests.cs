@@ -166,12 +166,6 @@ public class TreeListViewItemsCollectionTests
         Assert.Throws<ArgumentOutOfRangeException>(() => treeListViewItemsCollection.Insert(insertionIndex, "x", requestedLevel));
     }
 
-    public static IEnumerable<object[]> RemoveItemTestData()
-    {
-        yield return new object[] { 0, new[] { 0, 1, 2, 3, 4 } }; 
-        yield return new object[] { 1, new[] { 1,  } }; 
-    }
-
     [Theory]
     [InlineData(0, 5)]
     [InlineData(1, 3)]
@@ -210,7 +204,6 @@ public class TreeListViewItemsCollectionTests
         Assert.Equal(expectedItems, treeListViewItemsCollection);
         Assert.Equal(expectedLevels, treeListViewItemsCollection.GetAllLevels());
     }
-
 
     private class TestableCollection<T> : ObservableCollection<T>
     {

@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Diagnostics;
+using System.Threading;
 
 namespace MaterialDesignThemes.UITests.WPF.TreeListViews;
 
@@ -92,6 +94,15 @@ public partial class TreeListViewDataBinding
             }
         }
     }
+
+    private void Reset_OnClick(object sender, RoutedEventArgs e)
+    {
+        if (TreeListView.SelectedItem is TreeItem selectedItem)
+        {
+            var newChildren = selectedItem.Children.Select(x => new TreeItem(x.Value + "_x", x.Parent)).ToArray();
+            selectedItem.Children.ReplaceAllItems(newChildren);
+        }
+    }
 }
 
 [DebuggerDisplay("{Value} (Children: {Children.Count})")]
@@ -102,11 +113,39 @@ public class TreeItem
     public TreeItem? Parent { get; }
 
     //NB: making the assumption changes occur ont he UI thread
-    public ObservableCollection<TreeItem> Children { get; } = new();
+    public TestableCollection<TreeItem> Children { get; } = new();
 
     public TreeItem(string value, TreeItem? parent)
     {
         Value = value;
         Parent = parent;
+    }
+}
+
+public class TestableCollection<T> : ObservableCollection<T>
+{
+    private int _blockCollectionChanges;
+
+    protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
+    {
+        if (Interlocked.CompareExchange(ref _blockCollectionChanges, 0, 0) == 0)
+        {
+            base.OnCollectionChanged(e);
+        }
+    }
+
+    public void ReplaceAllItems(params T[] newItems)
+    {
+        Interlocked.Exchange(ref _blockCollectionChanges, 1);
+
+        Clear();
+        foreach (T newItem in newItems)
+        {
+            Add(newItem);
+        }
+
+        Interlocked.Exchange(ref _blockCollectionChanges, 0);
+
+        OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
     }
 }

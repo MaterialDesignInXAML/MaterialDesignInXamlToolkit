@@ -28,6 +28,7 @@
       <Button Content="Remove" Click="Remove_OnClick" />
       <Button Content="Replace" Click="Replace_OnClick" />
       <Button Content="Down" Click="MoveDown_OnClick" />
+      <Button Content="Reset" Click="Reset_OnClick" />
     </StackPanel>
   </Grid>
 </UserControl>

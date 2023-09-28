@@ -9,6 +9,40 @@ public class TreeListViewTests : TestBase
     { }
 
     [Fact]
+    public async Task CanResetNestedElements()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+        IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+        IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
+        IVisualElement<Button> resetButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Reset"));
+
+        IVisualElement<TreeListViewItem> secondItem = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
+
+        //Select second item and add three children
+        await AddChildren(secondItem, 3, addButton);
+
+        //Expand item and select second item
+        await secondItem.LeftClickExpander();
+        await secondItem.LeftClick();
+        await Wait.For(() => secondItem.GetIsSelected());
+
+
+        //Reset children
+        await resetButton.LeftClick();
+
+        await AssertTreeItemContent(treeListView, 0, "0");
+        await AssertTreeItemContent(treeListView, 1, "1");
+        await AssertTreeItemContent(treeListView, 2, "1_0_x");
+        await AssertTreeItemContent(treeListView, 3, "1_1_x");
+        await AssertTreeItemContent(treeListView, 4, "1_2_x");
+        await AssertTreeItemContent(treeListView, 5, "2");
+
+        recorder.Success();
+    }
+
+    [Fact]
     public async Task CanMoveNestedElement()
     {
         await using var recorder = new TestRecorder(App);
