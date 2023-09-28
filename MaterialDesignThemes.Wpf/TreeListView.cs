@@ -1,10 +1,10 @@
-﻿using System.Collections.Specialized;
+using System.Collections.Specialized;
 using MaterialDesignThemes.Wpf.Internal;
 
 namespace MaterialDesignThemes.Wpf;
 
 //TODO: Implement bindable property for getting selected items
-//Disallow setting GridView
+//TODO: Implement GridView support for having columns
 public class TreeListView : ListView
 {
     public double LevelIndentSize
@@ -13,9 +13,8 @@ public class TreeListView : ListView
         set => SetValue(LevelIndentSizeProperty, value);
     }
 
-    // Using a DependencyProperty as the backing store for LevelIndentSize.  This enables animation, styling, binding, etc...
     public static readonly DependencyProperty LevelIndentSizeProperty =
-        DependencyProperty.Register("LevelIndentSize", typeof(double), typeof(TreeListView), new PropertyMetadata(16.0));
+        DependencyProperty.Register(nameof(LevelIndentSize), typeof(double), typeof(TreeListView), new PropertyMetadata(16.0));
 
     private TreeListViewItemsCollection<object?>? InternalItemsSource { get; set; }
 
