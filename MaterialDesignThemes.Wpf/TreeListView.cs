@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Collections.Specialized;
+﻿using System.Collections.Specialized;
 using MaterialDesignThemes.Wpf.Internal;
 
 namespace MaterialDesignThemes.Wpf;
@@ -129,7 +128,7 @@ public class TreeListView : ListView
             if (index < 0) return;
             //We push the index forward by 1 to be on the first element of the item's children
             index++;
-            int offset = 0;
+            int offset;
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
@@ -155,7 +154,7 @@ public class TreeListView : ListView
                 case NotifyCollectionChangedAction.Move:
                     for (int i = 0; i < e.NewItems?.Count; i++)
                     {
-                        itemsSource.Move(e.OldStartingIndex + i + index, e.NewStartingIndex + i);
+                        itemsSource.Move(e.OldStartingIndex + i + index, e.NewStartingIndex + i + index);
                     }
                     break;
                 case NotifyCollectionChangedAction.Reset:

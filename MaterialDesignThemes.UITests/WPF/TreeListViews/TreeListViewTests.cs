@@ -6,8 +6,130 @@ public class TreeListViewTests : TestBase
 {
     public TreeListViewTests(ITestOutputHelper output)
         : base(output)
+    { }
+
+    [Fact]
+    public async Task CanMoveNestedElement()
     {
-        AttachedDebugger = true;
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+        IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+        IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
+        IVisualElement<Button> moveDownButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Down"));
+
+        IVisualElement<TreeListViewItem> secondItem = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
+
+        //Select second item and add three children
+        await AddChildren(secondItem, 3, addButton);
+
+        //Expand item
+        await secondItem.LeftClickExpander();
+
+        //Move child item
+        IVisualElement<TreeListViewItem> childElement;
+        await Wait.For(async () =>
+        {
+            childElement = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[3]");
+            await childElement.LeftClick();
+            return await childElement.GetIsSelected();
+        });
+        await moveDownButton.LeftClick();
+
+        await AssertTreeItemContent(treeListView, 0, "0");
+        await AssertTreeItemContent(treeListView, 1, "1");
+        await AssertTreeItemContent(treeListView, 2, "1_0");
+        await AssertTreeItemContent(treeListView, 3, "1_2");
+        await AssertTreeItemContent(treeListView, 4, "1_1");
+        await AssertTreeItemContent(treeListView, 5, "2");
+
+        recorder.Success();
+    }
+
+    [Fact]
+    public async Task CanMoveTopLevelElement()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+        IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+        IVisualElement<Button> moveDownButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Down"));
+
+        IVisualElement<TreeListViewItem> secondItem = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
+
+        //Replace item
+        await Wait.For(async () =>
+        {
+            await secondItem.LeftClick();
+            return await secondItem.GetIsSelected();
+        });
+        await moveDownButton.LeftClick();
+
+        await AssertTreeItemContent(treeListView, 0, "0");
+        await AssertTreeItemContent(treeListView, 1, "2");
+        await AssertTreeItemContent(treeListView, 2, "1");
+
+        recorder.Success();
+    }
+
+    [Fact]
+    public async Task CanReplaceTopLevelElement()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+        IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+        IVisualElement<Button> replaceButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Replace"));
+
+        IVisualElement<TreeListViewItem> secondItem = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
+
+        //Replace item
+        await Wait.For(async () =>
+        {
+            await secondItem.LeftClick();
+            return await secondItem.GetIsSelected();
+        });
+        await replaceButton.LeftClick();
+
+        await AssertTreeItemContent(treeListView, 0, "0");
+        await AssertTreeItemContent(treeListView, 1, "1_r");
+        await AssertTreeItemContent(treeListView, 2, "2");
+
+        recorder.Success();
+    }
+
+    [Fact]
+    public async Task CanReplaceNestedChildElement()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+        IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+        IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
+        IVisualElement<Button> replaceButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Replace"));
+
+        IVisualElement<TreeListViewItem> secondItem = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
+
+        //Select second item and add three children
+        await AddChildren(secondItem, 3, addButton);
+
+        //Expand item
+        await secondItem.LeftClickExpander();
+
+        //Replace child item
+        IVisualElement<TreeListViewItem> childElement;
+        await Wait.For(async () =>
+        {
+            childElement = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[3]");
+            await childElement.LeftClick();
+            return await childElement.GetIsSelected();
+        });
+        await replaceButton.LeftClick();
+
+
+        await AssertTreeItemContent(treeListView, 3, "1_1_r");
+
+        recorder.Success();
     }
 
     [Fact]
@@ -15,13 +137,11 @@ public class TreeListViewTests : TestBase
     {
         await using var recorder = new TestRecorder(App);
 
-        //Arrange
         IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
         IVisualElement<Button> removeButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Remove"));
 
-        //Act
         IVisualElement<TreeListViewItem> secondItem = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
 
         //Select second item and add three children
@@ -33,7 +153,6 @@ public class TreeListViewTests : TestBase
         //Remove second item
         await removeButton.LeftClick();
 
-        //Assert
         await AssertTreeItemContent(treeListView, 0, "0");
         await AssertTreeItemContent(treeListView, 1, "2");
         

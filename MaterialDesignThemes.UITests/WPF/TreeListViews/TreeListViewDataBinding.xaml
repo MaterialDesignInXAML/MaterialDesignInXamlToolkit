@@ -26,6 +26,8 @@
     <StackPanel Grid.Row="1" Orientation="Horizontal">
       <Button Content="Add" Click="Add_OnClick" />
       <Button Content="Remove" Click="Remove_OnClick" />
+      <Button Content="Replace" Click="Replace_OnClick" />
+      <Button Content="Down" Click="MoveDown_OnClick" />
     </StackPanel>
   </Grid>
 </UserControl>
