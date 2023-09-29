@@ -205,6 +205,82 @@ public class TreeListViewItemsCollectionTests
         Assert.Equal(expectedLevels, treeListViewItemsCollection.GetAllLevels());
     }
 
+    [Fact]
+    public void WhenMovingItemUp_ItMovesChildrenAlongWithIt()
+    {
+        //Arrange
+        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(new[] { "a", "b", "c" });
+        treeListViewItemsCollection.Insert(1, "a_a", 1);
+        treeListViewItemsCollection.Insert(2, "a_b", 1);
+        treeListViewItemsCollection.Insert(4, "b_a", 1);
+        treeListViewItemsCollection.Insert(5, "b_b", 1);
+        treeListViewItemsCollection.Insert(6, "b_c", 1);
+        treeListViewItemsCollection.Insert(8, "c_a", 1);
+        treeListViewItemsCollection.Insert(9, "c_b", 1);
+        /*
+         * 0. a
+         * 1.  a_a
+         * 2.  a_b
+         * 3. b
+         * 4.  b_a
+         * 5.  b_b
+         * 6.  b_c  
+         * 7. c
+         * 8   c_a
+         * 9.  c_b
+         */
+
+        var levels = treeListViewItemsCollection.GetAllLevels().ToList();
+
+        //Act
+        treeListViewItemsCollection.Move(3, 0); // Swap a and b root items
+
+        //Assert
+        List<string> expectedItems = new(new[] { "b", "b_a", "b_b", "b_c", "a", "a_a", "a_b", "c", "c_a", "c_b" });
+        List<int> expectedLevels = new(new[] { 0, 1, 1, 1, 0, 1, 1, 0, 1, 1 });
+
+        Assert.Equal(expectedItems, treeListViewItemsCollection);
+        Assert.Equal(expectedLevels, treeListViewItemsCollection.GetAllLevels());
+    }
+
+    [Fact]
+    public void WhenMovingItemDown_ItMovesChildrenAlongWithIt()
+    {
+        //Arrange
+        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(new[] { "a", "b", "c" });
+        treeListViewItemsCollection.Insert(1, "a_a", 1);
+        treeListViewItemsCollection.Insert(2, "a_b", 1);
+        treeListViewItemsCollection.Insert(4, "b_a", 1);
+        treeListViewItemsCollection.Insert(5, "b_b", 1);
+        treeListViewItemsCollection.Insert(6, "b_c", 1);
+        treeListViewItemsCollection.Insert(8, "c_a", 1);
+        treeListViewItemsCollection.Insert(9, "c_b", 1);
+        /*
+         * 0. a
+         * 1.  a_a
+         * 2.  a_b
+         * 3. b
+         * 4.  b_a
+         * 5.  b_b
+         * 6.  b_c
+         * 7. c
+         * 8   c_a
+         * 9.  c_b
+         */
+
+        var levels = treeListViewItemsCollection.GetAllLevels().ToList();
+
+        //Act
+        treeListViewItemsCollection.Move(3, 7); // Swap a and c root items
+
+        //Assert
+        List<string> expectedItems = new(new[] { "a", "a_a", "a_b", "c", "c_a", "c_b", "b", "b_a", "b_b", "b_c" });
+        List<int> expectedLevels = new(new[] { 0, 1, 1, 0, 1, 1, 0, 1, 1, 1 });
+
+        Assert.Equal(expectedItems, treeListViewItemsCollection);
+        Assert.Equal(expectedLevels, treeListViewItemsCollection.GetAllLevels());
+    }
+
     private class TestableCollection<T> : ObservableCollection<T>
     {
         private int _blockCollectionChanges;
