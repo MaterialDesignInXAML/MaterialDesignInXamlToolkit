@@ -367,6 +367,34 @@ public class TreeListViewTests : TestBase
     }
 
     [Fact]
+    public async Task CanReplaceTopLevelElementWithExpandedChildren()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+        IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+        IVisualElement<Button> replaceButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Replace"));
+        IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
+
+        IVisualElement<TreeListViewItem> secondItem = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
+
+        //Select second item and add three children
+        await AddChildren(secondItem, 3, addButton);
+
+        //Expand item
+        await secondItem.LeftClickExpander();
+
+        //Replace item
+        await replaceButton.LeftClick();
+
+        await AssertTreeItemContent(treeListView, 0, "0");
+        await AssertTreeItemContent(treeListView, 1, "1_r");    // NOTE: The three children should have been dropped by the replace call.
+        await AssertTreeItemContent(treeListView, 2, "2");
+
+        recorder.Success();
+    }
+
+    [Fact]
     public async Task CanReplaceNestedChildElement()
     {
         await using var recorder = new TestRecorder(App);
@@ -394,8 +422,58 @@ public class TreeListViewTests : TestBase
         });
         await replaceButton.LeftClick();
 
-
+        await AssertTreeItemContent(treeListView, 0, "0");
+        await AssertTreeItemContent(treeListView, 1, "1");
+        await AssertTreeItemContent(treeListView, 2, "1_0");
         await AssertTreeItemContent(treeListView, 3, "1_1_r");
+        await AssertTreeItemContent(treeListView, 4, "1_2");
+        await AssertTreeItemContent(treeListView, 5, "2");
+
+        recorder.Success();
+    }
+
+    [Fact]
+    public async Task CanReplaceNestedChildElementWithExpandedChildren()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+        IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+        IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
+        IVisualElement<Button> replaceButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Replace"));
+
+        IVisualElement<TreeListViewItem> secondItem = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
+
+        //Select second item and add three children
+        await AddChildren(secondItem, 3, addButton);
+
+        //Expand item
+        await secondItem.LeftClickExpander();
+
+        // Select child item and add three children and expand it
+        IVisualElement<TreeListViewItem>? childElement = null;
+        await Wait.For(async () =>
+        {
+            childElement = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[3]");
+            await childElement.LeftClick();
+            return await childElement.GetIsSelected();
+        });
+        //NB: Needs to be long enough delay so the next click does not register as a double click
+        await Task.Delay(500);
+        await AddChildren(childElement!, 3, addButton);
+        //NB: Needs to be long enough delay so the next click does not register as a double click
+        await Task.Delay(500);
+        await childElement!.LeftClickExpander();
+
+        //Replace child item
+        await replaceButton.LeftClick();
+
+        await AssertTreeItemContent(treeListView, 0, "0");
+        await AssertTreeItemContent(treeListView, 1, "1");
+        await AssertTreeItemContent(treeListView, 2, "1_0");
+        await AssertTreeItemContent(treeListView, 3, "1_1_r");
+        await AssertTreeItemContent(treeListView, 4, "1_2");
+        await AssertTreeItemContent(treeListView, 5, "2");
 
         recorder.Success();
     }
