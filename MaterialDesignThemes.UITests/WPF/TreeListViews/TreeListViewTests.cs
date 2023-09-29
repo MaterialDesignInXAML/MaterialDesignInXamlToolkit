@@ -298,8 +298,8 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 1, "2");
         await AssertTreeItemContent(treeListView, 2, "1");
         await AssertTreeItemContent(treeListView, 3, "1_0");    // NOTE: If expansion state is lost when moving, these 3 children should not be present.
-        await AssertTreeItemContent(treeListView, 4, "1_2");
-        await AssertTreeItemContent(treeListView, 5, "1_1");
+        await AssertTreeItemContent(treeListView, 4, "1_1");
+        await AssertTreeItemContent(treeListView, 5, "1_2");
 
         recorder.Success();
     }
@@ -332,8 +332,8 @@ public class TreeListViewTests : TestBase
 
         await AssertTreeItemContent(treeListView, 0, "1");
         await AssertTreeItemContent(treeListView, 1, "1_0");    // NOTE: If expansion state is lost when moving, these 3 children should not be present.
-        await AssertTreeItemContent(treeListView, 2, "1_2");
-        await AssertTreeItemContent(treeListView, 3, "1_1");
+        await AssertTreeItemContent(treeListView, 2, "1_1");
+        await AssertTreeItemContent(treeListView, 3, "1_2");
         await AssertTreeItemContent(treeListView, 4, "0");
         await AssertTreeItemContent(treeListView, 5, "2");
 
