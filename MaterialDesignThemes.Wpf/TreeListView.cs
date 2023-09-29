@@ -110,8 +110,8 @@ public class TreeListView : ListView
                 case NotifyCollectionChangedAction.Move:
                     for (int i = 0; i < e.NewItems?.Count; i++)
                     {
-                        // TODO: This only moves the "selected item". It also needs to move any (expanded) children/grand-children along with it.
-                        itemsSource.Move(e.OldStartingIndex + i + index, e.NewStartingIndex + i + index);
+                        // TODO: This is still not working 100% correct. Moving an item that has expanded children downwards behaves weirdly.
+                        itemsSource.MoveOffsetAdjustedItem(e.OldStartingIndex + i + index, e.NewStartingIndex + i + index);
                     }
                     break;
                 case NotifyCollectionChangedAction.Reset:
