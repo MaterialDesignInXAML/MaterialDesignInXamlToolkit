@@ -67,7 +67,7 @@ public class TreeListView : ListView
                 int parentLevel = itemsSource.GetLevel(index);
                 for (int i = 0; i < children.Count; i++)
                 {
-                    itemsSource.Insert(i + index + 1, children[i], parentLevel + 1);
+                    itemsSource.InsertWithLevel(i + index + 1, children[i], parentLevel + 1);
                 }
             }
             else
@@ -134,7 +134,7 @@ public class TreeListView : ListView
                     offset = GetPriorSiblingsAndChildrenCount(itemsSource, index, e.NewStartingIndex);
                     for (int i = 0; i < e.NewItems?.Count; i++)
                     {
-                        itemsSource.Insert(index + offset, e.NewItems[i]!);
+                        itemsSource.InsertOffsetAdjustedItem(index + offset, e.NewItems[i]!);
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:
@@ -168,7 +168,7 @@ public class TreeListView : ListView
 
                     for (int i = 0; i < children.Count; i++)
                     {
-                        itemsSource.Insert(i + index, children[i], itemLevel + 1);
+                        itemsSource.InsertWithLevel(i + index, children[i], itemLevel + 1);
                     }
                     break;
             }

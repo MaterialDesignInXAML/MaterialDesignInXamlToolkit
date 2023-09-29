@@ -120,8 +120,8 @@ public class TreeListViewItemsCollectionTests
     {
         //Arrange
         TreeListViewItemsCollection<string> treeListViewItemsCollection = new(new[] { "a", "b" });
-        treeListViewItemsCollection.Insert(1, "a_a", 1);
-        treeListViewItemsCollection.Insert(2, "a_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(2, "a_b", 1);
         /*
          * 0. a
          * 1.  a_a
@@ -130,7 +130,7 @@ public class TreeListViewItemsCollectionTests
          */
 
         //Act
-        treeListViewItemsCollection.Insert(insertionIndex, "x", requestedLevel);
+        treeListViewItemsCollection.InsertWithLevel(insertionIndex, "x", requestedLevel);
 
         //Assert
         List<string> expectedItems = new(new[] { "a", "a_a", "a_b", "b" });
@@ -153,8 +153,8 @@ public class TreeListViewItemsCollectionTests
     {
         //Arrange
         TreeListViewItemsCollection<string> treeListViewItemsCollection = new(new[] { "a", "b" });
-        treeListViewItemsCollection.Insert(1, "a_a", 1);
-        treeListViewItemsCollection.Insert(2, "a_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(2, "a_b", 1);
         /*
          * 0. a
          * 1.  a_a
@@ -163,7 +163,7 @@ public class TreeListViewItemsCollectionTests
          */
 
         //Act/Assert
-        Assert.Throws<ArgumentOutOfRangeException>(() => treeListViewItemsCollection.Insert(insertionIndex, "x", requestedLevel));
+        Assert.Throws<ArgumentOutOfRangeException>(() => treeListViewItemsCollection.InsertWithLevel(insertionIndex, "x", requestedLevel));
     }
 
     [Theory]
@@ -177,10 +177,10 @@ public class TreeListViewItemsCollectionTests
     {
         //Arrange
         TreeListViewItemsCollection<string> treeListViewItemsCollection = new(new[] { "a", "b" });
-        treeListViewItemsCollection.Insert(1, "a_a", 1);
-        treeListViewItemsCollection.Insert(2, "a_a_a", 2);
-        treeListViewItemsCollection.Insert(3, "a_a_b", 2);
-        treeListViewItemsCollection.Insert(4, "a_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(2, "a_a_a", 2);
+        treeListViewItemsCollection.InsertWithLevel(3, "a_a_b", 2);
+        treeListViewItemsCollection.InsertWithLevel(4, "a_b", 1);
         /*
          * 0. a
          * 1.  a_a
@@ -206,17 +206,17 @@ public class TreeListViewItemsCollectionTests
     }
 
     [Fact]
-    public void WhenMovingItemUp_ItMovesChildrenAlongWithIt()
+    public void Move_WhenMovingItemUp_ItMovesChildrenAlongWithIt()
     {
         //Arrange
         TreeListViewItemsCollection<string> treeListViewItemsCollection = new(new[] { "a", "b", "c" });
-        treeListViewItemsCollection.Insert(1, "a_a", 1);
-        treeListViewItemsCollection.Insert(2, "a_b", 1);
-        treeListViewItemsCollection.Insert(4, "b_a", 1);
-        treeListViewItemsCollection.Insert(5, "b_b", 1);
-        treeListViewItemsCollection.Insert(6, "b_c", 1);
-        treeListViewItemsCollection.Insert(8, "c_a", 1);
-        treeListViewItemsCollection.Insert(9, "c_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(2, "a_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(4, "b_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(5, "b_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(6, "b_c", 1);
+        treeListViewItemsCollection.InsertWithLevel(8, "c_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(9, "c_b", 1);
         /*
          * 0. a
          * 1.  a_a
@@ -230,10 +230,8 @@ public class TreeListViewItemsCollectionTests
          * 9.  c_b
          */
 
-        var levels = treeListViewItemsCollection.GetAllLevels().ToList();
-
         //Act
-        treeListViewItemsCollection.Move(3, 0); // Swap a and b root items
+        treeListViewItemsCollection.Move(1, 0); // Swap a and b; Move() only knows about root level items, so indices reflect that
 
         //Assert
         List<string> expectedItems = new(new[] { "b", "b_a", "b_b", "b_c", "a", "a_a", "a_b", "c", "c_a", "c_b" });
@@ -244,17 +242,51 @@ public class TreeListViewItemsCollectionTests
     }
 
     [Fact]
-    public void WhenMovingItemDown_ItMovesChildrenAlongWithIt()
+    public void Move_WhenMovingItemUpMultipleLevels_ItMovesChildrenAlongWithIt()
     {
         //Arrange
         TreeListViewItemsCollection<string> treeListViewItemsCollection = new(new[] { "a", "b", "c" });
-        treeListViewItemsCollection.Insert(1, "a_a", 1);
-        treeListViewItemsCollection.Insert(2, "a_b", 1);
-        treeListViewItemsCollection.Insert(4, "b_a", 1);
-        treeListViewItemsCollection.Insert(5, "b_b", 1);
-        treeListViewItemsCollection.Insert(6, "b_c", 1);
-        treeListViewItemsCollection.Insert(8, "c_a", 1);
-        treeListViewItemsCollection.Insert(9, "c_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(2, "a_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(4, "b_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(5, "b_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(6, "b_c", 1);
+        treeListViewItemsCollection.InsertWithLevel(8, "c_a", 1);
+        /*
+         * 0. a
+         * 1.  a_a
+         * 2.  a_b
+         * 3. b
+         * 4.  b_a
+         * 5.  b_b
+         * 6.  b_c
+         * 7. c
+         * 8   c_a
+         */
+
+        //Act
+        treeListViewItemsCollection.Move(2, 0); // Move c to a's position; Move() only knows about root level items, so indices reflect that
+
+        //Assert
+        List<string> expectedItems = new(new[] { "c", "c_a", "a", "a_a", "a_b", "b", "b_a", "b_b", "b_c" });
+        List<int> expectedLevels = new(new[] { 0, 1, 0, 1, 1, 0, 1, 1, 1 });
+
+        Assert.Equal(expectedItems, treeListViewItemsCollection);
+        Assert.Equal(expectedLevels, treeListViewItemsCollection.GetAllLevels());
+    }
+
+    [Fact]
+    public void Move_WhenMovingItemDown_ItMovesChildrenAlongWithIt()
+    {
+        //Arrange
+        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(new[] { "a", "b", "c" });
+        treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(2, "a_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(4, "b_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(5, "b_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(6, "b_c", 1);
+        treeListViewItemsCollection.InsertWithLevel(8, "c_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(9, "c_b", 1);
         /*
          * 0. a
          * 1.  a_a
@@ -268,14 +300,46 @@ public class TreeListViewItemsCollectionTests
          * 9.  c_b
          */
 
-        var levels = treeListViewItemsCollection.GetAllLevels().ToList();
-
         //Act
-        treeListViewItemsCollection.Move(3, 7); // Swap a and c root items
+        treeListViewItemsCollection.Move(1, 2); // Swap b and c; Move() only knows about root level items, so indices reflect that
 
         //Assert
         List<string> expectedItems = new(new[] { "a", "a_a", "a_b", "c", "c_a", "c_b", "b", "b_a", "b_b", "b_c" });
         List<int> expectedLevels = new(new[] { 0, 1, 1, 0, 1, 1, 0, 1, 1, 1 });
+
+        Assert.Equal(expectedItems, treeListViewItemsCollection);
+        Assert.Equal(expectedLevels, treeListViewItemsCollection.GetAllLevels());
+    }
+
+    [Fact]
+    public void Move_WhenMovingItemDownMultipleLevels_ItMovesChildrenAlongWithIt()
+    {
+        //Arrange
+        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(new[] { "a", "b", "c" });
+        treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(2, "a_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(4, "b_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(5, "b_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(6, "b_c", 1);
+        treeListViewItemsCollection.InsertWithLevel(8, "c_a", 1);
+        /*
+         * 0. a
+         * 1.  a_a
+         * 2.  a_b
+         * 3. b
+         * 4.  b_a
+         * 5.  b_b
+         * 6.  b_c
+         * 7. c
+         * 8   c_a
+         */
+
+        //Act
+        treeListViewItemsCollection.Move(0, 2); // Move a to c's position; Move() only knows about root level items, so indices reflect that
+
+        //Assert
+        List<string> expectedItems = new(new[] { "b", "b_a", "b_b", "b_c", "c", "c_a", "a", "a_a", "a_b" });
+        List<int> expectedLevels = new(new[] { 0, 1, 1, 1, 0, 1, 0, 1, 1 });
 
         Assert.Equal(expectedItems, treeListViewItemsCollection);
         Assert.Equal(expectedLevels, treeListViewItemsCollection.GetAllLevels());
