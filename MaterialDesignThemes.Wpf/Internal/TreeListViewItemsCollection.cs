@@ -168,10 +168,15 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
     {
         int priorNonRootLevelItems = GetPriorNonRootLevelItemsCount(index);
         int adjustedIndex = index + priorNonRootLevelItems;
+        ReplaceOffsetAdjustedItem(adjustedIndex, item);
+    }
 
+    internal void ReplaceOffsetAdjustedItem(int index, T item)
+    {
         // NOTE: This is slight change of notification behavior. It now fires at least one Remove (possibly also removing children) and one Add notification on the internal collection; probably not an issue.
-        RemoveOffsetAdjustedItem(adjustedIndex);
-        InsertOffsetAdjustedItem(adjustedIndex, item);
+        int level = GetLevel(index);
+        RemoveOffsetAdjustedItem(index);
+        InsertWithLevel(index, item, level);
     }
 
     private void ItemsSource_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)

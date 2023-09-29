@@ -72,82 +72,39 @@ public class TreeListView : ListView
             }
             else
             {
-                for (int i = 0; i < children.Count; i++)
-                {
-                    itemsSource.RemoveAt(index + 1);
-                }
+                itemsSource.RemoveOffsetAdjustedItem(index); // InternalItemsSource.RemoveOffsetAdjustedItem(index) will remove the item and all of its children/grand-children
             }
         }
     }
 
     internal void ItemsChildrenChanged(TreeListViewItem item, NotifyCollectionChangedEventArgs e)
     {
-        /* Helper method used to determine the number of visible items that are prior siblings
-         * or children/grand-children of expanded siblings.
-         *
-         * This is used to determine the correct offset into the InternalItemsSource when adding/removing items
-         */
-        static int GetPriorSiblingsAndChildrenCount(TreeListViewItemsCollection<object?> collection, int startingIndex, int expectedPriorSiblingCount)
-        {
-            int additionalOffset = 0;
-            int index = 0;
-            int siblingCount = 0;
-
-            // Determine the level expected of siblings (used for comparison)
-            int siblingLevel = collection.GetLevel(startingIndex - 1) + 1;
-
-            // Iterate while we haven't:
-            //  - Exceeded the expected number of prior siblings, or
-            //  - Reached the end of the InternalItemsSource, or
-            //  - Reached an item with a level less than the sibling level
-            while (siblingCount <= expectedPriorSiblingCount)
-            {
-                // Bail out if we've reached the end of the itemsSource
-                if (startingIndex + index >= collection.Count)
-                    break;
-
-                // Bail out if we've reached an item with a level less than the sibling level
-                int level = collection.GetLevel(startingIndex + index);
-                if (level < siblingLevel)
-                    break;
-
-                if (level == siblingLevel)
-                {
-                    siblingCount++;
-                }
-                additionalOffset++;
-                index++;
-            }
-            return additionalOffset;
-        }
-
         if (item.IsExpanded && InternalItemsSource is { } itemsSource)
         {
             int index = ItemContainerGenerator.IndexFromContainer(item);
             if (index < 0) return;
+
+            int parentLevel = itemsSource.GetLevel(index);
             //We push the index forward by 1 to be on the first element of the item's children
             index++;
-            int offset;
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    offset = GetPriorSiblingsAndChildrenCount(itemsSource, index, e.NewStartingIndex);
                     for (int i = 0; i < e.NewItems?.Count; i++)
                     {
-                        itemsSource.InsertOffsetAdjustedItem(index + offset, e.NewItems[i]!);
+                        itemsSource.InsertWithLevel(e.NewStartingIndex + i + index, e.NewItems[i]!, parentLevel + 1);
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:
-                    offset = GetPriorSiblingsAndChildrenCount(itemsSource, index, e.OldStartingIndex) - 1; // The -1 is because the item being removed is also taken into account, which in this case is not needed.
                     for (int i = 0; i < e.OldItems?.Count; i++)
                     {
-                        itemsSource.RemoveAt(index + offset);
+                        itemsSource.RemoveOffsetAdjustedItem(e.OldStartingIndex + index);
                     }
                     break;
                 case NotifyCollectionChangedAction.Replace:
                     for (int i = 0; i < e.NewItems?.Count; i++)
                     {
-                        itemsSource[e.NewStartingIndex + i + index] = e.NewItems[i]!;
+                        itemsSource.ReplaceOffsetAdjustedItem(e.NewStartingIndex + i + index, e.NewItems[i]!);
                     }
                     break;
                 case NotifyCollectionChangedAction.Move:
