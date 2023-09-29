@@ -77,12 +77,20 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
 
     protected override void RemoveItem(int index)
     {
+        int priorNonRootLevelItems = GetPriorNonRootLevelItemsCount(index);
+        int adjustedIndex = index + priorNonRootLevelItems;
+        RemoveOffsetAdjustedItem(adjustedIndex);
+    }
+
+    internal void RemoveOffsetAdjustedItem(int index)
+    {
         int currentLevel = ItemLevels[index];
         ItemLevels.RemoveAt(index);
         base.RemoveItem(index);
         while (index < Count && ItemLevels[index] > currentLevel)
         {
-            RemoveItem(index);
+            ItemLevels.RemoveAt(index);
+            base.RemoveItem(index);
         }
     }
 

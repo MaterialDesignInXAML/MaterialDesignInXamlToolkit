@@ -149,7 +149,7 @@ public class TreeListViewItemsCollectionTests
     [InlineData(2, 0)]
     [InlineData(0, -1)]
     [InlineData(4, 2)]
-    public void WhenAddingItemAtNestedLevel_ItItThrowsIfRequestIsOutOfRange(int insertionIndex, int requestedLevel)
+    public void WhenAddingItemAtNestedLevel_ItThrowsIfRequestIsOutOfRange(int insertionIndex, int requestedLevel)
     {
         //Arrange
         TreeListViewItemsCollection<string> treeListViewItemsCollection = new(new[] { "a", "b" });
@@ -167,20 +167,18 @@ public class TreeListViewItemsCollectionTests
     }
 
     [Theory]
-    [InlineData(0, 5)]
-    [InlineData(1, 3)]
-    [InlineData(2, 1)]
-    [InlineData(3, 1)]
-    [InlineData(4, 1)]
-    [InlineData(5, 1)]
-    public void WhenRemovingItem_ItRemovesItemsAndAnyChildren(int indexToRemove, int numItemsRemoved)
+    [InlineData(0, new[] { "b", "b_a", "c" }, new[] { 0, 1, 0})]
+    [InlineData(1, new[] { "a", "a_a", "a_a_a", "a_a_b", "a_b", "c" }, new[] { 0, 1, 2, 2, 1, 0 })]
+    [InlineData(2, new[] { "a", "a_a", "a_a_a", "a_a_b", "a_b", "b", "b_a" }, new[] { 0, 1, 2, 2, 1, 0, 1 })]
+    public void WhenRemovingItem_ItRemovesItemsAndAnyChildren(int indexToRemove, string[] expectedItems, int[] expectedLevels)
     {
         //Arrange
-        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(new[] { "a", "b" });
+        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(new[] { "a", "b", "c" });
         treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
         treeListViewItemsCollection.InsertWithLevel(2, "a_a_a", 2);
         treeListViewItemsCollection.InsertWithLevel(3, "a_a_b", 2);
         treeListViewItemsCollection.InsertWithLevel(4, "a_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(6, "b_a", 1);
         /*
          * 0. a
          * 1.  a_a
@@ -188,19 +186,13 @@ public class TreeListViewItemsCollectionTests
          * 3.   a_a_b
          * 4.  a_b
          * 5. b
+         * 6.  b_a
+         * 7. c
          */
 
         //Act
-        treeListViewItemsCollection.RemoveAt(indexToRemove);
+        treeListViewItemsCollection.RemoveAt(indexToRemove); // RemoveAt() only knows about root level items, so indices in input should reflect that
 
-        //Assert
-        List<string> expectedItems = new(new[] { "a", "a_a", "a_a_a", "a_a_b", "a_b", "b" });
-        List<int> expectedLevels = new(new[] { 0, 1, 2, 2, 1, 0 });
-        for (int i = 0; i < numItemsRemoved; i++)
-        {
-            expectedItems.RemoveAt(indexToRemove);
-            expectedLevels.RemoveAt(indexToRemove);
-        }
         Assert.Equal(expectedItems, treeListViewItemsCollection);
         Assert.Equal(expectedLevels, treeListViewItemsCollection.GetAllLevels());
     }
