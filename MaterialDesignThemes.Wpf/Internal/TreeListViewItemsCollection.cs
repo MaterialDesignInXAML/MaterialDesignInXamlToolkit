@@ -164,6 +164,16 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
         }
     }
 
+    private void ReplaceItem(int index, T item)
+    {
+        int priorNonRootLevelItems = GetPriorNonRootLevelItemsCount(index);
+        int adjustedIndex = index + priorNonRootLevelItems;
+
+        // NOTE: This is slight change of notification behavior. It now fires at least one Remove (possibly also removing children) and one Add notification on the internal collection; probably not an issue.
+        RemoveOffsetAdjustedItem(adjustedIndex);
+        InsertOffsetAdjustedItem(adjustedIndex, item);
+    }
+
     private void ItemsSource_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
         switch (e.Action)
@@ -183,7 +193,7 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
             case NotifyCollectionChangedAction.Replace:
                 for (int i = 0; i < e.NewItems?.Count; i++)
                 {
-                    this[e.NewStartingIndex + i] = (T)e.NewItems[i]!;
+                    ReplaceItem(e.NewStartingIndex + i, (T)e.NewItems[i]!);
                 }
                 break;
             case NotifyCollectionChangedAction.Move:
@@ -210,7 +220,7 @@ internal static class ListExtensions
     {
         if (oldIndex == newIndex)
             return;
-        object item = list[oldIndex];
+        object item = list[oldIndex]!;
         list.RemoveAt(oldIndex);
         list.Insert(newIndex, item);
     }
