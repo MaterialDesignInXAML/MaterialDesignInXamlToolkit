@@ -87,24 +87,28 @@ public class TreeListView : ListView
             int parentLevel = itemsSource.GetLevel(index);
             // We push the index forward by 1 to be on the first element of the item's children
             index++;
+            int adjustedIndex;
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
+                    adjustedIndex = index + GetChildrenAndGrandChildrenCountOfPriorSiblings(itemsSource, index, e.NewStartingIndex);
                     for (int i = 0; i < e.NewItems?.Count; i++)
                     {
-                        itemsSource.InsertWithLevel(e.NewStartingIndex + i + index, e.NewItems[i]!, parentLevel + 1);
+                        itemsSource.InsertWithLevel(e.NewStartingIndex + i + adjustedIndex, e.NewItems[i]!, parentLevel + 1);
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:
+                    adjustedIndex = index + GetChildrenAndGrandChildrenCountOfPriorSiblings(itemsSource, index, e.OldStartingIndex); ;
                     for (int i = 0; i < e.OldItems?.Count; i++)
                     {
-                        itemsSource.RemoveOffsetAdjustedItem(e.OldStartingIndex + index);
+                        itemsSource.RemoveOffsetAdjustedItem(e.OldStartingIndex + adjustedIndex);
                     }
                     break;
                 case NotifyCollectionChangedAction.Replace:
+                    adjustedIndex = index + GetChildrenAndGrandChildrenCountOfPriorSiblings(itemsSource, index, e.OldStartingIndex);
                     for (int i = 0; i < e.NewItems?.Count; i++)
                     {
-                        itemsSource.ReplaceOffsetAdjustedItem(e.NewStartingIndex + i + index, e.NewItems[i]!);
+                        itemsSource.ReplaceOffsetAdjustedItem(e.OldStartingIndex + i + adjustedIndex, e.NewItems[i]!);
                     }
                     break;
                 case NotifyCollectionChangedAction.Move:
@@ -129,6 +133,48 @@ public class TreeListView : ListView
                     }
                     break;
             }
+        }
+
+        /* Helper method used to determine the number of visible items that are prior siblings
+         * or children/grand-children of expanded siblings.
+         *
+         * This is used to determine the correct offset into the InternalItemsSource when adding/removing items
+         */
+        static int GetChildrenAndGrandChildrenCountOfPriorSiblings(TreeListViewItemsCollection<object?> collection, int startingIndex, int expectedPriorSiblingCount)
+        {
+            int childrenAndGrandChildrenCount = 0;
+            int index = 0;
+            int siblingCount = 0;
+
+            // Determine the level expected of siblings (used for comparison)
+            int siblingLevel = collection.GetLevel(startingIndex - 1) + 1;
+
+            // Iterate while we haven't:
+            //  - Exceeded the expected number of prior siblings, or
+            //  - Reached the end of the InternalItemsSource, or
+            //  - Reached an item with a level less than the sibling level
+            while (siblingCount <= expectedPriorSiblingCount)
+            {
+                // Bail out if we've reached the end of the itemsSource
+                if (startingIndex + index >= collection.Count)
+                    break;
+
+                // Bail out if we've reached an item with a level less than the sibling level
+                int level = collection.GetLevel(startingIndex + index);
+                if (level < siblingLevel)
+                    break;
+
+                if (level == siblingLevel)
+                {
+                    siblingCount++;
+                }
+                else
+                {
+                    childrenAndGrandChildrenCount++;
+                }
+                index++;
+            }
+            return childrenAndGrandChildrenCount;
         }
     }
 

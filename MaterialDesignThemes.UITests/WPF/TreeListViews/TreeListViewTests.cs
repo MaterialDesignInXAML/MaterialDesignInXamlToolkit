@@ -638,26 +638,23 @@ public class TreeListViewTests : TestBase
         IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
-        IVisualElement<Button> removeButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Remove"));
 
         IVisualElement<TreeListViewItem> secondItem = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
 
         //Add child to second item and expand
         await AddChildren(secondItem, 1, addButton);
-        await Task.Delay(250);  // TODO: Unsure why this is needed, I suspect it is the double-click that could be interfering. Needed for consistent test results.
         await secondItem.LeftClickExpander();
 
-        //NB: Needs to be long enough delay so the next clicks does not register as a double click
-        await Task.Delay(250);
+        //NB: Needs to be long enough delay so the next click does not register as a double click
+        await Task.Delay(500);
 
         //Add child to newly added child and expand
         IVisualElement<TreeListViewItem> newChild1 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[2]");
         await AddChildren(newChild1, 1, addButton);
-        await Task.Delay(250);  // TODO: Unsure why this is needed, I suspect it is the double-click that could be interfering. Needed for consistent test results.
         await newChild1.LeftClickExpander();
 
-        //NB: Needs to be long enough delay so the next clicks does not register as a double click
-        await Task.Delay(250);
+        //NB: Needs to be long enough delay so the next click does not register as a double click
+        await Task.Delay(500);
 
         //Select secondItem again, and add another child
         await AddChildren(secondItem, 1, addButton);
@@ -683,20 +680,18 @@ public class TreeListViewTests : TestBase
 
         //Add child to second item and expand
         await AddChildren(secondItem, 3, addButton);
-        await Task.Delay(250);  // TODO: Unsure why this is needed, I suspect it is the double-click that could be interfering. Needed for consistent test results.
         await secondItem.LeftClickExpander();
 
-        //NB: Needs to be long enough delay so the next clicks does not register as a double click
-        await Task.Delay(250);
+        //NB: Needs to be long enough delay so the next click does not register as a double click
+        await Task.Delay(500);
 
         //Add child to newly added child and expand
         IVisualElement<TreeListViewItem> newChild1 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[2]");
         await AddChildren(newChild1, 1, addButton);
-        await Task.Delay(250);  // TODO: Unsure why this is needed, I suspect it is the double-click that could be interfering. Needed for consistent test results.
         await newChild1.LeftClickExpander();
 
-        //NB: Needs to be long enough delay so the next clicks does not register as a double click
-        await Task.Delay(250);
+        //NB: Needs to be long enough delay so the next click does not register as a double click
+        await Task.Delay(500);
 
         // Remove item "1_2"
         IVisualElement<TreeListViewItem> item1_2 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[5]");
@@ -704,8 +699,8 @@ public class TreeListViewTests : TestBase
         await Wait.For(() => item1_2.GetIsSelected());
         await removeButton.LeftClick();
 
-        //NB: Needs to be long enough delay so the next clicks does not register as a double click
-        await Task.Delay(250);
+        //NB: Needs to be long enough delay so the next click does not register as a double click
+        await Task.Delay(500);
 
         // Remove item "1_1" (this fails)
         IVisualElement<TreeListViewItem> item1_1 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[4]");
@@ -713,8 +708,8 @@ public class TreeListViewTests : TestBase
         await Wait.For(() => item1_1.GetIsSelected());
         await removeButton.LeftClick();
 
-        //NB: Needs to be long enough delay so the next clicks does not register as a double click
-        await Task.Delay(250);
+        //NB: Needs to be long enough delay so the next click does not register as a double click
+        await Task.Delay(500);
 
         //Assert the 2 children were successfully removed
         await AssertTreeItemContent(treeListView, 4, "2");
@@ -734,7 +729,8 @@ public class TreeListViewTests : TestBase
     private static async Task AddChildren(IVisualElement<TreeListViewItem> item, int numChildren, IVisualElement<Button> addButton)
     {
         await item.LeftClick();
-        for(int i = 0; i < numChildren; i++)
+        await Wait.For(item.GetIsSelected, Retry.Default);
+        for (int i = 0; i < numChildren; i++)
         {
             await addButton.LeftClick();
         }
