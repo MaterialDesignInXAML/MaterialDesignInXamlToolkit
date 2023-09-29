@@ -43,7 +43,7 @@ public class TreeListViewTests : TestBase
     }
 
     [Fact]
-    public async Task CanMoveNestedElement()
+    public async Task CanMoveNestedElementDown()
     {
         await using var recorder = new TestRecorder(App);
 
@@ -81,7 +81,143 @@ public class TreeListViewTests : TestBase
     }
 
     [Fact]
-    public async Task CanMoveTopLevelElement()
+    public async Task CanMoveNestedElementUp()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+        IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+        IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
+        IVisualElement<Button> moveUpButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Up"));
+
+        IVisualElement<TreeListViewItem> secondItem = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
+
+        //Select second item and add three children
+        await AddChildren(secondItem, 3, addButton);
+
+        //Expand item
+        await secondItem.LeftClickExpander();
+
+        //Move child item
+        IVisualElement<TreeListViewItem> childElement;
+        await Wait.For(async () =>
+        {
+            childElement = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[3]");
+            await childElement.LeftClick();
+            return await childElement.GetIsSelected();
+        });
+        await moveUpButton.LeftClick();
+
+        await AssertTreeItemContent(treeListView, 0, "0");
+        await AssertTreeItemContent(treeListView, 1, "1");
+        await AssertTreeItemContent(treeListView, 2, "1_1");
+        await AssertTreeItemContent(treeListView, 3, "1_0");
+        await AssertTreeItemContent(treeListView, 4, "1_2");
+        await AssertTreeItemContent(treeListView, 5, "2");
+
+        recorder.Success();
+    }
+
+    [Fact]
+    public async Task CanMoveNestedElementWithExpandedChildrenDown()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+        IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+        IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
+        IVisualElement<Button> moveDownButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Down"));
+
+        IVisualElement<TreeListViewItem> secondItem = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
+
+        //Select second item and add three children
+        await AddChildren(secondItem, 3, addButton);
+
+        //Expand item
+        await secondItem.LeftClickExpander();
+
+        // Select child item and add three children and expand it
+        IVisualElement<TreeListViewItem>? childElement = null;
+        await Wait.For(async () =>
+        {
+            childElement = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[3]");
+            await childElement.LeftClick();
+            return await childElement.GetIsSelected();
+        });
+        //NB: Needs to be long enough delay so the next click does not register as a double click
+        await Task.Delay(500);
+        await AddChildren(childElement!, 3, addButton);
+        //NB: Needs to be long enough delay so the next click does not register as a double click
+        await Task.Delay(500);
+        await childElement!.LeftClickExpander();
+
+        //Move child item
+        await moveDownButton.LeftClick();
+
+        await AssertTreeItemContent(treeListView, 0, "0");
+        await AssertTreeItemContent(treeListView, 1, "1");
+        await AssertTreeItemContent(treeListView, 2, "1_0");
+        await AssertTreeItemContent(treeListView, 3, "1_2");
+        await AssertTreeItemContent(treeListView, 4, "1_1");
+        await AssertTreeItemContent(treeListView, 5, "1_1_0");  // NOTE: If expansion state is lost when moving, this child and the next two should not be present.
+        await AssertTreeItemContent(treeListView, 6, "1_1_1");
+        await AssertTreeItemContent(treeListView, 7, "1_1_2");
+        await AssertTreeItemContent(treeListView, 8, "2");
+
+        recorder.Success();
+    }
+
+    [Fact]
+    public async Task CanMoveNestedElementWithExpandedChildrenUp()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+        IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+        IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
+        IVisualElement<Button> moveUpButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Up"));
+
+        IVisualElement<TreeListViewItem> secondItem = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
+
+        //Select second item and add three children
+        await AddChildren(secondItem, 3, addButton);
+
+        //Expand item
+        await secondItem.LeftClickExpander();
+
+        // Select child item and add three children and expand it
+        IVisualElement<TreeListViewItem>? childElement = null;
+        await Wait.For(async () =>
+        {
+            childElement = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[3]");
+            await childElement.LeftClick();
+            return await childElement.GetIsSelected();
+        });
+        //NB: Needs to be long enough delay so the next click does not register as a double click
+        await Task.Delay(500);
+        await AddChildren(childElement!, 3, addButton);
+        //NB: Needs to be long enough delay so the next click does not register as a double click
+        await Task.Delay(500);
+        await childElement!.LeftClickExpander();
+
+        //Move child item
+        await moveUpButton.LeftClick();
+
+        await AssertTreeItemContent(treeListView, 0, "0");
+        await AssertTreeItemContent(treeListView, 1, "1");
+        await AssertTreeItemContent(treeListView, 2, "1_1");
+        await AssertTreeItemContent(treeListView, 3, "1_1_0");  // NOTE: If expansion state is lost when moving, this child and the next two should not be present.
+        await AssertTreeItemContent(treeListView, 4, "1_1_1");
+        await AssertTreeItemContent(treeListView, 5, "1_1_2");
+        await AssertTreeItemContent(treeListView, 6, "1_0");
+        await AssertTreeItemContent(treeListView, 7, "1_2");
+        await AssertTreeItemContent(treeListView, 8, "2");
+
+        recorder.Success();
+    }
+
+    [Fact]
+    public async Task CanMoveTopLevelElementDown()
     {
         await using var recorder = new TestRecorder(App);
 
@@ -90,6 +226,65 @@ public class TreeListViewTests : TestBase
         IVisualElement<Button> moveDownButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Down"));
 
         IVisualElement<TreeListViewItem> secondItem = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
+
+        //Move item
+        await Wait.For(async () =>
+        {
+            await secondItem.LeftClick();
+            return await secondItem.GetIsSelected();
+        });
+        await moveDownButton.LeftClick();
+
+        await AssertTreeItemContent(treeListView, 0, "0");
+        await AssertTreeItemContent(treeListView, 1, "2");
+        await AssertTreeItemContent(treeListView, 2, "1");
+
+        recorder.Success();
+    }
+
+    [Fact]
+    public async Task CanMoveTopLevelElementUp()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+        IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+        IVisualElement<Button> moveUpButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Up"));
+
+        IVisualElement<TreeListViewItem> secondItem = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
+
+        //Move item
+        await Wait.For(async () =>
+        {
+            await secondItem.LeftClick();
+            return await secondItem.GetIsSelected();
+        });
+        await moveUpButton.LeftClick();
+
+        await AssertTreeItemContent(treeListView, 0, "1");
+        await AssertTreeItemContent(treeListView, 1, "0");
+        await AssertTreeItemContent(treeListView, 2, "2");
+
+        recorder.Success();
+    }
+
+    [Fact]
+    public async Task CanMoveTopLevelElementWithExpandedChildrenDown()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+        IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+        IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
+        IVisualElement<Button> moveDownButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Down"));
+
+        IVisualElement<TreeListViewItem> secondItem = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
+
+        //Select second item and add three children
+        await AddChildren(secondItem, 3, addButton);
+
+        //Expand item
+        await secondItem.LeftClickExpander();
 
         //Replace item
         await Wait.For(async () =>
@@ -102,6 +297,45 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 0, "0");
         await AssertTreeItemContent(treeListView, 1, "2");
         await AssertTreeItemContent(treeListView, 2, "1");
+        await AssertTreeItemContent(treeListView, 3, "1_0");    // NOTE: If expansion state is lost when moving, these 3 children should not be present.
+        await AssertTreeItemContent(treeListView, 4, "1_2");
+        await AssertTreeItemContent(treeListView, 5, "1_1");
+
+        recorder.Success();
+    }
+
+    [Fact]
+    public async Task CanMoveTopLevelElementWithExpandedChildrenUp()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+        IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+        IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
+        IVisualElement<Button> moveUpButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Up"));
+
+        IVisualElement<TreeListViewItem> secondItem = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
+
+        //Select second item and add three children
+        await AddChildren(secondItem, 3, addButton);
+
+        //Expand item
+        await secondItem.LeftClickExpander();
+
+        //Replace item
+        await Wait.For(async () =>
+        {
+            await secondItem.LeftClick();
+            return await secondItem.GetIsSelected();
+        });
+        await moveUpButton.LeftClick();
+
+        await AssertTreeItemContent(treeListView, 0, "1");
+        await AssertTreeItemContent(treeListView, 1, "1_0");    // NOTE: If expansion state is lost when moving, these 3 children should not be present.
+        await AssertTreeItemContent(treeListView, 2, "1_2");
+        await AssertTreeItemContent(treeListView, 3, "1_1");
+        await AssertTreeItemContent(treeListView, 4, "0");
+        await AssertTreeItemContent(treeListView, 5, "2");
 
         recorder.Success();
     }

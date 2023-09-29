@@ -95,6 +95,29 @@ public partial class TreeListViewDataBinding
         }
     }
 
+    private void MoveUp_OnClick(object sender, RoutedEventArgs e)
+    {
+        if (TreeListView.SelectedItem is TreeItem selectedItem)
+        {
+            if (selectedItem is { Parent: { } parent })
+            {
+                int childIndex = parent.Children.IndexOf(selectedItem);
+                if (childIndex > 0)
+                {
+                    parent.Children.Move(childIndex, childIndex - 1);
+                }
+            }
+            else
+            {
+                int itemIndex = Items.IndexOf(selectedItem);
+                if (itemIndex > 0)
+                {
+                    Items.Move(itemIndex, itemIndex - 1);
+                }
+            }
+        }
+    }
+
     private void Reset_OnClick(object sender, RoutedEventArgs e)
     {
         if (TreeListView.SelectedItem is TreeItem selectedItem)
