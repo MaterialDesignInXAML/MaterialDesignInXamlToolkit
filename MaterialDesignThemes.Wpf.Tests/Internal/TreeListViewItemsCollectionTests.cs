@@ -66,15 +66,30 @@ public class TreeListViewItemsCollectionTests
     public void WhenWrappedObjectImplementsIncc_ItHandlesReplacements()
     {
         //Arrange
-        ObservableCollection<string> collection = new() { "a" };
+        ObservableCollection<string> collection = new() { "a", "b", "c" };
 
         TreeListViewItemsCollection<string> treeListViewItemsCollection = new(collection);
 
+        // Simulate expansion
+        treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(2, "a_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(4, "b_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(6, "c_a", 1);
+        /*
+         * 0. a
+         * 1.  a_a
+         * 2.  a_b
+         * 3. b
+         * 4.  b_a
+         * 5. c
+         * 6.  c_a
+         */
+
         //Act
-        collection[0] = "b";
+        collection[1] = "x";    // Replace b (and its children) with x (which does not have children); collection only knows about root level items, so index (1) reflects that
 
         //Assert
-        Assert.Equal(new[] { "b" }, treeListViewItemsCollection);
+        Assert.Equal(new[] { "a", "a_a", "a_b", "x", "c", "c_a" }, treeListViewItemsCollection);
     }
 
     [Fact]
@@ -149,7 +164,7 @@ public class TreeListViewItemsCollectionTests
     [InlineData(2, 0)]
     [InlineData(0, -1)]
     [InlineData(4, 2)]
-    public void WhenAddingItemAtNestedLevel_ItThrowsIfRequestIsOutOfRange(int insertionIndex, int requestedLevel)
+    public void InsertWithLevel_WhenAddingItemAtNestedLevel_ItThrowsIfRequestIsOutOfRange(int insertionIndex, int requestedLevel)
     {
         //Arrange
         TreeListViewItemsCollection<string> treeListViewItemsCollection = new(new[] { "a", "b" });
