@@ -253,6 +253,9 @@ public class TreeListViewTests : TestBase
         //Select and expand second item
         await AddChildren(secondItem, 3, addButton);
 
+        //NB: Needs to be long enough delay so the first click below does not register as a double click (and the third click as another which effectively collapses the item again)
+        await Task.Delay(500);
+
         //Double click to expand
         await secondItem.LeftClick();
         await secondItem.LeftClick();
@@ -260,7 +263,7 @@ public class TreeListViewTests : TestBase
         await Wait.For(() => secondItem.GetIsExpanded());
 
         //NB: Needs to be long enough delay so the next clicks register as a new double click
-        await Task.Delay(250);
+        await Task.Delay(500);
 
         //Double click to collapse
         await secondItem.LeftClick();
@@ -305,7 +308,7 @@ public class TreeListViewTests : TestBase
         await Wait.For(async () => await nestedItem.GetIsExpanded() == false);
 
         //Allow for collapsed animation to complete
-        await Task.Delay(250);
+        await Task.Delay(500);
 
         //Left arrow to jump to parent
         await nestedItem.SendKeyboardInput($"{Key.Left}");
