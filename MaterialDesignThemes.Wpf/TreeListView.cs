@@ -85,7 +85,7 @@ public class TreeListView : ListView
             if (index < 0) return;
 
             int parentLevel = itemsSource.GetLevel(index);
-            //We push the index forward by 1 to be on the first element of the item's children
+            // We push the index forward by 1 to be on the first element of the item's children
             index++;
             switch (e.Action)
             {
@@ -115,14 +115,14 @@ public class TreeListView : ListView
                     }
                     break;
                 case NotifyCollectionChangedAction.Reset:
-                    int itemLevel = itemsSource.GetLevel(index - 1);
+                    index--;    // Push the index back to the parent
+                    int itemLevel = itemsSource.GetLevel(index);
                     var children = item.GetChildren().ToList();
-                    while (index < InternalItemsSource?.Count &&
-                          itemsSource.GetLevel(index) == itemLevel + 1)
-                    {
-                        itemsSource.RemoveAt(index);
-                    }
 
+                    // Remove parent element (to remove its children) and add it again (and add children afterwards)
+                    itemsSource.RemoveOffsetAdjustedItem(index);    
+                    itemsSource.InsertWithLevel(index, item, itemLevel);
+                    index++;    // We push the index forward by 1 to be on the first element of the item's children
                     for (int i = 0; i < children.Count; i++)
                     {
                         itemsSource.InsertWithLevel(i + index, children[i], itemLevel + 1);
