@@ -717,6 +717,49 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
+    [Fact]
+    public async Task MovingChildItemAfterHavingMovedParentItem_ShouldMoveChild()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+        IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+        IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
+        IVisualElement<Button> downButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Down"));
+
+        IVisualElement<TreeListViewItem> secondItem = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
+
+        //Add child to second item and expand
+        await AddChildren(secondItem, 3, addButton);
+        await secondItem.LeftClickExpander();
+
+        //NB: Needs to be long enough delay so the next click does not register as a double click
+        await Task.Delay(500);
+
+        //Move parent item down
+        await downButton.LeftClick();
+
+
+        //Move child item
+        IVisualElement<TreeListViewItem> secondChild = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[4]");
+        await secondChild.LeftClick();
+
+        //await Wait.For(() => secondChild.GetIsSelected());  // Currently this does not work, because the item gets disconnected and thus does not get selected
+        await Task.Delay(500);  // Work around for the above line to allow the test to move on to provoke the assertion failure below
+
+        await downButton.LeftClick();
+
+        //Assert the child was successfully moved
+        await AssertTreeItemContent(treeListView, 0, "0");
+        await AssertTreeItemContent(treeListView, 1, "2");
+        await AssertTreeItemContent(treeListView, 2, "1");
+        await AssertTreeItemContent(treeListView, 3, "1_0");
+        await AssertTreeItemContent(treeListView, 4, "1_2");
+        await AssertTreeItemContent(treeListView, 5, "1_1");
+
+        recorder.Success();
+    }
+
     private static async Task AssertTreeItemContent(IVisualElement<TreeListView> treeListView, int index, string content)
     {
         await Wait.For(async () =>
