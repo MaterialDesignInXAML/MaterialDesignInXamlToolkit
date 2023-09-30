@@ -729,7 +729,7 @@ public class TreeListViewTests : TestBase
     private static async Task AddChildren(IVisualElement<TreeListViewItem> item, int numChildren, IVisualElement<Button> addButton)
     {
         await item.LeftClick();
-        await Wait.For(item.GetIsSelected, Retry.Default);
+        await Wait.For(item.GetIsSelected);
         for (int i = 0; i < numChildren; i++)
         {
             await addButton.LeftClick();

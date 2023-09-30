@@ -112,10 +112,17 @@ public class TreeListView : ListView
                     }
                     break;
                 case NotifyCollectionChangedAction.Move:
+                    int additionalOffset = 0;
+                    if (e.OldStartingIndex < e.NewStartingIndex)
+                    {
+                        // When moving down, we need to move past expanded children/grand-children as well
+                        additionalOffset = 1;
+                    }
+                    int adjustedOldIndex = index + e.OldStartingIndex + GetChildrenAndGrandChildrenCountOfPriorSiblings(itemsSource, index, e.OldStartingIndex);
+                    int adjustedNewIndex = index + e.NewStartingIndex + GetChildrenAndGrandChildrenCountOfPriorSiblings(itemsSource, index, e.NewStartingIndex + additionalOffset);
                     for (int i = 0; i < e.NewItems?.Count; i++)
                     {
-                        // TODO: This is still not working 100% correct. Moving an item that has expanded children downwards behaves weirdly.
-                        itemsSource.MoveOffsetAdjustedItem(e.OldStartingIndex + i + index, e.NewStartingIndex + i + index);
+                        itemsSource.MoveOffsetAdjustedItem(adjustedOldIndex + i, adjustedNewIndex + i);
                     }
                     break;
                 case NotifyCollectionChangedAction.Reset:
