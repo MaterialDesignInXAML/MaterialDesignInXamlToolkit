@@ -81,7 +81,7 @@ public class TreeListView : ListView
     {
         if (item.IsExpanded && InternalItemsSource is { } itemsSource)
         {
-            int index = ItemContainerGenerator.IndexFromContainer(item);
+            int index = ItemContainerGenerator.IndexFromContainer(item);    // TODO: Alternatively, we could look up the item index directly in InternalItemsSource, but that would mean we need to deal with equality (Yuck!)
             if (index < 0) return;
 
             int parentLevel = itemsSource.GetLevel(index);
