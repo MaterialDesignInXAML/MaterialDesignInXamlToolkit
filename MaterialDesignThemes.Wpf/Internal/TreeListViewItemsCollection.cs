@@ -94,6 +94,22 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
         }
     }
 
+    internal void RemoveChildrenOfOffsetAdjustedItem(int index)
+    {
+        int currentLevel = ItemLevels[index];
+        if (index >= ItemLevels.Count || ItemLevels[index + 1] < currentLevel + 1)
+            return;
+
+        index++;
+        ItemLevels.RemoveAt(index);
+        base.RemoveItem(index);
+        while (index < Count && ItemLevels[index] > currentLevel)
+        {
+            ItemLevels.RemoveAt(index);
+            base.RemoveItem(index);
+        }
+    }
+
     protected override void InsertItem(int index, T item)
     {
         int priorNonRootLevelItems = GetPriorNonRootLevelItemsCount(index);

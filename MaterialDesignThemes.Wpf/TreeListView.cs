@@ -72,7 +72,7 @@ public class TreeListView : ListView
             }
             else
             {
-                itemsSource.RemoveOffsetAdjustedItem(index); // InternalItemsSource.RemoveOffsetAdjustedItem(index) will remove the item and all of its children/grand-children
+                itemsSource.RemoveChildrenOfOffsetAdjustedItem(index);
             }
         }
     }
@@ -81,7 +81,7 @@ public class TreeListView : ListView
     {
         if (item.IsExpanded && InternalItemsSource is { } itemsSource)
         {
-            int index = ItemContainerGenerator.IndexFromContainer(item);    // TODO: Alternatively, we could look up the item index directly in InternalItemsSource, but that would mean we need to deal with equality (Yuck!)
+            int index = ItemContainerGenerator.IndexFromContainer(item);
             if (index < 0) return;
 
             int parentLevel = itemsSource.GetLevel(index);
