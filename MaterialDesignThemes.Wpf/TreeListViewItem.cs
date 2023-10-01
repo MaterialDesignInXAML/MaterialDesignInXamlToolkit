@@ -3,6 +3,7 @@
 namespace MaterialDesignThemes.Wpf;
 
 [TemplatePart(Name = "PART_Header", Type = typeof(TreeListViewItemContentPresenter))]
+[System.Diagnostics.DebuggerDisplay("Container for {DataContext}")]
 public class TreeListViewItem : ListViewItem
 {
     private TreeListViewItemContentPresenter? _contentPresenter;
@@ -27,6 +28,17 @@ public class TreeListViewItem : ListViewItem
         return Array.Empty<object?>();
     }
 
+    private bool _suppressNotification; // Not really sure if this is needed, but it seems counter intuitive to propagate events back to the TreeListView while it is actually doing stuff.
+    public void ClearChildren()
+    {
+        if (_contentPresenter is { } presenter)
+        {
+            _suppressNotification = true;
+            presenter.Children = null;
+            _suppressNotification = false;
+        }
+    }
+
     public bool IsExpanded
     {
         get => (bool)GetValue(IsExpandedProperty);
@@ -34,7 +46,7 @@ public class TreeListViewItem : ListViewItem
     }
 
     public static readonly DependencyProperty IsExpandedProperty =
-        DependencyProperty.Register("IsExpanded", typeof(bool), typeof(TreeListViewItem),
+        DependencyProperty.Register(nameof(IsExpanded), typeof(bool), typeof(TreeListViewItem),
             new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnIsExpandedChanged));
 
     private static void OnIsExpandedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -53,7 +65,7 @@ public class TreeListViewItem : ListViewItem
 
     // Using a DependencyProperty as the backing store for HasItems.  This enables animation, styling, binding, etc...
     public static readonly DependencyProperty HasItemsProperty =
-        DependencyProperty.Register("HasItems", typeof(bool), typeof(TreeListViewItem), new PropertyMetadata(false));
+        DependencyProperty.Register(nameof(HasItems), typeof(bool), typeof(TreeListViewItem), new PropertyMetadata(false));
 
     public int Level
     {
@@ -62,7 +74,7 @@ public class TreeListViewItem : ListViewItem
     }
 
     public static readonly DependencyProperty LevelProperty =
-        DependencyProperty.Register("Level", typeof(int), typeof(TreeListViewItem), new PropertyMetadata(0));
+        DependencyProperty.Register(nameof(Level), typeof(int), typeof(TreeListViewItem), new PropertyMetadata(0));
 
     public override void OnApplyTemplate()
     {
@@ -83,6 +95,8 @@ public class TreeListViewItem : ListViewItem
 
     private void Presenter_ChildrenChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
+        if (_suppressNotification) return;
+
         UpdateHasChildren();
         TreeListView?.ItemsChildrenChanged(this, e);
     }

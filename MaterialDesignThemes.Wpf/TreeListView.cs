@@ -118,13 +118,51 @@ public class TreeListView : ListView
                         // When moving down, we need to move past expanded children/grand-children as well
                         additionalOffset = 1;
                     }
+
+                    // WORKAROUND: Since we get disconnected items when moving children/grand-children along with their parents, the current work-around is to simply remove them (and lose IsExpanded state of all children in this sub-tree)
+                    foreach (object? child in item.GetChildren())
+                    {
+                        RemoveChildren(child);
+                    }
+
                     int adjustedOldIndex = index + e.OldStartingIndex + GetChildrenAndGrandChildrenCountOfPriorSiblings(itemsSource, index, e.OldStartingIndex);
                     int adjustedNewIndex = index + e.NewStartingIndex + GetChildrenAndGrandChildrenCountOfPriorSiblings(itemsSource, index, e.NewStartingIndex + additionalOffset);
+
+                    // Ideally we would like this to work, where we disconnect the children/grand-children, and then move them along with the parent (maintaining the IsExpanded state)
+                    foreach (object child in e.OldItems ?? Array.Empty<object?>())
+                    {
+                        //DisconnectChildrenAndGrandChildren(child); 
+                    }
+
                     for (int i = 0; i < e.NewItems?.Count; i++)
                     {
                         itemsSource.MoveOffsetAdjustedItem(adjustedOldIndex + i, adjustedNewIndex + i);
                     }
                     break;
+
+                    void RemoveChildren(object? child)
+                    {
+                        if (child is null || ItemContainerGenerator.ContainerFromItem(child) is not TreeListViewItem container) return;
+                        int childIndex = ItemContainerGenerator.IndexFromContainer(container);
+                        if (childIndex >= 0)
+                        {
+                            container.IsExpanded = false;
+                        }
+                    }
+
+                    void DisconnectChildrenAndGrandChildren(object listItem)
+                    {
+                        if (ItemContainerGenerator.ContainerFromItem(listItem) is not TreeListViewItem container) return;
+                        foreach (object? child in container.GetChildren())
+                        {
+                            if (child is null) continue;
+                            DisconnectChildrenAndGrandChildren(child);
+                        }
+
+                        container.DataContext = null;   // I would assume this was enough to sever the connection between the container and the data item, but it seems not to be the case.
+                        //container.ClearChildren();  // Since the above is not working, we try this instead
+                    }
+
                 case NotifyCollectionChangedAction.Reset:
                     index--;    // Push the index back to the parent
                     int itemLevel = itemsSource.GetLevel(index);
