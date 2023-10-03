@@ -2,9 +2,9 @@
 
 namespace MaterialDesignThemes.Wpf;
 
-public class TreeListViewItemContentPresenter : ContentPresenter
+public class TreeListViewItemContentPresenter : ContentPresenter, INotifyCollectionChanged
 {
-    public event NotifyCollectionChangedEventHandler? ChildrenChanged;
+    public event NotifyCollectionChangedEventHandler? CollectionChanged;
 
     public bool HasChildren { get; private set; }
 
@@ -21,16 +21,21 @@ public class TreeListViewItemContentPresenter : ContentPresenter
     private static void OnChildrenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var presenter = (TreeListViewItemContentPresenter)d;
+        presenter.OnChildrenChanged(e);
+    }
+
+    private void OnChildrenChanged(DependencyPropertyChangedEventArgs e)
+    {
         if (e.OldValue is INotifyCollectionChanged oldCollectionChanged)
         {
-            oldCollectionChanged.CollectionChanged -= presenter.CollectionChanged_CollectionChanged;
+            CollectionChangedEventManager.RemoveHandler(oldCollectionChanged, CollectionChanged_CollectionChanged);
         }
         if (e.NewValue is INotifyCollectionChanged collectionChanged)
         {
-            collectionChanged.CollectionChanged += presenter.CollectionChanged_CollectionChanged;
+            CollectionChangedEventManager.AddHandler(collectionChanged, CollectionChanged_CollectionChanged);
         }
 
-        presenter.OnChildrenChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+        OnChildrenChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
     }
 
     private void CollectionChanged_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
@@ -39,7 +44,7 @@ public class TreeListViewItemContentPresenter : ContentPresenter
     private void OnChildrenChanged(NotifyCollectionChangedEventArgs e)
     {
         HasChildren = Children?.Any() == true;
-        ChildrenChanged?.Invoke(this, e);
+        CollectionChanged?.Invoke(this, e);
     }
 
     protected override void OnContentTemplateChanged(DataTemplate oldContentTemplate, DataTemplate newContentTemplate)

@@ -28,17 +28,6 @@ public class TreeListViewItem : ListViewItem
         return Array.Empty<object?>();
     }
 
-    private bool _suppressNotification; // Not really sure if this is needed, but it seems counter intuitive to propagate events back to the TreeListView while it is actually doing stuff.
-    public void ClearChildren()
-    {
-        if (_contentPresenter is { } presenter)
-        {
-            _suppressNotification = true;
-            presenter.Children = null;
-            _suppressNotification = false;
-        }
-    }
-
     public bool IsExpanded
     {
         get => (bool)GetValue(IsExpandedProperty);
@@ -80,7 +69,7 @@ public class TreeListViewItem : ListViewItem
     {
         if (_contentPresenter is { } oldPresenter)
         {
-            oldPresenter.ChildrenChanged -= Presenter_ChildrenChanged;
+            CollectionChangedEventManager.RemoveHandler(oldPresenter, Presenter_CollectionChanged);
             _contentPresenter = null;
         }
         base.OnApplyTemplate();
@@ -88,15 +77,13 @@ public class TreeListViewItem : ListViewItem
         if (GetTemplateChild("PART_Header") is TreeListViewItemContentPresenter presenter)
         {
             _contentPresenter = presenter;
-            presenter.ChildrenChanged += Presenter_ChildrenChanged;
+            CollectionChangedEventManager.AddHandler(presenter, Presenter_CollectionChanged);
             UpdateHasChildren();
         }
     }
 
-    private void Presenter_ChildrenChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    private void Presenter_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
-        if (_suppressNotification) return;
-
         UpdateHasChildren();
         TreeListView?.ItemsChildrenChanged(this, e);
     }
