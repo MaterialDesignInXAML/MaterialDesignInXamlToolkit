@@ -6,6 +6,8 @@ namespace MaterialDesignThemes.Wpf.Internal;
 
 public class TreeListViewItemsCollection<T> : ObservableCollection<T>
 {
+    public event EventHandler<MoveEventArgs> MoveRequested;
+
     private List<int> ItemLevels { get; } = new();
 
     public TreeListViewItemsCollection(object? wrappedSource)
@@ -124,13 +126,7 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
     }
 
     protected override void MoveItem(int oldIndex, int newIndex)
-    {
-        // When moving down, we need to move past the children/grand-children of the item at newIndex so we look for the next root level item.
-        int additionalOffset = newIndex > oldIndex ? 1 : 0; 
-        int adjustedOldIndex = oldIndex + GetPriorNonRootLevelItemsCount(oldIndex);
-        int adjustedNewIndex = newIndex + GetPriorNonRootLevelItemsCount(newIndex + additionalOffset);
-        MoveOffsetAdjustedItem(adjustedOldIndex, adjustedNewIndex);
-    }
+        => MoveRequested?.Invoke(this, new MoveEventArgs(oldIndex, newIndex));
 
     internal void MoveOffsetAdjustedItem(int oldIndex, int newIndex)
     {
@@ -244,5 +240,18 @@ internal static class ListExtensions
         object item = list[oldIndex]!;
         list.RemoveAt(oldIndex);
         list.Insert(newIndex, item);
+    }
+}
+
+public class MoveEventArgs : EventArgs
+{
+
+    public int OldIndex { get; }
+    public int NewIndex { get; }
+
+    public MoveEventArgs(int oldIndex, int newIndex)
+    {
+        OldIndex = oldIndex;
+        NewIndex = newIndex;
     }
 }

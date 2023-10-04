@@ -35,7 +35,13 @@ public class TreeListView : ListView
     {
         if (d is TreeListView treeListView)
         {
-            return treeListView.InternalItemsSource = new(baseValue);
+            if (treeListView.InternalItemsSource != null)
+            {
+                treeListView.InternalItemsSource.MoveRequested -= treeListView.InternalItemsSourceOnMoveRequested;
+            }
+            var value = treeListView.InternalItemsSource = new(baseValue);
+            value.MoveRequested += treeListView.InternalItemsSourceOnMoveRequested;
+            return value;
         }
         return baseValue;
     }
@@ -143,32 +149,7 @@ public class TreeListView : ListView
                             }
                         });
                     }
-
                     break;
-
-                    List<object?> GetExpandedChildrenAndGrandChildren(object? dataItem)
-                    {
-                        List<object?> expandedChildren = new();
-                        if (dataItem is null || ItemContainerGenerator.ContainerFromItem(dataItem) is not TreeListViewItem { IsExpanded: true } container)
-                            return expandedChildren;
-
-                        expandedChildren.Add(dataItem);
-                        foreach (object? grandChild in container.GetChildren())
-                        {
-                            expandedChildren.AddRange(GetExpandedChildrenAndGrandChildren(grandChild));
-                        }
-                        return expandedChildren;
-                    }
-
-                    void RemoveChildren(object? child)
-                    {
-                        if (child is null || ItemContainerGenerator.ContainerFromItem(child) is not TreeListViewItem container) return;
-                        int childIndex = ItemContainerGenerator.IndexFromContainer(container);
-                        if (childIndex >= 0)
-                        {
-                            container.IsExpanded = false;
-                        }
-                    }
                 case NotifyCollectionChangedAction.Reset:
                     index--;    // Push the index back to the parent
                     int itemLevel = itemsSource.GetLevel(index);
@@ -226,6 +207,66 @@ public class TreeListView : ListView
                 index++;
             }
             return childrenAndGrandChildrenCount;
+        }
+    }
+
+    private List<object?> GetExpandedChildrenAndGrandChildren(object? dataItem)
+    {
+        List<object?> expandedChildren = new();
+        if (dataItem is null || ItemContainerGenerator.ContainerFromItem(dataItem) is not TreeListViewItem { IsExpanded: true } container)
+            return expandedChildren;
+
+        expandedChildren.Add(dataItem);
+        foreach (object? grandChild in container.GetChildren())
+        {
+            expandedChildren.AddRange(GetExpandedChildrenAndGrandChildren(grandChild));
+        }
+        return expandedChildren;
+    }
+
+    private void RemoveChildren(object? child)
+    {
+        if (child is null || ItemContainerGenerator.ContainerFromItem(child) is not TreeListViewItem container) return;
+        int childIndex = ItemContainerGenerator.IndexFromContainer(container);
+        if (childIndex >= 0)
+        {
+            container.IsExpanded = false;
+        }
+    }
+
+    /// <summary>
+    /// This event handler is invoked when a Move() operation is performed on a root-level item. Needs similar handling as the child collections,
+    /// but it is slightly simpler. We can probably do a little better with some code reuse.
+    /// </summary>
+    private void InternalItemsSourceOnMoveRequested(object? sender, MoveEventArgs e)
+    {
+        if (InternalItemsSource is not { } itemsSource)
+            return;
+
+        // Collect expanded children and grand-children of the items being moved; we need to expand them (and the items themselves) again after the move
+        List<object?> expandedItems = new();
+        var itemsSourceCopy = new List<object?>(ItemsSource.OfType<object?>());
+        foreach (object? child in itemsSourceCopy)
+        {
+            expandedItems.AddRange(GetExpandedChildrenAndGrandChildren(child));
+            RemoveChildren(child);
+        }
+
+        itemsSource.MoveOffsetAdjustedItem(e.OldIndex, e.NewIndex);
+
+        foreach (object? dataItem in expandedItems)
+        {
+            // Kind of a hack!
+            // When expanding an item, we need to wait until the item is rendered before expanding its children; thus we push this onto the back of the message pump.
+            // DispatcherPriority.Loaded is the highest priority we can go. Using DispatcherPriority.Render (one level higher) will not expand grand-children.
+            // TODO: This has a UI impact where the TreeListView will "flicker" shortly and the chevrons wil be in the wrong state for a split second. Perhaps we can optimize further on this...
+            Dispatcher.BeginInvoke(DispatcherPriority.Loaded, () =>
+            {
+                if (ItemContainerGenerator.ContainerFromItem(dataItem) is TreeListViewItem container)
+                {
+                    container.IsExpanded = true;
+                }
+            });
         }
     }
 

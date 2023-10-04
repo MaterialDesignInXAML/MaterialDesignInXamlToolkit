@@ -729,6 +729,9 @@ public class TreeListViewTests : TestBase
         //Move parent item down
         await downButton.LeftClick();
 
+        //NB: Wait for the move to take effect
+        await Task.Delay(1000);
+
         //Move child item
         IVisualElement<TreeListViewItem> secondChild = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[4]");
         await secondChild.LeftClick();
