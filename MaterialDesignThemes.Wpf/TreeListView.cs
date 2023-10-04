@@ -1,4 +1,5 @@
 using System.Collections.Specialized;
+using System.Windows.Threading;
 using MaterialDesignThemes.Wpf.Internal;
 
 namespace MaterialDesignThemes.Wpf;
@@ -112,27 +113,52 @@ public class TreeListView : ListView
                     }
                     break;
                 case NotifyCollectionChangedAction.Move:
-                    int additionalOffset = 0;
-                    if (e.OldStartingIndex < e.NewStartingIndex)
-                    {
-                        // When moving down, we need to move past expanded children/grand-children as well
-                        additionalOffset = 1;
-                    }
+                    int adjustedOldIndex = index + e.OldStartingIndex;
+                    int adjustedNewIndex = index + e.NewStartingIndex;
 
-                    // TODO: This collapses the node(s) being moved and all its/their siblings. Ideally we don't want this behavior.
+                    // Collect expanded children and grand-children of the items being moved; we need to expand them (and the items themselves) again after the move
+                    List<object?> expandedItems = new();
                     foreach (object? child in item.GetChildren())
                     {
+                        expandedItems.AddRange(GetExpandedChildrenAndGrandChildren(child));
                         RemoveChildren(child);
                     }
-
-                    int adjustedOldIndex = index + e.OldStartingIndex + GetChildrenAndGrandChildrenCountOfPriorSiblings(itemsSource, index, e.OldStartingIndex);
-                    int adjustedNewIndex = index + e.NewStartingIndex + GetChildrenAndGrandChildrenCountOfPriorSiblings(itemsSource, index, e.NewStartingIndex + additionalOffset);
 
                     for (int i = 0; i < e.NewItems?.Count; i++)
                     {
                         itemsSource.MoveOffsetAdjustedItem(adjustedOldIndex + i, adjustedNewIndex + i);
                     }
+                    
+                    foreach (object? dataItem in expandedItems)
+                    {
+                        // Kind of a hack!
+                        // When expanding an item, we need to wait until the item is rendered before expanding its children; thus we push this onto the back of the message pump.
+                        // DispatcherPriority.Loaded is the highest priority we can go. Using DispatcherPriority.Render (one level higher) will not expand grand-children.
+                        // TODO: This has a UI impact where the TreeListView will "flicker" shortly and the chevrons wil be in the wrong state for a split second. Perhaps we can optimize further on this...
+                        Dispatcher.BeginInvoke(DispatcherPriority.Loaded, () =>
+                        {
+                            if (ItemContainerGenerator.ContainerFromItem(dataItem) is TreeListViewItem container)
+                            {
+                                container.IsExpanded = true;
+                            }
+                        });
+                    }
+
                     break;
+
+                    List<object?> GetExpandedChildrenAndGrandChildren(object? dataItem)
+                    {
+                        List<object?> expandedChildren = new();
+                        if (dataItem is null || ItemContainerGenerator.ContainerFromItem(dataItem) is not TreeListViewItem { IsExpanded: true } container)
+                            return expandedChildren;
+
+                        expandedChildren.Add(dataItem);
+                        foreach (object? grandChild in container.GetChildren())
+                        {
+                            expandedChildren.AddRange(GetExpandedChildrenAndGrandChildren(grandChild));
+                        }
+                        return expandedChildren;
+                    }
 
                     void RemoveChildren(object? child)
                     {
