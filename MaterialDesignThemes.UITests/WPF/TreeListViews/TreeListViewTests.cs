@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MaterialDesignThemes.UITests.WPF.TreeListViews;
 
@@ -6,7 +7,9 @@ public class TreeListViewTests : TestBase
 {
     public TreeListViewTests(ITestOutputHelper output)
         : base(output)
-    { }
+    {
+        this.AttachedDebuggerToRemoteProcess = true;
+    }
 
     [Fact]
     public async Task CanResetNestedElements()
@@ -146,6 +149,8 @@ public class TreeListViewTests : TestBase
 
         //Move child item
         await moveDownButton.LeftClick();
+
+        await Task.Delay(TimeSpan.FromMinutes(10));
 
         await AssertTreeItemContent(treeListView, 0, "0");
         await AssertTreeItemContent(treeListView, 1, "1");

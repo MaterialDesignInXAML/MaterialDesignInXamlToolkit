@@ -67,6 +67,7 @@ public class TreeListViewItem : ListViewItem
 
     public override void OnApplyTemplate()
     {
+        //TODO: WeakEvent pattern here
         if (_contentPresenter is { } oldPresenter)
         {
             CollectionChangedEventManager.RemoveHandler(oldPresenter, Presenter_CollectionChanged);

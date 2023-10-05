@@ -21,7 +21,7 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
         }
         if (wrappedSource is INotifyCollectionChanged newCollectionChanged)
         {
-            newCollectionChanged.CollectionChanged += ItemsSource_CollectionChanged;
+            CollectionChangedEventManager.AddHandler(newCollectionChanged, ItemsSource_CollectionChanged);
         }
     }
 
@@ -150,7 +150,6 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
                 int newChildIndex = newIndex;
                 ItemLevels.MoveItem(oldChildIndex, newChildIndex);
                 base.MoveItem(oldChildIndex, newChildIndex);
-                
             }
 
             // Then move the parent
