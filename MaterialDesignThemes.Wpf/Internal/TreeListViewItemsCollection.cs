@@ -6,8 +6,6 @@ namespace MaterialDesignThemes.Wpf.Internal;
 
 public class TreeListViewItemsCollection<T> : ObservableCollection<T>
 {
-    public event EventHandler<MoveEventArgs>? MoveRequested;
-
     private List<int> ItemLevels { get; } = new();
     private HashSet<int> ExpandedIndexes { get; } = new();
 
@@ -222,13 +220,22 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
             case NotifyCollectionChangedAction.Replace:
                 for (int i = 0; i < e.NewItems?.Count; i++)
                 {
-                    ReplaceItem(e.NewStartingIndex + i, (T)e.NewItems[i]!);
+                    int newIndex = GetAbsoluteIndex(e.NewStartingIndex + i);
+                    if (newIndex >= 0)
+                    {
+                        ReplaceItem(newIndex, (T)e.NewItems[i]!);
+                    }
                 }
                 break;
             case NotifyCollectionChangedAction.Move:
                 for (int i = 0; i < e.NewItems?.Count; i++)
                 {
-                    Move(e.OldStartingIndex + i, e.NewStartingIndex + i);
+                    int oldIndex = GetAbsoluteIndex(e.OldStartingIndex + i);
+                    int newIndex = GetAbsoluteIndex(e.NewStartingIndex + i);
+                    if (oldIndex >= 0 && newIndex >= 0)
+                    {
+                        Move(oldIndex, newIndex);
+                    }
                 }
                 break;
             case NotifyCollectionChangedAction.Reset:
@@ -239,6 +246,19 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
                     Add(item);
                 }
                 break;
+        }
+
+        int GetAbsoluteIndex(int relativeIndex)
+        {
+            for(int i = 0; i < ItemLevels.Count; i++)
+            {
+                if (ItemLevels[i] == 0)
+                {
+                    relativeIndex--;
+                }
+                if (relativeIndex < 0) return i;
+            }
+            return -1;
         }
     }
 }

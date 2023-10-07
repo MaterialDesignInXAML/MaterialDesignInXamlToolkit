@@ -287,7 +287,7 @@ public class TreeListViewItemsCollectionTests
          */
 
         //Act
-        treeListViewItemsCollection.Move(2, 0); // Move c to a's position; Move() only knows about root level items, so indices reflect that
+        treeListViewItemsCollection.Move(7, 0); // Move c to a's position; Move() only knows about root level items, so indices reflect that
 
         //Assert
         List<string> expectedItems = new(new[] { "c", "c_a", "a", "a_a", "a_b", "b", "b_a", "b_b", "b_c" });
@@ -357,11 +357,40 @@ public class TreeListViewItemsCollectionTests
          */
 
         //Act
-        treeListViewItemsCollection.Move(0, 2); // Move a to c's position; Move() only knows about root level items, so indices reflect that
+        treeListViewItemsCollection.Move(0, 7); // Move a to c's position; Move() only knows about root level items, so indices reflect that
 
         //Assert
         List<string> expectedItems = new(new[] { "b", "b_a", "b_b", "b_c", "c", "c_a", "a", "a_a", "a_b" });
         List<int> expectedLevels = new(new[] { 0, 1, 1, 1, 0, 1, 0, 1, 1 });
+
+        Assert.Equal(expectedItems, treeListViewItemsCollection);
+        Assert.Equal(expectedLevels, treeListViewItemsCollection.GetAllLevels());
+    }
+
+    [Fact]
+    public void Move_WithWrappedCollection_ItMovesChildrenAlongWithIt()
+    {
+        //Arrange
+        ObservableCollection<string> boundCollection = new() { "a", "b", "c" };
+        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(boundCollection);
+        treeListViewItemsCollection.InsertWithLevel(2, "b_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(3, "b_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(4, "b_c", 1);
+        /*
+         * 0. a
+         * 1. b
+         * 2.  b_a
+         * 3.  b_b
+         * 4.  b_c
+         * 5. c
+         */
+
+        //Act
+        boundCollection.Move(1, 2); // Move b to c's position;
+
+        //Assert
+        List<string> expectedItems = new(new[] { "a", "c", "b", "b_a", "b_b", "b_c" });
+        List<int> expectedLevels = new(new[] { 0, 0, 0, 1, 1, 1 });
 
         Assert.Equal(expectedItems, treeListViewItemsCollection);
         Assert.Equal(expectedLevels, treeListViewItemsCollection.GetAllLevels());
