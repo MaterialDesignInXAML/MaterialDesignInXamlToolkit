@@ -6,9 +6,10 @@ namespace MaterialDesignThemes.Wpf.Internal;
 
 public class TreeListViewItemsCollection<T> : ObservableCollection<T>
 {
-    public event EventHandler<MoveEventArgs> MoveRequested;
+    public event EventHandler<MoveEventArgs>? MoveRequested;
 
     private List<int> ItemLevels { get; } = new();
+    private HashSet<int> ExpandedIndexes { get; } = new();
 
     public TreeListViewItemsCollection(object? wrappedSource)
     {
@@ -56,6 +57,8 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
     public int GetLevel(int index)
         => ItemLevels[index];
 
+    public bool GetIsExpanded(int index) => ExpandedIndexes.Contains(index);
+
     public void InsertWithLevel(int index, T item, int level)
     {
         if (level < 0) throw new ArgumentOutOfRangeException(nameof(level), level, "Item level must not be negative");
@@ -73,6 +76,10 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
             throw new ArgumentOutOfRangeException(nameof(level), level, $"Item level must not be less than the level item after it ({nextItemLevel})");
         }
 
+        if (previousItemLevel == level - 1)
+        {
+            ExpandedIndexes.Add(index - 1);
+        }
         base.InsertItem(index, item);
         ItemLevels.Insert(index, level);
     }
@@ -126,7 +133,9 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
     }
 
     protected override void MoveItem(int oldIndex, int newIndex)
-        => MoveRequested?.Invoke(this, new MoveEventArgs(oldIndex, newIndex));
+    {
+        MoveOffsetAdjustedItem(oldIndex, newIndex);
+    }
 
     internal void MoveOffsetAdjustedItem(int oldIndex, int newIndex)
     {
@@ -140,6 +149,13 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
             childrenCount++;
         }
 
+        int insertLevel = ItemLevels[newIndex];
+        int insertIndex = newIndex;
+        while (insertIndex + 1 < Count && ItemLevels[insertIndex + 1] > insertLevel)
+        {
+            insertIndex++;
+        }
+
         if (oldIndex < newIndex)
         {
             // Moving down
@@ -147,16 +163,13 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
             int oldChildIndex = oldIndex + 1;
             for (int j = 0; j < childrenCount; j++)
             {
-                int newChildIndex = newIndex;
-                ItemLevels.MoveItem(oldChildIndex, newChildIndex);
-                base.MoveItem(oldChildIndex, newChildIndex);
+                ItemLevels.MoveItem(oldChildIndex, insertIndex);
+                base.MoveItem(oldChildIndex, insertIndex);
             }
 
             // Then move the parent
-            int newParentIndex = newIndex - childrenCount;
-            ItemLevels.MoveItem(oldIndex, newParentIndex);
-            base.MoveItem(oldIndex, newParentIndex);
-            
+            ItemLevels.MoveItem(oldIndex, insertIndex - childrenCount);
+            base.MoveItem(oldIndex, insertIndex - childrenCount);
         }
         else
         {

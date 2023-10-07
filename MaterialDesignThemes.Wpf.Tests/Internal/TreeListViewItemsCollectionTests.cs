@@ -181,6 +181,21 @@ public class TreeListViewItemsCollectionTests
         Assert.Throws<ArgumentOutOfRangeException>(() => treeListViewItemsCollection.InsertWithLevel(insertionIndex, "x", requestedLevel));
     }
 
+    [Fact]
+    public void InsertWithLevel_WhenInsertingFirstSibling_MarksIndexAsExpanded()
+    {
+        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(new[] { "a", "b" });
+
+        treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
+        /*
+         * 0. a
+         * 1.  a_a
+         * 2. b
+         */
+
+        Assert.Equal(new[] { true, false, false }, treeListViewItemsCollection.GetAllIsExpanded());
+    }
+
     [Theory]
     [InlineData(0, new[] { "b", "b_a", "c" }, new[] { 0, 1, 0})]
     [InlineData(1, new[] { "a", "a_a", "a_a_a", "a_a_b", "a_b", "c" }, new[] { 0, 1, 2, 2, 1, 0 })]
@@ -231,14 +246,14 @@ public class TreeListViewItemsCollectionTests
          * 3. b
          * 4.  b_a
          * 5.  b_b
-         * 6.  b_c  
+         * 6.  b_c
          * 7. c
          * 8   c_a
          * 9.  c_b
          */
 
         //Act
-        treeListViewItemsCollection.Move(1, 0); // Swap a and b; Move() only knows about root level items, so indices reflect that
+        treeListViewItemsCollection.Move(3, 0); //Swap b and a;
 
         //Assert
         List<string> expectedItems = new(new[] { "b", "b_a", "b_b", "b_c", "a", "a_a", "a_b", "c", "c_a", "c_b" });
@@ -308,11 +323,11 @@ public class TreeListViewItemsCollectionTests
          */
 
         //Act
-        treeListViewItemsCollection.Move(1, 2); // Swap b and c; Move() only knows about root level items, so indices reflect that
+        treeListViewItemsCollection.Move(3, 7); // Swap b and c;
 
         //Assert
-        List<string> expectedItems = new(new[] { "a", "a_a", "a_b", "c", "c_a", "c_b", "b", "b_a", "b_b", "b_c" });
-        List<int> expectedLevels = new(new[] { 0, 1, 1, 0, 1, 1, 0, 1, 1, 1 });
+        string[] expectedItems = new[] { "a", "a_a", "a_b", "c", "c_a", "c_b", "b", "b_a", "b_b", "b_c" };
+        int[] expectedLevels = new[] { 0, 1, 1, 0, 1, 1, 0, 1, 1, 1 };
 
         Assert.Equal(expectedItems, treeListViewItemsCollection);
         Assert.Equal(expectedLevels, treeListViewItemsCollection.GetAllLevels());
@@ -388,6 +403,14 @@ public static class TreeListViewItemsCollectionExtensions
         for (int i = 0; i < collection.Count; i++)
         {
             yield return collection.GetLevel(i);
+        }
+    }
+
+    public static IEnumerable<bool> GetAllIsExpanded<T>(this TreeListViewItemsCollection<T> collection)
+    {
+        for (int i = 0; i < collection.Count; i++)
+        {
+            yield return collection.GetIsExpanded(i);
         }
     }
 }
