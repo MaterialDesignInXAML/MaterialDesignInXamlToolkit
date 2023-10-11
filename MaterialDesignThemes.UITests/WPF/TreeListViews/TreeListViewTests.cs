@@ -378,8 +378,6 @@ public class TreeListViewTests : TestBase
         //Replace item
         await replaceButton.LeftClick();
 
-        await Task.Delay(TimeSpan.FromMinutes(10));
-
         await AssertTreeItemContent(treeListView, 0, "0");
         await AssertTreeItemContent(treeListView, 1, "1_r"); // NOTE: The three children should have been dropped by the replace call.
         await AssertTreeItemContent(treeListView, 2, "2");
