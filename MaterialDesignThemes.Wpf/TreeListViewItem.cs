@@ -2,31 +2,18 @@
 
 namespace MaterialDesignThemes.Wpf;
 
-[TemplatePart(Name = "PART_Header", Type = typeof(TreeListViewItemContentPresenter))]
+//[TemplatePart(Name = "PART_Header", Type = typeof(TreeListViewItemContentPresenter))]
 [System.Diagnostics.DebuggerDisplay("Container for {DataContext}")]
 public class TreeListViewItem : ListViewItem
 {
-    private TreeListViewItemContentPresenter? _contentPresenter;
-
     public TreeListViewItem()
     {
     }
 
-    internal TreeListViewItem(TreeListView treeListView)
-    {
-        TreeListView = treeListView;
-    }
+    private TreeListView? TreeListView { get; set; }
 
-    public TreeListView? TreeListView { get; }
-
-    public IEnumerable<object?> GetChildren()
-    {
-        if (_contentPresenter is { } presenter)
-        {
-            return presenter.Children ?? Array.Empty<object?>();
-        }
-        return Array.Empty<object?>();
-    }
+    //TODO: Remove
+    public IEnumerable<object?> GetChildren() => Children ?? Array.Empty<object?>();
 
     public bool IsExpanded
     {
@@ -65,33 +52,71 @@ public class TreeListViewItem : ListViewItem
     public static readonly DependencyProperty LevelProperty =
         DependencyProperty.Register(nameof(Level), typeof(int), typeof(TreeListViewItem), new PropertyMetadata(0));
 
-    public override void OnApplyTemplate()
-    {
-        //TODO: WeakEvent pattern here
-        if (_contentPresenter is { } oldPresenter)
-        {
-            CollectionChangedEventManager.RemoveHandler(oldPresenter, Presenter_CollectionChanged);
-            _contentPresenter = null;
-        }
-        base.OnApplyTemplate();
 
-        if (GetTemplateChild("PART_Header") is TreeListViewItemContentPresenter presenter)
-        {
-            _contentPresenter = presenter;
-            CollectionChangedEventManager.AddHandler(presenter, Presenter_CollectionChanged);
-            UpdateHasChildren();
-        }
+    internal IEnumerable<object?>? Children
+    {
+        get => (IEnumerable<object?>)GetValue(ChildrenProperty);
+        set => SetValue(ChildrenProperty, value);
     }
 
-    private void Presenter_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    internal static readonly DependencyProperty ChildrenProperty =
+        DependencyProperty.Register("Children", typeof(IEnumerable<object?>), typeof(TreeListViewItem),
+            new PropertyMetadata(null, OnChildrenChanged));
+
+    private static void OnChildrenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var presenter = (TreeListViewItem)d;
+        presenter.OnChildrenChanged(e);
+    }
+
+    private void OnChildrenChanged(DependencyPropertyChangedEventArgs e)
+    {
+        if (e.OldValue is INotifyCollectionChanged oldCollectionChanged)
+        {
+            CollectionChangedEventManager.RemoveHandler(oldCollectionChanged, CollectionChanged_CollectionChanged);
+        }
+        if (e.NewValue is INotifyCollectionChanged collectionChanged)
+        {
+            CollectionChangedEventManager.AddHandler(collectionChanged, CollectionChanged_CollectionChanged);
+        }
+
+        OnChildrenChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+    }
+
+    private void CollectionChanged_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        => OnChildrenChanged(e);
+
+    private void OnChildrenChanged(NotifyCollectionChangedEventArgs e)
     {
         UpdateHasChildren();
         TreeListView?.ItemsChildrenChanged(this, e);
     }
 
+    internal void PrepareTreeListViewItem(object? item, TreeListView treeListView, int level, bool isExpanded)
+    {
+        //TODO: Handle template selector
+        if (ContentTemplate is HierarchicalDataTemplate { ItemsSource: { } itemsSourceBinding })
+        {
+            SetBinding(ChildrenProperty, itemsSourceBinding);
+        }
+        IsExpanded = isExpanded;
+        Level = level;
+        TreeListView = treeListView;
+    }
+
+    internal void ClearTreeListViewItem(object item, TreeListView treeListView)
+    {
+        if (Children is INotifyCollectionChanged collectionChanged)
+        {
+            CollectionChangedEventManager.RemoveHandler(collectionChanged, CollectionChanged_CollectionChanged);
+        }
+        TreeListView = null;
+    }
+
+
     private void UpdateHasChildren()
     {
-        SetCurrentValue(HasItemsProperty, _contentPresenter?.HasChildren == true);
+        SetCurrentValue(HasItemsProperty, Children?.Any() == true);
     }
 
     protected override void OnMouseDoubleClick(MouseButtonEventArgs e)
@@ -126,4 +151,5 @@ public class TreeListViewItem : ListViewItem
             }
         }
     }
+
 }

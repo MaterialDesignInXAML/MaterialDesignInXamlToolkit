@@ -357,6 +357,21 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
+    //[Fact]
+    //public async Task Foo()
+    //{
+    //    await using var recorder = new TestRecorder(App);
+
+    //    IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+    //    IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+    //    IVisualElement<Button> replaceButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Replace"));
+    //    IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
+
+    //    await Task.Delay(TimeSpan.FromMinutes(30));
+
+    //    recorder.Success();
+    //}
+
     [Fact]
     public async Task CanReplaceTopLevelElementWithExpandedChildren()
     {
@@ -785,6 +800,7 @@ public class TreeListViewTests : TestBase
         //Move parent item down
         await downButton.LeftClick();
 
+        await Task.Delay(1000);
         //Move child item
         IVisualElement<TreeListViewItem> item111 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[6]");
         await item111.LeftClick();

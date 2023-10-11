@@ -1,5 +1,4 @@
 using System.Collections.Specialized;
-using System.Windows.Threading;
 using MaterialDesignThemes.Wpf.Internal;
 
 namespace MaterialDesignThemes.Wpf;
@@ -42,22 +41,39 @@ public class TreeListView : ListView
     }
 
     protected override DependencyObject GetContainerForItemOverride()
-        => new TreeListViewItem(this);
+        => new TreeListViewItem();
 
     protected override bool IsItemItsOwnContainerOverride(object? item)
-        => item is TreeListViewItem;
+    {
+        return item is TreeListViewItem;
+    }
 
     protected override void PrepareContainerForItemOverride(DependencyObject element, object? item)
     {
         base.PrepareContainerForItemOverride(element, item);
-        if (element is TreeListViewItem treeListViewItem &&
-            InternalItemsSource is { } itemsSource)
+
+        if (element is TreeListViewItem treeListViewItem)
         {
+            int level = 0;
+            bool isExpanded = false;
             int index = ItemContainerGenerator.IndexFromContainer(treeListViewItem);
-            if (index < 0) return;
-            treeListViewItem.Level = itemsSource.GetLevel(index);
-            treeListViewItem.IsExpanded = itemsSource.GetIsExpanded(index);
+            if (index >= 0 && InternalItemsSource is { } itemsSource)
+            {
+                level = itemsSource.GetLevel(index);
+                isExpanded = itemsSource.GetIsExpanded(index);
+            }
+
+            treeListViewItem.PrepareTreeListViewItem(item, this, level, isExpanded);
         }
+    }
+
+    protected override void ClearContainerForItemOverride(DependencyObject element, object item)
+    {
+        if (element is TreeListViewItem treeListViewItem)
+        {
+            treeListViewItem.ClearTreeListViewItem(item, this);
+        }
+        base.ClearContainerForItemOverride(element, item);
     }
 
     internal void ItemExpandedChanged(TreeListViewItem item)
@@ -134,9 +150,8 @@ public class TreeListView : ListView
                     int itemLevel = itemsSource.GetLevel(index);
                     var children = item.GetChildren().ToList();
 
-                    // Remove parent element (to remove its children) and add it again (and add children afterwards)
-                    itemsSource.RemoveOffsetAdjustedItem(index);    
-                    itemsSource.InsertWithLevel(index, item, itemLevel);
+                    // Remove and re-add all of the item's children
+                    itemsSource.RemoveChildrenOfOffsetAdjustedItem(index);
                     index++;    // We push the index forward by 1 to be on the first element of the item's children
                     for (int i = 0; i < children.Count; i++)
                     {
@@ -201,16 +216,6 @@ public class TreeListView : ListView
             expandedChildren.AddRange(GetExpandedChildrenAndGrandChildren(grandChild));
         }
         return expandedChildren;
-    }
-
-    private void RemoveChildren(object? child)
-    {
-        if (child is null || ItemContainerGenerator.ContainerFromItem(child) is not TreeListViewItem container) return;
-        int childIndex = ItemContainerGenerator.IndexFromContainer(container);
-        if (childIndex >= 0)
-        {
-            container.IsExpanded = false;
-        }
     }
 
     internal void MoveSelectionToParent(TreeListViewItem item)

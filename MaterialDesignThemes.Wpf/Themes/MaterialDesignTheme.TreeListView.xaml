@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:internal="clr-namespace:MaterialDesignThemes.Wpf.Internal"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
   <ResourceDictionary.MergedDictionaries>
@@ -183,7 +184,7 @@
                       Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
                       Focusable="False"
                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                <wpf:TreeListViewItemContentPresenter x:Name="PART_Header" ContentSource="Content" />
+                <ContentPresenter x:Name="PART_Header" ContentSource="Content" />
               </wpf:Ripple>
             </Grid>
 

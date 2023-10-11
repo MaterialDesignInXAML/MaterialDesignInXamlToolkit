@@ -55,7 +55,8 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
     public int GetLevel(int index)
         => ItemLevels[index];
 
-    public bool GetIsExpanded(int index) => ExpandedIndexes.Contains(index);
+    public bool GetIsExpanded(int index)
+        => ExpandedIndexes.Contains(index);
 
     public void InsertWithLevel(int index, T item, int level)
     {
@@ -78,8 +79,7 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
         {
             ExpandedIndexes.Add(index - 1);
         }
-        base.InsertItem(index, item);
-        ItemLevels.Insert(index, level);
+        InternalInsertItem(index, item, level);
     }
 
     protected override void RemoveItem(int index)
@@ -92,42 +92,32 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
     internal void RemoveOffsetAdjustedItem(int index)
     {
         int currentLevel = ItemLevels[index];
-        ItemLevels.RemoveAt(index);
-        base.RemoveItem(index);
+        InternalRemoveItem(index);
         while (index < Count && ItemLevels[index] > currentLevel)
         {
-            ItemLevels.RemoveAt(index);
-            base.RemoveItem(index);
+            InternalRemoveItem(index);
         }
     }
 
     internal void RemoveChildrenOfOffsetAdjustedItem(int index)
     {
         int currentLevel = ItemLevels[index];
-        if (index >= ItemLevels.Count || ItemLevels[index + 1] < currentLevel + 1)
+        if (ItemLevels[index + 1] < currentLevel + 1)
             return;
 
         index++;
-        ItemLevels.RemoveAt(index);
-        base.RemoveItem(index);
+        InternalRemoveItem(index);
         while (index < Count && ItemLevels[index] > currentLevel)
         {
-            ItemLevels.RemoveAt(index);
-            base.RemoveItem(index);
+            InternalRemoveItem(index);
         }
     }
 
     protected override void InsertItem(int index, T item)
     {
         int priorNonRootLevelItems = GetPriorNonRootLevelItemsCount(index);
-        int adjustedIndex = index + priorNonRootLevelItems;
-        InsertOffsetAdjustedItem(adjustedIndex, item);
-    }
-
-    internal void InsertOffsetAdjustedItem(int index, T item)
-    {
-        ItemLevels.Insert(index, 0);
-        base.InsertItem(index, item);
+        index += priorNonRootLevelItems;
+        InternalInsertItem(index, item, 0);
     }
 
     protected override void MoveItem(int oldIndex, int newIndex)
@@ -161,35 +151,65 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
             int oldChildIndex = oldIndex + 1;
             for (int j = 0; j < childrenCount; j++)
             {
-                ItemLevels.MoveItem(oldChildIndex, insertIndex);
-                base.MoveItem(oldChildIndex, insertIndex);
+                InternalMoveItem(oldChildIndex, insertIndex);
             }
 
             // Then move the parent
-            ItemLevels.MoveItem(oldIndex, insertIndex - childrenCount);
-            base.MoveItem(oldIndex, insertIndex - childrenCount);
+            InternalMoveItem(oldIndex, insertIndex - childrenCount);
         }
         else
         {
             // Moving up
             // Move the parent first
-            ItemLevels.MoveItem(oldIndex, newIndex);
-            base.MoveItem(oldIndex, newIndex);
+            InternalMoveItem(oldIndex, newIndex);
             // Then move children/grand-children
             for (int j = 0; j < childrenCount; j++)
             {
                 int oldChildIndex = oldIndex + 1 + j;
                 int newChildIndex = newIndex + 1 + j;
-                ItemLevels.MoveItem(oldChildIndex, newChildIndex);
-                base.MoveItem(oldChildIndex, newChildIndex);
+                InternalMoveItem(oldChildIndex, newChildIndex);
             }
         }
+    }
+
+    private void InternalInsertItem(int index, T item, int level)
+    {
+        foreach (int expandedIndex in ExpandedIndexes.Where(x => x > index).ToList())
+        {
+            ExpandedIndexes.Remove(expandedIndex);
+            ExpandedIndexes.Add(expandedIndex + 1);
+        }
+        ItemLevels.Insert(index, level);
+        base.InsertItem(index, item);
+    }
+
+    private void InternalRemoveItem(int index)
+    {
+        ExpandedIndexes.Remove(index);
+        foreach (int item in ExpandedIndexes.Where(x => x > index).ToList())
+        {
+            ExpandedIndexes.Remove(item);
+            ExpandedIndexes.Add(item - 1);
+        }
+        ItemLevels.RemoveAt(index);
+        base.RemoveItem(index);
+    }
+
+    private void InternalMoveItem(int oldIndex, int newIndex)
+    {
+        if (ExpandedIndexes.Remove(oldIndex))
+        {
+            ExpandedIndexes.Add(newIndex);
+        }
+        ItemLevels.MoveItem(oldIndex, newIndex);
+        base.MoveItem(oldIndex, newIndex);
     }
 
     internal void ReplaceOffsetAdjustedItem(int index, T item)
     {
         // NOTE: This is slight change of notification behavior. It now fires at least one Remove (possibly also removing children) and one Add notification on the internal collection; probably not an issue.
         int level = GetLevel(index);
+        RemoveChildrenOfOffsetAdjustedItem(index);
         RemoveOffsetAdjustedItem(index);
         InsertWithLevel(index, item, level);
     }
