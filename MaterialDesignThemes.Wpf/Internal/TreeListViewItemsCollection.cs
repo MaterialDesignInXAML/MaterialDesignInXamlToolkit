@@ -7,7 +7,7 @@ namespace MaterialDesignThemes.Wpf.Internal;
 public class TreeListViewItemsCollection<T> : ObservableCollection<T>
 {
     private List<int> ItemLevels { get; } = new();
-    private HashSet<int> ExpandedIndexes { get; } = new();
+    private List<bool> ItemIsExpanded { get; } = new();
 
     public TreeListViewItemsCollection(object? wrappedSource)
     {
@@ -56,7 +56,7 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
         => ItemLevels[index];
 
     public bool GetIsExpanded(int index)
-        => ExpandedIndexes.Contains(index);
+        => ItemIsExpanded[index];
 
     public void InsertWithLevel(int index, T item, int level)
     {
@@ -75,11 +75,11 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
             throw new ArgumentOutOfRangeException(nameof(level), level, $"Item level must not be less than the level item after it ({nextItemLevel})");
         }
 
-        if (previousItemLevel == level - 1)
-        {
-            ExpandedIndexes.Add(index - 1);
-        }
         InternalInsertItem(index, item, level);
+        if (previousItemLevel >= 0 && previousItemLevel == level - 1)
+        {
+            ItemIsExpanded[index - 1] = true;
+        }
     }
 
     protected override void RemoveItem(int index)
@@ -174,33 +174,21 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
 
     private void InternalInsertItem(int index, T item, int level)
     {
-        foreach (int expandedIndex in ExpandedIndexes.Where(x => x > index).ToList())
-        {
-            ExpandedIndexes.Remove(expandedIndex);
-            ExpandedIndexes.Add(expandedIndex + 1);
-        }
+        ItemIsExpanded.Insert(index, false);
         ItemLevels.Insert(index, level);
         base.InsertItem(index, item);
     }
 
     private void InternalRemoveItem(int index)
     {
-        ExpandedIndexes.Remove(index);
-        foreach (int item in ExpandedIndexes.Where(x => x > index).ToList())
-        {
-            ExpandedIndexes.Remove(item);
-            ExpandedIndexes.Add(item - 1);
-        }
+        ItemIsExpanded.RemoveAt(index);
         ItemLevels.RemoveAt(index);
         base.RemoveItem(index);
     }
 
     private void InternalMoveItem(int oldIndex, int newIndex)
     {
-        if (ExpandedIndexes.Remove(oldIndex))
-        {
-            ExpandedIndexes.Add(newIndex);
-        }
+        ItemIsExpanded.MoveItem(oldIndex, newIndex);
         ItemLevels.MoveItem(oldIndex, newIndex);
         base.MoveItem(oldIndex, newIndex);
     }

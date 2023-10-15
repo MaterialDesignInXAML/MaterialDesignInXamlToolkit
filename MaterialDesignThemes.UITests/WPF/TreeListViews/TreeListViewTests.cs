@@ -611,6 +611,8 @@ public class TreeListViewTests : TestBase
         //Right arrow to expand
         await secondItem.LeftClick();
         await Wait.For(() => secondItem.GetIsSelected());
+
+        await Task.Delay(500);
         await secondItem.SendKeyboardInput($"{Key.Right}");
 
         await Wait.For(() => secondItem.GetIsExpanded());
@@ -836,6 +838,7 @@ public class TreeListViewTests : TestBase
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
         IVisualElement<Button> upButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Up"));
+        IVisualElement<Button> downButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Down"));
 
         IVisualElement<TreeListViewItem> item1 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
 
@@ -860,15 +863,18 @@ public class TreeListViewTests : TestBase
 
         await Task.Delay(1000);
 
+        await downButton.LeftClick();
+        await Task.Delay(1000);
+
         //Assert the child was successfully moved
-        await AssertTreeItemContent(treeListView, 0, "1", true);
-        await AssertTreeItemContent(treeListView, 1, "1_0");
-        await AssertTreeItemContent(treeListView, 2, "1_1", true);
-        await AssertTreeItemContent(treeListView, 3, "1_1_0");
-        await AssertTreeItemContent(treeListView, 4, "1_1_1");
-        await AssertTreeItemContent(treeListView, 5, "1_1_2");
-        await AssertTreeItemContent(treeListView, 6, "1_2");
-        await AssertTreeItemContent(treeListView, 7, "0");
+        await AssertTreeItemContent(treeListView, 0, "0");
+        await AssertTreeItemContent(treeListView, 1, "1", true);
+        await AssertTreeItemContent(treeListView, 2, "1_0");
+        await AssertTreeItemContent(treeListView, 3, "1_1", true);
+        await AssertTreeItemContent(treeListView, 4, "1_1_0");
+        await AssertTreeItemContent(treeListView, 5, "1_1_1");
+        await AssertTreeItemContent(treeListView, 6, "1_1_2");
+        await AssertTreeItemContent(treeListView, 7, "1_2");
         await AssertTreeItemContent(treeListView, 8, "2");
 
         recorder.Success();

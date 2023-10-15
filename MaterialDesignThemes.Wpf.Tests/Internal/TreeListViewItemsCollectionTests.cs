@@ -397,7 +397,7 @@ public class TreeListViewItemsCollectionTests
     }
 
     [Fact]
-    public void Move_WithExpandedChild_ItMovesChildren()
+    public void Move_WithExpandedChild_ItMovesChildrenUp()
     {
         //Arrange
         ObservableCollection<string> boundCollection = new() { "0", "1", "2" };
@@ -443,6 +443,64 @@ public class TreeListViewItemsCollectionTests
             false,
             true,
             false,
+            false,
+            false,
+            false,
+            false,
+            false,
+        };
+        Assert.Equal(expectedItems, treeListViewItemsCollection);
+        Assert.Equal(expectedLevels, treeListViewItemsCollection.GetAllLevels());
+        Assert.Equal(expectedExpanded, treeListViewItemsCollection.GetAllIsExpanded());
+    }
+
+    [Fact]
+    public void Move_WithExpandedChild_ItMovesChildrenDown()
+    {
+        //Arrange
+        ObservableCollection<string> boundCollection = new() { "0", "1", "2" };
+        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(boundCollection);
+        treeListViewItemsCollection.InsertWithLevel(1, "0_0", 1);
+        treeListViewItemsCollection.InsertWithLevel(2, "0_1", 1);
+        treeListViewItemsCollection.InsertWithLevel(3, "0_1_0", 2);
+        treeListViewItemsCollection.InsertWithLevel(4, "0_1_1", 2);
+        treeListViewItemsCollection.InsertWithLevel(5, "0_1_2", 2);
+        treeListViewItemsCollection.InsertWithLevel(6, "0_2", 1);
+        /*
+         * 0. 0
+         * 1.  0_0
+         * 2.  0_1
+         * 3.    0_1_0
+         * 4.    0_1_1
+         * 5.    0_1_2
+         * 6.  0_2
+         * 7. 1
+         * 8. 2
+         */
+
+        //Act
+        boundCollection.Move(0, 1); // Move 0 to 1's position;
+
+        //Assert
+        List<string> expectedItems = new(new[]
+        {
+            "1",
+            "0",
+            "0_0",
+            "0_1",
+            "0_1_0",
+            "0_1_1",
+            "0_1_2",
+            "0_2",
+            "2",
+        });
+        List<int> expectedLevels = new(new[] { 0, 0, 1, 1, 2, 2, 2, 1, 0 });
+        List<bool> expectedExpanded = new()
+        {
+            false,
+            true,
+            false,
+            true,
             false,
             false,
             false,
