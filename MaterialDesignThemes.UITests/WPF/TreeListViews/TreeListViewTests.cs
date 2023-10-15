@@ -33,7 +33,7 @@ public class TreeListViewTests : TestBase
         await resetButton.LeftClick();
 
         await AssertTreeItemContent(treeListView, 0, "0");
-        await AssertTreeItemContent(treeListView, 1, "1");
+        await AssertTreeItemContent(treeListView, 1, "1", true);
         await AssertTreeItemContent(treeListView, 2, "1_0_x");
         await AssertTreeItemContent(treeListView, 3, "1_1_x");
         await AssertTreeItemContent(treeListView, 4, "1_2_x");
@@ -71,7 +71,7 @@ public class TreeListViewTests : TestBase
         await moveDownButton.LeftClick();
 
         await AssertTreeItemContent(treeListView, 0, "0");
-        await AssertTreeItemContent(treeListView, 1, "1");
+        await AssertTreeItemContent(treeListView, 1, "1", true);
         await AssertTreeItemContent(treeListView, 2, "1_0");
         await AssertTreeItemContent(treeListView, 3, "1_2");
         await AssertTreeItemContent(treeListView, 4, "1_1");
@@ -109,7 +109,7 @@ public class TreeListViewTests : TestBase
         await moveUpButton.LeftClick();
 
         await AssertTreeItemContent(treeListView, 0, "0");
-        await AssertTreeItemContent(treeListView, 1, "1");
+        await AssertTreeItemContent(treeListView, 1, "1", true);
         await AssertTreeItemContent(treeListView, 2, "1_1");
         await AssertTreeItemContent(treeListView, 3, "1_0");
         await AssertTreeItemContent(treeListView, 4, "1_2");
@@ -148,10 +148,10 @@ public class TreeListViewTests : TestBase
         await moveDownButton.LeftClick();
 
         await AssertTreeItemContent(treeListView, 0, "0");
-        await AssertTreeItemContent(treeListView, 1, "1");
+        await AssertTreeItemContent(treeListView, 1, "1", true);
         await AssertTreeItemContent(treeListView, 2, "1_0");
         await AssertTreeItemContent(treeListView, 3, "1_2");
-        await AssertTreeItemContent(treeListView, 4, "1_1");
+        await AssertTreeItemContent(treeListView, 4, "1_1", true);
         await AssertTreeItemContent(treeListView, 5, "1_1_0");  // NOTE: If expansion state is lost when moving, this child and the next two should not be present.
         await AssertTreeItemContent(treeListView, 6, "1_1_1");
         await AssertTreeItemContent(treeListView, 7, "1_1_2");
@@ -195,8 +195,8 @@ public class TreeListViewTests : TestBase
         await moveUpButton.LeftClick();
 
         await AssertTreeItemContent(treeListView, 0, "0");
-        await AssertTreeItemContent(treeListView, 1, "1");
-        await AssertTreeItemContent(treeListView, 2, "1_1");
+        await AssertTreeItemContent(treeListView, 1, "1", true);
+        await AssertTreeItemContent(treeListView, 2, "1_1", true);
         await AssertTreeItemContent(treeListView, 3, "1_1_0");  // NOTE: If expansion state is lost when moving, this child and the next two should not be present.
         await AssertTreeItemContent(treeListView, 4, "1_1_1");
         await AssertTreeItemContent(treeListView, 5, "1_1_2");
@@ -287,7 +287,7 @@ public class TreeListViewTests : TestBase
 
         await AssertTreeItemContent(treeListView, 0, "0");
         await AssertTreeItemContent(treeListView, 1, "2");
-        await AssertTreeItemContent(treeListView, 2, "1");
+        await AssertTreeItemContent(treeListView, 2, "1", true);
         await AssertTreeItemContent(treeListView, 3, "1_0");    // NOTE: If expansion state is lost when moving, these 3 children should not be present.
         await AssertTreeItemContent(treeListView, 4, "1_1");
         await AssertTreeItemContent(treeListView, 5, "1_2");
@@ -321,7 +321,7 @@ public class TreeListViewTests : TestBase
         });
         await moveUpButton.LeftClick();
 
-        await AssertTreeItemContent(treeListView, 0, "1");
+        await AssertTreeItemContent(treeListView, 0, "1", true);
         await AssertTreeItemContent(treeListView, 1, "1_0");    // NOTE: If expansion state is lost when moving, these 3 children should not be present.
         await AssertTreeItemContent(treeListView, 2, "1_1");
         await AssertTreeItemContent(treeListView, 3, "1_2");
@@ -429,7 +429,7 @@ public class TreeListViewTests : TestBase
         await replaceButton.LeftClick();
 
         await AssertTreeItemContent(treeListView, 0, "0");
-        await AssertTreeItemContent(treeListView, 1, "1");
+        await AssertTreeItemContent(treeListView, 1, "1", true);
         await AssertTreeItemContent(treeListView, 2, "1_0");
         await AssertTreeItemContent(treeListView, 3, "1_1_r");
         await AssertTreeItemContent(treeListView, 4, "1_2");
@@ -475,7 +475,7 @@ public class TreeListViewTests : TestBase
         await replaceButton.LeftClick();
 
         await AssertTreeItemContent(treeListView, 0, "0");
-        await AssertTreeItemContent(treeListView, 1, "1");
+        await AssertTreeItemContent(treeListView, 1, "1", true);
         await AssertTreeItemContent(treeListView, 2, "1_0");
         await AssertTreeItemContent(treeListView, 3, "1_1_r");
         await AssertTreeItemContent(treeListView, 4, "1_2");
@@ -547,8 +547,8 @@ public class TreeListViewTests : TestBase
 
         //Assert
         await AssertTreeItemContent(treeListView, 0, "0");
-        await AssertTreeItemContent(treeListView, 1, "1");
-        await AssertTreeItemContent(treeListView, 2, "1_1");
+        await AssertTreeItemContent(treeListView, 1, "1", true);
+        await AssertTreeItemContent(treeListView, 2, "1_1", true);
         await AssertTreeItemContent(treeListView, 3, "1_1_0");
         await AssertTreeItemContent(treeListView, 4, "1_1_1");
         await AssertTreeItemContent(treeListView, 5, "1_2");
@@ -762,7 +762,7 @@ public class TreeListViewTests : TestBase
         //Assert the child was successfully moved
         await AssertTreeItemContent(treeListView, 0, "0");
         await AssertTreeItemContent(treeListView, 1, "2");
-        await AssertTreeItemContent(treeListView, 2, "1");
+        await AssertTreeItemContent(treeListView, 2, "1", true);
         await AssertTreeItemContent(treeListView, 3, "1_0");
         await AssertTreeItemContent(treeListView, 4, "1_2");
         await AssertTreeItemContent(treeListView, 5, "1_1");
@@ -815,10 +815,10 @@ public class TreeListViewTests : TestBase
 
         //Assert the child was successfully moved
         await AssertTreeItemContent(treeListView, 0, "0");
-        await AssertTreeItemContent(treeListView, 1, "1");
+        await AssertTreeItemContent(treeListView, 1, "1", true);
         await AssertTreeItemContent(treeListView, 2, "1_0");
         await AssertTreeItemContent(treeListView, 3, "1_2");
-        await AssertTreeItemContent(treeListView, 4, "1_1");
+        await AssertTreeItemContent(treeListView, 4, "1_1", true);
         await AssertTreeItemContent(treeListView, 5, "1_1_0");
         await AssertTreeItemContent(treeListView, 6, "1_1_2");
         await AssertTreeItemContent(treeListView, 7, "1_1_1");
@@ -827,12 +827,60 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    private static async Task AssertTreeItemContent(IVisualElement<TreeListView> treeListView, int index, string content)
+    [Fact]
+    public async Task TopLevelItemWithNestedExpandedChild_MovesChildrenMaintainingExpansion()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+        IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+        IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
+        IVisualElement<Button> upButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Up"));
+
+        IVisualElement<TreeListViewItem> item1 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
+
+        //Add children to item "1" and expand
+        await AddChildren(item1, 3, addButton);
+        await item1.LeftClickExpander();
+
+        //NB: Needs to be long enough delay so the next click does not register as a double click
+        await Task.Delay(1000);
+
+        // Add children to item "1_1" and expand
+        IVisualElement<TreeListViewItem> item11 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[3]");
+        await AddChildren(item11, 3, addButton);
+        await item11.LeftClickExpander();
+
+        //NB: Needs to be long enough delay so the next click does not register as a double click
+        await Task.Delay(1000);
+
+        //Move parent item down
+        await item1.LeftClick();
+        await upButton.LeftClick();
+
+        await Task.Delay(1000);
+
+        //Assert the child was successfully moved
+        await AssertTreeItemContent(treeListView, 0, "1", true);
+        await AssertTreeItemContent(treeListView, 1, "1_0");
+        await AssertTreeItemContent(treeListView, 2, "1_1", true);
+        await AssertTreeItemContent(treeListView, 3, "1_1_0");
+        await AssertTreeItemContent(treeListView, 4, "1_1_1");
+        await AssertTreeItemContent(treeListView, 5, "1_1_2");
+        await AssertTreeItemContent(treeListView, 6, "1_2");
+        await AssertTreeItemContent(treeListView, 7, "0");
+        await AssertTreeItemContent(treeListView, 8, "2");
+
+        recorder.Success();
+    }
+
+    private static async Task AssertTreeItemContent(IVisualElement<TreeListView> treeListView, int index, string content, bool isExpanded = false)
     {
         await Wait.For(async () =>
         {
-            IVisualElement<TreeListViewItem> foundFirstItem = await treeListView.GetElement<TreeListViewItem>($"/TreeListViewItem[{index}]");
-            Assert.Equal(content, await foundFirstItem.GetContentText());
+            IVisualElement<TreeListViewItem> treeItem = await treeListView.GetElement<TreeListViewItem>($"/TreeListViewItem[{index}]");
+            Assert.Equal(content, await treeItem.GetContentText());
+            Assert.Equal(isExpanded, await treeItem.GetIsExpanded());
         });
     }
 

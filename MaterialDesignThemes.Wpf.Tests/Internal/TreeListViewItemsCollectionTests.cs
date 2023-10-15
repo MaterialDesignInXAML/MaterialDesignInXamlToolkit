@@ -396,6 +396,64 @@ public class TreeListViewItemsCollectionTests
         Assert.Equal(expectedLevels, treeListViewItemsCollection.GetAllLevels());
     }
 
+    [Fact]
+    public void Move_WithExpandedChild_ItMovesChildren()
+    {
+        //Arrange
+        ObservableCollection<string> boundCollection = new() { "0", "1", "2" };
+        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(boundCollection);
+        treeListViewItemsCollection.InsertWithLevel(2, "1_0", 1);
+        treeListViewItemsCollection.InsertWithLevel(3, "1_1", 1);
+        treeListViewItemsCollection.InsertWithLevel(4, "1_1_0", 2);
+        treeListViewItemsCollection.InsertWithLevel(5, "1_1_1", 2);
+        treeListViewItemsCollection.InsertWithLevel(6, "1_1_2", 2);
+        treeListViewItemsCollection.InsertWithLevel(7, "1_2", 1);
+        /*
+         * 0. 0
+         * 1. 1
+         * 2.  1_0
+         * 3.  1_1
+         * 4.    1_1_0
+         * 5.    1_1_1
+         * 6.    1_1_2
+         * 7.  1_2
+         * 8. 2
+         */
+
+        //Act
+        boundCollection.Move(1, 0); // Move 1 to 0's position;
+
+        //Assert
+        List<string> expectedItems = new(new[]
+        {
+            "1",
+            "1_0",
+            "1_1",
+            "1_1_0",
+            "1_1_1",
+            "1_1_2",
+            "1_2",
+            "0",
+            "2",
+        });
+        List<int> expectedLevels = new(new[] { 0, 1, 1, 2, 2, 2, 1, 0, 0 });
+        List<bool> expectedExpanded = new()
+        {
+            true,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+        };
+        Assert.Equal(expectedItems, treeListViewItemsCollection);
+        Assert.Equal(expectedLevels, treeListViewItemsCollection.GetAllLevels());
+        Assert.Equal(expectedExpanded, treeListViewItemsCollection.GetAllIsExpanded());
+    }
+
     private class TestableCollection<T> : ObservableCollection<T>
     {
         private int _blockCollectionChanges;
