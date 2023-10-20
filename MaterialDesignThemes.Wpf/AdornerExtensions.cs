@@ -7,7 +7,7 @@ namespace MaterialDesignThemes.Wpf;
 /// since there is no built-in way to do that in xaml.
 /// <a href="https://docs.microsoft.com/en-us/dotnet/framework/wpf/controls/adorners-overview">See here</a>
 /// </summary>
-internal static class AdornerMixins
+internal static class AdornerExtensions
 {
     public static void AddAdorner<TAdorner>(this UIElement element, TAdorner adorner) where TAdorner : Adorner
     {

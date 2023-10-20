@@ -4,7 +4,7 @@ using Theme = MaterialDesignThemes.Wpf.Theme;
 
 namespace MaterialDesignThemes.MahApps;
 
-internal static class BaseThemeMixins
+internal static class BaseThemeExtensions
 {
     public static string GetMahAppsBaseColorScheme(this BaseTheme baseTheme)
     {

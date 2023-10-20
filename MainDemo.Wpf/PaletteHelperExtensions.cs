@@ -5,7 +5,7 @@ using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignDemo;
 
-public static class PaletteHelperMixins
+public static class PaletteHelperExtensions
 {
     public static void ChangePrimaryColor(this PaletteHelper paletteHelper, Color color)
     {
