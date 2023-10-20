@@ -3,7 +3,7 @@ using MaterialDesignColors;
 
 namespace MaterialDesignThemes.UITests;
 
-public static class XamlTestMixins
+public static class XamlTestExtensions
 {
     public static async Task InitializeWithMaterialDesign(this IApp app,
         BaseTheme baseTheme = BaseTheme.Light,

@@ -3,7 +3,7 @@ using System.Windows.Media.Media3D;
 
 namespace MaterialDesignThemes.Wpf;
 
-internal static class VisualTreeMixins
+internal static class VisualTreeExtensions
 {
     public static IEnumerable<DependencyObject> VisualDepthFirstTraversal(this DependencyObject node)
     {

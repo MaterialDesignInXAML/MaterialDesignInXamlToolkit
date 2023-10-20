@@ -2,7 +2,7 @@
 
 namespace MaterialDesignThemes.Wpf;
 
-internal static class StringMixins
+internal static class StringExtensions
 {
     public static string ToTitleCase(this string text, CultureInfo culture, string separator = " ")
     {

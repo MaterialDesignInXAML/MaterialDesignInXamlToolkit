@@ -2,11 +2,11 @@
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
-public class AdornerMixinsTests : IClassFixture<AdornerMixinsTests.AdornerFixture>
+public class AdornerExtensionsTests : IClassFixture<AdornerExtensionsTests.AdornerFixture>
 {
     private readonly AdornerFixture _testFixture;
 
-    public AdornerMixinsTests(AdornerFixture fixture)
+    public AdornerExtensionsTests(AdornerFixture fixture)
     {
         _testFixture = fixture;
     }
