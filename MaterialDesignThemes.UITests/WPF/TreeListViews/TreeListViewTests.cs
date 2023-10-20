@@ -880,6 +880,56 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
+    [Fact]
+    public async Task TopLevelItemWhichHasBeenExpandedAndCollapsed_MovesAndMaintainsCollapsedState()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+        IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+        IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
+        IVisualElement<Button> downButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Down"));
+
+        IVisualElement<TreeListViewItem> item1 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
+
+        //Add children to item "1" and expand
+        await AddChildren(item1, 3, addButton);
+        await item1.LeftClickExpander();
+
+        //NB: Needs to be long enough delay so the next click does not register as a double click
+        await Task.Delay(1000);
+
+        // Collapse item "1" again
+        await item1.LeftClickExpander(false);
+
+        //NB: Needs to be long enough delay so the next click does not register as a double click
+        await Task.Delay(1000);
+
+        // Move down
+        await downButton.LeftClick();
+
+        //NB: Needs to be long enough delay so the next click does not register as a double click
+        await Task.Delay(1000);
+
+        // FIXME: At this point, the expansion state is wrong. The chevron indicates expanded, but in fact it is collapsed. Expanding it then crashes with an ArgumentOutOfRangeException
+
+        // NOTE: This may not be needed, I am not entirely sure.
+        item1 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[2]");
+        
+        // Expand item "1"
+        await item1.LeftClickExpander();
+
+        //Assert the child was successfully moved
+        await AssertTreeItemContent(treeListView, 0, "0");
+        await AssertTreeItemContent(treeListView, 1, "2");
+        await AssertTreeItemContent(treeListView, 2, "1", true);
+        await AssertTreeItemContent(treeListView, 3, "1_0");
+        await AssertTreeItemContent(treeListView, 4, "1_1");
+        await AssertTreeItemContent(treeListView, 5, "1_2");
+
+        recorder.Success();
+    }
+
     private static async Task AssertTreeItemContent(IVisualElement<TreeListView> treeListView, int index, string content, bool isExpanded = false)
     {
         await Wait.For(async () =>
