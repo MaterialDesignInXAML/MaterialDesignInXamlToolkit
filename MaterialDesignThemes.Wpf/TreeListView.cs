@@ -44,9 +44,7 @@ public class TreeListView : ListView
         => new TreeListViewItem();
 
     protected override bool IsItemItsOwnContainerOverride(object? item)
-    {
-        return item is TreeListViewItem;
-    }
+        => item is TreeListViewItem;
 
     protected override void PrepareContainerForItemOverride(DependencyObject element, object? item)
     {

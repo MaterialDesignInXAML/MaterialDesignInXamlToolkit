@@ -105,6 +105,8 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
         if (ItemLevels[index + 1] < currentLevel + 1)
             return;
 
+        ItemIsExpanded[index] = false;
+
         index++;
         InternalRemoveItem(index);
         while (index < Count && ItemLevels[index] > currentLevel)
