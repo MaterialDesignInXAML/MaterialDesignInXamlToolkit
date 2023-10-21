@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
@@ -99,6 +99,7 @@
                       </DoubleAnimationUsingKeyFrames>
                     </Storyboard>
                   </VisualTransition>
+                  <!-- TODO: These seem superfluous? But I am not expert in animations :p
                   <VisualTransition GeneratedDuration="0" To="Unchecked">
                     <Storyboard>
                       <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExpandPath" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
@@ -113,6 +114,7 @@
                       </DoubleAnimationUsingKeyFrames>
                     </Storyboard>
                   </VisualTransition>
+                  -->
                   <VisualTransition GeneratedDuration="0"
                                     From="Checked"
                                     To="Unchecked">
@@ -129,16 +131,12 @@
                 </VisualStateGroup.Transitions>
                 <VisualState x:Name="Checked">
                   <Storyboard>
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExpandPath" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
-                      <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="45" />
-                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimation Storyboard.TargetName="ExpandPath" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" To="45" Duration="0" />
                   </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Unchecked">
                   <Storyboard>
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExpandPath" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
-                      <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0" />
-                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimation Storyboard.TargetName="ExpandPath" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" To="0" Duration="0" />
                   </Storyboard>
                 </VisualState>
               </VisualStateGroup>
