@@ -512,6 +512,85 @@ public class TreeListViewItemsCollectionTests
         Assert.Equal(expectedExpanded, treeListViewItemsCollection.GetAllIsExpanded());
     }
 
+    [Fact]
+    public void Replace_WithExpandedChild_ItRemovesChildren()
+    {
+        //Arrange
+        ObservableCollection<string> boundCollection = new() { "0", "1", "2" };
+        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(boundCollection);
+        treeListViewItemsCollection.InsertWithLevel(3, "2_0", 1);
+        treeListViewItemsCollection.InsertWithLevel(4, "2_1", 1);
+        treeListViewItemsCollection.InsertWithLevel(5, "2_2", 1);
+        /*
+         * 0. 0
+         * 1. 1
+         * 2. 2
+         * 3.   2_0
+         * 4.   2_1
+         * 5.   2_2
+         */
+
+        //Act
+        boundCollection[2] = "replaced";
+
+        //Assert
+        List<string> expectedItems = new(new[]
+        {
+            "0",
+            "1",
+            "replaced",
+        });
+        List<int> expectedLevels = new(new[] { 0, 0, 0 });
+        List<bool> expectedExpanded = new()
+        {
+            false,
+            false,
+            false,
+        };
+        Assert.Equal(expectedItems, treeListViewItemsCollection);
+        Assert.Equal(expectedLevels, treeListViewItemsCollection.GetAllLevels());
+        Assert.Equal(expectedExpanded, treeListViewItemsCollection.GetAllIsExpanded());
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    [InlineData(2)]
+    public void Replace_TopLevelItem_IsReplaced(int indexToReplace)
+    {
+        //Arrange
+        ObservableCollection<string> boundCollection = new() { "0", "1", "2" };
+        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(boundCollection);
+        
+        /*
+         * 0. 0
+         * 2. 1
+         * 3. 2
+         */
+
+        //Act
+        boundCollection[indexToReplace] = "changed";
+
+        //Assert
+        List<string> expectedItems = new(new[]
+        {
+            "0",
+            "1",
+            "2",
+        });
+        expectedItems[indexToReplace] = "changed";
+        List<int> expectedLevels = new(new[] { 0, 0, 0 });
+        List<bool> expectedExpanded = new()
+        {
+            false,
+            false,
+            false,
+        };
+        Assert.Equal(expectedItems, treeListViewItemsCollection);
+        Assert.Equal(expectedLevels, treeListViewItemsCollection.GetAllLevels());
+        Assert.Equal(expectedExpanded, treeListViewItemsCollection.GetAllIsExpanded());
+    }
+
     private class TestableCollection<T> : ObservableCollection<T>
     {
         private int _blockCollectionChanges;

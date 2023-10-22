@@ -102,7 +102,7 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
     internal void RemoveChildrenOfOffsetAdjustedItem(int index)
     {
         int currentLevel = ItemLevels[index];
-        if (ItemLevels[index + 1] < currentLevel + 1)
+        if (index + 1 >= Count || ItemLevels[index + 1] < currentLevel + 1)
             return;
 
         ItemIsExpanded[index] = false;
