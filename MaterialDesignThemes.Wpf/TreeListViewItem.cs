@@ -2,7 +2,6 @@
 
 namespace MaterialDesignThemes.Wpf;
 
-//[TemplatePart(Name = "PART_Header", Type = typeof(TreeListViewItemContentPresenter))]
 [System.Diagnostics.DebuggerDisplay("Container for {DataContext}")]
 public class TreeListViewItem : ListViewItem
 {
@@ -12,7 +11,6 @@ public class TreeListViewItem : ListViewItem
 
     private TreeListView? TreeListView { get; set; }
 
-    //TODO: Remove
     public IEnumerable<object?> GetChildren() => Children ?? Array.Empty<object?>();
 
     public bool IsExpanded
@@ -39,7 +37,6 @@ public class TreeListViewItem : ListViewItem
         set => SetValue(HasItemsProperty, value);
     }
 
-    // Using a DependencyProperty as the backing store for HasItems.  This enables animation, styling, binding, etc...
     public static readonly DependencyProperty HasItemsProperty =
         DependencyProperty.Register(nameof(HasItems), typeof(bool), typeof(TreeListViewItem), new PropertyMetadata(false));
 
@@ -113,7 +110,6 @@ public class TreeListViewItem : ListViewItem
         TreeListView = null;
     }
 
-
     private void UpdateHasChildren()
     {
         SetCurrentValue(HasItemsProperty, Children?.Any() == true);
@@ -151,5 +147,4 @@ public class TreeListViewItem : ListViewItem
             }
         }
     }
-
 }
