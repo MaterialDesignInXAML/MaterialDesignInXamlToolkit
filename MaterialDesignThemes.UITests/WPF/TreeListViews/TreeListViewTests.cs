@@ -1,3 +1,5 @@
+using System.Windows.Media;
+
 namespace MaterialDesignThemes.UITests.WPF.TreeListViews;
 
 public class TreeListViewTests : TestBase
@@ -5,7 +7,7 @@ public class TreeListViewTests : TestBase
     public TreeListViewTests(ITestOutputHelper output)
         : base(output)
     {
-        AttachedDebuggerToRemoteProcess = true;
+        AttachedDebuggerToRemoteProcess = false;
     }
 
     [Fact]
@@ -930,6 +932,35 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
+    [Fact]
+    public async Task TreeListView_WithTemplateSelector_UsesSelectorTemplates()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<TreeListView> treeListView = (await LoadUserControl<TreeListViewTemplateSelector>()).As<TreeListView>();
+
+        IVisualElement<TreeListViewItem> item3 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[2]");
+        IVisualElement<TreeListViewItem> item4 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[3]");
+
+        await item3.LeftClickExpander();
+        await Task.Delay(500);
+        await item4.LeftClickExpander();
+        await Task.Delay(500);
+
+        await AssertTreeItemContent(treeListView, 0, "Foo", Colors.Blue);
+        await AssertTreeItemContent(treeListView, 1, "42", Colors.Red);
+        await AssertTreeItemContent(treeListView, 2, "24", Colors.Red, true);
+        await AssertTreeItemContent(treeListView, 3, "a", Colors.Blue);
+        await AssertTreeItemContent(treeListView, 4, "b", Colors.Blue);
+        await AssertTreeItemContent(treeListView, 5, "c", Colors.Blue);
+        await AssertTreeItemContent(treeListView, 6, "Bar", Colors.Blue, true);
+        await AssertTreeItemContent(treeListView, 7, "1", Colors.Red);
+        await AssertTreeItemContent(treeListView, 8, "2", Colors.Red);
+        await AssertTreeItemContent(treeListView, 9, "3", Colors.Red);
+
+        recorder.Success();
+    }
+
     private static async Task AssertTreeItemContent(IVisualElement<TreeListView> treeListView, int index, string content, bool isExpanded = false)
     {
         await Wait.For(async () =>
@@ -937,6 +968,23 @@ public class TreeListViewTests : TestBase
             IVisualElement<TreeListViewItem> treeItem = await treeListView.GetElement<TreeListViewItem>($"/TreeListViewItem[{index}]");
             Assert.Equal(content, await treeItem.GetContentText());
             Assert.Equal(isExpanded, await treeItem.GetIsExpanded());
+        });
+    }
+
+    private static async Task AssertTreeItemContent(
+        IVisualElement<TreeListView> treeListView,
+        int index,
+        string content,
+        Color foreground,
+        bool isExpanded = false)
+    {
+        await Wait.For(async () =>
+        {
+            IVisualElement<TreeListViewItem> treeItem = await treeListView.GetElement<TreeListViewItem>($"/TreeListViewItem[{index}]");
+            Assert.Equal(content, await treeItem.GetContentText());
+            Assert.Equal(isExpanded, await treeItem.GetIsExpanded());
+            IVisualElement<TextBlock> textBlock = await treeItem.GetElement<TextBlock>();
+            Assert.Equal(foreground, await textBlock.GetForegroundColor());
         });
     }
 

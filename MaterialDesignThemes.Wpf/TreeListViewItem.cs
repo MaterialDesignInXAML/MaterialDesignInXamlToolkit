@@ -91,14 +91,18 @@ public class TreeListViewItem : ListViewItem
 
     internal void PrepareTreeListViewItem(object? item, TreeListView treeListView, int level, bool isExpanded)
     {
-        //TODO: Handle template selector
-        if (ContentTemplate is HierarchicalDataTemplate { ItemsSource: { } itemsSourceBinding })
+        if (GetTemplate() is HierarchicalDataTemplate { ItemsSource: { } itemsSourceBinding })
         {
             SetBinding(ChildrenProperty, itemsSourceBinding);
         }
         IsExpanded = isExpanded;
         Level = level;
         TreeListView = treeListView;
+
+        DataTemplate GetTemplate()
+        {
+            return ContentTemplate ?? ContentTemplateSelector.SelectTemplate(item, this);
+        }
     }
 
     internal void ClearTreeListViewItem(object item, TreeListView treeListView)
