@@ -1,6 +1,4 @@
-﻿using Xunit;
-
-namespace MaterialDesignThemes.Wpf.Tests;
+﻿namespace MaterialDesignThemes.Wpf.Tests;
 
 public class AdornerExtensionsTests : IClassFixture<AdornerExtensionsTests.AdornerFixture>
 {

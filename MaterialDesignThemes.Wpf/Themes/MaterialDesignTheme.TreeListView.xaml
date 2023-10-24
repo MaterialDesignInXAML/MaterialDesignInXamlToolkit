@@ -1,81 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:internal="clr-namespace:MaterialDesignThemes.Wpf.Internal"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
-  <ResourceDictionary.MergedDictionaries>
-    <ResourceDictionary>
-      <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
-      <converters:MathMultipleConverter x:Key="MathMlpMultipleConverter" Operation="Multiply" />
-      <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
-    </ResourceDictionary>
-  </ResourceDictionary.MergedDictionaries>
-
-
-  <Style x:Key="MaterialDesignTreeView" TargetType="{x:Type TreeView}">
-    <Setter Property="Background" Value="Transparent" />
-    <Setter Property="BorderBrush" Value="{x:Null}" />
-    <Setter Property="BorderThickness" Value="0" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
-    <Setter Property="Padding" Value="1" />
-    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
-    <Setter Property="ScrollViewer.PanningMode" Value="Both" />
-    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
-    <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="{x:Type TreeView}">
-          <Border BorderBrush="{TemplateBinding BorderBrush}"
-                  BorderThickness="{TemplateBinding BorderThickness}"
-                  SnapsToDevicePixels="true">
-            <ScrollViewer x:Name="_tv_scrollviewer_"
-                          Padding="{TemplateBinding Padding}"
-                          Background="{TemplateBinding Background}"
-                          CanContentScroll="false"
-                          Focusable="false"
-                          HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
-                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                          VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
-              <ItemsPresenter />
-            </ScrollViewer>
-          </Border>
-          <ControlTemplate.Triggers>
-            <Trigger Property="IsEnabled" Value="false">
-              <Setter Property="Opacity" Value=".56" />
-            </Trigger>
-            <Trigger Property="VirtualizingPanel.IsVirtualizing" Value="true">
-              <Setter TargetName="_tv_scrollviewer_" Property="CanContentScroll" Value="true" />
-            </Trigger>
-          </ControlTemplate.Triggers>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-    <Setter Property="VerticalContentAlignment" Value="Center" />
-    <Setter Property="wpf:TreeViewAssist.HasNoItemsExpanderVisibility" Value="Hidden" />
-    <Style.Triggers>
-      <Trigger Property="VirtualizingPanel.IsVirtualizing" Value="true">
-        <Setter Property="ItemsPanel">
-          <Setter.Value>
-            <ItemsPanelTemplate>
-              <VirtualizingStackPanel />
-            </ItemsPanelTemplate>
-          </Setter.Value>
-        </Setter>
-      </Trigger>
-    </Style.Triggers>
-  </Style>
-
-  <Style x:Key="MaterialDesignTreeViewItemFocusVisual">
-    <Setter Property="Control.Template">
-      <Setter.Value>
-        <ControlTemplate>
-          <Rectangle />
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
-  <Style x:Key="MaterialDesignExpandCollapseToggleStyle" TargetType="{x:Type ToggleButton}">
+  <Style x:Key="MaterialDesignTreeListViewToggleButtonStyle" TargetType="{x:Type ToggleButton}">
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="Focusable" Value="False" />
     <Setter Property="Height" Value="16" />
@@ -99,23 +28,7 @@
                       </DoubleAnimationUsingKeyFrames>
                     </Storyboard>
                   </VisualTransition>
-                  <VisualTransition GeneratedDuration="0" To="Unchecked">
-                    <Storyboard>
-                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExpandPath" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
-                        <EasingDoubleKeyFrame KeyTime="0" Value="45" />
-                      </DoubleAnimationUsingKeyFrames>
-                    </Storyboard>
-                  </VisualTransition>
-                  <VisualTransition GeneratedDuration="0" To="Checked">
-                    <Storyboard>
-                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExpandPath" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
-                        <EasingDoubleKeyFrame KeyTime="0" Value="0" />
-                      </DoubleAnimationUsingKeyFrames>
-                    </Storyboard>
-                  </VisualTransition>
-                  <VisualTransition GeneratedDuration="0"
-                                    From="Checked"
-                                    To="Unchecked">
+                  <VisualTransition From="Checked" To="Unchecked">
                     <VisualTransition.GeneratedEasingFunction>
                       <QuarticEase EasingMode="EaseOut" />
                     </VisualTransition.GeneratedEasingFunction>
@@ -129,16 +42,18 @@
                 </VisualStateGroup.Transitions>
                 <VisualState x:Name="Checked">
                   <Storyboard>
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExpandPath" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
-                      <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="45" />
-                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimation Storyboard.TargetName="ExpandPath"
+                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)"
+                                     To="45"
+                                     Duration="0" />
                   </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Unchecked">
                   <Storyboard>
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExpandPath" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
-                      <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0" />
-                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimation Storyboard.TargetName="ExpandPath"
+                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)"
+                                     To="0"
+                                     Duration="0" />
                   </Storyboard>
                 </VisualState>
               </VisualStateGroup>
@@ -169,17 +84,39 @@
     <Setter Property="Width" Value="16" />
   </Style>
 
-  <Style x:Key="MaterialDesignTreeViewItem" TargetType="{x:Type TreeViewItem}">
+  <Style x:Key="MaterialDesignTreeListViewItemFocusVisual">
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Rectangle />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="MaterialDesignTreeListViewItem" TargetType="{x:Type wpf:TreeListViewItem}">
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="BorderThickness" Value="0" />
-    <Setter Property="FocusVisualStyle" Value="{StaticResource MaterialDesignTreeViewItemFocusVisual}" />
-    <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type TreeView}}}" />
+    <Setter Property="FocusVisualStyle" Value="{StaticResource MaterialDesignTreeListViewItemFocusVisual}" />
+    <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type wpf:TreeListView}}}" />
     <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
     <Setter Property="Padding" Value="8" />
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate TargetType="{x:Type TreeViewItem}">
+        <ControlTemplate TargetType="{x:Type wpf:TreeListViewItem}">
+          <ControlTemplate.Resources>
+            <converters:TreeListViewIndentConverter x:Key="TreeListViewIndentConverter" />
+            <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
+            <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
+            <converters:MathMultipleConverter x:Key="MathMlpMultipleConverter" Operation="Multiply" />
+          </ControlTemplate.Resources>
           <Grid>
+            <Grid.Margin>
+              <MultiBinding Converter="{StaticResource TreeListViewIndentConverter}">
+                <Binding Path="LevelIndentSize" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type wpf:TreeListView}}" />
+                <Binding Path="Level" RelativeSource="{RelativeSource TemplatedParent}" />
+              </MultiBinding>
+            </Grid.Margin>
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="Auto" />
               <ColumnDefinition Width="Auto" />
@@ -308,7 +245,7 @@
                           ClickMode="Press"
                           Foreground="{TemplateBinding Foreground}"
                           IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}"
-                          Style="{StaticResource MaterialDesignExpandCollapseToggleStyle}" />
+                          Style="{StaticResource MaterialDesignTreeListViewToggleButtonStyle}" />
 
             <Border x:Name="MouseOverBorder"
                     Grid.Column="1"
@@ -335,7 +272,7 @@
                           Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
                           Focusable="False"
                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                <ContentPresenter x:Name="PART_Header" ContentSource="Header" />
+                <ContentPresenter x:Name="PART_Header" ContentSource="Content" />
               </wpf:Ripple>
             </Grid>
 
@@ -343,7 +280,7 @@
                             Grid.Row="1"
                             Grid.Column="1"
                             Grid.ColumnSpan="2"
-                            Content="{TemplateBinding Header}"
+                            Content="{TemplateBinding Content}"
                             ContentTemplate="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:TreeViewAssist.AdditionalTemplate)}"
                             ContentTemplateSelector="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:TreeViewAssist.AdditionalTemplateSelector)}"
                             Visibility="Collapsed" />
@@ -391,6 +328,59 @@
     <Setter Property="wpf:TreeViewAssist.ExpanderSize" Value="16" />
     <Setter Property="wpf:TreeViewAssist.HasNoItemsExpanderVisibility" Value="{Binding RelativeSource={RelativeSource AncestorType=TreeView}, Path=(wpf:TreeViewAssist.HasNoItemsExpanderVisibility)}" />
     <Setter Property="wpf:TreeViewAssist.ShowSelection" Value="True" />
+    <!--<Style.Triggers>
+      <Trigger Property="VirtualizingPanel.IsVirtualizing" Value="true">
+        <Setter Property="ItemsPanel">
+          <Setter.Value>
+            <ItemsPanelTemplate>
+              <VirtualizingStackPanel />
+            </ItemsPanelTemplate>
+          </Setter.Value>
+        </Setter>
+      </Trigger>
+    </Style.Triggers>-->
+  </Style>
+
+  <Style x:Key="MaterialDesignTreeListView" TargetType="{x:Type wpf:TreeListView}">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="{x:Null}" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
+    <Setter Property="Padding" Value="1" />
+    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+    <Setter Property="ScrollViewer.PanningMode" Value="Both" />
+    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+    <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type wpf:TreeListView}">
+          <Border BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  SnapsToDevicePixels="true">
+            <ScrollViewer x:Name="PART_ScrollViewer"
+                          Padding="{TemplateBinding Padding}"
+                          Background="{TemplateBinding Background}"
+                          CanContentScroll="false"
+                          Focusable="false"
+                          HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                          VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
+              <ItemsPresenter />
+            </ScrollViewer>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="false">
+              <Setter Property="Opacity" Value=".56" />
+            </Trigger>
+            <Trigger Property="VirtualizingPanel.IsVirtualizing" Value="true">
+              <Setter TargetName="PART_ScrollViewer" Property="CanContentScroll" Value="true" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="wpf:TreeViewAssist.HasNoItemsExpanderVisibility" Value="Hidden" />
     <Style.Triggers>
       <Trigger Property="VirtualizingPanel.IsVirtualizing" Value="true">
         <Setter Property="ItemsPanel">
@@ -403,4 +393,7 @@
       </Trigger>
     </Style.Triggers>
   </Style>
+
+  <Style TargetType="{x:Type wpf:TreeListView}" BasedOn="{StaticResource MaterialDesignTreeListView}" />
+  <Style TargetType="{x:Type wpf:TreeListViewItem}" BasedOn="{StaticResource MaterialDesignTreeListViewItem}" />
 </ResourceDictionary>

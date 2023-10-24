@@ -27,4 +27,8 @@
     <PackageReference Include="Xunit.StaFact" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit"/>
+  </ItemGroup>
 </Project>

@@ -8,12 +8,14 @@ using System.Windows.Media;
 [assembly: GenerateHelpers(typeof(ColorPicker))]
 [assembly: GenerateHelpers(typeof(DialogHost))]
 [assembly: GenerateHelpers(typeof(AutoSuggestBox))]
+[assembly: GenerateHelpers(typeof(TreeListView))]
+[assembly: GenerateHelpers(typeof(TreeListViewItem))]
 
 namespace MaterialDesignThemes.UITests;
 
 public abstract class TestBase : IAsyncLifetime
 {
-    protected bool AttachedDebugger { get; set; } = true;
+    protected bool AttachedDebuggerToRemoteProcess { get; set; } = true;
     protected ITestOutputHelper Output { get; }
 
     [NotNull]
@@ -44,7 +46,7 @@ public abstract class TestBase : IAsyncLifetime
     public async Task InitializeAsync() =>
         App = await XamlTest.App.StartRemote(new AppOptions
         {
-            AllowVisualStudioDebuggerAttach = AttachedDebugger,
+            AllowVisualStudioDebuggerAttach = AttachedDebuggerToRemoteProcess,
             LogMessage = Output.WriteLine
         });
     public async Task DisposeAsync() => await App.DisposeAsync();

@@ -114,7 +114,7 @@ xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"">
         Background=""{{DynamicResource MaterialDesignPaper}}""
         FontFamily=""{{materialDesign:MaterialDesignFont}}"" 
         Title=""Test Window""
-        Topmost=""True""
+        Topmost=""False""
         WindowStartupLocation=""CenterScreen"">
         <local:{typeof(TControl).Name} />
 </Window>";
