@@ -184,23 +184,12 @@
           <materialDesign:TreeListView MinWidth="220" MaxHeight="450"
                                      ItemsSource="{Binding TreeItems}"
                                      SelectedItem="{Binding SelectedTreeItem}">
-            <materialDesign:TreeListView.Resources>
+            <materialDesign:TreeListView.ItemTemplate>
               <HierarchicalDataTemplate DataType="{x:Type domain:TestItem}"
-                          ItemsSource="{Binding Items, Mode=OneTime}">
-                <TextBlock Margin="3,2" Text="{Binding Name, Mode=OneTime}" />
+                                        ItemsSource="{Binding Items, Mode=OneWay}">
+                <TextBlock Margin="3,2" Text="{Binding Name, Mode=OneWay}" />
               </HierarchicalDataTemplate>
-
-              <HierarchicalDataTemplate DataType="{x:Type domain:MovieCategory}"
-                                      ItemsSource="{Binding Movies, Mode=OneTime}">
-                <TextBlock Margin="3,2" Text="{Binding Name, Mode=OneTime}" />
-              </HierarchicalDataTemplate>
-
-              <DataTemplate DataType="{x:Type domain:Movie}">
-                <TextBlock Margin="3,2"
-                           Text="{Binding Name, Mode=OneTime}"
-                           ToolTip="{Binding Director, Mode=OneTime}" />
-              </DataTemplate>
-            </materialDesign:TreeListView.Resources>
+            </materialDesign:TreeListView.ItemTemplate>
 
           </materialDesign:TreeListView>
           <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
