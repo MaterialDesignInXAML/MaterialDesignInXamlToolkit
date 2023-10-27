@@ -32,7 +32,7 @@ public static class ListBoxAssist
 
         if (listBoxItem is null || !listBoxItem.IsEnabled) return;
 
-        listBoxItem.SetCurrentValue(ListBoxItem.IsSelectedProperty, !listBoxItem.IsSelected);
+        listBoxItem.SetCurrentValue(ListBoxItem.IsSelectedProperty, true);
         mouseButtonEventArgs.Handled = true;
 
         listBoxItem.Focus();
