@@ -99,9 +99,9 @@ public class TreeListViewItem : ListViewItem
         Level = level;
         TreeListView = treeListView;
 
-        DataTemplate GetTemplate()
+        DataTemplate? GetTemplate()
         {
-            return ContentTemplate ?? ContentTemplateSelector.SelectTemplate(item, this);
+            return ContentTemplate ?? ContentTemplateSelector?.SelectTemplate(item, this);
         }
     }
 
