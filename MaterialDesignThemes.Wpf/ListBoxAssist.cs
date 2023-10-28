@@ -32,7 +32,7 @@ public static class ListBoxAssist
 
         if (listBoxItem is null || !listBoxItem.IsEnabled) return;
 
-        listBoxItem.SetCurrentValue(ListBoxItem.IsSelectedProperty, true);
+        listBoxItem.SetCurrentValue(ListBoxItem.IsSelectedProperty, !GetCanUserToggleSelectedItem(senderElement) || !listBoxItem.IsSelected);
         mouseButtonEventArgs.Handled = true;
 
         listBoxItem.Focus();
@@ -55,4 +55,13 @@ public static class ListBoxAssist
 
     public static bool GetIsToggle(DependencyObject element)
         => (bool)element.GetValue(IsToggleProperty);
+
+    public static readonly DependencyProperty CanUserToggleSelectedItemProperty = DependencyProperty.RegisterAttached(
+        "CanUserToggleSelectedItem", typeof(bool), typeof(ListBoxAssist), new FrameworkPropertyMetadata(default(bool)));
+
+    public static void SetCanUserToggleSelectedItem(DependencyObject element, bool value)
+        => element.SetValue(CanUserToggleSelectedItemProperty, value);
+
+    public static bool GetCanUserToggleSelectedItem(DependencyObject element)
+        => (bool)element.GetValue(CanUserToggleSelectedItemProperty);
 }
