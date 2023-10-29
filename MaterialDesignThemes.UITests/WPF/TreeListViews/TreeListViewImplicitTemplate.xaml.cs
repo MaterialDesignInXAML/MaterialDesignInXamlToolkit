@@ -3,14 +3,14 @@
 namespace MaterialDesignThemes.UITests.WPF.TreeListViews;
 
 /// <summary>
-/// Interaction logic for TreeListViewDataBinding.xaml
+/// Interaction logic for TreeListViewImplicitTemplate.xaml
 /// </summary>
-public partial class TreeListViewDataBinding
+public partial class TreeListViewImplicitTemplate
 {
     //NB: making the assumption changes occur on the UI thread
     public ObservableCollection<TreeItem> Items { get; } = new();
 
-    public TreeListViewDataBinding()
+    public TreeListViewImplicitTemplate()
     {
         InitializeComponent();
         AddItem();
