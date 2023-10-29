@@ -338,11 +338,11 @@
 
       <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="buttons_63">
         <!-- the following based on https://material.io/guidelines/components/buttons.html#buttons-toggle-buttons -->
-        <ListBox SelectedIndex="0" Style="{StaticResource MaterialDesignToolVerticalToggleListBox}">
+        <ListBox SelectedIndex="0" Style="{StaticResource MaterialDesignToolVerticalToggleListBox}" materialDesign:ListBoxAssist.CanUserToggleSelectedItem="True">
           <ListBox.ToolTip>
             <StackPanel>
               <TextBlock Text="MaterialDesignToolToggleListBox" />
-              <TextBlock Text="Exclusive selection" />
+              <TextBlock Text="Exclusive selection (allows un-toggling selected item)" />
               <TextBlock Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
             </StackPanel>
           </ListBox.ToolTip>
