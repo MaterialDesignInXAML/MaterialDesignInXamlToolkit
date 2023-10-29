@@ -1,14 +1,19 @@
 ﻿using System.Collections.Specialized;
+using MaterialDesignThemes.Wpf.Internal;
 
 namespace MaterialDesignThemes.Wpf;
 
 [System.Diagnostics.DebuggerDisplay("Container for {DataContext}")]
+[TemplatePart(Name = ContentPresenterPart, Type = typeof(TreeListViewContentPresenter))]
 public class TreeListViewItem : ListViewItem
 {
+    internal const string ContentPresenterPart = "PART_ContentPresenter";
+
     public TreeListViewItem()
     {
     }
 
+    private TreeListViewContentPresenter? ContentPresenter { get; set; }
     private TreeListView? TreeListView { get; set; }
 
     public IEnumerable<object?> GetChildren() => Children ?? Array.Empty<object?>();
@@ -101,7 +106,32 @@ public class TreeListViewItem : ListViewItem
 
         DataTemplate? GetTemplate()
         {
-            return ContentTemplate ?? ContentTemplateSelector?.SelectTemplate(item, this);
+            return ContentTemplate ??
+                   ContentTemplateSelector?.SelectTemplate(item, this) ??
+                   ContentPresenter?.Template;
+        }
+    }
+
+    protected override void OnContentChanged(object oldContent, object newContent)
+        => base.OnContentChanged(oldContent, newContent);
+
+    protected override void OnContentTemplateChanged(DataTemplate oldContentTemplate, DataTemplate newContentTemplate)
+        => base.OnContentTemplateChanged(oldContentTemplate, newContentTemplate);
+
+    public override void OnApplyTemplate()
+    {
+        base.OnApplyTemplate();
+        ContentPresenter = GetTemplateChild(ContentPresenterPart) as TreeListViewContentPresenter;
+
+        if (ContentPresenter is { } contentPresenter)
+        {
+            WeakEventManager<TreeListViewContentPresenter, EventArgs>.AddHandler(
+                contentPresenter, nameof(TreeListViewContentPresenter.TemplateChanged), OnTemplateChanged);
+
+            void OnTemplateChanged(object? sender, EventArgs e)
+            {
+                PrepareTreeListViewItem(Content, TreeListView!, Level, IsExpanded);
+            }
         }
     }
 

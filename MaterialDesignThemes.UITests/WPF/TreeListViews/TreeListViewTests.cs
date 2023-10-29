@@ -10,12 +10,19 @@ public class TreeListViewTests : TestBase
         AttachedDebuggerToRemoteProcess = false;
     }
 
-    [Fact]
-    public async Task CanResetNestedElements()
+    public static IEnumerable<object[]> GetTestControls()
+    {
+        yield return new object[] { typeof(TreeListViewDataBinding) };
+        yield return new object[] { typeof(TreeListViewImplicitTemplate) };
+    }
+
+    [Theory]
+    [MemberData(nameof(GetTestControls))]
+    public async Task CanResetNestedElements(Type userControlType)
     {
         await using var recorder = new TestRecorder(App);
 
-        IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+        IVisualElement<Grid> root = (await LoadUserControl(userControlType)).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
         IVisualElement<Button> resetButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Reset"));
@@ -29,7 +36,6 @@ public class TreeListViewTests : TestBase
         await secondItem.LeftClickExpander();
         await secondItem.LeftClick();
         await Wait.For(() => secondItem.GetIsSelected());
-
 
         //Reset children
         await resetButton.LeftClick();
@@ -359,21 +365,6 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    //[Fact]
-    //public async Task Foo()
-    //{
-    //    await using var recorder = new TestRecorder(App);
-
-    //    IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
-    //    IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
-    //    IVisualElement<Button> replaceButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Replace"));
-    //    IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
-
-    //    await Task.Delay(TimeSpan.FromMinutes(30));
-
-    //    recorder.Success();
-    //}
-
     [Fact]
     public async Task CanReplaceTopLevelElementWithExpandedChildren()
     {
@@ -486,12 +477,13 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
-    public async Task WithHierarchicalDataTemplate_CanRemoveTopLevelElement()
+    [Theory]
+    [MemberData(nameof(GetTestControls))]
+    public async Task WithHierarchicalDataTemplate_CanRemoveTopLevelElement(Type userControlType)
     {
         await using var recorder = new TestRecorder(App);
 
-        IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+        IVisualElement<Grid> root = (await LoadUserControl(userControlType)).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
         IVisualElement<Button> removeButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Remove"));
@@ -513,13 +505,14 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
-    public async Task WithHierarchicalDataTemplate_CanRemoveNestedElement()
+    [Theory]
+    [MemberData(nameof(GetTestControls))]
+    public async Task WithHierarchicalDataTemplate_CanRemoveNestedElement(Type userControlType)
     {
         await using var recorder = new TestRecorder(App);
 
         //Arrange
-        IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+        IVisualElement<Grid> root = (await LoadUserControl(userControlType)).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
         IVisualElement<Button> removeButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Remove"));
@@ -640,12 +633,13 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
-    public async Task AddingChildrenToItemWithAlreadyExpandedChildren_InsertsNewChildAtCorrectIndex()
+    [Theory]
+    [MemberData(nameof(GetTestControls))]
+    public async Task AddingChildrenToItemWithAlreadyExpandedChildren_InsertsNewChildAtCorrectIndex(Type userControlType)
     {
         await using var recorder = new TestRecorder(App);
 
-        IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+        IVisualElement<Grid> root = (await LoadUserControl(userControlType)).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
 
@@ -675,12 +669,13 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
-    public async Task RemovingChildrenFromItemWithAlreadyExpandedChildren_ShouldDeleteSelectedChild()
+    [Theory]
+    [MemberData(nameof(GetTestControls))]
+    public async Task RemovingChildrenFromItemWithAlreadyExpandedChildren_ShouldDeleteSelectedChild(Type userControlType)
     {
         await using var recorder = new TestRecorder(App);
 
-        IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+        IVisualElement<Grid> root = (await LoadUserControl(userControlType)).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
         IVisualElement<Button> removeButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Remove"));

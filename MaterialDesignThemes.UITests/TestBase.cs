@@ -36,11 +36,14 @@ public abstract class TestBase : IAsyncLifetime
         return await App.CreateWindowWith<T>(xaml, additionalNamespaceDeclarations);
     }
 
-    protected async Task<IVisualElement> LoadUserControl<TControl>()
+    protected Task<IVisualElement> LoadUserControl<TControl>()
         where TControl : UserControl
+        => LoadUserControl(typeof(TControl));
+
+    protected async Task<IVisualElement> LoadUserControl(Type userControlType)
     {
         await App.InitializeWithMaterialDesign();
-        return await App.CreateWindowWithUserControl<TControl>();
+        return await App.CreateWindowWithUserControl(userControlType);
     }
 
     public async Task InitializeAsync() =>
