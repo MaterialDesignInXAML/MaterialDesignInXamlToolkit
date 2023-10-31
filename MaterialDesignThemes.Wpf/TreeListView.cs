@@ -202,6 +202,18 @@ public class TreeListView : ListView
         }
     }
 
+    public object? GetParent(object? item)
+    {
+        if (InternalItemsSource is { } itemSource &&
+            ItemContainerGenerator.ContainerFromItem(item) is { } container &&
+            ItemContainerGenerator.IndexFromContainer(container) is var index &&
+            index >= 0)
+        {
+            return itemSource.GetParent(index);
+        }
+        return null;
+    }
+
     private List<object?> GetExpandedChildrenAndGrandChildren(object? dataItem)
     {
         List<object?> expandedChildren = new();

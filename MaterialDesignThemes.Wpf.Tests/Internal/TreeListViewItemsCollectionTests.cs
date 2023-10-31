@@ -591,6 +591,58 @@ public class TreeListViewItemsCollectionTests
         Assert.Equal(expectedExpanded, treeListViewItemsCollection.GetAllIsExpanded());
     }
 
+    [Theory]
+    [InlineData(-1)]
+    [InlineData(3)]
+    public void GetParent_WithInvalidIndex_ThrowsOutOfRangeException(int index)
+    {
+        //Arrange
+        ObservableCollection<string> boundCollection = new() { "0", "1", "2" };
+        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(boundCollection);
+
+        //Act/Assert
+        var ex = Assert.Throws<ArgumentOutOfRangeException>(() => treeListViewItemsCollection.GetParent(index));
+        Assert.Equal("index", ex.ParamName);
+    }
+
+    [Fact]
+    public void GetParent_WithNestedItem_ReturnsParent()
+    {
+        //Arrange
+        ObservableCollection<string> boundCollection = new() { "0", "1", "2" };
+        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(boundCollection);
+        treeListViewItemsCollection.InsertWithLevel(2, "1_0", 1);
+        treeListViewItemsCollection.InsertWithLevel(3, "1_1", 1);
+        treeListViewItemsCollection.InsertWithLevel(4, "1_2", 1);
+        treeListViewItemsCollection.InsertWithLevel(5, "1_2_0", 2);
+        treeListViewItemsCollection.InsertWithLevel(6, "1_2_1", 2);
+        treeListViewItemsCollection.InsertWithLevel(7, "1_2_2", 2);
+
+        /*
+         * 0. 0
+         * 1. 1
+         * 2.  1_0
+         * 3.  1_1
+         * 4.  1_2
+         * 5.    1_2_0
+         * 6.    1_2_1
+         * 7.    1_2_2
+         * 8. 2
+         */
+
+
+        //Act/Assert
+        Assert.Null(treeListViewItemsCollection.GetParent(0));
+        Assert.Null(treeListViewItemsCollection.GetParent(1));
+        Assert.Equal("1", treeListViewItemsCollection.GetParent(2));
+        Assert.Equal("1", treeListViewItemsCollection.GetParent(3));
+        Assert.Equal("1", treeListViewItemsCollection.GetParent(4));
+        Assert.Equal("1_2", treeListViewItemsCollection.GetParent(5));
+        Assert.Equal("1_2", treeListViewItemsCollection.GetParent(6));
+        Assert.Equal("1_2", treeListViewItemsCollection.GetParent(7));
+        Assert.Null(treeListViewItemsCollection.GetParent(8));
+    }
+
     private class TestableCollection<T> : ObservableCollection<T>
     {
         private int _blockCollectionChanges;
