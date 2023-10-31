@@ -82,6 +82,21 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
         }
     }
 
+    public object? GetParent(int index)
+    {
+        if (index < 0 || index >= Count) throw new ArgumentOutOfRangeException(nameof(index));
+        int level = ItemLevels[index];
+        if (level == 0) return null;
+        for (int i = index - 1; i >= 0; i--)
+        {
+            if (ItemLevels[i] == level - 1)
+            {
+                return this[i];
+            }
+        }
+        return null;
+    }
+
     protected override void RemoveItem(int index)
     {
         int priorNonRootLevelItems = GetPriorNonRootLevelItemsCount(index);

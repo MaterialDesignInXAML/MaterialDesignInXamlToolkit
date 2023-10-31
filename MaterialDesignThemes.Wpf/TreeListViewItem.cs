@@ -112,12 +112,6 @@ public class TreeListViewItem : ListViewItem
         }
     }
 
-    protected override void OnContentChanged(object oldContent, object newContent)
-        => base.OnContentChanged(oldContent, newContent);
-
-    protected override void OnContentTemplateChanged(DataTemplate oldContentTemplate, DataTemplate newContentTemplate)
-        => base.OnContentTemplateChanged(oldContentTemplate, newContentTemplate);
-
     public override void OnApplyTemplate()
     {
         base.OnApplyTemplate();

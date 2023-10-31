@@ -326,7 +326,7 @@
     </Setter>
     <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
     <Setter Property="wpf:TreeViewAssist.ExpanderSize" Value="16" />
-    <Setter Property="wpf:TreeViewAssist.HasNoItemsExpanderVisibility" Value="{Binding RelativeSource={RelativeSource AncestorType=TreeView}, Path=(wpf:TreeViewAssist.HasNoItemsExpanderVisibility)}" />
+    <Setter Property="wpf:TreeViewAssist.HasNoItemsExpanderVisibility" Value="{Binding RelativeSource={RelativeSource AncestorType=wpf:TreeListView}, Path=(wpf:TreeViewAssist.HasNoItemsExpanderVisibility)}" />
     <Setter Property="wpf:TreeViewAssist.ShowSelection" Value="True" />
   </Style>
 
