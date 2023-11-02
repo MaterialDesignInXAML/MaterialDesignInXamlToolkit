@@ -10,7 +10,7 @@ public class TreeListViewItemsCollectionTests
     [Fact]
     public void Constructor_AcceptsNull()
     {
-        TreeListViewItemsCollection<string> collection = new(null);
+        TreeListViewItemsCollection collection = new(null);
 
         Assert.Empty(collection);
     }
@@ -18,7 +18,7 @@ public class TreeListViewItemsCollectionTests
     [Fact]
     public void Constructor_AcceptsObject()
     {
-        TreeListViewItemsCollection<string> collection = new(new object());
+        TreeListViewItemsCollection collection = new(new object());
 
         Assert.Empty(collection);
     }
@@ -27,7 +27,7 @@ public class TreeListViewItemsCollectionTests
     public void Constructor_AcceptsIEnumerable()
     {
         IEnumerable<string> enumerable = new[] { "a", "b", "c" };
-        TreeListViewItemsCollection<string> collection = new(enumerable);
+        TreeListViewItemsCollection collection = new(enumerable);
 
         Assert.Equal(new[] { "a", "b", "c" }, collection);
     }
@@ -38,7 +38,7 @@ public class TreeListViewItemsCollectionTests
         //Arrange
         ObservableCollection<string> collection = new();
 
-        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(collection);
+        TreeListViewItemsCollection treeListViewItemsCollection = new(collection);
 
         //Act
         collection.Add("a");
@@ -53,7 +53,7 @@ public class TreeListViewItemsCollectionTests
         //Arrange
         ObservableCollection<string> collection = new() { "a" };
 
-        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(collection);
+        TreeListViewItemsCollection treeListViewItemsCollection = new(collection);
 
         //Act
         collection.Remove("a");
@@ -68,7 +68,7 @@ public class TreeListViewItemsCollectionTests
         //Arrange
         ObservableCollection<string> collection = new() { "a", "b", "c" };
 
-        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(collection);
+        TreeListViewItemsCollection treeListViewItemsCollection = new(collection);
 
         // Simulate expansion
         treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
@@ -98,7 +98,7 @@ public class TreeListViewItemsCollectionTests
         //Arrange
         TestableCollection<string> collection = new() { "a" };
 
-        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(collection);
+        TreeListViewItemsCollection treeListViewItemsCollection = new(collection);
 
         //Act
         collection.ReplaceAllItems("b", "c");
@@ -113,7 +113,7 @@ public class TreeListViewItemsCollectionTests
         //Arrange
         ObservableCollection<string> collection = new() { "a", "b", "c" };
 
-        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(collection);
+        TreeListViewItemsCollection treeListViewItemsCollection = new(collection);
 
         //Act
         collection.Move(0, 2);
@@ -134,7 +134,7 @@ public class TreeListViewItemsCollectionTests
     public void WhenAddingItemAtNestedLevel_ItSetsTheItemsLevel(int insertionIndex, int requestedLevel)
     {
         //Arrange
-        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(new[] { "a", "b" });
+        TreeListViewItemsCollection treeListViewItemsCollection = new(new[] { "a", "b" });
         treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
         treeListViewItemsCollection.InsertWithLevel(2, "a_b", 1);
         /*
@@ -167,7 +167,7 @@ public class TreeListViewItemsCollectionTests
     public void InsertWithLevel_WhenAddingItemAtNestedLevel_ItThrowsIfRequestIsOutOfRange(int insertionIndex, int requestedLevel)
     {
         //Arrange
-        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(new[] { "a", "b" });
+        TreeListViewItemsCollection treeListViewItemsCollection = new(new[] { "a", "b" });
         treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
         treeListViewItemsCollection.InsertWithLevel(2, "a_b", 1);
         /*
@@ -184,7 +184,7 @@ public class TreeListViewItemsCollectionTests
     [Fact]
     public void InsertWithLevel_WhenInsertingFirstSibling_MarksIndexAsExpanded()
     {
-        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(new[] { "a", "b" });
+        TreeListViewItemsCollection treeListViewItemsCollection = new(new[] { "a", "b" });
 
         treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
         /*
@@ -203,7 +203,7 @@ public class TreeListViewItemsCollectionTests
     public void WhenRemovingItem_ItRemovesItemsAndAnyChildren(int indexToRemove, string[] expectedItems, int[] expectedLevels)
     {
         //Arrange
-        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(new[] { "a", "b", "c" });
+        TreeListViewItemsCollection treeListViewItemsCollection = new(new[] { "a", "b", "c" });
         treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
         treeListViewItemsCollection.InsertWithLevel(2, "a_a_a", 2);
         treeListViewItemsCollection.InsertWithLevel(3, "a_a_b", 2);
@@ -231,7 +231,7 @@ public class TreeListViewItemsCollectionTests
     public void Move_WhenMovingItemUp_ItMovesChildrenAlongWithIt()
     {
         //Arrange
-        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(new[] { "a", "b", "c" });
+        TreeListViewItemsCollection treeListViewItemsCollection = new(new[] { "a", "b", "c" });
         treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
         treeListViewItemsCollection.InsertWithLevel(2, "a_b", 1);
         treeListViewItemsCollection.InsertWithLevel(4, "b_a", 1);
@@ -267,7 +267,7 @@ public class TreeListViewItemsCollectionTests
     public void Move_WhenMovingItemUpMultipleLevels_ItMovesChildrenAlongWithIt()
     {
         //Arrange
-        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(new[] { "a", "b", "c" });
+        TreeListViewItemsCollection treeListViewItemsCollection = new(new[] { "a", "b", "c" });
         treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
         treeListViewItemsCollection.InsertWithLevel(2, "a_b", 1);
         treeListViewItemsCollection.InsertWithLevel(4, "b_a", 1);
@@ -301,7 +301,7 @@ public class TreeListViewItemsCollectionTests
     public void Move_WhenMovingItemDown_ItMovesChildrenAlongWithIt()
     {
         //Arrange
-        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(new[] { "a", "b", "c" });
+        TreeListViewItemsCollection treeListViewItemsCollection = new(new[] { "a", "b", "c" });
         treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
         treeListViewItemsCollection.InsertWithLevel(2, "a_b", 1);
         treeListViewItemsCollection.InsertWithLevel(4, "b_a", 1);
@@ -337,7 +337,7 @@ public class TreeListViewItemsCollectionTests
     public void Move_WhenMovingItemDownMultipleLevels_ItMovesChildrenAlongWithIt()
     {
         //Arrange
-        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(new[] { "a", "b", "c" });
+        TreeListViewItemsCollection treeListViewItemsCollection = new(new[] { "a", "b", "c" });
         treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
         treeListViewItemsCollection.InsertWithLevel(2, "a_b", 1);
         treeListViewItemsCollection.InsertWithLevel(4, "b_a", 1);
@@ -372,7 +372,7 @@ public class TreeListViewItemsCollectionTests
     {
         //Arrange
         ObservableCollection<string> boundCollection = new() { "a", "b", "c" };
-        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(boundCollection);
+        TreeListViewItemsCollection treeListViewItemsCollection = new(boundCollection);
         treeListViewItemsCollection.InsertWithLevel(2, "b_a", 1);
         treeListViewItemsCollection.InsertWithLevel(3, "b_b", 1);
         treeListViewItemsCollection.InsertWithLevel(4, "b_c", 1);
@@ -401,7 +401,7 @@ public class TreeListViewItemsCollectionTests
     {
         //Arrange
         ObservableCollection<string> boundCollection = new() { "0", "1", "2" };
-        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(boundCollection);
+        TreeListViewItemsCollection treeListViewItemsCollection = new(boundCollection);
         treeListViewItemsCollection.InsertWithLevel(2, "1_0", 1);
         treeListViewItemsCollection.InsertWithLevel(3, "1_1", 1);
         treeListViewItemsCollection.InsertWithLevel(4, "1_1_0", 2);
@@ -459,7 +459,7 @@ public class TreeListViewItemsCollectionTests
     {
         //Arrange
         ObservableCollection<string> boundCollection = new() { "0", "1", "2" };
-        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(boundCollection);
+        TreeListViewItemsCollection treeListViewItemsCollection = new(boundCollection);
         treeListViewItemsCollection.InsertWithLevel(1, "0_0", 1);
         treeListViewItemsCollection.InsertWithLevel(2, "0_1", 1);
         treeListViewItemsCollection.InsertWithLevel(3, "0_1_0", 2);
@@ -517,7 +517,7 @@ public class TreeListViewItemsCollectionTests
     {
         //Arrange
         ObservableCollection<string> boundCollection = new() { "0", "1", "2" };
-        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(boundCollection);
+        TreeListViewItemsCollection treeListViewItemsCollection = new(boundCollection);
         treeListViewItemsCollection.InsertWithLevel(3, "2_0", 1);
         treeListViewItemsCollection.InsertWithLevel(4, "2_1", 1);
         treeListViewItemsCollection.InsertWithLevel(5, "2_2", 1);
@@ -560,7 +560,7 @@ public class TreeListViewItemsCollectionTests
     {
         //Arrange
         ObservableCollection<string> boundCollection = new() { "0", "1", "2" };
-        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(boundCollection);
+        TreeListViewItemsCollection treeListViewItemsCollection = new(boundCollection);
         
         /*
          * 0. 0
@@ -598,7 +598,7 @@ public class TreeListViewItemsCollectionTests
     {
         //Arrange
         ObservableCollection<string> boundCollection = new() { "0", "1", "2" };
-        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(boundCollection);
+        TreeListViewItemsCollection treeListViewItemsCollection = new(boundCollection);
 
         //Act/Assert
         var ex = Assert.Throws<ArgumentOutOfRangeException>(() => treeListViewItemsCollection.GetParent(index));
@@ -610,7 +610,7 @@ public class TreeListViewItemsCollectionTests
     {
         //Arrange
         ObservableCollection<string> boundCollection = new() { "0", "1", "2" };
-        TreeListViewItemsCollection<string> treeListViewItemsCollection = new(boundCollection);
+        TreeListViewItemsCollection treeListViewItemsCollection = new(boundCollection);
         treeListViewItemsCollection.InsertWithLevel(2, "1_0", 1);
         treeListViewItemsCollection.InsertWithLevel(3, "1_1", 1);
         treeListViewItemsCollection.InsertWithLevel(4, "1_2", 1);
@@ -674,7 +674,7 @@ public class TreeListViewItemsCollectionTests
 
 public static class TreeListViewItemsCollectionExtensions
 {
-    public static IEnumerable<int> GetAllLevels<T>(this TreeListViewItemsCollection<T> collection)
+    public static IEnumerable<int> GetAllLevels(this TreeListViewItemsCollection collection)
     {
         for (int i = 0; i < collection.Count; i++)
         {
@@ -682,7 +682,7 @@ public static class TreeListViewItemsCollectionExtensions
         }
     }
 
-    public static IEnumerable<bool> GetAllIsExpanded<T>(this TreeListViewItemsCollection<T> collection)
+    public static IEnumerable<bool> GetAllIsExpanded(this TreeListViewItemsCollection collection)
     {
         for (int i = 0; i < collection.Count; i++)
         {

@@ -4,16 +4,16 @@ using System.Collections.Specialized;
 
 namespace MaterialDesignThemes.Wpf.Internal;
 
-public class TreeListViewItemsCollection<T> : ObservableCollection<T>
+public class TreeListViewItemsCollection : ObservableCollection<object?>
 {
     private List<int> ItemLevels { get; } = new();
     private List<bool> ItemIsExpanded { get; } = new();
 
     public TreeListViewItemsCollection(object? wrappedSource)
     {
-        if (wrappedSource is IEnumerable<T> items)
+        if (wrappedSource is IEnumerable items)
         {
-            foreach (T item in items)
+            foreach (object? item in items)
             {
                 Add(item);
             }
@@ -58,7 +58,7 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
     public bool GetIsExpanded(int index)
         => ItemIsExpanded[index];
 
-    public void InsertWithLevel(int index, T item, int level)
+    public void InsertWithLevel(int index, object? item, int level)
     {
         if (level < 0) throw new ArgumentOutOfRangeException(nameof(level), level, "Item level must not be negative");
 
@@ -130,7 +130,7 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
         }
     }
 
-    protected override void InsertItem(int index, T item)
+    protected override void InsertItem(int index, object? item)
     {
         int priorNonRootLevelItems = GetPriorNonRootLevelItemsCount(index);
         index += priorNonRootLevelItems;
@@ -189,7 +189,7 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
         }
     }
 
-    private void InternalInsertItem(int index, T item, int level)
+    private void InternalInsertItem(int index, object? item, int level)
     {
         ItemIsExpanded.Insert(index, false);
         ItemLevels.Insert(index, level);
@@ -210,7 +210,7 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
         base.MoveItem(oldIndex, newIndex);
     }
 
-    internal void ReplaceOffsetAdjustedItem(int index, T item)
+    internal void ReplaceOffsetAdjustedItem(int index, object? item)
     {
         // NOTE: This is slight change of notification behavior. It now fires at least one Remove (possibly also removing children) and one Add notification on the internal collection; probably not an issue.
         int level = GetLevel(index);
@@ -226,7 +226,7 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
             case NotifyCollectionChangedAction.Add:
                 for (int i = 0; i < e.NewItems?.Count; i++)
                 {
-                    Insert(e.NewStartingIndex + i, (T)e.NewItems[i]!);
+                    Insert(e.NewStartingIndex + i, e.NewItems[i]!);
                 }
                 break;
             case NotifyCollectionChangedAction.Remove:
@@ -241,7 +241,7 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
                     int newIndex = GetAbsoluteIndex(e.NewStartingIndex + i);
                     if (newIndex >= 0)
                     {
-                        ReplaceOffsetAdjustedItem(newIndex, (T)e.NewItems[i]!);
+                        ReplaceOffsetAdjustedItem(newIndex, e.NewItems[i]!);
                     }
                 }
                 break;
@@ -259,7 +259,7 @@ public class TreeListViewItemsCollection<T> : ObservableCollection<T>
             case NotifyCollectionChangedAction.Reset:
                 Clear();
                 ItemLevels.Clear();
-                foreach (var item in sender as IEnumerable<T> ?? Enumerable.Empty<T>())
+                foreach (object? item in sender as IEnumerable ?? Enumerable.Empty<object?>())
                 {
                     Add(item);
                 }

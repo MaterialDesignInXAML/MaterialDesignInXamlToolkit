@@ -16,7 +16,7 @@ public class TreeListView : ListView
     public static readonly DependencyProperty LevelIndentSizeProperty =
         DependencyProperty.Register(nameof(LevelIndentSize), typeof(double), typeof(TreeListView), new PropertyMetadata(16.0));
 
-    private TreeListViewItemsCollection<object?>? InternalItemsSource { get; set; }
+    private TreeListViewItemsCollection? InternalItemsSource { get; set; }
 
     static TreeListView()
     {
@@ -30,7 +30,7 @@ public class TreeListView : ListView
     {
     }
 
-    private static object CoerceItemsSource(DependencyObject d, object baseValue)
+    private static object? CoerceItemsSource(DependencyObject d, object? baseValue)
     {
         if (d is TreeListView treeListView)
         {
@@ -164,7 +164,7 @@ public class TreeListView : ListView
          *
          * This is used to determine the correct offset into the InternalItemsSource when adding/removing items
          */
-        static int GetChildrenAndGrandChildrenCountOfPriorSiblings(TreeListViewItemsCollection<object?> collection, int startingIndex, int expectedPriorSiblingCount)
+        static int GetChildrenAndGrandChildrenCountOfPriorSiblings(TreeListViewItemsCollection collection, int startingIndex, int expectedPriorSiblingCount)
         {
             int childrenAndGrandChildrenCount = 0;
             int index = 0;

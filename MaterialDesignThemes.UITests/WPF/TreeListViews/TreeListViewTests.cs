@@ -956,6 +956,35 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
+    [Fact]
+    public async Task TreeListView_WithCollectionView_RendersItems()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<TreeListView> treeListView = (await LoadUserControl<TreeListViewWithCollectionView>()).As<TreeListView>();
+
+        IVisualElement<TreeListViewItem> item3 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[2]");
+        IVisualElement<TreeListViewItem> item4 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[3]");
+
+        await item3.LeftClickExpander();
+        await Task.Delay(500);
+        await item4.LeftClickExpander();
+        await Task.Delay(500);
+
+        await AssertTreeItemContent(treeListView, 0, "Foo");
+        await AssertTreeItemContent(treeListView, 1, "42");
+        await AssertTreeItemContent(treeListView, 2, "24", true);
+        await AssertTreeItemContent(treeListView, 3, "a");
+        await AssertTreeItemContent(treeListView, 4, "b");
+        await AssertTreeItemContent(treeListView, 5, "c");
+        await AssertTreeItemContent(treeListView, 6, "Bar", true);
+        await AssertTreeItemContent(treeListView, 7, "1");
+        await AssertTreeItemContent(treeListView, 8, "2");
+        await AssertTreeItemContent(treeListView, 9, "3");
+
+        recorder.Success();
+    }
+
     private static async Task AssertTreeItemContent(IVisualElement<TreeListView> treeListView, int index, string content, bool isExpanded = false)
     {
         await Wait.For(async () =>
