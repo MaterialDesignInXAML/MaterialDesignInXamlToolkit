@@ -11,7 +11,7 @@
              mc:Ignorable="d">
   <materialDesign:TreeListView ItemsSource="{Binding Items}">
     <materialDesign:TreeListView.Resources>
-      <HierarchicalDataTemplate DataType="{x:Type local:TreeItem}" ItemsSource="{Binding Children}">
+      <HierarchicalDataTemplate DataType="{x:Type local:TreeItem}" ItemsSource="{Binding ChildrenView}">
         <TextBlock Text="{Binding Value}" />
       </HierarchicalDataTemplate>
     </materialDesign:TreeListView.Resources>

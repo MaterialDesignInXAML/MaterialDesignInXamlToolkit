@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel;
+using System.Diagnostics;
+using System.Windows.Data;
 
 namespace MaterialDesignThemes.UITests.WPF.TreeListViews;
 
@@ -12,9 +14,12 @@ public class TreeItem
     //NB: making the assumption changes occur ont he UI thread
     public TestableCollection<TreeItem> Children { get; } = new();
 
+    public ICollectionView ChildrenView { get; }
+
     public TreeItem(string value, TreeItem? parent)
     {
         Value = value;
         Parent = parent;
+        ChildrenView = CollectionViewSource.GetDefaultView(Children);
     }
 }
