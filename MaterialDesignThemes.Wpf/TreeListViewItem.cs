@@ -1,4 +1,5 @@
-﻿using System.Collections.Specialized;
+﻿using System.Collections;
+using System.Collections.Specialized;
 using MaterialDesignThemes.Wpf.Internal;
 
 namespace MaterialDesignThemes.Wpf;
@@ -16,7 +17,7 @@ public class TreeListViewItem : ListViewItem
     private TreeListViewContentPresenter? ContentPresenter { get; set; }
     private TreeListView? TreeListView { get; set; }
 
-    public IEnumerable<object?> GetChildren() => Children ?? Array.Empty<object?>();
+    public IEnumerable<object?> GetChildren() => Children?.OfType<object?>() ?? Array.Empty<object?>();
 
     public bool IsExpanded
     {
@@ -55,14 +56,14 @@ public class TreeListViewItem : ListViewItem
         DependencyProperty.Register(nameof(Level), typeof(int), typeof(TreeListViewItem), new PropertyMetadata(0));
 
 
-    internal IEnumerable<object?>? Children
+    internal IEnumerable? Children
     {
-        get => (IEnumerable<object?>)GetValue(ChildrenProperty);
+        get => (IEnumerable?)GetValue(ChildrenProperty);
         set => SetValue(ChildrenProperty, value);
     }
 
     internal static readonly DependencyProperty ChildrenProperty =
-        DependencyProperty.Register("Children", typeof(IEnumerable<object?>), typeof(TreeListViewItem),
+        DependencyProperty.Register(nameof(Children), typeof(IEnumerable), typeof(TreeListViewItem),
             new PropertyMetadata(null, OnChildrenChanged));
 
     private static void OnChildrenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -140,7 +141,7 @@ public class TreeListViewItem : ListViewItem
 
     private void UpdateHasChildren()
     {
-        SetCurrentValue(HasItemsProperty, Children?.Any() == true);
+        SetCurrentValue(HasItemsProperty, GetChildren().Any());
     }
 
     protected override void OnMouseDoubleClick(MouseButtonEventArgs e)
