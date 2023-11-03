@@ -134,7 +134,7 @@
                             Margin="8,0,12,0"
                             VerticalAlignment="Center"
                             Content="{TemplateBinding Content}"
-                            ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                            ContentStringFormat="{TemplateBinding ContentStringFormat}"
                             ContentTemplate="{TemplateBinding ContentTemplate}"
                             ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
                             IsTabStop="False" />
@@ -259,7 +259,7 @@
                             Margin="8,0,12,0"
                             VerticalAlignment="Center"
                             Content="{TemplateBinding Content}"
-                            ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                            ContentStringFormat="{TemplateBinding ContentStringFormat}"
                             ContentTemplate="{TemplateBinding ContentTemplate}"
                             ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
                             IsTabStop="False" />
