@@ -7,7 +7,7 @@ public static class HintAssist
     private const double DefaultFloatingScale = 0.74;
     private const double DefaultHintOpacity = 0.56;
     internal static readonly Point DefaultFloatingOffset = new(0, -16);
-    private static readonly Brush DefaultBackground = new SolidColorBrush(Colors.Transparent);
+    internal static readonly Brush DefaultBackground = new SolidColorBrush(Colors.Transparent);
     private static readonly double DefaultHelperTextFontSize = 10;
 
     #region AttachedProperty : IsFloatingProperty

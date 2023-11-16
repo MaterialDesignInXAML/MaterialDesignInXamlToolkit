@@ -32,6 +32,9 @@
   <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
 
   <Style x:Key="MaterialDesignDatePickerTextBox" TargetType="{x:Type DatePickerTextBox}">
+    <Style.Resources>
+      <converters:OutlinedStyleFloatingHintBackgroundConverter x:Key="OutlinedStyleFloatingHintBackgroundConverter" />
+    </Style.Resources>
     <Setter Property="AllowDrop" Value="true" />
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
@@ -190,7 +193,8 @@
                       <wpf:SmartHint.Hint>
                         <Border x:Name="HintBackgroundBorder"
                                 Background="{TemplateBinding wpf:HintAssist.Background}"
-                                CornerRadius="2">
+                                CornerRadius="2"
+                                Tag="{DynamicResource MaterialDesign.Brush.Background}">
                           <ContentPresenter x:Name="HintWrapper" Content="{TemplateBinding wpf:HintAssist.Hint}" />
                         </Border>
                       </wpf:SmartHint.Hint>
@@ -322,7 +326,14 @@
                 <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
                 <Condition SourceName="Hint" Property="IsHintInFloatingPosition" Value="True" />
               </MultiTrigger.Conditions>
-              <Setter Property="wpf:HintAssist.Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
+              <Setter TargetName="HintBackgroundBorder" Property="Background">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource OutlinedStyleFloatingHintBackgroundConverter}">
+                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:HintAssist.Background)" />
+                    <Binding ElementName="HintBackgroundBorder" Path="Tag" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
               <Setter TargetName="HintBackgroundBorder" Property="Padding" Value="4,0" />
             </MultiTrigger>
             <MultiTrigger>
@@ -519,6 +530,7 @@
                                wpf:HintAssist.FloatingScale="{TemplateBinding wpf:HintAssist.FloatingScale}"
                                wpf:HintAssist.FontFamily="{TemplateBinding wpf:HintAssist.FontFamily}"
                                wpf:HintAssist.Foreground="{TemplateBinding wpf:HintAssist.Foreground}"
+                               wpf:HintAssist.Background="{TemplateBinding wpf:HintAssist.Background}"
                                wpf:HintAssist.HelperText="{TemplateBinding wpf:HintAssist.HelperText}"
                                wpf:HintAssist.HelperTextFontSize="{TemplateBinding wpf:HintAssist.HelperTextFontSize}"
                                wpf:HintAssist.HelperTextStyle="{TemplateBinding wpf:HintAssist.HelperTextStyle}"
