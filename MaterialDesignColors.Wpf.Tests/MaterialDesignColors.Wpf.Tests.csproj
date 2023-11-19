@@ -21,6 +21,10 @@
     <ProjectReference Include="..\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="GitHubActionsTestLogger">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="xunit" />
     <PackageReference Include="xunit.runner.visualstudio" />
     <PackageReference Include="Shouldly" />

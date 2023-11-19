@@ -48,7 +48,7 @@ jobs:
   
       - name: Test
         timeout-minutes: 20
-        run: dotnet test ${{ env.solution }} --configuration ${{ inputs.build-configuration }} --no-build --verbosity normal --blame-crash
+        run: dotnet test ${{ env.solution }} --configuration ${{ inputs.build-configuration }} --no-build --verbosity normal --blame-crash --logger GitHubActions
   
       - name: Upload Screenshots
         if: ${{ always() }}
