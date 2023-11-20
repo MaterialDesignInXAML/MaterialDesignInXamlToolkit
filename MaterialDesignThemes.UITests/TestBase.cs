@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Media;
 
@@ -49,7 +50,7 @@ public abstract class TestBase : IAsyncLifetime
     public async Task InitializeAsync() =>
         App = await XamlTest.App.StartRemote(new AppOptions
         {
-            MinimizeOtherWindows = true,
+            MinimizeOtherWindows = !Debugger.IsAttached,
             AllowVisualStudioDebuggerAttach = AttachedDebuggerToRemoteProcess,
             LogMessage = Output.WriteLine
         });
