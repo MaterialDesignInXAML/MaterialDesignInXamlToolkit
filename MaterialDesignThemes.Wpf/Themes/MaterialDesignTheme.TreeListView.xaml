@@ -166,77 +166,10 @@
                 <VisualState Name="Unselected" />
               </VisualStateGroup>
               <VisualStateGroup x:Name="ExpansionStates">
-                <VisualStateGroup.Transitions>
-                  <VisualTransition GeneratedDuration="0" To="Expanded">
-                    <VisualTransition.GeneratedEasingFunction>
-                      <CubicEase EasingMode="EaseOut" />
-                    </VisualTransition.GeneratedEasingFunction>
-                    <Storyboard>
-                      <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
-                        <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
-                      </ObjectAnimationUsingKeyFrames>
-                      <DoubleAnimation Storyboard.TargetName="ItemsHost"
-                                       Storyboard.TargetProperty="Opacity"
-                                       To="1"
-                                       Duration="0:0:0.3" />
-                      <DoubleAnimation Storyboard.TargetName="ScaleHost"
-                                       Storyboard.TargetProperty="Scale"
-                                       To="1"
-                                       Duration="0:0:0.3" />
-                    </Storyboard>
-                  </VisualTransition>
-                  <VisualTransition GeneratedDuration="0" To="Collapsed">
-                    <VisualTransition.GeneratedEasingFunction>
-                      <CubicEase EasingMode="EaseOut" />
-                    </VisualTransition.GeneratedEasingFunction>
-                    <Storyboard>
-                      <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
-                        <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}" />
-                      </ObjectAnimationUsingKeyFrames>
-                      <DoubleAnimation Storyboard.TargetName="ItemsHost"
-                                       Storyboard.TargetProperty="Opacity"
-                                       To="0"
-                                       Duration="0:0:0.3" />
-                      <DoubleAnimation Storyboard.TargetName="ScaleHost"
-                                       Storyboard.TargetProperty="Scale"
-                                       To="0"
-                                       Duration="0:0:0.3" />
-                    </Storyboard>
-                  </VisualTransition>
-                </VisualStateGroup.Transitions>
-                <VisualState x:Name="Expanded">
-                  <Storyboard>
-                    <DoubleAnimation Storyboard.TargetName="ItemsHost"
-                                     Storyboard.TargetProperty="Opacity"
-                                     To="1"
-                                     Duration="0" />
-                    <DoubleAnimation Storyboard.TargetName="ScaleHost"
-                                     Storyboard.TargetProperty="Scale"
-                                     To="1"
-                                     Duration="0:0:0.3" />
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
-                    </ObjectAnimationUsingKeyFrames>
-                  </Storyboard>
-                </VisualState>
-                <VisualState x:Name="Collapsed">
-                  <Storyboard>
-                    <DoubleAnimation Storyboard.TargetName="ItemsHost"
-                                     Storyboard.TargetProperty="Opacity"
-                                     To="0"
-                                     Duration="0" />
-                    <DoubleAnimation Storyboard.TargetName="ScaleHost"
-                                     Storyboard.TargetProperty="Scale"
-                                     To="0"
-                                     Duration="0:0:0.3" />
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsHost" Storyboard.TargetProperty="Visibility">
-                      <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}" />
-                    </ObjectAnimationUsingKeyFrames>
-                  </Storyboard>
-                </VisualState>
+                <VisualState x:Name="Expanded" />
+                <VisualState x:Name="Collapsed" />
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <wpf:ScaleHost x:Name="ScaleHost" />
             <ToggleButton x:Name="Expander"
                           Width="{TemplateBinding wpf:TreeViewAssist.ExpanderSize}"
                           Height="{TemplateBinding wpf:TreeViewAssist.ExpanderSize}"
@@ -284,23 +217,6 @@
                             ContentTemplate="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:TreeViewAssist.AdditionalTemplate)}"
                             ContentTemplateSelector="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:TreeViewAssist.AdditionalTemplateSelector)}"
                             Visibility="Collapsed" />
-
-            <StackPanel x:Name="ItemsPanel"
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        Grid.ColumnSpan="2"
-                        Margin="-16,0,0,0">
-              <StackPanel.Height>
-                <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
-                  <Binding ElementName="ItemsHost" Path="ActualHeight" />
-                  <Binding ElementName="ScaleHost" Path="Scale" />
-                </MultiBinding>
-              </StackPanel.Height>
-              <ItemsPresenter x:Name="ItemsHost"
-                              VerticalAlignment="Top"
-                              Opacity="0"
-                              Visibility="Collapsed" />
-            </StackPanel>
           </Grid>
           <ControlTemplate.Triggers>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:TreeViewAssist.AdditionalTemplate), Converter={StaticResource NullableToVisibilityConverter}, Mode=OneWay}" Value="Visible">
