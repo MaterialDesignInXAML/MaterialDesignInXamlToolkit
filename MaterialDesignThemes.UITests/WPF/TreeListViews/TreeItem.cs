@@ -1,12 +1,16 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Data;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace MaterialDesignThemes.UITests.WPF.TreeListViews;
 
 [DebuggerDisplay("{Value} (Children: {Children.Count})")]
-public class TreeItem
+public partial class TreeItem : ObservableObject
 {
+    [ObservableProperty]
+    private bool _isExpanded;
+
     public string Value { get; }
 
     public TreeItem? Parent { get; }

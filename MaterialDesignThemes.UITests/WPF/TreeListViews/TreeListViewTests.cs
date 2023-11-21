@@ -7,7 +7,7 @@ public class TreeListViewTests : TestBase
     public TreeListViewTests(ITestOutputHelper output)
         : base(output)
     {
-        AttachedDebuggerToRemoteProcess = false;
+        AttachedDebuggerToRemoteProcess = true;
     }
 
     public static IEnumerable<object[]> GetTestControls()
@@ -74,7 +74,12 @@ public class TreeListViewTests : TestBase
         {
             childElement = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[3]");
             await childElement.LeftClick();
-            return await childElement.GetIsSelected();
+            bool isSelected = await childElement.GetIsSelected();
+            if (!isSelected)
+            {
+                await Task.Delay(MouseInput.GetDoubleClickTime);
+            }
+            return isSelected;
         });
         await moveDownButton.LeftClick();
 
@@ -112,7 +117,12 @@ public class TreeListViewTests : TestBase
         {
             childElement = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[3]");
             await childElement.LeftClick();
-            return await childElement.GetIsSelected();
+            bool isSelected = await childElement.GetIsSelected();
+            if (!isSelected)
+            {
+                await Task.Delay(MouseInput.GetDoubleClickTime);
+            }
+            return isSelected;
         });
         await moveUpButton.LeftClick();
 
@@ -981,6 +991,28 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 7, "1");
         await AssertTreeItemContent(treeListView, 8, "2");
         await AssertTreeItemContent(treeListView, 9, "3");
+
+        recorder.Success();
+    }
+
+    [Fact]
+    public async Task TreeListView_AddingExpandedItemWithChildren_ShowsExpanedItem()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
+        IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+        IVisualElement<Button> addWithChildrenButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add with Children"));
+
+        await addWithChildrenButton.LeftClick();
+
+        await AssertTreeItemContent(treeListView, 0, "0");
+        await AssertTreeItemContent(treeListView, 1, "1");
+        await AssertTreeItemContent(treeListView, 2, "2");
+        await AssertTreeItemContent(treeListView, 3, "3", true);
+        await AssertTreeItemContent(treeListView, 4, "3_0");
+        await AssertTreeItemContent(treeListView, 5, "3_1");
+        await AssertTreeItemContent(treeListView, 6, "3_2");
 
         recorder.Success();
     }

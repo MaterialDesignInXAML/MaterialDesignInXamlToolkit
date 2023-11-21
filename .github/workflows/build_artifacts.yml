@@ -56,7 +56,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Screenshots-${{ github.run_number }}
-          path: ${{ github.workspace }}\MaterialDesignThemes.UITests\bin\${{ inputs.build-configuration }}\net8.0-windows\Screenshots
+          path: ${{ github.workspace }}\MaterialDesignThemes.UITests\bin\${{ inputs.build-configuration }}\net8.0-windows7\Screenshots
           if-no-files-found: ignore
 
       - name: Build NuGets

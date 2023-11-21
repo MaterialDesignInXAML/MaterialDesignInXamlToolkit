@@ -11,7 +11,11 @@ public class TreeListViewItem : ListViewItem
     internal const string ContentPresenterPart = "PART_ContentPresenter";
 
     public TreeListViewItem()
+    { }
+
+    public TreeListViewItem(TreeListView treeListView)
     {
+        TreeListView = treeListView; 
     }
 
     private TreeListViewContentPresenter? ContentPresenter { get; set; }

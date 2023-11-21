@@ -19,6 +19,7 @@ public partial class TreeListViewDataBinding
     }
 
     public void Add_OnClick(object sender, EventArgs e) => AddItem();
+    public void AddWithChildren_OnClick(object sender, EventArgs e) => AddItemWithChildren();
 
     private void AddItem()
     {
@@ -32,6 +33,18 @@ public partial class TreeListViewDataBinding
         }
     }
 
+    private void AddItemWithChildren()
+    {
+        TreeItem parent = new(Items.Count.ToString(), null)
+        {
+            IsExpanded = true
+        };
+        parent.Children.Add(new TreeItem(parent.Value + "_0", parent));
+        parent.Children.Add(new TreeItem(parent.Value + "_1", parent));
+        parent.Children.Add(new TreeItem(parent.Value + "_2", parent));
+        Items.Add(parent);
+    }
+
     public void Remove_OnClick(object sender, EventArgs e)
     {
         if (TreeListView.SelectedItem is TreeItem selectedItem)
@@ -40,12 +53,9 @@ public partial class TreeListViewDataBinding
         }
     }
 
-    private void RemoveItem(IList<TreeItem> items, TreeItem toRemove)
+    private static void RemoveItem(IList<TreeItem> items, TreeItem toRemove)
     {
-        if (items.Contains(toRemove))
-        {
-            items.Remove(toRemove);
-        }
+        items.Remove(toRemove);
         foreach (TreeItem item in items)
         {
             RemoveItem(item.Children, toRemove);

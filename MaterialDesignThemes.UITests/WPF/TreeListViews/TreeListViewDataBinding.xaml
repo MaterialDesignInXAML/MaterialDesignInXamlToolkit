@@ -22,9 +22,15 @@
           <TextBlock Text="{Binding Value}" />
         </HierarchicalDataTemplate>
       </materialDesign:TreeListView.ItemTemplate>
+      <materialDesign:TreeListView.ItemContainerStyle>
+        <Style TargetType="materialDesign:TreeListViewItem" BasedOn="{StaticResource {x:Type materialDesign:TreeListViewItem}}">
+          <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
+        </Style>
+      </materialDesign:TreeListView.ItemContainerStyle>
     </materialDesign:TreeListView>
     <StackPanel Grid.Row="1" Orientation="Horizontal">
       <Button Content="Add" Click="Add_OnClick" />
+      <Button Content="Add with Children" Click="AddWithChildren_OnClick" />
       <Button Content="Remove" Click="Remove_OnClick" />
       <Button Content="Replace" Click="Replace_OnClick" />
       <Button Content="Down" Click="MoveDown_OnClick" />

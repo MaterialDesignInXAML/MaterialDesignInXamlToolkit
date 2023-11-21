@@ -1,4 +1,6 @@
 using System.Collections.Specialized;
+using System.Windows.Automation.Peers;
+using MaterialDesignThemes.Wpf.Automation.Peers;
 using MaterialDesignThemes.Wpf.Internal;
 
 namespace MaterialDesignThemes.Wpf;
@@ -30,6 +32,9 @@ public class TreeListView : ListView
     {
     }
 
+    protected override AutomationPeer OnCreateAutomationPeer()
+        => new TreeListViewAutomationPeer(this);
+
     private static object? CoerceItemsSource(DependencyObject d, object? baseValue)
     {
         if (d is TreeListView treeListView)
@@ -41,7 +46,7 @@ public class TreeListView : ListView
     }
 
     protected override DependencyObject GetContainerForItemOverride()
-        => new TreeListViewItem();
+        => new TreeListViewItem(this);
 
     protected override bool IsItemItsOwnContainerOverride(object? item)
         => item is TreeListViewItem;
@@ -80,7 +85,9 @@ public class TreeListView : ListView
         {
             int index = ItemContainerGenerator.IndexFromContainer(item);
             var children = item.GetChildren().ToList();
-            if (item.IsExpanded)
+            bool isExpanded = item.IsExpanded;
+            itemsSource.SetIsExpanded(index, isExpanded);
+            if (isExpanded)
             {
                 int parentLevel = itemsSource.GetLevel(index);
                 for (int i = 0; i < children.Count; i++)

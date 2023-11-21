@@ -58,6 +58,9 @@ public class TreeListViewItemsCollection : ObservableCollection<object?>
     public bool GetIsExpanded(int index)
         => ItemIsExpanded[index];
 
+    public void SetIsExpanded(int index, bool isExpanded)
+        => ItemIsExpanded[index] = isExpanded;
+
     public void InsertWithLevel(int index, object? item, int level)
     {
         if (level < 0) throw new ArgumentOutOfRangeException(nameof(level), level, "Item level must not be negative");
@@ -138,9 +141,7 @@ public class TreeListViewItemsCollection : ObservableCollection<object?>
     }
 
     protected override void MoveItem(int oldIndex, int newIndex)
-    {
-        MoveOffsetAdjustedItem(oldIndex, newIndex);
-    }
+        => MoveOffsetAdjustedItem(oldIndex, newIndex);
 
     internal void MoveOffsetAdjustedItem(int oldIndex, int newIndex)
     {
@@ -281,7 +282,7 @@ public class TreeListViewItemsCollection : ObservableCollection<object?>
     }
 }
 
-internal static class ListExtensions
+file static class ListExtensions
 {
     public static void MoveItem(this IList list, int oldIndex, int newIndex)
     {
@@ -295,7 +296,6 @@ internal static class ListExtensions
 
 public class MoveEventArgs : EventArgs
 {
-
     public int OldIndex { get; }
     public int NewIndex { get; }
 

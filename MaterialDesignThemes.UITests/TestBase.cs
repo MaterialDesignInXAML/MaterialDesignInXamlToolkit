@@ -50,7 +50,9 @@ public abstract class TestBase : IAsyncLifetime
     public async Task InitializeAsync() =>
         App = await XamlTest.App.StartRemote(new AppOptions
         {
+#if !DEBUG
             MinimizeOtherWindows = !Debugger.IsAttached,
+#endif
             AllowVisualStudioDebuggerAttach = AttachedDebuggerToRemoteProcess,
             LogMessage = Output.WriteLine
         });
