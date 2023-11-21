@@ -312,6 +312,10 @@ public class TimePicker : Control
         base.OnApplyTemplate();
     }
 
+    internal void Clear()
+        => _textBox?.Clear();
+
+
     private void TextBoxOnLostFocus(object sender, RoutedEventArgs routedEventArgs)
     {
         string? text = _textBox?.Text;
