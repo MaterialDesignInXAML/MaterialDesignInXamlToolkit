@@ -61,6 +61,35 @@ public class DatePickerTests : TestBase
     }
 
     [Fact]
+    [Description("Issue 3369")]
+    public async Task OnDatePicker_WithClearButton_ClearsSelectedUncommittedText()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // Arrange
+        var stackPanel = await LoadXaml<StackPanel>("""
+            <StackPanel>
+              <DatePicker materialDesign:TextFieldAssist.HasClearButton="True"/>
+            </StackPanel>
+            """);
+        var datePicker = await stackPanel.GetElement<DatePicker>("/DatePicker");
+        var datePickerTextBox = await stackPanel.GetElement<DatePickerTextBox>("/DatePickerTextBox");
+        var clearButton = await datePicker.GetElement<Button>("PART_ClearButton");
+
+        await datePickerTextBox.SendKeyboardInput($"invalid date");
+        Assert.Equal("invalid date", await datePickerTextBox.GetText());
+
+        // Act
+        await clearButton.LeftClick();
+        await Task.Delay(50);
+
+        // Assert
+        Assert.Null(await datePickerTextBox.GetText());
+
+        recorder.Success();
+    }
+
+    [Fact]
     [Description("Issue 2737")]
     public async Task OutlinedDatePicker_RespectsActiveAndInactiveBorderThickness_WhenAttachedPropertiesAreSet()
     {
