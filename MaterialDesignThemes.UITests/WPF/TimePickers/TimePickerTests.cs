@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Globalization;
 using MaterialDesignThemes.UITests.WPF.TextBoxes;
 
@@ -506,6 +506,36 @@ public class TimePickerTests : TestBase
 
         // Assert
         Assert.Null(await timePicker.GetSelectedTime());
+
+        recorder.Success();
+    }
+
+    [Fact]
+    [Description("Issue 3369")]
+    public async Task TimePicker_WithClearButton_ClearButtonClearsUncommittedText()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // Arrange
+        var stackPanel = await LoadXaml<StackPanel>($"""
+        <StackPanel>
+          <materialDesign:TimePicker
+             materialDesign:TextFieldAssist.HasClearButton="True" />
+        </StackPanel>
+        """);
+        var timePicker = await stackPanel.GetElement<TimePicker>("/TimePicker");
+        var timePickerTextBox = await timePicker.GetElement<TimePickerTextBox>("/TimePickerTextBox");
+        var clearButton = await timePicker.GetElement<Button>("PART_ClearButton");
+
+        await timePickerTextBox.SendKeyboardInput($"invalid time");
+        Assert.Equal("invalid time", await timePickerTextBox.GetText());
+
+        // Act
+        await clearButton.LeftClick();
+        await Task.Delay(50);
+
+        // Assert
+        Assert.Null(await timePickerTextBox.GetText());
 
         recorder.Success();
     }
