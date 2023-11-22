@@ -67,12 +67,16 @@ public class AutoSuggestBoxTests : TestBase
 
             bool rv = currentHeight == lastHeight && currentHeight > 50;
             lastHeight = currentHeight;
+            if (!rv)
+            {
+                await Task.Delay(100);
+            }
             return rv;
         });
 
         //Choose Item from the list
         var bananas = await suggestionListBox.GetElement<ListBoxItem>("/ListBoxItem[0]");
-        await Wait.For(() => bananas.GetIsVisible());
+        await recorder.SaveScreenshot("BeforeClick");
         await bananas.LeftClick();
         var suggestBoxText = await suggestBox.GetText();
         //Validate that the current text is the same as the selected item
