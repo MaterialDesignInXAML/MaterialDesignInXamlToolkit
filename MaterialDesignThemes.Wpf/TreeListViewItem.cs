@@ -101,13 +101,20 @@ public class TreeListViewItem : ListViewItem
 
     internal void PrepareTreeListViewItem(object? item, TreeListView treeListView, int level, bool isExpanded)
     {
-        if (GetTemplate() is HierarchicalDataTemplate { ItemsSource: { } itemsSourceBinding })
-        {
-            SetBinding(ChildrenProperty, itemsSourceBinding);
-        }
-        IsExpanded = isExpanded;
         Level = level;
         TreeListView = treeListView;
+
+        //NB: This can occur as part of TreeListView.PrepareContainerForItemOverride
+        //Because this can trigger additional collection changes we enqueue the operation
+        //to occur after the current operation has completed.
+        Dispatcher.BeginInvoke(() =>
+        {
+            if (GetTemplate() is HierarchicalDataTemplate { ItemsSource: { } itemsSourceBinding })
+            {
+                SetBinding(ChildrenProperty, itemsSourceBinding);
+            }
+            IsExpanded = isExpanded;
+        });
 
         DataTemplate? GetTemplate()
         {
@@ -134,7 +141,7 @@ public class TreeListViewItem : ListViewItem
         }
     }
 
-    internal void ClearTreeListViewItem(object item, TreeListView treeListView)
+    internal void ClearTreeListViewItem(object _, TreeListView __)
     {
         if (Children is INotifyCollectionChanged collectionChanged)
         {
