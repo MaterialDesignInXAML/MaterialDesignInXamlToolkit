@@ -60,10 +60,23 @@ public class AutoSuggestBoxTests : TestBase
         Assert.True(await suggestBox.GetIsSuggestionOpen());
         Assert.True(await popup.GetIsOpen());
 
+        double? lastHeight = null;
+        await Wait.For(async () =>
+        {
+            double currentHeight = await suggestionListBox.GetActualHeight();
+
+            bool rv = currentHeight == lastHeight && currentHeight > 50;
+            lastHeight = currentHeight;
+            if (!rv)
+            {
+                await Task.Delay(100);
+            }
+            return rv;
+        });
+
         //Choose Item from the list
-        await Task.Delay(200);
         var bananas = await suggestionListBox.GetElement<ListBoxItem>("/ListBoxItem[0]");
-        await Wait.For(async () => await bananas.GetIsVisible());
+        await recorder.SaveScreenshot("BeforeClick");
         await bananas.LeftClick();
         var suggestBoxText = await suggestBox.GetText();
         //Validate that the current text is the same as the selected item

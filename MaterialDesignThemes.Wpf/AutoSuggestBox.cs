@@ -10,11 +10,7 @@ public class AutoSuggestBox : TextBox
 {
     private const string AutoSuggestBoxListPart = "PART_AutoSuggestBoxList";
 
-    #region Properties
-
     protected ListBox? _autoSuggestBoxList;
-
-    #endregion
 
     #region Dependency Properties
 
