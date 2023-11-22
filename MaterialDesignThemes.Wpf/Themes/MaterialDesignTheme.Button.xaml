@@ -7,6 +7,7 @@
 
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.SplitButtonContent.xaml" />
     <ResourceDictionary>
       <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
       <converters:BorderClipConverter x:Key="BorderClipConverter" />
@@ -35,6 +36,9 @@
   <!--#region Raised Button-->
 
   <Style x:Key="MaterialDesignRaisedButton" TargetType="{x:Type ButtonBase}">
+    <Style.Resources>
+      <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
+    </Style.Resources>
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="BorderThickness" Value="1" />
@@ -47,8 +51,13 @@
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ButtonBase}">
-          <Grid>
-            <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
+          <Grid x:Name="OuterGrid">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <AdornerDecorator Grid.ColumnSpan="2"
+                              CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
               <Grid>
                 <Border x:Name="border"
                         Background="{TemplateBinding Background}"
@@ -82,7 +91,8 @@
                 </ProgressBar>
               </Grid>
             </AdornerDecorator>
-            <wpf:Ripple Padding="{TemplateBinding Padding}"
+            <wpf:Ripple Grid.Column="0"
+                        Padding="{TemplateBinding Padding}"
                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                         Content="{TemplateBinding Content}"
@@ -99,6 +109,15 @@
                 </MultiBinding>
               </wpf:Ripple.Clip>
             </wpf:Ripple>
+            <wpf:SplitButtonContent Grid.Column="1"
+                                    Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:SplitButtonAssist.PopupContent), Converter={StaticResource NullableToVisibilityConverter}}"
+                                    PopupPlacementTarget="{Binding ElementName=OuterGrid}"
+                                    PopupElevation="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:SplitButtonAssist.PopupElevation)}"
+                                    PopupUniformCornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:SplitButtonAssist.PopupUniformCornerRadius)}"
+                                    PopupContentStyle="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:SplitButtonAssist.PopupContentStyle)}"
+                                    PopupContent="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:SplitButtonAssist.PopupContent)}"
+                                    PopupContentTemplate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:SplitButtonAssist.PopupContentTemplate)}"
+                                    PopupContentTemplateSelector="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:SplitButtonAssist.PopupContentTemplateSelector)}"/>
           </Grid>
           <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
@@ -124,6 +143,7 @@
     <Setter Property="wpf:ButtonProgressAssist.Opacity" Value=".4" />
     <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp2" />
     <Setter Property="wpf:RippleAssist.Feedback" Value="White" />
+    <Setter Property="wpf:SplitButtonAssist.PopupContentStyle" Value="{StaticResource MaterialDesignSplitButtonPopupOutlinedCardStyle}" />
   </Style>
 
   <Style x:Key="MaterialDesignRaisedLightButton"
