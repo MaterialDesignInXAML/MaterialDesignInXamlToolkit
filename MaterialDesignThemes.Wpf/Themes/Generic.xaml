@@ -30,6 +30,7 @@
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.SmartHint.xaml" />
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Snackbar.xaml" />
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.AutoSuggestBox.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.SplitButton.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
   <!-- set up default styles for our custom Material Design in XAML Toolkit controls -->
@@ -39,6 +40,7 @@
   <Style TargetType="{x:Type local:PopupBox}" BasedOn="{StaticResource MaterialDesignPopupBox}" />
   <Style TargetType="{x:Type local:TimePicker}" BasedOn="{StaticResource MaterialDesignTimePicker}" />
   <Style TargetType="{x:Type local:AutoSuggestBox}" BasedOn="{StaticResource MaterialDesignAutoSuggestBox}" />
+  <Style TargetType="{x:Type local:SplitButton}" BasedOn="{StaticResource MaterialDesignRaisedSplitButton}" />
 
   <converters:BrushToRadialGradientBrushConverter x:Key="BrushToRadialGradientBrushConverter" />
   <converters:DrawerOffsetConverter x:Key="DrawerOffsetConverter" />

@@ -1,0 +1,198 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
+
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+
+  <Style x:Key="FocusVisual">
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Rectangle Margin="2"
+                     SnapsToDevicePixels="true"
+                     Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
+                     StrokeDashArray="1 2"
+                     StrokeThickness="1" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="MaterialDesignSplitButtonPopupElevatedCardStyle" TargetType="{x:Type ContentControl}">
+    <Style.Resources>
+      <wpf:ElevationMarginConverter x:Key="ElevationMarginConverter" />
+    </Style.Resources>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ContentControl}">
+          <wpf:Card wpf:ElevationAssist.Elevation="{TemplateBinding wpf:ElevationAssist.Elevation}"
+                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ElevationAssist.Elevation), Converter={StaticResource ElevationMarginConverter}}"
+                    UniformCornerRadius="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:SplitButton}, Path=PopupUniformCornerRadius}">
+            <ContentControl Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
+          </wpf:Card>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="MaterialDesignSplitButtonPopupOutlinedCardStyle" TargetType="{x:Type ContentControl}">
+    <Style.Resources>
+      <wpf:ElevationMarginConverter x:Key="ElevationMarginConverter" />
+    </Style.Resources>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ContentControl}">
+          <wpf:Card Style="{StaticResource MaterialDesignOutlinedCard}"
+                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ElevationAssist.Elevation), Converter={StaticResource ElevationMarginConverter}}"
+                    UniformCornerRadius="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:SplitButton}, Path=PopupUniformCornerRadius}">
+            <ContentControl Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
+          </wpf:Card>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="MaterialDesignRaisedSplitButton" TargetType="{x:Type wpf:SplitButton}">
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
+    <Setter Property="Height" Value="32" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="Padding" Value="16,4,16,4" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type wpf:SplitButton}">
+          <Grid>
+            <Grid.Resources>
+              <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+              <converters:BorderClipConverter x:Key="BorderClipConverter" />
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Popup PlacementTarget="{Binding ElementName=border}"
+                   Placement="Bottom"
+                   StaysOpen="False"
+                   AllowsTransparency="True"
+                   IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsOpen}">
+              <ContentControl Style="{TemplateBinding PopupContentStyle}"
+                              Content="{TemplateBinding PopupContent}"
+                              ContentTemplate="{TemplateBinding PopupContentTemplate}"
+                              ContentTemplateSelector="{TemplateBinding PopupContentTemplateSelector}"
+                              wpf:ElevationAssist.Elevation="{TemplateBinding PopupElevation}"/>
+            </Popup>
+            <AdornerDecorator Grid.Column="0" Grid.ColumnSpan="3" CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
+              <Grid>
+                <Border x:Name="border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{Binding Path=(wpf:ButtonAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
+                        Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}" />
+                <ProgressBar x:Name="ProgressBar"
+                             Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type wpf:SplitButton}}, Path=ActualWidth}"
+                             Height="{TemplateBinding Height}"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Center"
+                             Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IndicatorBackground)}"
+                             BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IndicatorBackground)}"
+                             Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IndicatorForeground)}"
+                             IsIndeterminate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndeterminate)}"
+                             Maximum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Maximum)}"
+                             Minimum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Minimum)}"
+                             Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Opacity)}"
+                             Style="{DynamicResource MaterialDesignLinearProgressBar}"
+                             Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndicatorVisible), Converter={StaticResource BooleanToVisibilityConverter}}"
+                             Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Value)}">
+                  <ProgressBar.Clip>
+                    <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                      <Binding ElementName="border" Path="ActualWidth" />
+                      <Binding ElementName="border" Path="ActualHeight" />
+                      <Binding ElementName="border" Path="CornerRadius" />
+                      <Binding ElementName="border" Path="BorderThickness" />
+                    </MultiBinding>
+                  </ProgressBar.Clip>
+                </ProgressBar>
+              </Grid>
+            </AdornerDecorator>
+            <wpf:Ripple Grid.Column="0"
+                        Padding="{TemplateBinding Padding}"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Content="{TemplateBinding Content}"
+                        ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                        ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                        Focusable="False"
+                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+              <wpf:Ripple.Clip>
+                <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                  <Binding ElementName="border" Path="ActualWidth" />
+                  <Binding ElementName="border" Path="ActualHeight" />
+                  <Binding ElementName="border" Path="CornerRadius" />
+                  <Binding ElementName="border" Path="BorderThickness" />
+                </MultiBinding>
+              </wpf:Ripple.Clip>
+            </wpf:Ripple>
+            <Rectangle Grid.Column="1"
+                       Width="1"
+                       Fill="{DynamicResource MaterialDesignLightSeparatorBackground}"/>
+            <Button Grid.Column="2"
+                    VerticalAlignment="Stretch"
+                    Style="{x:Null}"
+                    Foreground="{TemplateBinding Foreground}"
+                    Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=OpenCommand}">
+              <Button.Template>
+                <ControlTemplate>
+                  <Grid Background="Transparent">
+                    <wpf:PackIcon Kind="ChevronDown"
+                                  Margin="4,0"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                  </Grid>
+                </ControlTemplate>
+              </Button.Template>
+            </Button>
+          </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+              <Setter TargetName="border" Property="wpf:ShadowAssist.Darken" Value="True" />
+            </Trigger>
+            <Trigger Property="IsKeyboardFocused" Value="true">
+              <Setter TargetName="border" Property="wpf:ShadowAssist.Darken" Value="True" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+              <Setter Property="Opacity" Value="0.38" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="TextBlock.FontSize" Value="14" />
+    <Setter Property="TextBlock.FontWeight" Value="Medium" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="wpf:ButtonAssist.CornerRadius" Value="2" />
+    <Setter Property="wpf:ButtonProgressAssist.IndicatorBackground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+    <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
+    <Setter Property="wpf:ButtonProgressAssist.IsIndicatorVisible" Value="False" />
+    <Setter Property="wpf:ButtonProgressAssist.Opacity" Value=".4" />
+    <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp2" />
+    <Setter Property="wpf:RippleAssist.Feedback" Value="White" />
+    <Setter Property="PopupContentStyle" Value="{StaticResource MaterialDesignSplitButtonPopupElevatedCardStyle}" />
+    <Setter Property="PopupElevation" Value="Dp3" />
+    <Setter Property="PopupUniformCornerRadius" Value="{x:Static wpf:Card.DefaultUniformCornerRadius}" />
+  </Style>
+
+</ResourceDictionary>

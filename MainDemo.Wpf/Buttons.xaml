@@ -45,6 +45,9 @@
       <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
     </Grid.RowDefinitions>
     <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Buttons" />
     <StackPanel Grid.Row="1">
@@ -962,6 +965,26 @@
         <Button materialDesign:ShadowAssist.ShadowAnimationDuration="0:0:0.5" Style="{StaticResource MaterialDesignRaisedDarkButton}">
           Long Duration
         </Button>
+      </smtx:XamlDisplay>
+    </StackPanel>
+
+    <Rectangle Grid.Row="14"
+               Height="1"
+               Margin="0,24,0,0"
+               Fill="{DynamicResource MaterialDesignDivider}" />
+
+    <TextBlock Grid.Row="15"
+               Margin="0,24"
+               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+               Text="SplitButtons" />
+
+    <StackPanel Grid.Row="16" Orientation="Horizontal">
+      <smtx:XamlDisplay Margin="0,0,20,0" UniqueKey="splitbutton_1">
+        <materialDesign:SplitButton Height="40" Content="Split Button">
+          <materialDesign:SplitButton.PopupContent>
+           <TextBlock Text="This is the content of the SplitButton popup" Foreground="Black" Margin="4"/>
+          </materialDesign:SplitButton.PopupContent>
+        </materialDesign:SplitButton>
       </smtx:XamlDisplay>
     </StackPanel>
   </Grid>
