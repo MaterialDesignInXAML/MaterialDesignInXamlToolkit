@@ -138,7 +138,7 @@ public class TreeListView : ListView
                     break;
                 case NotifyCollectionChangedAction.Move:
                     int adjustedOldIndex = index + e.OldStartingIndex + GetChildrenAndGrandChildrenCountOfPriorSiblings(itemsSource, index, e.OldStartingIndex);
-                    
+
                     int additionalOffset = 0;
                     if (e.OldStartingIndex < e.NewStartingIndex)
                     {
