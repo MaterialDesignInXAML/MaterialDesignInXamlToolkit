@@ -292,6 +292,15 @@ public class PopupBox : ContentControl
         set => SetValue(PlacementModeProperty, value);
     }
 
+    internal static readonly DependencyProperty PlacementTargetProperty = DependencyProperty.Register(
+        nameof(PlacementTarget), typeof(UIElement), typeof(PopupBox), new PropertyMetadata(default(UIElement)));
+
+    internal UIElement? PlacementTarget
+    {
+        get => (UIElement?)GetValue(PlacementTargetProperty);
+        set => SetValue(PlacementTargetProperty, value);
+    }
+
     public static readonly DependencyProperty PopupModeProperty = DependencyProperty.Register(
         nameof(PopupMode), typeof(PopupBoxPopupMode), typeof(PopupBox), new PropertyMetadata(default(PopupBoxPopupMode)));
 
