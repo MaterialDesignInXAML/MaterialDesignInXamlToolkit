@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
@@ -31,55 +31,63 @@
           <Grid x:Name="OuterGrid"
                 Margin="{TemplateBinding Margin}"
                 Height="{TemplateBinding Height}"
-                Width="{TemplateBinding Width}">
+                Width="{TemplateBinding Width}"
+                Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="*" />
               <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="PART_Button"
-                    Grid.Column="0"
+            <Button Grid.Column="0"
                     Content="{TemplateBinding Content}"
                     Height="{TemplateBinding Height}"
                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                     Padding="{TemplateBinding Padding}"
                     Style="{TemplateBinding ButtonStyle}"
-                    wpf:ButtonAssist.CornerRadius="{TemplateBinding wpf:ButtonAssist.CornerRadius, Converter={StaticResource LeftButtonCornerRadiusConverter}}"
-                    wpf:ElevationAssist.Elevation="{TemplateBinding wpf:ElevationAssist.Elevation}"/>
+                    wpf:ElevationAssist.Elevation="Dp0"
+                    wpf:ButtonAssist.CornerRadius="{TemplateBinding wpf:ButtonAssist.CornerRadius, Converter={StaticResource LeftButtonCornerRadiusConverter}}"/>
 
             <wpf:PopupBox x:Name="PART_PopupBox"
-                          Grid.Column="1"
-                          wpf:RippleAssist.IsDisabled="True"
-                          Height="{TemplateBinding Height}"
-                          Padding="0"
-                          BorderThickness="0"
-                          PopupUniformCornerRadius="{TemplateBinding PopupUniformCornerRadius}"
-                          PopupElevation="{TemplateBinding PopupElevation}"
-                          PlacementMode="{TemplateBinding PopupPlacementMode}"
-                          PlacementTarget="{Binding ElementName=OuterGrid}">
+              Grid.Column="1"
+              wpf:RippleAssist.IsDisabled="True"
+              Height="{TemplateBinding Height}"
+              Padding="0"
+              BorderThickness="0"
+              PopupUniformCornerRadius="{TemplateBinding PopupUniformCornerRadius}"
+              PopupElevation="{TemplateBinding PopupElevation}"
+              PlacementMode="{TemplateBinding PopupPlacementMode}"
+              PlacementTarget="{Binding ElementName=OuterGrid}">
               <wpf:PopupBox.ToggleContent>
                 <Button Command="{TemplateBinding PopupBoxButtonClickedCommand}"
-                        Content="{wpf:PackIcon ChevronDown}"
-                        Height="{TemplateBinding Height}"
-                        IsHitTestVisible="True"
-                        Margin="{TemplateBinding RightButtonMargin}"
-                        Padding="{TemplateBinding Padding}"
-                        Style="{TemplateBinding ButtonStyle}"
-                        wpf:ButtonAssist.CornerRadius="{TemplateBinding wpf:ButtonAssist.CornerRadius, Converter={StaticResource RightButtonCornerRadiusConverter}}"
-                        wpf:ElevationAssist.Elevation="{TemplateBinding wpf:ElevationAssist.Elevation}"
-                        wpf:RippleAssist.IsDisabled="False"
-                        wpf:RippleAssist.IsCentered="False"
-                        wpf:RippleAssist.ClipToBounds="True"/>
+            Content="{wpf:PackIcon ChevronDown}"
+            Height="{TemplateBinding Height}"
+            IsHitTestVisible="True"
+            Margin="{TemplateBinding RightButtonMargin}"
+            Padding="{TemplateBinding Padding}"
+            Style="{TemplateBinding ButtonStyle}"
+            wpf:ElevationAssist.Elevation="Dp0"
+            wpf:ButtonAssist.CornerRadius="{TemplateBinding wpf:ButtonAssist.CornerRadius, Converter={StaticResource RightButtonCornerRadiusConverter}}"
+            wpf:RippleAssist.IsDisabled="False"
+            wpf:RippleAssist.IsCentered="False"
+            wpf:RippleAssist.ClipToBounds="True"/>
               </wpf:PopupBox.ToggleContent>
               <wpf:PopupBox.PopupContent>
                 <ContentControl Content="{TemplateBinding PopupContent}"
-                                ContentStringFormat="{TemplateBinding PopupContentStringFormat}"
-                                ContentTemplate="{TemplateBinding PopupContentTemplate}"
-                                ContentTemplateSelector="{TemplateBinding PopupContentTemplateSelector}"/>
+                    ContentStringFormat="{TemplateBinding PopupContentStringFormat}"
+                    ContentTemplate="{TemplateBinding PopupContentTemplate}"
+                    ContentTemplateSelector="{TemplateBinding PopupContentTemplateSelector}"/>
               </wpf:PopupBox.PopupContent>
             </wpf:PopupBox>
 
           </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+              <Setter TargetName="OuterGrid" Property="wpf:ShadowAssist.Darken" Value="True" />
+            </Trigger>
+            <Trigger Property="IsKeyboardFocused" Value="true">
+              <Setter TargetName="OuterGrid" Property="wpf:ShadowAssist.Darken" Value="True" />
+            </Trigger>
+          </ControlTemplate.Triggers>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -89,7 +97,7 @@
 
   <Style x:Key="MaterialDesignRaisedSplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignSplitButton}">
     <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignRaisedButton}" />
-    <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp6" />
+    <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp2" />
     <Setter Property="RightButtonMargin" Value="-1" />
   </Style>
 

@@ -2,11 +2,9 @@
 
 namespace MaterialDesignThemes.Wpf;
 
-[TemplatePart(Name = ButtonPartName, Type = typeof(Button))]
 [TemplatePart(Name = PopupBoxPartName, Type = typeof(PopupBox))]
 public class SplitButton : Button
 {
-    public const string ButtonPartName = "PART_Button";
     public const string PopupBoxPartName = "PART_PopupBox";
 
     static SplitButton()
@@ -104,7 +102,6 @@ public class SplitButton : Button
         set => SetValue(PopupBoxButtonClickedCommandProperty, value);
     }
 
-    private Button? _button;
     private PopupBox? _popupBox;
 
     public SplitButton()
@@ -114,24 +111,19 @@ public class SplitButton : Button
 
     public override void OnApplyTemplate()
     {
-        if (_button is not null)
-        {
-            _button.Click -= ButtonOnClick;
-        }
-
         base.OnApplyTemplate();
 
-        _button = GetTemplateChild(ButtonPartName) as Button;
         _popupBox = GetTemplateChild(PopupBoxPartName) as PopupBox;
 
-        if (_button is not null)
+        if (_popupBox is not null)
         {
-            _button.Click += ButtonOnClick;
+            _popupBox.RemoveHandler(ButtonBase.ClickEvent, (RoutedEventHandler)ChildClickedHandler);
+            _popupBox.AddHandler(ButtonBase.ClickEvent, (RoutedEventHandler)ChildClickedHandler);
         }
     }
 
-    private void ButtonOnClick(object sender, RoutedEventArgs e)
-        => RaiseEvent(new RoutedEventArgs(ClickEvent, this));
+    private static void ChildClickedHandler(object sender, RoutedEventArgs e)
+        => e.Handled = true;
 
     private void OpenPopupBox()
     {

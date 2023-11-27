@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MaterialDesignDemo.Buttons"
+<UserControl x:Class="MaterialDesignDemo.Buttons"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -958,9 +958,9 @@
                 Style="{StaticResource MaterialDesignRaisedSecondaryButton}" />
       </smtx:XamlDisplay>
       <smtx:XamlDisplay Margin="0,0,20,0" UniqueKey="button_duration_2">
-        <Button>
-          Default Duration
-        </Button>
+          <Button>
+            Default Duration
+          </Button>
       </smtx:XamlDisplay>
       <smtx:XamlDisplay Margin="0,0,20,0" UniqueKey="button_duration_3">
         <Button materialDesign:ShadowAssist.ShadowAnimationDuration="0:0:0.5" Style="{StaticResource MaterialDesignRaisedDarkButton}">
@@ -1000,6 +1000,7 @@
       <smtx:XamlDisplay Margin="0,0,20,0" UniqueKey="split_button_2">
         <materialDesign:SplitButton Content="Split Button"
                                     Style="{StaticResource MaterialDesignOutlinedSplitButton}"
+                                    materialDesign:ButtonAssist.CornerRadius="10 10 0 0"
                                     PopupPlacementMode="TopAndAlignRightEdges">
           <materialDesign:SplitButton.PopupContent>
             <ContentControl ContentTemplate="{StaticResource PopupContent}" />
