@@ -48,34 +48,34 @@
                     wpf:ButtonAssist.CornerRadius="{TemplateBinding wpf:ButtonAssist.CornerRadius, Converter={StaticResource LeftButtonCornerRadiusConverter}}"/>
 
             <wpf:PopupBox x:Name="PART_PopupBox"
-              Grid.Column="1"
-              wpf:RippleAssist.IsDisabled="True"
-              Height="{TemplateBinding Height}"
-              Padding="0"
-              BorderThickness="0"
-              PopupUniformCornerRadius="{TemplateBinding PopupUniformCornerRadius}"
-              PopupElevation="{TemplateBinding PopupElevation}"
-              PlacementMode="{TemplateBinding PopupPlacementMode}"
-              PlacementTarget="{Binding ElementName=OuterGrid}">
+                          Grid.Column="1"
+                          wpf:RippleAssist.IsDisabled="True"
+                          Height="{TemplateBinding Height}"
+                          Padding="0"
+                          BorderThickness="0"
+                          PopupUniformCornerRadius="{TemplateBinding PopupUniformCornerRadius}"
+                          PopupElevation="{TemplateBinding PopupElevation}"
+                          PlacementMode="{TemplateBinding PopupPlacementMode}"
+                          PlacementTarget="{Binding ElementName=OuterGrid}">
               <wpf:PopupBox.ToggleContent>
                 <Button Command="{TemplateBinding PopupBoxButtonClickedCommand}"
-            Content="{wpf:PackIcon ChevronDown}"
-            Height="{TemplateBinding Height}"
-            IsHitTestVisible="True"
-            Margin="{TemplateBinding RightButtonMargin}"
-            Padding="{TemplateBinding Padding}"
-            Style="{TemplateBinding ButtonStyle}"
-            wpf:ElevationAssist.Elevation="Dp0"
-            wpf:ButtonAssist.CornerRadius="{TemplateBinding wpf:ButtonAssist.CornerRadius, Converter={StaticResource RightButtonCornerRadiusConverter}}"
-            wpf:RippleAssist.IsDisabled="False"
-            wpf:RippleAssist.IsCentered="False"
-            wpf:RippleAssist.ClipToBounds="True"/>
+                        Content="{wpf:PackIcon ChevronDown}"
+                        Height="{TemplateBinding Height}"
+                        IsHitTestVisible="True"
+                        Margin="{TemplateBinding RightButtonMargin}"
+                        Padding="{TemplateBinding Padding}"
+                        Style="{TemplateBinding ButtonStyle}"
+                        wpf:ElevationAssist.Elevation="Dp0"
+                        wpf:ButtonAssist.CornerRadius="{TemplateBinding wpf:ButtonAssist.CornerRadius, Converter={StaticResource RightButtonCornerRadiusConverter}}"
+                        wpf:RippleAssist.IsDisabled="False"
+                        wpf:RippleAssist.IsCentered="False"
+                        wpf:RippleAssist.ClipToBounds="True"/>
               </wpf:PopupBox.ToggleContent>
               <wpf:PopupBox.PopupContent>
                 <ContentControl Content="{TemplateBinding PopupContent}"
-                    ContentStringFormat="{TemplateBinding PopupContentStringFormat}"
-                    ContentTemplate="{TemplateBinding PopupContentTemplate}"
-                    ContentTemplateSelector="{TemplateBinding PopupContentTemplateSelector}"/>
+                                ContentStringFormat="{TemplateBinding PopupContentStringFormat}"
+                                ContentTemplate="{TemplateBinding PopupContentTemplate}"
+                                ContentTemplateSelector="{TemplateBinding PopupContentTemplateSelector}"/>
               </wpf:PopupBox.PopupContent>
             </wpf:PopupBox>
 
