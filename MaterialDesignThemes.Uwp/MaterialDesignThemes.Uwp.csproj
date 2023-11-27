@@ -233,7 +233,7 @@
       <Version>6.2.14</Version>
     </PackageReference>
     <PackageReference Include="Win2D.uwp">
-      <Version>1.27.0</Version>
+      <Version>1.27.1</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
