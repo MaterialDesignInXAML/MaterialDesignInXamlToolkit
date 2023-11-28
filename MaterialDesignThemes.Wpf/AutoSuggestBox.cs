@@ -132,11 +132,14 @@ public class AutoSuggestBox : TextBox
 
     public override void OnApplyTemplate()
     {
+        if (_autoSuggestBoxList is not null)
+        {
+            _autoSuggestBoxList.PreviewMouseDown -= AutoSuggestionListBox_PreviewMouseDown;
+        }
+
         if (GetTemplateChild(AutoSuggestBoxListPart) is ListBox listBox)
         {
             _autoSuggestBoxList = listBox;
-
-            listBox.PreviewMouseDown -= AutoSuggestionListBox_PreviewMouseDown;
 
             base.OnApplyTemplate();
 
@@ -195,16 +198,34 @@ public class AutoSuggestBox : TextBox
     {
         if (_autoSuggestBoxList is not null && e.OriginalSource is FrameworkElement element)
         {
-            if (!_autoSuggestBoxList.Items.Contains(element.DataContext))
+            var selectedItem = element.DataContext;
+            if (!_autoSuggestBoxList.Items.Contains(selectedItem))
                 return;
-            _autoSuggestBoxList.SelectedItem = element.DataContext;
-            CommitValueSelection();
+            if (_autoSuggestBoxList.SelectedItem != selectedItem)
+            {
+                _autoSuggestBoxList.SelectionChanged += OnSelectionChanged;
+                _autoSuggestBoxList.SelectedItem = selectedItem;
+            }
+            else
+            {
+                _autoSuggestBoxList.SelectedItem = selectedItem;
+                CommitValueSelection();
+            }
+
+            void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+            {
+                _autoSuggestBoxList.SelectionChanged -= OnSelectionChanged;
+                CommitValueSelection();
+            }
+            e.Handled = true;
         }
     }
 
+
+
     #endregion
 
-    #region Methods    
+    #region Methods
 
     private void CloseAutoSuggestionPopUp()
     {
@@ -212,22 +233,22 @@ public class AutoSuggestBox : TextBox
     }
 
     private void CommitValueSelection()
+        => CommitValueSelection(_autoSuggestBoxList?.SelectedValue);
+
+    private void CommitValueSelection(object? selectedValue)
     {
-        if (_autoSuggestBoxList?.SelectedValue is { } selectedValue)
+        string oldValue = Text;
+        Text = selectedValue?.ToString();
+        if (Text != null)
         {
-            var oldValue = Text;
-            Text = selectedValue.ToString();
-            if (Text != null)
-            {
-                CaretIndex = Text.Length;
-            }
-            CloseAutoSuggestionPopUp();
-            var args = new RoutedPropertyChangedEventArgs<object?>(oldValue, Text)
-            {
-                RoutedEvent = SuggestionChosenEvent
-            };
-            RaiseEvent(args);
+            CaretIndex = Text.Length;
         }
+        CloseAutoSuggestionPopUp();
+        var args = new RoutedPropertyChangedEventArgs<object?>(oldValue, Text)
+        {
+            RoutedEvent = SuggestionChosenEvent
+        };
+        RaiseEvent(args);
     }
 
     private void DecrementSelection()
