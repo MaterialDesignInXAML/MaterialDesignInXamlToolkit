@@ -128,6 +128,7 @@
                           Cursor="Hand"
                           IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
                           IsTabStop="{TemplateBinding IsTabStop}"
+                          Padding="0"
                           Style="{StaticResource ToggleButtonStyle}"
                           TabIndex="{TemplateBinding TabIndex}" />
             <wpf:PopupEx x:Name="PART_Popup"

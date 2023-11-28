@@ -12,12 +12,13 @@
     <Style.Resources>
       <converters:CornerRadiusCloneConverter x:Key="LeftButtonCornerRadiusConverter" FixedTopRight="0" FixedBottomRight="0" />
       <converters:CornerRadiusCloneConverter x:Key="RightButtonCornerRadiusConverter" FixedTopLeft="0" FixedBottomLeft="0" />
+      <converters:ThicknessCloneConverter x:Key="LeftButtonBorderThicknessConverter" FixedRight="0" />
     </Style.Resources>
 
     <Setter Property="Height" Value="32" />
+    <Setter Property="BorderThickness" Value="1" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />
     <Setter Property="Padding" Value="16,4,16,4" />
-    <Setter Property="RightButtonMargin" Value="-2,-1,-1,-1" />
     <Setter Property="TextBlock.FontSize" Value="14" />
     <Setter Property="TextBlock.FontWeight" Value="Medium" />
     <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -38,12 +39,14 @@
               <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0"
+            <Button x:Name="LeftButton"
+                    Grid.Column="0"
+                    BorderThickness="{TemplateBinding BorderThickness, Converter={StaticResource LeftButtonBorderThicknessConverter}}"
                     Content="{TemplateBinding Content}"
                     Height="{TemplateBinding Height}"
                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                    Padding="{TemplateBinding Padding}"
                     Style="{TemplateBinding ButtonStyle}"
+                    Padding="{TemplateBinding Padding}"
                     wpf:ElevationAssist.Elevation="Dp0"
                     wpf:ButtonAssist.CornerRadius="{TemplateBinding wpf:ButtonAssist.CornerRadius, Converter={StaticResource LeftButtonCornerRadiusConverter}}"/>
 
@@ -52,17 +55,16 @@
                           wpf:RippleAssist.IsDisabled="True"
                           Height="{TemplateBinding Height}"
                           Padding="0"
-                          BorderThickness="0"
                           PopupUniformCornerRadius="{TemplateBinding PopupUniformCornerRadius}"
                           PopupElevation="{TemplateBinding PopupElevation}"
                           PlacementMode="{TemplateBinding PopupPlacementMode}"
                           PlacementTarget="{Binding ElementName=OuterGrid}">
               <wpf:PopupBox.ToggleContent>
                 <Button Command="{TemplateBinding PopupBoxButtonClickedCommand}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
                         Content="{wpf:PackIcon ChevronDown}"
-                        Height="{TemplateBinding Height}"
+                        Height="{Binding ElementName=LeftButton, Path=ActualHeight}"
                         IsHitTestVisible="True"
-                        Margin="{TemplateBinding RightButtonMargin}"
                         Padding="{TemplateBinding Padding}"
                         Style="{TemplateBinding ButtonStyle}"
                         wpf:ElevationAssist.Elevation="Dp0"
@@ -98,7 +100,6 @@
   <Style x:Key="MaterialDesignRaisedSplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignSplitButton}">
     <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignRaisedButton}" />
     <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp2" />
-    <Setter Property="RightButtonMargin" Value="-1" />
   </Style>
 
   <Style x:Key="MaterialDesignOutlinedSplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignSplitButton}">

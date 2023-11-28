@@ -84,15 +84,6 @@ public class SplitButton : Button
         set => SetValue(ButtonStyleProperty, value);
     }
 
-    internal static readonly DependencyProperty RightButtonMarginProperty = DependencyProperty.Register(
-        nameof(RightButtonMargin), typeof(Thickness), typeof(SplitButton), new PropertyMetadata(default(Thickness)));
-
-    internal Thickness RightButtonMargin
-    {
-        get => (Thickness) GetValue(RightButtonMarginProperty);
-        set => SetValue(RightButtonMarginProperty, value);
-    }
-
     internal static readonly DependencyProperty PopupBoxButtonClickedCommandProperty = DependencyProperty.Register(
         nameof(PopupBoxButtonClickedCommand), typeof(ICommand), typeof(SplitButton), new PropertyMetadata(default(ICommand)));
 

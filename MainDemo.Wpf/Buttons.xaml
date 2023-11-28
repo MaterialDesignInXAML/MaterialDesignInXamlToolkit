@@ -991,14 +991,14 @@
         </DataTemplate>
       </StackPanel.Resources>
       <smtx:XamlDisplay Margin="0,0,20,0" UniqueKey="split_button_1">
-        <materialDesign:SplitButton Content="Split Button">
+        <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom">
           <materialDesign:SplitButton.PopupContent>
             <ContentControl ContentTemplate="{StaticResource PopupContent}" />
           </materialDesign:SplitButton.PopupContent>
         </materialDesign:SplitButton>
       </smtx:XamlDisplay>
       <smtx:XamlDisplay Margin="0,0,20,0" UniqueKey="split_button_2">
-        <materialDesign:SplitButton Content="Split Button"
+        <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
                                     Style="{StaticResource MaterialDesignOutlinedSplitButton}"
                                     materialDesign:ButtonAssist.CornerRadius="10 10 0 0"
                                     PopupPlacementMode="TopAndAlignRightEdges">
@@ -1008,7 +1008,7 @@
         </materialDesign:SplitButton>
       </smtx:XamlDisplay>
       <smtx:XamlDisplay Margin="0,0,20,0" UniqueKey="split_button_3">
-        <materialDesign:SplitButton Content="Split Button"
+        <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
                                     Style="{StaticResource MaterialDesignFlatSplitButton}"
                                     PopupPlacementMode="RightAndAlignMiddles">
           <materialDesign:SplitButton.PopupContent>
@@ -1017,7 +1017,7 @@
         </materialDesign:SplitButton>
       </smtx:XamlDisplay>
       <smtx:XamlDisplay Margin="0,0,20,0" UniqueKey="split_button_4">
-        <materialDesign:SplitButton Content="Split Button"
+        <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
                                     Style="{StaticResource MaterialDesignPaperSecondaryLightSplitButton}"
                                     PopupPlacementMode="LeftAndAlignBottomEdges">
           <materialDesign:SplitButton.PopupContent>
