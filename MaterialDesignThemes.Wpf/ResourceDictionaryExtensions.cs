@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 using System.Windows.Media.Animation;
 using MaterialDesignColors;
 using MaterialDesignColors.ColorManipulation;
@@ -220,12 +219,9 @@ public static partial class ResourceDictionaryExtensions
         }
     }
 
-    private class ThemeManager : IThemeManager
+    private class ThemeManager(ResourceDictionary resourceDictionary) : IThemeManager
     {
-        private readonly ResourceDictionary _resourceDictionary;
-
-        public ThemeManager(ResourceDictionary resourceDictionary)
-            => _resourceDictionary = resourceDictionary ?? throw new ArgumentNullException(nameof(resourceDictionary));
+        private readonly ResourceDictionary _resourceDictionary = resourceDictionary ?? throw new ArgumentNullException(nameof(resourceDictionary));
 
         public event EventHandler<ThemeChangedEventArgs>? ThemeChanged;
 

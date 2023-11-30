@@ -5,151 +5,389 @@
 //------------------------------------------------------------------------------
 
 #nullable enable
-using System.Windows.Media;
-
 namespace MaterialDesignThemes.Wpf;
 
 partial class Theme
 {
-    public Color Background { get; set; }
+    public Theme()
+    {
+        Badgeds = new(this);
+        Buttons = new(this);
+        SnackBars = new(this);
+        Cards = new(this);
+        CheckBoxes = new(this);
+        Chips = new(this);
+        ColorZones = new(this);
+        ComboBoxes = new(this);
+        DataGrids = new(this);
+        TextBoxes = new(this);
+        GridSplitters = new(this);
+        Headers = new(this);
+        ListBoxItems = new(this);
+        ListViews = new(this);
+        RadioButtons = new(this);
+        ScrollBars = new(this);
+        Separators = new(this);
+        TabControls = new(this);
+        ToolBars = new(this);
+        ToggleButtons = new(this);
+        ToolTips = new(this);
+    }
 
-    public Color Foreground { get; set; }
+    private ColorReference _background;
+    public ColorReference Background
+    {
+       get => Resolve(_background);
+       set => _background = value;
+    }
 
-    public Color ForegroundLight { get; set; }
+    private ColorReference _foreground;
+    public ColorReference Foreground
+    {
+       get => Resolve(_foreground);
+       set => _foreground = value;
+    }
 
-    public Color ValidationError { get; set; }
+    private ColorReference _foregroundLight;
+    public ColorReference ForegroundLight
+    {
+       get => Resolve(_foregroundLight);
+       set => _foregroundLight = value;
+    }
 
-    public Badged Badgeds { get; set; } = new();
+    private ColorReference _validationError;
+    public ColorReference ValidationError
+    {
+       get => Resolve(_validationError);
+       set => _validationError = value;
+    }
 
-    public Button Buttons { get; set; } = new();
+    public Badged Badgeds { get; set; }
 
-    public SnackBar SnackBars { get; set; } = new();
+    public Button Buttons { get; set; }
 
-    public Card Cards { get; set; } = new();
+    public SnackBar SnackBars { get; set; }
 
-    public CheckBox CheckBoxes { get; set; } = new();
+    public Card Cards { get; set; }
 
-    public Chip Chips { get; set; } = new();
+    public CheckBox CheckBoxes { get; set; }
 
-    public ColorZone ColorZones { get; set; } = new();
+    public Chip Chips { get; set; }
 
-    public ComboBox ComboBoxes { get; set; } = new();
+    public ColorZone ColorZones { get; set; }
 
-    public DataGrid DataGrids { get; set; } = new();
+    public ComboBox ComboBoxes { get; set; }
 
-    public TextBox TextBoxes { get; set; } = new();
+    public DataGrid DataGrids { get; set; }
 
-    public GridSplitter GridSplitters { get; set; } = new();
+    public TextBox TextBoxes { get; set; }
 
-    public Header Headers { get; set; } = new();
+    public GridSplitter GridSplitters { get; set; }
 
-    public ListBoxItem ListBoxItems { get; set; } = new();
+    public Header Headers { get; set; }
 
-    public ListView ListViews { get; set; } = new();
+    public ListBoxItem ListBoxItems { get; set; }
 
-    public RadioButton RadioButtons { get; set; } = new();
+    public ListView ListViews { get; set; }
 
-    public ScrollBar ScrollBars { get; set; } = new();
+    public RadioButton RadioButtons { get; set; }
 
-    public Separator Separators { get; set; } = new();
+    public ScrollBar ScrollBars { get; set; }
 
-    public TabControl TabControls { get; set; } = new();
+    public Separator Separators { get; set; }
 
-    public ToolBar ToolBars { get; set; } = new();
+    public TabControl TabControls { get; set; }
 
-    public ToggleButton ToggleButtons { get; set; } = new();
+    public ToolBar ToolBars { get; set; }
 
-    public ToolTip ToolTips { get; set; } = new();
+    public ToggleButton ToggleButtons { get; set; }
+
+    public ToolTip ToolTips { get; set; }
 
     public class Badged
     {
-        public Color DarkBackground { get; set; }
+        private readonly Theme _theme;
+        public Badged(Theme theme)
+        {
+            _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+        }
 
-        public Color DarkForeground { get; set; }
+        private ColorReference _darkBackground;
+        public ColorReference DarkBackground
+        {
+           get => _theme.Resolve(_darkBackground);
+           set => _darkBackground = value;
+        }
 
-        public Color LightBackground { get; set; }
+        private ColorReference _darkForeground;
+        public ColorReference DarkForeground
+        {
+           get => _theme.Resolve(_darkForeground);
+           set => _darkForeground = value;
+        }
 
-        public Color LightForeground { get; set; }
+        private ColorReference _lightBackground;
+        public ColorReference LightBackground
+        {
+           get => _theme.Resolve(_lightBackground);
+           set => _lightBackground = value;
+        }
+
+        private ColorReference _lightForeground;
+        public ColorReference LightForeground
+        {
+           get => _theme.Resolve(_lightForeground);
+           set => _lightForeground = value;
+        }
 
     }
 
     public class Button
     {
-        public Color FlatClick { get; set; }
+        private readonly Theme _theme;
+        public Button(Theme theme)
+        {
+            _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+        }
 
-        public Color Ripple { get; set; }
+        private ColorReference _flatClick;
+        public ColorReference FlatClick
+        {
+           get => _theme.Resolve(_flatClick);
+           set => _flatClick = value;
+        }
 
-        public Color FlatRipple { get; set; }
+        private ColorReference _ripple;
+        public ColorReference Ripple
+        {
+           get => _theme.Resolve(_ripple);
+           set => _ripple = value;
+        }
+
+        private ColorReference _flatRipple;
+        public ColorReference FlatRipple
+        {
+           get => _theme.Resolve(_flatRipple);
+           set => _flatRipple = value;
+        }
 
     }
 
     public class SnackBar
     {
-        public Color Ripple { get; set; }
+        private readonly Theme _theme;
+        public SnackBar(Theme theme)
+        {
+            _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+        }
 
-        public Color Background { get; set; }
+        private ColorReference _ripple;
+        public ColorReference Ripple
+        {
+           get => _theme.Resolve(_ripple);
+           set => _ripple = value;
+        }
 
-        public Color MouseOver { get; set; }
+        private ColorReference _background;
+        public ColorReference Background
+        {
+           get => _theme.Resolve(_background);
+           set => _background = value;
+        }
+
+        private ColorReference _mouseOver;
+        public ColorReference MouseOver
+        {
+           get => _theme.Resolve(_mouseOver);
+           set => _mouseOver = value;
+        }
 
     }
 
     public class Card
     {
-        public Color Background { get; set; }
+        private readonly Theme _theme;
+        public Card(Theme theme)
+        {
+            _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+        }
+
+        private ColorReference _background;
+        public ColorReference Background
+        {
+           get => _theme.Resolve(_background);
+           set => _background = value;
+        }
 
     }
 
     public class CheckBox
     {
-        public Color Disabled { get; set; }
+        private readonly Theme _theme;
+        public CheckBox(Theme theme)
+        {
+            _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+        }
 
-        public Color UncheckedBorder { get; set; }
+        private ColorReference _disabled;
+        public ColorReference Disabled
+        {
+           get => _theme.Resolve(_disabled);
+           set => _disabled = value;
+        }
 
-        public Color Off { get; set; }
+        private ColorReference _uncheckedBorder;
+        public ColorReference UncheckedBorder
+        {
+           get => _theme.Resolve(_uncheckedBorder);
+           set => _uncheckedBorder = value;
+        }
+
+        private ColorReference _off;
+        public ColorReference Off
+        {
+           get => _theme.Resolve(_off);
+           set => _off = value;
+        }
 
     }
 
     public class Chip
     {
-        public Color Background { get; set; }
+        private readonly Theme _theme;
+        public Chip(Theme theme)
+        {
+            _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+        }
 
-        public Color OutlineBorder { get; set; }
+        private ColorReference _background;
+        public ColorReference Background
+        {
+           get => _theme.Resolve(_background);
+           set => _background = value;
+        }
+
+        private ColorReference _outlineBorder;
+        public ColorReference OutlineBorder
+        {
+           get => _theme.Resolve(_outlineBorder);
+           set => _outlineBorder = value;
+        }
 
     }
 
     public class ColorZone
     {
-        public Color DarkBackground { get; set; }
+        private readonly Theme _theme;
+        public ColorZone(Theme theme)
+        {
+            _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+        }
 
-        public Color DarkForeground { get; set; }
+        private ColorReference _darkBackground;
+        public ColorReference DarkBackground
+        {
+           get => _theme.Resolve(_darkBackground);
+           set => _darkBackground = value;
+        }
 
-        public Color LightBackground { get; set; }
+        private ColorReference _darkForeground;
+        public ColorReference DarkForeground
+        {
+           get => _theme.Resolve(_darkForeground);
+           set => _darkForeground = value;
+        }
 
-        public Color LightForeground { get; set; }
+        private ColorReference _lightBackground;
+        public ColorReference LightBackground
+        {
+           get => _theme.Resolve(_lightBackground);
+           set => _lightBackground = value;
+        }
+
+        private ColorReference _lightForeground;
+        public ColorReference LightForeground
+        {
+           get => _theme.Resolve(_lightForeground);
+           set => _lightForeground = value;
+        }
 
     }
 
     public class ComboBox
     {
-        public Color Disabled { get; set; }
+        private readonly Theme _theme;
+        public ComboBox(Theme theme)
+        {
+            _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+            Popups = new(theme);
+        }
 
-        public Color FilledBackground { get; set; }
+        private ColorReference _disabled;
+        public ColorReference Disabled
+        {
+           get => _theme.Resolve(_disabled);
+           set => _disabled = value;
+        }
 
-        public Color HoverBackground { get; set; }
+        private ColorReference _filledBackground;
+        public ColorReference FilledBackground
+        {
+           get => _theme.Resolve(_filledBackground);
+           set => _filledBackground = value;
+        }
 
-        public Color OutlineInactiveBorder { get; set; }
+        private ColorReference _hoverBackground;
+        public ColorReference HoverBackground
+        {
+           get => _theme.Resolve(_hoverBackground);
+           set => _hoverBackground = value;
+        }
 
-        public Popup Popups { get; set; } = new();
+        private ColorReference _outlineInactiveBorder;
+        public ColorReference OutlineInactiveBorder
+        {
+           get => _theme.Resolve(_outlineInactiveBorder);
+           set => _outlineInactiveBorder = value;
+        }
+
+        public Popup Popups { get; set; }
 
         public class Popup
         {
-            public Color DarkBackground { get; set; }
+            private readonly Theme _theme;
+            public Popup(Theme theme)
+            {
+                _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+            }
 
-            public Color DarkForeground { get; set; }
+            private ColorReference _darkBackground;
+            public ColorReference DarkBackground
+            {
+               get => _theme.Resolve(_darkBackground);
+               set => _darkBackground = value;
+            }
 
-            public Color LightBackground { get; set; }
+            private ColorReference _darkForeground;
+            public ColorReference DarkForeground
+            {
+               get => _theme.Resolve(_darkForeground);
+               set => _darkForeground = value;
+            }
 
-            public Color LightForeground { get; set; }
+            private ColorReference _lightBackground;
+            public ColorReference LightBackground
+            {
+               get => _theme.Resolve(_lightBackground);
+               set => _lightBackground = value;
+            }
+
+            private ColorReference _lightForeground;
+            public ColorReference LightForeground
+            {
+               get => _theme.Resolve(_lightForeground);
+               set => _lightForeground = value;
+            }
 
         }
 
@@ -157,87 +395,271 @@ partial class Theme
 
     public class DataGrid
     {
-        public Color Border { get; set; }
+        private readonly Theme _theme;
+        public DataGrid(Theme theme)
+        {
+            _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+        }
 
-        public Color ButtonPressed { get; set; }
+        private ColorReference _border;
+        public ColorReference Border
+        {
+           get => _theme.Resolve(_border);
+           set => _border = value;
+        }
 
-        public Color ComboBoxHover { get; set; }
+        private ColorReference _buttonPressed;
+        public ColorReference ButtonPressed
+        {
+           get => _theme.Resolve(_buttonPressed);
+           set => _buttonPressed = value;
+        }
 
-        public Color ComboBoxSelected { get; set; }
+        private ColorReference _comboBoxHover;
+        public ColorReference ComboBoxHover
+        {
+           get => _theme.Resolve(_comboBoxHover);
+           set => _comboBoxHover = value;
+        }
 
-        public Color PopupBorder { get; set; }
+        private ColorReference _comboBoxSelected;
+        public ColorReference ComboBoxSelected
+        {
+           get => _theme.Resolve(_comboBoxSelected);
+           set => _comboBoxSelected = value;
+        }
 
-        public Color RowHoverBackground { get; set; }
+        private ColorReference _popupBorder;
+        public ColorReference PopupBorder
+        {
+           get => _theme.Resolve(_popupBorder);
+           set => _popupBorder = value;
+        }
 
-        public Color Selected { get; set; }
+        private ColorReference _rowHoverBackground;
+        public ColorReference RowHoverBackground
+        {
+           get => _theme.Resolve(_rowHoverBackground);
+           set => _rowHoverBackground = value;
+        }
 
-        public Color ColumnHeaderForeground { get; set; }
+        private ColorReference _selected;
+        public ColorReference Selected
+        {
+           get => _theme.Resolve(_selected);
+           set => _selected = value;
+        }
+
+        private ColorReference _columnHeaderForeground;
+        public ColorReference ColumnHeaderForeground
+        {
+           get => _theme.Resolve(_columnHeaderForeground);
+           set => _columnHeaderForeground = value;
+        }
 
     }
 
     public class TextBox
     {
-        public Color Border { get; set; }
+        private readonly Theme _theme;
+        public TextBox(Theme theme)
+        {
+            _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+        }
 
-        public Color OutlineBorder { get; set; }
+        private ColorReference _border;
+        public ColorReference Border
+        {
+           get => _theme.Resolve(_border);
+           set => _border = value;
+        }
 
-        public Color DisabledBackground { get; set; }
+        private ColorReference _outlineBorder;
+        public ColorReference OutlineBorder
+        {
+           get => _theme.Resolve(_outlineBorder);
+           set => _outlineBorder = value;
+        }
 
-        public Color FilledBackground { get; set; }
+        private ColorReference _disabledBackground;
+        public ColorReference DisabledBackground
+        {
+           get => _theme.Resolve(_disabledBackground);
+           set => _disabledBackground = value;
+        }
 
-        public Color HoverBackground { get; set; }
+        private ColorReference _filledBackground;
+        public ColorReference FilledBackground
+        {
+           get => _theme.Resolve(_filledBackground);
+           set => _filledBackground = value;
+        }
 
-        public Color OutlineInactiveBorder { get; set; }
+        private ColorReference _hoverBackground;
+        public ColorReference HoverBackground
+        {
+           get => _theme.Resolve(_hoverBackground);
+           set => _hoverBackground = value;
+        }
+
+        private ColorReference _outlineInactiveBorder;
+        public ColorReference OutlineInactiveBorder
+        {
+           get => _theme.Resolve(_outlineInactiveBorder);
+           set => _outlineInactiveBorder = value;
+        }
 
     }
 
     public class GridSplitter
     {
-        public Color Background { get; set; }
+        private readonly Theme _theme;
+        public GridSplitter(Theme theme)
+        {
+            _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+        }
 
-        public Color PreviewBackground { get; set; }
+        private ColorReference _background;
+        public ColorReference Background
+        {
+           get => _theme.Resolve(_background);
+           set => _background = value;
+        }
+
+        private ColorReference _previewBackground;
+        public ColorReference PreviewBackground
+        {
+           get => _theme.Resolve(_previewBackground);
+           set => _previewBackground = value;
+        }
 
     }
 
     public class Header
     {
-        public Color Foreground { get; set; }
+        private readonly Theme _theme;
+        public Header(Theme theme)
+        {
+            _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+        }
+
+        private ColorReference _foreground;
+        public ColorReference Foreground
+        {
+           get => _theme.Resolve(_foreground);
+           set => _foreground = value;
+        }
 
     }
 
     public class ListBoxItem
     {
-        public Color Border { get; set; }
+        private readonly Theme _theme;
+        public ListBoxItem(Theme theme)
+        {
+            _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+        }
 
-        public Color Selected { get; set; }
+        private ColorReference _border;
+        public ColorReference Border
+        {
+           get => _theme.Resolve(_border);
+           set => _border = value;
+        }
+
+        private ColorReference _selected;
+        public ColorReference Selected
+        {
+           get => _theme.Resolve(_selected);
+           set => _selected = value;
+        }
 
     }
 
     public class ListView
     {
-        public Color Hover { get; set; }
+        private readonly Theme _theme;
+        public ListView(Theme theme)
+        {
+            _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+        }
 
-        public Color Selected { get; set; }
+        private ColorReference _hover;
+        public ColorReference Hover
+        {
+           get => _theme.Resolve(_hover);
+           set => _hover = value;
+        }
 
-        public Color Separator { get; set; }
+        private ColorReference _selected;
+        public ColorReference Selected
+        {
+           get => _theme.Resolve(_selected);
+           set => _selected = value;
+        }
+
+        private ColorReference _separator;
+        public ColorReference Separator
+        {
+           get => _theme.Resolve(_separator);
+           set => _separator = value;
+        }
 
     }
 
     public class RadioButton
     {
-        public Color Border { get; set; }
+        private readonly Theme _theme;
+        public RadioButton(Theme theme)
+        {
+            _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+            Chips = new(theme);
+        }
 
-        public Color Checked { get; set; }
+        private ColorReference _border;
+        public ColorReference Border
+        {
+           get => _theme.Resolve(_border);
+           set => _border = value;
+        }
 
-        public Color Disabled { get; set; }
+        private ColorReference _checked;
+        public ColorReference Checked
+        {
+           get => _theme.Resolve(_checked);
+           set => _checked = value;
+        }
 
-        public Color Outline { get; set; }
+        private ColorReference _disabled;
+        public ColorReference Disabled
+        {
+           get => _theme.Resolve(_disabled);
+           set => _disabled = value;
+        }
 
-        public Chip Chips { get; set; } = new();
+        private ColorReference _outline;
+        public ColorReference Outline
+        {
+           get => _theme.Resolve(_outline);
+           set => _outline = value;
+        }
+
+        public Chip Chips { get; set; }
 
         public class Chip
         {
-            public Color CheckedBackground { get; set; }
+            private readonly Theme _theme;
+            public Chip(Theme theme)
+            {
+                _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+            }
+
+            private ColorReference _checkedBackground;
+            public ColorReference CheckedBackground
+            {
+               get => _theme.Resolve(_checkedBackground);
+               set => _checkedBackground = value;
+            }
 
         }
 
@@ -245,55 +667,155 @@ partial class Theme
 
     public class ScrollBar
     {
-        public Color ActiveBackground { get; set; }
+        private readonly Theme _theme;
+        public ScrollBar(Theme theme)
+        {
+            _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+        }
 
-        public Color Foreground { get; set; }
+        private ColorReference _activeBackground;
+        public ColorReference ActiveBackground
+        {
+           get => _theme.Resolve(_activeBackground);
+           set => _activeBackground = value;
+        }
 
-        public Color RepeatButtonBackground { get; set; }
+        private ColorReference _foreground;
+        public ColorReference Foreground
+        {
+           get => _theme.Resolve(_foreground);
+           set => _foreground = value;
+        }
+
+        private ColorReference _repeatButtonBackground;
+        public ColorReference RepeatButtonBackground
+        {
+           get => _theme.Resolve(_repeatButtonBackground);
+           set => _repeatButtonBackground = value;
+        }
 
     }
 
     public class Separator
     {
-        public Color Background { get; set; }
+        private readonly Theme _theme;
+        public Separator(Theme theme)
+        {
+            _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+        }
+
+        private ColorReference _background;
+        public ColorReference Background
+        {
+           get => _theme.Resolve(_background);
+           set => _background = value;
+        }
 
     }
 
     public class TabControl
     {
-        public Color Divider { get; set; }
+        private readonly Theme _theme;
+        public TabControl(Theme theme)
+        {
+            _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+        }
+
+        private ColorReference _divider;
+        public ColorReference Divider
+        {
+           get => _theme.Resolve(_divider);
+           set => _divider = value;
+        }
 
     }
 
     public class ToolBar
     {
-        public Color Background { get; set; }
+        private readonly Theme _theme;
+        public ToolBar(Theme theme)
+        {
+            _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+            Thumbs = new(theme);
+            Items = new(theme);
+            Overflows = new(theme);
+        }
 
-        public Color Separator { get; set; }
+        private ColorReference _background;
+        public ColorReference Background
+        {
+           get => _theme.Resolve(_background);
+           set => _background = value;
+        }
 
-        public Thumb Thumbs { get; set; } = new();
+        private ColorReference _separator;
+        public ColorReference Separator
+        {
+           get => _theme.Resolve(_separator);
+           set => _separator = value;
+        }
 
-        public Item Items { get; set; } = new();
+        public Thumb Thumbs { get; set; }
 
-        public Overflow Overflows { get; set; } = new();
+        public Item Items { get; set; }
+
+        public Overflow Overflows { get; set; }
 
         public class Thumb
         {
-            public Color Foreground { get; set; }
+            private readonly Theme _theme;
+            public Thumb(Theme theme)
+            {
+                _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+            }
+
+            private ColorReference _foreground;
+            public ColorReference Foreground
+            {
+               get => _theme.Resolve(_foreground);
+               set => _foreground = value;
+            }
 
         }
 
         public class Item
         {
-            public Color Background { get; set; }
+            private readonly Theme _theme;
+            public Item(Theme theme)
+            {
+                _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+            }
 
-            public Color Foreground { get; set; }
+            private ColorReference _background;
+            public ColorReference Background
+            {
+               get => _theme.Resolve(_background);
+               set => _background = value;
+            }
+
+            private ColorReference _foreground;
+            public ColorReference Foreground
+            {
+               get => _theme.Resolve(_foreground);
+               set => _foreground = value;
+            }
 
         }
 
         public class Overflow
         {
-            public Color Border { get; set; }
+            private readonly Theme _theme;
+            public Overflow(Theme theme)
+            {
+                _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+            }
+
+            private ColorReference _border;
+            public ColorReference Border
+            {
+               get => _theme.Resolve(_border);
+               set => _border = value;
+            }
 
         }
 
@@ -301,15 +823,43 @@ partial class Theme
 
     public class ToggleButton
     {
-        public Color Background { get; set; }
+        private readonly Theme _theme;
+        public ToggleButton(Theme theme)
+        {
+            _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+            Switches = new(theme);
+        }
 
-        public Color Foreground { get; set; }
+        private ColorReference _background;
+        public ColorReference Background
+        {
+           get => _theme.Resolve(_background);
+           set => _background = value;
+        }
 
-        public Switch Switches { get; set; } = new();
+        private ColorReference _foreground;
+        public ColorReference Foreground
+        {
+           get => _theme.Resolve(_foreground);
+           set => _foreground = value;
+        }
+
+        public Switch Switches { get; set; }
 
         public class Switch
         {
-            public Color TrackOffBackground { get; set; }
+            private readonly Theme _theme;
+            public Switch(Theme theme)
+            {
+                _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+            }
+
+            private ColorReference _trackOffBackground;
+            public ColorReference TrackOffBackground
+            {
+               get => _theme.Resolve(_trackOffBackground);
+               set => _trackOffBackground = value;
+            }
 
         }
 
@@ -317,8 +867,20 @@ partial class Theme
 
     public class ToolTip
     {
-        public Color Background { get; set; }
+        private readonly Theme _theme;
+        public ToolTip(Theme theme)
+        {
+            _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+        }
+
+        private ColorReference _background;
+        public ColorReference Background
+        {
+           get => _theme.Resolve(_background);
+           set => _background = value;
+        }
 
     }
 
 }
+

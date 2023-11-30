@@ -87,7 +87,7 @@ public class MahAppsCustomColorTheme : CustomColorTheme
 
         Theme newTheme = e.NewTheme;
 
-        BaseTheme baseTheme = newTheme.Background.IsLightColor()
+        BaseTheme baseTheme = ((Color)newTheme.Background).IsLightColor()
             ? Wpf.BaseTheme.Light
             : Wpf.BaseTheme.Dark;
 

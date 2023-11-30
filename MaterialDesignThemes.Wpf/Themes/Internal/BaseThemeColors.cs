@@ -2,7 +2,7 @@
 
 namespace MaterialDesignThemes.Wpf.Themes.Internal;
 
-public class BaseThemeColors
+public static class BaseThemeColors
 {
     public static readonly Color Neutral50 = Color.FromArgb(0xFF, 0x21, 0x21, 0x21);
     public static readonly Color Neutral100 = Color.FromArgb(0xFF, 0x32, 0x32, 0x32);

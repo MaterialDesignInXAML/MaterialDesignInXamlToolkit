@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFrameworks>net472;net6.0-windows;net7.0-windows</TargetFrameworks>
+    <TargetFrameworks>net472;net6.0-windows;net7.0-windows;net8.0-windows</TargetFrameworks>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Prefer32Bit Condition="'$(TargetFramework)' == 'net472'">true</Prefer32Bit>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
