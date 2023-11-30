@@ -5,29 +5,17 @@ using MaterialDesignColors.ColorManipulation;
 namespace MaterialDesignColors;
 
 [DebuggerDisplay($"Color: {{{nameof(Color)}}}; Foreground: {{{nameof(ForegroundColor)}}}")]
-public struct ColorPair
+public readonly struct ColorPair(Color color, Color? foregroundColor)
 {
-    public Color Color { get; set; }
+    public static implicit operator ColorPair(Color color) => new(color, null);
 
-    /// <summary>
-    /// The foreground or opposite color. If left null, this will be calculated for you.
-    /// Calculated by calling ColorAssist.ContrastingForegroundColor()
-    /// </summary>
-    public Color? ForegroundColor { get; set; }
+    public Color Color => color;
 
-    public static implicit operator ColorPair(Color color) => new ColorPair(color);
+    public Color? ForegroundColor => foregroundColor;
 
     public ColorPair(Color color)
-    {
-        Color = color;
-        ForegroundColor = null;
-    }
-
-    public ColorPair(Color color, Color? foreground)
-    {
-        Color = color;
-        ForegroundColor = foreground;
-    }
+        : this(color, null)
+    { }
 
     public Color GetForegroundColor() => ForegroundColor ?? Color.ContrastingForegroundColor();
 }

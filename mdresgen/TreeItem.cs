@@ -4,15 +4,13 @@ using System.Diagnostics;
 namespace mdresgen;
 
 [DebuggerDisplay($"{{{nameof(Name)}}} [Values: {{{nameof(Values)}.Count}}] [Children: {{{nameof(Children)}.Count}}]")]
-public class TreeItem<T> : IEnumerable<T>
+public class TreeItem<T>(string name) : IEnumerable<T>
 {
-    public string Name { get; }
+    public string Name { get; } = name;
 
-    public TreeItem(string name) => Name = name;
+    public List<T> Values { get; } = [];
 
-    public List<T> Values { get; } = new();
-
-    public List<TreeItem<T>> Children { get; } = new();
+    public List<TreeItem<T>> Children { get; } = [];
 
     public IEnumerator<T> GetEnumerator()
     {

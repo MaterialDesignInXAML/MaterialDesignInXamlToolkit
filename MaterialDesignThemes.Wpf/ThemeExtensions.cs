@@ -1,4 +1,4 @@
-﻿using System.Windows.Media;
+using System.Windows.Media;
 using MaterialDesignColors;
 using MaterialDesignColors.ColorManipulation;
 
@@ -26,15 +26,8 @@ public static partial class ThemeExtensions
     {
         if (theme is null) throw new ArgumentNullException(nameof(theme));
 
-        var foreground = theme.Background.ContrastingForegroundColor();
-        return foreground == Colors.Black ? BaseTheme.Light : BaseTheme.Dark;
-    }
-
-    public static Theme AdjustColors(this Theme theme)
-    {
-        theme.PrimaryMid = theme.PrimaryMid.Color.EnsureContrastRatio(theme.Background, 4.5f);
-
-        return theme;
+        var foreground = theme.Background.Color?.ContrastingForegroundColor();
+        return foreground == Colors.White ? BaseTheme.Dark : BaseTheme.Light;
     }
 
     public static void SetBaseTheme(this Theme theme, BaseTheme baseTheme)

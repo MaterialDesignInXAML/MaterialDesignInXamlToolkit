@@ -51,4 +51,18 @@ public partial class Theme
     public ColorPair PrimaryLight { get; set; }
     public ColorPair PrimaryMid { get; set; }
     public ColorPair PrimaryDark { get; set; }
+
+    internal ColorReference Resolve(ColorReference colorReference)
+    {
+        return colorReference.ThemeReference switch
+        {
+            ThemeColorReference.SecondaryLight => new ColorReference(colorReference.ThemeReference, SecondaryLight.Color),
+            ThemeColorReference.SecondaryMid => new ColorReference(colorReference.ThemeReference, SecondaryMid.Color),
+            ThemeColorReference.SecondaryDark => new ColorReference(colorReference.ThemeReference, SecondaryDark.Color),
+            ThemeColorReference.PrimaryLight => new ColorReference(colorReference.ThemeReference, PrimaryLight.Color),
+            ThemeColorReference.PrimaryMid => new ColorReference(colorReference.ThemeReference, PrimaryMid.Color),
+            ThemeColorReference.PrimaryDark => new ColorReference(colorReference.ThemeReference, PrimaryDark.Color),
+            _ => colorReference
+        };
+    }
 }
