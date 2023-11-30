@@ -12,6 +12,7 @@
 
     <Nullable>enable</Nullable>
 
+    <AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
     <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
