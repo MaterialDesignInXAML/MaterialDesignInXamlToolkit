@@ -60,6 +60,16 @@ public class TreeListViewItem : ListViewItem
         DependencyProperty.Register(nameof(Level), typeof(int), typeof(TreeListViewItem), new PropertyMetadata(0));
 
 
+
+    public bool DisableExpandOnDoubleClick
+    {
+        get => (bool)GetValue(DisableExpandOnDoubleClickProperty);
+        set => SetValue(DisableExpandOnDoubleClickProperty, value);
+    }
+
+    public static readonly DependencyProperty DisableExpandOnDoubleClickProperty =
+        DependencyProperty.Register("DisableExpandOnDoubleClick", typeof(bool), typeof(TreeListViewItem), new PropertyMetadata(false));
+
     internal IEnumerable? Children
     {
         get => (IEnumerable?)GetValue(ChildrenProperty);
@@ -158,7 +168,7 @@ public class TreeListViewItem : ListViewItem
     protected override void OnMouseDoubleClick(MouseButtonEventArgs e)
     {
         base.OnMouseDoubleClick(e);
-        if (e.ChangedButton == MouseButton.Left)
+        if (!e.Handled && !DisableExpandOnDoubleClick && e.ChangedButton == MouseButton.Left)
         {
             IsExpanded = !IsExpanded;
         }
