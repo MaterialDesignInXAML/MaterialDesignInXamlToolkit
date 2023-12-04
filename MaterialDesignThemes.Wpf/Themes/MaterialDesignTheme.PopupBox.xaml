@@ -120,6 +120,7 @@
                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                           Content="{TemplateBinding ToggleContent}"
                           ContentTemplate="{TemplateBinding ToggleContentTemplate}"
+                          ContentTemplateSelector="{TemplateBinding ToggleContentTemplateSelector}"
                           Cursor="Hand"
                           IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
                           IsTabStop="{TemplateBinding IsTabStop}"
@@ -374,11 +375,13 @@
                 <ContentControl x:Name="StandardToggleContent"
                                 Content="{TemplateBinding ToggleContent}"
                                 ContentTemplate="{TemplateBinding ToggleContentTemplate}"
+                                ContentTemplateSelector="{TemplateBinding ToggleContentTemplateSelector}"
                                 Focusable="False"
                                 Visibility="{TemplateBinding ToggleCheckedContent, Converter={StaticResource InvertedNullVisibilityConverter}}" />
                 <ContentControl x:Name="ExplicitToggleContent"
                                 Content="{TemplateBinding ToggleContent}"
                                 ContentTemplate="{TemplateBinding ToggleContentTemplate}"
+                                ContentTemplateSelector="{TemplateBinding ToggleContentTemplateSelector}"
                                 Focusable="False"
                                 Visibility="{TemplateBinding ToggleCheckedContent, Converter={StaticResource NullVisibilityConverter}}" />
                 <ContentControl x:Name="ExplicitToggleCheckedContent"
