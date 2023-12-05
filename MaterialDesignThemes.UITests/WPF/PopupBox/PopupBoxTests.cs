@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel;
+using System.Windows.Media;
+using MaterialDesignThemes.UITests.Samples.PopupBox;
 
 namespace MaterialDesignThemes.UITests.WPF.PopupBox;
 
@@ -31,6 +33,34 @@ public class PopupBoxTests : TestBase
 
         // Assert
         Assert.Equal(elevation, await card.GetProperty<Elevation?>(ElevationAssist.ElevationProperty));
+
+        recorder.Success();
+    }
+
+    [Fact]
+    public async Task PopupBox_WithContentTemplateSelector_ChangesContent()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        //Arrange
+        IVisualElement grid = (await LoadUserControl<PopupBoxWithTemplateSelector>());
+
+        IVisualElement<Button> button = await grid.GetElement<Button>();
+        IVisualElement<Wpf.PopupBox> popupBox = await grid.GetElement<Wpf.PopupBox>();
+
+
+        // Assert
+        var border = await popupBox.GetElement<Border>();
+        Assert.Equal(Colors.Blue, await border.GetBackgroundColor());
+
+        await button.LeftClick();
+
+        await Wait.For(async () =>
+        {
+            border = await popupBox.GetElement<Border>();
+            Assert.Equal(Colors.Red, await border.GetBackgroundColor());
+        });
+
 
         recorder.Success();
     }
