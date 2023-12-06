@@ -95,23 +95,110 @@
     </Setter>
   </Style>
 
-  <!-- Style variations -->
+  <!-- Raised Button Style variations -->
 
   <Style x:Key="MaterialDesignRaisedSplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignSplitButton}">
     <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignRaisedButton}" />
     <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp2" />
   </Style>
 
+  <Style x:Key="MaterialDesignRaisedLightSplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignRaisedSplitButton}">
+    <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignRaisedLightButton}" />
+  </Style>
+
+  <Style x:Key="MaterialDesignRaisedDarkSplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignRaisedSplitButton}">
+    <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignRaisedDarkButton}" />
+  </Style>
+
+  <Style x:Key="MaterialDesignRaisedSecondarySplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignRaisedSplitButton}">
+    <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignRaisedSecondaryButton}" />
+  </Style>
+
+  <Style x:Key="MaterialDesignRaisedSecondaryLightSplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignRaisedSplitButton}">
+    <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignRaisedSecondaryLightButton}" />
+  </Style>
+
+  <Style x:Key="MaterialDesignRaisedSecondaryDarkSplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignRaisedSplitButton}">
+    <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignRaisedSecondaryDarkButton}" />
+  </Style>
+
+  <!-- Outlined Button Style variations -->
+
   <Style x:Key="MaterialDesignOutlinedSplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignSplitButton}">
     <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignOutlinedButton}" />
   </Style>
+
+  <Style x:Key="MaterialDesignOutlinedLightSplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignOutlinedSplitButton}">
+    <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignOutlinedLightButton}" />
+  </Style>
+
+  <Style x:Key="MaterialDesignOutlinedDarkSplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignOutlinedSplitButton}">
+    <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignOutlinedDarkButton}" />
+  </Style>
+
+  <Style x:Key="MaterialDesignOutlinedSecondarySplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignOutlinedSplitButton}">
+    <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignOutlinedSecondaryButton}" />
+  </Style>
+
+  <Style x:Key="MaterialDesignOutlinedSecondaryLightSplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignOutlinedSplitButton}">
+    <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignOutlinedSecondaryLightButton}" />
+  </Style>
+
+  <Style x:Key="MaterialDesignOutlinedSecondaryDarkSplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignOutlinedSplitButton}">
+    <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignOutlinedSecondaryDarkButton}" />
+  </Style>
+
+
+  <!-- Flat Button Style variations -->
 
   <Style x:Key="MaterialDesignFlatSplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignSplitButton}">
     <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignFlatButton}" />
   </Style>
 
-  <Style x:Key="MaterialDesignPaperSecondaryLightSplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignSplitButton}">
+  <Style x:Key="MaterialDesignFlatLightSplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignFlatSplitButton}">
+    <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignFlatLightButton}" />
+  </Style>
+
+  <Style x:Key="MaterialDesignFlatDarkSplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignFlatSplitButton}">
+    <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignFlatDarkButton}" />
+  </Style>
+
+  <Style x:Key="MaterialDesignFlatSecondarySplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignFlatSplitButton}">
+    <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignFlatSecondaryButton}" />
+  </Style>
+
+  <Style x:Key="MaterialDesignFlatSecondaryLightSplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignFlatSplitButton}">
+    <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignFlatSecondaryLightButton}" />
+  </Style>
+
+  <Style x:Key="MaterialDesignFlatSecondaryDarkSplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignFlatSplitButton}">
+    <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignFlatSecondaryDarkButton}" />
+  </Style>
+
+  <!-- Paper Button Style variations -->
+
+  <Style x:Key="MaterialDesignPaperSplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignSplitButton}">
+    <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignPaperButton}" />
+  </Style>
+
+  <Style x:Key="MaterialDesignPaperLightSplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignPaperSplitButton}">
+    <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignPaperLightButton}" />
+  </Style>
+
+  <Style x:Key="MaterialDesignPaperDarkSplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignPaperSplitButton}">
+    <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignPaperDarkButton}" />
+  </Style>
+
+  <Style x:Key="MaterialDesignPaperSecondarySplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignPaperSplitButton}">
+    <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignPaperSecondaryButton}" />
+  </Style>
+
+  <Style x:Key="MaterialDesignPaperSecondaryLightSplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignPaperSplitButton}">
     <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignPaperSecondaryLightButton}" />
+  </Style>
+
+  <Style x:Key="MaterialDesignPaperSecondaryDarkSplitButton" TargetType="{x:Type wpf:SplitButton}" BasedOn="{StaticResource MaterialDesignPaperSplitButton}">
+    <Setter Property="ButtonStyle" Value="{StaticResource MaterialDesignPaperSecondaryDarkButton}" />
   </Style>
 
 </ResourceDictionary>
