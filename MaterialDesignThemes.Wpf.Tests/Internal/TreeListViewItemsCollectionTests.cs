@@ -643,6 +643,45 @@ public class TreeListViewItemsCollectionTests
         Assert.Null(treeListViewItemsCollection.GetParent(8));
     }
 
+    [Fact]
+    public void GetDirectChildrenIndexes_GetsExpectedChildrenIndexes()
+    {
+        //Arrange
+        ObservableCollection<string> boundCollection = new() { "0", "1", "2" };
+        TreeListViewItemsCollection treeListViewItemsCollection = new(boundCollection);
+        treeListViewItemsCollection.InsertWithLevel(2, "1_0", 1);
+        treeListViewItemsCollection.InsertWithLevel(3, "1_1", 1);
+        treeListViewItemsCollection.InsertWithLevel(4, "1_2", 1);
+        treeListViewItemsCollection.InsertWithLevel(5, "1_2_0", 2);
+        treeListViewItemsCollection.InsertWithLevel(6, "1_2_1", 2);
+        treeListViewItemsCollection.InsertWithLevel(7, "1_2_2", 2);
+
+        /*
+         * 0. 0
+         * 1. 1
+         * 2.  1_0
+         * 3.  1_1
+         * 4.  1_2
+         * 5.    1_2_0
+         * 6.    1_2_1
+         * 7.    1_2_2
+         * 8. 2
+         */
+
+
+        //Act/Assert
+        Assert.Empty(treeListViewItemsCollection.GetDirectChildrenIndexes(0));
+        Assert.Equal(new[] { 2, 3, 4 }, treeListViewItemsCollection.GetDirectChildrenIndexes(1));
+        Assert.Empty(treeListViewItemsCollection.GetDirectChildrenIndexes(2));
+        Assert.Empty(treeListViewItemsCollection.GetDirectChildrenIndexes(3));
+        Assert.Equal(new[] { 5, 6, 7 }, treeListViewItemsCollection.GetDirectChildrenIndexes(4));
+        Assert.Empty(treeListViewItemsCollection.GetDirectChildrenIndexes(5));
+        Assert.Empty(treeListViewItemsCollection.GetDirectChildrenIndexes(6));
+        Assert.Empty(treeListViewItemsCollection.GetDirectChildrenIndexes(7));
+        Assert.Empty(treeListViewItemsCollection.GetDirectChildrenIndexes(8));
+        
+    }
+
     private class TestableCollection<T> : ObservableCollection<T>
     {
         private int _blockCollectionChanges;
