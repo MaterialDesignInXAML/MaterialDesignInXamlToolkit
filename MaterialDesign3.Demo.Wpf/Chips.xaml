@@ -159,7 +159,7 @@
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_12">
-          <CheckBox IsChecked="True" Style="{StaticResource MaterialDesignFilterChipAccentCheckBox}">Secondary</CheckBox>
+          <CheckBox IsChecked="True" Style="{StaticResource MaterialDesignFilterChipSecondaryCheckBox}">Secondary</CheckBox>
         </smtx:XamlDisplay>
       </WrapPanel>
 
@@ -179,7 +179,7 @@
         <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_15">
           <CheckBox Content="Secondary Outline"
                     IsChecked="True"
-                    Style="{StaticResource MaterialDesignFilterChipAccentOutlineCheckBox}" />
+                    Style="{StaticResource MaterialDesignFilterChipSecondaryOutlineCheckBox}" />
         </smtx:XamlDisplay>
       </WrapPanel>
 
@@ -208,7 +208,7 @@
 
         <materialDesign:Card Margin="4">
           <smtx:XamlDisplay Margin="4" UniqueKey="chips_18">
-            <ListBox Style="{StaticResource MaterialDesignFilterChipAccentListBox}">
+            <ListBox Style="{StaticResource MaterialDesignFilterChipSecondaryListBox}">
               <ListBoxItem Content="Mercury" />
               <ListBoxItem Content="Venus" IsSelected="True" />
               <ListBoxItem Content="Earth" />
@@ -243,7 +243,7 @@
 
         <materialDesign:Card Margin="4">
           <smtx:XamlDisplay Margin="4" UniqueKey="chips_21">
-            <ListBox Style="{StaticResource MaterialDesignFilterChipAccentOutlineListBox}">
+            <ListBox Style="{StaticResource MaterialDesignFilterChipSecondaryOutlineListBox}">
               <ListBoxItem Content="Mercury" />
               <ListBoxItem Content="Venus" IsSelected="True" />
               <ListBoxItem Content="Earth" />
@@ -279,7 +279,7 @@
         <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_24">
           <RadioButton Content="Secondary"
                        GroupName="GroupChoiceChip"
-                       Style="{StaticResource MaterialDesignChoiceChipAccentRadioButton}" />
+                       Style="{StaticResource MaterialDesignChoiceChipSecondaryRadioButton}" />
         </smtx:XamlDisplay>
       </WrapPanel>
 
@@ -300,7 +300,7 @@
         <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_27">
           <RadioButton Content="Secondary Outline"
                        GroupName="GroupChoiceChipOutline"
-                       Style="{StaticResource MaterialDesignChoiceChipAccentOutlineRadioButton}" />
+                       Style="{StaticResource MaterialDesignChoiceChipSecondaryOutlineRadioButton}" />
         </smtx:XamlDisplay>
       </WrapPanel>
 
@@ -329,7 +329,7 @@
 
         <materialDesign:Card Margin="4">
           <smtx:XamlDisplay Margin="0,0,6,4" UniqueKey="chips_30">
-            <ListBox x:Name="RadioButtonGroupChoiceChipAccent" Style="{StaticResource MaterialDesignChoiceChipAccentListBox}">
+            <ListBox x:Name="RadioButtonGroupChoiceChipSecondary" Style="{StaticResource MaterialDesignChoiceChipSecondaryListBox}">
               <ListBoxItem Content="Mercury" />
               <ListBoxItem Content="Venus" IsSelected="True" />
               <ListBoxItem Content="Earth" />
@@ -364,7 +364,7 @@
 
         <materialDesign:Card Margin="4">
           <smtx:XamlDisplay Margin="0,0,6,4" UniqueKey="chips_33">
-            <ListBox x:Name="RadioButtonGroupChoiceChipAccentOutline" Style="{StaticResource MaterialDesignChoiceChipAccentOutlineListBox}">
+            <ListBox x:Name="RadioButtonGroupChoiceChipSecondaryOutline" Style="{StaticResource MaterialDesignChoiceChipSecondaryOutlineListBox}">
               <ListBoxItem Content="Mercury" />
               <ListBoxItem Content="Venus" IsSelected="True" />
               <ListBoxItem Content="Earth" />

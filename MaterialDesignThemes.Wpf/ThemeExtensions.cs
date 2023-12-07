@@ -66,11 +66,11 @@ public static partial class ThemeExtensions
         theme.PrimaryDark = primaryColor.Darken();
     }
 
-    public static void SetSecondaryColor(this Theme theme, Color accentColor)
+    public static void SetSecondaryColor(this Theme theme, Color secondaryColor)
     {
         if (theme is null) throw new ArgumentNullException(nameof(theme));
-        theme.SecondaryLight = accentColor.Lighten();
-        theme.SecondaryMid = accentColor;
-        theme.SecondaryDark = accentColor.Darken();
+        theme.SecondaryLight = secondaryColor.Lighten();
+        theme.SecondaryMid = secondaryColor;
+        theme.SecondaryDark = secondaryColor.Darken();
     }
 }

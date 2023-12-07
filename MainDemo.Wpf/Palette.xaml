@@ -56,7 +56,7 @@
             Grid.Column="0"
             Grid.ColumnSpan="3"
             Background="{DynamicResource SecondaryHueMidBrush}">
-      <TextBlock Foreground="{DynamicResource SecondaryHueMidForegroundBrush}" Text="Accent" />
+      <TextBlock Foreground="{DynamicResource SecondaryHueMidForegroundBrush}" Text="Secondary" />
     </Border>
   </Grid>
 </UserControl>

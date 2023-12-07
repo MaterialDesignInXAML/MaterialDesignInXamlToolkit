@@ -17,13 +17,13 @@ public class PaletteSelectorViewModel : ViewModelBase
     private static void ApplyPrimary(Swatch swatch)
         => ModifyTheme(theme => theme.SetPrimaryColor(swatch.ExemplarHue.Color));
 
-    public ICommand ApplyAccentCommand { get; } = new AnotherCommandImplementation(o => ApplyAccent((Swatch)o!));
+    public ICommand ApplySecondaryCommand { get; } = new AnotherCommandImplementation(o => ApplySecondary((Swatch)o!));
 
-    private static void ApplyAccent(Swatch swatch)
+    private static void ApplySecondary(Swatch swatch)
     {
-        if (swatch is { AccentExemplarHue: not null })
+        if (swatch is { SecondaryExemplarHue: not null })
         {
-            ModifyTheme(theme => theme.SetSecondaryColor(swatch.AccentExemplarHue.Color));
+            ModifyTheme(theme => theme.SetSecondaryColor(swatch.SecondaryExemplarHue.Color));
         }
     }
 

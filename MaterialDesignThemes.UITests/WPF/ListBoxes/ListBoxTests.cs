@@ -52,16 +52,16 @@ public class ListBoxTests : TestBase
     [Description("Issue 1994")]
     [InlineData("MaterialDesignFilterChipListBox")]
     [InlineData("MaterialDesignFilterChipPrimaryListBox")]
-    [InlineData("MaterialDesignFilterChipAccentListBox")]
+    [InlineData("MaterialDesignFilterChipSecondaryListBox")]
     [InlineData("MaterialDesignFilterChipOutlineListBox")]
     [InlineData("MaterialDesignFilterChipPrimaryOutlineListBox")]
-    [InlineData("MaterialDesignFilterChipAccentOutlineListBox")]
+    [InlineData("MaterialDesignFilterChipSecondaryOutlineListBox")]
     [InlineData("MaterialDesignChoiceChipListBox")]
     [InlineData("MaterialDesignChoiceChipPrimaryListBox")]
-    [InlineData("MaterialDesignChoiceChipAccentListBox")]
+    [InlineData("MaterialDesignChoiceChipSecondaryListBox")]
     [InlineData("MaterialDesignChoiceChipOutlineListBox")]
     [InlineData("MaterialDesignChoiceChipPrimaryOutlineListBox")]
-    [InlineData("MaterialDesignChoiceChipAccentOutlineListBox")]
+    [InlineData("MaterialDesignChoiceChipSecondaryOutlineListBox")]
     public async Task OnClickChoiceChipListBox_ChangesSelectedItem(string listBoxStyle)
     {
         await using var recorder = new TestRecorder(App);

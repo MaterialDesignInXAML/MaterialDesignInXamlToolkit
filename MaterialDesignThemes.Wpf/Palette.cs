@@ -7,19 +7,19 @@ namespace MaterialDesignThemes.Wpf;
 /// </summary>
 public class Palette
 {
-    public Palette(Swatch primarySwatch, Swatch accentSwatch, int primaryLightHueIndex, int primaryMidHueIndex, int primaryDarkHueIndex, int accentHueIndex)
+    public Palette(Swatch primarySwatch, Swatch secondarySwatch, int primaryLightHueIndex, int primaryMidHueIndex, int primaryDarkHueIndex, int secondaryHueIndex)
     {
         PrimarySwatch = primarySwatch;
-        AccentSwatch = accentSwatch;
+        SecondarySwatch = secondarySwatch;
         PrimaryLightHueIndex = primaryLightHueIndex;
         PrimaryMidHueIndex = primaryMidHueIndex;
         PrimaryDarkHueIndex = primaryDarkHueIndex;
-        AccentHueIndex = accentHueIndex;
+        SecondaryHueIndex = secondaryHueIndex;
     }
 
     public Swatch PrimarySwatch { get; }
 
-    public Swatch AccentSwatch { get; }
+    public Swatch SecondarySwatch { get; }
 
     public int PrimaryLightHueIndex { get; }
 
@@ -27,5 +27,5 @@ public class Palette
 
     public int PrimaryDarkHueIndex { get; }
 
-    public int AccentHueIndex { get; }
+    public int SecondaryHueIndex { get; }
 }

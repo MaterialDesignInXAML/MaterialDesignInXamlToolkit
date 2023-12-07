@@ -31,4 +31,7 @@
   <ItemGroup>
     <Using Remove="System.Windows.*" />
   </ItemGroup>
+  <ItemGroup>
+    <Page Remove="RecommendedSecondaryTemplate.xaml" />
+  </ItemGroup>
 </Project>

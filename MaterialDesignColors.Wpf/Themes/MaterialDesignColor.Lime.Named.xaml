@@ -1,6 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
   <Color x:Key="LimePrimary50">#f9fbe7</Color>
   <Color x:Key="LimePrimary50Foreground">#DD000000</Color>
   <Color x:Key="LimePrimary100">#f0f4c3</Color>
@@ -21,12 +20,12 @@
   <Color x:Key="LimePrimary800Foreground">#DD000000</Color>
   <Color x:Key="LimePrimary900">#827717</Color>
   <Color x:Key="LimePrimary900Foreground">#DDFFFFFF</Color>
-  <Color x:Key="LimeAccent100">#f4ff81</Color>
-  <Color x:Key="LimeAccent100Foreground">#DD000000</Color>
-  <Color x:Key="LimeAccent200">#eeff41</Color>
-  <Color x:Key="LimeAccent200Foreground">#DD000000</Color>
-  <Color x:Key="LimeAccent400">#c6ff00</Color>
-  <Color x:Key="LimeAccent400Foreground">#DD000000</Color>
-  <Color x:Key="LimeAccent700">#aeea00</Color>
-  <Color x:Key="LimeAccent700Foreground">#DD000000</Color>
+  <Color x:Key="LimeSecondary100">#f4ff81</Color>
+  <Color x:Key="LimeSecondary100Foreground">#DD000000</Color>
+  <Color x:Key="LimeSecondary200">#eeff41</Color>
+  <Color x:Key="LimeSecondary200Foreground">#DD000000</Color>
+  <Color x:Key="LimeSecondary400">#c6ff00</Color>
+  <Color x:Key="LimeSecondary400Foreground">#DD000000</Color>
+  <Color x:Key="LimeSecondary700">#aeea00</Color>
+  <Color x:Key="LimeSecondary700Foreground">#DD000000</Color>
 </ResourceDictionary>

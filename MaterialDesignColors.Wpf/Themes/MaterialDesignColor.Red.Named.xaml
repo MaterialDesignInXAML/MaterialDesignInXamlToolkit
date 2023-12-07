@@ -1,6 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
   <Color x:Key="RedPrimary50">#ffebee</Color>
   <Color x:Key="RedPrimary50Foreground">#DD000000</Color>
   <Color x:Key="RedPrimary100">#ffcdd2</Color>
@@ -21,12 +20,12 @@
   <Color x:Key="RedPrimary800Foreground">#DDFFFFFF</Color>
   <Color x:Key="RedPrimary900">#b71c1c</Color>
   <Color x:Key="RedPrimary900Foreground">#DDFFFFFF</Color>
-  <Color x:Key="RedAccent100">#ff8a80</Color>
-  <Color x:Key="RedAccent100Foreground">#DD000000</Color>
-  <Color x:Key="RedAccent200">#ff5252</Color>
-  <Color x:Key="RedAccent200Foreground">#FFFFFFFF</Color>
-  <Color x:Key="RedAccent400">#ff1744</Color>
-  <Color x:Key="RedAccent400Foreground">#DDFFFFFF</Color>
-  <Color x:Key="RedAccent700">#d50000</Color>
-  <Color x:Key="RedAccent700Foreground">#DDFFFFFF</Color>
+  <Color x:Key="RedSecondary100">#ff8a80</Color>
+  <Color x:Key="RedSecondary100Foreground">#DD000000</Color>
+  <Color x:Key="RedSecondary200">#ff5252</Color>
+  <Color x:Key="RedSecondary200Foreground">#FFFFFFFF</Color>
+  <Color x:Key="RedSecondary400">#ff1744</Color>
+  <Color x:Key="RedSecondary400Foreground">#DDFFFFFF</Color>
+  <Color x:Key="RedSecondary700">#d50000</Color>
+  <Color x:Key="RedSecondary700Foreground">#DDFFFFFF</Color>
 </ResourceDictionary>

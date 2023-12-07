@@ -15,14 +15,14 @@ public class Program
 
 
     private const string XamlPrimaryFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Primary.xaml";
-    private const string XamlAccentFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Accent.xaml";
+    private const string XamlSecondaryFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Secondary.xaml";
     private const string XamlPrimaryNamedFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Named.Primary.xaml";
-    private const string XamlAccentNamedFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Named.Accent.xaml";
+    private const string XamlSecondaryNamedFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\MaterialDesignColor.{0}.Named.Secondary.xaml";
 
     private const string RecommendedPrimaryFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\Recommended\Primary\MaterialDesignColor.{0}.xaml";
-    private const string RecommendedAccentFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\Recommended\Accent\MaterialDesignColor.{0}.xaml";
+    private const string RecommendedSecondaryFileFormat = @"..\..\..\..\MaterialDesignColors.Wpf\Themes\Recommended\Secondary\MaterialDesignColor.{0}.xaml";
     private const string RecommendedPrimaryTemplateLocation = "RecommendedPrimaryTemplate.xaml";
-    private const string RecommendedAccentTemplateLocation = "RecommendedAccentTemplate.xaml";
+    private const string RecommendedSecondaryTemplateLocation = "RecommendedSecondaryTemplate.xaml";
 
     private static readonly IDictionary<string, Color> ClassNameToForegroundIndex = new Dictionary<string, Color>
     {
@@ -106,32 +106,28 @@ public class Program
             for (var i = 0; i < palette.Hexes?.Length; i++)
             {
                 var colorName = shortName + palettes.Shades?[i];
-                colors.AppendLine($"\t\tpublic static Color {colorName} {{ get; }} = (Color)ColorConverter.ConvertFromString(\"{palette.Hexes[i]}\");");
-                hueNames.AppendLine($"\t\t\t{{ MaterialDesignColor.{colorName}, {colorName} }},");
+                colors.AppendLine($"\tpublic static Color {colorName} {{ get; }} = (Color)ColorConverter.ConvertFromString(\"{palette.Hexes[i]}\");");
+                hueNames.AppendLine($"\t\t{{ MaterialDesignColor.{colorName}, {colorName} }},");
             }
 
-            sb.AppendLine("using System.Collections.Generic;");
             sb.AppendLine("using System.Windows.Media;");
-            sb.AppendLine("using MaterialDesignColors.Wpf;");
             sb.AppendLine();
-            sb.AppendLine("namespace MaterialDesignColors.Recommended");
+            sb.AppendLine("namespace MaterialDesignColors.Recommended;");
+            sb.AppendLine($"public class {shortName}Swatch : ISwatch");
             sb.AppendLine("{");
-            sb.AppendLine($"\tpublic class {shortName}Swatch : ISwatch");
-            sb.AppendLine("\t{");
             sb.Append(colors.ToString());
             sb.AppendLine();
-            sb.AppendLine($"\t\tpublic string Name {{ get; }} = \"{palette.Name}\";");
+            sb.AppendLine($"\tpublic string Name {{ get; }} = \"{palette.Name}\";");
             sb.AppendLine();
-            sb.AppendLine("\t\tpublic IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>");
-            sb.AppendLine("\t\t{");
+            sb.AppendLine("\tpublic IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>");
+            sb.AppendLine("\t{");
             sb.Append(hueNames.ToString());
-            sb.AppendLine("\t\t};"); // Lookup
+            sb.AppendLine("\t};"); // Lookup
             sb.AppendLine();
-            sb.AppendLine("\t\tpublic IEnumerable<Color> Hues => Lookup.Values;");
-            sb.AppendLine("\t}"); // class
-            sb.AppendLine("}"); // namespace
+            sb.AppendLine("\tpublic IEnumerable<Color> Hues => Lookup.Values;");
+            sb.AppendLine("}"); // class
 
-            File.WriteAllText($@"..\..\..\MaterialDesignColors.Wpf\Recommended\{shortName}Swatch.cs",
+            File.WriteAllText($@"..\..\..\..\MaterialDesignColors.Wpf\Recommended\{shortName}Swatch.cs",
                 sb.ToString());
         }
     }
@@ -142,22 +138,22 @@ public class Program
         Console.WriteLine();
 
         var recommendedPrimary = File.ReadAllText(RecommendedPrimaryTemplateLocation);
-        var recommendedAccent = File.ReadAllText(RecommendedAccentTemplateLocation);
+        var recommendedSecondary = File.ReadAllText(RecommendedSecondaryTemplateLocation);
 
         foreach (var color in xDocument.Elements("section"))
         {
             bool primaryEmpty;
-            bool accentEmpty;
+            bool secondaryEmpty;
 
             var primary = ToResourceDictionary(color, out primaryEmpty, named, ColorMode.PrimaryOnly);
-            var accent = ToResourceDictionary(color, out accentEmpty, named, ColorMode.AccentOnly);
+            var secondary = ToResourceDictionary(color, out secondaryEmpty, named, ColorMode.SecondaryOnly);
 
             var longColor = primary.Item1;
             var shortColor = longColor.Replace(" ", "");
 
             if (string.Compare(shortColor, "black", StringComparison.InvariantCultureIgnoreCase) == 0) continue;
 
-            Console.WriteLine("{0} \t Primary: {1} \t Accent: {2}", longColor.PadRight(15, ' '), !primaryEmpty, !accentEmpty);
+            Console.WriteLine("{0} \t Primary: {1} \t Secondary: {2}", longColor.PadRight(15, ' '), !primaryEmpty, !secondaryEmpty);
 
             if (!primaryEmpty)
             {
@@ -173,17 +169,17 @@ public class Program
                     );
             }
 
-            if (!accentEmpty)
+            if (!secondaryEmpty)
             {
-                accent.Item2.Save(
+                secondary.Item2.Save(
                     string.Format(
-                        named ? XamlAccentNamedFileFormat : XamlAccentFileFormat,
+                        named ? XamlSecondaryNamedFileFormat : XamlSecondaryFileFormat,
                         shortColor
                         ));
 
                 File.WriteAllText(
-                    string.Format(RecommendedAccentFileFormat, shortColor),
-                    recommendedAccent.Replace("$COLOR", shortColor).Replace("$LONG_COLOR", longColor)
+                    string.Format(RecommendedSecondaryFileFormat, shortColor),
+                    recommendedSecondary.Replace("$COLOR", shortColor).Replace("$LONG_COLOR", longColor)
                     );
             }
         }
@@ -234,7 +230,7 @@ public class Program
         var prefix = "Primary";
         if (name.StartsWith("A"))
         {
-            prefix = "Accent";
+            prefix = "Secondary";
             name = name.Skip(1).Aggregate("", (current, next) => current + next);
         }
 
@@ -299,12 +295,12 @@ public class Program
             if (mode == ColorMode.PrimaryOnly)
                 return false;
 
-            prefix = "Accent";
+            prefix = "Secondary";
             name = name.Skip(1).Aggregate("", (current, next) => current + next);
         }
         else
         {
-            if (mode == ColorMode.AccentOnly)
+            if (mode == ColorMode.SecondaryOnly)
                 return false;
         }
 
@@ -341,6 +337,6 @@ public class Program
     {
         All,
         PrimaryOnly,
-        AccentOnly
+        SecondaryOnly
     }
 }

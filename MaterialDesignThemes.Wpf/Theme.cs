@@ -31,13 +31,13 @@ public partial class Theme
         }
     }
 
-    public static Theme Create(BaseTheme baseTheme, Color primary, Color accent)
+    public static Theme Create(BaseTheme baseTheme, Color primary, Color secondary)
     {
         Theme theme = new();
 
         theme.SetBaseTheme(baseTheme);
         theme.SetPrimaryColor(primary);
-        theme.SetSecondaryColor(accent);
+        theme.SetSecondaryColor(secondary);
 
         return theme;
     }

@@ -496,10 +496,4 @@
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
   </Style>
-
-  <!-- Obsolete -->
-  <Style x:Key="MaterialDesignMultiFloatingActionAccentPopupBox"
-         TargetType="{x:Type wpf:PopupBox}"
-         BasedOn="{StaticResource MaterialDesignMultiFloatingActionSecondaryPopupBox}" />
-
 </ResourceDictionary>

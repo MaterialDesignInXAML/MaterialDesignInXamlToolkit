@@ -19,8 +19,8 @@ public partial class App : Application
 
         //This is an alternate way to initialize MaterialDesignInXAML if you don't use the MaterialDesignResourceDictionary in App.xaml
         //Color primaryColor = SwatchHelper.Lookup[MaterialDesignColor.DeepPurple];
-        //Color accentColor = SwatchHelper.Lookup[MaterialDesignColor.Lime];
-        //ITheme theme = Theme.Create(new MaterialDesignLightTheme(), primaryColor, accentColor);
+        //Color secondaryColor = SwatchHelper.Lookup[MaterialDesignColor.Lime];
+        //ITheme theme = Theme.Create(new MaterialDesignLightTheme(), primaryColor, secondaryColor);
         //Resources.SetTheme(theme);
 
 

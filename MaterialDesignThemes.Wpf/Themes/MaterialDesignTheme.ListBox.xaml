@@ -562,11 +562,6 @@
 
   </Style>
 
-  <!-- Obsolete -->
-  <Style x:Key="MaterialDesignNavigationAccentListBoxItem"
-         TargetType="{x:Type ListBoxItem}"
-         BasedOn="{StaticResource MaterialDesignNavigationSecondaryListBoxItem}" />
-
   <Style x:Key="MaterialDesignNavigationListBox"
          TargetType="{x:Type ListBox}"
          BasedOn="{StaticResource MaterialDesignListBox}">
@@ -584,11 +579,6 @@
          BasedOn="{StaticResource MaterialDesignListBox}">
     <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignNavigationSecondaryListBoxItem}" />
   </Style>
-
-  <!-- Obsolete -->
-  <Style x:Key="MaterialDesignNavigationAccentListBox"
-         TargetType="{x:Type ListBox}"
-         BasedOn="{StaticResource MaterialDesignNavigationSecondaryListBox}" />
 
   <!--#endregion-->
 
@@ -712,21 +702,11 @@
     </Setter>
   </Style>
 
-  <!-- Obsolete -->
-  <Style x:Key="MaterialDesignFilterChipAccentListBoxItem"
-         TargetType="{x:Type ListBoxItem}"
-         BasedOn="{StaticResource MaterialDesignFilterChipSecondaryListBoxItem}" />
-
   <Style x:Key="MaterialDesignFilterChipSecondaryListBox"
          TargetType="{x:Type ListBox}"
          BasedOn="{StaticResource MaterialDesignFilterChipListBox}">
     <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipSecondaryListBoxItem}" />
   </Style>
-
-  <!-- Obsolete -->
-  <Style x:Key="MaterialDesignFilterChipAccentListBox"
-         TargetType="{x:Type ListBox}"
-         BasedOn="{StaticResource MaterialDesignFilterChipSecondaryListBox}" />
 
   <Style x:Key="MaterialDesignFilterChipOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
     <Setter Property="Template">
@@ -800,20 +780,11 @@
     </Setter>
   </Style>
 
-  <!-- Obsolete -->
-  <Style x:Key="MaterialDesignFilterChipAccentOutlineListBoxItem"
-         TargetType="{x:Type ListBoxItem}"
-         BasedOn="{StaticResource MaterialDesignFilterChipSecondaryOutlineListBoxItem}" />
-
   <Style x:Key="MaterialDesignFilterChipSecondaryOutlineListBox"
          TargetType="{x:Type ListBox}"
          BasedOn="{StaticResource MaterialDesignFilterChipListBox}">
     <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignFilterChipSecondaryOutlineListBoxItem}" />
   </Style>
-
-  <Style x:Key="MaterialDesignFilterChipAccentOutlineListBox"
-         TargetType="{x:Type ListBox}"
-         BasedOn="{StaticResource MaterialDesignFilterChipSecondaryOutlineListBox}" />
 
   <!--#endregion-->
 
@@ -894,21 +865,11 @@
     </Setter>
   </Style>
 
-  <!-- Obsolete -->
-  <Style x:Key="MaterialDesignChoiceChipAccentListBoxItem"
-         TargetType="{x:Type ListBoxItem}"
-         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryListBoxItem}" />
-
   <Style x:Key="MaterialDesignChoiceChipSecondaryListBox"
          TargetType="{x:Type ListBox}"
          BasedOn="{StaticResource MaterialDesignChoiceChipListBox}">
     <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignChoiceChipSecondaryListBoxItem}" />
   </Style>
-
-  <!-- Obsolete -->
-  <Style x:Key="MaterialDesignChoiceChipAccentListBox"
-         TargetType="{x:Type ListBox}"
-         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryListBox}" />
 
   <Style x:Key="MaterialDesignChoiceChipOutlineListBoxItem" TargetType="{x:Type ListBoxItem}">
     <Setter Property="Template">
@@ -985,21 +946,11 @@
     </Setter>
   </Style>
 
-  <!-- Obsolete -->
-  <Style x:Key="MaterialDesignChoiceChipAccentOutlineListBoxItem"
-         TargetType="{x:Type ListBoxItem}"
-         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryOutlineListBoxItem}" />
-
   <Style x:Key="MaterialDesignChoiceChipSecondaryOutlineListBox"
          TargetType="{x:Type ListBox}"
          BasedOn="{StaticResource MaterialDesignChoiceChipListBox}">
     <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignChoiceChipSecondaryOutlineListBoxItem}" />
   </Style>
-
-  <!-- Obsolete -->
-  <Style x:Key="MaterialDesignChoiceChipAccentOutlineListBox"
-         TargetType="{x:Type ListBox}"
-         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryOutlineListBox}" />
 
   <!--#endregion-->
 </ResourceDictionary>
