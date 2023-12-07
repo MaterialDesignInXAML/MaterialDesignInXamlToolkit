@@ -166,11 +166,6 @@
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark.Foreground}" />
   </Style>
 
-  <!-- Obsolete -->
-  <Style x:Key="MaterialDesignRaisedAccentButton"
-         TargetType="{x:Type ButtonBase}"
-         BasedOn="{StaticResource MaterialDesignRaisedSecondaryButton}" />
-
   <!--#endregion-->
   <!--#region Flat Button-->
   <Style x:Key="MaterialDesignFlatButton" TargetType="{x:Type ButtonBase}">
@@ -294,11 +289,6 @@
     <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
   </Style>
 
-  <!-- Obsolete -->
-  <Style x:Key="MaterialDesignFlatAccentButton"
-         TargetType="{x:Type ButtonBase}"
-         BasedOn="{StaticResource MaterialDesignFlatSecondaryButton}" />
-
   <Style x:Key="MaterialDesignFlatLightBgButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignRaisedLightButton}">
@@ -337,11 +327,6 @@
          BasedOn="{StaticResource MaterialDesignRaisedSecondaryDarkButton}">
     <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp0" />
   </Style>
-
-  <!-- Obsolete -->
-  <Style x:Key="MaterialDesignFlatAccentBgButton"
-         TargetType="{x:Type ButtonBase}"
-         BasedOn="{StaticResource MaterialDesignFlatSecondaryMidBgButton}" />
 
   <!--#endregion-->
   <!--#region Outlined Button-->
@@ -674,11 +659,6 @@
     <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
   </Style>
 
-  <!-- Obsolete -->
-  <Style x:Key="MaterialDesignFloatingActionMiniAccentButton"
-         TargetType="{x:Type ButtonBase}"
-         BasedOn="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}" />
-
   <Style x:Key="MaterialDesignFloatingActionLightButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignFloatingActionButton}">
@@ -723,11 +703,6 @@
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark.Foreground}" />
     <Setter Property="wpf:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
   </Style>
-
-  <!-- Obsolete -->
-  <Style x:Key="MaterialDesignFloatingActionAccentButton"
-         TargetType="{x:Type ButtonBase}"
-         BasedOn="{StaticResource MaterialDesignFloatingActionSecondaryButton}" />
 
   <!--#endregion-->
   <!--#region Icon Button-->

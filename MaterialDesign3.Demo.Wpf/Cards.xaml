@@ -38,7 +38,7 @@
                   Margin="0,0,16,-20"
                   HorizontalAlignment="Right"
                   VerticalAlignment="Bottom"
-                  Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
+                  Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}">
             <materialDesign:PackIcon Kind="Bike" />
           </Button>
           <StackPanel Grid.Row="1" Margin="8,24,8,0">
@@ -94,7 +94,7 @@
                   Margin="0,0,16,-20"
                   HorizontalAlignment="Right"
                   VerticalAlignment="Bottom"
-                  Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
+                  Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}">
             <materialDesign:PackIcon Kind="ShareVariant" />
           </Button>
           <StackPanel Grid.Row="1" Margin="8,24,8,4">
