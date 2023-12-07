@@ -45,7 +45,7 @@ public class TreeListViewItemsCollection : ObservableCollection<object?>
 
             if (priorRootLevelItems > index)
             {
-                // We've have passed the provided index, which means we've found a non-prior root level item; bail out.
+                // We've have passed the provided index, which means we've found a non-prior root parentLevel item; bail out.
                 break;
             }
         }
@@ -65,7 +65,7 @@ public class TreeListViewItemsCollection : ObservableCollection<object?>
     {
         if (level < 0) throw new ArgumentOutOfRangeException(nameof(level), level, "Item level must not be negative");
 
-        //Always allowed to request previous item level + 1 as this is inserting a "child"
+        //Always allowed to request previous item parentLevel + 1 as this is inserting a "child"
         int previousItemLevel = index > 0 ? ItemLevels[index - 1] : -1;
         if (level > previousItemLevel + 1)
         {
@@ -98,6 +98,31 @@ public class TreeListViewItemsCollection : ObservableCollection<object?>
             }
         }
         return null;
+    }
+
+    public IEnumerable<int> GetDirectChildrenIndexes(int index)
+    {
+        if (index < 0 || index >= Count) throw new ArgumentOutOfRangeException(nameof(index));
+
+        return GetDirectChildrenIndexesImplementation(index);
+
+        IEnumerable<int> GetDirectChildrenIndexesImplementation(int index)
+        {
+            int parentLevel = ItemLevels[index];
+
+            for (int i = index + 1; i < ItemLevels.Count; i++)
+            {
+                int level = ItemLevels[i];
+                if (level == parentLevel + 1)
+                {
+                    yield return i;
+                }
+                if (level <= parentLevel)
+                {
+                    yield break;
+                }
+            }
+        }
     }
 
     protected override void RemoveItem(int index)

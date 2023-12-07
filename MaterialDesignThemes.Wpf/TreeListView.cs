@@ -18,7 +18,7 @@ public class TreeListView : ListView
     public static readonly DependencyProperty LevelIndentSizeProperty =
         DependencyProperty.Register(nameof(LevelIndentSize), typeof(double), typeof(TreeListView), new PropertyMetadata(16.0));
 
-    private TreeListViewItemsCollection? InternalItemsSource { get; set; }
+    internal TreeListViewItemsCollection? InternalItemsSource { get; set; }
 
     static TreeListView()
     {
