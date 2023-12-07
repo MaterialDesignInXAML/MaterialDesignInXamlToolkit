@@ -34,7 +34,7 @@
       <Button Grid.Row="1"
               HorizontalAlignment="Right"
               Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
-              Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
+              Style="{StaticResource MaterialDesignFloatingActionSecondaryButton}">
         <materialDesign:PackIcon Kind="StepForward" />
       </Button>
     </Grid>
