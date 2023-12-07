@@ -70,6 +70,42 @@ public class SplitButton : Button
         set => SetValue(PopupContentTemplateSelectorProperty, value);
     }
 
+    public static readonly DependencyProperty SplitContentProperty = DependencyProperty.Register(
+        nameof(SplitContent), typeof(object), typeof(SplitButton), new PropertyMetadata(default(object)));
+
+    public object SplitContent
+    {
+        get => GetValue(SplitContentProperty);
+        set => SetValue(SplitContentProperty, value);
+    }
+
+    public static readonly DependencyProperty SplitContentStringFormatProperty = DependencyProperty.Register(
+        nameof(SplitContentStringFormat), typeof(string), typeof(SplitButton), new PropertyMetadata(default(string)));
+
+    public string SplitContentStringFormat
+    {
+        get => (string)GetValue(SplitContentStringFormatProperty);
+        set => SetValue(SplitContentStringFormatProperty, value);
+    }
+
+    public static readonly DependencyProperty SplitContentTemplateProperty = DependencyProperty.Register(
+        nameof(SplitContentTemplate), typeof(DataTemplate), typeof(SplitButton), new PropertyMetadata(default(DataTemplate)));
+
+    public DataTemplate SplitContentTemplate
+    {
+        get => (DataTemplate)GetValue(SplitContentTemplateProperty);
+        set => SetValue(SplitContentTemplateProperty, value);
+    }
+
+    public static readonly DependencyProperty SplitContentTemplateSelectorProperty = DependencyProperty.Register(
+        nameof(SplitContentTemplateSelector), typeof(DataTemplateSelector), typeof(SplitButton), new PropertyMetadata(default(DataTemplateSelector)));
+
+    public DataTemplateSelector SplitContentTemplateSelector
+    {
+        get => (DataTemplateSelector)GetValue(SplitContentTemplateSelectorProperty);
+        set => SetValue(SplitContentTemplateSelectorProperty, value);
+    }
+
     internal static readonly DependencyProperty ButtonStyleProperty = DependencyProperty.Register(
         nameof(ButtonStyle), typeof(Style), typeof(SplitButton), new PropertyMetadata(default(Style)));
 

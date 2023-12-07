@@ -25,6 +25,13 @@
     <Setter Property="wpf:ButtonAssist.CornerRadius" Value="2" />
     <Setter Property="wpf:RippleAssist.Feedback" Value="White" />
     <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp0" />
+    <Setter Property="SplitContentTemplate">
+      <Setter.Value>
+        <DataTemplate>
+          <wpf:PackIcon Kind="ChevronDown" />
+        </DataTemplate>
+      </Setter.Value>
+    </Setter>
 
     <Setter Property="Template">
       <Setter.Value>
@@ -57,19 +64,21 @@
                           PopupUniformCornerRadius="{TemplateBinding PopupUniformCornerRadius}"
                           PopupElevation="{TemplateBinding PopupElevation}"
                           PlacementMode="{TemplateBinding PopupPlacementMode}"
-                          PlacementTarget="{Binding ElementName=OuterGrid}">
+                          PlacementTarget="{Binding ElementName=OuterGrid}"
+                          wpf:RippleAssist.RippleOnTop="True">
               <wpf:PopupBox.ToggleContent>
                 <Button IsHitTestVisible="False"
                         BorderThickness="{TemplateBinding BorderThickness}"
-                        Content="{wpf:PackIcon ChevronDown}"
                         Height="{Binding ElementName=PART_LeftButton, Path=ActualHeight}"
                         Padding="{TemplateBinding Padding}"
                         Style="{TemplateBinding ButtonStyle}"
                         wpf:ElevationAssist.Elevation="Dp0"
-                        wpf:ButtonAssist.CornerRadius="{TemplateBinding wpf:ButtonAssist.CornerRadius, Converter={StaticResource RightButtonCornerRadiusConverter}}"
-                        wpf:RippleAssist.IsDisabled="False"
-                        wpf:RippleAssist.IsCentered="False"
-                        wpf:RippleAssist.ClipToBounds="True"/>
+                        wpf:ButtonAssist.CornerRadius="{TemplateBinding wpf:ButtonAssist.CornerRadius, Converter={StaticResource RightButtonCornerRadiusConverter}}">
+                  <ContentControl Content="{TemplateBinding SplitContent}"
+                                  ContentStringFormat="{TemplateBinding SplitContentStringFormat}"
+                                  ContentTemplate="{TemplateBinding SplitContentTemplate}"
+                                  ContentTemplateSelector="{TemplateBinding SplitContentTemplateSelector}"/>
+                </Button>
               </wpf:PopupBox.ToggleContent>
               <wpf:PopupBox.PopupContent>
                 <ContentControl Content="{TemplateBinding PopupContent}"
