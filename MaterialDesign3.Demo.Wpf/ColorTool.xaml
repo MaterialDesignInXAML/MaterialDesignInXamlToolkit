@@ -534,7 +534,8 @@
                     <TextBlock Width="80"
                                VerticalAlignment="Center"
                                Text="{Binding Name}" />
-                    <ItemsControl ItemTemplate="{StaticResource SwatchColorTemplate}" ItemsSource="{Binding Hues}">
+                    <ItemsControl ItemTemplate="{StaticResource SwatchColorTemplate}"
+                                  ItemsSource="{Binding Lookup.Values, Mode=OneTime}">
                       <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                           <VirtualizingStackPanel Orientation="Horizontal" />
