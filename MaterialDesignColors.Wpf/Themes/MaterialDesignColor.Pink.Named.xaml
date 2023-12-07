@@ -1,6 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
   <Color x:Key="PinkPrimary50">#fce4ec</Color>
   <Color x:Key="PinkPrimary50Foreground">#DD000000</Color>
   <Color x:Key="PinkPrimary100">#f8bbd0</Color>
@@ -21,12 +20,12 @@
   <Color x:Key="PinkPrimary800Foreground">#DDFFFFFF</Color>
   <Color x:Key="PinkPrimary900">#880e4f</Color>
   <Color x:Key="PinkPrimary900Foreground">#DDFFFFFF</Color>
-  <Color x:Key="PinkAccent100">#ff80ab</Color>
-  <Color x:Key="PinkAccent100Foreground">#DD000000</Color>
-  <Color x:Key="PinkAccent200">#ff4081</Color>
-  <Color x:Key="PinkAccent200Foreground">#FFFFFFFF</Color>
-  <Color x:Key="PinkAccent400">#f50057</Color>
-  <Color x:Key="PinkAccent400Foreground">#DDFFFFFF</Color>
-  <Color x:Key="PinkAccent700">#c51162</Color>
-  <Color x:Key="PinkAccent700Foreground">#DDFFFFFF</Color>
+  <Color x:Key="PinkSecondary100">#ff80ab</Color>
+  <Color x:Key="PinkSecondary100Foreground">#DD000000</Color>
+  <Color x:Key="PinkSecondary200">#ff4081</Color>
+  <Color x:Key="PinkSecondary200Foreground">#FFFFFFFF</Color>
+  <Color x:Key="PinkSecondary400">#f50057</Color>
+  <Color x:Key="PinkSecondary400Foreground">#DDFFFFFF</Color>
+  <Color x:Key="PinkSecondary700">#c51162</Color>
+  <Color x:Key="PinkSecondary700Foreground">#DDFFFFFF</Color>
 </ResourceDictionary>

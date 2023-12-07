@@ -168,11 +168,6 @@
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
   </Style>
 
-  <!-- Obsolete -->
-  <Style x:Key="MaterialDesignAccentRadioButton"
-         TargetType="{x:Type RadioButton}"
-         BasedOn="{StaticResource MaterialDesignSecondaryRadioButton}" />
-
   <Style x:Key="MaterialDesignUserForegroundRadioButton" TargetType="{x:Type RadioButton}">
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
@@ -835,11 +830,6 @@
     </Style.Triggers>
   </Style>
 
-  <!-- Obsolete -->
-  <Style x:Key="MaterialDesignChoiceChipAccentRadioButton"
-         TargetType="{x:Type RadioButton}"
-         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryRadioButton}" />
-
   <Style x:Key="MaterialDesignChoiceChipPrimaryOutlineRadioButton"
          TargetType="{x:Type RadioButton}"
          BasedOn="{StaticResource MaterialDesignChoiceChipOutlineRadioButton}">
@@ -879,10 +869,5 @@
       </MultiDataTrigger>
     </Style.Triggers>
   </Style>
-
-  <!-- Obsolete -->
-  <Style x:Key="MaterialDesignChoiceChipAccentOutlineRadioButton"
-         TargetType="{x:Type RadioButton}"
-         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryOutlineRadioButton}" />
 
 </ResourceDictionary>

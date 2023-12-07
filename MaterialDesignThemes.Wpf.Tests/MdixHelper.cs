@@ -61,7 +61,7 @@ public static class MdixHelper
 
     public static ResourceDictionary GetSecondaryColorResourceDictionary(string color)
     {
-        var uri = new Uri($"/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.{color}.xaml", UriKind.Relative);
+        var uri = new Uri($"/MaterialDesignColors;component/Themes/Recommended/Secondary/MaterialDesignColor.{color}.xaml", UriKind.Relative);
         return new ResourceDictionary
         {
             Source = uri

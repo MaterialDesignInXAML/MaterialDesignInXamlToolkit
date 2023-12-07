@@ -25,7 +25,7 @@ public class PaletteSelectorViewModel : INotifyPropertyChanged
 
     public ICommand ApplyPrimaryCommand { get; } = new AnotherCommandImplementation(o => ApplyPrimary((Swatch)o!));
 
-    public ICommand ApplyAccentCommand { get; } = new AnotherCommandImplementation(o => ApplyAccent((Swatch)o!));
+    public ICommand ApplySecondaryCommand { get; } = new AnotherCommandImplementation(o => ApplySecondary((Swatch)o!));
 
     private bool _isDarkTheme;
     public bool IsDarkTheme
@@ -64,11 +64,11 @@ public class PaletteSelectorViewModel : INotifyPropertyChanged
     private static void ApplyPrimary(Swatch swatch)
         => ModifyTheme(theme => theme.SetPrimaryColor(swatch.ExemplarHue.Color));
 
-    private static void ApplyAccent(Swatch swatch)
+    private static void ApplySecondary(Swatch swatch)
     {
-        if (swatch.AccentExemplarHue is Hue accentHue)
+        if (swatch.SecondaryExemplarHue is Hue secondaryHue)
         {
-            ModifyTheme(theme => theme.SetSecondaryColor(accentHue.Color));
+            ModifyTheme(theme => theme.SetSecondaryColor(secondaryHue.Color));
         }
     }
 

@@ -1,6 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
   <Color x:Key="PurplePrimary50">#f3e5f5</Color>
   <Color x:Key="PurplePrimary50Foreground">#DD000000</Color>
   <Color x:Key="PurplePrimary100">#e1bee7</Color>
@@ -21,12 +20,12 @@
   <Color x:Key="PurplePrimary800Foreground">#DDFFFFFF</Color>
   <Color x:Key="PurplePrimary900">#4a148c</Color>
   <Color x:Key="PurplePrimary900Foreground">#DDFFFFFF</Color>
-  <Color x:Key="PurpleAccent100">#ea80fc</Color>
-  <Color x:Key="PurpleAccent100Foreground">#DD000000</Color>
-  <Color x:Key="PurpleAccent200">#e040fb</Color>
-  <Color x:Key="PurpleAccent200Foreground">#FFFFFFFF</Color>
-  <Color x:Key="PurpleAccent400">#d500f9</Color>
-  <Color x:Key="PurpleAccent400Foreground">#DDFFFFFF</Color>
-  <Color x:Key="PurpleAccent700">#aa00ff</Color>
-  <Color x:Key="PurpleAccent700Foreground">#DDFFFFFF</Color>
+  <Color x:Key="PurpleSecondary100">#ea80fc</Color>
+  <Color x:Key="PurpleSecondary100Foreground">#DD000000</Color>
+  <Color x:Key="PurpleSecondary200">#e040fb</Color>
+  <Color x:Key="PurpleSecondary200Foreground">#FFFFFFFF</Color>
+  <Color x:Key="PurpleSecondary400">#d500f9</Color>
+  <Color x:Key="PurpleSecondary400Foreground">#DDFFFFFF</Color>
+  <Color x:Key="PurpleSecondary700">#aa00ff</Color>
+  <Color x:Key="PurpleSecondary700Foreground">#DDFFFFFF</Color>
 </ResourceDictionary>

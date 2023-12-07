@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <Color x:Key="Secondary100">#ffff8d</Color>
+  <Color x:Key="Secondary100Foreground">#DD000000</Color>
+  <Color x:Key="Secondary200">#ffff00</Color>
+  <Color x:Key="Secondary200Foreground">#DD000000</Color>
+  <Color x:Key="Secondary400">#ffea00</Color>
+  <Color x:Key="Secondary400Foreground">#DD000000</Color>
+  <Color x:Key="Secondary700">#ffd600</Color>
+  <Color x:Key="Secondary700Foreground">#DD000000</Color>
+</ResourceDictionary>

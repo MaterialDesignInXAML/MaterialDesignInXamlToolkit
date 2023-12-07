@@ -28,16 +28,15 @@ public class ResourceProviderFixture
     }
 
     [Fact]
-    public void BrownHasNoAccents()
+    public void BrownHasNoSecondary()
     {
         var swatchesProvider = new SwatchesProvider();
 
         var brownSwatch = swatchesProvider.Swatches.Single(
             swatch => swatch.Name == "brown");
 
-        brownSwatch.IsAccented.ShouldBe(false);
-        brownSwatch.AccentHues.ShouldNotBeNull();
-        brownSwatch.AccentHues.Count().ShouldBe(0);
+        brownSwatch.SecondaryHues.ShouldNotBeNull();
+        brownSwatch.SecondaryHues.Count().ShouldBe(0);
     }
 
     [Fact]
@@ -48,21 +47,19 @@ public class ResourceProviderFixture
         var brownSwatch = swatchesProvider.Swatches.Single(
             swatch => swatch.Name == "brown");
 
-        brownSwatch.IsAccented.ShouldBe(false);
         brownSwatch.PrimaryHues.ShouldNotBeNull();
         brownSwatch.PrimaryHues.Count().ShouldBe(10);
     }
 
     [Fact]
-    public void IndigoHasAccents()
+    public void IndigoHasSecondaries()
     {
         var swatchesProvider = new SwatchesProvider();
 
         var brownSwatch = swatchesProvider.Swatches.Single(
             swatch => swatch.Name == "indigo");
 
-        brownSwatch.IsAccented.ShouldBe(true);
-        brownSwatch.AccentHues.ShouldNotBeNull();
-        brownSwatch.AccentHues.Count().ShouldBe(4);
+        brownSwatch.SecondaryHues.ShouldNotBeNull();
+        brownSwatch.SecondaryHues.Count().ShouldBe(4);
     }
 }

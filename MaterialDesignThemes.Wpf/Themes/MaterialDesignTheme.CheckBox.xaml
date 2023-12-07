@@ -66,11 +66,6 @@
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
   </Style>
 
-  <!-- Obsolete -->
-  <Style x:Key="MaterialDesignActionAccentCheckBox"
-         TargetType="{x:Type CheckBox}"
-         BasedOn="{StaticResource MaterialDesignActionSecondaryCheckBox}" />
-
 
   <Style x:Key="MaterialDesignCheckBox" TargetType="{x:Type CheckBox}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
@@ -208,11 +203,6 @@
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
   </Style>
-
-  <!-- Obsolete -->
-  <Style x:Key="MaterialDesignAccentCheckBox"
-         TargetType="{x:Type CheckBox}"
-         BasedOn="{StaticResource MaterialDesignSecondaryCheckBox}" />
 
   <Style x:Key="MaterialDesignUserForegroundCheckBox" TargetType="{x:Type CheckBox}">
     <Setter Property="BorderThickness" Value="1" />
@@ -721,11 +711,6 @@
     </Style.Triggers>
   </Style>
 
-  <!-- Obsolete -->
-  <Style x:Key="MaterialDesignFilterChipAccentCheckBox"
-         TargetType="CheckBox"
-         BasedOn="{StaticResource MaterialDesignFilterChipSecondaryCheckBox}" />
-
   <Style x:Key="MaterialDesignFilterChipPrimaryOutlineCheckBox"
          TargetType="CheckBox"
          BasedOn="{StaticResource MaterialDesignFilterChipOutlineCheckBox}">
@@ -765,10 +750,4 @@
       </MultiDataTrigger>
     </Style.Triggers>
   </Style>
-
-  <!-- Obsolete -->
-  <Style x:Key="MaterialDesignFilterChipAccentOutlineCheckBox"
-         TargetType="CheckBox"
-         BasedOn="{StaticResource MaterialDesignFilterChipSecondaryOutlineCheckBox}" />
-
 </ResourceDictionary>

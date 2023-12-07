@@ -5,39 +5,39 @@
 /// </summary>
 public class Swatch
 {
-    public Swatch(string name, IEnumerable<Hue> primaryHues, IEnumerable<Hue> accentHues)
+    public Swatch(string name, IEnumerable<Hue> primaryHues, IEnumerable<Hue> secondaryHues)
     {
         if (name is null) throw new ArgumentNullException(nameof(name));
         if (primaryHues is null) throw new ArgumentNullException(nameof(primaryHues));
-        if (accentHues is null) throw new ArgumentNullException(nameof(accentHues));
+        if (secondaryHues is null) throw new ArgumentNullException(nameof(secondaryHues));
 
         var primaryHuesList = primaryHues.ToList();
         if (primaryHuesList.Count == 0) throw new ArgumentException("Non primary hues provided.", nameof(primaryHues));
 
         Name = name;
         PrimaryHues = primaryHuesList;
-        var accentHuesList = accentHues.ToList();
-        AccentHues = accentHuesList;
+        var secondaryHuesList = secondaryHues.ToList();
+        SecondaryHues = secondaryHuesList;
         ExemplarHue = primaryHuesList[ExemplarHueIndex];
-        if (IsAccented)
-            AccentExemplarHue = accentHuesList[AccentExemplarHueIndex];
+        if (SecondaryHueIndex >= 0 && SecondaryHueIndex < secondaryHuesList.Count)
+        {
+            SecondaryExemplarHue = secondaryHuesList[SecondaryHueIndex];
+        }
     }
 
     public string Name { get; }
 
     public Hue ExemplarHue { get; }
 
-    public Hue? AccentExemplarHue { get; }
+    public Hue? SecondaryExemplarHue { get; }
 
     public IList<Hue> PrimaryHues { get; }
 
-    public IList<Hue> AccentHues { get; }
-
-    public bool IsAccented => AccentHues.Any();
+    public IList<Hue> SecondaryHues { get; }
 
     public override string ToString() => Name;
 
     public int ExemplarHueIndex => Math.Min(5, PrimaryHues.Count - 1);
 
-    public int AccentExemplarHueIndex => Math.Min(2, AccentHues.Count - 1);
+    public int SecondaryHueIndex => Math.Min(2, SecondaryHues.Count - 1);
 }

@@ -399,7 +399,7 @@
                     Content="MID"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignFlatSecondaryMidBgButton}"
-                    ToolTip="MaterialDesignFlatAccentBackgroundButton" />
+                    ToolTip="MaterialDesignFlatSecondaryMidBgButton" />
           </smtx:XamlDisplay>
 
           <smtx:XamlDisplay Margin="8,0" UniqueKey="buttons_flat_bg_6">
@@ -894,10 +894,10 @@
       <smtx:XamlDisplay Margin="8,0,0,5" UniqueKey="buttons_11">
         <materialDesign:PopupBox IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                  PlacementMode="BottomAndAlignCentres"
-                                 Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}"
+                                 Style="{StaticResource MaterialDesignMultiFloatingActionSecondaryPopupBox}"
                                  ToggleCheckedContentCommand="{Binding FloatingActionDemoCommand}"
                                  ToggleCheckedContentCommandParameter="wowsers"
-                                 ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
+                                 ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionSecondaryPopupBox">
           <materialDesign:PopupBox.ToggleCheckedContent>
             <materialDesign:PackIcon Width="24"
                                      Height="24"

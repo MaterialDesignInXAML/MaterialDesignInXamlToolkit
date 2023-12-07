@@ -25,7 +25,7 @@ public class SwatchesProvider
         var dictionaryEntries = resourceSet?.OfType<DictionaryEntry>().ToList();
         string? assemblyName = assembly.GetName().Name;
 
-        var regex = new Regex(@"^themes\/materialdesigncolor\.(?<name>[a-z]+)\.(?<type>primary|accent)\.baml$");
+        var regex = new Regex(@"^themes\/materialdesigncolor\.(?<name>[a-z]+)\.(?<type>primary|secondary)\.baml$");
 
         Swatches =
             dictionaryEntries?
@@ -37,7 +37,7 @@ public class SwatchesProvider
             (
                 x.Key,
                 Read(assemblyName, x.SingleOrDefault(y => y.match.Groups["type"].Value == "primary")?.key),
-                Read(assemblyName, x.SingleOrDefault(y => y.match.Groups["type"].Value == "accent")?.key)
+                Read(assemblyName, x.SingleOrDefault(y => y.match.Groups["type"].Value == "secondary")?.key)
             ))
             .ToList() ??
 #if NETCOREAPP3_1_OR_GREATER
@@ -55,9 +55,9 @@ public class SwatchesProvider
 
     public IEnumerable<Swatch> Swatches { get; }
 
-    private static Swatch CreateSwatch(string name, ResourceDictionary? primaryDictionary, ResourceDictionary? accentDictionary)
+    private static Swatch CreateSwatch(string name, ResourceDictionary? primaryDictionary, ResourceDictionary? secondaryDictionary)
     {
-        return new Swatch(name, GetHues(primaryDictionary), GetHues(accentDictionary));
+        return new Swatch(name, GetHues(primaryDictionary), GetHues(secondaryDictionary));
 
         static List<Hue> GetHues(ResourceDictionary? resourceDictionary)
         {
@@ -77,14 +77,14 @@ public class SwatchesProvider
 
         static Hue GetHue(ResourceDictionary dictionary, DictionaryEntry entry)
         {
-            if (!(entry.Value is Color colour))
+            if (entry.Value is not Color colour)
             {
                 throw new InvalidOperationException($"Entry {entry.Key} was not of type {nameof(Color)}");
             }
             string foregroundKey = entry.Key?.ToString() + "Foreground";
-            if (!(dictionary.OfType<DictionaryEntry>()
+            if (dictionary.OfType<DictionaryEntry>()
                     .Single(de => string.Equals(de.Key.ToString(), foregroundKey, StringComparison.Ordinal))
-                    .Value is Color foregroundColour))
+                    .Value is not Color foregroundColour)
             {
                 throw new InvalidOperationException($"Entry {foregroundKey} was not of type {nameof(Color)}");
             }
