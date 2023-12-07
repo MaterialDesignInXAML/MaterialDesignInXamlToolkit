@@ -39,7 +39,7 @@
               <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="LeftButton"
+            <Button x:Name="PART_LeftButton"
                     Grid.Column="0"
                     BorderThickness="{TemplateBinding BorderThickness, Converter={StaticResource LeftButtonBorderThicknessConverter}}"
                     Content="{TemplateBinding Content}"
@@ -50,9 +50,8 @@
                     wpf:ElevationAssist.Elevation="Dp0"
                     wpf:ButtonAssist.CornerRadius="{TemplateBinding wpf:ButtonAssist.CornerRadius, Converter={StaticResource LeftButtonCornerRadiusConverter}}"/>
 
-            <wpf:PopupBox x:Name="PART_PopupBox"
+            <wpf:PopupBox ClipToBounds="True"
                           Grid.Column="1"
-                          wpf:RippleAssist.IsDisabled="True"
                           Height="{TemplateBinding Height}"
                           Padding="0"
                           PopupUniformCornerRadius="{TemplateBinding PopupUniformCornerRadius}"
@@ -60,11 +59,10 @@
                           PlacementMode="{TemplateBinding PopupPlacementMode}"
                           PlacementTarget="{Binding ElementName=OuterGrid}">
               <wpf:PopupBox.ToggleContent>
-                <Button Command="{TemplateBinding PopupBoxButtonClickedCommand}"
+                <Button IsHitTestVisible="False"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         Content="{wpf:PackIcon ChevronDown}"
-                        Height="{Binding ElementName=LeftButton, Path=ActualHeight}"
-                        IsHitTestVisible="True"
+                        Height="{Binding ElementName=PART_LeftButton, Path=ActualHeight}"
                         Padding="{TemplateBinding Padding}"
                         Style="{TemplateBinding ButtonStyle}"
                         wpf:ElevationAssist.Elevation="Dp0"

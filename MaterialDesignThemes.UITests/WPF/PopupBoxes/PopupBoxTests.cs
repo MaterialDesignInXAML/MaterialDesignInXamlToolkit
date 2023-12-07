@@ -2,7 +2,7 @@
 using System.Windows.Media;
 using MaterialDesignThemes.UITests.Samples.PopupBox;
 
-namespace MaterialDesignThemes.UITests.WPF.PopupBox;
+namespace MaterialDesignThemes.UITests.WPF.PopupBoxes;
 
 public class PopupBoxTests : TestBase
 {
@@ -20,7 +20,7 @@ public class PopupBoxTests : TestBase
         await using var recorder = new TestRecorder(App);
 
         //Arrange
-        IVisualElement<Wpf.PopupBox> popupBox = await LoadXaml<Wpf.PopupBox>($@"
+        IVisualElement<PopupBox> popupBox = await LoadXaml<PopupBox>($@"
 <materialDesign:PopupBox VerticalAlignment=""Top""
                          PopupElevation=""{elevation}"">
   <StackPanel>
@@ -46,7 +46,7 @@ public class PopupBoxTests : TestBase
         IVisualElement grid = (await LoadUserControl<PopupBoxWithTemplateSelector>());
 
         IVisualElement<Button> button = await grid.GetElement<Button>();
-        IVisualElement<Wpf.PopupBox> popupBox = await grid.GetElement<Wpf.PopupBox>();
+        IVisualElement<PopupBox> popupBox = await grid.GetElement<PopupBox>();
 
 
         // Assert
