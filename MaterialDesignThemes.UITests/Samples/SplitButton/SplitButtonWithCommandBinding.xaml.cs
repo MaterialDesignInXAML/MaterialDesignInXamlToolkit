@@ -8,11 +8,19 @@ namespace MaterialDesignThemes.UITests.Samples.SplitButton;
 /// </summary>
 public partial class SplitButtonWithCommandBinding
 {
-    public bool CommandInvoked => ((SplitButtonWithCommandBindingViewModel) DataContext).CommandInvoked;
+    private SplitButtonWithCommandBindingViewModel ViewModel { get; }
+
+    public bool CommandInvoked => ViewModel.CommandInvoked;
+
+    public bool CommandCanExecute
+    {
+        get => ViewModel.CommandCanExecute;
+        set => ViewModel.CommandCanExecute = value;
+    }
 
     public SplitButtonWithCommandBinding()
     {
-        DataContext = new SplitButtonWithCommandBindingViewModel();
+        DataContext = ViewModel = new SplitButtonWithCommandBindingViewModel();
         InitializeComponent();
     }
 }
@@ -21,6 +29,10 @@ public partial class SplitButtonWithCommandBindingViewModel : ObservableObject
 {
     public bool CommandInvoked { get; private set; }
 
-    [RelayCommand]
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(LeftSideButtonClickedCommand))]
+    private bool _commandCanExecute = true;
+
+    [RelayCommand(CanExecute = nameof(CommandCanExecute))]
     private void LeftSideButtonClicked() => CommandInvoked = true;
 }

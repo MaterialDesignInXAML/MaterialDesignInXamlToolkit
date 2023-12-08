@@ -132,5 +132,25 @@ public class SplitButtonTests : TestBase
         }
     }
 
-    //Test enabling/disabling the split button with the command's CanExecute
+    [Fact]
+    public async Task SplitButton_CommandCanExecuteFalse_DisablesButton()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        //Arrange
+        await App.InitializeWithMaterialDesign();
+        IWindow window = await App.CreateWindow<SplitButtonWithCommandBindingWindow>();
+        IVisualElement<SplitButtonWithCommandBinding> userControl = await window.GetElement<SplitButtonWithCommandBinding>();
+        IVisualElement<SplitButton> splitButton = await userControl.GetElement<SplitButton>();
+
+        Assert.True(await splitButton.GetIsEnabled());
+
+        //Act
+        await userControl.SetProperty(nameof(SplitButtonWithCommandBinding.CommandCanExecute), false);
+
+        // Assert
+        Assert.False(await splitButton.GetIsEnabled());
+
+        recorder.Success();
+    }
 }
