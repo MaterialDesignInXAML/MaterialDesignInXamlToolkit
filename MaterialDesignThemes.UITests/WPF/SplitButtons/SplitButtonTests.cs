@@ -1,3 +1,5 @@
+using MaterialDesignThemes.UITests.Samples.SplitButton;
+
 namespace MaterialDesignThemes.UITests.WPF.SplitButtons;
 
 public class SplitButtonTests : TestBase
@@ -101,6 +103,34 @@ public class SplitButtonTests : TestBase
         recorder.Success();
     }
 
-    //Test binding to the Command property and ensure it fires when the left button is clicked
+    [Fact]
+    public async Task SplitButton_RegisterCommandBinding_InvokesCommand()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        //Arrange
+        await App.InitializeWithMaterialDesign();
+        IWindow window = await App.CreateWindow<SplitButtonWithCommandBindingWindow>();
+        IVisualElement<SplitButtonWithCommandBinding> userControl = await window.GetElement<SplitButtonWithCommandBinding>();
+        IVisualElement<SplitButton> splitButton = await userControl.GetElement<SplitButton>();
+
+        Assert.False(await IsCommandInvoked());
+
+        //Act
+        await splitButton.LeftClick();
+        await Task.Delay(50);
+
+        // Assert
+        Assert.True(await IsCommandInvoked());
+
+        recorder.Success();
+
+        async Task<bool> IsCommandInvoked()
+        {
+            var value = await userControl.GetProperty(nameof(SplitButtonWithCommandBinding.CommandInvoked));
+            return value.GetAs<bool>();
+        }
+    }
+
     //Test enabling/disabling the split button with the command's CanExecute
 }
