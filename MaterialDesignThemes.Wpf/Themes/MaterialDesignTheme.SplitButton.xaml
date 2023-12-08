@@ -57,23 +57,27 @@
                     wpf:ElevationAssist.Elevation="Dp0"
                     wpf:ButtonAssist.CornerRadius="{TemplateBinding wpf:ButtonAssist.CornerRadius, Converter={StaticResource LeftButtonCornerRadiusConverter}}"/>
 
-            <wpf:PopupBox ClipToBounds="True"
+            <wpf:PopupBox x:Name="PART_PopupBox"
                           Grid.Column="1"
+                          wpf:RippleAssist.IsDisabled="True"
                           Height="{TemplateBinding Height}"
                           Padding="0"
                           PopupUniformCornerRadius="{TemplateBinding PopupUniformCornerRadius}"
                           PopupElevation="{TemplateBinding PopupElevation}"
                           PlacementMode="{TemplateBinding PopupPlacementMode}"
-                          PlacementTarget="{Binding ElementName=OuterGrid}"
-                          wpf:RippleAssist.RippleOnTop="True">
+                          PlacementTarget="{Binding ElementName=OuterGrid}">
               <wpf:PopupBox.ToggleContent>
-                <Button IsHitTestVisible="False"
+                <Button Command="{TemplateBinding PopupBoxButtonClickedCommand}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         Height="{Binding ElementName=PART_LeftButton, Path=ActualHeight}"
+                        IsHitTestVisible="True"
                         Padding="{TemplateBinding Padding}"
                         Style="{TemplateBinding ButtonStyle}"
                         wpf:ElevationAssist.Elevation="Dp0"
-                        wpf:ButtonAssist.CornerRadius="{TemplateBinding wpf:ButtonAssist.CornerRadius, Converter={StaticResource RightButtonCornerRadiusConverter}}">
+                        wpf:ButtonAssist.CornerRadius="{TemplateBinding wpf:ButtonAssist.CornerRadius, Converter={StaticResource RightButtonCornerRadiusConverter}}"
+                        wpf:RippleAssist.IsDisabled="False"
+                        wpf:RippleAssist.IsCentered="False"
+                        wpf:RippleAssist.ClipToBounds="True">
                   <ContentControl Content="{TemplateBinding SplitContent}"
                                   ContentStringFormat="{TemplateBinding SplitContentStringFormat}"
                                   ContentTemplate="{TemplateBinding SplitContentTemplate}"

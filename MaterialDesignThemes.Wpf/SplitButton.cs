@@ -1,7 +1,12 @@
-﻿namespace MaterialDesignThemes.Wpf;
+﻿using Microsoft.Xaml.Behaviors.Core;
 
+namespace MaterialDesignThemes.Wpf;
+
+[TemplatePart(Name = PopupBoxPartName, Type = typeof(PopupBox))]
 public class SplitButton : Button
 {
+    public const string PopupBoxPartName = "PART_PopupBox";
+
     static SplitButton()
     {
         DefaultStyleKeyProperty.OverrideMetadata(typeof(SplitButton), new FrameworkPropertyMetadata(typeof(SplitButton)));
@@ -115,12 +120,43 @@ public class SplitButton : Button
         set => SetValue(ButtonStyleProperty, value);
     }
 
+    internal static readonly DependencyProperty PopupBoxButtonClickedCommandProperty = DependencyProperty.Register(
+        nameof(PopupBoxButtonClickedCommand), typeof(ICommand), typeof(SplitButton), new PropertyMetadata(default(ICommand)));
+
+    internal ICommand PopupBoxButtonClickedCommand
+    {
+        get => (ICommand)GetValue(PopupBoxButtonClickedCommandProperty);
+        set => SetValue(PopupBoxButtonClickedCommandProperty, value);
+    }
+
+    private PopupBox? _popupBox;
+
     public SplitButton()
     {
+        PopupBoxButtonClickedCommand = new ActionCommand(OpenPopupBox);
     }
 
     public override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
+
+        _popupBox = GetTemplateChild(PopupBoxPartName) as PopupBox;
+
+        if (_popupBox is not null)
+        {
+            _popupBox.RemoveHandler(ButtonBase.ClickEvent, (RoutedEventHandler)ChildClickedHandler);
+            _popupBox.AddHandler(ButtonBase.ClickEvent, (RoutedEventHandler)ChildClickedHandler);
+        }
+    }
+
+    private static void ChildClickedHandler(object sender, RoutedEventArgs e)
+        => e.Handled = true;
+
+    private void OpenPopupBox()
+    {
+        if (_popupBox is not null)
+        {
+            _popupBox.IsPopupOpen = true;
+        }
     }
 }
