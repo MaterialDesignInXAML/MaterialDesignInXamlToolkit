@@ -1,4 +1,4 @@
-﻿namespace MaterialDesignThemes.UITests.WPF.SplitButtons;
+namespace MaterialDesignThemes.UITests.WPF.SplitButtons;
 
 public class SplitButtonTests : TestBase
 {
@@ -92,6 +92,7 @@ public class SplitButtonTests : TestBase
         await Wait.For(async () => await popupContent.GetIsVisible());
         await Wait.For(async () => await popupContent.GetActualHeight() > 10);
         await popupContent.LeftClick();
+        await Task.Delay(50);
 
         // Assert
         var invocations = await clickEvent.GetInvocations();
