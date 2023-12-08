@@ -57,8 +57,10 @@ public class SplitButtonTests : TestBase
 
         //Act
         await leftButton.LeftClick();
+        await Task.Delay(50);
         int leftButtonCount = (await clickEvent.GetInvocations()).Count;
         await popupBox.LeftClick();
+        await Task.Delay(50);
         int rightButtonCount = (await clickEvent.GetInvocations()).Count;
 
         // Assert
