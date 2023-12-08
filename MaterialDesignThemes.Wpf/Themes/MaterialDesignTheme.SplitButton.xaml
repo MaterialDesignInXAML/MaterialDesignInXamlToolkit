@@ -68,7 +68,8 @@
                           PopupUniformCornerRadius="{TemplateBinding PopupUniformCornerRadius}"
                           PopupElevation="{TemplateBinding PopupElevation}"
                           PlacementMode="{TemplateBinding PopupPlacementMode}"
-                          PlacementTarget="{Binding ElementName=OuterGrid}">
+                          PlacementTarget="{Binding ElementName=OuterGrid}"
+                          Opacity="1">
               <wpf:PopupBox.ToggleContent>
                 <Button Command="{TemplateBinding PopupBoxButtonClickedCommand}"
                         BorderThickness="{TemplateBinding BorderThickness}"
