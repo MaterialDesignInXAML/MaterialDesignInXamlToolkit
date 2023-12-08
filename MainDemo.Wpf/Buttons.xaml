@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MaterialDesignDemo.Buttons"
+<UserControl x:Class="MaterialDesignDemo.Buttons"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -20,6 +20,7 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.SplitButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
       </ResourceDictionary.MergedDictionaries>
@@ -31,6 +32,9 @@
   </UserControl.Resources>
   <Grid VerticalAlignment="Top">
     <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
@@ -954,15 +958,293 @@
                 Style="{StaticResource MaterialDesignRaisedSecondaryButton}" />
       </smtx:XamlDisplay>
       <smtx:XamlDisplay Margin="0,0,20,0" UniqueKey="button_duration_2">
-        <Button>
-          Default Duration
-        </Button>
+          <Button>
+            Default Duration
+          </Button>
       </smtx:XamlDisplay>
       <smtx:XamlDisplay Margin="0,0,20,0" UniqueKey="button_duration_3">
         <Button materialDesign:ShadowAssist.ShadowAnimationDuration="0:0:0.5" Style="{StaticResource MaterialDesignRaisedDarkButton}">
           Long Duration
         </Button>
       </smtx:XamlDisplay>
+    </StackPanel>
+
+    <Rectangle Grid.Row="14"
+               Height="1"
+               Margin="0,24,0,0"
+               Fill="{DynamicResource MaterialDesignDivider}" />
+
+    <TextBlock Grid.Row="15"
+               Margin="0,24"
+               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+               Text="Split Buttons" />
+
+    <StackPanel Grid.Row="16"
+                Orientation="Vertical">
+      <StackPanel.Resources>
+        <DataTemplate x:Key="PopupContent">
+          <Border Background="LightGray" BorderThickness="1" BorderBrush="DarkGray" TextElement.Foreground="Black" CornerRadius="2">
+            <StackPanel Orientation="Horizontal" Margin="8">
+              <TextBlock Text="This is the content of the SplitButton popup"/>
+              <materialDesign:PackIcon Kind="ThumbUp" VerticalAlignment="Center" Margin="8,0,0,0" />
+            </StackPanel>
+          </Border>
+        </DataTemplate>
+        <Style TargetType="{x:Type smtx:XamlDisplay}" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
+          <Setter Property="Margin" Value="0,0,20,20" />
+        </Style>
+      </StackPanel.Resources>
+
+      <StackPanel Orientation="Horizontal">
+        <smtx:XamlDisplay UniqueKey="split_button_1">
+          <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="split_button_2">
+          <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
+                                Style="{StaticResource MaterialDesignRaisedLightSplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="split_button_3">
+          <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
+                                Style="{StaticResource MaterialDesignRaisedDarkSplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+      </StackPanel>
+
+      <StackPanel Orientation="Horizontal">
+        <smtx:XamlDisplay UniqueKey="split_button_4">
+          <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
+                            Style="{StaticResource MaterialDesignRaisedSecondarySplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="split_button_5">
+          <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
+                                      Style="{StaticResource MaterialDesignRaisedSecondaryLightSplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="split_button_6">
+          <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
+                                      Style="{StaticResource MaterialDesignRaisedSecondaryDarkSplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+      </StackPanel>
+
+      <StackPanel Orientation="Horizontal">
+        <smtx:XamlDisplay UniqueKey="split_button_7">
+          <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
+                                      Style="{StaticResource MaterialDesignOutlinedSplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="split_button_8">
+          <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
+                          Style="{StaticResource MaterialDesignOutlinedLightSplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="split_button_9">
+          <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
+                          Style="{StaticResource MaterialDesignOutlinedDarkSplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+      </StackPanel>
+
+      <StackPanel Orientation="Horizontal">
+        <smtx:XamlDisplay UniqueKey="split_button_10">
+          <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
+                      Style="{StaticResource MaterialDesignOutlinedSecondarySplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="split_button_11">
+          <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
+                                Style="{StaticResource MaterialDesignOutlinedSecondaryLightSplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="split_button_12">
+          <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
+                                Style="{StaticResource MaterialDesignOutlinedSecondaryDarkSplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+      </StackPanel>
+
+      <StackPanel Orientation="Horizontal">
+        <smtx:XamlDisplay UniqueKey="split_button_13">
+          <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
+                                Style="{StaticResource MaterialDesignFlatSplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="split_button_14">
+          <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
+                    Style="{StaticResource MaterialDesignFlatLightSplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="split_button_15">
+          <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
+                    Style="{StaticResource MaterialDesignFlatDarkSplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+      </StackPanel>
+
+      <StackPanel Orientation="Horizontal">
+        <smtx:XamlDisplay UniqueKey="split_button_16">
+          <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
+                Style="{StaticResource MaterialDesignFlatSecondarySplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="split_button_17">
+          <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
+                          Style="{StaticResource MaterialDesignFlatSecondaryLightSplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="split_button_18">
+          <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
+                          Style="{StaticResource MaterialDesignFlatSecondaryDarkSplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+      </StackPanel>
+
+      <StackPanel Orientation="Horizontal">
+        <smtx:XamlDisplay UniqueKey="split_button_19">
+          <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
+                          Style="{StaticResource MaterialDesignPaperSplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="split_button_20">
+          <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
+              Style="{StaticResource MaterialDesignPaperLightSplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="split_button_21">
+          <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
+              Style="{StaticResource MaterialDesignPaperDarkSplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+      </StackPanel>
+
+      <StackPanel Orientation="Horizontal">
+        <smtx:XamlDisplay UniqueKey="split_button_22">
+          <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
+          Style="{StaticResource MaterialDesignPaperSecondarySplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="split_button_23">
+          <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
+                    Style="{StaticResource MaterialDesignPaperSecondaryLightSplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="split_button_24">
+          <materialDesign:SplitButton Content="Split Button" VerticalAlignment="Bottom"
+                    Style="{StaticResource MaterialDesignPaperSecondaryDarkSplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+      </StackPanel>
+
+      <TextBlock Margin="0,4,0,24"
+                 Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                 Text="Split Buttons Options" />
+
+      <StackPanel Orientation="Horizontal">
+        <smtx:XamlDisplay UniqueKey="split_button_25">
+          <materialDesign:SplitButton Content="Corners" VerticalAlignment="Bottom"
+                                      materialDesign:ButtonAssist.CornerRadius="10,10,0,0"
+                                      Style="{StaticResource MaterialDesignOutlinedSplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="split_button_26">
+          <materialDesign:SplitButton Content="Open Up" VerticalAlignment="Bottom"
+                                      PopupPlacementMode="TopAndAlignCentres"
+                                      Style="{StaticResource MaterialDesignOutlinedSplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="split_button_27">
+          <materialDesign:SplitButton Content="Popup Corners" VerticalAlignment="Bottom"
+                                      PopupUniformCornerRadius="10"
+                                      PopupElevation="Dp6"
+                                      PopupPlacementMode="RightAndAlignBottomEdges"
+                                      Style="{StaticResource MaterialDesignOutlinedSplitButton}">
+            <materialDesign:SplitButton.PopupContent>
+              <ContentControl ContentTemplate="{StaticResource PopupContent}" />
+            </materialDesign:SplitButton.PopupContent>
+          </materialDesign:SplitButton>
+        </smtx:XamlDisplay>
+      </StackPanel>
     </StackPanel>
   </Grid>
 </UserControl>

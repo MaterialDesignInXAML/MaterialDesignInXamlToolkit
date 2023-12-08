@@ -81,6 +81,9 @@
                 Kind="DotsVertical" />
 
   <Style x:Key="MaterialDesignPopupBox" TargetType="{x:Type wpf:PopupBox}">
+    <Style.Resources>
+      <converters:FirstNonNullConverter x:Key="FirstNonNullConverter" />
+    </Style.Resources>
     <Setter Property="Focusable" Value="True" />
     <Setter Property="HorizontalAlignment" Value="Left" />
     <Setter Property="Padding" Value="0,8,0,8" />
@@ -125,6 +128,7 @@
                           Cursor="Hand"
                           IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
                           IsTabStop="{TemplateBinding IsTabStop}"
+                          Padding="0"
                           Style="{StaticResource ToggleButtonStyle}"
                           TabIndex="{TemplateBinding TabIndex}" />
             <wpf:PopupEx x:Name="PART_Popup"
@@ -133,9 +137,14 @@
                          HorizontalOffset="{TemplateBinding PopupElevation, Converter={StaticResource ElevationRadiusConverter}}"
                          IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
                          Placement="Custom"
-                         PlacementTarget="{Binding ElementName=PART_Toggle}"
                          PopupAnimation="Fade"
                          VerticalOffset="{TemplateBinding PopupElevation, Converter={StaticResource ElevationRadiusConverter}}">
+              <wpf:PopupEx.PlacementTarget>
+                <MultiBinding Converter="{StaticResource FirstNonNullConverter}">
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="PlacementTarget" />
+                  <Binding ElementName="PART_Toggle" />
+                </MultiBinding>
+              </wpf:PopupEx.PlacementTarget>
               <wpf:Card Margin="{TemplateBinding PopupElevation, Converter={StaticResource ElevationMarginConverter}}"
                         Padding="{TemplateBinding Padding}"
                         wpf:ElevationAssist.Elevation="{TemplateBinding PopupElevation}"
@@ -190,6 +199,9 @@
                 Kind="Plus" />
 
   <Style x:Key="MaterialDesignMultiFloatingActionPopupBox" TargetType="{x:Type wpf:PopupBox}">
+    <Style.Resources>
+      <converters:FirstNonNullConverter x:Key="FirstNonNullConverter" />
+    </Style.Resources>
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="BorderThickness" Value="1" />
@@ -403,8 +415,13 @@
                          CustomPopupPlacementCallback="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPlacementMethod}"
                          IsOpen="False"
                          Placement="Custom"
-                         PlacementTarget="{Binding ElementName=PART_Toggle}"
                          PopupAnimation="None">
+              <wpf:PopupEx.PlacementTarget>
+                <MultiBinding Converter="{StaticResource FirstNonNullConverter}">
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="PlacementTarget" />
+                  <Binding ElementName="PART_Toggle" />
+                </MultiBinding>
+              </wpf:PopupEx.PlacementTarget>
               <Grid>
                 <!--
                   with PopupBox.PopupMode == MouseOverEager the popup is always open, with

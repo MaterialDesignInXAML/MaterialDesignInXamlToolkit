@@ -1,29 +1,26 @@
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Media;
 
 [assembly: CollectionBehavior(DisableTestParallelization = true)]
-[assembly: GenerateHelpers(typeof(SmartHint))]
-[assembly: GenerateHelpers(typeof(TimePicker))]
-[assembly: GenerateHelpers(typeof(DrawerHost))]
+[assembly: GenerateHelpers(typeof(AutoSuggestBox))]
 [assembly: GenerateHelpers(typeof(ColorPicker))]
 [assembly: GenerateHelpers(typeof(DialogHost))]
-[assembly: GenerateHelpers(typeof(AutoSuggestBox))]
+[assembly: GenerateHelpers(typeof(DrawerHost))]
+[assembly: GenerateHelpers(typeof(PopupBox))]
+[assembly: GenerateHelpers(typeof(SmartHint))]
+[assembly: GenerateHelpers(typeof(TimePicker))]
 [assembly: GenerateHelpers(typeof(TreeListView))]
 [assembly: GenerateHelpers(typeof(TreeListViewItem))]
 
 namespace MaterialDesignThemes.UITests;
 
-public abstract class TestBase : IAsyncLifetime
+public abstract class TestBase(ITestOutputHelper output) : IAsyncLifetime
 {
     protected bool AttachedDebuggerToRemoteProcess { get; set; } = true;
-    protected ITestOutputHelper Output { get; }
+    protected ITestOutputHelper Output { get; } = output ?? throw new ArgumentNullException(nameof(output));
 
     [NotNull]
     protected IApp? App { get; set; }
-
-    public TestBase(ITestOutputHelper output)
-        => Output = output ?? throw new ArgumentNullException(nameof(output));
 
     protected async Task<Color> GetThemeColor(string name)
     {
@@ -51,7 +48,7 @@ public abstract class TestBase : IAsyncLifetime
         App = await XamlTest.App.StartRemote(new AppOptions
         {
 #if !DEBUG
-            MinimizeOtherWindows = !Debugger.IsAttached,
+            MinimizeOtherWindows = !System.Diagnostics.Debugger.IsAttached,
 #endif
             AllowVisualStudioDebuggerAttach = AttachedDebuggerToRemoteProcess,
             LogMessage = Output.WriteLine
