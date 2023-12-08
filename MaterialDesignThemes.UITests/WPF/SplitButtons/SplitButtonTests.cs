@@ -1,6 +1,9 @@
 using MaterialDesignThemes.UITests.Samples.SplitButton;
 
+[assembly:GenerateHelpers(typeof(SplitButtonWithCommandBinding))]
+
 namespace MaterialDesignThemes.UITests.WPF.SplitButtons;
+
 
 public class SplitButtonTests : TestBase
 {
@@ -116,22 +119,16 @@ public class SplitButtonTests : TestBase
         IVisualElement<SplitButtonWithCommandBinding> userControl = await window.GetElement<SplitButtonWithCommandBinding>();
         IVisualElement<SplitButton> splitButton = await userControl.GetElement<SplitButton>();
 
-        Assert.False(await IsCommandInvoked());
+        Assert.False(await userControl.GetCommandInvoked());
 
         //Act
         await splitButton.LeftClick();
         await Task.Delay(50);
 
         // Assert
-        Assert.True(await IsCommandInvoked());
+        Assert.True(await userControl.GetCommandInvoked());
 
         recorder.Success();
-
-        async Task<bool> IsCommandInvoked()
-        {
-            var value = await userControl.GetProperty(nameof(SplitButtonWithCommandBinding.CommandInvoked));
-            return value.GetAs<bool>();
-        }
     }
 
     [Fact]
