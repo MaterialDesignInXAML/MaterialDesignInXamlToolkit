@@ -48,7 +48,7 @@ public abstract class TestBase(ITestOutputHelper output) : IAsyncLifetime
         App = await XamlTest.App.StartRemote(new AppOptions
         {
 #if !DEBUG
-            MinimizeOtherWindows = !Debugger.IsAttached,
+            MinimizeOtherWindows = !System.Diagnostics.Debugger.IsAttached,
 #endif
             AllowVisualStudioDebuggerAttach = AttachedDebuggerToRemoteProcess,
             LogMessage = Output.WriteLine
