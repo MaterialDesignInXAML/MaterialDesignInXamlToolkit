@@ -136,11 +136,6 @@ public class SplitButton : Button
             WeakEventManager<Button, RoutedEventArgs>.AddHandler(_rightButton, nameof(Click), OpenPopupBox);
         }
 
-        void SetClickEventAsHandled(object? sender, RoutedEventArgs e)
-        {
-            e.Handled = true;
-        }
-
         void OpenPopupBox(object? sender, RoutedEventArgs e)
         {
             if (_popupBox is not null)
