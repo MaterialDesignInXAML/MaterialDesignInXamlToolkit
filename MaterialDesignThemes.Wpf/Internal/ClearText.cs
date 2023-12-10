@@ -52,6 +52,9 @@ public static class ClearText
                     comboBox.SetCurrentValue(ComboBox.TextProperty, null);
                     comboBox.SetCurrentValue(Selector.SelectedItemProperty, null);
                     break;
+                case RichTextBox richTextBox:
+                    richTextBox.Document.Blocks.Clear();
+                    break;
                 case PasswordBox passwordBox:
                     passwordBox.Password = null;
                     break;
