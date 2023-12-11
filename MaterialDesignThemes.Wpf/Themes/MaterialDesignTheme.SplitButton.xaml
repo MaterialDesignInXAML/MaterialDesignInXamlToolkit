@@ -71,7 +71,7 @@
                           PlacementTarget="{Binding ElementName=OuterGrid}"
                           Opacity="1">
               <wpf:PopupBox.ToggleContent>
-                <Button Command="{TemplateBinding PopupBoxButtonClickedCommand}"
+                <Button x:Name="PART_RightButton"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         Height="{Binding ElementName=PART_LeftButton, Path=ActualHeight}"
                         IsHitTestVisible="True"

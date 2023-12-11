@@ -1,11 +1,11 @@
-﻿using Microsoft.Xaml.Behaviors.Core;
-
-namespace MaterialDesignThemes.Wpf;
+﻿namespace MaterialDesignThemes.Wpf;
 
 [TemplatePart(Name = PopupBoxPartName, Type = typeof(PopupBox))]
+[TemplatePart(Name = RightButtonPartName, Type = typeof(Button))]
 public class SplitButton : Button
 {
     public const string PopupBoxPartName = "PART_PopupBox";
+    public const string RightButtonPartName = "PART_RightButton";
 
     static SplitButton()
     {
@@ -111,52 +111,38 @@ public class SplitButton : Button
         set => SetValue(SplitContentTemplateSelectorProperty, value);
     }
 
-    internal static readonly DependencyProperty ButtonStyleProperty = DependencyProperty.Register(
+    public static readonly DependencyProperty ButtonStyleProperty = DependencyProperty.Register(
         nameof(ButtonStyle), typeof(Style), typeof(SplitButton), new PropertyMetadata(default(Style)));
 
-    internal Style ButtonStyle
+    public Style ButtonStyle
     {
         get => (Style) GetValue(ButtonStyleProperty);
         set => SetValue(ButtonStyleProperty, value);
     }
 
-    internal static readonly DependencyProperty PopupBoxButtonClickedCommandProperty = DependencyProperty.Register(
-        nameof(PopupBoxButtonClickedCommand), typeof(ICommand), typeof(SplitButton), new PropertyMetadata(default(ICommand)));
-
-    internal ICommand PopupBoxButtonClickedCommand
-    {
-        get => (ICommand)GetValue(PopupBoxButtonClickedCommandProperty);
-        set => SetValue(PopupBoxButtonClickedCommandProperty, value);
-    }
-
     private PopupBox? _popupBox;
-
-    public SplitButton()
-    {
-        PopupBoxButtonClickedCommand = new ActionCommand(OpenPopupBox);
-    }
+    private Button? _rightButton;
 
     public override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
 
         _popupBox = GetTemplateChild(PopupBoxPartName) as PopupBox;
+        _rightButton = GetTemplateChild(RightButtonPartName) as Button;
 
-        if (_popupBox is not null)
+        if (_rightButton is not null)
         {
-            _popupBox.RemoveHandler(ButtonBase.ClickEvent, (RoutedEventHandler)ChildClickedHandler);
-            _popupBox.AddHandler(ButtonBase.ClickEvent, (RoutedEventHandler)ChildClickedHandler);
+            WeakEventManager<Button, RoutedEventArgs>.RemoveHandler(_rightButton, nameof(Click), OpenPopupBox);
+            WeakEventManager<Button, RoutedEventArgs>.AddHandler(_rightButton, nameof(Click), OpenPopupBox);
         }
-    }
 
-    private static void ChildClickedHandler(object sender, RoutedEventArgs e)
-        => e.Handled = true;
-
-    private void OpenPopupBox()
-    {
-        if (_popupBox is not null)
+        void OpenPopupBox(object? sender, RoutedEventArgs e)
         {
-            _popupBox.IsPopupOpen = true;
+            if (_popupBox is not null)
+            {
+                _popupBox.IsPopupOpen = true;
+                e.Handled = true;
+            }
         }
     }
 }
