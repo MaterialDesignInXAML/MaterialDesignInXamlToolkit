@@ -1,5 +1,6 @@
 ﻿using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Threading;
 
 namespace MaterialDesignThemes.Wpf;
 
@@ -60,19 +61,36 @@ public class Ripple : ContentControl
 
     private static void MouseMoveEventHandler(object sender, MouseEventArgs e)
     {
-        foreach (var ripple in PressedInstances.ToList())
+#if NET6_0_OR_GREATER
+        DispatcherExtensions.Invoke(Dispatcher.CurrentDispatcher, () =>
+                {
+                    foreach (var ripple in PressedInstances.ToList())
+                    {
+                        var relativePosition = Mouse.GetPosition(ripple);
+                        if (relativePosition.X < 0 || relativePosition.Y < 0 || relativePosition.X >= ripple.ActualWidth || relativePosition.Y >= ripple.ActualHeight)
+                        {
+                            VisualStateManager.GoToState(ripple, TemplateStateMouseOut, true);
+                            PressedInstances.Remove(ripple);
+                        }
+                    }
+                });
+#else
+        if (Dispatcher.CurrentDispatcher.CheckAccess())
         {
-            var relativePosition = Mouse.GetPosition(ripple);
-            if (relativePosition.X < 0
-                || relativePosition.Y < 0
-                || relativePosition.X >= ripple.ActualWidth
-                || relativePosition.Y >= ripple.ActualHeight)
-
-            {
-                VisualStateManager.GoToState(ripple, TemplateStateMouseOut, true);
-                PressedInstances.Remove(ripple);
-            }
+             Dispatcher.CurrentDispatcher.Invoke(() =>
+             {
+                 foreach (var ripple in PressedInstances.ToList())
+                 {
+                     var relativePosition = Mouse.GetPosition(ripple);
+                     if (relativePosition.X < 0 || relativePosition.Y < 0 || relativePosition.X >= ripple.ActualWidth || relativePosition.Y >= ripple.ActualHeight)
+                     {
+                         VisualStateManager.GoToState(ripple, TemplateStateMouseOut, true);
+                         PressedInstances.Remove(ripple);
+                     }
+                 }
+             });
         }
+#endif
     }
 
     public static readonly DependencyProperty FeedbackProperty = DependencyProperty.Register(
