@@ -102,7 +102,7 @@ public class FlipperNew : Control
     private static void IsFlippedPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
     {
         var flipper = (FlipperNew)dependencyObject;
-        flipper.UpdateVisualStates(false);
+        flipper.UpdateVisualStates(true);
         flipper.RemeasureDuringFlip();
         OnIsFlippedChanged(flipper, dependencyPropertyChangedEventArgs);
     }

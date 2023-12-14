@@ -1,5 +1,7 @@
-﻿using System.Windows.Media;
+﻿using System.Windows.Data;
+using System.Windows.Media;
 using System.Windows.Media.Media3D;
+using System.Windows.Shapes;
 
 namespace MaterialDesignThemes.Wpf;
 
@@ -9,11 +11,11 @@ namespace MaterialDesignThemes.Wpf;
 /// <remarks>
 /// Taken from http://blogs.msdn.com/greg_schechter/archive/2007/10/26/enter-the-planerator-dead-simple-3d-in-wpf-with-a-stupid-name.aspx , Greg Schechter - Fall 2007
 /// </remarks>
-public class Plane3DNew : FrameworkElement
+public class Plane3DNew : ContentControl
 {
-    private FrameworkElement? _logicalChild;
-    private FrameworkElement? _visualChild;
-    private FrameworkElement? _originalChild;
+    //private FrameworkElement? _logicalChild;
+    //private FrameworkElement? _visualChild;
+    //private FrameworkElement? _originalChild;
 
     private readonly QuaternionRotation3D _quaternionRotation = new();
     private readonly RotateTransform3D _rotationTransform = new();
@@ -28,6 +30,29 @@ public class Plane3DNew : FrameworkElement
     private static readonly Vector3D ZAxis = new(0, 0, 1);
 
 
+
+
+    public static readonly DependencyProperty EndingContentProperty =
+        DependencyProperty.Register("EndingContent", typeof(FrameworkElement), typeof(Plane3DNew),
+            new PropertyMetadata(null, (d, args) => ((Plane3DNew)d).SetupVisualElements()));
+
+    public FrameworkElement? EndingContent
+    {
+        get => (FrameworkElement?)GetValue(EndingContentProperty);
+        set => SetValue(EndingContentProperty, value);
+    }
+
+    public static readonly DependencyProperty StartingContentProperty =
+        DependencyProperty.Register("StartingContent", typeof(FrameworkElement), typeof(Plane3DNew),
+            new PropertyMetadata(null, (d, args) => ((Plane3DNew)d).SetupVisualElements()));
+
+    public FrameworkElement? StartingContent
+    {
+        get => (FrameworkElement?)GetValue(StartingContentProperty);
+        set => SetValue(StartingContentProperty, value);
+    }
+
+
     public static readonly DependencyProperty RotationXProperty =
         DependencyProperty.Register("RotationX", typeof(double), typeof(Plane3DNew), new UIPropertyMetadata(0.0, (d, args) => ((Plane3DNew)d).UpdateRotation()));
 
@@ -38,7 +63,10 @@ public class Plane3DNew : FrameworkElement
     }
 
     public static readonly DependencyProperty RotationYProperty =
-        DependencyProperty.Register("RotationY", typeof(double), typeof(Plane3DNew), new UIPropertyMetadata(0.0, (d, args) => ((Plane3DNew)d).UpdateRotation()));
+        DependencyProperty.Register("RotationY", typeof(double), typeof(Plane3DNew),
+            new FrameworkPropertyMetadata(0.0,
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange,
+                (d, args) => ((Plane3DNew)d).UpdateRotation()));
 
     public double RotationY
     {
@@ -47,7 +75,7 @@ public class Plane3DNew : FrameworkElement
     }
 
     public static readonly DependencyProperty RotationZProperty =
-        DependencyProperty.Register("RotationZ", typeof(double), typeof(Plane3DNew), new UIPropertyMetadata(0.0, (d, args) => ((Plane3DNew)d).UpdateRotation()));
+        DependencyProperty.Register("RotationZ", typeof(double), typeof(Plane3DNew), new FrameworkPropertyMetadata(0.0, (d, args) => ((Plane3DNew)d).UpdateRotation()));
 
     public double RotationZ
     {
@@ -74,106 +102,167 @@ public class Plane3DNew : FrameworkElement
         set => SetValue(ZFactorProperty, value);
     }
 
-    public FrameworkElement? Child
-    {
-        get => _originalChild;
-        set
-        {
-            if (Equals(_originalChild, value)) return;
-            RemoveVisualChild(_visualChild);
-            RemoveLogicalChild(_logicalChild);
+    //public FrameworkElement? Child
+    //{
+    //    get => _originalChild;
+    //    set
+    //    {
+    //        if (Equals(_originalChild, value)) return;
+    //        RemoveVisualChild(_visualChild);
+    //        RemoveLogicalChild(_logicalChild);
 
-            // Wrap child with special decorator that catches layout invalidations. 
-            _originalChild = value;
-            _logicalChild = new LayoutInvalidationCatcher() { Child = _originalChild };
-            _visualChild = CreateVisualChild();
+    //        // Wrap child with special decorator that catches layout invalidations. 
+    //        _originalChild = value;
+    //        _logicalChild = new LayoutInvalidationCatcher() { Child = _originalChild };
+    //        _visualChild = CreateVisualChild();
 
-            AddVisualChild(_visualChild);
+    //        AddVisualChild(_visualChild);
 
-            // Need to use a logical child here to make sure data binding operations get down to it,
-            // since otherwise the child appears only as the Visual to a Viewport2DVisual3D, which 
-            // doesn't have data binding operations pass into it from above.
-            AddLogicalChild(_logicalChild);
-            InvalidateMeasure();
-        }
-    }
+    //        // Need to use a logical child here to make sure data binding operations get down to it,
+    //        // since otherwise the child appears only as the Visual to a Viewport2DVisual3D, which 
+    //        // doesn't have data binding operations pass into it from above.
+    //        AddLogicalChild(_logicalChild);
+    //        InvalidateMeasure();
+    //    }
+    //}
 
     protected override Size MeasureOverride(Size availableSize)
     {
-        Size result;
-        if (_logicalChild != null)
-        {
-            // Measure based on the size of the logical child, since we want to align with it.
-            _logicalChild.Measure(availableSize);
-            result = _logicalChild.DesiredSize;
-            _visualChild?.Measure(result);
-        }
-        else
-        {
-            result = new Size(0, 0);
-        }
-        return result;
+        return base.MeasureOverride(availableSize);
+        //Size result;
+        //if (StartingContent is { } startingContent)
+        //{
+        //    result = startingContent.DesiredSize;
+        //    _viewport3D?.Measure(result);
+        //}
+        //else
+        //{
+        //    result = new Size(0, 0);
+        //}
+        //return result;
+        //Size result;
+        //if (_logicalChild != null)
+        //{
+        //    // Measure based on the size of the logical child, since we want to align with it.
+        //    _logicalChild.Measure(availableSize);
+        //    result = _logicalChild.DesiredSize;
+        //    _visualChild?.Measure(result);
+        //}
+        //else
+        //{
+        //    result = new Size(0, 0);
+        //}
+        //return result;
     }
 
     protected override Size ArrangeOverride(Size finalSize)
     {
-        if (_logicalChild is null) return base.ArrangeOverride(finalSize);
-        _logicalChild.Arrange(new Rect(finalSize));
-        _visualChild?.Arrange(new Rect(finalSize));
+        //if (_logicalChild is null) return base.ArrangeOverride(finalSize);
+        //_logicalChild.Arrange(new Rect(finalSize));
+        //_visualChild?.Arrange(new Rect(finalSize));
+        //_viewport3D?.Arrange(new Rect(finalSize));
         Update3D();
         return base.ArrangeOverride(finalSize);
     }
 
-    protected override Visual? GetVisualChild(int index) => _visualChild;
+    //protected override Visual? GetVisualChild(int index) => _visualChild;
 
-    protected override int VisualChildrenCount => _visualChild == null ? 0 : 1;
+    //protected override int VisualChildrenCount => _visualChild == null ? 0 : 1;
 
-    private FrameworkElement CreateVisualChild()
+    private void SetupVisualElements()
     {
-        var simpleQuad = new MeshGeometry3D
+        if (StartingContent is { } startingContent &&
+            EndingContent is { } endingContent)
         {
-            Positions = new Point3DCollection(Mesh),
-            TextureCoordinates = new PointCollection(TexCoords),
-            TriangleIndices = new Int32Collection(Indices)
-        };
+            var simpleQuad = new MeshGeometry3D
+            {
+                Positions = new Point3DCollection(Mesh),
+                TextureCoordinates = new PointCollection(TexCoords),
+                TriangleIndices = new Int32Collection(Indices)
+            };
 
-        // Front material is interactive, back material is not.
-        Material frontMaterial = new DiffuseMaterial(Brushes.White);
-        frontMaterial.SetValue(Viewport2DVisual3D.IsVisualHostMaterialProperty, true);
+            // Front material is interactive, back material is not.
+            Material frontMaterial = new DiffuseMaterial(Brushes.White);
+            frontMaterial.SetValue(Viewport2DVisual3D.IsVisualHostMaterialProperty, true);
 
-        var vb = new VisualBrush(_logicalChild);
-        SetCachingForObject(vb);  // big perf wins by caching!!
-        Material backMaterial = new DiffuseMaterial(vb);
+            //Ending item?
+            var vb = new VisualBrush(endingContent);
+            SetCachingForObject(vb);  // big perf wins by caching!!
+            Material backMaterial = new DiffuseMaterial(vb);
 
-        _rotationTransform.Rotation = _quaternionRotation;
-        var xfGroup = new Transform3DGroup { Children = { _scaleTransform, _rotationTransform } };
+            _rotationTransform.Rotation = _quaternionRotation;
+            var xfGroup = new Transform3DGroup { Children = { _scaleTransform, _rotationTransform } };
 
-        var backModel = new GeometryModel3D { Geometry = simpleQuad, Transform = xfGroup, BackMaterial = backMaterial };
-        var m3DGroup = new Model3DGroup
+            var backModel = new GeometryModel3D
+            {
+                Geometry = simpleQuad,
+                Transform = xfGroup,
+                BackMaterial = backMaterial
+            };
+            var m3DGroup = new Model3DGroup
+            {
+                Children =
+            {
+                new DirectionalLight(Colors.White, new Vector3D(0, 0, -1)),
+                new DirectionalLight(Colors.White, new Vector3D(0.1, -0.1, 1)),
+                backModel
+            }
+            };
+
+            // Non-interactive Visual3D consisting of the backside, and two lights.
+            var mv3D = new ModelVisual3D { Content = m3DGroup };
+
+            // Interactive frontside Visual3D
+            var frontVb = new VisualBrush(startingContent);
+            Rectangle rectangle = new Rectangle()
+            {
+                Fill = frontVb
+            };
+            rectangle.SetBinding(WidthProperty, new Binding()
+            {
+                Path = new PropertyPath(ActualWidthProperty.Name),
+                Source = startingContent,
+                Mode = BindingMode.OneWay,
+            });
+            rectangle.SetBinding(HeightProperty, new Binding()
+            {
+                Path = new PropertyPath(ActualHeightProperty.Name),
+                Source = startingContent,
+                Mode = BindingMode.OneWay,
+            });
+            var frontModel = new Viewport2DVisual3D
+            {
+                Geometry = simpleQuad,
+                //Front item?
+                Visual = rectangle,
+                Material = frontMaterial,
+                Transform = xfGroup
+            };
+
+            // Cache the brush in the VP2V3 by setting caching on it.  Big perf wins.
+            SetCachingForObject(frontModel);
+
+            // Scene consists of both the above Visual3D's.
+            _viewport3D = new Viewport3D
+            {
+                ClipToBounds = false,
+                Children =
+                {
+                    mv3D,
+                    frontModel
+                }
+            };
+
+            UpdateRotation();
+            Content = _viewport3D;
+        }
+        else
         {
-            Children = { new DirectionalLight(Colors.White, new Vector3D(0, 0, -1)),
-                             new DirectionalLight(Colors.White, new Vector3D(0.1, -0.1, 1)),
-                             backModel }
-        };
-
-        // Non-interactive Visual3D consisting of the backside, and two lights.
-        var mv3D = new ModelVisual3D { Content = m3DGroup };
-
-        // Interactive frontside Visual3D
-        var frontModel = new Viewport2DVisual3D { Geometry = simpleQuad, Visual = _logicalChild, Material = frontMaterial, Transform = xfGroup };
-
-        // Cache the brush in the VP2V3 by setting caching on it.  Big perf wins.
-        SetCachingForObject(frontModel);
-
-        // Scene consists of both the above Visual3D's.
-        _viewport3D = new Viewport3D { ClipToBounds = false, Children = { mv3D, frontModel } };
-
-        UpdateRotation();
-
-        return _viewport3D;
+            //TODO: Clean up
+        }
     }
 
-    private void SetCachingForObject(DependencyObject d)
+    private static void SetCachingForObject(DependencyObject d)
     {
         RenderOptions.SetCachingHint(d, CachingHint.Cache);
         RenderOptions.SetCacheInvalidationThresholdMinimum(d, 0.5);
@@ -187,64 +276,34 @@ public class Plane3DNew : FrameworkElement
         var qz = new Quaternion(ZAxis, RotationZ);
 
         _quaternionRotation.Quaternion = qx * qy * qz;
+        InvalidateMeasure();
     }
 
     private void Update3D()
     {
-        // Use GetDescendantBounds for sizing and centering since DesiredSize includes layout whitespace, whereas GetDescendantBounds 
-        // is tighter
-        var logicalBounds = VisualTreeHelper.GetDescendantBounds(_logicalChild);
-        var w = logicalBounds.Width;
-        var h = logicalBounds.Height;
-
-        // Create a camera that looks down -Z, with up as Y, and positioned right halfway in X and Y on the element, 
-        // and back along Z the right distance based on the field-of-view is the same projected size as the 2D content
-        // that it's looking at.  See http://blogs.msdn.com/greg_schechter/archive/2007/04/03/camera-construction-in-parallaxui.aspx
-        // for derivation of this camera.
-        var fovInRadians = FieldOfView * (Math.PI / 180);
-        var zValue = w / Math.Tan(fovInRadians / 2) / ZFactor;
-        _viewport3D!.Camera = new PerspectiveCamera(new Point3D(w / 2, h / 2, zValue),
-                                                   -ZAxis,
-                                                   YAxis,
-                                                   FieldOfView);
-
-        _scaleTransform.ScaleX = w;
-        _scaleTransform.ScaleY = h;
-        _rotationTransform.CenterX = w / 2;
-        _rotationTransform.CenterY = h / 2;
-    }
-
-    #region Private Classes
-
-    /// <summary>
-    /// Wrap this around a class that we want to catch the measure and arrange 
-    /// processes occurring on, and propagate to the parent Planerator, if any.
-    /// Do this because layout invalidations don't flow up out of a 
-    /// Viewport2DVisual3D object.
-    /// </summary>
-    private class LayoutInvalidationCatcher : Decorator
-    {
-        protected override Size MeasureOverride(Size constraint)
+        if (_viewport3D is { } viewport)
         {
-            Plane3D? pl = Parent as Plane3D;
-            if (pl != null)
-            {
-                pl.InvalidateMeasure();
-            }
-            return base.MeasureOverride(constraint);
-        }
+            // Use GetDescendantBounds for sizing and centering since DesiredSize includes layout whitespace, whereas GetDescendantBounds 
+            // is tighter
+            var logicalBounds = VisualTreeHelper.GetDescendantBounds(StartingContent);
+            var w = logicalBounds.Width;
+            var h = logicalBounds.Height;
 
-        protected override Size ArrangeOverride(Size arrangeSize)
-        {
-            Plane3D? pl = Parent as Plane3D;
-            if (pl != null)
-            {
-                pl.InvalidateArrange();
-            }
-            return base.ArrangeOverride(arrangeSize);
+            // Create a camera that looks down -Z, with up as Y, and positioned right halfway in X and Y on the element, 
+            // and back along Z the right distance based on the field-of-view is the same projected size as the 2D content
+            // that it's looking at.  See http://blogs.msdn.com/greg_schechter/archive/2007/04/03/camera-construction-in-parallaxui.aspx
+            // for derivation of this camera.
+            var fovInRadians = FieldOfView * (Math.PI / 180);
+            var zValue = w / Math.Tan(fovInRadians / 2) / ZFactor;
+            viewport.Camera = new PerspectiveCamera(new Point3D(w / 2, h / 2, zValue),
+                                                       -ZAxis,
+                                                       YAxis,
+                                                       FieldOfView);
+
+            _scaleTransform.ScaleX = w;
+            _scaleTransform.ScaleY = h;
+            _rotationTransform.CenterX = w / 2;
+            _rotationTransform.CenterY = h / 2;
         }
     }
-
-    #endregion
-
 }
