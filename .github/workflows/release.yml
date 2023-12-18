@@ -90,7 +90,7 @@ jobs:
           fetch-depth: 0
       
       - name: Download NuGet Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: NuGets
           path: nugets
@@ -118,13 +118,13 @@ jobs:
 
     steps:
       - name: Download NuGet Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: NuGets
           path: nugets
 
       - name: Download Demo App Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: DemoApp
           path: demo-app
@@ -133,7 +133,7 @@ jobs:
         run: zip -r DemoApp.zip demo-app/*
 
       - name: Download Release Notes
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ReleaseNotes
 
@@ -155,7 +155,7 @@ jobs:
           repository:  ${{ github.repository }}.wiki
 
       - name: Download Icon Changes
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: IconChanges
           path: icon-changes
@@ -217,7 +217,7 @@ jobs:
 
     steps:
       - name: Download NuGet Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: NuGets
           path: nugets
