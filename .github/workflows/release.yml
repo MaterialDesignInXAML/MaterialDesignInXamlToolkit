@@ -65,7 +65,7 @@ jobs:
           cat "ReleaseNotes.md"
 
       - name: Upload Release Notes
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ReleaseNotes
           path: "ReleaseNotes.md"
@@ -106,7 +106,7 @@ jobs:
           dotnet run --project ./mdresgen/mdresgen.csproj -c Release -- icon-diff
 
       - name: Upload Icon Changes
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: IconChanges
           path: "IconChanges*.md"
