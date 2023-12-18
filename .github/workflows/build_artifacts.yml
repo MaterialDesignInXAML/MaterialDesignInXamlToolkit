@@ -53,7 +53,7 @@ jobs:
   
       - name: Upload Screenshots
         if: ${{ always() }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Screenshots-${{ github.run_number }}
           path: ${{ github.workspace }}\MaterialDesignThemes.UITests\bin\${{ inputs.build-configuration }}\net8.0-windows7\Screenshots
@@ -63,13 +63,13 @@ jobs:
         run: .\Scripts\BuildNugets.ps1 -MDIXVersion ${{ inputs.mdix-version }} -MDIXColorsVersion ${{ inputs.mdix-colors-version }} -MDIXMahAppsVersion ${{ inputs.mdix-mahapps-version }}
 
       - name: Upload NuGets
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: NuGets
           path: "*.nupkg"
 
       - name: Upload Demo App
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: DemoApp
           path: "MainDemo.Wpf/bin/${{ env.buildConfiguration }}"
