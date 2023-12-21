@@ -186,7 +186,10 @@ public class Plane3DNew : ContentControl
             frontMaterial.SetValue(Viewport2DVisual3D.IsVisualHostMaterialProperty, true);
 
             //Ending item?
-            var vb = new VisualBrush(endingContent);
+            var vb = new VisualBrush(endingContent)
+            {
+                Stretch = Stretch.None
+            };
             SetCachingForObject(vb);  // big perf wins by caching!!
             Material backMaterial = new DiffuseMaterial(vb);
 
@@ -213,7 +216,10 @@ public class Plane3DNew : ContentControl
             var mv3D = new ModelVisual3D { Content = m3DGroup };
 
             // Interactive frontside Visual3D
-            var frontVb = new VisualBrush(startingContent);
+            var frontVb = new VisualBrush(startingContent)
+            {
+                Stretch = Stretch.None
+            };
             Rectangle rectangle = new Rectangle()
             {
                 Fill = frontVb

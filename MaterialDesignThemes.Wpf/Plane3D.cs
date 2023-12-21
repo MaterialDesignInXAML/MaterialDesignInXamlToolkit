@@ -142,7 +142,10 @@ public class Plane3D : FrameworkElement
         Material frontMaterial = new DiffuseMaterial(Brushes.White);
         frontMaterial.SetValue(Viewport2DVisual3D.IsVisualHostMaterialProperty, true);
 
-        var vb = new VisualBrush(_logicalChild);
+        var vb = new VisualBrush(_logicalChild)
+        {
+            Stretch = Stretch.None
+        };
         SetCachingForObject(vb);  // big perf wins by caching!!
         Material backMaterial = new DiffuseMaterial(vb);
 
