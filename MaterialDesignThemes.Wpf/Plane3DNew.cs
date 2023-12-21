@@ -1,4 +1,4 @@
-﻿using System.Windows.Data;
+using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
@@ -32,15 +32,15 @@ public class Plane3DNew : ContentControl
 
 
 
-    public static readonly DependencyProperty EndingContentProperty =
-        DependencyProperty.Register("EndingContent", typeof(FrameworkElement), typeof(Plane3DNew),
-            new PropertyMetadata(null, (d, args) => ((Plane3DNew)d).SetupVisualElements()));
+    //public static readonly DependencyProperty EndingContentProperty =
+    //    DependencyProperty.Register("EndingContent", typeof(FrameworkElement), typeof(Plane3DNew),
+    //        new PropertyMetadata(null, (d, args) => ((Plane3DNew)d).SetupVisualElements()));
 
-    public FrameworkElement? EndingContent
-    {
-        get => (FrameworkElement?)GetValue(EndingContentProperty);
-        set => SetValue(EndingContentProperty, value);
-    }
+    //public FrameworkElement? EndingContent
+    //{
+    //    get => (FrameworkElement?)GetValue(EndingContentProperty);
+    //    set => SetValue(EndingContentProperty, value);
+    //}
 
     public static readonly DependencyProperty StartingContentProperty =
         DependencyProperty.Register("StartingContent", typeof(FrameworkElement), typeof(Plane3DNew),
@@ -171,8 +171,7 @@ public class Plane3DNew : ContentControl
 
     private void SetupVisualElements()
     {
-        if (StartingContent is { } startingContent &&
-            EndingContent is { } endingContent)
+        if (StartingContent is { } startingContent)
         {
             var simpleQuad = new MeshGeometry3D
             {
@@ -186,7 +185,7 @@ public class Plane3DNew : ContentControl
             frontMaterial.SetValue(Viewport2DVisual3D.IsVisualHostMaterialProperty, true);
 
             //Ending item?
-            var vb = new VisualBrush(endingContent)
+            var vb = new VisualBrush()
             {
                 Stretch = Stretch.None
             };
@@ -287,11 +286,12 @@ public class Plane3DNew : ContentControl
 
     private void Update3D()
     {
-        if (_viewport3D is { } viewport)
+        if (_viewport3D is { } viewport &&
+            StartingContent is { } content)
         {
             // Use GetDescendantBounds for sizing and centering since DesiredSize includes layout whitespace, whereas GetDescendantBounds 
             // is tighter
-            var logicalBounds = VisualTreeHelper.GetDescendantBounds(StartingContent);
+            var logicalBounds = VisualTreeHelper.GetDescendantBounds(content);
             var w = logicalBounds.Width;
             var h = logicalBounds.Height;
 
