@@ -204,11 +204,11 @@ public class Plane3DNew : ContentControl
             var m3DGroup = new Model3DGroup
             {
                 Children =
-            {
-                new DirectionalLight(Colors.White, new Vector3D(0, 0, -1)),
-                new DirectionalLight(Colors.White, new Vector3D(0.1, -0.1, 1)),
-                backModel
-            }
+                {
+                    new DirectionalLight(Colors.White, new Vector3D(0, 0, -1)),
+                    new DirectionalLight(Colors.White, new Vector3D(0.1, -0.1, 1)),
+                    backModel
+                }
             };
 
             // Non-interactive Visual3D consisting of the backside, and two lights.

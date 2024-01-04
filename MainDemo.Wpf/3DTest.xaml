@@ -75,6 +75,16 @@
         </Grid>
       </materialDesign:Card>
 
+      <Button Width="192"
+              Margin="8"
+              Content="RESIZING..."
+              x:Name="ButtonContent"
+              Style="{StaticResource MaterialDesignFlatButton}">
+        <Button.RenderTransform>
+          <TranslateTransform X="-10000000" />
+        </Button.RenderTransform>
+      </Button>
+
       <Rectangle Margin="50,0" />
 
       <materialDesign:Plane3DNew x:Name="PART_Plane3D"
@@ -82,8 +92,19 @@
                                  Height="{Binding ActualHeight, ElementName=FlipperContent}"
                                  IsHitTestVisible="False"
                                  RotationY="{Binding Value, ElementName=RotationYSlider}"
-                                 StartingContent="{Binding ElementName=FlipperContent}"
-                                 ZFactor="2.055" />
+                                 ZFactor="2.055">
+        <materialDesign:Plane3DNew>
+          <Style TargetType="materialDesign:Plane3DNew">
+            <Setter Property="StartingContent" Value="{Binding ElementName=FlipperContent}" />
+            
+            <Style.Triggers>
+              <DataTrigger Binding="{Binding IsChecked, ElementName=ToggleButton}" Value="True">
+                <Setter Property="StartingContent" Value="{Binding ElementName=ButtonContent}" />
+              </DataTrigger>
+            </Style.Triggers>
+          </Style>
+        </materialDesign:Plane3DNew>
+      </materialDesign:Plane3DNew>
 
     </StackPanel>
 
@@ -91,6 +112,9 @@
       <Slider x:Name="RotationYSlider"
               Maximum="90"
               Minimum="-90" />
+      
+      <ToggleButton HorizontalAlignment="Center" x:Name="ToggleButton"
+                    Style="{StaticResource MaterialDesignActionSecondaryToggleButton}"/>
     </StackPanel>
   </Grid>
 </UserControl>

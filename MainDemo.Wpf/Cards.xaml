@@ -519,15 +519,15 @@
     </smtx:XamlDisplay>
 
     <smtx:XamlDisplay Margin="4,4,0,0"
-                  VerticalContentAlignment="Top"
-                  UniqueKey="flipper_1">
+                      VerticalContentAlignment="Top"
+                      UniqueKey="flipper_1">
       <materialDesign:FlipperNew VerticalAlignment="Top" Style="{StaticResource MaterialDesignCardFlipperNew}">
         <materialDesign:FlipperNew.FrontContent>
           <Button Width="192"
-              Margin="8"
-              Command="{x:Static materialDesign:FlipperNew.FlipCommand}"
-              Content="RESIZING..."
-              Style="{StaticResource MaterialDesignFlatButton}" />
+                  Margin="8"
+                  Command="{x:Static materialDesign:FlipperNew.FlipCommand}"
+                  Content="RESIZING..."
+                  Style="{StaticResource MaterialDesignFlatButton}" />
         </materialDesign:FlipperNew.FrontContent>
         <materialDesign:FlipperNew.BackContent>
           <Grid Width="200" Height="256">
@@ -538,21 +538,21 @@
             <materialDesign:ColorZone Padding="6" Mode="SecondaryMid">
               <StackPanel Orientation="Horizontal">
                 <Button HorizontalAlignment="Left"
-                    Command="{x:Static materialDesign:FlipperNew.FlipCommand}"
-                    Style="{StaticResource MaterialDesignToolForegroundButton}">
+                        Command="{x:Static materialDesign:FlipperNew.FlipCommand}"
+                        Style="{StaticResource MaterialDesignToolForegroundButton}">
                   <materialDesign:PackIcon HorizontalAlignment="Right" Kind="ArrowLeft" />
                 </Button>
                 <TextBlock Margin="8,0,0,0"
-                       VerticalAlignment="Center"
-                       Text="EDIT USER" />
+                           VerticalAlignment="Center"
+                           Text="EDIT USER" />
               </StackPanel>
             </materialDesign:ColorZone>
 
             <Grid Grid.Row="1"
-              Width="172"
-              Margin="0,6,0,0"
-              HorizontalAlignment="Center"
-              VerticalAlignment="Top">
+                  Width="172"
+                  Margin="0,6,0,0"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Top">
               <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -560,25 +560,25 @@
                 <RowDefinition />
               </Grid.RowDefinitions>
               <TextBox Margin="0,12,0,0"
-                   materialDesign:HintAssist.Hint="First name"
-                   materialDesign:HintAssist.IsFloating="True"
-                   Text="James" />
+                       materialDesign:HintAssist.Hint="First name"
+                       materialDesign:HintAssist.IsFloating="True"
+                       Text="James" />
               <TextBox Grid.Row="1"
-                   Margin="0,12,0,0"
-                   materialDesign:HintAssist.Hint="Last name"
-                   materialDesign:HintAssist.IsFloating="True"
-                   Text="Willock" />
+                       Margin="0,12,0,0"
+                       materialDesign:HintAssist.Hint="Last name"
+                       materialDesign:HintAssist.IsFloating="True"
+                       Text="Willock" />
               <StackPanel Grid.Row="2"
-                      Margin="0,12,0,0"
-                      HorizontalAlignment="Right"
-                      Orientation="Horizontal">
+                          Margin="0,12,0,0"
+                          HorizontalAlignment="Right"
+                          Orientation="Horizontal">
                 <TextBlock VerticalAlignment="Center" Text="Email Contact" />
                 <ToggleButton Margin="8,0,0,0" />
               </StackPanel>
               <StackPanel Grid.Row="3"
-                      Margin="0,12,0,0"
-                      HorizontalAlignment="Right"
-                      Orientation="Horizontal">
+                          Margin="0,12,0,0"
+                          HorizontalAlignment="Right"
+                          Orientation="Horizontal">
                 <TextBlock VerticalAlignment="Center" Text="Telephone Contact" />
                 <ToggleButton Margin="8,0,0,0" />
               </StackPanel>
