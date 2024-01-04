@@ -12,7 +12,7 @@ public class FlipperTests : TestBase
         await using var recorder = new TestRecorder(App);
 
         //Arrange
-        IVisualElement<Flipper> flipper = await LoadXaml<Flipper>(
+        IVisualElement<FlipperClassic> flipper = await LoadXaml<FlipperClassic>(
             @"<materialDesign:Flipper Style=""{StaticResource MaterialDesignCardFlipper}"" materialDesign:FlipperAssist.CardStyle=""{StaticResource MaterialDesignOutlinedCard}"" materialDesign:FlipperAssist.UniformCornerRadius=""5"" />");
         IVisualElement<Card> internalCard = await flipper.GetElement<Card>();
         IVisualElement<Border> internalBorder = await internalCard.GetElement<Border>();
@@ -35,7 +35,7 @@ public class FlipperTests : TestBase
         await using var recorder = new TestRecorder(App);
 
         //Arrange
-        IVisualElement<Flipper> flipper = await LoadXaml<Flipper>(
+        IVisualElement<FlipperClassic> flipper = await LoadXaml<FlipperClassic>(
             @"<materialDesign:Flipper Style=""{StaticResource MaterialDesignCardFlipper}"" materialDesign:FlipperAssist.CardStyle=""{StaticResource MaterialDesignElevatedCard}"" materialDesign:FlipperAssist.UniformCornerRadius=""5"" />");
         IVisualElement<Card> internalCard = await flipper.GetElement<Card>();
         IVisualElement<Border> internalBorder = await internalCard.GetElement<Border>();
@@ -58,7 +58,7 @@ public class FlipperTests : TestBase
         await using var recorder = new TestRecorder(App);
 
         //Arrange
-        IVisualElement<Flipper> flipper = await LoadXaml<Flipper>(
+        IVisualElement<FlipperClassic> flipper = await LoadXaml<FlipperClassic>(
             @"<materialDesign:Flipper Style=""{StaticResource MaterialDesignCardFlipper}"" materialDesign:FlipperAssist.CardStyle=""{StaticResource MaterialDesignElevatedCard}"" />");
         IVisualElement<Card> internalCard = await flipper.GetElement<Card>();
 

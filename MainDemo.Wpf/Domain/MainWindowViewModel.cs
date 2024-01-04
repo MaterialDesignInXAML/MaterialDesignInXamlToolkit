@@ -112,11 +112,6 @@ public class MainWindowViewModel : ViewModelBase
             throw new ArgumentNullException(nameof(snackbarMessageQueue));
 
         yield return new DemoItem(
-            "3D Test",
-            typeof(_3DTest),
-            Array.Empty<DocumentationLink>());
-
-        yield return new DemoItem(
             "Palette",
             typeof(PaletteSelector),
             new[]

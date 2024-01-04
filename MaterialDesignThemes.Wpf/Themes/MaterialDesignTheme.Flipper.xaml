@@ -3,15 +3,16 @@
                     xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
-  <SineEase x:Key="FlipEase"
-            EasingMode="EaseInOut"
-            po:Freeze="True" />
-
-  <Style TargetType="{x:Type wpf:Flipper}">
+  <Style TargetType="{x:Type wpf:FlipperClassic}">
     <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate TargetType="{x:Type wpf:Flipper}">
+        <ControlTemplate TargetType="{x:Type wpf:FlipperClassic}">
+          <ControlTemplate.Resources>
+            <SineEase x:Key="FlipEase"
+                      EasingMode="EaseInOut"
+                      po:Freeze="True" />
+          </ControlTemplate.Resources>
           <Border x:Name="Border"
                   Background="{TemplateBinding Background}"
                   BorderBrush="{TemplateBinding BorderBrush}"
@@ -121,12 +122,17 @@
     </Setter>
   </Style>
 
-  <Style x:Key="MaterialDesignCardFlipper"
-         TargetType="{x:Type wpf:Flipper}"
-         BasedOn="{StaticResource {x:Type wpf:Flipper}}">
+  <Style x:Key="MaterialDesignCardFlipperClassic"
+         TargetType="{x:Type wpf:FlipperClassic}"
+         BasedOn="{StaticResource {x:Type wpf:FlipperClassic}}">
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate TargetType="{x:Type wpf:Flipper}">
+        <ControlTemplate TargetType="{x:Type wpf:FlipperClassic}">
+          <ControlTemplate.Resources>
+            <SineEase x:Key="FlipEase"
+                      EasingMode="EaseInOut"
+                      po:Freeze="True" />
+          </ControlTemplate.Resources>
           <Border x:Name="Border"
                   Background="{TemplateBinding Background}"
                   BorderBrush="{TemplateBinding BorderBrush}"
@@ -242,13 +248,11 @@
     <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp1" />
   </Style>
 
-  <Style x:Key="MaterialDesignCardFlipperNew" TargetType="{x:Type wpf:FlipperNew}">
+  <Style x:Key="MaterialDesignCardFlipper" TargetType="{x:Type wpf:Flipper}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Card.Background}" />
-    <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp1" />
-    <Setter Property="VerticalContentAlignment" Value="Top" />
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate TargetType="{x:Type wpf:FlipperNew}">
+        <ControlTemplate TargetType="{x:Type wpf:Flipper}">
           <Grid>
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="FlipStates">

@@ -1,9 +1,11 @@
-﻿namespace MaterialDesignThemes.Wpf;
+﻿using System.Windows.Threading;
 
-[TemplatePart(Name = Plane3DPartName, Type = typeof(Plane3DNew))]
+namespace MaterialDesignThemes.Wpf;
+
+[TemplatePart(Name = Plane3DPartName, Type = typeof(Plane3D))]
 [TemplateVisualState(GroupName = TemplateFlipGroupName, Name = TemplateFlippedStateName)]
 [TemplateVisualState(GroupName = TemplateFlipGroupName, Name = TemplateUnflippedStateName)]
-public class FlipperNew : Control
+public class FlipperClassic : Control
 {
     public static readonly RoutedCommand FlipCommand = new();
 
@@ -12,20 +14,20 @@ public class FlipperNew : Control
     public const string TemplateFlippedStateName = "Flipped";
     public const string TemplateUnflippedStateName = "Unflipped";
 
-    private Plane3DNew? _plane3D;
+    private Plane3D? _plane3D;
 
-    static FlipperNew()
+    static FlipperClassic()
     {
-        DefaultStyleKeyProperty.OverrideMetadata(typeof(FlipperNew), new FrameworkPropertyMetadata(typeof(FlipperNew)));
+        DefaultStyleKeyProperty.OverrideMetadata(typeof(FlipperClassic), new FrameworkPropertyMetadata(typeof(FlipperClassic)));
     }
 
-    public FlipperNew()
+    public FlipperClassic()
     {
         CommandBindings.Add(new CommandBinding(FlipCommand, FlipHandler));
     }
 
     public static readonly DependencyProperty FrontContentProperty = DependencyProperty.Register(
-        nameof(FrontContent), typeof(object), typeof(FlipperNew), new PropertyMetadata(default(object?)));
+        nameof(FrontContent), typeof(object), typeof(FlipperClassic), new PropertyMetadata(default(object?)));
 
     public object? FrontContent
     {
@@ -34,7 +36,7 @@ public class FlipperNew : Control
     }
 
     public static readonly DependencyProperty FrontContentTemplateProperty = DependencyProperty.Register(
-        nameof(FrontContentTemplate), typeof(DataTemplate), typeof(FlipperNew), new PropertyMetadata(default(DataTemplate?)));
+        nameof(FrontContentTemplate), typeof(DataTemplate), typeof(FlipperClassic), new PropertyMetadata(default(DataTemplate?)));
 
     public DataTemplate? FrontContentTemplate
     {
@@ -43,7 +45,7 @@ public class FlipperNew : Control
     }
 
     public static readonly DependencyProperty FrontContentTemplateSelectorProperty = DependencyProperty.Register(
-        nameof(FrontContentTemplateSelector), typeof(DataTemplateSelector), typeof(FlipperNew), new PropertyMetadata(default(DataTemplateSelector)));
+        nameof(FrontContentTemplateSelector), typeof(DataTemplateSelector), typeof(FlipperClassic), new PropertyMetadata(default(DataTemplateSelector)));
 
     public DataTemplateSelector? FrontContentTemplateSelector
     {
@@ -52,7 +54,7 @@ public class FlipperNew : Control
     }
 
     public static readonly DependencyProperty FrontContentStringFormatProperty = DependencyProperty.Register(
-        nameof(FrontContentStringFormat), typeof(string), typeof(FlipperNew), new PropertyMetadata(default(string?)));
+        nameof(FrontContentStringFormat), typeof(string), typeof(FlipperClassic), new PropertyMetadata(default(string?)));
 
     public string? FrontContentStringFormat
     {
@@ -61,7 +63,7 @@ public class FlipperNew : Control
     }
 
     public static readonly DependencyProperty BackContentProperty = DependencyProperty.Register(
-        nameof(BackContent), typeof(object), typeof(FlipperNew), new PropertyMetadata(default(object?)));
+        nameof(BackContent), typeof(object), typeof(FlipperClassic), new PropertyMetadata(default(object?)));
 
     public object? BackContent
     {
@@ -70,7 +72,7 @@ public class FlipperNew : Control
     }
 
     public static readonly DependencyProperty BackContentTemplateProperty = DependencyProperty.Register(
-        nameof(BackContentTemplate), typeof(DataTemplate), typeof(FlipperNew), new PropertyMetadata(default(DataTemplate?)));
+        nameof(BackContentTemplate), typeof(DataTemplate), typeof(FlipperClassic), new PropertyMetadata(default(DataTemplate?)));
 
     public DataTemplate? BackContentTemplate
     {
@@ -79,7 +81,7 @@ public class FlipperNew : Control
     }
 
     public static readonly DependencyProperty BackContentTemplateSelectorProperty = DependencyProperty.Register(
-        nameof(BackContentTemplateSelector), typeof(DataTemplateSelector), typeof(FlipperNew), new PropertyMetadata(default(DataTemplateSelector?)));
+        nameof(BackContentTemplateSelector), typeof(DataTemplateSelector), typeof(FlipperClassic), new PropertyMetadata(default(DataTemplateSelector?)));
 
     public DataTemplateSelector? BackContentTemplateSelector
     {
@@ -88,7 +90,7 @@ public class FlipperNew : Control
     }
 
     public static readonly DependencyProperty BackContentStringFormatProperty = DependencyProperty.Register(
-        nameof(BackContentStringFormat), typeof(string), typeof(FlipperNew), new PropertyMetadata(default(string?)));
+        nameof(BackContentStringFormat), typeof(string), typeof(FlipperClassic), new PropertyMetadata(default(string?)));
 
     public string? BackContentStringFormat
     {
@@ -97,11 +99,11 @@ public class FlipperNew : Control
     }
 
     public static readonly DependencyProperty IsFlippedProperty = DependencyProperty.Register(
-        nameof(IsFlipped), typeof(bool), typeof(FlipperNew), new PropertyMetadata(default(bool), IsFlippedPropertyChangedCallback));
+        nameof(IsFlipped), typeof(bool), typeof(FlipperClassic), new PropertyMetadata(default(bool), IsFlippedPropertyChangedCallback));
 
     private static void IsFlippedPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
     {
-        var flipper = (FlipperNew)dependencyObject;
+        var flipper = (FlipperClassic)dependencyObject;
         flipper.UpdateVisualStates(true);
         flipper.RemeasureDuringFlip();
         OnIsFlippedChanged(flipper, dependencyPropertyChangedEventArgs);
@@ -118,7 +120,7 @@ public class FlipperNew : Control
             nameof(IsFlipped),
             RoutingStrategy.Bubble,
             typeof(RoutedPropertyChangedEventHandler<bool>),
-            typeof(FlipperNew));
+            typeof(FlipperClassic));
 
     public event RoutedPropertyChangedEventHandler<bool> IsFlippedChanged
     {
@@ -129,13 +131,11 @@ public class FlipperNew : Control
     private static void OnIsFlippedChanged(
         DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var instance = (FlipperNew)d;
+        var instance = (FlipperClassic)d;
         var args = new RoutedPropertyChangedEventArgs<bool>(
                 (bool)e.OldValue,
                 (bool)e.NewValue)
-        {
-            RoutedEvent = IsFlippedChangedEvent
-        };
+        { RoutedEvent = IsFlippedChangedEvent };
         instance.RaiseEvent(args);
     }
 
@@ -145,29 +145,29 @@ public class FlipperNew : Control
 
         UpdateVisualStates(false);
 
-        _plane3D = GetTemplateChild(Plane3DPartName) as Plane3DNew;
+        _plane3D = GetTemplateChild(Plane3DPartName) as Plane3D;
     }
 
     private void RemeasureDuringFlip()
     {
-        ////not entirely happy hardcoding this, but I have explored other options I am not happy with, and this will do for now
-        //const int storyboardMs = 400;
-        //const int granularity = 6;
+        //not entirely happy hardcoding this, but I have explored other options I am not happy with, and this will do for now
+        const int storyboardMs = 400;
+        const int granularity = 6;
 
-        //var remeasureInterval = new TimeSpan(0, 0, 0, 0, storyboardMs / granularity);
-        //var refreshCount = 0;
-        //var plane3D = _plane3D;
-        //if (plane3D is null) return;
+        var remeasureInterval = new TimeSpan(0, 0, 0, 0, storyboardMs / granularity);
+        var refreshCount = 0;
+        var plane3D = _plane3D;
+        if (plane3D is null) return;
 
-        //DispatcherTimer? dt = null;
-        //dt = new DispatcherTimer(remeasureInterval, DispatcherPriority.Normal,
-        //    (sender, args) =>
-        //    {
-        //        plane3D.InvalidateMeasure();
-        //        if (refreshCount++ == granularity)
-        //            dt?.Stop();
-        //    }, Dispatcher);
-        //dt.Start();
+        DispatcherTimer? dt = null;
+        dt = new DispatcherTimer(remeasureInterval, DispatcherPriority.Normal,
+            (sender, args) =>
+            {
+                plane3D.InvalidateMeasure();
+                if (refreshCount++ == granularity)
+                    dt?.Stop();
+            }, Dispatcher);
+        dt.Start();
     }
 
     private void UpdateVisualStates(bool useTransitions)
