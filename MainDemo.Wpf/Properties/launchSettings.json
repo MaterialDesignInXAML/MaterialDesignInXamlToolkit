@@ -2,7 +2,7 @@
     "profiles": {
         "Demo App": {
             "commandName": "Project",
-            "commandLineArgs": "-p Home -t Inherit -f LeftToRight"
+            "commandLineArgs": "-p 3DTest -t Inherit -f LeftToRight"
         }
     }
 }

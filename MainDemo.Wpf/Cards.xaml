@@ -15,6 +15,7 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.FlipperClassic.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Popupbox.xaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
@@ -336,36 +337,36 @@
     </smtx:XamlDisplay>
 
     <!--
-            For the Card styled <Flipper />, bring in this resource dictionary (see top of this file)
-            pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml
+    For the Card styled <Flipper />, bring in this resource dictionary (see top of this file)
+    pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml
     -->
     <StackPanel>
       <smtx:XamlDisplay Margin="4,4,0,0"
                         VerticalContentAlignment="Top"
                         UniqueKey="cards_7">
-        <materialDesign:Flipper IsFlippedChanged="Flipper_OnIsFlippedChanged" Style="{StaticResource MaterialDesignCardFlipper}">
-          <materialDesign:Flipper.FrontContent>
+        <materialDesign:FlipperClassic IsFlippedChanged="Flipper_OnIsFlippedChanged" Style="{StaticResource MaterialDesignCardFlipperClassic}">
+          <materialDesign:FlipperClassic.FrontContent>
             <Button Width="184"
                     Margin="8"
-                    Command="{x:Static materialDesign:Flipper.FlipCommand}"
-                    Content="FLIPPABLZ!"
+                    Command="{x:Static materialDesign:FlipperClassic.FlipCommand}"
+                    Content="FLIPPABLZ CLASSIC!"
                     Style="{StaticResource MaterialDesignFlatButton}" />
-          </materialDesign:Flipper.FrontContent>
-          <materialDesign:Flipper.BackContent>
+          </materialDesign:FlipperClassic.FrontContent>
+          <materialDesign:FlipperClassic.BackContent>
             <Button Width="184"
                     Margin="8"
-                    Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                    Command="{x:Static materialDesign:FlipperClassic.FlipCommand}"
                     Content="GO BACK"
                     Style="{StaticResource MaterialDesignFlatButton}" />
-          </materialDesign:Flipper.BackContent>
-        </materialDesign:Flipper>
+          </materialDesign:FlipperClassic.BackContent>
+        </materialDesign:FlipperClassic>
       </smtx:XamlDisplay>
 
       <smtx:XamlDisplay Margin="4,4,0,0"
                         VerticalContentAlignment="Top"
                         UniqueKey="cards_8">
-        <materialDesign:Flipper materialDesign:ElevationAssist.Elevation="Dp0" Style="{StaticResource MaterialDesignCardFlipper}">
-          <materialDesign:Flipper.FrontContent>
+        <materialDesign:FlipperClassic materialDesign:ElevationAssist.Elevation="Dp0" Style="{StaticResource MaterialDesignCardFlipperClassic}">
+          <materialDesign:FlipperClassic.FrontContent>
             <Grid Width="200" Height="256">
               <Grid.RowDefinitions>
                 <RowDefinition Height="160" />
@@ -383,13 +384,13 @@
                           VerticalAlignment="Center">
                 <TextBlock Text="James Willock" />
                 <Button Margin="0,4,0,0"
-                        Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                        Command="{x:Static materialDesign:FlipperClassic.FlipCommand}"
                         Content="EDIT"
                         Style="{StaticResource MaterialDesignFlatButton}" />
               </StackPanel>
             </Grid>
-          </materialDesign:Flipper.FrontContent>
-          <materialDesign:Flipper.BackContent>
+          </materialDesign:FlipperClassic.FrontContent>
+          <materialDesign:FlipperClassic.BackContent>
             <Grid Width="200" Height="256">
               <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -398,7 +399,7 @@
               <materialDesign:ColorZone Padding="6" Mode="SecondaryMid">
                 <StackPanel Orientation="Horizontal">
                   <Button HorizontalAlignment="Left"
-                          Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                          Command="{x:Static materialDesign:FlipperClassic.FlipCommand}"
                           Style="{StaticResource MaterialDesignToolForegroundButton}">
                     <materialDesign:PackIcon HorizontalAlignment="Right" Kind="ArrowLeft" />
                   </Button>
@@ -443,15 +444,106 @@
                 </StackPanel>
               </Grid>
             </Grid>
-          </materialDesign:Flipper.BackContent>
-        </materialDesign:Flipper>
+          </materialDesign:FlipperClassic.BackContent>
+        </materialDesign:FlipperClassic>
       </smtx:XamlDisplay>
     </StackPanel>
 
     <smtx:XamlDisplay Margin="4,4,0,0"
                       VerticalContentAlignment="Top"
                       UniqueKey="cards_9">
-      <materialDesign:Flipper VerticalAlignment="Top" Style="{StaticResource MaterialDesignCardFlipper}">
+      <materialDesign:FlipperClassic VerticalAlignment="Top" Style="{StaticResource MaterialDesignCardFlipperClassic}">
+        <materialDesign:FlipperClassic.FrontContent>
+          <Button Width="192"
+                  Margin="8"
+                  Command="{x:Static materialDesign:FlipperClassic.FlipCommand}"
+                  Content="RESIZING..."
+                  Style="{StaticResource MaterialDesignFlatButton}" />
+        </materialDesign:FlipperClassic.FrontContent>
+        <materialDesign:FlipperClassic.BackContent>
+          <Grid Width="200" Height="256">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <materialDesign:ColorZone Padding="6" Mode="SecondaryMid">
+              <StackPanel Orientation="Horizontal">
+                <Button HorizontalAlignment="Left"
+                        Command="{x:Static materialDesign:FlipperClassic.FlipCommand}"
+                        Style="{StaticResource MaterialDesignToolForegroundButton}">
+                  <materialDesign:PackIcon HorizontalAlignment="Right" Kind="ArrowLeft" />
+                </Button>
+                <TextBlock Margin="8,0,0,0"
+                           VerticalAlignment="Center"
+                           Text="EDIT USER" />
+              </StackPanel>
+            </materialDesign:ColorZone>
+
+            <Grid Grid.Row="1"
+                  Width="172"
+                  Margin="0,6,0,0"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Top">
+              <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+              </Grid.RowDefinitions>
+              <TextBox Margin="0,12,0,0"
+                       materialDesign:HintAssist.Hint="First name"
+                       materialDesign:HintAssist.IsFloating="True"
+                       Text="James" />
+              <TextBox Grid.Row="1"
+                       Margin="0,12,0,0"
+                       materialDesign:HintAssist.Hint="Last name"
+                       materialDesign:HintAssist.IsFloating="True"
+                       Text="Willock" />
+              <StackPanel Grid.Row="2"
+                          Margin="0,12,0,0"
+                          HorizontalAlignment="Right"
+                          Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" Text="Email Contact" />
+                <ToggleButton Margin="8,0,0,0" />
+              </StackPanel>
+              <StackPanel Grid.Row="3"
+                          Margin="0,12,0,0"
+                          HorizontalAlignment="Right"
+                          Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" Text="Telephone Contact" />
+                <ToggleButton Margin="8,0,0,0" />
+              </StackPanel>
+            </Grid>
+          </Grid>
+        </materialDesign:FlipperClassic.BackContent>
+      </materialDesign:FlipperClassic>
+    </smtx:XamlDisplay>
+
+    <smtx:XamlDisplay Margin="4,4,0,0"
+                      VerticalContentAlignment="Top"
+                      UniqueKey="flipper_2">
+      <materialDesign:Flipper materialDesign:FlipperAssist.UniformCornerRadius="4">
+        <materialDesign:Flipper.FrontContent>
+          <Button Width="184"
+                  Margin="8"
+                  Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                  Content="FLIPPABLZ!"
+                  Style="{StaticResource MaterialDesignFlatButton}" />
+        </materialDesign:Flipper.FrontContent>
+        <materialDesign:Flipper.BackContent>
+          <Button Width="184"
+                  Margin="8"
+                  Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                  Content="GO BACK"
+                  Style="{StaticResource MaterialDesignFlatButton}" />
+        </materialDesign:Flipper.BackContent>
+      </materialDesign:Flipper>
+    </smtx:XamlDisplay>
+
+    <smtx:XamlDisplay Margin="4,4,0,0"
+                      VerticalContentAlignment="Top"
+                      UniqueKey="flipper_1">
+      <materialDesign:Flipper VerticalAlignment="Top">
         <materialDesign:Flipper.FrontContent>
           <Button Width="192"
                   Margin="8"
@@ -522,71 +614,71 @@
       <smtx:XamlDisplay Margin="4,4,0,0"
                         VerticalContentAlignment="Top"
                         UniqueKey="cards_10">
-        <materialDesign:Flipper IsFlippedChanged="Flipper_OnIsFlippedChanged">
-          <materialDesign:Flipper.FrontContent>
+        <materialDesign:FlipperClassic IsFlippedChanged="Flipper_OnIsFlippedChanged">
+          <materialDesign:FlipperClassic.FrontContent>
             <Button Width="184"
                     Margin="8"
                     materialDesign:ButtonAssist.CornerRadius="8"
-                    Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                    Command="{x:Static materialDesign:FlipperClassic.FlipCommand}"
                     Content="Rounded Flipper"
                     Style="{StaticResource MaterialDesignFlatButton}" />
-          </materialDesign:Flipper.FrontContent>
-          <materialDesign:Flipper.BackContent>
+          </materialDesign:FlipperClassic.FrontContent>
+          <materialDesign:FlipperClassic.BackContent>
             <Button Width="184"
                     Margin="8"
                     materialDesign:ButtonAssist.CornerRadius="8"
-                    Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                    Command="{x:Static materialDesign:FlipperClassic.FlipCommand}"
                     Content="GO BACK"
                     Style="{StaticResource MaterialDesignFlatButton}" />
-          </materialDesign:Flipper.BackContent>
-        </materialDesign:Flipper>
+          </materialDesign:FlipperClassic.BackContent>
+        </materialDesign:FlipperClassic>
       </smtx:XamlDisplay>
 
       <smtx:XamlDisplay Margin="4,4,0,0"
                         VerticalContentAlignment="Top"
                         UniqueKey="cards_11">
-        <materialDesign:Flipper materialDesign:FlipperAssist.UniformCornerRadius="8"
-                                IsFlippedChanged="Flipper_OnIsFlippedChanged"
-                                Style="{StaticResource MaterialDesignCardFlipper}">
-          <materialDesign:Flipper.FrontContent>
+        <materialDesign:FlipperClassic materialDesign:FlipperAssist.UniformCornerRadius="8"
+                                       IsFlippedChanged="Flipper_OnIsFlippedChanged"
+                                       Style="{StaticResource MaterialDesignCardFlipperClassic}">
+          <materialDesign:FlipperClassic.FrontContent>
             <Button Width="184"
                     Margin="8"
-                    Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                    Command="{x:Static materialDesign:FlipperClassic.FlipCommand}"
                     Content="Rounded Card Flipper 1"
                     Style="{StaticResource MaterialDesignFlatButton}" />
-          </materialDesign:Flipper.FrontContent>
-          <materialDesign:Flipper.BackContent>
+          </materialDesign:FlipperClassic.FrontContent>
+          <materialDesign:FlipperClassic.BackContent>
             <Button Width="184"
                     Margin="8"
-                    Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                    Command="{x:Static materialDesign:FlipperClassic.FlipCommand}"
                     Content="GO BACK"
                     Style="{StaticResource MaterialDesignFlatButton}" />
-          </materialDesign:Flipper.BackContent>
-        </materialDesign:Flipper>
+          </materialDesign:FlipperClassic.BackContent>
+        </materialDesign:FlipperClassic>
       </smtx:XamlDisplay>
 
       <smtx:XamlDisplay Margin="4,4,0,0"
                         VerticalContentAlignment="Top"
                         UniqueKey="cards_12">
-        <materialDesign:Flipper materialDesign:FlipperAssist.CardStyle="{StaticResource MaterialDesignOutlinedCard}"
-                                materialDesign:FlipperAssist.UniformCornerRadius="8"
-                                IsFlippedChanged="Flipper_OnIsFlippedChanged"
-                                Style="{StaticResource MaterialDesignCardFlipper}">
-          <materialDesign:Flipper.FrontContent>
+        <materialDesign:FlipperClassic materialDesign:FlipperAssist.CardStyle="{StaticResource MaterialDesignOutlinedCard}"
+                                       materialDesign:FlipperAssist.UniformCornerRadius="8"
+                                       IsFlippedChanged="Flipper_OnIsFlippedChanged"
+                                       Style="{StaticResource MaterialDesignCardFlipperClassic}">
+          <materialDesign:FlipperClassic.FrontContent>
             <Button Width="184"
                     Margin="8"
-                    Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                    Command="{x:Static materialDesign:FlipperClassic.FlipCommand}"
                     Content="Rounded Card Flipper 2"
                     Style="{StaticResource MaterialDesignFlatButton}" />
-          </materialDesign:Flipper.FrontContent>
-          <materialDesign:Flipper.BackContent>
+          </materialDesign:FlipperClassic.FrontContent>
+          <materialDesign:FlipperClassic.BackContent>
             <Button Width="184"
                     Margin="8"
-                    Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                    Command="{x:Static materialDesign:FlipperClassic.FlipCommand}"
                     Content="GO BACK"
                     Style="{StaticResource MaterialDesignFlatButton}" />
-          </materialDesign:Flipper.BackContent>
-        </materialDesign:Flipper>
+          </materialDesign:FlipperClassic.BackContent>
+        </materialDesign:FlipperClassic>
       </smtx:XamlDisplay>
     </StackPanel>
   </WrapPanel>

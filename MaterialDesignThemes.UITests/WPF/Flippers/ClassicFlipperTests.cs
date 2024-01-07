@@ -1,19 +1,21 @@
 namespace MaterialDesignThemes.UITests.WPF.Flippers;
 
-public class FlipperTests : TestBase
+public class ClassicFlipperTests : TestBase
 {
-    public FlipperTests(ITestOutputHelper output)
+    public ClassicFlipperTests(ITestOutputHelper output)
         : base(output)
     { }
 
     [Fact]
-    public async Task Flipper_UniformCornerRadiusAndOutlinedCardStyleAttachedPropertiesApplied_AppliesCornerRadiusOnBorder()
+    public async Task UniformCornerRadiusAndOutlinedCardStyleAttachedPropertiesApplied_AppliesCornerRadiusOnBorder()
     {
         await using var recorder = new TestRecorder(App);
 
         //Arrange
-        IVisualElement<Flipper> flipper = await LoadXaml<Flipper>(
-            @"<materialDesign:Flipper Style=""{StaticResource MaterialDesignCardFlipper}"" materialDesign:FlipperAssist.CardStyle=""{StaticResource MaterialDesignOutlinedCard}"" materialDesign:FlipperAssist.UniformCornerRadius=""5"" />");
+        IVisualElement<FlipperClassic> flipper = await LoadXaml<FlipperClassic>(
+            """
+            <materialDesign:FlipperClassic Style="{StaticResource MaterialDesignCardFlipperClassic}" materialDesign:FlipperAssist.CardStyle="{StaticResource MaterialDesignOutlinedCard}" materialDesign:FlipperAssist.UniformCornerRadius="5" />
+            """);
         IVisualElement<Card> internalCard = await flipper.GetElement<Card>();
         IVisualElement<Border> internalBorder = await internalCard.GetElement<Border>();
 
@@ -30,13 +32,17 @@ public class FlipperTests : TestBase
     }
 
     [Fact]
-    public async Task Flipper_UniformCornerRadiusAndElevatedCardStyleAttachedPropertiesApplied_AppliesCornerRadiusOnBorder()
+    public async Task UniformCornerRadiusAndElevatedCardStyleAttachedPropertiesApplied_AppliesCornerRadiusOnBorder()
     {
         await using var recorder = new TestRecorder(App);
 
         //Arrange
-        IVisualElement<Flipper> flipper = await LoadXaml<Flipper>(
-            @"<materialDesign:Flipper Style=""{StaticResource MaterialDesignCardFlipper}"" materialDesign:FlipperAssist.CardStyle=""{StaticResource MaterialDesignElevatedCard}"" materialDesign:FlipperAssist.UniformCornerRadius=""5"" />");
+        IVisualElement<FlipperClassic> flipper = await LoadXaml<FlipperClassic>(
+            """
+            <materialDesign:FlipperClassic Style="{StaticResource MaterialDesignCardFlipperClassic}"
+                            materialDesign:FlipperAssist.CardStyle="{StaticResource MaterialDesignElevatedCard}"
+                            materialDesign:FlipperAssist.UniformCornerRadius="5" />
+            """);
         IVisualElement<Card> internalCard = await flipper.GetElement<Card>();
         IVisualElement<Border> internalBorder = await internalCard.GetElement<Border>();
 
@@ -53,17 +59,20 @@ public class FlipperTests : TestBase
     }
 
     [Fact]
-    public async Task Flipper_ElevatedCardStyleApplied_AppliesDefaultElevation()
+    public async Task ElevatedCardStyleApplied_AppliesDefaultElevation()
     {
         await using var recorder = new TestRecorder(App);
 
         //Arrange
-        IVisualElement<Flipper> flipper = await LoadXaml<Flipper>(
-            @"<materialDesign:Flipper Style=""{StaticResource MaterialDesignCardFlipper}"" materialDesign:FlipperAssist.CardStyle=""{StaticResource MaterialDesignElevatedCard}"" />");
-        IVisualElement<Card> internalCard = await flipper.GetElement<Card>();
+        IVisualElement<FlipperClassic> flipper = await LoadXaml<FlipperClassic>(
+            """
+            <materialDesign:FlipperClassic Style="{StaticResource MaterialDesignCardFlipperClassic}"
+                materialDesign:FlipperAssist.CardStyle="{StaticResource MaterialDesignElevatedCard}" />
+            """
+            );
+        IVisualElement <Card> internalCard = await flipper.GetElement<Card>();
 
         //Act
-        // TODO: This throws an exception because it fails to load the 'MaterialDesignTheme.Shadows.xaml' resource dictionary in the ElevationAssist static ctor
         Elevation? defaultElevation = await internalCard.GetProperty<Elevation>(ElevationAssist.ElevationProperty);
 
         //Assert
