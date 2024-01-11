@@ -17,7 +17,7 @@
       <StackPanel Orientation="Horizontal">
         <StackPanel>
           <StackPanel.Resources>
-            <Style TargetType="Slider" BasedOn="{StaticResource MaterialDesignSlider}">
+            <Style TargetType="Slider" BasedOn="{StaticResource MaterialDesign3.MaterialDesignSlider}">
               <Setter Property="IsSnapToTickEnabled" Value="True" />
               <Setter Property="Margin" Value="10,0" />
               <Setter Property="VerticalAlignment" Value="Center" />
