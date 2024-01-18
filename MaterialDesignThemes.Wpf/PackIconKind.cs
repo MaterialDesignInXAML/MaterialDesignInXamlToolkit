@@ -12607,6 +12607,7 @@ namespace MaterialDesignThemes.Wpf
         AccountLocation=TooltipAccount,
         TooltipPerson=TooltipAccount,
         TooltipUser=TooltipAccount,
+        TooltipAccountOutline,
         TooltipCellphone,
         TooltipCheck,
         TooltipCheckOutline,
