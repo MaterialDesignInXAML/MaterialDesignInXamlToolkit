@@ -1,9 +1,11 @@
-﻿namespace MaterialDesignThemes.Wpf;
+using System.Windows.Media;
+
+namespace MaterialDesignThemes.Wpf;
 
 public static class ListBoxItemAssist
 {
 
-    private static readonly CornerRadius DefaultCornerRadius = new CornerRadius(2.0);
+    private static readonly CornerRadius DefaultCornerRadius = new(2.0);
 
     #region AttachedProperty : CornerRadiusProperty
     /// <summary>
@@ -16,6 +18,39 @@ public static class ListBoxItemAssist
         => (CornerRadius)element.GetValue(CornerRadiusProperty);
     public static void SetCornerRadius(DependencyObject element, CornerRadius value) => element.SetValue(CornerRadiusProperty, value);
     #endregion
+
+    #region HoverBackground
+    public static Brush? GetHoverBackground(DependencyObject obj)
+        => (Brush?)obj.GetValue(HoverBackgroundProperty);
+
+    public static void SetHoverBackground(DependencyObject obj, Brush? value)
+        => obj.SetValue(HoverBackgroundProperty, value);
+
+    public static readonly DependencyProperty HoverBackgroundProperty =
+        DependencyProperty.RegisterAttached("HoverBackground", typeof(Brush), typeof(ListBoxItemAssist), new PropertyMetadata(null));
+    #endregion HoverBackground
+
+    #region SelectedFocusedBackground
+    public static Brush? GetSelectedFocusedBackground(DependencyObject obj)
+        => (Brush?)obj.GetValue(SelectedFocusedBackgroundProperty);
+
+    public static void SetSelectedFocusedBackground(DependencyObject obj, Brush? value)
+        => obj.SetValue(SelectedFocusedBackgroundProperty, value);
+
+    public static readonly DependencyProperty SelectedFocusedBackgroundProperty =
+        DependencyProperty.RegisterAttached("SelectedFocusedBackground", typeof(Brush), typeof(ListBoxItemAssist), new PropertyMetadata(null));
+    #endregion SelectedFocusedBackground
+
+    #region SelectedUnfocusedBackground
+    public static Brush? GetSelectedUnfocusedBackground(DependencyObject obj)
+        => (Brush?)obj.GetValue(SelectedUnfocusedBackgroundProperty);
+
+    public static void SetSelectedUnfocusedBackground(DependencyObject obj, Brush? value)
+        => obj.SetValue(SelectedUnfocusedBackgroundProperty, value);
+
+    public static readonly DependencyProperty SelectedUnfocusedBackgroundProperty =
+        DependencyProperty.RegisterAttached("SelectedUnfocusedBackground", typeof(Brush), typeof(ListBoxItemAssist), new PropertyMetadata(null));
+    #endregion SelectedFocusedBackground
 
     #region ShowSelection
     public static bool GetShowSelection(DependencyObject element)
