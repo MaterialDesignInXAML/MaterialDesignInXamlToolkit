@@ -25,6 +25,8 @@ public partial class App : Application
 
     private void ThemeManager_ThemeChanged(object? sender, ThemeChangedEventArgs e)
     {
+        //Dragablz is still using the old theme brush names so we forward those here
         Resources["SecondaryAccentBrush"] = new SolidColorBrush(e.NewTheme.SecondaryMid.Color);
+        Resources[SystemColors.ControlTextBrushKey] = new SolidColorBrush(e.NewTheme.Foreground);
     }
 }
