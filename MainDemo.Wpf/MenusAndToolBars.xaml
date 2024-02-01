@@ -16,6 +16,10 @@
     <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="menus_1">
       <Menu>
         <MenuItem Header="_File">
+          <!--
+          You can set the highlighted color with:
+          materialDesign:MenuItemAssist.HighlightedBackground="Fuchsia"
+          -->
           <MenuItem Header="Save" Icon="{materialDesign:PackIcon Kind=ContentSave}" />
 
           <MenuItem Header="Save As.." />

@@ -46,6 +46,16 @@
       </Grid.ColumnDefinitions>
       <smtx:XamlDisplay Grid.Column="0" UniqueKey="list_1">
         <ListBox IsEnabled="{Binding IsChecked, ElementName=EnableListBox}">
+          <!--
+          You can override the hover background color for all items in the listbox by setting the ListBox.ItemContainerStyle
+          <ListBox.ItemContainerStyle>
+            <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesignListBoxItem}">
+              <Setter Property="materialDesign:ListBoxItemAssist.HoverBackground" Value="Fuchsia"/>
+              <Setter Property="materialDesign:ListBoxItemAssist.SelectedFocusedBackground" Value="Fuchsia"/>
+              <Setter Property="materialDesign:ListBoxItemAssist.SelectedUnfocusedBackground" Value="Lime"/>
+            </Style>
+          </ListBox.ItemContainerStyle>
+          -->
           <TextBlock Text="Plain" />
           <TextBlock Text="Old" />
           <TextBlock Text="ListBox" />

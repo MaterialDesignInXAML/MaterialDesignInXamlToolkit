@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
+using MaterialDesignColors.ColorManipulation;
 
 namespace MaterialDesignThemes.Wpf.Converters;
 
@@ -12,14 +13,11 @@ public class BrushRoundConverter : IValueConverter
 
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        var solidColorBrush = value as SolidColorBrush;
-        if (solidColorBrush is null) return null;
+        if (value is not SolidColorBrush solidColorBrush) return null;
 
-        var color = solidColorBrush.Color;
-
-        var brightness = 0.3 * color.R + 0.59 * color.G + 0.11 * color.B;
-
-        return brightness < 123 ? LowValue : HighValue;
+        return solidColorBrush.Color.IsLightColor()
+            ? HighValue
+            : LowValue;
     }
 
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)

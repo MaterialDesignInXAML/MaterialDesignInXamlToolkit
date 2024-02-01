@@ -10,6 +10,7 @@
                                                IsEmptyValue="Collapsed"
                                                IsNotEmptyValue="Visible" />
   <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
+  <converters:BrushOpacityConverter x:Key="BrushOpacityConverter" />
 
   <ContextMenu x:Key="MaterialDesignDefaultContextMenu" FontFamily="{Binding PlacementTarget.FontFamily, RelativeSource={RelativeSource Self}}">
     <MenuItem Command="Cut">
@@ -59,6 +60,7 @@
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="OverridesDefaultStyle" Value="True" />
     <Setter Property="Padding" Value="24,0,24,0" />
+    <Setter Property="wpf:MenuItemAssist.HighlightedBackground" Value="{Binding Foreground, RelativeSource={RelativeSource Self}, Converter={StaticResource BrushOpacityConverter}, ConverterParameter=0.13}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type MenuItem}">
@@ -75,11 +77,11 @@
                     BorderThickness="{TemplateBinding BorderThickness}"
                     SnapsToDevicePixels="True" />
             <Border x:Name="BackgroundRoot"
-                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                    Background="{Binding Path=(wpf:MenuItemAssist.HighlightedBackground), RelativeSource={RelativeSource TemplatedParent}}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
-                    Opacity="0"
-                    SnapsToDevicePixels="True" />
+                    SnapsToDevicePixels="True"
+                    Visibility="Hidden" />
             <wpf:Ripple HorizontalContentAlignment="Stretch"
                         VerticalContentAlignment="Stretch"
                         Background="Transparent"
@@ -265,7 +267,7 @@
               <Setter TargetName="IconWrapper" Property="Visibility" Value="Collapsed" />
             </Trigger>
             <Trigger Property="IsHighlighted" Value="True">
-              <Setter TargetName="BackgroundRoot" Property="Opacity" Value="0.13" />
+              <Setter TargetName="BackgroundRoot" Property="Visibility" Value="Visible" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
               <Setter Property="Opacity" Value=".56" />

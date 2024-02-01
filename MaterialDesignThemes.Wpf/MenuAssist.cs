@@ -1,4 +1,6 @@
-﻿namespace MaterialDesignThemes.Wpf;
+﻿using System.Windows.Media;
+
+namespace MaterialDesignThemes.Wpf;
 
 public static class MenuAssist
 {
