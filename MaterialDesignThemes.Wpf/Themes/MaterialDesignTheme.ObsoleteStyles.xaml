@@ -14,13 +14,81 @@
          TargetType="{x:Type CheckBox}"
          BasedOn="{StaticResource MaterialDesignSecondaryCheckBox}" />
 
+  <Style x:Key="MaterialDesignAccentRadioButton"
+         TargetType="{x:Type RadioButton}"
+         BasedOn="{StaticResource MaterialDesignSecondaryRadioButton}" />
+
+  <Style x:Key="MaterialDesignActionAccentToggleButton"
+         TargetType="{x:Type ToggleButton}"
+         BasedOn="{StaticResource MaterialDesignActionSecondaryToggleButton}" />
+
+  <Style x:Key="MaterialDesignChoiceChipAccentListBox"
+         TargetType="{x:Type ListBox}"
+         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryListBox}" />
+
+  <Style x:Key="MaterialDesignChoiceChipAccentListBoxItem"
+         TargetType="{x:Type ListBoxItem}"
+         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryListBoxItem}" />
+
+  <Style x:Key="MaterialDesignChoiceChipAccentOutlineListBox"
+         TargetType="{x:Type ListBox}"
+         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryOutlineListBox}" />
+
+  <Style x:Key="MaterialDesignChoiceChipAccentOutlineListBoxItem"
+         TargetType="{x:Type ListBoxItem}"
+         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryOutlineListBoxItem}" />
+
+  <Style x:Key="MaterialDesignChoiceChipAccentOutlineRadioButton"
+         TargetType="{x:Type RadioButton}"
+         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryOutlineRadioButton}" />
+
+  <Style x:Key="MaterialDesignChoiceChipAccentRadioButton"
+         TargetType="{x:Type RadioButton}"
+         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryRadioButton}" />
+    
   <Style x:Key="MaterialDesignFilterChipAccentCheckBox"
          TargetType="CheckBox"
          BasedOn="{StaticResource MaterialDesignFilterChipSecondaryCheckBox}" />
 
+  <Style x:Key="MaterialDesignFilterChipAccentListBoxItem"
+         TargetType="{x:Type ListBoxItem}"
+         BasedOn="{StaticResource MaterialDesignFilterChipSecondaryListBoxItem}" />
+
+  <Style x:Key="MaterialDesignFilterChipAccentListBox"
+         TargetType="{x:Type ListBox}"
+         BasedOn="{StaticResource MaterialDesignFilterChipSecondaryListBox}" />
+  
   <Style x:Key="MaterialDesignFilterChipAccentOutlineCheckBox"
          TargetType="CheckBox"
          BasedOn="{StaticResource MaterialDesignFilterChipSecondaryOutlineCheckBox}" />
+
+  <Style x:Key="MaterialDesignFilterChipAccentOutlineListBox"
+         TargetType="{x:Type ListBox}"
+         BasedOn="{StaticResource MaterialDesignFilterChipSecondaryOutlineListBox}" />
+    
+  <Style x:Key="MaterialDesignFilterChipAccentOutlineListBoxItem"
+         TargetType="{x:Type ListBoxItem}"
+         BasedOn="{StaticResource MaterialDesignFilterChipSecondaryOutlineListBoxItem}" />
+
+  <Style x:Key="MaterialDesignFlatAccentButton"
+       TargetType="{x:Type ButtonBase}"
+       BasedOn="{StaticResource MaterialDesignFlatSecondaryMidBgButton}" />
+
+  <Style x:Key="MaterialDesignFlatAccentBgButton"
+       TargetType="{x:Type ButtonBase}"
+       BasedOn="{StaticResource MaterialDesignFlatSecondaryBgButton}" />
+
+  <Style x:Key="MaterialDesignFloatingActionMiniAccentButton"
+       TargetType="{x:Type ButtonBase}"
+       BasedOn="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}" />
+
+  <Style x:Key="MaterialDesignFloatingActionAccentButton"
+       TargetType="{x:Type ButtonBase}"
+       BasedOn="{StaticResource MaterialDesignFloatingActionSecondaryButton}" />
+
+  <Style x:Key="MaterialDesignMultiFloatingActionAccentPopupBox"
+         TargetType="{x:Type wpf:PopupBox}"
+         BasedOn="{StaticResource MaterialDesignMultiFloatingActionSecondaryPopupBox}" />
 
   <Style x:Key="MaterialDesignNavigationAccentListBoxItem"
          TargetType="{x:Type ListBoxItem}"
@@ -30,52 +98,14 @@
          TargetType="{x:Type ListBox}"
          BasedOn="{StaticResource MaterialDesignNavigationSecondaryListBox}" />
 
-  <Style x:Key="MaterialDesignFilterChipAccentListBoxItem"
-         TargetType="{x:Type ListBoxItem}"
-         BasedOn="{StaticResource MaterialDesignFilterChipSecondaryListBoxItem}" />
+  <Style x:Key="MaterialDesignRaisedAccentButton"
+       TargetType="{x:Type ButtonBase}"
+       BasedOn="{StaticResource MaterialDesignRaisedSecondaryButton}" />
+  
+  <Style x:Key="MaterialDesignSwitchAccentToggleButton"
+         TargetType="{x:Type ToggleButton}"
+         BasedOn="{StaticResource MaterialDesignSwitchSecondaryToggleButton}" />
 
-  <Style x:Key="MaterialDesignFilterChipAccentListBox"
-         TargetType="{x:Type ListBox}"
-         BasedOn="{StaticResource MaterialDesignFilterChipSecondaryListBox}" />
 
-  <Style x:Key="MaterialDesignFilterChipAccentOutlineListBoxItem"
-         TargetType="{x:Type ListBoxItem}"
-         BasedOn="{StaticResource MaterialDesignFilterChipSecondaryOutlineListBoxItem}" />
-
-  <Style x:Key="MaterialDesignFilterChipAccentOutlineListBox"
-         TargetType="{x:Type ListBox}"
-         BasedOn="{StaticResource MaterialDesignFilterChipSecondaryOutlineListBox}" />
-
-  <Style x:Key="MaterialDesignChoiceChipAccentListBoxItem"
-         TargetType="{x:Type ListBoxItem}"
-         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryListBoxItem}" />
-
-  <Style x:Key="MaterialDesignChoiceChipAccentListBox"
-         TargetType="{x:Type ListBox}"
-         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryListBox}" />
-
-  <Style x:Key="MaterialDesignChoiceChipAccentOutlineListBoxItem"
-         TargetType="{x:Type ListBoxItem}"
-         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryOutlineListBoxItem}" />
-
-  <Style x:Key="MaterialDesignChoiceChipAccentOutlineListBox"
-         TargetType="{x:Type ListBox}"
-         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryOutlineListBox}" />
-
-  <Style x:Key="MaterialDesignAccentRadioButton"
-         TargetType="{x:Type RadioButton}"
-         BasedOn="{StaticResource MaterialDesignSecondaryRadioButton}" />
-
-  <Style x:Key="MaterialDesignChoiceChipAccentRadioButton"
-         TargetType="{x:Type RadioButton}"
-         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryRadioButton}" />
-
-  <Style x:Key="MaterialDesignChoiceChipAccentOutlineRadioButton"
-         TargetType="{x:Type RadioButton}"
-         BasedOn="{StaticResource MaterialDesignChoiceChipSecondaryOutlineRadioButton}" />
-
-  <Style x:Key="MaterialDesignMultiFloatingActionAccentPopupBox"
-         TargetType="{x:Type wpf:PopupBox}"
-         BasedOn="{StaticResource MaterialDesignMultiFloatingActionSecondaryPopupBox}" />
 
 </ResourceDictionary>
