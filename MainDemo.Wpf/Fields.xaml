@@ -598,7 +598,8 @@
                        materialDesign:HintAssist.Hint="Password"
                        materialDesign:TextFieldAssist.HasClearButton="True"
                        IsEnabled="{Binding ElementName=RevealPasswordOutlinedEnabled, Path=IsChecked}"
-                       Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}" />
+                       Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}"
+                       VerticalContentAlignment="Bottom"/>
         </StackPanel>
       </smtx:XamlDisplay>
 
