@@ -957,7 +957,7 @@ public class DialogHost : ContentControl
         if (_popup != null &&
             PresentationSource.FromVisual(_popup.Child) is HwndSource hwndSource)
         {
-            SetFocus(hwndSource.Handle);
+            //SetFocus(hwndSource.Handle);
         }
     }
 

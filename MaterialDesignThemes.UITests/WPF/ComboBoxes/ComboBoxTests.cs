@@ -145,7 +145,7 @@ public class ComboBoxTests : TestBase
         var editableTextBox = await comboBox.GetElement<TextBox>("PART_EditableTextBox");
         var button = await stackPanel.GetElement<Button>("Button");
 
-        // Open the combobox initially
+        // Open the ComboBox initially
         await comboBox.LeftClick(Position.RightCenter);
         await Task.Delay(50);   // Allow a little time for the drop-down to open (and property to change)
         bool wasOpenAfterClickOnToggleButton = await comboBox.GetIsDropDownOpen();
