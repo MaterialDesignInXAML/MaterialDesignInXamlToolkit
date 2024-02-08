@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
 
@@ -25,61 +25,49 @@ internal class FloatingHintTextBlockMarginConverter : IMultiValueConverter
         HorizontalAlignment alignment = restingAlignment;
         if (scale != 0)
         {
-            switch (floatingAlignment)
+            alignment = floatingAlignment switch
             {
-                case FloatingHintHorizontalAlignment.Inherit:
-                    alignment = restingAlignment;
-                    break;
-                case FloatingHintHorizontalAlignment.Left:
-                    alignment = HorizontalAlignment.Left;
-                    break;
-                case FloatingHintHorizontalAlignment.Center:
-                    alignment = HorizontalAlignment.Center;
-                    break;
-                case FloatingHintHorizontalAlignment.Right:
-                    alignment = HorizontalAlignment.Right;
-                    break;
-                case FloatingHintHorizontalAlignment.Stretch:
-                    alignment = HorizontalAlignment.Stretch;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+                FloatingHintHorizontalAlignment.Inherit => restingAlignment,
+                FloatingHintHorizontalAlignment.Left => HorizontalAlignment.Left,
+                FloatingHintHorizontalAlignment.Center => HorizontalAlignment.Center,
+                FloatingHintHorizontalAlignment.Right => HorizontalAlignment.Right,
+                FloatingHintHorizontalAlignment.Stretch => HorizontalAlignment.Stretch,
+                _ => throw new ArgumentOutOfRangeException(),
+            };
         }
-        switch (alignment)
+        double leftThickness = alignment switch
         {
-            case HorizontalAlignment.Right:
-                return FloatRight();
-            case HorizontalAlignment.Center:
-                return FloatCenter();
-            default:
-                return FloatLeft();
-        }
+            HorizontalAlignment.Right => FloatRight(),
+            HorizontalAlignment.Center => FloatCenter(),
+            _ => FloatLeft(),
+        };
 
-        Thickness FloatLeft()
+        return new Thickness(Math.Round(leftThickness), 0, 0, 0);
+
+        double FloatLeft()
         {
             if (restingAlignment == HorizontalAlignment.Center)
             {
                 // Animate from center to left
                 double offset = Math.Max(0, (availableWidth - desiredWidth) / 2);
-                return new Thickness(offset - offset * scale, 0, 0, 0);
+                return offset - offset * scale;
             }
             if (restingAlignment == HorizontalAlignment.Right)
             {
                 // Animate from right to left
                 double offset = Math.Max(0, availableWidth - desiredWidth);
-                return new Thickness(offset - offset * scale, 0, 0, 0);
+                return offset - offset * scale;
             }
-            return new Thickness(0);
+            return 0;
         }
 
-        Thickness FloatCenter()
+        double FloatCenter()
         {
             if (restingAlignment == HorizontalAlignment.Left || restingAlignment == HorizontalAlignment.Stretch)
             {
                 // Animate from left to center
                 double offset = Math.Max(0, (availableWidth - desiredWidth * scaleMultiplier) / 2);
-                return new Thickness(offset * scale, 0, 0, 0);
+                return offset * scale;
             }
             if (restingAlignment == HorizontalAlignment.Right)
             {
@@ -87,27 +75,27 @@ internal class FloatingHintTextBlockMarginConverter : IMultiValueConverter
                 double startOffset = Math.Max(0, availableWidth - desiredWidth);
                 double endOffset = Math.Max(0, (availableWidth - desiredWidth) / 2);
                 double endOffsetDelta = startOffset - endOffset;
-                return new Thickness(endOffset + endOffsetDelta * (1 - scale), 0, 0, 0);
+                return endOffset + endOffsetDelta * (1 - scale);
             }
-            return new Thickness(Math.Max(0, availableWidth - desiredWidth * scaleMultiplier) / 2, 0, 0, 0);
+            return Math.Max(0, availableWidth - desiredWidth * scaleMultiplier) / 2;
         }
 
-        Thickness FloatRight()
+        double FloatRight()
         {
             if (restingAlignment == HorizontalAlignment.Left || restingAlignment == HorizontalAlignment.Stretch)
             {
                 // Animate from left to right
                 double offset = Math.Max(0, availableWidth - desiredWidth * scaleMultiplier);
-                return new Thickness(offset * scale, 0, 0, 0);
+                return offset * scale;
             }
             if (restingAlignment == HorizontalAlignment.Center)
             {
                 // Animate from center to right
                 double startOffset = Math.Max(0, (availableWidth - desiredWidth) / 2);
                 double endOffsetDelta = Math.Max(0, availableWidth - desiredWidth * scaleMultiplier) - startOffset;
-                return new Thickness(startOffset + endOffsetDelta * scale, 0, 0, 0);
+                return startOffset + endOffsetDelta * scale;
             }
-            return new Thickness(Math.Max(0, availableWidth - desiredWidth * scaleMultiplier), 0, 0, 0);
+            return Math.Max(0, availableWidth - desiredWidth * scaleMultiplier);
         }
     }
 
