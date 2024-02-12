@@ -160,6 +160,7 @@
                 <wpf:Card x:Name="PART_PopupContentElement"
                           Margin="{TemplateBinding DialogMargin}"
                           wpf:ElevationAssist.Elevation="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation)}"
+                          Background="{Binding Tag, RelativeSource={RelativeSource Self}}"
                           Content="{TemplateBinding DialogContent}"
                           ContentStringFormat="{TemplateBinding DialogContentStringFormat}"
                           ContentTemplate="{TemplateBinding DialogContentTemplate}"
@@ -171,19 +172,10 @@
                           IsTabStop="False"
                           Opacity="0"
                           RenderTransformOrigin=".5,.5"
+                          Style="{TemplateBinding DialogCardStyle}"
                           Tag="{TemplateBinding DialogBackground}"
                           TextElement.Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
                           UniformCornerRadius="{TemplateBinding DialogContentUniformCornerRadius}">
-                  <wpf:Card.Style>
-                    <Style TargetType="wpf:Card" BasedOn="{StaticResource {x:Type wpf:Card}}">
-                      <Setter Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}}" />
-                      <Style.Triggers>
-                        <Trigger Property="Tag" Value="{x:Null}">
-                          <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
-                        </Trigger>
-                      </Style.Triggers>
-                    </Style>
-                  </wpf:Card.Style>
                   <wpf:Card.RenderTransform>
                     <TransformGroup>
                       <ScaleTransform x:Name="CardScaleTransform" ScaleX="0" ScaleY="0" />
@@ -227,6 +219,9 @@
           <ControlTemplate.Triggers>
             <Trigger Property="IsOpen" Value="True">
               <Setter TargetName="PART_ContentCoverGrid" Property="IsHitTestVisible" Value="True" />
+            </Trigger>
+            <Trigger SourceName="PART_PopupContentElement" Property="Tag" Value="{x:Null}">
+              <Setter TargetName="PART_PopupContentElement" Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
             </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
@@ -406,6 +401,7 @@
               <wpf:Card x:Name="PART_PopupContentElement"
                         Margin="{TemplateBinding DialogMargin}"
                         wpf:ElevationAssist.Elevation="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation)}"
+                        Background="{Binding Tag, RelativeSource={RelativeSource Self}}"
                         Content="{TemplateBinding DialogContent}"
                         ContentStringFormat="{TemplateBinding DialogContentStringFormat}"
                         ContentTemplate="{TemplateBinding DialogContentTemplate}"
@@ -416,6 +412,7 @@
                         IsTabStop="False"
                         Opacity="0"
                         RenderTransformOrigin=".5,.5"
+                        Style="{TemplateBinding DialogCardStyle}"
                         Tag="{TemplateBinding DialogBackground}"
                         TextElement.Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
                         UniformCornerRadius="{TemplateBinding DialogContentUniformCornerRadius}">
@@ -424,22 +421,15 @@
                     <ScaleTransform x:Name="CardScaleTransform" ScaleX="0" ScaleY="0" />
                   </TransformGroup>
                 </wpf:Card.RenderTransform>
-                <wpf:Card.Style>
-                  <Style TargetType="wpf:Card" BasedOn="{StaticResource {x:Type wpf:Card}}">
-                    <Setter Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}}" />
-                    <Style.Triggers>
-                      <Trigger Property="Tag" Value="{x:Null}">
-                        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
-                      </Trigger>
-                    </Style.Triggers>
-                  </Style>
-                </wpf:Card.Style>
               </wpf:Card>
             </Grid>
           </Grid>
           <ControlTemplate.Triggers>
             <Trigger Property="IsOpen" Value="True">
               <Setter TargetName="PART_ContentCoverGrid" Property="IsHitTestVisible" Value="True" />
+            </Trigger>
+            <Trigger SourceName="PART_PopupContentElement" Property="Tag" Value="{x:Null}">
+              <Setter TargetName="PART_PopupContentElement" Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
             </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>

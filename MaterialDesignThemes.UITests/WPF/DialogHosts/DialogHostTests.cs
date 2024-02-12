@@ -480,4 +480,56 @@ public class DialogHostTests : TestBase
 
         recorder.Success();
     }
+
+    [Theory]
+    [InlineData("MaterialDesignElevatedCard")]
+    [InlineData("MaterialDesignOutlinedCard")]
+    [Description("Issue 3430")]
+    public async Task DialogHost_DefaultStyleWithDialogCardStyleApplied_PassesStyleToNestedCard(string dialogCardStyle)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement grid = await LoadXaml<Grid>($$"""
+           <Grid>
+             <materialDesign:DialogHost x:Name="DialogHost" IsOpen="True" DialogCardStyle="{StaticResource {{dialogCardStyle}}}">
+               <materialDesign:DialogHost.DialogContent>
+                 <TextBlock Text="Some Text" Margin="100" />
+               </materialDesign:DialogHost.DialogContent>
+             </materialDesign:DialogHost>
+           </Grid>
+           """);
+
+        IVisualElement<DialogHost> dialogHost = await grid.GetElement<DialogHost>("DialogHost");
+        IVisualElement<Card> nestedCard = await dialogHost.GetElement<Card>("PART_PopupContentElement");
+
+        // TODO: Assert the style on the nested card matches what is set in DialogHost.DialogCardStyle
+
+        recorder.Success();
+    }
+
+    [Theory]
+    [InlineData("MaterialDesignElevatedCard")]
+    [InlineData("MaterialDesignOutlinedCard")]
+    [Description("Issue 3430")]
+    public async Task DialogHost_EmbeddedStyleWithDialogCardStyleApplied_PassesStyleToNestedCard(string dialogCardStyle)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement grid = await LoadXaml<Grid>($$"""
+            <Grid>
+              <materialDesign:DialogHost x:Name="DialogHost" Style="{StaticResource MaterialDesignEmbeddedDialogHost}" IsOpen="True" DialogCardStyle="{StaticResource {{dialogCardStyle}}}">
+                <materialDesign:DialogHost.DialogContent>
+                  <TextBlock Text="Some Text" Margin="100" />
+                </materialDesign:DialogHost.DialogContent>
+              </materialDesign:DialogHost>
+            </Grid>
+            """);
+
+        IVisualElement<DialogHost> dialogHost = await grid.GetElement<DialogHost>("DialogHost");
+        IVisualElement<Card> nestedCard = await dialogHost.GetElement<Card>("PART_PopupContentElement");
+
+        // TODO: Assert the style on the nested card matches what is set in DialogHost.DialogCardStyle
+
+        recorder.Success();
+    }
 }

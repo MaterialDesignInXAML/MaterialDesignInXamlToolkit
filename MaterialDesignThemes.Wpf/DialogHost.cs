@@ -494,6 +494,15 @@ public class DialogHost : ContentControl
     public static readonly DependencyProperty OpenDialogCommandDataContextSourceProperty = DependencyProperty.Register(
         nameof(OpenDialogCommandDataContextSource), typeof(DialogHostOpenDialogCommandDataContextSource), typeof(DialogHost), new PropertyMetadata(default(DialogHostOpenDialogCommandDataContextSource)));
 
+    public static readonly DependencyProperty DialogCardStyleProperty = DependencyProperty.Register(
+        nameof(DialogCardStyle), typeof(Style), typeof(DialogHost), new PropertyMetadata(default(Style)));
+
+    public Style DialogCardStyle
+    {
+        get => (Style) GetValue(DialogCardStyleProperty);
+        set => SetValue(DialogCardStyleProperty, value);
+    }
+
     /// <summary>
     /// Defines how a data context is sourced for a dialog if a <see cref="FrameworkElement"/>
     /// is passed as the command parameter when using <see cref="DialogHost.OpenDialogCommand"/>.
