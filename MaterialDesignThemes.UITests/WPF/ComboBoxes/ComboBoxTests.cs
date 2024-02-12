@@ -257,4 +257,34 @@ public class ComboBoxTests : TestBase
 
         recorder.Success();
     }
+
+    [Theory]
+    [InlineData(HorizontalAlignment.Left, 0)]
+    [InlineData(HorizontalAlignment.Right, 1554)]   // Value obtained by inspection
+    [InlineData(HorizontalAlignment.Center, 778)]   // Value obtained by inspection
+    [InlineData(HorizontalAlignment.Stretch, 0)]
+    [Description("Issue 3433")]
+    public async Task ComboBox_WithHorizontalContentAlignment_RespectsAlignment(HorizontalAlignment alignment, double expectedOffset)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        const double tolerance = 2;
+
+        var stackPanel = await LoadXaml<StackPanel>($"""
+            <StackPanel>
+              <ComboBox HorizontalContentAlignment="{alignment}">
+                <ComboBoxItem Content="TEST" IsSelected="True" />
+              </ComboBox>
+            </StackPanel>
+            """);
+        var comboBox = await stackPanel.GetElement<ComboBox>("/ComboBox");
+        var selectedItemPresenter = await comboBox.GetElement<ContentPresenter>("contentPresenter");
+
+        double comboBoxLeftEdge = (await comboBox.GetCoordinates()).Left;
+        double selectedItemLeftEdge = (await selectedItemPresenter.GetCoordinates()).Left;
+
+        Assert.InRange(selectedItemLeftEdge - comboBoxLeftEdge, expectedOffset, expectedOffset + tolerance);
+
+        recorder.Success();
+    }
 }
