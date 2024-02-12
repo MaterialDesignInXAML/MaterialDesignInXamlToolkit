@@ -360,7 +360,7 @@
         </ControlTemplate>
       </Setter.Value>
     </Setter>
-    <Setter Property="VerticalContentAlignment" Value="Top" />
+    <Setter Property="VerticalContentAlignment" Value="Stretch" />
     <Setter Property="wpf:ExpanderAssist.HeaderBackground" Value="Transparent" />
   </Style>
 </ResourceDictionary>
