@@ -164,7 +164,11 @@
               Header="Control Settings"
               Style="{StaticResource MaterialDesignCardGroupBox}">
       <StackPanel Margin="10" Orientation="Horizontal">
+        <CheckBox x:Name="IsEnabledCheckBox"
+                  Content="Enabled"
+                  IsChecked="{Binding ControlsEnabled}" />
         <CheckBox x:Name="CustomPaddingCheckBox"
+                  Margin="5,0,0,0"
                   Content="Custom Padding"
                   IsChecked="{Binding ApplyCustomPadding}" />
         <ComboBox Margin="5,0,0,0"
@@ -281,10 +285,172 @@
       <StackPanel x:Name="ControlsPanel"
                   Margin="8,0,16,0"
                   HorizontalAlignment="Stretch"
-                  VerticalAlignment="Top">
+                  VerticalAlignment="Top"
+                  IsEnabled="{Binding ControlsEnabled}">
+
+        <!-- TextBoxNew variants -->
+        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="TextBoxNew styles" />
+        <Grid HorizontalAlignment="Stretch">
+          <Grid.Resources>
+            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBoxNew}">
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignFloatingHintTextBoxDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
+              <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
+              <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="True" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFloatingHintTextBoxNew</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="textbox_floating_new_left">
+            <TextBox HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="textbox_floating_new_center">
+            <TextBox HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="textbox_floating_new_right">
+            <TextBox HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="textbox_floating_new_stretch">
+            <TextBox HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFilledTextBoxNew}">
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignFilledTextBoxDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
+              <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
+              <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="True" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFilledTextBoxNew</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="textbox_filled_new_left">
+            <TextBox HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="textbox_filled_new_center">
+            <TextBox HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="textbox_filled_new_right">
+            <TextBox HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="textbox_filled_new_stretch">
+            <TextBox HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignOutlinedTextBoxNew}">
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignOutlinedTextBoxDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
+              <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
+              <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="True" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignOutlinedTextBoxNew</TextBlock>
+          <smtx:XamlDisplay Grid.Column="1" UniqueKey="textbox_outlined_new_left">
+            <TextBox HorizontalContentAlignment="Left" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="2" UniqueKey="textbox_outlined_new_center">
+            <TextBox HorizontalContentAlignment="Center" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="3" UniqueKey="textbox_outlined_new_right">
+            <TextBox HorizontalContentAlignment="Right" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Grid.Column="4" UniqueKey="textbox_outlined_new_stretch">
+            <TextBox HorizontalContentAlignment="Stretch" />
+          </smtx:XamlDisplay>
+        </Grid>
 
         <!-- TextBox variants -->
-        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="TextBox styles" />
+        <TextBlock Margin="0,40,0,0"
+                   Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                   Text="TextBox styles" />
         <Grid HorizontalAlignment="Stretch">
           <Grid.Resources>
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
@@ -309,6 +475,7 @@
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="True" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
@@ -360,6 +527,7 @@
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="True" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
@@ -411,6 +579,7 @@
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="True" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
