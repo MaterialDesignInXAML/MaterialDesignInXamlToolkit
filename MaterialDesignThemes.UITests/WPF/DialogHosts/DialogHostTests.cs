@@ -6,12 +6,8 @@ using static MaterialDesignThemes.UITests.MaterialDesignSpec;
 
 namespace MaterialDesignThemes.UITests.WPF.DialogHosts;
 
-public class DialogHostTests : TestBase
+public class DialogHostTests(ITestOutputHelper output) : TestBase(output)
 {
-    public DialogHostTests(ITestOutputHelper output) : base(output)
-    {
-    }
-
     [Fact]
     public async Task OnOpenDialog_OverlayCoversContent()
     {
@@ -477,6 +473,32 @@ public class DialogHostTests : TestBase
 
         Assert.True(await railItem1.GetIsSelected());
         Assert.False(await railItem2.GetIsSelected());
+
+        recorder.Success();
+    }
+
+    [Fact]
+    [Description("Issue 3450")]
+    public async Task DialogHost_WithComboBox_CanSelectItem()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement dialogHost = await LoadUserControl<WithComboBox>();
+
+        var comboBox = await dialogHost.GetElement<ComboBox>("TargetedPlatformComboBox");
+        await Task.Delay(500);
+        await comboBox.LeftClick();
+        
+        var item = await Wait.For(() => comboBox.GetElement<ComboBoxItem>("TargetItem"));
+        await Task.Delay(TimeSpan.FromSeconds(1));
+        await item.LeftClick();
+
+        await Wait.For(async () =>
+        {
+            var index = await comboBox.GetSelectedIndex();
+            Assert.Equal(1, index);
+        });
+
 
         recorder.Success();
     }

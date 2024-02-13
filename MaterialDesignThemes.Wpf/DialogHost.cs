@@ -287,7 +287,6 @@ public class DialogHost : ContentControl
     {
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
-        PreviewGotKeyboardFocus += OnPreviewGotKeyboardFocus;
 
         CommandBindings.Add(new CommandBinding(CloseDialogCommand, CloseDialogHandler, CloseDialogCanExecute));
         CommandBindings.Add(new CommandBinding(OpenDialogCommand, OpenDialogHandler));
@@ -433,8 +432,8 @@ public class DialogHost : ContentControl
 
     public CornerRadius CornerRadius
     {
-        get { return (CornerRadius)GetValue(CornerRadiusProperty); }
-        set { SetValue(CornerRadiusProperty, value); }
+        get => (CornerRadius)GetValue(CornerRadiusProperty);
+        set => SetValue(CornerRadiusProperty, value);
     }
 
     public static readonly DependencyProperty DialogContentProperty = DependencyProperty.Register(
@@ -652,8 +651,8 @@ public class DialogHost : ContentControl
     /// </summary>
     public event DialogOpenedEventHandler DialogOpened
     {
-        add { AddHandler(DialogOpenedEvent, value); }
-        remove { RemoveHandler(DialogOpenedEvent, value); }
+        add => AddHandler(DialogOpenedEvent, value);
+        remove => RemoveHandler(DialogOpenedEvent, value);
     }
 
     /// <summary>
@@ -699,8 +698,8 @@ public class DialogHost : ContentControl
     /// </summary>
     public event DialogClosingEventHandler DialogClosing
     {
-        add { AddHandler(DialogClosingEvent, value); }
-        remove { RemoveHandler(DialogClosingEvent, value); }
+        add => AddHandler(DialogClosingEvent, value);
+        remove => RemoveHandler(DialogClosingEvent, value);
     }
 
     /// <summary>
@@ -742,8 +741,8 @@ public class DialogHost : ContentControl
     /// </summary>
     public event DialogClosedEventHandler DialogClosed
     {
-        add { AddHandler(DialogClosedEvent, value); }
-        remove { RemoveHandler(DialogClosedEvent, value); }
+        add => AddHandler(DialogClosedEvent, value);
+        remove => RemoveHandler(DialogClosedEvent, value);
     }
 
     /// <summary>
@@ -818,6 +817,11 @@ public class DialogHost : ContentControl
     {
         var child = _popup?.Child ?? _popupContentControl;
         if (child is null) return null;
+
+        if (PresentationSource.FromVisual(child) is HwndSource hwndSource)
+        {
+            SetFocus(hwndSource.Handle);
+        }
 
         CommandManager.InvalidateRequerySuggested();
         var focusable = child.VisualDepthFirstTraversal().OfType<UIElement>().FirstOrDefault(ui => ui.Focusable);
@@ -954,11 +958,7 @@ public class DialogHost : ContentControl
 
     private void OnPreviewGotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
     {
-        if (_popup != null &&
-            PresentationSource.FromVisual(_popup.Child) is HwndSource hwndSource)
-        {
-            SetFocus(hwndSource.Handle);
-        }
+        
     }
 
     [SecurityCritical]
