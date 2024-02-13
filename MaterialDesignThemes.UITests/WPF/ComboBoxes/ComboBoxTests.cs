@@ -257,4 +257,29 @@ public class ComboBoxTests : TestBase
 
         recorder.Success();
     }
+
+    [Theory]
+    [InlineData(HorizontalAlignment.Left)]
+    [InlineData(HorizontalAlignment.Right)]
+    [InlineData(HorizontalAlignment.Center)]
+    [InlineData(HorizontalAlignment.Stretch)]
+    [Description("Issue 3433")]
+    public async Task ComboBox_WithHorizontalContentAlignment_RespectsAlignment(HorizontalAlignment alignment)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        var stackPanel = await LoadXaml<StackPanel>($"""
+            <StackPanel>
+              <ComboBox HorizontalContentAlignment="{alignment}">
+                <ComboBoxItem Content="TEST" IsSelected="True" />
+              </ComboBox>
+            </StackPanel>
+            """);
+        var comboBox = await stackPanel.GetElement<ComboBox>("/ComboBox");
+        var selectedItemPresenter = await comboBox.GetElement<ContentPresenter>("contentPresenter");
+
+        Assert.Equal(alignment, await selectedItemPresenter.GetHorizontalAlignment());
+
+        recorder.Success();
+    }
 }

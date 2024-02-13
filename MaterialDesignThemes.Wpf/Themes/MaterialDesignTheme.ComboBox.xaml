@@ -363,6 +363,7 @@
                                   ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
                                   ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                                   ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                   IsHitTestVisible="False" />
                 <TextBox x:Name="PART_EditableTextBox"
                          Grid.Column="1"
