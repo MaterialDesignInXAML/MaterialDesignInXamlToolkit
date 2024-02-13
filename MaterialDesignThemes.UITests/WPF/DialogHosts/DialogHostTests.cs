@@ -6,12 +6,8 @@ using static MaterialDesignThemes.UITests.MaterialDesignSpec;
 
 namespace MaterialDesignThemes.UITests.WPF.DialogHosts;
 
-public class DialogHostTests : TestBase
+public class DialogHostTests(ITestOutputHelper output) : TestBase(output)
 {
-    public DialogHostTests(ITestOutputHelper output) : base(output)
-    {
-    }
-
     [Fact]
     public async Task OnOpenDialog_OverlayCoversContent()
     {
