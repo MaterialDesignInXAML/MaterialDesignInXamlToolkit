@@ -260,8 +260,8 @@ public class ComboBoxTests : TestBase
 
     [Theory]
     [InlineData(HorizontalAlignment.Left)]
-    [InlineData(HorizontalAlignment.Right)]   // Value obtained by inspection
-    [InlineData(HorizontalAlignment.Center)]   // Value obtained by inspection
+    [InlineData(HorizontalAlignment.Right)]
+    [InlineData(HorizontalAlignment.Center)]
     [InlineData(HorizontalAlignment.Stretch)]
     [Description("Issue 3433")]
     public async Task ComboBox_WithHorizontalContentAlignment_RespectsAlignment(HorizontalAlignment alignment)
