@@ -59,6 +59,16 @@ public class BottomDashedLineAdorner : Adorner
         => element.SetValue(BrushOpacityProperty, value);
     #endregion
 
+    #region AttachedProperty : DashStyleProperty
+    public static readonly DependencyProperty DashStyleProperty
+        = DependencyProperty.RegisterAttached("DashStyle", typeof(DashStyle), typeof(BottomDashedLineAdorner), new PropertyMetadata(default(DashStyle)));
+
+    public static void SetDashStyle(DependencyObject element, DashStyle? value)
+        => element.SetValue(DashStyleProperty, value);
+    public static DashStyle? GetDashStyle(DependencyObject element)
+        => (DashStyle?) element.GetValue(DashStyleProperty);
+    #endregion
+
     public BottomDashedLineAdorner(UIElement adornedElement) : base(adornedElement)
     {
     }
@@ -72,7 +82,7 @@ public class BottomDashedLineAdorner : Adorner
 
         var pen = new Pen(lineBrush, lineThickness)
         {
-            DashStyle = DashStyles.Dash,
+            DashStyle = GetDashStyle(AdornedElement) ?? DashStyles.Dash,
             DashCap = PenLineCap.Round
         };
 
