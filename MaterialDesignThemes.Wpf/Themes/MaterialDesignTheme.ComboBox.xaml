@@ -35,7 +35,7 @@
   <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconPaddingConverterBottom"
                                       AdditionalOffsetBottom="4"
                                       CloneEdges="All" />
-  <wpf:VerticalAlignmentConverter x:Key="VerticalAlignmentConverter" />
+  <converters:VerticalAlignmentConverter x:Key="VerticalAlignmentConverter" />
   <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
 
   <system:Double x:Key="PopupContentPresenterExtend">4</system:Double>

@@ -26,7 +26,7 @@
                                       AdditionalOffsetTop="12"
                                       CloneEdges="Top,Right,Bottom"
                                       FixedLeft="0" />
-  <wpf:VerticalAlignmentConverter x:Key="VerticalAlignmentConverter" />
+  <converters:VerticalAlignmentConverter x:Key="VerticalAlignmentConverter" />
   <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
 
   <Style x:Key="MaterialDesignTimePickerTextBox" TargetType="{x:Type wpf:TimePickerTextBox}">
