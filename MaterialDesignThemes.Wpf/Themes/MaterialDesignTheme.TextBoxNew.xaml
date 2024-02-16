@@ -181,7 +181,7 @@
                                 UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
                                 VerticalScrollBarVisibility="Hidden" />
 
-                  <wpf:SmartHint x:Name="Hint"
+                  <wpf:SmartHintNew x:Name="Hint"
                                  Grid.Column="2"
                                  VerticalAlignment="Center"
                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -193,14 +193,14 @@
                                  HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                  HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
                                  UseFloating="{TemplateBinding wpf:HintAssist.IsFloating}">
-                    <wpf:SmartHint.Hint>
+                    <wpf:SmartHintNew.Hint>
                       <Border x:Name="HintBackgroundBorder"
                               Background="{TemplateBinding wpf:HintAssist.Background}"
                               CornerRadius="2">
                         <ContentPresenter x:Name="HintWrapper" Content="{TemplateBinding wpf:HintAssist.Hint}" />
                       </Border>
-                    </wpf:SmartHint.Hint>
-                  </wpf:SmartHint>
+                    </wpf:SmartHintNew.Hint>
+                  </wpf:SmartHintNew>
 
                   <TextBlock x:Name="SuffixTextBlock"
                              Grid.Column="3"
