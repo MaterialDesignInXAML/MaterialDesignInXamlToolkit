@@ -28,6 +28,7 @@ internal class SmartHintViewModel : ViewModelBase
     private double _selectedFontSize = double.NaN;
     private FontFamily? _selectedFontFamily = DefaultFontFamily;
     private bool? controlsEnabled = true;
+    private int _maxLength = 50;
 
     public IEnumerable<FloatingHintHorizontalAlignment> HorizontalAlignmentOptions { get; } = Enum.GetValues(typeof(FloatingHintHorizontalAlignment)).OfType<FloatingHintHorizontalAlignment>();
     public IEnumerable<double> FloatingScaleOptions { get; } = new[] {0.25, 0.5, 0.75, 1.0};
@@ -234,5 +235,17 @@ internal class SmartHintViewModel : ViewModelBase
     {
         get => controlsEnabled;
         set => SetProperty(ref controlsEnabled, value);
+    }
+
+    public bool? ShowCharacterCounter
+    {
+        get => MaxLength > 0;
+        set => MaxLength = value == true ? 50 : 0;
+    }
+
+    public int MaxLength
+    {
+        get => _maxLength;
+        set => SetProperty(ref _maxLength, value);
     }
 }

@@ -155,6 +155,10 @@
                     IsEnabled="{Binding ElementName=CheckBoxTrailingIcon, Path=IsChecked}"
                     ItemsSource="{Binding IconSizeOptions}"
                     SelectedItem="{Binding SelectedTrailingIconSize, Mode=TwoWay}" />
+          <CheckBox x:Name="CheckBoxCharacterCounter"
+                    Margin="20,0,0,0"
+                    Content="CharacterCounter"
+                    IsChecked="{Binding ShowCharacterCounter}"/>
         </StackPanel>
       </StackPanel>
     </GroupBox>
@@ -255,8 +259,11 @@
     <!-- Invisible controls only used to be able to fallback to default style values -->
     <StackPanel Grid.Row="3" Visibility="Collapsed">
       <TextBox x:Name="MaterialDesignFloatingHintTextBoxDefaults" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+      <TextBox x:Name="MaterialDesignFloatingHintTextBoxNewDefaults" Style="{StaticResource MaterialDesignFloatingHintTextBoxNew}" />
       <TextBox x:Name="MaterialDesignFilledTextBoxDefaults" Style="{StaticResource MaterialDesignFilledTextBox}" />
+      <TextBox x:Name="MaterialDesignFilledTextBoxNewDefaults" Style="{StaticResource MaterialDesignFilledTextBoxNew}" />
       <TextBox x:Name="MaterialDesignOutlinedTextBoxDefaults" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+      <TextBox x:Name="MaterialDesignOutlinedTextBoxNewDefaults" Style="{StaticResource MaterialDesignOutlinedTextBoxNew}" />
       <RichTextBox x:Name="MaterialDesignRichTextBoxDefaults" Style="{StaticResource MaterialDesignRichTextBox}" />
       <PasswordBox x:Name="MaterialDesignFloatingHintPasswordBoxDefaults" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
       <PasswordBox x:Name="MaterialDesignFilledPasswordBoxDefaults" Style="{StaticResource MaterialDesignFilledPasswordBox}" />
@@ -289,7 +296,12 @@
                   IsEnabled="{Binding ControlsEnabled}">
 
         <!-- TextBoxNew variants -->
-        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="TextBoxNew styles" />
+        <StackPanel Orientation="Horizontal">
+          <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="TextBoxNew styles" />
+          <CheckBox x:Name="TextBoxesAcceptsReturnCheckBox"
+                    Margin="20,0,0,0"
+                    Content="AcceptsReturn" />
+        </StackPanel>
         <Grid HorizontalAlignment="Stretch">
           <Grid.Resources>
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBoxNew}">
@@ -298,7 +310,7 @@
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
-                    <Binding ElementName="MaterialDesignFloatingHintTextBoxDefaults" Path="Padding" />
+                    <Binding ElementName="MaterialDesignFloatingHintTextBoxNewDefaults" Path="Padding" />
                     <Binding Path="ApplyCustomPadding" />
                     <Binding Path="SelectedCustomPadding" />
                   </MultiBinding>
@@ -318,6 +330,8 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="AcceptsReturn" Value="{Binding ElementName=TextBoxesAcceptsReturnCheckBox, Path=IsChecked}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -332,6 +346,7 @@
           <smtx:XamlDisplay Grid.Column="1" UniqueKey="textbox_floating_new_left">
             <TextBox HorizontalContentAlignment="Left" />
           </smtx:XamlDisplay>
+          <!--
           <smtx:XamlDisplay Grid.Column="2" UniqueKey="textbox_floating_new_center">
             <TextBox HorizontalContentAlignment="Center" />
           </smtx:XamlDisplay>
@@ -341,6 +356,7 @@
           <smtx:XamlDisplay Grid.Column="4" UniqueKey="textbox_floating_new_stretch">
             <TextBox HorizontalContentAlignment="Stretch" />
           </smtx:XamlDisplay>
+          -->
         </Grid>
         <Grid>
           <Grid.Resources>
@@ -350,7 +366,7 @@
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
-                    <Binding ElementName="MaterialDesignFilledTextBoxDefaults" Path="Padding" />
+                    <Binding ElementName="MaterialDesignFilledTextBoxNewDefaults" Path="Padding" />
                     <Binding Path="ApplyCustomPadding" />
                     <Binding Path="SelectedCustomPadding" />
                   </MultiBinding>
@@ -370,6 +386,8 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="AcceptsReturn" Value="{Binding ElementName=TextBoxesAcceptsReturnCheckBox, Path=IsChecked}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -384,6 +402,7 @@
           <smtx:XamlDisplay Grid.Column="1" UniqueKey="textbox_filled_new_left">
             <TextBox HorizontalContentAlignment="Left" />
           </smtx:XamlDisplay>
+          <!--
           <smtx:XamlDisplay Grid.Column="2" UniqueKey="textbox_filled_new_center">
             <TextBox HorizontalContentAlignment="Center" />
           </smtx:XamlDisplay>
@@ -393,6 +412,7 @@
           <smtx:XamlDisplay Grid.Column="4" UniqueKey="textbox_filled_new_stretch">
             <TextBox HorizontalContentAlignment="Stretch" />
           </smtx:XamlDisplay>
+          -->
         </Grid>
         <Grid>
           <Grid.Resources>
@@ -402,7 +422,7 @@
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
-                    <Binding ElementName="MaterialDesignOutlinedTextBoxDefaults" Path="Padding" />
+                    <Binding ElementName="MaterialDesignOutlinedTextBoxNewDefaults" Path="Padding" />
                     <Binding Path="ApplyCustomPadding" />
                     <Binding Path="SelectedCustomPadding" />
                   </MultiBinding>
@@ -422,6 +442,8 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="AcceptsReturn" Value="{Binding ElementName=TextBoxesAcceptsReturnCheckBox, Path=IsChecked}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -436,6 +458,7 @@
           <smtx:XamlDisplay Grid.Column="1" UniqueKey="textbox_outlined_new_left">
             <TextBox HorizontalContentAlignment="Left" />
           </smtx:XamlDisplay>
+          <!--
           <smtx:XamlDisplay Grid.Column="2" UniqueKey="textbox_outlined_new_center">
             <TextBox HorizontalContentAlignment="Center" />
           </smtx:XamlDisplay>
@@ -445,6 +468,7 @@
           <smtx:XamlDisplay Grid.Column="4" UniqueKey="textbox_outlined_new_stretch">
             <TextBox HorizontalContentAlignment="Stretch" />
           </smtx:XamlDisplay>
+          -->
         </Grid>
 
         <!-- TextBox variants -->
@@ -479,6 +503,8 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="AcceptsReturn" Value="{Binding ElementName=TextBoxesAcceptsReturnCheckBox, Path=IsChecked}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -531,6 +557,8 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="AcceptsReturn" Value="{Binding ElementName=TextBoxesAcceptsReturnCheckBox, Path=IsChecked}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -583,6 +611,8 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="AcceptsReturn" Value="{Binding ElementName=TextBoxesAcceptsReturnCheckBox, Path=IsChecked}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
