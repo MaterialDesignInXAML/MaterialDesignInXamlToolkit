@@ -143,7 +143,7 @@
                 <wpf:ScaleHost x:Name="ScaleHost" />
                 <Grid x:Name="HintClippingGrid"
                       VerticalAlignment="{TemplateBinding VerticalContentAlignment, Converter={StaticResource VerticalAlignmentConverter}}"
-                      ClipToBounds="True" Background="Fuchsia">
+                      ClipToBounds="True">
                   <Grid.RenderTransform>
                     <MultiBinding Converter="{StaticResource FloatingHintClippingGridTransformConverter}">
                       <Binding ElementName="ScaleHost" Path="Scale" />
