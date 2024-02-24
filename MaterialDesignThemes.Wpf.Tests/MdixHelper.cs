@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
@@ -10,7 +9,7 @@ public static class MdixHelper
         var _ = Application.Current;
     }
 
-    private static ResourceDictionary DefaultResourceDictionary => GetResourceDictionary("MaterialDesignTheme.Defaults.xaml");
+    private static ResourceDictionary DefaultResourceDictionary => GetResourceDictionary("MaterialDesign2.Defaults.xaml");
 
     private static ResourceDictionary GenericResourceDictionary => GetResourceDictionary("Generic.xaml");
 
