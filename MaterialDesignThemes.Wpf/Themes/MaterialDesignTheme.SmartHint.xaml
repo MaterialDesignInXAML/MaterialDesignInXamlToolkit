@@ -11,7 +11,7 @@
   <converters:FloatingHintTransformConverter x:Key="FloatingHintClippingGridTransformConverter" ApplyScaleTransform="False" />
   <converters:FloatingHintTransformConverter x:Key="FloatingHintTransformConverter" ApplyTranslateTransform="False" />
   <converters:FloatingHintTextBlockMarginConverter x:Key="FloatingHintTextBlockMarginConverter" />
-  <wpf:VerticalAlignmentConverter x:Key="VerticalAlignmentConverter" />
+  <converters:VerticalAlignmentConverter x:Key="VerticalAlignmentConverter" />
   <system:Double x:Key="NoContentFloatingScale">1.0</system:Double>
   <CubicEase x:Key="AnimationEasingFunction" EasingMode="EaseInOut" />
 

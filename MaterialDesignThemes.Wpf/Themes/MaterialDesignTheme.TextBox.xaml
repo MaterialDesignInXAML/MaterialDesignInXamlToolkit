@@ -31,7 +31,7 @@
   <converters:ThicknessCloneConverter x:Key="OutlinedStyleTrailingIconMarginConverterTop" CloneEdges="Top" AdditionalOffsetTop="-2" />
   <converters:ThicknessCloneConverter x:Key="OutlinedStyleTrailingIconMarginConverterCenter" CloneEdges="Top" AdditionalOffsetTop="0" />
   <converters:ThicknessCloneConverter x:Key="OutlinedStyleTrailingIconMarginConverterBottom" CloneEdges="Top" FixedBottom="-2" AdditionalOffsetTop="0" />
-  <wpf:VerticalAlignmentConverter x:Key="VerticalAlignmentConverter" />
+  <converters:VerticalAlignmentConverter x:Key="VerticalAlignmentConverter" />
   <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
 
   <Style x:Key="MaterialDesignCharacterCounterTextBlock"
