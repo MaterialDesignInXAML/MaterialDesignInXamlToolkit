@@ -17,6 +17,11 @@ defaults:
   run:
     shell: pwsh
 
+# Needed for updating the version numbers at the end of the pipeline
+permissions:
+  id-token: write
+  contents: write
+
 jobs:
   get_versions:
     name: Get Versions
