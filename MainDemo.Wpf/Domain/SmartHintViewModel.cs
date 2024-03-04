@@ -30,6 +30,7 @@ internal class SmartHintViewModel : ViewModelBase
     private bool _controlsEnabled = true;
     private bool _rippleOnFocus = false;
     private bool _textBoxAcceptsReturn = false;
+    private int _maxLength;
 
     public IEnumerable<FloatingHintHorizontalAlignment> HorizontalAlignmentOptions { get; } = Enum.GetValues(typeof(FloatingHintHorizontalAlignment)).OfType<FloatingHintHorizontalAlignment>();
     public IEnumerable<double> FloatingScaleOptions { get; } = new[] {0.25, 0.5, 0.75, 1.0};
@@ -172,5 +173,21 @@ internal class SmartHintViewModel : ViewModelBase
     {
         get => _textBoxAcceptsReturn;
         set => SetProperty(ref _textBoxAcceptsReturn, value);
+    }
+
+    public bool ShowCharacterCounter
+    {
+        get => MaxLength > 0;
+        set => MaxLength = value == true ? 50 : 0;
+    }
+
+    public int MaxLength
+    {
+        get => _maxLength;
+        set
+        {
+            SetProperty(ref _maxLength, value);
+            OnPropertyChanged(nameof(ShowCharacterCounter));
+        }
     }
 }

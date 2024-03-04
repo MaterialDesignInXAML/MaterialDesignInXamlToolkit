@@ -149,6 +149,10 @@
                     IsEnabled="{Binding ElementName=CheckBoxTrailingIcon, Path=IsChecked}"
                     ItemsSource="{Binding IconSizeOptions}"
                     SelectedItem="{Binding SelectedTrailingIconSize, Mode=TwoWay}" />
+          <CheckBox x:Name="CheckBoxCharacterCounter"
+                    Margin="20,0,0,0"
+                    Content="CharacterCounter"
+                    IsChecked="{Binding ShowCharacterCounter}"/>
         </StackPanel>
       </StackPanel>
     </GroupBox>
@@ -323,6 +327,7 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -376,6 +381,7 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -429,6 +435,7 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -490,7 +497,6 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
-
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -548,6 +554,8 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
+              <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -600,6 +608,8 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
+              <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -652,6 +662,8 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
+              <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -714,6 +726,8 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
+              <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -767,6 +781,8 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
+              <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -820,6 +836,8 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
+              <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
