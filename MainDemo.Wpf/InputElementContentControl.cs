@@ -5,4 +5,5 @@
 /// </summary>
 internal class InputElementContentControl : ContentControl
 {
+    public InputElementContentControl() => IsTabStop = false;
 }
