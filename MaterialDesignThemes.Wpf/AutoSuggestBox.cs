@@ -201,7 +201,7 @@ public class AutoSuggestBox : TextBox
             var selectedItem = element.DataContext;
             if (!_autoSuggestBoxList.Items.Contains(selectedItem))
                 return;
-            if (_autoSuggestBoxList.SelectedItem != selectedItem)
+            if (!_autoSuggestBoxList.SelectedItem.Equals(selectedItem))
             {
                 _autoSuggestBoxList.SelectionChanged += OnSelectionChanged;
                 _autoSuggestBoxList.SelectedItem = selectedItem;

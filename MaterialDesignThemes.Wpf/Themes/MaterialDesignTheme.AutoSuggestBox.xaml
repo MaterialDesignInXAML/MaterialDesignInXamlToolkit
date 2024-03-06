@@ -11,7 +11,7 @@
   <Style x:Key="MaterialDesignAutoSuggestBoxBase"
          TargetType="{x:Type wpf:AutoSuggestBox}"
          BasedOn="{StaticResource MaterialDesignTextBoxBase}">
-    <Setter Property="DropDownBackground" Value="White" />
+    <Setter Property="DropDownBackground" Value="{DynamicResource MaterialDesign.Brush.Card.Background}" />
     <Setter Property="DropDownElevation" Value="Dp2" />
     <Setter Property="Template">
       <Setter.Value>
@@ -224,6 +224,7 @@
                          DisplayMemberPath="{TemplateBinding DisplayMember}"
                          Focusable="False"
                          IsSynchronizedWithCurrentItem="True"
+                         SelectedIndex="-1"
                          ItemContainerStyle="{TemplateBinding ItemContainerStyle}"
                          ItemTemplate="{TemplateBinding ItemTemplate}"
                          ItemsSource="{TemplateBinding Suggestions}"
