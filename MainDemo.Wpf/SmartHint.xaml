@@ -54,6 +54,7 @@
         <TextBlock Text="{Binding Converter={StaticResource FloatingOffsetOptionToStringConverter}}" />
       </DataTemplate>
 
+      <local:FontSizeConverter x:Key="FontSizeConverter" />
       <local:FontFamilyOptionToStringConverter x:Key="FontFamilyOptionToStringConverter" DefaultValue="{x:Static domain:SmartHintViewModel.DefaultFontFamily}" />
       <DataTemplate x:Key="FontFamilyTemplate">
         <TextBlock Text="{Binding Converter={StaticResource FontFamilyOptionToStringConverter}}" />
@@ -302,7 +303,7 @@
           <Grid.Resources>
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
               <Setter Property="AcceptsReturn" Value="{Binding ElementName=TextBoxAcceptsReturnCheckBox, Path=IsChecked}" />
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -356,7 +357,7 @@
           <Grid.Resources>
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFilledTextBox}">
               <Setter Property="AcceptsReturn" Value="{Binding ElementName=TextBoxAcceptsReturnCheckBox, Path=IsChecked}" />
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -410,7 +411,7 @@
           <Grid.Resources>
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
               <Setter Property="AcceptsReturn" Value="{Binding ElementName=TextBoxAcceptsReturnCheckBox, Path=IsChecked}" />
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -468,7 +469,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type RichTextBox}" BasedOn="{StaticResource MaterialDesignRichTextBox}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
 
               <!-- TODO: This is needed in order to avoid the RichTextBox only showing a single character per line?!?! There must be a bug somewhere! Min/MinWidth both "work" -->
@@ -529,7 +530,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignFloatingHintPasswordBox}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -583,7 +584,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignFilledPasswordBox}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -637,7 +638,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignOutlinedPasswordBox}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -700,7 +701,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignFloatingHintRevealPasswordBox}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -755,7 +756,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignFilledRevealPasswordBox}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -810,7 +811,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignOutlinedRevealPasswordBox}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -873,7 +874,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="IsEditable" Value="{Binding ElementName=ComboBoxesEditableCheckBox, Path=IsChecked}" />
               <Setter Property="ItemsSource" Value="{Binding ComboBoxOptions}" />
@@ -927,7 +928,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignFilledComboBox}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="IsEditable" Value="{Binding ElementName=ComboBoxesEditableCheckBox, Path=IsChecked}" />
               <Setter Property="ItemsSource" Value="{Binding ComboBoxOptions}" />
@@ -981,7 +982,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignOutlinedComboBox}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="IsEditable" Value="{Binding ElementName=ComboBoxesEditableCheckBox, Path=IsChecked}" />
               <Setter Property="ItemsSource" Value="{Binding ComboBoxOptions}" />
@@ -1040,7 +1041,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignFloatingHintDatePicker}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -1091,7 +1092,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignFilledDatePicker}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -1142,7 +1143,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignOutlinedDatePicker}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -1198,7 +1199,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type materialDesign:TimePicker}" BasedOn="{StaticResource MaterialDesignFloatingHintTimePicker}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -1249,7 +1250,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type materialDesign:TimePicker}" BasedOn="{StaticResource MaterialDesignFilledTimePicker}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -1300,7 +1301,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type materialDesign:TimePicker}" BasedOn="{StaticResource MaterialDesignOutlinedTimePicker}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
