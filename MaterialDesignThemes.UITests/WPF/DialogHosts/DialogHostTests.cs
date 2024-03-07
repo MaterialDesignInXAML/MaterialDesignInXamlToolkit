@@ -6,12 +6,8 @@ using static MaterialDesignThemes.UITests.MaterialDesignSpec;
 
 namespace MaterialDesignThemes.UITests.WPF.DialogHosts;
 
-public class DialogHostTests : TestBase
+public class DialogHostTests(ITestOutputHelper output) : TestBase(output)
 {
-    public DialogHostTests(ITestOutputHelper output) : base(output)
-    {
-    }
-
     [Fact]
     public async Task OnOpenDialog_OverlayCoversContent()
     {
@@ -491,7 +487,12 @@ public class DialogHostTests : TestBase
 
         IVisualElement grid = await LoadXaml<Grid>($$"""
            <Grid>
-             <materialDesign:DialogHost x:Name="DialogHost" IsOpen="True" DialogCardStyle="{StaticResource {{dialogCardStyle}}}">
+             <Grid.Resources>
+                <Style x:Key="TestStyle" TargetType="materialDesign:Card" BasedOn="{StaticResource {{dialogCardStyle}}}">
+                 <Setter Property="Padding" Value="42" />
+               </Style>
+             </Grid.Resources>
+             <materialDesign:DialogHost x:Name="DialogHost" IsOpen="True" DialogCardStyle="{StaticResource TestStyle}">
                <materialDesign:DialogHost.DialogContent>
                  <TextBlock Text="Some Text" Margin="100" />
                </materialDesign:DialogHost.DialogContent>
@@ -502,7 +503,7 @@ public class DialogHostTests : TestBase
         IVisualElement<DialogHost> dialogHost = await grid.GetElement<DialogHost>("DialogHost");
         IVisualElement<Card> nestedCard = await dialogHost.GetElement<Card>("PART_PopupContentElement");
 
-        // TODO: Assert the style on the nested card matches what is set in DialogHost.DialogCardStyle
+        Assert.Equal(new Thickness(42), await nestedCard.GetPadding());
 
         recorder.Success();
     }
