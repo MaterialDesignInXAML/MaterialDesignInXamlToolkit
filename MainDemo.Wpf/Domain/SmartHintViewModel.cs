@@ -27,6 +27,10 @@ internal class SmartHintViewModel : ViewModelBase
     private string? _suffixText;
     private double _selectedFontSize = double.NaN;
     private FontFamily? _selectedFontFamily = DefaultFontFamily;
+    private bool _controlsEnabled = true;
+    private bool _rippleOnFocus = false;
+    private bool _textBoxAcceptsReturn = false;
+    private int _maxLength;
 
     public IEnumerable<FloatingHintHorizontalAlignment> HorizontalAlignmentOptions { get; } = Enum.GetValues(typeof(FloatingHintHorizontalAlignment)).OfType<FloatingHintHorizontalAlignment>();
     public IEnumerable<double> FloatingScaleOptions { get; } = new[] {0.25, 0.5, 0.75, 1.0};
@@ -42,190 +46,148 @@ internal class SmartHintViewModel : ViewModelBase
     public bool FloatHint
     {
         get => _floatHint;
-        set
-        {
-            _floatHint = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _floatHint, value);
     }
 
     public FloatingHintHorizontalAlignment SelectedAlignment
     {
         get => _selectedAlignment;
-        set
-        {
-            _selectedAlignment = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _selectedAlignment, value);
     }
 
     public double SelectedFloatingScale
     {
         get => _selectedFloatingScale;
-        set
-        {
-            _selectedFloatingScale = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _selectedFloatingScale, value);
     }
 
     public Point SelectedFloatingOffset
     {
         get => _selectedFloatingOffset;
-        set
-        {
-            _selectedFloatingOffset = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _selectedFloatingOffset, value);
     }
 
     public bool ShowClearButton
     {
         get => _showClearButton;
-        set
-        {
-            _showClearButton = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _showClearButton, value);
     }
 
     public bool ShowLeadingIcon
     {
         get => _showLeadingIcon;
-        set
-        {
-            _showLeadingIcon = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _showLeadingIcon, value);
     }
 
     public bool ShowTrailingIcon
     {
         get => _showTrailingIcon;
-        set
-        {
-            _showTrailingIcon = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _showTrailingIcon, value);
     }
 
     public string HintText
     {
         get => _hintText;
-        set
-        {
-            _hintText = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _hintText, value);
     }
 
     public string HelperText
     {
         get => _helperText;
-        set
-        {
-            _helperText = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _helperText, value);
     }
 
     public bool ApplyCustomPadding
     {
         get => _applyCustomPadding;
-        set
-        {
-            _applyCustomPadding = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _applyCustomPadding, value);
     }
 
     public Thickness SelectedCustomPadding
     {
         get => _selectedCustomPadding;
-        set
-        {
-            _selectedCustomPadding = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _selectedCustomPadding, value);
     }
 
     public double SelectedCustomHeight
     {
         get => _selectedCustomHeight;
-        set
-        {
-            _selectedCustomHeight = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _selectedCustomHeight, value);
     }
 
     public VerticalAlignment SelectedVerticalAlignment
     {
         get => _selectedVerticalAlignment;
-        set
-        {
-            _selectedVerticalAlignment = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _selectedVerticalAlignment, value);
     }
 
     public double SelectedLeadingIconSize
     {
         get => _selectedLeadingIconSize;
-        set
-        {
-            _selectedLeadingIconSize = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _selectedLeadingIconSize, value);
     }
 
     public double SelectedTrailingIconSize
     {
         get => _selectedTrailingIconSize;
-        set
-        {
-            _selectedTrailingIconSize = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _selectedTrailingIconSize, value);
     }
 
     public string? PrefixText
     {
         get => _prefixText;
-        set
-        {
-            _prefixText = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _prefixText, value);
     }
 
     public string? SuffixText
     {
         get => _suffixText;
-        set
-        {
-            _suffixText = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _suffixText, value);
     }
 
     public double SelectedFontSize
     {
         get => _selectedFontSize;
-        set
-        {
-            _selectedFontSize = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _selectedFontSize, value);
     }
 
     public FontFamily? SelectedFontFamily
     {
         get => _selectedFontFamily;
+        set => SetProperty(ref _selectedFontFamily, value);
+    }
+
+    public bool ControlsEnabled
+    {
+        get => _controlsEnabled;
+        set => SetProperty(ref _controlsEnabled, value);
+    }
+
+    public bool RippleOnFocus
+    {
+        get => _rippleOnFocus;
+        set => SetProperty(ref _rippleOnFocus, value);
+    }
+
+    public bool TextBoxAcceptsReturn
+    {
+        get => _textBoxAcceptsReturn;
+        set => SetProperty(ref _textBoxAcceptsReturn, value);
+    }
+
+    public bool ShowCharacterCounter
+    {
+        get => MaxLength > 0;
+        set => MaxLength = value == true ? 50 : 0;
+    }
+
+    public int MaxLength
+    {
+        get => _maxLength;
         set
         {
-            _selectedFontFamily = value;
-            OnPropertyChanged();
+            SetProperty(ref _maxLength, value);
+            OnPropertyChanged(nameof(ShowCharacterCounter));
         }
     }
 }

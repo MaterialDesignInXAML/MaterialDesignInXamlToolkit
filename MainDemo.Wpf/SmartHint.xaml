@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:MaterialDesignDemo"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              xmlns:system="clr-namespace:System;assembly=System.Runtime"
              x:Name="_root"
              Margin="-16,0,-16,0"
@@ -19,11 +18,7 @@
     <Grid.Resources>
       <materialDesign:MathConverter x:Key="SubtractConverter" Operation="Subtract" />
       <local:CustomPaddingConverter x:Key="CustomPaddingConverter" />
-      <!--
-        Ideally I would like to use ShowMeTheXaml to show the "dynamic" properties being applied to the elements. Currently it only shows
-        the static properties set in the XAML, which in this case is very little; actually only HorizontalContentAlignment.
-      -->
-      <Style TargetType="{x:Type smtx:XamlDisplay}" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
+      <Style TargetType="{x:Type local:InputElementContentControl}">
         <Setter Property="Margin" Value="10,10,10,16" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="materialDesign:HintAssist.FloatingHintHorizontalAlignment" Value="{Binding SelectedAlignment}" />
@@ -50,9 +45,8 @@
         <TextBlock Text="{Binding Converter={StaticResource DoubleOptionToStringConverter}}" />
       </DataTemplate>
       <Style x:Key="FontSizeHelperTextStyle"
-             TargetType="TextBlock"
-             BasedOn="{StaticResource MaterialDesignHelperTextBlock}">
-        <Setter Property="Foreground" Value="DarkRed" />
+             TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
       </Style>
 
       <local:PointOptionToStringConverter x:Key="FloatingOffsetOptionToStringConverter" DefaultValue="{x:Static domain:SmartHintViewModel.DefaultFloatingOffset}" />
@@ -60,6 +54,7 @@
         <TextBlock Text="{Binding Converter={StaticResource FloatingOffsetOptionToStringConverter}}" />
       </DataTemplate>
 
+      <local:FontSizeConverter x:Key="FontSizeConverter" />
       <local:FontFamilyOptionToStringConverter x:Key="FontFamilyOptionToStringConverter" DefaultValue="{x:Static domain:SmartHintViewModel.DefaultFontFamily}" />
       <DataTemplate x:Key="FontFamilyTemplate">
         <TextBlock Text="{Binding Converter={StaticResource FontFamilyOptionToStringConverter}}" />
@@ -155,6 +150,10 @@
                     IsEnabled="{Binding ElementName=CheckBoxTrailingIcon, Path=IsChecked}"
                     ItemsSource="{Binding IconSizeOptions}"
                     SelectedItem="{Binding SelectedTrailingIconSize, Mode=TwoWay}" />
+          <CheckBox x:Name="CheckBoxCharacterCounter"
+                    Margin="20,0,0,0"
+                    Content="CharacterCounter"
+                    IsChecked="{Binding ShowCharacterCounter}"/>
         </StackPanel>
       </StackPanel>
     </GroupBox>
@@ -164,7 +163,15 @@
               Header="Control Settings"
               Style="{StaticResource MaterialDesignCardGroupBox}">
       <StackPanel Margin="10" Orientation="Horizontal">
+        <CheckBox x:Name="IsEnabledCheckBox"
+                  Content="Enabled"
+                  IsChecked="{Binding ControlsEnabled}" />
+        <CheckBox x:Name="RippleOnFocusCheckBox"
+                  Margin="5,0,0,0"
+                  Content="RippleOnFocus"
+                  IsChecked="{Binding RippleOnFocus}" />
         <CheckBox x:Name="CustomPaddingCheckBox"
+                  Margin="5,0,0,0"
                   Content="Custom Padding"
                   IsChecked="{Binding ApplyCustomPadding}" />
         <ComboBox Margin="5,0,0,0"
@@ -207,6 +214,7 @@
                   VerticalAlignment="Center"
                   materialDesign:HintAssist.HelperText="Currently only 'Default' is supported"
                   materialDesign:HintAssist.HelperTextStyle="{StaticResource FontSizeHelperTextStyle}"
+                  materialDesign:HintAssist.HintOpacity="1"
                   ItemTemplate="{StaticResource FontSizeTemplate}"
                   ItemsSource="{Binding FontSizeOptions}"
                   SelectedItem="{Binding SelectedFontSize, Mode=TwoWay}" />
@@ -281,14 +289,21 @@
       <StackPanel x:Name="ControlsPanel"
                   Margin="8,0,16,0"
                   HorizontalAlignment="Stretch"
-                  VerticalAlignment="Top">
+                  VerticalAlignment="Top"
+                  IsEnabled="{Binding ControlsEnabled}">
 
         <!-- TextBox variants -->
-        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="TextBox styles" />
+        <StackPanel Orientation="Horizontal">
+          <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="TextBox styles" />
+          <CheckBox x:Name="TextBoxAcceptsReturnCheckBox"
+                    Margin="20,0,0,0"
+                    Content="AcceptsReturn" />
+        </StackPanel>
         <Grid HorizontalAlignment="Stretch">
           <Grid.Resources>
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="AcceptsReturn" Value="{Binding ElementName=TextBoxAcceptsReturnCheckBox, Path=IsChecked}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -312,6 +327,8 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -323,23 +340,24 @@
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFloatingHintTextBox</TextBlock>
-          <smtx:XamlDisplay Grid.Column="1" UniqueKey="textbox_floating_left">
+          <local:InputElementContentControl Grid.Column="1">
             <TextBox HorizontalContentAlignment="Left" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="2" UniqueKey="textbox_floating_center">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="2">
             <TextBox HorizontalContentAlignment="Center" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="3" UniqueKey="textbox_floating_right">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="3">
             <TextBox HorizontalContentAlignment="Right" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="4" UniqueKey="textbox_floating_stretch">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="4">
             <TextBox HorizontalContentAlignment="Stretch" />
-          </smtx:XamlDisplay>
+          </local:InputElementContentControl>
         </Grid>
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFilledTextBox}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="AcceptsReturn" Value="{Binding ElementName=TextBoxAcceptsReturnCheckBox, Path=IsChecked}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -363,6 +381,8 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -374,23 +394,24 @@
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFilledTextBox</TextBlock>
-          <smtx:XamlDisplay Grid.Column="1" UniqueKey="textbox_filled_left">
+          <local:InputElementContentControl Grid.Column="1">
             <TextBox HorizontalContentAlignment="Left" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="2" UniqueKey="textbox_filled_center">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="2">
             <TextBox HorizontalContentAlignment="Center" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="3" UniqueKey="textbox_filled_right">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="3">
             <TextBox HorizontalContentAlignment="Right" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="4" UniqueKey="textbox_filled_stretch">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="4">
             <TextBox HorizontalContentAlignment="Stretch" />
-          </smtx:XamlDisplay>
+          </local:InputElementContentControl>
         </Grid>
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="AcceptsReturn" Value="{Binding ElementName=TextBoxAcceptsReturnCheckBox, Path=IsChecked}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -414,6 +435,8 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -425,18 +448,18 @@
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignOutlinedTextBox</TextBlock>
-          <smtx:XamlDisplay Grid.Column="1" UniqueKey="textbox_outlined_left">
+          <local:InputElementContentControl Grid.Column="1">
             <TextBox HorizontalContentAlignment="Left" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="2" UniqueKey="textbox_outlined_center">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="2">
             <TextBox HorizontalContentAlignment="Center" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="3" UniqueKey="textbox_outlined_right">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="3">
             <TextBox HorizontalContentAlignment="Right" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="4" UniqueKey="textbox_outlined_stretch">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="4">
             <TextBox HorizontalContentAlignment="Stretch" />
-          </smtx:XamlDisplay>
+          </local:InputElementContentControl>
         </Grid>
 
         <!-- RichTextBox variants -->
@@ -446,7 +469,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type RichTextBox}" BasedOn="{StaticResource MaterialDesignRichTextBox}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
 
               <!-- TODO: This is needed in order to avoid the RichTextBox only showing a single character per line?!?! There must be a bug somewhere! Min/MinWidth both "work" -->
@@ -474,7 +497,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
-
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -486,18 +509,18 @@
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignRichTextBox</TextBlock>
-          <smtx:XamlDisplay Grid.Column="1" UniqueKey="richtextbox_left">
+          <local:InputElementContentControl Grid.Column="1">
             <RichTextBox />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="2" UniqueKey="richtextbox_center">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="2">
             <RichTextBox HorizontalContentAlignment="Center" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="3" UniqueKey="richtextbox_right">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="3">
             <RichTextBox HorizontalContentAlignment="Right" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="4" UniqueKey="richtextbox_stretch">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="4">
             <RichTextBox HorizontalContentAlignment="Stretch" />
-          </smtx:XamlDisplay>
+          </local:InputElementContentControl>
         </Grid>
 
         <!-- PasswordBox variants -->
@@ -507,7 +530,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignFloatingHintPasswordBox}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -531,6 +554,9 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
+              <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -542,23 +568,23 @@
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFloatingHintPasswordBox</TextBlock>
-          <smtx:XamlDisplay Grid.Column="1" UniqueKey="passwordbox_floating_left">
+          <local:InputElementContentControl Grid.Column="1">
             <PasswordBox HorizontalContentAlignment="Left" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="2" UniqueKey="passwordbox_floating_center">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="2">
             <PasswordBox HorizontalContentAlignment="Center" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="3" UniqueKey="passwordbox_floating_right">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="3">
             <PasswordBox HorizontalContentAlignment="Right" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="4" UniqueKey="passwordbox_floating_stretch">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="4">
             <PasswordBox HorizontalContentAlignment="Stretch" />
-          </smtx:XamlDisplay>
+          </local:InputElementContentControl>
         </Grid>
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignFilledPasswordBox}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -582,6 +608,9 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
+              <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -593,23 +622,23 @@
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFilledPasswordBox</TextBlock>
-          <smtx:XamlDisplay Grid.Column="1" UniqueKey="passwordbox_filled_left">
+          <local:InputElementContentControl Grid.Column="1">
             <PasswordBox HorizontalContentAlignment="Left" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="2" UniqueKey="passwordbox_filled_center">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="2">
             <PasswordBox HorizontalContentAlignment="Center" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="3" UniqueKey="passwordbox_filled_right">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="3">
             <PasswordBox HorizontalContentAlignment="Right" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="4" UniqueKey="passwordbox_filled_stretch">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="4">
             <PasswordBox HorizontalContentAlignment="Stretch" />
-          </smtx:XamlDisplay>
+          </local:InputElementContentControl>
         </Grid>
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignOutlinedPasswordBox}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -633,6 +662,9 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
+              <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -644,18 +676,18 @@
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignOutlinedPasswordBox</TextBlock>
-          <smtx:XamlDisplay Grid.Column="1" UniqueKey="passwordbox_outlined_left">
+          <local:InputElementContentControl Grid.Column="1">
             <PasswordBox HorizontalContentAlignment="Left" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="2" UniqueKey="passwordbox_outlined_center">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="2">
             <PasswordBox HorizontalContentAlignment="Center" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="3" UniqueKey="passwordbox_outlined_right">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="3">
             <PasswordBox HorizontalContentAlignment="Right" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="4" UniqueKey="passwordbox_outlined_stretch">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="4">
             <PasswordBox HorizontalContentAlignment="Stretch" />
-          </smtx:XamlDisplay>
+          </local:InputElementContentControl>
         </Grid>
 
         <!-- Reveal style PasswordBox variants -->
@@ -669,7 +701,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignFloatingHintRevealPasswordBox}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -694,6 +726,9 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
+              <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -705,23 +740,23 @@
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFloatingHintRevealPasswordBox</TextBlock>
-          <smtx:XamlDisplay Grid.Column="1" UniqueKey="passwordbox_reveal_floating_left">
+          <local:InputElementContentControl Grid.Column="1">
             <PasswordBox HorizontalContentAlignment="Left" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="2" UniqueKey="passwordbox_reveal_floating_center">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="2">
             <PasswordBox HorizontalContentAlignment="Center" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="3" UniqueKey="passwordbox_reveal_floating_right">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="3">
             <PasswordBox HorizontalContentAlignment="Right" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="4" UniqueKey="passwordbox_reveal_floating_stretch">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="4">
             <PasswordBox HorizontalContentAlignment="Stretch" />
-          </smtx:XamlDisplay>
+          </local:InputElementContentControl>
         </Grid>
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignFilledRevealPasswordBox}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -746,6 +781,9 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
+              <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -757,23 +795,23 @@
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFilledRevealPasswordBox</TextBlock>
-          <smtx:XamlDisplay Grid.Column="1" UniqueKey="passwordbox_reveal_filled_left">
+          <local:InputElementContentControl Grid.Column="1">
             <PasswordBox HorizontalContentAlignment="Left" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="2" UniqueKey="passwordbox_reveal_filled_center">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="2">
             <PasswordBox HorizontalContentAlignment="Center" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="3" UniqueKey="passwordbox_reveal_filled_right">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="3">
             <PasswordBox HorizontalContentAlignment="Right" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="4" UniqueKey="passwordbox_reveal_filled_stretch">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="4">
             <PasswordBox HorizontalContentAlignment="Stretch" />
-          </smtx:XamlDisplay>
+          </local:InputElementContentControl>
         </Grid>
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignOutlinedRevealPasswordBox}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -798,6 +836,9 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
+              <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -809,18 +850,18 @@
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignOutlinedRevealPasswordBox</TextBlock>
-          <smtx:XamlDisplay Grid.Column="1" UniqueKey="passwordbox_reveal_outlined_left">
+          <local:InputElementContentControl Grid.Column="1">
             <PasswordBox HorizontalContentAlignment="Left" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="2" UniqueKey="passwordbox_reveal_outlined_center">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="2">
             <PasswordBox HorizontalContentAlignment="Center" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="3" UniqueKey="passwordbox_reveal_outlined_right">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="3">
             <PasswordBox HorizontalContentAlignment="Right" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="4" UniqueKey="passwordbox_reveal_outlined_stretch">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="4">
             <PasswordBox HorizontalContentAlignment="Stretch" />
-          </smtx:XamlDisplay>
+          </local:InputElementContentControl>
         </Grid>
 
         <!-- ComboBox variants -->
@@ -833,7 +874,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="IsEditable" Value="{Binding ElementName=ComboBoxesEditableCheckBox, Path=IsChecked}" />
               <Setter Property="ItemsSource" Value="{Binding ComboBoxOptions}" />
@@ -859,6 +900,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -870,23 +912,23 @@
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFloatingHintComboBox</TextBlock>
-          <smtx:XamlDisplay Grid.Column="1" UniqueKey="combobox_floating_left">
+          <local:InputElementContentControl Grid.Column="1">
             <ComboBox HorizontalContentAlignment="Left" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="2" UniqueKey="combobox_floating_center">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="2">
             <ComboBox HorizontalContentAlignment="Center" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="3" UniqueKey="combobox_floating_right">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="3">
             <ComboBox HorizontalContentAlignment="Right" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="4" UniqueKey="combobox_floating_stretch">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="4">
             <ComboBox HorizontalContentAlignment="Stretch" />
-          </smtx:XamlDisplay>
+          </local:InputElementContentControl>
         </Grid>
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignFilledComboBox}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="IsEditable" Value="{Binding ElementName=ComboBoxesEditableCheckBox, Path=IsChecked}" />
               <Setter Property="ItemsSource" Value="{Binding ComboBoxOptions}" />
@@ -912,6 +954,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -923,23 +966,23 @@
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFilledComboBox</TextBlock>
-          <smtx:XamlDisplay Grid.Column="1" UniqueKey="combobox_filled_left">
+          <local:InputElementContentControl Grid.Column="1">
             <ComboBox HorizontalContentAlignment="Left" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="2" UniqueKey="combobox_filled_center">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="2">
             <ComboBox HorizontalContentAlignment="Center" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="3" UniqueKey="combobox_filled_right">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="3">
             <ComboBox HorizontalContentAlignment="Right" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="4" UniqueKey="combobox_filled_stretch">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="4">
             <ComboBox HorizontalContentAlignment="Stretch" />
-          </smtx:XamlDisplay>
+          </local:InputElementContentControl>
         </Grid>
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignOutlinedComboBox}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="IsEditable" Value="{Binding ElementName=ComboBoxesEditableCheckBox, Path=IsChecked}" />
               <Setter Property="ItemsSource" Value="{Binding ComboBoxOptions}" />
@@ -965,6 +1008,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -976,18 +1020,18 @@
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignOutlinedComboBox</TextBlock>
-          <smtx:XamlDisplay Grid.Column="1" UniqueKey="combobox_outlined_left">
+          <local:InputElementContentControl Grid.Column="1">
             <ComboBox HorizontalContentAlignment="Left" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="2" UniqueKey="combobox_outlined_center">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="2">
             <ComboBox HorizontalContentAlignment="Center" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="3" UniqueKey="combobox_outlined_right">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="3">
             <ComboBox HorizontalContentAlignment="Right" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="4" UniqueKey="combobox_outlined_stretch">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="4">
             <ComboBox HorizontalContentAlignment="Stretch" />
-          </smtx:XamlDisplay>
+          </local:InputElementContentControl>
         </Grid>
 
         <!-- DatePicker variants -->
@@ -997,7 +1041,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignFloatingHintDatePicker}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -1020,6 +1064,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1031,23 +1076,23 @@
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFloatingHintDatePicker</TextBlock>
-          <smtx:XamlDisplay Grid.Column="1" UniqueKey="datepicker_floating_left">
+          <local:InputElementContentControl Grid.Column="1">
             <DatePicker HorizontalContentAlignment="Left" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="2" UniqueKey="datepicker_floating_center">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="2">
             <DatePicker HorizontalContentAlignment="Center" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="3" UniqueKey="datepicker_floating_right">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="3">
             <DatePicker HorizontalContentAlignment="Right" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="4" UniqueKey="datepicker_floating_stretch">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="4">
             <DatePicker HorizontalContentAlignment="Stretch" />
-          </smtx:XamlDisplay>
+          </local:InputElementContentControl>
         </Grid>
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignFilledDatePicker}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -1070,6 +1115,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1081,23 +1127,23 @@
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFilledDatePicker</TextBlock>
-          <smtx:XamlDisplay Grid.Column="1" UniqueKey="datepicker_filled_left">
+          <local:InputElementContentControl Grid.Column="1">
             <DatePicker HorizontalContentAlignment="Left" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="2" UniqueKey="datepicker_filled_center">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="2">
             <DatePicker HorizontalContentAlignment="Center" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="3" UniqueKey="datepicker_filled_right">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="3">
             <DatePicker HorizontalContentAlignment="Right" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="4" UniqueKey="datepicker_filled_stretch">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="4">
             <DatePicker HorizontalContentAlignment="Stretch" />
-          </smtx:XamlDisplay>
+          </local:InputElementContentControl>
         </Grid>
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignOutlinedDatePicker}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -1120,6 +1166,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1131,18 +1178,18 @@
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignOutlinedDatePicker</TextBlock>
-          <smtx:XamlDisplay Grid.Column="1" UniqueKey="datepicker_outlined_left">
+          <local:InputElementContentControl Grid.Column="1">
             <DatePicker HorizontalContentAlignment="Left" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="2" UniqueKey="datepicker_outlined_center">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="2">
             <DatePicker HorizontalContentAlignment="Center" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="3" UniqueKey="datepicker_outlined_right">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="3">
             <DatePicker HorizontalContentAlignment="Right" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="4" UniqueKey="datepicker_outlined_stretch">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="4">
             <DatePicker HorizontalContentAlignment="Stretch" />
-          </smtx:XamlDisplay>
+          </local:InputElementContentControl>
         </Grid>
 
         <!-- TimePicker variants -->
@@ -1152,7 +1199,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type materialDesign:TimePicker}" BasedOn="{StaticResource MaterialDesignFloatingHintTimePicker}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -1175,6 +1222,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1186,23 +1234,23 @@
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFloatingHintTimePicker</TextBlock>
-          <smtx:XamlDisplay Grid.Column="1" UniqueKey="timepicker_floating_left">
+          <local:InputElementContentControl Grid.Column="1">
             <materialDesign:TimePicker HorizontalContentAlignment="Left" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="2" UniqueKey="timepicker_floating_center">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="2">
             <materialDesign:TimePicker HorizontalContentAlignment="Center" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="3" UniqueKey="timepicker_floating_right">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="3">
             <materialDesign:TimePicker HorizontalContentAlignment="Right" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="4" UniqueKey="timepicker_floating_stretch">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="4">
             <materialDesign:TimePicker HorizontalContentAlignment="Stretch" />
-          </smtx:XamlDisplay>
+          </local:InputElementContentControl>
         </Grid>
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type materialDesign:TimePicker}" BasedOn="{StaticResource MaterialDesignFilledTimePicker}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -1225,6 +1273,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1236,23 +1285,23 @@
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFilledTimePicker</TextBlock>
-          <smtx:XamlDisplay Grid.Column="1" UniqueKey="timepicker_filled_left">
+          <local:InputElementContentControl Grid.Column="1">
             <materialDesign:TimePicker HorizontalContentAlignment="Left" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="2" UniqueKey="timepicker_filled_center">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="2">
             <materialDesign:TimePicker HorizontalContentAlignment="Center" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="3" UniqueKey="timepicker_filled_right">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="3">
             <materialDesign:TimePicker HorizontalContentAlignment="Right" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="4" UniqueKey="timepicker_filled_stretch">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="4">
             <materialDesign:TimePicker HorizontalContentAlignment="Stretch" />
-          </smtx:XamlDisplay>
+          </local:InputElementContentControl>
         </Grid>
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type materialDesign:TimePicker}" BasedOn="{StaticResource MaterialDesignOutlinedTimePicker}">
-              <Setter Property="FontSize" Value="{Binding SelectedFontSize}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
                 <Setter.Value>
@@ -1275,6 +1324,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1286,18 +1336,18 @@
           </Grid.ColumnDefinitions>
 
           <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignOutlinedTimePicker</TextBlock>
-          <smtx:XamlDisplay Grid.Column="1" UniqueKey="timepicker_outlined_left">
+          <local:InputElementContentControl Grid.Column="1">
             <materialDesign:TimePicker HorizontalContentAlignment="Left" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="2" UniqueKey="timepicker_outlined_center">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="2">
             <materialDesign:TimePicker HorizontalContentAlignment="Center" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="3" UniqueKey="timepicker_outlined_right">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="3">
             <materialDesign:TimePicker HorizontalContentAlignment="Right" />
-          </smtx:XamlDisplay>
-          <smtx:XamlDisplay Grid.Column="4" UniqueKey="timepicker_outlined_stretch">
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="4">
             <materialDesign:TimePicker HorizontalContentAlignment="Stretch" />
-          </smtx:XamlDisplay>
+          </local:InputElementContentControl>
         </Grid>
       </StackPanel>
     </ScrollViewer>
