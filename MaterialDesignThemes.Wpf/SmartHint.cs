@@ -139,6 +139,15 @@ public class SmartHint : Control
         set => SetValue(InitialVerticalOffsetProperty, value);
     }
 
+    public static readonly DependencyProperty InitialHorizontalOffsetProperty = DependencyProperty.Register(
+        nameof(InitialHorizontalOffset), typeof(double), typeof(SmartHint), new PropertyMetadata(default(double)));
+
+    public double InitialHorizontalOffset
+    {
+        get => (double)GetValue(InitialHorizontalOffsetProperty);
+        set => SetValue(InitialHorizontalOffsetProperty, value);
+    }
+
     public static readonly DependencyProperty FloatingTargetProperty = DependencyProperty.Register(
         nameof(FloatingTarget), typeof(FrameworkElement), typeof(SmartHint), new PropertyMetadata(default(FrameworkElement)));
 
@@ -295,9 +304,19 @@ public class FloatingHintTranslateTransformConverter : IMultiValueConverter
         }
         return new TranslateTransform
         {
-            X = -hint.FloatingMargin.Left * scale,
+            X = GetFloatingTargetHorizontalOffset() * scale,
             Y = GetFloatingTargetVerticalOffset() * scale
         };
+
+        double GetFloatingTargetHorizontalOffset()
+        {
+            return hint.InitialHorizontalOffset + hint.HorizontalContentAlignment switch
+            {
+                HorizontalAlignment.Center => 0,
+                HorizontalAlignment.Right => hint.FloatingMargin.Right,
+                _ => -hint.FloatingMargin.Left,
+            };
+        }
 
         double GetFloatingTargetVerticalOffset()
         {
