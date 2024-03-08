@@ -151,8 +151,9 @@
                       <Binding Source="{StaticResource NoContentFloatingScale}" />
                       <Binding Path="." RelativeSource="{RelativeSource TemplatedParent}" />
                       <Binding Path="FloatingOffset" RelativeSource="{RelativeSource TemplatedParent}" />
-                      <!-- The binding below is only needed to trigger a recalculation when the size changes - needed to support AcceptsReturn=true scenario for TextBoxes for example -->
+                      <!-- The bindings below are only needed to trigger a recalculation something affecting the layout changes - needed to support AcceptsReturn=true scenario for TextBoxes for example -->
                       <Binding Path="FloatingTarget.ActualHeight" RelativeSource="{RelativeSource TemplatedParent}" FallbackValue="{x:Static DependencyProperty.UnsetValue}" />
+                      <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
                     </MultiBinding>
                   </Grid.RenderTransform>
                   <Canvas Width="{Binding ElementName=FloatingHintTextBlock, Path=ActualWidth}"
