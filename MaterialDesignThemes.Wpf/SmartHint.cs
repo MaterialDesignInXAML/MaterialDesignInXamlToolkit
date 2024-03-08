@@ -135,8 +135,8 @@ public class SmartHint : Control
 
     public double InitialVerticalOffset
     {
-        get { return (double) GetValue(InitialVerticalOffsetProperty); }
-        set { SetValue(InitialVerticalOffsetProperty, value); }
+        get => (double) GetValue(InitialVerticalOffsetProperty);
+        set => SetValue(InitialVerticalOffsetProperty, value);
     }
 
     public static readonly DependencyProperty InitialHorizontalOffsetProperty = DependencyProperty.Register(
@@ -144,8 +144,8 @@ public class SmartHint : Control
 
     public double InitialHorizontalOffset
     {
-        get { return (double)GetValue(InitialHorizontalOffsetProperty); }
-        set { SetValue(InitialHorizontalOffsetProperty, value); }
+        get => (double)GetValue(InitialHorizontalOffsetProperty);
+        set => SetValue(InitialHorizontalOffsetProperty, value);
     }
 
     public static readonly DependencyProperty FloatingTargetProperty = DependencyProperty.Register(
