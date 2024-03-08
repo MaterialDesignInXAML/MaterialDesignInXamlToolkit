@@ -25,8 +25,8 @@ internal class SmartHintViewModel : ViewModelBase
     private double _selectedLeadingIconSize = 20;
     private double _selectedTrailingIconSize = 20;
     private VerticalAlignment _selectedIconVerticalAlignment = VerticalAlignment.Center;
-    private string? _prefixText;
-    private string? _suffixText;
+    private string? _prefixText = "pre";
+    private string? _suffixText = "pos";
     private double _selectedFontSize = double.NaN;
     private FontFamily? _selectedFontFamily = DefaultFontFamily;
     private bool _controlsEnabled = true;

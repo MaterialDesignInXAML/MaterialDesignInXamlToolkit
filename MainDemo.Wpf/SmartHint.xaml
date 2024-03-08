@@ -45,10 +45,6 @@
       <DataTemplate x:Key="FontSizeTemplate" DataType="{x:Type system:Double}">
         <TextBlock Text="{Binding Converter={StaticResource DoubleOptionToStringConverter}}" />
       </DataTemplate>
-      <Style x:Key="FontSizeHelperTextStyle"
-             TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignValidationErrorBrush}" />
-      </Style>
 
       <local:PointOptionToStringConverter x:Key="FloatingOffsetOptionToStringConverter" DefaultValue="{x:Static domain:SmartHintViewModel.DefaultFloatingOffset}" />
       <DataTemplate x:Key="FloatingOffsetTemplate">
@@ -211,13 +207,13 @@
                   SelectedItem="{Binding SelectedVerticalAlignment, Mode=TwoWay}" />
         <TextBox Width="50"
                  Margin="20,0,0,0"
-                 materialDesign:HintAssist.Hint="Prefix text"
+                 materialDesign:HintAssist.Hint="Prefix"
                  materialDesign:TextFieldAssist.HasClearButton="True"
                  MaxLength="3"
                  Text="{Binding PrefixText, UpdateSourceTrigger=PropertyChanged}" />
         <TextBox Width="50"
                  Margin="20,0,0,0"
-                 materialDesign:HintAssist.Hint="Suffix text"
+                 materialDesign:HintAssist.Hint="Suffix"
                  materialDesign:TextFieldAssist.HasClearButton="True"
                  MaxLength="3"
                  Text="{Binding SuffixText, UpdateSourceTrigger=PropertyChanged}" />
@@ -227,9 +223,6 @@
         <ComboBox Width="160"
                   Margin="5,0,0,0"
                   VerticalAlignment="Center"
-                  materialDesign:HintAssist.HelperText="Currently only 'Default' is supported"
-                  materialDesign:HintAssist.HelperTextStyle="{StaticResource FontSizeHelperTextStyle}"
-                  materialDesign:HintAssist.HintOpacity="1"
                   ItemTemplate="{StaticResource FontSizeTemplate}"
                   ItemsSource="{Binding FontSizeOptions}"
                   SelectedItem="{Binding SelectedFontSize, Mode=TwoWay}" />
