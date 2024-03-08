@@ -183,7 +183,8 @@
                                 VerticalScrollBarVisibility="Hidden" />
 
                   <wpf:SmartHint x:Name="Hint"
-                                 Grid.Column="2"
+                                 Grid.Column="1"
+                                 Grid.ColumnSpan="3"
                                  VerticalAlignment="Center"
                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
