@@ -13,6 +13,10 @@ public class TextFieldPrefixTextVisibilityConverter : IMultiValueConverter
         {
             return Visibility.Collapsed;
         }
+        if (values.Length >= 2 && values[2] is PrefixSuffixVisibility.AlwaysVisible)
+        {
+            return Visibility.Visible;
+        }
 
         bool isHintInFloatingPosition = (bool)values[0];
         return isHintInFloatingPosition ? Visibility.Visible : HiddenState;
