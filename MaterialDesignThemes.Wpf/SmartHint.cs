@@ -166,6 +166,15 @@ public class SmartHint : Control
         set => SetValue(FloatingAlignmentProperty, value);
     }
 
+    public static readonly DependencyProperty FloatingMarginProperty = DependencyProperty.Register(
+        nameof(FloatingMargin), typeof(Thickness), typeof(SmartHint), new PropertyMetadata(default(Thickness)));
+
+    public Thickness FloatingMargin
+    {
+        get => (Thickness) GetValue(FloatingMarginProperty);
+        set => SetValue(FloatingMarginProperty, value);
+    }
+
     static SmartHint()
     {
         DefaultStyleKeyProperty.OverrideMetadata(typeof(SmartHint), new FrameworkPropertyMetadata(typeof(SmartHint)));
@@ -334,6 +343,31 @@ public class FloatingHintScaleTransformConverter : IMultiValueConverter
         }
         double scalePercentage = upper + (lower - upper) * scale;
         return new ScaleTransform(scalePercentage, scalePercentage);
+    }
+
+    public object[]? ConvertBack(object? value, Type[] targetTypes, object? parameter, CultureInfo culture)
+        => throw new NotImplementedException();
+}
+
+public class FloatingHintMarginConverter : IMultiValueConverter
+{
+    public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
+    {
+        if (values?.Length != 2
+            || values.Any(v => v == null)
+            || !double.TryParse(values[0]!.ToString(), out double scale)
+            || values[1] is not Thickness floatingMargin)
+        {
+            return Transform.Identity;
+        }
+
+        return floatingMargin with
+        {
+            Left = floatingMargin.Left * scale,
+            Top = floatingMargin.Top * scale,
+            Right = floatingMargin.Right * scale,
+            Bottom = floatingMargin.Bottom * scale,
+        };
     }
 
     public object[]? ConvertBack(object? value, Type[] targetTypes, object? parameter, CultureInfo culture)

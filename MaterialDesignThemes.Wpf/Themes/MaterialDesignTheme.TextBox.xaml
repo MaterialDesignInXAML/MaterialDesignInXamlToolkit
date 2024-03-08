@@ -194,7 +194,8 @@
                                  HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                  HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
                                  UseFloating="{TemplateBinding wpf:HintAssist.IsFloating}"
-                                 FloatingTarget="{Binding ElementName=PART_ContentHost}">
+                                 FloatingTarget="{Binding ElementName=PART_ContentHost}"
+                                 wpf:HintAssist.Background="{TemplateBinding wpf:HintAssist.Background}">
                     <wpf:SmartHint.Hint>
                       <Border x:Name="HintBackgroundBorder"
                               Background="{TemplateBinding wpf:HintAssist.Background}"
@@ -327,6 +328,7 @@
               <Setter TargetName="Underline" Property="Visibility" Value="Collapsed" />
               <Setter TargetName="Hint" Property="FloatingTarget" Value="{Binding ElementName=OuterBorder}" />
               <Setter TargetName="Hint" Property="FloatingAlignment" Value="Center" />
+              <Setter TargetName="Hint" Property="FloatingMargin" Value="4,0" />
               <Setter TargetName="Hint" Property="InitialVerticalOffset" Value="{Binding ElementName=Hint, Path=ActualHeight, Converter={StaticResource DivisionConverter}, ConverterParameter=2}" />
             </Trigger>
             <MultiTrigger>
@@ -336,8 +338,6 @@
                 <Condition SourceName="Hint" Property="IsHintInFloatingPosition" Value="True" />
               </MultiTrigger.Conditions>
               <Setter Property="wpf:HintAssist.Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
-              <Setter TargetName="HintBackgroundBorder" Property="Padding" Value="4,0" />
-              <Setter TargetName="Hint" Property="InitialHorizontalOffset" Value="-4" />
             </MultiTrigger>
 
             <!-- IsEnabled -->

@@ -14,6 +14,7 @@
       <CubicEase x:Key="AnimationEasingFunction" EasingMode="EaseInOut" />
       <wpf:FloatingHintTranslateTransformConverter x:Key="FloatingHintTranslateTransformConverter" />
       <wpf:FloatingHintScaleTransformConverter x:Key="FloatingHintScaleTransformConverter" />
+      <wpf:FloatingHintMarginConverter x:Key="FloatingHintMarginConverter" />
       <converters:FloatingHintTextBlockMarginConverter x:Key="FloatingHintTextBlockMarginConverter" />
     </Style.Resources>
     <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -95,12 +96,12 @@
                                            Storyboard.TargetName="FloatingHintTextBlock"
                                            Storyboard.TargetProperty="Opacity"
                                            To="{TemplateBinding HintOpacity}"
-                                           Duration="0:0:1.15" />
+                                           Duration="0:0:0.15" />
                           <DoubleAnimation EasingFunction="{StaticResource AnimationEasingFunction}"
                                            Storyboard.TargetName="ScaleHost"
                                            Storyboard.TargetProperty="Scale"
                                            To="1"
-                                           Duration="0:0:1.15" />
+                                           Duration="0:0:0.15" />
                         </Storyboard>
                       </VisualTransition>
                       <VisualTransition From="*" To="HintRestingPosition">
@@ -108,11 +109,11 @@
                           <DoubleAnimation EasingFunction="{StaticResource AnimationEasingFunction}"
                                            Storyboard.TargetName="FloatingHintTextBlock"
                                            Storyboard.TargetProperty="Opacity"
-                                           Duration="0:0:1.15" />
+                                           Duration="0:0:0.15" />
                           <DoubleAnimation EasingFunction="{StaticResource AnimationEasingFunction}"
                                            Storyboard.TargetName="ScaleHost"
                                            Storyboard.TargetProperty="Scale"
-                                           Duration="0:0:1.15" />
+                                           Duration="0:0:0.15" />
                         </Storyboard>
                       </VisualTransition>
                     </VisualStateGroup.Transitions>
@@ -159,7 +160,6 @@
                     <ContentControl x:Name="FloatingHintTextBlock"
                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                    Content="{TemplateBinding Hint}"
                                     FontFamily="{TemplateBinding FontFamily}"
                                     FontSize="{TemplateBinding FontSize}"
                                     IsHitTestVisible="False"
@@ -167,6 +167,7 @@
                                     Opacity="{TemplateBinding HintOpacity}"
                                     RenderTransformOrigin="0,0"
                                     Visibility="{TemplateBinding UseFloating, Converter={StaticResource BoolToVisConverter}}">
+                      
                       <ContentControl.Margin>
                         <MultiBinding Converter="{StaticResource FloatingHintTextBlockMarginConverter}">
                           <Binding Path="(wpf:HintAssist.HintHorizontalAlignment)" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -189,6 +190,16 @@
                           <Binding Source="{StaticResource NoContentFloatingScale}" />
                         </MultiBinding>
                       </ContentControl.RenderTransform>
+                      <Grid Background="{TemplateBinding wpf:HintAssist.Background}" IsHitTestVisible="False">
+                        <ContentControl Content="{TemplateBinding Hint}" IsHitTestVisible="False" IsTabStop="False">
+                          <ContentControl.Margin>
+                            <MultiBinding Converter="{StaticResource FloatingHintMarginConverter}">
+                              <Binding ElementName="ScaleHost" Path="Scale" />
+                              <Binding Path="FloatingMargin" RelativeSource="{RelativeSource TemplatedParent}" />
+                            </MultiBinding>
+                          </ContentControl.Margin>
+                        </ContentControl>
+                      </Grid>
                     </ContentControl>
                   </Canvas>
                 </Grid>
