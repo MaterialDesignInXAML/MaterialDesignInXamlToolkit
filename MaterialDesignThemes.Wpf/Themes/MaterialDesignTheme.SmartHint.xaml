@@ -4,18 +4,18 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
-  <converters:BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
-  <converters:BooleanToVisibilityConverter x:Key="InverseBoolToVisConverter"
-                                           FalseValue="Visible"
-                                           TrueValue="Collapsed" />
-  <converters:FloatingHintTransformConverter x:Key="FloatingHintClippingGridTransformConverter" ApplyScaleTransform="False" />
-  <converters:FloatingHintTransformConverter x:Key="FloatingHintTransformConverter" ApplyTranslateTransform="False" />
-  <converters:FloatingHintTextBlockMarginConverter x:Key="FloatingHintTextBlockMarginConverter" />
-  <converters:VerticalAlignmentConverter x:Key="VerticalAlignmentConverter" />
-  <system:Double x:Key="NoContentFloatingScale">1.0</system:Double>
-  <CubicEase x:Key="AnimationEasingFunction" EasingMode="EaseInOut" />
-
   <Style TargetType="{x:Type wpf:SmartHint}">
+    <Style.Resources>
+      <converters:BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
+      <converters:BooleanToVisibilityConverter x:Key="InverseBoolToVisConverter"
+                                               FalseValue="Visible"
+                                               TrueValue="Collapsed" />
+      <system:Double x:Key="NoContentFloatingScale">1.0</system:Double>
+      <CubicEase x:Key="AnimationEasingFunction" EasingMode="EaseInOut" />
+      <wpf:FloatingHintTranslateTransformConverter x:Key="FloatingHintTranslateTransformConverter" />
+      <wpf:FloatingHintScaleTransformConverter x:Key="FloatingHintScaleTransformConverter" />
+      <converters:FloatingHintTextBlockMarginConverter x:Key="FloatingHintTextBlockMarginConverter" />
+    </Style.Resources>
     <Setter Property="HorizontalAlignment" Value="Stretch" />
     <Setter Property="HorizontalContentAlignment" Value="Left" />
     <Setter Property="IsHitTestVisible" Value="False" />
@@ -95,12 +95,12 @@
                                            Storyboard.TargetName="FloatingHintTextBlock"
                                            Storyboard.TargetProperty="Opacity"
                                            To="{TemplateBinding HintOpacity}"
-                                           Duration="0:0:0.15" />
+                                           Duration="0:0:1.15" />
                           <DoubleAnimation EasingFunction="{StaticResource AnimationEasingFunction}"
                                            Storyboard.TargetName="ScaleHost"
                                            Storyboard.TargetProperty="Scale"
                                            To="1"
-                                           Duration="0:0:0.15" />
+                                           Duration="0:0:1.15" />
                         </Storyboard>
                       </VisualTransition>
                       <VisualTransition From="*" To="HintRestingPosition">
@@ -108,11 +108,11 @@
                           <DoubleAnimation EasingFunction="{StaticResource AnimationEasingFunction}"
                                            Storyboard.TargetName="FloatingHintTextBlock"
                                            Storyboard.TargetProperty="Opacity"
-                                           Duration="0:0:0.15" />
+                                           Duration="0:0:1.15" />
                           <DoubleAnimation EasingFunction="{StaticResource AnimationEasingFunction}"
                                            Storyboard.TargetName="ScaleHost"
                                            Storyboard.TargetProperty="Scale"
-                                           Duration="0:0:0.15" />
+                                           Duration="0:0:1.15" />
                         </Storyboard>
                       </VisualTransition>
                     </VisualStateGroup.Transitions>
@@ -142,15 +142,15 @@
                 </VisualStateManager.VisualStateGroups>
                 <wpf:ScaleHost x:Name="ScaleHost" />
                 <Grid x:Name="HintClippingGrid"
-                      VerticalAlignment="{TemplateBinding VerticalContentAlignment, Converter={StaticResource VerticalAlignmentConverter}}"
                       ClipToBounds="True">
                   <Grid.RenderTransform>
-                    <MultiBinding Converter="{StaticResource FloatingHintClippingGridTransformConverter}">
+                    <MultiBinding Converter="{StaticResource FloatingHintTranslateTransformConverter}">
                       <Binding ElementName="ScaleHost" Path="Scale" />
                       <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}" />
                       <Binding Source="{StaticResource NoContentFloatingScale}" />
+                      <Binding Path="." RelativeSource="{RelativeSource TemplatedParent}" />
                       <Binding Path="FloatingOffset" RelativeSource="{RelativeSource TemplatedParent}" />
-                      <Binding Path="InitialVerticalOffset" RelativeSource="{RelativeSource TemplatedParent}" />
+                      <Binding Path="FloatingTarget" RelativeSource="{RelativeSource TemplatedParent}" />
                     </MultiBinding>
                   </Grid.RenderTransform>
                   <Canvas Width="{Binding ElementName=FloatingHintTextBlock, Path=ActualWidth}"
@@ -183,12 +183,10 @@
                         <system:Double>0.0</system:Double>
                       </ContentControl.Tag>
                       <ContentControl.RenderTransform>
-                        <MultiBinding Converter="{StaticResource FloatingHintTransformConverter}">
+                        <MultiBinding Converter="{StaticResource FloatingHintScaleTransformConverter}">
                           <Binding ElementName="ScaleHost" Path="Scale" />
                           <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}" />
                           <Binding Source="{StaticResource NoContentFloatingScale}" />
-                          <Binding Path="FloatingOffset" RelativeSource="{RelativeSource TemplatedParent}" />
-                          <Binding Path="InitialVerticalOffset" RelativeSource="{RelativeSource TemplatedParent}" />
                         </MultiBinding>
                       </ContentControl.RenderTransform>
                     </ContentControl>

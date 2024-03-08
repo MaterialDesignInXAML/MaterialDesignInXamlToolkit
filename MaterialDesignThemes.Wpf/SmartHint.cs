@@ -1,4 +1,7 @@
 ﻿using System.ComponentModel;
+using System.Globalization;
+using System.Windows.Data;
+using System.Windows.Media;
 using MaterialDesignThemes.Wpf.Converters;
 
 namespace MaterialDesignThemes.Wpf;
@@ -136,6 +139,33 @@ public class SmartHint : Control
         set { SetValue(InitialVerticalOffsetProperty, value); }
     }
 
+    public static readonly DependencyProperty InitialHorizontalOffsetProperty = DependencyProperty.Register(
+        nameof(InitialHorizontalOffset), typeof(double), typeof(SmartHint), new PropertyMetadata(default(double)));
+
+    public double InitialHorizontalOffset
+    {
+        get { return (double)GetValue(InitialHorizontalOffsetProperty); }
+        set { SetValue(InitialHorizontalOffsetProperty, value); }
+    }
+
+    public static readonly DependencyProperty FloatingTargetProperty = DependencyProperty.Register(
+        nameof(FloatingTarget), typeof(FrameworkElement), typeof(SmartHint), new PropertyMetadata(default(FrameworkElement)));
+
+    public FrameworkElement? FloatingTarget
+    {
+        get => (FrameworkElement?)GetValue(FloatingTargetProperty);
+        set => SetValue(FloatingTargetProperty, value);
+    }
+
+    public static readonly DependencyProperty FloatingAlignmentProperty = DependencyProperty.Register(
+        nameof(FloatingAlignment), typeof(VerticalAlignment), typeof(SmartHint), new PropertyMetadata(System.Windows.VerticalAlignment.Bottom));
+
+    public VerticalAlignment FloatingAlignment
+    {
+        get => (VerticalAlignment) GetValue(FloatingAlignmentProperty);
+        set => SetValue(FloatingAlignmentProperty, value);
+    }
+
     static SmartHint()
     {
         DefaultStyleKeyProperty.OverrideMetadata(typeof(SmartHint), new FrameworkPropertyMetadata(typeof(SmartHint)));
@@ -234,4 +264,78 @@ public class SmartHint : Control
             Dispatcher.BeginInvoke(action);
         }
     }
+}
+
+public class FloatingHintTranslateTransformConverter : IMultiValueConverter
+{
+    public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
+    {
+        if (values is null
+            || values.Length < 5
+            || !double.TryParse(values[0]!.ToString(), out double scale)
+            || !double.TryParse(values[1]!.ToString(), out double lower)
+            || !double.TryParse(values[2]!.ToString(), out double upper)
+            || values[3] is not SmartHint hint
+            || values[4] is not Point floatingOffset)
+        {
+            return Transform.Identity;
+        }
+
+        // Back-compatible behavior, fall back to using the non-nullable floatingOffset if it has a non-default value
+        if (hint.FloatingTarget is null || floatingOffset != HintAssist.DefaultFloatingOffset)
+        {
+            /* As a consequence of Math.Min() which is used below to ensure the initial offset is respected (in filled style)
+               the SmartHint will not be able to "float downwards". I believe this is acceptable though.
+             */
+            return new TranslateTransform
+            {
+                X = scale * floatingOffset.X,
+                Y = Math.Min(hint.InitialVerticalOffset, scale * floatingOffset.Y)
+            };
+        }
+        return new TranslateTransform
+        {
+            X = hint.InitialHorizontalOffset,
+            Y = GetFloatingTargetVerticalOffset() * scale
+        };
+
+        double GetFloatingTargetVerticalOffset()
+        {
+            double offset = hint.FloatingTarget.TranslatePoint(new Point(0, 0), hint).Y;
+            offset -= hint.ActualHeight;
+            offset += hint.InitialVerticalOffset;
+
+            double scalePercentage = upper + (lower - upper) * scale;
+            offset += hint.FloatingAlignment switch
+            {
+                VerticalAlignment.Top => hint.ActualHeight - (hint.ActualHeight * upper * scalePercentage),
+                VerticalAlignment.Bottom => hint.ActualHeight * upper * (1 - scalePercentage),
+                _ => (hint.ActualHeight * upper * (1 - scalePercentage)) / 2,
+            };
+            return offset;
+        }
+    }
+
+    public object[]? ConvertBack(object? value, Type[] targetTypes, object? parameter, CultureInfo culture)
+        => throw new NotImplementedException();
+}
+
+public class FloatingHintScaleTransformConverter : IMultiValueConverter
+{
+    public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
+    {
+        if (values?.Length != 3
+            || values.Any(v => v == null)
+            || !double.TryParse(values[0]!.ToString(), out double scale)
+            || !double.TryParse(values[1]!.ToString(), out double lower)
+            || !double.TryParse(values[2]!.ToString(), out double upper))
+        {
+            return Transform.Identity;
+        }
+        double scalePercentage = upper + (lower - upper) * scale;
+        return new ScaleTransform(scalePercentage, scalePercentage);
+    }
+
+    public object[]? ConvertBack(object? value, Type[] targetTypes, object? parameter, CultureInfo culture)
+        => throw new NotImplementedException();
 }
