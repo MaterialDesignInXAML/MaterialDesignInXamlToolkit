@@ -173,59 +173,95 @@
               Margin="8,0,16,16"
               Header="Control Settings"
               Style="{StaticResource MaterialDesignCardGroupBox}">
-      <StackPanel Margin="10" Orientation="Horizontal">
-        <CheckBox x:Name="IsEnabledCheckBox"
-                  Content="Enabled"
-                  IsChecked="{Binding ControlsEnabled}" />
-        <CheckBox x:Name="RippleOnFocusCheckBox"
-                  Margin="5,0,0,0"
-                  Content="RippleOnFocus"
-                  IsChecked="{Binding RippleOnFocus}" />
-        <CheckBox x:Name="CustomPaddingCheckBox"
-                  Margin="5,0,0,0"
-                  Content="Custom Padding"
-                  IsChecked="{Binding ApplyCustomPadding}" />
-        <ComboBox Margin="5,0,0,0"
-                  VerticalAlignment="Center"
-                  IsEnabled="{Binding ElementName=CustomPaddingCheckBox, Path=IsChecked}"
-                  ItemsSource="{Binding CustomPaddingOptions}"
-                  SelectedItem="{Binding SelectedCustomPadding, Mode=TwoWay}" />
-        <TextBlock Margin="20,0,0,0"
-                   VerticalAlignment="Center"
-                   Text="Height:" />
-        <ComboBox Margin="5,0,0,0"
-                  VerticalAlignment="Center"
-                  ItemTemplate="{StaticResource CustomHeightTemplate}"
-                  ItemsSource="{Binding CustomHeightOptions}"
-                  SelectedItem="{Binding SelectedCustomHeight, Mode=TwoWay}" />
-        <TextBlock Margin="20,0,0,0"
-                   VerticalAlignment="Center"
-                   Text="VerticalContentAlignment:" />
-        <ComboBox Margin="5,0,0,0"
-                  VerticalAlignment="Center"
-                  ItemsSource="{Binding VerticalAlignmentOptions}"
-                  SelectedItem="{Binding SelectedVerticalAlignment, Mode=TwoWay}" />
-        <TextBox Width="50"
-                 Margin="20,0,0,0"
-                 materialDesign:HintAssist.Hint="Prefix"
-                 materialDesign:TextFieldAssist.HasClearButton="True"
-                 MaxLength="3"
-                 Text="{Binding PrefixText, UpdateSourceTrigger=PropertyChanged}" />
-        <TextBox Width="50"
-                 Margin="20,0,0,0"
-                 materialDesign:HintAssist.Hint="Suffix"
-                 materialDesign:TextFieldAssist.HasClearButton="True"
-                 MaxLength="3"
-                 Text="{Binding SuffixText, UpdateSourceTrigger=PropertyChanged}" />
-        <TextBlock Margin="20,0,0,0"
-                   VerticalAlignment="Center"
-                   Text="FontSize:" />
-        <ComboBox Width="160"
-                  Margin="5,0,0,0"
-                  VerticalAlignment="Center"
-                  ItemTemplate="{StaticResource FontSizeTemplate}"
-                  ItemsSource="{Binding FontSizeOptions}"
-                  SelectedItem="{Binding SelectedFontSize, Mode=TwoWay}" />
+      <StackPanel Orientation="Vertical">
+        <StackPanel Margin="10" Orientation="Horizontal">
+          <CheckBox x:Name="IsEnabledCheckBox"
+                    Content="Enabled"
+                    IsChecked="{Binding ControlsEnabled}" />
+          <CheckBox x:Name="RippleOnFocusCheckBox"
+                    Margin="5,0,0,0"
+                    Content="RippleOnFocus"
+                    IsChecked="{Binding RippleOnFocus}" />
+          <CheckBox x:Name="CustomPaddingCheckBox"
+                    Margin="5,0,0,0"
+                    Content="Custom Padding"
+                    IsChecked="{Binding ApplyCustomPadding}" />
+          <ComboBox Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    IsEnabled="{Binding ElementName=CustomPaddingCheckBox, Path=IsChecked}"
+                    ItemsSource="{Binding CustomPaddingOptions}"
+                    SelectedItem="{Binding SelectedCustomPadding, Mode=TwoWay}" />
+          <TextBlock Margin="20,0,0,0"
+                     VerticalAlignment="Center"
+                     Text="Height:" />
+          <ComboBox Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    ItemTemplate="{StaticResource CustomHeightTemplate}"
+                    ItemsSource="{Binding CustomHeightOptions}"
+                    SelectedItem="{Binding SelectedCustomHeight, Mode=TwoWay}" />
+          <TextBlock Margin="20,0,0,0"
+                     VerticalAlignment="Center"
+                     Text="VerticalContentAlignment:" />
+          <ComboBox Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    ItemsSource="{Binding VerticalAlignmentOptions}"
+                    SelectedItem="{Binding SelectedVerticalAlignment, Mode=TwoWay}" />
+          <TextBlock Margin="20,0,0,0"
+                     VerticalAlignment="Center"
+                     Text="FontSize:" />
+          <ComboBox Width="160"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    ItemTemplate="{StaticResource FontSizeTemplate}"
+                    ItemsSource="{Binding FontSizeOptions}"
+                    SelectedItem="{Binding SelectedFontSize, Mode=TwoWay}" />
+        </StackPanel>
+        <StackPanel Margin="10" Orientation="Horizontal">
+          <TextBox Width="50"
+                   materialDesign:HintAssist.Hint="Prefix"
+                   materialDesign:TextFieldAssist.HasClearButton="True"
+                   MaxLength="3"
+                   Text="{Binding PrefixText, UpdateSourceTrigger=PropertyChanged}" />
+          <TextBlock Margin="20,0,0,0"
+                     VerticalAlignment="Center"
+                     Text="Prefix Visibility:" />
+          <ComboBox Width="215"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    ItemsSource="{Binding PrefixSuffixVisibilityOptions}"
+                    SelectedItem="{Binding SelectedPrefixVisibility}"/>
+          <TextBlock Margin="20,0,0,0"
+                     VerticalAlignment="Center"
+                     Text="Prefix Hint Behavior:" />
+          <ComboBox Width="140"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    ItemsSource="{Binding PrefixSuffixHintBehaviorOptions}"
+                    SelectedItem="{Binding SelectedPrefixHintBehavior}"/>
+        </StackPanel>
+        <StackPanel Margin="10" Orientation="Horizontal">
+          <TextBox Width="50"
+                   materialDesign:HintAssist.Hint="Suffix"
+                   materialDesign:TextFieldAssist.HasClearButton="True"
+                   MaxLength="3"
+                   Text="{Binding SuffixText, UpdateSourceTrigger=PropertyChanged}" />
+          <TextBlock Margin="20,0,0,0"
+                     VerticalAlignment="Center"
+                     Text="Suffix Visibility:" />
+          <ComboBox Width="215"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    ItemsSource="{Binding PrefixSuffixVisibilityOptions}"
+                    SelectedItem="{Binding SelectedSuffixVisibility}"/>
+          <TextBlock Margin="20,0,0,0"
+                     VerticalAlignment="Center"
+                     Text="Suffix Hint Behavior:" />
+          <ComboBox Width="140"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    ItemsSource="{Binding PrefixSuffixHintBehaviorOptions}"
+                    SelectedItem="{Binding SelectedSuffixHintBehavior}"/>
+        </StackPanel>
       </StackPanel>
     </GroupBox>
 
@@ -337,6 +373,10 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextVisibility" Value="{Binding SelectedPrefixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
             </Style>
           </Grid.Resources>
@@ -392,6 +432,10 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextVisibility" Value="{Binding SelectedPrefixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
             </Style>
           </Grid.Resources>
@@ -447,6 +491,10 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextVisibility" Value="{Binding SelectedPrefixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
             </Style>
           </Grid.Resources>
@@ -510,6 +558,10 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextVisibility" Value="{Binding SelectedPrefixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -568,6 +620,10 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextVisibility" Value="{Binding SelectedPrefixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
               <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Style>
@@ -623,6 +679,10 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextVisibility" Value="{Binding SelectedPrefixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
               <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Style>
@@ -678,6 +738,10 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextVisibility" Value="{Binding SelectedPrefixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
               <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Style>
@@ -743,6 +807,10 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextVisibility" Value="{Binding SelectedPrefixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
               <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Style>
@@ -799,6 +867,10 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextVisibility" Value="{Binding SelectedPrefixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
               <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Style>
@@ -855,6 +927,10 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextVisibility" Value="{Binding SelectedPrefixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
               <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Style>
@@ -920,6 +996,10 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextVisibility" Value="{Binding SelectedPrefixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -975,6 +1055,10 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextVisibility" Value="{Binding SelectedPrefixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1030,6 +1114,10 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextVisibility" Value="{Binding SelectedPrefixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1087,6 +1175,10 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextVisibility" Value="{Binding SelectedPrefixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1139,6 +1231,10 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextVisibility" Value="{Binding SelectedPrefixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1191,6 +1287,10 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextVisibility" Value="{Binding SelectedPrefixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1248,6 +1348,10 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextVisibility" Value="{Binding SelectedPrefixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1300,6 +1404,10 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextVisibility" Value="{Binding SelectedPrefixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1352,6 +1460,10 @@
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
               <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextVisibility" Value="{Binding SelectedPrefixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
