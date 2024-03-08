@@ -12,9 +12,9 @@
                                                TrueValue="Collapsed" />
       <system:Double x:Key="NoContentFloatingScale">1.0</system:Double>
       <CubicEase x:Key="AnimationEasingFunction" EasingMode="EaseInOut" />
-      <wpf:FloatingHintTranslateTransformConverter x:Key="FloatingHintTranslateTransformConverter" />
-      <wpf:FloatingHintScaleTransformConverter x:Key="FloatingHintScaleTransformConverter" />
-      <wpf:FloatingHintMarginConverter x:Key="FloatingHintMarginConverter" />
+      <converters:FloatingHintTranslateTransformConverter x:Key="FloatingHintTranslateTransformConverter" />
+      <converters:FloatingHintScaleTransformConverter x:Key="FloatingHintScaleTransformConverter" />
+      <converters:FloatingHintContainerMarginConverter x:Key="FloatingHintContainerMarginConverter" />
       <converters:FloatingHintTextBlockMarginConverter x:Key="FloatingHintTextBlockMarginConverter" />
     </Style.Resources>
     <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -197,7 +197,7 @@
                       <Grid Background="{TemplateBinding wpf:HintAssist.Background}" IsHitTestVisible="False">
                         <ContentControl Content="{TemplateBinding Hint}" IsHitTestVisible="False" IsTabStop="False">
                           <ContentControl.Margin>
-                            <MultiBinding Converter="{StaticResource FloatingHintMarginConverter}">
+                            <MultiBinding Converter="{StaticResource FloatingHintContainerMarginConverter}">
                               <Binding ElementName="ScaleHost" Path="Scale" />
                               <Binding Path="FloatingMargin" RelativeSource="{RelativeSource TemplatedParent}" />
                             </MultiBinding>
