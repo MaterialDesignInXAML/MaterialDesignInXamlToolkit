@@ -20,6 +20,7 @@
       <converters:BooleanToDashStyleConverter x:Key="BooleanToDashStyleConverter" TrueValue="{x:Static DashStyles.Solid}" />
       <converters:ThicknessCloneConverter x:Key="HelperTextMarginConverter" CloneEdges="Left,Right" />
       <converters:MathConverter x:Key="DivisionConverter"  Operation="Divide" Offset="1" />
+      <converters:FloatingHintMarginConverter x:Key="FloatingHintMarginConverter" />
 
       <Style x:Key="MaterialDesignCharacterCounterTextBlock"
              TargetType="TextBlock"
@@ -198,6 +199,16 @@
                                  UseFloating="{TemplateBinding wpf:HintAssist.IsFloating}"
                                  FloatingTarget="{Binding ElementName=PART_ContentHost}"
                                  wpf:HintAssist.Background="{TemplateBinding wpf:HintAssist.Background}">
+                    <wpf:SmartHint.Margin>
+                      <MultiBinding Converter="{StaticResource FloatingHintMarginConverter}">
+                        <Binding ElementName="PrefixTextBlock" Path="ActualWidth" />
+                        <Binding ElementName="PrefixTextBlock" Path="Margin" />
+                        <Binding ElementName="SuffixTextBlock" Path="ActualWidth" />
+                        <Binding ElementName="SuffixTextBlock" Path="Margin" />
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TextFieldAssist.PrefixTextVisibility)" />
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TextFieldAssist.SuffixTextVisibility)" />
+                      </MultiBinding>
+                    </wpf:SmartHint.Margin>
                     <wpf:SmartHint.Hint>
                       <Border x:Name="HintBackgroundBorder"
                               Background="{TemplateBinding wpf:HintAssist.Background}"
@@ -282,6 +293,7 @@
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="AcceptsReturn" Value="True" />
+                <Condition Property="VerticalContentAlignment" Value="Stretch" />
               </MultiTrigger.Conditions>
               <Setter TargetName="PART_ContentHost" Property="VerticalAlignment" Value="Stretch" />
               <Setter TargetName="PrefixTextBlock" Property="VerticalAlignment" Value="Stretch" />
