@@ -147,7 +147,7 @@
                                 Width="{TemplateBinding wpf:TextFieldAssist.LeadingIconSize}"
                                 Height="{TemplateBinding wpf:TextFieldAssist.LeadingIconSize}"
                                 Margin="0,0,6,0"
-                                VerticalAlignment="Center"
+                                VerticalAlignment="{TemplateBinding wpf:TextFieldAssist.IconVerticalAlignment}"
                                 Kind="{TemplateBinding wpf:TextFieldAssist.LeadingIcon}"
                                 Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                 Visibility="{TemplateBinding wpf:TextFieldAssist.HasLeadingIcon, Converter={StaticResource BooleanToVisibilityConverter}}" />
@@ -225,7 +225,7 @@
                                 Width="{TemplateBinding wpf:TextFieldAssist.TrailingIconSize}"
                                 Height="{TemplateBinding wpf:TextFieldAssist.TrailingIconSize}"
                                 Margin="4,0,0,0"
-                                VerticalAlignment="Center"
+                                VerticalAlignment="{TemplateBinding wpf:TextFieldAssist.IconVerticalAlignment}"
                                 Kind="{TemplateBinding wpf:TextFieldAssist.TrailingIcon}"
                                 Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                 Visibility="{TemplateBinding wpf:TextFieldAssist.HasTrailingIcon, Converter={StaticResource BooleanToVisibilityConverter}}" />
@@ -236,7 +236,7 @@
                           Padding="2,0,0,0"
                           Command="{x:Static internal:ClearText.ClearCommand}"
                           Focusable="False"
-                          VerticalAlignment="Center"
+                          VerticalAlignment="{TemplateBinding wpf:TextFieldAssist.IconVerticalAlignment}"
                           Style="{StaticResource MaterialDesignToolButton}">
                     <Button.Visibility>
                       <MultiBinding Converter="{StaticResource ClearButtonVisibilityConverter}">
@@ -279,23 +279,11 @@
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="AcceptsReturn" Value="True" />
-                <Condition Property="VerticalContentAlignment" Value="Stretch" />
               </MultiTrigger.Conditions>
               <Setter TargetName="PART_ContentHost" Property="VerticalAlignment" Value="Stretch" />
-              <Setter TargetName="Hint" Property="VerticalAlignment" Value="Top" />
-              <!--
-
-              If we want the icons, buttons and pre-/suffix texts to align with the "first" line, we need to move them to the top.
-              However, since the icons in particular can be individually sized, this presents a problem with aligning the
-              "first line" in the center of the tallest of the icons.
-              Instead of tackling this challenge, the template will simply align the icons, buttons and pre-/suffix texts to the center of the control (i.e. their default)
-              
               <Setter TargetName="PrefixTextBlock" Property="VerticalAlignment" Value="Stretch" />
               <Setter TargetName="SuffixTextBlock" Property="VerticalAlignment" Value="Stretch" />
-              <Setter TargetName="LeadingPackIcon" Property="VerticalAlignment" Value="Top" />
-              <Setter TargetName="TrailingPackIcon" Property="VerticalAlignment" Value="Top" />
-              <Setter TargetName="PART_ClearButton" Property="VerticalAlignment" Value="Top" />
-              -->
+              <Setter TargetName="Hint" Property="VerticalAlignment" Value="Top" />
             </MultiTrigger>
 
             <!-- Floating hint -->

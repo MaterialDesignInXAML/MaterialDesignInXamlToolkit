@@ -24,6 +24,7 @@ internal class SmartHintViewModel : ViewModelBase
     private VerticalAlignment _selectedVerticalAlignment = VerticalAlignment.Center;
     private double _selectedLeadingIconSize = 20;
     private double _selectedTrailingIconSize = 20;
+    private VerticalAlignment _selectedIconVerticalAlignment = VerticalAlignment.Center;
     private string? _prefixText;
     private string? _suffixText;
     private double _selectedFontSize = double.NaN;
@@ -138,6 +139,12 @@ internal class SmartHintViewModel : ViewModelBase
     {
         get => _selectedTrailingIconSize;
         set => SetProperty(ref _selectedTrailingIconSize, value);
+    }
+
+    public VerticalAlignment SelectedIconVerticalAlignment
+    {
+        get => _selectedIconVerticalAlignment;
+        set => SetProperty(ref _selectedIconVerticalAlignment, value);
     }
 
     public string? PrefixText

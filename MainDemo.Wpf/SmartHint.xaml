@@ -158,6 +158,13 @@
                     IsEnabled="{Binding ElementName=CheckBoxTrailingIcon, Path=IsChecked}"
                     ItemsSource="{Binding IconSizeOptions}"
                     SelectedItem="{Binding SelectedTrailingIconSize, Mode=TwoWay}" />
+          <TextBlock Margin="20,0,0,0"
+                     VerticalAlignment="Center"
+                     Text="IconVerticalAlignment:" />
+          <ComboBox Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    ItemsSource="{Binding VerticalAlignmentOptions}"
+                    SelectedItem="{Binding SelectedIconVerticalAlignment, Mode=TwoWay}" />
           <CheckBox x:Name="CheckBoxCharacterCounter"
                     Margin="20,0,0,0"
                     Content="CharacterCounter"
@@ -335,6 +342,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
             </Style>
@@ -389,6 +397,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
             </Style>
@@ -443,6 +452,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
             </Style>
@@ -505,6 +515,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
             </Style>
           </Grid.Resources>
@@ -562,6 +573,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
               <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
@@ -616,6 +628,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
               <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
@@ -670,6 +683,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
               <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
@@ -734,6 +748,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
               <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
@@ -789,6 +804,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
               <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
@@ -844,6 +860,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
               <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
@@ -908,6 +925,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
             </Style>
           </Grid.Resources>
@@ -962,6 +980,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
             </Style>
           </Grid.Resources>
@@ -1016,6 +1035,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
             </Style>
           </Grid.Resources>
@@ -1072,6 +1092,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
             </Style>
           </Grid.Resources>
@@ -1123,6 +1144,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
             </Style>
           </Grid.Resources>
@@ -1174,6 +1196,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
             </Style>
           </Grid.Resources>
@@ -1230,6 +1253,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
             </Style>
           </Grid.Resources>
@@ -1281,6 +1305,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
             </Style>
           </Grid.Resources>
@@ -1332,6 +1357,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
               <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
             </Style>
           </Grid.Resources>

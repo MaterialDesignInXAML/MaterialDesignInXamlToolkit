@@ -248,6 +248,18 @@ public static class TextFieldAssist
     public static double GetTrailingIconSize(DependencyObject element)
         => (double)element.GetValue(TrailingIconSizeProperty);
 
+    /// <summary>
+    /// Controls the vertical alignment of the leading-, trailing-, and clear button icons
+    /// </summary>
+    public static readonly DependencyProperty IconVerticalAlignmentProperty = DependencyProperty.RegisterAttached(
+        "IconVerticalAlignment", typeof(VerticalAlignment), typeof(TextFieldAssist), new PropertyMetadata(VerticalAlignment.Center));
+
+    public static void SetIconVerticalAlignment(DependencyObject element, VerticalAlignment value)
+        => element.SetValue(IconVerticalAlignmentProperty, value);
+
+    public static VerticalAlignment GetIconVerticalAlignment(DependencyObject element)
+        => (VerticalAlignment) element.GetValue(IconVerticalAlignmentProperty);
+
     public static Style GetCharacterCounterStyle(DependencyObject obj) => (Style)obj.GetValue(CharacterCounterStyleProperty);
 
     public static void SetCharacterCounterStyle(DependencyObject obj, Style value) => obj.SetValue(CharacterCounterStyleProperty, value);
