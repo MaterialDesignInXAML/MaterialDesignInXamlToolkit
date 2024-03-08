@@ -153,6 +153,30 @@ public static class TextFieldAssist
         => (string?)element.GetValue(SuffixTextProperty);
 
     /// <summary>
+    /// SuffixTextVisibility dependency property. Controls when a suffix should be visible.
+    /// </summary>
+    public static readonly DependencyProperty SuffixTextVisibilityProperty = DependencyProperty.RegisterAttached(
+        "SuffixTextVisibility", typeof(PrefixSuffixVisibility), typeof(TextFieldAssist), new PropertyMetadata(PrefixSuffixVisibility.VisibleWhenFocusedOrNonEmpty));
+
+    public static void SetSuffixTextVisibility(DependencyObject element, PrefixSuffixVisibility value)
+        => element.SetValue(SuffixTextVisibilityProperty, value);
+
+    public static PrefixSuffixVisibility GetSuffixTextVisibility(DependencyObject element)
+        => (PrefixSuffixVisibility) element.GetValue(SuffixTextVisibilityProperty);
+
+    /// <summary>
+    /// SuffixTextHintBehavior dependency property. Controls how a floating hint aligns with respect to the text and suffix.
+    /// </summary>
+    public static readonly DependencyProperty SuffixTextHintBehaviorProperty = DependencyProperty.RegisterAttached(
+        "SuffixTextHintBehavior", typeof(PrefixSuffixHintBehavior), typeof(TextFieldAssist), new PropertyMetadata(PrefixSuffixHintBehavior.AlignWithPrefixSuffix));
+
+    public static void SetSuffixTextHintBehavior(DependencyObject element, PrefixSuffixHintBehavior value)
+        => element.SetValue(SuffixTextHintBehaviorProperty, value);
+
+    public static PrefixSuffixHintBehavior GetSuffixTextHintBehavior(DependencyObject element)
+        => (PrefixSuffixHintBehavior) element.GetValue(SuffixTextHintBehaviorProperty);
+
+    /// <summary>
     /// PrefixText dependency property
     /// </summary>
     public static readonly DependencyProperty PrefixTextProperty = DependencyProperty.RegisterAttached(
@@ -163,6 +187,30 @@ public static class TextFieldAssist
 
     public static string? GetPrefixText(DependencyObject element)
         => (string?)element.GetValue(PrefixTextProperty);
+
+    /// <summary>
+    /// PrefixTextVisibility dependency property. Controls when a prefix should be visible.
+    /// </summary>
+    public static readonly DependencyProperty PrefixTextVisibilityProperty = DependencyProperty.RegisterAttached(
+        "PrefixTextVisibility", typeof(PrefixSuffixVisibility), typeof(TextFieldAssist), new PropertyMetadata(PrefixSuffixVisibility.VisibleWhenFocusedOrNonEmpty));
+
+    public static void SetPrefixTextVisibility(DependencyObject element, PrefixSuffixVisibility value)
+        => element.SetValue(PrefixTextVisibilityProperty, value);
+
+    public static PrefixSuffixVisibility GetPrefixTextVisibility(DependencyObject element)
+        => (PrefixSuffixVisibility) element.GetValue(PrefixTextVisibilityProperty);
+
+    /// <summary>
+    /// PrefixTextHintBehavior dependency property. Controls how a floating hint aligns with respect to the text and prefix.
+    /// </summary>
+    public static readonly DependencyProperty PrefixTextHintBehaviorProperty = DependencyProperty.RegisterAttached(
+        "PrefixTextHintBehavior", typeof(PrefixSuffixHintBehavior), typeof(TextFieldAssist), new PropertyMetadata(PrefixSuffixHintBehavior.AlignWithPrefixSuffix));
+
+    public static void SetPrefixTextHintBehavior(DependencyObject element, PrefixSuffixHintBehavior value)
+        => element.SetValue(PrefixTextHintBehaviorProperty, value);
+
+    public static PrefixSuffixHintBehavior GetPrefixTextHintBehavior(DependencyObject element)
+        => (PrefixSuffixHintBehavior)element.GetValue(PrefixTextHintBehaviorProperty);
 
     /// <summary>
     /// Controls the visibility of the clear button.
