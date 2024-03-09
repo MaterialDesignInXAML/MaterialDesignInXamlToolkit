@@ -30,27 +30,29 @@ public class FloatingHintInitialHorizontalOffsetConverter : IMultiValueConverter
 
         double GetLeftOffset()
         {
-            if (prefixVisibility == PrefixSuffixVisibility.VisibleWhenFocusedOrNonEmpty)
+            return prefixVisibility switch
             {
-                return 0;
-            }
-            return prefixHintBehavior switch
-            {
-                PrefixSuffixHintBehavior.AlignWithPrefixSuffix => -(prefixWidth + prefixMargin.Right),
-                _ => 0,
+                PrefixSuffixVisibility.VisibleWhenFocusedOrNonEmpty
+                    when prefixHintBehavior == PrefixSuffixHintBehavior.AlignWithText =>
+                    prefixWidth + prefixMargin.Right,
+                PrefixSuffixVisibility.AlwaysVisible
+                    when prefixHintBehavior == PrefixSuffixHintBehavior.AlignWithPrefixSuffix =>
+                    -(prefixWidth + prefixMargin.Right),
+                _ => 0
             };
         }
 
         double GetRightOffset()
         {
-            if (suffixVisibility == PrefixSuffixVisibility.VisibleWhenFocusedOrNonEmpty)
+            return suffixVisibility switch
             {
-                return 0;
-            }
-            return suffixHintBehavior switch
-            {
-                PrefixSuffixHintBehavior.AlignWithPrefixSuffix => suffixWidth + suffixMargin.Right,
-                _ => 0,
+                PrefixSuffixVisibility.VisibleWhenFocusedOrNonEmpty
+                    when suffixHintBehavior == PrefixSuffixHintBehavior.AlignWithText =>
+                    -(suffixWidth + suffixMargin.Left),
+                PrefixSuffixVisibility.AlwaysVisible
+                    when suffixHintBehavior == PrefixSuffixHintBehavior.AlignWithPrefixSuffix =>
+                    suffixWidth + suffixMargin.Left,
+                _ => 0
             };
         }
     }
