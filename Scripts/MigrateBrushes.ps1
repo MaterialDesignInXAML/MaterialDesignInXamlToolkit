@@ -8,9 +8,10 @@ $files = Get-ChildItem -Recurse -Path $RootDirectory -Include "*.xaml"
 $resourceTypes = ("StaticResource", "DynamicResource")
 
 foreach ($file in $files) {
+    $fileContents = Get-Content $file -Encoding utf8BOM -Raw
+    $fileLength = $fileContents.Length
+    
     foreach($resourceType in $resourceTypes) {
-        $fileContents = Get-Content $file -Encoding utf8BOM -Raw
-        $fileLength = $fileContents.Length
         $fileContents = $fileContents -replace "\{$resourceType\ PrimaryHueLightBrush}", "{$resourceType MaterialDesign.Brush.Primary.Light}"
         $fileContents = $fileContents -replace "\{$resourceType\ PrimaryHueLightForegroundBrush}", "{$resourceType MaterialDesign.Brush.Primary.Light.Foreground}"
         $fileContents = $fileContents -replace "\{$resourceType\ PrimaryHueMidBrush}", "{$resourceType MaterialDesign.Brush.Primary}"
