@@ -205,7 +205,7 @@
           <ComboBox Margin="5,0,0,0"
                     VerticalAlignment="Center"
                     ItemsSource="{Binding VerticalAlignmentOptions}"
-                    SelectedItem="{Binding SelectedVerticalAlignment, Mode=TwoWay}" />
+                    SelectedItem="{Binding SelectedVerticalAlignment}" />
           <TextBlock Margin="20,0,0,0"
                      VerticalAlignment="Center"
                      Text="FontSize:" />
