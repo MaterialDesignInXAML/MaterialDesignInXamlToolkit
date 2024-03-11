@@ -465,8 +465,7 @@
               </MultiTrigger.Conditions>
               <Setter Property="BorderThickness" Value="2" />
               <Setter TargetName="FooterGrid" Property="Margin" Value="0,0,1,0" />
-              <!--<Setter TargetName="OuterBorder" Property="Margin" Value="-1" />-->
-              <!-- Squeeze content because of the red border? -->
+              <Setter TargetName="OuterBorder" Property="Margin" Value="-1" />
             </MultiTrigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
