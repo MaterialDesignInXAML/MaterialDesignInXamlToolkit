@@ -198,7 +198,7 @@
                     VerticalAlignment="Center"
                     ItemTemplate="{StaticResource CustomHeightTemplate}"
                     ItemsSource="{Binding CustomHeightOptions}"
-                    SelectedItem="{Binding SelectedCustomHeight, Mode=TwoWay}" />
+                    SelectedItem="{Binding SelectedCustomHeight}" />
           <TextBlock Margin="20,0,0,0"
                      VerticalAlignment="Center"
                      Text="VerticalContentAlignment:" />
