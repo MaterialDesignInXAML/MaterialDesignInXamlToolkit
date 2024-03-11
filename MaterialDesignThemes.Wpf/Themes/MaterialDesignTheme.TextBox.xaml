@@ -22,6 +22,7 @@
       <converters:MathConverter x:Key="DivisionConverter"  Operation="Divide" Offset="1" />
       <converters:FloatingHintInitialHorizontalOffsetConverter x:Key="FloatingHintInitialHorizontalOffsetConverter" />
       <converters:FloatingHintMarginConverter x:Key="FloatingHintMarginConverter" />
+      <converters:ThicknessCloneConverter x:Key="ThicknessCloneConverter" CloneEdges="All" AdditionalOffsetBottom="-1" />
 
       <Style x:Key="MaterialDesignCharacterCounterTextBlock"
              TargetType="TextBlock"
@@ -427,7 +428,7 @@
               </MultiTrigger.Conditions>
               <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
             </MultiTrigger>
-            <!--<MultiTrigger>
+            <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="IsMouseOver" Value="True" />
                 <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="False" />
@@ -435,8 +436,8 @@
                 <Condition Property="wpf:TextFieldAssist.NewSpecHighlightingEnabled" Value="True" />
               </MultiTrigger.Conditions>
               <Setter TargetName="OuterBorder" Property="BorderThickness" Value="0,0,0,2" />
-              <Setter TargetName="OuterBorder" Property="Padding" Value="0,4,0,3" />
-            </MultiTrigger>-->
+              <Setter TargetName="OuterBorder" Property="Padding" Value="{Binding Path=Padding, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ThicknessCloneConverter}}" />
+            </MultiTrigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="IsMouseOver" Value="True" />
