@@ -5,6 +5,7 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 public class FloatingHintMarginConverter : IMultiValueConverter
 {
+    private static readonly object EmptyThickness = new Thickness(0);
     public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
     {
         if (values is null
@@ -16,7 +17,7 @@ public class FloatingHintMarginConverter : IMultiValueConverter
             || values[4] is not PrefixSuffixVisibility prefixVisibility
             || values[5] is not PrefixSuffixVisibility suffixVisibility)
         {
-            return new Thickness(0);
+            return EmptyThickness;
         }
         return new Thickness(GetLeftMargin(), 0, GetRightMargin(), 0);
 
