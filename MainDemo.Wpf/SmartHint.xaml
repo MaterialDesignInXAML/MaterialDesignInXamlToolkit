@@ -160,7 +160,7 @@
           <ComboBox Margin="5,0,0,0"
                     VerticalAlignment="Center"
                     ItemsSource="{Binding VerticalAlignmentOptions}"
-                    SelectedItem="{Binding SelectedIconVerticalAlignment, Mode=TwoWay}" />
+                    SelectedItem="{Binding SelectedIconVerticalAlignment}" />
           <CheckBox x:Name="CheckBoxCharacterCounter"
                     Margin="20,0,0,0"
                     Content="CharacterCounter"
