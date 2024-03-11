@@ -209,12 +209,16 @@
           <TextBlock Margin="20,0,0,0"
                      VerticalAlignment="Center"
                      Text="FontSize:" />
-          <ComboBox Width="160"
+          <ComboBox Width="62"
                     Margin="5,0,0,0"
                     VerticalAlignment="Center"
                     ItemTemplate="{StaticResource FontSizeTemplate}"
                     ItemsSource="{Binding FontSizeOptions}"
                     SelectedItem="{Binding SelectedFontSize}" />
+          <CheckBox x:Name="NewSpecHighlightEnabledCheckBox"
+                    Margin="10,0,0,0"
+                    Content="NewSpecHighlightingEnabled"
+                    IsChecked="{Binding NewSpecHighlightingEnabled}" />
         </StackPanel>
         <StackPanel Margin="10" Orientation="Horizontal">
           <TextBox Width="50"
@@ -377,6 +381,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
             </Style>
           </Grid.Resources>
@@ -436,6 +441,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
             </Style>
           </Grid.Resources>
@@ -495,6 +501,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
             </Style>
           </Grid.Resources>
@@ -562,6 +569,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -624,6 +632,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
               <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Style>
@@ -683,6 +692,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
               <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Style>
@@ -742,6 +752,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
               <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Style>
@@ -811,6 +822,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
               <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Style>
@@ -871,6 +883,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
               <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Style>
@@ -931,6 +944,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
               <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Style>
@@ -1000,6 +1014,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1059,6 +1074,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1118,6 +1134,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1179,6 +1196,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1235,6 +1253,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1291,6 +1310,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1352,6 +1372,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1408,6 +1429,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1464,6 +1486,7 @@
               <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>

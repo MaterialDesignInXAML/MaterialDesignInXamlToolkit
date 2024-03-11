@@ -37,6 +37,7 @@ internal class SmartHintViewModel : ViewModelBase
     private PrefixSuffixHintBehavior _selectedPrefixHintBehavior = PrefixSuffixHintBehavior.AlignWithPrefixSuffix;
     private PrefixSuffixVisibility _selectedSuffixVisibility = PrefixSuffixVisibility.WhenFocusedOrNonEmpty;
     private PrefixSuffixHintBehavior _selectedSuffixHintBehavior = PrefixSuffixHintBehavior.AlignWithPrefixSuffix;
+    private bool _newSpecHighlightingEnabled;
 
     public IEnumerable<FloatingHintHorizontalAlignment> HorizontalAlignmentOptions { get; } = Enum.GetValues(typeof(FloatingHintHorizontalAlignment)).OfType<FloatingHintHorizontalAlignment>();
     public IEnumerable<double> FloatingScaleOptions { get; } = [0.25, 0.5, 0.75, 1.0];
@@ -235,5 +236,11 @@ internal class SmartHintViewModel : ViewModelBase
     {
         get => _selectedSuffixHintBehavior;
         set => SetProperty(ref _selectedSuffixHintBehavior, value);
+    }
+
+    public bool NewSpecHighlightingEnabled
+    {
+        get => _newSpecHighlightingEnabled;
+        set => SetProperty(ref _newSpecHighlightingEnabled, value);
     }
 }
