@@ -214,7 +214,7 @@
                     VerticalAlignment="Center"
                     ItemTemplate="{StaticResource FontSizeTemplate}"
                     ItemsSource="{Binding FontSizeOptions}"
-                    SelectedItem="{Binding SelectedFontSize, Mode=TwoWay}" />
+                    SelectedItem="{Binding SelectedFontSize}" />
         </StackPanel>
         <StackPanel Margin="10" Orientation="Horizontal">
           <TextBox Width="50"
