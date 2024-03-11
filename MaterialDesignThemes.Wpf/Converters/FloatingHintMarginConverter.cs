@@ -25,7 +25,7 @@ public class FloatingHintMarginConverter : IMultiValueConverter
         {
             return prefixVisibility switch
             {
-                PrefixSuffixVisibility.AlwaysVisible => prefixWidth + prefixMargin.Right,
+                PrefixSuffixVisibility.Always => prefixWidth + prefixMargin.Right,
                 _ => 0,
             };
         }
@@ -34,7 +34,7 @@ public class FloatingHintMarginConverter : IMultiValueConverter
         {
             return suffixVisibility switch
             {
-                PrefixSuffixVisibility.AlwaysVisible => suffixWidth + suffixMargin.Left,
+                PrefixSuffixVisibility.Always => suffixWidth + suffixMargin.Left,
                 _ => 0,
             };
         }

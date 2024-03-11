@@ -33,9 +33,9 @@ internal class SmartHintViewModel : ViewModelBase
     private bool _rippleOnFocus = false;
     private bool _textBoxAcceptsReturn = false;
     private int _maxLength;
-    private PrefixSuffixVisibility _selectedPrefixVisibility = PrefixSuffixVisibility.VisibleWhenFocusedOrNonEmpty;
+    private PrefixSuffixVisibility _selectedPrefixVisibility = PrefixSuffixVisibility.WhenFocusedOrNonEmpty;
     private PrefixSuffixHintBehavior _selectedPrefixHintBehavior = PrefixSuffixHintBehavior.AlignWithPrefixSuffix;
-    private PrefixSuffixVisibility _selectedSuffixVisibility = PrefixSuffixVisibility.VisibleWhenFocusedOrNonEmpty;
+    private PrefixSuffixVisibility _selectedSuffixVisibility = PrefixSuffixVisibility.WhenFocusedOrNonEmpty;
     private PrefixSuffixHintBehavior _selectedSuffixHintBehavior = PrefixSuffixHintBehavior.AlignWithPrefixSuffix;
 
     public IEnumerable<FloatingHintHorizontalAlignment> HorizontalAlignmentOptions { get; } = Enum.GetValues(typeof(FloatingHintHorizontalAlignment)).OfType<FloatingHintHorizontalAlignment>();

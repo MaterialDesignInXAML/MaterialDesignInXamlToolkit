@@ -8,9 +8,9 @@ public enum PrefixSuffixVisibility
     /// <summary>
     /// Show prefix/suffix only when the text box is focused or contains user-entered text
     /// </summary>
-    VisibleWhenFocusedOrNonEmpty,
+    WhenFocusedOrNonEmpty,
     /// <summary>
     /// Always show prefix/suffix
     /// </summary>
-    AlwaysVisible
+    Always
 }

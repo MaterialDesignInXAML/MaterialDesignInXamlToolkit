@@ -13,7 +13,7 @@ public class TextFieldPrefixTextVisibilityConverter : IMultiValueConverter
         {
             return Visibility.Collapsed;
         }
-        if (values.Length >= 2 && values[2] is PrefixSuffixVisibility.AlwaysVisible)
+        if (values.Length >= 2 && values[2] is PrefixSuffixVisibility.Always)
         {
             return Visibility.Visible;
         }

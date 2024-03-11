@@ -156,7 +156,7 @@ public static class TextFieldAssist
     /// SuffixTextVisibility dependency property. Controls when a suffix should be visible.
     /// </summary>
     public static readonly DependencyProperty SuffixTextVisibilityProperty = DependencyProperty.RegisterAttached(
-        "SuffixTextVisibility", typeof(PrefixSuffixVisibility), typeof(TextFieldAssist), new PropertyMetadata(PrefixSuffixVisibility.VisibleWhenFocusedOrNonEmpty));
+        "SuffixTextVisibility", typeof(PrefixSuffixVisibility), typeof(TextFieldAssist), new PropertyMetadata(PrefixSuffixVisibility.WhenFocusedOrNonEmpty));
 
     public static void SetSuffixTextVisibility(DependencyObject element, PrefixSuffixVisibility value)
         => element.SetValue(SuffixTextVisibilityProperty, value);
@@ -192,7 +192,7 @@ public static class TextFieldAssist
     /// PrefixTextVisibility dependency property. Controls when a prefix should be visible.
     /// </summary>
     public static readonly DependencyProperty PrefixTextVisibilityProperty = DependencyProperty.RegisterAttached(
-        "PrefixTextVisibility", typeof(PrefixSuffixVisibility), typeof(TextFieldAssist), new PropertyMetadata(PrefixSuffixVisibility.VisibleWhenFocusedOrNonEmpty));
+        "PrefixTextVisibility", typeof(PrefixSuffixVisibility), typeof(TextFieldAssist), new PropertyMetadata(PrefixSuffixVisibility.WhenFocusedOrNonEmpty));
 
     public static void SetPrefixTextVisibility(DependencyObject element, PrefixSuffixVisibility value)
         => element.SetValue(PrefixTextVisibilityProperty, value);
