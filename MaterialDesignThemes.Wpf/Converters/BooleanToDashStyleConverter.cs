@@ -13,5 +13,5 @@ public class BooleanToDashStyleConverter : IValueConverter
         => value is true ? TrueValue : FalseValue;
 
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
-        => throw new NotImplementedException();
+        => value is DashStyle dashStyle && dashStyle == TrueValue;
 }
