@@ -190,7 +190,7 @@
                     VerticalAlignment="Center"
                     IsEnabled="{Binding ElementName=CustomPaddingCheckBox, Path=IsChecked}"
                     ItemsSource="{Binding CustomPaddingOptions}"
-                    SelectedItem="{Binding SelectedCustomPadding, Mode=TwoWay}" />
+                    SelectedItem="{Binding SelectedCustomPadding}" />
           <TextBlock Margin="20,0,0,0"
                      VerticalAlignment="Center"
                      Text="Height:" />
