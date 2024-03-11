@@ -195,7 +195,7 @@
                         </MultiBinding>
                       </ContentControl.RenderTransform>
                       <Grid Background="{TemplateBinding wpf:HintAssist.Background}" IsHitTestVisible="False">
-                        <ContentControl Content="{TemplateBinding Hint}" IsHitTestVisible="False" IsTabStop="False">
+                        <ContentControl Content="{TemplateBinding Hint}" IsTabStop="False">
                           <ContentControl.Margin>
                             <MultiBinding Converter="{StaticResource FloatingHintContainerMarginConverter}">
                               <Binding ElementName="ScaleHost" Path="Scale" />
