@@ -5,13 +5,13 @@ param(
 #NB: This script requires PowerShell 7.1 or later
 
 $files = Get-ChildItem -Recurse -Path $RootDirectory -File -Filter "*.xaml"
-$resouceTypes = ('StaticResource', 'DynamicResource')
+$resourceTypes = ('StaticResource', 'DynamicResource')
 
 foreach ($file in $files) {
     $fileContents = Get-Content $file -Encoding utf8BOM -Raw
     $fileLength = $fileContents.Length
 
-    foreach($resourceType in $resouceTypes) {
+    foreach($resourceType in $resourceTypes) {
         $fileContents = $fileContents -replace "\{$resourceType\ MaterialDesignActionAccentCheckBox}", "{$resourceType MaterialDesignActionSecondaryCheckBox}"
         $fileContents = $fileContents -replace "\{$resourceType\ MaterialDesignAccentCheckBox}", "{$resourceType MaterialDesignSecondaryCheckBox}"
         $fileContents = $fileContents -replace "\{$resourceType\ MaterialDesignAccentRadioButton}", "{$resourceType MaterialDesignSecondaryRadioButton}"
