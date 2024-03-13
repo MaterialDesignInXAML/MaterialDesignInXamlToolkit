@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MaterialDesignDemo.SmartHint"
+<UserControl x:Class="MaterialDesignDemo.SmartHint"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -21,6 +21,7 @@
       <Style TargetType="{x:Type local:InputElementContentControl}">
         <Setter Property="Margin" Value="10,10,10,16" />
         <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="MaxWidth" Value="190" />
         <Setter Property="materialDesign:HintAssist.HintHorizontalAlignment" Value="{Binding SelectedAlignment}" />
         <Setter Property="materialDesign:HintAssist.FloatingHintHorizontalAlignment" Value="{Binding SelectedFloatingAlignment}" />
         <Setter Property="materialDesign:HintAssist.FloatingOffset" Value="{Binding SelectedFloatingOffset}" />
@@ -341,11 +342,27 @@
                   IsEnabled="{Binding ControlsEnabled}">
 
         <!-- TextBox variants -->
+        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="TextBox styles" />
         <StackPanel Orientation="Horizontal">
-          <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="TextBox styles" />
           <CheckBox x:Name="TextBoxAcceptsReturnCheckBox"
-                    Margin="20,0,0,0"
-                    Content="AcceptsReturn" />
+                    Content="AcceptsReturn"
+                    VerticalAlignment="Center" />
+          <TextBlock Margin="10,0,0,0"
+                     Text="H-ScrollBar visibility:"
+                     VerticalAlignment="Center" />
+          <ComboBox x:Name="HorizontalScrollBarVisibilityComboBox"
+                    ItemsSource="{Binding ScrollBarVisibilityOptions}"
+                    Margin="5,0,0,0"
+                    SelectedItem="{Binding SelectedHorizontalScrollBarVisibility}"
+                    VerticalAlignment="Center" />
+          <TextBlock Margin="10,0,0,0"
+                     Text="V-ScrollBar visibility:"
+                     VerticalAlignment="Center" />
+          <ComboBox x:Name="VerticalScrollBarVisibilityComboBox"
+                    ItemsSource="{Binding ScrollBarVisibilityOptions}"
+                    Margin="5,0,0,0"
+                    SelectedItem="{Binding SelectedVerticalScrollBarVisibility}"
+                    VerticalAlignment="Center" />
         </StackPanel>
         <Grid HorizontalAlignment="Stretch">
           <Grid.Resources>
@@ -364,6 +381,8 @@
               </Setter>
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
+              <Setter Property="VerticalScrollBarVisibility" Value="{Binding SelectedVerticalScrollBarVisibility}" />
+              <Setter Property="HorizontalScrollBarVisibility" Value="{Binding SelectedHorizontalScrollBarVisibility}" />
               <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
@@ -424,6 +443,8 @@
               </Setter>
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
+              <Setter Property="VerticalScrollBarVisibility" Value="{Binding SelectedVerticalScrollBarVisibility}" />
+              <Setter Property="HorizontalScrollBarVisibility" Value="{Binding SelectedHorizontalScrollBarVisibility}" />
               <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
@@ -484,6 +505,8 @@
               </Setter>
               <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
               <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
+              <Setter Property="VerticalScrollBarVisibility" Value="{Binding SelectedVerticalScrollBarVisibility}" />
+              <Setter Property="HorizontalScrollBarVisibility" Value="{Binding SelectedHorizontalScrollBarVisibility}" />
               <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
               <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />

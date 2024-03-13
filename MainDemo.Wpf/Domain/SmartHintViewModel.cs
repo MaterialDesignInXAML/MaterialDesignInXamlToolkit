@@ -38,6 +38,8 @@ internal class SmartHintViewModel : ViewModelBase
     private PrefixSuffixVisibility _selectedSuffixVisibility = PrefixSuffixVisibility.WhenFocusedOrNonEmpty;
     private PrefixSuffixHintBehavior _selectedSuffixHintBehavior = PrefixSuffixHintBehavior.AlignWithPrefixSuffix;
     private bool _newSpecHighlightingEnabled;
+    private ScrollBarVisibility _selectedVerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+    private ScrollBarVisibility _selectedHorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
 
     public IEnumerable<FloatingHintHorizontalAlignment> HorizontalAlignmentOptions { get; } = Enum.GetValues(typeof(FloatingHintHorizontalAlignment)).OfType<FloatingHintHorizontalAlignment>();
     public IEnumerable<double> FloatingScaleOptions { get; } = [0.25, 0.5, 0.75, 1.0];
@@ -51,6 +53,7 @@ internal class SmartHintViewModel : ViewModelBase
     public IEnumerable<FontFamily> FontFamilyOptions { get; } = new FontFamily[] { DefaultFontFamily }.Concat(Fonts.SystemFontFamilies.OrderBy(f => f.Source));
     public IEnumerable<PrefixSuffixVisibility> PrefixSuffixVisibilityOptions { get; } = Enum.GetValues(typeof(PrefixSuffixVisibility)).OfType<PrefixSuffixVisibility>();
     public IEnumerable<PrefixSuffixHintBehavior> PrefixSuffixHintBehaviorOptions { get; } = Enum.GetValues(typeof(PrefixSuffixHintBehavior)).OfType<PrefixSuffixHintBehavior>();
+    public IEnumerable<ScrollBarVisibility> ScrollBarVisibilityOptions { get; } = Enum.GetValues(typeof(ScrollBarVisibility)).OfType<ScrollBarVisibility>();
 
     public bool FloatHint
     {
@@ -242,5 +245,17 @@ internal class SmartHintViewModel : ViewModelBase
     {
         get => _newSpecHighlightingEnabled;
         set => SetProperty(ref _newSpecHighlightingEnabled, value);
+    }
+
+    public ScrollBarVisibility SelectedVerticalScrollBarVisibility
+    {
+        get => _selectedVerticalScrollBarVisibility;
+        set => SetProperty(ref _selectedVerticalScrollBarVisibility, value);
+    }
+
+    public ScrollBarVisibility SelectedHorizontalScrollBarVisibility
+    {
+        get => _selectedHorizontalScrollBarVisibility;
+        set => SetProperty(ref _selectedHorizontalScrollBarVisibility, value);
     }
 }
