@@ -5,7 +5,6 @@ param(
 #NB: This script requires PowerShell 7.1 or later
 
 $files = Get-ChildItem -Recurse -Path $RootDirectory -Include "*.xaml"
-$files = Get-ChildItem -Recurse  -Include "*.xaml"
 $resouceTypes = ('StaticResource', 'DynamicResource')
 
 foreach ($file in $files) {
