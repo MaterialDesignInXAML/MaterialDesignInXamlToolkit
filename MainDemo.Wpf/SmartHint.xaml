@@ -347,22 +347,24 @@
           <CheckBox x:Name="TextBoxAcceptsReturnCheckBox"
                     Content="AcceptsReturn"
                     VerticalAlignment="Center" />
-          <TextBlock Margin="10,0,0,0"
+          <TextBlock Margin="30,0,0,0"
                      Text="H-ScrollBar visibility:"
                      VerticalAlignment="Center" />
           <ComboBox x:Name="HorizontalScrollBarVisibilityComboBox"
                     ItemsSource="{Binding ScrollBarVisibilityOptions}"
                     Margin="5,0,0,0"
                     SelectedItem="{Binding SelectedHorizontalScrollBarVisibility}"
-                    VerticalAlignment="Center" />
-          <TextBlock Margin="10,0,0,0"
+                    VerticalAlignment="Center"
+                    Width="70"/>
+          <TextBlock Margin="30,0,0,0"
                      Text="V-ScrollBar visibility:"
                      VerticalAlignment="Center" />
           <ComboBox x:Name="VerticalScrollBarVisibilityComboBox"
                     ItemsSource="{Binding ScrollBarVisibilityOptions}"
                     Margin="5,0,0,0"
                     SelectedItem="{Binding SelectedVerticalScrollBarVisibility}"
-                    VerticalAlignment="Center" />
+                    VerticalAlignment="Center"
+                    Width="70"/>
         </StackPanel>
         <Grid HorizontalAlignment="Stretch">
           <Grid.Resources>
