@@ -20,7 +20,7 @@ internal class SmartHintViewModel : ViewModelBase
     private Point _selectedFloatingOffset = DefaultFloatingOffset;
     private bool _applyCustomPadding;
     private Thickness _selectedCustomPadding = new(5);
-    private double _selectedCustomHeight = double.NaN;
+    private double _selectedCustomHeight = 100;
     private VerticalAlignment _selectedVerticalAlignment = VerticalAlignment.Center;
     private double _selectedLeadingIconSize = 20;
     private double _selectedTrailingIconSize = 20;
@@ -31,7 +31,7 @@ internal class SmartHintViewModel : ViewModelBase
     private FontFamily? _selectedFontFamily = DefaultFontFamily;
     private bool _controlsEnabled = true;
     private bool _rippleOnFocus = false;
-    private bool _textBoxAcceptsReturn = false;
+    private bool _textBoxAcceptsReturn = true;
     private int _maxLength;
     private PrefixSuffixVisibility _selectedPrefixVisibility = PrefixSuffixVisibility.WhenFocusedOrNonEmpty;
     private PrefixSuffixHintBehavior _selectedPrefixHintBehavior = PrefixSuffixHintBehavior.AlignWithPrefixSuffix;
