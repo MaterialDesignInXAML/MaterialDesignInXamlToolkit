@@ -51,7 +51,7 @@ jobs:
     with:
       mdix-version: ${{ needs.get_versions.outputs.mdix-version }}
       mdix-colors-version: ${{ needs.get_versions.outputs.mdix-colors-version }}
-      mdix-mahapps-version: ${{ needs.get_versions.outputs.mdix-colors-version }}
+      mdix-mahapps-version: ${{ needs.get_versions.outputs.mdix-mahapps-version }}
 
   push_nugets:
     needs: [build_artifacts]
