@@ -6,6 +6,7 @@
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ValidationErrorTemplate.xaml" />
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Menu.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
   <Style x:Key="MaterialDesignTextBoxBase" TargetType="{x:Type TextBoxBase}">
