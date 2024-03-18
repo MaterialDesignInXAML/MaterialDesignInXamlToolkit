@@ -33,6 +33,16 @@ public static class TextFieldAssist
     /// </returns>
     public static Thickness GetTextBoxViewMargin(DependencyObject element) => (Thickness)element.GetValue(TextBoxViewMarginProperty);
 
+    public static readonly DependencyProperty TextBoxViewVerticalAlignmentProperty = DependencyProperty.RegisterAttached(
+        "TextBoxViewVerticalAlignment",
+        typeof(VerticalAlignment),
+        typeof(TextFieldAssist),
+        new PropertyMetadata(VerticalAlignment.Stretch, TextBoxViewVerticalAlignmentChangedCallback));
+
+    public static void SetTextBoxViewVerticalAlignment(DependencyObject element, VerticalAlignment value) => element.SetValue(TextBoxViewVerticalAlignmentProperty, value);
+
+    public static VerticalAlignment GetTextBoxViewVerticalAlignment(DependencyObject element) => (VerticalAlignment) element.GetValue(TextBoxViewVerticalAlignmentProperty);
+
     /// <summary>
     /// Controls the visibility of the underline decoration.
     /// </summary>
@@ -519,5 +529,42 @@ public static class TextFieldAssist
         };
     }
 
-#endregion
+    private static void ApplyTextBoxViewVerticalAlignment(Control textBox, VerticalAlignment alignment)
+    {
+        if (textBox is ComboBox
+            && textBox.Template.FindName("PART_EditableTextBox", textBox) is TextBox editableTextBox)
+        {
+            textBox = editableTextBox;
+            if (textBox.Template is null) return;
+            textBox.ApplyTemplate();
+        }
+
+        if (textBox.Template.FindName("PART_ContentHost", textBox) is ScrollViewer scrollViewer
+            && scrollViewer.Content is FrameworkElement frameworkElement)
+        {
+            frameworkElement.VerticalAlignment = alignment;
+        }
+    }
+
+    private static void TextBoxViewVerticalAlignmentChangedCallback(DependencyObject dependencyObject,
+        DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+    {
+        if (dependencyObject is not Control box)
+        {
+            return;
+        }
+
+        if (box.IsLoaded)
+        {
+            ApplyTextBoxViewVerticalAlignment(box, (VerticalAlignment)dependencyPropertyChangedEventArgs.NewValue);
+        }
+
+        box.Loaded += (sender, args) =>
+        {
+            var textBox = (Control)sender;
+            ApplyTextBoxViewVerticalAlignment(textBox, GetTextBoxViewVerticalAlignment(textBox));
+        };
+    }
+
+    #endregion
 }

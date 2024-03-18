@@ -8,6 +8,7 @@ public static class Constants
     public static readonly Thickness FilledTextBoxDefaultPaddingNew = new Thickness(16, 12, 12, 8);
     public static readonly Thickness OutlinedTextBoxDefaultPadding = new Thickness(16, 16, 12, 16);
     public static readonly Thickness DefaultTextBoxViewMargin = new Thickness(1, 0, 1, 0);
+    public static readonly Thickness DefaultTextBoxViewMarginStretch = new Thickness(1, 18, 1, 0);
     public static readonly Thickness DefaultTextBoxViewMarginEmbedded = new Thickness(0);
     public const double TextBoxNotEnabledOpacity = 0.56;
     public const double TextBoxInnerButtonSpacing = 2;

@@ -21,7 +21,7 @@ internal class SmartHintViewModel : ViewModelBase
     private bool _applyCustomPadding;
     private Thickness _selectedCustomPadding = new(5);
     private double _selectedCustomHeight = 100;
-    private VerticalAlignment _selectedVerticalAlignment = VerticalAlignment.Center;
+    private VerticalAlignment _selectedVerticalAlignment = VerticalAlignment.Stretch;
     private double _selectedLeadingIconSize = 20;
     private double _selectedTrailingIconSize = 20;
     private VerticalAlignment _selectedIconVerticalAlignment = VerticalAlignment.Center;
@@ -31,7 +31,7 @@ internal class SmartHintViewModel : ViewModelBase
     private FontFamily? _selectedFontFamily = DefaultFontFamily;
     private bool _controlsEnabled = true;
     private bool _rippleOnFocus = false;
-    private bool _textBoxAcceptsReturn = true;
+    private bool _textBoxAcceptsReturn = false;
     private int _maxLength;
     private PrefixSuffixVisibility _selectedPrefixVisibility = PrefixSuffixVisibility.WhenFocusedOrNonEmpty;
     private PrefixSuffixHintBehavior _selectedPrefixHintBehavior = PrefixSuffixHintBehavior.AlignWithPrefixSuffix;
@@ -46,7 +46,7 @@ internal class SmartHintViewModel : ViewModelBase
     public IEnumerable<Point> FloatingOffsetOptions { get; } = [DefaultFloatingOffset, new Point(0, -25), new Point(16, -16), new Point(-16, -16), new Point(0, -50)];
     public IEnumerable<string> ComboBoxOptions { get; } = ["Option 1", "Option 2", "Option 3"];
     public IEnumerable<Thickness> CustomPaddingOptions { get; } = [new Thickness(0), new Thickness(5), new Thickness(10), new Thickness(15)];
-    public IEnumerable<double> CustomHeightOptions { get; } = [double.NaN, 50, 75, 100];
+    public IEnumerable<double> CustomHeightOptions { get; } = [double.NaN, 50, 75, 100, 150];
     public IEnumerable<VerticalAlignment> VerticalAlignmentOptions { get; } = Enum.GetValues(typeof(VerticalAlignment)).OfType<VerticalAlignment>();
     public IEnumerable<double> IconSizeOptions { get; } = [10.0, 15, 20, 30, 50, 75];
     public IEnumerable<double> FontSizeOptions { get; } = [double.NaN, 8, 12, 16, 20, 24, 28];

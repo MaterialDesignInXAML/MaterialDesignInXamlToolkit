@@ -21,6 +21,7 @@
       <converters:BooleanToDashStyleConverter x:Key="BooleanToDashStyleConverter" TrueValue="{x:Static DashStyles.Solid}" />
       <converters:ThicknessCloneConverter x:Key="HelperTextMarginConverter" CloneEdges="Left,Right" />
       <converters:MathConverter x:Key="DivisionConverter"  Operation="Divide" Offset="1" />
+      <converters:FloatingHintInitialVerticalOffsetConverter x:Key="FloatingHintInitialVerticalOffsetConverter" />
       <converters:FloatingHintInitialHorizontalOffsetConverter x:Key="FloatingHintInitialHorizontalOffsetConverter" />
       <converters:FloatingHintMarginConverter x:Key="FloatingHintMarginConverter" />
       <converters:ThicknessCloneConverter x:Key="ThicknessCloneConverter" CloneEdges="All" AdditionalOffsetBottom="-1" />
@@ -63,7 +64,7 @@
     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Stretch" />
     <Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
     <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
     <Setter Property="SelectionBrush" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
@@ -308,10 +309,15 @@
             <!-- Multi-line TextBox (i.e. AcceptsReturn) edge case -->
             <MultiTrigger>
               <MultiTrigger.Conditions>
-                <Condition Property="AcceptsReturn" Value="True" />
                 <Condition Property="VerticalContentAlignment" Value="Stretch" />
               </MultiTrigger.Conditions>
               <Setter TargetName="PART_ContentHost" Property="VerticalAlignment" Value="Stretch" />
+            </MultiTrigger>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="VerticalContentAlignment" Value="Stretch" />
+                <Condition Property="AcceptsReturn" Value="True" />
+              </MultiTrigger.Conditions>
               <Setter TargetName="PrefixTextBlock" Property="VerticalAlignment" Value="Stretch" />
               <Setter TargetName="SuffixTextBlock" Property="VerticalAlignment" Value="Stretch" />
               <Setter TargetName="Hint" Property="VerticalAlignment" Value="Top" />
@@ -455,6 +461,38 @@
               <Setter TargetName="ContentGrid" Property="Margin" Value="-1" />
             </MultiTrigger>
 
+            <!-- VerticalContentAlignment.Stretch AND AcceptsReturn=False -->
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="VerticalContentAlignment" Value="Stretch" />
+                <Condition Property="AcceptsReturn" Value="False" />
+              </MultiTrigger.Conditions>
+              <Setter Property="wpf:TextFieldAssist.TextBoxViewVerticalAlignment" Value="Center" />
+            </MultiTrigger>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="VerticalContentAlignment" Value="Stretch" />
+                <Condition Property="AcceptsReturn" Value="False" />
+                <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
+              </MultiTrigger.Conditions>
+              <Setter TargetName="Hint" Property="InitialVerticalOffset">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource FloatingHintInitialVerticalOffsetConverter}">
+                    <Binding ElementName="PART_ContentHost" Path="ActualHeight" />
+                    <Binding ElementName="Hint" Path="ActualHeight" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
+            </MultiTrigger>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="VerticalContentAlignment" Value="Stretch" />
+                <Condition Property="AcceptsReturn" Value="False" />
+                <Condition SourceName="PART_ContentHost" Property="ScrollViewer.ComputedHorizontalScrollBarVisibility" Value="Visible"/>
+              </MultiTrigger.Conditions>
+              <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMarginStretch}" />
+            </MultiTrigger>
+
             <!-- Validation.HasError -->
             <Trigger Property="Validation.HasError" Value="true">
               <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
@@ -481,6 +519,7 @@
     <Setter Property="wpf:TextFieldAssist.CharacterCounterVisibility" Value="Visible" />
     <Setter Property="wpf:TextFieldAssist.IncludeSpellingSuggestions" Value="{Binding RelativeSource={RelativeSource Self}, Path=(SpellCheck.IsEnabled)}" />
     <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMargin}" />
+    <Setter Property="wpf:TextFieldAssist.TextBoxViewVerticalAlignment" Value="Stretch" />
     <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
   </Style>
 
