@@ -16,7 +16,7 @@ public class OutlinedCardTests : TestBase
         //Arrange
         IVisualElement<Card> card = await LoadXaml<Card>(
             @"<materialDesign:Card Content=""Hello World"" Style=""{StaticResource MaterialDesignOutlinedCard}""/>");
-        Color dividerColor = await GetThemeColor("MaterialDesignDivider");
+        Color dividerColor = await GetThemeColor("MaterialDesign.Brush.Card.Border");
         IVisualElement<Border> internalBorder = await card.GetElement<Border>();
 
         //Act
