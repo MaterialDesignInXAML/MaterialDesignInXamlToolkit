@@ -4,7 +4,7 @@ namespace MaterialDesignThemes.Wpf;
 
 public static class RippleAssist
 {
-    #region ClipToBound
+    #region ClipToBounds
 
     public static readonly DependencyProperty ClipToBoundsProperty = DependencyProperty.RegisterAttached(
         "ClipToBounds", typeof(bool), typeof(RippleAssist), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits));

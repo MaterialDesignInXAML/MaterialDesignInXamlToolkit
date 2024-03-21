@@ -30,6 +30,7 @@ static partial class ThemeExtensions
         theme.SnackBars.Background = BaseThemeColors.Neutral100;
         theme.SnackBars.MouseOver = BaseThemeColors.Neutral200;
         theme.Cards.Background = BaseThemeColors.White1000;
+        theme.Cards.Border = BaseThemeColors.Neutral700;
         theme.CheckBoxes.Disabled = BaseThemeColors.Neutral700;
         theme.CheckBoxes.UncheckedBorder = BaseThemeColors.Black100;
         theme.CheckBoxes.Off = BaseThemeColors.Black500;
@@ -108,6 +109,7 @@ static partial class ThemeExtensions
         theme.SnackBars.Background = BaseThemeColors.Neutral800;
         theme.SnackBars.MouseOver = BaseThemeColors.Neutral700;
         theme.Cards.Background = BaseThemeColors.Neutral200;
+        theme.Cards.Border = BaseThemeColors.Neutral500;
         theme.CheckBoxes.Disabled = BaseThemeColors.Neutral300;
         theme.CheckBoxes.UncheckedBorder = BaseThemeColors.White100;
         theme.CheckBoxes.Off = BaseThemeColors.White500;

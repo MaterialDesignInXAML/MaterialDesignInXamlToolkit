@@ -219,6 +219,13 @@ partial class Theme
            set => _background = value;
         }
 
+        private ColorReference _border;
+        public ColorReference Border
+        {
+           get => _theme.Resolve(_border);
+           set => _border = value;
+        }
+
     }
 
     public class CheckBox

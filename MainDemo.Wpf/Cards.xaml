@@ -286,10 +286,21 @@
       <smtx:XamlDisplay Margin="4,4,0,16" UniqueKey="cards_5">
         <materialDesign:Card Width="200"
                              Padding="8"
+                             materialDesign:ElevationAssist.Elevation="Dp12"
                              Background="{DynamicResource PrimaryHueDarkBrush}"
                              Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
                              UniformCornerRadius="6">
           <TextBlock Text="You can adjust the corner radius" TextWrapping="Wrap" />
+        </materialDesign:Card>
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay Margin="4,4,0,16" UniqueKey="cards_outline_1">
+        <materialDesign:Card Width="200"
+                             Padding="8"
+                             Style="{StaticResource MaterialDesignOutlinedCard}"
+                             materialDesign:ElevationAssist.Elevation="Dp12"
+                             UniformCornerRadius="6">
+          <TextBlock Text="Cards can use the outline style" TextWrapping="Wrap" />
         </materialDesign:Card>
       </smtx:XamlDisplay>
     </StackPanel>
