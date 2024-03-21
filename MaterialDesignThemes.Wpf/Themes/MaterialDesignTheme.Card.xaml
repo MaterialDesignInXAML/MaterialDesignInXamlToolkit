@@ -9,6 +9,8 @@
 
   <Style x:Key="MaterialDesignElevatedCard" TargetType="{x:Type wpf:Card}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Card.Background}" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Card.Border}" />
     <Setter Property="Focusable" Value="False" />
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     <Setter Property="Template">
@@ -26,46 +28,18 @@
                   <Binding Path="(wpf:ElevationAssist.Elevation)" RelativeSource="{RelativeSource TemplatedParent}" />
                 </MultiBinding>
               </AdornerDecorator.OpacityMask>
-              <Border CornerRadius="{TemplateBinding UniformCornerRadius, Converter={x:Static converters:DoubleToCornerRadiusConverter.Instance}}" Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}">
-                <Border x:Name="PART_ClipBorder"
-                        Padding="{TemplateBinding Padding}"
+              <Border
+                CornerRadius="{TemplateBinding UniformCornerRadius, Converter={x:Static converters:DoubleToCornerRadiusConverter.Instance}}"
+                Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}"
+                >
+                <Border Padding="{TemplateBinding Padding}"
                         Background="{TemplateBinding Background}"
-                        Clip="{TemplateBinding ContentClip}">
-                  <ContentPresenter x:Name="ContentPresenter"
-                                    Margin="{TemplateBinding Padding}"
-                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                    Content="{TemplateBinding ContentControl.Content}"
-                                    ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
-                                    ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
-                                    ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}" />
-                </Border>
+                        Clip="{TemplateBinding ContentClip}"/>
               </Border>
             </AdornerDecorator>
-          </Grid>
-          <ControlTemplate.Triggers>
-            <Trigger Property="ClipContent" Value="True">
-              <Setter TargetName="ContentPresenter" Property="Clip" Value="{Binding ContentClip, RelativeSource={RelativeSource TemplatedParent}}" />
-            </Trigger>
-          </ControlTemplate.Triggers>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-    <Setter Property="VerticalContentAlignment" Value="Stretch" />
-    <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp1" />
-  </Style>
-
-  <Style x:Key="MaterialDesignOutlinedCard" TargetType="{x:Type wpf:Card}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Card.Background}" />
-    <Setter Property="Focusable" Value="False" />
-    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="{x:Type wpf:Card}">
-          <Grid Background="Transparent">
-            <Border BorderBrush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
-                    BorderThickness="1"
-                    CornerRadius="{TemplateBinding UniformCornerRadius, Converter={x:Static converters:DoubleToCornerRadiusConverter.Instance}}">
+            <Border CornerRadius="{TemplateBinding UniformCornerRadius, Converter={x:Static converters:DoubleToCornerRadiusConverter.Instance}}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
               <Border x:Name="PART_ClipBorder"
                       Padding="{TemplateBinding Padding}"
                       Background="{TemplateBinding Background}"
@@ -81,6 +55,44 @@
               </Border>
             </Border>
           </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="ClipContent" Value="True">
+              <Setter TargetName="ContentPresenter" Property="Clip" Value="{Binding ContentClip, RelativeSource={RelativeSource TemplatedParent}}" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp1" />
+  </Style>
+
+  <Style x:Key="MaterialDesignOutlinedCard" TargetType="{x:Type wpf:Card}">
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Card.Background}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Card.Border}" />
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type wpf:Card}">
+          <Border BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  CornerRadius="{TemplateBinding UniformCornerRadius, Converter={x:Static converters:DoubleToCornerRadiusConverter.Instance}}">
+            <Border x:Name="PART_ClipBorder"
+                    Padding="{TemplateBinding Padding}"
+                    Background="{TemplateBinding Background}"
+                    Clip="{TemplateBinding ContentClip}">
+              <ContentPresenter x:Name="ContentPresenter"
+                                Margin="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding ContentControl.Content}"
+                                ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
+                                ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
+                                ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}" />
+            </Border>
+          </Border>
           <ControlTemplate.Triggers>
             <Trigger Property="ClipContent" Value="True">
               <Setter TargetName="ContentPresenter" Property="Clip" Value="{Binding ContentClip, RelativeSource={RelativeSource TemplatedParent}}" />

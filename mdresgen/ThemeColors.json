@@ -123,6 +123,15 @@
         ]
     },
     {
+        "name": "MaterialDesign.Brush.Card.Border",
+        "themeValues": {
+            "light": "Neutral700",
+            "dark": "Neutral500"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
         "name": "MaterialDesign.Brush.CheckBox.Disabled",
         "themeValues": {
             "light": "Neutral700",

@@ -36,6 +36,7 @@ partial class ThemeTests
           <TextBlock Text="SnackBar.Background" Background="{StaticResource MaterialDesign.Brush.SnackBar.Background}" />
           <TextBlock Text="SnackBar.MouseOver" Background="{StaticResource MaterialDesign.Brush.SnackBar.MouseOver}" />
           <TextBlock Text="Card.Background" Background="{StaticResource MaterialDesign.Brush.Card.Background}" />
+          <TextBlock Text="Card.Border" Background="{StaticResource MaterialDesign.Brush.Card.Border}" />
           <TextBlock Text="CheckBox.Disabled" Background="{StaticResource MaterialDesign.Brush.CheckBox.Disabled}" />
           <TextBlock Text="CheckBox.UncheckedBorder" Background="{StaticResource MaterialDesign.Brush.CheckBox.UncheckedBorder}" />
           <TextBlock Text="CheckBox.Off" Background="{StaticResource MaterialDesign.Brush.CheckBox.Off}" />
@@ -229,6 +230,11 @@ partial class ThemeTests
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Card.Background\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Card.Background"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Card.Border\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Card.Border"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"CheckBox.Disabled\"]");
@@ -758,6 +764,7 @@ partial class ThemeTests
         yield return "MaterialDesign.Brush.SnackBar.Background";
         yield return "MaterialDesign.Brush.SnackBar.MouseOver";
         yield return "MaterialDesign.Brush.Card.Background";
+        yield return "MaterialDesign.Brush.Card.Border";
         yield return "MaterialDesign.Brush.CheckBox.Disabled";
         yield return "MaterialDesign.Brush.CheckBox.UncheckedBorder";
         yield return "MaterialDesign.Brush.CheckBox.Off";

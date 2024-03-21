@@ -15,6 +15,7 @@
   <colors:StaticResource x:Key="MaterialDesign.Brush.Button.FlatRipple" ResourceKey="Neutral700" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.SnackBar.Ripple" ResourceKey="Neutral700" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.Card.Background" ResourceKey="White1000" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.Card.Border" ResourceKey="Neutral700" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.CheckBox.Disabled" ResourceKey="Neutral700" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.CheckBox.UncheckedBorder" ResourceKey="Black100" />
   <SolidColorBrush x:Key="MaterialDesign.Brush.Chip.Background" Color="#12000000" po:Freeze="True" />

@@ -25,6 +25,7 @@ static partial class ResourceDictionaryExtensions
         theme.SnackBars.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.SnackBar.Background", "MaterialDesignSnackbarBackground");
         theme.SnackBars.MouseOver = GetColor(resourceDictionary, "MaterialDesign.Brush.SnackBar.MouseOver", "MaterialDesignSnackbarMouseOver");
         theme.Cards.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.Card.Background", "MaterialDesignBackground", "MaterialDesignCardBackground");
+        theme.Cards.Border = GetColor(resourceDictionary, "MaterialDesign.Brush.Card.Border");
         theme.CheckBoxes.Disabled = GetColor(resourceDictionary, "MaterialDesign.Brush.CheckBox.Disabled", "MaterialDesignCheckBoxDisabled");
         theme.CheckBoxes.UncheckedBorder = GetColor(resourceDictionary, "MaterialDesign.Brush.CheckBox.UncheckedBorder");
         theme.CheckBoxes.Off = GetColor(resourceDictionary, "MaterialDesign.Brush.CheckBox.Off", "MaterialDesignBodyLight", "MaterialDesignCheckBoxOff", "MaterialDesignTextBoxBorder");
@@ -120,6 +121,7 @@ static partial class ResourceDictionaryExtensions
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Card.Background", theme.Cards.Background);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignBackground", theme.Cards.Background);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignCardBackground", theme.Cards.Background);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Card.Border", theme.Cards.Border);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.CheckBox.Disabled", theme.CheckBoxes.Disabled);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignCheckBoxDisabled", theme.CheckBoxes.Disabled);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.CheckBox.UncheckedBorder", theme.CheckBoxes.UncheckedBorder);
