@@ -66,6 +66,17 @@ public static class HintAssist
         => element.SetValue(HintOpacityProperty, value);
     #endregion
 
+    #region AttachedProperty : HintHorizontalAlignment
+    public static readonly DependencyProperty HintHorizontalAlignmentProperty
+        = DependencyProperty.RegisterAttached("HintHorizontalAlignment", typeof(FloatingHintHorizontalAlignment), typeof(HintAssist),
+            new FrameworkPropertyMetadata(FloatingHintHorizontalAlignment.Inherit, FrameworkPropertyMetadataOptions.Inherits));
+
+    public static void SetHintHorizontalAlignment(DependencyObject element, FloatingHintHorizontalAlignment value)
+        => element.SetValue(HintHorizontalAlignmentProperty, value);
+    public static FloatingHintHorizontalAlignment GetHintHorizontalAlignment(DependencyObject element)
+        => (FloatingHintHorizontalAlignment)element.GetValue(HintHorizontalAlignmentProperty);
+    #endregion
+
     #region AttachedProperty : FloatingHintHorizontalAlignment
     public static readonly DependencyProperty FloatingHintHorizontalAlignmentProperty
         = DependencyProperty.RegisterAttached("FloatingHintHorizontalAlignment", typeof(FloatingHintHorizontalAlignment), typeof(HintAssist),
