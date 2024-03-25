@@ -23,7 +23,7 @@ internal class FloatingHintTextBlockMarginConverter : IMultiValueConverter
 
         double scaleMultiplier = upper + (lower - upper) * scale;
 
-        HorizontalAlignment alignment = restingAlignmentOverride switch
+        HorizontalAlignment restAlignment = restingAlignmentOverride switch
         {
             FloatingHintHorizontalAlignment.Inherit => restingAlignment,
             FloatingHintHorizontalAlignment.Left => HorizontalAlignment.Left,
@@ -33,7 +33,7 @@ internal class FloatingHintTextBlockMarginConverter : IMultiValueConverter
             _ => throw new ArgumentOutOfRangeException(),
         };
 
-        HorizontalAlignment floatAlignment = alignment;
+        HorizontalAlignment floatAlignment = restAlignment;
         if (scale != 0)
         {
             floatAlignment = floatingAlignment switch
@@ -57,13 +57,13 @@ internal class FloatingHintTextBlockMarginConverter : IMultiValueConverter
 
         double FloatLeft()
         {
-            if (alignment == HorizontalAlignment.Center)
+            if (restAlignment == HorizontalAlignment.Center)
             {
                 // Animate from center to left
                 double offset = Math.Max(0, (availableWidth - desiredWidth) / 2);
                 return offset - offset * scale;
             }
-            if (alignment == HorizontalAlignment.Right)
+            if (restAlignment == HorizontalAlignment.Right)
             {
                 // Animate from right to left
                 double offset = Math.Max(0, availableWidth - desiredWidth);
@@ -74,13 +74,13 @@ internal class FloatingHintTextBlockMarginConverter : IMultiValueConverter
 
         double FloatCenter()
         {
-            if (alignment == HorizontalAlignment.Left || alignment == HorizontalAlignment.Stretch)
+            if (restAlignment == HorizontalAlignment.Left || restAlignment == HorizontalAlignment.Stretch)
             {
                 // Animate from left to center
                 double offset = Math.Max(0, (availableWidth - desiredWidth * scaleMultiplier) / 2);
                 return offset * scale;
             }
-            if (alignment == HorizontalAlignment.Right)
+            if (restAlignment == HorizontalAlignment.Right)
             {
                 // Animate from right to center
                 double startOffset = Math.Max(0, availableWidth - desiredWidth);
@@ -93,13 +93,13 @@ internal class FloatingHintTextBlockMarginConverter : IMultiValueConverter
 
         double FloatRight()
         {
-            if (alignment == HorizontalAlignment.Left || alignment == HorizontalAlignment.Stretch)
+            if (restAlignment == HorizontalAlignment.Left || restAlignment == HorizontalAlignment.Stretch)
             {
                 // Animate from left to right
                 double offset = Math.Max(0, availableWidth - desiredWidth * scaleMultiplier);
                 return offset * scale;
             }
-            if (alignment == HorizontalAlignment.Center)
+            if (restAlignment == HorizontalAlignment.Center)
             {
                 // Animate from center to right
                 double startOffset = Math.Max(0, (availableWidth - desiredWidth) / 2);
