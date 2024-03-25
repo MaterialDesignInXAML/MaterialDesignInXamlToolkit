@@ -10,6 +10,7 @@ internal class SmartHintViewModel : ViewModelBase
 
     private bool _floatHint = true;
     private FloatingHintHorizontalAlignment _selectedAlignment = FloatingHintHorizontalAlignment.Inherit;
+    private FloatingHintHorizontalAlignment _selectedFloatingAlignment = FloatingHintHorizontalAlignment.Inherit;
     private double _selectedFloatingScale = 0.75;
     private bool _showClearButton = true;
     private bool _showLeadingIcon = true;
@@ -53,6 +54,12 @@ internal class SmartHintViewModel : ViewModelBase
     {
         get => _selectedAlignment;
         set => SetProperty(ref _selectedAlignment, value);
+    }
+
+    public FloatingHintHorizontalAlignment SelectedFloatingAlignment
+    {
+        get => _selectedFloatingAlignment;
+        set => SetProperty(ref _selectedFloatingAlignment, value);
     }
 
     public double SelectedFloatingScale
