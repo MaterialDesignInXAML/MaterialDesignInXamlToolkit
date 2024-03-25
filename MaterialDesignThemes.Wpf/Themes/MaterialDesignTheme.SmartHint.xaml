@@ -169,6 +169,7 @@
                                     Visibility="{TemplateBinding UseFloating, Converter={StaticResource BoolToVisConverter}}">
                       <ContentControl.Margin>
                         <MultiBinding Converter="{StaticResource FloatingHintTextBlockMarginConverter}">
+                          <Binding Path="(wpf:HintAssist.HintHorizontalAlignment)" RelativeSource="{RelativeSource TemplatedParent}" />
                           <Binding Path="(wpf:HintAssist.FloatingHintHorizontalAlignment)" RelativeSource="{RelativeSource TemplatedParent}" />
                           <Binding Path="HorizontalContentAlignment" RelativeSource="{RelativeSource TemplatedParent}" />
                           <Binding Path="ActualWidth" RelativeSource="{RelativeSource Self}" />
