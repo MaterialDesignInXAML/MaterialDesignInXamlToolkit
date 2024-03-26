@@ -11,6 +11,7 @@
     <iconUrl>http://materialdesigninxaml.net/images/MD4XAML32.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>ResourceDictionary instances containing standard Google Material Design swatches, for inclusion in a XAML application.</description>
+    <readme>docs\README.md</readme>
     <releaseNotes>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/releases</releaseNotes>
     <copyright>$copyright$</copyright>
     <tags>WPF XAML Material Design Colour Color UI UX</tags>
@@ -21,6 +22,7 @@
     </dependencies>
   </metadata>
   <files>
+    <file src="README.md" target="docs\" />
     <file src="MaterialDesignColors.Wpf\bin\$configuration$\net462\MaterialDesignColors.*" target="lib\net462" exclude="**\*.json" />
     <file src="MaterialDesignColors.Wpf\bin\$configuration$\net6.0-windows\MaterialDesignColors.*" target="lib\net6.0" exclude="**\*.json" />
     <file src="MaterialDesignColors.Wpf\bin\$configuration$\net7.0-windows\MaterialDesignColors.*" target="lib\net7.0" exclude="**\*.json" />
