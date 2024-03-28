@@ -8,13 +8,7 @@ public class FloatingHintTranslateTransformConverter : IMultiValueConverter
 {
     public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (values is null
-            || values.Length < 5
-            || !double.TryParse(values[0]!.ToString(), out double scale)
-            || !double.TryParse(values[1]!.ToString(), out double lower)
-            || !double.TryParse(values[2]!.ToString(), out double upper)
-            || values[3] is not SmartHint hint
-            || values[4] is not Point floatingOffset)
+        if (values is not [double scale, double lower, double upper, SmartHint hint, Point floatingOffset, ..])
         {
             return Transform.Identity;
         }
@@ -23,8 +17,8 @@ public class FloatingHintTranslateTransformConverter : IMultiValueConverter
         if (hint.FloatingTarget is null || floatingOffset != HintAssist.DefaultFloatingOffset)
         {
             /* As a consequence of Math.Min() which is used below to ensure the initial offset is respected (in filled style)
-           the SmartHint will not be able to "float downwards". I believe this is acceptable though.
-         */
+               the SmartHint will not be able to "float downwards". I believe this is acceptable though.
+             */
             return new TranslateTransform
             {
                 X = scale * floatingOffset.X,
