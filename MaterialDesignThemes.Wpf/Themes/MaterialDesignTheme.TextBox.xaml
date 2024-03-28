@@ -138,6 +138,7 @@
                       SnapsToDevicePixels="True">
 
                 <Grid x:Name="ContentGrid"
+                      MinHeight="{Binding ElementName=ClearButtonIcon, Path=ActualHeight}"
                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                   <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -276,7 +277,7 @@
                         <Binding ElementName="Hint" Path="IsContentNullOrEmpty" />
                       </MultiBinding>
                     </Button.Visibility>
-                    <wpf:PackIcon Margin="0" Kind="CloseCircle" />
+                    <wpf:PackIcon x:Name="ClearButtonIcon" Margin="0" Kind="CloseCircle" />
                   </Button>
                 </Grid>
               </Border>
