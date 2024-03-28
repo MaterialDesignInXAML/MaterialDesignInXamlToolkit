@@ -472,7 +472,15 @@ public class TreeListViewTests : TestBase
         await AddChildren(childElement!, 3, addButton);
         //NB: Needs to be long enough delay so the next click does not register as a double click
         await Task.Delay(500);
-        await childElement!.LeftClickExpander();
+        await Wait.For(async () =>
+        {
+            await childElement!.LeftClickExpander();
+            bool rv = await childElement!.GetIsExpanded();
+            if (!rv)
+            {
+                await Task.Delay(500);
+            }
+        });
 
         //Replace child item
         await replaceButton.LeftClick();

@@ -78,7 +78,6 @@ public class AutoSuggestBoxTests : TestBase
         //Choose Item from the list
         var bananas = await suggestionListBox.GetElement<ListBoxItem>("/ListBoxItem[0]");
         await bananas.MoveCursorTo();
-        await recorder.SaveScreenshot("BeforeClick");
         await bananas.LeftClick();
         var suggestBoxText = await suggestBox.GetText();
         //Validate that the current text is the same as the selected item

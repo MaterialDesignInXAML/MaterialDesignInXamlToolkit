@@ -6,9 +6,9 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 internal class BorderClipConverter : IMultiValueConverter
 {
-    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+    public object Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (values.Length > 1 && values[0] is double width && values[1] is double height)
+        if (values is [double width, double height])
         {
             if (width < 1.0 || height < 1.0)
             {
@@ -35,7 +35,7 @@ internal class BorderClipConverter : IMultiValueConverter
         return DependencyProperty.UnsetValue;
     }
 
-    public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+    public object?[]? ConvertBack(object? value, Type[] targetTypes, object? parameter, CultureInfo culture)
     {
         throw new NotImplementedException();
     }
