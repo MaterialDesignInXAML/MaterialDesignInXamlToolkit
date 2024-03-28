@@ -20,7 +20,7 @@ internal class SmartHintViewModel : ViewModelBase
     private Point _selectedFloatingOffset = DefaultFloatingOffset;
     private bool _applyCustomPadding;
     private Thickness _selectedCustomPadding = new(5);
-    private double _selectedCustomHeight = 100;
+    private double _selectedCustomHeight = double.NaN;
     private VerticalAlignment _selectedVerticalAlignment = VerticalAlignment.Stretch;
     private double _selectedLeadingIconSize = 20;
     private double _selectedTrailingIconSize = 20;
