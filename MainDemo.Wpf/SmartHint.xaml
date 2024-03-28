@@ -21,7 +21,8 @@
       <Style TargetType="{x:Type local:InputElementContentControl}">
         <Setter Property="Margin" Value="10,10,10,16" />
         <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="materialDesign:HintAssist.FloatingHintHorizontalAlignment" Value="{Binding SelectedAlignment}" />
+        <Setter Property="materialDesign:HintAssist.HintHorizontalAlignment" Value="{Binding SelectedAlignment}" />
+        <Setter Property="materialDesign:HintAssist.FloatingHintHorizontalAlignment" Value="{Binding SelectedFloatingAlignment}" />
         <Setter Property="materialDesign:HintAssist.FloatingOffset" Value="{Binding SelectedFloatingOffset}" />
         <Setter Property="materialDesign:HintAssist.FloatingScale" Value="{Binding SelectedFloatingScale}" />
         <Setter Property="materialDesign:HintAssist.HelperText" Value="{Binding HelperText}" />
@@ -75,14 +76,21 @@
       <StackPanel Orientation="Vertical">
         <StackPanel Margin="10" Orientation="Horizontal">
           <CheckBox Content="IsFloating" IsChecked="{Binding FloatHint}" />
-          <TextBlock Margin="20,0,0,0"
+          <TextBlock Margin="15,0,0,0"
                      VerticalAlignment="Center"
                      Text="Alignment:" />
           <ComboBox Margin="5,0,0,0"
                     VerticalAlignment="Center"
                     ItemsSource="{Binding HorizontalAlignmentOptions}"
                     SelectedItem="{Binding SelectedAlignment, Mode=TwoWay}" />
-          <TextBlock Margin="20,0,0,0"
+          <TextBlock Margin="15,0,0,0"
+                     VerticalAlignment="Center"
+                     Text="FloatingAlignment:" />
+          <ComboBox Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    ItemsSource="{Binding HorizontalAlignmentOptions}"
+                    SelectedItem="{Binding SelectedFloatingAlignment, Mode=TwoWay}" />
+          <TextBlock Margin="15,0,0,0"
                      VerticalAlignment="Center"
                      Text="FloatingScale:" />
           <ComboBox Margin="5,0,0,0"
@@ -90,7 +98,7 @@
                     ItemStringFormat="F2"
                     ItemsSource="{Binding FloatingScaleOptions}"
                     SelectedItem="{Binding SelectedFloatingScale, Mode=TwoWay}" />
-          <TextBlock Margin="20,0,0,0"
+          <TextBlock Margin="15,0,0,0"
                      VerticalAlignment="Center"
                      Text="FloatingOffset:" />
           <ComboBox Margin="5,0,0,0"
@@ -98,7 +106,7 @@
                     ItemTemplate="{StaticResource FloatingOffsetTemplate}"
                     ItemsSource="{Binding FloatingOffsetOptions}"
                     SelectedItem="{Binding SelectedFloatingOffset, Mode=TwoWay}" />
-          <CheckBox Margin="20,0,0,0"
+          <CheckBox Margin="15,0,0,0"
                     Content="HasClearButton"
                     IsChecked="{Binding ShowClearButton}" />
           <CheckBox Margin="20,0,0,0"
