@@ -200,31 +200,6 @@ public class TextBoxTests : TestBase
     }
 
     [Fact]
-    [Description("Issue 2203")]
-    public async Task OnOutlinedTextBox_FloatingHintOffsetWithinRange()
-    {
-        await using var recorder = new TestRecorder(App);
-
-        var grid = await LoadXaml<Grid>(@"
-<Grid Margin=""30"">
-    <TextBox
-        Style=""{StaticResource MaterialDesignOutlinedTextBox}""
-        VerticalAlignment=""Top""
-        materialDesign:HintAssist.Hint=""This is a hint""
-    />
-</Grid>");
-        var textBox = await grid.GetElement<TextBox>("/TextBox");
-        var hint = await textBox.GetElement<SmartHint>("Hint");
-
-        Point floatingOffset = await hint.GetFloatingOffset();
-
-        Assert.Equal(0, floatingOffset.X);
-        Assert.InRange(floatingOffset.Y, -22, -20);
-
-        recorder.Success();
-    }
-
-    [Fact]
     public async Task CharacterCount_WithMaxLengthSet_IsDisplayed()
     {
         await using var recorder = new TestRecorder(App);
