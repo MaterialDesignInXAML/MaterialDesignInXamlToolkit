@@ -401,12 +401,12 @@ public class TextBoxTests : TestBase
         var helperTextTextBlock = await textBox.GetElement<TextBlock>("HelperTextTextBlock");
 
         Thickness? errorMargin = await errorViewer.GetProperty<Thickness>(FrameworkElement.MarginProperty);
-        Thickness? helperTextMargin = await helperTextTextBlock.GetProperty<Thickness>(FrameworkElement.MarginProperty);
+        Thickness? textBoxPadding = await textBox.GetProperty<Thickness>(Control.PaddingProperty);
 
         Assert.True(errorMargin.HasValue);
-        Assert.True(helperTextMargin.HasValue);
-        Assert.True(Math.Abs(errorMargin.Value.Left - helperTextMargin.Value.Left) < double.Epsilon,
-            $"Error text and helper text do not have the same Margin.Left values: Error text Margin.Left ({errorMargin.Value.Left}) == Helper text Margin.Left ({helperTextMargin.Value.Left})");
+        Assert.True(textBoxPadding.HasValue);
+        Assert.True(Math.Abs(errorMargin.Value.Left - textBoxPadding.Value.Left) < double.Epsilon,
+            $"Error text does not respect the padding of the TextBox: Error text Margin.Left ({errorMargin.Value.Left}) == TextBox Padding.Left ({textBoxPadding.Value.Left})");
 
         recorder.Success();
     }
