@@ -167,11 +167,11 @@ public class TextBoxTests : TestBase
         materialDesign:HintAssist.Hint=""This is a text area""/>
 </Grid>");
         var textBox = await grid.GetElement<TextBox>("/TextBox");
-        //textFieldGrid is the element just inside of the border
-        var textFieldGrid = await textBox.GetElement<Grid>("grid");
+        //contentGrid is the element just inside of the border
+        var contentGrid = await textBox.GetElement<Grid>("ContentGrid");
         var hintBackground = await textBox.GetElement<Border>("HintBackgroundBorder");
 
-        Color background = await hintBackground.GetEffectiveBackground(textFieldGrid);
+        Color background = await hintBackground.GetEffectiveBackground(contentGrid);
 
         Assert.Equal(255, background.A);
         recorder.Success();
