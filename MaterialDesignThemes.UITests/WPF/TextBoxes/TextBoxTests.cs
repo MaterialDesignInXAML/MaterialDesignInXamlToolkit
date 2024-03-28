@@ -541,7 +541,7 @@ public class TextBoxTests : TestBase
     }
 
     [Theory]
-    [InlineData(VerticalAlignment.Stretch, VerticalAlignment.Top)]
+    [InlineData(VerticalAlignment.Stretch, VerticalAlignment.Stretch)]
     [InlineData(VerticalAlignment.Top, VerticalAlignment.Top)]
     [InlineData(VerticalAlignment.Bottom, VerticalAlignment.Bottom)]
     [InlineData(VerticalAlignment.Center, VerticalAlignment.Center)]
@@ -561,9 +561,9 @@ public class TextBoxTests : TestBase
             """);
 
         IVisualElement<TextBox> textBox = await stackPanel.GetElement<TextBox>("/TextBox");
-        IVisualElement<Grid> hintClippingGrid = await textBox.GetElement<Grid>("HintClippingGrid");
+        IVisualElement<Grid> contentGrid = await textBox.GetElement<Grid>("ContentGrid");
 
-        Assert.Equal(expectedFloatingHintAlignment, await hintClippingGrid.GetVerticalAlignment());
+        Assert.Equal(expectedFloatingHintAlignment, await contentGrid.GetVerticalAlignment());
 
         recorder.Success();
     }
