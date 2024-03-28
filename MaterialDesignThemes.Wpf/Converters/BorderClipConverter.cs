@@ -8,7 +8,7 @@ internal class BorderClipConverter : IMultiValueConverter
 {
     public object Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (values is [double width, double height])
+        if (values is [double width, double height, ..])
         {
             if (width < 1.0 || height < 1.0)
             {
