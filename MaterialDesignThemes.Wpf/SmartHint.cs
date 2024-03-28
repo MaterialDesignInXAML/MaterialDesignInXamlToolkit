@@ -132,8 +132,44 @@ public class SmartHint : Control
 
     public double InitialVerticalOffset
     {
-        get { return (double) GetValue(InitialVerticalOffsetProperty); }
-        set { SetValue(InitialVerticalOffsetProperty, value); }
+        get => (double) GetValue(InitialVerticalOffsetProperty);
+        set => SetValue(InitialVerticalOffsetProperty, value);
+    }
+
+    public static readonly DependencyProperty InitialHorizontalOffsetProperty = DependencyProperty.Register(
+        nameof(InitialHorizontalOffset), typeof(double), typeof(SmartHint), new PropertyMetadata(default(double)));
+
+    public double InitialHorizontalOffset
+    {
+        get => (double)GetValue(InitialHorizontalOffsetProperty);
+        set => SetValue(InitialHorizontalOffsetProperty, value);
+    }
+
+    public static readonly DependencyProperty FloatingTargetProperty = DependencyProperty.Register(
+        nameof(FloatingTarget), typeof(FrameworkElement), typeof(SmartHint), new PropertyMetadata(default(FrameworkElement)));
+
+    public FrameworkElement? FloatingTarget
+    {
+        get => (FrameworkElement?)GetValue(FloatingTargetProperty);
+        set => SetValue(FloatingTargetProperty, value);
+    }
+
+    public static readonly DependencyProperty FloatingAlignmentProperty = DependencyProperty.Register(
+        nameof(FloatingAlignment), typeof(VerticalAlignment), typeof(SmartHint), new PropertyMetadata(System.Windows.VerticalAlignment.Bottom));
+
+    public VerticalAlignment FloatingAlignment
+    {
+        get => (VerticalAlignment) GetValue(FloatingAlignmentProperty);
+        set => SetValue(FloatingAlignmentProperty, value);
+    }
+
+    public static readonly DependencyProperty FloatingMarginProperty = DependencyProperty.Register(
+        nameof(FloatingMargin), typeof(Thickness), typeof(SmartHint), new PropertyMetadata(default(Thickness)));
+
+    public Thickness FloatingMargin
+    {
+        get => (Thickness) GetValue(FloatingMarginProperty);
+        set => SetValue(FloatingMarginProperty, value);
     }
 
     static SmartHint()

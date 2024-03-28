@@ -4,6 +4,7 @@ using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf.Converters;
 
+// TODO: This converter can be deleted when the new SmartHint approach from TextBox style is applied throughout.
 internal class FloatingHintOffsetCalculationConverter : IMultiValueConverter
 {
     public object Convert(object?[] values, Type targetType, object? parameter, CultureInfo culture)

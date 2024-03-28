@@ -430,7 +430,12 @@ public class MainWindowViewModel : ViewModelBase
             {
                 DocumentationLink.DemoPageLink<SmartHint>(),
                 DocumentationLink.StyleLink("SmartHint"),
-            });
+            })
+        {
+            //The smart hint view handles its own scrolling
+            HorizontalScrollBarVisibilityRequirement = ScrollBarVisibility.Disabled,
+            VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Disabled
+        };
 
         yield return new DemoItem(
             "PopupBox",
