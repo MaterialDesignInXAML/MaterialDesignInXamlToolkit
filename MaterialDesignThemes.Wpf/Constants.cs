@@ -3,6 +3,7 @@ namespace MaterialDesignThemes.Wpf;
 public static class Constants
 {
     public static readonly Thickness TextBoxDefaultPadding = new(0, 4, 0, 4);
+    public static readonly Thickness FloatingTextBoxDefaultPadding = new(0, 12, 0, 4);
     public static readonly Thickness FilledTextBoxDefaultPadding = new(16, 8, 12, 8);
     public static readonly Thickness OutlinedTextBoxDefaultPadding = new(16, 16, 12, 16);
     public static readonly Thickness DefaultTextBoxViewMargin = new(1, 0, 1, 0);
@@ -22,7 +23,6 @@ public static class Constants
     /// </summary>
     internal static class TemporaryConstants
     {
-        public static readonly Thickness TextBoxDefaultPaddingNew = new(0, 8, 0, 4);
-        public static readonly Thickness FilledTextBoxDefaultPaddingNew = new(16, 12, 12, 8);
+        public static readonly Thickness FilledTextBoxDefaultPaddingNew = new(16, 16, 12, 8);
     }
 }

@@ -528,13 +528,14 @@
   <Style x:Key="MaterialDesignTextBox"
          TargetType="{x:Type TextBox}"
          BasedOn="{StaticResource MaterialDesignTextBoxBase}">
-    <Setter Property="Padding" Value="{x:Static wpf:Constants+TemporaryConstants.TextBoxDefaultPaddingNew}" />
+    <Setter Property="Padding" Value="{x:Static wpf:Constants.TextBoxDefaultPadding}" />
   </Style>
 
   <Style x:Key="MaterialDesignFloatingHintTextBox"
          TargetType="{x:Type TextBox}"
          BasedOn="{StaticResource MaterialDesignTextBox}">
     <Setter Property="wpf:HintAssist.IsFloating" Value="True" />
+    <Setter Property="Padding" Value="{x:Static wpf:Constants.FloatingTextBoxDefaultPadding}" />
   </Style>
 
   <Style x:Key="MaterialDesignFilledTextBox"
