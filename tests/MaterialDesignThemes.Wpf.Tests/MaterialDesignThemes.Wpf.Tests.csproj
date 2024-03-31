@@ -2,8 +2,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net472;net6.0-windows;net7.0-windows</TargetFrameworks>
-    <AssemblyTitle>MaterialDesignColors.Wpf.Tests</AssemblyTitle>
-    <Product>MaterialDesignColors.Wpf.Tests</Product>
+    <AssemblyTitle>MaterialDesignThemes.Wpf.Tests</AssemblyTitle>
+    <Product>MaterialDesignThemes.Wpf.Tests</Product>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)'=='net472'">
     <Reference Include="PresentationCore" />
@@ -18,7 +18,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" />
+    <ProjectReference Include="..\..\src\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" />
+    <ProjectReference Include="..\..\src\MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GitHubActionsTestLogger">
@@ -27,7 +28,11 @@
     </PackageReference>
     <PackageReference Include="xunit" />
     <PackageReference Include="xunit.runner.visualstudio" />
-    <PackageReference Include="Shouldly" />
+    <PackageReference Include="Xunit.StaFact" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
   </ItemGroup>
 </Project>

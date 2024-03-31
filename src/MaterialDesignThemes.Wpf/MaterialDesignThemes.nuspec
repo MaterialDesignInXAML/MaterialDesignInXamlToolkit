@@ -10,7 +10,8 @@
     <projectUrl>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit</projectUrl>
     <iconUrl>http://materialdesigninxaml.net/images/MD4XAML32.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>ResourceDictionary instances containing Material Design templates and styles for WPF controls in .NET.</description>
+    <description>ResourceDictionary instances containing Material Design templates and styles for
+      WPF controls in .NET.</description>
     <readme>docs\README.md</readme>
     <releaseNotes>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/releases</releaseNotes>
     <copyright>$copyright$</copyright>
@@ -31,12 +32,17 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="README.md" target="docs\" />
-    <file src="MaterialDesignThemes.Wpf\bin\$configuration$\net462\MaterialDesignThemes.Wpf.*" target="lib\net462" exclude="**\*.json" />
-    <file src="MaterialDesignThemes.Wpf\bin\$configuration$\net6.0-windows\MaterialDesignThemes.Wpf.*" target="lib\net6.0" exclude="**\*.json" />
-    <file src="MaterialDesignThemes.Wpf\bin\$configuration$\net7.0-windows\MaterialDesignThemes.Wpf.*" target="lib\net7.0" exclude="**\*.json" />
-    <file src="MaterialDesignThemes.Wpf\Resources\Roboto\*.ttf" target="build\Resources\Roboto" />
-    <file src="MaterialDesignThemes.Wpf\MaterialDesignThemes.targets" target="build" />
-    <file src="MaterialDesignThemes.Wpf\VisualStudioToolsManifest.xml" target="tools" />
+    <file src="..\..\README.md" target="docs\" />
+    <file src="bin\$configuration$\net462\MaterialDesignThemes.Wpf.*"
+      target="lib\net462" exclude="**\*.json" />
+    <file
+      src="bin\$configuration$\net6.0-windows\MaterialDesignThemes.Wpf.*"
+      target="lib\net6.0" exclude="**\*.json" />
+    <file
+      src="bin\$configuration$\net7.0-windows\MaterialDesignThemes.Wpf.*"
+      target="lib\net7.0" exclude="**\*.json" />
+    <file src="Resources\Roboto\*.ttf" target="build\Resources\Roboto" />
+    <file src="MaterialDesignThemes.targets" target="build" />
+    <file src="VisualStudioToolsManifest.xml" target="tools" />
   </files>
 </package>

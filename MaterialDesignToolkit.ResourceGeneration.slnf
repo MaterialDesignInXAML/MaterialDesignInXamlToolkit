@@ -2,7 +2,7 @@
   "solution": {
     "path": "MaterialDesignToolkit.Full.sln",
     "projects": [
-      "mdresgen\\mdresgen.csproj"
+      "src\\mdresgen\\mdresgen.csproj"
     ]
   }
 }

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialDesignThemes.Uwp", "MaterialDesignThemes.Uwp\MaterialDesignThemes.Uwp.csproj", "{E4686A3F-CC25-4EEF-9A24-7CD4A22DA233}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialDesignThemes.Uwp", "src\MaterialDesignThemes.Uwp\MaterialDesignThemes.Uwp.csproj", "{E4686A3F-CC25-4EEF-9A24-7CD4A22DA233}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainDemo.Uwp", "MainDemo.Uwp\MainDemo.Uwp.csproj", "{666A0F51-6B18-4C48-9772-5ED3FDB03A2E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainDemo.Uwp", "src\MainDemo.Uwp\MainDemo.Uwp.csproj", "{666A0F51-6B18-4C48-9772-5ED3FDB03A2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
