@@ -1,13 +1,12 @@
 ﻿using MaterialDesign3Demo.Domain;
 
-namespace MaterialDesign3Demo
+namespace MaterialDesign3Demo;
+
+public partial class PaletteSelector
 {
-    public partial class PaletteSelector
+    public PaletteSelector()
     {
-        public PaletteSelector()
-        {
-            DataContext = new PaletteSelectorViewModel();
-            InitializeComponent();
-        }
+        DataContext = new PaletteSelectorViewModel();
+        InitializeComponent();
     }
 }

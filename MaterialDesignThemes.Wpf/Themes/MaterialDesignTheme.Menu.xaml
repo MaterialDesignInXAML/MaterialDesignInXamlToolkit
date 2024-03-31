@@ -10,6 +10,7 @@
                                                IsEmptyValue="Collapsed"
                                                IsNotEmptyValue="Visible" />
   <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
+  <converters:BrushOpacityConverter x:Key="BrushOpacityConverter" />
 
   <ContextMenu x:Key="MaterialDesignDefaultContextMenu" FontFamily="{Binding PlacementTarget.FontFamily, RelativeSource={RelativeSource Self}}">
     <MenuItem Command="Cut">
@@ -36,8 +37,8 @@
   </ContextMenu>
 
   <Style x:Key="MaterialDesignSeparator" TargetType="{x:Type Separator}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignSelection}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Separator.Background}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Separator.Background}" />
     <Setter Property="Height" Value="16" />
     <Setter Property="MinHeight" Value="1" />
     <Setter Property="SnapsToDevicePixels" Value="true" />
@@ -59,6 +60,7 @@
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="OverridesDefaultStyle" Value="True" />
     <Setter Property="Padding" Value="24,0,24,0" />
+    <Setter Property="wpf:MenuItemAssist.HighlightedBackground" Value="{Binding Foreground, RelativeSource={RelativeSource Self}, Converter={StaticResource BrushOpacityConverter}, ConverterParameter=0.13}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type MenuItem}">
@@ -75,11 +77,11 @@
                     BorderThickness="{TemplateBinding BorderThickness}"
                     SnapsToDevicePixels="True" />
             <Border x:Name="BackgroundRoot"
-                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                    Background="{Binding Path=(wpf:MenuItemAssist.HighlightedBackground), RelativeSource={RelativeSource TemplatedParent}}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
-                    Opacity="0"
-                    SnapsToDevicePixels="True" />
+                    SnapsToDevicePixels="True"
+                    Visibility="Hidden" />
             <wpf:Ripple HorizontalContentAlignment="Stretch"
                         VerticalContentAlignment="Stretch"
                         Background="Transparent"
@@ -180,7 +182,7 @@
                    Placement="Bottom"
                    PopupAnimation="Slide">
               <Border x:Name="SubMenuBorder"
-                      Background="{DynamicResource MaterialDesignPaper}"
+                      Background="{DynamicResource MaterialDesign.Brush.Background}"
                       CornerRadius="2"
                       Effect="{DynamicResource MaterialDesignShadowDepth1}">
                 <Border Background="{TemplateBinding Background}" CornerRadius="2">
@@ -265,7 +267,7 @@
               <Setter TargetName="IconWrapper" Property="Visibility" Value="Collapsed" />
             </Trigger>
             <Trigger Property="IsHighlighted" Value="True">
-              <Setter TargetName="BackgroundRoot" Property="Opacity" Value="0.13" />
+              <Setter TargetName="BackgroundRoot" Property="Visibility" Value="Visible" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
               <Setter Property="Opacity" Value=".56" />
@@ -287,7 +289,7 @@
 
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="FontFamily" Value="{StaticResource MaterialDesignFont}" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type MenuBase}">
@@ -310,7 +312,7 @@
   <Style x:Key="MaterialDesignContextMenu"
          TargetType="{x:Type ContextMenu}"
          BasedOn="{StaticResource MaterialDesignMenu}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type MenuBase}">

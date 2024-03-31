@@ -1,6 +1,7 @@
 <UserControl x:Class="MaterialDesignDemo.Fields"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:MaterialDesignDemo.Converters"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
              xmlns:domain1="clr-namespace:MaterialDesignDemo.Domain"
@@ -16,6 +17,12 @@
   <UserControl.Resources>
     <sys:Double x:Key="FieldWidth">200</sys:Double>
     <Thickness x:Key="IconMargin">0,0,8,0</Thickness>
+    <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
+
+    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
+      <Setter Property="Margin" Value="0,8" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
 
     <Style x:Key="FieldIcon" TargetType="materialDesign:PackIcon">
       <Setter Property="DockPanel.Dock" Value="Left" />
@@ -474,7 +481,8 @@
       <smtx:XamlDisplay VerticalAlignment="Top" UniqueKey="reveal_password_outlined">
         <StackPanel>
           <CheckBox x:Name="RevealPasswordOutlinedEnabled" Content="Enabled" />
-          <PasswordBox materialDesign:HintAssist.HelperText="Not bound password"
+          <PasswordBox VerticalContentAlignment="Bottom"
+                       materialDesign:HintAssist.HelperText="Not bound password"
                        materialDesign:HintAssist.Hint="Password"
                        materialDesign:TextFieldAssist.HasClearButton="True"
                        IsEnabled="{Binding ElementName=RevealPasswordOutlinedEnabled, Path=IsChecked}"
@@ -497,21 +505,21 @@
                          materialDesign:HintAssist.Hint="Name"
                          Text="{Binding Name}" />
 
-                <TextBox Margin="8,0,0,0"
-                         Width="100"
+                <TextBox Width="100"
+                         Margin="8,0,0,0"
                          VerticalAlignment="Bottom"
                          materialDesign:HintAssist.Hint="Content"
                          Text="{Binding Content}" />
 
-                <TextBox Margin="8,0,0,0"
-                         Width="100"
+                <TextBox Width="100"
+                         Margin="8,0,0,0"
                          VerticalAlignment="Bottom"
                          materialDesign:HintAssist.Hint="Name"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          Text="{Binding Name}" />
-                <TextBox Margin="8,0,0,0"
+                <TextBox Width="100"
+                         Margin="8,0,0,0"
                          VerticalAlignment="Bottom"
-                         Width="100"                         
                          materialDesign:HintAssist.Hint="Content"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          Text="{Binding Content}" />
@@ -534,27 +542,27 @@
               <domain1:SimpleDataTemplateSelector.FixedTemplate>
                 <DataTemplate DataType="domain:FieldsTestObject">
                   <StackPanel Orientation="Horizontal">
-                    <TextBox Margin="0,0,0,0"
-                             Width="100"                             
+                    <TextBox Width="100"
+                             Margin="0,0,0,0"
                              VerticalAlignment="Bottom"
                              materialDesign:HintAssist.Hint="Name"
                              Text="{Binding Name}" />
 
-                    <TextBox Margin="8,0,0,0"
-                             Width="100"                             
+                    <TextBox Width="100"
+                             Margin="8,0,0,0"
                              VerticalAlignment="Bottom"
                              materialDesign:HintAssist.Hint="Content"
                              Text="{Binding Content}" />
 
-                    <TextBox Margin="8,0,0,0"
+                    <TextBox Width="100"
+                             Margin="8,0,0,0"
                              VerticalAlignment="Bottom"
-                             Width="100"                             
                              materialDesign:HintAssist.Hint="Name"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              Text="{Binding Name}" />
 
-                    <TextBox Margin="8,0,0,0"
-                             Width="100"                             
+                    <TextBox Width="100"
+                             Margin="8,0,0,0"
                              VerticalAlignment="Bottom"
                              materialDesign:HintAssist.Hint="Content"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -619,6 +627,148 @@
           </TextBox.Text>
         </TextBox>
       </smtx:XamlDisplay>
+    </WrapPanel>
+    <StackPanel Margin="32,0,0,0" Orientation="Horizontal">
+      <smtx:XamlDisplay Width="120" UniqueKey="fields_validation_4">
+        <TextBox Width="20"
+                 HorizontalAlignment="Left"
+                 materialDesign:ValidationAssist.UsePopup="True"
+                 ToolTip="Use a popup which can escape the bounds of the control where space is limited">
+          <TextBox.Text>
+            <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
+              <Binding.ValidationRules>
+                <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+              </Binding.ValidationRules>
+            </Binding>
+          </TextBox.Text>
+        </TextBox>
+      </smtx:XamlDisplay>
+      <smtx:XamlDisplay Width="120" UniqueKey="fields_validation_5">
+        <TextBox Width="20"
+                 HorizontalAlignment="Right"
+                 materialDesign:ValidationAssist.PopupPlacement="Left"
+                 materialDesign:ValidationAssist.UsePopup="True"
+                 ToolTip="Use a popup which can escape the bounds of the control where space is limited it can be placed in alternative positions">
+          <TextBox.Text>
+            <Binding Path="Name2" UpdateSourceTrigger="PropertyChanged">
+              <Binding.ValidationRules>
+                <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+              </Binding.ValidationRules>
+            </Binding>
+          </TextBox.Text>
+        </TextBox>
+      </smtx:XamlDisplay>
+      <smtx:XamlDisplay Width="120" UniqueKey="fields_validation_6">
+        <TextBox materialDesign:ValidationAssist.HorizontalAlignment="Right">
+          <TextBox.Text>
+            <Binding Path="Name2" UpdateSourceTrigger="PropertyChanged">
+              <Binding.ValidationRules>
+                <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+              </Binding.ValidationRules>
+            </Binding>
+          </TextBox.Text>
+        </TextBox>
+      </smtx:XamlDisplay>
+    </StackPanel>
+
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="AutoSuggestBox" />
+
+    <WrapPanel>
+      <StackPanel  Width="256" Margin="0,0,16,16">
+        <TextBlock Margin="0,0,0,8"
+             VerticalAlignment="Center"
+             Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+             Text="Simple source list" />
+
+        <smtx:XamlDisplay UniqueKey="fields_autosuggestion_1">
+          <materialDesign:AutoSuggestBox VerticalAlignment="Bottom"
+                                   Suggestions="{Binding AutoSuggestBox1Suggestions}"
+                                   Text="{Binding AutoSuggestBox1Text, UpdateSourceTrigger=PropertyChanged}" />
+        </smtx:XamlDisplay>
+      </StackPanel>
+
+      <StackPanel  Width="256" Margin="0,0,16,16">
+        <TextBlock Margin="0,0,0,8"
+             Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+             Text="AutoSuggestBox with ItemTemplate" />
+        <smtx:XamlDisplay UniqueKey="fields_autosuggestion_2">
+          <materialDesign:AutoSuggestBox materialDesign:HintAssist.HelperText="Select color"
+                                   materialDesign:HintAssist.Hint="Color"
+                                   materialDesign:TextFieldAssist.HasClearButton="True"
+                                   DropDownElevation="Dp0"
+                                   Suggestions="{Binding AutoSuggestBox2Suggestions}"
+                                   Text="{Binding AutoSuggestBox2Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                   ValueMember="Key">
+            <materialDesign:AutoSuggestBox.ItemTemplate>
+              <DataTemplate>
+                <DockPanel>
+                  <Border Width="20"
+                    Height="20"
+                    Background="{Binding Value, Converter={StaticResource ColorToBrushConverter}}"
+                    CornerRadius="10" />
+                  <TextBlock Margin="10,0,0,0" Text="{Binding Key}" />
+                </DockPanel>
+              </DataTemplate>
+            </materialDesign:AutoSuggestBox.ItemTemplate>
+          </materialDesign:AutoSuggestBox>
+        </smtx:XamlDisplay>
+
+      </StackPanel>
+
+      <StackPanel Width="256" Margin="0,0,16,16">
+        <TextBlock Margin="0,0,0,8"
+             Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+             Text="Filled AutoSuggestBox" />
+        <smtx:XamlDisplay UniqueKey="fields_autosuggestion_3">
+          <materialDesign:AutoSuggestBox materialDesign:HintAssist.Hint="Color"
+                                   materialDesign:TextFieldAssist.HasClearButton="True"
+                                   DropDownElevation="Dp0"
+                                   Style="{StaticResource MaterialDesignFilledAutoSuggestBox}"
+                                   Suggestions="{Binding AutoSuggestBox2Suggestions}"
+                                   Text="{Binding AutoSuggestBox2Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                   ValueMember="Key">
+            <materialDesign:AutoSuggestBox.ItemTemplate>
+              <DataTemplate>
+                <DockPanel>
+                  <Border Width="20"
+                    Height="20"
+                    Background="{Binding Value, Converter={StaticResource ColorToBrushConverter}}"
+                    CornerRadius="10" />
+                  <TextBlock Margin="10,0,0,0" Text="{Binding Key}" />
+                </DockPanel>
+              </DataTemplate>
+            </materialDesign:AutoSuggestBox.ItemTemplate>
+          </materialDesign:AutoSuggestBox>
+        </smtx:XamlDisplay>
+      </StackPanel>
+
+      <StackPanel  Width="256" Margin="0,0,16,16">
+        <TextBlock Margin="0,0,0,8"
+             Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+             Text="Outlined AutoSuggestBox" />
+        <smtx:XamlDisplay UniqueKey="fields_autosuggestion_4">
+          <materialDesign:AutoSuggestBox materialDesign:HintAssist.Hint="Color"
+                                   materialDesign:TextFieldAssist.HasClearButton="True"
+                                   DropDownElevation="Dp0"
+                                   Style="{StaticResource MaterialDesignOutlinedAutoSuggestBox}"
+                                   Suggestions="{Binding AutoSuggestBox2Suggestions}"
+                                   Text="{Binding AutoSuggestBox2Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                   ValueMember="Key">
+            <materialDesign:AutoSuggestBox.ItemTemplate>
+              <DataTemplate>
+                <DockPanel>
+                  <Border Width="20"
+                    Height="20"
+                    Background="{Binding Value, Converter={StaticResource ColorToBrushConverter}}"
+                    CornerRadius="10" />
+                  <TextBlock Margin="10,0,0,0" Text="{Binding Key}" />
+                </DockPanel>
+              </DataTemplate>
+            </materialDesign:AutoSuggestBox.ItemTemplate>
+          </materialDesign:AutoSuggestBox>
+        </smtx:XamlDisplay>
+      </StackPanel>
     </WrapPanel>
   </StackPanel>
 </UserControl>

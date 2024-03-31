@@ -1,11 +1,10 @@
-﻿namespace MaterialDesignThemes.Wpf.Converters
+﻿namespace MaterialDesignThemes.Wpf.Converters;
+
+public enum MathOperation
 {
-    public enum MathOperation
-    {
-        Add,
-        Subtract,
-        Multiply,
-        Divide,
-        Pow
-    }
+    Add,
+    Subtract,
+    Multiply,
+    Divide,
+    Pow
 }

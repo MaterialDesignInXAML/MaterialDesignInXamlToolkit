@@ -239,10 +239,10 @@
   </ControlTemplate>
 
   <Style TargetType="{x:Type mah:Flyout}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="HeaderTemplate" Value="{StaticResource HeaderTemplate}" />
     <Setter Property="HorizontalAlignment" Value="Stretch" />
     <Setter Property="KeyboardNavigation.ControlTabNavigation" Value="Cycle" />

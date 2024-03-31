@@ -141,17 +141,17 @@
         </Style>
       </WrapPanel.Resources>
       <smtx:XamlDisplay Margin="0,0,16,32" UniqueKey="shadow_26">
-        <materialDesign:Card materialDesign:ShadowAssist.ShadowEdges="Bottom,Right">
+        <materialDesign:Card>
           <TextBlock Text="Custom shadow clip&#10;Bottom, Right" />
         </materialDesign:Card>
       </smtx:XamlDisplay>
       <smtx:XamlDisplay Margin="0,0,16,32" UniqueKey="shadow_27">
-        <materialDesign:Card materialDesign:ShadowAssist.ShadowEdges="Top">
+        <materialDesign:Card>
           <TextBlock Text="Custom shadow clip&#10;Top" />
         </materialDesign:Card>
       </smtx:XamlDisplay>
       <smtx:XamlDisplay Margin="0,0,16,32" UniqueKey="shadow_28">
-        <materialDesign:Card materialDesign:ShadowAssist.ShadowEdges="Bottom,Left">
+        <materialDesign:Card>
           <TextBlock Text="Custom shadow clip&#10;Bottom, Left" />
         </materialDesign:Card>
       </smtx:XamlDisplay>

@@ -1,13 +1,12 @@
-﻿namespace MaterialDesignDemo.Domain
+﻿namespace MaterialDesignDemo.Domain;
+
+/// <summary>
+/// Interaction logic for SampleProgressDialog.xaml
+/// </summary>
+public partial class SampleProgressDialog : UserControl
 {
-    /// <summary>
-    /// Interaction logic for SampleProgressDialog.xaml
-    /// </summary>
-    public partial class SampleProgressDialog : UserControl
+    public SampleProgressDialog()
     {
-        public SampleProgressDialog()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

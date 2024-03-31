@@ -1,8 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:local="clr-namespace:MaterialDesignThemes.Wpf"
+                    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:transitions="clr-namespace:MaterialDesignThemes.Wpf.Transitions"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
@@ -22,6 +22,7 @@
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Chip.xaml" />
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Clock.xaml" />
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.FlipperClassic.xaml" />
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ColorPicker.xaml" />
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RatingBar.xaml" />
@@ -29,6 +30,8 @@
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.SmartHint.xaml" />
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Snackbar.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.AutoSuggestBox.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.SplitButton.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
   <!-- set up default styles for our custom Material Design in XAML Toolkit controls -->
@@ -37,6 +40,8 @@
   <Style TargetType="{x:Type local:Card}" BasedOn="{StaticResource MaterialDesignElevatedCard}" />
   <Style TargetType="{x:Type local:PopupBox}" BasedOn="{StaticResource MaterialDesignPopupBox}" />
   <Style TargetType="{x:Type local:TimePicker}" BasedOn="{StaticResource MaterialDesignTimePicker}" />
+  <Style TargetType="{x:Type local:AutoSuggestBox}" BasedOn="{StaticResource MaterialDesignAutoSuggestBox}" />
+  <Style TargetType="{x:Type local:SplitButton}" BasedOn="{StaticResource MaterialDesignRaisedSplitButton}" />
 
   <converters:BrushToRadialGradientBrushConverter x:Key="BrushToRadialGradientBrushConverter" />
   <converters:DrawerOffsetConverter x:Key="DrawerOffsetConverter" />
@@ -288,7 +293,7 @@
       </Setter.Value>
     </Setter>
     <Setter Property="VerticalAlignment" Value="Bottom" />
-    <Setter Property="local:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="local:TextFieldAssist.UnderlineBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
   </Style>
 
   <Style TargetType="{x:Type local:MaterialDateDisplay}">
@@ -509,11 +514,11 @@
 
   <Style TargetType="{x:Type local:ColorZone}">
     <Style.Resources>
-      <converters:ShadowEdgeConverter x:Key="ShadowEdgeConverter" />
+      <converters:ShadowOpacityMaskConverter x:Key="ShadowOpacityMaskConverter" />
     </Style.Resources>
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="ClipToBounds" Value="False" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     <Setter Property="IsTabStop" Value="False" />
     <Setter Property="Template">
@@ -521,11 +526,10 @@
         <ControlTemplate TargetType="{x:Type local:ColorZone}">
           <Grid Background="Transparent">
             <Grid.OpacityMask>
-              <MultiBinding Converter="{StaticResource ShadowEdgeConverter}">
+              <MultiBinding Converter="{StaticResource ShadowOpacityMaskConverter}">
                 <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}" />
                 <Binding Path="ActualHeight" RelativeSource="{RelativeSource TemplatedParent}" />
                 <Binding Path="(local:ElevationAssist.Elevation)" RelativeSource="{RelativeSource TemplatedParent}" />
-                <Binding Path="(local:ShadowAssist.ShadowEdges)" RelativeSource="{RelativeSource TemplatedParent}" />
               </MultiBinding>
             </Grid.OpacityMask>
             <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(local:ShadowAssist.CacheMode)}">
@@ -555,40 +559,40 @@
     <Setter Property="VerticalContentAlignment" Value="Stretch" />
     <Style.Triggers>
       <Trigger Property="Mode" Value="Inverted">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignBody}" />
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignPaper}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Background}" />
       </Trigger>
       <Trigger Property="Mode" Value="PrimaryLight">
-        <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightForegroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Light.Foreground}" />
       </Trigger>
       <Trigger Property="Mode" Value="PrimaryMid">
-        <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
       </Trigger>
       <Trigger Property="Mode" Value="PrimaryDark">
-        <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}" />
       </Trigger>
       <Trigger Property="Mode" Value="SecondaryLight">
-        <Setter Property="Background" Value="{DynamicResource SecondaryHueLightBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueLightForegroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light.Foreground}" />
       </Trigger>
       <Trigger Property="Mode" Value="SecondaryMid">
-        <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
       </Trigger>
       <Trigger Property="Mode" Value="SecondaryDark">
-        <Setter Property="Background" Value="{DynamicResource SecondaryHueDarkBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource SecondaryHueDarkForegroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark.Foreground}" />
       </Trigger>
       <Trigger Property="Mode" Value="Light">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignLightBackground}" />
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignLightForeground}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ColorZone.LightBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.ColorZone.LightForeground}" />
       </Trigger>
       <Trigger Property="Mode" Value="Dark">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignDarkBackground}" />
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignDarkForeground}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ColorZone.DarkBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.ColorZone.DarkForeground}" />
       </Trigger>
       <Trigger Property="Mode" Value="Custom">
         <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=(local:ColorZoneAssist.Background)}" />
@@ -600,12 +604,12 @@
   <SolidColorBrush x:Key="BlackBackground" Color="Black" po:Freeze="True" />
 
   <Style TargetType="{x:Type local:DrawerHost}">
-    <Setter Property="BottomDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="BottomDrawerBackground" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="ClipToBounds" Value="True" />
     <Setter Property="IsTabStop" Value="False" />
-    <Setter Property="LeftDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="LeftDrawerBackground" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="OverlayBackground" Value="{StaticResource BlackBackground}" />
-    <Setter Property="RightDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="RightDrawerBackground" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type local:DrawerHost}">
@@ -1009,6 +1013,7 @@
                 <ContentPresenter Content="{TemplateBinding LeftDrawerContent}"
                                   ContentStringFormat="{TemplateBinding LeftDrawerContentStringFormat}"
                                   ContentTemplate="{TemplateBinding LeftDrawerContentTemplate}"
+                                  ContentTemplateSelector="{TemplateBinding LeftDrawerContentTemplateSelector}"
                                   IsEnabled="{TemplateBinding IsLeftDrawerOpen}" />
               </Grid>
               <Grid x:Name="PART_RightDrawer"
@@ -1050,6 +1055,7 @@
                 <ContentPresenter Content="{TemplateBinding RightDrawerContent}"
                                   ContentStringFormat="{TemplateBinding RightDrawerContentStringFormat}"
                                   ContentTemplate="{TemplateBinding RightDrawerContentTemplate}"
+                                  ContentTemplateSelector="{TemplateBinding RightDrawerContentTemplateSelector}"
                                   IsEnabled="{TemplateBinding IsRightDrawerOpen}" />
               </Grid>
               <Grid x:Name="PART_TopDrawer"
@@ -1091,6 +1097,7 @@
                 <ContentPresenter Content="{TemplateBinding TopDrawerContent}"
                                   ContentStringFormat="{TemplateBinding TopDrawerContentStringFormat}"
                                   ContentTemplate="{TemplateBinding TopDrawerContentTemplate}"
+                                  ContentTemplateSelector="{TemplateBinding TopDrawerContentTemplateSelector}"
                                   IsEnabled="{TemplateBinding IsTopDrawerOpen}" />
               </Grid>
               <Grid x:Name="PART_BottomDrawer"
@@ -1132,6 +1139,7 @@
                 <ContentPresenter Content="{TemplateBinding BottomDrawerContent}"
                                   ContentStringFormat="{TemplateBinding BottomDrawerContentStringFormat}"
                                   ContentTemplate="{TemplateBinding BottomDrawerContentTemplate}"
+                                  ContentTemplateSelector="{TemplateBinding BottomDrawerContentTemplateSelector}"
                                   IsEnabled="{TemplateBinding IsBottomDrawerOpen}" />
               </Grid>
             </Grid>
@@ -1139,7 +1147,7 @@
         </ControlTemplate>
       </Setter.Value>
     </Setter>
-    <Setter Property="TopDrawerBackground" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="TopDrawerBackground" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="local:ElevationAssist.Elevation" Value="Dp8" />
   </Style>
 

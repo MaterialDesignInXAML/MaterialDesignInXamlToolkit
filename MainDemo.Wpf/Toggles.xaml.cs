@@ -1,8 +1,7 @@
-﻿namespace MaterialDesignDemo
-{
-    public partial class Toggles
-    {
-        public Toggles() => InitializeComponent();
+﻿namespace MaterialDesignDemo;
 
-    }
+public partial class Toggles
+{
+    public Toggles() => InitializeComponent();
+
 }

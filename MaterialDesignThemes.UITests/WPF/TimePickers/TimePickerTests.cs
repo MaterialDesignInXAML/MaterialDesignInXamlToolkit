@@ -1,5 +1,6 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Globalization;
+using System.Windows.Media;
 using MaterialDesignThemes.UITests.WPF.TextBoxes;
 
 namespace MaterialDesignThemes.UITests.WPF.TimePickers;
@@ -506,6 +507,104 @@ public class TimePickerTests : TestBase
 
         // Assert
         Assert.Null(await timePicker.GetSelectedTime());
+
+        recorder.Success();
+    }
+
+    [Fact]
+    [Description("Issue 3369")]
+    public async Task TimePicker_WithClearButton_ClearButtonClearsUncommittedText()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // Arrange
+        var stackPanel = await LoadXaml<StackPanel>($"""
+        <StackPanel>
+          <materialDesign:TimePicker
+             materialDesign:TextFieldAssist.HasClearButton="True" />
+        </StackPanel>
+        """);
+        var timePicker = await stackPanel.GetElement<TimePicker>("/TimePicker");
+        var timePickerTextBox = await timePicker.GetElement<TimePickerTextBox>("/TimePickerTextBox");
+        var clearButton = await timePicker.GetElement<Button>("PART_ClearButton");
+
+        await timePickerTextBox.SendKeyboardInput($"invalid time");
+        Assert.Equal("invalid time", await timePickerTextBox.GetText());
+
+        // Act
+        await clearButton.LeftClick();
+        await Task.Delay(50);
+
+        // Assert
+        Assert.Null(await timePickerTextBox.GetText());
+
+        recorder.Success();
+    }
+
+    [Fact]
+    [Description("Issue 3365")]
+    public async Task TimePicker_WithoutOutlinedStyleAndNoCustomHintBackgroundSet_ShouldApplyDefaultBackgroundWhenFloated()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // Arrange
+        var stackPanel = await LoadXaml<StackPanel>("""
+            <StackPanel>
+            <materialDesign:TimePicker
+              Style="{StaticResource MaterialDesignOutlinedTimePicker}"
+              materialDesign:HintAssist.Hint="Hint text" />
+            </StackPanel>
+            """);
+        var timePicker = await stackPanel.GetElement<TimePicker>("/TimePicker");
+        var timePickerTextBox = await timePicker.GetElement<TimePickerTextBox>("/TimePickerTextBox");
+        var hintBackgroundBorder = await timePicker.GetElement<Border>("HintBackgroundBorder");
+
+        var defaultBackground = Colors.Transparent; 
+        var defaultFloatedBackground = await GetThemeColor("MaterialDesign.Brush.Background");
+
+        // Assert (unfocused state)
+        Assert.Equal(defaultBackground, await hintBackgroundBorder.GetBackgroundColor());
+
+        // Act
+        await timePickerTextBox.MoveKeyboardFocus();
+
+        // Assert (focused state)
+        Assert.Equal(defaultFloatedBackground, await hintBackgroundBorder.GetBackgroundColor());
+
+        recorder.Success();
+    }
+
+    [Theory]
+    [Description("Issue 3365")]
+    [InlineData("MaterialDesignTimePicker")]
+    [InlineData("MaterialDesignFloatingHintTimePicker")]
+    [InlineData("MaterialDesignFilledTimePicker")]
+    [InlineData("MaterialDesignOutlinedTimePicker")]
+    public async Task TimePicker_WithCustomHintBackgroundSet_ShouldApplyHintBackground(string style)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // Arrange
+        var stackPanel = await LoadXaml<StackPanel>($$"""
+            <StackPanel>
+              <materialDesign:TimePicker
+                Style="{StaticResource {{style}}}"
+                materialDesign:HintAssist.Hint="Hint text"
+                materialDesign:HintAssist.Background="Red" />
+            </StackPanel>
+            """);
+        var timePicker = await stackPanel.GetElement<TimePicker>("/TimePicker");
+        var timePickerTextBox = await timePicker.GetElement<TimePickerTextBox>("/TimePickerTextBox");
+        var hintBackgroundBorder = await timePicker.GetElement<Border>("HintBackgroundBorder");
+
+        // Assert (unfocused state)
+        Assert.Equal(Colors.Red, await hintBackgroundBorder.GetBackgroundColor());
+
+        // Act
+        await timePickerTextBox.MoveKeyboardFocus();
+
+        // Assert (focused state)
+        Assert.Equal(Colors.Red, await hintBackgroundBorder.GetBackgroundColor());
 
         recorder.Success();
     }

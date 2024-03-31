@@ -5,7 +5,7 @@
              xmlns:mahMaterialDragablzMashUp="clr-namespace:MahMaterialDragablzMashUp"
              xmlns:materialDesignColors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf" xmlns:materialDesignMahApps="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DataContext="{d:DesignInstance mahMaterialDragablzMashUp:PaletteSelectorViewModel,
                                               IsDesignTimeCreatable=False}"
              d:DesignHeight="300"
@@ -13,6 +13,7 @@
              mc:Ignorable="d">
   <UserControl.Resources>
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <materialDesignMahApps:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
     <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
       <Setter Property="CommandParameter" Value="{Binding}" />
       <Setter Property="Foreground">
@@ -66,13 +67,13 @@
           <Border Grid.Row="1"
                   Grid.Column="1"
                   Width="120"
-                  Visibility="{Binding IsAccented, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneTime}">
+                  Visibility="{Binding SecondaryExemplarHue, Converter={StaticResource NullableToVisibilityConverter}, Mode=OneTime}">
             <Border.Background>
-              <SolidColorBrush Color="{Binding AccentExemplarHue.Color, Mode=OneTime}" />
+              <SolidColorBrush Color="{Binding SecondaryExemplarHue.Color, Mode=OneTime}" />
             </Border.Background>
-            <Button Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mahMaterialDragablzMashUp:PaletteSelector}}, Path=DataContext.ApplyAccentCommand, Mode=OneTime}" CommandParameter="{Binding}">
+            <Button Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mahMaterialDragablzMashUp:PaletteSelector}}, Path=DataContext.ApplySecondaryCommand, Mode=OneTime}" CommandParameter="{Binding}">
               <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Accent" />
+                <TextBlock Text="Secondary" />
                 <Viewbox Width="16" Height="16">
                   <Canvas Width="24" Height="24">
                     <Path Style="{StaticResource PalettePath}" />

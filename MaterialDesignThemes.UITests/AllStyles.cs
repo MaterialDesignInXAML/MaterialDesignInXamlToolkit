@@ -83,5 +83,7 @@ public class AllStyles : TestBase
             """);
 
         Assert.True(await window.GetIsVisible());
+
+        recorder.Success();
     }
 }

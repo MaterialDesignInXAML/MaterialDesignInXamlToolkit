@@ -1,32 +1,31 @@
 using MaterialDesignColors;
 
-namespace MaterialDesignThemes.Wpf
+namespace MaterialDesignThemes.Wpf;
+
+/// <summary>
+/// Provides full information about a palette.
+/// </summary>
+public class Palette
 {
-    /// <summary>
-    /// Provides full information about a palette.
-    /// </summary>
-    public class Palette
+    public Palette(Swatch primarySwatch, Swatch secondarySwatch, int primaryLightHueIndex, int primaryMidHueIndex, int primaryDarkHueIndex, int secondaryHueIndex)
     {
-        public Palette(Swatch primarySwatch, Swatch accentSwatch, int primaryLightHueIndex, int primaryMidHueIndex, int primaryDarkHueIndex, int accentHueIndex)
-        {
-            PrimarySwatch = primarySwatch;
-            AccentSwatch = accentSwatch;
-            PrimaryLightHueIndex = primaryLightHueIndex;
-            PrimaryMidHueIndex = primaryMidHueIndex;
-            PrimaryDarkHueIndex = primaryDarkHueIndex;
-            AccentHueIndex = accentHueIndex;
-        }
-
-        public Swatch PrimarySwatch { get; }
-
-        public Swatch AccentSwatch { get; }
-
-        public int PrimaryLightHueIndex { get; }
-
-        public int PrimaryMidHueIndex { get; }
-
-        public int PrimaryDarkHueIndex { get; }
-
-        public int AccentHueIndex { get; }
+        PrimarySwatch = primarySwatch;
+        SecondarySwatch = secondarySwatch;
+        PrimaryLightHueIndex = primaryLightHueIndex;
+        PrimaryMidHueIndex = primaryMidHueIndex;
+        PrimaryDarkHueIndex = primaryDarkHueIndex;
+        SecondaryHueIndex = secondaryHueIndex;
     }
+
+    public Swatch PrimarySwatch { get; }
+
+    public Swatch SecondarySwatch { get; }
+
+    public int PrimaryLightHueIndex { get; }
+
+    public int PrimaryMidHueIndex { get; }
+
+    public int PrimaryDarkHueIndex { get; }
+
+    public int SecondaryHueIndex { get; }
 }

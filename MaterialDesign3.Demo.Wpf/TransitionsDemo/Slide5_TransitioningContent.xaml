@@ -141,7 +141,7 @@
       <Button Margin="16"
               VerticalAlignment="Top"
               Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
-              Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
+              Style="{StaticResource MaterialDesignFloatingActionSecondaryButton}">
         <materialDesign:PackIcon Kind="StepForward" />
       </Button>
     </StackPanel>

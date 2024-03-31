@@ -1,9 +1,8 @@
-namespace MaterialDesignThemes.Wpf.Transitions
+namespace MaterialDesignThemes.Wpf.Transitions;
+
+public enum TransitionerSlideState
 {
-    public enum TransitionerSlideState
-    {
-        None,
-        Current,
-        Previous,
-    }
+    None,
+    Current,
+    Previous,
 }

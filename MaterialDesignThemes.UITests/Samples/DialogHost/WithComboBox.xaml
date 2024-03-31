@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="MaterialDesignThemes.UITests.Samples.DialogHost.WithComboBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MaterialDesignThemes.UITests.Samples.DialogHost"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+  <materialDesign:DialogHost x:Name="SampleDialogHost"
+                             Loaded="DialogHost_Loaded">
+    <materialDesign:DialogHost.DialogContent>
+      <Grid Margin="16">
+        <Grid.RowDefinitions>
+          <RowDefinition />
+          <RowDefinition />
+          <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Please choose the desired targeted platform "
+             Margin="6"
+             FontSize="12" 
+             TextWrapping="Wrap"/>
+        <ComboBox
+          x:Name="TargetedPlatformComboBox"
+          Grid.Row="1"
+          Width="120"
+          materialDesign:HintAssist.HelperText="Targetted Platform"
+          Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+          <ComboBoxItem Content="Item1"/>
+          <ComboBoxItem Content="Item2" x:Name="TargetItem"/>
+          <ComboBoxItem Content="Item3"/>
+        </ComboBox>
+
+      </Grid>
+    </materialDesign:DialogHost.DialogContent>
+  </materialDesign:DialogHost>
+</UserControl>

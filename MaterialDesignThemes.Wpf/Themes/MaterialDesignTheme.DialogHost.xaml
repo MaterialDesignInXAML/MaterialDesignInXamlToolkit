@@ -166,20 +166,20 @@
                           ContentTemplateSelector="{TemplateBinding DialogContentTemplateSelector}"
                           FocusManager.IsFocusScope="False"
                           Focusable="True"
-                          Foreground="{DynamicResource MaterialDesignBody}"
+                          Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
                           IsHitTestVisible="True"
                           IsTabStop="False"
                           Opacity="0"
                           RenderTransformOrigin=".5,.5"
                           Tag="{TemplateBinding DialogBackground}"
-                          TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                          TextElement.Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
                           UniformCornerRadius="{TemplateBinding DialogContentUniformCornerRadius}">
                   <wpf:Card.Style>
                     <Style TargetType="wpf:Card" BasedOn="{StaticResource {x:Type wpf:Card}}">
                       <Setter Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}}" />
                       <Style.Triggers>
                         <Trigger Property="Tag" Value="{x:Null}">
-                          <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+                          <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
                         </Trigger>
                       </Style.Triggers>
                     </Style>
@@ -205,7 +205,7 @@
                   IsHitTestVisible="False"
                   Visibility="{Binding ElementName=ContentCoverBorder, Path=Visibility}">
               <Grid.OpacityMask>
-                <VisualBrush Visual="{Binding ElementName=ContentCoverBorder}" />
+                <VisualBrush Visual="{x:Reference ContentCoverBorder}" />
               </Grid.OpacityMask>
               <Border x:Name="ContentCoverBorder"
                       Background="{Binding OverlayBackground, RelativeSource={RelativeSource TemplatedParent}}"
@@ -380,7 +380,7 @@
                   IsHitTestVisible="False"
                   Visibility="{Binding ElementName=ContentCoverBorder, Path=Visibility}">
               <Grid.OpacityMask>
-                <VisualBrush Visual="{Binding ElementName=ContentCoverBorder}" />
+                <VisualBrush Visual="{x:Reference ContentCoverBorder}" />
               </Grid.OpacityMask>
               <Border x:Name="ContentCoverBorder"
                       Background="{Binding OverlayBackground, RelativeSource={RelativeSource TemplatedParent}}"
@@ -412,12 +412,12 @@
                         ContentTemplateSelector="{TemplateBinding DialogContentTemplateSelector}"
                         FocusManager.IsFocusScope="False"
                         Focusable="True"
-                        Foreground="{DynamicResource MaterialDesignBody}"
+                        Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
                         IsTabStop="False"
                         Opacity="0"
                         RenderTransformOrigin=".5,.5"
                         Tag="{TemplateBinding DialogBackground}"
-                        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                        TextElement.Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
                         UniformCornerRadius="{TemplateBinding DialogContentUniformCornerRadius}">
                 <wpf:Card.RenderTransform>
                   <TransformGroup>
@@ -429,7 +429,7 @@
                     <Setter Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}}" />
                     <Style.Triggers>
                       <Trigger Property="Tag" Value="{x:Null}">
-                        <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+                        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
                       </Trigger>
                     </Style.Triggers>
                   </Style>

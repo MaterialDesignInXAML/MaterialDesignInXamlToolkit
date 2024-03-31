@@ -17,7 +17,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToolTip">
-                    <wpf:Card Foreground="{DynamicResource MaterialDesignBody}"
+                    <wpf:Card Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
                               FontSize="15"
                               FontWeight="Regular"
                               Padding="0 8 0 8"
@@ -81,13 +81,13 @@
   -->
 
   <Style TargetType="{x:Type wpf:Chip}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignChipBackground}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Chip.Background}" />
     <Setter Property="Cursor" Value="Hand" />
     <Setter Property="FontSize" Value="13" />
     <Setter Property="Height" Value="32" />
     <Setter Property="HorizontalAlignment" Value="Left" />
-    <Setter Property="IconBackground" Value="{DynamicResource PrimaryHueMidBrush}" />
-    <Setter Property="IconForeground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+    <Setter Property="IconBackground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+    <Setter Property="IconForeground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
     <Setter Property="Margin" Value="4" />
     <Setter Property="Template">
       <Setter.Value>
@@ -134,7 +134,7 @@
                             Margin="8,0,12,0"
                             VerticalAlignment="Center"
                             Content="{TemplateBinding Content}"
-                            ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                            ContentStringFormat="{TemplateBinding ContentStringFormat}"
                             ContentTemplate="{TemplateBinding ContentTemplate}"
                             ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
                             IsTabStop="False" />
@@ -179,10 +179,10 @@
   </Style>
 
   <Style x:Key="MaterialDesignOutlineChip" TargetType="{x:Type wpf:Chip}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignBodyLight}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Chip.OutlineBorder}" />
     <Setter Property="BorderThickness" Value="1" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type wpf:Chip}">
@@ -259,7 +259,7 @@
                             Margin="8,0,12,0"
                             VerticalAlignment="Center"
                             Content="{TemplateBinding Content}"
-                            ContentStringFormat="{TemplateBinding ContentTemplateSelector}"
+                            ContentStringFormat="{TemplateBinding ContentStringFormat}"
                             ContentTemplate="{TemplateBinding ContentTemplate}"
                             ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
                             IsTabStop="False" />

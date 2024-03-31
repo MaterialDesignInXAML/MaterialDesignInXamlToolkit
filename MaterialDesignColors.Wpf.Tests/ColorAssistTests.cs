@@ -2,21 +2,20 @@
 using MaterialDesignColors.ColorManipulation;
 using Xunit;
 
-namespace MaterialDesignColors.Wpf.Tests
+namespace MaterialDesignColors.Wpf.Tests;
+
+public class ColorAssistTests
 {
-    public class ColorAssistTests
+    [Fact]
+    public void EnsureContrastRatio_AdjustsColor()
     {
-        [Fact]
-        public void EnsureContrastRatio_AdjustsColor()
-        {
-            var background = Color.FromRgb(0xFA, 0xFA, 0xFA);
-            var foreground = Color.FromRgb(0xFF, 0xC1, 0x07);
+        var background = Color.FromRgb(0xFA, 0xFA, 0xFA);
+        var foreground = Color.FromRgb(0xFF, 0xC1, 0x07);
 
-            var adjusted = foreground.EnsureContrastRatio(background, 3.0f);
+        var adjusted = foreground.EnsureContrastRatio(background, 3.0f);
 
-            double contrastRatio = adjusted.ContrastRatio(background);
-            Assert.True(contrastRatio >= 2.9);
-            Assert.True(contrastRatio <= 3.1);
-        }
+        double contrastRatio = adjusted.ContrastRatio(background);
+        Assert.True(contrastRatio >= 2.9);
+        Assert.True(contrastRatio <= 3.1);
     }
 }

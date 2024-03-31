@@ -1,6 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
   <Color x:Key="TealPrimary50">#e0f2f1</Color>
   <Color x:Key="TealPrimary50Foreground">#DD000000</Color>
   <Color x:Key="TealPrimary100">#b2dfdb</Color>
@@ -21,12 +20,12 @@
   <Color x:Key="TealPrimary800Foreground">#DDFFFFFF</Color>
   <Color x:Key="TealPrimary900">#004d40</Color>
   <Color x:Key="TealPrimary900Foreground">#DDFFFFFF</Color>
-  <Color x:Key="TealAccent100">#a7ffeb</Color>
-  <Color x:Key="TealAccent100Foreground">#DD000000</Color>
-  <Color x:Key="TealAccent200">#64ffda</Color>
-  <Color x:Key="TealAccent200Foreground">#DD000000</Color>
-  <Color x:Key="TealAccent400">#1de9b6</Color>
-  <Color x:Key="TealAccent400Foreground">#DD000000</Color>
-  <Color x:Key="TealAccent700">#00bfa5</Color>
-  <Color x:Key="TealAccent700Foreground">#DD000000</Color>
+  <Color x:Key="TealSecondary100">#a7ffeb</Color>
+  <Color x:Key="TealSecondary100Foreground">#DD000000</Color>
+  <Color x:Key="TealSecondary200">#64ffda</Color>
+  <Color x:Key="TealSecondary200Foreground">#DD000000</Color>
+  <Color x:Key="TealSecondary400">#1de9b6</Color>
+  <Color x:Key="TealSecondary400Foreground">#DD000000</Color>
+  <Color x:Key="TealSecondary700">#00bfa5</Color>
+  <Color x:Key="TealSecondary700Foreground">#DD000000</Color>
 </ResourceDictionary>

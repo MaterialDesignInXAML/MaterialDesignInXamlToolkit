@@ -610,6 +610,8 @@ public class TextBoxTests : TestBase
 
             Assert.Equal("Some error + more", await textBlock.GetText());
         });
+
+        recorder.Success();
     }
 }
 

@@ -15,7 +15,7 @@
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
         <!-- note you only need bring in these extra resource dictionaries when using non-default styles, so only bring them into your controls where the default style is not what you want -->
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Slider.xaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </UserControl.Resources>
@@ -136,7 +136,7 @@
           <smtx:XamlDisplay Margin="0,24,0,0" UniqueKey="discrete_slider_h_1">
             <Slider Maximum="{Binding DiscreteHorizontal.Maximum}"
                     Minimum="0"
-                    Style="{StaticResource MaterialDesignDiscreteSlider}"
+                    Style="{StaticResource MaterialDesign3.MaterialDesignDiscreteSlider}"
                     TickFrequency="{Binding DiscreteHorizontal.TickFrequency}"
                     TickPlacement="BottomRight"
                     Value="40" />
@@ -148,7 +148,7 @@
                     Minimum="0"
                     SelectionEnd="90"
                     SelectionStart="70"
-                    Style="{StaticResource MaterialDesignDiscreteSlider}"
+                    Style="{StaticResource MaterialDesign3.MaterialDesignDiscreteSlider}"
                     TickFrequency="{Binding DiscreteHorizontal.TickFrequency}"
                     TickPlacement="TopLeft"
                     Value="20" />
@@ -157,7 +157,7 @@
           <smtx:XamlDisplay Margin="0,24,0,0" UniqueKey="discrete_slider_h_3">
             <Slider Maximum="{Binding DiscreteHorizontal.Maximum}"
                     Minimum="0"
-                    Style="{StaticResource MaterialDesignDiscreteSlider}"
+                    Style="{StaticResource MaterialDesign3.MaterialDesignDiscreteSlider}"
                     TickFrequency="{Binding DiscreteHorizontal.TickFrequency}"
                     TickPlacement="Both"
                     Value="60" />
@@ -167,7 +167,7 @@
             <Slider IsEnabled="False"
                     Maximum="{Binding DiscreteHorizontal.Maximum}"
                     Minimum="0"
-                    Style="{StaticResource MaterialDesignDiscreteSlider}"
+                    Style="{StaticResource MaterialDesign3.MaterialDesignDiscreteSlider}"
                     TickFrequency="{Binding DiscreteHorizontal.TickFrequency}"
                     TickPlacement="BottomRight"
                     Value="50" />
@@ -208,7 +208,7 @@
             <Slider Maximum="{Binding DiscreteVertical.Maximum}"
                     Minimum="0"
                     Orientation="Vertical"
-                    Style="{StaticResource MaterialDesignDiscreteSlider}"
+                    Style="{StaticResource MaterialDesign3.MaterialDesignDiscreteSlider}"
                     TickFrequency="{Binding DiscreteVertical.TickFrequency}"
                     TickPlacement="BottomRight"
                     Value="70000" />
@@ -221,7 +221,7 @@
                     Orientation="Vertical"
                     SelectionEnd="90000"
                     SelectionStart="60000"
-                    Style="{StaticResource MaterialDesignDiscreteSlider}"
+                    Style="{StaticResource MaterialDesign3.MaterialDesignDiscreteSlider}"
                     TickFrequency="{Binding DiscreteVertical.TickFrequency}"
                     TickPlacement="TopLeft"
                     Value="30000" />
@@ -231,7 +231,7 @@
             <Slider Maximum="{Binding DiscreteVertical.Maximum}"
                     Minimum="0"
                     Orientation="Vertical"
-                    Style="{StaticResource MaterialDesignDiscreteSlider}"
+                    Style="{StaticResource MaterialDesign3.MaterialDesignDiscreteSlider}"
                     TickFrequency="{Binding DiscreteVertical.TickFrequency}"
                     TickPlacement="Both"
                     Value="90000" />
@@ -242,7 +242,7 @@
                     Maximum="{Binding DiscreteVertical.Maximum}"
                     Minimum="0"
                     Orientation="Vertical"
-                    Style="{StaticResource MaterialDesignDiscreteSlider}"
+                    Style="{StaticResource MaterialDesign3.MaterialDesignDiscreteSlider}"
                     TickFrequency="{Binding DiscreteVertical.TickFrequency}"
                     TickPlacement="BottomRight"
                     Value="50000" />
@@ -253,7 +253,7 @@
                     Maximum="{Binding DiscreteVertical.Maximum}"
                     Minimum="0"
                     Orientation="Vertical"
-                    Style="{StaticResource MaterialDesignDiscreteSlider}"
+                    Style="{StaticResource MaterialDesign3.MaterialDesignDiscreteSlider}"
                     TickFrequency="{Binding DiscreteVertical.TickFrequency}"
                     TickPlacement="BottomRight"
                     Value="70000" />
@@ -264,7 +264,7 @@
                     Maximum="{Binding DiscreteVertical.Maximum}"
                     Minimum="0"
                     Orientation="Vertical"
-                    Style="{StaticResource MaterialDesignDiscreteSlider}"
+                    Style="{StaticResource MaterialDesign3.MaterialDesignDiscreteSlider}"
                     TickFrequency="{Binding DiscreteVertical.TickFrequency}"
                     TickPlacement="BottomRight"
                     Value="70000" />

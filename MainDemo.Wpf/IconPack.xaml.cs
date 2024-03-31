@@ -1,23 +1,22 @@
-﻿namespace MaterialDesignDemo
+﻿namespace MaterialDesignDemo;
+
+public partial class IconPack
 {
-    public partial class IconPack
+    public IconPack()
     {
-        public IconPack()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
-        private void TextBox_OnGotFocus(object sender, RoutedEventArgs e)
-        {
-            var textBox = (TextBox)sender;
-            textBox.Dispatcher.BeginInvoke(new Action(textBox.SelectAll));
-        }
+    private void TextBox_OnGotFocus(object sender, RoutedEventArgs e)
+    {
+        var textBox = (TextBox)sender;
+        textBox.Dispatcher.BeginInvoke(new Action(textBox.SelectAll));
+    }
 
-        private void Search_OnKeyDown(object sender, KeyEventArgs e)
-        {
-            var textBox = (TextBox)sender;
-            if (e.Key == Key.Enter)
-                SearchButton.Command.Execute(textBox.Text);
-        }
+    private void Search_OnKeyDown(object sender, KeyEventArgs e)
+    {
+        var textBox = (TextBox)sender;
+        if (e.Key == Key.Enter)
+            SearchButton.Command.Execute(textBox.Text);
     }
 }

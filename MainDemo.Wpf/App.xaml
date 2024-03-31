@@ -1,4 +1,4 @@
-﻿<Application x:Class="MaterialDesignDemo.App"
+<Application x:Class="MaterialDesignDemo.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
@@ -11,22 +11,27 @@
   <Application.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <!-- This is the current way to setup your app's initial theme -->
+        <!-- This is the current way to set up your app's initial theme -->
         <materialDesign:BundledTheme BaseTheme="Inherit"
                                      ColorAdjustment="{materialDesign:ColorAdjustment}"
                                      PrimaryColor="DeepPurple"
                                      SecondaryColor="Lime" />
 
-        <!-- If you would prefer to use your own colors there is an option for that as well -->
+        <!-- If you would prefer to use your own colors, there is an option for that as well: -->
         <!--<materialDesign:CustomColorTheme BaseTheme="Light" PrimaryColor="Aqua" SecondaryColor="DarkGreen" />-->
 
-        <!-- You can also use the built in theme dictionaries as well
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+        <!-- You can also use the built-in theme dictionaries: -->
+        <!--
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Secondary/MaterialDesignColor.Lime.xaml" />
         -->
 
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+
+        <!-- NB: If you're migrating and not wanting to update your brushes, you will want this resource dictionary for the old brush names: -->
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ObsoleteBrushes.xaml" />
+
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
 
         <ResourceDictionary Source="pack://application:,,,/ShowMeTheXAML.AvalonEdit;component/Themes/xamldisplayer.xaml" />
       </ResourceDictionary.MergedDictionaries>
@@ -141,5 +146,3 @@
     </ResourceDictionary>
   </Application.Resources>
 </Application>
-
-

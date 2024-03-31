@@ -7,16 +7,16 @@
     <ResourceDictionary>
       <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
       <converters:MathMultipleConverter x:Key="MathMlpMultipleConverter" Operation="Multiply" />
+      <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
     </ResourceDictionary>
   </ResourceDictionary.MergedDictionaries>
 
-  <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
 
   <Style x:Key="MaterialDesignTreeView" TargetType="{x:Type TreeView}">
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="BorderBrush" Value="{x:Null}" />
     <Setter Property="BorderThickness" Value="0" />
-    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="Padding" Value="1" />
     <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
     <Setter Property="ScrollViewer.PanningMode" Value="Both" />
@@ -25,8 +25,7 @@
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type TreeView}">
-          <Border x:Name="Bd"
-                  BorderBrush="{TemplateBinding BorderBrush}"
+          <Border BorderBrush="{TemplateBinding BorderBrush}"
                   BorderThickness="{TemplateBinding BorderThickness}"
                   SnapsToDevicePixels="true">
             <ScrollViewer x:Name="_tv_scrollviewer_"
@@ -404,5 +403,4 @@
       </Trigger>
     </Style.Triggers>
   </Style>
-
 </ResourceDictionary>

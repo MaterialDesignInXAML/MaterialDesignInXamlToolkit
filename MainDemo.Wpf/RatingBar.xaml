@@ -216,10 +216,10 @@
       <smtx:XamlDisplay VerticalContentAlignment="Top"
                         UniqueKey="fractionalPreviewRatingBar_3">
         <materialDesign:RatingBar x:Name="BasicRatingBarFractionalPreview2"
+                                  InvertDirection="True"
                                   IsPreviewValueEnabled="True"
                                   Max="5"
                                   Min="0"
-                                  InvertDirection="True"
                                   ValueIncrements="0.25"
                                   Value="0" />
       </smtx:XamlDisplay>
@@ -231,11 +231,11 @@
       <smtx:XamlDisplay Margin="24,0,0,5"
                         UniqueKey="fractionalPreviewRatingBar_4">
         <materialDesign:RatingBar x:Name="CustomRatingBarFractionalPreview2"
+                                  InvertDirection="True"
                                   IsPreviewValueEnabled="True"
                                   Max="3"
                                   Min="0"
                                   Orientation="Vertical"
-                                  InvertDirection="True"
                                   ValueIncrements="0.25"
                                   Value="2">
           <materialDesign:RatingBar.ValueItemTemplate>

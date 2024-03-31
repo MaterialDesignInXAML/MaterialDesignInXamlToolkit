@@ -6,7 +6,7 @@
 
   <Style TargetType="{x:Type wpf:RatingBar}">
     <Setter Property="ClipToBounds" Value="False" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type wpf:RatingBar}">
@@ -44,7 +44,7 @@
                                 Focusable="False"
                                 RenderTransformOrigin=".5, .5"
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                Tag="{DynamicResource PrimaryHueMidBrush}">
+                                Tag="{DynamicResource MaterialDesign.Brush.Primary}">
                       <TextBlock.Foreground>
                         <MultiBinding Converter="{x:Static wpf:RatingBar+TextBlockForegroundConverter.Instance}">
                           <Binding Path="Tag" RelativeSource="{RelativeSource Self}" />
@@ -99,19 +99,19 @@
                           </AdornerDecorator.CacheMode>
                           <Grid Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}">
                             <Rectangle Margin="0,0,0,5"
-                                       Fill="{DynamicResource MaterialDesignToolTipBackground}"
+                                       Fill="{DynamicResource MaterialDesign.Brush.ToolTip.Background}"
                                        RadiusX="2"
                                        RadiusY="2" />
                             <Polygon HorizontalAlignment="Center"
                                      VerticalAlignment="Bottom"
-                                     Fill="{DynamicResource MaterialDesignToolTipBackground}"
+                                     Fill="{DynamicResource MaterialDesign.Brush.ToolTip.Background}"
                                      Points="0,0 4.5,5 9,0" />
                           </Grid>
                         </AdornerDecorator>
                         <TextBlock x:Name="previewValueTextHorizontal"
                                    Margin="12,0,12,5"
                                    VerticalAlignment="Center"
-                                   Foreground="{DynamicResource MaterialDesignPaper}"
+                                   Foreground="{DynamicResource MaterialDesign.Brush.Background}"
                                    Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=PreviewValue}"
                                    TextAlignment="Center" />
                       </Grid>
@@ -155,19 +155,19 @@
                           </AdornerDecorator.CacheMode>
                           <Grid Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}">
                             <Rectangle Margin="0,0,5,0"
-                                       Fill="{DynamicResource MaterialDesignToolTipBackground}"
+                                       Fill="{DynamicResource MaterialDesign.Brush.ToolTip.Background}"
                                        RadiusX="2"
                                        RadiusY="2" />
                             <Polygon HorizontalAlignment="Right"
                                      VerticalAlignment="Center"
-                                     Fill="{DynamicResource MaterialDesignToolTipBackground}"
+                                     Fill="{DynamicResource MaterialDesign.Brush.ToolTip.Background}"
                                      Points="0,0 6,5 0,10" />
                           </Grid>
                         </AdornerDecorator>
                         <TextBlock x:Name="previewValueTextVertical"
                                    Margin="12,0,17,0"
                                    VerticalAlignment="Center"
-                                   Foreground="{DynamicResource MaterialDesignPaper}"
+                                   Foreground="{DynamicResource MaterialDesign.Brush.Background}"
                                    Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:RatingBar}, Path=PreviewValue}"
                                    TextAlignment="Center" />
                       </Grid>
@@ -245,7 +245,7 @@
                                 IsEnabled="False"
                                 RenderTransformOrigin=".5, .5"
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                Tag="{DynamicResource PrimaryHueMidBrush}">
+                                Tag="{DynamicResource MaterialDesign.Brush.Primary}">
                       <TextBlock.Foreground>
                         <MultiBinding Converter="{x:Static wpf:RatingBar+TextBlockForegroundConverter.Instance}">
                           <Binding Path="Tag" RelativeSource="{RelativeSource Self}" />
@@ -276,7 +276,7 @@
       </Setter.Value>
     </Setter>
     <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp2" />
-    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}" />
+    <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Button.Ripple}" />
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
         <Setter Property="Opacity" Value=".26" />

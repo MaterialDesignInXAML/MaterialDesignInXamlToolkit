@@ -1,60 +1,59 @@
 ﻿using System.ComponentModel;
 using Xunit;
 
-namespace MaterialDesignThemes.Wpf.Tests
+namespace MaterialDesignThemes.Wpf.Tests;
+
+public class DrawerHostTests : IDisposable
 {
-    public class DrawerHostTests : IDisposable
+    private readonly DrawerHost _drawerHost;
+
+    public DrawerHostTests()
     {
-        private readonly DrawerHost _drawerHost;
+        _drawerHost = new DrawerHost();
+        _drawerHost.ApplyDefaultStyle();
+        _drawerHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+    }
 
-        public DrawerHostTests()
+    public void Dispose()
+    {
+        _drawerHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
+    }
+
+    [StaFact]
+    [Description("Issue 2015")]
+    public void WhenOpenedDrawerOpenedEventIsRaised()
+    {
+        Dock expectedPosition = Dock.Left;
+        Dock openedPosition = Dock.Top;
+        _drawerHost.DrawerOpened += DrawerOpened;
+        _drawerHost.IsLeftDrawerOpen = true;
+
+        DrawerHost.CloseDrawerCommand.Execute(Dock.Left, _drawerHost);
+
+        Assert.Equal(expectedPosition, openedPosition);
+
+        void DrawerOpened(object? sender, DrawerOpenedEventArgs eventArgs)
         {
-            _drawerHost = new DrawerHost();
-            _drawerHost.ApplyDefaultStyle();
-            _drawerHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+            openedPosition = eventArgs.Dock;
         }
+    }
 
-        public void Dispose()
+    [StaFact]
+    [Description("Issue 2015")]
+    public void WhenClosingDrawerClosingEventIsRaised()
+    {
+        Dock expectedPosition = Dock.Left;
+        Dock closedPosition = Dock.Top;
+        _drawerHost.DrawerClosing += DrawerClosing;
+        _drawerHost.IsLeftDrawerOpen = true;
+
+        DrawerHost.CloseDrawerCommand.Execute(Dock.Left, _drawerHost);
+
+        Assert.Equal(expectedPosition, closedPosition);
+
+        void DrawerClosing(object? sender, DrawerClosingEventArgs eventArgs)
         {
-            _drawerHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
-        }
-
-        [StaFact]
-        [Description("Issue 2015")]
-        public void WhenOpenedDrawerOpenedEventIsRaised()
-        {
-            Dock expectedPosition = Dock.Left;
-            Dock openedPosition = Dock.Top;
-            _drawerHost.DrawerOpened += DrawerOpened;
-            _drawerHost.IsLeftDrawerOpen = true;
-
-            DrawerHost.CloseDrawerCommand.Execute(Dock.Left, _drawerHost);
-
-            Assert.Equal(expectedPosition, openedPosition);
-
-            void DrawerOpened(object? sender, DrawerOpenedEventArgs eventArgs)
-            {
-                openedPosition = eventArgs.Dock;
-            }
-        }
-
-        [StaFact]
-        [Description("Issue 2015")]
-        public void WhenClosingDrawerClosingEventIsRaised()
-        {
-            Dock expectedPosition = Dock.Left;
-            Dock closedPosition = Dock.Top;
-            _drawerHost.DrawerClosing += DrawerClosing;
-            _drawerHost.IsLeftDrawerOpen = true;
-
-            DrawerHost.CloseDrawerCommand.Execute(Dock.Left, _drawerHost);
-
-            Assert.Equal(expectedPosition, closedPosition);
-
-            void DrawerClosing(object? sender, DrawerClosingEventArgs eventArgs)
-            {
-                closedPosition = eventArgs.Dock;
-            }
+            closedPosition = eventArgs.Dock;
         }
     }
 }

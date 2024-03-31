@@ -1,13 +1,14 @@
 ﻿<UserControl x:Class="MaterialDesignThemes.UITests.Samples.DialogHost.RestoreFocus"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:MaterialDesignThemes.UITests.Samples.DialogHost"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              d:DataContext="{d:DesignInstance Type=local:RestoreFocus}"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
   <Grid>
     <materialDesign:DialogHost x:Name="DialogHost">
       <Grid>
@@ -17,15 +18,25 @@
           <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Menu x:Name="Menu" Grid.Row="0" HorizontalAlignment="Right">
+        <Menu x:Name="Menu"
+              Grid.Row="0"
+              HorizontalAlignment="Right">
           <MenuItem x:Name="MenuItem1">
             <MenuItem.Header>
               <StackPanel Orientation="Horizontal">
-                <materialDesign:PackIcon Kind="User" Height="20" Width="20" Margin="0,0,5,0" />
-                <TextBlock Text="Menu" VerticalAlignment="Center" FontSize="16" />
+                <materialDesign:PackIcon Width="20"
+                                         Height="20"
+                                         Margin="0,0,5,0"
+                                         Kind="User" />
+                <TextBlock VerticalAlignment="Center"
+                           FontSize="16"
+                           Text="Menu" />
               </StackPanel>
             </MenuItem.Header>
-            <MenuItem x:Name="MenuItem2" Header="Settings" Icon="{materialDesign:PackIcon Kind=Settings}" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" />
+            <MenuItem x:Name="MenuItem2"
+                      Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                      Header="Settings"
+                      Icon="{materialDesign:PackIcon Kind=Settings}" />
           </MenuItem>
         </Menu>
 
@@ -38,7 +49,9 @@
           </TabItem>
         </TabControl>
 
-        <TabControl x:Name="NavigationRail" Grid.Row="2" Style="{StaticResource MaterialDesignNavigationRailTabControl}">
+        <TabControl x:Name="NavigationRail"
+                    Grid.Row="2"
+                    Style="{StaticResource MaterialDesignNavigationRailTabControl}">
           <TabItem x:Name="RailItem1" Header="Rail 1">
             <TextBlock Text="Rail 1 content" />
           </TabItem>
@@ -50,7 +63,9 @@
 
       <materialDesign:DialogHost.DialogContent>
         <Grid Margin="50">
-          <Button x:Name="NavigateHomeButton" Content="Navigate to Tab 1" Click="NavigateHomeButton_OnClick" />
+          <Button x:Name="NavigateHomeButton"
+                  Click="NavigateHomeButton_OnClick"
+                  Content="Navigate to Tab 1" />
         </Grid>
       </materialDesign:DialogHost.DialogContent>
     </materialDesign:DialogHost>

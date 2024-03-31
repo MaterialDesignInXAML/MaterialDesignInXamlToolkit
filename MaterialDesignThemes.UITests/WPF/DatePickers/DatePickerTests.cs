@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Globalization;
+using System.Windows.Media;
 using MaterialDesignThemes.UITests.WPF.TextBoxes;
 
 namespace MaterialDesignThemes.UITests.WPF.DatePickers;
@@ -56,6 +57,35 @@ public class DatePickerTests : TestBase
             selectedDate = await datePicker.GetSelectedDate();
             Assert.Null(selectedDate);
         });
+
+        recorder.Success();
+    }
+
+    [Fact]
+    [Description("Issue 3369")]
+    public async Task OnDatePicker_WithClearButton_ClearsSelectedUncommittedText()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // Arrange
+        var stackPanel = await LoadXaml<StackPanel>("""
+            <StackPanel>
+              <DatePicker materialDesign:TextFieldAssist.HasClearButton="True"/>
+            </StackPanel>
+            """);
+        var datePicker = await stackPanel.GetElement<DatePicker>("/DatePicker");
+        var datePickerTextBox = await stackPanel.GetElement<DatePickerTextBox>("/DatePickerTextBox");
+        var clearButton = await datePicker.GetElement<Button>("PART_ClearButton");
+
+        await datePickerTextBox.SendKeyboardInput($"invalid date");
+        Assert.Equal("invalid date", await datePickerTextBox.GetText());
+
+        // Act
+        await clearButton.LeftClick();
+        await Task.Delay(50);
+
+        // Assert
+        Assert.Null(await datePickerTextBox.GetText());
 
         recorder.Success();
     }
@@ -200,6 +230,74 @@ public class DatePickerTests : TestBase
 
         Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left), 0, tolerance);
         Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left), 0, tolerance);
+
+        recorder.Success();
+    }
+
+    [Fact]
+    [Description("Issue 3365")]
+    public async Task DatePicker_WithoutOutlinedStyleAndNoCustomHintBackgroundSet_ShouldApplyDefaultBackgroundWhenFloated()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // Arrange
+        var stackPanel = await LoadXaml<StackPanel>("""
+            <StackPanel>
+            <DatePicker
+              Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+              materialDesign:HintAssist.Hint="Hint text" />
+            </StackPanel>
+            """);
+        var datePicker = await stackPanel.GetElement<DatePicker>("/DatePicker");
+        var datePickerTextBox = await datePicker.GetElement<DatePickerTextBox>("/DatePickerTextBox");
+        var hintBackgroundBorder = await datePicker.GetElement<Border>("HintBackgroundBorder");
+
+        var defaultBackground = Colors.Transparent;
+        var defaultFloatedBackground = await GetThemeColor("MaterialDesign.Brush.Background");
+
+        // Assert (unfocused state)
+        Assert.Equal(defaultBackground, await hintBackgroundBorder.GetBackgroundColor());
+
+        // Act
+        await datePickerTextBox.MoveKeyboardFocus();
+
+        // Assert (focused state)
+        Assert.Equal(defaultFloatedBackground, await hintBackgroundBorder.GetBackgroundColor());
+
+        recorder.Success();
+    }
+
+    [Theory]
+    [Description("Issue 3365")]
+    [InlineData("MaterialDesignDatePicker")]
+    [InlineData("MaterialDesignFloatingHintDatePicker")]
+    [InlineData("MaterialDesignFilledDatePicker")]
+    [InlineData("MaterialDesignOutlinedDatePicker")]
+    public async Task DatePicker_WithCustomHintBackgroundSet_ShouldApplyHintBackground(string style)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // Arrange
+        var stackPanel = await LoadXaml<StackPanel>($$"""
+            <StackPanel>
+              <DatePicker
+                Style="{StaticResource {{style}}}"
+                materialDesign:HintAssist.Hint="Hint text"
+                materialDesign:HintAssist.Background="Red" />
+            </StackPanel>
+            """);
+        var datePicker = await stackPanel.GetElement<DatePicker>("/DatePicker");
+        var datePickerTextBox = await datePicker.GetElement<DatePickerTextBox>("/DatePickerTextBox");
+        var hintBackgroundBorder = await datePicker.GetElement<Border>("HintBackgroundBorder");
+
+        // Assert (unfocused state)
+        Assert.Equal(Colors.Red, await hintBackgroundBorder.GetBackgroundColor());
+
+        // Act
+        await datePickerTextBox.MoveKeyboardFocus();
+
+        // Assert (focused state)
+        Assert.Equal(Colors.Red, await hintBackgroundBorder.GetBackgroundColor());
 
         recorder.Success();
     }

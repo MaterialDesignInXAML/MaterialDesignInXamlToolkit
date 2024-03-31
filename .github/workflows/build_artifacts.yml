@@ -27,15 +27,15 @@ jobs:
       solution: MaterialDesignToolkit.Full.sln
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: |
-            3.1.x
             6.x
             7.x
+            8.x
           
       - name: Restore dependencies
         run: dotnet restore ${{ env.solution }}
@@ -49,27 +49,27 @@ jobs:
   
       - name: Test
         timeout-minutes: 20
-        run: dotnet test ${{ env.solution }} --configuration ${{ inputs.build-configuration }} --no-build --verbosity normal --blame-crash
+        run: dotnet test ${{ env.solution }} --configuration ${{ inputs.build-configuration }} --no-build --blame-crash --logger GitHubActions
   
       - name: Upload Screenshots
         if: ${{ always() }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Screenshots-${{ github.run_number }}
-          path: ${{ github.workspace }}\MaterialDesignThemes.UITests\bin\${{ inputs.build-configuration }}\net7.0-windows\Screenshots
+          path: ${{ github.workspace }}\MaterialDesignThemes.UITests\bin\${{ inputs.build-configuration }}\net8.0-windows7\Screenshots
           if-no-files-found: ignore
 
       - name: Build NuGets
         run: .\Scripts\BuildNugets.ps1 -MDIXVersion ${{ inputs.mdix-version }} -MDIXColorsVersion ${{ inputs.mdix-colors-version }} -MDIXMahAppsVersion ${{ inputs.mdix-mahapps-version }}
 
       - name: Upload NuGets
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: NuGets
           path: "*.nupkg"
 
       - name: Upload Demo App
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: DemoApp
           path: "MainDemo.Wpf/bin/${{ env.buildConfiguration }}"

@@ -326,24 +326,24 @@
   <Style x:Key="MaterialDesignRangeSlider" TargetType="{x:Type controls:RangeSlider}">
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     <Setter Property="IsMoveToPointEnabled" Value="True" />
     <Setter Property="Margin" Value="6,0" />
     <Setter Property="Template" Value="{StaticResource MaterialDesignMahAppsRangeSliderHorizontal}" />
     <Setter Property="VerticalContentAlignment" Value="Stretch" />
-    <Setter Property="controls:SliderHelper.ThumbFillBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
-    <Setter Property="controls:SliderHelper.ThumbFillDisabledBrush" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
-    <Setter Property="controls:SliderHelper.ThumbFillHoverBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
-    <Setter Property="controls:SliderHelper.ThumbFillPressedBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
-    <Setter Property="controls:SliderHelper.TrackFillBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
-    <Setter Property="controls:SliderHelper.TrackFillDisabledBrush" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
-    <Setter Property="controls:SliderHelper.TrackFillHoverBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
-    <Setter Property="controls:SliderHelper.TrackFillPressedBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
-    <Setter Property="controls:SliderHelper.TrackValueFillBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
-    <Setter Property="controls:SliderHelper.TrackValueFillDisabledBrush" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
-    <Setter Property="controls:SliderHelper.TrackValueFillHoverBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
-    <Setter Property="controls:SliderHelper.TrackValueFillPressedBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="controls:SliderHelper.ThumbFillBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+    <Setter Property="controls:SliderHelper.ThumbFillDisabledBrush" Value="{DynamicResource MaterialDesign.Brush.CheckBox.Disabled}" />
+    <Setter Property="controls:SliderHelper.ThumbFillHoverBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+    <Setter Property="controls:SliderHelper.ThumbFillPressedBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+    <Setter Property="controls:SliderHelper.TrackFillBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+    <Setter Property="controls:SliderHelper.TrackFillDisabledBrush" Value="{DynamicResource MaterialDesign.Brush.CheckBox.Disabled}" />
+    <Setter Property="controls:SliderHelper.TrackFillHoverBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+    <Setter Property="controls:SliderHelper.TrackFillPressedBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+    <Setter Property="controls:SliderHelper.TrackValueFillBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+    <Setter Property="controls:SliderHelper.TrackValueFillDisabledBrush" Value="{DynamicResource MaterialDesign.Brush.CheckBox.Disabled}" />
+    <Setter Property="controls:SliderHelper.TrackValueFillHoverBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+    <Setter Property="controls:SliderHelper.TrackValueFillPressedBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp1" />
     <Setter Property="wpf:SliderAssist.OnlyShowFocusVisualWhileDragging" Value="True" />
     <Style.Triggers>
@@ -351,7 +351,7 @@
         <Setter Property="Template" Value="{StaticResource MaterialDesignRangeSliderVertical}" />
       </Trigger>
       <Trigger Property="IsEnabled" Value="False">
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.CheckBox.Disabled}" />
       </Trigger>
     </Style.Triggers>
   </Style>

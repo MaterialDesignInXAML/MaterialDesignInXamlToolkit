@@ -98,6 +98,18 @@ internal class CustomPaddingConverter : IMultiValueConverter
         => throw new NotImplementedException();
 }
 
+internal class FontSizeConverter : IValueConverter
+{
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        double fontSize = (double) value!;
+        return double.IsNaN(fontSize) ? DependencyProperty.UnsetValue : fontSize;
+    }
+
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => throw new NotImplementedException();
+}
+
 internal abstract class OptionToStringConverter<TOptionType> : IValueConverter where TOptionType : notnull 
 {
     public TOptionType? DefaultValue { get; set; }

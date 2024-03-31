@@ -187,7 +187,7 @@
                   Margin="4"
                   Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
                   Content="{materialDesign:PackIcon Kind=ArrowAll}"
-                  Style="{StaticResource MaterialDesignRaisedAccentButton}" />
+                  Style="{StaticResource MaterialDesignRaisedSecondaryButton}" />
         </Grid>
 
       </materialDesign:DrawerHost>

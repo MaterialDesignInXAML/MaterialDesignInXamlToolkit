@@ -1,29 +1,28 @@
 ﻿using System.Diagnostics;
 
-namespace MahMaterialDragablzMashUp
-{
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+namespace MahMaterialDragablzMashUp;
 
-        private void OnCopy(object sender, ExecutedRoutedEventArgs e)
+/// <summary>
+/// Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow
+{
+    public MainWindow()
+    {
+        InitializeComponent();
+    }
+
+    private void OnCopy(object sender, ExecutedRoutedEventArgs e)
+    {
+        if (e.Parameter is string stringValue)
         {
-            if (e.Parameter is string stringValue)
+            try
             {
-                try
-                {
-                    Clipboard.SetDataObject(stringValue);
-                }
-                catch (Exception ex)
-                {
-                    Trace.WriteLine(ex.ToString());
-                }
+                Clipboard.SetDataObject(stringValue);
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine(ex.ToString());
             }
         }
     }

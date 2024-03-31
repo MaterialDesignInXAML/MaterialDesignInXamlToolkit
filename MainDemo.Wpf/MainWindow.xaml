@@ -8,7 +8,6 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         Title="Material Design in XAML"
         Width="1150"
-        MaxHeight="{Binding Source={x:Static SystemParameters.MaximizedPrimaryScreenHeight}}"
         d:DataContext="{d:DesignInstance domain:MainWindowViewModel}"
         AutomationProperties.Name="{Binding Title, RelativeSource={RelativeSource Self}}"
         Icon="favicon.ico"
@@ -63,8 +62,8 @@
                    materialDesign:TextFieldAssist.DecorationVisibility="Collapsed"
                    materialDesign:TextFieldAssist.HasClearButton="True"
                    DockPanel.Dock="Top"
-                   Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"
-                   Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                   Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                   Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}" />
 
           <ListBox x:Name="DemoItemsListBox"
                    Margin="0,16,0,16"

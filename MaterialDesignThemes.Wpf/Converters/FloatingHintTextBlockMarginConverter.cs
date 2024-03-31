@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
 
@@ -8,106 +8,105 @@ internal class FloatingHintTextBlockMarginConverter : IMultiValueConverter
 {
     public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (values?.Length != 7 || values.Any(v => v == null)
-            || values[0] is not FloatingHintHorizontalAlignment floatingAlignment
-            || values[1] is not HorizontalAlignment restingAlignment
-            || !double.TryParse(values[2]!.ToString(), out double desiredWidth)
-            || !double.TryParse(values[3]!.ToString(), out double availableWidth)
-            || !double.TryParse(values[4]!.ToString(), out double scale)
-            || !double.TryParse(values[5]!.ToString(), out double lower)
-            || !double.TryParse(values[6]!.ToString(), out double upper))
+        if (values?.Length != 8 || values.Any(v => v == null)
+            || values[0] is not FloatingHintHorizontalAlignment restingAlignmentOverride
+            || values[1] is not FloatingHintHorizontalAlignment floatingAlignment
+            || values[2] is not HorizontalAlignment restingAlignment
+            || !double.TryParse(values[3]!.ToString(), out double desiredWidth)
+            || !double.TryParse(values[4]!.ToString(), out double availableWidth)
+            || !double.TryParse(values[5]!.ToString(), out double scale)
+            || !double.TryParse(values[6]!.ToString(), out double lower)
+            || !double.TryParse(values[7]!.ToString(), out double upper))
         {
             return Transform.Identity;
         }
 
         double scaleMultiplier = upper + (lower - upper) * scale;
 
-        HorizontalAlignment alignment = restingAlignment;
+        HorizontalAlignment restAlignment = restingAlignmentOverride switch
+        {
+            FloatingHintHorizontalAlignment.Inherit => restingAlignment,
+            FloatingHintHorizontalAlignment.Left => HorizontalAlignment.Left,
+            FloatingHintHorizontalAlignment.Center => HorizontalAlignment.Center,
+            FloatingHintHorizontalAlignment.Right => HorizontalAlignment.Right,
+            FloatingHintHorizontalAlignment.Stretch => HorizontalAlignment.Stretch,
+            _ => throw new ArgumentOutOfRangeException(),
+        };
+
+        HorizontalAlignment floatAlignment = restAlignment;
         if (scale != 0)
         {
-            switch (floatingAlignment)
+            floatAlignment = floatingAlignment switch
             {
-                case FloatingHintHorizontalAlignment.Inherit:
-                    alignment = restingAlignment;
-                    break;
-                case FloatingHintHorizontalAlignment.Left:
-                    alignment = HorizontalAlignment.Left;
-                    break;
-                case FloatingHintHorizontalAlignment.Center:
-                    alignment = HorizontalAlignment.Center;
-                    break;
-                case FloatingHintHorizontalAlignment.Right:
-                    alignment = HorizontalAlignment.Right;
-                    break;
-                case FloatingHintHorizontalAlignment.Stretch:
-                    alignment = HorizontalAlignment.Stretch;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+                FloatingHintHorizontalAlignment.Inherit => restingAlignment,
+                FloatingHintHorizontalAlignment.Left => HorizontalAlignment.Left,
+                FloatingHintHorizontalAlignment.Center => HorizontalAlignment.Center,
+                FloatingHintHorizontalAlignment.Right => HorizontalAlignment.Right,
+                FloatingHintHorizontalAlignment.Stretch => HorizontalAlignment.Stretch,
+                _ => throw new ArgumentOutOfRangeException(),
+            };
         }
-        switch (alignment)
+        double leftThickness = floatAlignment switch
         {
-            case HorizontalAlignment.Right:
-                return FloatRight();
-            case HorizontalAlignment.Center:
-                return FloatCenter();
-            default:
-                return FloatLeft();
-        }
+            HorizontalAlignment.Right => FloatRight(),
+            HorizontalAlignment.Center => FloatCenter(),
+            _ => FloatLeft(),
+        };
 
-        Thickness FloatLeft()
+        return new Thickness(Math.Round(leftThickness), 0, 0, 0);
+
+        double FloatLeft()
         {
-            if (restingAlignment == HorizontalAlignment.Center)
+            if (restAlignment == HorizontalAlignment.Center)
             {
                 // Animate from center to left
                 double offset = Math.Max(0, (availableWidth - desiredWidth) / 2);
-                return new Thickness(offset - offset * scale, 0, 0, 0);
+                return offset - offset * scale;
             }
-            if (restingAlignment == HorizontalAlignment.Right)
+            if (restAlignment == HorizontalAlignment.Right)
             {
                 // Animate from right to left
                 double offset = Math.Max(0, availableWidth - desiredWidth);
-                return new Thickness(offset - offset * scale, 0, 0, 0);
+                return offset - offset * scale;
             }
-            return new Thickness(0);
+            return 0;
         }
 
-        Thickness FloatCenter()
+        double FloatCenter()
         {
-            if (restingAlignment == HorizontalAlignment.Left || restingAlignment == HorizontalAlignment.Stretch)
+            if (restAlignment == HorizontalAlignment.Left || restAlignment == HorizontalAlignment.Stretch)
             {
                 // Animate from left to center
                 double offset = Math.Max(0, (availableWidth - desiredWidth * scaleMultiplier) / 2);
-                return new Thickness(offset * scale, 0, 0, 0);
+                return offset * scale;
             }
-            if (restingAlignment == HorizontalAlignment.Right)
+            if (restAlignment == HorizontalAlignment.Right)
             {
                 // Animate from right to center
                 double startOffset = Math.Max(0, availableWidth - desiredWidth);
                 double endOffset = Math.Max(0, (availableWidth - desiredWidth) / 2);
                 double endOffsetDelta = startOffset - endOffset;
-                return new Thickness(endOffset + endOffsetDelta * (1 - scale), 0, 0, 0);
+                return endOffset + endOffsetDelta * (1 - scale);
             }
-            return new Thickness(Math.Max(0, availableWidth - desiredWidth * scaleMultiplier) / 2, 0, 0, 0);
+            return Math.Max(0, availableWidth - desiredWidth * scaleMultiplier) / 2;
         }
 
-        Thickness FloatRight()
+        double FloatRight()
         {
-            if (restingAlignment == HorizontalAlignment.Left || restingAlignment == HorizontalAlignment.Stretch)
+            if (restAlignment == HorizontalAlignment.Left || restAlignment == HorizontalAlignment.Stretch)
             {
                 // Animate from left to right
                 double offset = Math.Max(0, availableWidth - desiredWidth * scaleMultiplier);
-                return new Thickness(offset * scale, 0, 0, 0);
+                return offset * scale;
             }
-            if (restingAlignment == HorizontalAlignment.Center)
+            if (restAlignment == HorizontalAlignment.Center)
             {
                 // Animate from center to right
                 double startOffset = Math.Max(0, (availableWidth - desiredWidth) / 2);
                 double endOffsetDelta = Math.Max(0, availableWidth - desiredWidth * scaleMultiplier) - startOffset;
-                return new Thickness(startOffset + endOffsetDelta * scale, 0, 0, 0);
+                return startOffset + endOffsetDelta * scale;
             }
-            return new Thickness(Math.Max(0, availableWidth - desiredWidth * scaleMultiplier), 0, 0, 0);
+            return Math.Max(0, availableWidth - desiredWidth * scaleMultiplier);
         }
     }
 

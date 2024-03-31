@@ -34,7 +34,7 @@
           <materialDesign:PackIcon Kind="StepBackward" />
         </Button>
         <!--
-                <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                <Button Style="{StaticResource MaterialDesignFloatingActionSecondaryButton}"
                     Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"
                     VerticalAlignment="Top"
                     Margin="16">

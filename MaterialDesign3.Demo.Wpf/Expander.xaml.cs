@@ -1,7 +1,6 @@
-﻿namespace MaterialDesign3Demo
+﻿namespace MaterialDesign3Demo;
+
+public partial class Expander
 {
-    public partial class Expander
-    {
-        public Expander() => InitializeComponent();
-    }
+    public Expander() => InitializeComponent();
 }

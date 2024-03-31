@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="MaterialDesignThemes.UITests.WPF.TreeListViews.TreeListViewTemplateSelector"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MaterialDesignThemes.UITests.WPF.TreeListViews"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}"
+             d:DesignHeight="450" d:DesignWidth="800">
+  <materialDesign:TreeListView
+    x:Name="TreeListView"
+    ItemsSource="{Binding Items}">
+    <materialDesign:TreeListView.ItemTemplateSelector>
+      <local:TypeTemplateSelector>
+        <local:TypeTemplateSelector.NumberTemplate>
+          <HierarchicalDataTemplate DataType="{x:Type local:TreeItem}"
+                                    ItemsSource="{Binding Children}">
+            <TextBlock Text="{Binding Value}" Foreground="Red" />
+          </HierarchicalDataTemplate>
+        </local:TypeTemplateSelector.NumberTemplate>
+
+        <local:TypeTemplateSelector.StringTemplate>
+          <HierarchicalDataTemplate DataType="{x:Type local:TreeItem}"
+                                    ItemsSource="{Binding Children}">
+            <TextBlock Text="{Binding Value}" Foreground="Blue" />
+          </HierarchicalDataTemplate>
+        </local:TypeTemplateSelector.StringTemplate>
+      </local:TypeTemplateSelector>
+    </materialDesign:TreeListView.ItemTemplateSelector>
+  </materialDesign:TreeListView>
+</UserControl>

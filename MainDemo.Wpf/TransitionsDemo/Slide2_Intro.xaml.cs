@@ -1,13 +1,12 @@
-﻿namespace MaterialDesignDemo.TransitionsDemo
+﻿namespace MaterialDesignDemo.TransitionsDemo;
+
+/// <summary>
+/// Interaction logic for Slide2_Intro.xaml
+/// </summary>
+public partial class Slide2_Intro : UserControl
 {
-    /// <summary>
-    /// Interaction logic for Slide2_Intro.xaml
-    /// </summary>
-    public partial class Slide2_Intro : UserControl
+    public Slide2_Intro()
     {
-        public Slide2_Intro()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

@@ -11,15 +11,12 @@
     <iconUrl>http://materialdesigninxaml.net/images/MD4XAML32.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>ResourceDictionary instances containing Material Design templates and styles for WPF controls in .NET.</description>
+    <readme>docs\README.md</readme>
     <releaseNotes>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/releases</releaseNotes>
     <copyright>$copyright$</copyright>
     <tags>WPF XAML Material Design Theme Colour Color UI UX</tags>
     <dependencies>
       <group targetFramework="net462">
-        <dependency id="MaterialDesignColors" version="0.0.0" />
-        <dependency id="Microsoft.Xaml.Behaviors.Wpf" version="1.1.39" />
-      </group>
-      <group targetFramework="netcoreapp3.1">
         <dependency id="MaterialDesignColors" version="0.0.0" />
         <dependency id="Microsoft.Xaml.Behaviors.Wpf" version="1.1.39" />
       </group>
@@ -34,8 +31,8 @@
     </dependencies>
   </metadata>
   <files>
+    <file src="README.md" target="docs\" />
     <file src="MaterialDesignThemes.Wpf\bin\$configuration$\net462\MaterialDesignThemes.Wpf.*" target="lib\net462" exclude="**\*.json" />
-    <file src="MaterialDesignThemes.Wpf\bin\$configuration$\netcoreapp3.1\MaterialDesignThemes.Wpf.*" target="lib\netcoreapp3.1" exclude="**\*.json" />
     <file src="MaterialDesignThemes.Wpf\bin\$configuration$\net6.0-windows\MaterialDesignThemes.Wpf.*" target="lib\net6.0" exclude="**\*.json" />
     <file src="MaterialDesignThemes.Wpf\bin\$configuration$\net7.0-windows\MaterialDesignThemes.Wpf.*" target="lib\net7.0" exclude="**\*.json" />
     <file src="MaterialDesignThemes.Wpf\Resources\Roboto\*.ttf" target="build\Resources\Roboto" />

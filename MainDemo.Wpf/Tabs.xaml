@@ -705,8 +705,8 @@
                     ItemsSource="{Binding CustomTabs}"
                     SelectedItem="{Binding SelectedTab}">
           <!--
-          If you use DisplayMemberPath to bind to a simple auto property you can cause a binking leak.
-          See: https://blog.jetbrains.com/dotnet/2014/09/04/fighting-common-wpf-memory-leaks-with-dotmemory/
+            If you use DisplayMemberPath to bind to a simple auto property you can cause a binking leak.
+            See: https://blog.jetbrains.com/dotnet/2014/09/04/fighting-common-wpf-memory-leaks-with-dotmemory/
           -->
           <TabControl.ItemTemplate>
             <DataTemplate>
@@ -728,7 +728,7 @@
             <DataTemplate DataType="domain:CustomTab">
               <TextBlock Margin="10"
                          FontSize="18"
-                         Text="{Binding CustomContent, Mode=OneTime}" />
+                         Text="{Binding CustomContent}" />
             </DataTemplate>
           </TabControl.ContentTemplate>
         </TabControl>

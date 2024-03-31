@@ -3,7 +3,7 @@
     <Copyright>Copyright © 2022</Copyright>
     <Company>Mulholland Software/James Willock</Company>
 
-    <LangVersion>11.0</LangVersion>
+    <LangVersion>12.0</LangVersion>
     <ErrorReport>prompt</ErrorReport>
 
     <SignAssembly>true</SignAssembly>
@@ -12,6 +12,7 @@
 
     <Nullable>enable</Nullable>
 
+    <AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
     <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>

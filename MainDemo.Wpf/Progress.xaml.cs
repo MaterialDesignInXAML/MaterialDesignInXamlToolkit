@@ -1,7 +1,6 @@
-﻿namespace MaterialDesignDemo
+﻿namespace MaterialDesignDemo;
+
+public partial class Progress
 {
-    public partial class Progress
-    {
-        public Progress() => InitializeComponent();
-    }
+    public Progress() => InitializeComponent();
 }

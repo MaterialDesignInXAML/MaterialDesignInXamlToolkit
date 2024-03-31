@@ -24,6 +24,7 @@
       <materialDesign:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
       <converters:StringJoinConverter x:Key="StringJoinConverter" Separator="{x:Static system:Environment.NewLine}" />
       <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
+      <converters:IsTransparentConverter x:Key="IsTransparentConverter" />
     </ResourceDictionary>
   </UserControl.Resources>
 
@@ -72,7 +73,7 @@
                                      Height="32"
                                      HorizontalAlignment="Center"
                                      VerticalAlignment="Center"
-                                     Kind="{Binding Kind,Mode=OneTime}" />
+                                     Kind="{Binding Kind, Mode=OneTime}" />
           </DockPanel>
         </DataTemplate>
       </ListBox.ItemTemplate>
@@ -189,7 +190,8 @@
               </StackPanel>
             </Grid>
 
-            <materialDesign:ColorPicker MinHeight="100" Margin="0,10">
+            <materialDesign:ColorPicker MinHeight="100" Margin="0,10"
+                                        IsEnabled="{Binding IsChecked, ElementName=UseTransparent, Converter={StaticResource InvertBooleanConverter}}">
               <materialDesign:ColorPicker.Style>
                 <Style TargetType="materialDesign:ColorPicker" BasedOn="{StaticResource {x:Type materialDesign:ColorPicker}}">
                   <Setter Property="Color" Value="{Binding GeneratedIconBackground, Delay=25}" />
@@ -197,14 +199,36 @@
                     <DataTrigger Binding="{Binding IsChecked, ElementName=IconForeground}" Value="True">
                       <Setter Property="Color" Value="{Binding GeneratedIconForeground, Delay=25}" />
                     </DataTrigger>
+                    <Trigger Property="IsEnabled" Value="False">
+                      <Setter Property="Opacity" Value="0.4" />
+                    </Trigger>
                   </Style.Triggers>
                 </Style>
               </materialDesign:ColorPicker.Style>
             </materialDesign:ColorPicker>
 
-            <Button HorizontalAlignment="Right"
-                    Command="{Binding SaveIconCommand}"
-                    Content="_Save" />
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+              <CheckBox Content="Use Transparent" x:Name="UseTransparent">
+                <CheckBox.Style>
+                  <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+                    <Setter Property="IsChecked" Value="{Binding GeneratedIconBackground, Converter={StaticResource IsTransparentConverter}}" />
+                    <Style.Triggers>
+                      <DataTrigger Binding="{Binding IsChecked, ElementName=IconForeground}" Value="True">
+                        <Setter Property="IsChecked" Value="{Binding GeneratedIconForeground, Converter={StaticResource IsTransparentConverter}}" />
+                      </DataTrigger>
+                    </Style.Triggers>
+                  </Style>
+                </CheckBox.Style>
+              </CheckBox>
+              <Button HorizontalAlignment="Right"
+                      Command="{Binding SaveIconCommand}"
+                      Content="_Save" />
+            </Grid>
+            
           </StackPanel>
         </materialDesign:PopupBox>
       </StackPanel>

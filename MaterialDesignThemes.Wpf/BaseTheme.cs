@@ -1,9 +1,8 @@
-﻿namespace MaterialDesignThemes.Wpf
+﻿namespace MaterialDesignThemes.Wpf;
+
+public enum BaseTheme
 {
-    public enum BaseTheme
-    {
-        Inherit,
-        Light,
-        Dark
-    }
+    Inherit,
+    Light,
+    Dark
 }

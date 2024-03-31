@@ -1,0 +1,10 @@
+﻿<Window x:Class="MaterialDesignThemes.UITests.Samples.SplitButton.SplitButtonWithCommandBindingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MaterialDesignThemes.UITests.Samples.SplitButton"
+        mc:Ignorable="d"
+        Title="SplitButtonWithCommandBindingWindow" Height="450" Width="800">
+    <local:SplitButtonWithCommandBinding />
+</Window>

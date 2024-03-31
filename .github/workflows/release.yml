@@ -17,6 +17,11 @@ defaults:
   run:
     shell: pwsh
 
+# Needed for updating the version numbers at the end of the pipeline
+permissions:
+  id-token: write
+  contents: write
+
 jobs:
   get_versions:
     name: Get Versions
@@ -65,7 +70,7 @@ jobs:
           cat "ReleaseNotes.md"
 
       - name: Upload Release Notes
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ReleaseNotes
           path: "ReleaseNotes.md"
@@ -85,12 +90,12 @@ jobs:
     name: Get Icon Changes
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       
       - name: Download NuGet Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: NuGets
           path: nugets
@@ -106,7 +111,7 @@ jobs:
           dotnet run --project ./mdresgen/mdresgen.csproj -c Release -- icon-diff
 
       - name: Upload Icon Changes
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: IconChanges
           path: "IconChanges*.md"
@@ -118,13 +123,13 @@ jobs:
 
     steps:
       - name: Download NuGet Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: NuGets
           path: nugets
 
       - name: Download Demo App Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: DemoApp
           path: demo-app
@@ -133,7 +138,7 @@ jobs:
         run: zip -r DemoApp.zip demo-app/*
 
       - name: Download Release Notes
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ReleaseNotes
 
@@ -150,12 +155,12 @@ jobs:
 
     steps:
       - name: Checkout Wiki Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository:  ${{ github.repository }}.wiki
 
       - name: Download Icon Changes
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: IconChanges
           path: icon-changes
@@ -217,7 +222,7 @@ jobs:
 
     steps:
       - name: Download NuGet Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: NuGets
           path: nugets
@@ -246,7 +251,7 @@ jobs:
     steps:
       # Doing a checkout, until this issue is resolved.
       # https://github.com/valeriobelli/gh-milestone/issues/15
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Close Milestone
         run: |
@@ -266,7 +271,7 @@ jobs:
 
     steps:
       # Checkout is needed so that we can update the get_versions.yml file
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         
       - name: Increment Version Numbers
         run: |

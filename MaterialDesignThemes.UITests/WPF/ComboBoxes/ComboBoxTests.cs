@@ -145,7 +145,7 @@ public class ComboBoxTests : TestBase
         var editableTextBox = await comboBox.GetElement<TextBox>("PART_EditableTextBox");
         var button = await stackPanel.GetElement<Button>("Button");
 
-        // Open the combobox initially
+        // Open the ComboBox initially
         await comboBox.LeftClick(Position.RightCenter);
         await Task.Delay(50);   // Allow a little time for the drop-down to open (and property to change)
         bool wasOpenAfterClickOnToggleButton = await comboBox.GetIsDropDownOpen();
@@ -254,6 +254,31 @@ public class ComboBoxTests : TestBase
 
         Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left), 0, tolerance);
         Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left), 0, tolerance);
+
+        recorder.Success();
+    }
+
+    [Theory]
+    [InlineData(HorizontalAlignment.Left)]
+    [InlineData(HorizontalAlignment.Right)]
+    [InlineData(HorizontalAlignment.Center)]
+    [InlineData(HorizontalAlignment.Stretch)]
+    [Description("Issue 3433")]
+    public async Task ComboBox_WithHorizontalContentAlignment_RespectsAlignment(HorizontalAlignment alignment)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        var stackPanel = await LoadXaml<StackPanel>($"""
+            <StackPanel>
+              <ComboBox HorizontalContentAlignment="{alignment}">
+                <ComboBoxItem Content="TEST" IsSelected="True" />
+              </ComboBox>
+            </StackPanel>
+            """);
+        var comboBox = await stackPanel.GetElement<ComboBox>("/ComboBox");
+        var selectedItemPresenter = await comboBox.GetElement<ContentPresenter>("contentPresenter");
+
+        Assert.Equal(alignment, await selectedItemPresenter.GetHorizontalAlignment());
 
         recorder.Success();
     }

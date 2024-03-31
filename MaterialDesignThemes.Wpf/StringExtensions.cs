@@ -1,17 +1,16 @@
 ﻿using System.Globalization;
 
-namespace MaterialDesignThemes.Wpf
+namespace MaterialDesignThemes.Wpf;
+
+internal static class StringExtensions
 {
-    internal static class StringExtensions
+    public static string ToTitleCase(this string text, CultureInfo culture, string separator = " ")
     {
-        public static string ToTitleCase(this string text, CultureInfo culture, string separator = " ")
-        {
-            TextInfo textInfo = culture.TextInfo;
+        TextInfo textInfo = culture.TextInfo;
 
-            string lowerText = textInfo.ToLower(text);
-            string[] words = lowerText.Split(new[] { separator }, StringSplitOptions.None);
+        string lowerText = textInfo.ToLower(text);
+        string[] words = lowerText.Split(new[] { separator }, StringSplitOptions.None);
 
-            return String.Join(separator, words.Select(v => textInfo.ToTitleCase(v)));
-        }
+        return String.Join(separator, words.Select(v => textInfo.ToTitleCase(v)));
     }
 }

@@ -5,6 +5,7 @@
              xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
              xmlns:local="clr-namespace:MaterialDesignDemo"
              xmlns:materialDesign="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
              xmlns:materialDesignColors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              d:DataContext="{d:DesignInstance domain:PaletteSelectorViewModel}"
@@ -12,6 +13,7 @@
              d:DesignWidth="400"
              mc:Ignorable="d">
   <UserControl.Resources>
+    <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
     <DataTemplate DataType="{x:Type materialDesignColors:Swatch}">
       <DataTemplate.Resources>
         <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
@@ -72,14 +74,14 @@
           <Border Grid.Row="1"
                   Grid.Column="1"
                   Width="120"
-                  Visibility="{Binding IsAccented, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneTime}">
+                  Visibility="{Binding SecondaryExemplarHue, Converter={StaticResource NullableToVisibilityConverter}, Mode=OneTime}">
             <Border.Background>
-              <SolidColorBrush Color="{Binding AccentExemplarHue.Color, Mode=OneTime}" />
+              <SolidColorBrush Color="{Binding SecondaryExemplarHue.Color, Mode=OneTime}" />
             </Border.Background>
 
-            <Button Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:PaletteSelector}}, Path=DataContext.ApplyAccentCommand, Mode=OneTime}" CommandParameter="{Binding}">
+            <Button Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:PaletteSelector}}, Path=DataContext.ApplySecondaryCommand, Mode=OneTime}" CommandParameter="{Binding}">
               <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Accent" />
+                <TextBlock Text="Secondary" />
                 <Viewbox Width="16" Height="16">
                   <Canvas Width="24" Height="24">
                     <Path Style="{StaticResource PalettePath}" />

@@ -9,7 +9,7 @@ namespace MaterialDesignDemo.Domain;
 
 public class MainWindowViewModel : ViewModelBase
 {
-    public MainWindowViewModel(ISnackbarMessageQueue snackbarMessageQueue)
+    public MainWindowViewModel(ISnackbarMessageQueue snackbarMessageQueue, string? startupPage)
     {
         DemoItems = new ObservableCollection<DemoItem>(new[]
         {
@@ -34,7 +34,7 @@ public class MainWindowViewModel : ViewModelBase
         {
             DemoItems.Add(item);
         }
-        SelectedItem = DemoItems.First();
+        SelectedItem = DemoItems.FirstOrDefault(di => string.Equals(di.Name, startupPage, StringComparison.CurrentCultureIgnoreCase)) ?? DemoItems.First();
         _demoItemsView = CollectionViewSource.GetDefaultView(DemoItems);
         _demoItemsView.Filter = DemoItemsFilter;
         

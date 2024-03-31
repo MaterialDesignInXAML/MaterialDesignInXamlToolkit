@@ -271,13 +271,13 @@
     <Setter Property="mah:TextBoxHelper.ButtonFontSize" Value="{DynamicResource MahApps.Font.Size.Button.ClearText}" />
     <Setter Property="mah:TextBoxHelper.ButtonWidth" Value="22" />
     <Setter Property="mah:TextBoxHelper.IsMonitoring" Value="True" />
-    <Setter Property="mdix:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+    <Setter Property="mdix:TextFieldAssist.UnderlineBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
   </Style>
 
   <Style x:Key="MaterialDesignOutlinedNumericUpDown"
          TargetType="{x:Type mah:NumericUpDown}"
          BasedOn="{StaticResource MaterialDesignNumericUpDown}">
-    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextAreaBorder}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Header.Foreground}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Padding" Value="16" />
     <Setter Property="mah:ControlsHelper.CornerRadius" Value="4" />

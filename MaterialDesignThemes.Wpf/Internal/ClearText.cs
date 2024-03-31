@@ -39,9 +39,11 @@ public static class ClearText
             {
                 case DatePicker datePicker:
                     datePicker.SetCurrentValue(DatePicker.SelectedDateProperty, null);
+                    datePicker.Text = string.Empty; // Clears the text in the DatePickerTextBox which could contain uncommitted text
                     break;
                 case TimePicker timePicker:
                     timePicker.SetCurrentValue(TimePicker.SelectedTimeProperty, null);
+                    timePicker.Clear(); // Clears the text in the TimePickerTextBox which could contain uncommitted text
                     break;
                 case TextBox textBox:
                     textBox.SetCurrentValue(TextBox.TextProperty, null);
@@ -49,6 +51,9 @@ public static class ClearText
                 case ComboBox comboBox:
                     comboBox.SetCurrentValue(ComboBox.TextProperty, null);
                     comboBox.SetCurrentValue(Selector.SelectedItemProperty, null);
+                    break;
+                case RichTextBox richTextBox:
+                    richTextBox.Document.Blocks.Clear();
                     break;
                 case PasswordBox passwordBox:
                     passwordBox.Password = null;

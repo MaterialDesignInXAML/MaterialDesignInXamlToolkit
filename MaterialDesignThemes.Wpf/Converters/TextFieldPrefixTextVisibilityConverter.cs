@@ -1,22 +1,21 @@
 ﻿using System.Globalization;
 using System.Windows.Data;
 
-namespace MaterialDesignThemes.Wpf.Converters
-{
-    public class TextFieldPrefixTextVisibilityConverter : IMultiValueConverter
-    {
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
-        {
-            string prefixText = (string)values[1];
-            if (string.IsNullOrEmpty(prefixText))
-            {
-                return Visibility.Collapsed;
-            }
+namespace MaterialDesignThemes.Wpf.Converters;
 
-            bool isHintInFloatingPosition = (bool)values[0];
-            return isHintInFloatingPosition ? Visibility.Visible : Visibility.Hidden;
+public class TextFieldPrefixTextVisibilityConverter : IMultiValueConverter
+{
+    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+    {
+        string prefixText = (string)values[1];
+        if (string.IsNullOrEmpty(prefixText))
+        {
+            return Visibility.Collapsed;
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException();
+        bool isHintInFloatingPosition = (bool)values[0];
+        return isHintInFloatingPosition ? Visibility.Visible : Visibility.Hidden;
     }
+
+    public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException();
 }

@@ -21,11 +21,9 @@
   </UserControl.Resources>
 
   <StackPanel>
-    <TextBlock Text="Sliders"
-               Style="{StaticResource PageTitleTextBlock}" />
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Sliders" />
 
-    <TextBlock Text="Continuous Horizontal"
-               Style="{StaticResource PageSectionTitleTextBlock}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Continuous Horizontal" />
 
     <StackPanel>
 
@@ -35,8 +33,7 @@
                 Value="35" />
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,16,0,0"
-                        UniqueKey="continuous_slider_h_2">
+      <smtx:XamlDisplay Margin="0,16,0,0" UniqueKey="continuous_slider_h_2">
         <Slider IsSelectionRangeEnabled="True"
                 Maximum="50"
                 Minimum="0"
@@ -48,38 +45,33 @@
                 Value="10" />
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,16,0,0"
-                        UniqueKey="continuous_slider_h_3">
+      <smtx:XamlDisplay Margin="0,16,0,0" UniqueKey="continuous_slider_h_3">
         <Slider IsEnabled="False"
                 Maximum="50"
                 Minimum="0"
                 Value="25" />
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,16,0,0"
-                        UniqueKey="continuous_slider_h_4">
+      <smtx:XamlDisplay Margin="0,16,0,0" UniqueKey="continuous_slider_h_4">
         <Slider IsDirectionReversed="True"
                 Maximum="50"
                 Minimum="0"
                 Value="10" />
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,16,0,0"
-                        UniqueKey="continuous_slider_h_5">
-        <Slider Maximum="50"
+      <smtx:XamlDisplay Margin="0,16,0,0" UniqueKey="continuous_slider_h_5">
+        <Slider materialDesign:SliderAssist.HideActiveTrack="True"
+                Maximum="50"
                 Minimum="0"
-                Value="35"
-                materialDesign:SliderAssist.HideActiveTrack="True" />
+                Value="35" />
       </smtx:XamlDisplay>
 
     </StackPanel>
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
-    <TextBlock Text="Discrete Horizontal"
-               Style="{StaticResource PageSectionTitleTextBlock}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Discrete Horizontal" />
 
     <StackPanel>
-
       <StackPanel Orientation="Horizontal">
         <TextBox materialDesign:HintAssist.Hint="Maximum"
                  materialDesign:TextFieldAssist.RippleOnFocusEnabled="False"
@@ -94,8 +86,7 @@
 
       <StackPanel>
 
-        <smtx:XamlDisplay Margin="0,24,0,0"
-                          UniqueKey="discrete_slider_h_1">
+        <smtx:XamlDisplay Margin="0,24,0,0" UniqueKey="discrete_slider_h_1">
           <Slider Maximum="{Binding DiscreteHorizontal.Maximum}"
                   Minimum="0"
                   Style="{StaticResource MaterialDesignDiscreteSlider}"
@@ -104,8 +95,7 @@
                   Value="40" />
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Margin="0,24,0,0"
-                          UniqueKey="discrete_slider_h_2">
+        <smtx:XamlDisplay Margin="0,24,0,0" UniqueKey="discrete_slider_h_2">
           <Slider IsSelectionRangeEnabled="True"
                   Maximum="{Binding DiscreteHorizontal.Maximum}"
                   Minimum="0"
@@ -117,8 +107,7 @@
                   Value="20" />
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Margin="0,24,0,0"
-                          UniqueKey="discrete_slider_h_3">
+        <smtx:XamlDisplay Margin="0,24,0,0" UniqueKey="discrete_slider_h_3">
           <Slider Maximum="{Binding DiscreteHorizontal.Maximum}"
                   Minimum="0"
                   Style="{StaticResource MaterialDesignDiscreteSlider}"
@@ -127,8 +116,7 @@
                   Value="60" />
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Margin="0,24,0,0"
-                          UniqueKey="discrete_slider_h_4">
+        <smtx:XamlDisplay Margin="0,24,0,0" UniqueKey="discrete_slider_h_4">
           <Slider IsEnabled="False"
                   Maximum="{Binding DiscreteHorizontal.Maximum}"
                   Minimum="0"
@@ -138,177 +126,161 @@
                   Value="50" />
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Margin="0,24,0,0"
-                          UniqueKey="discrete_slider_h_5">
-          <Slider Maximum="{Binding DiscreteHorizontal.Maximum}"
+        <smtx:XamlDisplay Margin="0,24,0,0" UniqueKey="discrete_slider_h_5">
+          <Slider materialDesign:SliderAssist.HideActiveTrack="True"
+                  Maximum="{Binding DiscreteHorizontal.Maximum}"
                   Minimum="0"
                   Style="{StaticResource MaterialDesignDiscreteSlider}"
                   TickFrequency="{Binding DiscreteHorizontal.TickFrequency}"
                   TickPlacement="BottomRight"
-                  Value="40"
-                  materialDesign:SliderAssist.HideActiveTrack="True" />
+                  Value="40" />
+        </smtx:XamlDisplay>
+      </StackPanel>
+
+      <Rectangle Style="{StaticResource PageSectionSeparator}" />
+
+      <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Continuous Vertical" />
+
+      <StackPanel Height="256" Orientation="Horizontal">
+        <smtx:XamlDisplay UniqueKey="continuous_slider_v_1">
+          <Slider Maximum="50"
+                  Minimum="0"
+                  Orientation="Vertical"
+                  Value="25" />
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Margin="16,0,0,0" UniqueKey="continuous_slider_v_2">
+          <Slider IsSelectionRangeEnabled="True"
+                  Maximum="50"
+                  Minimum="0"
+                  Orientation="Vertical"
+                  SelectionEnd="50"
+                  SelectionStart="30"
+                  Value="10" />
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Margin="16,0,0,0" UniqueKey="continuous_slider_v_3">
+          <Slider IsDirectionReversed="True"
+                  Maximum="50"
+                  Minimum="0"
+                  Orientation="Vertical"
+                  Value="10" />
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Margin="16,0,0,0" UniqueKey="continuous_slider_v_4">
+          <Slider IsEnabled="False"
+                  Maximum="50"
+                  Minimum="0"
+                  Orientation="Vertical"
+                  TickFrequency="10"
+                  TickPlacement="TopLeft"
+                  Value="30" />
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Margin="16,0,0,0" UniqueKey="continuous_slider_v_5">
+          <Slider materialDesign:SliderAssist.HideActiveTrack="True"
+                  Maximum="50"
+                  Minimum="0"
+                  Orientation="Vertical"
+                  Value="25" />
+        </smtx:XamlDisplay>
+      </StackPanel>
+
+      <Rectangle Style="{StaticResource PageSectionSeparator}" />
+
+      <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Discrete Vertical" />
+
+      <StackPanel Margin="0,0,0,16" Orientation="Horizontal">
+        <TextBox materialDesign:HintAssist.Hint="Maximum"
+                 materialDesign:TextFieldAssist.RippleOnFocusEnabled="False"
+                 Style="{StaticResource MaterialDesignFilledTextBox}"
+                 Text="{Binding DiscreteVertical.Maximum, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Margin="16,0,0,0"
+                 materialDesign:HintAssist.Hint="Tick Frequency"
+                 materialDesign:TextFieldAssist.RippleOnFocusEnabled="False"
+                 Style="{StaticResource MaterialDesignFilledTextBox}"
+                 Text="{Binding DiscreteVertical.TickFrequency, UpdateSourceTrigger=PropertyChanged}" />
+      </StackPanel>
+
+      <StackPanel Height="256" Orientation="Horizontal">
+
+        <smtx:XamlDisplay UniqueKey="discrete_slider_v_1">
+          <Slider Maximum="{Binding DiscreteVertical.Maximum}"
+                  Minimum="0"
+                  Orientation="Vertical"
+                  Style="{StaticResource MaterialDesignDiscreteSlider}"
+                  TickFrequency="{Binding DiscreteVertical.TickFrequency}"
+                  TickPlacement="BottomRight"
+                  Value="70000" />
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Margin="24,0,0,0" UniqueKey="discrete_slider_v_2">
+          <Slider IsSelectionRangeEnabled="True"
+                  Maximum="{Binding DiscreteVertical.Maximum}"
+                  Minimum="0"
+                  Orientation="Vertical"
+                  SelectionEnd="90000"
+                  SelectionStart="60000"
+                  Style="{StaticResource MaterialDesignDiscreteSlider}"
+                  TickFrequency="{Binding DiscreteVertical.TickFrequency}"
+                  TickPlacement="TopLeft"
+                  Value="30000" />
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Margin="24,0,0,0" UniqueKey="discrete_slider_v_3">
+          <Slider Maximum="{Binding DiscreteVertical.Maximum}"
+                  Minimum="0"
+                  Orientation="Vertical"
+                  Style="{StaticResource MaterialDesignDiscreteSlider}"
+                  TickFrequency="{Binding DiscreteVertical.TickFrequency}"
+                  TickPlacement="Both"
+                  Value="90000" />
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Margin="20,0,0,0" UniqueKey="discrete_slider_v_4">
+          <Slider IsDirectionReversed="True"
+                  Maximum="{Binding DiscreteVertical.Maximum}"
+                  Minimum="0"
+                  Orientation="Vertical"
+                  Style="{StaticResource MaterialDesignDiscreteSlider}"
+                  TickFrequency="{Binding DiscreteVertical.TickFrequency}"
+                  TickPlacement="BottomRight"
+                  Value="50000" />
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Margin="20,0,0,0" UniqueKey="discrete_slider_v_5">
+          <Slider IsEnabled="False"
+                  Maximum="{Binding DiscreteVertical.Maximum}"
+                  Minimum="0"
+                  Orientation="Vertical"
+                  Style="{StaticResource MaterialDesignDiscreteSlider}"
+                  TickFrequency="{Binding DiscreteVertical.TickFrequency}"
+                  TickPlacement="BottomRight"
+                  Value="70000" />
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Margin="20,0,0,0" UniqueKey="discrete_slider_v_6">
+          <Slider materialDesign:SliderAssist.OnlyShowFocusVisualWhileDragging="True"
+                  Maximum="{Binding DiscreteVertical.Maximum}"
+                  Minimum="0"
+                  Orientation="Vertical"
+                  Style="{StaticResource MaterialDesignDiscreteSlider}"
+                  TickFrequency="{Binding DiscreteVertical.TickFrequency}"
+                  TickPlacement="BottomRight"
+                  Value="70000" />
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Margin="20,0,0,0" UniqueKey="discrete_slider_v_7">
+          <Slider materialDesign:SliderAssist.HideActiveTrack="True"
+                  Maximum="{Binding DiscreteVertical.Maximum}"
+                  Minimum="0"
+                  Orientation="Vertical"
+                  Style="{StaticResource MaterialDesignDiscreteSlider}"
+                  TickFrequency="{Binding DiscreteVertical.TickFrequency}"
+                  TickPlacement="BottomRight"
+                  Value="70000" />
         </smtx:XamlDisplay>
       </StackPanel>
     </StackPanel>
-
-    <Rectangle Style="{StaticResource PageSectionSeparator}" />
-
-    <TextBlock Text="Continuous Vertical"
-               Style="{StaticResource PageSectionTitleTextBlock}" />
-
-    <StackPanel Height="256"
-                Orientation="Horizontal">
-      <smtx:XamlDisplay UniqueKey="continuous_slider_v_1">
-        <Slider Maximum="50"
-                Minimum="0"
-                Orientation="Vertical"
-                Value="25" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="16,0,0,0"
-                        UniqueKey="continuous_slider_v_2">
-        <Slider IsSelectionRangeEnabled="True"
-                Maximum="50"
-                Minimum="0"
-                Orientation="Vertical"
-                SelectionEnd="50"
-                SelectionStart="30"
-                Value="10" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="16,0,0,0"
-                        UniqueKey="continuous_slider_v_3">
-        <Slider IsDirectionReversed="True"
-                Maximum="50"
-                Minimum="0"
-                Orientation="Vertical"
-                Value="10" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="16,0,0,0"
-                        UniqueKey="continuous_slider_v_4">
-        <Slider IsEnabled="False"
-                Maximum="50"
-                Minimum="0"
-                Orientation="Vertical"
-                TickFrequency="10"
-                TickPlacement="TopLeft"
-                Value="30" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="16,0,0,0"
-                        UniqueKey="continuous_slider_v_5">
-        <Slider Maximum="50"
-                Minimum="0"
-                Orientation="Vertical"
-                Value="25"
-                materialDesign:SliderAssist.HideActiveTrack="True" />
-      </smtx:XamlDisplay>
-    </StackPanel>
-
-    <Rectangle Style="{StaticResource PageSectionSeparator}" />
-
-    <TextBlock Text="Discrete Vertical"
-               Style="{StaticResource PageSectionTitleTextBlock}" />
-
-    <StackPanel Orientation="Horizontal" Margin="0 0 0 16">
-      <TextBox materialDesign:HintAssist.Hint="Maximum"
-               materialDesign:TextFieldAssist.RippleOnFocusEnabled="False"
-               Style="{StaticResource MaterialDesignFilledTextBox}"
-               Text="{Binding DiscreteVertical.Maximum, UpdateSourceTrigger=PropertyChanged}" />
-      <TextBox Margin="16,0,0,0"
-               materialDesign:HintAssist.Hint="Tick Frequency"
-               materialDesign:TextFieldAssist.RippleOnFocusEnabled="False"
-               Style="{StaticResource MaterialDesignFilledTextBox}"
-               Text="{Binding DiscreteVertical.TickFrequency, UpdateSourceTrigger=PropertyChanged}" />
-    </StackPanel>
-
-    <StackPanel Height="256"
-                Orientation="Horizontal">
-
-      <smtx:XamlDisplay UniqueKey="discrete_slider_v_1">
-        <Slider Maximum="{Binding DiscreteVertical.Maximum}"
-                Minimum="0"
-                Orientation="Vertical"
-                Style="{StaticResource MaterialDesignDiscreteSlider}"
-                TickFrequency="{Binding DiscreteVertical.TickFrequency}"
-                TickPlacement="BottomRight"
-                Value="70000" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="24,0,0,0"
-                        UniqueKey="discrete_slider_v_2">
-        <Slider IsSelectionRangeEnabled="True"
-                Maximum="{Binding DiscreteVertical.Maximum}"
-                Minimum="0"
-                Orientation="Vertical"
-                SelectionEnd="90000"
-                SelectionStart="60000"
-                Style="{StaticResource MaterialDesignDiscreteSlider}"
-                TickFrequency="{Binding DiscreteVertical.TickFrequency}"
-                TickPlacement="TopLeft"
-                Value="30000" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="24,0,0,0"
-                        UniqueKey="discrete_slider_v_3">
-        <Slider Maximum="{Binding DiscreteVertical.Maximum}"
-                Minimum="0"
-                Orientation="Vertical"
-                Style="{StaticResource MaterialDesignDiscreteSlider}"
-                TickFrequency="{Binding DiscreteVertical.TickFrequency}"
-                TickPlacement="Both"
-                Value="90000" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="20,0,0,0"
-                        UniqueKey="discrete_slider_v_4">
-        <Slider IsDirectionReversed="True"
-                Maximum="{Binding DiscreteVertical.Maximum}"
-                Minimum="0"
-                Orientation="Vertical"
-                Style="{StaticResource MaterialDesignDiscreteSlider}"
-                TickFrequency="{Binding DiscreteVertical.TickFrequency}"
-                TickPlacement="BottomRight"
-                Value="50000" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="20,0,0,0"
-                        UniqueKey="discrete_slider_v_5">
-        <Slider IsEnabled="False"
-                Maximum="{Binding DiscreteVertical.Maximum}"
-                Minimum="0"
-                Orientation="Vertical"
-                Style="{StaticResource MaterialDesignDiscreteSlider}"
-                TickFrequency="{Binding DiscreteVertical.TickFrequency}"
-                TickPlacement="BottomRight"
-                Value="70000" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="20,0,0,0"
-                        UniqueKey="discrete_slider_v_6">
-        <Slider materialDesign:SliderAssist.OnlyShowFocusVisualWhileDragging="True"
-                Maximum="{Binding DiscreteVertical.Maximum}"
-                Minimum="0"
-                Orientation="Vertical"
-                Style="{StaticResource MaterialDesignDiscreteSlider}"
-                TickFrequency="{Binding DiscreteVertical.TickFrequency}"
-                TickPlacement="BottomRight"
-                Value="70000" />
-      </smtx:XamlDisplay>
-
-      <smtx:XamlDisplay Margin="20,0,0,0"
-                        UniqueKey="discrete_slider_v_7">
-        <Slider Maximum="{Binding DiscreteVertical.Maximum}"
-                Minimum="0"
-                Orientation="Vertical"
-                Style="{StaticResource MaterialDesignDiscreteSlider}"
-                TickFrequency="{Binding DiscreteVertical.TickFrequency}"
-                TickPlacement="BottomRight"
-                Value="70000"
-                materialDesign:SliderAssist.HideActiveTrack="True" />
-      </smtx:XamlDisplay>
-    </StackPanel>
-
   </StackPanel>
 </UserControl>

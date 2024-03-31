@@ -12,41 +12,52 @@
   <Style x:Key="MaterialDesignExpanderToggleButton" TargetType="{x:Type ToggleButton}">
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate TargetType="{x:Type ToggleButton}">
-          <Border Background="Transparent">
-            <VisualStateManager.VisualStateGroups>
-              <VisualStateGroup x:Name="CheckStates">
-                <VisualState x:Name="Checked">
-                  <Storyboard>
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExpandPathRotateTransform" Storyboard.TargetProperty="Angle">
-                      <EasingDoubleKeyFrame KeyTime="{StaticResource ExpandKeyTime}" Value="180" />
-                    </DoubleAnimationUsingKeyFrames>
-                  </Storyboard>
-                </VisualState>
-                <VisualState x:Name="Unchecked">
-                  <Storyboard>
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExpandPathRotateTransform" Storyboard.TargetProperty="Angle">
-                      <EasingDoubleKeyFrame KeyTime="{StaticResource CollapseKeyTime}" Value="0" />
-                    </DoubleAnimationUsingKeyFrames>
-                  </Storyboard>
-                </VisualState>
-              </VisualStateGroup>
-            </VisualStateManager.VisualStateGroups>
-            <wpf:PackIcon x:Name="ExpandPath"
-                          Width="24"
-                          Height="24"
-                          Foreground="{TemplateBinding Foreground}"
-                          Kind="ChevronDown"
-                          Opacity="0.38"
-                          RenderTransformOrigin="0.5 0.5">
-              <wpf:PackIcon.RenderTransform>
-                <RotateTransform x:Name="ExpandPathRotateTransform" />
-              </wpf:PackIcon.RenderTransform>
-            </wpf:PackIcon>
-          </Border>
+        <ControlTemplate>
+          <ContentControl Content="{Binding RelativeSource={RelativeSource AncestorType=Expander, Mode=FindAncestor}, Path=(wpf:ExpanderAssist.ExpanderButtonContent)}" />
         </ControlTemplate>
       </Setter.Value>
     </Setter>
+    <Style.Triggers>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Expander, Mode=FindAncestor}, Path=(wpf:ExpanderAssist.ExpanderButtonContent)}" Value="{x:Null}">
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type ToggleButton}">
+              <Border Background="Transparent">
+                <VisualStateManager.VisualStateGroups>
+                  <VisualStateGroup x:Name="CheckStates">
+                    <VisualState x:Name="Checked">
+                      <Storyboard>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExpandPathRotateTransform" Storyboard.TargetProperty="Angle">
+                          <EasingDoubleKeyFrame KeyTime="{StaticResource ExpandKeyTime}" Value="180" />
+                        </DoubleAnimationUsingKeyFrames>
+                      </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Unchecked">
+                      <Storyboard>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExpandPathRotateTransform" Storyboard.TargetProperty="Angle">
+                          <EasingDoubleKeyFrame KeyTime="{StaticResource CollapseKeyTime}" Value="0" />
+                        </DoubleAnimationUsingKeyFrames>
+                      </Storyboard>
+                    </VisualState>
+                  </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <wpf:PackIcon x:Name="ExpandPath"
+                              Width="24"
+                              Height="24"
+                              Foreground="{TemplateBinding Foreground}"
+                              Kind="ChevronDown"
+                              Opacity="0.38"
+                              RenderTransformOrigin="0.5 0.5">
+                  <wpf:PackIcon.RenderTransform>
+                    <RotateTransform x:Name="ExpandPathRotateTransform" />
+                  </wpf:PackIcon.RenderTransform>
+                </wpf:PackIcon>
+              </Border>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </DataTrigger>
+    </Style.Triggers>
   </Style>
 
   <Style x:Key="MaterialDesignHorizontalHeaderStyle" TargetType="{x:Type ToggleButton}">
@@ -58,12 +69,13 @@
           <Border Padding="{Binding Path=(wpf:ExpanderAssist.HorizontalHeaderPadding), RelativeSource={RelativeSource AncestorType=Expander, AncestorLevel=1}}" Background="{TemplateBinding Background}">
             <Grid>
               <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="16" />
                 <ColumnDefinition Width="Auto" />
               </Grid.ColumnDefinitions>
 
-              <ContentPresenter Grid.Column="0"
+              <ContentPresenter x:Name="ExpanderHeader"
+                                Grid.Column="1"
                                 VerticalAlignment="Center"
                                 Content="{TemplateBinding Content}"
                                 ContentStringFormat="{TemplateBinding ContentStringFormat}"
@@ -71,7 +83,6 @@
                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
 
               <ToggleButton x:Name="ExpanderButton"
-                            Grid.Column="2"
                             VerticalAlignment="Center"
                             Foreground="{TemplateBinding Foreground}"
                             IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
@@ -90,9 +101,19 @@
                   </Style>
                 </ToggleButton.Style>
               </ToggleButton>
-
             </Grid>
           </Border>
+          <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Expander, Mode=FindAncestor}, Path=(wpf:ExpanderAssist.ExpanderButtonPosition)}" Value="Start">
+              <Setter TargetName="ExpanderButton" Property="Grid.Column" Value="0" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Expander, Mode=FindAncestor}, Path=(wpf:ExpanderAssist.ExpanderButtonPosition)}" Value="End">
+              <Setter TargetName="ExpanderButton" Property="Grid.Column" Value="2" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Expander, Mode=FindAncestor}, Path=(wpf:ExpanderAssist.ExpanderButtonPosition)}" Value="Default">
+              <Setter TargetName="ExpanderButton" Property="Grid.Column" Value="2" />
+            </DataTrigger>
+          </ControlTemplate.Triggers>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -100,7 +121,6 @@
 
   <Style x:Key="MaterialDesignVerticalHeaderStyle" TargetType="{x:Type ToggleButton}">
     <Setter Property="Background" Value="Transparent" />
-
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ToggleButton}">
@@ -108,12 +128,11 @@
             <Grid>
               <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="16" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
               </Grid.RowDefinitions>
 
               <ToggleButton x:Name="ExpanderButton"
-                            Grid.Row="0"
                             VerticalAlignment="Center"
                             Foreground="{TemplateBinding Foreground}"
                             IsChecked="{Binding Path=IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
@@ -143,7 +162,7 @@
                 </ToggleButton.Style>
               </ToggleButton>
 
-              <ContentPresenter Grid.Row="2"
+              <ContentPresenter Grid.Row="1"
                                 VerticalAlignment="Center"
                                 Content="{TemplateBinding Content}"
                                 ContentStringFormat="{TemplateBinding ContentStringFormat}"
@@ -152,13 +171,24 @@
 
             </Grid>
           </Border>
+          <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Expander, Mode=FindAncestor}, Path=(wpf:ExpanderAssist.ExpanderButtonPosition)}" Value="Start">
+              <Setter TargetName="ExpanderButton" Property="Grid.Row" Value="0" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Expander, Mode=FindAncestor}, Path=(wpf:ExpanderAssist.ExpanderButtonPosition)}" Value="End">
+              <Setter TargetName="ExpanderButton" Property="Grid.Row" Value="2" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Expander, Mode=FindAncestor}, Path=(wpf:ExpanderAssist.ExpanderButtonPosition)}" Value="Default">
+              <Setter TargetName="ExpanderButton" Property="Grid.Row" Value="0" />
+            </DataTrigger>
+          </ControlTemplate.Triggers>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
   </Style>
 
   <Style x:Key="MaterialDesignExpander" TargetType="{x:Type Expander}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -330,7 +360,7 @@
         </ControlTemplate>
       </Setter.Value>
     </Setter>
-    <Setter Property="VerticalContentAlignment" Value="Top" />
+    <Setter Property="VerticalContentAlignment" Value="Stretch" />
     <Setter Property="wpf:ExpanderAssist.HeaderBackground" Value="Transparent" />
   </Style>
 </ResourceDictionary>

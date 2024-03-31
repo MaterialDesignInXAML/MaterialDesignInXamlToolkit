@@ -33,7 +33,7 @@
                 SelectedIndex="0" />
     </StackPanel>
 
-    <FrameworkElement x:Name="DataContextProxy" DataContext="{Binding}"/>
+    <FrameworkElement x:Name="DataContextProxy" DataContext="{Binding}" />
 
     <smtx:XamlDisplay UniqueKey="grids_1">
       <DataGrid AutoGenerateColumns="False"

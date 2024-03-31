@@ -1,134 +1,225 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections;
+using System.Collections.ObjectModel;
+using System.Windows.Documents;
 using MaterialDesignThemes.Wpf;
 
-namespace MaterialDesignDemo.Domain
+namespace MaterialDesignDemo.Domain;
+
+public class TreeExampleSimpleTemplateSelector : DataTemplateSelector
 {
-    public class TreeExampleSimpleTemplateSelector : DataTemplateSelector
+    public DataTemplate? PlanetTemplate { get; set; }
+
+    public DataTemplate? SolarSystemTemplate { get; set; }
+
+    public override DataTemplate? SelectTemplate(object item, DependencyObject container)
     {
-        public DataTemplate? PlanetTemplate { get; set; }
+        if (item is Planet)
+            return PlanetTemplate;
 
-        public DataTemplate? SolarSystemTemplate { get; set; }
+        if (item?.ToString() == "Solar System")
+            return SolarSystemTemplate;
 
-        public override DataTemplate? SelectTemplate(object item, DependencyObject container)
-        {
-            if (item is Planet)
-                return PlanetTemplate;
+        return TreeViewAssist.SuppressAdditionalTemplate;
+    }
+}
 
-            if (item?.ToString() == "Solar System")
-                return SolarSystemTemplate;
-
-            return TreeViewAssist.SuppressAdditionalTemplate;
-        }
+public sealed class Movie
+{
+    public Movie(string name, string director)
+    {
+        Name = name;
+        Director = director;
     }
 
-    public sealed class Movie
+    public string Name { get; }
+
+    public string Director { get; }
+}
+
+public class Planet
+{
+    public string? Name { get; set; }
+
+    public double DistanceFromSun { get; set; }
+
+    public double DistanceFromEarth { get; set; }
+
+    public double Velocity { get; set; }
+}
+
+public class TestItem
+{
+    public TestItem? Parent { get; set; }
+    public string Name { get; }
+    public ObservableCollection<TestItem> Items { get; }
+
+    public TestItem(string name, IEnumerable<TestItem> items)
     {
-        public Movie(string name, string director)
-        {
-            Name = name;
-            Director = director;
-        }
+        Name = name;
+        Items = new ObservableCollection<TestItem>(items);
+    }
+}
 
-        public string Name { get; }
-
-        public string Director { get; }
+public sealed class MovieCategory
+{
+    public MovieCategory(string name, params Movie[] movies)
+    {
+        Name = name;
+        Movies = new ObservableCollection<Movie>(movies);
     }
 
-    public class Planet
+    public string Name { get; }
+
+    public ObservableCollection<Movie> Movies { get; }
+}
+
+public sealed class TreesViewModel : ViewModelBase
+{
+    private object? _selectedItem;
+    private TestItem? _selectedTreeItem;
+
+    public ObservableCollection<TestItem> TreeItems { get; } = new();
+
+    public ObservableCollection<MovieCategory> MovieCategories { get; }
+
+    public AnotherCommandImplementation AddCommand { get; }
+
+    public AnotherCommandImplementation RemoveSelectedItemCommand { get; }
+
+    public AnotherCommandImplementation AddListTreeItemCommand { get; }
+
+    public AnotherCommandImplementation RemoveListTreeItemCommand { get; }
+
+    public TestItem? SelectedTreeItem
     {
-        public string? Name { get; set; }
-
-        public double DistanceFromSun { get; set; }
-
-        public double DistanceFromEarth { get; set; }
-
-        public double Velocity { get; set; }
+        get => _selectedTreeItem;
+        set => SetProperty(ref _selectedTreeItem, value);
     }
 
-    public sealed class MovieCategory
+    public object? SelectedItem
     {
-        public MovieCategory(string name, params Movie[] movies)
-        {
-            Name = name;
-            Movies = new ObservableCollection<Movie>(movies);
-        }
-
-        public string Name { get; }
-
-        public ObservableCollection<Movie> Movies { get; }
+        get => _selectedItem;
+        set => SetProperty(ref _selectedItem, value);
     }
 
-    public sealed class TreesViewModel : ViewModelBase
+    public TreesViewModel()
     {
-        private object? _selectedItem;
-
-        public ObservableCollection<MovieCategory> MovieCategories { get; }
-
-        public AnotherCommandImplementation AddCommand { get; }
-
-        public AnotherCommandImplementation RemoveSelectedItemCommand { get; }
-
-        public object? SelectedItem
+        Random random = new();
+        for(int i = 0; i < 10; i++)
         {
-            get => _selectedItem;
-            set => SetProperty(ref _selectedItem, value);
+            TreeItems.Add(CreateTestItem(random, 1));
         }
 
-        public TreesViewModel()
+        static TestItem CreateTestItem(Random random, int depth)
         {
-            MovieCategories = new ObservableCollection<MovieCategory>
+            int numberOfChildren = depth < 5 ? random.Next(0, 6) : 0;
+            var children = Enumerable.Range(0, numberOfChildren).Select(_ => CreateTestItem(random, depth + 1));
+            var rv = new TestItem(GenerateString(random.Next(4, 10)), children); 
+            foreach(var child in rv.Items)
             {
-                new MovieCategory("Action",
-                    new Movie ("Predator", "John McTiernan"),
-                    new Movie("Alien", "Ridley Scott"),
-                    new Movie("Prometheus", "Ridley Scott")),
-                new MovieCategory("Comedy",
-                    new Movie("EuroTrip", "Jeff Schaffer"),
-                    new Movie("EuroTrip", "Jeff Schaffer")
-                )
-            };
-
-            AddCommand = new AnotherCommandImplementation(
-                _ =>
-                {
-                    if (!MovieCategories.Any())
-                    {
-                        MovieCategories.Add(new MovieCategory(GenerateString(15)));
-                    }
-                    else
-                    {
-                        var index = new Random().Next(0, MovieCategories.Count);
-
-                        MovieCategories[index].Movies.Add(
-                            new Movie(GenerateString(15), GenerateString(20)));
-                    }
-                });
-
-            RemoveSelectedItemCommand = new AnotherCommandImplementation(
-                _ =>
-                {
-                    var movieCategory = SelectedItem as MovieCategory;
-                    if (movieCategory != null)
-                    {
-                        MovieCategories.Remove(movieCategory);
-                    }
-                    else
-                    {
-                        var movie = SelectedItem as Movie;
-                        if (movie == null) return;
-                        MovieCategories.FirstOrDefault(v => v.Movies.Contains(movie))?.Movies.Remove(movie);
-                    }
-                },
-                _ => SelectedItem != null);
+                child.Parent = rv;
+            }
+            return rv;
         }
 
-        private static string GenerateString(int length)
+        AddListTreeItemCommand = new(_ =>
         {
-            var random = new Random();
+            if (SelectedTreeItem is { } treeItem)
+            {
+                var newItem = CreateTestItem(random, 1);
+                newItem.Parent = treeItem;
+                treeItem.Items.Add(newItem);
+            }
+            else
+            {
+                TreeItems.Add(CreateTestItem(random, 1));
+            }
+        });
 
-            return string.Join(string.Empty,
-                Enumerable.Range(0, length)
-                .Select(v => (char)random.Next('a', 'z' + 1)));
-        }
+        RemoveListTreeItemCommand = new(items =>
+        {
+            if (items is IEnumerable enumerable)
+            {
+                foreach(TestItem testItem in enumerable)
+                {
+                    if (testItem.Parent is { } parent)
+                    {
+                        parent.Items.Remove(testItem);
+                    }
+                    else
+                    {
+                        TreeItems.Remove(testItem);
+                    }
+                }
+            }
+            if (SelectedTreeItem is { } selectedItem)
+            {
+                if (selectedItem.Parent is { } parent)
+                {
+                    parent.Items.Remove(selectedItem);
+                }
+                else
+                {
+                    TreeItems.Remove(selectedItem);
+                }
+                SelectedTreeItem = null;
+            }
+        });
+
+        MovieCategories = new ObservableCollection<MovieCategory>
+        {
+            new MovieCategory("Action",
+                new Movie ("Predator", "John McTiernan"),
+                new Movie("Alien", "Ridley Scott"),
+                new Movie("Prometheus", "Ridley Scott")),
+            new MovieCategory("Comedy",
+                new Movie("EuroTrip", "Jeff Schaffer"),
+                new Movie("EuroTrip", "Jeff Schaffer")
+            )
+        };
+        MovieCategories.Add(MovieCategories[0]);
+        MovieCategories.Add(MovieCategories[1]);
+
+        AddCommand = new AnotherCommandImplementation(
+            _ =>
+            {
+                if (!MovieCategories.Any())
+                {
+                    MovieCategories.Add(new MovieCategory(GenerateString(15)));
+                }
+                else
+                {
+                    var index = new Random().Next(0, MovieCategories.Count);
+
+                    MovieCategories[index].Movies.Add(
+                        new Movie(GenerateString(15), GenerateString(20)));
+                }
+            });
+
+        RemoveSelectedItemCommand = new AnotherCommandImplementation(
+            _ =>
+            {
+                var movieCategory = SelectedItem as MovieCategory;
+                if (movieCategory != null)
+                {
+                    MovieCategories.Remove(movieCategory);
+                }
+                else
+                {
+                    var movie = SelectedItem as Movie;
+                    if (movie == null) return;
+                    MovieCategories.FirstOrDefault(v => v.Movies.Contains(movie))?.Movies.Remove(movie);
+                }
+            },
+            _ => SelectedItem != null);
+    }
+
+    private static string GenerateString(int length)
+    {
+        var random = new Random();
+
+        return string.Join(string.Empty,
+            Enumerable.Range(0, length)
+            .Select(v => (char)random.Next('a', 'z' + 1)));
     }
 }
