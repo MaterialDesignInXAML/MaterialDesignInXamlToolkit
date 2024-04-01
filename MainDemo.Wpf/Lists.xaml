@@ -7,8 +7,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              d:DataContext="{d:DesignInstance domain:ListsAndGridsViewModel}"
-             d:DesignHeight="300"
-             d:DesignWidth="300"
+             d:DesignHeight="1080"
+             d:DesignWidth="1920"
              mc:Ignorable="d">
 
   <UserControl.Resources>
@@ -20,56 +20,38 @@
     </ResourceDictionary>
   </UserControl.Resources>
 
-  <Grid Margin="8">
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-    </Grid.RowDefinitions>
+  <StackPanel>
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="List" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="ListBox" />
 
-    <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="ListBox" />
+    <WrapPanel ItemWidth="316">
+      <StackPanel Margin="0,0,16,16">
+        <smtx:XamlDisplay Margin="0,0,0,8" UniqueKey="list_1">
+          <ListBox IsEnabled="{Binding IsChecked, ElementName=EnableListBox}">
+            <!--
+            You can override the hover background color for all items in the listbox by setting the ListBox.ItemContainerStyle
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesignListBoxItem}">
+                <Setter Property="materialDesign:ListBoxItemAssist.HoverBackground" Value="Fuchsia"/>
+                <Setter Property="materialDesign:ListBoxItemAssist.SelectedFocusedBackground" Value="Fuchsia"/>
+                <Setter Property="materialDesign:ListBoxItemAssist.SelectedUnfocusedBackground" Value="Lime"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            -->
 
-    <Grid Grid.Row="1">
-      <Grid.RowDefinitions>
-        <RowDefinition />
-        <RowDefinition Height="Auto" />
-      </Grid.RowDefinitions>
+                        <TextBlock Text="Plain" />
+            <TextBlock Text="Old" />
+            <TextBlock Text="ListBox" />
+            <TextBlock Text="Full of junk" />
+          </ListBox>
+        </smtx:XamlDisplay>
 
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="1*" />
-        <ColumnDefinition Width="1*" />
-        <ColumnDefinition Width="1*" />
-        <ColumnDefinition Width="1*" />
-      </Grid.ColumnDefinitions>
-      <smtx:XamlDisplay Grid.Column="0" UniqueKey="list_1">
-        <ListBox IsEnabled="{Binding IsChecked, ElementName=EnableListBox}">
-          <!--
-          You can override the hover background color for all items in the listbox by setting the ListBox.ItemContainerStyle
-          <ListBox.ItemContainerStyle>
-            <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesignListBoxItem}">
-              <Setter Property="materialDesign:ListBoxItemAssist.HoverBackground" Value="Fuchsia"/>
-              <Setter Property="materialDesign:ListBoxItemAssist.SelectedFocusedBackground" Value="Fuchsia"/>
-              <Setter Property="materialDesign:ListBoxItemAssist.SelectedUnfocusedBackground" Value="Lime"/>
-            </Style>
-          </ListBox.ItemContainerStyle>
-          -->
-          <TextBlock Text="Plain" />
-          <TextBlock Text="Old" />
-          <TextBlock Text="ListBox" />
-          <TextBlock Text="Full of junk" />
-        </ListBox>
-      </smtx:XamlDisplay>
+        <CheckBox Name="EnableListBox"
+                  Content="Enabled"
+                  IsChecked="True" />
+      </StackPanel>
 
-      <CheckBox Name="EnableListBox"
-                Grid.Row="1"
-                Grid.Column="0"
-                Content="Enabled"
-                IsChecked="True" />
-
-      <smtx:XamlDisplay Grid.Column="1" UniqueKey="list_4">
+      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="list_2">
         <Grid>
           <ListBox materialDesign:ListBoxItemAssist.ShowSelection="False">
             <!--
@@ -89,13 +71,9 @@
 
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Grid.Row="0"
-                        Grid.Column="2"
-                        UniqueKey="list_2">
+      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="list_3">
         <!-- piece together your own items control to create some nice stuff that will make everyone think you are cool. and rightly so, because you are cool.  you might even be a hipster for all I know -->
-        <ItemsControl Margin="12,0,12,0"
-                      Grid.IsSharedSizeScope="True"
-                      ItemsSource="{Binding Items1}">
+        <ItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding Items1}">
           <ItemsControl.ItemTemplate>
             <DataTemplate DataType="{x:Type domain:SelectableViewModel}">
               <Border x:Name="Border" Padding="8">
@@ -123,9 +101,7 @@
         </ItemsControl>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Grid.Row="0"
-                        Grid.Column="3"
-                        UniqueKey="list_3">
+      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="list_4">
         <!-- and here's another -->
         <ItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding Items2}">
           <ItemsControl.ItemTemplate>
@@ -160,25 +136,23 @@
           </ItemsControl.ItemTemplate>
         </ItemsControl>
       </smtx:XamlDisplay>
-    </Grid>
-    <TextBlock Grid.Row="2"
-               Margin="0,32,0,0"
-               Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-               Text="ListView" />
+    </WrapPanel>
 
-    <smtx:XamlDisplay Grid.Row="3" UniqueKey="lists_4">
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="ListView" />
+
+    <smtx:XamlDisplay UniqueKey="list_5">
       <ListView>
         <ListViewItem Content="Hello" />
         <ListViewItem Content="World" />
         <ListViewItem Content=":)" />
       </ListView>
     </smtx:XamlDisplay>
-    <TextBlock Grid.Row="4"
-               Margin="0,32,0,0"
-               Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-               Text="ListView.GridView" />
 
-    <smtx:XamlDisplay Grid.Row="5" UniqueKey="lists_5">
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="ListView.GridView" />
+
+    <smtx:XamlDisplay UniqueKey="list_6">
       <ListView ItemsSource="{Binding Items1}">
         <ListView.View>
           <GridView>
@@ -200,5 +174,5 @@
         </ListView.View>
       </ListView>
     </smtx:XamlDisplay>
-  </Grid>
+  </StackPanel>
 </UserControl>

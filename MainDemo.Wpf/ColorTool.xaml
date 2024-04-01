@@ -115,9 +115,12 @@
       </DataTemplate>
     </ResourceDictionary>
   </UserControl.Resources>
-
   <DockPanel>
-    <local:ThemeSettings Margin="8" DockPanel.Dock="Top" />
+    <TextBlock DockPanel.Dock="Top"
+               Style="{StaticResource PageTitleTextBlock}"
+               Text="ColorTool" />
+
+    <local:ThemeSettings Margin="0,0,0,8" DockPanel.Dock="Top" />
 
     <DockPanel>
       <!-- Selection controls -->
@@ -456,14 +459,12 @@
       </Border>
 
       <!-- Current scheme label -->
-      <Border BorderThickness="1,0,1,0" DockPanel.Dock="Bottom">
-        <TextBlock Margin="16"
-                   Style="{StaticResource MaterialDesignBody1TextBlock}"
-                   Text="CURRENT SCHEME" />
-      </Border>
+      <TextBlock DockPanel.Dock="Bottom"
+                 Style="{StaticResource PageTitleTextBlock}"
+                 Text="Current scheme" />
 
       <!-- Color picker section -->
-      <DockPanel Margin="16">
+      <DockPanel Margin="0,0,0,16">
         <UniformGrid Columns="1" DockPanel.Dock="Right">
           <RadioButton x:Name="MdPaletteButton"
                        Margin="4"
@@ -486,8 +487,7 @@
             </Grid.ColumnDefinitions>
 
             <DockPanel>
-              <TextBox Margin="2,0,10,2"
-                       materialDesign:HintAssist.Hint="Color HEX value"
+              <TextBox materialDesign:HintAssist.Hint="Color HEX value"
                        DockPanel.Dock="Top"
                        Style="{StaticResource MaterialDesignFilledTextBox}"
                        Text="{Binding Color, ElementName=ColorPicker, UpdateSourceTrigger=PropertyChanged}" />

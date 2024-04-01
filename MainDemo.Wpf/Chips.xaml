@@ -8,32 +8,14 @@
              d:DesignHeight="800"
              d:DesignWidth="1000"
              mc:Ignorable="d">
+  <StackPanel>
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Chip" />
+    
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Action" />
 
-  <UserControl.Resources>
-    <Style x:Key="ChipsHeadline"
-           TargetType="TextBlock"
-           BasedOn="{StaticResource MaterialDesignHeadline5TextBlock}">
-      <Setter Property="Margin" Value="0,16,0,16" />
-    </Style>
-  </UserControl.Resources>
-
-  <Grid VerticalAlignment="Top">
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-    </Grid.RowDefinitions>
-
-    <TextBlock Margin="0,0,0,16"
-               Style="{StaticResource ChipsHeadline}"
-               Text="Action Chips" />
-
-    <StackPanel Grid.Row="1">
+    <StackPanel>
       <WrapPanel smtx:XamlDisplay.Ignore="This" Orientation="Horizontal">
-        <smtx:XamlDisplay Margin="0,0,6,4" UniqueKey="chips_1">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_1">
           <materialDesign:Chip Content="James Willock">
             <materialDesign:Chip.Icon>
               <Image Source="Resources/ProfilePic.jpg" />
@@ -41,19 +23,19 @@
           </materialDesign:Chip>
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_2">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_2">
           <materialDesign:Chip Content="Example Chip" />
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_3">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_3">
           <materialDesign:Chip Content="ANZ Bank" Icon="A" />
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_4">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_4">
           <materialDesign:Chip Content="ZNA Inc" Icon="Z" />
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_5">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_5">
           <materialDesign:Chip Content="Twitter"
                                IconBackground="{DynamicResource PrimaryHueDarkBrush}"
                                IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
@@ -65,7 +47,7 @@
       </WrapPanel>
 
       <WrapPanel smtx:XamlDisplay.Ignore="This" Orientation="Horizontal">
-        <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_6">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_6">
           <materialDesign:Chip Click="ButtonsDemoChip_OnClick"
                                Content="James Willock"
                                DeleteClick="ButtonsDemoChip_OnDeleteClick"
@@ -78,19 +60,19 @@
           </materialDesign:Chip>
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_7">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_7">
           <materialDesign:Chip Content="Example Chip"
                                IsDeletable="True"
                                ToolTip="This is an example chip" />
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_8">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_8">
           <materialDesign:Chip Content="ANZ Bank"
                                Icon="A"
                                IsDeletable="True" />
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_9">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_9">
           <materialDesign:Chip Content="ZNA Inc"
                                Icon="Z"
                                IconBackground="{DynamicResource PrimaryHueLightBrush}"
@@ -100,7 +82,7 @@
       </WrapPanel>
 
       <WrapPanel smtx:XamlDisplay.Ignore="This" Orientation="Horizontal">
-        <smtx:XamlDisplay Margin="0,0,6,4" UniqueKey="chips_34">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_34">
           <materialDesign:Chip Content="James Willock" Style="{StaticResource MaterialDesignOutlineChip}">
             <materialDesign:Chip.Icon>
               <Image Source="Resources/ProfilePic.jpg" />
@@ -108,23 +90,23 @@
           </materialDesign:Chip>
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_35">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_35">
           <materialDesign:Chip Content="Example Chip" Style="{StaticResource MaterialDesignOutlineChip}" />
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_36">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_36">
           <materialDesign:Chip Content="ANZ Bank"
                                Icon="A"
                                Style="{StaticResource MaterialDesignOutlineChip}" />
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_37">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_37">
           <materialDesign:Chip Content="ZNA Inc"
                                Icon="Z"
                                Style="{StaticResource MaterialDesignOutlineChip}" />
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_38">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_38">
           <materialDesign:Chip Content="Twitter"
                                IconBackground="{DynamicResource PrimaryHueDarkBrush}"
                                IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}"
@@ -137,46 +119,42 @@
       </WrapPanel>
     </StackPanel>
 
-    <StackPanel Grid.Row="2">
-      <Rectangle Height="1"
-                 Margin="0,24,0,0"
-                 Fill="{DynamicResource MaterialDesignDivider}" />
-      <TextBlock Style="{StaticResource ChipsHeadline}" Text="Filter Chips" />
-    </StackPanel>
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Filter" />
 
-    <StackPanel Grid.Row="3">
+    <StackPanel>
       <WrapPanel smtx:XamlDisplay.Ignore="This" Orientation="Horizontal">
-        <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_10">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_10">
           <CheckBox Content="CheckBox"
                     IsChecked="True"
                     Style="{StaticResource MaterialDesignFilterChipCheckBox}" />
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_11">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_11">
           <CheckBox Content="Primary"
                     IsChecked="True"
                     Style="{StaticResource MaterialDesignFilterChipPrimaryCheckBox}" />
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_12">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_12">
           <CheckBox IsChecked="True" Style="{StaticResource MaterialDesignFilterChipSecondaryCheckBox}">Secondary</CheckBox>
         </smtx:XamlDisplay>
       </WrapPanel>
 
       <WrapPanel smtx:XamlDisplay.Ignore="This" Orientation="Horizontal">
-        <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_13">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_13">
           <CheckBox Content="Outline"
                     IsChecked="True"
                     Style="{StaticResource MaterialDesignFilterChipOutlineCheckBox}" />
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_14">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_14">
           <CheckBox Content="Primary Outline"
                     IsChecked="True"
                     Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}" />
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_15">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_15">
           <CheckBox Content="Secondary Outline"
                     IsChecked="True"
                     Style="{StaticResource MaterialDesignFilterChipSecondaryOutlineCheckBox}" />
@@ -254,29 +232,25 @@
       </WrapPanel>
     </StackPanel>
 
-    <StackPanel Grid.Row="4">
-      <Rectangle Height="1"
-                 Margin="0,24,0,0"
-                 Fill="{DynamicResource MaterialDesignDivider}" />
-      <TextBlock Style="{StaticResource ChipsHeadline}" Text="Choice Chips" />
-    </StackPanel>
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Choice" />
 
-    <StackPanel Grid.Row="5">
+    <StackPanel>
       <WrapPanel smtx:XamlDisplay.Ignore="This" Orientation="Horizontal">
-        <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_22">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_22">
           <RadioButton Content="RadioButton"
                        GroupName="GroupChoiceChip"
                        Style="{StaticResource MaterialDesignChoiceChipRadioButton}" />
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_23">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_23">
           <RadioButton Content="Primary"
                        GroupName="GroupChoiceChip"
                        IsChecked="True"
                        Style="{StaticResource MaterialDesignChoiceChipPrimaryRadioButton}" />
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_24">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_24">
           <RadioButton Content="Secondary"
                        GroupName="GroupChoiceChip"
                        Style="{StaticResource MaterialDesignChoiceChipSecondaryRadioButton}" />
@@ -284,20 +258,20 @@
       </WrapPanel>
 
       <WrapPanel smtx:XamlDisplay.Ignore="This" Orientation="Horizontal">
-        <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_25">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_25">
           <RadioButton Content="Outline"
                        GroupName="GroupChoiceChipOutline"
                        Style="{StaticResource MaterialDesignChoiceChipOutlineRadioButton}" />
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_26">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_26">
           <RadioButton Content="Primary Outline"
                        GroupName="GroupChoiceChipOutline"
                        IsChecked="True"
                        Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}" />
         </smtx:XamlDisplay>
 
-        <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_27">
+        <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_27">
           <RadioButton Content="Secondary Outline"
                        GroupName="GroupChoiceChipOutline"
                        Style="{StaticResource MaterialDesignChoiceChipSecondaryOutlineRadioButton}" />
@@ -374,5 +348,5 @@
         </materialDesign:Card>
       </WrapPanel>
     </StackPanel>
-  </Grid>
+  </StackPanel>
 </UserControl>

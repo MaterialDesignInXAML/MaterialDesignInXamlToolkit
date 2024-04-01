@@ -4,15 +4,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
              xmlns:local="clr-namespace:MaterialDesignDemo"
+             xmlns:materialDesign="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
              xmlns:materialDesignColors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DataContext="{d:DesignInstance domain:PaletteSelectorViewModel}"
              d:DesignHeight="300"
              d:DesignWidth="400"
              mc:Ignorable="d">
   <UserControl.Resources>
-    <materialDesign:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
+    <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
     <DataTemplate DataType="{x:Type materialDesignColors:Swatch}">
       <DataTemplate.Resources>
         <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
@@ -35,7 +36,7 @@
           </Setter>
         </Style>
       </DataTemplate.Resources>
-      <wpf:Card Width="240" Margin="2,2,6,6">
+      <materialDesign:Card Width="240" Margin="2,2,6,6">
         <Grid>
           <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -90,12 +91,16 @@
             </Button>
           </Border>
         </Grid>
-      </wpf:Card>
+      </materialDesign:Card>
     </DataTemplate>
   </UserControl.Resources>
 
   <DockPanel>
-    <wpf:Card Margin="2" DockPanel.Dock="Top">
+    <TextBlock DockPanel.Dock="Top"
+               Style="{StaticResource PageTitleTextBlock}"
+               Text="Palette" />
+
+    <materialDesign:Card Margin="0,0,0,16" DockPanel.Dock="Top">
       <DockPanel>
         <local:Palette Width="200" DockPanel.Dock="Left" />
         <TextBlock Margin="16"
@@ -103,19 +108,17 @@
                    Text="This is your current palette. Configure your initial palette in App.xaml, but palettes can be changed at runtime."
                    TextWrapping="Wrap" />
       </DockPanel>
-    </wpf:Card>
+    </materialDesign:Card>
 
-    <Grid Margin="0,16,0,0">
+    <Grid>
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto" />
         <RowDefinition Height="*" />
       </Grid.RowDefinitions>
 
-      <local:ThemeSettings Margin="8" />
+      <local:ThemeSettings Margin="0,0,0,16" />
 
-      <ItemsControl Grid.Row="1"
-                    Margin="0,12,0,0"
-                    ItemsSource="{Binding Swatches, Mode=OneTime}">
+      <ItemsControl Grid.Row="1" ItemsSource="{Binding Swatches, Mode=OneTime}">
         <ItemsControl.ItemsPanel>
           <ItemsPanelTemplate>
             <WrapPanel />

@@ -289,7 +289,7 @@
       <smtx:XamlDisplay Margin="4,4,0,0"
                         VerticalContentAlignment="Top"
                         UniqueKey="cards_7">
-        <materialDesign:Flipper IsFlippedChanged="Flipper_OnIsFlippedChanged" Style="{StaticResource MaterialDesignCardFlipper}">
+        <materialDesign:Flipper IsFlippedChanged="Flipper_OnIsFlippedChanged">
           <materialDesign:Flipper.FrontContent>
             <Button Width="184"
                     Margin="8"
@@ -310,7 +310,7 @@
       <smtx:XamlDisplay Margin="4,4,0,0"
                         VerticalContentAlignment="Top"
                         UniqueKey="cards_8">
-        <materialDesign:Flipper materialDesign:ElevationAssist.Elevation="Dp0" Style="{StaticResource MaterialDesignCardFlipper}">
+        <materialDesign:Flipper materialDesign:ElevationAssist.Elevation="Dp0">
           <materialDesign:Flipper.FrontContent>
             <Grid Width="200" Height="256">
               <Grid.RowDefinitions>
@@ -397,7 +397,7 @@
     <smtx:XamlDisplay Margin="4,4,0,0"
                       VerticalContentAlignment="Top"
                       UniqueKey="cards_9">
-      <materialDesign:Flipper VerticalAlignment="Top" Style="{StaticResource MaterialDesignCardFlipper}">
+      <materialDesign:Flipper VerticalAlignment="Top">
         <materialDesign:Flipper.FrontContent>
           <Button Width="192"
                   Margin="8"

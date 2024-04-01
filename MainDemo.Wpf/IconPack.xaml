@@ -10,8 +10,8 @@
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:virtualCollection="clr-namespace:WpfToolkit.Controls;assembly=VirtualizingWrapPanel"
              d:DataContext="{d:DesignInstance Type=domain:IconPackViewModel}"
-             d:DesignHeight="300"
-             d:DesignWidth="300"
+             d:DesignHeight="1080"
+             d:DesignWidth="1920"
              mc:Ignorable="d">
 
   <UserControl.Resources>
@@ -36,14 +36,12 @@
     </Grid.RowDefinitions>
 
     <StackPanel>
-      <TextBlock Style="{StaticResource MaterialDesignHeadline3TextBlock}" Text="Icon Pack" />
+      <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Icon Pack" />
 
-      <TextBlock Margin="0,8,0,0"
-                 Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                 Text="Material Design In XAML Toolkit includes the Material Design Icons collection." />
+      <TextBlock Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="Material Design In XAML Toolkit includes the Material Design Icons collection." />
 
       <TextBlock Margin="0,12,0,0">
-        For more information on Material Design Icons see the official website:<Hyperlink Command="{Binding OpenDotComCommand}">materialdesignicons.com</Hyperlink>
+        For more information on Material Design Icons see the official website: <Hyperlink Command="{Binding OpenDotComCommand}">materialdesignicons.com</Hyperlink>
       </TextBlock>
     </StackPanel>
 
