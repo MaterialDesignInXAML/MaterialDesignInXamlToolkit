@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Runtime.Loader;
 using System.Text.RegularExpressions;
 
-namespace mdresgen;
+namespace MaterialDesignToolkit.ResourceGeneration;
 
 internal static partial class IconDiff
 {
@@ -14,7 +14,7 @@ internal static partial class IconDiff
     public static async Task RunAsync()
     {
         var nugetDir = Path.Combine(PathHelper.RepositoryRoot, "nugets");
-        var nugets =(
+        var nugets = (
             from file in Directory.EnumerateFiles(nugetDir)
             let match = FileNameRegex().Match(Path.GetFileName(file))
             where match.Success
@@ -26,7 +26,7 @@ internal static partial class IconDiff
         var newNuget = nugets.Last();
 
         string output = await CompareNuGets(oldNuget.File, oldNuget.Version, newNuget.File, newNuget.Version);
-        
+
         await File.WriteAllTextAsync(Path.Combine(PathHelper.RepositoryRoot, $"IconChanges-{GetVersionString(oldNuget.Version)}--{GetVersionString(newNuget.Version)}.md"), output);
 
         static string GetVersionString(Version version)

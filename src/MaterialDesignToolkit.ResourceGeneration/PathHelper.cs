@@ -1,10 +1,10 @@
-﻿namespace mdresgen;
+﻿namespace MaterialDesignToolkit.ResourceGeneration;
 
 public static class PathHelper
 {
     private static readonly Lazy<string> _repoRoot = new(FindRepoRoot);
     public static string RepositoryRoot => _repoRoot.Value;
-    
+
 
     private static string FindRepoRoot()
     {

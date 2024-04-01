@@ -1,4 +1,4 @@
-﻿namespace mdresgen;
+﻿namespace MaterialDesignToolkit.ResourceGeneration;
 
 internal class Icon
 {

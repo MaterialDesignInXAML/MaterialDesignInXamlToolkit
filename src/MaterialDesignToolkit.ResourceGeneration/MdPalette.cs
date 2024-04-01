@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace mdresgen;
+namespace MaterialDesignToolkit.ResourceGeneration;
 
 public class MdPalette
 {

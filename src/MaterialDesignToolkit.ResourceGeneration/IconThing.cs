@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 using Newtonsoft.Json.Linq;
 
-namespace mdresgen;
+namespace MaterialDesignToolkit.ResourceGeneration;
 
 static class IconThing
 {
@@ -23,11 +23,11 @@ static class IconThing
 
         Console.WriteLine("Updating enum...");
         var newEnumSource = UpdateEnum("PackIconKind.template.cs", nameDataPairs);
-        Write(newEnumSource, Path.Combine("MaterialDesignThemes.Wpf", "PackIconKind.cs"));
+        Write(newEnumSource, Path.Combine("src", "MaterialDesignThemes.Wpf", "PackIconKind.cs"));
 
         Console.WriteLine("Updating data factory...");
         var newDataFactorySource = UpdateDataFactory("PackIconDataFactory.template.cs", nameDataPairs);
-        Write(newDataFactorySource, Path.Combine("MaterialDesignThemes.Wpf", "PackIconDataFactory.cs"));
+        Write(newDataFactorySource, Path.Combine("src", "MaterialDesignThemes.Wpf", "PackIconDataFactory.cs"));
 
         Console.WriteLine("done");
     }

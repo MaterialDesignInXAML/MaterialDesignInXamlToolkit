@@ -2,7 +2,7 @@
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace mdresgen;
+namespace MaterialDesignToolkit.ResourceGeneration;
 
 internal class IconDataFactorySyntaxRewriter : CSharpSyntaxRewriter
 {

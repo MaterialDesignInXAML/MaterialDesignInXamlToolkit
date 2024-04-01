@@ -2,7 +2,7 @@ using System.Drawing;
 using System.Xml.Linq;
 using Newtonsoft.Json.Linq;
 
-namespace mdresgen;
+namespace MaterialDesignToolkit.ResourceGeneration;
 
 public class Program
 {
@@ -79,7 +79,7 @@ public class Program
             await IconDiff.RunAsync();
         if (args.Contains("brushes"))
             await Brushes.GenerateBrushesAsync();
-        
+
         Console.WriteLine();
         Console.WriteLine();
         Console.WriteLine("FINISHED");

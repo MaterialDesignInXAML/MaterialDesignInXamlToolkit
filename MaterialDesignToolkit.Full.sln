@@ -50,7 +50,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaterialDesignThemes.UITest
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{9E303A4A-3712-44B9-91EE-830FDC087795}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mdresgen", "src\mdresgen\mdresgen.csproj", "{59CE50AC-D176-4CC0-B465-26F66054A15E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaterialDesignToolkit.ResourceGeneration", "src\MaterialDesignToolkit.ResourceGeneration\MaterialDesignToolkit.ResourceGeneration.csproj", "{59CE50AC-D176-4CC0-B465-26F66054A15E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{18401177-A30E-4330-8F6B-101DF876CE99}"
 	ProjectSection(SolutionItems) = preProject

@@ -108,7 +108,7 @@ jobs:
 
             - name: Create Icon Diff File
               run: |
-                  dotnet run --project ./src/mdresgen/mdresgen.csproj -c Release -- icon-diff
+                  dotnet run --project ./src/MaterialDesignToolkit.ResourceGeneration/MaterialDesignToolkit.ResourceGeneration.csproj -c Release -- icon-diff
 
             - name: Upload Icon Changes
               uses: actions/upload-artifact@v4
