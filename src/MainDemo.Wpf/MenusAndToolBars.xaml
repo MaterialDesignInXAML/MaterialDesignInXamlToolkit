@@ -5,13 +5,12 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
-             d:DesignHeight="300"
-             d:DesignWidth="300"
+             d:DesignHeight="1080"
+             d:DesignWidth="1920"
              mc:Ignorable="d">
-  <StackPanel Margin="15">
-    <TextBlock Margin="0,0,0,20"
-               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-               Text="Default Menu" />
+  <StackPanel>
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Menus and Toolbars" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Default Menu" />
 
     <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="menus_1">
       <Menu>
@@ -63,13 +62,10 @@
       </Menu>
     </smtx:XamlDisplay>
 
-    <Separator Margin="0,20" Style="{DynamicResource MaterialDesignSeparator}" />
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Menu with custom Height" />
 
-    <TextBlock Margin="0,0,0,20"
-               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-               Text="Menu with custom Height" />
-
-    <smtx:XamlDisplay Margin="0,0,0,15"
+    <smtx:XamlDisplay Margin="0,0,0,16"
                       HorizontalAlignment="Left"
                       UniqueKey="customHeightMenu1">
       <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="25">
@@ -103,11 +99,8 @@
       </Menu>
     </smtx:XamlDisplay>
 
-    <Separator Margin="0,20" Style="{DynamicResource MaterialDesignSeparator}" />
-
-    <TextBlock Margin="0,0,0,20"
-               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-               Text="Adaptive Menu" />
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Adaptive Menu" />
 
     <Grid>
       <Grid.RowDefinitions>
@@ -147,11 +140,8 @@
       </Grid>
     </Grid>
 
-    <Separator Margin="0,20" Style="{DynamicResource MaterialDesignSeparator}" />
-
-    <TextBlock Margin="0,0,0,20"
-               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-               Text="Menu with colored items" />
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Menu with colored items" />
 
     <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="coloredMenu1">
       <Menu>
@@ -181,13 +171,10 @@
       </Menu>
     </smtx:XamlDisplay>
 
-    <Separator Margin="0,20" Style="{DynamicResource MaterialDesignSeparator}" />
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Toolbars" />
 
-    <TextBlock Margin="0,0,0,20"
-               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-               Text="Toolbars" />
-
-    <smtx:XamlDisplay Margin="5,0,0,0" UniqueKey="menus_2">
+    <smtx:XamlDisplay Margin="0,0,0,16" UniqueKey="menus_2">
       <ToolBarTray>
         <ToolBar ClipToBounds="False" Style="{StaticResource MaterialDesignToolBar}">
           <Button Click="TwitterButton_OnClick"
@@ -306,7 +293,7 @@
       </ToolBarTray>
     </smtx:XamlDisplay>
 
-    <smtx:XamlDisplay Margin="5,16,0,0" UniqueKey="menus_3">
+    <smtx:XamlDisplay UniqueKey="menus_3">
       <ToolBarTray>
         <ToolBar ClipToBounds="False" Style="{StaticResource MaterialDesignToolBar}">
           <Menu>
@@ -338,18 +325,15 @@
       </ToolBarTray>
     </smtx:XamlDisplay>
 
-    <Separator Margin="0,20" Style="{DynamicResource MaterialDesignSeparator}" />
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Context Menus" />
 
-    <TextBlock Margin="0,0,0,20"
-               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-               Text="Context Menus" />
-
-    <StackPanel Orientation="Horizontal">
-      <smtx:XamlDisplay Margin="0,0,20,0" UniqueKey="menus_4">
+    <WrapPanel>
+      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="menus_4">
         <TextBox Text="With Default Context Menu" />
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay UniqueKey="menus_5">
+      <smtx:XamlDisplay UniqueKey="menus_5"  Margin="0,0,16,16">
         <TextBox Text="With Custom Context Menu">
           <TextBox.ContextMenu>
             <ContextMenu>
@@ -361,7 +345,7 @@
           </TextBox.ContextMenu>
         </TextBox>
       </smtx:XamlDisplay>
-    </StackPanel>
+    </WrapPanel>
   </StackPanel>
 </UserControl>
 

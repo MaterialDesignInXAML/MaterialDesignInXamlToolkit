@@ -129,6 +129,20 @@
         <Setter Property="VerticalContentAlignment" Value="Bottom" />
         <Setter Property="materialDesignDemo:XamlDisplayEx.ButtonDock" Value="Right" />
       </Style>
+
+      <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadline5TextBlock}" x:Key="PageTitleTextBlock">
+        <Setter Property="Margin" Value="0 0 0 24"/> 
+      </Style>
+
+      <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadline6TextBlock}" x:Key="PageSectionTitleTextBlock">
+        <Setter Property="Margin" Value="0 0 0 16"/>
+      </Style>
+
+      <Style TargetType="Rectangle" x:Key="PageSectionSeparator">
+        <Setter Property="Margin" Value="0,24" />
+        <Setter Property="Height" Value="1" />
+        <Setter Property="Fill" Value="{DynamicResource MaterialDesignDivider}" />
+      </Style>
     </ResourceDictionary>
   </Application.Resources>
 </Application>

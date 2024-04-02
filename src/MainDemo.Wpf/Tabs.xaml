@@ -11,143 +11,178 @@
              d:DesignHeight="4000"
              d:DesignWidth="1920"
              mc:Ignorable="d">
-  <StackPanel Margin="0,0,8,8">
+  <StackPanel>
+    <TextBlock Text="Tabs"
+               Style="{StaticResource PageTitleTextBlock}" />
 
     <TextBlock Margin="0,0,0,20"
-               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-               Text="Default style" />
+               Style="{StaticResource PageSectionTitleTextBlock}"
+               Text="Default" />
 
     <smtx:XamlDisplay Margin="0,0,16,16"
                       HorizontalAlignment="Left"
                       UniqueKey="tabs_1_default">
       <TabControl Width="300">
         <TabItem Header="TAB 1">
-          <TextBlock Margin="8" Text="Default Tab 1" />
+          <TextBlock Margin="8"
+                     Text="Default Tab 1" />
         </TabItem>
         <TabItem Header="TAB 2">
-          <TextBlock Margin="8" Text="Default Tab 2" />
+          <TextBlock Margin="8"
+                     Text="Default Tab 2" />
         </TabItem>
       </TabControl>
     </smtx:XamlDisplay>
 
     <WrapPanel Margin="0,0,0,16">
-      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_1">
-        <TabControl Width="300" materialDesign:ColorZoneAssist.Mode="PrimaryLight">
+      <smtx:XamlDisplay Margin="0,0,16,16"
+                        UniqueKey="tabs_1">
+        <TabControl Width="300"
+                    materialDesign:ColorZoneAssist.Mode="PrimaryLight">
           <TabItem Header="TAB 1">
-            <TextBlock Margin="8" Text="PrimaryLight Tab 1" />
+            <TextBlock Margin="8"
+                       Text="PrimaryLight Tab 1" />
           </TabItem>
           <TabItem Header="TAB 2">
-            <TextBlock Margin="8" Text="PrimaryLight Tab 2" />
+            <TextBlock Margin="8"
+                       Text="PrimaryLight Tab 2" />
           </TabItem>
         </TabControl>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_2">
-        <TabControl Width="300" materialDesign:ColorZoneAssist.Mode="PrimaryMid">
+      <smtx:XamlDisplay Margin="0,0,16,16"
+                        UniqueKey="tabs_2">
+        <TabControl Width="300"
+                    materialDesign:ColorZoneAssist.Mode="PrimaryMid">
           <TabItem Header="TAB 1">
-            <TextBlock Margin="8" Text="PrimaryMid Tab 1" />
+            <TextBlock Margin="8"
+                       Text="PrimaryMid Tab 1" />
           </TabItem>
           <TabItem Header="TAB 2">
-            <TextBlock Margin="8" Text="PrimaryMid Tab 2" />
+            <TextBlock Margin="8"
+                       Text="PrimaryMid Tab 2" />
           </TabItem>
         </TabControl>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_3">
-        <TabControl Width="300" materialDesign:ColorZoneAssist.Mode="PrimaryDark">
+      <smtx:XamlDisplay Margin="0,0,16,16"
+                        UniqueKey="tabs_3">
+        <TabControl Width="300"
+                    materialDesign:ColorZoneAssist.Mode="PrimaryDark">
           <TabItem Header="TAB 1">
-            <TextBlock Margin="8" Text="PrimaryDark Tab 1" />
+            <TextBlock Margin="8"
+                       Text="PrimaryDark Tab 1" />
           </TabItem>
           <TabItem Header="TAB 2">
-            <TextBlock Margin="8" Text="PrimaryDark Tab 2" />
+            <TextBlock Margin="8"
+                       Text="PrimaryDark Tab 2" />
           </TabItem>
         </TabControl>
       </smtx:XamlDisplay>
     </WrapPanel>
 
     <WrapPanel>
-      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_4">
-        <TabControl Width="300" materialDesign:ColorZoneAssist.Mode="SecondaryLight">
+      <smtx:XamlDisplay Margin="0,0,16,16"
+                        UniqueKey="tabs_4">
+        <TabControl Width="300"
+                    materialDesign:ColorZoneAssist.Mode="SecondaryLight">
           <TabItem Header="TAB 1">
-            <TextBlock Margin="8" Text="SecondaryLight Tab 1" />
+            <TextBlock Margin="8"
+                       Text="SecondaryLight Tab 1" />
           </TabItem>
           <TabItem Header="TAB 2">
-            <TextBlock Margin="8" Text="SecondaryLight Tab 2" />
+            <TextBlock Margin="8"
+                       Text="SecondaryLight Tab 2" />
           </TabItem>
         </TabControl>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_5">
-        <TabControl Width="300" materialDesign:ColorZoneAssist.Mode="SecondaryMid">
+      <smtx:XamlDisplay Margin="0,0,16,16"
+                        UniqueKey="tabs_5">
+        <TabControl Width="300"
+                    materialDesign:ColorZoneAssist.Mode="SecondaryMid">
           <TabItem Header="TAB 1">
-            <TextBlock Margin="8" Text="SecondaryMid Tab 1" />
+            <TextBlock Margin="8"
+                       Text="SecondaryMid Tab 1" />
           </TabItem>
           <TabItem Header="TAB 2">
-            <TextBlock Margin="8" Text="SecondaryMid Tab 2" />
+            <TextBlock Margin="8"
+                       Text="SecondaryMid Tab 2" />
           </TabItem>
         </TabControl>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_6">
-        <TabControl Width="300" materialDesign:ColorZoneAssist.Mode="SecondaryDark">
+      <smtx:XamlDisplay Margin="0,0,16,16"
+                        UniqueKey="tabs_6">
+        <TabControl Width="300"
+                    materialDesign:ColorZoneAssist.Mode="SecondaryDark">
           <TabItem Header="TAB 1">
-            <TextBlock Margin="8" Text="SecondaryDark Tab 1" />
+            <TextBlock Margin="8"
+                       Text="SecondaryDark Tab 1" />
           </TabItem>
           <TabItem Header="TAB 2">
-            <TextBlock Margin="8" Text="SecondaryDark Tab 2" />
+            <TextBlock Margin="8"
+                       Text="SecondaryDark Tab 2" />
           </TabItem>
         </TabControl>
       </smtx:XamlDisplay>
     </WrapPanel>
 
-    <Separator Style="{DynamicResource MaterialDesignSeparator}" />
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Margin="0,15,0,20"
-               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-               Text="Filled style" />
-
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
+               Text="Filled" />
 
     <WrapPanel Margin="0,0,0,16">
-      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_7">
+      <smtx:XamlDisplay Margin="0,0,16,16"
+                        UniqueKey="tabs_7">
         <materialDesign:Card>
           <TabControl Width="300"
                       materialDesign:ColorZoneAssist.Mode="PrimaryLight"
                       Style="{StaticResource MaterialDesignFilledTabControl}">
             <TabItem Header="TAB 1">
-              <TextBlock Margin="8" Text="PrimaryLight Tab 1" />
+              <TextBlock Margin="8"
+                         Text="PrimaryLight Tab 1" />
             </TabItem>
             <TabItem Header="TAB 2">
-              <TextBlock Margin="8" Text="PrimaryLight Tab 2" />
+              <TextBlock Margin="8"
+                         Text="PrimaryLight Tab 2" />
             </TabItem>
           </TabControl>
         </materialDesign:Card>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_8">
+      <smtx:XamlDisplay Margin="0,0,16,16"
+                        UniqueKey="tabs_8">
         <materialDesign:Card>
           <TabControl Width="300"
                       materialDesign:ColorZoneAssist.Mode="PrimaryMid"
                       Style="{StaticResource MaterialDesignFilledTabControl}">
             <TabItem Header="TAB 1">
-              <TextBlock Margin="8" Text="PrimaryMid Tab 1" />
+              <TextBlock Margin="8"
+                         Text="PrimaryMid Tab 1" />
             </TabItem>
             <TabItem Header="TAB 2">
-              <TextBlock Margin="8" Text="PrimaryMid Tab 2" />
+              <TextBlock Margin="8"
+                         Text="PrimaryMid Tab 2" />
             </TabItem>
           </TabControl>
         </materialDesign:Card>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_9">
+      <smtx:XamlDisplay Margin="0,0,16,16"
+                        UniqueKey="tabs_9">
         <materialDesign:Card>
           <TabControl Width="300"
                       materialDesign:ColorZoneAssist.Mode="PrimaryDark"
                       Style="{StaticResource MaterialDesignFilledTabControl}">
             <TabItem Header="TAB 1">
-              <TextBlock Margin="8" Text="PrimaryDark Tab 1" />
+              <TextBlock Margin="8"
+                         Text="PrimaryDark Tab 1" />
             </TabItem>
             <TabItem Header="TAB 2">
-              <TextBlock Margin="8" Text="PrimaryDark Tab 2" />
+              <TextBlock Margin="8"
+                         Text="PrimaryDark Tab 2" />
             </TabItem>
           </TabControl>
 
@@ -156,57 +191,65 @@
     </WrapPanel>
 
     <WrapPanel>
-      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_10">
+      <smtx:XamlDisplay Margin="0,0,16,16"
+                        UniqueKey="tabs_10">
         <materialDesign:Card>
           <TabControl Width="300"
                       materialDesign:ColorZoneAssist.Mode="SecondaryLight"
                       Style="{StaticResource MaterialDesignFilledTabControl}">
             <TabItem Header="TAB 1">
-              <TextBlock Margin="8" Text="SecondaryLight Tab 1" />
+              <TextBlock Margin="8"
+                         Text="SecondaryLight Tab 1" />
             </TabItem>
             <TabItem Header="TAB 2">
-              <TextBlock Margin="8" Text="SecondaryLight Tab 2" />
+              <TextBlock Margin="8"
+                         Text="SecondaryLight Tab 2" />
             </TabItem>
           </TabControl>
         </materialDesign:Card>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_11">
+      <smtx:XamlDisplay Margin="0,0,16,16"
+                        UniqueKey="tabs_11">
         <materialDesign:Card>
           <TabControl Width="300"
                       materialDesign:ColorZoneAssist.Mode="SecondaryMid"
                       Style="{StaticResource MaterialDesignFilledTabControl}">
             <TabItem Header="TAB 1">
-              <TextBlock Margin="8" Text="SecondaryMid Tab 1" />
+              <TextBlock Margin="8"
+                         Text="SecondaryMid Tab 1" />
             </TabItem>
             <TabItem Header="TAB 2">
-              <TextBlock Margin="8" Text="SecondaryMid Tab 2" />
+              <TextBlock Margin="8"
+                         Text="SecondaryMid Tab 2" />
             </TabItem>
           </TabControl>
         </materialDesign:Card>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_12">
+      <smtx:XamlDisplay Margin="0,0,16,16"
+                        UniqueKey="tabs_12">
         <materialDesign:Card>
           <TabControl Width="300"
                       materialDesign:ColorZoneAssist.Mode="SecondaryDark"
                       Style="{StaticResource MaterialDesignFilledTabControl}">
             <TabItem Header="TAB 1">
-              <TextBlock Margin="8" Text="SecondaryDark Tab 1" />
+              <TextBlock Margin="8"
+                         Text="SecondaryDark Tab 1" />
             </TabItem>
             <TabItem Header="TAB 2">
-              <TextBlock Margin="8" Text="SecondaryDark Tab 2" />
+              <TextBlock Margin="8"
+                         Text="SecondaryDark Tab 2" />
             </TabItem>
           </TabControl>
         </materialDesign:Card>
       </smtx:XamlDisplay>
     </WrapPanel>
 
-    <Separator Style="{DynamicResource MaterialDesignSeparator}" />
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Margin="0,15,0,20"
-               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-               Text="Custom style" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
+               Text="Custom" />
 
     <WrapPanel>
       <smtx:XamlDisplay Margin="0,0,16,16"
@@ -218,10 +261,12 @@
                     materialDesign:ColorZoneAssist.Mode="Custom"
                     Style="{StaticResource MaterialDesignFilledTabControl}">
           <TabItem Header="TAB 1">
-            <TextBlock Margin="8" Text="Custom Tab 1" />
+            <TextBlock Margin="8"
+                       Text="Custom Tab 1" />
           </TabItem>
           <TabItem Header="TAB 2">
-            <TextBlock Margin="8" Text="Custom Tab 2" />
+            <TextBlock Margin="8"
+                       Text="Custom Tab 2" />
           </TabItem>
         </TabControl>
       </smtx:XamlDisplay>
@@ -235,10 +280,12 @@
                     materialDesign:ColorZoneAssist.Mode="Custom"
                     Style="{StaticResource MaterialDesignFilledTabControl}">
           <TabItem Header="TAB 1">
-            <TextBlock Margin="8" Text="Custom Tab 1" />
+            <TextBlock Margin="8"
+                       Text="Custom Tab 1" />
           </TabItem>
           <TabItem Header="TAB 2">
-            <TextBlock Margin="8" Text="Custom Tab 2" />
+            <TextBlock Margin="8"
+                       Text="Custom Tab 2" />
           </TabItem>
         </TabControl>
       </smtx:XamlDisplay>
@@ -252,10 +299,12 @@
                     materialDesign:ColorZoneAssist.Mode="Custom"
                     Style="{StaticResource MaterialDesignFilledTabControl}">
           <TabItem Header="TAB 1">
-            <TextBlock Margin="8" Text="Custom Tab 1" />
+            <TextBlock Margin="8"
+                       Text="Custom Tab 1" />
           </TabItem>
           <TabItem Header="TAB 2">
-            <TextBlock Margin="8" Text="Custom Tab 2" />
+            <TextBlock Margin="8"
+                       Text="Custom Tab 2" />
           </TabItem>
         </TabControl>
       </smtx:XamlDisplay>
@@ -270,10 +319,12 @@
                     materialDesign:ColorZoneAssist.Foreground="Crimson"
                     materialDesign:ColorZoneAssist.Mode="Custom">
           <TabItem Header="TAB 1">
-            <TextBlock Margin="8" Text="Custom Tab 1" />
+            <TextBlock Margin="8"
+                       Text="Custom Tab 1" />
           </TabItem>
           <TabItem Header="TAB 2">
-            <TextBlock Margin="8" Text="Custom Tab 2" />
+            <TextBlock Margin="8"
+                       Text="Custom Tab 2" />
           </TabItem>
         </TabControl>
       </smtx:XamlDisplay>
@@ -285,10 +336,12 @@
                     materialDesign:ColorZoneAssist.Foreground="Gold"
                     materialDesign:ColorZoneAssist.Mode="Custom">
           <TabItem Header="TAB 1">
-            <TextBlock Margin="8" Text="Custom Tab 1" />
+            <TextBlock Margin="8"
+                       Text="Custom Tab 1" />
           </TabItem>
           <TabItem Header="TAB 2">
-            <TextBlock Margin="8" Text="Custom Tab 2" />
+            <TextBlock Margin="8"
+                       Text="Custom Tab 2" />
           </TabItem>
         </TabControl>
       </smtx:XamlDisplay>
@@ -300,294 +353,353 @@
                     materialDesign:ColorZoneAssist.Foreground="DeepSkyBlue"
                     materialDesign:ColorZoneAssist.Mode="Custom">
           <TabItem Header="TAB 1">
-            <TextBlock Margin="8" Text="Custom Tab 1" />
+            <TextBlock Margin="8"
+                       Text="Custom Tab 1" />
           </TabItem>
           <TabItem Header="TAB 2">
-            <TextBlock Margin="8" Text="Custom Tab 2" />
+            <TextBlock Margin="8"
+                       Text="Custom Tab 2" />
           </TabItem>
         </TabControl>
       </smtx:XamlDisplay>
 
     </WrapPanel>
 
-    <Separator Style="{DynamicResource MaterialDesignSeparator}" />
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Margin="0,15,0,20"
-               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
                Text="Scrollable content" />
 
     <smtx:XamlDisplay Margin="0,0,16,16"
-                      HorizontalAlignment="Left"
-                      UniqueKey="tabs_scrollable_content">
-      <TabControl Width="500" Height="200">
+                      UniqueKey="tabs_scrollable_content"
+                      HorizontalAlignment="Left">
+      <TabControl Width="500"
+                  Height="200">
         <TabItem Header="TAB 1">
           <ScrollViewer>
-            <TextBlock HorizontalAlignment="Stretch"
+            <TextBlock Text="{Binding VeryLongText}"
                        VerticalAlignment="Stretch"
-                       Text="{Binding VeryLongText}"
+                       HorizontalAlignment="Stretch"
                        TextWrapping="Wrap" />
           </ScrollViewer>
         </TabItem>
         <TabItem Header="TAB 2">
           <ScrollViewer>
-            <TextBox Margin="5"
-                     HorizontalAlignment="Stretch"
-                     VerticalAlignment="Stretch"
-                     AcceptsReturn="True"
+            <TextBox Text="{Binding VeryLongText}"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                     Text="{Binding VeryLongText}"
-                     TextWrapping="Wrap" />
+                     AcceptsReturn="True"
+                     VerticalAlignment="Stretch"
+                     HorizontalAlignment="Stretch"
+                     TextWrapping="Wrap"
+                     Margin="5" />
           </ScrollViewer>
         </TabItem>
       </TabControl>
     </smtx:XamlDisplay>
 
-    <Separator Style="{DynamicResource MaterialDesignSeparator}" />
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Margin="0,15,0,20"
-               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
                Text="Placement" />
 
-
     <WrapPanel>
-      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_13">
+      <smtx:XamlDisplay Margin="0,0,16,16"
+                        UniqueKey="tabs_13">
         <TabControl Width="300"
                     Height="150"
                     TabStripPlacement="Left">
           <TabItem Header="TAB 1">
-            <TextBlock Margin="8" Text="Left placement" />
+            <TextBlock Margin="8"
+                       Text="Left placement" />
           </TabItem>
           <TabItem Header="TAB 2">
-            <TextBlock Margin="8" Text="Left placement" />
+            <TextBlock Margin="8"
+                       Text="Left placement" />
           </TabItem>
         </TabControl>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_14">
+      <smtx:XamlDisplay Margin="0,0,16,16"
+                        UniqueKey="tabs_14">
         <TabControl Width="300"
                     Height="150"
                     TabStripPlacement="Right">
           <TabItem Header="TAB 1">
-            <TextBlock Margin="8" Text="Right placement tab 1" />
+            <TextBlock Margin="8"
+                       Text="Right placement tab 1" />
           </TabItem>
           <TabItem Header="TAB 2">
-            <TextBlock Margin="8" Text="Right placement tab 2" />
+            <TextBlock Margin="8"
+                       Text="Right placement tab 2" />
           </TabItem>
         </TabControl>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_15">
+      <smtx:XamlDisplay Margin="0,0,16,16"
+                        UniqueKey="tabs_15">
         <TabControl Width="300"
                     Height="150"
                     TabStripPlacement="Bottom">
           <TabItem Header="TAB 1">
-            <TextBlock Margin="8" Text="Bottom placement tab 1" />
+            <TextBlock Margin="8"
+                       Text="Bottom placement tab 1" />
           </TabItem>
           <TabItem Header="TAB 2">
-            <TextBlock Margin="8" Text="Bottom placement tab 2" />
+            <TextBlock Margin="8"
+                       Text="Bottom placement tab 2" />
           </TabItem>
         </TabControl>
       </smtx:XamlDisplay>
     </WrapPanel>
 
     <WrapPanel>
-      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_16">
+      <smtx:XamlDisplay Margin="0,0,16,16"
+                        UniqueKey="tabs_16">
         <materialDesign:Card>
           <TabControl Width="300"
                       Height="150"
                       Style="{StaticResource MaterialDesignFilledTabControl}"
                       TabStripPlacement="Left">
             <TabItem Header="TAB 1">
-              <TextBlock Margin="8" Text="Left placement" />
+              <TextBlock Margin="8"
+                         Text="Left placement" />
             </TabItem>
             <TabItem Header="TAB 2">
-              <TextBlock Margin="8" Text="Left placement" />
+              <TextBlock Margin="8"
+                         Text="Left placement" />
             </TabItem>
             <TabItem Header="TAB 3 Diff Width">
-              <TextBlock Margin="8" Text="Tab 3 with different width" />
+              <TextBlock Margin="8"
+                         Text="Tab 3 with different width" />
             </TabItem>
             <TabItem Header="TAB 4 Looong">
-              <TextBlock Margin="8" Text="Tab 4 with long width" />
+              <TextBlock Margin="8"
+                         Text="Tab 4 with long width" />
             </TabItem>
             <TabItem Header="TABB 5">
-              <TextBlock Margin="8" Text="Left placement tabb 5" />
+              <TextBlock Margin="8"
+                         Text="Left placement tabb 5" />
             </TabItem>
           </TabControl>
         </materialDesign:Card>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_17">
+      <smtx:XamlDisplay Margin="0,0,16,16"
+                        UniqueKey="tabs_17">
         <materialDesign:Card>
           <TabControl Width="300"
                       Height="150"
                       Style="{StaticResource MaterialDesignFilledTabControl}"
                       TabStripPlacement="Right">
             <TabItem Header="TAB 1">
-              <TextBlock Margin="8" Text="Right placement tab 1" />
+              <TextBlock Margin="8"
+                         Text="Right placement tab 1" />
             </TabItem>
             <TabItem Header="TAB 2">
-              <TextBlock Margin="8" Text="Right placement tab 2" />
+              <TextBlock Margin="8"
+                         Text="Right placement tab 2" />
             </TabItem>
           </TabControl>
         </materialDesign:Card>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,0,16,16" UniqueKey="tabs_18">
+      <smtx:XamlDisplay Margin="0,0,16,16"
+                        UniqueKey="tabs_18">
         <materialDesign:Card>
           <TabControl Width="300"
                       Height="150"
                       Style="{StaticResource MaterialDesignFilledTabControl}"
                       TabStripPlacement="Bottom">
             <TabItem Header="TAB 1">
-              <TextBlock Margin="8" Text="Bottom placement tab 1" />
+              <TextBlock Margin="8"
+                         Text="Bottom placement tab 1" />
             </TabItem>
             <TabItem Header="TAB 2">
-              <TextBlock Margin="8" Text="Bottom placement tab 2" />
+              <TextBlock Margin="8"
+                         Text="Bottom placement tab 2" />
             </TabItem>
           </TabControl>
         </materialDesign:Card>
       </smtx:XamlDisplay>
     </WrapPanel>
 
-    <Separator Style="{DynamicResource MaterialDesignSeparator}" />
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Margin="0,15,0,20"
-               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
                Text="Different sizes" />
 
-
     <StackPanel>
-      <smtx:XamlDisplay Margin="0,0,0,16" UniqueKey="tabs_19">
+      <smtx:XamlDisplay Margin="0,0,0,16"
+                        UniqueKey="tabs_19">
         <materialDesign:Card>
           <TabControl HorizontalContentAlignment="Left">
             <TabItem Header="TAB1">
-              <TextBlock Margin="8" Text="Not filled, required width, tab 1" />
+              <TextBlock Margin="8"
+                         Text="Not filled, required width, tab 1" />
             </TabItem>
             <TabItem Header="TAB 2 Wide">
-              <TextBlock Margin="8" Text="Not filled, required width, tab 2" />
+              <TextBlock Margin="8"
+                         Text="Not filled, required width, tab 2" />
             </TabItem>
             <TabItem Header="TAB 3 Extremely Wide">
-              <TextBlock Margin="8" Text="Not filled, required width, tab 3" />
+              <TextBlock Margin="8"
+                         Text="Not filled, required width, tab 3" />
             </TabItem>
             <TabItem Header="TAB 4">
-              <TextBlock Margin="8" Text="Not filled, required width, tab 4" />
+              <TextBlock Margin="8"
+                         Text="Not filled, required width, tab 4" />
             </TabItem>
           </TabControl>
         </materialDesign:Card>
       </smtx:XamlDisplay>
-      <smtx:XamlDisplay Margin="0,0,0,16" UniqueKey="tabs_20">
+      <smtx:XamlDisplay Margin="0,0,0,16"
+                        UniqueKey="tabs_20">
         <materialDesign:Card>
-          <TabControl HorizontalContentAlignment="Left" Style="{StaticResource MaterialDesignUniformTabControl}">
+          <TabControl HorizontalContentAlignment="Left"
+                      Style="{StaticResource MaterialDesignUniformTabControl}">
             <TabItem Header="TAB1">
-              <TextBlock Margin="8" Text="Not filled, uniform width, tab 1" />
+              <TextBlock Margin="8"
+                         Text="Not filled, uniform width, tab 1" />
             </TabItem>
             <TabItem Header="TAB 2 Wide">
-              <TextBlock Margin="8" Text="Not filled, uniform width, tab 2" />
+              <TextBlock Margin="8"
+                         Text="Not filled, uniform width, tab 2" />
             </TabItem>
             <TabItem Header="TAB 3 Extremely Wide">
-              <TextBlock Margin="8" Text="Not filled, uniform width, tab 3" />
+              <TextBlock Margin="8"
+                         Text="Not filled, uniform width, tab 3" />
             </TabItem>
             <TabItem Header="TAB 4">
-              <TextBlock Margin="8" Text="Not filled, uniform width, tab 4" />
+              <TextBlock Margin="8"
+                         Text="Not filled, uniform width, tab 4" />
             </TabItem>
           </TabControl>
         </materialDesign:Card>
       </smtx:XamlDisplay>
-      <smtx:XamlDisplay Margin="0,0,0,16" UniqueKey="tabs_21">
+      <smtx:XamlDisplay Margin="0,0,0,16"
+                        UniqueKey="tabs_21">
         <materialDesign:Card>
-          <TabControl HorizontalContentAlignment="Center" Style="{StaticResource MaterialDesignFilledTabControl}">
+          <TabControl HorizontalContentAlignment="Center"
+                      Style="{StaticResource MaterialDesignFilledTabControl}">
             <TabItem Header="TAB1">
-              <TextBlock Margin="8" Text="Filled, centered, required width, tab 1" />
+              <TextBlock Margin="8"
+                         Text="Filled, centered, required width, tab 1" />
             </TabItem>
             <TabItem Header="TAB 2 Wide">
-              <TextBlock Margin="8" Text="Filled, centered, required width, tab 2" />
+              <TextBlock Margin="8"
+                         Text="Filled, centered, required width, tab 2" />
             </TabItem>
             <TabItem Header="TAB 3 Extremely Wide">
-              <TextBlock Margin="8" Text="Filled, centered, required width, tab 3" />
+              <TextBlock Margin="8"
+                         Text="Filled, centered, required width, tab 3" />
             </TabItem>
             <TabItem Header="TAB 4">
-              <TextBlock Margin="8" Text="Filled, centered, required width, tab 4" />
+              <TextBlock Margin="8"
+                         Text="Filled, centered, required width, tab 4" />
             </TabItem>
           </TabControl>
         </materialDesign:Card>
       </smtx:XamlDisplay>
-      <smtx:XamlDisplay Margin="0,0,0,16" UniqueKey="tabs_22">
+      <smtx:XamlDisplay Margin="0,0,0,16"
+                        UniqueKey="tabs_22">
         <materialDesign:Card>
-          <TabControl HorizontalContentAlignment="Center" Style="{StaticResource MaterialDesignFilledUniformTabControl}">
+          <TabControl HorizontalContentAlignment="Center"
+                      Style="{StaticResource MaterialDesignFilledUniformTabControl}">
             <TabItem Header="TAB1">
-              <TextBlock Margin="8" Text="Filled, centered, uniform width, tab 1" />
+              <TextBlock Margin="8"
+                         Text="Filled, centered, uniform width, tab 1" />
             </TabItem>
             <TabItem Header="TAB 2 Wide">
-              <TextBlock Margin="8" Text="Filled, centered, uniform width, tab 2" />
+              <TextBlock Margin="8"
+                         Text="Filled, centered, uniform width, tab 2" />
             </TabItem>
             <TabItem Header="TAB 3 Extremely Wide">
-              <TextBlock Margin="8" Text="Filled, centered, uniform width, tab 3" />
+              <TextBlock Margin="8"
+                         Text="Filled, centered, uniform width, tab 3" />
             </TabItem>
             <TabItem Header="TAB 4">
-              <TextBlock Margin="8" Text="Filled, centered, uniform width, tab 4" />
+              <TextBlock Margin="8"
+                         Text="Filled, centered, uniform width, tab 4" />
             </TabItem>
           </TabControl>
         </materialDesign:Card>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,0,0,16" UniqueKey="tabs_23">
+      <smtx:XamlDisplay Margin="0,0,0,16"
+                        UniqueKey="tabs_23">
         <materialDesign:Card>
-          <TabControl HorizontalContentAlignment="Left" materialDesign:ColorZoneAssist.Mode="SecondaryMid">
+          <TabControl HorizontalContentAlignment="Left"
+                      materialDesign:ColorZoneAssist.Mode="SecondaryMid">
             <TabItem Header="TAB1">
-              <TextBlock Margin="8" Text="Not filled secondary example tab 1" />
+              <TextBlock Margin="8"
+                         Text="Not filled secondary example tab 1" />
             </TabItem>
             <TabItem Header="TAB 2">
-              <TextBlock Margin="8" Text="Not filled secondary example tab 2" />
+              <TextBlock Margin="8"
+                         Text="Not filled secondary example tab 2" />
             </TabItem>
             <TabItem Header="TAB 3333">
-              <TextBlock Margin="8" Text="Secondary example tab 3333" />
+              <TextBlock Margin="8"
+                         Text="Secondary example tab 3333" />
             </TabItem>
             <TabItem Header="TAB4 Wide">
-              <TextBlock Margin="8" Text="Secondary example tab 4 wide" />
+              <TextBlock Margin="8"
+                         Text="Secondary example tab 4 wide" />
             </TabItem>
             <TabItem Header="TABbbbbbbbbbbxxxxx 5">
-              <TextBlock Margin="8" Text="Secondary example tab 5" />
+              <TextBlock Margin="8"
+                         Text="Secondary example tab 5" />
             </TabItem>
             <TabItem Header="TAB 6 Different Width">
-              <TextBlock Margin="8" Text="Secondary example tab 6 different width" />
+              <TextBlock Margin="8"
+                         Text="Secondary example tab 6 different width" />
             </TabItem>
             <TabItem Header="TAB 7 Looooong">
-              <TextBlock Margin="8" Text="Secondary example tab 7 looooong" />
+              <TextBlock Margin="8"
+                         Text="Secondary example tab 7 looooong" />
             </TabItem>
             <TabItem Header="TAB 8 Width">
-              <TextBlock Margin="8" Text="Secondary example tab 8 width" />
+              <TextBlock Margin="8"
+                         Text="Secondary example tab 8 width" />
             </TabItem>
             <TabItem Header="TAAX999">
-              <TextBlock Margin="8" Text="Secondary example tab 9" />
+              <TextBlock Margin="8"
+                         Text="Secondary example tab 9" />
             </TabItem>
             <TabItem Header="Tab10">
-              <TextBlock Margin="8" Text="Secondary example tab 10" />
+              <TextBlock Margin="8"
+                         Text="Secondary example tab 10" />
             </TabItem>
           </TabControl>
         </materialDesign:Card>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Margin="0,0,0,16" UniqueKey="tabs_24">
+      <smtx:XamlDisplay Margin="0,0,0,16"
+                        UniqueKey="tabs_24">
         <materialDesign:Card>
           <TabControl HorizontalContentAlignment="Left"
                       materialDesign:ColorZoneAssist.Mode="SecondaryMid"
                       Style="{StaticResource MaterialDesignFilledTabControl}">
             <TabItem Header="TAB1">
-              <TextBlock Margin="8" Text="Secondary filled example tab 1" />
+              <TextBlock Margin="8"
+                         Text="Secondary filled example tab 1" />
             </TabItem>
             <TabItem Header="TAB 2">
-              <TextBlock Margin="8" Text="Secondary filled example tab 2" />
+              <TextBlock Margin="8"
+                         Text="Secondary filled example tab 2" />
             </TabItem>
           </TabControl>
         </materialDesign:Card>
       </smtx:XamlDisplay>
     </StackPanel>
 
-    <TextBlock Margin="0,15,0,20"
-               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
                Text="Custom items" />
 
-    <smtx:XamlDisplay Margin="0,0,0,16" UniqueKey="custom_tabs">
+    <smtx:XamlDisplay Margin="0,0,0,16"
+                      UniqueKey="custom_tabs">
       <materialDesign:Card>
         <TabControl HorizontalContentAlignment="Left"
                     ItemsSource="{Binding CustomTabs}"
@@ -603,9 +715,9 @@
                 <Button Command="{Binding CloseCommand}">
                   <Button.Template>
                     <ControlTemplate>
-                      <materialDesign:PackIcon Background="Transparent"
+                      <materialDesign:PackIcon Kind="Close"
                                                Foreground="Red"
-                                               Kind="Close" />
+                                               Background="Transparent" />
                     </ControlTemplate>
                   </Button.Template>
                 </Button>
