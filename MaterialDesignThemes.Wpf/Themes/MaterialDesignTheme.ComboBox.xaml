@@ -998,13 +998,14 @@
          TargetType="{x:Type ComboBox}"
          BasedOn="{StaticResource MaterialDesignComboBox}">
     <Setter Property="wpf:HintAssist.IsFloating" Value="True" />
+    <Setter Property="Padding" Value="{x:Static wpf:Constants.FloatingTextBoxDefaultPadding}" />
   </Style>
 
   <Style x:Key="MaterialDesignFilledComboBox"
          TargetType="{x:Type ComboBox}"
          BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ComboBox.FilledBackground}" />
-    <Setter Property="Padding" Value="{x:Static wpf:Constants.FilledTextBoxDefaultPadding}" />
+    <Setter Property="Padding" Value="{x:Static wpf:Constants+TemporaryConstants.FilledTextBoxDefaultPaddingNew}" />
     <Setter Property="VerticalAlignment" Value="Stretch" />
     <Setter Property="VerticalContentAlignment" Value="Stretch" />
     <Setter Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="True" />
@@ -1020,9 +1021,9 @@
   <Style x:Key="MaterialDesignOutlinedComboBox"
          TargetType="ComboBox"
          BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
-    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Header.Foreground}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ComboBox.OutlineBorder}" />
     <Setter Property="BorderThickness" Value="1" />
-    <Setter Property="Padding" Value="16" />
+    <Setter Property="Padding" Value="{x:Static wpf:Constants.OutlinedTextBoxDefaultPadding}" />
     <Setter Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
     <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4" />
   </Style>
