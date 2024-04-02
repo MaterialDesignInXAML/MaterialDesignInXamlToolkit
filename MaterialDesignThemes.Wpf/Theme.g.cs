@@ -358,6 +358,13 @@ partial class Theme
            set => _outlineInactiveBorder = value;
         }
 
+        private ColorReference _outlineBorder;
+        public ColorReference OutlineBorder
+        {
+           get => _theme.Resolve(_outlineBorder);
+           set => _outlineBorder = value;
+        }
+
         public Popup Popups { get; set; }
 
         public class Popup

@@ -39,6 +39,7 @@ static partial class ResourceDictionaryExtensions
         theme.ComboBoxes.FilledBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.ComboBox.FilledBackground");
         theme.ComboBoxes.HoverBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.ComboBox.HoverBackground");
         theme.ComboBoxes.OutlineInactiveBorder = GetColor(resourceDictionary, "MaterialDesign.Brush.ComboBox.OutlineInactiveBorder");
+        theme.ComboBoxes.OutlineBorder = GetColor(resourceDictionary, "MaterialDesign.Brush.ComboBox.OutlineBorder", "MaterialDesignColumnHeader", "MaterialDesignTextAreaBorder");
         theme.ComboBoxes.Popups.DarkBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.ComboBox.Popup.DarkBackground");
         theme.ComboBoxes.Popups.DarkForeground = GetColor(resourceDictionary, "MaterialDesign.Brush.ComboBox.Popup.DarkForeground");
         theme.ComboBoxes.Popups.LightBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.ComboBox.Popup.LightBackground");
@@ -141,6 +142,9 @@ static partial class ResourceDictionaryExtensions
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ComboBox.FilledBackground", theme.ComboBoxes.FilledBackground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ComboBox.HoverBackground", theme.ComboBoxes.HoverBackground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ComboBox.OutlineInactiveBorder", theme.ComboBoxes.OutlineInactiveBorder);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ComboBox.OutlineBorder", theme.ComboBoxes.OutlineBorder);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesignColumnHeader", theme.ComboBoxes.OutlineBorder);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesignTextAreaBorder", theme.ComboBoxes.OutlineBorder);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ComboBox.Popup.DarkBackground", theme.ComboBoxes.Popups.DarkBackground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ComboBox.Popup.DarkForeground", theme.ComboBoxes.Popups.DarkForeground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ComboBox.Popup.LightBackground", theme.ComboBoxes.Popups.LightBackground);

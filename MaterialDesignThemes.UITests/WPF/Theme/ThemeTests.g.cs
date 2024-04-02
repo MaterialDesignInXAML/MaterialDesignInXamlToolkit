@@ -50,6 +50,7 @@ partial class ThemeTests
           <TextBlock Text="ComboBox.FilledBackground" Background="{StaticResource MaterialDesign.Brush.ComboBox.FilledBackground}" />
           <TextBlock Text="ComboBox.HoverBackground" Background="{StaticResource MaterialDesign.Brush.ComboBox.HoverBackground}" />
           <TextBlock Text="ComboBox.OutlineInactiveBorder" Background="{StaticResource MaterialDesign.Brush.ComboBox.OutlineInactiveBorder}" />
+          <TextBlock Text="ComboBox.OutlineBorder" Background="{StaticResource MaterialDesign.Brush.ComboBox.OutlineBorder}" />
           <TextBlock Text="ComboBox.Popup.DarkBackground" Background="{StaticResource MaterialDesign.Brush.ComboBox.Popup.DarkBackground}" />
           <TextBlock Text="ComboBox.Popup.DarkForeground" Background="{StaticResource MaterialDesign.Brush.ComboBox.Popup.DarkForeground}" />
           <TextBlock Text="ComboBox.Popup.LightBackground" Background="{StaticResource MaterialDesign.Brush.ComboBox.Popup.LightBackground}" />
@@ -119,6 +120,8 @@ partial class ThemeTests
           <TextBlock Text="MaterialDesignCheckBoxOff" Background="{StaticResource MaterialDesignCheckBoxOff}" />
           <TextBlock Text="MaterialDesignTextBoxBorder" Background="{StaticResource MaterialDesignTextBoxBorder}" />
           <TextBlock Text="MaterialDesignChipBackground" Background="{StaticResource MaterialDesignChipBackground}" />
+          <TextBlock Text="MaterialDesignColumnHeader" Background="{StaticResource MaterialDesignColumnHeader}" />
+          <TextBlock Text="MaterialDesignTextAreaBorder" Background="{StaticResource MaterialDesignTextAreaBorder}" />
           <TextBlock Text="MaterialDesignDataGridRowHoverBackground" Background="{StaticResource MaterialDesignDataGridRowHoverBackground}" />
           <TextBlock Text="MaterialDesignColumnHeader" Background="{StaticResource MaterialDesignColumnHeader}" />
           <TextBlock Text="MaterialDesignTextAreaBorder" Background="{StaticResource MaterialDesignTextAreaBorder}" />
@@ -302,6 +305,11 @@ partial class ThemeTests
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.OutlineInactiveBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.OutlineInactiveBorder"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.OutlineBorder\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.OutlineBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.Popup.DarkBackground\"]");
@@ -649,6 +657,16 @@ partial class ThemeTests
             Assert.Equal(await GetResourceColor("MaterialDesignChipBackground"), textBlockBackground);
         }
         {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignColumnHeader\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesignColumnHeader"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextAreaBorder\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesignTextAreaBorder"), textBlockBackground);
+        }
+        {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignDataGridRowHoverBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesignDataGridRowHoverBackground"), textBlockBackground);
@@ -790,6 +808,7 @@ partial class ThemeTests
         yield return "MaterialDesign.Brush.ComboBox.FilledBackground";
         yield return "MaterialDesign.Brush.ComboBox.HoverBackground";
         yield return "MaterialDesign.Brush.ComboBox.OutlineInactiveBorder";
+        yield return "MaterialDesign.Brush.ComboBox.OutlineBorder";
         yield return "MaterialDesign.Brush.ComboBox.Popup.DarkBackground";
         yield return "MaterialDesign.Brush.ComboBox.Popup.DarkForeground";
         yield return "MaterialDesign.Brush.ComboBox.Popup.LightBackground";
@@ -862,6 +881,8 @@ partial class ThemeTests
         yield return "MaterialDesignCheckBoxOff";
         yield return "MaterialDesignTextBoxBorder";
         yield return "MaterialDesignChipBackground";
+        yield return "MaterialDesignColumnHeader";
+        yield return "MaterialDesignTextAreaBorder";
         yield return "MaterialDesignDataGridRowHoverBackground";
         yield return "MaterialDesignColumnHeader";
         yield return "MaterialDesignTextAreaBorder";

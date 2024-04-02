@@ -369,7 +369,8 @@
         },
         "alternateKeys": [
             "MaterialDesign.Brush.DataGrid.ColumnHeaderForeground",
-            "MaterialDesign.Brush.TextBox.OutlineBorder"
+            "MaterialDesign.Brush.TextBox.OutlineBorder",
+            "MaterialDesign.Brush.ComboBox.OutlineBorder"
         ],
         "obsoleteKeys": [
             "MaterialDesignColumnHeader",
