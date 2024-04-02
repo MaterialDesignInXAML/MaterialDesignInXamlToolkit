@@ -9,10 +9,22 @@ internal class TextFieldClearButtonVisibilityConverter : IMultiValueConverter
 
     public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
     {
-        if (!(bool)values[0]) // TextFieldAssist.HasClearButton
-            return Visibility.Collapsed;
+        if (values is not [bool hasClearButton, bool isContentNullOrEmpty, ..])
+        {
+            return Visibility.Visible;
+        }
 
-        return (bool)values[1] // Hint.IsContentNullOrEmpty
+        if (!hasClearButton) // TextFieldAssist.HasClearButton
+        {
+            return Visibility.Collapsed;
+        }
+
+        if (values.Length > 2 && values[2] is false) // ComboBox.IsEditable
+        {
+            return Visibility.Collapsed;
+        }
+
+        return isContentNullOrEmpty // Hint.IsContentNullOrEmpty
             ? ContentEmptyVisibility
             : Visibility.Visible;
     }
