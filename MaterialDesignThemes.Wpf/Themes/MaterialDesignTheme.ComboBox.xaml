@@ -320,8 +320,8 @@
       <converters:FloatingHintMarginConverter x:Key="FloatingHintMarginConverter" />
       <converters:MathConverter x:Key="DivisionConverter"  Operation="Divide" Offset="1" />
     </ControlTemplate.Resources>
-    <AdornerDecorator>
-      <Grid>
+    <Grid>
+      <AdornerDecorator>
         <Border x:Name="templateRoot"
                 wpf:BottomDashedLineAdorner.IsAttached="False"
                 Background="{TemplateBinding Background}"
@@ -501,76 +501,77 @@
             </Grid>
           </Grid>
         </Border>
-        <wpf:Underline x:Name="Underline"
-                       VerticalAlignment="Bottom"
-                       Background="{TemplateBinding wpf:TextFieldAssist.UnderlineBrush}"
-                       CornerRadius="{TemplateBinding wpf:TextFieldAssist.UnderlineCornerRadius}"
-                       Visibility="{TemplateBinding wpf:TextFieldAssist.DecorationVisibility}" />
-        <!--<wpf:Underline x:Name="Underline"
-                       wpf:TextFieldAssist.UnderlineBrush="{TemplateBinding wpf:TextFieldAssist.UnderlineBrush}"
-                       Background="{TemplateBinding wpf:TextFieldAssist.UnderlineBrush}"
-                       CornerRadius="{TemplateBinding wpf:TextFieldAssist.UnderlineCornerRadius}"
-                       IsActive="{Binding ElementName=PART_EditableTextBox, Path=IsKeyboardFocused}"
-                       Visibility="{TemplateBinding wpf:TextFieldAssist.DecorationVisibility}" />-->
-        <Canvas x:Name="HelperTextWrapper"
-                Margin="{TemplateBinding Padding, Converter={StaticResource HelperTextMarginConverter}}"
-                VerticalAlignment="Bottom">
-          <TextBlock x:Name="HelperTextTextBlock"
-                     Canvas.Top="2"
-                     MaxWidth="{Binding ActualWidth, ElementName=toggleButton}"
-                     FontSize="{TemplateBinding wpf:HintAssist.HelperTextFontSize}"
-                     Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                     Style="{Binding Path=(wpf:HintAssist.HelperTextStyle), RelativeSource={RelativeSource TemplatedParent}}"
-                     Text="{TemplateBinding wpf:HintAssist.HelperText}" />
-        </Canvas>
-        <wpf:ComboBoxPopup x:Name="PART_Popup"
-                           Grid.Column="0"
-                           wpf:ColorZoneAssist.Mode="{Binding Path=(wpf:ColorZoneAssist.Mode), RelativeSource={RelativeSource TemplatedParent}}"
-                           AllowsTransparency="True"
-                           ClassicContentTemplate="{StaticResource PopupContentClassicTemplate}"
-                           ContentMargin="6,0,6,6"
-                           ContentMinWidth="{Binding Path=ActualWidth, ElementName=templateRoot}"
-                           CustomPopupPlacementCallbackOverride="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ComboBoxAssist.CustomPopupPlacementCallback)}"
-                           DefaultVerticalOffset="-1"
-                           DownVerticalOffset="0"
-                           Focusable="False"
-                           HorizontalOffset="0"
-                           IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                           Placement="Custom"
-                           PlacementTarget="{Binding ElementName=templateRoot}"
-                           PopupAnimation="Fade"
-                           RelativeHorizontalOffset="-6"
-                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                           Tag="{DynamicResource MaterialDesign.Brush.Background}"
-                           UpVerticalOffset="15"
-                           UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                           VerticalOffset="0">
-          <wpf:ComboBoxPopup.Background>
-            <MultiBinding Converter="{StaticResource FallbackBrushConverter}">
-              <Binding Path="Background" RelativeSource="{RelativeSource TemplatedParent}" />
-              <Binding ElementName="PART_Popup" Path="Tag" />
-            </MultiBinding>
-          </wpf:ComboBoxPopup.Background>
-          <wpf:ComboBoxPopup.Style>
-            <Style TargetType="wpf:ComboBoxPopup">
-              <Setter Property="CornerRadius" Value="0,0,4,4" />
-              <Style.Triggers>
-                <Trigger Property="OpenDirection" Value="Up">
-                  <Setter Property="CornerRadius" Value="4,4,0,0" />
-                </Trigger>
-              </Style.Triggers>
-            </Style>
-          </wpf:ComboBoxPopup.Style>
-          <ContentControl>
-            <ScrollViewer MinHeight="1"
-                          MaxHeight="{TemplateBinding MaxDropDownHeight}"
-                          Background="{Binding Background, ElementName=PART_Popup}">
-              <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" />
-            </ScrollViewer>
-          </ContentControl>
-        </wpf:ComboBoxPopup>
-      </Grid>
-    </AdornerDecorator>
+      </AdornerDecorator>
+
+      <wpf:Underline x:Name="Underline"
+               VerticalAlignment="Bottom"
+               Background="{TemplateBinding wpf:TextFieldAssist.UnderlineBrush}"
+               CornerRadius="{TemplateBinding wpf:TextFieldAssist.UnderlineCornerRadius}"
+               Visibility="{TemplateBinding wpf:TextFieldAssist.DecorationVisibility}" />
+      <!--<wpf:Underline x:Name="Underline"
+               wpf:TextFieldAssist.UnderlineBrush="{TemplateBinding wpf:TextFieldAssist.UnderlineBrush}"
+               Background="{TemplateBinding wpf:TextFieldAssist.UnderlineBrush}"
+               CornerRadius="{TemplateBinding wpf:TextFieldAssist.UnderlineCornerRadius}"
+               IsActive="{Binding ElementName=PART_EditableTextBox, Path=IsKeyboardFocused}"
+               Visibility="{TemplateBinding wpf:TextFieldAssist.DecorationVisibility}" />-->
+      <Canvas x:Name="HelperTextWrapper"
+        Margin="{TemplateBinding Padding, Converter={StaticResource HelperTextMarginConverter}}"
+        VerticalAlignment="Bottom">
+        <TextBlock x:Name="HelperTextTextBlock"
+             Canvas.Top="2"
+             MaxWidth="{Binding ActualWidth, ElementName=toggleButton}"
+             FontSize="{TemplateBinding wpf:HintAssist.HelperTextFontSize}"
+             Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
+             Style="{Binding Path=(wpf:HintAssist.HelperTextStyle), RelativeSource={RelativeSource TemplatedParent}}"
+             Text="{TemplateBinding wpf:HintAssist.HelperText}" />
+      </Canvas>
+      <wpf:ComboBoxPopup x:Name="PART_Popup"
+                   Grid.Column="0"
+                   wpf:ColorZoneAssist.Mode="{Binding Path=(wpf:ColorZoneAssist.Mode), RelativeSource={RelativeSource TemplatedParent}}"
+                   AllowsTransparency="True"
+                   ClassicContentTemplate="{StaticResource PopupContentClassicTemplate}"
+                   ContentMargin="6,0,6,6"
+                   ContentMinWidth="{Binding Path=ActualWidth, ElementName=templateRoot}"
+                   CustomPopupPlacementCallbackOverride="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ComboBoxAssist.CustomPopupPlacementCallback)}"
+                   DefaultVerticalOffset="-1"
+                   DownVerticalOffset="0"
+                   Focusable="False"
+                   HorizontalOffset="0"
+                   IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                   Placement="Custom"
+                   PlacementTarget="{Binding ElementName=templateRoot}"
+                   PopupAnimation="Fade"
+                   RelativeHorizontalOffset="-6"
+                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                   Tag="{DynamicResource MaterialDesign.Brush.Background}"
+                   UpVerticalOffset="15"
+                   UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                   VerticalOffset="0">
+        <wpf:ComboBoxPopup.Background>
+          <MultiBinding Converter="{StaticResource FallbackBrushConverter}">
+            <Binding Path="Background" RelativeSource="{RelativeSource TemplatedParent}" />
+            <Binding ElementName="PART_Popup" Path="Tag" />
+          </MultiBinding>
+        </wpf:ComboBoxPopup.Background>
+        <wpf:ComboBoxPopup.Style>
+          <Style TargetType="wpf:ComboBoxPopup">
+            <Setter Property="CornerRadius" Value="0,0,4,4" />
+            <Style.Triggers>
+              <Trigger Property="OpenDirection" Value="Up">
+                <Setter Property="CornerRadius" Value="4,4,0,0" />
+              </Trigger>
+            </Style.Triggers>
+          </Style>
+        </wpf:ComboBoxPopup.Style>
+        <ContentControl>
+          <ScrollViewer MinHeight="1"
+                  MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                  Background="{Binding Background, ElementName=PART_Popup}">
+            <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" />
+          </ScrollViewer>
+        </ContentControl>
+      </wpf:ComboBoxPopup>
+    </Grid>
     <ControlTemplate.Triggers>
       <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
         <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
