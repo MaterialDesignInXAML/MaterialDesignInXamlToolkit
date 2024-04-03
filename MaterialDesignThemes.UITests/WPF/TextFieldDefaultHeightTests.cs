@@ -54,7 +54,6 @@ public class TextFieldDefaultHeightTests : TestBase
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <PasswordBox Style=""{StaticResource MaterialDesignFloatingHintPasswordBox}"" materialDesign:HintAssist.Hint=""Hint"" />
-    <ComboBox IsEditable=""True"" Style=""{StaticResource MaterialDesignFloatingHintComboBox}"" materialDesign:HintAssist.Hint=""Hint"" />
     <DatePicker Style=""{StaticResource MaterialDesignFloatingHintDatePicker}"" materialDesign:HintAssist.Hint=""Hint"" />
 </StackPanel>");
 
@@ -75,12 +74,13 @@ public class TextFieldDefaultHeightTests : TestBase
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <TextBox Style=""{StaticResource MaterialDesignFloatingHintTextBox}"" materialDesign:HintAssist.Hint=""Hint"" />
+    <ComboBox IsEditable=""True"" Style=""{StaticResource MaterialDesignFloatingHintComboBox}"" materialDesign:HintAssist.Hint=""Hint"" />
     <materialDesign:TimePicker Style=""{StaticResource MaterialDesignFloatingHintTimePicker}"" materialDesign:HintAssist.Hint=""Hint"" />
 </StackPanel>");
 
         var height = await GetHeight(stackPanel, "TextBox");
         Assert.True(height > 0);
-        //Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
+        Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
         Assert.Equal(height, await GetHeight(stackPanel, "TimePicker"), Precision);
 
         recorder.Success();
@@ -95,7 +95,6 @@ public class TextFieldDefaultHeightTests : TestBase
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <PasswordBox Style=""{StaticResource MaterialDesignFilledPasswordBox}"" materialDesign:HintAssist.Hint=""Hint"" />
-    <ComboBox IsEditable=""True"" Style=""{StaticResource MaterialDesignFilledComboBox}"" materialDesign:HintAssist.Hint=""Hint"" />
     <DatePicker Style=""{StaticResource MaterialDesignFilledDatePicker}"" materialDesign:HintAssist.Hint=""Hint"" />
 </StackPanel>");
 
@@ -116,12 +115,13 @@ public class TextFieldDefaultHeightTests : TestBase
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <TextBox Style=""{StaticResource MaterialDesignFilledTextBox}"" materialDesign:HintAssist.Hint=""Hint"" />
+    <ComboBox IsEditable=""True"" Style=""{StaticResource MaterialDesignFilledComboBox}"" materialDesign:HintAssist.Hint=""Hint"" />
     <materialDesign:TimePicker Style=""{StaticResource MaterialDesignFilledTimePicker}"" materialDesign:HintAssist.Hint=""Hint"" />
 </StackPanel>");
 
         var height = await GetHeight(stackPanel, "TextBox");
         Assert.True(height > 0);
-        //Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
+        Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
         Assert.Equal(height, await GetHeight(stackPanel, "TimePicker"), Precision);
 
         recorder.Success();
