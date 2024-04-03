@@ -19,7 +19,7 @@ internal class TextFieldClearButtonVisibilityConverter : IMultiValueConverter
             return Visibility.Collapsed;
         }
 
-        if (values.Length > 2 && values[2] is false) // ComboBox.IsEditable
+        if (isContentNullOrEmpty && values.Length > 2 && values[2] is false) // ComboBox.IsEditable
         {
             return Visibility.Collapsed;
         }
