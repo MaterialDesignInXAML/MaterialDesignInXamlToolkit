@@ -447,6 +447,7 @@
                 <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
               </MultiTrigger.Conditions>
               <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
+              <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBorder}" />
             </MultiTrigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
