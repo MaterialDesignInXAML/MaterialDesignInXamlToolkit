@@ -374,12 +374,6 @@
                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
               </MultiTrigger.Conditions>
               <Setter TargetName="OuterBorder" Property="BorderBrush" Value="Transparent" />
-            </MultiTrigger>
-            <MultiTrigger>
-              <MultiTrigger.Conditions>
-                <Condition Property="IsEnabled" Value="False" />
-                <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
-              </MultiTrigger.Conditions>
               <Setter TargetName="PART_ClearButton" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
               <Setter TargetName="OuterBorder" Property="wpf:BottomDashedLineAdorner.IsAttached" Value="True" />
               <Setter TargetName="OuterBorder" Property="wpf:BottomDashedLineAdorner.DashStyle" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TextFieldAssist.HasFilledTextField), Converter={StaticResource BooleanToDashStyleConverter}}" />
