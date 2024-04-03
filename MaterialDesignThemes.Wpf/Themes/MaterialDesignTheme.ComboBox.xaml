@@ -319,11 +319,14 @@
       <converters:FloatingHintInitialHorizontalOffsetConverter x:Key="FloatingHintInitialHorizontalOffsetConverter" />
       <converters:FloatingHintMarginConverter x:Key="FloatingHintMarginConverter" />
       <converters:MathConverter x:Key="DivisionConverter"  Operation="Divide" Offset="1" />
+      <converters:BooleanToDashStyleConverter x:Key="BooleanToDashStyleConverter" TrueValue="{x:Static DashStyles.Solid}" />
     </ControlTemplate.Resources>
     <Grid>
       <AdornerDecorator>
         <Border x:Name="templateRoot"
                 wpf:BottomDashedLineAdorner.IsAttached="False"
+                wpf:BottomDashedLineAdorner.Brush="{TemplateBinding BorderBrush}"
+                wpf:BottomDashedLineAdorner.Thickness="{TemplateBinding BorderThickness}"
                 Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
@@ -693,14 +696,10 @@
           <Condition Property="IsEnabled" Value="False" />
           <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
         </MultiTrigger.Conditions>
+        <Setter TargetName="templateRoot" Property="BorderBrush" Value="Transparent" />
         <Setter TargetName="templateRoot" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
-      </MultiTrigger>
-      <!-- TODO Single trigger -->
-      <MultiTrigger>
-        <MultiTrigger.Conditions>
-          <Condition Property="IsEnabled" Value="False" />
-        </MultiTrigger.Conditions>
-        <Setter TargetName="toggleButton" Property="BorderBrush" Value="Transparent" />
+        <Setter TargetName="templateRoot" Property="wpf:BottomDashedLineAdorner.IsAttached" Value="True" />
+        <Setter TargetName="templateRoot" Property="wpf:BottomDashedLineAdorner.DashStyle" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TextFieldAssist.HasFilledTextField), Converter={StaticResource BooleanToDashStyleConverter}}" />
       </MultiTrigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
@@ -724,19 +723,10 @@
       </MultiTrigger>
 
       <!-- IsKeyboardFocused -->
-      <Trigger Property="IsKeyboardFocused" Value="True">
-        <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
-      </Trigger>
       <Trigger Property="IsKeyboardFocusWithin" Value="True">
         <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
-      </Trigger>
-      <MultiTrigger>
-        <MultiTrigger.Conditions>
-          <Condition Property="IsKeyboardFocused" Value="True" />
-          <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
-        </MultiTrigger.Conditions>
         <Setter TargetName="Underline" Property="IsActive" Value="True" />
-      </MultiTrigger>
+      </Trigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
           <Condition Property="IsKeyboardFocusWithin" Value="True" />
@@ -766,7 +756,7 @@
       </MultiTrigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
-          <Condition Property="IsKeyboardFocused" Value="True" />
+          <Condition Property="IsKeyboardFocusWithin" Value="True" />
           <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
         </MultiTrigger.Conditions>
         <Setter TargetName="templateRoot" Property="BorderThickness" Value="2" />
@@ -774,13 +764,9 @@
       </MultiTrigger>
 
       <!-- IsDropDownOpen -->
-      <!-- TODO: Single trigger -->
-      <MultiTrigger>
-        <MultiTrigger.Conditions>
-          <Condition Property="IsDropDownOpen" Value="True" />
-        </MultiTrigger.Conditions>
+      <Trigger Property="IsDropDownOpen" Value="True">
         <Setter TargetName="Underline" Property="IsActive" Value="True" />
-      </MultiTrigger>
+      </Trigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
           <Condition Property="IsDropDownOpen" Value="True" />
@@ -811,10 +797,10 @@
       <MultiTrigger>
         <MultiTrigger.Conditions>
           <Condition Property="IsMouseOver" Value="True" />
+          <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="False" />
           <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
         </MultiTrigger.Conditions>
         <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
-        <Setter TargetName="Underline" Property="Background" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
       </MultiTrigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
