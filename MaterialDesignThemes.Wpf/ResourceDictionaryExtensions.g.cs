@@ -11,7 +11,7 @@ static partial class ResourceDictionaryExtensions
     private static partial void LoadThemeColors(ResourceDictionary resourceDictionary, Theme theme)
     {
         theme.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.Background", "MaterialDesignPaper");
-        theme.Foreground = GetColor(resourceDictionary, "MaterialDesign.Brush.Foreground", "MaterialDesignBody");
+        theme.Foreground = GetColor(resourceDictionary, "MaterialDesign.Brush.Foreground", "MaterialDesignBody", "MaterialDesign.Brush.TextBox.HoverBorder", "MaterialDesign.Brush.ComboBox.HoverBorder");
         theme.ForegroundLight = GetColor(resourceDictionary, "MaterialDesign.Brush.ForegroundLight", "MaterialDesignBodyLight", "MaterialDesignCheckBoxOff", "MaterialDesignTextBoxBorder");
         theme.ValidationError = GetColor(resourceDictionary, "MaterialDesign.Brush.ValidationError", "MaterialDesignValidationErrorBrush");
         theme.Badgeds.DarkBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.Badged.DarkBackground");
@@ -39,6 +39,7 @@ static partial class ResourceDictionaryExtensions
         theme.ComboBoxes.FilledBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.ComboBox.FilledBackground");
         theme.ComboBoxes.HoverBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.ComboBox.HoverBackground");
         theme.ComboBoxes.OutlineInactiveBorder = GetColor(resourceDictionary, "MaterialDesign.Brush.ComboBox.OutlineInactiveBorder");
+        theme.ComboBoxes.Border = GetColor(resourceDictionary, "MaterialDesign.Brush.ComboBox.Border", "MaterialDesignBodyLight", "MaterialDesignCheckBoxOff", "MaterialDesignTextBoxBorder");
         theme.ComboBoxes.OutlineBorder = GetColor(resourceDictionary, "MaterialDesign.Brush.ComboBox.OutlineBorder", "MaterialDesignColumnHeader", "MaterialDesignTextAreaBorder");
         theme.ComboBoxes.Popups.DarkBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.ComboBox.Popup.DarkBackground");
         theme.ComboBoxes.Popups.DarkForeground = GetColor(resourceDictionary, "MaterialDesign.Brush.ComboBox.Popup.DarkForeground");
@@ -95,6 +96,7 @@ static partial class ResourceDictionaryExtensions
         SetSolidColorBrush(resourceDictionary, "MaterialDesignPaper", theme.Background);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Foreground", theme.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignBody", theme.Foreground);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ComboBox.HoverBorder", theme.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ForegroundLight", theme.ForegroundLight);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignBodyLight", theme.ForegroundLight);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignCheckBoxOff", theme.ForegroundLight);
@@ -142,6 +144,10 @@ static partial class ResourceDictionaryExtensions
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ComboBox.FilledBackground", theme.ComboBoxes.FilledBackground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ComboBox.HoverBackground", theme.ComboBoxes.HoverBackground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ComboBox.OutlineInactiveBorder", theme.ComboBoxes.OutlineInactiveBorder);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ComboBox.Border", theme.ComboBoxes.Border);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesignBodyLight", theme.ComboBoxes.Border);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesignCheckBoxOff", theme.ComboBoxes.Border);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesignTextBoxBorder", theme.ComboBoxes.Border);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ComboBox.OutlineBorder", theme.ComboBoxes.OutlineBorder);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignColumnHeader", theme.ComboBoxes.OutlineBorder);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignTextAreaBorder", theme.ComboBoxes.OutlineBorder);

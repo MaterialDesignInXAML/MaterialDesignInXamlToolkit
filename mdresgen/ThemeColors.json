@@ -20,7 +20,8 @@
             "MaterialDesign.Brush.TextBox.HoverBorder"
         ],
         "obsoleteKeys": [
-            "MaterialDesignBody"
+            "MaterialDesignBody",
+            "MaterialDesign.Brush.ComboBox.HoverBorder"
         ]
     },
     {
@@ -31,7 +32,8 @@
         },
         "alternateKeys": [
             "MaterialDesign.Brush.CheckBox.Off",
-            "MaterialDesign.Brush.TextBox.Border"
+            "MaterialDesign.Brush.TextBox.Border",
+            "MaterialDesign.Brush.ComboBox.Border"
         ],
         "obsoleteKeys": [
             "MaterialDesignBodyLight",
