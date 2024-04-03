@@ -573,6 +573,20 @@
       </wpf:ComboBoxPopup>
     </Grid>
     <ControlTemplate.Triggers>
+
+      <Trigger Property="IsEditable" Value="True">
+        <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible" />
+        <Setter TargetName="Underline" Property="Visibility" Value="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}" />
+        <Setter TargetName="contentPresenter" Property="Visibility" Value="Collapsed" />
+      </Trigger>
+      <MultiTrigger>
+        <MultiTrigger.Conditions>
+          <Condition Property="IsGrouping" Value="True" />
+          <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="False" />
+        </MultiTrigger.Conditions>
+        <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+      </MultiTrigger>
+
       <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
         <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
         <Setter TargetName="HintWrapper" Property="Opacity" Value="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}" />
@@ -597,19 +611,6 @@
           <Condition SourceName="Hint" Property="IsHintInFloatingPosition" Value="True" />
         </MultiTrigger.Conditions>
         <Setter Property="wpf:HintAssist.Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
-      </MultiTrigger>
-
-      <Trigger Property="IsEditable" Value="True">
-        <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible" />
-        <Setter TargetName="Underline" Property="Visibility" Value="{Binding Path=(wpf:TextFieldAssist.DecorationVisibility), RelativeSource={RelativeSource TemplatedParent}}" />
-        <Setter TargetName="contentPresenter" Property="Visibility" Value="Collapsed" />
-      </Trigger>
-      <MultiTrigger>
-        <MultiTrigger.Conditions>
-          <Condition Property="IsGrouping" Value="True" />
-          <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="False" />
-        </MultiTrigger.Conditions>
-        <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
       </MultiTrigger>
 
       <!-- Hint
