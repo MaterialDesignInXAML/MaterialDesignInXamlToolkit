@@ -98,6 +98,7 @@ partial class ThemeTests
           <TextBlock Text="ToolTip.Background" Background="{StaticResource MaterialDesign.Brush.ToolTip.Background}" />
           <TextBlock Text="MaterialDesignPaper" Background="{StaticResource MaterialDesignPaper}" />
           <TextBlock Text="MaterialDesignBody" Background="{StaticResource MaterialDesignBody}" />
+          <TextBlock Text="MaterialDesign.Brush.TextBox.HoverBorder" Background="{StaticResource MaterialDesign.Brush.TextBox.HoverBorder}" />
           <TextBlock Text="MaterialDesignBodyLight" Background="{StaticResource MaterialDesignBodyLight}" />
           <TextBlock Text="MaterialDesignCheckBoxOff" Background="{StaticResource MaterialDesignCheckBoxOff}" />
           <TextBlock Text="MaterialDesignTextBoxBorder" Background="{StaticResource MaterialDesignTextBoxBorder}" />
@@ -542,6 +543,11 @@ partial class ThemeTests
             Assert.Equal(await GetResourceColor("MaterialDesignBody"), textBlockBackground);
         }
         {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesign.Brush.TextBox.HoverBorder\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.TextBox.HoverBorder"), textBlockBackground);
+        }
+        {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignBodyLight\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesignBodyLight"), textBlockBackground);
@@ -829,6 +835,7 @@ partial class ThemeTests
     {
         yield return "MaterialDesignPaper";
         yield return "MaterialDesignBody";
+        yield return "MaterialDesign.Brush.TextBox.HoverBorder";
         yield return "MaterialDesignBodyLight";
         yield return "MaterialDesignCheckBoxOff";
         yield return "MaterialDesignTextBoxBorder";
