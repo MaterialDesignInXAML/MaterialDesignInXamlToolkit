@@ -490,12 +490,6 @@
                Background="{TemplateBinding wpf:TextFieldAssist.UnderlineBrush}"
                CornerRadius="{TemplateBinding wpf:TextFieldAssist.UnderlineCornerRadius}"
                Visibility="{TemplateBinding wpf:TextFieldAssist.DecorationVisibility}" />
-      <!--<wpf:Underline x:Name="Underline"
-               wpf:TextFieldAssist.UnderlineBrush="{TemplateBinding wpf:TextFieldAssist.UnderlineBrush}"
-               Background="{TemplateBinding wpf:TextFieldAssist.UnderlineBrush}"
-               CornerRadius="{TemplateBinding wpf:TextFieldAssist.UnderlineCornerRadius}"
-               IsActive="{Binding ElementName=PART_EditableTextBox, Path=IsKeyboardFocused}"
-               Visibility="{TemplateBinding wpf:TextFieldAssist.DecorationVisibility}" />-->
       <Canvas x:Name="HelperTextWrapper"
         Margin="{TemplateBinding Padding, Converter={StaticResource HelperTextMarginConverter}}"
         VerticalAlignment="Bottom">
@@ -595,52 +589,6 @@
         <Setter Property="wpf:HintAssist.Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
       </MultiTrigger>
 
-      <!-- Hint
-      <MultiTrigger>
-        <MultiTrigger.Conditions>
-          <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
-          <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
-        </MultiTrigger.Conditions>
-        <Setter TargetName="Hint" Property="FloatingOffset">
-          <Setter.Value>
-            <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
-              <Binding ElementName="Hint" Path="FontFamily" />
-              <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
-              <Binding Path="(wpf:HintAssist.FloatingScale)" RelativeSource="{RelativeSource TemplatedParent}" />
-              <Binding Path="(wpf:HintAssist.FloatingOffset)" RelativeSource="{RelativeSource TemplatedParent}" />
-            </MultiBinding>
-          </Setter.Value>
-        </Setter>
-        <Setter TargetName="InnerRoot" Property="Margin">
-          <Setter.Value>
-            <MultiBinding Converter="{StaticResource FloatingHintOffsetCalculationConverter}">
-              <Binding ElementName="Hint" Path="FontFamily" />
-              <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
-              <Binding Path="(wpf:HintAssist.FloatingScale)" RelativeSource="{RelativeSource TemplatedParent}" />
-              <Binding Path="(wpf:HintAssist.FloatingOffset)" RelativeSource="{RelativeSource TemplatedParent}" />
-            </MultiBinding>
-          </Setter.Value>
-        </Setter>
-      </MultiTrigger>
-      <MultiTrigger>
-        <MultiTrigger.Conditions>
-          <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
-          <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
-          <Condition SourceName="Hint" Property="IsHintInFloatingPosition" Value="True" />
-        </MultiTrigger.Conditions>
-        <Setter Property="wpf:HintAssist.Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
-        <Setter TargetName="HintBackgroundBorder" Property="Padding" Value="4,0" />
-      </MultiTrigger>
-      <MultiTrigger>
-        <MultiTrigger.Conditions>
-          <Condition SourceName="Hint" Property="IsContentNullOrEmpty" Value="False" />
-          <Condition SourceName="PART_EditableTextBox" Property="IsKeyboardFocused" Value="True" />
-        </MultiTrigger.Conditions>
-        <Setter TargetName="Hint" Property="Foreground" Value="{Binding Path=(wpf:HintAssist.Foreground), RelativeSource={RelativeSource TemplatedParent}}" />
-        <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
-      </MultiTrigger>
-      -->
-
       <!-- Floating hint -->
       <Trigger Property="wpf:HintAssist.IsFloating" Value="True">
         <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
@@ -652,22 +600,6 @@
         </MultiTrigger.Conditions>
         <Setter TargetName="Hint" Property="Foreground" Value="{Binding Path=(wpf:HintAssist.Foreground), RelativeSource={RelativeSource TemplatedParent}}" />
       </MultiTrigger>
-
-      <!-- toggleButton padding adhering to VerticalContentAlignment
-      <MultiTrigger>
-        <MultiTrigger.Conditions>
-          <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
-          <Condition SourceName="InnerRoot" Property="VerticalAlignment" Value="Top" />
-        </MultiTrigger.Conditions>
-        <Setter TargetName="toggleButton" Property="Padding" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={StaticResource DefaultOrFilledStyleTrailingIconPaddingConverterTop}}" />
-      </MultiTrigger>
-      <MultiTrigger>
-        <MultiTrigger.Conditions>
-          <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
-          <Condition SourceName="InnerRoot" Property="VerticalAlignment" Value="Bottom" />
-        </MultiTrigger.Conditions>
-        <Setter TargetName="toggleButton" Property="Padding" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={StaticResource DefaultOrFilledStyleTrailingIconPaddingConverterBottom}}" />
-      </MultiTrigger> -->
 
       <!-- IsEnabled -->
       <MultiTrigger>
@@ -913,12 +845,6 @@
         <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
         <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesign.Brush.ComboBox.Popup.DarkBackground}" />
       </MultiTrigger>
-
-      <!-- PART_ClearButton
-      <DataTrigger Binding="{Binding ElementName=PART_ClearButton, Path=IsVisible}" Value="True">
-        <Setter TargetName="PART_EditableTextBox" Property="Margin" Value="{Binding ActualWidth, ElementName=PART_ClearButton, Converter={StaticResource DoubleToThicknessConverterWithNegativeOffset}, ConverterParameter={x:Static Dock.Right}}" />
-      </DataTrigger>
-       -->
     </ControlTemplate.Triggers>
   </ControlTemplate>
 
