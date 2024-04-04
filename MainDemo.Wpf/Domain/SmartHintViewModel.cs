@@ -202,7 +202,7 @@ internal class SmartHintViewModel : ViewModelBase
     public bool ShowCharacterCounter
     {
         get => MaxLength > 0;
-        set => MaxLength = value == true ? 50 : 0;
+        set => MaxLength = value ? 50 : 0;
     }
 
     public int MaxLength

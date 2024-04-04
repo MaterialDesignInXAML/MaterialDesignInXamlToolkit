@@ -400,8 +400,8 @@ public class TextBoxTests : TestBase
         var errorViewer = await textBox.GetElement<Border>("DefaultErrorViewer");
         var helperTextTextBlock = await textBox.GetElement<TextBlock>("HelperTextTextBlock");
 
-        Thickness? errorMargin = await errorViewer.GetProperty<Thickness>(FrameworkElement.MarginProperty);
-        Thickness? textBoxPadding = await textBox.GetProperty<Thickness>(Control.PaddingProperty);
+        Thickness? errorMargin = await errorViewer.GetMargin();
+        Thickness? textBoxPadding = await textBox.GetPadding();
 
         Assert.True(errorMargin.HasValue);
         Assert.True(textBoxPadding.HasValue);
