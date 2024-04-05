@@ -362,6 +362,7 @@
                     <Binding ElementName="Hint" Path="IsHintInFloatingPosition" />
                     <Binding Path="(wpf:TextFieldAssist.PrefixText)" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:TextFieldAssist.PrefixTextVisibility)" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="IsKeyboardFocusWithin" RelativeSource="{RelativeSource TemplatedParent}" />
                   </MultiBinding>
                 </TextBlock.Visibility>
               </TextBlock>
@@ -420,6 +421,8 @@
                 </wpf:SmartHint.InitialHorizontalOffset>
                 <wpf:SmartHint.Margin>
                   <MultiBinding Converter="{StaticResource FloatingHintMarginConverter}">
+                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:HintAssist.IsFloating)" />
+                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsKeyboardFocusWithin" />
                     <Binding ElementName="PrefixTextBlock" Path="ActualWidth" />
                     <Binding ElementName="PrefixTextBlock" Path="Margin" />
                     <Binding ElementName="SuffixTextBlock" Path="ActualWidth" />
@@ -449,6 +452,7 @@
                     <Binding ElementName="Hint" Path="IsHintInFloatingPosition" />
                     <Binding Path="(wpf:TextFieldAssist.SuffixText)" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:TextFieldAssist.SuffixTextVisibility)" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="IsKeyboardFocusWithin" RelativeSource="{RelativeSource TemplatedParent}" />
                   </MultiBinding>
                 </TextBlock.Visibility>
               </TextBlock>
