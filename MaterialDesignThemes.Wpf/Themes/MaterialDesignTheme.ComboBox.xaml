@@ -290,7 +290,7 @@
   <ControlTemplate x:Key="MaterialDesignFloatingHintComboBoxTemplate" TargetType="{x:Type ComboBox}">
     <ControlTemplate.Resources>
       <converters:MathConverter x:Key="MathMultiplyConverter" Operation="Multiply" />
-      <converters:TextFieldClearButtonVisibilityConverter x:Key="ClearButtonVisibilityConverter" />
+      <converters:TextFieldClearButtonVisibilityConverter x:Key="ClearButtonVisibilityConverter" ContentEmptyVisibility="Collapsed" />
       <converters:FallbackBrushConverter x:Key="FallbackBrushConverter" />
       <converters:RemoveAlphaBrushConverter x:Key="RemoveAlphaBrushConverter" />
       <converters:ThicknessCloneConverter x:Key="HelperTextMarginConverter" CloneEdges="Left" />
@@ -328,6 +328,7 @@
                   Grid.Column="0"
                   HorizontalAlignment="Stretch"
                   Margin="{TemplateBinding Padding}"
+                  MinHeight="{Binding ElementName=ClearButtonIcon, Path=ActualHeight}"
                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                   UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
