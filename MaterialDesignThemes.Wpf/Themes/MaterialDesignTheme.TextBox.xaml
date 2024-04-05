@@ -223,6 +223,7 @@
                       <MultiBinding Converter="{StaticResource FloatingHintMarginConverter}">
                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:HintAssist.IsFloating)" />
                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsKeyboardFocusWithin" />
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsReadOnly" Converter="{StaticResource InvertBooleanConverter}" />
                         <Binding ElementName="PrefixTextBlock" Path="ActualWidth" />
                         <Binding ElementName="PrefixTextBlock" Path="Margin" />
                         <Binding ElementName="SuffixTextBlock" Path="ActualWidth" />
