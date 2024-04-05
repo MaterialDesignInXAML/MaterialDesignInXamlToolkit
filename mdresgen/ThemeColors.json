@@ -16,10 +16,11 @@
             "light": "Black900",
             "dark": "White900"
         },
-        "alternateKeys": [],
-        "obsoleteKeys": [
-            "MaterialDesignBody",
+        "alternateKeys": [
             "MaterialDesign.Brush.TextBox.HoverBorder"
+        ],
+        "obsoleteKeys": [
+            "MaterialDesignBody"
         ]
     },
     {

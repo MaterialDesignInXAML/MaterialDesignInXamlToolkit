@@ -474,6 +474,13 @@ partial class Theme
             _theme = theme ?? throw new ArgumentNullException(nameof(theme));
         }
 
+        private ColorReference _hoverBorder;
+        public ColorReference HoverBorder
+        {
+           get => _theme.Resolve(_hoverBorder);
+           set => _hoverBorder = value;
+        }
+
         private ColorReference _border;
         public ColorReference Border
         {

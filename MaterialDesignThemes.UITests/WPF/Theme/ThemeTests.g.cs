@@ -62,6 +62,7 @@ partial class ThemeTests
           <TextBlock Text="DataGrid.RowHoverBackground" Background="{StaticResource MaterialDesign.Brush.DataGrid.RowHoverBackground}" />
           <TextBlock Text="DataGrid.Selected" Background="{StaticResource MaterialDesign.Brush.DataGrid.Selected}" />
           <TextBlock Text="DataGrid.ColumnHeaderForeground" Background="{StaticResource MaterialDesign.Brush.DataGrid.ColumnHeaderForeground}" />
+          <TextBlock Text="TextBox.HoverBorder" Background="{StaticResource MaterialDesign.Brush.TextBox.HoverBorder}" />
           <TextBlock Text="TextBox.Border" Background="{StaticResource MaterialDesign.Brush.TextBox.Border}" />
           <TextBlock Text="TextBox.OutlineBorder" Background="{StaticResource MaterialDesign.Brush.TextBox.OutlineBorder}" />
           <TextBlock Text="TextBox.DisabledBackground" Background="{StaticResource MaterialDesign.Brush.TextBox.DisabledBackground}" />
@@ -98,7 +99,6 @@ partial class ThemeTests
           <TextBlock Text="ToolTip.Background" Background="{StaticResource MaterialDesign.Brush.ToolTip.Background}" />
           <TextBlock Text="MaterialDesignPaper" Background="{StaticResource MaterialDesignPaper}" />
           <TextBlock Text="MaterialDesignBody" Background="{StaticResource MaterialDesignBody}" />
-          <TextBlock Text="MaterialDesign.Brush.TextBox.HoverBorder" Background="{StaticResource MaterialDesign.Brush.TextBox.HoverBorder}" />
           <TextBlock Text="MaterialDesignBodyLight" Background="{StaticResource MaterialDesignBodyLight}" />
           <TextBlock Text="MaterialDesignCheckBoxOff" Background="{StaticResource MaterialDesignCheckBoxOff}" />
           <TextBlock Text="MaterialDesignTextBoxBorder" Background="{StaticResource MaterialDesignTextBoxBorder}" />
@@ -122,6 +122,7 @@ partial class ThemeTests
           <TextBlock Text="MaterialDesignDataGridRowHoverBackground" Background="{StaticResource MaterialDesignDataGridRowHoverBackground}" />
           <TextBlock Text="MaterialDesignColumnHeader" Background="{StaticResource MaterialDesignColumnHeader}" />
           <TextBlock Text="MaterialDesignTextAreaBorder" Background="{StaticResource MaterialDesignTextAreaBorder}" />
+          <TextBlock Text="MaterialDesignBody" Background="{StaticResource MaterialDesignBody}" />
           <TextBlock Text="MaterialDesignBodyLight" Background="{StaticResource MaterialDesignBodyLight}" />
           <TextBlock Text="MaterialDesignCheckBoxOff" Background="{StaticResource MaterialDesignCheckBoxOff}" />
           <TextBlock Text="MaterialDesignTextBoxBorder" Background="{StaticResource MaterialDesignTextBoxBorder}" />
@@ -363,6 +364,11 @@ partial class ThemeTests
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.DataGrid.ColumnHeaderForeground"), textBlockBackground);
         }
         {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"TextBox.HoverBorder\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.TextBox.HoverBorder"), textBlockBackground);
+        }
+        {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"TextBox.Border\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.TextBox.Border"), textBlockBackground);
@@ -543,11 +549,6 @@ partial class ThemeTests
             Assert.Equal(await GetResourceColor("MaterialDesignBody"), textBlockBackground);
         }
         {
-            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesign.Brush.TextBox.HoverBorder\"]");
-            Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.TextBox.HoverBorder"), textBlockBackground);
-        }
-        {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignBodyLight\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesignBodyLight"), textBlockBackground);
@@ -661,6 +662,11 @@ partial class ThemeTests
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextAreaBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesignTextAreaBorder"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignBody\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesignBody"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignBodyLight\"]");
@@ -796,6 +802,7 @@ partial class ThemeTests
         yield return "MaterialDesign.Brush.DataGrid.RowHoverBackground";
         yield return "MaterialDesign.Brush.DataGrid.Selected";
         yield return "MaterialDesign.Brush.DataGrid.ColumnHeaderForeground";
+        yield return "MaterialDesign.Brush.TextBox.HoverBorder";
         yield return "MaterialDesign.Brush.TextBox.Border";
         yield return "MaterialDesign.Brush.TextBox.OutlineBorder";
         yield return "MaterialDesign.Brush.TextBox.DisabledBackground";
@@ -835,7 +842,6 @@ partial class ThemeTests
     {
         yield return "MaterialDesignPaper";
         yield return "MaterialDesignBody";
-        yield return "MaterialDesign.Brush.TextBox.HoverBorder";
         yield return "MaterialDesignBodyLight";
         yield return "MaterialDesignCheckBoxOff";
         yield return "MaterialDesignTextBoxBorder";
@@ -859,6 +865,7 @@ partial class ThemeTests
         yield return "MaterialDesignDataGridRowHoverBackground";
         yield return "MaterialDesignColumnHeader";
         yield return "MaterialDesignTextAreaBorder";
+        yield return "MaterialDesignBody";
         yield return "MaterialDesignBodyLight";
         yield return "MaterialDesignCheckBoxOff";
         yield return "MaterialDesignTextBoxBorder";

@@ -11,7 +11,7 @@ static partial class ResourceDictionaryExtensions
     private static partial void LoadThemeColors(ResourceDictionary resourceDictionary, Theme theme)
     {
         theme.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.Background", "MaterialDesignPaper");
-        theme.Foreground = GetColor(resourceDictionary, "MaterialDesign.Brush.Foreground", "MaterialDesignBody", "MaterialDesign.Brush.TextBox.HoverBorder");
+        theme.Foreground = GetColor(resourceDictionary, "MaterialDesign.Brush.Foreground", "MaterialDesignBody");
         theme.ForegroundLight = GetColor(resourceDictionary, "MaterialDesign.Brush.ForegroundLight", "MaterialDesignBodyLight", "MaterialDesignCheckBoxOff", "MaterialDesignTextBoxBorder");
         theme.ValidationError = GetColor(resourceDictionary, "MaterialDesign.Brush.ValidationError", "MaterialDesignValidationErrorBrush");
         theme.Badgeds.DarkBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.Badged.DarkBackground");
@@ -51,6 +51,7 @@ static partial class ResourceDictionaryExtensions
         theme.DataGrids.RowHoverBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.DataGrid.RowHoverBackground", "MaterialDesignDataGridRowHoverBackground");
         theme.DataGrids.Selected = GetColor(resourceDictionary, "MaterialDesign.Brush.DataGrid.Selected");
         theme.DataGrids.ColumnHeaderForeground = GetColor(resourceDictionary, "MaterialDesign.Brush.DataGrid.ColumnHeaderForeground", "MaterialDesignColumnHeader", "MaterialDesignTextAreaBorder");
+        theme.TextBoxes.HoverBorder = GetColor(resourceDictionary, "MaterialDesign.Brush.TextBox.HoverBorder", "MaterialDesignBody");
         theme.TextBoxes.Border = GetColor(resourceDictionary, "MaterialDesign.Brush.TextBox.Border", "MaterialDesignBodyLight", "MaterialDesignCheckBoxOff", "MaterialDesignTextBoxBorder");
         theme.TextBoxes.OutlineBorder = GetColor(resourceDictionary, "MaterialDesign.Brush.TextBox.OutlineBorder", "MaterialDesignColumnHeader", "MaterialDesignTextAreaBorder");
         theme.TextBoxes.DisabledBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.TextBox.DisabledBackground", "MaterialDesignTextFieldBoxDisabledBackground");
@@ -93,7 +94,6 @@ static partial class ResourceDictionaryExtensions
         SetSolidColorBrush(resourceDictionary, "MaterialDesignPaper", theme.Background);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Foreground", theme.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignBody", theme.Foreground);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.TextBox.HoverBorder", theme.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ForegroundLight", theme.ForegroundLight);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignBodyLight", theme.ForegroundLight);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignCheckBoxOff", theme.ForegroundLight);
@@ -156,6 +156,8 @@ static partial class ResourceDictionaryExtensions
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.DataGrid.ColumnHeaderForeground", theme.DataGrids.ColumnHeaderForeground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignColumnHeader", theme.DataGrids.ColumnHeaderForeground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignTextAreaBorder", theme.DataGrids.ColumnHeaderForeground);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.TextBox.HoverBorder", theme.TextBoxes.HoverBorder);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesignBody", theme.TextBoxes.HoverBorder);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.TextBox.Border", theme.TextBoxes.Border);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignBodyLight", theme.TextBoxes.Border);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignCheckBoxOff", theme.TextBoxes.Border);
