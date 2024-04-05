@@ -17,11 +17,11 @@
             "dark": "White900"
         },
         "alternateKeys": [
-            "MaterialDesign.Brush.TextBox.HoverBorder"
+            "MaterialDesign.Brush.TextBox.HoverBorder",
+            "MaterialDesign.Brush.ComboBox.HoverBorder"
         ],
         "obsoleteKeys": [
-            "MaterialDesignBody",
-            "MaterialDesign.Brush.ComboBox.HoverBorder"
+            "MaterialDesignBody"
         ]
     },
     {

@@ -59,7 +59,6 @@
   <colors:StaticResource x:Key="MaterialDesignChipBackground" ResourceKey="MaterialDesign.Brush.Chip.Background" />
   <colors:StaticResource x:Key="MaterialDesignDataGridRowHoverBackground" ResourceKey="MaterialDesign.Brush.DataGrid.RowHoverBackground" />
   <colors:StaticResource x:Key="MaterialDesignBody" ResourceKey="MaterialDesign.Brush.Foreground" />
-  <colors:StaticResource x:Key="MaterialDesign.Brush.ComboBox.HoverBorder" ResourceKey="MaterialDesign.Brush.Foreground" />
   <colors:StaticResource x:Key="MaterialDesignBodyLight" ResourceKey="MaterialDesign.Brush.ForegroundLight" />
   <colors:StaticResource x:Key="MaterialDesignCheckBoxOff" ResourceKey="MaterialDesign.Brush.ForegroundLight" />
   <colors:StaticResource x:Key="MaterialDesignTextBoxBorder" ResourceKey="MaterialDesign.Brush.ForegroundLight" />

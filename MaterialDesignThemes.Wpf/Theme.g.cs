@@ -358,6 +358,13 @@ partial class Theme
            set => _outlineInactiveBorder = value;
         }
 
+        private ColorReference _hoverBorder;
+        public ColorReference HoverBorder
+        {
+           get => _theme.Resolve(_hoverBorder);
+           set => _hoverBorder = value;
+        }
+
         private ColorReference _border;
         public ColorReference Border
         {
