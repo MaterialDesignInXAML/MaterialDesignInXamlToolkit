@@ -363,6 +363,7 @@
                     <Binding Path="(wpf:TextFieldAssist.PrefixText)" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:TextFieldAssist.PrefixTextVisibility)" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="IsKeyboardFocusWithin" ElementName="PART_EditableTextBox" />
+                    <Binding Path="IsEditable" RelativeSource="{RelativeSource TemplatedParent}" />
                   </MultiBinding>
                 </TextBlock.Visibility>
               </TextBlock>
@@ -424,6 +425,7 @@
                   <MultiBinding Converter="{StaticResource FloatingHintMarginConverter}">
                     <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:HintAssist.IsFloating)" />
                     <Binding ElementName="PART_EditableTextBox" Path="IsKeyboardFocusWithin" />
+                    <Binding Path="IsEditable" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding ElementName="PrefixTextBlock" Path="ActualWidth" />
                     <Binding ElementName="PrefixTextBlock" Path="Margin" />
                     <Binding ElementName="SuffixTextBlock" Path="ActualWidth" />
@@ -454,6 +456,7 @@
                     <Binding Path="(wpf:TextFieldAssist.SuffixText)" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:TextFieldAssist.SuffixTextVisibility)" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="IsKeyboardFocusWithin" ElementName="PART_EditableTextBox" />
+                    <Binding Path="IsEditable" RelativeSource="{RelativeSource TemplatedParent}" />
                   </MultiBinding>
                 </TextBlock.Visibility>
               </TextBlock>
