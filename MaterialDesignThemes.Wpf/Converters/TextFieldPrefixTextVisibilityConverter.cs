@@ -16,7 +16,8 @@ public class TextFieldPrefixTextVisibilityConverter : IMultiValueConverter
                 bool isHintInFloatingPosition,
                 string prefixText,
                 PrefixSuffixVisibility prefixSuffixVisibility,
-                bool isKeyboardFocusWithin
+                bool isKeyboardFocusWithin,
+                bool isEditable
             ])
         {
             return DefaultVisibility;
@@ -29,7 +30,7 @@ public class TextFieldPrefixTextVisibilityConverter : IMultiValueConverter
         {
             return Visibility.Visible;
         }
-        return isHintInFloatingPosition || isKeyboardFocusWithin ? Visibility.Visible : HiddenState;
+        return isHintInFloatingPosition || isKeyboardFocusWithin || !isEditable ? Visibility.Visible : HiddenState;
     }
 
     public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException();

@@ -33,6 +33,7 @@
       <converters:FloatingHintInitialHorizontalOffsetConverter x:Key="FloatingHintInitialHorizontalOffsetConverter" />
       <converters:FloatingHintMarginConverter x:Key="FloatingHintMarginConverter" />
       <converters:ThicknessCloneConverter x:Key="ThicknessCloneConverter" CloneEdges="All" AdditionalOffsetBottom="-1" />
+      <converters:InvertBooleanConverter x:Key="InvertBooleanConverter" />
 
       <Style x:Key="MaterialDesignCharacterCounterTextBlock"
              TargetType="TextBlock"
@@ -172,6 +173,7 @@
                         <Binding Path="(wpf:TextFieldAssist.PrefixText)" RelativeSource="{RelativeSource TemplatedParent}" />
                         <Binding Path="(wpf:TextFieldAssist.PrefixTextVisibility)" RelativeSource="{RelativeSource TemplatedParent}" />
                         <Binding Path="IsKeyboardFocusWithin" RelativeSource="{RelativeSource TemplatedParent}" />
+                        <Binding Path="IsReadOnly" RelativeSource="{RelativeSource TemplatedParent}" Converter="{StaticResource InvertBooleanConverter}" />
                       </MultiBinding>
                     </TextBlock.Visibility>
                   </TextBlock>
@@ -254,6 +256,7 @@
                         <Binding Path="(wpf:TextFieldAssist.SuffixText)" RelativeSource="{RelativeSource TemplatedParent}" />
                         <Binding Path="(wpf:TextFieldAssist.SuffixTextVisibility)" RelativeSource="{RelativeSource TemplatedParent}" />
                         <Binding Path="IsKeyboardFocusWithin" RelativeSource="{RelativeSource TemplatedParent}" />
+                        <Binding Path="IsReadOnly" RelativeSource="{RelativeSource TemplatedParent}" Converter="{StaticResource InvertBooleanConverter}" />
                       </MultiBinding>
                     </TextBlock.Visibility>
                   </TextBlock>
