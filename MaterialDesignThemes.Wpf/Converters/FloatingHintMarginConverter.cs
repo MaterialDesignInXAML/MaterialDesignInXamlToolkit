@@ -9,7 +9,7 @@ public class FloatingHintMarginConverter : IMultiValueConverter
 
     public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
     {
-        return values is [double prefixWidth, Thickness prefixMargin, double suffixWidth, Thickness suffixMargin, PrefixSuffixVisibility prefixVisibility, PrefixSuffixVisibility suffixVisibility]
+        return values is [bool isFloatingHint, bool isKeyboardFocusWithin, double prefixWidth, Thickness prefixMargin, double suffixWidth, Thickness suffixMargin, PrefixSuffixVisibility prefixVisibility, PrefixSuffixVisibility suffixVisibility]
             ? new Thickness(GetLeftMargin(), 0, GetRightMargin(), 0)
             : EmptyThickness;
 
@@ -18,7 +18,7 @@ public class FloatingHintMarginConverter : IMultiValueConverter
             return prefixVisibility switch
             {
                 PrefixSuffixVisibility.Always => prefixWidth + prefixMargin.Right,
-                _ => 0,
+                _ => isFloatingHint || !isKeyboardFocusWithin ? 0 : prefixWidth + prefixMargin.Right,
             };
         }
 
@@ -27,7 +27,7 @@ public class FloatingHintMarginConverter : IMultiValueConverter
             return suffixVisibility switch
             {
                 PrefixSuffixVisibility.Always => suffixWidth + suffixMargin.Left,
-                _ => 0,
+                _ => isFloatingHint || !isKeyboardFocusWithin ? 0 : suffixWidth + suffixMargin.Left,
             };
         }
     }

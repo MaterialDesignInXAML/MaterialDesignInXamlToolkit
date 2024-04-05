@@ -5,21 +5,31 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 public class TextFieldPrefixTextVisibilityConverter : IMultiValueConverter
 {
+    private static readonly object DefaultVisibility = Visibility.Collapsed;
+
     public Visibility HiddenState { get; set; } = Visibility.Hidden;
+
     public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
     {
-        string prefixText = (string)values[1];
+        if (values is not
+            [
+                bool isHintInFloatingPosition,
+                string prefixText,
+                PrefixSuffixVisibility prefixSuffixVisibility,
+                bool isKeyboardFocusWithin
+            ])
+        {
+            return DefaultVisibility;
+        }
         if (string.IsNullOrEmpty(prefixText))
         {
             return Visibility.Collapsed;
         }
-        if (values.Length >= 2 && values[2] is PrefixSuffixVisibility.Always)
+        if (prefixSuffixVisibility == PrefixSuffixVisibility.Always)
         {
             return Visibility.Visible;
         }
-
-        bool isHintInFloatingPosition = (bool)values[0];
-        return isHintInFloatingPosition ? Visibility.Visible : HiddenState;
+        return isHintInFloatingPosition || isKeyboardFocusWithin ? Visibility.Visible : HiddenState;
     }
 
     public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException();

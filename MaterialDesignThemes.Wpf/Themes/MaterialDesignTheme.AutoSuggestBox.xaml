@@ -146,6 +146,8 @@
                           <MultiBinding Converter="{StaticResource PrefixTextVisibilityConverter}">
                             <Binding ElementName="Hint" Path="IsHintInFloatingPosition" />
                             <Binding Path="(wpf:TextFieldAssist.PrefixText)" RelativeSource="{RelativeSource TemplatedParent}" />
+                            <Binding Path="(wpf:TextFieldAssist.PrefixTextVisibility)" RelativeSource="{RelativeSource TemplatedParent}" />
+                            <Binding Path="IsKeyboardFocusWithin" RelativeSource="{RelativeSource TemplatedParent}" />
                           </MultiBinding>
                         </TextBlock.Visibility>
                       </TextBlock>
