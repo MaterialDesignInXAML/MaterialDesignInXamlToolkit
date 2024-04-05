@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters;
@@ -9,16 +9,33 @@ public class FloatingHintMarginConverter : IMultiValueConverter
 
     public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
     {
-        return values is [bool isFloatingHint, bool isKeyboardFocusWithin, double prefixWidth, Thickness prefixMargin, double suffixWidth, Thickness suffixMargin, PrefixSuffixVisibility prefixVisibility, PrefixSuffixVisibility suffixVisibility]
-            ? new Thickness(GetLeftMargin(), 0, GetRightMargin(), 0)
-            : EmptyThickness;
+        if (values is not
+            [
+                bool isFloatingHint,
+                bool isKeyboardFocusWithin,
+                bool isEditable,
+                double prefixWidth,
+                Thickness prefixMargin,
+                double suffixWidth,
+                Thickness suffixMargin,
+                PrefixSuffixVisibility prefixVisibility,
+                PrefixSuffixVisibility suffixVisibility
+            ])
+        {
+            return EmptyThickness;
+        }
+
+        double prefixTotalWidth = prefixWidth > 0 ? prefixWidth + prefixMargin.Right : 0;
+        double suffixTotalWidth = suffixWidth > 0 ? suffixWidth + suffixMargin.Left : 0;
+
+        return new Thickness(GetLeftMargin(), 0, GetRightMargin(), 0);
 
         double GetLeftMargin()
         {
             return prefixVisibility switch
             {
                 PrefixSuffixVisibility.Always => prefixWidth + prefixMargin.Right,
-                _ => isFloatingHint || !isKeyboardFocusWithin ? 0 : prefixWidth + prefixMargin.Right,
+                _ => (isFloatingHint && isEditable) || (!isKeyboardFocusWithin && isEditable) ? 0 : prefixTotalWidth,
             };
         }
 
@@ -27,7 +44,7 @@ public class FloatingHintMarginConverter : IMultiValueConverter
             return suffixVisibility switch
             {
                 PrefixSuffixVisibility.Always => suffixWidth + suffixMargin.Left,
-                _ => isFloatingHint || !isKeyboardFocusWithin ? 0 : suffixWidth + suffixMargin.Left,
+                _ => (isFloatingHint && isEditable) || (!isKeyboardFocusWithin && isEditable) ? 0 : suffixTotalWidth,
             };
         }
     }
