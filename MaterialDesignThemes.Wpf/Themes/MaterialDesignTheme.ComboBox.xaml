@@ -362,7 +362,7 @@
                     <Binding ElementName="Hint" Path="IsHintInFloatingPosition" />
                     <Binding Path="(wpf:TextFieldAssist.PrefixText)" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:TextFieldAssist.PrefixTextVisibility)" RelativeSource="{RelativeSource TemplatedParent}" />
-                    <Binding Path="IsKeyboardFocusWithin" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="IsKeyboardFocusWithin" ElementName="PART_EditableTextBox" />
                   </MultiBinding>
                 </TextBlock.Visibility>
               </TextBlock>
@@ -384,6 +384,7 @@
                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                        CaretBrush="{TemplateBinding Foreground}"
                        IsReadOnly="{TemplateBinding IsReadOnly}"
+                       Focusable="{TemplateBinding IsEditable}"
                        MaxLength="{Binding Path=(wpf:ComboBoxAssist.MaxLength), RelativeSource={RelativeSource Mode=TemplatedParent}}"
                        Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
                        VerticalAlignment="Center"
@@ -422,7 +423,7 @@
                 <wpf:SmartHint.Margin>
                   <MultiBinding Converter="{StaticResource FloatingHintMarginConverter}">
                     <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:HintAssist.IsFloating)" />
-                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsKeyboardFocusWithin" />
+                    <Binding ElementName="PART_EditableTextBox" Path="IsKeyboardFocusWithin" />
                     <Binding ElementName="PrefixTextBlock" Path="ActualWidth" />
                     <Binding ElementName="PrefixTextBlock" Path="Margin" />
                     <Binding ElementName="SuffixTextBlock" Path="ActualWidth" />
@@ -452,7 +453,7 @@
                     <Binding ElementName="Hint" Path="IsHintInFloatingPosition" />
                     <Binding Path="(wpf:TextFieldAssist.SuffixText)" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:TextFieldAssist.SuffixTextVisibility)" RelativeSource="{RelativeSource TemplatedParent}" />
-                    <Binding Path="IsKeyboardFocusWithin" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="IsKeyboardFocusWithin" ElementName="PART_EditableTextBox" />
                   </MultiBinding>
                 </TextBlock.Visibility>
               </TextBlock>
