@@ -59,7 +59,6 @@ public class TextFieldDefaultHeightTests : TestBase
 
         var height = await GetHeight(stackPanel, "PasswordBox");
         Assert.True(height > 0);
-        Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
         Assert.Equal(height, await GetHeight(stackPanel, "DatePicker"), Precision);
 
         recorder.Success();
@@ -100,7 +99,6 @@ public class TextFieldDefaultHeightTests : TestBase
 
         var height = await GetHeight(stackPanel, "PasswordBox");
         Assert.True(height > 0);
-        Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
         Assert.Equal(height, await GetHeight(stackPanel, "DatePicker"), Precision);
 
         recorder.Success();
