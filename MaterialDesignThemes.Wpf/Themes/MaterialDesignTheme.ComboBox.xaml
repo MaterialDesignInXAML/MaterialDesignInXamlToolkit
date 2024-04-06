@@ -752,6 +752,7 @@
       <Trigger Property="Validation.HasError" Value="True">
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
         <Setter TargetName="Underline" Property="Background" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
+        <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
       </Trigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
