@@ -53,15 +53,13 @@ public class TextFieldDefaultHeightTests : TestBase
         // TODO: Remove controls from here as they adopt the new SmartHint approach
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
-    <PasswordBox Style=""{StaticResource MaterialDesignFloatingHintPasswordBox}"" materialDesign:HintAssist.Hint=""Hint"" />
     <ComboBox IsEditable=""True"" Style=""{StaticResource MaterialDesignFloatingHintComboBox}"" materialDesign:HintAssist.Hint=""Hint"" />
     <DatePicker Style=""{StaticResource MaterialDesignFloatingHintDatePicker}"" materialDesign:HintAssist.Hint=""Hint"" />
     <materialDesign:TimePicker Style=""{StaticResource MaterialDesignFloatingHintTimePicker}"" materialDesign:HintAssist.Hint=""Hint"" />
 </StackPanel>");
 
-        var height = await GetHeight(stackPanel, "PasswordBox");
+        var height = await GetHeight(stackPanel, "ComboBox");
         Assert.True(height > 0);
-        Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
         Assert.Equal(height, await GetHeight(stackPanel, "DatePicker"), Precision);
         Assert.Equal(height, await GetHeight(stackPanel, "TimePicker"), Precision);
 
@@ -77,11 +75,14 @@ public class TextFieldDefaultHeightTests : TestBase
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <TextBox Style=""{StaticResource MaterialDesignFloatingHintTextBox}"" materialDesign:HintAssist.Hint=""Hint"" />
+    <PasswordBox Style=""{StaticResource MaterialDesignFilledPasswordBox}"" materialDesign:HintAssist.Hint=""Hint"" />
+    <PasswordBox x:Name=""RevealPasswordBox"" Style=""{StaticResource MaterialDesignOutlinedRevealPasswordBox}"" materialDesign:HintAssist.Hint=""Hint"" />
 </StackPanel>");
 
         var height = await GetHeight(stackPanel, "TextBox");
         Assert.True(height > 0);
-        //Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
+        Assert.Equal(height, await GetHeight(stackPanel, "PasswordBox"), Precision);
+        Assert.Equal(height, await GetHeight(stackPanel, "PasswordBox", "RevealPasswordBox"), Precision);
 
         recorder.Success();
     }
@@ -94,15 +95,13 @@ public class TextFieldDefaultHeightTests : TestBase
         // TODO: Remove controls from here as they adopt the new SmartHint approach
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
-    <PasswordBox Style=""{StaticResource MaterialDesignFilledPasswordBox}"" materialDesign:HintAssist.Hint=""Hint"" />
     <ComboBox IsEditable=""True"" Style=""{StaticResource MaterialDesignFilledComboBox}"" materialDesign:HintAssist.Hint=""Hint"" />
     <DatePicker Style=""{StaticResource MaterialDesignFilledDatePicker}"" materialDesign:HintAssist.Hint=""Hint"" />
     <materialDesign:TimePicker Style=""{StaticResource MaterialDesignFilledTimePicker}"" materialDesign:HintAssist.Hint=""Hint"" />
 </StackPanel>");
 
-        var height = await GetHeight(stackPanel, "PasswordBox");
+        var height = await GetHeight(stackPanel, "ComboBox");
         Assert.True(height > 0);
-        Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
         Assert.Equal(height, await GetHeight(stackPanel, "DatePicker"), Precision);
         Assert.Equal(height, await GetHeight(stackPanel, "TimePicker"), Precision);
 
@@ -118,11 +117,14 @@ public class TextFieldDefaultHeightTests : TestBase
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <TextBox Style=""{StaticResource MaterialDesignFilledTextBox}"" materialDesign:HintAssist.Hint=""Hint"" />
+    <PasswordBox Style=""{StaticResource MaterialDesignFilledPasswordBox}"" materialDesign:HintAssist.Hint=""Hint"" />
+    <PasswordBox x:Name=""RevealPasswordBox"" Style=""{StaticResource MaterialDesignOutlinedRevealPasswordBox}"" materialDesign:HintAssist.Hint=""Hint"" />
 </StackPanel>");
 
         var height = await GetHeight(stackPanel, "TextBox");
         Assert.True(height > 0);
-        //Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
+        Assert.Equal(height, await GetHeight(stackPanel, "PasswordBox"), Precision);
+        Assert.Equal(height, await GetHeight(stackPanel, "PasswordBox", "RevealPasswordBox"), Precision);
 
         recorder.Success();
     }
@@ -136,6 +138,7 @@ public class TextFieldDefaultHeightTests : TestBase
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <PasswordBox Style=""{StaticResource MaterialDesignOutlinedPasswordBox}"" materialDesign:HintAssist.Hint=""Hint"" />
+    <PasswordBox x:Name=""RevealPasswordBox"" Style=""{StaticResource MaterialDesignOutlinedRevealPasswordBox}"" materialDesign:HintAssist.Hint=""Hint"" />
     <ComboBox IsEditable=""True"" Style=""{StaticResource MaterialDesignOutlinedComboBox}"" />
     <DatePicker Style=""{StaticResource MaterialDesignOutlinedDatePicker}"" materialDesign:HintAssist.Hint=""Hint"" />
     <materialDesign:TimePicker Style=""{StaticResource MaterialDesignOutlinedTimePicker}"" materialDesign:HintAssist.Hint=""Hint"" />
@@ -168,9 +171,9 @@ public class TextFieldDefaultHeightTests : TestBase
         recorder.Success();
     }
 
-    private static async Task<double> GetHeight(IVisualElement container, string type)
+    private static async Task<double> GetHeight(IVisualElement container, string type, string? optionalName = null)
     {
-        var element = await container.GetElement<FrameworkElement>("/" + type);
+        var element = await container.GetElement<FrameworkElement>(optionalName ?? "/" + type);
         var height = await element.GetActualHeight();
         Assert.True(height > 0);
         return height;
