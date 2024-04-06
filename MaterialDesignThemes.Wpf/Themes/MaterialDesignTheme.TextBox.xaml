@@ -422,6 +422,7 @@
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="IsKeyboardFocused" Value="True" />
+                <Condition Property="Validation.HasError" Value="False" />
                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
               </MultiTrigger.Conditions>
               <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
@@ -460,6 +461,7 @@
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="IsMouseOver" Value="True" />
+                <Condition Property="Validation.HasError" Value="False" />
                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
               </MultiTrigger.Conditions>
               <Setter Property="BorderThickness" Value="2" />
@@ -502,6 +504,7 @@
             <Trigger Property="Validation.HasError" Value="true">
               <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
               <Setter TargetName="Underline" Property="Background" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
+              <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
             </Trigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
