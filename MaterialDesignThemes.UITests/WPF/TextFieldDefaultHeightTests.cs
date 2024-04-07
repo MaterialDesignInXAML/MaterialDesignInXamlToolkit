@@ -2,9 +2,7 @@ namespace MaterialDesignThemes.UITests.WPF;
 
 public class TextFieldDefaultHeightTests : TestBase
 {
-    public TextFieldDefaultHeightTests(ITestOutputHelper output) : base(output)
-    {
-        AttachedDebuggerToRemoteProcess = false; }
+    public TextFieldDefaultHeightTests(ITestOutputHelper output) : base(output) { }
 
     private const int Precision = 3;
 
