@@ -172,24 +172,6 @@ public class TextFieldDefaultHeightTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
-    public async Task SameHeightWithOutlinedStyle_PostSmartHintRefactor()
-    {
-        await using var recorder = new TestRecorder(App);
-
-        // TODO: Add controls here as they adopt the new SmartHint approach. Once all controls have migrated, collapse into a single test with the old name.
-        var stackPanel = await LoadXaml<StackPanel>(@"
-<StackPanel>
-    <TextBox Style=""{StaticResource MaterialDesignOutlinedTextBox}"" materialDesign:HintAssist.Hint=""Hint"" />
-</StackPanel>");
-
-        var height = await GetHeight(stackPanel, "TextBox");
-        Assert.True(height > 0);
-        //Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
-
-        recorder.Success();
-    }
-
     private static async Task<double> GetHeight(IVisualElement container, string type, string? optionalName = null)
     {
         var element = await container.GetElement<FrameworkElement>(optionalName ?? "/" + type);
