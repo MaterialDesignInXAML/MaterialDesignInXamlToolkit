@@ -139,7 +139,7 @@
                       SnapsToDevicePixels="True">
 
                 <Grid x:Name="ContentGrid"
-                      MinHeight="{Binding ElementName=ClearButtonIcon, Path=ActualHeight}"
+                      MinHeight="16"
                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                   <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
