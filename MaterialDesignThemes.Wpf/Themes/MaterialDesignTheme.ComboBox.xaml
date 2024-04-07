@@ -328,7 +328,7 @@
                   Grid.Column="0"
                   HorizontalAlignment="Stretch"
                   Margin="{TemplateBinding Padding}"
-                  MinHeight="{Binding ElementName=ClearButtonIcon, Path=ActualHeight}"
+                  MinHeight="16"
                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                   UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
