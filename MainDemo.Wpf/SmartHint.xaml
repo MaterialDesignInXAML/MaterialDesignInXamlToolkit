@@ -21,7 +21,6 @@
       <Style TargetType="{x:Type local:InputElementContentControl}">
         <Setter Property="Margin" Value="10,10,10,16" />
         <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="MaxWidth" Value="190" />
         <Setter Property="materialDesign:HintAssist.HintHorizontalAlignment" Value="{Binding SelectedAlignment}" />
         <Setter Property="materialDesign:HintAssist.FloatingHintHorizontalAlignment" Value="{Binding SelectedFloatingAlignment}" />
         <Setter Property="materialDesign:HintAssist.FloatingOffset" Value="{Binding SelectedFloatingOffset}" />
