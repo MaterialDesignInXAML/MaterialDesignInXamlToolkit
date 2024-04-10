@@ -3475,6 +3475,7 @@ namespace MaterialDesignThemes.Wpf
         ChevronUpBoxOutline,
         ChevronUpCircle,
         ChevronUpCircleOutline,
+        Chicken,
         ChiliAlert,
         ChiliAlertOutline,
         ChiliHot,
