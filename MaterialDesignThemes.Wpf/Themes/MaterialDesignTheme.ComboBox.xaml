@@ -319,7 +319,7 @@
             <ToggleButton x:Name="toggleButton"
                           Grid.ColumnSpan="2"
                           Padding="{TemplateBinding Padding}"
-                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                          VerticalContentAlignment="Center"
                           BorderBrush="{TemplateBinding BorderBrush}"
                           IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                           Style="{StaticResource MaterialDesignComboBoxToggleButton}" />
