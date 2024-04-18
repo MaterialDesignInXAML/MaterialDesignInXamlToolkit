@@ -328,7 +328,6 @@
     </StackPanel>
 
     <ScrollViewer Grid.Row="3"
-                  Height="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ScrollViewer}}, Path=ViewportHeight, Converter={StaticResource SubtractConverter}, ConverterParameter=350}"
                   Margin="0,20,0,0"
                   VerticalAlignment="Top"
                   materialDesign:ScrollViewerAssist.BubbleVerticalScroll="False"
