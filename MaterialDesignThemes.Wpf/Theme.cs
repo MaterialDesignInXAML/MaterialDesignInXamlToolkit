@@ -20,7 +20,7 @@ public partial class Theme
 
             if (registryValue is null)
             {
-                return null;
+                return BaseTheme.Light;
             }
 
             return Convert.ToBoolean(registryValue) ? BaseTheme.Light : BaseTheme.Dark;
