@@ -51,6 +51,7 @@ static partial class ResourceDictionaryExtensions
         theme.DataGrids.RowHoverBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.DataGrid.RowHoverBackground", "MaterialDesignDataGridRowHoverBackground");
         theme.DataGrids.Selected = GetColor(resourceDictionary, "MaterialDesign.Brush.DataGrid.Selected");
         theme.DataGrids.ColumnHeaderForeground = GetColor(resourceDictionary, "MaterialDesign.Brush.DataGrid.ColumnHeaderForeground", "MaterialDesignColumnHeader", "MaterialDesignTextAreaBorder");
+        theme.TextBoxes.HoverBorder = GetColor(resourceDictionary, "MaterialDesign.Brush.TextBox.HoverBorder", "MaterialDesignBody");
         theme.TextBoxes.Border = GetColor(resourceDictionary, "MaterialDesign.Brush.TextBox.Border", "MaterialDesignBodyLight", "MaterialDesignCheckBoxOff", "MaterialDesignTextBoxBorder");
         theme.TextBoxes.OutlineBorder = GetColor(resourceDictionary, "MaterialDesign.Brush.TextBox.OutlineBorder", "MaterialDesignColumnHeader", "MaterialDesignTextAreaBorder");
         theme.TextBoxes.DisabledBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.TextBox.DisabledBackground", "MaterialDesignTextFieldBoxDisabledBackground");
@@ -155,6 +156,8 @@ static partial class ResourceDictionaryExtensions
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.DataGrid.ColumnHeaderForeground", theme.DataGrids.ColumnHeaderForeground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignColumnHeader", theme.DataGrids.ColumnHeaderForeground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignTextAreaBorder", theme.DataGrids.ColumnHeaderForeground);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.TextBox.HoverBorder", theme.TextBoxes.HoverBorder);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesignBody", theme.TextBoxes.HoverBorder);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.TextBox.Border", theme.TextBoxes.Border);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignBodyLight", theme.TextBoxes.Border);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignCheckBoxOff", theme.TextBoxes.Border);

@@ -33,6 +33,16 @@ public static class TextFieldAssist
     /// </returns>
     public static Thickness GetTextBoxViewMargin(DependencyObject element) => (Thickness)element.GetValue(TextBoxViewMarginProperty);
 
+    public static readonly DependencyProperty TextBoxViewVerticalAlignmentProperty = DependencyProperty.RegisterAttached(
+        "TextBoxViewVerticalAlignment",
+        typeof(VerticalAlignment),
+        typeof(TextFieldAssist),
+        new PropertyMetadata(VerticalAlignment.Stretch, TextBoxViewVerticalAlignmentChangedCallback));
+
+    public static void SetTextBoxViewVerticalAlignment(DependencyObject element, VerticalAlignment value) => element.SetValue(TextBoxViewVerticalAlignmentProperty, value);
+
+    public static VerticalAlignment GetTextBoxViewVerticalAlignment(DependencyObject element) => (VerticalAlignment) element.GetValue(TextBoxViewVerticalAlignmentProperty);
+
     /// <summary>
     /// Controls the visibility of the underline decoration.
     /// </summary>
@@ -153,6 +163,30 @@ public static class TextFieldAssist
         => (string?)element.GetValue(SuffixTextProperty);
 
     /// <summary>
+    /// SuffixTextVisibility dependency property. Controls when a suffix should be visible.
+    /// </summary>
+    public static readonly DependencyProperty SuffixTextVisibilityProperty = DependencyProperty.RegisterAttached(
+        "SuffixTextVisibility", typeof(PrefixSuffixVisibility), typeof(TextFieldAssist), new PropertyMetadata(PrefixSuffixVisibility.WhenFocusedOrNonEmpty));
+
+    public static void SetSuffixTextVisibility(DependencyObject element, PrefixSuffixVisibility value)
+        => element.SetValue(SuffixTextVisibilityProperty, value);
+
+    public static PrefixSuffixVisibility GetSuffixTextVisibility(DependencyObject element)
+        => (PrefixSuffixVisibility) element.GetValue(SuffixTextVisibilityProperty);
+
+    /// <summary>
+    /// SuffixTextHintBehavior dependency property. Controls how a floating hint aligns with respect to the text and suffix.
+    /// </summary>
+    public static readonly DependencyProperty SuffixTextHintBehaviorProperty = DependencyProperty.RegisterAttached(
+        "SuffixTextHintBehavior", typeof(PrefixSuffixHintBehavior), typeof(TextFieldAssist), new PropertyMetadata(PrefixSuffixHintBehavior.AlignWithPrefixSuffix));
+
+    public static void SetSuffixTextHintBehavior(DependencyObject element, PrefixSuffixHintBehavior value)
+        => element.SetValue(SuffixTextHintBehaviorProperty, value);
+
+    public static PrefixSuffixHintBehavior GetSuffixTextHintBehavior(DependencyObject element)
+        => (PrefixSuffixHintBehavior) element.GetValue(SuffixTextHintBehaviorProperty);
+
+    /// <summary>
     /// PrefixText dependency property
     /// </summary>
     public static readonly DependencyProperty PrefixTextProperty = DependencyProperty.RegisterAttached(
@@ -163,6 +197,30 @@ public static class TextFieldAssist
 
     public static string? GetPrefixText(DependencyObject element)
         => (string?)element.GetValue(PrefixTextProperty);
+
+    /// <summary>
+    /// PrefixTextVisibility dependency property. Controls when a prefix should be visible.
+    /// </summary>
+    public static readonly DependencyProperty PrefixTextVisibilityProperty = DependencyProperty.RegisterAttached(
+        "PrefixTextVisibility", typeof(PrefixSuffixVisibility), typeof(TextFieldAssist), new PropertyMetadata(PrefixSuffixVisibility.WhenFocusedOrNonEmpty));
+
+    public static void SetPrefixTextVisibility(DependencyObject element, PrefixSuffixVisibility value)
+        => element.SetValue(PrefixTextVisibilityProperty, value);
+
+    public static PrefixSuffixVisibility GetPrefixTextVisibility(DependencyObject element)
+        => (PrefixSuffixVisibility) element.GetValue(PrefixTextVisibilityProperty);
+
+    /// <summary>
+    /// PrefixTextHintBehavior dependency property. Controls how a floating hint aligns with respect to the text and prefix.
+    /// </summary>
+    public static readonly DependencyProperty PrefixTextHintBehaviorProperty = DependencyProperty.RegisterAttached(
+        "PrefixTextHintBehavior", typeof(PrefixSuffixHintBehavior), typeof(TextFieldAssist), new PropertyMetadata(PrefixSuffixHintBehavior.AlignWithPrefixSuffix));
+
+    public static void SetPrefixTextHintBehavior(DependencyObject element, PrefixSuffixHintBehavior value)
+        => element.SetValue(PrefixTextHintBehaviorProperty, value);
+
+    public static PrefixSuffixHintBehavior GetPrefixTextHintBehavior(DependencyObject element)
+        => (PrefixSuffixHintBehavior)element.GetValue(PrefixTextHintBehaviorProperty);
 
     /// <summary>
     /// Controls the visibility of the clear button.
@@ -247,6 +305,18 @@ public static class TextFieldAssist
 
     public static double GetTrailingIconSize(DependencyObject element)
         => (double)element.GetValue(TrailingIconSizeProperty);
+
+    /// <summary>
+    /// Controls the vertical alignment of the leading-, trailing-, and clear button icons
+    /// </summary>
+    public static readonly DependencyProperty IconVerticalAlignmentProperty = DependencyProperty.RegisterAttached(
+        "IconVerticalAlignment", typeof(VerticalAlignment), typeof(TextFieldAssist), new PropertyMetadata(VerticalAlignment.Center));
+
+    public static void SetIconVerticalAlignment(DependencyObject element, VerticalAlignment value)
+        => element.SetValue(IconVerticalAlignmentProperty, value);
+
+    public static VerticalAlignment GetIconVerticalAlignment(DependencyObject element)
+        => (VerticalAlignment) element.GetValue(IconVerticalAlignmentProperty);
 
     public static Style GetCharacterCounterStyle(DependencyObject obj) => (Style)obj.GetValue(CharacterCounterStyleProperty);
 
@@ -459,5 +529,42 @@ public static class TextFieldAssist
         };
     }
 
-#endregion
+    private static void ApplyTextBoxViewVerticalAlignment(Control textBox, VerticalAlignment alignment)
+    {
+        if (textBox is ComboBox
+            && textBox.Template.FindName("PART_EditableTextBox", textBox) is TextBox editableTextBox)
+        {
+            textBox = editableTextBox;
+            if (textBox.Template is null) return;
+            textBox.ApplyTemplate();
+        }
+
+        if (textBox.Template.FindName("PART_ContentHost", textBox) is ScrollViewer scrollViewer
+            && scrollViewer.Content is FrameworkElement frameworkElement)
+        {
+            frameworkElement.VerticalAlignment = alignment;
+        }
+    }
+
+    private static void TextBoxViewVerticalAlignmentChangedCallback(DependencyObject dependencyObject,
+        DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+    {
+        if (dependencyObject is not Control box)
+        {
+            return;
+        }
+
+        if (box.IsLoaded)
+        {
+            ApplyTextBoxViewVerticalAlignment(box, (VerticalAlignment)dependencyPropertyChangedEventArgs.NewValue);
+        }
+
+        box.Loaded += (sender, args) =>
+        {
+            var textBox = (Control)sender;
+            ApplyTextBoxViewVerticalAlignment(textBox, GetTextBoxViewVerticalAlignment(textBox));
+        };
+    }
+
+    #endregion
 }

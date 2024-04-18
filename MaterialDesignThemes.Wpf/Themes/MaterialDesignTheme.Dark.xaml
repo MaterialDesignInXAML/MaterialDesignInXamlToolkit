@@ -40,6 +40,7 @@
   <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.RowHoverBackground" ResourceKey="White100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.Selected" ResourceKey="Neutral400" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.Foreground" ResourceKey="White900" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.HoverBorder" ResourceKey="White900" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ForegroundLight" ResourceKey="White500" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.CheckBox.Off" ResourceKey="White500" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.Border" ResourceKey="White500" />

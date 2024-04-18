@@ -11,20 +11,36 @@ public class TextFieldDefaultHeightTests : TestBase
     {
         await using var recorder = new TestRecorder(App);
 
+        // TODO: Remove controls from here as they adopt the new SmartHint approach
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
-    <TextBox />
     <PasswordBox />
-    <ComboBox />
+    <ComboBox IsEditable=""True"" />
     <DatePicker />
     <materialDesign:TimePicker />
 </StackPanel>");
 
-        var height = await GetHeight(stackPanel, "TextBox");
-        Assert.Equal(height, await GetHeight(stackPanel, "PasswordBox"), Precision);
+        var height = await GetHeight(stackPanel, "PasswordBox");
         Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
         Assert.Equal(height, await GetHeight(stackPanel, "DatePicker"), Precision);
         Assert.Equal(height, await GetHeight(stackPanel, "TimePicker"), Precision);
+
+        recorder.Success();
+    }
+
+    [Fact]
+    public async Task SameHeightWithDefaultStyle_PostSmartHintRefactor()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // TODO: Add controls here as they adopt the new SmartHint approach. Once all controls have migrated, collapse into a single test with the old name.
+        var stackPanel = await LoadXaml<StackPanel>(@"
+<StackPanel>
+    <TextBox />
+</StackPanel>");
+
+        var height = await GetHeight(stackPanel, "TextBox");
+        //Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
 
         recorder.Success();
     }
@@ -34,21 +50,38 @@ public class TextFieldDefaultHeightTests : TestBase
     {
         await using var recorder = new TestRecorder(App);
 
+        // TODO: Remove controls from here as they adopt the new SmartHint approach
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
-    <TextBox materialDesign:HintAssist.IsFloating=""True"" />
-    <PasswordBox materialDesign:HintAssist.IsFloating=""True"" />
-    <ComboBox materialDesign:HintAssist.IsFloating=""True"" />
-    <DatePicker materialDesign:HintAssist.IsFloating=""True"" />
-    <materialDesign:TimePicker materialDesign:HintAssist.IsFloating=""True"" />
+    <PasswordBox Style=""{StaticResource MaterialDesignFloatingHintPasswordBox}"" materialDesign:HintAssist.Hint=""Hint"" />
+    <ComboBox IsEditable=""True"" Style=""{StaticResource MaterialDesignFloatingHintComboBox}"" materialDesign:HintAssist.Hint=""Hint"" />
+    <DatePicker Style=""{StaticResource MaterialDesignFloatingHintDatePicker}"" materialDesign:HintAssist.Hint=""Hint"" />
+    <materialDesign:TimePicker Style=""{StaticResource MaterialDesignFloatingHintTimePicker}"" materialDesign:HintAssist.Hint=""Hint"" />
+</StackPanel>");
+
+        var height = await GetHeight(stackPanel, "PasswordBox");
+        Assert.True(height > 0);
+        Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
+        Assert.Equal(height, await GetHeight(stackPanel, "DatePicker"), Precision);
+        Assert.Equal(height, await GetHeight(stackPanel, "TimePicker"), Precision);
+
+        recorder.Success();
+    }
+
+    [Fact]
+    public async Task SameHeightWithFloatingHintStyle_PostSmartHintRefactor()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // TODO: Add controls here as they adopt the new SmartHint approach. Once all controls have migrated, collapse into a single test with the old name.
+        var stackPanel = await LoadXaml<StackPanel>(@"
+<StackPanel>
+    <TextBox Style=""{StaticResource MaterialDesignFloatingHintTextBox}"" materialDesign:HintAssist.Hint=""Hint"" />
 </StackPanel>");
 
         var height = await GetHeight(stackPanel, "TextBox");
         Assert.True(height > 0);
-        Assert.Equal(height, await GetHeight(stackPanel, "PasswordBox"), Precision);
-        Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
-        Assert.Equal(height, await GetHeight(stackPanel, "DatePicker"), Precision);
-        Assert.Equal(height, await GetHeight(stackPanel, "TimePicker"), Precision);
+        //Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
 
         recorder.Success();
     }
@@ -58,21 +91,38 @@ public class TextFieldDefaultHeightTests : TestBase
     {
         await using var recorder = new TestRecorder(App);
 
+        // TODO: Remove controls from here as they adopt the new SmartHint approach
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
-    <TextBox Style=""{StaticResource MaterialDesignFilledTextBox}"" />
-    <PasswordBox Style=""{StaticResource MaterialDesignFilledPasswordBox}"" />
-    <ComboBox Style=""{StaticResource MaterialDesignFilledComboBox}"" />
-    <DatePicker Style=""{StaticResource MaterialDesignFilledDatePicker}"" />
-    <materialDesign:TimePicker Style=""{StaticResource MaterialDesignFilledTimePicker}"" />
+    <PasswordBox Style=""{StaticResource MaterialDesignFilledPasswordBox}"" materialDesign:HintAssist.Hint=""Hint"" />
+    <ComboBox IsEditable=""True"" Style=""{StaticResource MaterialDesignFilledComboBox}"" materialDesign:HintAssist.Hint=""Hint"" />
+    <DatePicker Style=""{StaticResource MaterialDesignFilledDatePicker}"" materialDesign:HintAssist.Hint=""Hint"" />
+    <materialDesign:TimePicker Style=""{StaticResource MaterialDesignFilledTimePicker}"" materialDesign:HintAssist.Hint=""Hint"" />
+</StackPanel>");
+
+        var height = await GetHeight(stackPanel, "PasswordBox");
+        Assert.True(height > 0);
+        Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
+        Assert.Equal(height, await GetHeight(stackPanel, "DatePicker"), Precision);
+        Assert.Equal(height, await GetHeight(stackPanel, "TimePicker"), Precision);
+
+        recorder.Success();
+    }
+
+    [Fact]
+    public async Task SameHeightWithFilledStyle_PostSmartHintRefactor()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // TODO: Add controls here as they adopt the new SmartHint approach. Once all controls have migrated, collapse into a single test with the old name.
+        var stackPanel = await LoadXaml<StackPanel>(@"
+<StackPanel>
+    <TextBox Style=""{StaticResource MaterialDesignFilledTextBox}"" materialDesign:HintAssist.Hint=""Hint"" />
 </StackPanel>");
 
         var height = await GetHeight(stackPanel, "TextBox");
         Assert.True(height > 0);
-        Assert.Equal(height, await GetHeight(stackPanel, "PasswordBox"), Precision);
-        Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
-        Assert.Equal(height, await GetHeight(stackPanel, "DatePicker"), Precision);
-        Assert.Equal(height, await GetHeight(stackPanel, "TimePicker"), Precision);
+        //Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
 
         recorder.Success();
     }
@@ -82,19 +132,38 @@ public class TextFieldDefaultHeightTests : TestBase
     {
         await using var recorder = new TestRecorder(App);
 
+        // TODO: Remove controls from here as they adopt the new SmartHint approach
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
-    <TextBox Style=""{StaticResource MaterialDesignOutlinedTextBox}"" />
-    <PasswordBox Style=""{StaticResource MaterialDesignOutlinedPasswordBox}"" />
-    <DatePicker Style=""{StaticResource MaterialDesignOutlinedDatePicker}"" />
-    <materialDesign:TimePicker Style=""{StaticResource MaterialDesignOutlinedTimePicker}"" />
+    <PasswordBox Style=""{StaticResource MaterialDesignOutlinedPasswordBox}"" materialDesign:HintAssist.Hint=""Hint"" />
+    <ComboBox IsEditable=""True"" Style=""{StaticResource MaterialDesignOutlinedComboBox}"" />
+    <DatePicker Style=""{StaticResource MaterialDesignOutlinedDatePicker}"" materialDesign:HintAssist.Hint=""Hint"" />
+    <materialDesign:TimePicker Style=""{StaticResource MaterialDesignOutlinedTimePicker}"" materialDesign:HintAssist.Hint=""Hint"" />
+</StackPanel>");
+
+        var height = await GetHeight(stackPanel, "PasswordBox");
+        Assert.True(height > 0);
+        Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
+        Assert.Equal(height, await GetHeight(stackPanel, "DatePicker"), Precision);
+        Assert.Equal(height, await GetHeight(stackPanel, "TimePicker"), Precision);
+
+        recorder.Success();
+    }
+
+    [Fact]
+    public async Task SameHeightWithOutlinedStyle_PostSmartHintRefactor()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // TODO: Add controls here as they adopt the new SmartHint approach. Once all controls have migrated, collapse into a single test with the old name.
+        var stackPanel = await LoadXaml<StackPanel>(@"
+<StackPanel>
+    <TextBox Style=""{StaticResource MaterialDesignOutlinedTextBox}"" materialDesign:HintAssist.Hint=""Hint"" />
 </StackPanel>");
 
         var height = await GetHeight(stackPanel, "TextBox");
         Assert.True(height > 0);
-        Assert.Equal(height, await GetHeight(stackPanel, "PasswordBox"), Precision);
-        Assert.Equal(height, await GetHeight(stackPanel, "DatePicker"), Precision);
-        Assert.Equal(height, await GetHeight(stackPanel, "TimePicker"), Precision);
+        //Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
 
         recorder.Success();
     }

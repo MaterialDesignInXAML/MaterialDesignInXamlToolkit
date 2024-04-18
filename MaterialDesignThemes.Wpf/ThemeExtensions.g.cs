@@ -56,6 +56,7 @@ static partial class ThemeExtensions
         theme.DataGrids.RowHoverBackground = BaseThemeColors.Black50;
         theme.DataGrids.Selected = BaseThemeColors.Neutral800;
         theme.DataGrids.ColumnHeaderForeground = BaseThemeColors.Black700;
+        theme.TextBoxes.HoverBorder = BaseThemeColors.Black900;
         theme.TextBoxes.Border = BaseThemeColors.Black500;
         theme.TextBoxes.OutlineBorder = BaseThemeColors.Black700;
         theme.TextBoxes.DisabledBackground = BaseThemeColors.Black50;
@@ -135,6 +136,7 @@ static partial class ThemeExtensions
         theme.DataGrids.RowHoverBackground = BaseThemeColors.White100;
         theme.DataGrids.Selected = BaseThemeColors.Neutral400;
         theme.DataGrids.ColumnHeaderForeground = BaseThemeColors.White700;
+        theme.TextBoxes.HoverBorder = BaseThemeColors.White900;
         theme.TextBoxes.Border = BaseThemeColors.White500;
         theme.TextBoxes.OutlineBorder = BaseThemeColors.White700;
         theme.TextBoxes.DisabledBackground = BaseThemeColors.White50;
