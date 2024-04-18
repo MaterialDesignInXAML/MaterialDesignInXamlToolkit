@@ -7,18 +7,10 @@
                     xmlns:transitions="clr-namespace:MaterialDesignThemes.Wpf.Transitions"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
   <ResourceDictionary.MergedDictionaries>
-    <!--
-      we only bring in the dictionaries for controls which were "invented"
-      as part of Material Design in XAML Toolkit. Other themes, for existing controls
-      must be selected manually by the user, so that they override default styles.
-      The easiest way to do this is include:
-      
-      MaterialDesignTheme.Defaults.xaml
-      in your App.xaml
-    -->
+    <ResourceDictionary Source="MaterialDesignTheme.Button.xaml" />
   </ResourceDictionary.MergedDictionaries>
-  <!-- set up default styles for our custom Material Design in XAML Toolkit controls -->
-  <Style TargetType="{x:Type wpf:NumericUpDown}">
+
+  <Style x:Key="MaterialDesignNumericUpDown" TargetType="{x:Type wpf:NumericUpDown}">
     <Setter Property="MinWidth" Value="100"/>
     <Setter Property="Padding" Value="4"/>
     <Setter Property="Template">
@@ -27,32 +19,36 @@
           <Border Background="{TemplateBinding Background}"
                   BorderBrush="{TemplateBinding BorderBrush}"
                   BorderThickness="{TemplateBinding BorderThickness}"
-                  Padding="{TemplateBinding Padding}"
                   CornerRadius="10"
                   ClipToBounds="True">
-            <DockPanel>
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
 
-              <RepeatButton x:Name="PART_IncreaseButton"
-                            Content="{local:PackIcon Kind=Plus}"
-                            DockPanel.Dock="Right"
-                            Padding="8,4"
-                            Command="{TemplateBinding IncreaseCommand}"/>
-              <RepeatButton x:Name="PART_DecreaseButton"
-                            Content="{local:PackIcon Kind=Minus}"
-                            DockPanel.Dock="Left"
-                            Padding="8,4"
-                            Command="{TemplateBinding DecreaseCommand}"/>
-              
               <TextBox x:Name="PART_TextBoxField"
                        Margin="4 0"
                        VerticalAlignment="Center"
                        HorizontalContentAlignment="Center" />
 
-            </DockPanel>
+              <RepeatButton x:Name="PART_DecreaseButton"
+                            Content="{local:PackIcon Kind=Minus}"
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            Padding="8,4"
+                            Grid.Column="1"/>
+              <RepeatButton x:Name="PART_IncreaseButton"
+                            Content="{local:PackIcon Kind=Plus}"
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            Padding="8,4"
+                            Grid.Column="2" />
+            </Grid>
           </Border>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
   </Style>
 
+  <Style TargetType="wpf:NumericUpDown" BasedOn="{StaticResource MaterialDesignNumericUpDown}" />
 </ResourceDictionary>

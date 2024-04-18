@@ -1,6 +1,5 @@
 using System.ComponentModel;
 using System.Globalization;
-using System.Runtime.CompilerServices;
 
 namespace MaterialDesignThemes.Wpf;
 
@@ -50,6 +49,7 @@ public class NumericUpDown : Control
         get => (int)GetValue(ValueProperty);
         set => SetValue(ValueProperty, value);
     }
+
     public static readonly DependencyProperty ValueProperty =
             DependencyProperty.Register(nameof(Value), typeof(int), typeof(NumericUpDown), new FrameworkPropertyMetadata(0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnNumericValueChanged, CoerceNumericValue));
 
@@ -65,6 +65,16 @@ public class NumericUpDown : Control
             if (numericUpDown._textBoxField is { } textBox)
             {
                 textBox.Text = ((int)e.NewValue).ToString(CultureInfo.CurrentUICulture);
+            }
+
+            if (numericUpDown._increaseButton is { } increaseButton)
+            {
+                increaseButton.IsEnabled = numericUpDown.Value != numericUpDown.Maximum;
+            }
+
+            if (numericUpDown._decreaseButton is { } decreaseButton)
+            {
+                decreaseButton.IsEnabled = numericUpDown.Value != numericUpDown.Minimum;
             }
         }
     }
@@ -89,7 +99,17 @@ public class NumericUpDown : Control
         set => SetValue(IncreaseCommandProperty, value);
     }
     public static readonly DependencyProperty IncreaseCommandProperty =
-            DependencyProperty.Register(nameof(IncreaseCommand), typeof(ICommand), typeof(NumericUpDown), new PropertyMetadata(default(ICommand?)));
+            DependencyProperty.Register(nameof(IncreaseCommand), typeof(ICommand), typeof(NumericUpDown), new PropertyMetadata(null));
+
+    public object? IncreaseCommandParameter
+    {
+        get => (object?)GetValue(IncreaseCommandParameterProperty);
+        set => SetValue(IncreaseCommandParameterProperty, value);
+    }
+    public static readonly DependencyProperty IncreaseCommandParameterProperty =
+        DependencyProperty.Register(nameof(IncreaseCommandParameter), typeof(object), typeof(NumericUpDown), new PropertyMetadata(null));
+
+
     #endregion DependencyProperty : IncreaseCommandProperty
 
     #region DependencyProperty : DecreaseCommandProperty
@@ -100,7 +120,30 @@ public class NumericUpDown : Control
     }
     public static readonly DependencyProperty DecreaseCommandProperty =
             DependencyProperty.Register(nameof(DecreaseCommand), typeof(ICommand), typeof(NumericUpDown), new PropertyMetadata(default(ICommand?)));
+
+    public object? DecreaseCommandParameter
+    {
+        get => (object?)GetValue(DecreaseCommandParameterProperty);
+        set => SetValue(DecreaseCommandParameterProperty, value);
+    }
+
+    public static readonly DependencyProperty DecreaseCommandParameterProperty =
+        DependencyProperty.Register(nameof(DecreaseCommandParameter), typeof(object), typeof(NumericUpDown), new PropertyMetadata(null));
+
     #endregion DependencyProperty : DecreaseCommandProperty
+
+    #region DependencyProperty : AllowChangeOnScroll
+
+    public bool AllowChangeOnScroll
+    {
+        get => (bool)GetValue(AllowChangeOnScrollProperty);
+        set => SetValue(AllowChangeOnScrollProperty, value);
+    }
+
+    public static readonly DependencyProperty AllowChangeOnScrollProperty =
+        DependencyProperty.Register(nameof(AllowChangeOnScroll), typeof(bool), typeof(NumericUpDown), new PropertyMetadata(false));
+
+    #endregion
 
     #endregion DependencyProperties
 
@@ -123,7 +166,7 @@ public class NumericUpDown : Control
         if (_decreaseButton != null)
             _decreaseButton.Click -= DecreaseButtonOnClick;
         if (_textBoxField != null)
-            _textBoxField!.TextChanged -= OnTextBoxFocusLost;
+            _textBoxField.TextChanged -= OnTextBoxFocusLost;
 
         _increaseButton = GetTemplateChild(IncreaseButtonPartName) as RepeatButton;
         _decreaseButton = GetTemplateChild(DecreaseButtonPartName) as RepeatButton;
@@ -133,11 +176,11 @@ public class NumericUpDown : Control
             _increaseButton.Click += IncreaseButtonOnClick;
 
         if (_decreaseButton != null)
-            _decreaseButton!.Click += DecreaseButtonOnClick;
+            _decreaseButton.Click += DecreaseButtonOnClick;
 
         if (_textBoxField != null)
         {
-            _textBoxField!.LostFocus += OnTextBoxFocusLost;
+            _textBoxField.LostFocus += OnTextBoxFocusLost;
             _textBoxField.Text = Value.ToString(CultureInfo.CurrentUICulture);
         }
 
@@ -146,28 +189,29 @@ public class NumericUpDown : Control
 
     private void OnTextBoxFocusLost(object sender, EventArgs e)
     {
-        if (int.TryParse(_textBoxField?.Text, NumberStyles.Integer, CultureInfo.CurrentUICulture, out int numericValue))
+        if (_textBoxField is { } textBoxField)
         {
-            SetCurrentValue(ValueProperty, numericValue);
+            if (int.TryParse(textBoxField.Text, NumberStyles.Integer, CultureInfo.CurrentUICulture, out int numericValue))
+            {
+                SetCurrentValue(ValueProperty, numericValue);
+            }
+            else
+            {
+                textBoxField.Text = Value.ToString(CultureInfo.CurrentUICulture);
+            }
         }
-
-    }
-    private void IncreaseButtonOnClick(object sender, RoutedEventArgs e)
-    {
-        OnIncrease();
     }
 
-    private void DecreaseButtonOnClick(object sender, RoutedEventArgs e)
-    {
-        OnDecrease();
-    }
+    private void IncreaseButtonOnClick(object sender, RoutedEventArgs e) => OnIncrease();
+
+    private void DecreaseButtonOnClick(object sender, RoutedEventArgs e) => OnDecrease();
 
     private void OnIncrease()
     {
         SetCurrentValue(ValueProperty, Value + 1);
 
-        if (IncreaseCommand?.CanExecute(null) ?? false)
-            IncreaseCommand.Execute(null);
+        if (IncreaseCommand?.CanExecute(IncreaseCommandParameter) ?? false)
+            IncreaseCommand.Execute(IncreaseCommandParameter);
     }
 
     private void OnDecrease()
@@ -195,7 +239,7 @@ public class NumericUpDown : Control
 
     protected override void OnPreviewMouseWheel(MouseWheelEventArgs e)
     {
-        if (IsKeyboardFocusWithin)
+        if (IsKeyboardFocusWithin && AllowChangeOnScroll)
         {
             if (e.Delta > 0)
             {

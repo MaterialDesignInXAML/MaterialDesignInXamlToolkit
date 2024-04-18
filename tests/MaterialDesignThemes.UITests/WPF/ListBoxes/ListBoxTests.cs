@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Windows.Media;
 
 namespace MaterialDesignThemes.UITests.WPF.ListBoxes;
 

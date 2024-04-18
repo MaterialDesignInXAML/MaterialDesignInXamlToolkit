@@ -6,6 +6,7 @@ using System.Windows.Media;
 [assembly: GenerateHelpers(typeof(ColorPicker))]
 [assembly: GenerateHelpers(typeof(DialogHost))]
 [assembly: GenerateHelpers(typeof(DrawerHost))]
+[assembly: GenerateHelpers(typeof(NumericUpDown))]
 [assembly: GenerateHelpers(typeof(PopupBox))]
 [assembly: GenerateHelpers(typeof(SmartHint))]
 [assembly: GenerateHelpers(typeof(TimePicker))]
@@ -16,7 +17,7 @@ namespace MaterialDesignThemes.UITests;
 
 public abstract class TestBase(ITestOutputHelper output) : IAsyncLifetime
 {
-    protected bool AttachedDebuggerToRemoteProcess { get; set; } = true;
+    protected bool AttachedDebuggerToRemoteProcess { get; set; } = false;
     protected ITestOutputHelper Output { get; } = output ?? throw new ArgumentNullException(nameof(output));
 
     [NotNull]
