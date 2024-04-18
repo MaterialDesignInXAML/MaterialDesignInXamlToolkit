@@ -297,7 +297,7 @@
       <converters:TextFieldPrefixTextVisibilityConverter x:Key="PrefixSuffixTextVisibilityConverter" HiddenState="Collapsed" />
       <converters:FloatingHintInitialHorizontalOffsetConverter x:Key="FloatingHintInitialHorizontalOffsetConverter" />
       <converters:FloatingHintMarginConverter x:Key="FloatingHintMarginConverter" />
-      <converters:MathConverter x:Key="DivisionConverter"  Operation="Divide" Offset="1" />
+      <converters:MathConverter x:Key="DivisionConverter" Operation="Divide" Offset="1.5" />
       <converters:BooleanToDashStyleConverter x:Key="BooleanToDashStyleConverter" TrueValue="{x:Static DashStyles.Solid}" />
     </ControlTemplate.Resources>
     <Grid>
