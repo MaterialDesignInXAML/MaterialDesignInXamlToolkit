@@ -40,6 +40,8 @@ internal class SmartHintViewModel : ViewModelBase
     private bool _newSpecHighlightingEnabled;
     private ScrollBarVisibility _selectedVerticalScrollBarVisibility = ScrollBarVisibility.Auto;
     private ScrollBarVisibility _selectedHorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+    private Thickness _outlineStyleBorderThickness = new(1);
+    private Thickness _outlineStyleActiveBorderThickness = new(2);
 
     public IEnumerable<FloatingHintHorizontalAlignment> HorizontalAlignmentOptions { get; } = Enum.GetValues(typeof(FloatingHintHorizontalAlignment)).OfType<FloatingHintHorizontalAlignment>();
     public IEnumerable<double> FloatingScaleOptions { get; } = [0.25, 0.5, 0.75, 1.0];
@@ -54,6 +56,7 @@ internal class SmartHintViewModel : ViewModelBase
     public IEnumerable<PrefixSuffixVisibility> PrefixSuffixVisibilityOptions { get; } = Enum.GetValues(typeof(PrefixSuffixVisibility)).OfType<PrefixSuffixVisibility>();
     public IEnumerable<PrefixSuffixHintBehavior> PrefixSuffixHintBehaviorOptions { get; } = Enum.GetValues(typeof(PrefixSuffixHintBehavior)).OfType<PrefixSuffixHintBehavior>();
     public IEnumerable<ScrollBarVisibility> ScrollBarVisibilityOptions { get; } = Enum.GetValues(typeof(ScrollBarVisibility)).OfType<ScrollBarVisibility>();
+    public IEnumerable<Thickness> CustomOutlineStyleBorderThicknessOptions { get; } = [new Thickness(1), new Thickness(2), new Thickness(3), new Thickness(4), new Thickness(5), new Thickness(6) ];
 
     public bool FloatHint
     {
@@ -257,5 +260,17 @@ internal class SmartHintViewModel : ViewModelBase
     {
         get => _selectedHorizontalScrollBarVisibility;
         set => SetProperty(ref _selectedHorizontalScrollBarVisibility, value);
+    }
+
+    public Thickness OutlineStyleBorderThickness
+    {
+        get => _outlineStyleBorderThickness;
+        set => SetProperty(ref _outlineStyleBorderThickness, value);
+    }
+
+    public Thickness OutlineStyleActiveBorderThickness
+    {
+        get => _outlineStyleActiveBorderThickness;
+        set => SetProperty(ref _outlineStyleActiveBorderThickness, value);
     }
 }
