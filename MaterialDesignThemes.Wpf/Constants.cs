@@ -9,10 +9,12 @@ public static class Constants
     public static readonly Thickness DefaultTextBoxViewMargin = new(1, 0, 1, 0);
     public static readonly Thickness DefaultTextBoxViewMarginStretch = new(1, 18, 1, 0);
     public static readonly Thickness DefaultTextBoxViewMarginEmbedded = new(0);
+    public static readonly Thickness DefaultOutlinedBorderInactiveThickness = new(1);
+    public static readonly Thickness DefaultOutlinedBorderActiveThickness = new(2);
     public const double TextBoxNotEnabledOpacity = 0.56;
     public const double TextBoxInnerButtonSpacing = 2;
     public const double ComboBoxArrowSize = 8;
-
+    
     /// <summary>
     /// Contains temporary constants needed until all styles leveraging SmartHint adopt the new approach.
     /// At that point, they should all use the constants above, the values should be changed to the ones in this class,

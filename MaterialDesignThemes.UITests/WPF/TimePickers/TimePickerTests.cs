@@ -367,23 +367,24 @@ public class TimePickerTests : TestBase
         var timePicker = await stackPanel.GetElement<TimePicker>("/TimePicker");
         await timePicker.SetProperty(TimePicker.TextProperty, "10:00");
         var timePickerTextBox = await timePicker.GetElement<TimePickerTextBox>("/TimePickerTextBox");
+        var textBoxOuterBorder = await timePickerTextBox.GetElement<Border>("OuterBorder");
         var button = await stackPanel.GetElement<Button>("Button");
 
         // Act
         await button.MoveCursorTo();
         await Task.Delay(50);   // Wait for the visual change
-        var inactiveBorderThickness = await timePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
+        var inactiveBorderThickness = await textBoxOuterBorder.GetBorderThickness();
         await timePickerTextBox.MoveCursorTo();
         await Task.Delay(50);   // Wait for the visual change
-        var hoverBorderThickness = await timePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
+        var hoverBorderThickness = await textBoxOuterBorder.GetBorderThickness(); ;
         await timePickerTextBox.LeftClick();
         await Task.Delay(50);   // Wait for the visual change
-        var focusedBorderThickness = await timePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
+        var focusedBorderThickness = await textBoxOuterBorder.GetBorderThickness(); ;
 
         // TODO: It would be cool if a validation error could be set via XAMLTest without the need for the Binding and ValidationRules elements in the XAML above.
         await timePicker.SetProperty(TimePicker.TextProperty, "11:00");
         await Task.Delay(50);   // Wait for the visual change
-        var withErrorBorderThickness = await timePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
+        var withErrorBorderThickness = await textBoxOuterBorder.GetBorderThickness(); ;
 
         // Assert
         Assert.Equal(expectedInactiveBorderThickness, inactiveBorderThickness);

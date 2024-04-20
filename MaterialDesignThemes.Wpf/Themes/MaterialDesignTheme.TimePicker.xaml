@@ -46,6 +46,8 @@
             <converters:ThicknessCloneConverter x:Key="PartButtonMarginConverter"
                                                 CloneEdges="Top,Right,Bottom"
                                                 FixedLeft="0" />
+            <converters:NonDefaultThicknessConverter x:Key="OutlinedBorderInactiveThicknessConverter" DefaultThickness="{x:Static wpf:Constants.DefaultOutlinedBorderInactiveThickness}" />
+            <converters:NonDefaultThicknessConverter x:Key="OutlinedBorderActiveThicknessConverter" DefaultThickness="{x:Static wpf:Constants.DefaultOutlinedBorderActiveThickness}" />
 
             <ControlTemplate x:Key="ClockButtonTemplate" TargetType="{x:Type Button}">
               <wpf:PackIcon VerticalAlignment="Center"
@@ -93,10 +95,22 @@
                                    wpf:TextFieldAssist.TextFieldCornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}"
                                    wpf:TextFieldAssist.UnderlineBrush="{TemplateBinding wpf:TextFieldAssist.UnderlineBrush}"
                                    wpf:TextFieldAssist.UnderlineCornerRadius="{TemplateBinding wpf:TextFieldAssist.UnderlineCornerRadius}"
-                                   BorderThickness="{TemplateBinding BorderThickness}"
                                    BorderBrush="{TemplateBinding BorderBrush}"
                                    Focusable="{TemplateBinding Focusable}"
-                                   Style="{DynamicResource NestedTextBoxStyle}" />
+                                   Style="{DynamicResource NestedTextBoxStyle}">
+              <wpf:TimePickerTextBox.BorderThickness>
+                <PriorityBinding>
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TimePickerAssist.OutlinedBorderInactiveThickness)" Converter="{StaticResource OutlinedBorderInactiveThicknessConverter}" />
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="BorderThickness" />
+                </PriorityBinding>
+              </wpf:TimePickerTextBox.BorderThickness>
+              <wpf:TextFieldAssist.OutlinedBorderActiveThickness>
+                <PriorityBinding>
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TimePickerAssist.OutlinedBorderActiveThickness)" Converter="{StaticResource OutlinedBorderActiveThicknessConverter}" />
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TextFieldAssist.OutlinedBorderActiveThickness)" />
+                </PriorityBinding>
+              </wpf:TextFieldAssist.OutlinedBorderActiveThickness>
+            </wpf:TimePickerTextBox>
 
             <!-- VerticalAlignment=Center to follow the default ComboBox style where the arrow is always vertically centered. Could be problematic to try to calculate the offset because it needs to be v-centered in relation to the content of the nested TextBox -->
             <Button x:Name="PART_Button"
@@ -177,7 +191,7 @@
       <Style x:Key="NestedTextBoxStyle" TargetType="wpf:TimePickerTextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}" />
     </Style.Resources>
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.OutlineBorder}" />
-    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="BorderThickness" Value="{x:Static wpf:Constants.DefaultOutlinedBorderInactiveThickness}" />
     <Setter Property="Padding" Value="{x:Static wpf:Constants.OutlinedTextBoxDefaultPadding}" />
     <Setter Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
     <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4" />
