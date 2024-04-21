@@ -34,7 +34,7 @@
       <converters:FloatingHintMarginConverter x:Key="FloatingHintMarginConverter" />
       <converters:ThicknessCloneConverter x:Key="ThicknessCloneConverter" CloneEdges="All" AdditionalOffsetBottom="-1" />
       <converters:InvertBooleanConverter x:Key="InvertBooleanConverter" />
-      <converters:OutlinedStyleActiveBorderThicknessConverter x:Key="OutlinedStyleActiveBorderThicknessConverter" />
+      <converters:OutlinedStyleActiveBorderMarginCompensationConverter x:Key="OutlinedStyleActiveBorderMarginCompensationConverter" />
 
       <Style x:Key="MaterialDesignCharacterCounterTextBlock"
              TargetType="TextBlock"
@@ -431,7 +431,7 @@
               <Setter TargetName="OuterBorder" Property="BorderThickness" Value="{Binding Path=(wpf:TextFieldAssist.OutlinedBorderActiveThickness), RelativeSource={RelativeSource TemplatedParent}}" />
               <Setter TargetName="ContentGrid" Property="Margin">
                 <Setter.Value>
-                  <MultiBinding Converter="{StaticResource OutlinedStyleActiveBorderThicknessConverter}">
+                  <MultiBinding Converter="{StaticResource OutlinedStyleActiveBorderMarginCompensationConverter}">
                     <Binding Path="BorderThickness" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:TextFieldAssist.OutlinedBorderActiveThickness)" RelativeSource="{RelativeSource TemplatedParent}" />
                   </MultiBinding>
@@ -477,7 +477,7 @@
               <Setter TargetName="OuterBorder" Property="BorderThickness" Value="{Binding Path=(wpf:TextFieldAssist.OutlinedBorderActiveThickness), RelativeSource={RelativeSource TemplatedParent}}" />
               <Setter TargetName="ContentGrid" Property="Margin">
                 <Setter.Value>
-                  <MultiBinding Converter="{StaticResource OutlinedStyleActiveBorderThicknessConverter}">
+                  <MultiBinding Converter="{StaticResource OutlinedStyleActiveBorderMarginCompensationConverter}">
                     <Binding Path="BorderThickness" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:TextFieldAssist.OutlinedBorderActiveThickness)" RelativeSource="{RelativeSource TemplatedParent}" />
                   </MultiBinding>
@@ -532,7 +532,7 @@
               <Setter TargetName="OuterBorder" Property="BorderThickness" Value="{Binding Path=(wpf:TextFieldAssist.OutlinedBorderActiveThickness), RelativeSource={RelativeSource TemplatedParent}}" />
               <Setter TargetName="ContentGrid" Property="Margin">
                 <Setter.Value>
-                  <MultiBinding Converter="{StaticResource OutlinedStyleActiveBorderThicknessConverter}">
+                  <MultiBinding Converter="{StaticResource OutlinedStyleActiveBorderMarginCompensationConverter}">
                     <Binding Path="BorderThickness" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:TextFieldAssist.OutlinedBorderActiveThickness)" RelativeSource="{RelativeSource TemplatedParent}" />
                   </MultiBinding>
@@ -554,7 +554,7 @@
               <Setter TargetName="OuterBorder" Property="BorderThickness" Value="{Binding Path=(wpf:TextFieldAssist.OutlinedBorderActiveThickness), RelativeSource={RelativeSource TemplatedParent}}" />
               <Setter TargetName="ContentGrid" Property="Margin">
                 <Setter.Value>
-                  <MultiBinding Converter="{StaticResource OutlinedStyleActiveBorderThicknessConverter}">
+                  <MultiBinding Converter="{StaticResource OutlinedStyleActiveBorderMarginCompensationConverter}">
                     <Binding Path="BorderThickness" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="(wpf:TextFieldAssist.OutlinedBorderActiveThickness)" RelativeSource="{RelativeSource TemplatedParent}" />
                   </MultiBinding>

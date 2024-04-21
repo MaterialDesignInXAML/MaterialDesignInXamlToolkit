@@ -3,7 +3,7 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters;
 
-public class OutlinedStyleActiveBorderThicknessConverter : IMultiValueConverter
+public class OutlinedStyleActiveBorderMarginCompensationConverter : IMultiValueConverter
 {
     public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
     {
