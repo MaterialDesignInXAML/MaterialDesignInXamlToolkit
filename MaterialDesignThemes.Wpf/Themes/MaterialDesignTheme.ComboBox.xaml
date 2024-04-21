@@ -299,6 +299,7 @@
       <converters:FloatingHintMarginConverter x:Key="FloatingHintMarginConverter" />
       <converters:MathConverter x:Key="DivisionConverter" Operation="Divide" Offset="1.5" />
       <converters:BooleanToDashStyleConverter x:Key="BooleanToDashStyleConverter" TrueValue="{x:Static DashStyles.Solid}" />
+      <converters:OutlinedStyleActiveBorderMarginCompensationConverter x:Key="OutlinedStyleActiveBorderMarginCompensationConverter" />
     </ControlTemplate.Resources>
     <Grid>
       <AdornerDecorator>
@@ -679,8 +680,15 @@
           <Condition Property="IsKeyboardFocusWithin" Value="True" />
           <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
         </MultiTrigger.Conditions>
-        <Setter TargetName="templateRoot" Property="BorderThickness" Value="2" />
-        <Setter TargetName="templateRoot" Property="Margin" Value="-1" />
+        <Setter TargetName="templateRoot" Property="BorderThickness" Value="{Binding Path=(wpf:TextFieldAssist.OutlinedBorderActiveThickness), RelativeSource={RelativeSource TemplatedParent}}" />
+        <Setter TargetName="templateRoot" Property="Margin">
+          <Setter.Value>
+            <MultiBinding Converter="{StaticResource OutlinedStyleActiveBorderMarginCompensationConverter}">
+              <Binding Path="BorderThickness" RelativeSource="{RelativeSource TemplatedParent}" />
+              <Binding Path="(wpf:TextFieldAssist.OutlinedBorderActiveThickness)" RelativeSource="{RelativeSource TemplatedParent}" />
+            </MultiBinding>
+          </Setter.Value>
+        </Setter>
       </MultiTrigger>
 
       <!-- IsDropDownOpen -->
@@ -693,8 +701,15 @@
           <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
         </MultiTrigger.Conditions>
         <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
-        <Setter TargetName="templateRoot" Property="BorderThickness" Value="2" />
-        <Setter TargetName="templateRoot" Property="Margin" Value="-1" />
+        <Setter TargetName="templateRoot" Property="BorderThickness" Value="{Binding Path=(wpf:TextFieldAssist.OutlinedBorderActiveThickness), RelativeSource={RelativeSource TemplatedParent}}" />
+        <Setter TargetName="templateRoot" Property="Margin">
+          <Setter.Value>
+            <MultiBinding Converter="{StaticResource OutlinedStyleActiveBorderMarginCompensationConverter}">
+              <Binding Path="BorderThickness" RelativeSource="{RelativeSource TemplatedParent}" />
+              <Binding Path="(wpf:TextFieldAssist.OutlinedBorderActiveThickness)" RelativeSource="{RelativeSource TemplatedParent}" />
+            </MultiBinding>
+          </Setter.Value>
+        </Setter>
       </MultiTrigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
@@ -735,8 +750,15 @@
           <Condition Property="IsMouseOver" Value="True" />
           <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
         </MultiTrigger.Conditions>
-        <Setter TargetName="templateRoot" Property="BorderThickness" Value="2" />
-        <Setter TargetName="templateRoot" Property="Margin" Value="-1" />
+        <Setter TargetName="templateRoot" Property="BorderThickness" Value="{Binding Path=(wpf:TextFieldAssist.OutlinedBorderActiveThickness), RelativeSource={RelativeSource TemplatedParent}}" />
+        <Setter TargetName="templateRoot" Property="Margin">
+          <Setter.Value>
+            <MultiBinding Converter="{StaticResource OutlinedStyleActiveBorderMarginCompensationConverter}">
+              <Binding Path="BorderThickness" RelativeSource="{RelativeSource TemplatedParent}" />
+              <Binding Path="(wpf:TextFieldAssist.OutlinedBorderActiveThickness)" RelativeSource="{RelativeSource TemplatedParent}" />
+            </MultiBinding>
+          </Setter.Value>
+        </Setter>
       </MultiTrigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
@@ -760,8 +782,15 @@
           <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
         </MultiTrigger.Conditions>
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
-        <Setter TargetName="templateRoot" Property="BorderThickness" Value="2" />
-        <Setter TargetName="templateRoot" Property="Margin" Value="-1" />
+        <Setter TargetName="templateRoot" Property="BorderThickness" Value="{Binding Path=(wpf:TextFieldAssist.OutlinedBorderActiveThickness), RelativeSource={RelativeSource TemplatedParent}}" />
+        <Setter TargetName="templateRoot" Property="Margin">
+          <Setter.Value>
+            <MultiBinding Converter="{StaticResource OutlinedStyleActiveBorderMarginCompensationConverter}">
+              <Binding Path="BorderThickness" RelativeSource="{RelativeSource TemplatedParent}" />
+              <Binding Path="(wpf:TextFieldAssist.OutlinedBorderActiveThickness)" RelativeSource="{RelativeSource TemplatedParent}" />
+            </MultiBinding>
+          </Setter.Value>
+        </Setter>
       </MultiTrigger>
 
       <!-- PART_Popup.IsOpen -->
@@ -930,7 +959,7 @@
          TargetType="ComboBox"
          BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ComboBox.OutlineBorder}" />
-    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="BorderThickness" Value="{x:Static wpf:Constants.DefaultOutlinedBorderInactiveThickness}" />
     <Setter Property="Padding" Value="{x:Static wpf:Constants.OutlinedTextBoxDefaultPadding}" />
     <Setter Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
     <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4" />
