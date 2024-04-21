@@ -359,6 +359,11 @@ public static class TextFieldAssist
     internal static void SetPasswordBoxCharacterCount(DependencyObject element, int value) => element.SetValue(PasswordBoxCharacterCountProperty, value);
     internal static int GetPasswordBoxCharacterCount(DependencyObject element) => (int)element.GetValue(PasswordBoxCharacterCountProperty);
 
+    public static readonly DependencyProperty OutlinedBorderActiveThicknessProperty = DependencyProperty.RegisterAttached(
+        "OutlinedBorderActiveThickness", typeof(Thickness), typeof(TextFieldAssist), new FrameworkPropertyMetadata(Constants.DefaultOutlinedBorderActiveThickness, FrameworkPropertyMetadataOptions.Inherits));
+    public static void SetOutlinedBorderActiveThickness(DependencyObject element, Thickness value) => element.SetValue(OutlinedBorderActiveThicknessProperty, value);
+    public static Thickness GetOutlinedBorderActiveThickness(DependencyObject element) => (Thickness)element.GetValue(OutlinedBorderActiveThicknessProperty);
+
     #region Methods
 
     private static void IncludeSpellingSuggestionsChanged(DependencyObject element, DependencyPropertyChangedEventArgs e)

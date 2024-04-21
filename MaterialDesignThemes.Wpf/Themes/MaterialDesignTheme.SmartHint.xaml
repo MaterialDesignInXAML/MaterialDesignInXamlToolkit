@@ -194,7 +194,7 @@
                           <Binding Source="{StaticResource NoContentFloatingScale}" />
                         </MultiBinding>
                       </ContentControl.RenderTransform>
-                      <Grid Background="{TemplateBinding wpf:HintAssist.Background}" IsHitTestVisible="False">
+                      <Grid x:Name="HintBackgroundGrid" Background="{TemplateBinding wpf:HintAssist.Background}" IsHitTestVisible="False">
                         <ContentControl Content="{TemplateBinding Hint}" IsTabStop="False">
                           <ContentControl.Margin>
                             <MultiBinding Converter="{StaticResource FloatingHintContainerMarginConverter}">

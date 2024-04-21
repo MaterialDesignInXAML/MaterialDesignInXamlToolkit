@@ -27,6 +27,7 @@
         <Setter Property="materialDesign:HintAssist.FloatingScale" Value="{Binding SelectedFloatingScale}" />
         <Setter Property="materialDesign:HintAssist.HelperText" Value="{Binding HelperText}" />
         <Setter Property="materialDesign:HintAssist.Hint" Value="{Binding HintText}" />
+        <Setter Property="materialDesign:TextFieldAssist.OutlinedBorderActiveThickness" Value="{Binding OutlineStyleActiveBorderThickness}" />
       </Style>
       <Style x:Key="StyleNameIndicator"
              TargetType="{x:Type TextBlock}"
@@ -242,6 +243,14 @@
                     VerticalAlignment="Center"
                     ItemsSource="{Binding PrefixSuffixHintBehaviorOptions}"
                     SelectedItem="{Binding SelectedPrefixHintBehavior}"/>
+          <TextBlock Margin="40,0,0,0"
+                     VerticalAlignment="Center"
+                     Text="OutlineStyle-BorderThickness:" />
+          <ComboBox Width="62"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    ItemsSource="{Binding CustomOutlineStyleBorderThicknessOptions}"
+                    SelectedItem="{Binding OutlineStyleBorderThickness}" />
         </StackPanel>
         <StackPanel Margin="10" Orientation="Horizontal">
           <TextBox Width="50"
@@ -265,6 +274,14 @@
                     VerticalAlignment="Center"
                     ItemsSource="{Binding PrefixSuffixHintBehaviorOptions}"
                     SelectedItem="{Binding SelectedSuffixHintBehavior}"/>
+          <TextBlock Margin="40,0,0,0"
+                     VerticalAlignment="Center"
+                     Text="OutlineStyle-ActiveBorderThickness:" />
+          <ComboBox Width="62"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    ItemsSource="{Binding CustomOutlineStyleBorderThicknessOptions}"
+                    SelectedItem="{Binding OutlineStyleActiveBorderThickness}" />
         </StackPanel>
       </StackPanel>
     </GroupBox>
@@ -328,7 +345,6 @@
     </StackPanel>
 
     <ScrollViewer Grid.Row="3"
-                  Height="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ScrollViewer}}, Path=ViewportHeight, Converter={StaticResource SubtractConverter}, ConverterParameter=350}"
                   Margin="0,20,0,0"
                   VerticalAlignment="Top"
                   materialDesign:ScrollViewerAssist.BubbleVerticalScroll="False"
@@ -494,6 +510,7 @@
           <Grid.Resources>
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
               <Setter Property="AcceptsReturn" Value="{Binding TextBoxAcceptsReturn}" />
+              <Setter Property="BorderThickness" Value="{Binding OutlineStyleBorderThickness}" />
               <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
@@ -747,6 +764,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignOutlinedPasswordBox}">
+              <Setter Property="BorderThickness" Value="{Binding OutlineStyleBorderThickness}" />
               <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
@@ -938,6 +956,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignOutlinedRevealPasswordBox}">
+              <Setter Property="BorderThickness" Value="{Binding OutlineStyleBorderThickness}" />
               <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
@@ -1127,6 +1146,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignOutlinedComboBox}">
+              <Setter Property="BorderThickness" Value="{Binding OutlineStyleBorderThickness}" />
               <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="IsEditable" Value="{Binding ElementName=ComboBoxesEditableCheckBox, Path=IsChecked}" />
@@ -1207,6 +1227,7 @@
               <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
@@ -1264,6 +1285,7 @@
               <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
@@ -1306,6 +1328,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignOutlinedDatePicker}">
+              <Setter Property="BorderThickness" Value="{Binding OutlineStyleBorderThickness}" />
               <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
@@ -1321,6 +1344,7 @@
               <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
@@ -1383,6 +1407,7 @@
               <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
@@ -1440,6 +1465,7 @@
               <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
@@ -1482,6 +1508,7 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type materialDesign:TimePicker}" BasedOn="{StaticResource MaterialDesignOutlinedTimePicker}">
+              <Setter Property="BorderThickness" Value="{Binding OutlineStyleBorderThickness}" />
               <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
@@ -1497,6 +1524,7 @@
               <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
               <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
               <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
               <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
               <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />

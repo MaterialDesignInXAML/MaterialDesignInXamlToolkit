@@ -27,8 +27,10 @@ public partial class SmartHint : UserControl
     {
         CheckBox c = (CheckBox) sender;
 
-        foreach (FrameworkElement element in FindVisualChildren<FrameworkElement>(ControlsPanel))
+        foreach (InputElementContentControl container in FindVisualChildren<InputElementContentControl>(ControlsPanel))
         {
+            FrameworkElement element = (FrameworkElement) container.Content;
+
             var binding = GetBinding(element);
             if (binding is null)
                 continue;
