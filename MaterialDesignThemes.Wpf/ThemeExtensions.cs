@@ -43,11 +43,11 @@ public static partial class ThemeExtensions
             default:
                 switch (Theme.GetSystemTheme())
                 {
-                    case BaseTheme.Light:
-                        SetLightTheme(theme);
-                        break;
                     case BaseTheme.Dark:
                         SetDarkTheme(theme);
+                        break;
+                    default:
+                        SetLightTheme(theme);
                         break;
                 }
                 break;
