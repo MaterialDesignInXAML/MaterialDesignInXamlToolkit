@@ -4,7 +4,7 @@ using System.Windows.Data;
 namespace MaterialDesignThemes.Wpf.Converters;
 
 /* TODO: Should be obsoleted when both TimePicker and DatePicker have adopted the new SmartHint. */
-//[Obsolete("This class is obsolete and will be removed in a future version. Please use the more generic-named OutlinedStyleActiveBorderThicknessConverter instead.")]
+//[Obsolete("This class is obsolete and will be removed in a future version. Please use the more generic-named OutlinedStyleActiveBorderMarginCompensationConverter instead.")]
 public class OutlinedDateTimePickerActiveBorderThicknessConverter : IMultiValueConverter
 {
     public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
