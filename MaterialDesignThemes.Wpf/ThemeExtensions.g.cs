@@ -44,6 +44,9 @@ static partial class ThemeExtensions
         theme.ComboBoxes.FilledBackground = BaseThemeColors.Black50;
         theme.ComboBoxes.HoverBackground = BaseThemeColors.Black100;
         theme.ComboBoxes.OutlineInactiveBorder = BaseThemeColors.Black200;
+        theme.ComboBoxes.HoverBorder = BaseThemeColors.Black900;
+        theme.ComboBoxes.Border = BaseThemeColors.Black500;
+        theme.ComboBoxes.OutlineBorder = BaseThemeColors.Black700;
         theme.ComboBoxes.Popups.DarkBackground = BaseThemeColors.Neutral100;
         theme.ComboBoxes.Popups.DarkForeground = BaseThemeColors.Neutral900;
         theme.ComboBoxes.Popups.LightBackground = BaseThemeColors.Neutral900;
@@ -124,6 +127,9 @@ static partial class ThemeExtensions
         theme.ComboBoxes.FilledBackground = BaseThemeColors.White100;
         theme.ComboBoxes.HoverBackground = BaseThemeColors.White100;
         theme.ComboBoxes.OutlineInactiveBorder = BaseThemeColors.White200;
+        theme.ComboBoxes.HoverBorder = BaseThemeColors.White900;
+        theme.ComboBoxes.Border = BaseThemeColors.White500;
+        theme.ComboBoxes.OutlineBorder = BaseThemeColors.White700;
         theme.ComboBoxes.Popups.DarkBackground = BaseThemeColors.Neutral100;
         theme.ComboBoxes.Popups.DarkForeground = BaseThemeColors.Neutral900;
         theme.ComboBoxes.Popups.LightBackground = BaseThemeColors.Neutral900;

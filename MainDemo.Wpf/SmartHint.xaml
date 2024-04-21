@@ -359,10 +359,13 @@
         <!-- TextBox variants -->
         <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="TextBox styles" />
         <StackPanel Orientation="Horizontal">
-          <CheckBox x:Name="TextBoxAcceptsReturnCheckBox"
-                    Content="AcceptsReturn"
+          <CheckBox Content="AcceptsReturn"
                     VerticalAlignment="Center"
                     IsChecked="{Binding TextBoxAcceptsReturn}"/>
+          <CheckBox Margin="30,0,0,0"
+                    Content="IsReadOnly"
+                    VerticalAlignment="Center"
+                    IsChecked="{Binding TextBoxIsReadOnly}"/>
           <TextBlock Margin="30,0,0,0"
                      Text="H-ScrollBar visibility:"
                      VerticalAlignment="Center" />
@@ -386,6 +389,7 @@
           <Grid.Resources>
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
               <Setter Property="AcceptsReturn" Value="{Binding TextBoxAcceptsReturn}" />
+              <Setter Property="IsReadOnly" Value="{Binding TextBoxIsReadOnly}" />
               <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
@@ -448,6 +452,7 @@
           <Grid.Resources>
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFilledTextBox}">
               <Setter Property="AcceptsReturn" Value="{Binding TextBoxAcceptsReturn}" />
+              <Setter Property="IsReadOnly" Value="{Binding TextBoxIsReadOnly}" />
               <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">
@@ -511,6 +516,7 @@
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
               <Setter Property="AcceptsReturn" Value="{Binding TextBoxAcceptsReturn}" />
               <Setter Property="BorderThickness" Value="{Binding OutlineStyleBorderThickness}" />
+              <Setter Property="IsReadOnly" Value="{Binding TextBoxIsReadOnly}" />
               <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
               <Setter Property="Padding">

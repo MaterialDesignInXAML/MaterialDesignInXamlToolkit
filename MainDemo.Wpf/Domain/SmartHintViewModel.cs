@@ -32,6 +32,7 @@ internal class SmartHintViewModel : ViewModelBase
     private bool _controlsEnabled = true;
     private bool _rippleOnFocus = false;
     private bool _textBoxAcceptsReturn = false;
+    private bool _textBoxIsReadOnly = false;
     private int _maxLength;
     private PrefixSuffixVisibility _selectedPrefixVisibility = PrefixSuffixVisibility.WhenFocusedOrNonEmpty;
     private PrefixSuffixHintBehavior _selectedPrefixHintBehavior = PrefixSuffixHintBehavior.AlignWithPrefixSuffix;
@@ -200,6 +201,12 @@ internal class SmartHintViewModel : ViewModelBase
     {
         get => _textBoxAcceptsReturn;
         set => SetProperty(ref _textBoxAcceptsReturn, value);
+    }
+
+    public bool TextBoxIsReadOnly
+    {
+        get => _textBoxIsReadOnly;
+        set => SetProperty(ref _textBoxIsReadOnly, value);
     }
 
     public bool ShowCharacterCounter

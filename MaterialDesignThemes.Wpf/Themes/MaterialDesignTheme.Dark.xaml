@@ -41,14 +41,17 @@
   <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.Selected" ResourceKey="Neutral400" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.Foreground" ResourceKey="White900" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.HoverBorder" ResourceKey="White900" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ComboBox.HoverBorder" ResourceKey="White900" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ForegroundLight" ResourceKey="White500" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.CheckBox.Off" ResourceKey="White500" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.Border" ResourceKey="White500" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ComboBox.Border" ResourceKey="White500" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.GridSplitter.Background" ResourceKey="White100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.GridSplitter.PreviewBackground" ResourceKey="Neutral400" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.Header.Foreground" ResourceKey="White700" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.ColumnHeaderForeground" ResourceKey="White700" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.OutlineBorder" ResourceKey="White700" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.ComboBox.OutlineBorder" ResourceKey="White700" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.Ignored" ResourceKey="Neutral400" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ListBoxItem.Border" ResourceKey="White100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ListBoxItem.Selected" ResourceKey="White100" />

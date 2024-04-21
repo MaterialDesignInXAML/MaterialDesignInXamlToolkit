@@ -17,7 +17,8 @@
             "dark": "White900"
         },
         "alternateKeys": [
-            "MaterialDesign.Brush.TextBox.HoverBorder"
+            "MaterialDesign.Brush.TextBox.HoverBorder",
+            "MaterialDesign.Brush.ComboBox.HoverBorder"
         ],
         "obsoleteKeys": [
             "MaterialDesignBody"
@@ -31,7 +32,8 @@
         },
         "alternateKeys": [
             "MaterialDesign.Brush.CheckBox.Off",
-            "MaterialDesign.Brush.TextBox.Border"
+            "MaterialDesign.Brush.TextBox.Border",
+            "MaterialDesign.Brush.ComboBox.Border"
         ],
         "obsoleteKeys": [
             "MaterialDesignBodyLight",
@@ -369,7 +371,8 @@
         },
         "alternateKeys": [
             "MaterialDesign.Brush.DataGrid.ColumnHeaderForeground",
-            "MaterialDesign.Brush.TextBox.OutlineBorder"
+            "MaterialDesign.Brush.TextBox.OutlineBorder",
+            "MaterialDesign.Brush.ComboBox.OutlineBorder"
         ],
         "obsoleteKeys": [
             "MaterialDesignColumnHeader",
