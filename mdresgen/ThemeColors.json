@@ -18,6 +18,7 @@
         },
         "alternateKeys": [
             "MaterialDesign.Brush.TextBox.HoverBorder",
+            "MaterialDesign.Brush.PasswordBox.HoverBorder",
             "MaterialDesign.Brush.ComboBox.HoverBorder"
         ],
         "obsoleteKeys": [
@@ -33,6 +34,7 @@
         "alternateKeys": [
             "MaterialDesign.Brush.CheckBox.Off",
             "MaterialDesign.Brush.TextBox.Border",
+            "MaterialDesign.Brush.PasswordBox.Border",
             "MaterialDesign.Brush.ComboBox.Border"
         ],
         "obsoleteKeys": [
@@ -372,6 +374,7 @@
         "alternateKeys": [
             "MaterialDesign.Brush.DataGrid.ColumnHeaderForeground",
             "MaterialDesign.Brush.TextBox.OutlineBorder",
+            "MaterialDesign.Brush.PasswordBox.OutlineBorder",
             "MaterialDesign.Brush.ComboBox.OutlineBorder"
         ],
         "obsoleteKeys": [
@@ -541,7 +544,9 @@
             "light": "Black50",
             "dark": "White100"
         },
-        "alternateKeys": [],
+        "alternateKeys": [
+            "MaterialDesign.Brush.PasswordBox.FilledBackground"
+        ],
         "obsoleteKeys": [
             "MaterialDesignTextFieldBoxBackground"
         ]
@@ -564,7 +569,8 @@
             "dark": "White100"
         },
         "alternateKeys": [
-            "MaterialDesign.Brush.ToolBar.Thumb.Foreground"
+            "MaterialDesign.Brush.ToolBar.Thumb.Foreground",
+            "MaterialDesign.Brush.PasswordBox.HoverBackground"
         ],
         "obsoleteKeys": [
             "MaterialDesignTextFieldBoxHoverBackground",
@@ -577,7 +583,9 @@
             "light": "Black200",
             "dark": "White200"
         },
-        "alternateKeys": [],
+        "alternateKeys": [
+            "MaterialDesign.Brush.PasswordBox.OutlineInactiveBorder"
+        ],
         "obsoleteKeys": [
             "MaterialDesignTextAreaInactiveBorder"
         ]
