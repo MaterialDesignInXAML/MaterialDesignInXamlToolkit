@@ -236,12 +236,12 @@ public class TreeListViewTests : TestBase
 
         IVisualElement<TreeListViewItem> secondItem = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
 
-        //Move item
+        await secondItem.LeftClick();
         await Wait.For(async () =>
         {
-            await secondItem.LeftClick();
             return await secondItem.GetIsSelected();
         });
+        //Move item
         await moveDownButton.LeftClick();
 
         await AssertTreeItemContent(treeListView, 0, "0");
@@ -1004,7 +1004,7 @@ public class TreeListViewTests : TestBase
     }
 
     [Fact]
-    public async Task TreeListView_AddingExpandedItemWithChildren_ShowsExpanedItem()
+    public async Task TreeListView_AddingExpandedItemWithChildren_ShowsExpandedItem()
     {
         await using var recorder = new TestRecorder(App);
 

@@ -5,6 +5,7 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 public sealed class MathConverter : IValueConverter
 {
+    public double Offset { get; set; }
     public MathOperation Operation { get; set; }
 
     public object? Convert(object? value, Type? targetType, object? parameter, CultureInfo? culture)
@@ -16,15 +17,15 @@ public sealed class MathConverter : IValueConverter
             switch (Operation)
             {
                 case MathOperation.Add:
-                    return value1 + value2;
+                    return value1 + value2 + Offset;
                 case MathOperation.Divide:
-                    return value1 / value2;
+                    return value1 / value2 + Offset;
                 case MathOperation.Multiply:
-                    return value1 * value2;
+                    return value1 * value2 + Offset;
                 case MathOperation.Subtract:
-                    return value1 - value2;
+                    return value1 - value2 + Offset;
                 case MathOperation.Pow:
-                    return Math.Pow(value1, value2);
+                    return Math.Pow(value1, value2) + Offset;
                 default:
                     return Binding.DoNothing;
             }

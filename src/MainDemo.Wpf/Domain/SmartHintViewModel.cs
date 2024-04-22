@@ -21,28 +21,43 @@ internal class SmartHintViewModel : ViewModelBase
     private bool _applyCustomPadding;
     private Thickness _selectedCustomPadding = new(5);
     private double _selectedCustomHeight = double.NaN;
-    private VerticalAlignment _selectedVerticalAlignment = VerticalAlignment.Center;
+    private VerticalAlignment _selectedVerticalAlignment = VerticalAlignment.Stretch;
     private double _selectedLeadingIconSize = 20;
     private double _selectedTrailingIconSize = 20;
-    private string? _prefixText;
-    private string? _suffixText;
+    private VerticalAlignment _selectedIconVerticalAlignment = VerticalAlignment.Center;
+    private string? _prefixText = "pre";
+    private string? _suffixText = "suf";
     private double _selectedFontSize = double.NaN;
     private FontFamily? _selectedFontFamily = DefaultFontFamily;
     private bool _controlsEnabled = true;
     private bool _rippleOnFocus = false;
     private bool _textBoxAcceptsReturn = false;
+    private bool _textBoxIsReadOnly = false;
     private int _maxLength;
+    private PrefixSuffixVisibility _selectedPrefixVisibility = PrefixSuffixVisibility.WhenFocusedOrNonEmpty;
+    private PrefixSuffixHintBehavior _selectedPrefixHintBehavior = PrefixSuffixHintBehavior.AlignWithPrefixSuffix;
+    private PrefixSuffixVisibility _selectedSuffixVisibility = PrefixSuffixVisibility.WhenFocusedOrNonEmpty;
+    private PrefixSuffixHintBehavior _selectedSuffixHintBehavior = PrefixSuffixHintBehavior.AlignWithPrefixSuffix;
+    private bool _newSpecHighlightingEnabled;
+    private ScrollBarVisibility _selectedVerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+    private ScrollBarVisibility _selectedHorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+    private Thickness _outlineStyleBorderThickness = new(1);
+    private Thickness _outlineStyleActiveBorderThickness = new(2);
 
     public IEnumerable<FloatingHintHorizontalAlignment> HorizontalAlignmentOptions { get; } = Enum.GetValues(typeof(FloatingHintHorizontalAlignment)).OfType<FloatingHintHorizontalAlignment>();
-    public IEnumerable<double> FloatingScaleOptions { get; } = new[] {0.25, 0.5, 0.75, 1.0};
-    public IEnumerable<Point> FloatingOffsetOptions { get; } = new[] { DefaultFloatingOffset, new Point(0, -25), new Point(16, -16), new Point(-16, -16), new Point(0, -50) };
-    public IEnumerable<string> ComboBoxOptions { get; } = new[] {"Option 1", "Option 2", "Option 3"};
-    public IEnumerable<Thickness> CustomPaddingOptions { get; } = new [] { new Thickness(0), new Thickness(5), new Thickness(10), new Thickness(15) };
-    public IEnumerable<double> CustomHeightOptions { get; } = new[] { double.NaN, 50, 75, 100 };
-    public IEnumerable<VerticalAlignment> VerticalAlignmentOptions { get; } = (VerticalAlignment[])Enum.GetValues(typeof(VerticalAlignment));
-    public IEnumerable<double> IconSizeOptions { get; } = new[] { 10.0, 15, 20, 30, 50, 75 };
-    public IEnumerable<double> FontSizeOptions { get; } = new[] { double.NaN, 8, 12, 16, 20, 24, 28 };
+    public IEnumerable<double> FloatingScaleOptions { get; } = [0.25, 0.5, 0.75, 1.0];
+    public IEnumerable<Point> FloatingOffsetOptions { get; } = [DefaultFloatingOffset, new Point(0, -25), new Point(16, -16), new Point(-16, -16), new Point(0, -50)];
+    public IEnumerable<string> ComboBoxOptions { get; } = ["Option 1", "Option 2", "Option 3"];
+    public IEnumerable<Thickness> CustomPaddingOptions { get; } = [new Thickness(0), new Thickness(5), new Thickness(10), new Thickness(15)];
+    public IEnumerable<double> CustomHeightOptions { get; } = [double.NaN, 50, 75, 100, 150];
+    public IEnumerable<VerticalAlignment> VerticalAlignmentOptions { get; } = Enum.GetValues(typeof(VerticalAlignment)).OfType<VerticalAlignment>();
+    public IEnumerable<double> IconSizeOptions { get; } = [10.0, 15, 20, 30, 50, 75];
+    public IEnumerable<double> FontSizeOptions { get; } = [double.NaN, 8, 12, 16, 20, 24, 28];
     public IEnumerable<FontFamily> FontFamilyOptions { get; } = new FontFamily[] { DefaultFontFamily }.Concat(Fonts.SystemFontFamilies.OrderBy(f => f.Source));
+    public IEnumerable<PrefixSuffixVisibility> PrefixSuffixVisibilityOptions { get; } = Enum.GetValues(typeof(PrefixSuffixVisibility)).OfType<PrefixSuffixVisibility>();
+    public IEnumerable<PrefixSuffixHintBehavior> PrefixSuffixHintBehaviorOptions { get; } = Enum.GetValues(typeof(PrefixSuffixHintBehavior)).OfType<PrefixSuffixHintBehavior>();
+    public IEnumerable<ScrollBarVisibility> ScrollBarVisibilityOptions { get; } = Enum.GetValues(typeof(ScrollBarVisibility)).OfType<ScrollBarVisibility>();
+    public IEnumerable<Thickness> CustomOutlineStyleBorderThicknessOptions { get; } = [new Thickness(1), new Thickness(2), new Thickness(3), new Thickness(4), new Thickness(5), new Thickness(6) ];
 
     public bool FloatHint
     {
@@ -140,6 +155,12 @@ internal class SmartHintViewModel : ViewModelBase
         set => SetProperty(ref _selectedTrailingIconSize, value);
     }
 
+    public VerticalAlignment SelectedIconVerticalAlignment
+    {
+        get => _selectedIconVerticalAlignment;
+        set => SetProperty(ref _selectedIconVerticalAlignment, value);
+    }
+
     public string? PrefixText
     {
         get => _prefixText;
@@ -182,6 +203,12 @@ internal class SmartHintViewModel : ViewModelBase
         set => SetProperty(ref _textBoxAcceptsReturn, value);
     }
 
+    public bool TextBoxIsReadOnly
+    {
+        get => _textBoxIsReadOnly;
+        set => SetProperty(ref _textBoxIsReadOnly, value);
+    }
+
     public bool ShowCharacterCounter
     {
         get => MaxLength > 0;
@@ -198,5 +225,59 @@ internal class SmartHintViewModel : ViewModelBase
                 OnPropertyChanged(nameof(ShowCharacterCounter));
             }
         }
+    }
+
+    public PrefixSuffixVisibility SelectedPrefixVisibility
+    {
+        get => _selectedPrefixVisibility;
+        set => SetProperty(ref _selectedPrefixVisibility, value);
+    }
+
+    public PrefixSuffixHintBehavior SelectedPrefixHintBehavior
+    {
+        get => _selectedPrefixHintBehavior;
+        set => SetProperty(ref _selectedPrefixHintBehavior, value);
+    }
+
+    public PrefixSuffixVisibility SelectedSuffixVisibility
+    {
+        get => _selectedSuffixVisibility;
+        set => SetProperty(ref _selectedSuffixVisibility, value);
+    }
+
+    public PrefixSuffixHintBehavior SelectedSuffixHintBehavior
+    {
+        get => _selectedSuffixHintBehavior;
+        set => SetProperty(ref _selectedSuffixHintBehavior, value);
+    }
+
+    public bool NewSpecHighlightingEnabled
+    {
+        get => _newSpecHighlightingEnabled;
+        set => SetProperty(ref _newSpecHighlightingEnabled, value);
+    }
+
+    public ScrollBarVisibility SelectedVerticalScrollBarVisibility
+    {
+        get => _selectedVerticalScrollBarVisibility;
+        set => SetProperty(ref _selectedVerticalScrollBarVisibility, value);
+    }
+
+    public ScrollBarVisibility SelectedHorizontalScrollBarVisibility
+    {
+        get => _selectedHorizontalScrollBarVisibility;
+        set => SetProperty(ref _selectedHorizontalScrollBarVisibility, value);
+    }
+
+    public Thickness OutlineStyleBorderThickness
+    {
+        get => _outlineStyleBorderThickness;
+        set => SetProperty(ref _outlineStyleBorderThickness, value);
+    }
+
+    public Thickness OutlineStyleActiveBorderThickness
+    {
+        get => _outlineStyleActiveBorderThickness;
+        set => SetProperty(ref _outlineStyleActiveBorderThickness, value);
     }
 }

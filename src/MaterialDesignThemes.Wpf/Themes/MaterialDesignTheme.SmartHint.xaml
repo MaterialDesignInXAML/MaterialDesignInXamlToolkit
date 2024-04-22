@@ -4,18 +4,19 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
-  <converters:BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
-  <converters:BooleanToVisibilityConverter x:Key="InverseBoolToVisConverter"
-                                           FalseValue="Visible"
-                                           TrueValue="Collapsed" />
-  <converters:FloatingHintTransformConverter x:Key="FloatingHintClippingGridTransformConverter" ApplyScaleTransform="False" />
-  <converters:FloatingHintTransformConverter x:Key="FloatingHintTransformConverter" ApplyTranslateTransform="False" />
-  <converters:FloatingHintTextBlockMarginConverter x:Key="FloatingHintTextBlockMarginConverter" />
-  <converters:VerticalAlignmentConverter x:Key="VerticalAlignmentConverter" />
-  <system:Double x:Key="NoContentFloatingScale">1.0</system:Double>
-  <CubicEase x:Key="AnimationEasingFunction" EasingMode="EaseInOut" />
-
   <Style TargetType="{x:Type wpf:SmartHint}">
+    <Style.Resources>
+      <converters:BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
+      <converters:BooleanToVisibilityConverter x:Key="InverseBoolToVisConverter"
+                                               FalseValue="Visible"
+                                               TrueValue="Collapsed" />
+      <system:Double x:Key="NoContentFloatingScale">1.0</system:Double>
+      <CubicEase x:Key="AnimationEasingFunction" EasingMode="EaseInOut" />
+      <converters:FloatingHintTranslateTransformConverter x:Key="FloatingHintTranslateTransformConverter" />
+      <converters:FloatingHintScaleTransformConverter x:Key="FloatingHintScaleTransformConverter" />
+      <converters:FloatingHintContainerMarginConverter x:Key="FloatingHintContainerMarginConverter" />
+      <converters:FloatingHintTextBlockMarginConverter x:Key="FloatingHintTextBlockMarginConverter" />
+    </Style.Resources>
     <Setter Property="HorizontalAlignment" Value="Stretch" />
     <Setter Property="HorizontalContentAlignment" Value="Left" />
     <Setter Property="IsHitTestVisible" Value="False" />
@@ -142,15 +143,19 @@
                 </VisualStateManager.VisualStateGroups>
                 <wpf:ScaleHost x:Name="ScaleHost" />
                 <Grid x:Name="HintClippingGrid"
-                      VerticalAlignment="{TemplateBinding VerticalContentAlignment, Converter={StaticResource VerticalAlignmentConverter}}"
                       ClipToBounds="True">
                   <Grid.RenderTransform>
-                    <MultiBinding Converter="{StaticResource FloatingHintClippingGridTransformConverter}">
+                    <MultiBinding Converter="{StaticResource FloatingHintTranslateTransformConverter}">
                       <Binding ElementName="ScaleHost" Path="Scale" />
                       <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}" />
                       <Binding Source="{StaticResource NoContentFloatingScale}" />
+                      <Binding Path="." RelativeSource="{RelativeSource TemplatedParent}" />
                       <Binding Path="FloatingOffset" RelativeSource="{RelativeSource TemplatedParent}" />
+                      <!-- The bindings below are only here to trigger a recalculation - needed to support AcceptsReturn=true scenario for TextBoxes for example as well as "runtime" changes to the desired hint placement -->
                       <Binding Path="InitialVerticalOffset" RelativeSource="{RelativeSource TemplatedParent}" />
+                      <Binding Path="InitialHorizontalOffset" RelativeSource="{RelativeSource TemplatedParent}" />
+                      <Binding Path="FloatingTarget.ActualHeight" RelativeSource="{RelativeSource TemplatedParent}" FallbackValue="{x:Static DependencyProperty.UnsetValue}" />
+                      <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
                     </MultiBinding>
                   </Grid.RenderTransform>
                   <Canvas Width="{Binding ElementName=FloatingHintTextBlock, Path=ActualWidth}"
@@ -159,7 +164,6 @@
                     <ContentControl x:Name="FloatingHintTextBlock"
                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                    Content="{TemplateBinding Hint}"
                                     FontFamily="{TemplateBinding FontFamily}"
                                     FontSize="{TemplateBinding FontSize}"
                                     IsHitTestVisible="False"
@@ -167,6 +171,7 @@
                                     Opacity="{TemplateBinding HintOpacity}"
                                     RenderTransformOrigin="0,0"
                                     Visibility="{TemplateBinding UseFloating, Converter={StaticResource BoolToVisConverter}}">
+                      
                       <ContentControl.Margin>
                         <MultiBinding Converter="{StaticResource FloatingHintTextBlockMarginConverter}">
                           <Binding Path="(wpf:HintAssist.HintHorizontalAlignment)" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -183,14 +188,22 @@
                         <system:Double>0.0</system:Double>
                       </ContentControl.Tag>
                       <ContentControl.RenderTransform>
-                        <MultiBinding Converter="{StaticResource FloatingHintTransformConverter}">
+                        <MultiBinding Converter="{StaticResource FloatingHintScaleTransformConverter}">
                           <Binding ElementName="ScaleHost" Path="Scale" />
                           <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}" />
                           <Binding Source="{StaticResource NoContentFloatingScale}" />
-                          <Binding Path="FloatingOffset" RelativeSource="{RelativeSource TemplatedParent}" />
-                          <Binding Path="InitialVerticalOffset" RelativeSource="{RelativeSource TemplatedParent}" />
                         </MultiBinding>
                       </ContentControl.RenderTransform>
+                      <Grid x:Name="HintBackgroundGrid" Background="{TemplateBinding wpf:HintAssist.Background}" IsHitTestVisible="False">
+                        <ContentControl Content="{TemplateBinding Hint}" IsTabStop="False">
+                          <ContentControl.Margin>
+                            <MultiBinding Converter="{StaticResource FloatingHintContainerMarginConverter}">
+                              <Binding ElementName="ScaleHost" Path="Scale" />
+                              <Binding Path="FloatingMargin" RelativeSource="{RelativeSource TemplatedParent}" />
+                            </MultiBinding>
+                          </ContentControl.Margin>
+                        </ContentControl>
+                      </Grid>
                     </ContentControl>
                   </Canvas>
                 </Grid>

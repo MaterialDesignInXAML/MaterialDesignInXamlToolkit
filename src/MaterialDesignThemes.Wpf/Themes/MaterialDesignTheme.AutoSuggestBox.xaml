@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:internal="clr-namespace:MaterialDesignThemes.Wpf.Internal"
@@ -11,6 +11,31 @@
   <Style x:Key="MaterialDesignAutoSuggestBoxBase"
          TargetType="{x:Type wpf:AutoSuggestBox}"
          BasedOn="{StaticResource MaterialDesignTextBoxBase}">
+    <Style.Resources>
+      <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+      <converters:TextFieldClearButtonVisibilityConverter x:Key="ClearButtonVisibilityConverter" />
+      <converters:TextFieldPrefixTextVisibilityConverter x:Key="PrefixTextVisibilityConverter" />
+      <converters:NotConverter x:Key="NotConverter" />
+      <converters:MathConverter x:Key="MathMultiplyConverter" Operation="Multiply" />
+      <converters:FloatingHintOffsetCalculationConverter x:Key="FloatingHintOffsetCalculationConverter" />
+      <converters:CursorConverter x:Key="ArrowCursorConverter" FallbackCursor="Arrow" />
+      <converters:CursorConverter x:Key="IBeamCursorConverter" FallbackCursor="IBeam" />
+      <converters:StringLengthValueConverter x:Key="StringLengthValueConverter" />
+      <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleLeadingIconMarginConverterTop" CloneEdges="Top" FixedRight="6" AdditionalOffsetTop="-2" />
+      <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleLeadingIconMarginConverterCenter" CloneEdges="Top" FixedRight="6" AdditionalOffsetTop="-12" />
+      <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleLeadingIconMarginConverterBottom" CloneEdges="Top" FixedRight="6" FixedBottom="-2" />
+      <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconMarginConverterTop" CloneEdges="Top" AdditionalOffsetTop="-2" />
+      <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconMarginConverterCenter" CloneEdges="Top" AdditionalOffsetTop="-12" />
+      <converters:ThicknessCloneConverter x:Key="DefaultOrFilledStyleTrailingIconMarginConverterBottom" CloneEdges="Top" FixedBottom="-2" />
+      <converters:ThicknessCloneConverter x:Key="OutlinedStyleLeadingIconMarginConverterTop" CloneEdges="Top" FixedRight="6" AdditionalOffsetTop="-2" />
+      <converters:ThicknessCloneConverter x:Key="OutlinedStyleLeadingIconMarginConverterCenter" CloneEdges="Top" FixedRight="6" AdditionalOffsetTop="0" />
+      <converters:ThicknessCloneConverter x:Key="OutlinedStyleLeadingIconMarginConverterBottom" CloneEdges="Top" FixedRight="6" FixedBottom="-2" AdditionalOffsetTop="0" />
+      <converters:ThicknessCloneConverter x:Key="OutlinedStyleTrailingIconMarginConverterTop" CloneEdges="Top" AdditionalOffsetTop="-2" />
+      <converters:ThicknessCloneConverter x:Key="OutlinedStyleTrailingIconMarginConverterCenter" CloneEdges="Top" AdditionalOffsetTop="0" />
+      <converters:ThicknessCloneConverter x:Key="OutlinedStyleTrailingIconMarginConverterBottom" CloneEdges="Top" FixedBottom="-2" AdditionalOffsetTop="0" />
+      <converters:VerticalAlignmentConverter x:Key="VerticalAlignmentConverter" />
+      <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
+    </Style.Resources>
     <Setter Property="DropDownBackground" Value="{DynamicResource MaterialDesign.Brush.Card.Background}" />
     <Setter Property="DropDownElevation" Value="Dp2" />
     <Setter Property="Template">
@@ -121,6 +146,8 @@
                           <MultiBinding Converter="{StaticResource PrefixTextVisibilityConverter}">
                             <Binding ElementName="Hint" Path="IsHintInFloatingPosition" />
                             <Binding Path="(wpf:TextFieldAssist.PrefixText)" RelativeSource="{RelativeSource TemplatedParent}" />
+                            <Binding Path="(wpf:TextFieldAssist.PrefixTextVisibility)" RelativeSource="{RelativeSource TemplatedParent}" />
+                            <Binding Path="IsKeyboardFocusWithin" RelativeSource="{RelativeSource TemplatedParent}" />
                           </MultiBinding>
                         </TextBlock.Visibility>
                       </TextBlock>

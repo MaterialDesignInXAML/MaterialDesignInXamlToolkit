@@ -34,7 +34,7 @@ public class PaletteHelper
     /// Removes and readds resource dictionaries with static resource that will be re-evaluated with new theme brushes.
     /// This is primarily here for the obsolete theme brushes.
     /// </summary>
-    private void RecreateThemeDictionaries()
+    private static void RecreateThemeDictionaries()
     {
         ResourceDictionary root = Application.Current.Resources;
         for (int i = 0; i < root.MergedDictionaries.Count; i++)

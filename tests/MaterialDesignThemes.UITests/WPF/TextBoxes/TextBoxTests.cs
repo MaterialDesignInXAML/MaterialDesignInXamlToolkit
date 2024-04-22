@@ -167,11 +167,11 @@ public class TextBoxTests : TestBase
         materialDesign:HintAssist.Hint=""This is a text area""/>
 </Grid>");
         var textBox = await grid.GetElement<TextBox>("/TextBox");
-        //textFieldGrid is the element just inside of the border
-        var textFieldGrid = await textBox.GetElement<Grid>("grid");
+        //contentGrid is the element just inside of the border
+        var contentGrid = await textBox.GetElement<Grid>("ContentGrid");
         var hintBackground = await textBox.GetElement<Border>("HintBackgroundBorder");
 
-        Color background = await hintBackground.GetEffectiveBackground(textFieldGrid);
+        Color background = await hintBackground.GetEffectiveBackground(contentGrid);
 
         Assert.Equal(255, background.A);
         recorder.Success();
@@ -196,31 +196,6 @@ public class TextBoxTests : TestBase
         double fontSize = await helpTextBlock.GetFontSize();
 
         Assert.Equal(20, fontSize);
-        recorder.Success();
-    }
-
-    [Fact]
-    [Description("Issue 2203")]
-    public async Task OnOutlinedTextBox_FloatingHintOffsetWithinRange()
-    {
-        await using var recorder = new TestRecorder(App);
-
-        var grid = await LoadXaml<Grid>(@"
-<Grid Margin=""30"">
-    <TextBox
-        Style=""{StaticResource MaterialDesignOutlinedTextBox}""
-        VerticalAlignment=""Top""
-        materialDesign:HintAssist.Hint=""This is a hint""
-    />
-</Grid>");
-        var textBox = await grid.GetElement<TextBox>("/TextBox");
-        var hint = await textBox.GetElement<SmartHint>("Hint");
-
-        Point floatingOffset = await hint.GetFloatingOffset();
-
-        Assert.Equal(0, floatingOffset.X);
-        Assert.InRange(floatingOffset.Y, -22, -20);
-
         recorder.Success();
     }
 
@@ -425,13 +400,13 @@ public class TextBoxTests : TestBase
         var errorViewer = await textBox.GetElement<Border>("DefaultErrorViewer");
         var helperTextTextBlock = await textBox.GetElement<TextBlock>("HelperTextTextBlock");
 
-        Thickness? errorMargin = await errorViewer.GetProperty<Thickness>(FrameworkElement.MarginProperty);
-        Thickness? helperTextMargin = await helperTextTextBlock.GetProperty<Thickness>(FrameworkElement.MarginProperty);
+        Thickness? errorMargin = await errorViewer.GetMargin();
+        Thickness? textBoxPadding = await textBox.GetPadding();
 
         Assert.True(errorMargin.HasValue);
-        Assert.True(helperTextMargin.HasValue);
-        Assert.True(Math.Abs(errorMargin.Value.Left - helperTextMargin.Value.Left) < double.Epsilon,
-            $"Error text and helper text do not have the same Margin.Left values: Error text Margin.Left ({errorMargin.Value.Left}) == Helper text Margin.Left ({helperTextMargin.Value.Left})");
+        Assert.True(textBoxPadding.HasValue);
+        Assert.True(Math.Abs(errorMargin.Value.Left - textBoxPadding.Value.Left) < double.Epsilon,
+            $"Error text does not respect the padding of the TextBox: Error text Margin.Left ({errorMargin.Value.Left}) == TextBox Padding.Left ({textBoxPadding.Value.Left})");
 
         recorder.Success();
     }
@@ -464,12 +439,13 @@ public class TextBoxTests : TestBase
         var helperTextTextBlock = await textBox.GetElement<TextBlock>("HelperTextTextBlock");
 
         Thickness? errorMargin = await errorViewer.GetProperty<Thickness>(FrameworkElement.MarginProperty);
-        Thickness? helperTextMargin = await helperTextTextBlock.GetProperty<Thickness>(FrameworkElement.MarginProperty);
+        Thickness? textBoxPadding = await textBox.GetProperty<Thickness>(Control.PaddingProperty);
 
         Assert.True(errorMargin.HasValue);
-        Assert.True(helperTextMargin.HasValue);
-        Assert.True(Math.Abs(errorMargin.Value.Left - helperTextMargin.Value.Left) < double.Epsilon,
-            $"Error text and helper text do not have the same Margin.Left values: Error text Margin.Left ({errorMargin.Value.Left}) == Helper text Margin.Left ({helperTextMargin.Value.Left})");
+        Assert.True(textBoxPadding.HasValue);
+
+        Assert.True(Math.Abs(errorMargin.Value.Left - textBoxPadding.Value.Left) < double.Epsilon,
+            $"Error text does not respect the padding of the TextBox: Error text Margin.Left ({errorMargin.Value.Left}) == TextBox Padding.Left ({textBoxPadding.Value.Left})");
 
         recorder.Success();
     }
@@ -565,7 +541,7 @@ public class TextBoxTests : TestBase
     }
 
     [Theory]
-    [InlineData(VerticalAlignment.Stretch, VerticalAlignment.Top)]
+    [InlineData(VerticalAlignment.Stretch, VerticalAlignment.Stretch)]
     [InlineData(VerticalAlignment.Top, VerticalAlignment.Top)]
     [InlineData(VerticalAlignment.Bottom, VerticalAlignment.Bottom)]
     [InlineData(VerticalAlignment.Center, VerticalAlignment.Center)]
@@ -585,9 +561,9 @@ public class TextBoxTests : TestBase
             """);
 
         IVisualElement<TextBox> textBox = await stackPanel.GetElement<TextBox>("/TextBox");
-        IVisualElement<Grid> hintClippingGrid = await textBox.GetElement<Grid>("HintClippingGrid");
+        IVisualElement<Grid> contentGrid = await textBox.GetElement<Grid>("ContentGrid");
 
-        Assert.Equal(expectedFloatingHintAlignment, await hintClippingGrid.GetVerticalAlignment());
+        Assert.Equal(expectedFloatingHintAlignment, await contentGrid.GetVerticalAlignment());
 
         recorder.Success();
     }

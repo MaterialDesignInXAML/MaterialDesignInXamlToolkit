@@ -44,6 +44,9 @@ static partial class ThemeExtensions
         theme.ComboBoxes.FilledBackground = BaseThemeColors.Black50;
         theme.ComboBoxes.HoverBackground = BaseThemeColors.Black100;
         theme.ComboBoxes.OutlineInactiveBorder = BaseThemeColors.Black200;
+        theme.ComboBoxes.HoverBorder = BaseThemeColors.Black900;
+        theme.ComboBoxes.Border = BaseThemeColors.Black500;
+        theme.ComboBoxes.OutlineBorder = BaseThemeColors.Black700;
         theme.ComboBoxes.Popups.DarkBackground = BaseThemeColors.Neutral100;
         theme.ComboBoxes.Popups.DarkForeground = BaseThemeColors.Neutral900;
         theme.ComboBoxes.Popups.LightBackground = BaseThemeColors.Neutral900;
@@ -56,6 +59,7 @@ static partial class ThemeExtensions
         theme.DataGrids.RowHoverBackground = BaseThemeColors.Black50;
         theme.DataGrids.Selected = BaseThemeColors.Neutral800;
         theme.DataGrids.ColumnHeaderForeground = BaseThemeColors.Black700;
+        theme.TextBoxes.HoverBorder = BaseThemeColors.Black900;
         theme.TextBoxes.Border = BaseThemeColors.Black500;
         theme.TextBoxes.OutlineBorder = BaseThemeColors.Black700;
         theme.TextBoxes.DisabledBackground = BaseThemeColors.Black50;
@@ -123,6 +127,9 @@ static partial class ThemeExtensions
         theme.ComboBoxes.FilledBackground = BaseThemeColors.White100;
         theme.ComboBoxes.HoverBackground = BaseThemeColors.White100;
         theme.ComboBoxes.OutlineInactiveBorder = BaseThemeColors.White200;
+        theme.ComboBoxes.HoverBorder = BaseThemeColors.White900;
+        theme.ComboBoxes.Border = BaseThemeColors.White500;
+        theme.ComboBoxes.OutlineBorder = BaseThemeColors.White700;
         theme.ComboBoxes.Popups.DarkBackground = BaseThemeColors.Neutral100;
         theme.ComboBoxes.Popups.DarkForeground = BaseThemeColors.Neutral900;
         theme.ComboBoxes.Popups.LightBackground = BaseThemeColors.Neutral900;
@@ -135,6 +142,7 @@ static partial class ThemeExtensions
         theme.DataGrids.RowHoverBackground = BaseThemeColors.White100;
         theme.DataGrids.Selected = BaseThemeColors.Neutral400;
         theme.DataGrids.ColumnHeaderForeground = BaseThemeColors.White700;
+        theme.TextBoxes.HoverBorder = BaseThemeColors.White900;
         theme.TextBoxes.Border = BaseThemeColors.White500;
         theme.TextBoxes.OutlineBorder = BaseThemeColors.White700;
         theme.TextBoxes.DisabledBackground = BaseThemeColors.White50;

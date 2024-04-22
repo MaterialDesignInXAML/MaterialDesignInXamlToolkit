@@ -15,7 +15,7 @@ public class TreeListViewItem : ListViewItem
 
     public TreeListViewItem(TreeListView treeListView)
     {
-        TreeListView = treeListView; 
+        TreeListView = treeListView;
     }
 
     private TreeListViewContentPresenter? ContentPresenter { get; set; }
@@ -183,6 +183,7 @@ public class TreeListViewItem : ListViewItem
             {
                 case Key.Right:
                     IsExpanded = true;
+                    e.Handled = true;
                     break;
                 case Key.Left:
                     if (IsExpanded)
@@ -193,6 +194,7 @@ public class TreeListViewItem : ListViewItem
                     {
                         TreeListView?.MoveSelectionToParent(this);
                     }
+                    e.Handled = true;
                     break;
             }
         }

@@ -5,13 +5,27 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 internal class TextFieldClearButtonVisibilityConverter : IMultiValueConverter
 {
+    public Visibility ContentEmptyVisibility { get; set; } = Visibility.Hidden;
+
     public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
     {
-        if (!(bool)values[0]) // TextFieldAssist.HasClearButton
-            return Visibility.Collapsed;
+        if (values is not [bool hasClearButton, bool isContentNullOrEmpty, ..])
+        {
+            return Visibility.Visible;
+        }
 
-        return (bool)values[1] // Hint.IsContentNullOrEmpty
-            ? Visibility.Hidden
+        if (!hasClearButton) // TextFieldAssist.HasClearButton
+        {
+            return Visibility.Collapsed;
+        }
+
+        if (isContentNullOrEmpty && values.Length > 2 && values[2] is false) // ComboBox.IsEditable
+        {
+            return Visibility.Collapsed;
+        }
+
+        return isContentNullOrEmpty // Hint.IsContentNullOrEmpty
+            ? ContentEmptyVisibility
             : Visibility.Visible;
     }
 
