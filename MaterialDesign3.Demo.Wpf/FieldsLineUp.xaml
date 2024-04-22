@@ -223,7 +223,7 @@
         <DatePicker Grid.Row="1" Grid.Column="4" />
         <DatePicker Grid.Row="2"
                     Grid.Column="4"
-                    materialDesign:HintAssist.IsFloating="True" />
+                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
         <DatePicker Grid.Row="3"
                     Grid.Column="4"
                     Style="{StaticResource MaterialDesignFilledDatePicker}" />
