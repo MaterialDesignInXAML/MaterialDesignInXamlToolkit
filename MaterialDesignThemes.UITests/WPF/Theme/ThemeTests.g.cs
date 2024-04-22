@@ -72,6 +72,12 @@ partial class ThemeTests
           <TextBlock Text="TextBox.FilledBackground" Background="{StaticResource MaterialDesign.Brush.TextBox.FilledBackground}" />
           <TextBlock Text="TextBox.HoverBackground" Background="{StaticResource MaterialDesign.Brush.TextBox.HoverBackground}" />
           <TextBlock Text="TextBox.OutlineInactiveBorder" Background="{StaticResource MaterialDesign.Brush.TextBox.OutlineInactiveBorder}" />
+          <TextBlock Text="PasswordBox.HoverBorder" Background="{StaticResource MaterialDesign.Brush.PasswordBox.HoverBorder}" />
+          <TextBlock Text="PasswordBox.Border" Background="{StaticResource MaterialDesign.Brush.PasswordBox.Border}" />
+          <TextBlock Text="PasswordBox.OutlineBorder" Background="{StaticResource MaterialDesign.Brush.PasswordBox.OutlineBorder}" />
+          <TextBlock Text="PasswordBox.FilledBackground" Background="{StaticResource MaterialDesign.Brush.PasswordBox.FilledBackground}" />
+          <TextBlock Text="PasswordBox.HoverBackground" Background="{StaticResource MaterialDesign.Brush.PasswordBox.HoverBackground}" />
+          <TextBlock Text="PasswordBox.OutlineInactiveBorder" Background="{StaticResource MaterialDesign.Brush.PasswordBox.OutlineInactiveBorder}" />
           <TextBlock Text="GridSplitter.Background" Background="{StaticResource MaterialDesign.Brush.GridSplitter.Background}" />
           <TextBlock Text="GridSplitter.PreviewBackground" Background="{StaticResource MaterialDesign.Brush.GridSplitter.PreviewBackground}" />
           <TextBlock Text="Header.Foreground" Background="{StaticResource MaterialDesign.Brush.Header.Foreground}" />
@@ -138,6 +144,16 @@ partial class ThemeTests
           <TextBlock Text="MaterialDesignColumnHeader" Background="{StaticResource MaterialDesignColumnHeader}" />
           <TextBlock Text="MaterialDesignTextAreaBorder" Background="{StaticResource MaterialDesignTextAreaBorder}" />
           <TextBlock Text="MaterialDesignTextFieldBoxDisabledBackground" Background="{StaticResource MaterialDesignTextFieldBoxDisabledBackground}" />
+          <TextBlock Text="MaterialDesignTextFieldBoxBackground" Background="{StaticResource MaterialDesignTextFieldBoxBackground}" />
+          <TextBlock Text="MaterialDesignTextFieldBoxHoverBackground" Background="{StaticResource MaterialDesignTextFieldBoxHoverBackground}" />
+          <TextBlock Text="MaterialDesignDivider" Background="{StaticResource MaterialDesignDivider}" />
+          <TextBlock Text="MaterialDesignTextAreaInactiveBorder" Background="{StaticResource MaterialDesignTextAreaInactiveBorder}" />
+          <TextBlock Text="MaterialDesignBody" Background="{StaticResource MaterialDesignBody}" />
+          <TextBlock Text="MaterialDesignBodyLight" Background="{StaticResource MaterialDesignBodyLight}" />
+          <TextBlock Text="MaterialDesignCheckBoxOff" Background="{StaticResource MaterialDesignCheckBoxOff}" />
+          <TextBlock Text="MaterialDesignTextBoxBorder" Background="{StaticResource MaterialDesignTextBoxBorder}" />
+          <TextBlock Text="MaterialDesignColumnHeader" Background="{StaticResource MaterialDesignColumnHeader}" />
+          <TextBlock Text="MaterialDesignTextAreaBorder" Background="{StaticResource MaterialDesignTextAreaBorder}" />
           <TextBlock Text="MaterialDesignTextFieldBoxBackground" Background="{StaticResource MaterialDesignTextFieldBoxBackground}" />
           <TextBlock Text="MaterialDesignTextFieldBoxHoverBackground" Background="{StaticResource MaterialDesignTextFieldBoxHoverBackground}" />
           <TextBlock Text="MaterialDesignDivider" Background="{StaticResource MaterialDesignDivider}" />
@@ -421,6 +437,36 @@ partial class ThemeTests
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"TextBox.OutlineInactiveBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesign.Brush.TextBox.OutlineInactiveBorder"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"PasswordBox.HoverBorder\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.PasswordBox.HoverBorder"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"PasswordBox.Border\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.PasswordBox.Border"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"PasswordBox.OutlineBorder\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.PasswordBox.OutlineBorder"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"PasswordBox.FilledBackground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.PasswordBox.FilledBackground"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"PasswordBox.HoverBackground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.PasswordBox.HoverBackground"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"PasswordBox.OutlineInactiveBorder\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.PasswordBox.OutlineInactiveBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"GridSplitter.Background\"]");
@@ -773,6 +819,56 @@ partial class ThemeTests
             Assert.Equal(await GetResourceColor("MaterialDesignTextAreaInactiveBorder"), textBlockBackground);
         }
         {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignBody\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesignBody"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignBodyLight\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesignBodyLight"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignCheckBoxOff\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesignCheckBoxOff"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextBoxBorder\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesignTextBoxBorder"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignColumnHeader\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesignColumnHeader"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextAreaBorder\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesignTextAreaBorder"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextFieldBoxBackground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesignTextFieldBoxBackground"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextFieldBoxHoverBackground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesignTextFieldBoxHoverBackground"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignDivider\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesignDivider"), textBlockBackground);
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextAreaInactiveBorder\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            Assert.Equal(await GetResourceColor("MaterialDesignTextAreaInactiveBorder"), textBlockBackground);
+        }
+        {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignColumnHeader\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             Assert.Equal(await GetResourceColor("MaterialDesignColumnHeader"), textBlockBackground);
@@ -866,6 +962,12 @@ partial class ThemeTests
         yield return "MaterialDesign.Brush.TextBox.FilledBackground";
         yield return "MaterialDesign.Brush.TextBox.HoverBackground";
         yield return "MaterialDesign.Brush.TextBox.OutlineInactiveBorder";
+        yield return "MaterialDesign.Brush.PasswordBox.HoverBorder";
+        yield return "MaterialDesign.Brush.PasswordBox.Border";
+        yield return "MaterialDesign.Brush.PasswordBox.OutlineBorder";
+        yield return "MaterialDesign.Brush.PasswordBox.FilledBackground";
+        yield return "MaterialDesign.Brush.PasswordBox.HoverBackground";
+        yield return "MaterialDesign.Brush.PasswordBox.OutlineInactiveBorder";
         yield return "MaterialDesign.Brush.GridSplitter.Background";
         yield return "MaterialDesign.Brush.GridSplitter.PreviewBackground";
         yield return "MaterialDesign.Brush.Header.Foreground";
@@ -935,6 +1037,16 @@ partial class ThemeTests
         yield return "MaterialDesignColumnHeader";
         yield return "MaterialDesignTextAreaBorder";
         yield return "MaterialDesignTextFieldBoxDisabledBackground";
+        yield return "MaterialDesignTextFieldBoxBackground";
+        yield return "MaterialDesignTextFieldBoxHoverBackground";
+        yield return "MaterialDesignDivider";
+        yield return "MaterialDesignTextAreaInactiveBorder";
+        yield return "MaterialDesignBody";
+        yield return "MaterialDesignBodyLight";
+        yield return "MaterialDesignCheckBoxOff";
+        yield return "MaterialDesignTextBoxBorder";
+        yield return "MaterialDesignColumnHeader";
+        yield return "MaterialDesignTextAreaBorder";
         yield return "MaterialDesignTextFieldBoxBackground";
         yield return "MaterialDesignTextFieldBoxHoverBackground";
         yield return "MaterialDesignDivider";

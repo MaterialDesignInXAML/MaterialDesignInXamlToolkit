@@ -66,6 +66,12 @@ static partial class ThemeExtensions
         theme.TextBoxes.FilledBackground = BaseThemeColors.Black50;
         theme.TextBoxes.HoverBackground = BaseThemeColors.Black100;
         theme.TextBoxes.OutlineInactiveBorder = BaseThemeColors.Black200;
+        theme.PasswordBoxes.HoverBorder = BaseThemeColors.Black900;
+        theme.PasswordBoxes.Border = BaseThemeColors.Black500;
+        theme.PasswordBoxes.OutlineBorder = BaseThemeColors.Black700;
+        theme.PasswordBoxes.FilledBackground = BaseThemeColors.Black50;
+        theme.PasswordBoxes.HoverBackground = BaseThemeColors.Black100;
+        theme.PasswordBoxes.OutlineInactiveBorder = BaseThemeColors.Black200;
         theme.GridSplitters.Background = BaseThemeColors.Black100;
         theme.GridSplitters.PreviewBackground = BaseThemeColors.Neutral800;
         theme.Headers.Foreground = BaseThemeColors.Black700;
@@ -149,6 +155,12 @@ static partial class ThemeExtensions
         theme.TextBoxes.FilledBackground = BaseThemeColors.White100;
         theme.TextBoxes.HoverBackground = BaseThemeColors.White100;
         theme.TextBoxes.OutlineInactiveBorder = BaseThemeColors.White200;
+        theme.PasswordBoxes.HoverBorder = BaseThemeColors.White900;
+        theme.PasswordBoxes.Border = BaseThemeColors.White500;
+        theme.PasswordBoxes.OutlineBorder = BaseThemeColors.White700;
+        theme.PasswordBoxes.FilledBackground = BaseThemeColors.White100;
+        theme.PasswordBoxes.HoverBackground = BaseThemeColors.White100;
+        theme.PasswordBoxes.OutlineInactiveBorder = BaseThemeColors.White200;
         theme.GridSplitters.Background = BaseThemeColors.White100;
         theme.GridSplitters.PreviewBackground = BaseThemeColors.Neutral400;
         theme.Headers.Foreground = BaseThemeColors.White700;

@@ -152,8 +152,7 @@
       </Setter.Value>
     </Setter>
     <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}" />
-    <Setter Property="VerticalAlignment" Value="Center" />
-    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Stretch" />
     <Setter Property="wpf:HintAssist.HelperTextStyle" Value="{StaticResource MaterialDesignHelperTextBlock}" />
     <Setter Property="internal:ClearText.HandlesClearCommand" Value="True" />
     <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />

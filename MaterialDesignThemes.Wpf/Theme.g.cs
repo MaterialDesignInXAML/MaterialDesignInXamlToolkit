@@ -21,6 +21,7 @@ partial class Theme
         ComboBoxes = new(this);
         DataGrids = new(this);
         TextBoxes = new(this);
+        PasswordBoxes = new(this);
         GridSplitters = new(this);
         Headers = new(this);
         ListBoxItems = new(this);
@@ -81,6 +82,8 @@ partial class Theme
     public DataGrid DataGrids { get; set; }
 
     public TextBox TextBoxes { get; set; }
+
+    public PasswordBox PasswordBoxes { get; set; }
 
     public GridSplitter GridSplitters { get; set; }
 
@@ -521,6 +524,58 @@ partial class Theme
         {
            get => _theme.Resolve(_disabledBackground);
            set => _disabledBackground = value;
+        }
+
+        private ColorReference _filledBackground;
+        public ColorReference FilledBackground
+        {
+           get => _theme.Resolve(_filledBackground);
+           set => _filledBackground = value;
+        }
+
+        private ColorReference _hoverBackground;
+        public ColorReference HoverBackground
+        {
+           get => _theme.Resolve(_hoverBackground);
+           set => _hoverBackground = value;
+        }
+
+        private ColorReference _outlineInactiveBorder;
+        public ColorReference OutlineInactiveBorder
+        {
+           get => _theme.Resolve(_outlineInactiveBorder);
+           set => _outlineInactiveBorder = value;
+        }
+
+    }
+
+    public class PasswordBox
+    {
+        private readonly Theme _theme;
+        public PasswordBox(Theme theme)
+        {
+            _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+        }
+
+        private ColorReference _hoverBorder;
+        public ColorReference HoverBorder
+        {
+           get => _theme.Resolve(_hoverBorder);
+           set => _hoverBorder = value;
+        }
+
+        private ColorReference _border;
+        public ColorReference Border
+        {
+           get => _theme.Resolve(_border);
+           set => _border = value;
+        }
+
+        private ColorReference _outlineBorder;
+        public ColorReference OutlineBorder
+        {
+           get => _theme.Resolve(_outlineBorder);
+           set => _outlineBorder = value;
         }
 
         private ColorReference _filledBackground;
