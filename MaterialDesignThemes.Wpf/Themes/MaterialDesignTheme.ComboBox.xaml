@@ -607,7 +607,7 @@
       <MultiTrigger>
         <MultiTrigger.Conditions>
           <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
-          <Condition Property="IsKeyboardFocused" Value="True" />
+          <Condition Property="IsKeyboardFocusWithin" Value="True" />
         </MultiTrigger.Conditions>
         <Setter TargetName="Hint" Property="Foreground" Value="{Binding Path=(wpf:HintAssist.Foreground), RelativeSource={RelativeSource TemplatedParent}}" />
       </MultiTrigger>
@@ -646,6 +646,7 @@
 
       <!-- IsKeyboardFocused -->
       <Trigger Property="IsKeyboardFocusWithin" Value="True">
+        <Setter TargetName="HintWrapper" Property="Opacity" Value="1" />
         <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
         <Setter TargetName="Underline" Property="IsActive" Value="True" />
       </Trigger>
@@ -654,6 +655,7 @@
           <Condition Property="IsKeyboardFocusWithin" Value="True" />
           <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
         </MultiTrigger.Conditions>
+        <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
         <Setter TargetName="OuterBorder" Property="BorderThickness" Value="{Binding Path=(wpf:TextFieldAssist.OutlinedBorderActiveThickness), RelativeSource={RelativeSource TemplatedParent}}" />
         <Setter TargetName="ContentGrid" Property="Margin">
           <Setter.Value>
@@ -676,7 +678,7 @@
         </MultiTrigger.Conditions>
         <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource Self}}" />
         <Setter TargetName="OuterBorder" Property="BorderThickness" Value="{Binding Path=(wpf:TextFieldAssist.OutlinedBorderActiveThickness), RelativeSource={RelativeSource TemplatedParent}}" />
-        <Setter TargetName="OuterBorder" Property="Margin">
+        <Setter TargetName="ContentGrid" Property="Margin">
           <Setter.Value>
             <MultiBinding Converter="{StaticResource OutlinedStyleActiveBorderMarginCompensationConverter}">
               <Binding Path="BorderThickness" RelativeSource="{RelativeSource TemplatedParent}" />
