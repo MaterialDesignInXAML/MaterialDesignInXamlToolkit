@@ -68,7 +68,11 @@
   <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" />
   <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MaterialDesignDataGridRow}" />
   <Style TargetType="{x:Type DataGridRowHeader}" BasedOn="{StaticResource MaterialDesignDataGridRowHeader}" />
-  <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignDatePicker}" />
+  <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignDatePicker}">
+    <Style.Resources>
+      <Style x:Key="NestedTextBoxStyle" TargetType="DatePickerTextBox" BasedOn="{StaticResource MaterialDesignTextBox}" />
+    </Style.Resources>
+  </Style>
   <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource MaterialDesignExpander}" />
   <Style TargetType="{x:Type GridSplitter}" BasedOn="{StaticResource MaterialDesignGridSplitter}" />
   <Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource MaterialDesignGroupBox}" />
