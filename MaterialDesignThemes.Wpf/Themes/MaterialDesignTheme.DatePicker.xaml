@@ -16,6 +16,9 @@
   </Style>
 
   <Style x:Key="MaterialDesignDatePicker" TargetType="{x:Type DatePicker}">
+    <Style.Resources>
+      <Style x:Key="NestedTextBoxStyle" TargetType="{x:Type DatePickerTextBox}" BasedOn="{StaticResource MaterialDesignTextBox}" />
+    </Style.Resources>
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
     <Setter Property="BorderThickness" Value="0,0,0,1" />
     <Setter Property="CalendarStyle" Value="{StaticResource MaterialDesignDatePickerCalendarPortrait}" />

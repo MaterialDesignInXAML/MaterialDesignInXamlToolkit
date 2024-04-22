@@ -8,6 +8,9 @@
   </ResourceDictionary.MergedDictionaries>
 
   <Style x:Key="MaterialDesignTimePicker" TargetType="{x:Type wpf:TimePicker}">
+    <Style.Resources>
+      <Style x:Key="NestedTextBoxStyle" TargetType="wpf:TimePickerTextBox" BasedOn="{StaticResource MaterialDesignTextBox}" />
+    </Style.Resources>
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
     <Setter Property="BorderThickness" Value="0,0,0,1" />
     <Setter Property="ClockHostContentControlStyle">

@@ -117,23 +117,24 @@ public class DatePickerTests : TestBase
         var datePicker = await stackPanel.GetElement<DatePicker>("/DatePicker");
         await datePicker.SetProperty(DatePicker.SelectedDateProperty, DateTime.Now.AddDays(1));
         var datePickerTextBox = await datePicker.GetElement<TextBox>("PART_TextBox");
+        var textBoxOuterBorder = await datePickerTextBox.GetElement<Border>("OuterBorder");
         var button = await stackPanel.GetElement<Button>("Button");
 
         // Act
         await button.MoveCursorTo();
         await Task.Delay(50);   // Wait for the visual change
-        var inactiveBorderThickness = await datePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
+        var inactiveBorderThickness = await textBoxOuterBorder.GetBorderThickness();
         await datePickerTextBox.MoveCursorTo();
         await Task.Delay(50);   // Wait for the visual change
-        var hoverBorderThickness = await datePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
+        var hoverBorderThickness = await textBoxOuterBorder.GetBorderThickness();
         await datePickerTextBox.LeftClick();
         await Task.Delay(50);   // Wait for the visual change
-        var focusedBorderThickness = await datePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
+        var focusedBorderThickness = await textBoxOuterBorder.GetBorderThickness();
 
         // TODO: It would be cool if a validation error could be set via XAMLTest without the need for the Binding and ValidationRules elements in the XAML above.
         await datePicker.SetProperty(DatePicker.SelectedDateProperty, DateTime.Now);
         await Task.Delay(50);   // Wait for the visual change
-        var withErrorBorderThickness = await datePickerTextBox.GetProperty<Thickness>(Control.BorderThicknessProperty);
+        var withErrorBorderThickness = await textBoxOuterBorder.GetBorderThickness();
 
         // Assert
         Assert.Equal(expectedInactiveBorderThickness, inactiveBorderThickness);
@@ -236,7 +237,7 @@ public class DatePickerTests : TestBase
 
     [Fact]
     [Description("Issue 3365")]
-    public async Task DatePicker_WithoutOutlinedStyleAndNoCustomHintBackgroundSet_ShouldApplyDefaultBackgroundWhenFloated()
+    public async Task DatePicker_WithOutlinedStyleAndNoCustomHintBackgroundSet_ShouldApplyDefaultBackgroundWhenFloated()
     {
         await using var recorder = new TestRecorder(App);
 
@@ -250,19 +251,19 @@ public class DatePickerTests : TestBase
             """);
         var datePicker = await stackPanel.GetElement<DatePicker>("/DatePicker");
         var datePickerTextBox = await datePicker.GetElement<DatePickerTextBox>("/DatePickerTextBox");
-        var hintBackgroundBorder = await datePicker.GetElement<Border>("HintBackgroundBorder");
+        var hintBackgroundGrid = await datePicker.GetElement<Grid>("HintBackgroundGrid");
 
         var defaultBackground = Colors.Transparent;
         var defaultFloatedBackground = await GetThemeColor("MaterialDesign.Brush.Background");
 
         // Assert (unfocused state)
-        Assert.Equal(defaultBackground, await hintBackgroundBorder.GetBackgroundColor());
+        Assert.Equal(defaultBackground, await hintBackgroundGrid.GetBackgroundColor());
 
         // Act
         await datePickerTextBox.MoveKeyboardFocus();
 
         // Assert (focused state)
-        Assert.Equal(defaultFloatedBackground, await hintBackgroundBorder.GetBackgroundColor());
+        Assert.Equal(defaultFloatedBackground, await hintBackgroundGrid.GetBackgroundColor());
 
         recorder.Success();
     }

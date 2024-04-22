@@ -544,7 +544,7 @@ public class TimePickerTests : TestBase
 
     [Fact]
     [Description("Issue 3365")]
-    public async Task TimePicker_WithoutOutlinedStyleAndNoCustomHintBackgroundSet_ShouldApplyDefaultBackgroundWhenFloated()
+    public async Task TimePicker_WithOutlinedStyleAndNoCustomHintBackgroundSet_ShouldApplyDefaultBackgroundWhenFloated()
     {
         await using var recorder = new TestRecorder(App);
 
