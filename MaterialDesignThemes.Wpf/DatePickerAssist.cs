@@ -1,7 +1,6 @@
 ﻿namespace MaterialDesignThemes.Wpf;
 
-/* TODO: We should obsolete this class in favor of the TextBoxAssist equivalents. */
-//[Obsolete("This class is obsolete and will be removed in a future version. Please use the TextBoxAssist equivalents instead. For OutlinedBorderInactiveThickness, simply use BorderThickness property instead.")]
+[Obsolete("This class is obsolete and will be removed in a future version. Please use the TextBoxAssist equivalents instead. For OutlinedBorderInactiveThickness, simply use BorderThickness property instead.")]
 public static class DatePickerAssist
 {
     public static readonly DependencyProperty OutlinedBorderInactiveThicknessProperty = DependencyProperty.RegisterAttached(
