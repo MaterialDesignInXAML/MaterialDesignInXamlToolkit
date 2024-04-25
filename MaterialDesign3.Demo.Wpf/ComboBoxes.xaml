@@ -185,7 +185,6 @@
       </smtx:XamlDisplay>
       <smtx:XamlDisplay UniqueKey="comboboxes_8">
         <ComboBox MinWidth="72"
-                  materialDesign:HintAssist.FloatingOffset="0, -24"
                   materialDesign:HintAssist.FloatingScale="1.5"
                   materialDesign:HintAssist.Hint="(large float hint)"
                   ItemsSource="{Binding LongListToTestComboVirtualization}"

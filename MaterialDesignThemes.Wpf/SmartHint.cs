@@ -104,7 +104,7 @@ public class SmartHint : Control
     }
 
     public static readonly DependencyProperty FloatingOffsetProperty = DependencyProperty.Register(
-        nameof(FloatingOffset), typeof(Point), typeof(SmartHint), new PropertyMetadata(new Point(1, -16)));
+        nameof(FloatingOffset), typeof(Point), typeof(SmartHint), new PropertyMetadata(HintAssist.DefaultFloatingOffset));
 
     public Point FloatingOffset
     {

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MaterialDesignDemo.Pickers"
+<UserControl x:Class="MaterialDesignDemo.Pickers"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -174,7 +174,6 @@
                           UniqueKey="pickers_unchanging_borderthickness">
           <DatePicker Width="140"
                       materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="2"
-                      materialDesign:HintAssist.FloatingOffset="0,-22"
                       materialDesign:HintAssist.HelperText="Helper text"
                       materialDesign:HintAssist.Hint="Pick Date"
                       Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
@@ -186,7 +185,6 @@
           <DatePicker Width="140"
                       materialDesign:DatePickerAssist.OutlinedBorderActiveThickness="3"
                       materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="3"
-                      materialDesign:HintAssist.FloatingOffset="0,-23"
                       materialDesign:HintAssist.HelperText="Helper text"
                       materialDesign:HintAssist.Hint="Pick Date"
                       Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
@@ -206,7 +204,6 @@
                           HorizontalAlignment="Left"
                           UniqueKey="pickers_time_custom_borderthickness">
           <materialDesign:TimePicker Width="140"
-                                     materialDesign:HintAssist.FloatingOffset="0,-23"
                                      materialDesign:HintAssist.HelperText="Helper text"
                                      materialDesign:HintAssist.Hint="Pick Time"
                                      materialDesign:TimePickerAssist.OutlinedBorderActiveThickness="3"
