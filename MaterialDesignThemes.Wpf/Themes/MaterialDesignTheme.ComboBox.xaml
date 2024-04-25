@@ -930,7 +930,7 @@
          TargetType="{x:Type ComboBox}"
          BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ComboBox.FilledBackground}" />
-    <Setter Property="Padding" Value="{x:Static wpf:Constants+TemporaryConstants.FilledTextBoxDefaultPaddingNew}" />
+    <Setter Property="Padding" Value="{x:Static wpf:Constants.FilledTextBoxDefaultPadding}" />
     <Setter Property="VerticalAlignment" Value="Stretch" />
     <Setter Property="VerticalContentAlignment" Value="Stretch" />
     <Setter Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
