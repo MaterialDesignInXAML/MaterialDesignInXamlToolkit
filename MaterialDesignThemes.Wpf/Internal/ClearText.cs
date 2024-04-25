@@ -37,13 +37,19 @@ public static class ClearText
         {
             switch (sender)
             {
-                case DatePicker datePicker:
-                    datePicker.SetCurrentValue(DatePicker.SelectedDateProperty, null);
-                    datePicker.Text = string.Empty; // Clears the text in the DatePickerTextBox which could contain uncommitted text
+                case DatePickerTextBox datePickerTextBox:
+                    if (datePickerTextBox.GetVisualAncestry().OfType<DatePicker>().FirstOrDefault() is { } datePicker)
+                    {
+                        datePicker.SetCurrentValue(DatePicker.SelectedDateProperty, null);
+                        datePicker.Text = string.Empty; // Clears the text in the DatePickerTextBox which could contain uncommitted text
+                    }
                     break;
-                case TimePicker timePicker:
-                    timePicker.SetCurrentValue(TimePicker.SelectedTimeProperty, null);
-                    timePicker.Clear(); // Clears the text in the TimePickerTextBox which could contain uncommitted text
+                case TimePickerTextBox timePickerTextBox:
+                    if (timePickerTextBox.GetVisualAncestry().OfType<TimePicker>().FirstOrDefault() is { } timePicker)
+                    {
+                        timePicker.SetCurrentValue(TimePicker.SelectedTimeProperty, null);
+                        timePicker.Clear(); // Clears the text in the TimePickerTextBox which could contain uncommitted text
+                    }
                     break;
                 case TextBox textBox:
                     textBox.SetCurrentValue(TextBox.TextProperty, null);

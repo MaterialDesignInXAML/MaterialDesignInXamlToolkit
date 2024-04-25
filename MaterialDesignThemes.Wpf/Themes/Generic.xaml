@@ -39,11 +39,7 @@
   <Style TargetType="{x:Type local:Badged}" BasedOn="{StaticResource MaterialDesignBadge}" />
   <Style TargetType="{x:Type local:Card}" BasedOn="{StaticResource MaterialDesignElevatedCard}" />
   <Style TargetType="{x:Type local:PopupBox}" BasedOn="{StaticResource MaterialDesignPopupBox}" />
-  <Style TargetType="{x:Type local:TimePicker}" BasedOn="{StaticResource MaterialDesignTimePicker}">
-    <Style.Resources>
-      <Style x:Key="NestedTextBoxStyle" TargetType="wpf:TimePickerTextBox" BasedOn="{StaticResource MaterialDesignTextBox}" />
-    </Style.Resources>
-  </Style>
+  <Style TargetType="{x:Type local:TimePicker}" BasedOn="{StaticResource MaterialDesignTimePicker}" />
   <Style TargetType="{x:Type local:AutoSuggestBox}" BasedOn="{StaticResource MaterialDesignAutoSuggestBox}" />
   <Style TargetType="{x:Type local:SplitButton}" BasedOn="{StaticResource MaterialDesignRaisedSplitButton}" />
 
