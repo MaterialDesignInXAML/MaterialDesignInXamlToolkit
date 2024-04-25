@@ -326,7 +326,9 @@
       <TextBox x:Name="MaterialDesignFloatingHintTextBoxDefaults" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
       <TextBox x:Name="MaterialDesignFilledTextBoxDefaults" Style="{StaticResource MaterialDesignFilledTextBox}" />
       <TextBox x:Name="MaterialDesignOutlinedTextBoxDefaults" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-      <RichTextBox x:Name="MaterialDesignRichTextBoxDefaults" Style="{StaticResource MaterialDesignRichTextBox}" />
+      <RichTextBox x:Name="MaterialDesignFloatingHintRichTextBoxDefaults" Style="{StaticResource MaterialDesignFloatingHintRichTextBox}" />
+      <RichTextBox x:Name="MaterialDesignFilledRichTextBoxDefaults" Style="{StaticResource MaterialDesignFilledRichTextBox}" />
+      <RichTextBox x:Name="MaterialDesignOutlinedRichTextBoxDefaults" Style="{StaticResource MaterialDesignOutlinedRichTextBox}" />
       <PasswordBox x:Name="MaterialDesignFloatingHintPasswordBoxDefaults" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
       <PasswordBox x:Name="MaterialDesignFilledPasswordBoxDefaults" Style="{StaticResource MaterialDesignFilledPasswordBox}" />
       <PasswordBox x:Name="MaterialDesignOutlinedPasswordBoxDefaults" Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
@@ -582,17 +584,82 @@
                    Text="RichTextBox styles" />
         <Grid>
           <Grid.Resources>
-            <Style TargetType="{x:Type RichTextBox}" BasedOn="{StaticResource MaterialDesignRichTextBox}">
+            <Style TargetType="{x:Type RichTextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintRichTextBox}">
+              <Setter Property="AcceptsReturn" Value="False" />
               <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
               <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
 
-              <!-- TODO: This is needed in order to avoid the RichTextBox only showing a single character per line?!?! There must be a bug somewhere! Min/MinWidth both "work" -->
+              <!-- TODO: This is needed in order to avoid the RichTextBox only showing a single character per line?!?! There must be a bug somewhere! Min/MinWidth both "work". Also happens with default style!! -->
               <!-- Also note that it does not work correctly, it now simply allows characters up to the width defined below before wrapping to the next line. -->
-              <Setter Property="MinWidth" Value="100" />
+              <Setter Property="MinWidth" Value="180" />
               <Setter Property="Padding">
                 <Setter.Value>
                   <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
-                    <Binding ElementName="MaterialDesignRichTextBoxDefaults" Path="Padding" />
+                    <Binding ElementName="MaterialDesignFloatingHintRichTextBoxDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
+              <Setter Property="local:SmartHint.RichTextBoxText" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
+              <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextVisibility" Value="{Binding SelectedPrefixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition x:Name="RichTextBoxColumnDefinition" Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFloatingHintRichTextBox</TextBlock>
+          <local:InputElementContentControl Grid.Column="1">
+            <RichTextBox />
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="2">
+            <RichTextBox HorizontalContentAlignment="Center" />
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="3">
+            <RichTextBox HorizontalContentAlignment="Right" />
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="4">
+            <RichTextBox HorizontalContentAlignment="Stretch" />
+          </local:InputElementContentControl>
+        </Grid>
+
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type RichTextBox}" BasedOn="{StaticResource MaterialDesignFilledRichTextBox}">
+              <Setter Property="AcceptsReturn" Value="False" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+
+              <!-- TODO: This is needed in order to avoid the RichTextBox only showing a single character per line?!?! There must be a bug somewhere! Min/MinWidth both "work". Also happens with default style!! -->
+              <!-- Also note that it does not work correctly, it now simply allows characters up to the width defined below before wrapping to the next line. -->
+              <Setter Property="MinWidth" Value="180" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignFilledRichTextBoxDefaults" Path="Padding" />
                     <Binding Path="ApplyCustomPadding" />
                     <Binding Path="SelectedCustomPadding" />
                   </MultiBinding>
@@ -628,7 +695,71 @@
             <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
 
-          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignRichTextBox</TextBlock>
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFilledHintRichTextBox</TextBlock>
+          <local:InputElementContentControl Grid.Column="1">
+            <RichTextBox />
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="2">
+            <RichTextBox HorizontalContentAlignment="Center" />
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="3">
+            <RichTextBox HorizontalContentAlignment="Right" />
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="4">
+            <RichTextBox HorizontalContentAlignment="Stretch" />
+          </local:InputElementContentControl>
+        </Grid>
+
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type RichTextBox}" BasedOn="{StaticResource MaterialDesignOutlinedRichTextBox}">
+              <Setter Property="AcceptsReturn" Value="False" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+
+              <!-- TODO: This is needed in order to avoid the RichTextBox only showing a single character per line?!?! There must be a bug somewhere! Min/MinWidth both "work". Also happens with default style!! -->
+              <!-- Also note that it does not work correctly, it now simply allows characters up to the width defined below before wrapping to the next line. -->
+              <Setter Property="MinWidth" Value="180" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignOutlinedRichTextBoxDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
+              <Setter Property="local:SmartHint.RichTextBoxText" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
+              <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextVisibility" Value="{Binding SelectedPrefixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignOutlinedRichTextBox</TextBlock>
           <local:InputElementContentControl Grid.Column="1">
             <RichTextBox />
           </local:InputElementContentControl>
