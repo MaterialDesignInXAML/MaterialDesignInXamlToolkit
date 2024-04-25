@@ -3,6 +3,7 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters;
 
+[Obsolete("This class is obsolete and will be removed in a future version.")]
 public class TimeToVisibilityConverter : MarkupExtension, IValueConverter
 {
     public override object ProvideValue(IServiceProvider serviceProvider)
