@@ -41,6 +41,10 @@
                   Style="{StaticResource MaterialDesignFlatButton}" />
         </StackPanel>
       </DataTemplate>
+
+      <materialDesign:BooleanToVisibilityConverter x:Key="InverseBoolToVisConverter"
+                                                   FalseValue="Visible"
+                                                   TrueValue="Collapsed" />
     </ResourceDictionary>
   </Window.Resources>
 
