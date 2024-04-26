@@ -17,7 +17,9 @@ function Update-Icon {
   [string] $iconUrl = $xml.package.metadata.iconUrl;
   if (![string]::IsNullOrWhiteSpace($iconUrl) -and [string]::IsNullOrWhiteSpace($xml.package.metadata.icon)) {
     $nugetIconFile = "$($xml.package.metadata.id).Icon.png";
-    Invoke-WebRequest $iconUrl -OutFile "$nugetIconFile"
+    $nugetIconPath = Join-Path (Split-Path $Path -Parent) $nugetIconFile
+    Write-Host "Downloading icon from $iconUrl to $nugetIconPath"
+    Invoke-WebRequest $iconUrl -OutFile "$nugetIconPath"
     $files = $xml.SelectSingleNode("/package/files")
     $iconFile = $xml.CreateElement("file")
     $iconFile.SetAttribute("src", "$nugetIconFile")
