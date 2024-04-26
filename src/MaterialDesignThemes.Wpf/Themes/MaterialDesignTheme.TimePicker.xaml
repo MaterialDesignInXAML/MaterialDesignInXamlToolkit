@@ -8,6 +8,9 @@
   </ResourceDictionary.MergedDictionaries>
 
   <Style x:Key="MaterialDesignTimePicker" TargetType="{x:Type wpf:TimePicker}">
+    <Style.Resources>
+      <Style x:Key="NestedTextBoxStyle" TargetType="wpf:TimePickerTextBox" BasedOn="{StaticResource MaterialDesignTextBox}" />
+    </Style.Resources>
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
     <Setter Property="BorderThickness" Value="0,0,0,1" />
     <Setter Property="ClockHostContentControlStyle">
@@ -152,8 +155,7 @@
       </Setter.Value>
     </Setter>
     <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}" />
-    <Setter Property="VerticalAlignment" Value="Center" />
-    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Stretch" />
     <Setter Property="wpf:HintAssist.HelperTextStyle" Value="{StaticResource MaterialDesignHelperTextBlock}" />
     <Setter Property="internal:ClearText.HandlesClearCommand" Value="True" />
     <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
@@ -178,7 +180,7 @@
       <Style x:Key="NestedTextBoxStyle" TargetType="wpf:TimePickerTextBox" BasedOn="{StaticResource MaterialDesignFilledTextBox}" />
     </Style.Resources>
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.FilledBackground}" />
-    <Setter Property="Padding" Value="{x:Static wpf:Constants+TemporaryConstants.FilledTextBoxDefaultPaddingNew}" />
+    <Setter Property="Padding" Value="{x:Static wpf:Constants.FilledTextBoxDefaultPadding}" />
     <Setter Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
     <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4,4,0,0" />
     <Setter Property="wpf:TextFieldAssist.UnderlineCornerRadius" Value="0" />

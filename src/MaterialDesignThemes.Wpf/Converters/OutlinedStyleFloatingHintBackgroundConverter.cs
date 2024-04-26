@@ -4,6 +4,7 @@ using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf.Converters;
 
+[Obsolete("This class is obsolete and will be removed in a future version.")]
 public class OutlinedStyleFloatingHintBackgroundConverter : IMultiValueConverter
 {
     public object? Convert(object[]? values, Type targetType, object? parameter, CultureInfo culture)

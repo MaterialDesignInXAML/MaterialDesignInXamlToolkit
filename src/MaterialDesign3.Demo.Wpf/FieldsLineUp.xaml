@@ -190,7 +190,7 @@
         <TextBox Grid.Row="1" Grid.Column="1" />
         <TextBox Grid.Row="2"
                  Grid.Column="1"
-                 materialDesign:HintAssist.IsFloating="True" />
+                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
         <TextBox Grid.Row="3"
                  Grid.Column="1"
                  Style="{StaticResource MaterialDesignFilledTextBox}" />
@@ -201,7 +201,7 @@
         <PasswordBox Grid.Row="1" Grid.Column="2" />
         <PasswordBox Grid.Row="2"
                      Grid.Column="2"
-                     materialDesign:HintAssist.IsFloating="True" />
+                     Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
         <PasswordBox Grid.Row="3"
                      Grid.Column="2"
                      Style="{StaticResource MaterialDesignFilledPasswordBox}" />
@@ -212,7 +212,7 @@
         <ComboBox Grid.Row="1" Grid.Column="3" />
         <ComboBox Grid.Row="2"
                   Grid.Column="3"
-                  materialDesign:HintAssist.IsFloating="true" />
+                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
         <ComboBox Grid.Row="3"
                   Grid.Column="3"
                   Style="{StaticResource MaterialDesignFilledComboBox}" />
@@ -223,7 +223,7 @@
         <DatePicker Grid.Row="1" Grid.Column="4" />
         <DatePicker Grid.Row="2"
                     Grid.Column="4"
-                    materialDesign:HintAssist.IsFloating="True" />
+                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
         <DatePicker Grid.Row="3"
                     Grid.Column="4"
                     Style="{StaticResource MaterialDesignFilledDatePicker}" />
