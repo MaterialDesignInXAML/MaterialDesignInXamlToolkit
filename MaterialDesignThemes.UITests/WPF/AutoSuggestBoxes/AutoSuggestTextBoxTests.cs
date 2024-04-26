@@ -79,6 +79,10 @@ public class AutoSuggestBoxTests : TestBase
         var bananas = await suggestionListBox.GetElement<ListBoxItem>("/ListBoxItem[0]");
         await bananas.MoveCursorTo();
         await bananas.LeftClick();
+
+        // Wait for the text to be updated
+        await Task.Delay(50);
+
         var suggestBoxText = await suggestBox.GetText();
         //Validate that the current text is the same as the selected item
         Assert.Equal("Bananas", suggestBoxText);

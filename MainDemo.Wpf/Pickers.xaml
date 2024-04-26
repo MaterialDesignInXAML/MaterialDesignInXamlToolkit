@@ -173,8 +173,7 @@
                           HorizontalAlignment="Left"
                           UniqueKey="pickers_unchanging_borderthickness">
           <DatePicker Width="140"
-                      materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="2"
-                      materialDesign:HintAssist.FloatingOffset="0,-22"
+                      BorderThickness="2"
                       materialDesign:HintAssist.HelperText="Helper text"
                       materialDesign:HintAssist.Hint="Pick Date"
                       Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
@@ -184,9 +183,8 @@
                           HorizontalAlignment="Left"
                           UniqueKey="pickers_14_custom_borderthickness">
           <DatePicker Width="140"
-                      materialDesign:DatePickerAssist.OutlinedBorderActiveThickness="3"
-                      materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="3"
-                      materialDesign:HintAssist.FloatingOffset="0,-23"
+                      materialDesign:TextFieldAssist.OutlinedBorderActiveThickness="3"
+                      BorderThickness="3"
                       materialDesign:HintAssist.HelperText="Helper text"
                       materialDesign:HintAssist.Hint="Pick Date"
                       Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
@@ -206,11 +204,10 @@
                           HorizontalAlignment="Left"
                           UniqueKey="pickers_time_custom_borderthickness">
           <materialDesign:TimePicker Width="140"
-                                     materialDesign:HintAssist.FloatingOffset="0,-23"
                                      materialDesign:HintAssist.HelperText="Helper text"
                                      materialDesign:HintAssist.Hint="Pick Time"
-                                     materialDesign:TimePickerAssist.OutlinedBorderActiveThickness="3"
-                                     materialDesign:TimePickerAssist.OutlinedBorderInactiveThickness="3"
+                                     materialDesign:TextFieldAssist.OutlinedBorderActiveThickness="3"
+                                     BorderThickness="3"
                                      Is24Hours="True"
                                      Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
         </smtx:XamlDisplay>

@@ -5,7 +5,7 @@ namespace MaterialDesignDemo.Domain;
 
 internal class SmartHintViewModel : ViewModelBase
 {
-    public static Point DefaultFloatingOffset { get; } = new(0, -16);
+    public static Point DefaultFloatingOffset { get; } = new(0, 0);
     public static FontFamily DefaultFontFamily = (FontFamily)new MaterialDesignFontExtension().ProvideValue(null!);
 
     private bool _floatHint = true;
@@ -46,7 +46,7 @@ internal class SmartHintViewModel : ViewModelBase
 
     public IEnumerable<FloatingHintHorizontalAlignment> HorizontalAlignmentOptions { get; } = Enum.GetValues(typeof(FloatingHintHorizontalAlignment)).OfType<FloatingHintHorizontalAlignment>();
     public IEnumerable<double> FloatingScaleOptions { get; } = [0.25, 0.5, 0.75, 1.0];
-    public IEnumerable<Point> FloatingOffsetOptions { get; } = [DefaultFloatingOffset, new Point(0, -25), new Point(16, -16), new Point(-16, -16), new Point(0, -50)];
+    public IEnumerable<Point> FloatingOffsetOptions { get; } = [DefaultFloatingOffset, new Point(0, -25), new Point(0, -16), new Point(16, -16), new Point(-16, -16), new Point(0, -50)];
     public IEnumerable<string> ComboBoxOptions { get; } = ["Option 1", "Option 2", "Option 3"];
     public IEnumerable<Thickness> CustomPaddingOptions { get; } = [new Thickness(0), new Thickness(5), new Thickness(10), new Thickness(15)];
     public IEnumerable<double> CustomHeightOptions { get; } = [double.NaN, 50, 75, 100, 150];

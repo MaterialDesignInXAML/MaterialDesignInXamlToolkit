@@ -115,9 +115,11 @@ xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"">
         Title=""Test Window""
         Topmost=""False""
         WindowStartupLocation=""CenterScreen"">
-        <local:{userControlType.Name} />
+  <Grid>
+    <local:{userControlType.Name} x:Name=""Container"" VerticalAlignment=""Center"" />
+  </Grid>
 </Window>";
         IWindow window = await app.CreateWindow(windowXaml);
-        return await window.GetElement(".Content.Content");
+        return await window.GetElement("Container.Content");
     }
 }
