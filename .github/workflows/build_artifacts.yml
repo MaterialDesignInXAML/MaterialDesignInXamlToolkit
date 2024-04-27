@@ -1,75 +1,74 @@
 name: Build Artifacts
 
 on:
-  workflow_call:
-    inputs:
-      build-configuration:
-        default: 'Release'
-        required: false
-        type: string
-      mdix-version:
-        required: true
-        type: string
-      mdix-colors-version:
-        required: true
-        type: string
-      mdix-mahapps-version:
-        required: true
-        type: string
-
+    workflow_call:
+        inputs:
+            build-configuration:
+                default: "Release"
+                required: false
+                type: string
+            mdix-version:
+                required: true
+                type: string
+            mdix-colors-version:
+                required: true
+                type: string
+            mdix-mahapps-version:
+                required: true
+                type: string
 
 jobs:
-  build:
-    name: Build and Test
-    runs-on: windows-latest
+    build:
+        name: Build and Test
+        runs-on: windows-latest
 
-    env:
-      solution: MaterialDesignToolkit.Full.sln
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: |
-            6.x
-            7.x
-            8.x
-          
-      - name: Restore dependencies
-        run: dotnet restore ${{ env.solution }}
-  
-      - name: Build
-        run: dotnet build ${{ env.solution }} --configuration ${{ inputs.build-configuration }} --no-restore -p:Platform="Any CPU" -p:TreatWarningsAsErrors=True
         env:
-          MDIXVersion: ${{ inputs.mdix-version }}
-          MDIXColorsVersion: ${{ inputs.mdix-colors-version }} 
-          MDIXMahAppsVersion: ${{ inputs.mdix-mahapps-version }}
-  
-      - name: Test
-        timeout-minutes: 20
-        run: dotnet test ${{ env.solution }} --configuration ${{ inputs.build-configuration }} --no-build --blame-crash --logger GitHubActions
-  
-      - name: Upload Screenshots
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: Screenshots-${{ github.run_number }}
-          path: ${{ github.workspace }}\MaterialDesignThemes.UITests\bin\${{ inputs.build-configuration }}\net8.0-windows7\Screenshots
-          if-no-files-found: ignore
+            solution: MaterialDesignToolkit.Full.sln
 
-      - name: Build NuGets
-        run: .\Scripts\BuildNugets.ps1 -MDIXVersion ${{ inputs.mdix-version }} -MDIXColorsVersion ${{ inputs.mdix-colors-version }} -MDIXMahAppsVersion ${{ inputs.mdix-mahapps-version }}
+        steps:
+            - uses: actions/checkout@v4
 
-      - name: Upload NuGets
-        uses: actions/upload-artifact@v4
-        with:
-          name: NuGets
-          path: "*.nupkg"
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v4
+              with:
+                  dotnet-version: |
+                      6.x
+                      7.x
+                      8.x
 
-      - name: Upload Demo App
-        uses: actions/upload-artifact@v4
-        with:
-          name: DemoApp
-          path: "MainDemo.Wpf/bin/${{ env.buildConfiguration }}"
+            - name: Restore dependencies
+              run: dotnet restore ${{ env.solution }}
+
+            - name: Build
+              run: dotnet build ${{ env.solution }} --configuration ${{ inputs.build-configuration }} --no-restore -p:Platform="Any CPU" -p:TreatWarningsAsErrors=True
+              env:
+                  MDIXVersion: ${{ inputs.mdix-version }}
+                  MDIXColorsVersion: ${{ inputs.mdix-colors-version }}
+                  MDIXMahAppsVersion: ${{ inputs.mdix-mahapps-version }}
+
+            - name: Test
+              timeout-minutes: 20
+              run: dotnet test ${{ env.solution }} --configuration ${{ inputs.build-configuration }} --no-build --blame-crash --logger GitHubActions
+
+            - name: Upload Screenshots
+              if: ${{ always() }}
+              uses: actions/upload-artifact@v4
+              with:
+                  name: Screenshots-${{ github.run_number }}
+                  path: ${{ github.workspace }}tests\MaterialDesignThemes.UITests\bin\${{ inputs.build-configuration }}\net8.0-windows7\Screenshots
+                  if-no-files-found: ignore
+
+            - name: Build NuGets
+              run: .\build\BuildNugets.ps1 -MDIXVersion ${{ inputs.mdix-version }} -MDIXColorsVersion ${{ inputs.mdix-colors-version }} -MDIXMahAppsVersion ${{ inputs.mdix-mahapps-version }}
+
+            - name: Upload NuGets
+              uses: actions/upload-artifact@v4
+              with:
+                  name: NuGets
+                  path: "*.nupkg"
+
+            - name: Upload Demo App
+              uses: actions/upload-artifact@v4
+              with:
+                  name: DemoApp
+                  path: "src/MainDemo.Wpf/bin/${{ env.buildConfiguration }}"

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>MaterialDesignColors</id>
+    <version>$version$</version>
+    <title>Material Design Colors XAML Resources</title>
+    <authors>James Willock</authors>
+    <owners>James Willock</owners>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit</projectUrl>
+    <iconUrl>http://materialdesigninxaml.net/images/MD4XAML32.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ResourceDictionary instances containing standard Google Material Design swatches,
+      for inclusion in a XAML application.</description>
+    <readme>docs\README.md</readme>
+    <releaseNotes>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/releases</releaseNotes>
+    <copyright>$copyright$</copyright>
+    <tags>WPF XAML Material Design Colour Color UI UX</tags>
+    <dependencies>
+      <group targetFramework="net462" />
+      <group targetFramework="net6.0" />
+      <group targetFramework="net7.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\..\README.md" target="docs\" />
+    <file src="bin\$configuration$\net462\MaterialDesignColors.*" target="lib\net462"
+      exclude="**\*.json" />
+    <file src="bin\$configuration$\net6.0-windows\MaterialDesignColors.*" target="lib\net6.0"
+      exclude="**\*.json" />
+    <file src="bin\$configuration$\net7.0-windows\MaterialDesignColors.*" target="lib\net7.0"
+      exclude="**\*.json" />
+  </files>
+</package>

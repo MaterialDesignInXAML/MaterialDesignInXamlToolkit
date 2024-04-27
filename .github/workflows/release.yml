@@ -1,309 +1,315 @@
 name: Production Release
 
 on:
-  workflow_dispatch:
-    inputs:
-      milestone:
-        description: 'The milestone to generate a release for'
-        required: true
-        type: string
+    workflow_dispatch:
+        inputs:
+            milestone:
+                description: "The milestone to generate a release for"
+                required: true
+                type: string
 
 env:
-  solution: MaterialDesignToolkit.Full.sln
-  # Needed for GitHub CLI
-  GH_TOKEN: ${{ github.token }}
+    solution: MaterialDesignToolkit.Full.sln
+    # Needed for GitHub CLI
+    GH_TOKEN: ${{ github.token }}
 
 defaults:
-  run:
-    shell: pwsh
+    run:
+        shell: pwsh
 
 # Needed for updating the version numbers at the end of the pipeline
 permissions:
-  id-token: write
-  contents: write
+    id-token: write
+    contents: write
 
 jobs:
-  get_versions:
-    name: Get Versions
-    uses: ./.github/workflows/get_versions.yml
-    with:
-      is-full-release: true
-
-  version_number_check:
-    needs: [get_versions]
-    runs-on: ubuntu-latest
-    name: Version matches milestone
-
-    steps:
-      - name: Check versions
-        run: |
-          if ('${{ inputs.milestone }}' -ne '${{ needs.get_versions.outputs.mdix-version }}') {
-              Write-Error "Milestone ${{ inputs.milestone }} does not match MDIX ${{ needs.get_versions.outputs.mdix-version }}"
-              exit 1
-          } else {
-              Write-Host "Versions match"
-          }
-
-  build_release_notes:
-    runs-on: ubuntu-latest
-    name: Generate Release Notes
-
-    steps:
-      - name: Get Contributors
-        id: get-contribs
-        uses: Keboo/GitHubHelper@master
+    get_versions:
+        name: Get Versions
+        uses: ./.github/workflows/get_versions.yml
         with:
-          milestone: '${{ inputs.milestone }}'
-          repository: 'MaterialDesignInXamlToolkit'
-          repository-owner: 'MaterialDesignInXAML'
-          token: ${{ github.token }}
+            is-full-release: true
 
-      - name: Generate Release Notes
-        run: |
-          $response = gh api --method POST -H "Accept: application/vnd.github+json" /repos/${{ github.repository }}/releases/generate-notes -f tag_name='v${{ inputs.milestone }}'
-          $json = $response | ConvertFrom-Json
-          $releaseNotes = $json.body
-          $contributors = "${{ steps.get-contribs.outputs.contributors }}"
-          $releaseNotes | Out-File -Append "ReleaseNotes.md"
-          "`n" | Out-File -Append "ReleaseNotes.md"
-          $contributors | Out-File -Append "ReleaseNotes.md"
-          cat "ReleaseNotes.md"
+    version_number_check:
+        needs: [get_versions]
+        runs-on: ubuntu-latest
+        name: Version matches milestone
 
-      - name: Upload Release Notes
-        uses: actions/upload-artifact@v4
+        steps:
+            - name: Check versions
+              run: |
+                  if ('${{ inputs.milestone }}' -ne '${{ needs.get_versions.outputs.mdix-version }}') {
+                      Write-Error "Milestone ${{ inputs.milestone }} does not match MDIX ${{ needs.get_versions.outputs.mdix-version }}"
+                      exit 1
+                  } else {
+                      Write-Host "Versions match"
+                  }
+
+    build_release_notes:
+        runs-on: ubuntu-latest
+        name: Generate Release Notes
+
+        steps:
+            - name: Get Contributors
+              id: get-contribs
+              uses: Keboo/GitHubHelper@master
+              with:
+                  milestone: "${{ inputs.milestone }}"
+                  repository: "MaterialDesignInXamlToolkit"
+                  repository-owner: "MaterialDesignInXAML"
+                  token: ${{ github.token }}
+
+            - name: Generate Release Notes
+              run: |
+                  $response = gh api --method POST -H "Accept: application/vnd.github+json" /repos/${{ github.repository }}/releases/generate-notes -f tag_name='v${{ inputs.milestone }}'
+                  $json = $response | ConvertFrom-Json
+                  $releaseNotes = $json.body
+                  $contributors = "${{ steps.get-contribs.outputs.contributors }}"
+                  $releaseNotes | Out-File -Append "ReleaseNotes.md"
+                  "`n" | Out-File -Append "ReleaseNotes.md"
+                  $contributors | Out-File -Append "ReleaseNotes.md"
+                  cat "ReleaseNotes.md"
+
+            - name: Upload Release Notes
+              uses: actions/upload-artifact@v4
+              with:
+                  name: ReleaseNotes
+                  path: "ReleaseNotes.md"
+
+    build_artifacts:
+        name: Build artifacts
+        needs: get_versions
+        uses: ./.github/workflows/build_artifacts.yml
         with:
-          name: ReleaseNotes
-          path: "ReleaseNotes.md"
+            mdix-version: ${{ needs.get_versions.outputs.mdix-version }}
+            mdix-colors-version: ${{ needs.get_versions.outputs.mdix-colors-version }}
+            mdix-mahapps-version: ${{ needs.get_versions.outputs.mdix-mahapps-version }}
 
-  build_artifacts:
-    name: Build artifacts
-    needs: get_versions
-    uses: ./.github/workflows/build_artifacts.yml
-    with:
-      mdix-version: ${{ needs.get_versions.outputs.mdix-version }}
-      mdix-colors-version: ${{ needs.get_versions.outputs.mdix-colors-version }}
-      mdix-mahapps-version: ${{ needs.get_versions.outputs.mdix-mahapps-version }}
+    build_icon_changes:
+        needs: [build_artifacts]
+        runs-on: windows-latest
+        name: Get Icon Changes
 
-  build_icon_changes:
-    needs: [build_artifacts]
-    runs-on: windows-latest
-    name: Get Icon Changes
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
 
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      
-      - name: Download NuGet Artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: NuGets
-          path: nugets
+            - name: Download NuGet Artifacts
+              uses: actions/download-artifact@v4
+              with:
+                  name: NuGets
+                  path: nugets
 
-      - name: Get Previous NuGet release
-        run: |
-          $release = (gh api -H "Accept: application/vnd.github+json" /repos/${{ github.repository }}/releases/latest) | ConvertFrom-Json
-          gh release download "$($release.tag_name)" --repo "${{ github.repository }}" --pattern *.nupkg
-        working-directory: nugets
+            - name: Get Previous NuGet release
+              run: |
+                  $release = (gh api -H "Accept: application/vnd.github+json" /repos/${{ github.repository }}/releases/latest) | ConvertFrom-Json
+                  gh release download "$($release.tag_name)" --repo "${{ github.repository }}" --pattern *.nupkg
+              working-directory: nugets
 
-      - name: Create Icon Diff File
-        run: |
-          dotnet run --project ./mdresgen/mdresgen.csproj -c Release -- icon-diff
+            - name: Create Icon Diff File
+              run: |
+                  dotnet run --project ./src/MaterialDesignToolkit.ResourceGeneration/MaterialDesignToolkit.ResourceGeneration.csproj -c Release -- icon-diff
 
-      - name: Upload Icon Changes
-        uses: actions/upload-artifact@v4
-        with:
-          name: IconChanges
-          path: "IconChanges*.md"
+            - name: Upload Icon Changes
+              uses: actions/upload-artifact@v4
+              with:
+                  name: IconChanges
+                  path: "IconChanges*.md"
 
-  create_release:
-    needs: [build_release_notes, build_artifacts, build_icon_changes, version_number_check]
-    runs-on: ubuntu-latest
-    name: Create Draft Release
+    create_release:
+        needs:
+            [
+                build_release_notes,
+                build_artifacts,
+                build_icon_changes,
+                version_number_check,
+            ]
+        runs-on: ubuntu-latest
+        name: Create Draft Release
 
-    steps:
-      - name: Download NuGet Artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: NuGets
-          path: nugets
+        steps:
+            - name: Download NuGet Artifacts
+              uses: actions/download-artifact@v4
+              with:
+                  name: NuGets
+                  path: nugets
 
-      - name: Download Demo App Artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: DemoApp
-          path: demo-app
+            - name: Download Demo App Artifacts
+              uses: actions/download-artifact@v4
+              with:
+                  name: DemoApp
+                  path: demo-app
 
-      - name: Zip Demo App
-        run: zip -r DemoApp.zip demo-app/*
+            - name: Zip Demo App
+              run: zip -r DemoApp.zip demo-app/*
 
-      - name: Download Release Notes
-        uses: actions/download-artifact@v4
-        with:
-          name: ReleaseNotes
+            - name: Download Release Notes
+              uses: actions/download-artifact@v4
+              with:
+                  name: ReleaseNotes
 
-      - name: Create Release
-        run: |
-          # We can't use glob pattern because of this bug https://github.com/cli/cli/issues/5099
-          gh release create v${{ inputs.milestone }} --repo '${{ github.repository }}' --draft --latest --title "${{ inputs.milestone }}" --notes-file ReleaseNotes.md (Get-Item '${{ github.workspace }}/nugets/*.nupkg') '${{ github.workspace }}/DemoApp.zip'
+            - name: Create Release
+              run: |
+                  # We can't use glob pattern because of this bug https://github.com/cli/cli/issues/5099
+                  gh release create v${{ inputs.milestone }} --repo '${{ github.repository }}' --draft --latest --title "${{ inputs.milestone }}" --notes-file ReleaseNotes.md (Get-Item '${{ github.workspace }}/nugets/*.nupkg') '${{ github.workspace }}/DemoApp.zip'
 
-  update_wiki:
-    needs: [create_release]
-    runs-on: ubuntu-latest
-    environment: production
-    name: Update Wiki
+    update_wiki:
+        needs: [create_release]
+        runs-on: ubuntu-latest
+        environment: production
+        name: Update Wiki
 
-    steps:
-      - name: Checkout Wiki Repo
-        uses: actions/checkout@v4
-        with:
-          repository:  ${{ github.repository }}.wiki
+        steps:
+            - name: Checkout Wiki Repo
+              uses: actions/checkout@v4
+              with:
+                  repository: ${{ github.repository }}.wiki
 
-      - name: Download Icon Changes
-        uses: actions/download-artifact@v4
-        with:
-          name: IconChanges
-          path: icon-changes
+            - name: Download Icon Changes
+              uses: actions/download-artifact@v4
+              with:
+                  name: IconChanges
+                  path: icon-changes
 
-      - name: Update Wiki
-        run: |
-          $iconUpdates = Get-ChildItem -Path "icon-changes/*.md"
-          foreach($update in $iconUpdates){
-            Write-Host "Updating from $update"
-            if ($update.Name -match '-(?<PreviousVersion>\d+\.\d+\.\d+)--(?<TargetVersion>\d+\.\d+\.\d+).md$') {
-              $previousVersion = $Matches.PreviousVersion
-              $targetVersion = $Matches.TargetVersion
-              
-              $majorVersion = $targetVersion.Split(".") | Select-Object -First 1
-              
-              # Update the changes
-              $changesFileName = "$majorVersion-x-icon-changes"
-              $changesFile = "$changesFileName.md"
-              
-              if (!(Test-Path $changesFile)) {
-                  New-Item -ItemType File $changesFile | Out-Null
-              }
-              @(
-                  (Get-Content $update),
-                  "",
-                  (Get-Content $changesFile)
-              ) | Set-Content $changesFile
-              
-              # Update the PackIcon Release notes
-              [string[]] $releaseNotes = Get-Content "PackIcon-ReleaseNotes.md"
-              
-              $firstLine = $releaseNotes | Where-Object { $_.StartsWith("[Pack Icon Changes") } | Select-Object -First 1
-              $index = $releaseNotes.IndexOf($firstLine)
-              
-              @(
-                  ($releaseNotes | Select-Object -First $index),
-                  "[Pack Icon Changes $previousVersion => $targetVersion]($changesFileName#pack-icon-changes-$($previousVersion -replace '\.', '')--$($targetVersion -replace '\.', ''))",
-                  "",
-                  ($releaseNotes | Select-Object -Skip $index)
-              ) | Set-Content "PackIcon-ReleaseNotes.md"
-              Remove-Item $update
-            } else {
-              Write-Warning "Did not parse version from $($update.Name)"
-            }
-          }
-      
-      - name: Push Wiki
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git commit -m "[automated] Update Wiki with icon changes for ${{ inputs.milestone }}" --all
-          git push
+            - name: Update Wiki
+              run: |
+                  $iconUpdates = Get-ChildItem -Path "icon-changes/*.md"
+                  foreach($update in $iconUpdates){
+                    Write-Host "Updating from $update"
+                    if ($update.Name -match '-(?<PreviousVersion>\d+\.\d+\.\d+)--(?<TargetVersion>\d+\.\d+\.\d+).md$') {
+                      $previousVersion = $Matches.PreviousVersion
+                      $targetVersion = $Matches.TargetVersion
+                      
+                      $majorVersion = $targetVersion.Split(".") | Select-Object -First 1
+                      
+                      # Update the changes
+                      $changesFileName = "$majorVersion-x-icon-changes"
+                      $changesFile = "$changesFileName.md"
+                      
+                      if (!(Test-Path $changesFile)) {
+                          New-Item -ItemType File $changesFile | Out-Null
+                      }
+                      @(
+                          (Get-Content $update),
+                          "",
+                          (Get-Content $changesFile)
+                      ) | Set-Content $changesFile
+                      
+                      # Update the PackIcon Release notes
+                      [string[]] $releaseNotes = Get-Content "PackIcon-ReleaseNotes.md"
+                      
+                      $firstLine = $releaseNotes | Where-Object { $_.StartsWith("[Pack Icon Changes") } | Select-Object -First 1
+                      $index = $releaseNotes.IndexOf($firstLine)
+                      
+                      @(
+                          ($releaseNotes | Select-Object -First $index),
+                          "[Pack Icon Changes $previousVersion => $targetVersion]($changesFileName#pack-icon-changes-$($previousVersion -replace '\.', '')--$($targetVersion -replace '\.', ''))",
+                          "",
+                          ($releaseNotes | Select-Object -Skip $index)
+                      ) | Set-Content "PackIcon-ReleaseNotes.md"
+                      Remove-Item $update
+                    } else {
+                      Write-Warning "Did not parse version from $($update.Name)"
+                    }
+                  }
 
-  push_nugets:
-    needs: [create_release]
-    runs-on: ubuntu-latest
-    name: Push NuGets
-    environment: production
+            - name: Push Wiki
+              run: |
+                  git config --local user.email "github-actions[bot]@users.noreply.github.com"
+                  git config --local user.name "github-actions[bot]"
+                  git commit -m "[automated] Update Wiki with icon changes for ${{ inputs.milestone }}" --all
+                  git push
 
-    steps:
-      - name: Download NuGet Artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: NuGets
-          path: nugets
+    push_nugets:
+        needs: [create_release]
+        runs-on: ubuntu-latest
+        name: Push NuGets
+        environment: production
 
-      - name: Push NuGets
-        run: |
-          dotnet nuget push nugets/*.nupkg --api-key ${{ secrets.PAT }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+        steps:
+            - name: Download NuGet Artifacts
+              uses: actions/download-artifact@v4
+              with:
+                  name: NuGets
+                  path: nugets
 
-  publish_release:
-    needs: [create_release]
-    runs-on: ubuntu-latest
-    name: Publish Release
-    environment: production
+            - name: Push NuGets
+              run: |
+                  dotnet nuget push nugets/*.nupkg --api-key ${{ secrets.PAT }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 
-    steps:
-      - name: Publish Release
-        run: |
-          gh release edit v${{ inputs.milestone }} --repo '${{ github.repository }}' --draft=false
+    publish_release:
+        needs: [create_release]
+        runs-on: ubuntu-latest
+        name: Publish Release
+        environment: production
 
-  close_milestone:
-    needs: [create_release]
-    runs-on: ubuntu-latest
-    name: Close Milestone
-    environment: production
+        steps:
+            - name: Publish Release
+              run: |
+                  gh release edit v${{ inputs.milestone }} --repo '${{ github.repository }}' --draft=false
 
-    steps:
-      # Doing a checkout, until this issue is resolved.
-      # https://github.com/valeriobelli/gh-milestone/issues/15
-      - uses: actions/checkout@v4
+    close_milestone:
+        needs: [create_release]
+        runs-on: ubuntu-latest
+        name: Close Milestone
+        environment: production
 
-      - name: Close Milestone
-        run: |
-          gh extension install valeriobelli/gh-milestone
-          $milestones = $(gh milestone list --json number,title) | ConvertFrom-Json
-          $milestoneNumber = ($milestones | Where-Object { $_.title -eq "${{ inputs.milestone }}" }).number
-          gh milestone edit $milestoneNumber --state closed
+        steps:
+            # Doing a checkout, until this issue is resolved.
+            # https://github.com/valeriobelli/gh-milestone/issues/15
+            - uses: actions/checkout@v4
 
-  update_version_numbers:
-    needs: [create_release]
-    runs-on: ubuntu-latest
-    name: Update Version Numbers
-    environment: production
+            - name: Close Milestone
+              run: |
+                  gh extension install valeriobelli/gh-milestone
+                  $milestones = $(gh milestone list --json number,title) | ConvertFrom-Json
+                  $milestoneNumber = ($milestones | Where-Object { $_.title -eq "${{ inputs.milestone }}" }).number
+                  gh milestone edit $milestoneNumber --state closed
 
-    permissions:
-      actions: write
+    update_version_numbers:
+        needs: [create_release]
+        runs-on: ubuntu-latest
+        name: Update Version Numbers
+        environment: production
 
-    steps:
-      # Checkout is needed so that we can update the get_versions.yml file
-      - uses: actions/checkout@v4
-        
-      - name: Increment Version Numbers
-        run: |
-          function Update-Version {
-              param (
-                [string]$Prefix
-              )
-              $workflowPath = "./.github/workflows/get_versions.yml"
-              $workflowContent = Get-Content -Path $workflowPath
+        permissions:
+            actions: write
 
-              $versionPattern = '"(\d+\.\d+\.)(\d+)"'
-              $pattern = "$Prefix`: $versionPattern"
-              $match = $workflowContent -match $pattern
+        steps:
+            # Checkout is needed so that we can update the get_versions.yml file
+            - uses: actions/checkout@v4
 
-              if ($match[0] -match $versionPattern) {
-                  $newVersion = $Matches[1] + ([int]$Matches[2] + 1)
-                  $workflowContent = $workflowContent -replace $pattern,"$Prefix`: `"$newVersion`""
-                  Write-Host "$Prefix updated to $newVersion"
-              } else {
-                  Write-Error "Failed to update $Prefix version"
-              }
+            - name: Increment Version Numbers
+              run: |
+                  function Update-Version {
+                      param (
+                        [string]$Prefix
+                      )
+                      $workflowPath = "./.github/workflows/get_versions.yml"
+                      $workflowContent = Get-Content -Path $workflowPath
 
-              Set-Content -Path $workflowPath -Value $workflowContent
-          }
+                      $versionPattern = '"(\d+\.\d+\.)(\d+)"'
+                      $pattern = "$Prefix`: $versionPattern"
+                      $match = $workflowContent -match $pattern
 
-          Update-Version -Prefix "mdix-version"
-          Update-Version -Prefix "mdix-colors-version"
-          Update-Version -Prefix "mdix-mahapps-version"
-      
-      - name: Push Changes
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git commit -m "[automated] Increment version numbers after release of ${{ inputs.milestone }}" --all
-          git push
+                      if ($match[0] -match $versionPattern) {
+                          $newVersion = $Matches[1] + ([int]$Matches[2] + 1)
+                          $workflowContent = $workflowContent -replace $pattern,"$Prefix`: `"$newVersion`""
+                          Write-Host "$Prefix updated to $newVersion"
+                      } else {
+                          Write-Error "Failed to update $Prefix version"
+                      }
+
+                      Set-Content -Path $workflowPath -Value $workflowContent
+                  }
+
+                  Update-Version -Prefix "mdix-version"
+                  Update-Version -Prefix "mdix-colors-version"
+                  Update-Version -Prefix "mdix-mahapps-version"
+
+            - name: Push Changes
+              run: |
+                  git config --local user.email "github-actions[bot]@users.noreply.github.com"
+                  git config --local user.name "github-actions[bot]"
+                  git commit -m "[automated] Increment version numbers after release of ${{ inputs.milestone }}" --all
+                  git push

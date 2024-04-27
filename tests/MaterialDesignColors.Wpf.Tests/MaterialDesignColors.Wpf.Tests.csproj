@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net472;net6.0-windows;net7.0-windows</TargetFrameworks>
+    <AssemblyTitle>MaterialDesignColors.Wpf.Tests</AssemblyTitle>
+    <Product>MaterialDesignColors.Wpf.Tests</Product>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(TargetFramework)'=='net472'">
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="GitHubActionsTestLogger">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="Shouldly" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+  </ItemGroup>
+</Project>

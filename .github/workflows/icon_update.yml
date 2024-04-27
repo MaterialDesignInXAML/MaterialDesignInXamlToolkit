@@ -1,49 +1,49 @@
 name: Icon Update
 
 on:
-  workflow_dispatch:
-  schedule:
-    - cron: '0 3 * * *'
+    workflow_dispatch:
+    schedule:
+        - cron: "0 3 * * *"
 
 env:
-  GH_TOKEN: ${{ secrets.SA_PAT }}
+    GH_TOKEN: ${{ secrets.SA_PAT }}
 
 defaults:
-  run:
-    shell: pwsh
+    run:
+        shell: pwsh
 
 jobs:
-  build:
-    #This check prevents this from running on forks
-    if: ${{ github.repository == 'MaterialDesignInXAML/MaterialDesignInXamlToolkit' }}
+    build:
+        #This check prevents this from running on forks
+        if: ${{ github.repository == 'MaterialDesignInXAML/MaterialDesignInXamlToolkit' }}
 
-    runs-on: windows-latest
+        runs-on: windows-latest
 
-    steps:
-    - uses: actions/checkout@v4
+        steps:
+            - uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 7.x
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v4
+              with:
+                  dotnet-version: 7.x
 
-    - name: Run Icon Generation
-      run: dotnet run -c Release -- icons
-      working-directory: ./mdresgen
+            - name: Run Icon Generation
+              run: dotnet run -c Release -- icons
+              working-directory: ./src/MaterialDesignToolkit.ResourceGeneration
 
-    - name: Check for changes
-      id: check_for_changes
-      run: |
-        $hasChanges = $((git status --porcelain).Length -gt 0).ToString().ToLower()
-        "has_changes=$hasChanges" >> $env:GITHUB_OUTPUT
+            - name: Check for changes
+              id: check_for_changes
+              run: |
+                  $hasChanges = $((git status --porcelain).Length -gt 0).ToString().ToLower()
+                  "has_changes=$hasChanges" >> $env:GITHUB_OUTPUT
 
-    - name: Open Pull Request
-      if: ${{ steps.check_for_changes.outputs.has_changes == 'true' }}
-      run: |
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git checkout -b "automated/icon_update"
-        git commit -m "[bot] Pack Icon update" --all
-        git push -f --set-upstream origin automated/icon_update
-        gh pr create --fill
-        gh pr merge automated/icon_update --delete-branch --auto --squash
+            - name: Open Pull Request
+              if: ${{ steps.check_for_changes.outputs.has_changes == 'true' }}
+              run: |
+                  git config --local user.email "github-actions[bot]@users.noreply.github.com"
+                  git config --local user.name "github-actions[bot]"
+                  git checkout -b "automated/icon_update"
+                  git commit -m "[bot] Pack Icon update" --all
+                  git push -f --set-upstream origin automated/icon_update
+                  gh pr create --fill
+                  gh pr merge automated/icon_update --delete-branch --auto --squash

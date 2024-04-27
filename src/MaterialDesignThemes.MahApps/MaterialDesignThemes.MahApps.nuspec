@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>MaterialDesignThemes.MahApps</id>
+    <version>$version$</version>
+    <title>Material Design Themes XAML Resources For MahApps Controls</title>
+    <authors>James Willock</authors>
+    <owners>James Willock</owners>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit</projectUrl>
+    <iconUrl>http://materialdesigninxaml.net/images/MD4XAML32.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ResourceDictionary instances containing Material Design templates and styles for
+      WPF controls in the MahApps library.</description>
+    <readme>docs\README.md</readme>
+    <releaseNotes>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/releases</releaseNotes>
+    <copyright>$copyright$</copyright>
+    <tags>WPF XAML MahApps Material Design Theme Colour Color UI UX</tags>
+    <dependencies>
+      <group targetFramework="net462">
+        <dependency id="MaterialDesignColors" version="0.0.0" />
+        <dependency id="MaterialDesignThemes" version="0.0.0" />
+        <dependency id="MahApps.Metro" version="2.0.0" />
+      </group>
+      <group targetFramework="net6.0">
+        <dependency id="MaterialDesignColors" version="0.0.0" />
+        <dependency id="MaterialDesignThemes" version="0.0.0" />
+        <dependency id="MahApps.Metro" version="2.0.0" />
+      </group>
+      <group targetFramework="net7.0">
+        <dependency id="MaterialDesignColors" version="0.0.0" />
+        <dependency id="MaterialDesignThemes" version="0.0.0" />
+        <dependency id="MahApps.Metro" version="2.0.0" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\..\README.md" target="docs\" />
+    <file src="bin\$configuration$\net462\MaterialDesignThemes.MahApps.*" target="lib\net462"
+      exclude="**\*.json" />
+    <file src="bin\$configuration$\net6.0-windows\MaterialDesignThemes.MahApps.*"
+      target="lib\net6.0" exclude="**\*.json" />
+    <file src="bin\$configuration$\net7.0-windows\MaterialDesignThemes.MahApps.*"
+      target="lib\net7.0" exclude="**\*.json" />
+  </files>
+</package>
