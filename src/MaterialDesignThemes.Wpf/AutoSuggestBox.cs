@@ -14,14 +14,14 @@ public class AutoSuggestBox : TextBox
 
     #region Dependency Properties
 
-    public IEnumerable Suggestions
+    public IEnumerable? Suggestions
     {
         get => (IEnumerable)GetValue(SuggestionsProperty);
         set => SetValue(SuggestionsProperty, value);
     }
 
     public static readonly DependencyProperty SuggestionsProperty =
-        DependencyProperty.Register("Suggestions", typeof(IEnumerable), typeof(AutoSuggestBox), new PropertyMetadata(null));
+        DependencyProperty.Register(nameof(Suggestions), typeof(IEnumerable), typeof(AutoSuggestBox), new PropertyMetadata(null));
 
 
     public string ValueMember
@@ -30,7 +30,7 @@ public class AutoSuggestBox : TextBox
         set => SetValue(ValueMemberProperty, value);
     }
     public static readonly DependencyProperty ValueMemberProperty =
-        DependencyProperty.Register("ValueMember", typeof(string), typeof(AutoSuggestBox), new PropertyMetadata(default(string)));
+        DependencyProperty.Register(nameof(ValueMember), typeof(string), typeof(AutoSuggestBox), new PropertyMetadata(default(string)));
 
 
     public string DisplayMember
@@ -39,7 +39,7 @@ public class AutoSuggestBox : TextBox
         set => SetValue(DisplayMemberProperty, value);
     }
     public static readonly DependencyProperty DisplayMemberProperty =
-        DependencyProperty.Register("DisplayMember", typeof(string), typeof(AutoSuggestBox), new PropertyMetadata(default(string)));
+        DependencyProperty.Register(nameof(DisplayMember), typeof(string), typeof(AutoSuggestBox), new PropertyMetadata(default(string)));
 
     public Brush DropDownBackground
     {
@@ -47,7 +47,7 @@ public class AutoSuggestBox : TextBox
         set => SetValue(DropDownBackgroundProperty, value);
     }
     public static readonly DependencyProperty DropDownBackgroundProperty =
-        DependencyProperty.Register("DropDownBackground", typeof(Brush), typeof(AutoSuggestBox), new PropertyMetadata(default(Brush)));
+        DependencyProperty.Register(nameof(DropDownBackground), typeof(Brush), typeof(AutoSuggestBox), new PropertyMetadata(default(Brush)));
 
     public DataTemplate ItemTemplate
     {
@@ -55,7 +55,7 @@ public class AutoSuggestBox : TextBox
         set => SetValue(ItemTemplateProperty, value);
     }
     public static readonly DependencyProperty ItemTemplateProperty =
-        DependencyProperty.Register("ItemTemplate", typeof(DataTemplate), typeof(AutoSuggestBox), new PropertyMetadata(default(DataTemplate)));
+        DependencyProperty.Register(nameof(ItemTemplate), typeof(DataTemplate), typeof(AutoSuggestBox), new PropertyMetadata(default(DataTemplate)));
 
     public Style ItemContainerStyle
     {
@@ -63,7 +63,7 @@ public class AutoSuggestBox : TextBox
         set => SetValue(ItemContainerStyleProperty, value);
     }
     public static readonly DependencyProperty ItemContainerStyleProperty =
-        DependencyProperty.Register("ItemContainerStyle", typeof(Style), typeof(AutoSuggestBox), new PropertyMetadata(default(Style)));
+        DependencyProperty.Register(nameof(ItemContainerStyle), typeof(Style), typeof(AutoSuggestBox), new PropertyMetadata(default(Style)));
 
     public Elevation DropDownElevation
     {
@@ -71,7 +71,7 @@ public class AutoSuggestBox : TextBox
         set => SetValue(DropDownElevationProperty, value);
     }
     public static readonly DependencyProperty DropDownElevationProperty =
-        DependencyProperty.Register("DropDownElevation", typeof(Elevation), typeof(AutoSuggestBox), new PropertyMetadata(default(Elevation)));
+        DependencyProperty.Register(nameof(DropDownElevation), typeof(Elevation), typeof(AutoSuggestBox), new PropertyMetadata(default(Elevation)));
 
     public double DropDownMaxHeight
     {
@@ -79,7 +79,7 @@ public class AutoSuggestBox : TextBox
         set => SetValue(DropDownMaxHeightProperty, value);
     }
     public static readonly DependencyProperty DropDownMaxHeightProperty =
-        DependencyProperty.Register("DropDownMaxHeight", typeof(double), typeof(AutoSuggestBox), new PropertyMetadata(200.0));
+        DependencyProperty.Register(nameof(DropDownMaxHeight), typeof(double), typeof(AutoSuggestBox), new PropertyMetadata(200.0));
 
 
     public bool IsSuggestionOpen
@@ -88,7 +88,7 @@ public class AutoSuggestBox : TextBox
         set => SetValue(IsSuggestionOpenProperty, value);
     }
     public static readonly DependencyProperty IsSuggestionOpenProperty =
-        DependencyProperty.Register("IsSuggestionOpen", typeof(bool), typeof(AutoSuggestBox), new PropertyMetadata(default(bool)));
+        DependencyProperty.Register(nameof(IsSuggestionOpen), typeof(bool), typeof(AutoSuggestBox), new PropertyMetadata(default(bool)));
 
     public object SelectedItem
     {
@@ -96,7 +96,7 @@ public class AutoSuggestBox : TextBox
         set => SetValue(SelectedItemProperty, value);
     }
     public static readonly DependencyProperty SelectedItemProperty =
-        DependencyProperty.Register("SelectedItem", typeof(object), typeof(AutoSuggestBox), new PropertyMetadata(default(object)));
+        DependencyProperty.Register(nameof(SelectedItem), typeof(object), typeof(AutoSuggestBox), new PropertyMetadata(default(object)));
 
 
     public object SelectedValue
@@ -105,15 +105,11 @@ public class AutoSuggestBox : TextBox
         set => SetValue(SelectedValueProperty, value);
     }
     public static readonly DependencyProperty SelectedValueProperty =
-        DependencyProperty.Register("SelectedValue", typeof(object), typeof(AutoSuggestBox), new PropertyMetadata(default(object)));
-
-
-
-
+        DependencyProperty.Register(nameof(SelectedValue), typeof(object), typeof(AutoSuggestBox), new PropertyMetadata(default(object)));
 
     public static readonly RoutedEvent SuggestionChosenEvent =
         EventManager.RegisterRoutedEvent(
-            "SuggestionChosen",
+            nameof(SuggestionChosen),
             RoutingStrategy.Bubble,
             typeof(RoutedPropertyChangedEventHandler<object>),
             typeof(AutoSuggestBox));
@@ -253,7 +249,7 @@ public class AutoSuggestBox : TextBox
 
     private void DecrementSelection()
     {
-        if (_autoSuggestBoxList is null)
+        if (_autoSuggestBoxList is null || Suggestions is null)
             return;
         ICollectionView collectionView = CollectionViewSource.GetDefaultView(Suggestions);
         if (collectionView.IsCurrentBeforeFirst)
@@ -265,7 +261,7 @@ public class AutoSuggestBox : TextBox
 
     private void IncrementSelection()
     {
-        if (_autoSuggestBoxList is null)
+        if (_autoSuggestBoxList is null || Suggestions is null)
             return;
         ICollectionView collectionView = CollectionViewSource.GetDefaultView(Suggestions);
         if (collectionView.IsCurrentAfterLast)
