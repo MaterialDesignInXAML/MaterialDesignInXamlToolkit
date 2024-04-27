@@ -9,14 +9,14 @@ public class FloatingHintContainerMarginConverter : IMultiValueConverter
 
     public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (values is [double scale, Thickness floatingMargin])
+        if (values is [double scale, Thickness floatingMargin, double floatingScale])
         {
             return floatingMargin with
             {
-                Left = floatingMargin.Left * scale,
-                Top = floatingMargin.Top * scale,
-                Right = floatingMargin.Right * scale,
-                Bottom = floatingMargin.Bottom * scale,
+                Left = (floatingMargin.Left * scale) / floatingScale,
+                Top = (floatingMargin.Top * scale) / floatingScale,
+                Right = (floatingMargin.Right * scale) / floatingScale,
+                Bottom = (floatingMargin.Bottom * scale) / floatingScale
             };
         }
         return EmptyThickness;
