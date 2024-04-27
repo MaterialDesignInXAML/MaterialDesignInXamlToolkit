@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -200,6 +200,7 @@
                             <MultiBinding Converter="{StaticResource FloatingHintContainerMarginConverter}">
                               <Binding ElementName="ScaleHost" Path="Scale" />
                               <Binding Path="FloatingMargin" RelativeSource="{RelativeSource TemplatedParent}" />
+                              <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}" />
                             </MultiBinding>
                           </ContentControl.Margin>
                         </ContentControl>
