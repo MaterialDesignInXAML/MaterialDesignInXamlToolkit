@@ -16,6 +16,7 @@
       <converters:FloatingHintScaleTransformConverter x:Key="FloatingHintScaleTransformConverter" />
       <converters:FloatingHintContainerMarginConverter x:Key="FloatingHintContainerMarginConverter" />
       <converters:FloatingHintTextBlockMarginConverter x:Key="FloatingHintTextBlockMarginConverter" />
+      <converters:FloatingHintClippingGridConverter x:Key="FloatingHintClippingGridConverter" />
     </Style.Resources>
     <Setter Property="HorizontalAlignment" Value="Stretch" />
     <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -142,8 +143,7 @@
                   </VisualStateGroup>
                 </VisualStateManager.VisualStateGroups>
                 <wpf:ScaleHost x:Name="ScaleHost" />
-                <Grid x:Name="HintClippingGrid"
-                      ClipToBounds="True">
+                <Grid Clip="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth, Converter={StaticResource FloatingHintClippingGridConverter}}">
                   <Grid.RenderTransform>
                     <MultiBinding Converter="{StaticResource FloatingHintTranslateTransformConverter}">
                       <Binding ElementName="ScaleHost" Path="Scale" />
