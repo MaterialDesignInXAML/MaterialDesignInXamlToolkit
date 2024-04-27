@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.ComponentModel;
 using System.Windows.Data;
 using System.Windows.Media;
@@ -14,7 +14,7 @@ public class AutoSuggestBox : TextBox
 
     #region Dependency Properties
 
-    public IEnumerable Suggestions
+    public IEnumerable? Suggestions
     {
         get => (IEnumerable)GetValue(SuggestionsProperty);
         set => SetValue(SuggestionsProperty, value);
@@ -249,7 +249,7 @@ public class AutoSuggestBox : TextBox
 
     private void DecrementSelection()
     {
-        if (_autoSuggestBoxList is null)
+        if (_autoSuggestBoxList is null || Suggestions is null)
             return;
         ICollectionView collectionView = CollectionViewSource.GetDefaultView(Suggestions);
         if (collectionView.IsCurrentBeforeFirst)
@@ -261,7 +261,7 @@ public class AutoSuggestBox : TextBox
 
     private void IncrementSelection()
     {
-        if (_autoSuggestBoxList is null)
+        if (_autoSuggestBoxList is null || Suggestions is null)
             return;
         ICollectionView collectionView = CollectionViewSource.GetDefaultView(Suggestions);
         if (collectionView.IsCurrentAfterLast)
