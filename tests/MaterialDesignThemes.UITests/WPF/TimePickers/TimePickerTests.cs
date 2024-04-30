@@ -617,7 +617,7 @@ public class TimePickerTests : TestBase
         await using var recorder = new TestRecorder(App);
 
         // Arrange
-        Thickness expectedThickness = new(2);
+        Thickness expectedThickness = Constants.DefaultOutlinedBorderActiveThickness;
         var stackPanel = await LoadXaml<StackPanel>("""
             <StackPanel>
               <materialDesign:TimePicker
