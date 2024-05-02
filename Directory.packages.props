@@ -25,6 +25,7 @@
     <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
     <PackageVersion Include="System.Net.Http" Version="4.3.4" />
     <PackageVersion Include="System.Text.RegularExpressions" Version="4.3.1" />
+    <PackageVersion Include="Velopack" Version="0.0.359" />
     <PackageVersion Include="VirtualizingWrapPanel" Version="1.5.8" />
     <PackageVersion Include="XAMLTest" Version="1.2.1" />
     <PackageVersion Include="xunit" Version="2.6.2" />

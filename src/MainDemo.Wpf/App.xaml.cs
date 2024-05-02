@@ -1,6 +1,7 @@
 ﻿using MaterialDesign.Shared;
 using MaterialDesignThemes.Wpf;
 using ShowMeTheXAML;
+using Velopack;
 
 namespace MaterialDesignDemo;
 
@@ -15,6 +16,7 @@ public partial class App : Application
 
     protected override void OnStartup(StartupEventArgs e)
     {
+        VelopackApp.Build().Run();
         (StartupPage, InitialFlowDirection, InitialTheme) = CommandLineOptions.ParseCommandLine(e.Args);
 
         //This is an alternate way to initialize MaterialDesignInXAML if you don't use the MaterialDesignResourceDictionary in App.xaml
@@ -41,5 +43,21 @@ public partial class App : Application
                     System.Windows.Markup.XmlLanguage.GetLanguage(System.Globalization.CultureInfo.CurrentCulture.IetfLanguageTag)));*/
 
         base.OnStartup(e);
+    }
+
+    private static async Task UpdateMyApp()
+    {
+        var mgr = new UpdateManager(@"D:\MDIXUpdates");
+
+        // check for new version
+        var newVersion = await mgr.CheckForUpdatesAsync();
+        if (newVersion == null)
+            return; // no update available
+
+        // download new version
+        await mgr.DownloadUpdatesAsync(newVersion);
+
+        // install new version and restart app
+        mgr.ApplyUpdatesAndRestart(newVersion);
     }
 }
