@@ -98,7 +98,7 @@
                                    wpf:TextFieldAssist.TextFieldCornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}"
                                    wpf:TextFieldAssist.UnderlineBrush="{TemplateBinding wpf:TextFieldAssist.UnderlineBrush}"
                                    wpf:TextFieldAssist.UnderlineCornerRadius="{TemplateBinding wpf:TextFieldAssist.UnderlineCornerRadius}"
-                                   wpf:TextFieldAssist.IsMouseOver="{TemplateBinding IsMouseOver}"
+                                   internal:InternalTextFieldAssist.IsMouseOver="{TemplateBinding IsMouseOver}"
                                    BorderBrush="{TemplateBinding BorderBrush}"
                                    Focusable="{TemplateBinding Focusable}"
                                    Style="{DynamicResource NestedTextBoxStyle}">

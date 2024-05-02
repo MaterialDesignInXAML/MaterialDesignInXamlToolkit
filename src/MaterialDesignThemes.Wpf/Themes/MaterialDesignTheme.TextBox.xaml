@@ -446,11 +446,11 @@
             <!-- IsMouseOver -->
             <Trigger Property="IsMouseOver" Value="True">
               <!-- If the mouse is over the text field itself, we explicitly override the AP so the subsequent triggers will take effect --> 
-              <Setter Property="wpf:TextFieldAssist.IsMouseOver" Value="True" />
+              <Setter Property="internal:InternalTextFieldAssist.IsMouseOver" Value="True" />
             </Trigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
-                <Condition Property="wpf:TextFieldAssist.IsMouseOver" Value="True"  />
+                <Condition Property="internal:InternalTextFieldAssist.IsMouseOver" Value="True"  />
                 <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="False" />
                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
                 <Condition Property="wpf:TextFieldAssist.NewSpecHighlightingEnabled" Value="False" />
@@ -459,7 +459,7 @@
             </MultiTrigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
-                <Condition Property="wpf:TextFieldAssist.IsMouseOver" Value="True" />
+                <Condition Property="internal:InternalTextFieldAssist.IsMouseOver" Value="True" />
                 <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="False" />
                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
                 <Condition Property="wpf:TextFieldAssist.NewSpecHighlightingEnabled" Value="True" />
@@ -469,7 +469,7 @@
             </MultiTrigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
-                <Condition Property="wpf:TextFieldAssist.IsMouseOver" Value="True" />
+                <Condition Property="internal:InternalTextFieldAssist.IsMouseOver" Value="True" />
                 <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
               </MultiTrigger.Conditions>
               <Setter TargetName="OuterBorder" Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
@@ -477,7 +477,7 @@
             </MultiTrigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
-                <Condition Property="wpf:TextFieldAssist.IsMouseOver" Value="True" />
+                <Condition Property="internal:InternalTextFieldAssist.IsMouseOver" Value="True" />
                 <Condition Property="Validation.HasError" Value="False" />
                 <Condition Property="wpf:ValidationAssist.HasError" Value="False" />
                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
@@ -494,7 +494,7 @@
             </MultiTrigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
-                <Condition Property="wpf:TextFieldAssist.IsMouseOver" Value="True" />
+                <Condition Property="internal:InternalTextFieldAssist.IsMouseOver" Value="True" />
                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
                 <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
                 <Condition SourceName="Hint" Property="IsHintInFloatingPosition" Value="True" />
