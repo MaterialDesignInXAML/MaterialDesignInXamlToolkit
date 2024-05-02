@@ -302,6 +302,40 @@ public class DatePickerTests : TestBase
 
         recorder.Success();
     }
+
+    [Fact]
+    [Description("Issue 3547")]
+    public async Task DatePicker_ShouldApplyIsMouseOverTriggers_WhenHoveringCalendarButton()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // Arrange
+        Thickness expectedThickness = Constants.DefaultOutlinedBorderActiveThickness;
+        var stackPanel = await LoadXaml<StackPanel>("""
+            <StackPanel>
+              <DatePicker
+                Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+            </StackPanel>
+            """);
+        var datePicker = await stackPanel.GetElement<DatePicker>("/DatePicker");
+        var datePickerTextBox = await datePicker.GetElement<DatePickerTextBox>("/DatePickerTextBox");
+        var datePickerTextBoxBorder = await datePickerTextBox.GetElement<Border>("OuterBorder");
+        var datePickerTimeButton = await datePicker.GetElement<Button>("PART_Button");
+
+        // Act
+        await datePickerTextBoxBorder.MoveCursorTo();
+        await Task.Delay(50);
+        var datePickerTextBoxHoverThickness = await datePickerTextBoxBorder.GetBorderThickness();
+        await datePickerTimeButton.MoveCursorTo();
+        await Task.Delay(50);
+        var datePickerCalendarButtonHoverThickness = await datePickerTextBoxBorder.GetBorderThickness();
+
+        // Assert
+        Assert.Equal(expectedThickness, datePickerTextBoxHoverThickness);
+        Assert.Equal(expectedThickness, datePickerCalendarButtonHoverThickness);
+
+        recorder.Success();
+    }
 }
 
 public class FutureDateValidationRule : ValidationRule

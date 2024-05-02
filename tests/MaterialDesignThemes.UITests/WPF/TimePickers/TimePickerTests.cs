@@ -609,6 +609,40 @@ public class TimePickerTests : TestBase
 
         recorder.Success();
     }
+
+    [Fact]
+    [Description("Issue 3547")]
+    public async Task TimePicker_ShouldApplyIsMouseOverTriggers_WhenHoveringTimeButton()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // Arrange
+        Thickness expectedThickness = Constants.DefaultOutlinedBorderActiveThickness;
+        var stackPanel = await LoadXaml<StackPanel>("""
+            <StackPanel>
+              <materialDesign:TimePicker
+                Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
+            </StackPanel>
+            """);
+        var timePicker = await stackPanel.GetElement<TimePicker>("/TimePicker");
+        var timePickerTextBox = await timePicker.GetElement<TimePickerTextBox>("/TimePickerTextBox");
+        var timePickerTextBoxBorder = await timePickerTextBox.GetElement<Border>("OuterBorder");
+        var timePickerTimeButton = await timePicker.GetElement<Button>("PART_Button");
+
+        // Act
+        await timePickerTextBoxBorder.MoveCursorTo();
+        await Task.Delay(50);
+        var timePickerTextBoxHoverThickness = await timePickerTextBoxBorder.GetBorderThickness();
+        await timePickerTimeButton.MoveCursorTo();
+        await Task.Delay(50);
+        var timePickerTimeButtonHoverThickness = await timePickerTextBoxBorder.GetBorderThickness();
+
+        // Assert
+        Assert.Equal(expectedThickness, timePickerTextBoxHoverThickness);
+        Assert.Equal(expectedThickness, timePickerTimeButtonHoverThickness);
+
+        recorder.Success();
+    }
 }
 
 public class OnlyTenOClockValidationRule : ValidationRule
