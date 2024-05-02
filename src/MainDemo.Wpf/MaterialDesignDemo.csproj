@@ -9,6 +9,7 @@
     <UseWPF>true</UseWPF>
     <SignAssembly>false</SignAssembly>
     <ApplicationManifest>App.manifest</ApplicationManifest>
+    <StartupObject>MaterialDesignDemo.App</StartupObject>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)'=='net472'">
     <Reference Include="PresentationFramework.Aero2" />
@@ -26,6 +27,10 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Remove="App.xaml" />
+    <Page Include="App.xaml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" />

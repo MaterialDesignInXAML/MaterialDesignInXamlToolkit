@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Windows.Data;
 using MaterialDesignThemes.Wpf;
 using MaterialDesignThemes.Wpf.Transitions;
+using Velopack;
 
 namespace MaterialDesignDemo.Domain;
 
@@ -37,7 +38,7 @@ public class MainWindowViewModel : ViewModelBase
         SelectedItem = DemoItems.FirstOrDefault(di => string.Equals(di.Name, startupPage, StringComparison.CurrentCultureIgnoreCase)) ?? DemoItems.First();
         _demoItemsView = CollectionViewSource.GetDefaultView(DemoItems);
         _demoItemsView.Filter = DemoItemsFilter;
-        
+
 
         HomeCommand = new AnotherCommandImplementation(
             _ =>
@@ -65,6 +66,10 @@ public class MainWindowViewModel : ViewModelBase
                SelectedIndex++;
            },
            _ => SelectedIndex < DemoItems.Count - 1);
+
+        InstallUpdateCommand = new AnotherCommandImplementation(_ => InstallUpdate(), _ => HasUpdateAvailable);
+
+        _ = CheckForUpdatesAsync();
     }
 
     private readonly ICollectionView _demoItemsView;
@@ -72,6 +77,9 @@ public class MainWindowViewModel : ViewModelBase
     private int _selectedIndex;
     private string? _searchKeyword;
     private bool _controlsEnabled = true;
+    private bool _hasUpdateAvailable;
+
+    private UpdateInfo? _updateInfo;
 
     public string? SearchKeyword
     {
@@ -93,6 +101,18 @@ public class MainWindowViewModel : ViewModelBase
         set => SetProperty(ref _selectedItem, value);
     }
 
+    public bool HasUpdateAvailable
+    {
+        get => _hasUpdateAvailable;
+        set
+        {
+            if (SetProperty(ref _hasUpdateAvailable, value))
+            {
+                InstallUpdateCommand.Refresh();
+            }
+        }
+    }
+
     public int SelectedIndex
     {
         get => _selectedIndex;
@@ -108,6 +128,8 @@ public class MainWindowViewModel : ViewModelBase
     public AnotherCommandImplementation HomeCommand { get; }
     public AnotherCommandImplementation MovePrevCommand { get; }
     public AnotherCommandImplementation MoveNextCommand { get; }
+
+    public AnotherCommandImplementation InstallUpdateCommand { get; }
 
     private static IEnumerable<DemoItem> GenerateDemoItems(ISnackbarMessageQueue snackbarMessageQueue)
     {
@@ -467,9 +489,43 @@ public class MainWindowViewModel : ViewModelBase
             new[]
             {
                 DocumentationLink.DemoPageLink<PopupBox>(),
-                DocumentationLink.StyleLink("PopupBox"), 
+                DocumentationLink.StyleLink("PopupBox"),
             });
     }
+
+    private async Task CheckForUpdatesAsync()
+    {
+        try
+        {
+            var mgr = new UpdateManager(@"D:\MDIXUpdates");
+
+            if (!mgr.IsInstalled) return;
+
+            // check for new version
+            _updateInfo = await mgr.CheckForUpdatesAsync();
+            if (_updateInfo == null)
+                return; // no update available
+
+            // download new version
+            await mgr.DownloadUpdatesAsync(_updateInfo);
+            HasUpdateAvailable = true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+        }
+    }
+
+    private void InstallUpdate()
+    {
+        var mgr = new UpdateManager(@"D:\MDIXUpdates");
+
+        if (!mgr.IsInstalled || _updateInfo is null) return;
+
+        // apply update
+        mgr.ApplyUpdatesAndRestart(_updateInfo);
+    }
+
 
     private bool DemoItemsFilter(object obj)
     {
