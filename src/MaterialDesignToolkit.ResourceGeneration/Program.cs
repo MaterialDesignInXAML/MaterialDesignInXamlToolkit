@@ -306,7 +306,7 @@ public class Program
 
         var backgroundColourElement = new XElement(defaultNamespace + "Color", hex);
         // new XAttribute()
-        backgroundColourElement.Add(new XAttribute(xNamespace + "Key", string.Format("{0}{1}{2}", swatchName, prefix, name)));
+        backgroundColourElement.Add(new XAttribute(xNamespace + "Key", string.Format("{0}{1}{2}", swatchName.Replace(" ", ""), prefix, name)));
         doc.Add(backgroundColourElement);
 
         var liClass = liElement.Attribute("class")!.Value;
