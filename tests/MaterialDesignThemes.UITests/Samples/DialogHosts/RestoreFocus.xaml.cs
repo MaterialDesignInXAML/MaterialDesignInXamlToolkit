@@ -1,4 +1,4 @@
-﻿namespace MaterialDesignThemes.UITests.Samples.DialogHost;
+﻿namespace MaterialDesignThemes.UITests.Samples.DialogHosts;
 
 public partial class RestoreFocus : UserControl
 {

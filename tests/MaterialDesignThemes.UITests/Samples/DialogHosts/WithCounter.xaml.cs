@@ -1,4 +1,4 @@
-﻿namespace MaterialDesignThemes.UITests.Samples.DialogHost;
+﻿namespace MaterialDesignThemes.UITests.Samples.DialogHosts;
 
 /// <summary>
 /// Interaction logic for WithCounter.xaml

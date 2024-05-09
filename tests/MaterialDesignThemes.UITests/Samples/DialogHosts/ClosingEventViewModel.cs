@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
-namespace MaterialDesignThemes.UITests.Samples.DialogHost;
+namespace MaterialDesignThemes.UITests.Samples.DialogHosts;
 
 public partial class ClosingEventViewModel : ObservableObject
 {

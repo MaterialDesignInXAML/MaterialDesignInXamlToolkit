@@ -1,31 +1,32 @@
-﻿<UserControl x:Class="MaterialDesignThemes.UITests.Samples.DialogHost.WithCounter"
+﻿<UserControl x:Class="MaterialDesignThemes.UITests.Samples.DialogHosts.ClosingEventCounter"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dialogHost="clr-namespace:MaterialDesignThemes.UITests.Samples.DialogHosts"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DataContext="{d:DesignInstance Type=dialogHost:ClosingEventViewModel}"
              d:DesignHeight="450"
              d:DesignWidth="800"
              mc:Ignorable="d">
-  <materialDesign:DialogHost>
+  <UserControl.DataContext>
+    <dialogHost:ClosingEventViewModel />
+  </UserControl.DataContext>
+  <materialDesign:DialogHost DialogClosing="DialogHost_DialogClosing" IsOpen="{Binding DialogIsOpen}">
     <materialDesign:DialogHost.DialogContent>
       <StackPanel Margin="10">
         <TextBlock Text="Some Text" />
-        <Button x:Name="CloseDialogButton"
-                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+        <Button x:Name="CloseButton"
+                Command="{Binding CloseDialogCommand}"
                 Content="Close" />
       </StackPanel>
     </materialDesign:DialogHost.DialogContent>
 
     <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
       <Button x:Name="ShowDialogButton"
-              Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+              Command="{Binding OpenDialogCommand}"
               Content="Show Dialog" />
-      <Button x:Name="TestOverlayButton"
-              Margin="0,10"
-              Click="TestOverlayClick"
-              Content="Test Overlay" />
-      <TextBlock x:Name="ResultTextBlock" />
+      <TextBlock x:Name="ResultTextBlock" Text="0" />
     </StackPanel>
   </materialDesign:DialogHost>
 </UserControl>

@@ -1,7 +1,6 @@
 using System.ComponentModel;
 using System.Windows.Media;
-using MaterialDesignThemes.UITests.Samples.DialogHost;
-
+using MaterialDesignThemes.UITests.Samples.DialogHosts;
 using static MaterialDesignThemes.UITests.MaterialDesignSpec;
 
 namespace MaterialDesignThemes.UITests.WPF.DialogHosts;
@@ -499,6 +498,27 @@ public class DialogHostTests(ITestOutputHelper output) : TestBase(output)
             Assert.Equal(1, index);
         });
 
+
+        recorder.Success();
+    }
+
+    [Fact]
+    [Description("Issue 3497")]
+    public async Task DialogHost_DisableMoveFocusToPopup_DoesNotMoveFocusToPopup()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement dialogHost = await LoadUserControl<Issue3497>();
+
+        IWindow mainWindow = (await App.GetMainWindow()) ?? throw new InvalidOperationException("No main window");
+        IVisualElement<Button> showButton = await dialogHost.GetElement<Button>("ShowButton");
+        IVisualElement<TextBox> textBox = await dialogHost.GetElement<TextBox>("TextBox");
+
+        await showButton.LeftClick();
+        //await Task.Delay(TimeSpan.FromSeconds(3));
+        //await Task.Delay(TimeSpan.FromSeconds(15));
+
+        Assert.True(await mainWindow.GetIsFocused());
 
         recorder.Success();
     }

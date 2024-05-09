@@ -17,7 +17,7 @@ public static class DialogHostEx
     /// As a depth first traversal of the window's visual tree is performed, it is not safe to use this method in a situation where a screen has multiple <see cref="DialogHost"/>s.
     /// </remarks>
     /// <returns></returns>
-    public static Task<object?> ShowDialog(this Window window, object content)
+    public static Task<object?> ShowDialog(this Window window, object? content)
         => GetFirstDialogHost(window).ShowInternal(content, null, null, null);
 
     /// <summary>
@@ -33,7 +33,7 @@ public static class DialogHostEx
     /// As a depth first traversal of the window's visual tree is performed, it is not safe to use this method in a situation where a screen has multiple <see cref="DialogHost"/>s.
     /// </remarks>
     /// <returns></returns>
-    public static Task<object?> ShowDialog(this Window window, object content, DialogOpenedEventHandler openedEventHandler)
+    public static Task<object?> ShowDialog(this Window window, object? content, DialogOpenedEventHandler openedEventHandler)
         => GetFirstDialogHost(window).ShowInternal(content, openedEventHandler, null, null);
 
     /// <summary>
@@ -49,7 +49,7 @@ public static class DialogHostEx
     /// As a depth first traversal of the window's visual tree is performed, it is not safe to use this method in a situation where a screen has multiple <see cref="DialogHost"/>s.
     /// </remarks>
     /// <returns></returns>
-    public static Task<object?> ShowDialog(this Window window, object content, DialogClosingEventHandler closingEventHandler)
+    public static Task<object?> ShowDialog(this Window window, object? content, DialogClosingEventHandler closingEventHandler)
         => GetFirstDialogHost(window).ShowInternal(content, null, closingEventHandler, null);
 
     /// <summary>
@@ -66,7 +66,7 @@ public static class DialogHostEx
     /// As a depth first traversal of the window's visual tree is performed, it is not safe to use this method in a situation where a screen has multiple <see cref="DialogHost"/>s.
     /// </remarks>
     /// <returns></returns>
-    public static Task<object?> ShowDialog(this Window window, object content, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
+    public static Task<object?> ShowDialog(this Window window, object? content, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
         => GetFirstDialogHost(window).ShowInternal(content, openedEventHandler, closingEventHandler, null);
 
     /// <summary>
@@ -84,7 +84,7 @@ public static class DialogHostEx
     /// As a depth first traversal of the window's visual tree is performed, it is not safe to use this method in a situation where a screen has multiple <see cref="DialogHost"/>s.
     /// </remarks>
     /// <returns></returns>
-    public static Task<object?> ShowDialog(this Window window, object content, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler, DialogClosedEventHandler closedEventHandler)
+    public static Task<object?> ShowDialog(this Window window, object? content, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler, DialogClosedEventHandler closedEventHandler)
         => GetFirstDialogHost(window).ShowInternal(content, openedEventHandler, closingEventHandler, closedEventHandler);
 
     /// <summary>
@@ -96,7 +96,7 @@ public static class DialogHostEx
     /// Thrown is a <see cref="DialogHost"/> is not found when conducting a depth first traversal of visual tree.  
     /// </exception>
     /// <returns></returns>
-    public static Task<object?> ShowDialog(this DependencyObject childDependencyObject, object content)
+    public static Task<object?> ShowDialog(this DependencyObject childDependencyObject, object? content)
         => GetOwningDialogHost(childDependencyObject).ShowInternal(content, null, null, null);
 
     /// <summary>
@@ -109,7 +109,7 @@ public static class DialogHostEx
     /// Thrown is a <see cref="DialogHost"/> is not found when conducting a depth first traversal of visual tree.  
     /// </exception>
     /// <returns></returns>
-    public static Task<object?> ShowDialog(this DependencyObject childDependencyObject, object content, DialogOpenedEventHandler openedEventHandler)
+    public static Task<object?> ShowDialog(this DependencyObject childDependencyObject, object? content, DialogOpenedEventHandler openedEventHandler)
         => GetOwningDialogHost(childDependencyObject).ShowInternal(content, openedEventHandler, null, null);
 
     /// <summary>
@@ -122,7 +122,7 @@ public static class DialogHostEx
     /// Thrown is a <see cref="DialogHost"/> is not found when conducting a depth first traversal of visual tree.  
     /// </exception>
     /// <returns></returns>
-    public static Task<object?> ShowDialog(this DependencyObject childDependencyObject, object content, DialogClosingEventHandler closingEventHandler)
+    public static Task<object?> ShowDialog(this DependencyObject childDependencyObject, object? content, DialogClosingEventHandler closingEventHandler)
         => GetOwningDialogHost(childDependencyObject).ShowInternal(content, null, closingEventHandler, null);
 
     /// <summary>
@@ -136,7 +136,7 @@ public static class DialogHostEx
     /// Thrown is a <see cref="DialogHost"/> is not found when conducting a depth first traversal of visual tree.  
     /// </exception>
     /// <returns></returns>
-    public static Task<object?> ShowDialog(this DependencyObject childDependencyObject, object content, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
+    public static Task<object?> ShowDialog(this DependencyObject childDependencyObject, object? content, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler)
         => GetOwningDialogHost(childDependencyObject).ShowInternal(content, openedEventHandler, closingEventHandler, null);
 
     /// <summary>
@@ -151,7 +151,7 @@ public static class DialogHostEx
     /// Thrown is a <see cref="DialogHost"/> is not found when conducting a depth first traversal of visual tree.  
     /// </exception>
     /// <returns></returns>
-    public static Task<object?> ShowDialog(this DependencyObject childDependencyObject, object content, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler, DialogClosedEventHandler closedEventHandler)
+    public static Task<object?> ShowDialog(this DependencyObject childDependencyObject, object? content, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler, DialogClosedEventHandler closedEventHandler)
         => GetOwningDialogHost(childDependencyObject).ShowInternal(content, openedEventHandler, closingEventHandler, closedEventHandler);
 
     private static DialogHost GetFirstDialogHost(Window window)

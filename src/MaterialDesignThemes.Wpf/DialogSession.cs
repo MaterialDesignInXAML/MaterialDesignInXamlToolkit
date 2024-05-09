@@ -38,10 +38,13 @@ public class DialogSession
     {
         _owner.AssertTargetableContent();
         _owner.DialogContent = content;
-        _owner.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+        if (!_owner.DisableMoveFocusToPopup)
         {
-            _owner.FocusPopup();
-        }));
+            _owner.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                _owner.FocusPopup();
+            }));
+        }
     }
 
     /// <summary>
