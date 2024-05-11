@@ -3,7 +3,7 @@ using System.Windows.Data;
 
 namespace MaterialDesignDemo.Converters;
 
-public class BooleanToDoubleConverter : MarkupExtension, IValueConverter
+public sealed class BooleanToDoubleConverter : MarkupExtension, IValueConverter
 {
     public double TrueValue { get; set; }
     public double FalseValue { get; set; }
@@ -12,6 +12,5 @@ public class BooleanToDoubleConverter : MarkupExtension, IValueConverter
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture) => value is true ? TrueValue : FalseValue;
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotImplementedException();
-    
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotImplementedException();    
 }
