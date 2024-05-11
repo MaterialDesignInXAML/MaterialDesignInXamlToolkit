@@ -6,10 +6,8 @@ using CommunityToolkit.Mvvm.Input;
 namespace MaterialDesignDemo.Domain;
 
 public sealed partial class ButtonsViewModel : ObservableObject
-{
-    private bool _showDismissButton;
-    private double _dismissButtonProgress;
-    private string? _demoRestartCountdownText;
+{    
+    private bool _dismissRequested = false;
 
     public ButtonsViewModel()
     {
@@ -17,32 +15,31 @@ public sealed partial class ButtonsViewModel : ObservableObject
 
         var autoStartingActionCountdownStart = DateTime.Now;
         var demoRestartCountdownComplete = DateTime.Now;
-        var dismissRequested = false;
-        DismissCommand = new AnotherCommandImplementation(_ => dismissRequested = true);
+        
         ShowDismissButton = true;
 
         #region DISMISS button demo control
         //just some demo code for the DISMISS button...it's up to you to set 
         //up the progress on the button as it would be with a progress bar.
         //and then hide the button, do whatever action you want to do
-        new DispatcherTimer(
+        _ = new DispatcherTimer(
             TimeSpan.FromMilliseconds(100),
             DispatcherPriority.Normal,
             new EventHandler((o, e) =>
             {
-                if (dismissRequested)
+                if (_dismissRequested)
                 {
                     ShowDismissButton = false;
-                    dismissRequested = false;
+                    _dismissRequested = false;
                     demoRestartCountdownComplete = DateTime.Now.AddSeconds(3);
                     DismissButtonProgress = 0;
                 }
 
                 if (ShowDismissButton)
                 {
-                    var totalDuration = autoStartingActionCountdownStart.AddSeconds(5).Ticks - autoStartingActionCountdownStart.Ticks;
-                    var currentDuration = DateTime.Now.Ticks - autoStartingActionCountdownStart.Ticks;
-                    var autoCountdownPercentComplete = 100.0 / totalDuration * currentDuration;
+                    long totalDuration = autoStartingActionCountdownStart.AddSeconds(5).Ticks - autoStartingActionCountdownStart.Ticks;
+                    long currentDuration = DateTime.Now.Ticks - autoStartingActionCountdownStart.Ticks;
+                    double autoCountdownPercentComplete = 100.0 / totalDuration * currentDuration;
                     DismissButtonProgress = autoCountdownPercentComplete;
 
                     if (DismissButtonProgress >= 100)
@@ -74,26 +71,17 @@ public sealed partial class ButtonsViewModel : ObservableObject
         => Debug.WriteLine($"Floating action button command. - {o ?? "NULL"}");
 
     #region Dismiss button demo
+    [RelayCommand]
+    private void Dismiss() => _dismissRequested = true;
 
-    public ICommand DismissCommand { get; }
+    [ObservableProperty]
+    private bool _showDismissButton;
 
-    public bool ShowDismissButton
-    {
-        get => _showDismissButton;
-        set => SetProperty(ref _showDismissButton, value);
-    }
+    [ObservableProperty]
+    private double _dismissButtonProgress;
 
-    public double DismissButtonProgress
-    {
-        get => _dismissButtonProgress;
-        set => SetProperty(ref _dismissButtonProgress, value);
-    }
-
-    public string? DemoRestartCountdownText
-    {
-        get => _demoRestartCountdownText;
-        private set => SetProperty(ref _demoRestartCountdownText, value);
-    }
+    [ObservableProperty]
+    private string? _demoRestartCountdownText;
 
     private void UpdateDemoRestartCountdownText(DateTime endTime, out bool isComplete)
     {
