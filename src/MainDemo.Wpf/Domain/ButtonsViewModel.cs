@@ -1,14 +1,15 @@
 ﻿using System.Diagnostics;
 using System.Windows.Threading;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace MaterialDesignDemo.Domain;
 
-public class ButtonsViewModel : ViewModelBase
+public sealed partial class ButtonsViewModel : ObservableObject
 {
     private bool _showDismissButton;
     private double _dismissButtonProgress;
     private string? _demoRestartCountdownText;
-    private int _orClickMeCount;
 
     public ButtonsViewModel()
     {
@@ -64,7 +65,6 @@ public class ButtonsViewModel : ViewModelBase
             }), Dispatcher.CurrentDispatcher);
         #endregion
 
-        IncrementOrClickMeCountCommand = new AnotherCommandImplementation(_ => OrClickMeCount += 1);
         OrClickMeCount = 0;
 
         //just some demo code for the SAVE button
@@ -145,13 +145,11 @@ public class ButtonsViewModel : ViewModelBase
     #endregion
 
     #region OrClickMe Demo
-    public int OrClickMeCount
-    {
-        get => _orClickMeCount;
-        private set => SetProperty(ref _orClickMeCount, value);
-    }
-    public ICommand IncrementOrClickMeCountCommand { get; }
+    [ObservableProperty]
+    private int _orClickMeCount;
 
+    [RelayCommand]
+    private void IncrementOrClickMeCount() => OrClickMeCount += 1;
     #endregion
 
     #region floating Save button demo
