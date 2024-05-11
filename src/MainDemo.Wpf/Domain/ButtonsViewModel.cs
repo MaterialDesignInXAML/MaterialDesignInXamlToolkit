@@ -66,45 +66,6 @@ public sealed partial class ButtonsViewModel : ObservableObject
         #endregion
 
         OrClickMeCount = 0;
-
-        //just some demo code for the SAVE button
-        SaveCommand = new AnotherCommandImplementation(_ =>
-        {
-            if (IsSaveComplete == true)
-            {
-                IsSaveComplete = false;
-                return;
-            }
-
-            if (SaveProgress != 0) return;
-
-            var started = DateTime.Now;
-            IsSaving = true;
-
-            new DispatcherTimer(
-                TimeSpan.FromMilliseconds(50),
-                DispatcherPriority.Normal,
-                new EventHandler((o, e) =>
-                {
-                    var totalDuration = started.AddSeconds(3).Ticks - started.Ticks;
-                    var currentProgress = DateTime.Now.Ticks - started.Ticks;
-                    var currentProgressPercent = 100.0 / totalDuration * currentProgress;
-
-                    SaveProgress = currentProgressPercent;
-
-                    if (SaveProgress >= 100)
-                    {
-                        IsSaveComplete = true;
-                        IsSaving = false;
-                        SaveProgress = 0;
-                        if (o is DispatcherTimer timer)
-                        {
-                            timer.Stop();
-                        }
-                    }
-
-                }), Dispatcher.CurrentDispatcher);
-        });
     }
 
     public ICommand FloatingActionDemoCommand { get; }
@@ -145,37 +106,60 @@ public sealed partial class ButtonsViewModel : ObservableObject
     #endregion
 
     #region OrClickMe Demo
-    [ObservableProperty]
-    private int _orClickMeCount;
-
     [RelayCommand]
     private void IncrementOrClickMeCount() => OrClickMeCount += 1;
+
+    [ObservableProperty]
+    private int _orClickMeCount;
     #endregion
 
     #region floating Save button demo
+    [RelayCommand]
+    private void Save()
+    {
+        if (IsSaveComplete == true)
+        {
+            IsSaveComplete = false;
+            return;
+        }
 
-    public ICommand SaveCommand { get; }
+        if (SaveProgress != 0) return;
 
+        var started = DateTime.Now;
+        IsSaving = true;
+
+        _ = new DispatcherTimer(
+            TimeSpan.FromMilliseconds(50),
+            DispatcherPriority.Normal,
+            new EventHandler((o, e) =>
+            {
+                long totalDuration = started.AddSeconds(3).Ticks - started.Ticks;
+                long currentProgress = DateTime.Now.Ticks - started.Ticks;
+                double currentProgressPercent = 100.0 / totalDuration * currentProgress;
+
+                SaveProgress = currentProgressPercent;
+
+                if (SaveProgress >= 100)
+                {
+                    IsSaveComplete = true;
+                    IsSaving = false;
+                    SaveProgress = 0;
+                    if (o is DispatcherTimer timer)
+                    {
+                        timer.Stop();
+                    }
+                }
+
+            }), Dispatcher.CurrentDispatcher);
+    }
+
+    [ObservableProperty]
     private bool _isSaving;
-    public bool IsSaving
-    {
-        get => _isSaving;
-        private set => SetProperty(ref _isSaving, value);
-    }
 
+    [ObservableProperty]
     private bool _isSaveComplete;
-    public bool IsSaveComplete
-    {
-        get => _isSaveComplete;
-        private set => SetProperty(ref _isSaveComplete, value);
-    }
 
+    [ObservableProperty]
     private double _saveProgress;
-    public double SaveProgress
-    {
-        get => _saveProgress;
-        private set => SetProperty(ref _saveProgress, value);
-    }
-
     #endregion
 }
