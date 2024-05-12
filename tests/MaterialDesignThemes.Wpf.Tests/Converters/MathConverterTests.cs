@@ -1,16 +1,15 @@
 ﻿using System.Globalization;
 using MaterialDesignThemes.Wpf.Converters;
-using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests.Converters;
 
-public class MathConverterTests
+public sealed class MathConverterTests
 {
     [Theory]
     [EnumData]
     public void EnumValues_AreAllHandled(MathOperation operation)
     {
-        var converter = new MathConverter
+        MathConverter converter = new ()
         {
             Operation = operation
         };
