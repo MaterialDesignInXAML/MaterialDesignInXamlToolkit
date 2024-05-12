@@ -1,10 +1,9 @@
 ﻿using System.Globalization;
 using MaterialDesignThemes.Wpf.Converters;
-using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests.Converters;
 
-public class DoubleToCornerRadiusConverterTests
+public sealed class DoubleToCornerRadiusConverterTests
 {
     [Theory]
     [InlineData(-0.16, 0.0)]
@@ -12,7 +11,7 @@ public class DoubleToCornerRadiusConverterTests
     [InlineData(5.0, 5.0)]
     public void AllCultureParseParameterCorrectly(object parameter, double expectedCornerRadius)
     {
-        var converter = new DoubleToCornerRadiusConverter();
+        DoubleToCornerRadiusConverter converter = new ();
         foreach (var culture in CultureInfo.GetCultures(CultureTypes.AllCultures))
         {
             var cornerRadius = (CornerRadius?)converter.Convert(parameter, typeof(CornerRadius), parameter, culture);
