@@ -4,7 +4,7 @@ using System.Windows.Media;
 
 namespace MaterialDesignDemo.Converters;
 
-public class IsTransparentConverter : IValueConverter
+public sealed class IsTransparentConverter : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {

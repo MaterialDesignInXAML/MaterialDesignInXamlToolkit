@@ -9,9 +9,10 @@ public class BrushToHexConverter : IValueConverter
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         if (value is null) return null;
-        string lowerHexString(int i) => i.ToString("X2").ToLower();
+
+        static string lowerHexString(int i) => i.ToString("X2").ToLower();
         var brush = (SolidColorBrush)value;
-        var hex = lowerHexString(brush.Color.R) +
+        string hex = lowerHexString(brush.Color.R) +
                   lowerHexString(brush.Color.G) +
                   lowerHexString(brush.Color.B);
         return "#" + hex;
