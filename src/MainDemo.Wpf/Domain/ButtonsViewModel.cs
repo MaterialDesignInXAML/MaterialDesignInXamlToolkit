@@ -1,14 +1,13 @@
 ﻿using System.Diagnostics;
 using System.Windows.Threading;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace MaterialDesignDemo.Domain;
 
-public class ButtonsViewModel : ViewModelBase
-{
-    private bool _showDismissButton;
-    private double _dismissButtonProgress;
-    private string? _demoRestartCountdownText;
-    private int _orClickMeCount;
+public sealed partial class ButtonsViewModel : ObservableObject
+{    
+    private bool _dismissRequested = false;
 
     public ButtonsViewModel()
     {
@@ -16,32 +15,31 @@ public class ButtonsViewModel : ViewModelBase
 
         var autoStartingActionCountdownStart = DateTime.Now;
         var demoRestartCountdownComplete = DateTime.Now;
-        var dismissRequested = false;
-        DismissCommand = new AnotherCommandImplementation(_ => dismissRequested = true);
+        
         ShowDismissButton = true;
 
         #region DISMISS button demo control
         //just some demo code for the DISMISS button...it's up to you to set 
         //up the progress on the button as it would be with a progress bar.
         //and then hide the button, do whatever action you want to do
-        new DispatcherTimer(
+        _ = new DispatcherTimer(
             TimeSpan.FromMilliseconds(100),
             DispatcherPriority.Normal,
             new EventHandler((o, e) =>
             {
-                if (dismissRequested)
+                if (_dismissRequested)
                 {
                     ShowDismissButton = false;
-                    dismissRequested = false;
+                    _dismissRequested = false;
                     demoRestartCountdownComplete = DateTime.Now.AddSeconds(3);
                     DismissButtonProgress = 0;
                 }
 
                 if (ShowDismissButton)
                 {
-                    var totalDuration = autoStartingActionCountdownStart.AddSeconds(5).Ticks - autoStartingActionCountdownStart.Ticks;
-                    var currentDuration = DateTime.Now.Ticks - autoStartingActionCountdownStart.Ticks;
-                    var autoCountdownPercentComplete = 100.0 / totalDuration * currentDuration;
+                    long totalDuration = autoStartingActionCountdownStart.AddSeconds(5).Ticks - autoStartingActionCountdownStart.Ticks;
+                    long currentDuration = DateTime.Now.Ticks - autoStartingActionCountdownStart.Ticks;
+                    double autoCountdownPercentComplete = 100.0 / totalDuration * currentDuration;
                     DismissButtonProgress = autoCountdownPercentComplete;
 
                     if (DismissButtonProgress >= 100)
@@ -64,47 +62,7 @@ public class ButtonsViewModel : ViewModelBase
             }), Dispatcher.CurrentDispatcher);
         #endregion
 
-        IncrementOrClickMeCountCommand = new AnotherCommandImplementation(_ => OrClickMeCount += 1);
         OrClickMeCount = 0;
-
-        //just some demo code for the SAVE button
-        SaveCommand = new AnotherCommandImplementation(_ =>
-        {
-            if (IsSaveComplete == true)
-            {
-                IsSaveComplete = false;
-                return;
-            }
-
-            if (SaveProgress != 0) return;
-
-            var started = DateTime.Now;
-            IsSaving = true;
-
-            new DispatcherTimer(
-                TimeSpan.FromMilliseconds(50),
-                DispatcherPriority.Normal,
-                new EventHandler((o, e) =>
-                {
-                    var totalDuration = started.AddSeconds(3).Ticks - started.Ticks;
-                    var currentProgress = DateTime.Now.Ticks - started.Ticks;
-                    var currentProgressPercent = 100.0 / totalDuration * currentProgress;
-
-                    SaveProgress = currentProgressPercent;
-
-                    if (SaveProgress >= 100)
-                    {
-                        IsSaveComplete = true;
-                        IsSaving = false;
-                        SaveProgress = 0;
-                        if (o is DispatcherTimer timer)
-                        {
-                            timer.Stop();
-                        }
-                    }
-
-                }), Dispatcher.CurrentDispatcher);
-        });
     }
 
     public ICommand FloatingActionDemoCommand { get; }
@@ -113,26 +71,17 @@ public class ButtonsViewModel : ViewModelBase
         => Debug.WriteLine($"Floating action button command. - {o ?? "NULL"}");
 
     #region Dismiss button demo
+    [RelayCommand]
+    private void Dismiss() => _dismissRequested = true;
 
-    public ICommand DismissCommand { get; }
+    [ObservableProperty]
+    private bool _showDismissButton;
 
-    public bool ShowDismissButton
-    {
-        get => _showDismissButton;
-        set => SetProperty(ref _showDismissButton, value);
-    }
+    [ObservableProperty]
+    private double _dismissButtonProgress;
 
-    public double DismissButtonProgress
-    {
-        get => _dismissButtonProgress;
-        set => SetProperty(ref _dismissButtonProgress, value);
-    }
-
-    public string? DemoRestartCountdownText
-    {
-        get => _demoRestartCountdownText;
-        private set => SetProperty(ref _demoRestartCountdownText, value);
-    }
+    [ObservableProperty]
+    private string? _demoRestartCountdownText;
 
     private void UpdateDemoRestartCountdownText(DateTime endTime, out bool isComplete)
     {
@@ -145,39 +94,60 @@ public class ButtonsViewModel : ViewModelBase
     #endregion
 
     #region OrClickMe Demo
-    public int OrClickMeCount
-    {
-        get => _orClickMeCount;
-        private set => SetProperty(ref _orClickMeCount, value);
-    }
-    public ICommand IncrementOrClickMeCountCommand { get; }
+    [RelayCommand]
+    private void IncrementOrClickMeCount() => OrClickMeCount += 1;
 
+    [ObservableProperty]
+    private int _orClickMeCount;
     #endregion
 
     #region floating Save button demo
+    [RelayCommand]
+    private void Save()
+    {
+        if (IsSaveComplete == true)
+        {
+            IsSaveComplete = false;
+            return;
+        }
 
-    public ICommand SaveCommand { get; }
+        if (SaveProgress != 0) return;
 
+        var started = DateTime.Now;
+        IsSaving = true;
+
+        _ = new DispatcherTimer(
+            TimeSpan.FromMilliseconds(50),
+            DispatcherPriority.Normal,
+            new EventHandler((o, e) =>
+            {
+                long totalDuration = started.AddSeconds(3).Ticks - started.Ticks;
+                long currentProgress = DateTime.Now.Ticks - started.Ticks;
+                double currentProgressPercent = 100.0 / totalDuration * currentProgress;
+
+                SaveProgress = currentProgressPercent;
+
+                if (SaveProgress >= 100)
+                {
+                    IsSaveComplete = true;
+                    IsSaving = false;
+                    SaveProgress = 0;
+                    if (o is DispatcherTimer timer)
+                    {
+                        timer.Stop();
+                    }
+                }
+
+            }), Dispatcher.CurrentDispatcher);
+    }
+
+    [ObservableProperty]
     private bool _isSaving;
-    public bool IsSaving
-    {
-        get => _isSaving;
-        private set => SetProperty(ref _isSaving, value);
-    }
 
+    [ObservableProperty]
     private bool _isSaveComplete;
-    public bool IsSaveComplete
-    {
-        get => _isSaveComplete;
-        private set => SetProperty(ref _isSaveComplete, value);
-    }
 
+    [ObservableProperty]
     private double _saveProgress;
-    public double SaveProgress
-    {
-        get => _saveProgress;
-        private set => SetProperty(ref _saveProgress, value);
-    }
-
     #endregion
 }
