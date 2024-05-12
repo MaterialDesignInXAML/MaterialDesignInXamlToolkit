@@ -48,4 +48,5 @@
     <PackageReference Include="ShowMeTheXAML.AvalonEdit" />
     <PackageReference Include="ShowMeTheXAML.MSBuild" />
   </ItemGroup>
+  <Import Project="..\MaterialDesignDemo.Shared\MaterialDesignDemo.Shared.projitems" Label="Shared" />
 </Project>

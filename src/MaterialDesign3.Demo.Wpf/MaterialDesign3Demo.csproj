@@ -61,4 +61,5 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <Import Project="..\MaterialDesignDemo.Shared\MaterialDesignDemo.Shared.projitems" Label="Shared" />
 </Project>
