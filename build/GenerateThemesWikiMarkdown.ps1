@@ -1,10 +1,10 @@
 $defaultStyleText = "(default style)"
 $headerMarkdown = "##"
 $listMarkdown = "-"
-$themesDirectory = "..\MaterialDesignThemes.Wpf\Themes\"
+$themesDirectory = "..\src\MaterialDesignThemes.Wpf\Themes\"
 $latestHash = git log -1 --pretty=format:"%H"
 $baseURL = "https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/blob"
-$filePathURL = "MaterialDesignThemes.Wpf/Themes"
+$filePathURL = "src/MaterialDesignThemes.Wpf/Themes"
 $outputFileName = "ControlStyleList.md"
 $themesFullDir = Join-Path $PSScriptRoot $themesDirectory 
 $outputFullDir = Join-Path $PSScriptRoot $outputFileName
