@@ -29,7 +29,7 @@ public class DocumentationLink
     {
         return new DocumentationLink(
             DocumentationLinkType.StyleSource,
-            $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/MaterialDesignThemes.Wpf/Themes/MaterialDesignTheme.{nameChunk}.xaml",
+            $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/src/MaterialDesignThemes.Wpf/Themes/MaterialDesignTheme.{nameChunk}.xaml",
             nameChunk);
     }
 
@@ -39,7 +39,7 @@ public class DocumentationLink
 
         return new DocumentationLink(
             DocumentationLinkType.ControlSource,
-            $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/MaterialDesignThemes.Wpf/{subNamespace}/{typeName}.cs",
+            $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/src/MaterialDesignThemes.Wpf/{subNamespace}/{typeName}.cs",
             typeName);
     }
 
@@ -53,7 +53,7 @@ public class DocumentationLink
 
         return new DocumentationLink(
             DocumentationLinkType.ControlSource,
-            $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/MaterialDesignThemes.Wpf/{typeName}.cs",
+            $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/src/MaterialDesignThemes.Wpf/{typeName}.cs",
             typeName);
     }
 
@@ -72,7 +72,7 @@ public class DocumentationLink
 
         return new DocumentationLink(
             DocumentationLinkType.DemoPageSource,
-            $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/MainDemo.Wpf/{(string.IsNullOrWhiteSpace(@namespace) ? "" : ("/" + @namespace + "/"))}{typeof(TDemoPage).Name}.{ext}",
+            $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/src/MainDemo.Wpf/{(string.IsNullOrWhiteSpace(@namespace) ? "" : ("/" + @namespace + "/"))}{typeof(TDemoPage).Name}.{ext}",
             label ?? typeof(TDemoPage).Name);
     }
 
@@ -87,8 +87,5 @@ public class DocumentationLink
 
     public ICommand Open { get; }
 
-    private void Execute(object? _)
-    {
-        Link.OpenInBrowser(Url);
-    }
+    private void Execute(object? _) => Link.OpenInBrowser(Url);
 }
