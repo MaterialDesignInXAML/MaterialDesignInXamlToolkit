@@ -6,7 +6,7 @@ internal static class HslExtensions
 {
     public static Color ToColor(this Hsl hsl)
     {
-        double hsv_rbg(double v1, double v2, double vH)
+        static double hsv_rbg(double v1, double v2, double vH)
         {
             if (vH < 0) vH += 1;
             if (vH > 1) vH -= 1;
@@ -16,9 +16,9 @@ internal static class HslExtensions
             return (v1);
         }
 
-        var h = hsl.H * (1.0 / 360);
-        var s = hsl.S * (1.0 / 100);
-        var l = hsl.L * (1.0 / 100);
+        double h = hsl.H * (1.0 / 360);
+        double s = hsl.S * (1.0 / 100);
+        double l = hsl.L * (1.0 / 100);
 
         double r, g, b;
         if (s == 0)
@@ -33,7 +33,7 @@ internal static class HslExtensions
             if (l < 0.5) var_2 = l * (1 + s);
             else var_2 = (l + s) - (s * l);
 
-            var var_1 = 2 * l - var_2;
+            double var_1 = 2 * l - var_2;
 
             r = 255 * hsv_rbg(var_1, var_2, h + (1.0 / 3));
             g = 255 * hsv_rbg(var_1, var_2, h);

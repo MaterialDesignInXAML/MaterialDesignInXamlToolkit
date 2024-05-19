@@ -48,7 +48,7 @@ public static class HsbExtensions
         g /= 255;
         b /= 255;
 
-        double[] rgb = new[] { r, g, b };
+        double[] rgb = [r, g, b];
         double max = rgb.Max();
         double min = rgb.Min();
         double v = max;

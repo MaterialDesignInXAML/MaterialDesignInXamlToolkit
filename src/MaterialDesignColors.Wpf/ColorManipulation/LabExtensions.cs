@@ -9,7 +9,7 @@ internal static class LabExtensions
 
     public static Lab ToLab(this Xyz xyz)
     {
-        double xyz_lab(double v)
+        static double xyz_lab(double v)
         {
             if (v > LabConstants.e)
                 return Math.Pow(v, 1 / 3.0);
