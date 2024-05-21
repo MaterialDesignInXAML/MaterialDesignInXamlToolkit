@@ -26,6 +26,7 @@
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
     <Setter Property="Padding" Value="9" />
+    <Setter Property="wpf:GroupBoxAssist.HeaderPadding" Value="9" />
     <Setter Property="SnapsToDevicePixels" Value="true" />
     <Setter Property="Template">
       <Setter.Value>
@@ -37,7 +38,7 @@
                     BorderThickness="{TemplateBinding BorderThickness}" />
             <DockPanel Margin="{TemplateBinding BorderThickness}">
               <wpf:ColorZone x:Name="PART_ColorZone"
-                             Padding="{TemplateBinding Padding}"
+                             Padding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:GroupBoxAssist.HeaderPadding)}"
                              wpf:ColorZoneAssist.Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Background)}"
                              wpf:ColorZoneAssist.Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Foreground)}"
                              DockPanel.Dock="Top"
@@ -78,6 +79,7 @@
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
     <Setter Property="Padding" Value="9" />
+    <Setter Property="wpf:GroupBoxAssist.HeaderPadding" Value="9" />
     <Setter Property="SnapsToDevicePixels" Value="true" />
     <Setter Property="Template">
       <Setter.Value>
@@ -85,7 +87,7 @@
           <wpf:Card VerticalAlignment="Stretch" wpf:ElevationAssist.Elevation="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation)}">
             <DockPanel Background="{TemplateBinding Background}">
               <wpf:ColorZone x:Name="PART_ColorZone"
-                             Padding="{TemplateBinding Padding}"
+                             Padding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:GroupBoxAssist.HeaderPadding)}"
                              wpf:ColorZoneAssist.Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Background)}"
                              wpf:ColorZoneAssist.Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Foreground)}"
                              DockPanel.Dock="Top"
