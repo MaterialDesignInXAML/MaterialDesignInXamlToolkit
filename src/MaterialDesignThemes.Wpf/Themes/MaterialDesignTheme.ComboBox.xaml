@@ -233,7 +233,7 @@
                       HorizontalAlignment="Right"
                       VerticalAlignment="Center"
                       Data="M7,10L12,15L17,10H7Z"
-                      Fill="{TemplateBinding BorderBrush}"
+                      Fill="{TemplateBinding Foreground}"
                       RenderTransformOrigin="0.5,0.5"
                       Stretch="Uniform" />
               </Border>
@@ -318,7 +318,9 @@
               <ColumnDefinition Width="0" MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" />
             </Grid.ColumnDefinitions>
             <ToggleButton x:Name="toggleButton"
+                          Foreground="{TemplateBinding Foreground}"
                           Grid.ColumnSpan="2"
+                          Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                           Padding="{TemplateBinding Padding}"
                           VerticalContentAlignment="Center"
                           BorderBrush="{TemplateBinding BorderBrush}"
@@ -476,9 +478,11 @@
               <Button x:Name="PART_ClearButton"
                       Grid.Column="5"
                       Height="Auto"
+                      Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                       Padding="2,0,0,0"
                       Command="{x:Static internal:ClearText.ClearCommand}"
                       Focusable="False"
+                      Foreground="{TemplateBinding Foreground}"
                       VerticalAlignment="Center"
                       Style="{StaticResource MaterialDesignToolButton}">
                 <Button.Visibility>
@@ -576,7 +580,6 @@
 
       <!-- Outlined combo box -->
       <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
-        <Setter TargetName="HintWrapper" Property="Opacity" Value="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}" />
         <Setter TargetName="PART_Popup" Property="ContentMargin" Value="6,0,6,6" />
         <Setter TargetName="PART_Popup" Property="ContentMinWidth" Value="{Binding Path=ActualWidth, ElementName=OuterBorder}" />
         <Setter TargetName="PART_Popup" Property="CornerRadius" Value="{Binding Path=(wpf:TextFieldAssist.TextFieldCornerRadius), RelativeSource={RelativeSource TemplatedParent}}" />
@@ -601,14 +604,19 @@
       </MultiTrigger>
 
       <!-- Floating hint -->
-      <Trigger Property="wpf:HintAssist.IsFloating" Value="True">
+      <MultiTrigger>
+        <MultiTrigger.Conditions>
+          <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
+          <Condition SourceName="Hint" Property="IsHintInFloatingPosition" Value="True" />
+        </MultiTrigger.Conditions>
         <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
-      </Trigger>
+      </MultiTrigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
           <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
           <Condition Property="IsKeyboardFocusWithin" Value="True" />
         </MultiTrigger.Conditions>
+        <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
         <Setter TargetName="Hint" Property="Foreground" Value="{Binding Path=(wpf:HintAssist.Foreground), RelativeSource={RelativeSource TemplatedParent}}" />
       </MultiTrigger>
 
@@ -622,6 +630,7 @@
         <Setter TargetName="OuterBorder" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
         <Setter TargetName="OuterBorder" Property="wpf:BottomDashedLineAdorner.IsAttached" Value="True" />
         <Setter TargetName="OuterBorder" Property="wpf:BottomDashedLineAdorner.DashStyle" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TextFieldAssist.HasFilledTextField), Converter={StaticResource BooleanToDashStyleConverter}}" />
+        <Setter TargetName="toggleButton" Property="Opacity" Value="1" />
       </MultiTrigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
@@ -629,19 +638,15 @@
           <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
         </MultiTrigger.Conditions>
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ComboBox.OutlineInactiveBorder}" />
-        <Setter TargetName="HintWrapper" Property="Opacity">
-          <Setter.Value>
-            <Binding Converter="{StaticResource MathMultiplyConverter}"
-                     ConverterParameter="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}"
-                     Path="(wpf:HintAssist.HintOpacity)"
-                     RelativeSource="{RelativeSource TemplatedParent}" />
-          </Setter.Value>
-        </Setter>
-        <Setter TargetName="PART_ClearButton" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
-        <Setter TargetName="PART_EditableTextBox" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
-        <Setter TargetName="PrefixTextBlock" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
-        <Setter TargetName="SuffixTextBlock" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
+        <Setter TargetName="HintWrapper" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
+        <Setter TargetName="PART_ClearButton" Property="Opacity" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:HintAssist.HintOpacity), Converter={StaticResource MathMultiplyConverter}, ConverterParameter={x:Static wpf:Constants.TextBoxNotEnabledOpacity}}" />
+        <Setter TargetName="LeadingPackIcon" Property="Opacity" Value="{Binding ElementName=PART_ClearButton, Path=Opacity}" />
+        <Setter TargetName="PrefixTextBlock" Property="Opacity" Value="{Binding ElementName=PART_ClearButton, Path=Opacity}" />
+        <Setter TargetName="SuffixTextBlock" Property="Opacity" Value="{Binding ElementName=PART_ClearButton, Path=Opacity}" />
+        <Setter TargetName="TrailingPackIcon" Property="Opacity" Value="{Binding ElementName=PART_ClearButton, Path=Opacity}" />
         <Setter TargetName="contentPresenter" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
+        <Setter TargetName="PART_EditableTextBox" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
+        <Setter TargetName="toggleButton" Property="Opacity" Value="1" />
       </MultiTrigger>
 
       <!-- IsKeyboardFocused -->
