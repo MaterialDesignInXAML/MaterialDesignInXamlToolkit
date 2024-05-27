@@ -1,34 +1,25 @@
 ﻿using System.Diagnostics;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignDemo.Domain;
 
-public class DialogsViewModel : ViewModelBase
+public partial class DialogsViewModel : ObservableObject
 {
-    public DialogsViewModel()
-    {
-        //Sample 4
-        OpenSample4DialogCommand = new AnotherCommandImplementation(OpenSample4Dialog);
-        AcceptSample4DialogCommand = new AnotherCommandImplementation(AcceptSample4Dialog);
-        CancelSample4DialogCommand = new AnotherCommandImplementation(CancelSample4Dialog);
-    }
-
     #region SAMPLE 3
 
-    public ICommand RunDialogCommand => new AnotherCommandImplementation(ExecuteRunDialog);
-
-    public ICommand RunExtendedDialogCommand => new AnotherCommandImplementation(ExecuteRunExtendedDialog);
-
-    private async void ExecuteRunDialog(object? _)
+    [RelayCommand]
+    private async Task RunDialog() 
     {
         //let's set up a little MVVM, cos that's what the cool kids are doing:
-        var view = new SampleDialog
+        object? view = new SampleDialog
         {
             DataContext = new SampleDialogViewModel()
         };
 
         //show the dialog
-        var result = await DialogHost.Show(view, "RootDialog", null, ClosingEventHandler, ClosedEventHandler);
+        object? result = await DialogHost.Show(view, "RootDialog", null, ClosingEventHandler, ClosedEventHandler);
 
         //check the result...
         Debug.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
@@ -40,16 +31,17 @@ public class DialogsViewModel : ViewModelBase
     private void ClosedEventHandler(object sender, DialogClosedEventArgs eventArgs)
         => Debug.WriteLine("You can intercept the closed event here (1).");
 
-    private async void ExecuteRunExtendedDialog(object? _)
+    [RelayCommand]
+    private async Task RunExtendedDialog()
     {
         //let's set up a little MVVM, cos that's what the cool kids are doing:
-        var view = new SampleDialog
+        object? view = new SampleDialog
         {
             DataContext = new SampleDialogViewModel()
         };
 
         //show the dialog
-        var result = await DialogHost.Show(view, "RootDialog", ExtendedOpenedEventHandler, ExtendedClosingEventHandler, ExtendedClosedEventHandler);
+        object? result = await DialogHost.Show(view, "RootDialog", ExtendedOpenedEventHandler, ExtendedClosingEventHandler, ExtendedClosedEventHandler);
 
         //check the result...
         Debug.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
@@ -84,35 +76,26 @@ public class DialogsViewModel : ViewModelBase
 
     #region SAMPLE 4
 
-    //pretty much ignore all the stuff provided, and manage everything via custom commands and a binding for .IsOpen
-    public ICommand OpenSample4DialogCommand { get; }
-    public ICommand AcceptSample4DialogCommand { get; }
-    public ICommand CancelSample4DialogCommand { get; }
+    //pretty much ignore all the stuff provided, and manage everything via custom commands and a binding for .IsOpen   
 
-    private bool _isSample4DialogOpen;
+    [ObservableProperty]
     private object? _sample4Content;
 
-    public bool IsSample4DialogOpen
-    {
-        get => _isSample4DialogOpen;
-        set => SetProperty(ref _isSample4DialogOpen, value);
-    }
-
-    public object? Sample4Content
-    {
-        get => _sample4Content;
-        set => SetProperty(ref _sample4Content, value);
-    }
-
-    private void OpenSample4Dialog(object? _)
+    [ObservableProperty]
+    private bool _isSample4DialogOpen;
+   
+    [RelayCommand]
+    private void OpenSample4Dialog()
     {
         Sample4Content = new Sample4Dialog();
         IsSample4DialogOpen = true;
     }
 
-    private void CancelSample4Dialog(object? _) => IsSample4DialogOpen = false;
+    [RelayCommand]
+    private void CancelSample4Dialog() => IsSample4DialogOpen = false;
 
-    private void AcceptSample4Dialog(object? _)
+    [RelayCommand]
+    private void AcceptSample4Dialog()
     {
         //pretend to do something for 3 seconds, then close
         Sample4Content = new SampleProgressDialog();
