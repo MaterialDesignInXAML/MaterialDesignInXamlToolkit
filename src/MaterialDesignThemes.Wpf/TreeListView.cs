@@ -84,6 +84,8 @@ public class TreeListView : ListView
         if (InternalItemsSource is { } itemsSource)
         {
             int index = ItemContainerGenerator.IndexFromContainer(item);
+            //Issue 3572
+            if (index < 0) return;
             var children = item.GetChildren().ToList();
             bool isExpanded = item.IsExpanded;
             itemsSource.SetIsExpanded(index, isExpanded);
