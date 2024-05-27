@@ -95,12 +95,39 @@
         </GroupBox>
       </smtx:XamlDisplay>
     </WrapPanel>
+    
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Header Padding" />
+
+    <WrapPanel>
+      <smtx:XamlDisplay UniqueKey="groupbox_7">
+        <GroupBox Width="300" Height="100" Header="Header"
+                  materialDesign:GroupBoxAssist.HeaderPadding="4" Padding="0"
+                  Style="{StaticResource MaterialDesignGroupBox}">
+          <ScrollViewer>
+            <TextBlock Margin="8" TextWrapping="Wrap"
+              Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+          </ScrollViewer>
+        </GroupBox>
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay UniqueKey="groupbox_8">
+        <GroupBox Width="300" Height="100" Header="Header"
+                  materialDesign:GroupBoxAssist.HeaderPadding="4" Padding="0"
+                  Style="{StaticResource MaterialDesignCardGroupBox}">
+          <ScrollViewer>
+            <TextBlock Margin="8" TextWrapping="Wrap"
+              Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+          </ScrollViewer>
+        </GroupBox>
+      </smtx:XamlDisplay>
+    </WrapPanel>
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
     <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Card" />
 
     <WrapPanel>
-      <smtx:XamlDisplay UniqueKey="groupbox_7">
+      <smtx:XamlDisplay UniqueKey="groupbox_9">
         <GroupBox Width="300"
                   Header="Card Group Box"
                   Style="{StaticResource MaterialDesignCardGroupBox}">
@@ -117,7 +144,7 @@
         </GroupBox>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay UniqueKey="groupbox_8">
+      <smtx:XamlDisplay UniqueKey="groupbox_10">
         <GroupBox Width="300"
                   materialDesign:ColorZoneAssist.Mode="SecondaryMid"
                   Header="Card Group Box Secondary"
@@ -144,7 +171,7 @@
         </GroupBox>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay UniqueKey="groupbox_9">
+      <smtx:XamlDisplay UniqueKey="groupbox_11">
         <GroupBox Width="300"
                   materialDesign:ColorZoneAssist.Mode="SecondaryMid"
                   Header="Card Group Box Accent"
@@ -171,7 +198,7 @@
         </GroupBox>
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay UniqueKey="groupbox_10">
+      <smtx:XamlDisplay UniqueKey="groupbox_12">
         <GroupBox Width="300"
                   materialDesign:ColorZoneAssist.Background="Black"
                   materialDesign:ColorZoneAssist.Foreground="White"
@@ -202,7 +229,7 @@
 
       <smtx:XamlDisplay Grid.Row="3"
                         Grid.Column="0"
-                        UniqueKey="groupbox_11">
+                        UniqueKey="groupbox_13">
         <GroupBox Margin="16"
                   materialDesign:ElevationAssist.Elevation="Dp6"
                   Background="White"
@@ -215,7 +242,7 @@
       </smtx:XamlDisplay>
       <smtx:XamlDisplay Grid.Row="3"
                         Grid.Column="1"
-                        UniqueKey="groupbox_12">
+                        UniqueKey="groupbox_14">
         <GroupBox Margin="16"
                   materialDesign:ElevationAssist.Elevation="Dp6"
                   Background="White"
@@ -229,7 +256,7 @@
       </smtx:XamlDisplay>
       <smtx:XamlDisplay Grid.Row="3"
                         Grid.Column="2"
-                        UniqueKey="groupbox_13">
+                        UniqueKey="groupbox_15">
         <GroupBox Margin="16"
                   materialDesign:ElevationAssist.Elevation="Dp6"
                   Header="Elevation on Card"
@@ -240,6 +267,7 @@
         </GroupBox>
       </smtx:XamlDisplay>
     </WrapPanel>
+
   </StackPanel>
 </UserControl>
 
