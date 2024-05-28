@@ -134,6 +134,7 @@
             </MultiTrigger>
             <Trigger Property="IsEnabled" Value="False">
               <Setter TargetName="PART_Button" Property="Opacity" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:HintAssist.HintOpacity), Converter={StaticResource MathMultiplyConverter}, ConverterParameter={x:Static wpf:Constants.TextBoxNotEnabledOpacity}}" />
+              <Setter TargetName="PART_TextBox" Property="IsReadOnly" Value="False" />
             </Trigger>
 
             <!-- Validation.HasError -->
