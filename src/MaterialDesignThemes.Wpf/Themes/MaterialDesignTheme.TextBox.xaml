@@ -275,9 +275,11 @@
                   <Button x:Name="PART_ClearButton"
                           Grid.Column="5"
                           Height="Auto"
+                          Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                           Padding="2,0,0,0"
                           Command="{x:Static internal:ClearText.ClearCommand}"
                           Focusable="False"
+                          Foreground="{TemplateBinding Foreground}"
                           VerticalAlignment="{TemplateBinding wpf:TextFieldAssist.IconVerticalAlignment}"
                           Style="{StaticResource MaterialDesignToolButton}">
                     <Button.Visibility>
@@ -336,14 +338,19 @@
             </MultiTrigger>
 
             <!-- Floating hint -->
-            <Trigger Property="wpf:HintAssist.IsFloating" Value="True">
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
+                <Condition SourceName="Hint" Property="IsHintInFloatingPosition" Value="True" />
+              </MultiTrigger.Conditions>
               <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
-            </Trigger>
+            </MultiTrigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
                 <Condition Property="IsKeyboardFocused" Value="True" />
               </MultiTrigger.Conditions>
+              <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
               <Setter TargetName="Hint" Property="Foreground" Value="{Binding Path=(wpf:HintAssist.Foreground), RelativeSource={RelativeSource TemplatedParent}}" />
             </MultiTrigger>
 
@@ -362,7 +369,6 @@
 
             <!-- Outlined text field -->
             <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
-              <Setter TargetName="HintWrapper" Property="Opacity" Value="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}" />
               <Setter TargetName="Underline" Property="Visibility" Value="Collapsed" />
               <Setter TargetName="Hint" Property="FloatingTarget" Value="{Binding ElementName=OuterBorder}" />
               <Setter TargetName="Hint" Property="FloatingAlignment" Value="Center" />
@@ -385,7 +391,6 @@
                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
               </MultiTrigger.Conditions>
               <Setter TargetName="OuterBorder" Property="BorderBrush" Value="Transparent" />
-              <Setter TargetName="PART_ClearButton" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
               <Setter TargetName="OuterBorder" Property="wpf:BottomDashedLineAdorner.IsAttached" Value="True" />
               <Setter TargetName="OuterBorder" Property="wpf:BottomDashedLineAdorner.DashStyle" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TextFieldAssist.HasFilledTextField), Converter={StaticResource BooleanToDashStyleConverter}}" />
               <Setter TargetName="ContentGrid" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
@@ -393,29 +398,16 @@
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="IsEnabled" Value="False" />
-                <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
-              </MultiTrigger.Conditions>
-              <Setter TargetName="PART_ClearButton" Property="Opacity" Value="1" />
-              <Setter TargetName="OuterBorder" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
-            </MultiTrigger>
-            <MultiTrigger>
-              <MultiTrigger.Conditions>
-                <Condition Property="IsEnabled" Value="False" />
                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
               </MultiTrigger.Conditions>
               <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.OutlineInactiveBorder}" />
-              <Setter TargetName="HintWrapper" Property="Opacity">
-                <Setter.Value>
-                  <Binding Converter="{StaticResource MathMultiplyConverter}"
-                           ConverterParameter="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}"
-                           Path="(wpf:HintAssist.HintOpacity)"
-                           RelativeSource="{RelativeSource TemplatedParent}" />
-                </Setter.Value>
-              </Setter>
-              <Setter TargetName="PART_ClearButton" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
               <Setter TargetName="PART_ContentHost" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
-              <Setter TargetName="PrefixTextBlock" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
-              <Setter TargetName="SuffixTextBlock" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
+              <Setter TargetName="HintWrapper" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
+              <Setter TargetName="PART_ClearButton" Property="Opacity" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:HintAssist.HintOpacity), Converter={StaticResource MathMultiplyConverter}, ConverterParameter={x:Static wpf:Constants.TextBoxNotEnabledOpacity}}" />
+              <Setter TargetName="LeadingPackIcon" Property="Opacity" Value="{Binding ElementName=PART_ClearButton, Path=Opacity}" />
+              <Setter TargetName="PrefixTextBlock" Property="Opacity" Value="{Binding ElementName=PART_ClearButton, Path=Opacity}" />
+              <Setter TargetName="SuffixTextBlock" Property="Opacity" Value="{Binding ElementName=PART_ClearButton, Path=Opacity}" />
+              <Setter TargetName="TrailingPackIcon" Property="Opacity" Value="{Binding ElementName=PART_ClearButton, Path=Opacity}" />
             </MultiTrigger>
 
             <!-- IsKeyboardFocused -->
