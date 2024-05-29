@@ -143,7 +143,14 @@
                   </VisualStateGroup>
                 </VisualStateManager.VisualStateGroups>
                 <wpf:ScaleHost x:Name="ScaleHost" />
-                <Grid Clip="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth, Converter={StaticResource FloatingHintClippingGridConverter}}">
+                <Grid>
+                  <Grid.Clip>
+                    <MultiBinding Converter="{StaticResource FloatingHintClippingGridConverter}">
+                      <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}" />
+                      <Binding Path="ActualHeight" RelativeSource="{RelativeSource TemplatedParent}" />
+                      <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}" />
+                    </MultiBinding>
+                  </Grid.Clip>
                   <Grid.RenderTransform>
                     <MultiBinding Converter="{StaticResource FloatingHintTranslateTransformConverter}">
                       <Binding ElementName="ScaleHost" Path="Scale" />
