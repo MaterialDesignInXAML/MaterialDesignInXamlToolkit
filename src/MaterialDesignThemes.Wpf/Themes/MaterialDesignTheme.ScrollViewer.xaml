@@ -85,11 +85,7 @@
       <Trigger Property="wpf:ScrollViewerAssist.ShowSeparators" Value="False">
         <Setter TargetName="PART_TopSeparator" Property="Visibility" Value="Hidden" />
       </Trigger>
-
-      <Trigger Property="wpf:ScrollViewerAssist.IgnorePadding" Value="False">
-        <Setter TargetName="PART_ScrollContentPresenter" Property="Margin" Value="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}" />
-      </Trigger>
-
+      
       <MultiTrigger>
         <MultiTrigger.Conditions>
           <Condition Property="wpf:ScrollViewerAssist.IsAutoHideEnabled" Value="True" />
@@ -150,5 +146,14 @@
 
   <Style x:Key="MaterialDesignScrollViewer" TargetType="ScrollViewer">
     <Setter Property="Template" Value="{StaticResource MaterialDesignScrollViewerTemplate}" />
+    <Setter Property="ContentTemplate">
+      <Setter.Value>
+        <DataTemplate>
+          <ContentControl Margin="{Binding Padding, RelativeSource={RelativeSource AncestorType=ScrollViewer}}">
+            <ContentPresenter Content="{Binding}" />
+          </ContentControl>
+        </DataTemplate>
+      </Setter.Value>
+    </Setter>
   </Style>
 </ResourceDictionary>

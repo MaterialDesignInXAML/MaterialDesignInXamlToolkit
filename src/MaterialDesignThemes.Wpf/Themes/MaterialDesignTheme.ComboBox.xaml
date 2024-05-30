@@ -60,7 +60,6 @@
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type TextBox}">
           <ScrollViewer x:Name="PART_ContentHost"
-                        wpf:ScrollViewerAssist.IgnorePadding="True"
                         Focusable="False"
                         HorizontalScrollBarVisibility="Hidden"
                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"

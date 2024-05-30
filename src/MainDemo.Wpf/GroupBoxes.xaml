@@ -104,8 +104,8 @@
         <GroupBox Width="300" Height="100" Header="Header"
                   materialDesign:GroupBoxAssist.HeaderPadding="4" Padding="0"
                   Style="{StaticResource MaterialDesignGroupBox}">
-          <ScrollViewer>
-            <TextBlock Margin="8" TextWrapping="Wrap"
+          <ScrollViewer Padding="4">
+            <TextBlock Margin="4" TextWrapping="Wrap"
               Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
           </ScrollViewer>
         </GroupBox>
@@ -115,8 +115,8 @@
         <GroupBox Width="300" Height="100" Header="Header"
                   materialDesign:GroupBoxAssist.HeaderPadding="4" Padding="0"
                   Style="{StaticResource MaterialDesignCardGroupBox}">
-          <ScrollViewer>
-            <TextBlock Margin="8" TextWrapping="Wrap"
+          <ScrollViewer Padding="4">
+            <TextBlock Margin="4" TextWrapping="Wrap"
               Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
           </ScrollViewer>
         </GroupBox>

@@ -62,12 +62,6 @@ public static class ScrollViewerAssist
         return (bool)element.GetValue(ShowSeparatorsProperty);
     }
 
-    public static readonly DependencyProperty IgnorePaddingProperty = DependencyProperty.RegisterAttached(
-        "IgnorePadding", typeof(bool), typeof(ScrollViewerAssist), new PropertyMetadata(true));
-
-    public static void SetIgnorePadding(DependencyObject element, bool value) => element.SetValue(IgnorePaddingProperty, value);
-    public static bool GetIgnorePadding(DependencyObject element) => (bool)element.GetValue(IgnorePaddingProperty);
-
     private static readonly DependencyProperty HorizontalScrollHookProperty = DependencyProperty.RegisterAttached(
         "HorizontalScrollHook", typeof(HwndSourceHook), typeof(ScrollViewerAssist), new PropertyMetadata(null));
 
