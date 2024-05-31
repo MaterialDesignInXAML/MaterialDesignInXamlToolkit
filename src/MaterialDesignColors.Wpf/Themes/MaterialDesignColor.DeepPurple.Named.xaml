@@ -1,31 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
   <Color x:Key="DeepPurplePrimary50">#ede7f6</Color>
-  <Color x:Key="Deep PurplePrimary50Foreground">#DD000000</Color>
+  <Color x:Key="DeepPurplePrimary50Foreground">#DD000000</Color>
   <Color x:Key="DeepPurplePrimary100">#d1c4e9</Color>
-  <Color x:Key="Deep PurplePrimary100Foreground">#DD000000</Color>
+  <Color x:Key="DeepPurplePrimary100Foreground">#DD000000</Color>
   <Color x:Key="DeepPurplePrimary200">#b39ddb</Color>
-  <Color x:Key="Deep PurplePrimary200Foreground">#DD000000</Color>
+  <Color x:Key="DeepPurplePrimary200Foreground">#DD000000</Color>
   <Color x:Key="DeepPurplePrimary300">#9575cd</Color>
-  <Color x:Key="Deep PurplePrimary300Foreground">#DDFFFFFF</Color>
+  <Color x:Key="DeepPurplePrimary300Foreground">#DDFFFFFF</Color>
   <Color x:Key="DeepPurplePrimary400">#7e57c2</Color>
-  <Color x:Key="Deep PurplePrimary400Foreground">#DDFFFFFF</Color>
+  <Color x:Key="DeepPurplePrimary400Foreground">#DDFFFFFF</Color>
   <Color x:Key="DeepPurplePrimary500">#673ab7</Color>
-  <Color x:Key="Deep PurplePrimary500Foreground">#DDFFFFFF</Color>
+  <Color x:Key="DeepPurplePrimary500Foreground">#DDFFFFFF</Color>
   <Color x:Key="DeepPurplePrimary600">#5e35b1</Color>
-  <Color x:Key="Deep PurplePrimary600Foreground">#DDFFFFFF</Color>
+  <Color x:Key="DeepPurplePrimary600Foreground">#DDFFFFFF</Color>
   <Color x:Key="DeepPurplePrimary700">#512da8</Color>
-  <Color x:Key="Deep PurplePrimary700Foreground">#DDFFFFFF</Color>
+  <Color x:Key="DeepPurplePrimary700Foreground">#DDFFFFFF</Color>
   <Color x:Key="DeepPurplePrimary800">#4527a0</Color>
-  <Color x:Key="Deep PurplePrimary800Foreground">#DDFFFFFF</Color>
+  <Color x:Key="DeepPurplePrimary800Foreground">#DDFFFFFF</Color>
   <Color x:Key="DeepPurplePrimary900">#311b92</Color>
-  <Color x:Key="Deep PurplePrimary900Foreground">#DDFFFFFF</Color>
+  <Color x:Key="DeepPurplePrimary900Foreground">#DDFFFFFF</Color>
   <Color x:Key="DeepPurpleSecondary100">#b388ff</Color>
-  <Color x:Key="Deep PurpleSecondary100Foreground">#DD000000</Color>
+  <Color x:Key="DeepPurpleSecondary100Foreground">#DD000000</Color>
   <Color x:Key="DeepPurpleSecondary200">#7c4dff</Color>
-  <Color x:Key="Deep PurpleSecondary200Foreground">#FFFFFFFF</Color>
+  <Color x:Key="DeepPurpleSecondary200Foreground">#FFFFFFFF</Color>
   <Color x:Key="DeepPurpleSecondary400">#651fff</Color>
-  <Color x:Key="Deep PurpleSecondary400Foreground">#DDFFFFFF</Color>
+  <Color x:Key="DeepPurpleSecondary400Foreground">#DDFFFFFF</Color>
   <Color x:Key="DeepPurpleSecondary700">#6200ea</Color>
-  <Color x:Key="Deep PurpleSecondary700Foreground">#DDFFFFFF</Color>
+  <Color x:Key="DeepPurpleSecondary700Foreground">#DDFFFFFF</Color>
 </ResourceDictionary>

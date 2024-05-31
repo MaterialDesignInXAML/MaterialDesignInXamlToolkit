@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
   <Color x:Key="DeepOrangePrimary50">#fbe9e7</Color>
-  <Color x:Key="Deep OrangePrimary50Foreground">#DD000000</Color>
+  <Color x:Key="DeepOrangePrimary50Foreground">#DD000000</Color>
   <Color x:Key="DeepOrangePrimary100">#ffccbc</Color>
-  <Color x:Key="Deep OrangePrimary100Foreground">#DD000000</Color>
+  <Color x:Key="DeepOrangePrimary100Foreground">#DD000000</Color>
   <Color x:Key="DeepOrangePrimary200">#ffab91</Color>
-  <Color x:Key="Deep OrangePrimary200Foreground">#DD000000</Color>
+  <Color x:Key="DeepOrangePrimary200Foreground">#DD000000</Color>
   <Color x:Key="DeepOrangePrimary300">#ff8a65</Color>
-  <Color x:Key="Deep OrangePrimary300Foreground">#DD000000</Color>
+  <Color x:Key="DeepOrangePrimary300Foreground">#DD000000</Color>
   <Color x:Key="DeepOrangePrimary400">#ff7043</Color>
-  <Color x:Key="Deep OrangePrimary400Foreground">#DD000000</Color>
+  <Color x:Key="DeepOrangePrimary400Foreground">#DD000000</Color>
   <Color x:Key="DeepOrangePrimary500">#ff5722</Color>
-  <Color x:Key="Deep OrangePrimary500Foreground">#FFFFFFFF</Color>
+  <Color x:Key="DeepOrangePrimary500Foreground">#FFFFFFFF</Color>
   <Color x:Key="DeepOrangePrimary600">#f4511e</Color>
-  <Color x:Key="Deep OrangePrimary600Foreground">#DDFFFFFF</Color>
+  <Color x:Key="DeepOrangePrimary600Foreground">#DDFFFFFF</Color>
   <Color x:Key="DeepOrangePrimary700">#e64a19</Color>
-  <Color x:Key="Deep OrangePrimary700Foreground">#DDFFFFFF</Color>
+  <Color x:Key="DeepOrangePrimary700Foreground">#DDFFFFFF</Color>
   <Color x:Key="DeepOrangePrimary800">#d84315</Color>
-  <Color x:Key="Deep OrangePrimary800Foreground">#DDFFFFFF</Color>
+  <Color x:Key="DeepOrangePrimary800Foreground">#DDFFFFFF</Color>
   <Color x:Key="DeepOrangePrimary900">#bf360c</Color>
-  <Color x:Key="Deep OrangePrimary900Foreground">#DDFFFFFF</Color>
+  <Color x:Key="DeepOrangePrimary900Foreground">#DDFFFFFF</Color>
 </ResourceDictionary>
