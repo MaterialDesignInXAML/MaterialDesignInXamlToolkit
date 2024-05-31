@@ -4,15 +4,20 @@ using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf.Converters;
 
-public class FloatingHintClippingGridConverter : IValueConverter
+public class FloatingHintClippingGridConverter : IMultiValueConverter
 {
-    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture) =>
-        value switch
+    public object? Convert(object?[] values, Type targetType, object? parameter, CultureInfo culture)
+    {
+        if (values is not [double actualWidth, double actualHeight, double floatingScale])
         {
-            double actualWidth => new RectangleGeometry(new Rect(new Point(0, 0), new Size(actualWidth, double.MaxValue))),
-            _ => null
-        };
+            return null;
+        }
 
-    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        RectangleGeometry geometry = new(new Rect(new Point(0, 0), new Size(actualWidth, actualHeight * floatingScale)));
+        geometry.Freeze();
+        return geometry;
+    }
+
+    public object?[] ConvertBack(object? value, Type[] targetTypes, object? parameter, CultureInfo culture)
         => throw new NotImplementedException();
 }
