@@ -74,7 +74,7 @@ public class SnackbarMessageQueue : ISnackbarMessageQueue, IDisposable
                 }
                 catch (ObjectDisposedException)
                 {
-                    /* we are we suppressing this?
+                    /* Why are we suppressing this?
                      * as we have switched out wait onto another thread, so we don't block the UI thread, the
                      * _cleanUp/Dispose() action might also happen, and the _disposedWaitHandle might get disposed
                      * just before we WaitOne. We won't add a lock in the _cleanUp because it might block for 2 seconds.
@@ -152,7 +152,7 @@ public class SnackbarMessageQueue : ISnackbarMessageQueue, IDisposable
     }
 
     /// <summary>
-    /// Gets or sets a value that indicates whether this message queue displays messages without discarding duplicates. 
+    /// Gets or sets a value that indicates whether this message queue displays messages without discarding duplicates.
     /// False to show every message even if there are duplicates.
     /// </summary>
     public bool DiscardDuplicates { get; set; }
