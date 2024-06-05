@@ -168,6 +168,7 @@
                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                         Panel.ZIndex="1"
+                        wpf:ScrollViewerAssist.IgnorePadding="True"
                         Cursor="{TemplateBinding Cursor, Converter={StaticResource IBeamCursorConverter}}"
                         Focusable="False"
                         HorizontalScrollBarVisibility="Hidden"

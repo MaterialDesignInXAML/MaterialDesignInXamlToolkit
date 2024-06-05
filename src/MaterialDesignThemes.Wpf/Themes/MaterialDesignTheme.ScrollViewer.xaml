@@ -146,14 +146,18 @@
 
   <Style x:Key="MaterialDesignScrollViewer" TargetType="ScrollViewer">
     <Setter Property="Template" Value="{StaticResource MaterialDesignScrollViewerTemplate}" />
-    <Setter Property="ContentTemplate">
-      <Setter.Value>
-        <DataTemplate>
-          <ContentControl Margin="{Binding Padding, RelativeSource={RelativeSource AncestorType=ScrollViewer}}">
-            <ContentPresenter Content="{Binding}" />
-          </ContentControl>
-        </DataTemplate>
-      </Setter.Value>
-    </Setter>
+    <Style.Triggers>
+      <Trigger Property="wpf:ScrollViewerAssist.IgnorePadding" Value="False">
+        <Setter Property="ContentTemplate">
+          <Setter.Value>
+            <DataTemplate>
+              <ContentControl Margin="{Binding Padding, RelativeSource={RelativeSource AncestorType=ScrollViewer}}">
+                <ContentPresenter Content="{Binding}" />
+              </ContentControl>
+            </DataTemplate>
+          </Setter.Value>
+        </Setter>
+      </Trigger>
+    </Style.Triggers>
   </Style>
 </ResourceDictionary>
