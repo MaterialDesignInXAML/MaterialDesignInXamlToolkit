@@ -18,7 +18,7 @@ public class DeepOrangeSwatch : ISwatch
 	public static Color DeepOrangeA400 { get; } = (Color)ColorConverter.ConvertFromString("#FF3D00");
 	public static Color DeepOrangeA700 { get; } = (Color)ColorConverter.ConvertFromString("#DD2C00");
 
-	public string Name { get; } = "Deep Orange";
+	public string Name { get; } = "DeepOrange";
 
 	public IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>
 	{

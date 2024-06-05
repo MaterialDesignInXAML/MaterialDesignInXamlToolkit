@@ -18,7 +18,7 @@ public class LightBlueSwatch : ISwatch
 	public static Color LightBlueA400 { get; } = (Color)ColorConverter.ConvertFromString("#00B0FF");
 	public static Color LightBlueA700 { get; } = (Color)ColorConverter.ConvertFromString("#0091EA");
 
-	public string Name { get; } = "Light Blue";
+	public string Name { get; } = "LightBlue";
 
 	public IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>
 	{
