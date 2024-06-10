@@ -91,10 +91,7 @@
           <ScaleTransform ScaleX="0" ScaleY="0" />
         </Ellipse.RenderTransform>
       </Ellipse>
-      <AdornerDecorator>
-        <AdornerDecorator.CacheMode>
-          <BitmapCache SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-        </AdornerDecorator.CacheMode>
+      <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
         <Ellipse x:Name="grip"
                  Margin="-1,0"
                  Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}"
@@ -280,10 +277,7 @@
               <TranslateTransform X="{Binding ActualWidth, ElementName=label, Converter={StaticResource SliderValueLabelPositionConverter}, ConverterParameter={x:Static Orientation.Horizontal}}" Y="-40" />
             </TransformGroup>
           </Grid.RenderTransform>
-          <AdornerDecorator>
-            <AdornerDecorator.CacheMode>
-              <BitmapCache SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-            </AdornerDecorator.CacheMode>
+          <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
             <Grid Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}">
               <Rectangle Margin="0,0,0,5"
                          Fill="{DynamicResource MaterialDesign.Brush.ToolTip.Background}"
@@ -314,10 +308,7 @@
           </TextBlock>
         </Grid>
       </Canvas>
-      <AdornerDecorator>
-        <AdornerDecorator.CacheMode>
-          <BitmapCache SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-        </AdornerDecorator.CacheMode>
+      <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
         <Ellipse x:Name="grip"
                  Margin="-1,0"
                  Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}"
@@ -498,10 +489,7 @@
               <TranslateTransform X="{Binding ActualWidth, ElementName=label, Converter={StaticResource SliderValueLabelPositionConverter}, ConverterParameter={x:Static Orientation.Vertical}}" Y="-7" />
             </TransformGroup>
           </Grid.RenderTransform>
-          <AdornerDecorator>
-            <AdornerDecorator.CacheMode>
-              <BitmapCache SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-            </AdornerDecorator.CacheMode>
+          <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
             <Grid Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}">
               <Rectangle Margin="0,0,5,0"
                          Fill="{DynamicResource MaterialDesign.Brush.ToolTip.Background}"
@@ -532,10 +520,7 @@
           </TextBlock>
         </Grid>
       </Canvas>
-      <AdornerDecorator>
-        <AdornerDecorator.CacheMode>
-          <BitmapCache SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-        </AdornerDecorator.CacheMode>
+      <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
         <Ellipse x:Name="grip"
                  Margin="0,-1"
                  Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}"
