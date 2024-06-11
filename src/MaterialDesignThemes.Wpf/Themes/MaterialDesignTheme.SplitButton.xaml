@@ -64,6 +64,7 @@
                     Height="{TemplateBinding Height}"
                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                     Style="{TemplateBinding ButtonStyle}"
+                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                     Padding="{TemplateBinding Padding}"
                     wpf:ElevationAssist.Elevation="Dp0"
                     wpf:ButtonAssist.CornerRadius="{TemplateBinding wpf:ButtonAssist.CornerRadius, Converter={StaticResource LeftButtonCornerRadiusConverter}}"/>
@@ -85,6 +86,7 @@
                         IsHitTestVisible="True"
                         Padding="{TemplateBinding Padding}"
                         Style="{TemplateBinding ButtonStyle}"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                         wpf:ElevationAssist.Elevation="Dp0"
                         wpf:ButtonAssist.CornerRadius="{TemplateBinding wpf:ButtonAssist.CornerRadius, Converter={StaticResource RightButtonCornerRadiusConverter}}"
                         wpf:RippleAssist.IsDisabled="False"
