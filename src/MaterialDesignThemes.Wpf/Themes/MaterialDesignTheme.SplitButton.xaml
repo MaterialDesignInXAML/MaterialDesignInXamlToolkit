@@ -39,6 +39,8 @@
           <Grid x:Name="OuterGrid"
                 Margin="{TemplateBinding Margin}"
                 Height="{TemplateBinding Height}"
+                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
                 Width="{TemplateBinding Width}"
                 Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}">
             <Grid.ColumnDefinitions>
