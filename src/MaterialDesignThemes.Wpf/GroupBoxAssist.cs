@@ -2,13 +2,13 @@
 
 public static class GroupBoxAssist
 {
-    private const double DefaultHeaderPadding = 9.0;
+    private static readonly Thickness DefaultHeaderPaddingThickness = new(9, 9, 9, 9);
 
     #region AttachedProperty : HeaderPaddingProperty
     public static readonly DependencyProperty HeaderPaddingProperty
-            = DependencyProperty.RegisterAttached("HeaderPadding", typeof(double), typeof(GroupBoxAssist), new PropertyMetadata(DefaultHeaderPadding));
+            = DependencyProperty.RegisterAttached("HeaderPadding", typeof(Thickness), typeof(GroupBoxAssist), new PropertyMetadata(DefaultHeaderPaddingThickness));
 
-    public static double GetHeaderPadding(GroupBox element) => (double)element.GetValue(HeaderPaddingProperty);
-    public static void SetHeaderPadding(GroupBox element, double headerPadding) => element.SetValue(HeaderPaddingProperty, headerPadding);
+    public static Thickness GetHeaderPadding(GroupBox element) => (Thickness)element.GetValue(HeaderPaddingProperty);
+    public static void SetHeaderPadding(GroupBox element, Thickness headerPadding) => element.SetValue(HeaderPaddingProperty, headerPadding);
     #endregion
 }
