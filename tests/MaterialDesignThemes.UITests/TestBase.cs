@@ -6,6 +6,7 @@ using System.Windows.Media;
 [assembly: GenerateHelpers(typeof(ColorPicker))]
 [assembly: GenerateHelpers(typeof(DialogHost))]
 [assembly: GenerateHelpers(typeof(DrawerHost))]
+[assembly: GenerateHelpers(typeof(NumericUpDown))]
 [assembly: GenerateHelpers(typeof(PopupBox))]
 [assembly: GenerateHelpers(typeof(SmartHint))]
 [assembly: GenerateHelpers(typeof(TimePicker))]

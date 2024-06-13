@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Configuration;
 using System.Windows.Data;
+
 using MaterialDesignThemes.Wpf;
 using MaterialDesignThemes.Wpf.Transitions;
 
@@ -37,7 +38,7 @@ public class MainWindowViewModel : ViewModelBase
         SelectedItem = DemoItems.FirstOrDefault(di => string.Equals(di.Name, startupPage, StringComparison.CurrentCultureIgnoreCase)) ?? DemoItems.First();
         _demoItemsView = CollectionViewSource.GetDefaultView(DemoItems);
         _demoItemsView.Filter = DemoItemsFilter;
-        
+
 
         HomeCommand = new AnotherCommandImplementation(
             _ =>
@@ -467,8 +468,15 @@ public class MainWindowViewModel : ViewModelBase
             new[]
             {
                 DocumentationLink.DemoPageLink<PopupBox>(),
-                DocumentationLink.StyleLink("PopupBox"), 
+                DocumentationLink.StyleLink("PopupBox"),
             });
+
+        yield return new DemoItem(nameof(NumericUpDown), typeof(NumericUpDown), new[]
+        {
+            DocumentationLink.DemoPageLink<NumericUpDown>(),
+            DocumentationLink.StyleLink(nameof(NumericUpDown)),
+            DocumentationLink.ApiLink<NumericUpDown>()
+        });
     }
 
     private bool DemoItemsFilter(object obj)

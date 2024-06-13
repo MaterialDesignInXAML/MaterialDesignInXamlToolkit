@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="MaterialDesignDemo.NumericUpDown"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+             d:DesignHeight="800"
+             d:DesignWidth="1000"
+             mc:Ignorable="d">
+
+  <UserControl.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.NumericUpDown.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </UserControl.Resources>
+
+  <DockPanel MinHeight="2000">
+    <TextBlock DockPanel.Dock="Top"
+               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+               Text="NumericUpDown Control" />
+
+    <StackPanel Margin="0,16,0,0"
+                DockPanel.Dock="Top"
+                Orientation="Horizontal">
+      <smtx:XamlDisplay Margin="10,5"
+                        VerticalAlignment="Top"
+                        UniqueKey="numericUpDown_default">
+        <materialDesign:NumericUpDown />
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay Margin="10,5"
+                        VerticalAlignment="Top"
+                        UniqueKey="numericUpDown_customButtonContent">
+        <materialDesign:NumericUpDown>
+          <materialDesign:NumericUpDown.IncreaseContent>
+            <Border BorderBrush="{DynamicResource MaterialDesign.Brush.Foreground}" BorderThickness="1" CornerRadius="20">
+              <materialDesign:PackIcon Kind="ArrowUp" />
+            </Border>
+          </materialDesign:NumericUpDown.IncreaseContent>
+          <materialDesign:NumericUpDown.DecreaseContent>
+            <Border BorderBrush="{DynamicResource MaterialDesign.Brush.Foreground}" BorderThickness="1" CornerRadius="20">
+              <materialDesign:PackIcon Kind="ArrowDown" />
+            </Border>
+          </materialDesign:NumericUpDown.DecreaseContent>
+        </materialDesign:NumericUpDown>
+      </smtx:XamlDisplay>
+      
+    </StackPanel>
+
+  </DockPanel>
+</UserControl>
