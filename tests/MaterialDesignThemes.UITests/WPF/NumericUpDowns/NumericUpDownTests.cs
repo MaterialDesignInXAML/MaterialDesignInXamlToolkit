@@ -93,4 +93,26 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
 
         Assert.True(await minusButton.GetIsEnabled());
     }
+
+    [Fact]
+    public async Task MaxAndMinAssignments_CoerceValueToBeInRange()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        var numericUpDown = await LoadXaml<NumericUpDown>("""
+        <materialDesign:NumericUpDown Value="2" />
+        """);
+
+        await numericUpDown.SetMaximum(1);
+        Assert.Equal(1, await numericUpDown.GetValue());
+
+        await numericUpDown.SetMinimum(3);
+        Assert.Equal(3, await numericUpDown.GetValue());
+        Assert.Equal(3, await numericUpDown.GetMaximum());
+
+        await numericUpDown.SetMaximum(2);
+        Assert.Equal(3, await numericUpDown.GetValue());
+        Assert.Equal(3, await numericUpDown.GetMinimum());
+        Assert.Equal(3, await numericUpDown.GetMaximum());
+    }
 }

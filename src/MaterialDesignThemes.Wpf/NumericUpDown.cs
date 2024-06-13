@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Globalization;
+using System.Windows.Automation.Peers;
 
 namespace MaterialDesignThemes.Wpf;
 
@@ -30,17 +31,44 @@ public class NumericUpDown : Control
         set => SetValue(MinimumProperty, value);
     }
     public static readonly DependencyProperty MinimumProperty =
-        DependencyProperty.Register(nameof(Minimum), typeof(int), typeof(NumericUpDown), new PropertyMetadata(int.MinValue));
+        DependencyProperty.Register(nameof(Minimum), typeof(int), typeof(NumericUpDown), new PropertyMetadata(int.MinValue, OnMinimumChanged));
+
+    private static void OnMinimumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        NumericUpDown ctrl = (NumericUpDown)d;
+        ctrl.CoerceValue(ValueProperty);
+        ctrl.CoerceValue(MaximumProperty);
+    }
+
     #endregion DependencyProperty : MinimumProperty
 
     #region DependencyProperty : MaximumProperty
+
     public int Maximum
     {
         get => (int)GetValue(MaximumProperty);
         set => SetValue(MaximumProperty, value);
     }
+
     public static readonly DependencyProperty MaximumProperty =
-        DependencyProperty.Register(nameof(Maximum), typeof(int), typeof(NumericUpDown), new PropertyMetadata(int.MaxValue));
+        DependencyProperty.Register(nameof(Maximum), typeof(int), typeof(NumericUpDown), new PropertyMetadata(int.MaxValue, OnMaximumChanged, CoerceMaximum));
+
+    private static void OnMaximumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        NumericUpDown ctrl = (NumericUpDown)d;
+        ctrl.CoerceValue(ValueProperty);
+    }
+
+    private static object? CoerceMaximum(DependencyObject d, object? value)
+    {
+        if (d is NumericUpDown numericUpDown &&
+            value is int numericValue)
+        {
+            return Math.Max(numericUpDown.Minimum, numericValue);
+        }
+        return value;
+    }
+
     #endregion DependencyProperty : MaximumProperty
 
     #region DependencyProperty : ValueProperty
@@ -79,7 +107,7 @@ public class NumericUpDown : Control
         }
     }
 
-    private static object CoerceNumericValue(DependencyObject d, object value)
+    private static object? CoerceNumericValue(DependencyObject d, object? value)
     {
         if (d is NumericUpDown numericUpDown &&
             value is int numericValue)
