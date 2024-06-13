@@ -92,46 +92,6 @@ public class NumericUpDown : Control
     }
     #endregion ValueProperty
 
-    #region DependencyProperty : IncreaseCommandProperty
-    public ICommand? IncreaseCommand
-    {
-        get => (ICommand?)GetValue(IncreaseCommandProperty);
-        set => SetValue(IncreaseCommandProperty, value);
-    }
-    public static readonly DependencyProperty IncreaseCommandProperty =
-            DependencyProperty.Register(nameof(IncreaseCommand), typeof(ICommand), typeof(NumericUpDown), new PropertyMetadata(null));
-
-    public object? IncreaseCommandParameter
-    {
-        get => (object?)GetValue(IncreaseCommandParameterProperty);
-        set => SetValue(IncreaseCommandParameterProperty, value);
-    }
-    public static readonly DependencyProperty IncreaseCommandParameterProperty =
-        DependencyProperty.Register(nameof(IncreaseCommandParameter), typeof(object), typeof(NumericUpDown), new PropertyMetadata(null));
-
-
-    #endregion DependencyProperty : IncreaseCommandProperty
-
-    #region DependencyProperty : DecreaseCommandProperty
-    public ICommand? DecreaseCommand
-    {
-        get => (ICommand?)GetValue(DecreaseCommandProperty);
-        set => SetValue(DecreaseCommandProperty, value);
-    }
-    public static readonly DependencyProperty DecreaseCommandProperty =
-            DependencyProperty.Register(nameof(DecreaseCommand), typeof(ICommand), typeof(NumericUpDown), new PropertyMetadata(default(ICommand?)));
-
-    public object? DecreaseCommandParameter
-    {
-        get => (object?)GetValue(DecreaseCommandParameterProperty);
-        set => SetValue(DecreaseCommandParameterProperty, value);
-    }
-
-    public static readonly DependencyProperty DecreaseCommandParameterProperty =
-        DependencyProperty.Register(nameof(DecreaseCommandParameter), typeof(object), typeof(NumericUpDown), new PropertyMetadata(null));
-
-    #endregion DependencyProperty : DecreaseCommandProperty
-
     #region DependencyProperty : AllowChangeOnScroll
 
     public bool AllowChangeOnScroll
@@ -209,17 +169,11 @@ public class NumericUpDown : Control
     private void OnIncrease()
     {
         SetCurrentValue(ValueProperty, Value + 1);
-
-        if (IncreaseCommand?.CanExecute(IncreaseCommandParameter) ?? false)
-            IncreaseCommand.Execute(IncreaseCommandParameter);
     }
 
     private void OnDecrease()
     {
         SetCurrentValue(ValueProperty, Value - 1);
-
-        if (DecreaseCommand?.CanExecute(this) ?? false)
-            DecreaseCommand.Execute(this);
     }
 
     protected override void OnPreviewKeyDown(KeyEventArgs e)
@@ -244,13 +198,12 @@ public class NumericUpDown : Control
             if (e.Delta > 0)
             {
                 OnIncrease();
-                e.Handled = true;
             }
             else if (e.Delta < 0)
             {
                 OnDecrease();
-                e.Handled = true;
             }
+            e.Handled = true;
         }
         base.OnPreviewMouseWheel(e);
     }

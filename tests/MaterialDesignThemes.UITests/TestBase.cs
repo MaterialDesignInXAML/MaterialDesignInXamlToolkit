@@ -17,7 +17,7 @@ namespace MaterialDesignThemes.UITests;
 
 public abstract class TestBase(ITestOutputHelper output) : IAsyncLifetime
 {
-    protected bool AttachedDebuggerToRemoteProcess { get; set; } = false;
+    protected bool AttachedDebuggerToRemoteProcess { get; set; } = true;
     protected ITestOutputHelper Output { get; } = output ?? throw new ArgumentNullException(nameof(output));
 
     [NotNull]
