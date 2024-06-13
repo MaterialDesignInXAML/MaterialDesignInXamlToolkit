@@ -24,6 +24,34 @@ public class NumericUpDown : Control
 
     #region DependencyProperties
 
+
+
+    public object? IncreaseContent
+    {
+        get => GetValue(IncreaseContentProperty);
+        set => SetValue(IncreaseContentProperty, value);
+    }
+
+    // Using a DependencyProperty as the backing store for IncreaseContent.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty IncreaseContentProperty =
+        DependencyProperty.Register(nameof(IncreaseContent), typeof(object), typeof(NumericUpDown), new PropertyMetadata(null));
+
+
+
+
+    public object? DecreaseContent
+    {
+        get => GetValue(DecreaseContentProperty);
+        set => SetValue(DecreaseContentProperty, value);
+    }
+
+    // Using a DependencyProperty as the backing store for DecreaseContent.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty DecreaseContentProperty =
+        DependencyProperty.Register(nameof(DecreaseContent), typeof(object), typeof(NumericUpDown), new PropertyMetadata(null));
+
+
+
+
     #region DependencyProperty : MinimumProperty
     public int Minimum
     {

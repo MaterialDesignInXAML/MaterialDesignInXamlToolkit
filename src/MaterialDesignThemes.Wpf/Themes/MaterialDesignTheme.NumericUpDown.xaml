@@ -15,6 +15,8 @@
     <Setter Property="Padding" Value="4"/>
     <Setter Property="HorizontalContentAlignment" Value="Center" />
     <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="IncreaseContent" Value="{local:PackIcon Kind=Plus}" />
+    <Setter Property="DecreaseContent" Value="{local:PackIcon Kind=Minus}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type wpf:NumericUpDown}">
@@ -36,12 +38,12 @@
                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" />
 
               <RepeatButton x:Name="PART_DecreaseButton"
-                            Content="{local:PackIcon Kind=Minus}"
+                            Content="{TemplateBinding DecreaseContent}"
                             Style="{StaticResource MaterialDesignFlatButton}"
                             Padding="8,4"
                             Grid.Column="1"/>
               <RepeatButton x:Name="PART_IncreaseButton"
-                            Content="{local:PackIcon Kind=Plus}"
+                            Content="{TemplateBinding IncreaseContent}"
                             Style="{StaticResource MaterialDesignFlatButton}"
                             Padding="8,4"
                             Grid.Column="2" />
