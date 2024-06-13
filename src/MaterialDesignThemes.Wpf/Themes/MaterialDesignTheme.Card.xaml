@@ -45,7 +45,6 @@
                       Background="{TemplateBinding Background}"
                       Clip="{TemplateBinding ContentClip}">
                 <ContentPresenter x:Name="ContentPresenter"
-                                  Margin="{TemplateBinding Padding}"
                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                   Content="{TemplateBinding ContentControl.Content}"
