@@ -31,6 +31,23 @@
         <materialDesign:NumericUpDown />
       </smtx:XamlDisplay>
 
+      <smtx:XamlDisplay Margin="10,5"
+                        VerticalAlignment="Top"
+                        UniqueKey="numericUpDown_customButtonContent">
+        <materialDesign:NumericUpDown>
+          <materialDesign:NumericUpDown.IncreaseContent>
+            <Border BorderBrush="{DynamicResource MaterialDesign.Brush.Foreground}" BorderThickness="1" CornerRadius="20">
+              <materialDesign:PackIcon Kind="ArrowUp" />
+            </Border>
+          </materialDesign:NumericUpDown.IncreaseContent>
+          <materialDesign:NumericUpDown.DecreaseContent>
+            <Border BorderBrush="{DynamicResource MaterialDesign.Brush.Foreground}" BorderThickness="1" CornerRadius="20">
+              <materialDesign:PackIcon Kind="ArrowDown" />
+            </Border>
+          </materialDesign:NumericUpDown.DecreaseContent>
+        </materialDesign:NumericUpDown>
+      </smtx:XamlDisplay>
+      
     </StackPanel>
 
   </DockPanel>
