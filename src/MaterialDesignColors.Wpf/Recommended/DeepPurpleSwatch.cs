@@ -18,7 +18,7 @@ public class DeepPurpleSwatch : ISwatch
 	public static Color DeepPurpleA400 { get; } = (Color)ColorConverter.ConvertFromString("#651FFF");
 	public static Color DeepPurpleA700 { get; } = (Color)ColorConverter.ConvertFromString("#6200EA");
 
-	public string Name { get; } = "Deep Purple";
+	public string Name { get; } = "DeepPurple";
 
 	public IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>
 	{

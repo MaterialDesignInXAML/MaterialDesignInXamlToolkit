@@ -18,7 +18,7 @@ public class LightGreenSwatch : ISwatch
 	public static Color LightGreenA400 { get; } = (Color)ColorConverter.ConvertFromString("#76FF03");
 	public static Color LightGreenA700 { get; } = (Color)ColorConverter.ConvertFromString("#64DD17");
 
-	public string Name { get; } = "Light Green";
+	public string Name { get; } = "LightGreen";
 
 	public IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>
 	{

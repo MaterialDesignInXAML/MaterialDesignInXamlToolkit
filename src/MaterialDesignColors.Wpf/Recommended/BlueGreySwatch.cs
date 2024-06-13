@@ -14,7 +14,7 @@ public class BlueGreySwatch : ISwatch
 	public static Color BlueGrey800 { get; } = (Color)ColorConverter.ConvertFromString("#37474F");
 	public static Color BlueGrey900 { get; } = (Color)ColorConverter.ConvertFromString("#263238");
 
-	public string Name { get; } = "Blue Grey";
+	public string Name { get; } = "BlueGrey";
 
 	public IDictionary<MaterialDesignColor, Color> Lookup { get; } = new Dictionary<MaterialDesignColor, Color>
 	{
