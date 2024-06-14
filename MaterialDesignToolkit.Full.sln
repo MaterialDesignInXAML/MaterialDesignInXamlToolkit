@@ -10,11 +10,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaterialDesignColors.Wpf", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MahAppsDragablzDemo", "src\MahMaterialDragablzMashUp\MahAppsDragablzDemo.csproj", "{803954E5-3A35-4D8B-95A7-F6E9B63EC0DF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "src\web", "{7D0AC158-FD01-4EA3-8F8A-D19C085C77DF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{7D0AC158-FD01-4EA3-8F8A-D19C085C77DF}"
 	ProjectSection(SolutionItems) = preProject
 		src\web\images\MashUp.gif = src\web\images\MashUp.gif
-		src\web\scripts\PaletteBuilder.js = src\web\scripts\PaletteBuilder.js
 		src\web\PaletteBuilder.html = src\web\PaletteBuilder.html
+		src\web\scripts\PaletteBuilder.js = src\web\scripts\PaletteBuilder.js
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{D34BE232-DE51-43C1-ABDC-B69003BB50FF}"
@@ -30,7 +30,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 		build\BuildNugets.ps1 = build\BuildNugets.ps1
 		Directory.Build.props = Directory.Build.props
-		Directory.Build.targets = Directory.Build.targets
 		Directory.packages.props = Directory.packages.props
 		.config\dotnet-tools.json = .config\dotnet-tools.json
 		global.json = global.json
