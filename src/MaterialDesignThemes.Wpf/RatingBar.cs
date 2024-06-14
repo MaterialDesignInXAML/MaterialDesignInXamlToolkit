@@ -324,7 +324,7 @@ public class RatingBar : Control
         {
             for (int i = Max; i >= start; i--)
             {
-                var ratingBarButton = new RatingBarButton
+                var ratingBarButton = new RatingBarButton(this)
                 {
                     Content = i,
                     ContentTemplate = ValueItemTemplate,
@@ -340,7 +340,7 @@ public class RatingBar : Control
         {
             for (int i = start; i <= Max; i++)
             {
-                var ratingBarButton = new RatingBarButton
+                var ratingBarButton = new RatingBarButton(this)
                 {
                     Content = i,
                     ContentTemplate = ValueItemTemplate,
