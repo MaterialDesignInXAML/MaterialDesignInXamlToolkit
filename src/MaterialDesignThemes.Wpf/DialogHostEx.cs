@@ -37,6 +37,16 @@ public static class DialogHostEx
         => GetFirstDialogHost(window).ShowInternal(content, openedEventHandler, null, null);
 
     /// <summary>
+    /// Shows a dialog using the first found <see cref="DialogHost"/> with the supplied dialog identifier in a given <see cref="Window"/>.
+    /// </summary>
+    /// <param name="window">Window on which the modal dialog should be displayed. Must contain a <see cref="DialogHost"/>.</param>
+    /// <param name="content">Content to show (can be a control or view model).</param>
+    /// <param name="dialogIdentifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifier set in XAML. <c>null</c> is allowed.</param>
+    /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
+    public static Task<object?> ShowDialog(this Window window, object content, object? dialogIdentifier)
+        => GetFirstDialogHost(window, dialogIdentifier).ShowInternal(content, null, null, null);
+
+    /// <summary>
     /// Shows a dialog using the first found <see cref="DialogHost"/> in a given <see cref="Window"/>.
     /// </summary>
     /// <param name="window">Window on which the modal dialog should be displayed. Must contain a <see cref="DialogHost"/>.</param>
@@ -98,6 +108,19 @@ public static class DialogHostEx
     /// <returns></returns>
     public static Task<object?> ShowDialog(this DependencyObject childDependencyObject, object content)
         => GetOwningDialogHost(childDependencyObject).ShowInternal(content, null, null, null);
+
+    /// <summary>
+    /// Shows a dialog using the parent/ancestor <see cref="DialogHost"/> of the a given <see cref="DependencyObject"/>.
+    /// </summary>
+    /// <param name="childDependencyObject">Dependency object which should be a visual child of a <see cref="DialogHost"/>, where the dialog will be shown.</param>        
+    /// <param name="content">Content to show (can be a control or view model).</param>
+    /// <param name="dialogIdentifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifier set in XAML. <c>null</c> is allowed.</param>
+    /// <exception cref="InvalidOperationException">
+    /// Thrown is a <see cref="DialogHost"/> is not found when conducting a depth first traversal of visual tree.  
+    /// </exception>
+    /// <returns></returns>
+    public static Task<object?> ShowDialog(this DependencyObject childDependencyObject, object content, object dialogIdentifier)
+        => GetOwningDialogHost(childDependencyObject, dialogIdentifier).ShowInternal(content, null, null, null);
 
     /// <summary>
     /// Shows a dialog using the parent/ancestor <see cref="DialogHost"/> of the a given <see cref="DependencyObject"/>.
@@ -166,6 +189,18 @@ public static class DialogHostEx
         return dialogHost;
     }
 
+    private static DialogHost GetFirstDialogHost(Window window, object? dialogIdentifier)
+    {
+        if (window is null) throw new ArgumentNullException(nameof(window));
+
+        DialogHost? dialogHost = window.VisualDepthFirstTraversal().OfType<DialogHost>().FirstOrDefault(x => x.Identifier is not null && x.Identifier.Equals(dialogIdentifier));
+
+        if (dialogHost is null)
+            throw new InvalidOperationException($"Unable to find a DialogHost with identifier '{dialogIdentifier}' in visual tree");
+
+        return dialogHost;
+    }
+
     private static DialogHost GetOwningDialogHost(DependencyObject childDependencyObject)
     {
         if (childDependencyObject is null) throw new ArgumentNullException(nameof(childDependencyObject));
@@ -174,6 +209,17 @@ public static class DialogHostEx
 
         if (dialogHost is null)
             throw new InvalidOperationException("Unable to find a DialogHost in visual tree ancestry");
+
+        return dialogHost;
+    }
+    private static DialogHost GetOwningDialogHost(DependencyObject childDependencyObject, object dialogIdentifier)
+    {
+        if (childDependencyObject is null) throw new ArgumentNullException(nameof(childDependencyObject));
+
+        DialogHost? dialogHost = childDependencyObject.GetVisualAncestry().OfType<DialogHost>().FirstOrDefault(x => x.Identifier is not null && x.Identifier.Equals(dialogIdentifier));
+
+        if (dialogHost is null)
+            throw new InvalidOperationException($"Unable to find a DialogHost in visual tree ancestry with identifier {dialogIdentifier}");
 
         return dialogHost;
     }
