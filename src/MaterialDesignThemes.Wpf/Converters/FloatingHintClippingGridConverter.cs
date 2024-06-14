@@ -13,7 +13,7 @@ public class FloatingHintClippingGridConverter : IMultiValueConverter
             return null;
         }
 
-        RectangleGeometry geometry = new(new Rect(new Point(0, 0), new Size(actualWidth, actualHeight * floatingScale)));
+        RectangleGeometry geometry = new(new Rect(new Point(0, 0), new Size(actualWidth, actualHeight * 2 * floatingScale)));
         geometry.Freeze();
         return geometry;
     }
