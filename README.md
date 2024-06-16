@@ -16,7 +16,9 @@ Comprehensive and easy to use Material Design theme and control library for the 
 - Compatible with [Dragablz](https://github.com/ButchersBoy/Dragablz), [MahApps](https://github.com/MahApps/MahApps.Metro)
 - Demo applications included in the source project
 
-[![Backers on Open Collective](https://opencollective.com/materialdesigninxaml/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/materialdesigninxaml/sponsors/badge.svg)](#sponsors) [![Gitter](https://img.shields.io/badge/Gitter-Join%20Chat,%20Get%20Help,%20Say%20Hello!-green.svg?style=flat-square)](https://gitter.im/ButchersBoy/MaterialDesignInXamlToolkit)
+[![Backers on Open Collective](https://opencollective.com/materialdesigninxaml/backers/badge.svg)](#backers) 
+[![Sponsors on Open Collective](https://opencollective.com/materialdesigninxaml/sponsors/badge.svg)](#sponsors) 
+[![Gitter](https://img.shields.io/badge/Gitter-Join%20Chat,%20Get%20Help,%20Say%20Hello!-green.svg?style=flat-square)](https://gitter.im/ButchersBoy/MaterialDesignInXamlToolkit)
 [![NuGet-Themes](https://img.shields.io/nuget/v/MaterialDesignThemes.svg?label=NuGet:%20Themes&style=flat-square)](https://www.nuget.org/packages/MaterialDesignThemes/)
 [![NuGet-Themes](<https://img.shields.io/nuget/vpre/MaterialDesignThemes.svg?label=NuGet:%20Themes%20(CI)&style=flat-square>)](https://www.nuget.org/packages/MaterialDesignThemes/)
 [![NuGet-Themes](https://img.shields.io/nuget/vpre/MaterialDesignColors.svg?label=NuGet:%20Colours&style=flat-square)](https://www.nuget.org/packages/MaterialDesignColors/)
@@ -24,8 +26,7 @@ Comprehensive and easy to use Material Design theme and control library for the 
 
 # ![Alt text](src/web/images/MD4XAML28.png "How Can I Use The Themes?") Getting Started
 
-- Checkout the [Super Quick Start](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/wiki/Super-Quick-Start)
-- Or, the more comprehensive [Starting Guide](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/wiki/Getting-Started) guide.
+- [Starting Guide](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/wiki/Getting-Started).
 - Or, watch the [Material Design In XAML Toolkit An Introduction](https://www.youtube.com/watch?v=-n5yeEOsbCk) video.
 
 # ![Alt text](src/web/images/MD4XAML28.png "In Action") See It In Action
