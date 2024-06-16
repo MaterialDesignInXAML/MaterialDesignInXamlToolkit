@@ -43,7 +43,45 @@ Comprehensive and easy to use Material Design theme and control library for the 
 
 ## Getting started
 
-- [Starting Guide](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/wiki/Getting-Started).
+> [!INFO]
+> See the [full starting guide](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/wiki/Getting-Started) for more in-depth information.
+
+This quick guide assumes you have already created a WPF project and are using Microsoft Visual Studio 2022.
+
+* Install the toolkit through the visual NuGet package manager in Visual Studio or use the following command:
+```
+Install-Package MaterialDesignThemes
+```
+* Alter your `App.xaml`
+
+```xml
+<Application 
+  x:Class="Example.App"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+  StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
+
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" /> 
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
+```
+* If you want to target Material Design 3, alter the `ResourceDictionary` line in the snippet above to use `MaterialDesign3.Defaults.xaml`.
+
+* Alter your `MainWindow.xaml`
+
+```xml
+<Window [...]
+  Style="{StaticResource MaterialDesignWindow}"
+  [...] >
+```
+
 
 ## Building the source
 
