@@ -23,7 +23,7 @@ Comprehensive and easy to use Material Design theme and control library for the 
 - Compatible with [Dragablz](https://github.com/ButchersBoy/Dragablz), [MahApps](https://github.com/MahApps/MahApps.Metro)
 - Demo applications included in the source project
 
-[See screenshots](#Screenshots)
+[See screenshots](#screenshots)
 
 <details>
   <summary>Table of contents</summary>
@@ -58,8 +58,9 @@ This repository also contains 3 different demo applications:
 
 ## Screenshots
 
-The screenshots below are taken from the Material Design 2 demo app.
-It is possible that these are out of date, run the demo app from latest source to see the latest version.
+> [!WARNING]
+> The screenshots below are taken from the Material Design 2 demo app.
+> It is possible that these are out of date. Run the demo app from latest source to see the latest version.
 
 <details>
   <summary>Show images</summary>
