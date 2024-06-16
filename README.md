@@ -1,5 +1,10 @@
 # ![Alt text](src/web/images/MD4XAML64.png "Material Design In XAML Toolkit") Material Design In XAML Toolkit
 
+[![NuGet-Themes](https://img.shields.io/nuget/v/MaterialDesignThemes.svg?label=nuget:%20MaterialDesignThemes)](https://www.nuget.org/packages/MaterialDesignThemes/)
+[![NuGet-Colors](https://img.shields.io/nuget/v/MaterialDesignColors.svg?label=nuget:%20MaterialDesignColors)](https://www.nuget.org/packages/MaterialDesignColors/)
+[![NuGet-Themes-CI](https://img.shields.io/nuget/vpre/MaterialDesignThemes.svg?label=nuget:%20MaterialDesignThemes%20(CI))](https://www.nuget.org/packages/MaterialDesignThemes/)
+[![NuGet-Colors-CI](https://img.shields.io/nuget/vpre/MaterialDesignColors.svg?label=nuget:%20MaterialDesignColors%20(CI))](https://www.nuget.org/packages/MaterialDesignColors/)
+
 Comprehensive and easy to use Material Design theme and control library for the Windows desktop.
 
 ![Alt text](src/web/images/screen-home.png "Material Design Demo")
@@ -16,12 +21,11 @@ Comprehensive and easy to use Material Design theme and control library for the 
 - Compatible with [Dragablz](https://github.com/ButchersBoy/Dragablz), [MahApps](https://github.com/MahApps/MahApps.Metro)
 - Demo applications included in the source project
 
+
+
 [![Backers on Open Collective](https://opencollective.com/materialdesigninxaml/backers/badge.svg)](#backers) 
 [![Sponsors on Open Collective](https://opencollective.com/materialdesigninxaml/sponsors/badge.svg)](#sponsors) 
-[![Gitter](https://img.shields.io/badge/Gitter-Join%20Chat,%20Get%20Help,%20Say%20Hello!-green.svg?style=flat-square)](https://gitter.im/ButchersBoy/MaterialDesignInXamlToolkit)
-[![NuGet-Themes](https://img.shields.io/nuget/v/MaterialDesignThemes.svg?label=NuGet:%20Themes&style=flat-square)](https://www.nuget.org/packages/MaterialDesignThemes/)
-[![NuGet-Themes](<https://img.shields.io/nuget/vpre/MaterialDesignThemes.svg?label=NuGet:%20Themes%20(CI)&style=flat-square>)](https://www.nuget.org/packages/MaterialDesignThemes/)
-[![NuGet-Themes](https://img.shields.io/nuget/vpre/MaterialDesignColors.svg?label=NuGet:%20Colours&style=flat-square)](https://www.nuget.org/packages/MaterialDesignColors/)
+![Discord](https://img.shields.io/discord/588522393643909150)
 [![Issues](https://img.shields.io/github/issues/MaterialDesignInXAML/MaterialDesignInXamlToolkit.svg?style=flat-square)](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues)
 
 # ![Alt text](src/web/images/MD4XAML28.png "How Can I Use The Themes?") Getting Started
