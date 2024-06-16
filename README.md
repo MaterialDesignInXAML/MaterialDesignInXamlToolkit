@@ -1,3 +1,4 @@
+<!-- omit in toc -->
 # ![Alt text](src/web/images/MD4XAML64.png "Material Design In XAML Toolkit") Material Design In XAML Toolkit
 
 [![NuGet-Themes](https://img.shields.io/nuget/v/MaterialDesignThemes.svg?label=nuget:%20MaterialDesignThemes)](https://www.nuget.org/packages/MaterialDesignThemes/)
@@ -5,13 +6,31 @@
 [![NuGet-Themes-CI](https://img.shields.io/nuget/vpre/MaterialDesignThemes.svg?label=nuget:%20MaterialDesignThemes%20(CI))](https://www.nuget.org/packages/MaterialDesignThemes/)
 [![NuGet-Colors-CI](https://img.shields.io/nuget/vpre/MaterialDesignColors.svg?label=nuget:%20MaterialDesignColors%20(CI))](https://www.nuget.org/packages/MaterialDesignColors/)
 
-Comprehensive and easy to use Material Design theme and control library for the Windows desktop.
+Comprehensive and easy to use Material Design theme and control library for the Windows desktop (WPF).
 
-![Alt text](src/web/images/screen-home.png "Material Design Demo")
+![Screenshot of WPF Material Design 2 demo application](src/web/images/screen-home.png)
 
+<!-- omit in toc -->
 ###### [More screenshots below](#Screenshots)
 
-# ![Alt text](src/web/images/MD4XAML28.png "Summary") Summary
+<details>
+  <summary>Table of contents</summary>
+
+- [Summary](#summary)
+- [Getting Started](#getting-started)
+- [See It In Action](#see-it-in-action)
+- [Building the source](#building-the-source)
+- [Contribution Guidelines](#contribution-guidelines)
+- [Mentions](#mentions)
+- [Screenshots](#screenshots)
+- [Contributors](#contributors)
+- [Backers](#backers)
+- [Sponsors](#sponsors)
+
+
+</details>
+
+## Summary
 
 - Material Design styles for all major WPF Framework controls
 - Additional controls to support the theme, including Multi Action Button, Cards, Dialogs, Clock
@@ -23,15 +42,15 @@ Comprehensive and easy to use Material Design theme and control library for the 
 
 [![Backers on Open Collective](https://opencollective.com/materialdesigninxaml/backers/badge.svg)](#backers) 
 [![Sponsors on Open Collective](https://opencollective.com/materialdesigninxaml/sponsors/badge.svg)](#sponsors) 
-![Discord](https://img.shields.io/discord/588522393643909150)
+[![Discord](https://img.shields.io/discord/588522393643909150)](https://discord.com/channels/588522393643909150)
 [![Issues](https://img.shields.io/github/issues/MaterialDesignInXAML/MaterialDesignInXamlToolkit.svg?style=flat-square)](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues)
 
-# ![Alt text](src/web/images/MD4XAML28.png "How Can I Use The Themes?") Getting Started
+## Getting Started
 
 - [Starting Guide](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/wiki/Getting-Started).
 - Or, watch the [Material Design In XAML Toolkit An Introduction](https://www.youtube.com/watch?v=-n5yeEOsbCk) video.
 
-# ![Alt text](src/web/images/MD4XAML28.png "In Action") See It In Action
+## See It In Action
 
 - Download a pre-compiled demo from the [releases](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/releases) page.
 - Download the source and run the demo ([more information](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/wiki/Compiling-From-Source)).
@@ -40,7 +59,7 @@ Comprehensive and easy to use Material Design theme and control library for the 
 - Checkout [F1ix](http://materialdesigninxaml.net/f1ix).
 - Checkout [Motion List](https://github.com/MaterialDesignInXAML/MotionList).
 
-# ![Alt text](src/web/images/MD4XAML28.png "How Can I Use The Themes?") Building the source
+## Building the source
 
 To build the project, following is required:
 * Microsoft Visual Studio 2022
@@ -51,7 +70,7 @@ This repository also contains 3 different demo applications:
 * `MaterialDesign3Demo` - Reference WPF app with Material Design 3 styling, under development
 * `MahAppsDragablzDemo` - Demo app for combining with Dragablz and MahApps
 
-# ![Alt text](src/web/images/MD4XAML28.png "Contributions") Contribution Guidelines
+## Contribution Guidelines
 
 - Before contributing code read the [Contribution Guidelines](.github/CONTRIBUTING.md)
   - GitHub issues are for bugs and feature requests.
@@ -61,7 +80,7 @@ This repository also contains 3 different demo applications:
   - Hit the :star: Star :star: button
   - If you'd like to make a very much appreciated financial donation please visit <a href='https://opencollective.com/materialdesigninxaml'>open collective</a>
 
-# ![Alt text](src/web/images/MD4XAML28.png "Mentions") Mentions
+## Mentions
 
 - **[James Willock](https://github.com/ButchersBoy)
 [![Twitter](https://img.shields.io/badge/twitter-%40james__willock-55acee.svg?style=flat-square)](https://twitter.com/James_Willock)** - Founder of the project
@@ -75,7 +94,7 @@ This repository also contains 3 different demo applications:
 - [Material Design Extensions](https://github.com/spiegelp/MaterialDesignExtensions) - A community repository based on this library that provides additional controls and features.
 - **[Contributors](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/graphs/contributors)** - A big thank you to all the contributors of the project!
 
-# <a name="Screenshots"></a>![Alt text](src/web/images/MD4XAML28.png "Screenshots") Screenshots
+## Screenshots
 
 <details>
   <summary>Show images</summary>
@@ -112,13 +131,13 @@ This project exists thanks to all the people who contribute.
 
 ## Backers
 
-Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/materialdesigninxaml#backer)]
+Thank you to all our backers! 🙏 [Become a backer.](https://opencollective.com/materialdesigninxaml#backer)
 
 <a href="https://opencollective.com/materialdesigninxaml#backers" target="_blank"><img src="https://opencollective.com/materialdesigninxaml/backers.svg?width=890"></a>
 
 ## Sponsors
 
-Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/materialdesigninxaml#sponsor)]
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [Become a sponsor.](https://opencollective.com/materialdesigninxaml#sponsor)
 
 <a href="https://opencollective.com/materialdesigninxaml/sponsor/0/website" target="_blank"><img src="https://opencollective.com/materialdesigninxaml/sponsor/0/avatar.svg"></a>
 <a href="https://opencollective.com/materialdesigninxaml/sponsor/1/website" target="_blank"><img src="https://opencollective.com/materialdesigninxaml/sponsor/1/avatar.svg"></a>
