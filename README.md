@@ -43,7 +43,7 @@ Comprehensive and easy to use Material Design theme and control library for the 
 
 ## Getting started
 
-> [!INFO]
+> [!NOTE]
 > See the [full starting guide](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/wiki/Getting-Started) for more in-depth information.
 
 This quick guide assumes you have already created a WPF project and are using Microsoft Visual Studio 2022.
