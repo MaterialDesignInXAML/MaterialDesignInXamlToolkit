@@ -21,8 +21,6 @@ Comprehensive and easy to use Material Design theme and control library for the 
 - Compatible with [Dragablz](https://github.com/ButchersBoy/Dragablz), [MahApps](https://github.com/MahApps/MahApps.Metro)
 - Demo applications included in the source project
 
-
-
 [![Backers on Open Collective](https://opencollective.com/materialdesigninxaml/backers/badge.svg)](#backers) 
 [![Sponsors on Open Collective](https://opencollective.com/materialdesigninxaml/sponsors/badge.svg)](#sponsors) 
 ![Discord](https://img.shields.io/discord/588522393643909150)
@@ -42,9 +40,16 @@ Comprehensive and easy to use Material Design theme and control library for the 
 - Checkout [F1ix](http://materialdesigninxaml.net/f1ix).
 - Checkout [Motion List](https://github.com/MaterialDesignInXAML/MotionList).
 
-# ![Alt text](src/web/images/MD4XAML28.png "How Can I Use The Themes?") Source Code
+# ![Alt text](src/web/images/MD4XAML28.png "How Can I Use The Themes?") Building the source
 
-To load the source project you will need Visual Studio 2022. Don't worry if you have an earlier version, you can still use the compiled assemblies from NuGet (`Install-Package MaterialDesignThemes`). There are three demo projects in the solution, restore the necessary NuGet packages and correct the programming syntax that is not compatible with C# versions lower than C# 10.0 (`currently used in Visual Studio 2022`). Then, you should be able to fire the projects up. The first one is a "pure" Material Design 2 project. The second one shows how to combine with Dragablz and MahApps. The last one is a Material Design 3 project (`In Development`).
+To build the project, following is required:
+* Microsoft Visual Studio 2022
+* WPF workload
+
+This repository also contains 3 different demo applications:
+* `MaterialDesignDemo` - Reference WPF app with Material Design 2 styling
+* `MaterialDesign3Demo` - Reference WPF app with Material Design 3 styling, under development
+* `MahAppsDragablzDemo` - Demo app for combining with Dragablz and MahApps
 
 # ![Alt text](src/web/images/MD4XAML28.png "Contributions") Contribution Guidelines
 
@@ -72,45 +77,30 @@ To load the source project you will need Visual Studio 2022. Don't worry if you 
 
 # <a name="Screenshots"></a>![Alt text](src/web/images/MD4XAML28.png "Screenshots") Screenshots
 
-![Alt text](src/web/images/screen-buttons.png "Buttons")
+<details>
+  <summary>Show images</summary>
 
-![Alt text](src/web/images/screen-toggles.png "Toggles")
-
-![Alt text](src/web/images/screen-fields.png "Fields")
-
-![Alt text](src/web/images/screen-comboboxes.png "ComboBoxes")
-
-![Alt text](src/web/images/screen-palette.png "Palette")
-
-![Alt text](src/web/images/screen-colortools.png "Color Tools")
-
-![Alt text](src/web/images/screen-pickers.png "Pickers")
-
-![Alt text](src/web/images/screen-iconpack.png "Icons")
-
-![Alt text](src/web/images/screen-cards.png "Cards")
-
-![Alt text](src/web/images/screen-menutoolbar.png "Menus and Toolbars")
-
-![Alt text](src/web/images/screen-progress.png "Progress Bars")
-
-![Alt text](src/web/images/screen-dialogs.png "Dialogs")
-
-![Alt text](src/web/images/screen-lists.png "Lists")
-
-![Alt text](src/web/images/screen-treeview.png "Tree View")
-
-![Alt text](src/web/images/screen-sliders.png "Sliders")
-
-![Alt text](src/web/images/screen-chips.png "Chips")
-
-![Alt text](src/web/images/screen-typography.png "Typography")
-
-![Alt text](src/web/images/screen-groupbox.png "Group Box")
-
-![Alt text](src/web/images/screen-snackbars.png "Snackbars")
-
-![Alt text](src/web/images/screen-elevation.png "Elevation")
+  ![Buttons](src/web/images/screen-buttons.png)
+  ![Toggles](src/web/images/screen-toggles.png)
+  ![Fields](src/web/images/screen-fields.png)
+  ![ComboBoxes](src/web/images/screen-comboboxes.png)
+  ![Palette](src/web/images/screen-palette.png)
+  ![Color Tools](src/web/images/screen-colortools.png)
+  ![Pickers](src/web/images/screen-pickers.png)
+  ![Icons](src/web/images/screen-iconpack.png)
+  ![Cards](src/web/images/screen-cards.png)
+  ![Menus and Toolbars](src/web/images/screen-menutoolbar.png)
+  ![Progress Bars](src/web/images/screen-progress.png)
+  ![Dialogs](src/web/images/screen-dialogs.png)
+  ![Lists](src/web/images/screen-lists.png)
+  ![Tree View](src/web/images/screen-treeview.png)
+  ![Sliders](src/web/images/screen-sliders.png)
+  ![Chips](src/web/images/screen-chips.png)
+  ![Typography](src/web/images/screen-typography.png)
+  ![Group Box](src/web/images/screen-groupbox.png)
+  ![Snackbars](src/web/images/screen-snackbars.png)
+  ![Elevation](src/web/images/screen-elevation.png)
+</details>
 
 ## Contributors
 
