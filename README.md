@@ -1,8 +1,9 @@
 <!-- omit in toc -->
-# ![Alt text](src/web/images/MD4XAML64.png "Material Design In XAML Toolkit") Material Design In XAML Toolkit
+# Material Design In XAML Toolkit ![Logo of Material Design in XAML](src/web/images/MD4XAML32.png)
 
 [![NuGet-Themes](https://img.shields.io/nuget/v/MaterialDesignThemes.svg?label=nuget:%20MaterialDesignThemes)](https://www.nuget.org/packages/MaterialDesignThemes/)
 [![NuGet-Colors](https://img.shields.io/nuget/v/MaterialDesignColors.svg?label=nuget:%20MaterialDesignColors)](https://www.nuget.org/packages/MaterialDesignColors/)
+
 [![NuGet-Themes-CI](https://img.shields.io/nuget/vpre/MaterialDesignThemes.svg?label=nuget:%20MaterialDesignThemes%20(CI))](https://www.nuget.org/packages/MaterialDesignThemes/)
 [![NuGet-Colors-CI](https://img.shields.io/nuget/vpre/MaterialDesignColors.svg?label=nuget:%20MaterialDesignColors%20(CI))](https://www.nuget.org/packages/MaterialDesignColors/)
 
