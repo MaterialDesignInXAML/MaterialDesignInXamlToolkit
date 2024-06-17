@@ -9,8 +9,8 @@
 
 [![Backers on Open Collective](https://opencollective.com/materialdesigninxaml/backers/badge.svg)](#backers) 
 [![Sponsors on Open Collective](https://opencollective.com/materialdesigninxaml/sponsors/badge.svg)](#sponsors) 
-[![Discord](https://img.shields.io/discord/588522393643909150)][discord-server-url]
-[![Issues](https://img.shields.io/github/issues/MaterialDesignInXAML/MaterialDesignInXamlToolkit.svg?style=flat-square)](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues)
+[![Chat](https://img.shields.io/badge/chat-grey?logo=discord)][discord-server-url]
+[![Issues](https://img.shields.io/github/issues/MaterialDesignInXAML/MaterialDesignInXamlToolkit.svg)](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues)
 
 
 Comprehensive and easy to use Material Design theme and control library for the Windows desktop (WPF).
