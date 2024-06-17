@@ -19,7 +19,7 @@
     <dependencies>
       <group targetFramework="net462" />
       <group targetFramework="net6.0" />
-      <group targetFramework="net7.0" />
+      <group targetFramework="net8.0" />
     </dependencies>
   </metadata>
   <files>
@@ -28,7 +28,7 @@
       exclude="**\*.json" />
     <file src="bin\$configuration$\net6.0-windows\MaterialDesignColors.*" target="lib\net6.0"
       exclude="**\*.json" />
-    <file src="bin\$configuration$\net7.0-windows\MaterialDesignColors.*" target="lib\net7.0"
+    <file src="bin\$configuration$\net8.0-windows\MaterialDesignColors.*" target="lib\net8.0"
       exclude="**\*.json" />
   </files>
 </package>

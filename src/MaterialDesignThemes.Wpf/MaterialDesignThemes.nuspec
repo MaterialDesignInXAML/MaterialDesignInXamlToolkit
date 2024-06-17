@@ -25,7 +25,7 @@
         <dependency id="MaterialDesignColors" version="0.0.0" />
         <dependency id="Microsoft.Xaml.Behaviors.Wpf" version="1.1.39" />
       </group>
-      <group targetFramework="net7.0">
+      <group targetFramework="net8.0">
         <dependency id="MaterialDesignColors" version="0.0.0" />
         <dependency id="Microsoft.Xaml.Behaviors.Wpf" version="1.1.39" />
       </group>
@@ -39,8 +39,8 @@
       src="bin\$configuration$\net6.0-windows\MaterialDesignThemes.Wpf.*"
       target="lib\net6.0" exclude="**\*.json" />
     <file
-      src="bin\$configuration$\net7.0-windows\MaterialDesignThemes.Wpf.*"
-      target="lib\net7.0" exclude="**\*.json" />
+      src="bin\$configuration$\net8.0-windows\MaterialDesignThemes.Wpf.*"
+      target="lib\net8.0" exclude="**\*.json" />
     <file src="Resources\Roboto\*.ttf" target="build\Resources\Roboto" />
     <file src="MaterialDesignThemes.targets" target="build" />
     <file src="VisualStudioToolsManifest.xml" target="tools" />

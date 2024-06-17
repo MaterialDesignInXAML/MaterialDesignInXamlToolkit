@@ -112,7 +112,7 @@ internal static partial class IconDiff
         ms.Position = 0;
         return ProcessDll(ms);
 
-        //This technically puts netcore before net framework, but since we are already at net7 and only care about latest
+        //This technically puts netcore before net framework, but since we are already at net8 and only care about latest
         //that does not matter.
         static int? GetMajorTfmVersion(string entryName)
         {
