@@ -87,7 +87,7 @@ Install-Package MaterialDesignThemes
 
 To build the project, following is required:
 * Microsoft Visual Studio 2022
-* WPF workload
+* .NET desktop development workload
 
 This repository also contains 3 different demo applications:
 * `MaterialDesignDemo` - Reference WPF app with Material Design 2 styling, this contains all controls and is a recommended tool when developing apps with this library
