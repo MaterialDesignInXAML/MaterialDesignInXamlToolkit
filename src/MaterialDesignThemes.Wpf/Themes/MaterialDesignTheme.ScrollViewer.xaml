@@ -85,7 +85,17 @@
       <Trigger Property="wpf:ScrollViewerAssist.ShowSeparators" Value="False">
         <Setter TargetName="PART_TopSeparator" Property="Visibility" Value="Hidden" />
       </Trigger>
-      
+
+      <MultiTrigger>
+        <MultiTrigger.Conditions>
+          <Condition Property="wpf:ScrollViewerAssist.IgnorePadding" Value="False" />
+          <Condition Property="wpf:ScrollViewerAssist.PaddingMode" Value="Default" />
+        </MultiTrigger.Conditions>
+        <MultiTrigger.Setters>
+          <Setter TargetName="PART_ScrollContentPresenter" Property="Margin" Value="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}" />
+        </MultiTrigger.Setters>
+      </MultiTrigger>
+
       <MultiTrigger>
         <MultiTrigger.Conditions>
           <Condition Property="wpf:ScrollViewerAssist.IsAutoHideEnabled" Value="True" />
@@ -147,17 +157,23 @@
   <Style x:Key="MaterialDesignScrollViewer" TargetType="ScrollViewer">
     <Setter Property="Template" Value="{StaticResource MaterialDesignScrollViewerTemplate}" />
     <Style.Triggers>
-      <Trigger Property="wpf:ScrollViewerAssist.IgnorePadding" Value="False">
-        <Setter Property="ContentTemplate">
-          <Setter.Value>
-            <DataTemplate>
-              <ContentControl Margin="{Binding Padding, RelativeSource={RelativeSource AncestorType=ScrollViewer}}">
-                <ContentPresenter Content="{Binding}" />
-              </ContentControl>
-            </DataTemplate>
-          </Setter.Value>
-        </Setter>
-      </Trigger>
+      <MultiTrigger>
+        <MultiTrigger.Conditions>
+          <Condition Property="wpf:ScrollViewerAssist.IgnorePadding" Value="False" />
+          <Condition Property="wpf:ScrollViewerAssist.PaddingMode" Value="Content" />
+        </MultiTrigger.Conditions>
+        <MultiTrigger.Setters>
+          <Setter Property="ContentTemplate">
+            <Setter.Value>
+              <DataTemplate>
+                <ContentControl Margin="{Binding Padding, RelativeSource={RelativeSource AncestorType=ScrollViewer}}">
+                  <ContentPresenter Content="{Binding}" />
+                </ContentControl>
+              </DataTemplate>
+            </Setter.Value>
+          </Setter>
+        </MultiTrigger.Setters>
+      </MultiTrigger>
     </Style.Triggers>
   </Style>
 </ResourceDictionary>

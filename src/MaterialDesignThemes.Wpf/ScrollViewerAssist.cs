@@ -62,6 +62,19 @@ public static class ScrollViewerAssist
         return (bool)element.GetValue(ShowSeparatorsProperty);
     }
 
+    public static readonly DependencyProperty PaddingModeProperty = DependencyProperty.RegisterAttached(
+        "PaddingMode", typeof(PaddingMode), typeof(ScrollViewerAssist), new PropertyMetadata(PaddingMode.Content));
+
+    public static void SetPaddingMode(DependencyObject element, PaddingMode value)
+    {
+        element.SetValue(PaddingModeProperty, value);
+    }
+
+    public static PaddingMode GetPaddingMode(DependencyObject element)
+    {
+        return (PaddingMode)element.GetValue(PaddingModeProperty);
+    }
+
     public static readonly DependencyProperty IgnorePaddingProperty = DependencyProperty.RegisterAttached(
     "IgnorePadding", typeof(bool), typeof(ScrollViewerAssist), new PropertyMetadata(false));
 
