@@ -19,7 +19,7 @@ public class SwatchesProvider
     /// <param name="assembly"></param>
     public SwatchesProvider(Assembly assembly)
     {
-        var resourcesName = assembly.GetName().Name + ".g";
+        string resourcesName = assembly.GetName().Name + ".g";
         var manager = new ResourceManager(resourcesName, assembly);
         var resourceSet = manager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
         var dictionaryEntries = resourceSet?.OfType<DictionaryEntry>().ToList();
