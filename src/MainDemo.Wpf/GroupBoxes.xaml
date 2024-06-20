@@ -101,23 +101,31 @@
 
     <WrapPanel>
       <smtx:XamlDisplay UniqueKey="groupbox_7">
-        <GroupBox Width="300" Height="100" Header="Header"
+        <GroupBox Width="300" Height="120" Header="Header"
                   materialDesign:GroupBoxAssist.HeaderPadding="4" Padding="0"
                   Style="{StaticResource MaterialDesignGroupBox}">
-          <ScrollViewer>
-            <TextBlock Margin="8" TextWrapping="Wrap"
-              Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+          <ScrollViewer Padding="4" materialDesign:ScrollViewerAssist.PaddingMode="Default">
+            <StackPanel>
+              <TextBlock Margin="4" TextWrapping="Wrap"
+                         Text="ScrollViewerAssist.PaddingMode on Default lets the ScrollViewer add padding in the default (WPF) way. This causes content to be cut off with the padding in the container as a border when scrolled." />
+              <TextBlock Margin="4" TextWrapping="Wrap"
+                         Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+            </StackPanel>
           </ScrollViewer>
         </GroupBox>
       </smtx:XamlDisplay>
 
       <smtx:XamlDisplay UniqueKey="groupbox_8">
-        <GroupBox Width="300" Height="100" Header="Header"
+        <GroupBox Width="300" Height="120" Header="Header"
                   materialDesign:GroupBoxAssist.HeaderPadding="4" Padding="0"
                   Style="{StaticResource MaterialDesignCardGroupBox}">
-          <ScrollViewer>
-            <TextBlock Margin="8" TextWrapping="Wrap"
-              Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+          <ScrollViewer Padding="4" materialDesign:ScrollViewerAssist.PaddingMode="Content">
+            <StackPanel>
+              <TextBlock Margin="4" TextWrapping="Wrap"
+                         Text="ScrollViewerAssist.PaddingMode on Content lets the ScrollViewer add padding around the content itself. This causes content to be cut off at the edge of the container when scrolled." />
+              <TextBlock Margin="4" TextWrapping="Wrap"
+                         Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+            </StackPanel>
           </ScrollViewer>
         </GroupBox>
       </smtx:XamlDisplay>
