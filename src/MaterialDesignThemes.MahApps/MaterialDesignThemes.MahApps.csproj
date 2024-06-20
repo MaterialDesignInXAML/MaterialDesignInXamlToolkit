@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net462;net6.0-windows;net7.0-windows</TargetFrameworks>
+    <TargetFrameworks>net462;net6.0-windows;net8.0-windows</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <MDIXMahAppsVersion Condition="$(MDIXMahAppsVersion) == '' Or $(MDIXMahAppsVersion) == '*Undefined*'">1.0.1</MDIXMahAppsVersion>
     <MDIXMahAppsVersion>$([System.Text.RegularExpressions.Regex]::Replace("$(MDIXMahAppsVersion)", "-ci\d+$", ""))</MDIXMahAppsVersion>
