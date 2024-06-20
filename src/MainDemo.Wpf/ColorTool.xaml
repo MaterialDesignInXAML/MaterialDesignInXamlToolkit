@@ -1,7 +1,7 @@
 ﻿<UserControl x:Class="MaterialDesignDemo.ColorTool"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:converters="clr-namespace:MaterialDesignDemo.Converters"
+             xmlns:converters="clr-namespace:MaterialDesignDemo.Converters;assembly=MaterialDesignDemo.Shared"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
              xmlns:local="clr-namespace:MaterialDesignDemo"
