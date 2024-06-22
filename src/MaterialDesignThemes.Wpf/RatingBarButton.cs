@@ -1,6 +1,6 @@
 ﻿namespace MaterialDesignThemes.Wpf;
 
-public class RatingBarButton : ButtonBase
+public class RatingBarButton(RatingBar ratingBar) : ButtonBase
 {
     static RatingBarButton()
     {
@@ -21,12 +21,10 @@ public class RatingBarButton : ButtonBase
         internal set => SetValue(ValuePropertyKey, value);
     }
 
-    public RatingBar RatingBar { get; } = null!;    // Null initializer added to suppress warning (for the obsoleted empty constructor)
-
-    public RatingBarButton(RatingBar ratingBar) => RatingBar = ratingBar;
+    public RatingBar RatingBar { get; } = ratingBar;
 
     // Only added the default constructor for back-compat. Ideally should not be used from MDIX consumers, but you never know.
     [Obsolete("Should not be used. Use the constructor taking a RatingBar instance as parameter instead. This constructor will be removed in a future version.")]
-    public RatingBarButton()
+    public RatingBarButton() : this(null!)
     { }
 }
