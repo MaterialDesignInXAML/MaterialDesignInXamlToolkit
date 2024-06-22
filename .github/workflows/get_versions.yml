@@ -23,7 +23,7 @@ jobs:
   getting_versions:
     env:
       #Update these base version numbers
-      mdix-version: "5.0.1"
+      mdix-version: "5.1.0"
       mdix-colors-version: "3.1.0"
       mdix-mahapps-version: "3.1.0"
     name: Set version numbers
