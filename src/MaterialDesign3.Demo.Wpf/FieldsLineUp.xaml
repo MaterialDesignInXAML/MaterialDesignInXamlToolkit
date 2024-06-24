@@ -147,6 +147,7 @@
           <ColumnDefinition MinWidth="100" />
           <ColumnDefinition MinWidth="100" />
           <ColumnDefinition MinWidth="100" />
+          <ColumnDefinition MinWidth="100" />
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Row="1"
@@ -186,6 +187,10 @@
                    Grid.Column="5"
                    Style="{StaticResource FieldHeader}"
                    Text="TimePicker" />
+        <TextBlock Grid.Row="0"
+                   Grid.Column="6"
+                   Style="{StaticResource FieldHeader}"
+                   Text="NumericUpDown" />
 
         <TextBox Grid.Row="1" Grid.Column="1" />
         <TextBox Grid.Row="2"
@@ -242,6 +247,7 @@
                                    Grid.Column="5"
                                    Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
 
+        <materialDesign:NumericUpDown Grid.Row="1" Grid.Column="6"></materialDesign:NumericUpDown>
       </Grid>
     </StackPanel>
   </GroupBox>

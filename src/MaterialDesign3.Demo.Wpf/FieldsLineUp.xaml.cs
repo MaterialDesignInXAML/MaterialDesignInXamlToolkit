@@ -90,6 +90,9 @@ public partial class FieldsLineUp
             case TimePicker timePicker:
                 timePicker.SelectedTime = DateTime.Now;
                 break;
+            case NumericUpDown numericUpDown:
+                numericUpDown.Value = 0;
+                break;
             default:
                 throw new NotSupportedException(control.GetType().FullName);
         }
