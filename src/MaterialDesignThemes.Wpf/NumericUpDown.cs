@@ -11,7 +11,7 @@ public class NumericUpDown : Control
 {
     public const string IncreaseButtonPartName = "PART_IncreaseButton";
     public const string DecreaseButtonPartName = "PART_DecreaseButton";
-    public const string TextFieldBoxPartName = "PART_TextBoxField";
+    public const string TextFieldBoxPartName = "PART_TextBox";
 
     private TextBox? _textBoxField;
     private RepeatButton? _decreaseButton;

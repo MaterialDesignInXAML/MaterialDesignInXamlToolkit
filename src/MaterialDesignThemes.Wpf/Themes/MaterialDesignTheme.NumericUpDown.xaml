@@ -43,7 +43,7 @@
             <converters:MathConverter x:Key="MathMultiplyConverter" Operation="Multiply" />
           </ControlTemplate.Resources>
           <Grid>
-            <TextBox x:Name="PART_TextBoxField"
+            <TextBox x:Name="PART_TextBox"
                      Padding="{TemplateBinding Padding, Converter={StaticResource NumericUpDownPaddingConverter}}"
                      VerticalAlignment="Stretch"
                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -103,13 +103,13 @@
               <RepeatButton x:Name="PART_DecreaseButton"
                             Margin="{TemplateBinding Padding, Converter={StaticResource PartButtonMarginConverter}}"
                             Style="{DynamicResource NestedNumericUpDownButtonsStyle}"
-                            Foreground="{Binding ElementName=PART_TextBoxField, Path=Foreground}"
+                            Foreground="{Binding ElementName=PART_TextBox, Path=Foreground}"
                             Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                             Content="{TemplateBinding DecreaseContent}" />
               <RepeatButton x:Name="PART_IncreaseButton"
                             Margin="{TemplateBinding Padding, Converter={StaticResource PartButtonMarginConverter}}"
                             Style="{DynamicResource NestedNumericUpDownButtonsStyle}"
-                            Foreground="{Binding ElementName=PART_TextBoxField, Path=Foreground}"
+                            Foreground="{Binding ElementName=PART_TextBox, Path=Foreground}"
                             Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                             Content="{TemplateBinding IncreaseContent}" />
             </StackPanel>
@@ -140,8 +140,8 @@
 
             <!-- Validation.HasError -->
             <Trigger Property="Validation.HasError" Value="True">
-              <Setter TargetName="PART_TextBoxField" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
-              <Setter TargetName="PART_TextBoxField" Property="wpf:ValidationAssist.HasError" Value="True" />
+              <Setter TargetName="PART_TextBox" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
+              <Setter TargetName="PART_TextBox" Property="wpf:ValidationAssist.HasError" Value="True" />
             </Trigger>
           </ControlTemplate.Triggers>
 
