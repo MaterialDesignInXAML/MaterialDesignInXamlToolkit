@@ -247,7 +247,17 @@
                                    Grid.Column="5"
                                    Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
 
-        <materialDesign:NumericUpDown Grid.Row="1" Grid.Column="6"></materialDesign:NumericUpDown>
+        <materialDesign:NumericUpDown Grid.Row="1" Grid.Column="6" />
+        <materialDesign:NumericUpDown Grid.Row="2"
+                                      Grid.Column="6"
+                                      Style="{StaticResource MaterialDesignFloatingHintNumericUpDown}" />
+        <materialDesign:NumericUpDown Grid.Row="3"
+                                      Grid.Column="6"
+                                      Style="{StaticResource MaterialDesignFilledNumericUpDown}" />
+        <materialDesign:NumericUpDown Grid.Row="4"
+                                      Grid.Column="6"
+                                      Style="{StaticResource MaterialDesignOutlinedNumericUpDown}" />
+
       </Grid>
     </StackPanel>
   </GroupBox>
