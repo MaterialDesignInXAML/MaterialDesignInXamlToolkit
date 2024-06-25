@@ -79,7 +79,7 @@ public static class ShadowAssist
 
     #region AttachedProperty : CacheModeProperty
     public static readonly DependencyProperty CacheModeProperty = DependencyProperty.RegisterAttached(
-        "CacheMode", typeof(CacheMode), typeof(ShadowAssist), new FrameworkPropertyMetadata(new BitmapCache { EnableClearType = true, SnapsToDevicePixels = true }, FrameworkPropertyMetadataOptions.Inherits));
+        "CacheMode", typeof(CacheMode), typeof(ShadowAssist), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
 
     public static void SetCacheMode(DependencyObject element, CacheMode value)
     {
