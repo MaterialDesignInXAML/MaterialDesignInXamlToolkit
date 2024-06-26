@@ -61,3 +61,9 @@ An example of this property being used:
 | With `CacheMode` set                                                                                                              | Without `CacheMode` set                                                                                                           |
 | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | ![image](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/assets/6505319/9401be9c-9939-4c02-b37e-610707ea9e5c) | ![image](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/assets/6505319/928e6f70-60a2-4e0a-b8e5-f1955d3cc6f4) |
+
+## Further reading
+
+Some interesting articles with more in-depth information:
+* [Property value inheritance (WPF .NET)](https://learn.microsoft.com/en-us/dotnet/desktop/wpf/properties/property-value-inheritance?view=netdesktop-7.0)
+* [UIElement.CacheMode Property](https://learn.microsoft.com/en-us/dotnet/api/system.windows.uielement.cachemode?view=windowsdesktop-8.0)
