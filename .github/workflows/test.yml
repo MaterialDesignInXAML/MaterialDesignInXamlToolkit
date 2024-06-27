@@ -1,0 +1,30 @@
+name: Icon Update
+
+on:
+    workflow_dispatch:
+
+env:
+    GITHUB_TOKEN: ${{ secrets.SA_PAT }}
+
+
+defaults:
+    run:
+        shell: pwsh
+
+jobs:
+    close_milestone:
+        runs-on: ubuntu-latest
+        name: Close Milestone
+
+        steps:
+            # Doing a checkout, until this issue is resolved.
+            # https://github.com/valeriobelli/gh-milestone/issues/15
+            - uses: actions/checkout@v4
+
+            - name: Close Milestone
+              run: |
+                  gh extension install valeriobelli/gh-milestone
+                  Write-Host "Using extension version $(gh milestone --version)"
+                  $milestones = $(gh milestone list --json number,title) | ConvertFrom-Json
+                  $milestoneNumber = ($milestones | Where-Object { $_.title -eq "5.1.0" }).number
+                  gh milestone edit $milestoneNumber --state closed
