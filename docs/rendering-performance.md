@@ -65,5 +65,5 @@ An example of this property being used:
 ## Further reading
 
 Some interesting articles with more in-depth information:
-* [Property value inheritance (WPF .NET)](https://learn.microsoft.com/en-us/dotnet/desktop/wpf/properties/property-value-inheritance?view=netdesktop-7.0)
+* [Property value inheritance (WPF .NET)](https://learn.microsoft.com/dotnet/desktop/wpf/properties/property-value-inheritance?view=netdesktop-7.0)
 * [UIElement.CacheMode Property](https://learn.microsoft.com/en-us/dotnet/api/system.windows.uielement.cachemode?view=windowsdesktop-8.0)
