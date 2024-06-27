@@ -1,10 +1,9 @@
-name: Icon Update
+name: Test
 
 on:
     workflow_dispatch:
 
-env:
-    GITHUB_TOKEN: ${{ secrets.SA_PAT }}
+
 
 
 defaults:
@@ -28,3 +27,5 @@ jobs:
                   $milestones = $(gh milestone list --json number,title) | ConvertFrom-Json
                   $milestoneNumber = ($milestones | Where-Object { $_.title -eq "5.1.0" }).number
                   gh milestone edit $milestoneNumber --state closed
+              env:
+                GITHUB_TOKEN: ${{ secrets.SA_PAT }}
