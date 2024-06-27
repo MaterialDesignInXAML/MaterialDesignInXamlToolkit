@@ -4,8 +4,7 @@
                     xmlns:local="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
-                    xmlns:transitions="clr-namespace:MaterialDesignThemes.Wpf.Transitions"
-                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
+                    xmlns:transitions="clr-namespace:MaterialDesignThemes.Wpf.Transitions">
 
   <ResourceDictionary.MergedDictionaries>
     <!--
@@ -13,7 +12,7 @@
       as part of Material Design in XAML Toolkit. Other themes, for existing controls
       must be selected manually by the user, so that they override default styles.
       The easiest way to do this is include:
-      
+
       MaterialDesignTheme.Defaults.xaml
       in your App.xaml
     -->
@@ -43,6 +42,7 @@
   <Style TargetType="{x:Type local:TimePicker}" BasedOn="{StaticResource MaterialDesignTimePicker}" />
   <Style TargetType="{x:Type local:AutoSuggestBox}" BasedOn="{StaticResource MaterialDesignAutoSuggestBox}" />
   <Style TargetType="{x:Type local:SplitButton}" BasedOn="{StaticResource MaterialDesignRaisedSplitButton}" />
+  <Style TargetType="{x:Type local:NumericUpDown}" BasedOn="{StaticResource MaterialDesignNumericUpDown}" />
 
   <converters:BrushToRadialGradientBrushConverter x:Key="BrushToRadialGradientBrushConverter" />
   <converters:DrawerOffsetConverter x:Key="DrawerOffsetConverter" />
@@ -332,7 +332,7 @@
               <Setter TargetName="ComponentOneTwoWrapper" Property="Opacity" Value=".56" />
               <Setter TargetName="ComponentThreeTextBlock" Property="Opacity" Value="1" />
             </Trigger>
-            <Trigger Property="wpf:CalendarAssist.Orientation" Value="Horizontal">
+            <Trigger Property="local:CalendarAssist.Orientation" Value="Horizontal">
               <Setter TargetName="ComponentOneTwoWrapper" Property="Orientation" Value="Vertical" />
             </Trigger>
           </ControlTemplate.Triggers>

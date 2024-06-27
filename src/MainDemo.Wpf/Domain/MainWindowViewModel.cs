@@ -191,7 +191,7 @@ public class MainWindowViewModel : ViewModelBase
         };
 
         yield return new DemoItem(
-            "Field line up",
+            "Fields line up",
             typeof(FieldsLineUp),
             new[]
             {
