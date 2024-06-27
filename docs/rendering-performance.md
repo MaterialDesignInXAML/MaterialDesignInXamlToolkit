@@ -7,7 +7,7 @@
 ## Background information
 
 Every class inheriting from [`UIElement`](https://learn.microsoft.com/dotnet/api/system.windows.uielement?view=windowsdesktop-8.0) 
-contains a property [`CacheMode`](https://learn.microsoft.com/en-us/dotnet/api/system.windows.uielement.cachemode?view=windowsdesktop-8.0). To quote Microsoft's documentation:
+contains a property [`CacheMode`](https://learn.microsoft.com/dotnet/api/system.windows.uielement.cachemode?view=windowsdesktop-8.0). To quote Microsoft's documentation:
 
 > Set the CacheMode property when you need to increase performance for content that is time consuming to render. For 
 > more information, see [BitmapCache](https://learn.microsoft.com/en-us/dotnet/api/system.windows.media.bitmapcache?view=windowsdesktop-8.0).
