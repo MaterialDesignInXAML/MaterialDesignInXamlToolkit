@@ -19,8 +19,10 @@
 
     <GroupBox HorizontalAlignment="Left"
               VerticalAlignment="Top"
-              materialDesign:ColorZoneAssist.Background="{DynamicResource PrimaryHueLightBrush}"
-              materialDesign:ColorZoneAssist.Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+              BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}"
+              BorderThickness="1"
+              materialDesign:ColorZoneAssist.Background="{DynamicResource MaterialDesign.Brush.Background}"
+              materialDesign:ColorZoneAssist.Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
               materialDesign:ColorZoneAssist.Mode="Custom">
       <GroupBox.Header>
         <StackPanel Orientation="Horizontal">
@@ -81,7 +83,7 @@
               <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
                 <Setter Property="FontFamily" Value="Consolas" />
                 <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="Margin" Value="10,2" />
+                <Setter Property="Margin" Value="10,6" />
                 <Setter Property="MinWidth" Value="200" />
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="materialDesign:HintAssist.IsFloating" Value="True" />

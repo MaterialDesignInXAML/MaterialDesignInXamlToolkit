@@ -44,6 +44,7 @@
           </ControlTemplate.Resources>
           <Grid>
             <TextBox x:Name="PART_TextBox"
+                     BorderThickness="{TemplateBinding BorderThickness}"
                      Padding="{TemplateBinding Padding, Converter={StaticResource NumericUpDownPaddingConverter}}"
                      VerticalAlignment="Stretch"
                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -68,6 +69,7 @@
                      wpf:TextFieldAssist.HasFilledTextField="{TemplateBinding wpf:TextFieldAssist.HasFilledTextField}"
                      wpf:TextFieldAssist.HasOutlinedTextField="{TemplateBinding wpf:TextFieldAssist.HasOutlinedTextField}"
                      wpf:TextFieldAssist.NewSpecHighlightingEnabled="{TemplateBinding wpf:TextFieldAssist.NewSpecHighlightingEnabled}"
+                     wpf:TextFieldAssist.OutlinedBorderActiveThickness="{TemplateBinding wpf:TextFieldAssist.OutlinedBorderActiveThickness}"
                      wpf:TextFieldAssist.PrefixText="{TemplateBinding wpf:TextFieldAssist.PrefixText}"
                      wpf:TextFieldAssist.PrefixTextVisibility="{TemplateBinding wpf:TextFieldAssist.PrefixTextVisibility}"
                      wpf:TextFieldAssist.PrefixTextHintBehavior="{TemplateBinding wpf:TextFieldAssist.PrefixTextHintBehavior}"
@@ -84,20 +86,7 @@
                      internal:InternalTextFieldAssist.IsMouseOver="{TemplateBinding IsMouseOver}"
                      BorderBrush="{TemplateBinding BorderBrush}"
                      Focusable="{TemplateBinding Focusable}"
-                     Style="{DynamicResource NestedTextBoxStyle}">
-              <TextBox.BorderThickness>
-                <PriorityBinding>
-                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TimePickerAssist.OutlinedBorderInactiveThickness)" Converter="{StaticResource OutlinedBorderInactiveThicknessConverter}" />
-                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="BorderThickness" />
-                </PriorityBinding>
-              </TextBox.BorderThickness>
-              <wpf:TextFieldAssist.OutlinedBorderActiveThickness>
-                <PriorityBinding>
-                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TimePickerAssist.OutlinedBorderActiveThickness)" Converter="{StaticResource OutlinedBorderActiveThicknessConverter}" />
-                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TextFieldAssist.OutlinedBorderActiveThickness)" />
-                </PriorityBinding>
-              </wpf:TextFieldAssist.OutlinedBorderActiveThickness>
-            </TextBox>
+                     Style="{DynamicResource NestedTextBoxStyle}" />
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
               <RepeatButton x:Name="PART_DecreaseButton"
