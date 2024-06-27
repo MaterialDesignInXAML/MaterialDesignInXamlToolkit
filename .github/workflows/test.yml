@@ -12,6 +12,9 @@ defaults:
     run:
         shell: pwsh
 
+permissions:
+    workflows: write
+
 jobs:
     close_milestone:
         runs-on: ubuntu-latest
@@ -54,5 +57,5 @@ jobs:
                   git config --local user.email "github-actions[bot]@users.noreply.github.com"
                   git config --local user.name "github-actions[bot]"
                   git commit -m "[automated] Increment version numbers after release of ${{ inputs.milestone }}" --all
-                  git remote set-url origin https://${{ secrets.SA_PAT }}@github.com/${{ github.repository }}
+                  git remote set-url origin https://${{ github.token }}@github.com/${{ github.repository }}
                   git push
