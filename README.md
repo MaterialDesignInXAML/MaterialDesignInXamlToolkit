@@ -32,6 +32,7 @@ Comprehensive and easy to use Material Design theme and control library for the 
 - [Building the source](#building-the-source)
 - [Screenshots](#screenshots)
 - [More examples](#more-examples)
+- [FAQ](#faq)
 - [Contributing](#contributing)
 - [Mentions](#mentions)
 - [Backers](#backers)
@@ -133,6 +134,10 @@ This repository also contains 3 different demo applications:
 * [doobry](http://materialdesigninxaml.net/doobry)
 * [F1ix](http://materialdesigninxaml.net/f1ix)
 * [Motion List](https://github.com/MaterialDesignInXAML/MotionList)
+
+## FAQ
+
+* [How to increase rendering performance?](docs/rendering-performance.md)
 
 ## Contributing
 

@@ -186,11 +186,8 @@
                      IsOpen="{Binding IsOverflowOpen, RelativeSource={RelativeSource TemplatedParent}}"
                      Placement="Bottom"
                      PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}"
-                     StaysOpen="false">
-                <!-- warning, this will cache the inner item as well, consider separating the shadow from the item if possible -->
-                <Popup.CacheMode>
-                  <BitmapCache EnableClearType="True" SnapsToDevicePixels="True" />
-                </Popup.CacheMode>
+                     StaysOpen="false"
+                     CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                 <Border x:Name="ToolBarSubMenuBorder"
                         Margin="1"
                         Background="{DynamicResource MaterialDesign.Brush.ToolBar.Background}"
