@@ -1,17 +1,16 @@
 using System.ComponentModel;
 using System.Globalization;
-using System.Windows.Automation.Peers;
 
 namespace MaterialDesignThemes.Wpf;
 
 [TemplatePart(Name = IncreaseButtonPartName, Type = typeof(RepeatButton))]
 [TemplatePart(Name = DecreaseButtonPartName, Type = typeof(RepeatButton))]
-[TemplatePart(Name = TextFieldBoxPartName, Type = typeof(TextBox))]
+[TemplatePart(Name = TextBoxPartName, Type = typeof(TextBox))]
 public class NumericUpDown : Control
 {
     public const string IncreaseButtonPartName = "PART_IncreaseButton";
     public const string DecreaseButtonPartName = "PART_DecreaseButton";
-    public const string TextFieldBoxPartName = "PART_TextBox";
+    public const string TextBoxPartName = "PART_TextBox";
 
     private TextBox? _textBoxField;
     private RepeatButton? _decreaseButton;
@@ -180,7 +179,7 @@ public class NumericUpDown : Control
 
         _increaseButton = GetTemplateChild(IncreaseButtonPartName) as RepeatButton;
         _decreaseButton = GetTemplateChild(DecreaseButtonPartName) as RepeatButton;
-        _textBoxField = GetTemplateChild(TextFieldBoxPartName) as TextBox;
+        _textBoxField = GetTemplateChild(TextBoxPartName) as TextBox;
 
         if (_increaseButton != null)
             _increaseButton.Click += IncreaseButtonOnClick;

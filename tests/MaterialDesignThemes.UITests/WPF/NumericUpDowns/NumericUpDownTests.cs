@@ -12,7 +12,7 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
         """);
         var plusButton = await numericUpDown.GetElement<RepeatButton>("PART_IncreaseButton");
         var minusButton = await numericUpDown.GetElement<RepeatButton>("PART_DecreaseButton");
-        var textBox = await numericUpDown.GetElement<TextBox>("PART_TextBoxField");
+        var textBox = await numericUpDown.GetElement<TextBox>("PART_TextBox");
 
         Assert.Equal("1", await textBox.GetText());
         Assert.Equal(1, await numericUpDown.GetValue());
@@ -42,7 +42,7 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
         """);
         var plusButton = await numericUpDown.GetElement<RepeatButton>("PART_IncreaseButton");
         var minusButton = await numericUpDown.GetElement<RepeatButton>("PART_DecreaseButton");
-        var textBox = await numericUpDown.GetElement<TextBox>("PART_TextBoxField");
+        var textBox = await numericUpDown.GetElement<TextBox>("PART_TextBox");
 
         await plusButton.LeftClick();
         await Wait.For(async () =>
@@ -73,7 +73,7 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
         """);
         var plusButton = await numericUpDown.GetElement<RepeatButton>("PART_IncreaseButton");
         var minusButton = await numericUpDown.GetElement<RepeatButton>("PART_DecreaseButton");
-        var textBox = await numericUpDown.GetElement<TextBox>("PART_TextBoxField");
+        var textBox = await numericUpDown.GetElement<TextBox>("PART_TextBox");
 
         await minusButton.LeftClick();
         await Wait.For(async () =>
