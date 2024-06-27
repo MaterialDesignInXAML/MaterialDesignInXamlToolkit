@@ -13,7 +13,7 @@ defaults:
         shell: pwsh
 
 permissions:
-    workflows: write
+    actions: write
 
 jobs:
     close_milestone:
