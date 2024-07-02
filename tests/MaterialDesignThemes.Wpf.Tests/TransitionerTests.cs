@@ -57,11 +57,10 @@ public class TransitionerTests
     {
         //Arrange
         Grid child1 = new();
-        TextBox tb = new()
-        {
-            Text = "test text"
-        };
-        child1.Children.Add(tb);
+        ListBox lb = new();
+        lb.Items.Add(new Label());
+        lb.Items.Add(new Label());
+        child1.Children.Add(lb);
 
         UserControl child2 = new();
 
@@ -69,23 +68,20 @@ public class TransitionerTests
         transitioner.Items.Add(child1);
         transitioner.Items.Add(child2);
 
-        object parameter = 1;
-
         int selectionChangedCounter = 0;
         transitioner.SelectionChanged += (s, e) =>
         {
             selectionChangedCounter++;
         };
+        Transitioner.MoveNextCommand.Execute(0, transitioner);
 
         //Act
-        Assert.True(Transitioner.MovePreviousCommand.CanExecute(parameter, transitioner));
-        Transitioner.MovePreviousCommand.Execute(parameter, transitioner);
-        tb.SelectAll();
+        Assert.NotNull(transitioner.SelectedItem);
+        Assert.True(transitioner.SelectedItem == child1);
+        lb.SelectedItem = lb.Items[1];
 
         //Assert
         Assert.Equal(1, selectionChangedCounter);
         Assert.Equal(0, transitioner.SelectedIndex);
     }
-
-    private void Transitioner_SelectionChanged(object sender, SelectionChangedEventArgs e) => throw new NotImplementedException();
 }
