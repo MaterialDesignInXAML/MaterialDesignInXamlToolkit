@@ -4,50 +4,77 @@ namespace MaterialDesignThemes.Wpf.Transitions;
 
 public class FadeWipe : ITransitionWipe
 {
-    private readonly SineEase _sineEase = new SineEase();
-    private readonly KeyTime zeroKeyTime = KeyTime.FromTimeSpan(TimeSpan.Zero);
+    private readonly SineEase sineEase = new();
+    private KeyTime startKeyTime, endKeyTime;
+
+    private TimeSpan _duration = TimeSpan.FromMilliseconds(500);
+
+    public FadeWipe()
+    {
+        startKeyTime = KeyTime.FromTimeSpan(TimeSpan.Zero);
+        CalculateEndKeyTime();
+    }
 
     /// <summary>
     /// Duration of the animation
     /// </summary>
-    public TimeSpan Duration { get; set; } = TimeSpan.FromSeconds(0.5);
+    public TimeSpan Duration
+    {
+        get => _duration;
+        set
+        {
+            _duration = value;
+            CalculateEndKeyTime();
+        }
+    }
 
     public void Wipe(TransitionerSlide fromSlide, TransitionerSlide toSlide, Point origin, IZIndexController zIndexController)
     {
-        if (fromSlide == null) throw new ArgumentNullException(nameof(fromSlide));
-        if (toSlide == null) throw new ArgumentNullException(nameof(toSlide));
-        if (zIndexController == null) throw new ArgumentNullException(nameof(zIndexController));
-
-        // Set up time points
-        var endKeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(Duration.TotalSeconds / 2));
-
-        // From
-        var fromAnimation = new DoubleAnimationUsingKeyFrames();
-        fromAnimation.KeyFrames.Add(new LinearDoubleKeyFrame(1, zeroKeyTime));
-        fromAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(0, endKeyTime, _sineEase));
-
-        // To
-        var toAnimation = new DoubleAnimationUsingKeyFrames();
-        toAnimation.KeyFrames.Add(new LinearDoubleKeyFrame(0, zeroKeyTime));
-        toAnimation.KeyFrames.Add(new EasingDoubleKeyFrame(1, endKeyTime, _sineEase));
-
-        // Preset
-        fromSlide.Opacity = 1;
-        toSlide.Opacity = 0;
-
-        // Set up events
-        toAnimation.Completed += (sender, args) =>
+        if (fromSlide is null)
         {
-            toSlide.BeginAnimation(UIElement.OpacityProperty, null);
-        };
+            throw new ArgumentNullException(nameof(fromSlide));
+        }
+        if (toSlide is null)
+        {
+            throw new ArgumentNullException(nameof(toSlide));
+        }
+        if (zIndexController is null)
+        {
+            throw new ArgumentNullException(nameof(zIndexController));
+        }
+
+        // Remove current animations and reset to base value
+        double currentFromOpacity = fromSlide.Opacity;
+        fromSlide.BeginAnimation(UIElement.OpacityProperty, null);
+        fromSlide.Opacity = currentFromOpacity;
+
+        double currentToOpacity = toSlide.Opacity;
+        toSlide.BeginAnimation(UIElement.OpacityProperty, null);
+        toSlide.Opacity = currentToOpacity != 1 ? currentToOpacity : 0;
+
+        zIndexController.Stack(toSlide, fromSlide);
+        DoubleAnimationUsingKeyFrames fromAnimation = SetupOpacityAnimation(currentFromOpacity, 0);
+        DoubleAnimationUsingKeyFrames toAnimation = SetupOpacityAnimation(currentToOpacity, 1);
+
         fromAnimation.Completed += (sender, args) =>
         {
             fromSlide.BeginAnimation(UIElement.OpacityProperty, null);
             toSlide.BeginAnimation(UIElement.OpacityProperty, toAnimation);
         };
 
-        // Animate
         fromSlide.BeginAnimation(UIElement.OpacityProperty, fromAnimation);
-        zIndexController.Stack(toSlide, fromSlide);
+    }
+
+    private DoubleAnimationUsingKeyFrames SetupOpacityAnimation(double from, double to)
+    {
+        DoubleAnimationUsingKeyFrames animation = new();
+        animation.KeyFrames.Add(new LinearDoubleKeyFrame(from, startKeyTime));
+        animation.KeyFrames.Add(new EasingDoubleKeyFrame(to, endKeyTime, sineEase));
+        return animation;
+    }
+
+    private void CalculateEndKeyTime()
+    {
+        endKeyTime = KeyTime.FromTimeSpan(TimeSpan.FromSeconds(Duration.TotalSeconds / 2));
     }
 }
