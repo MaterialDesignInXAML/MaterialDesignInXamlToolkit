@@ -17,13 +17,35 @@
     <Setter Property="Text" Value="{Binding Path=(wpf:HintAssist.HelperText), RelativeSource={RelativeSource Mode=TemplatedParent}}" />
   </Style>
 
+  <Style x:Key="MaterialDesignCharacterCounterTextBlock"
+         TargetType="TextBlock"
+         BasedOn="{StaticResource {x:Type TextBlock}}">
+    <Style.Resources>
+      <converters:StringLengthValueConverter x:Key="StringLengthValueConverter" />
+    </Style.Resources>
+    <Setter Property="FontSize" Value="10" />
+    <Setter Property="Opacity" Value="0.56" />
+    <Setter Property="Text">
+      <Setter.Value>
+        <MultiBinding StringFormat="{}{0} / {1}">
+          <Binding Converter="{StaticResource StringLengthValueConverter}"
+                   Path="Text"
+                   RelativeSource="{RelativeSource FindAncestor,
+                                                 AncestorType=TextBoxBase}" />
+          <Binding Path="MaxLength" RelativeSource="{RelativeSource FindAncestor, AncestorType=TextBoxBase}" />
+        </MultiBinding>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Visibility" Value="{Binding Path=(wpf:TextFieldAssist.CharacterCounterVisibility), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TextBox}}}" />
+  </Style>
+
   <Style x:Key="MaterialDesignTextBoxBase" TargetType="{x:Type TextBoxBase}">
     <Style.Resources>
       <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
       <converters:CursorConverter x:Key="ArrowCursorConverter" FallbackCursor="Arrow" />
       <converters:CursorConverter x:Key="IBeamCursorConverter" FallbackCursor="IBeam" />
       <converters:MathConverter x:Key="MathMultiplyConverter" Operation="Multiply" />
-      <converters:StringLengthValueConverter x:Key="StringLengthValueConverter" />
       <converters:TextFieldClearButtonVisibilityConverter x:Key="ClearButtonVisibilityConverter" ContentEmptyVisibility="Collapsed" />
       <converters:TextFieldPrefixTextVisibilityConverter x:Key="PrefixSuffixTextVisibilityConverter" HiddenState="Collapsed" />
       <converters:BooleanToDashStyleConverter x:Key="BooleanToDashStyleConverter" TrueValue="{x:Static DashStyles.Solid}" />
@@ -35,27 +57,6 @@
       <converters:ThicknessCloneConverter x:Key="ThicknessCloneConverter" CloneEdges="All" AdditionalOffsetBottom="-1" />
       <converters:InvertBooleanConverter x:Key="InvertBooleanConverter" />
       <converters:OutlinedStyleActiveBorderMarginCompensationConverter x:Key="OutlinedStyleActiveBorderMarginCompensationConverter" />
-
-      <Style x:Key="MaterialDesignCharacterCounterTextBlock"
-             TargetType="TextBlock"
-             BasedOn="{StaticResource {x:Type TextBlock}}">
-        <Setter Property="FontSize" Value="10" />
-        <Setter Property="Opacity" Value="0.56" />
-        <Setter Property="Text">
-          <Setter.Value>
-            <MultiBinding StringFormat="{}{0} / {1}">
-              <Binding Converter="{StaticResource StringLengthValueConverter}"
-                       Path="Text"
-                       RelativeSource="{RelativeSource FindAncestor,
-                                                       AncestorType=TextBoxBase}" />
-              <Binding Path="MaxLength" RelativeSource="{RelativeSource FindAncestor, AncestorType=TextBoxBase}" />
-            </MultiBinding>
-          </Setter.Value>
-        </Setter>
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Visibility" Value="{Binding Path=(wpf:TextFieldAssist.CharacterCounterVisibility), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TextBox}}}" />
-      </Style>
-
     </Style.Resources>
 
     <Setter Property="AllowDrop" Value="true" />
