@@ -62,6 +62,7 @@ public class Transitioner : Selector, IZIndexController
         CommandBindings.Add(new CommandBinding(MoveFirstCommand, MoveFirstHandler));
         CommandBindings.Add(new CommandBinding(MoveLastCommand, MoveLastHandler));
         AddHandler(TransitionerSlide.InTransitionFinished, new RoutedEventHandler(IsTransitionFinishedHandler));
+        AddHandler(SelectionChangedEvent, new RoutedEventHandler(SelectionChangedEventHandler));
         Loaded += (sender, args) =>
         {
             if (SelectedIndex != -1)
@@ -105,6 +106,15 @@ public class Transitioner : Selector, IZIndexController
         foreach (var slide in Items.OfType<object>().Select(GetSlide).Where(s => s.State == TransitionerSlideState.Previous))
         {
             slide.SetCurrentValue(TransitionerSlide.StateProperty, TransitionerSlideState.None);
+        }
+    }
+
+    private static void SelectionChangedEventHandler(object sender, RoutedEventArgs e)
+    {
+        if (e.OriginalSource is not Transitioner)
+        {
+            // This event is bubbling up from a child Selector element. Swallow the event to avoid confusion with the SelectionChanged event on the Transitioner itself.
+            e.Handled = true;
         }
     }
 
