@@ -1,6 +1,6 @@
 ﻿namespace MaterialDesignDemo;
 
-enum ColorScheme
+public enum ColorScheme
 {
     Primary,
     Secondary,

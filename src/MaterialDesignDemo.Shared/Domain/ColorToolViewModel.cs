@@ -4,7 +4,7 @@ using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignDemo.Domain;
 
-internal class ColorToolViewModel : ViewModelBase
+public class ColorToolViewModel : ViewModelBase
 {
     private readonly PaletteHelper _paletteHelper = new();
 
