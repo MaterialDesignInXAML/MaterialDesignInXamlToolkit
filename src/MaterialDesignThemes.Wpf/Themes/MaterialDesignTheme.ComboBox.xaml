@@ -775,7 +775,11 @@
       </MultiTrigger>
 
       <!-- PART_Popup.IsOpen -->
-      <Trigger SourceName="PART_Popup" Property="IsOpen" Value="True">
+      <MultiTrigger>
+        <MultiTrigger.Conditions>
+          <Condition SourceName="PART_Popup" Property="IsOpen" Value="True" />
+          <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
+        </MultiTrigger.Conditions>
         <Setter TargetName="OuterBorder" Property="BorderThickness" Value="{Binding Path=(wpf:TextFieldAssist.OutlinedBorderActiveThickness), RelativeSource={RelativeSource TemplatedParent}}" />
         <Setter TargetName="ContentGrid" Property="Margin">
           <Setter.Value>
@@ -785,7 +789,7 @@
             </MultiBinding>
           </Setter.Value>
         </Setter>
-      </Trigger>
+      </MultiTrigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
           <Condition SourceName="PART_Popup" Property="IsOpen" Value="True" />
