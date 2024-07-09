@@ -282,4 +282,31 @@ public class ComboBoxTests : TestBase
 
         recorder.Success();
     }
+
+    [Theory]
+    [InlineData("MaterialDesignFloatingHintComboBox", 0, 0, 0, 1)]
+    [InlineData("MaterialDesignFilledComboBox", 0, 0, 0, 1)]
+    [InlineData("MaterialDesignOutlinedComboBox", 2, 2, 2, 2)]
+    [Description("Issue 3623")]
+    public async Task ComboBox_BorderShouldDependOnAppliedStyle(string style, double left, double top, double right, double bottom)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        var stackPanel = await LoadXaml<StackPanel>($$"""
+             <StackPanel>
+               <ComboBox Style="{StaticResource {{style}}}">
+                 <ComboBoxItem Content="TEST" IsSelected="True" />
+               </ComboBox>
+             </StackPanel>
+             """);
+        var comboBox = await stackPanel.GetElement<ComboBox>("/ComboBox");
+        var border = await comboBox.GetElement<Border>("OuterBorder");
+
+        await comboBox.LeftClick();
+
+        Thickness thickness = await border.GetBorderThickness();
+        Assert.Equal(new Thickness(left, top, right, bottom), thickness);
+
+        recorder.Success();
+    }
 }
