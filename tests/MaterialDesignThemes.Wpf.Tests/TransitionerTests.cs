@@ -1,5 +1,4 @@
 ﻿using MaterialDesignThemes.Wpf.Transitions;
-using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
@@ -50,6 +49,39 @@ public class TransitionerTests
         Transitioner.MovePreviousCommand.Execute(parameter, transitioner);
 
         //Assert
+        Assert.Equal(0, transitioner.SelectedIndex);
+    }
+
+    [StaFact]
+    public void ShortCircuitIssue3268()
+    {
+        //Arrange
+        Grid child1 = new();
+        ListBox lb = new();
+        lb.Items.Add(new Label());
+        lb.Items.Add(new Label());
+        child1.Children.Add(lb);
+
+        UserControl child2 = new();
+
+        Transitioner transitioner = new();
+        transitioner.Items.Add(child1);
+        transitioner.Items.Add(child2);
+
+        int selectionChangedCounter = 0;
+        transitioner.SelectionChanged += (s, e) =>
+        {
+            selectionChangedCounter++;
+        };
+        Transitioner.MoveNextCommand.Execute(0, transitioner);
+
+        //Act
+        Assert.NotNull(transitioner.SelectedItem);
+        Assert.True(transitioner.SelectedItem == child1);
+        lb.SelectedItem = lb.Items[1];
+
+        //Assert
+        Assert.Equal(1, selectionChangedCounter);
         Assert.Equal(0, transitioner.SelectedIndex);
     }
 }
