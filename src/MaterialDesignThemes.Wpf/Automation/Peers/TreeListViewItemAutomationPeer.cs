@@ -1,21 +1,16 @@
 using System.Windows.Automation.Peers;
-using System.Windows.Automation.Provider;
 
 namespace MaterialDesignThemes.Wpf.Automation.Peers;
 
-public class TreeListViewAutomationPeer : ListViewAutomationPeer
+public class TreeListViewAutomationPeer(TreeListView owner) : ListViewAutomationPeer(owner)
 {
-    public TreeListViewAutomationPeer(TreeListView owner) : base(owner)
-    {
-    }
-
     protected override AutomationControlType GetAutomationControlTypeCore() => AutomationControlType.Tree;
 
     protected override string GetClassNameCore() => "TreeListView";
 
     protected override List<AutomationPeer>? GetChildrenCore()
     {
-        ItemsControl owner = (ItemsControl)Owner;
+        var owner = (ItemsControl)Owner;
         ItemCollection items = owner.Items;
         List<AutomationPeer>? children = null;
         
@@ -24,7 +19,7 @@ public class TreeListViewAutomationPeer : ListViewAutomationPeer
             children = new List<AutomationPeer>(items.Count);
             for (int i = 0; i < items.Count; i++)
             {
-                TreeListViewItem? treeViewItem = owner.ItemContainerGenerator.ContainerFromIndex(i) as TreeListViewItem;
+                var treeViewItem = owner.ItemContainerGenerator.ContainerFromIndex(i) as TreeListViewItem;
                 //We grab top level items only
                 if (treeViewItem is { Level: 0 })
                 {
@@ -35,20 +30,11 @@ public class TreeListViewAutomationPeer : ListViewAutomationPeer
         return children;
     }
 
-    protected override ItemAutomationPeer CreateItemAutomationPeer(object item)
-    {
-        return new TreeListViewItemAutomationPeer(item, this);
-    }
+    protected override ItemAutomationPeer CreateItemAutomationPeer(object item) => new TreeListViewItemAutomationPeer(item, this);
 }
 
-public class TreeListViewItemAutomationPeer : ListBoxItemAutomationPeer
+public class TreeListViewItemAutomationPeer(object owner, SelectorAutomationPeer selectorAutomationPeer) : ListBoxItemAutomationPeer(owner, selectorAutomationPeer)
 {
-    public TreeListViewItemAutomationPeer(object owner, SelectorAutomationPeer selectorAutomationPeer)
-        : base(owner, selectorAutomationPeer)
-    {
-
-    }
-
     protected override List<AutomationPeer> GetChildrenCore()
     {
         List<AutomationPeer> rv = base.GetChildrenCore();
