@@ -21,12 +21,7 @@ jobs:
 
         steps:
             - uses: actions/checkout@v4
-
-            - name: Setup .NET
-              uses: actions/setup-dotnet@v4
-              with:
-                  dotnet-version: 7.x
-
+            
             - name: Run Icon Generation
               run: dotnet run -c Release -- icons
               working-directory: ./src/MaterialDesignToolkit.ResourceGeneration

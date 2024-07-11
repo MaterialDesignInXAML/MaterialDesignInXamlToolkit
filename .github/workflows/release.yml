@@ -311,10 +311,12 @@ jobs:
                   Update-Version -Prefix "mdix-colors-version"
                   Update-Version -Prefix "mdix-mahapps-version"
 
-            - name: Push Changes
+            - name: Open Pull Request
               run: |
                   git config --local user.email "github-actions[bot]@users.noreply.github.com"
                   git config --local user.name "github-actions[bot]"
-                  git commit -m "[automated] Increment version numbers after release of ${{ inputs.milestone }}" --all
-                  git remote set-url origin https://${{ secrets.SA_PAT }}@github.com/${{ github.repository }}
-                  git push
+                  git checkout -b "automated/version_update"
+                  git commit -m "[bot] Release version update" --all
+                  git push -f --set-upstream origin automated/version_update
+                  gh pr create --fill
+                  gh pr merge automated/version_update --delete-branch --auto --squash
