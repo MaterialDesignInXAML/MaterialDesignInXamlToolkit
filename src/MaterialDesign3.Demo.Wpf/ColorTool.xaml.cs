@@ -1,4 +1,4 @@
-﻿using MaterialDesign3Demo.Domain;
+﻿using MaterialDesignDemo.Domain;
 
 namespace MaterialDesign3Demo;
 

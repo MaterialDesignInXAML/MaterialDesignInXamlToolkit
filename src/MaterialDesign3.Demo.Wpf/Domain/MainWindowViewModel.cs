@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Configuration;
 using System.Windows.Data;
+using MaterialDesignDemo.Domain;
 using MaterialDesignThemes.Wpf;
 using MaterialDesignThemes.Wpf.Transitions;
 
