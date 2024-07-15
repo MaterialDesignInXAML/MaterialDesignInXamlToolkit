@@ -1,4 +1,6 @@
-﻿namespace MaterialDesignDemo.Domain;
+﻿using MaterialDesignDemo.Shared.Domain;
+
+namespace MaterialDesignDemo.Domain;
 
 public class PickersViewModel : ViewModelBase
 {

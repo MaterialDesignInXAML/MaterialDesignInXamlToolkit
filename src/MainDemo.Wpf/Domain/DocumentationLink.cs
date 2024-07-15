@@ -1,5 +1,5 @@
-﻿using System.ComponentModel;
-using System.Configuration;
+﻿using System.Configuration;
+using MaterialDesignDemo.Shared.Domain;
 
 namespace MaterialDesignDemo.Domain;
 

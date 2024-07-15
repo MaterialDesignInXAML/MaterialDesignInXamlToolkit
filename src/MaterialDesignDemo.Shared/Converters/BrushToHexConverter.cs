@@ -2,7 +2,7 @@
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace MaterialDesignDemo.Converters;
+namespace MaterialDesignDemo.Shared.Converters;
 
 public class BrushToHexConverter : IValueConverter
 {

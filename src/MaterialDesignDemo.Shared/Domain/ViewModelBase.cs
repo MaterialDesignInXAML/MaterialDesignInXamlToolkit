@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace MaterialDesignDemo.Domain;
+namespace MaterialDesignDemo.Shared.Domain;
 
 public abstract class ViewModelBase : INotifyPropertyChanged
 {

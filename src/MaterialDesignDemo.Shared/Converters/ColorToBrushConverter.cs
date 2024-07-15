@@ -2,7 +2,7 @@
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace MaterialDesignDemo.Converters;
+namespace MaterialDesignDemo.Shared.Converters;
 
 [ValueConversion(typeof(Color), typeof(Brush))]
 public sealed class ColorToBrushConverter : IValueConverter
