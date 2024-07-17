@@ -1,4 +1,5 @@
-﻿using MaterialDesignThemes.Wpf;
+﻿using MaterialDesignDemo.Shared.Domain;
+using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignDemo.Domain;
 

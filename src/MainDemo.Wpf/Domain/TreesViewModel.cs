@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.ObjectModel;
 using System.Windows.Documents;
+using MaterialDesignDemo.Shared.Domain;
 using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignDemo.Domain;

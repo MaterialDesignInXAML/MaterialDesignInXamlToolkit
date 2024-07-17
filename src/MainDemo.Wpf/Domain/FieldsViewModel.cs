@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Windows.Media;
+using MaterialDesignDemo.Shared.Domain;
 
 namespace MaterialDesignDemo.Domain;
 public class FieldsViewModel : ViewModelBase

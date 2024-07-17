@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
+using MaterialDesignDemo.Shared.Domain;
 
 namespace MaterialDesignDemo.Domain;
 

@@ -1,4 +1,5 @@
 ﻿using System.Windows.Media;
+using MaterialDesignDemo.Shared.Domain;
 using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignDemo.Domain;

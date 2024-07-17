@@ -4,7 +4,6 @@
     <TargetFrameworks>net472;net6.0-windows;net8.0-windows</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>MaterialDesignDemo</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

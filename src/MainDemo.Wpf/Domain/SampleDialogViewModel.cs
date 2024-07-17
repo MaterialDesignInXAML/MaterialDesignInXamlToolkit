@@ -1,3 +1,5 @@
+using MaterialDesignDemo.Shared.Domain;
+
 namespace MaterialDesignDemo.Domain;
 
 public class SampleDialogViewModel : ViewModelBase

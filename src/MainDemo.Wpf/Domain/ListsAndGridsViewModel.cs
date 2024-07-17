@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using MaterialDesignDemo.Shared.Domain;
 
 namespace MaterialDesignDemo.Domain;
 

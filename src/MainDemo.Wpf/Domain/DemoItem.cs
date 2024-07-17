@@ -1,4 +1,6 @@
-﻿namespace MaterialDesignDemo.Domain;
+﻿using MaterialDesignDemo.Domain;
+
+namespace MaterialDesignDemo.Shared.Domain;
 
 public class DemoItem : ViewModelBase
 {

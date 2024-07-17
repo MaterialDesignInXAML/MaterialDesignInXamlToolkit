@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Windows.Data;
 
-namespace MaterialDesignDemo.Converters;
+namespace MaterialDesignDemo.Shared.Converters;
 
 public sealed class MultiValueEqualityConverter : IMultiValueConverter
 {

@@ -2,7 +2,7 @@
 using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
 
-namespace MaterialDesignDemo.Domain;
+namespace MaterialDesignDemo.Shared.Domain;
 
 public class ColorToolViewModel : ViewModelBase
 {
