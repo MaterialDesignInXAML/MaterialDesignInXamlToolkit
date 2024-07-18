@@ -54,6 +54,8 @@
             <TextBlock Margin="8,0,0,0" Text="EXPLORE" />
           </StackPanel>
         </Button>
+
+        <materialDesign:ChipsTextBox Margin="0,20" Style="{StaticResource MaterialDesignFilledChipsTextBox}" />
       </StackPanel>
     </Grid>
 
