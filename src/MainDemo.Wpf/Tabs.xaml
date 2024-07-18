@@ -365,6 +365,26 @@
 
     </WrapPanel>
 
+    <WrapPanel>
+      <smtx:XamlDisplay Margin="0,0,16,16"
+                        HorizontalAlignment="Left"
+                        UniqueKey="tabs_custom_7">
+        <TabControl Width="300"
+                    materialDesign:ColorZoneAssist.Mode="SecondaryDark"
+                    Style="{StaticResource MaterialDesignFilledTabControl}"
+                    materialDesign:TabAssist.HeaderPanelMargin="20,0">
+          <TabItem Header="TAB 1">
+            <TextBlock Margin="8"
+                       Text="Notice left header margin" />
+          </TabItem>
+          <TabItem Header="TAB 2">
+            <TextBlock Margin="8"
+                       Text="Notice right header margin" />
+          </TabItem>
+        </TabControl>
+      </smtx:XamlDisplay>
+    </WrapPanel>
+
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
     <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
