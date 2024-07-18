@@ -47,6 +47,7 @@
                 <StackPanel>
                   <UniformGrid x:Name="CenteredHeaderPanel"
                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                               Margin="{Binding Path=(wpf:TabAssist.HeaderPanelMargin), RelativeSource={RelativeSource TemplatedParent}}"
                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                wpf:TabAssist.BindableIsItemsHost="{Binding Visibility, RelativeSource={RelativeSource Self}}"
                                Focusable="False"
@@ -54,6 +55,7 @@
                                Rows="1" />
                   <VirtualizingStackPanel x:Name="HeaderPanel"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Margin="{Binding Path=(wpf:TabAssist.HeaderPanelMargin), RelativeSource={RelativeSource TemplatedParent}}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           wpf:TabAssist.BindableIsItemsHost="{Binding Visibility, RelativeSource={RelativeSource Self}}"
                                           Focusable="False"
