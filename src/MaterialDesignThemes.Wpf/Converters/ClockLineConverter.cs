@@ -19,12 +19,8 @@ public class ClockLineConverter : MarkupExtension, IValueConverter
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        return Binding.DoNothing;
-    }
+        => Binding.DoNothing;
 
     public override object ProvideValue(IServiceProvider serviceProvider)
-    {
-        return this;
-    }
+        => this;
 }
