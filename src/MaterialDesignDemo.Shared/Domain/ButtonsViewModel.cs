@@ -2,9 +2,8 @@
 using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MaterialDesignDemo.Shared.Domain;
 
-namespace MaterialDesignDemo.Domain;
+namespace MaterialDesignDemo.Shared.Domain;
 
 public sealed partial class ButtonsViewModel : ObservableObject
 {    
