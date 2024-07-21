@@ -3,16 +3,10 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters;
 
-public class BooleanConverter<T> : IValueConverter
+public class BooleanConverter<T>(T trueValue, T falseValue) : IValueConverter
 {
-    public BooleanConverter(T trueValue, T falseValue)
-    {
-        TrueValue = trueValue;
-        FalseValue = falseValue;
-    }
-
-    public T TrueValue { get; set; }
-    public T FalseValue { get; set; }
+    public T TrueValue { get; set; } = trueValue;
+    public T FalseValue { get; set; } = falseValue;
 
     public virtual object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         => value is bool boolValue && boolValue ? TrueValue : FalseValue;
