@@ -617,8 +617,8 @@ public class PopupBox : ContentControl
                 throw new ArgumentOutOfRangeException();
         }
 
-        double xTransformed = DpiHelper.TransformToDeviceX(x);
-        double yTransformed = DpiHelper.TransformToDeviceY(y);
+        double xTransformed = DpiHelper.TransformToDeviceX(this, x);
+        double yTransformed = DpiHelper.TransformToDeviceY(this, y);
 
         _popupPointFromLastRequest = new Point(xTransformed, yTransformed);
         return new[] { new CustomPopupPlacement(_popupPointFromLastRequest, PopupPrimaryAxis.Horizontal) };
