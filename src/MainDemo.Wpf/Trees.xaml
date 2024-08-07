@@ -231,6 +231,19 @@
               </DataTemplate>
             </materialDesign:TreeListView.Resources>
 
+            <!--
+            Because Data Virtualization is enabled on this tree view by default, if you don't bind the IsExpanded property to something in the bound view model,
+            you can loose the expanded state of items when the TreeListViewItem is recycled.
+
+            For more information:
+            https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/3640#issuecomment-2274086113
+            https://learn.microsoft.com/dotnet/desktop/wpf/advanced/optimizing-performance-controls?view=netframeworkdesktop-4.8&WT.mc_id=DT-MVP-5003472
+            -->
+            <materialDesign:TreeListView.ItemContainerStyle>
+              <Style TargetType="materialDesign:TreeListViewItem" BasedOn="{StaticResource {x:Type materialDesign:TreeListViewItem}}">
+                <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
+              </Style>
+            </materialDesign:TreeListView.ItemContainerStyle>
           </materialDesign:TreeListView>
           <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
             <Button Command="{Binding AddListTreeItemCommand}"

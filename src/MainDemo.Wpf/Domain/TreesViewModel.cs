@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.ObjectModel;
 using System.Windows.Documents;
+using CommunityToolkit.Mvvm.ComponentModel;
 using MaterialDesignDemo.Shared.Domain;
 using MaterialDesignThemes.Wpf;
 
@@ -48,11 +49,23 @@ public class Planet
     public double Velocity { get; set; }
 }
 
-public class TestItem
+public partial class TestItem : ObservableObject
 {
     public TestItem? Parent { get; set; }
     public string Name { get; }
     public ObservableCollection<TestItem> Items { get; }
+
+    // This property is used to determine if the item is expanded or not.
+    // With the TreeListView control, the UI items are virtualized. Without
+    // this property, the IsExpanded state of the TreeListViewItem would be lost
+    // when it is recycled.
+    //
+    // For more information see:
+    // https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/3640#issuecomment-2274086113
+    //
+    // https://learn.microsoft.com/dotnet/desktop/wpf/advanced/optimizing-performance-controls?view=netframeworkdesktop-4.8&WT.mc_id=DT-MVP-5003472
+    [ObservableProperty]
+    private bool _isExpanded;
 
     public TestItem(string name, IEnumerable<TestItem> items)
     {
