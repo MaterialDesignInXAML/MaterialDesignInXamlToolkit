@@ -3,23 +3,16 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters;
 
-internal class ClockItemIsCheckedConverter : IValueConverter
+internal class ClockItemIsCheckedConverter(Func<DateTime> currentTimeGetter, ClockDisplayMode displayMode, bool is24Hours) : IValueConverter
 {
-    private readonly Func<DateTime> _currentTimeGetter;
-    private readonly ClockDisplayMode _displayMode;
-    private readonly bool _is24Hours;
-
-    public ClockItemIsCheckedConverter(Func<DateTime> currentTimeGetter, ClockDisplayMode displayMode, bool is24Hours)
-    {
-        _currentTimeGetter = currentTimeGetter ?? throw new ArgumentNullException(nameof(currentTimeGetter));
-        _displayMode = displayMode;
-        _is24Hours = is24Hours;
-    }
+    private readonly Func<DateTime> _currentTimeGetter = currentTimeGetter ?? throw new ArgumentNullException(nameof(currentTimeGetter));
+    private readonly ClockDisplayMode _displayMode = displayMode;
+    private readonly bool _is24Hours = is24Hours;
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         var dateTime = (DateTime)value;
-        var i = (int)parameter;
+        int i = (int)parameter;
 
         int converted;
         if (_displayMode == ClockDisplayMode.Hours)

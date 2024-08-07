@@ -10,7 +10,7 @@ public class BrushOpacityConverter : IValueConverter
     {
         if (value is SolidColorBrush brush)
         {
-            var opacity = System.Convert.ToDouble(parameter, CultureInfo.InvariantCulture);
+            double opacity = System.Convert.ToDouble(parameter, CultureInfo.InvariantCulture);
             SolidColorBrush rv = new(brush.Color)
             {
                 Opacity = opacity
