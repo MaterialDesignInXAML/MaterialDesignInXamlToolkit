@@ -1,6 +1,6 @@
 using MaterialDesignThemes.UITests.Samples.SplitButton;
 
-[assembly:GenerateHelpers(typeof(SplitButtonWithCommandBinding))]
+[assembly: GenerateHelpers(typeof(SplitButtonWithCommandBinding))]
 
 namespace MaterialDesignThemes.UITests.WPF.SplitButtons;
 
@@ -149,6 +149,43 @@ public class SplitButtonTests : TestBase
 
         // Assert
         Assert.False(await splitButton.GetIsEnabled());
+
+        recorder.Success();
+    }
+
+    [Fact]
+    public async Task SplitButton_ClickingPopupContent_DoesNotExecuteSplitButtonClick()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        //Arrange
+        IVisualElement<SplitButton> splitButton = await LoadXaml<SplitButton>("""
+            <materialDesign:SplitButton VerticalAlignment="Bottom"
+                                        Content="Split Button"
+                                        Style="{StaticResource MaterialDesignRaisedLightSplitButton}">
+              <materialDesign:SplitButton.PopupContent>
+                <Button x:Name="PopupContent" />
+              </materialDesign:SplitButton.PopupContent>
+            </materialDesign:SplitButton>
+            """);
+
+        IVisualElement<PopupBox> popupBox = await splitButton.GetElement<PopupBox>();
+        IVisualElement<Button> popupContent = await splitButton.GetElement<Button>("PopupContent");
+
+        IEventRegistration splitButtonClickEvent = await splitButton.RegisterForEvent(ButtonBase.ClickEvent.Name);
+        IEventRegistration popupContentClickEvent = await popupContent.RegisterForEvent(ButtonBase.ClickEvent.Name);
+
+        //Act
+        await popupBox.LeftClick();
+        //NB: give the popup some time to show
+        await Wait.For(async () => await popupContent.GetIsVisible());
+        await Wait.For(async () => await popupContent.GetActualHeight() > 10);
+        await popupContent.LeftClick();
+        await Task.Delay(50);
+
+        // Assert
+        Assert.Empty(await splitButtonClickEvent.GetInvocations());
+        Assert.Single(await popupContentClickEvent.GetInvocations());
 
         recorder.Success();
     }
