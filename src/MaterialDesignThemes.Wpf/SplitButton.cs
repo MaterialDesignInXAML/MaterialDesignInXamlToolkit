@@ -17,7 +17,7 @@ public class SplitButton : Button
 
     public PopupBoxPlacementMode PopupPlacementMode
     {
-        get => (PopupBoxPlacementMode) GetValue(PopupPlacementModeProperty);
+        get => (PopupBoxPlacementMode)GetValue(PopupPlacementModeProperty);
         set => SetValue(PopupPlacementModeProperty, value);
     }
 
@@ -116,7 +116,7 @@ public class SplitButton : Button
 
     public Style ButtonStyle
     {
-        get => (Style) GetValue(ButtonStyleProperty);
+        get => (Style)GetValue(ButtonStyleProperty);
         set => SetValue(ButtonStyleProperty, value);
     }
 
@@ -134,6 +134,17 @@ public class SplitButton : Button
         {
             WeakEventManager<Button, RoutedEventArgs>.RemoveHandler(_rightButton, nameof(Click), OpenPopupBox);
             WeakEventManager<Button, RoutedEventArgs>.AddHandler(_rightButton, nameof(Click), OpenPopupBox);
+        }
+
+        if (_popupBox is not null)
+        {
+            _popupBox.RemoveHandler(ButtonBase.ClickEvent, (RoutedEventHandler)PopupContentClickedHandler);
+            _popupBox.AddHandler(ButtonBase.ClickEvent, (RoutedEventHandler)PopupContentClickedHandler);
+        }
+
+        void PopupContentClickedHandler(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
         }
 
         void OpenPopupBox(object? sender, RoutedEventArgs e)
