@@ -363,6 +363,13 @@ public class TimePicker : Control
 
     private bool ProcessKey(KeyEventArgs keyEventArgs)
     {
+        // Move to previous element if Shift + Tab is pressed
+        if (keyEventArgs.Key == Key.Tab && (Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift)
+        {
+            MoveFocus(new TraversalRequest(FocusNavigationDirection.Previous));
+            return true;
+        }
+
         switch (keyEventArgs.Key)
         {
             case Key.System:
