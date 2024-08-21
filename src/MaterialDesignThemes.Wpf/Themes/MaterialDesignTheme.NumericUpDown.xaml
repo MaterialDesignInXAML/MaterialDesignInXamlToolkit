@@ -30,6 +30,7 @@
     <Setter Property="Padding" Value="{x:Static wpf:Constants.TextBoxDefaultPadding}" />
     <Setter Property="BorderThickness" Value="0,0,0,1" />
     <Setter Property="MinWidth" Value="100" />
+    <Setter Property="IsTabStop" Value="False" />
     <Setter Property="IncreaseContent" Value="{StaticResource ContentIncrease}" />
     <Setter Property="DecreaseContent" Value="{StaticResource ContentDecrease}" />
     <Setter Property="Template">
