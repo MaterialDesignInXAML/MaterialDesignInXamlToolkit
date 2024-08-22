@@ -267,11 +267,11 @@ public class NumericUpDown : Control
     private static void OnGotFocus(object sender, RoutedEventArgs e)
     {
         // When NumericUpDown gets focus move it to the TextBox
-        NumericUpDown picker = (NumericUpDown)sender;
-        if ((!e.Handled) && (picker._textBoxField != null))
+        NumericUpDown numericUpDown = (NumericUpDown)sender;
+        if ((!e.Handled) && (numericUpDown._textBoxField != null))
         {
-            picker._textBoxField.Focus();
-            picker._textBoxField.SelectAll();
+            numericUpDown._textBoxField.Focus();
+            numericUpDown._textBoxField.SelectAll();
             e.Handled = true;
         }
     }
