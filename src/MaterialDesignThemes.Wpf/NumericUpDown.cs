@@ -19,6 +19,7 @@ public class NumericUpDown : Control
     static NumericUpDown()
     {
         DefaultStyleKeyProperty.OverrideMetadata(typeof(NumericUpDown), new FrameworkPropertyMetadata(typeof(NumericUpDown)));
+        EventManager.RegisterClassHandler(typeof(NumericUpDown), UIElement.GotFocusEvent, new RoutedEventHandler(OnGotFocus));
     }
 
     #region DependencyProperties
@@ -237,6 +238,12 @@ public class NumericUpDown : Control
             OnDecrease();
             e.Handled = true;
         }
+        // Move to previous element if Shift + Tab is pressed
+        else if (e.Key == Key.Tab && (Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift)
+        {
+            MoveFocus(new TraversalRequest(FocusNavigationDirection.Previous));
+            e.Handled = true;
+        }
         base.OnPreviewKeyDown(e);
     }
 
@@ -255,5 +262,17 @@ public class NumericUpDown : Control
             e.Handled = true;
         }
         base.OnPreviewMouseWheel(e);
+    }
+
+    private static void OnGotFocus(object sender, RoutedEventArgs e)
+    {
+        // When NumericUpDown gets focus move it to the TextBox
+        NumericUpDown picker = (NumericUpDown)sender;
+        if ((!e.Handled) && (picker._textBoxField != null))
+        {
+            picker._textBoxField.Focus();
+            picker._textBoxField.SelectAll();
+            e.Handled = true;
+        }
     }
 }
