@@ -28,7 +28,7 @@
       <smtx:XamlDisplay Margin="10,5"
                         VerticalAlignment="Top"
                         UniqueKey="numericUpDown_default">
-        <materialDesign:NumericUpDown />
+        <materialDesign:NumericUpDown ValueMinStep="1" />
       </smtx:XamlDisplay>
 
       <smtx:XamlDisplay Margin="10,5"

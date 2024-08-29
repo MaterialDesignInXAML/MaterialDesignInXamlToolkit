@@ -23,8 +23,6 @@ public class NumericUpDown : Control
 
     #region DependencyProperties
 
-
-
     public object? IncreaseContent
     {
         get => GetValue(IncreaseContentProperty);
@@ -46,13 +44,13 @@ public class NumericUpDown : Control
         DependencyProperty.Register(nameof(DecreaseContent), typeof(object), typeof(NumericUpDown), new PropertyMetadata(null));
 
     #region DependencyProperty : MinimumProperty
-    public int Minimum
+    public decimal Minimum
     {
-        get => (int)GetValue(MinimumProperty);
+        get => (decimal)GetValue(MinimumProperty);
         set => SetValue(MinimumProperty, value);
     }
     public static readonly DependencyProperty MinimumProperty =
-        DependencyProperty.Register(nameof(Minimum), typeof(int), typeof(NumericUpDown), new PropertyMetadata(int.MinValue, OnMinimumChanged));
+        DependencyProperty.Register(nameof(Minimum), typeof(decimal), typeof(NumericUpDown), new PropertyMetadata(decimal.MinValue, OnMinimumChanged));
 
     private static void OnMinimumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
@@ -65,14 +63,14 @@ public class NumericUpDown : Control
 
     #region DependencyProperty : MaximumProperty
 
-    public int Maximum
+    public decimal Maximum
     {
-        get => (int)GetValue(MaximumProperty);
+        get => (decimal)GetValue(MaximumProperty);
         set => SetValue(MaximumProperty, value);
     }
 
     public static readonly DependencyProperty MaximumProperty =
-        DependencyProperty.Register(nameof(Maximum), typeof(int), typeof(NumericUpDown), new PropertyMetadata(int.MaxValue, OnMaximumChanged, CoerceMaximum));
+        DependencyProperty.Register(nameof(Maximum), typeof(decimal), typeof(NumericUpDown), new PropertyMetadata(decimal.MaxValue, OnMaximumChanged, CoerceMaximum));
 
     private static void OnMaximumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
@@ -83,7 +81,7 @@ public class NumericUpDown : Control
     private static object? CoerceMaximum(DependencyObject d, object? value)
     {
         if (d is NumericUpDown numericUpDown &&
-            value is int numericValue)
+            value is decimal numericValue)
         {
             return Math.Max(numericUpDown.Minimum, numericValue);
         }
@@ -93,37 +91,37 @@ public class NumericUpDown : Control
     #endregion DependencyProperty : MaximumProperty
 
     #region DependencyProperty : ValueProperty
-    public int Value
+    public decimal Value
     {
-        get => (int)GetValue(ValueProperty);
+        get => (decimal)GetValue(ValueProperty);
         set => SetValue(ValueProperty, value);
     }
 
     public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register(nameof(Value), typeof(int), typeof(NumericUpDown), new FrameworkPropertyMetadata(0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnNumericValueChanged, CoerceNumericValue));
+            DependencyProperty.Register(nameof(Value), typeof(decimal), typeof(NumericUpDown), new FrameworkPropertyMetadata(0m, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnNumericValueChanged, CoerceNumericValue));
 
     private static void OnNumericValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is NumericUpDown numericUpDown)
         {
-            var args = new RoutedPropertyChangedEventArgs<int>((int)e.OldValue, (int)e.NewValue)
+            var args = new RoutedPropertyChangedEventArgs<decimal>((decimal)e.OldValue, (decimal)e.NewValue)
             {
                 RoutedEvent = ValueChangedEvent
             };
             numericUpDown.RaiseEvent(args);
             if (numericUpDown._textBoxField is { } textBox)
             {
-                textBox.Text = ((int)e.NewValue).ToString(CultureInfo.CurrentUICulture);
+                textBox.Text = ((decimal)e.NewValue).ToString(CultureInfo.CurrentUICulture);
             }
 
             if (numericUpDown._increaseButton is { } increaseButton)
             {
-                increaseButton.IsEnabled = numericUpDown.Value != numericUpDown.Maximum;
+                increaseButton.IsEnabled = numericUpDown.Value <= numericUpDown.Maximum;
             }
 
             if (numericUpDown._decreaseButton is { } decreaseButton)
             {
-                decreaseButton.IsEnabled = numericUpDown.Value != numericUpDown.Minimum;
+                decreaseButton.IsEnabled = numericUpDown.Value >= numericUpDown.Minimum;
             }
         }
     }
@@ -131,7 +129,7 @@ public class NumericUpDown : Control
     private static object? CoerceNumericValue(DependencyObject d, object? value)
     {
         if (d is NumericUpDown numericUpDown &&
-            value is int numericValue)
+            value is decimal numericValue)
         {
             numericValue = Math.Min(numericUpDown.Maximum, numericValue);
             numericValue = Math.Max(numericUpDown.Minimum, numericValue);
@@ -140,6 +138,21 @@ public class NumericUpDown : Control
         return value;
     }
     #endregion ValueProperty
+
+    #region DependencyProperty : ValueStep
+    /// <summary>
+    /// The size of value for each increase or decrease
+    /// </summary>
+    public decimal ValueMinStep
+    {
+        get { return (decimal)GetValue(ValueMinStepProperty); }
+        set { SetValue(ValueMinStepProperty, value); }
+    }
+
+    // Using a DependencyProperty as the backing store for ValueStep.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty ValueMinStepProperty =
+        DependencyProperty.Register("ValueMinStep", typeof(decimal), typeof(NumericUpDown), new PropertyMetadata(1m));
+    #endregion 
 
     #region DependencyProperty : AllowChangeOnScroll
 
@@ -200,13 +213,13 @@ public class NumericUpDown : Control
     {
         if (_textBoxField is { } textBoxField)
         {
-            if (int.TryParse(textBoxField.Text, NumberStyles.Integer, CultureInfo.CurrentUICulture, out int numericValue))
+            if (decimal.TryParse(textBoxField.Text, out decimal numericValue))
             {
                 SetCurrentValue(ValueProperty, numericValue);
             }
             else
             {
-                textBoxField.Text = Value.ToString(CultureInfo.CurrentUICulture);
+                //undo
             }
         }
     }
@@ -217,12 +230,12 @@ public class NumericUpDown : Control
 
     private void OnIncrease()
     {
-        SetCurrentValue(ValueProperty, Value + 1);
+        SetCurrentValue(ValueProperty, Value + ValueMinStep);
     }
 
     private void OnDecrease()
     {
-        SetCurrentValue(ValueProperty, Value - 1);
+        SetCurrentValue(ValueProperty, Value - ValueMinStep);
     }
 
     protected override void OnPreviewKeyDown(KeyEventArgs e)
