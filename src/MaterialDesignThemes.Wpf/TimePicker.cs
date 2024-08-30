@@ -371,7 +371,7 @@ public class TimePicker : Control
                     {
                         case Key.Down:
                             {
-                                if ((Keyboard.Modifiers & ModifierKeys.Alt) == ModifierKeys.Alt)
+                                if (Keyboard.Modifiers.HasFlag(ModifierKeys.Alt))
                                 {
                                     TogglePopup();
                                     return true;
