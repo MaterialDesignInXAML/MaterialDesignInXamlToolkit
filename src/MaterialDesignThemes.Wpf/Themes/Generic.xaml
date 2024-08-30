@@ -42,7 +42,7 @@
   <Style TargetType="{x:Type local:TimePicker}" BasedOn="{StaticResource MaterialDesignTimePicker}" />
   <Style TargetType="{x:Type local:AutoSuggestBox}" BasedOn="{StaticResource MaterialDesignAutoSuggestBox}" />
   <Style TargetType="{x:Type local:SplitButton}" BasedOn="{StaticResource MaterialDesignRaisedSplitButton}" />
-  <Style TargetType="{x:Type local:NumericUpDown}" BasedOn="{StaticResource MaterialDesignNumericUpDown}" />
+  <Style TargetType="{x:Type local:UpDownBase}" BasedOn="{StaticResource MaterialDesignNumericUpDown}" />
 
   <converters:BrushToRadialGradientBrushConverter x:Key="BrushToRadialGradientBrushConverter" />
   <converters:DrawerOffsetConverter x:Key="DrawerOffsetConverter" />

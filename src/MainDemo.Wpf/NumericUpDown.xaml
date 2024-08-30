@@ -25,10 +25,17 @@
     <StackPanel Margin="0,16,0,0"
                 DockPanel.Dock="Top"
                 Orientation="Horizontal">
+      
       <smtx:XamlDisplay Margin="10,5"
                         VerticalAlignment="Top"
                         UniqueKey="numericUpDown_default">
-        <materialDesign:NumericUpDown ValueMinStep="1" />
+        <materialDesign:NumericUpDown />
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay Margin="10,5"
+                  VerticalAlignment="Top"
+                  UniqueKey="decimalUpDown_default">
+        <materialDesign:DecimalUpDown ValueStep="0.5" />
       </smtx:XamlDisplay>
 
       <smtx:XamlDisplay Margin="10,5"
