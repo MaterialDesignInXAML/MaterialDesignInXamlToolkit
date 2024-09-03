@@ -213,15 +213,31 @@
         </smtx:XamlDisplay>
       </StackPanel>
 
-      <smtx:XamlDisplay Margin="0,16,0,0"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        UniqueKey="pickers_7">
-        <materialDesign:TimePicker x:Name="PresetTimePicker"
-                                   Width="100"
-                                   Is24Hours="True"
-                                   SelectedTimeChanged="PresetTimePicker_SelectedTimeChanged" />
-      </smtx:XamlDisplay>
+      <StackPanel>
+        <smtx:XamlDisplay Margin="0,16,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  UniqueKey="pickers_7">
+          <materialDesign:TimePicker x:Name="PresetTimePicker"
+                             Width="100"
+                             Is24Hours="True"
+                             SelectedTimeChanged="PresetTimePicker_SelectedTimeChanged" />
+        </smtx:XamlDisplay>
+
+        <smtx:XamlDisplay Margin="0,16,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  UniqueKey="pickers_15">
+          <materialDesign:TimePicker ClockButtonVisibility="{Binding IsChecked, ElementName=IsClockButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                             Width="100"
+                             Is24Hours="True" />
+        </smtx:XamlDisplay>
+        <CheckBox x:Name="IsClockButtonVisible"
+                  Margin="0,10,0,0"
+                  VerticalAlignment="Top"
+                  Content="Show clock button" />
+      </StackPanel>
+      
 
       <StackPanel HorizontalAlignment="Left"
                   VerticalAlignment="Top">
