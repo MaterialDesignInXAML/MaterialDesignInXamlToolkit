@@ -120,6 +120,7 @@
             <!-- VerticalAlignment=Center to follow the default ComboBox style where the arrow is always vertically centered. Could be problematic to try to calculate the offset because it needs to be v-centered in relation to the content of the nested TextBox -->
             <Button x:Name="PART_Button"
                     Height="16"
+                    Visibility="{TemplateBinding ClockButtonVisibility}"
                     Margin="{TemplateBinding Padding, Converter={StaticResource PartButtonMarginConverter}}"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
