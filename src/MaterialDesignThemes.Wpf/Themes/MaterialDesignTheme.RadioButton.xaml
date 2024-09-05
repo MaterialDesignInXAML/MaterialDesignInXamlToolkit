@@ -493,7 +493,7 @@
   </Style>
 
 
-  <Style x:Key="MaterialDesignChoiceChipRadioButton" TargetType="{x:Type RadioButton}">
+  <Style x:Key="MaterialDesignChoiceChipRadioButton" TargetType="{x:Type ToggleButton}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="Cursor" Value="Hand" />
@@ -506,7 +506,7 @@
     <Setter Property="SnapsToDevicePixels" Value="True" />
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate TargetType="{x:Type RadioButton}">
+        <ControlTemplate TargetType="{x:Type ToggleButton}">
           <ControlTemplate.Resources>
             <Style TargetType="{x:Type wpf:PackIcon}">
               <Setter Property="FrameworkElement.Height" Value="22" />
@@ -631,7 +631,7 @@
     </Setter>
   </Style>
 
-  <Style x:Key="MaterialDesignChoiceChipOutlineRadioButton" TargetType="{x:Type RadioButton}">
+  <Style x:Key="MaterialDesignChoiceChipOutlineRadioButton" TargetType="{x:Type ToggleButton}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="BorderThickness" Value="1" />
@@ -645,7 +645,7 @@
     <Setter Property="SnapsToDevicePixels" Value="True" />
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate TargetType="{x:Type RadioButton}">
+        <ControlTemplate TargetType="{x:Type ToggleButton}">
           <ControlTemplate.Resources>
             <Style TargetType="{x:Type wpf:PackIcon}">
               <Setter Property="FrameworkElement.Height" Value="22" />
@@ -793,7 +793,7 @@
   </Style>
 
   <Style x:Key="MaterialDesignChoiceChipPrimaryRadioButton"
-         TargetType="{x:Type RadioButton}"
+         TargetType="{x:Type ToggleButton}"
          BasedOn="{StaticResource MaterialDesignChoiceChipRadioButton}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
@@ -812,7 +812,7 @@
   </Style>
 
   <Style x:Key="MaterialDesignChoiceChipSecondaryRadioButton"
-         TargetType="{x:Type RadioButton}"
+         TargetType="{x:Type ToggleButton}"
          BasedOn="{StaticResource MaterialDesignChoiceChipRadioButton}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
@@ -831,7 +831,7 @@
   </Style>
 
   <Style x:Key="MaterialDesignChoiceChipPrimaryOutlineRadioButton"
-         TargetType="{x:Type RadioButton}"
+         TargetType="{x:Type ToggleButton}"
          BasedOn="{StaticResource MaterialDesignChoiceChipOutlineRadioButton}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
@@ -851,7 +851,7 @@
   </Style>
 
   <Style x:Key="MaterialDesignChoiceChipSecondaryOutlineRadioButton"
-         TargetType="{x:Type RadioButton}"
+         TargetType="{x:Type ToggleButton}"
          BasedOn="{StaticResource MaterialDesignChoiceChipOutlineRadioButton}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
