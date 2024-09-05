@@ -4,10 +4,47 @@ using System.Globalization;
 namespace MaterialDesignThemes.Wpf;
 
 
-public class UpDownBase<T, TArithmetic> : UpDownBase
+#if NET8_0_OR_GREATER
+
+using System.Numerics;
+public class UpDownBase2<T> : UpDownBase
+    where T : INumber<T>, IMinMaxValue<T>
+{
+    private static readonly Type SelfType = typeof(UpDownBase2<T>);
+
+    private static UpDownBase2<T> ToUpDownBase(DependencyObject dependencyObject) => (UpDownBase2<T>)dependencyObject;
+
+    private static T MinValue => T.MinValue;
+    private static T MaxValue => T.MaxValue;
+    private static T One => T.One;
+    private static T Max(T value1, T value2) => T.Max(value1, value2);
+    private static T Clamp(T value, T min, T max) => T.Clamp(value, min, max);
+    private static T Add(T value1, T value2) => value1 + value2;
+    private static T Subtract(T value1, T value2) => value1 - value2;
+    private static bool TryParse(string text, IFormatProvider? formatProvider, out T? value)
+        => T.TryParse(text, formatProvider, out value);
+    private static int Compare(T value1, T value2) => value1.CompareTo(value2);
+#else
+public class UpDownBase2<T, TArithmetic> : UpDownBase
     where TArithmetic : IArithmetic<T>, new()
 {
-    private static readonly TArithmetic _arithmetic = new TArithmetic();
+    private static readonly Type SelfType = typeof(UpDownBase2<T, TArithmetic>);
+    private static readonly TArithmetic _arithmetic = new();
+
+    private static UpDownBase2<T, TArithmetic> ToUpDownBase(DependencyObject dependencyObject) => (UpDownBase2<T, TArithmetic>)dependencyObject;
+
+    private static T MinValue => _arithmetic.MinValue();
+    private static T MaxValue => _arithmetic.MaxValue();
+    private static T One => _arithmetic.One();
+    private static T Max(T value1, T value2) => _arithmetic.Max(value1, value2);
+    private static T Clamp(T value, T min, T max) => _arithmetic.Max(_arithmetic.Min(value, max), min);
+    private static T Add(T value1, T value2) => _arithmetic.Add(value1, value2);
+    private static T Subtract(T value1, T value2) => _arithmetic.Subtract(value1, value2);
+    private static bool TryParse(string text, IFormatProvider? formatProvider, out T? value)
+        => _arithmetic.TryParse(text, formatProvider, out value);
+    private static int Compare(T value1, T value2) => _arithmetic.Compare(value1, value2);
+
+#endif
 
     #region DependencyProperties
 
@@ -19,13 +56,13 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
         set => SetValue(MinimumProperty, value);
     }
     public static readonly DependencyProperty MinimumProperty =
-        DependencyProperty.Register(nameof(Minimum), typeof(T), typeof(UpDownBase<T, TArithmetic>), new PropertyMetadata(_arithmetic.MinValue(), OnMinimumChanged));
+        DependencyProperty.Register(nameof(Minimum), typeof(T), SelfType, new PropertyMetadata(MinValue, OnMinimumChanged));
 
-    protected static void OnMinimumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnMinimumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        UpDownBase<T, TArithmetic> ctrl = (UpDownBase<T, TArithmetic>)d;
-        ctrl.CoerceValue(ValueProperty);
+        var ctrl = ToUpDownBase(d);
         ctrl.CoerceValue(MaximumProperty);
+        ctrl.CoerceValue(ValueProperty);
     }
 
     #endregion DependencyProperty : MinimumProperty
@@ -39,20 +76,20 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
     }
 
     public static readonly DependencyProperty MaximumProperty =
-        DependencyProperty.Register(nameof(Maximum), typeof(T), typeof(UpDownBase<T, TArithmetic>), new PropertyMetadata(_arithmetic.MaxValue(), OnMaximumChanged, CoerceMaximum));
+        DependencyProperty.Register(nameof(Maximum), typeof(T), SelfType, new PropertyMetadata(MaxValue, OnMaximumChanged, CoerceMaximum));
 
     private static void OnMaximumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        UpDownBase<T, TArithmetic> ctrl = (UpDownBase<T, TArithmetic>)d;
-        ctrl.CoerceValue(ValueProperty);
+        var upDownBase = ToUpDownBase(d);
+        upDownBase.CoerceValue(ValueProperty);
     }
 
     private static object? CoerceMaximum(DependencyObject d, object? value)
     {
-        if (d is UpDownBase<T, TArithmetic> upDonw &&
-            value is T numericValue)
+        if (value is T numericValue)
         {
-            return _arithmetic.Max(upDonw.Minimum, numericValue);
+            var upDownBase = ToUpDownBase(d);
+            return Max(upDownBase.Minimum, numericValue);
         }
         return value;
     }
@@ -67,42 +104,39 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
     }
 
     public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register(nameof(Value), typeof(T), typeof(UpDownBase<T, TArithmetic>), new FrameworkPropertyMetadata(default(T), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnNumericValueChanged, CoerceNumericValue));
+            DependencyProperty.Register(nameof(Value), typeof(T), SelfType, new FrameworkPropertyMetadata(default(T), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnNumericValueChanged, CoerceNumericValue));
 
     private static void OnNumericValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is UpDownBase<T, TArithmetic> upDownBase)
+        var upDownBase = ToUpDownBase(d);
+        var args = new RoutedPropertyChangedEventArgs<T>((T)e.OldValue, (T)e.NewValue)
         {
-            var args = new RoutedPropertyChangedEventArgs<T>((T)e.OldValue, (T)e.NewValue)
-            {
-                RoutedEvent = ValueChangedEvent
-            };
-            upDownBase.RaiseEvent(args);
+            RoutedEvent = ValueChangedEvent
+        };
+        upDownBase.RaiseEvent(args);
 
-            if (upDownBase._textBoxField is { } textBox)
-            {
-                textBox.Text = _arithmetic.ConvertToString((T)e.NewValue);
-            }
+        if (upDownBase._textBoxField is { } textBox)
+        {
+            textBox.Text = e.NewValue.ToString();
+        }
 
-            if (upDownBase._increaseButton is { } increaseButton)
-            {
-                increaseButton.IsEnabled = _arithmetic.Compare(upDownBase.Value, upDownBase.Maximum) <= 0;
-            }
+        if (upDownBase._increaseButton is { } increaseButton)
+        {
+            increaseButton.IsEnabled = Compare(upDownBase.Value, upDownBase.Maximum) < 0;
+        }
 
-            if (upDownBase._decreaseButton is { } decreaseButton)
-            {
-                decreaseButton.IsEnabled = _arithmetic.Compare(upDownBase.Value, upDownBase.Minimum) >= 0;
-            }
+        if (upDownBase._decreaseButton is { } decreaseButton)
+        {
+            decreaseButton.IsEnabled = Compare(upDownBase.Value, upDownBase.Minimum) > 0;
         }
     }
 
     private static object? CoerceNumericValue(DependencyObject d, object? value)
     {
-        if (d is UpDownBase<T, TArithmetic> upDonw &&
-            value is T numericValue)
+        if (value is T numericValue)
         {
-            numericValue = _arithmetic.Min(upDonw.Maximum, numericValue);
-            numericValue = _arithmetic.Max(upDonw.Minimum, numericValue);
+            var upDownBase = ToUpDownBase(d);
+            numericValue = Clamp(numericValue, upDownBase.Minimum, upDownBase.Maximum);
             return numericValue;
         }
         return value;
@@ -115,14 +149,13 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
     /// </summary>
     public T ValueStep
     {
-        get { return (T)GetValue(ValueStepProperty); }
-        set { SetValue(ValueStepProperty, value); }
+        get => (T)GetValue(ValueStepProperty);
+        set => SetValue(ValueStepProperty, value);
     }
 
-    // Using a DependencyProperty as the backing store for ValueStep.  This enables animation, styling, binding, etc...
     public static readonly DependencyProperty ValueStepProperty =
-        DependencyProperty.Register("ValueStep", typeof(T), typeof(UpDownBase<T, TArithmetic>), new PropertyMetadata(default(T)));
-    #endregion 
+        DependencyProperty.Register(nameof(ValueStep), typeof(T), SelfType, new PropertyMetadata(One));
+    #endregion
 
     #region DependencyProperty : AllowChangeOnScroll
 
@@ -133,7 +166,7 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
     }
 
     public static readonly DependencyProperty AllowChangeOnScrollProperty =
-        DependencyProperty.Register(nameof(AllowChangeOnScroll), typeof(bool), typeof(UpDownBase<T, TArithmetic>), new PropertyMetadata(false));
+        DependencyProperty.Register(nameof(AllowChangeOnScroll), typeof(bool), SelfType, new PropertyMetadata(false));
 
     #endregion
 
@@ -141,7 +174,7 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
 
     #region Event : ValueChangedEvent
     [Category("Behavior")]
-    public static readonly RoutedEvent ValueChangedEvent = EventManager.RegisterRoutedEvent(nameof(ValueChanged), RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<T>), typeof(UpDownBase<T, TArithmetic>));
+    public static readonly RoutedEvent ValueChangedEvent = EventManager.RegisterRoutedEvent(nameof(ValueChanged), RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<T>), SelfType);
 
     public event RoutedPropertyChangedEventHandler<T> ValueChanged
     {
@@ -173,7 +206,7 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
         if (_textBoxField != null)
         {
             _textBoxField.LostFocus += OnTextBoxFocusLost;
-            _textBoxField.Text = _arithmetic.ConvertToString(Value);
+            _textBoxField.Text = Value?.ToString();
         }
 
         base.OnApplyTemplate();
@@ -183,13 +216,13 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
     {
         if (_textBoxField is { } textBoxField)
         {
-            if (_arithmetic.TryParse(textBoxField.Text, out T value))
+            if (TryParse(textBoxField.Text, CultureInfo.CurrentUICulture, out T? value))
             {
                 SetCurrentValue(ValueProperty, value);
             }
             else
             {
-                textBoxField.Text = _arithmetic.ConvertToString(Value);
+                textBoxField.Text = Value?.ToString();
             }
         }
     }
@@ -198,15 +231,9 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
 
     private void DecreaseButtonOnClick(object sender, RoutedEventArgs e) => OnDecrease();
 
-    private void OnIncrease()
-    {
-        SetCurrentValue(ValueProperty, _arithmetic.Add(Value, ValueStep));
-    }
+    private void OnIncrease() => SetCurrentValue(ValueProperty, Clamp(Add(Value, ValueStep), Minimum, Maximum));
 
-    private void OnDecrease()
-    {
-        SetCurrentValue(ValueProperty, _arithmetic.Subtract(Value, ValueStep));
-    }
+    private void OnDecrease() => SetCurrentValue(ValueProperty, Clamp(Subtract(Value, ValueStep), Minimum, Maximum));
 
     protected override void OnPreviewKeyDown(KeyEventArgs e)
     {
@@ -254,11 +281,6 @@ public class UpDownBase : Control
     protected RepeatButton? _decreaseButton;
     protected RepeatButton? _increaseButton;
 
-    static UpDownBase()
-    {
-        DefaultStyleKeyProperty.OverrideMetadata(typeof(UpDownBase), new FrameworkPropertyMetadata(typeof(UpDownBase)));
-    }
-
     public object? IncreaseContent
     {
         get => GetValue(IncreaseContentProperty);
@@ -281,6 +303,7 @@ public class UpDownBase : Control
 
 }
 
+#if !NET8_0_OR_GREATER
 public interface IArithmetic<T>
 {
     T Add(T value1, T value2);
@@ -289,15 +312,16 @@ public interface IArithmetic<T>
 
     int Compare(T value1, T value2);
 
-    string ConvertToString(T value);
-
     T MinValue();
 
     T MaxValue();
+
+    T One();
 
     T Max(T value1, T value2);
 
     T Min(T value1, T value2);
 
-    bool TryParse(string text, out T value);
+    bool TryParse(string text, IFormatProvider? formatProvider, out T? value);
 }
+#endif
