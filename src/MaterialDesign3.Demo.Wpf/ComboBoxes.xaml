@@ -129,7 +129,7 @@
       <smtx:XamlDisplay Margin="0" UniqueKey="comboboxes_5">
         <ComboBox MinWidth="72"
                   materialDesign:HintAssist.Hint="Virtualisation"
-                  ItemsSource="{Binding LongListToTestComboVirtualization}"
+                  ItemsSource="{Binding LongIntegerList}"
                   SelectedValue="{Binding SelectedValueOne}">
 
           <ComboBox.SelectedItem>
@@ -155,7 +155,7 @@
         <ComboBox MinWidth="72"
                   materialDesign:HintAssist.Hint="(editable)"
                   IsEditable="True"
-                  ItemsSource="{Binding LongListToTestComboVirtualization}">
+                  ItemsSource="{Binding LongIntegerList}">
           <ComboBox.Text>
             <Binding Mode="TwoWay"
                      Path="SelectedTextTwo"
@@ -174,7 +174,7 @@
       </smtx:XamlDisplay>
       <smtx:XamlDisplay UniqueKey="comboboxes_7">
         <ComboBox materialDesign:HintAssist.Hint="(float hint)"
-                  ItemsSource="{Binding LongListToTestComboVirtualization}"
+                  ItemsSource="{Binding LongIntegerList}"
                   Style="{StaticResource MaterialDesignFloatingHintComboBox}">
           <ComboBox.ItemsPanel>
             <ItemsPanelTemplate>
@@ -187,7 +187,7 @@
         <ComboBox MinWidth="72"
                   materialDesign:HintAssist.FloatingScale="1.5"
                   materialDesign:HintAssist.Hint="(large float hint)"
-                  ItemsSource="{Binding LongListToTestComboVirtualization}"
+                  ItemsSource="{Binding LongIntegerList}"
                   Style="{StaticResource MaterialDesignFloatingHintComboBox}">
           <ComboBox.ItemsPanel>
             <ItemsPanelTemplate>
@@ -200,7 +200,7 @@
         <ComboBox MinWidth="72"
                   materialDesign:HintAssist.FontFamily="Verdana"
                   materialDesign:HintAssist.Hint="(Change fontfamily float hint)"
-                  ItemsSource="{Binding LongListToTestComboVirtualization}"
+                  ItemsSource="{Binding LongIntegerList}"
                   Style="{StaticResource MaterialDesignFloatingHintComboBox}">
           <ComboBox.ItemsPanel>
             <ItemsPanelTemplate>

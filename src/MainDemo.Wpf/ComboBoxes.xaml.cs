@@ -1,4 +1,4 @@
-﻿using MaterialDesignDemo.Domain;
+﻿using MaterialDesignDemo.Shared.Domain;
 using Screen = System.Windows.Forms.Screen;
 using DrawingPoint = System.Drawing.Point;
 
