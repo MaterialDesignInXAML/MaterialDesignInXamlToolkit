@@ -14,21 +14,15 @@ public sealed class MathMultipleConverter : IMultiValueConverter
         if (!double.TryParse(value[0]!.ToString(), out double value1) || !double.TryParse(value[1]!.ToString(), out double value2))
             return 0;
 
-        switch (Operation)
+        return Operation switch
         {
-            default:
-                // (case MathOperation.Add:)
-                return value1 + value2;
-            case MathOperation.Divide:
-                return value1 / value2;
-            case MathOperation.Multiply:
-                return value1 * value2;
-            case MathOperation.Subtract:
-                return value1 - value2;
-            case MathOperation.Pow:
-                return Math.Pow(value1, value2);
-        }
-
+            MathOperation.Add => value1 + value2,
+            MathOperation.Divide => value1 / value2,
+            MathOperation.Multiply => value1 * value2,
+            MathOperation.Subtract => value1 - value2,
+            MathOperation.Pow => Math.Pow(value1, value2),
+            _ => Binding.DoNothing
+        };
     }
 
     public object?[]? ConvertBack(object? value, Type[]? targetTypes, object? parameter, CultureInfo? culture)

@@ -9,10 +9,10 @@ internal class GridLinesVisibilityBorderToThicknessConverter : IValueConverter
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        if (!(value is DataGridGridLinesVisibility visibility))
+        if (value is not DataGridGridLinesVisibility visibility)
             return Binding.DoNothing;
 
-        var thickness = parameter as double? ?? GridLinesThickness;
+        double thickness = parameter as double? ?? GridLinesThickness;
 
         return visibility switch
         {
