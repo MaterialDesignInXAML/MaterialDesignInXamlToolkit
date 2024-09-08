@@ -9,10 +9,7 @@ public sealed class MathMultipleConverter : IMultiValueConverter
 
     public object? Convert(object?[]? value, Type? targetType, object? parameter, CultureInfo? culture)
     {
-        if (value is null || value.Length < 2 || value[0] is null || value[1] is null) return Binding.DoNothing;
-
-        if (!double.TryParse(value[0]!.ToString(), out double value1) || !double.TryParse(value[1]!.ToString(), out double value2))
-            return 0;
+        if (value is not [double value1, double value2]) return Binding.DoNothing;
 
         return Operation switch
         {

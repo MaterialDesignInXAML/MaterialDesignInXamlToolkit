@@ -28,12 +28,9 @@ public class ListViewGridViewConverter : IValueConverter
     /// <returns></returns>
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (value is ListView listView)
-        {
-            return listView.View != null ? ViewValue : DefaultValue;
-        }
+        if (value is not ListView listView) return value is ViewBase ? ViewValue : DefaultValue;
 
-        return value is ViewBase ? ViewValue : DefaultValue;
+        return listView.View != null ? ViewValue : DefaultValue;
     }
 
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)

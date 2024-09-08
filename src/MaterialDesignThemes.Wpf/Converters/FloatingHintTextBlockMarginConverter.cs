@@ -11,12 +11,14 @@ internal class FloatingHintTextBlockMarginConverter : IMultiValueConverter
         if (values is not
             [
                 FloatingHintHorizontalAlignment restingAlignmentOverride,
-                FloatingHintHorizontalAlignment floatingAlignment, HorizontalAlignment restingAlignment,
-                double desiredWidth, double availableWidth, double scale, double lower, double upper
-            ])
-        {
-            return Transform.Identity;
-        }
+                FloatingHintHorizontalAlignment floatingAlignment,
+                HorizontalAlignment restingAlignment,
+                double desiredWidth,
+                double availableWidth,
+                double scale,
+                double lower,
+                double upper
+            ]) return Transform.Identity;        
 
         double scaleMultiplier = upper + (lower - upper) * scale;
 
