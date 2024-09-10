@@ -310,7 +310,7 @@
     <Setter Property="VerticalContentAlignment" Value="Center" />
   </Style>
 
-  <Style x:Key="MaterialDesignFilterChipCheckBox" TargetType="CheckBox">
+  <Style x:Key="MaterialDesignFilterChipCheckBox" TargetType="ToggleButton">
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="Cursor" Value="Hand" />
@@ -323,7 +323,7 @@
     <Setter Property="SnapsToDevicePixels" Value="True" />
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate TargetType="{x:Type CheckBox}">
+        <ControlTemplate TargetType="{x:Type ToggleButton}">
           <ControlTemplate.Resources>
             <Style TargetType="{x:Type wpf:PackIcon}">
               <Setter Property="FrameworkElement.Height" Value="22" />
@@ -480,7 +480,7 @@
     </Setter>
   </Style>
 
-  <Style x:Key="MaterialDesignFilterChipOutlineCheckBox" TargetType="CheckBox">
+  <Style x:Key="MaterialDesignFilterChipOutlineCheckBox" TargetType="ToggleButton">
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="BorderThickness" Value="1" />
@@ -494,7 +494,7 @@
     <Setter Property="SnapsToDevicePixels" Value="True" />
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate TargetType="{x:Type CheckBox}">
+        <ControlTemplate TargetType="{x:Type ToggleButton}">
           <ControlTemplate.Resources>
             <Style TargetType="{x:Type wpf:PackIcon}">
               <Setter Property="FrameworkElement.Height" Value="22" />
@@ -674,7 +674,7 @@
   </Style>
 
   <Style x:Key="MaterialDesignFilterChipPrimaryCheckBox"
-         TargetType="CheckBox"
+         TargetType="ToggleButton"
          BasedOn="{StaticResource MaterialDesignFilterChipCheckBox}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
@@ -693,7 +693,7 @@
   </Style>
 
   <Style x:Key="MaterialDesignFilterChipSecondaryCheckBox"
-         TargetType="CheckBox"
+         TargetType="ToggleButton"
          BasedOn="{StaticResource MaterialDesignFilterChipCheckBox}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
@@ -712,7 +712,7 @@
   </Style>
 
   <Style x:Key="MaterialDesignFilterChipPrimaryOutlineCheckBox"
-         TargetType="CheckBox"
+         TargetType="ToggleButton"
          BasedOn="{StaticResource MaterialDesignFilterChipOutlineCheckBox}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
@@ -732,7 +732,7 @@
   </Style>
 
   <Style x:Key="MaterialDesignFilterChipSecondaryOutlineCheckBox"
-         TargetType="CheckBox"
+         TargetType="ToggleButton"
          BasedOn="{StaticResource MaterialDesignFilterChipOutlineCheckBox}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
