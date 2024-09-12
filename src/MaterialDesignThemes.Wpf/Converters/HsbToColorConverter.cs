@@ -9,27 +9,25 @@ public class HsbToColorConverter : IValueConverter, IMultiValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        if (value is Hsb hsb) return new SolidColorBrush(hsb.ToColor());
-        return Binding.DoNothing;
+        if (value is not Hsb hsb) return Binding.DoNothing;
+
+        return new SolidColorBrush(hsb.ToColor());        
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        if (value is SolidColorBrush brush) return brush.Color.ToHsb();
-        return Binding.DoNothing;
+        if (value is not SolidColorBrush brush) return Binding.DoNothing;
+
+        return brush.Color.ToHsb();        
     }
 
     public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
     {
-        var h = (double)values[0];
-        var s = (double)values[1];
-        var b = (double)values[2];
+        if (values is not [double hue, double saturation, double brightness]) return Binding.DoNothing;
 
-        return new SolidColorBrush(new Hsb(h, s, b).ToColor());
+        return new SolidColorBrush(new Hsb(hue, saturation, brightness).ToColor());
     }
 
     public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
-    {
-        throw new NotImplementedException();
-    }
+        => throw new NotImplementedException();
 }
