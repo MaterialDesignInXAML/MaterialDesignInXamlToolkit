@@ -5,7 +5,7 @@ param(
 )
 
 $year = [System.DateTime]::Now.ToString("yyyy")
-$copywrite = "Copyright $year James Willock/Mulholland Software Ltd"
+$copyright = "Copyright $year James Willock/Mulholland Software Ltd"
 $configuration = "Release"
 
 function Update-Icon {
@@ -59,7 +59,7 @@ function New-Nuget {
 
   $NuSpecPath = Resolve-Path $NuSpecPath
   Update-Icon "$NuSpecPath" 
-  nuget pack "$NuSpecPath" -version "$Version" -Properties "Configuration=$configuration;Copywrite=$copywrite"
+  nuget pack "$NuSpecPath" -version "$Version" -Properties "Configuration=$configuration;Copyright=$copyright"
 }
 
 Push-Location "$(Join-Path $PSScriptRoot "..")"
