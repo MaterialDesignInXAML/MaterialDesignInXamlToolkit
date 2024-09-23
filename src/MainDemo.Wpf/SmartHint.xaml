@@ -371,8 +371,7 @@
           <TextBlock Margin="30,0,0,0"
                      Text="H-ScrollBar visibility:"
                      VerticalAlignment="Center" />
-          <ComboBox x:Name="HorizontalScrollBarVisibilityComboBox"
-                    ItemsSource="{Binding ScrollBarVisibilityOptions}"
+          <ComboBox ItemsSource="{Binding ScrollBarVisibilityOptions}"
                     Margin="5,0,0,0"
                     SelectedItem="{Binding SelectedHorizontalScrollBarVisibility}"
                     VerticalAlignment="Center"
@@ -380,16 +379,31 @@
           <TextBlock Margin="30,0,0,0"
                      Text="V-ScrollBar visibility:"
                      VerticalAlignment="Center" />
-          <ComboBox x:Name="VerticalScrollBarVisibilityComboBox"
-                    ItemsSource="{Binding ScrollBarVisibilityOptions}"
+          <ComboBox ItemsSource="{Binding ScrollBarVisibilityOptions}"
                     Margin="5,0,0,0"
                     SelectedItem="{Binding SelectedVerticalScrollBarVisibility}"
                     VerticalAlignment="Center"
                     Width="70"/>
+          <TextBlock Margin="30,0,0,0"
+                     Text="TextWrapping:"
+                     VerticalAlignment="Center" />
+          <ComboBox ItemsSource="{Binding TextWrappingOptions}"
+                    Margin="5,0,0,0"
+                    SelectedItem="{Binding TextBoxTextWrapping}"
+                    VerticalAlignment="Center" />
+          <TextBlock Margin="30,0,0,0"
+                     Text="MaxWidth:"
+                     VerticalAlignment="Center" />
+          <ComboBox ItemsSource="{Binding MaxWidthOptions}"
+                    Margin="5,0,0,0"
+                    SelectedItem="{Binding SelectedMaxWidth}"
+                    VerticalAlignment="Center" />
         </StackPanel>
         <Grid HorizontalAlignment="Stretch">
           <Grid.Resources>
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+              <Setter Property="TextWrapping" Value="{Binding TextBoxTextWrapping}" />
+              <Setter Property="MaxWidth" Value="{Binding SelectedMaxWidth}" />
               <Setter Property="AcceptsReturn" Value="{Binding TextBoxAcceptsReturn}" />
               <Setter Property="IsReadOnly" Value="{Binding TextBoxIsReadOnly}" />
               <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
@@ -453,6 +467,8 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFilledTextBox}">
+              <Setter Property="TextWrapping" Value="{Binding TextBoxTextWrapping}" />
+              <Setter Property="MaxWidth" Value="{Binding SelectedMaxWidth}" />
               <Setter Property="AcceptsReturn" Value="{Binding TextBoxAcceptsReturn}" />
               <Setter Property="IsReadOnly" Value="{Binding TextBoxIsReadOnly}" />
               <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
@@ -516,6 +532,8 @@
         <Grid>
           <Grid.Resources>
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+              <Setter Property="TextWrapping" Value="{Binding TextBoxTextWrapping}" />
+              <Setter Property="MaxWidth" Value="{Binding SelectedMaxWidth}" />
               <Setter Property="AcceptsReturn" Value="{Binding TextBoxAcceptsReturn}" />
               <Setter Property="BorderThickness" Value="{Binding OutlineStyleBorderThickness}" />
               <Setter Property="IsReadOnly" Value="{Binding TextBoxIsReadOnly}" />
