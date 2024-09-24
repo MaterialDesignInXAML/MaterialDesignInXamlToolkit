@@ -11,6 +11,8 @@
     <Setter Property="wpf:TextFieldAssist.CharacterCounterStyle" Value="{x:Null}" />
     <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="-4 0 1 0" />
     <Setter Property="Padding" Value="{x:Static wpf:Constants.TextBoxDefaultPadding}" />
+    <!-- VerticalContentAlignment=Center is the best default value for RichTextBox when it comes to handling floating hint placement -->
+    <Setter Property="VerticalContentAlignment" Value="Center" />
   </Style>
 
   <Style x:Key="MaterialDesignFloatingHintRichTextBox"
