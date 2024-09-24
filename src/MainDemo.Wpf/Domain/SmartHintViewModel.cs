@@ -63,6 +63,7 @@ internal class SmartHintViewModel : ViewModelBase
     public IEnumerable<Thickness> CustomOutlineStyleBorderThicknessOptions { get; } = [new Thickness(1), new Thickness(2), new Thickness(3), new Thickness(4), new Thickness(5), new Thickness(6) ];
     public IEnumerable<TextWrapping> TextWrappingOptions { get; } = Enum.GetValues(typeof(TextWrapping)).OfType<TextWrapping>();
     public IEnumerable<double> MaxWidthOptions { get; } = [double.NaN, 200];
+    public IEnumerable<string> AutoSuggestBoxSuggestions { get; } = ["alpha", "bravo", "charlie", "delta", "echo", "foxtrot", "golf", "hotel", "india", "juliette", "kilo", "lima"];
 
     public bool FloatHint
     {

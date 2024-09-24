@@ -596,6 +596,210 @@
           </local:InputElementContentControl>
         </Grid>
 
+        <!-- AutoSuggestBox variants -->
+        <TextBlock Margin="0,40,0,0"
+                   Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                   Text="AutoSuggestBox styles (inherits TextBox specific settings!)" />
+        <Grid HorizontalAlignment="Stretch">
+          <Grid.Resources>
+            <Style TargetType="{x:Type materialDesign:AutoSuggestBox}" BasedOn="{StaticResource MaterialDesignFloatingHintAutoSuggestBox}">
+              <Setter Property="TextWrapping" Value="{Binding TextBoxTextWrapping}" />
+              <Setter Property="MaxWidth" Value="{Binding SelectedMaxWidth}" />
+              <Setter Property="AcceptsReturn" Value="{Binding TextBoxAcceptsReturn}" />
+              <Setter Property="IsReadOnly" Value="{Binding TextBoxIsReadOnly}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignFloatingHintTextBoxDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
+              <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
+              <Setter Property="VerticalScrollBarVisibility" Value="{Binding SelectedVerticalScrollBarVisibility}" />
+              <Setter Property="HorizontalScrollBarVisibility" Value="{Binding SelectedHorizontalScrollBarVisibility}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
+              <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextVisibility" Value="{Binding SelectedPrefixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
+              <Setter Property="Suggestions" Value="{Binding AutoSuggestBoxSuggestions}" />
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFloatingHintAutoSuggestBox</TextBlock>
+          <local:InputElementContentControl Grid.Column="1">
+            <materialDesign:AutoSuggestBox HorizontalContentAlignment="Left" />
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="2">
+            <materialDesign:AutoSuggestBox HorizontalContentAlignment="Center" />
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="3">
+            <materialDesign:AutoSuggestBox HorizontalContentAlignment="Right" />
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="4">
+            <materialDesign:AutoSuggestBox HorizontalContentAlignment="Stretch" />
+          </local:InputElementContentControl>
+        </Grid>
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type materialDesign:AutoSuggestBox}" BasedOn="{StaticResource MaterialDesignFilledAutoSuggestBox}">
+              <Setter Property="TextWrapping" Value="{Binding TextBoxTextWrapping}" />
+              <Setter Property="MaxWidth" Value="{Binding SelectedMaxWidth}" />
+              <Setter Property="AcceptsReturn" Value="{Binding TextBoxAcceptsReturn}" />
+              <Setter Property="IsReadOnly" Value="{Binding TextBoxIsReadOnly}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignFilledTextBoxDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
+              <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
+              <Setter Property="VerticalScrollBarVisibility" Value="{Binding SelectedVerticalScrollBarVisibility}" />
+              <Setter Property="HorizontalScrollBarVisibility" Value="{Binding SelectedHorizontalScrollBarVisibility}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
+              <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextVisibility" Value="{Binding SelectedPrefixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
+              <Setter Property="Suggestions" Value="{Binding AutoSuggestBoxSuggestions}" />
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignFilledAutoSuggestBox</TextBlock>
+          <local:InputElementContentControl Grid.Column="1">
+            <materialDesign:AutoSuggestBox HorizontalContentAlignment="Left" />
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="2">
+            <materialDesign:AutoSuggestBox HorizontalContentAlignment="Center" />
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="3">
+            <materialDesign:AutoSuggestBox HorizontalContentAlignment="Right" />
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="4">
+            <materialDesign:AutoSuggestBox HorizontalContentAlignment="Stretch" />
+          </local:InputElementContentControl>
+        </Grid>
+        <Grid>
+          <Grid.Resources>
+            <Style TargetType="{x:Type materialDesign:AutoSuggestBox}" BasedOn="{StaticResource MaterialDesignOutlinedAutoSuggestBox}">
+              <Setter Property="TextWrapping" Value="{Binding TextBoxTextWrapping}" />
+              <Setter Property="MaxWidth" Value="{Binding SelectedMaxWidth}" />
+              <Setter Property="AcceptsReturn" Value="{Binding TextBoxAcceptsReturn}" />
+              <Setter Property="BorderThickness" Value="{Binding OutlineStyleBorderThickness}" />
+              <Setter Property="IsReadOnly" Value="{Binding TextBoxIsReadOnly}" />
+              <Setter Property="FontSize" Value="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}" />
+              <Setter Property="Height" Value="{Binding SelectedCustomHeight}" />
+              <Setter Property="Padding">
+                <Setter.Value>
+                  <MultiBinding Converter="{StaticResource CustomPaddingConverter}">
+                    <Binding ElementName="MaterialDesignOutlinedTextBoxDefaults" Path="Padding" />
+                    <Binding Path="ApplyCustomPadding" />
+                    <Binding Path="SelectedCustomPadding" />
+                  </MultiBinding>
+                </Setter.Value>
+              </Setter>
+              <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+              <Setter Property="VerticalContentAlignment" Value="{Binding SelectedVerticalAlignment}" />
+              <Setter Property="VerticalScrollBarVisibility" Value="{Binding SelectedVerticalScrollBarVisibility}" />
+              <Setter Property="HorizontalScrollBarVisibility" Value="{Binding SelectedHorizontalScrollBarVisibility}" />
+              <Setter Property="materialDesign:HintAssist.FontFamily" Value="{Binding SelectedFontFamily}" />
+              <Setter Property="materialDesign:HintAssist.IsFloating" Value="{Binding FloatHint}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="{Binding ShowClearButton}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasLeadingIcon" Value="{Binding ShowLeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.HasTrailingIcon" Value="{Binding ShowTrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIcon" Value="{StaticResource LeadingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.LeadingIconSize" Value="{Binding SelectedLeadingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixText" Value="{Binding PrefixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixText" Value="{Binding SuffixText}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIcon" Value="{StaticResource TrailingIcon}" />
+              <Setter Property="materialDesign:TextFieldAssist.TrailingIconSize" Value="{Binding SelectedTrailingIconSize}" />
+              <Setter Property="materialDesign:TextFieldAssist.IconVerticalAlignment" Value="{Binding SelectedIconVerticalAlignment}" />
+              <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="{Binding RippleOnFocus}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextVisibility" Value="{Binding SelectedPrefixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.PrefixTextHintBehavior" Value="{Binding SelectedPrefixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextVisibility" Value="{Binding SelectedSuffixVisibility}" />
+              <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
+              <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
+              <Setter Property="MaxLength" Value="{Binding MaxLength}" />
+              <Setter Property="Suggestions" Value="{Binding AutoSuggestBoxSuggestions}" />
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SizeGroupStyleName" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Style="{StaticResource StyleNameIndicator}">MaterialDesignOutlinedAutoSuggestBox</TextBlock>
+          <local:InputElementContentControl Grid.Column="1">
+            <materialDesign:AutoSuggestBox HorizontalContentAlignment="Left" />
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="2">
+            <materialDesign:AutoSuggestBox HorizontalContentAlignment="Center" />
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="3">
+            <materialDesign:AutoSuggestBox HorizontalContentAlignment="Right" />
+          </local:InputElementContentControl>
+          <local:InputElementContentControl Grid.Column="4">
+            <materialDesign:AutoSuggestBox HorizontalContentAlignment="Stretch" />
+          </local:InputElementContentControl>
+        </Grid>
+
         <!-- RichTextBox variants -->
         <TextBlock Margin="0,40,0,0"
                    Style="{StaticResource MaterialDesignHeadline6TextBlock}"
