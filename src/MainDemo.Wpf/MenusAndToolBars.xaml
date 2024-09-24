@@ -216,7 +216,7 @@
 
           <Separator />
 
-          <ListBox>
+          <ListBox materialDesign:ListBoxAssist.CanUserToggleSelectedItem="True">
             <ListBoxItem ToolTip="This is a lonely toggle with TextBlock instead of icon">
               <TextBlock Text="W" />
             </ListBoxItem>
