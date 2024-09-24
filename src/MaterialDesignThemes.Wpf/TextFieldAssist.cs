@@ -364,6 +364,11 @@ public static class TextFieldAssist
     public static void SetOutlinedBorderActiveThickness(DependencyObject element, Thickness value) => element.SetValue(OutlinedBorderActiveThicknessProperty, value);
     public static Thickness GetOutlinedBorderActiveThickness(DependencyObject element) => (Thickness)element.GetValue(OutlinedBorderActiveThicknessProperty);
 
+    internal static readonly DependencyProperty LineCountProperty = DependencyProperty.RegisterAttached(
+        "LineCount", typeof(int), typeof(TextFieldAssist), new PropertyMetadata(0));
+    internal static void SetLineCount(DependencyObject element, int value) => element.SetValue(LineCountProperty, value);
+    internal static int GetLineCount(DependencyObject element) => (int) element.GetValue(LineCountProperty);
+
     #region Methods
 
     private static void IncludeSpellingSuggestionsChanged(DependencyObject element, DependencyPropertyChangedEventArgs e)
