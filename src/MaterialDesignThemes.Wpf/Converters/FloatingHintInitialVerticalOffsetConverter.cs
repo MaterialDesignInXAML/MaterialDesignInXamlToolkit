@@ -32,8 +32,6 @@ public class FloatingHintInitialVerticalOffsetConverter : IMultiValueConverter
             // that are actually visible on screen) to avoid moving the hint further away than the actual viewport.
             return Math.Max(0, (contentHostHeight - hintHeight) / 2 - (offsetMultiplier * hintHeight));
         }
-
-        PasswordBox pb = new();
         return 0.0;
     }
 
