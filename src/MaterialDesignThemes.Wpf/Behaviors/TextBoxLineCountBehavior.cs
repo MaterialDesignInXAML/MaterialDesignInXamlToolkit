@@ -8,7 +8,10 @@ namespace MaterialDesignThemes.Wpf.Behaviors;
 internal class TextBoxLineCountBehavior : Behavior<TextBox>
 {
     private void AssociatedObjectOnTextChanged(object sender, TextChangedEventArgs e)
-        => AssociatedObject.SetCurrentValue(TextFieldAssist.LineCountProperty, AssociatedObject.LineCount);
+    {
+        AssociatedObject.SetCurrentValue(TextFieldAssist.LineCountProperty, AssociatedObject.LineCount);
+        AssociatedObject.SetCurrentValue(TextFieldAssist.IsMultiLineProperty, AssociatedObject.LineCount > 1);
+    }
 
     protected override void OnAttached()
     {

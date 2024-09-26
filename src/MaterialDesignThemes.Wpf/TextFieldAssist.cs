@@ -356,18 +356,31 @@ public static class TextFieldAssist
 
     internal static readonly DependencyProperty PasswordBoxCharacterCountProperty = DependencyProperty.RegisterAttached(
         "PasswordBoxCharacterCount", typeof(int), typeof(TextFieldAssist), new PropertyMetadata(default(int)));
-    internal static void SetPasswordBoxCharacterCount(DependencyObject element, int value) => element.SetValue(PasswordBoxCharacterCountProperty, value);
-    internal static int GetPasswordBoxCharacterCount(DependencyObject element) => (int)element.GetValue(PasswordBoxCharacterCountProperty);
+    internal static void SetPasswordBoxCharacterCount(DependencyObject element, int value)
+        => element.SetValue(PasswordBoxCharacterCountProperty, value);
+    internal static int GetPasswordBoxCharacterCount(DependencyObject element)
+        => (int)element.GetValue(PasswordBoxCharacterCountProperty);
 
     public static readonly DependencyProperty OutlinedBorderActiveThicknessProperty = DependencyProperty.RegisterAttached(
         "OutlinedBorderActiveThickness", typeof(Thickness), typeof(TextFieldAssist), new FrameworkPropertyMetadata(Constants.DefaultOutlinedBorderActiveThickness, FrameworkPropertyMetadataOptions.Inherits));
-    public static void SetOutlinedBorderActiveThickness(DependencyObject element, Thickness value) => element.SetValue(OutlinedBorderActiveThicknessProperty, value);
-    public static Thickness GetOutlinedBorderActiveThickness(DependencyObject element) => (Thickness)element.GetValue(OutlinedBorderActiveThicknessProperty);
+    public static void SetOutlinedBorderActiveThickness(DependencyObject element, Thickness value)
+        => element.SetValue(OutlinedBorderActiveThicknessProperty, value);
+    public static Thickness GetOutlinedBorderActiveThickness(DependencyObject element)
+        => (Thickness)element.GetValue(OutlinedBorderActiveThicknessProperty);
 
     internal static readonly DependencyProperty LineCountProperty = DependencyProperty.RegisterAttached(
         "LineCount", typeof(int), typeof(TextFieldAssist), new PropertyMetadata(0));
-    internal static void SetLineCount(DependencyObject element, int value) => element.SetValue(LineCountProperty, value);
-    internal static int GetLineCount(DependencyObject element) => (int) element.GetValue(LineCountProperty);
+    internal static void SetLineCount(DependencyObject element, int value)
+        => element.SetValue(LineCountProperty, value);
+    internal static int GetLineCount(DependencyObject element)
+        => (int) element.GetValue(LineCountProperty);
+
+    internal static readonly DependencyProperty IsMultiLineProperty = DependencyProperty.RegisterAttached(
+        "IsMultiLine", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false));
+    internal static void SetIsMultiLine(DependencyObject element, bool value)
+        => element.SetValue(IsMultiLineProperty, value);
+    internal static bool GetIsMultiLine(DependencyObject element)
+        => (bool) element.GetValue(IsMultiLineProperty);
 
     #region Methods
 
