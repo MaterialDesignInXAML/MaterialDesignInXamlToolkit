@@ -16,10 +16,7 @@ public class DataGridComboBoxColumn : System.Windows.Controls.DataGridComboBoxCo
 
     protected override FrameworkElement GenerateElement(DataGridCell cell, object dataItem)
     {
-        var comboBox = base.GenerateElement(cell, cell);
-
-        if (ItemsSourceBinding != null)
-            comboBox.SetBinding(ItemsControl.ItemsSourceProperty, ItemsSourceBinding);
+        var comboBox = InternalGenerateElement(cell, dataItem);
         ApplyStyle(false, false, comboBox);
 
         return comboBox;
@@ -27,14 +24,7 @@ public class DataGridComboBoxColumn : System.Windows.Controls.DataGridComboBoxCo
 
     protected override FrameworkElement GenerateEditingElement(DataGridCell cell, object dataItem)
     {
-        var comboBox = (ComboBox)base.GenerateElement(cell, cell);
-        if (IsEditable is bool isEditable)
-        {
-            comboBox.IsEditable = isEditable;
-        }
-
-        if (ItemsSourceBinding is { } binding)
-            comboBox.SetBinding(ItemsControl.ItemsSourceProperty, binding);
+        var comboBox = InternalGenerateElement(cell, dataItem);
         ApplyStyle(true, false, comboBox);
 
         return comboBox;
@@ -118,4 +108,23 @@ public class DataGridComboBoxColumn : System.Windows.Controls.DataGridComboBoxCo
     }
     */
 
+    private FrameworkElement InternalGenerateElement(DataGridCell cell, object dataItem)
+    {
+        var comboBox = (ComboBox)base.GenerateElement(cell, cell);
+        if (IsEditable is bool isEditable)
+        {
+            comboBox.IsEditable = isEditable;
+        }
+
+        if (cell?.Content is ComboBox cb)
+        {
+            comboBox.Text = cb.Text;
+        }
+
+        if (ItemsSourceBinding != null)
+        {
+            comboBox.SetBinding(ItemsControl.ItemsSourceProperty, ItemsSourceBinding);
+        }
+        return comboBox;
+    }
 }
