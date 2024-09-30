@@ -121,7 +121,7 @@ public class DataGridComboBoxColumn : System.Windows.Controls.DataGridComboBoxCo
             comboBox.Text = cb.Text;
         }
 
-        if (ItemsSourceBinding != null)
+        if (ItemsSourceBinding is not null)
         {
             comboBox.SetBinding(ItemsControl.ItemsSourceProperty, ItemsSourceBinding);
         }
