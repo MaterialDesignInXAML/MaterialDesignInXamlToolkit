@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:internal="clr-namespace:MaterialDesignThemes.Wpf.Internal"
-                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
+                    xmlns:behaviors="clr-namespace:MaterialDesignThemes.Wpf.Behaviors">
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
@@ -323,7 +324,14 @@
               </MultiTrigger.Conditions>
               <Setter TargetName="PrefixTextBlock" Property="VerticalAlignment" Value="Stretch" />
               <Setter TargetName="SuffixTextBlock" Property="VerticalAlignment" Value="Stretch" />
-              <Setter TargetName="Hint" Property="VerticalAlignment" Value="Top" />
+            </MultiTrigger>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="VerticalContentAlignment" Value="Stretch" />
+                <Condition Property="wpf:TextFieldAssist.IsMultiLine" Value="True" />
+              </MultiTrigger.Conditions>
+              <Setter TargetName="PrefixTextBlock" Property="VerticalAlignment" Value="Stretch" />
+              <Setter TargetName="SuffixTextBlock" Property="VerticalAlignment" Value="Stretch" />
             </MultiTrigger>
 
             <!-- Floating hint -->
@@ -508,6 +516,7 @@
                   <MultiBinding Converter="{StaticResource FloatingHintInitialVerticalOffsetConverter}">
                     <Binding ElementName="PART_ContentHost" Path="ActualHeight" />
                     <Binding ElementName="Hint" Path="ActualHeight" />
+                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TextFieldAssist.LineCount)" />
                   </MultiBinding>
                 </Setter.Value>
               </Setter>
@@ -580,6 +589,13 @@
          TargetType="{x:Type wpf:AutoSuggestBox}"
          BasedOn="{StaticResource MaterialDesignAutoSuggestBoxBase}">
     <Setter Property="Padding" Value="{x:Static wpf:Constants.TextBoxDefaultPadding}" />
+    <Setter Property="wpf:BehaviorsAssist.Behaviors">
+      <Setter.Value>
+        <wpf:BehaviorCollection>
+          <behaviors:TextBoxLineCountBehavior />
+        </wpf:BehaviorCollection>
+      </Setter.Value>
+    </Setter>
   </Style>
 
   <Style x:Key="MaterialDesignFloatingHintAutoSuggestBox"

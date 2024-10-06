@@ -44,6 +44,8 @@ internal class SmartHintViewModel : ViewModelBase
     private ScrollBarVisibility _selectedHorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
     private Thickness _outlineStyleBorderThickness = new(1);
     private Thickness _outlineStyleActiveBorderThickness = new(2);
+    private TextWrapping _textBoxTextWrapping = TextWrapping.Wrap;
+    private double _selectedMaxWidth = 200;
 
     public IEnumerable<FloatingHintHorizontalAlignment> HorizontalAlignmentOptions { get; } = Enum.GetValues(typeof(FloatingHintHorizontalAlignment)).OfType<FloatingHintHorizontalAlignment>();
     public IEnumerable<double> FloatingScaleOptions { get; } = [0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0];
@@ -59,6 +61,9 @@ internal class SmartHintViewModel : ViewModelBase
     public IEnumerable<PrefixSuffixHintBehavior> PrefixSuffixHintBehaviorOptions { get; } = Enum.GetValues(typeof(PrefixSuffixHintBehavior)).OfType<PrefixSuffixHintBehavior>();
     public IEnumerable<ScrollBarVisibility> ScrollBarVisibilityOptions { get; } = Enum.GetValues(typeof(ScrollBarVisibility)).OfType<ScrollBarVisibility>();
     public IEnumerable<Thickness> CustomOutlineStyleBorderThicknessOptions { get; } = [new Thickness(1), new Thickness(2), new Thickness(3), new Thickness(4), new Thickness(5), new Thickness(6) ];
+    public IEnumerable<TextWrapping> TextWrappingOptions { get; } = Enum.GetValues(typeof(TextWrapping)).OfType<TextWrapping>();
+    public IEnumerable<double> MaxWidthOptions { get; } = [double.NaN, 200];
+    public IEnumerable<string> AutoSuggestBoxSuggestions { get; } = ["alpha", "bravo", "charlie", "delta", "echo", "foxtrot", "golf", "hotel", "india", "juliette", "kilo", "lima"];
 
     public bool FloatHint
     {
@@ -280,5 +285,17 @@ internal class SmartHintViewModel : ViewModelBase
     {
         get => _outlineStyleActiveBorderThickness;
         set => SetProperty(ref _outlineStyleActiveBorderThickness, value);
+    }
+
+    public TextWrapping TextBoxTextWrapping
+    {
+        get => _textBoxTextWrapping;
+        set => SetProperty(ref _textBoxTextWrapping, value);
+    }
+
+    public double SelectedMaxWidth
+    {
+        get => _selectedMaxWidth;
+        set => SetProperty(ref _selectedMaxWidth, value);
     }
 }
