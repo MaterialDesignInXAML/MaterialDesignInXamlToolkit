@@ -340,7 +340,7 @@
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="VerticalContentAlignment" Value="Stretch" />
-                <Condition Property="wpf:TextFieldAssist.IsMultiLine" Value="True" />
+                <Condition Property="wpf:TextFieldAssist.TextBoxIsMultiLine" Value="True" />
               </MultiTrigger.Conditions>
               <Setter TargetName="PrefixTextBlock" Property="VerticalAlignment" Value="Stretch" />
               <Setter TargetName="SuffixTextBlock" Property="VerticalAlignment" Value="Stretch" />
@@ -522,7 +522,7 @@
                   <MultiBinding Converter="{StaticResource FloatingHintInitialVerticalOffsetConverter}">
                     <Binding ElementName="PART_ContentHost" Path="ActualHeight" />
                     <Binding ElementName="Hint" Path="ActualHeight" />
-                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TextFieldAssist.LineCount)" />
+                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TextFieldAssist.TextBoxLineCount)" />
                   </MultiBinding>
                 </Setter.Value>
               </Setter>
