@@ -368,19 +368,19 @@ public static class TextFieldAssist
     public static Thickness GetOutlinedBorderActiveThickness(DependencyObject element)
         => (Thickness)element.GetValue(OutlinedBorderActiveThicknessProperty);
 
-    internal static readonly DependencyProperty LineCountProperty = DependencyProperty.RegisterAttached(
-        "LineCount", typeof(int), typeof(TextFieldAssist), new PropertyMetadata(0));
-    internal static void SetLineCount(DependencyObject element, int value)
-        => element.SetValue(LineCountProperty, value);
-    internal static int GetLineCount(DependencyObject element)
-        => (int) element.GetValue(LineCountProperty);
+    public static readonly DependencyProperty TextBoxLineCountProperty = DependencyProperty.RegisterAttached(
+        "TextBoxLineCount", typeof(int), typeof(TextFieldAssist), new PropertyMetadata(0));
+    public static void SetTextBoxLineCount(DependencyObject element, int value)
+        => element.SetValue(TextBoxLineCountProperty, value);
+    public static int GetTextBoxLineCount(DependencyObject element)
+        => (int) element.GetValue(TextBoxLineCountProperty);
 
-    internal static readonly DependencyProperty IsMultiLineProperty = DependencyProperty.RegisterAttached(
-        "IsMultiLine", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false));
-    internal static void SetIsMultiLine(DependencyObject element, bool value)
-        => element.SetValue(IsMultiLineProperty, value);
-    internal static bool GetIsMultiLine(DependencyObject element)
-        => (bool) element.GetValue(IsMultiLineProperty);
+    public static readonly DependencyProperty TextBoxIsMultiLineProperty = DependencyProperty.RegisterAttached(
+        "TextBoxIsMultiLine", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false));
+    public static void SetTextBoxIsMultiLine(DependencyObject element, bool value)
+        => element.SetValue(TextBoxIsMultiLineProperty, value);
+    public static bool GetTextBoxIsMultiLine(DependencyObject element)
+        => (bool) element.GetValue(TextBoxIsMultiLineProperty);
 
     #region Methods
 
