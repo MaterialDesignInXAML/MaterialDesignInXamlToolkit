@@ -33,7 +33,6 @@
                 Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}"
                 >
                 <Border Padding="{TemplateBinding Padding}"
-                        Background="{TemplateBinding Background}"
                         Clip="{TemplateBinding ContentClip}"/>
               </Border>
             </AdornerDecorator>
