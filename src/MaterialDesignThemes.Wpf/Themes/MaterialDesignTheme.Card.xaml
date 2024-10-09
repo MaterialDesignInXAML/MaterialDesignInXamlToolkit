@@ -34,6 +34,8 @@
                 >
                 <Border Padding="{TemplateBinding Padding}"
                         Background="{TemplateBinding Background}"
+                        Margin="1"
+                        CornerRadius="{TemplateBinding UniformCornerRadius, Converter={x:Static converters:DoubleToCornerRadiusConverter.Instance}}"
                         Clip="{TemplateBinding ContentClip}"/>
               </Border>
             </AdornerDecorator>
