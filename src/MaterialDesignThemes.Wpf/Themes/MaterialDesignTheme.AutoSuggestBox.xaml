@@ -169,6 +169,7 @@
                          HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
                          UseFloating="{TemplateBinding wpf:HintAssist.IsFloating}"
                          FloatingTarget="{Binding ElementName=PART_ContentHost}"
+                         HintHost="{Binding RelativeSource={RelativeSource TemplatedParent}}"
                          wpf:HintAssist.Background="{TemplateBinding wpf:HintAssist.Background}">
                     <wpf:SmartHint.InitialHorizontalOffset>
                       <MultiBinding Converter="{StaticResource FloatingHintInitialHorizontalOffsetConverter}">

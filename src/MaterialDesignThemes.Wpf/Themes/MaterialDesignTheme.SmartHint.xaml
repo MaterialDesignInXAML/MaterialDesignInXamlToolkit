@@ -163,6 +163,8 @@
                       <Binding Path="InitialHorizontalOffset" RelativeSource="{RelativeSource TemplatedParent}" />
                       <Binding Path="FloatingTarget.ActualHeight" RelativeSource="{RelativeSource TemplatedParent}" FallbackValue="{x:Static DependencyProperty.UnsetValue}" />
                       <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
+                      <Binding Path="HintHost.ActualWidth" RelativeSource="{RelativeSource TemplatedParent}" />
+                      <Binding Path="HintHost.ActualHeight" RelativeSource="{RelativeSource TemplatedParent}" />
                     </MultiBinding>
                   </Grid.RenderTransform>
                   <Canvas Width="{Binding ElementName=FloatingHintTextBlock, Path=ActualWidth}"

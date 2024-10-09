@@ -154,6 +154,15 @@ public class SmartHint : Control
         set => SetValue(FloatingTargetProperty, value);
     }
 
+    public static readonly DependencyProperty HintHostProperty = DependencyProperty.Register(
+        nameof(HintHost), typeof(FrameworkElement), typeof(SmartHint), new PropertyMetadata(default(FrameworkElement)));
+
+    public FrameworkElement HintHost
+    {
+        get => (FrameworkElement) GetValue(HintHostProperty);
+        set => SetValue(HintHostProperty, value);
+    }
+
     public static readonly DependencyProperty FloatingAlignmentProperty = DependencyProperty.Register(
         nameof(FloatingAlignment), typeof(VerticalAlignment), typeof(SmartHint), new PropertyMetadata(System.Windows.VerticalAlignment.Bottom));
 
