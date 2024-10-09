@@ -27,7 +27,7 @@
 
       <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="cards_11111">
         <Grid Background="Blue">
-          <materialDesign:Card Margin="25" UniformCornerRadius="30" Padding="0" BorderThickness="0" >
+          <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp24" Margin="25" UniformCornerRadius="100" Padding="0" BorderThickness="0" >
             <Grid Background="Black" Height="300" Width="300" Margin="0">
               <TextBlock HorizontalAlignment="Center"
                          VerticalAlignment="Center"

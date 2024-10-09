@@ -33,6 +33,9 @@
                 Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}"
                 >
                 <Border Padding="{TemplateBinding Padding}"
+                        Background="{TemplateBinding Background}"
+                        Margin="1"
+                        CornerRadius="{TemplateBinding UniformCornerRadius, Converter={x:Static converters:DoubleToCornerRadiusConverter.Instance}}"
                         Clip="{TemplateBinding ContentClip}"/>
               </Border>
             </AdornerDecorator>
