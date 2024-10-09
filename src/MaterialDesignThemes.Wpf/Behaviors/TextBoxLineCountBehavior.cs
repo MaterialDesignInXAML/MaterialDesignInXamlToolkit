@@ -3,20 +3,24 @@
 namespace MaterialDesignThemes.Wpf.Behaviors;
 
 /// <summary>
-/// Internal behavior exposing the <see cref="TextBox.LineCount"/> (non-DP) as an attached property which we can bind to
+/// Behavior exposing the <see cref="TextBox.LineCount"/> (non-DP) as attached properties which are bindable from XAML.
 /// </summary>
-internal class TextBoxLineCountBehavior : Behavior<TextBox>
+public class TextBoxLineCountBehavior : Behavior<TextBox>
 {
-    private void AssociatedObjectOnTextChanged(object sender, TextChangedEventArgs e)
+    private void AssociatedObjectOnTextChanged(object sender, TextChangedEventArgs e) => UpdateAttachedProperties();
+    private void AssociatedObjectOnLayoutUpdated(object? sender, EventArgs e) => UpdateAttachedProperties();
+
+    private void UpdateAttachedProperties()
     {
-        AssociatedObject.SetCurrentValue(TextFieldAssist.LineCountProperty, AssociatedObject.LineCount);
-        AssociatedObject.SetCurrentValue(TextFieldAssist.IsMultiLineProperty, AssociatedObject.LineCount > 1);
+        AssociatedObject.SetCurrentValue(TextFieldAssist.TextBoxLineCountProperty, AssociatedObject.LineCount);
+        AssociatedObject.SetCurrentValue(TextFieldAssist.TextBoxIsMultiLineProperty, AssociatedObject.LineCount > 1);
     }
 
     protected override void OnAttached()
     {
         base.OnAttached();
         AssociatedObject.TextChanged += AssociatedObjectOnTextChanged;
+        AssociatedObject.LayoutUpdated += AssociatedObjectOnLayoutUpdated;
     }
 
     protected override void OnDetaching()
@@ -24,6 +28,7 @@ internal class TextBoxLineCountBehavior : Behavior<TextBox>
         if (AssociatedObject != null)
         {
             AssociatedObject.TextChanged -= AssociatedObjectOnTextChanged;
+            AssociatedObject.LayoutUpdated -= AssociatedObjectOnLayoutUpdated;
         }
         base.OnDetaching();
     }
