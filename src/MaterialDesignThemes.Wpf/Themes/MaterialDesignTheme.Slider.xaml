@@ -985,7 +985,12 @@
     <Setter Property="Background" Value="{x:Null}" />
     <Setter Property="BorderBrush" Value="Transparent" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
-    <Setter Property="IsMoveToPointEnabled" Value="True" />
+    <!--
+    When IsMoveToPointEnabled is true, additional code is being executed before the actual "base.OnPreviewMouseLeftButtonDown(e);"
+    in which the event is marked as handled, i suspect this is the issue, see:
+    https://source.dot.net/#PresentationFramework/System/Windows/Controls/Slider.cs,771
+    -->
+    <Setter Property="IsMoveToPointEnabled" Value="False" />
     <Setter Property="IsSnapToTickEnabled" Value="True" />
     <Setter Property="Orientation" Value="Horizontal" />
     <Setter Property="SnapsToDevicePixels" Value="False" />
