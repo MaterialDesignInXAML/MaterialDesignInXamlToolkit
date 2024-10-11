@@ -965,7 +965,7 @@
     <Setter Property="BorderBrush" Value="Transparent" />
     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
-    <Setter Property="IsMoveToPointEnabled" Value="True" />
+    <Setter Property="IsMoveToPointEnabled" Value="False" />
     <Setter Property="SnapsToDevicePixels" Value="False" />
     <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false" />
     <Setter Property="Template" Value="{StaticResource MaterialDesignSliderHorizontal}" />
@@ -1012,7 +1012,7 @@
     <Setter Property="Background" Value="{x:Null}" />
     <Setter Property="BorderBrush" Value="Transparent" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
-    <Setter Property="IsMoveToPointEnabled" Value="True" />
+    <Setter Property="IsMoveToPointEnabled" Value="False" />
     <Setter Property="IsSnapToTickEnabled" Value="True" />
     <Setter Property="Orientation" Value="Vertical" />
     <Setter Property="SnapsToDevicePixels" Value="False" />
