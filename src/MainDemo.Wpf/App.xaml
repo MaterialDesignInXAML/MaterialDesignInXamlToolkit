@@ -144,10 +144,6 @@
         <Setter Property="Fill" Value="{DynamicResource MaterialDesignDivider}" />
       </Style>
 
-      <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
-        <Setter Property="FontSize" Value="30"/>
-      </Style>
-
     </ResourceDictionary>
   </Application.Resources>
 </Application>
