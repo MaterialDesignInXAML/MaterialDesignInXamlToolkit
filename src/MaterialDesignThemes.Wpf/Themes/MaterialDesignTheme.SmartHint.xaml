@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
-                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
+                    xmlns:behaviors="clr-namespace:MaterialDesignThemes.Wpf.Behaviors">
 
   <Style TargetType="{x:Type wpf:SmartHint}">
     <Style.Resources>
@@ -18,6 +19,13 @@
       <converters:FloatingHintTextBlockMarginConverter x:Key="FloatingHintTextBlockMarginConverter" />
       <converters:FloatingHintClippingGridConverter x:Key="FloatingHintClippingGridConverter" />
     </Style.Resources>
+    <Setter Property="wpf:BehaviorsAssist.Behaviors">
+      <Setter.Value>
+        <wpf:BehaviorCollection>
+          <behaviors:SmartHintBehavior />
+        </wpf:BehaviorCollection>
+      </Setter.Value>
+    </Setter>
     <Setter Property="HorizontalAlignment" Value="Stretch" />
     <Setter Property="HorizontalContentAlignment" Value="Left" />
     <Setter Property="IsHitTestVisible" Value="False" />
@@ -158,6 +166,7 @@
                       <Binding Source="{StaticResource NoContentFloatingScale}" />
                       <Binding Path="." RelativeSource="{RelativeSource TemplatedParent}" />
                       <Binding Path="FloatingOffset" RelativeSource="{RelativeSource TemplatedParent}" />
+                      <Binding Path="(behaviors:SmartHintBehavior.YOffset)" RelativeSource="{RelativeSource TemplatedParent}" />
                       <!-- The bindings below are only here to trigger a recalculation - needed to support AcceptsReturn=true scenario for TextBoxes for example as well as "runtime" changes to the desired hint placement -->
                       <Binding Path="InitialVerticalOffset" RelativeSource="{RelativeSource TemplatedParent}" />
                       <Binding Path="InitialHorizontalOffset" RelativeSource="{RelativeSource TemplatedParent}" />
