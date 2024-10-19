@@ -72,6 +72,7 @@
                                    wpf:HintAssist.FontFamily="{TemplateBinding wpf:HintAssist.FontFamily}"
                                    wpf:HintAssist.Foreground="{TemplateBinding wpf:HintAssist.Foreground}"
                                    wpf:HintAssist.Background="{TemplateBinding wpf:HintAssist.Background}"
+                                   wpf:HintAssist.HintPaddingBrush="{TemplateBinding wpf:HintAssist.HintPaddingBrush}"
                                    wpf:HintAssist.HelperTextStyle="{TemplateBinding wpf:HintAssist.HelperTextStyle}"
                                    wpf:HintAssist.Hint="{TemplateBinding wpf:HintAssist.Hint}"
                                    wpf:HintAssist.HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
