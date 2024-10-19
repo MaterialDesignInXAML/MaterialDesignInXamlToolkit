@@ -518,5 +518,19 @@
         </smtx:XamlDisplay>
       </StackPanel>
     </Grid>
+
+    <TextBlock Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="Custom Background" Margin="0,20,0,0" />
+
+    <WrapPanel Margin="0,0,0,32" Background="Chocolate">
+      <smtx:XamlDisplay Margin="16"
+                        UniqueKey="fields_custom_background_1">
+        <TextBox Width="200"
+                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 materialDesign:HintAssist.Hint="Hint text"
+                 materialDesign:HintAssist.HintPaddingBrush="Chocolate" />
+        <!-- Set HintAssist.HintPaddingBrush to match the custom background to get correct coloring of the hint padding (when floated) -->
+      </smtx:XamlDisplay>
+    </WrapPanel>
+    
   </StackPanel>
 </UserControl>
