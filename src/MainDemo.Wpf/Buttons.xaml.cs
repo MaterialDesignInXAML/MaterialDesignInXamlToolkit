@@ -1,5 +1,5 @@
 using System.Diagnostics;
-using MaterialDesignDemo.Domain;
+using MaterialDesignDemo.Shared.Domain;
 
 namespace MaterialDesignDemo;
 
@@ -25,7 +25,7 @@ public partial class Buttons
         if (CountingBadge.Badge == null || Equals(CountingBadge.Badge, string.Empty))
             CountingBadge.Badge = 0;
 
-        var next = int.Parse(CountingBadge.Badge.ToString() ?? "0") + 1;
+        int next = int.Parse(CountingBadge.Badge.ToString() ?? "0") + 1;
 
         CountingBadge.Badge = next < 21 ? (object)next : null;
     }
