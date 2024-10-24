@@ -9,9 +9,11 @@
       <Item Type="MaterialDesignThemes.Wpf.ColorZone" />
       <Item Type="MaterialDesignThemes.Wpf.DataGridComboBoxColumn" />
       <Item Type="MaterialDesignThemes.Wpf.DataGridTextColumn" />
+      <Item Type="MaterialDesignThemes.Wpf.DecimalUpDown" />
       <Item Type="MaterialDesignThemes.Wpf.DialogHost" />
       <Item Type="MaterialDesignThemes.Wpf.DrawerHost" />
       <Item Type="MaterialDesignThemes.Wpf.Flipper" />
+      <Item Type="MaterialDesignThemes.Wpf.NumericUpDown" />
       <Item Type="MaterialDesignThemes.Wpf.PackIcon" />
       <Item Type="MaterialDesignThemes.Wpf.PopupBox" />
       <Item Type="MaterialDesignThemes.Wpf.RatingBar" />
