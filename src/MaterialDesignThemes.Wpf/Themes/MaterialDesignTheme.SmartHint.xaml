@@ -18,6 +18,7 @@
       <converters:FloatingHintContainerMarginConverter x:Key="FloatingHintContainerMarginConverter" />
       <converters:FloatingHintTextBlockMarginConverter x:Key="FloatingHintTextBlockMarginConverter" />
       <converters:FloatingHintClippingGridConverter x:Key="FloatingHintClippingGridConverter" />
+      <converters:FirstNonNullConverter x:Key="FirstNonNullConverter" />
     </Style.Resources>
     <Setter Property="wpf:BehaviorsAssist.Behaviors">
       <Setter.Value>
@@ -212,7 +213,7 @@
                           <Binding Source="{StaticResource NoContentFloatingScale}" />
                         </MultiBinding>
                       </ContentControl.RenderTransform>
-                      <Grid x:Name="HintBackgroundGrid" Background="{TemplateBinding wpf:HintAssist.Background}" IsHitTestVisible="False">
+                      <Grid x:Name="HintBackgroundGrid" Tag="{DynamicResource MaterialDesign.Brush.Background}" IsHitTestVisible="False">
                         <ContentControl Content="{TemplateBinding Hint}" IsTabStop="False">
                           <ContentControl.Margin>
                             <MultiBinding Converter="{StaticResource FloatingHintContainerMarginConverter}">
@@ -227,6 +228,18 @@
                   </Canvas>
                 </Grid>
               </Grid>
+              <ControlTemplate.Triggers>
+                <Trigger Property="IsHintInFloatingPosition" Value="True">
+                  <Setter TargetName="HintBackgroundGrid" Property="Background">
+                    <Setter.Value>
+                      <MultiBinding Converter="{StaticResource FirstNonNullConverter}">
+                        <Binding Path="(wpf:HintAssist.HintPaddingBrush)" RelativeSource="{RelativeSource TemplatedParent}" />
+                        <Binding Path="Tag" ElementName="HintBackgroundGrid" />
+                      </MultiBinding>
+                    </Setter.Value>
+                  </Setter>
+                </Trigger>
+              </ControlTemplate.Triggers>
             </ControlTemplate>
           </Setter.Value>
         </Setter>

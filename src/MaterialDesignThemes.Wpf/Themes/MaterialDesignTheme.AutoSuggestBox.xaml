@@ -156,21 +156,22 @@
                         VerticalScrollBarVisibility="Hidden" />
 
                   <wpf:SmartHint x:Name="Hint"
-                         Grid.Column="1"
-                         Grid.ColumnSpan="3"
-                         VerticalAlignment="Center"
-                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                         FloatingOffset="{TemplateBinding wpf:HintAssist.FloatingOffset}"
-                         FloatingScale="{TemplateBinding wpf:HintAssist.FloatingScale}"
-                         FontFamily="{TemplateBinding wpf:HintAssist.FontFamily}"
-                         FontSize="{TemplateBinding FontSize}"
-                         HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                         HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
-                         UseFloating="{TemplateBinding wpf:HintAssist.IsFloating}"
-                         FloatingTarget="{Binding ElementName=PART_ContentHost}"
-                         HintHost="{Binding RelativeSource={RelativeSource TemplatedParent}}"
-                         wpf:HintAssist.Background="{TemplateBinding wpf:HintAssist.Background}">
+                                 Grid.Column="1"
+                                 Grid.ColumnSpan="3"
+                                 VerticalAlignment="Center"
+                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                 FloatingOffset="{TemplateBinding wpf:HintAssist.FloatingOffset}"
+                                 FloatingScale="{TemplateBinding wpf:HintAssist.FloatingScale}"
+                                 FontFamily="{TemplateBinding wpf:HintAssist.FontFamily}"
+                                 FontSize="{TemplateBinding FontSize}"
+                                 HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
+                                 HintProxy="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:HintProxyFabricConverter.Instance}}"
+                                 UseFloating="{TemplateBinding wpf:HintAssist.IsFloating}"
+                                 FloatingTarget="{Binding ElementName=PART_ContentHost}"
+                                 HintHost="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                                 wpf:HintAssist.Background="{TemplateBinding wpf:HintAssist.Background}"
+                                 wpf:HintAssist.HintPaddingBrush="{TemplateBinding wpf:HintAssist.HintPaddingBrush}">
                     <wpf:SmartHint.InitialHorizontalOffset>
                       <MultiBinding Converter="{StaticResource FloatingHintInitialHorizontalOffsetConverter}">
                         <Binding ElementName="PrefixTextBlock" Path="ActualWidth" />
@@ -369,14 +370,6 @@
               <Setter TargetName="Hint" Property="FloatingMargin" Value="4,0" />
               <Setter TargetName="Hint" Property="InitialVerticalOffset" Value="{Binding ElementName=Hint, Path=ActualHeight, Converter={StaticResource DivisionConverter}, ConverterParameter=2}" />
             </Trigger>
-            <MultiTrigger>
-              <MultiTrigger.Conditions>
-                <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
-                <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
-                <Condition SourceName="Hint" Property="IsHintInFloatingPosition" Value="True" />
-              </MultiTrigger.Conditions>
-              <Setter TargetName="Hint" Property="wpf:HintAssist.Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
-            </MultiTrigger>
 
             <!-- IsEnabled -->
             <MultiTrigger>
