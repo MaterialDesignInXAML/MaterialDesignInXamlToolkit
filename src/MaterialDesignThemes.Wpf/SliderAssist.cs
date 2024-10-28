@@ -1,4 +1,6 @@
-﻿namespace MaterialDesignThemes.Wpf;
+﻿using System.Windows.Media;
+
+namespace MaterialDesignThemes.Wpf;
 
 public static class SliderAssist
 {
@@ -39,4 +41,46 @@ public static class SliderAssist
 
     public static string GetToolTipFormat(RangeBase element)
         => (string)element.GetValue(ToolTipFormatProperty);
+
+    #region Issue3628
+    internal static readonly DependencyProperty FocusParentSliderOnClickProperty =
+            DependencyProperty.RegisterAttached(
+                "FocusParentSliderOnClick",
+                typeof(bool),
+                typeof(SliderAssist),
+                new PropertyMetadata(false, OnFocusParentSliderOnClickChanged));
+
+    internal static bool GetFocusParentSliderOnClick(DependencyObject obj) =>
+        (bool)obj.GetValue(FocusParentSliderOnClickProperty);
+
+    internal static void SetFocusParentSliderOnClick(DependencyObject obj, bool value) =>
+        obj.SetValue(FocusParentSliderOnClickProperty, value);
+
+    private static void OnFocusParentSliderOnClickChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is RepeatButton repeatButton)
+        {
+            if ((bool)e.NewValue)
+            {
+                repeatButton.AddHandler(UIElement.PreviewMouseLeftButtonDownEvent,
+                                        (MouseButtonEventHandler)RepeatButton_PreviewMouseLeftButtonDown,
+                                        true);
+            }
+            else
+            {
+                repeatButton.RemoveHandler(UIElement.PreviewMouseLeftButtonDownEvent,
+                                           (MouseButtonEventHandler)RepeatButton_PreviewMouseLeftButtonDown);
+            }
+        }
+    }
+
+    private static void RepeatButton_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    {
+        if (sender is DependencyObject repeatButton)
+        {
+            var slider = TreeHelper.FindParent<Slider>(repeatButton);
+            slider?.Focus();
+        }
+    }
+    #endregion
 }

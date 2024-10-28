@@ -17,6 +17,7 @@
     <Setter Property="Focusable" Value="False" />
     <Setter Property="IsTabStop" Value="False" />
     <Setter Property="OverridesDefaultStyle" Value="True" />
+    <Setter Property="wpf:SliderAssist.FocusParentSliderOnClick" Value="True"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type RepeatButton}">
@@ -965,7 +966,7 @@
     <Setter Property="BorderBrush" Value="Transparent" />
     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
-    <Setter Property="IsMoveToPointEnabled" Value="False" />
+    <Setter Property="IsMoveToPointEnabled" Value="True" />
     <Setter Property="SnapsToDevicePixels" Value="False" />
     <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false" />
     <Setter Property="Template" Value="{StaticResource MaterialDesignSliderHorizontal}" />
@@ -985,12 +986,7 @@
     <Setter Property="Background" Value="{x:Null}" />
     <Setter Property="BorderBrush" Value="Transparent" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
-    <!--
-    When IsMoveToPointEnabled is true, additional code is being executed before the actual "base.OnPreviewMouseLeftButtonDown(e);"
-    in which the event is marked as handled, i suspect this is the issue, see:
-    https://source.dot.net/#PresentationFramework/System/Windows/Controls/Slider.cs,771
-    -->
-    <Setter Property="IsMoveToPointEnabled" Value="False" />
+    <Setter Property="IsMoveToPointEnabled" Value="True" />
     <Setter Property="IsSnapToTickEnabled" Value="True" />
     <Setter Property="Orientation" Value="Horizontal" />
     <Setter Property="SnapsToDevicePixels" Value="False" />
