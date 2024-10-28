@@ -1008,7 +1008,7 @@
     <Setter Property="Background" Value="{x:Null}" />
     <Setter Property="BorderBrush" Value="Transparent" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
-    <Setter Property="IsMoveToPointEnabled" Value="False" />
+    <Setter Property="IsMoveToPointEnabled" Value="True" />
     <Setter Property="IsSnapToTickEnabled" Value="True" />
     <Setter Property="Orientation" Value="Vertical" />
     <Setter Property="SnapsToDevicePixels" Value="False" />
