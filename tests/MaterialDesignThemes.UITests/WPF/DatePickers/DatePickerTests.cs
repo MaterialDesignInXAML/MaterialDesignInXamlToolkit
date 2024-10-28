@@ -253,11 +253,10 @@ public class DatePickerTests : TestBase
         var datePickerTextBox = await datePicker.GetElement<DatePickerTextBox>("/DatePickerTextBox");
         var hintBackgroundGrid = await datePicker.GetElement<Grid>("HintBackgroundGrid");
 
-        var defaultBackground = Colors.Transparent;
         var defaultFloatedBackground = await GetThemeColor("MaterialDesign.Brush.Background");
 
         // Assert (unfocused state)
-        Assert.Equal(defaultBackground, await hintBackgroundGrid.GetBackgroundColor());
+        Assert.Null(await hintBackgroundGrid.GetBackgroundColor());
 
         // Act
         await datePickerTextBox.MoveKeyboardFocus();

@@ -560,11 +560,10 @@ public class TimePickerTests : TestBase
         var timePickerTextBox = await timePicker.GetElement<TimePickerTextBox>("/TimePickerTextBox");
         var hintBackgroundGrid = await timePicker.GetElement<Grid>("HintBackgroundGrid");
 
-        var defaultBackground = Colors.Transparent;
         var defaultFloatedBackground = await GetThemeColor("MaterialDesign.Brush.Background");
 
         // Assert (unfocused state)
-        Assert.Equal(defaultBackground, await hintBackgroundGrid.GetBackgroundColor());
+        Assert.Null(await hintBackgroundGrid.GetBackgroundColor());
 
         // Act
         await timePickerTextBox.MoveKeyboardFocus();

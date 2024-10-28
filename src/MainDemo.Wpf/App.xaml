@@ -143,6 +143,7 @@
         <Setter Property="Height" Value="1" />
         <Setter Property="Fill" Value="{DynamicResource MaterialDesignDivider}" />
       </Style>
+
     </ResourceDictionary>
   </Application.Resources>
 </Application>
