@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
+                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Font.xaml" />
   </ResourceDictionary.MergedDictionaries>
@@ -13,6 +14,9 @@
   </Style>
 
   <Style TargetType="{x:Type wpf:DialogHost}">
+    <Style.Resources>
+      <converters:FirstNonNullConverter x:Key="FirstNonNullConverter" />
+    </Style.Resources>
     <Setter Property="DialogMargin" Value="35" />
     <Setter Property="DialogTheme" Value="Inherit" />
     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
@@ -205,7 +209,14 @@
                   IsHitTestVisible="False"
                   Visibility="{Binding ElementName=ContentCoverBorder, Path=Visibility}">
               <Grid.OpacityMask>
-                <VisualBrush Visual="{x:Reference ContentCoverBorder}" />
+                <VisualBrush>
+                  <VisualBrush.Visual>
+                    <MultiBinding Converter="{StaticResource FirstNonNullConverter}">
+                      <Binding ElementName="ContentCoverBorder" />
+                      <Binding Source="{x:Static DependencyProperty.UnsetValue}" />
+                    </MultiBinding>
+                  </VisualBrush.Visual>
+                </VisualBrush>
               </Grid.OpacityMask>
               <Border x:Name="ContentCoverBorder"
                       Background="{Binding OverlayBackground, RelativeSource={RelativeSource TemplatedParent}}"
@@ -236,6 +247,9 @@
   </Style>
 
   <Style x:Key="MaterialDesignEmbeddedDialogHost" TargetType="{x:Type wpf:DialogHost}">
+    <Style.Resources>
+      <converters:FirstNonNullConverter x:Key="FirstNonNullConverter" />
+    </Style.Resources>
     <Setter Property="DialogMargin" Value="35" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />
     <Setter Property="Placement" Value="Center" />
@@ -380,7 +394,14 @@
                   IsHitTestVisible="False"
                   Visibility="{Binding ElementName=ContentCoverBorder, Path=Visibility}">
               <Grid.OpacityMask>
-                <VisualBrush Visual="{x:Reference ContentCoverBorder}" />
+                <VisualBrush>
+                  <VisualBrush.Visual>
+                    <MultiBinding Converter="{StaticResource FirstNonNullConverter}">
+                      <Binding ElementName="ContentCoverBorder" />
+                      <Binding Source="{x:Static DependencyProperty.UnsetValue}" />
+                    </MultiBinding>
+                  </VisualBrush.Visual>
+                </VisualBrush>
               </Grid.OpacityMask>
               <Border x:Name="ContentCoverBorder"
                       Background="{Binding OverlayBackground, RelativeSource={RelativeSource TemplatedParent}}"

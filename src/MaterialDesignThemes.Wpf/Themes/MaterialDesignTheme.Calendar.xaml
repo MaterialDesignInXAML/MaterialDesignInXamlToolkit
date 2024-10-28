@@ -154,7 +154,7 @@
       </Setter.Value>
     </Setter>
     <Setter Property="VerticalContentAlignment" Value="Center" />
-    <Setter Property="Width" Value="48" />
+    <Setter Property="MinWidth" Value="48" />
     <Setter Property="wpf:CalendarAssist.SelectionColor" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="wpf:CalendarAssist.SelectionForegroundColor" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
   </Style>
@@ -162,7 +162,6 @@
   <Style x:Key="MaterialDesignCalendarDayButton" TargetType="{x:Type CalendarDayButton}">
     <Setter Property="Cursor" Value="Hand" />
     <Setter Property="FontSize" Value="12" />
-    <Setter Property="Height" Value="28" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />
     <Setter Property="Margin" Value="2" />
     <Setter Property="MinHeight" Value="5" />
@@ -317,7 +316,8 @@
       </Setter.Value>
     </Setter>
     <Setter Property="VerticalContentAlignment" Value="Center" />
-    <Setter Property="Width" Value="28" />
+    <Setter Property="MinWidth" Value="28" />
+    <Setter Property="MinHeight" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"/>
     <Setter Property="wpf:CalendarAssist.SelectionColor" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="wpf:CalendarAssist.SelectionForegroundColor" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
     <Style.Triggers>
