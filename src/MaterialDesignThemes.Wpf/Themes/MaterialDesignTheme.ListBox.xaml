@@ -363,6 +363,7 @@
                   ClipToBounds="False"
                   SnapsToDevicePixels="true">
             <ScrollViewer Padding="{TemplateBinding Padding}"
+                          wpf:ScrollViewerAssist.IgnorePadding="True"
                           ClipToBounds="False"
                           Focusable="false">
               <ItemsPresenter ClipToBounds="False" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
@@ -645,7 +646,9 @@
                   BorderBrush="{TemplateBinding BorderBrush}"
                   BorderThickness="{TemplateBinding BorderThickness}"
                   SnapsToDevicePixels="true">
-            <ScrollViewer Padding="{TemplateBinding Padding}" Focusable="false">
+            <ScrollViewer Padding="{TemplateBinding Padding}"
+                          Focusable="false"
+                          wpf:ScrollViewerAssist.IgnorePadding="True">
               <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
             </ScrollViewer>
           </Border>

@@ -31,6 +31,7 @@
             <ScrollViewer x:Name="_tv_scrollviewer_"
                           Padding="{TemplateBinding Padding}"
                           Background="{TemplateBinding Background}"
+                          wpf:ScrollViewerAssist.IgnorePadding="True"
                           CanContentScroll="false"
                           Focusable="false"
                           HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"

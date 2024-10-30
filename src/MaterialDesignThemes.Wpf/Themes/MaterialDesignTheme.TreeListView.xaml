@@ -263,6 +263,7 @@
                   BorderThickness="{TemplateBinding BorderThickness}"
                   SnapsToDevicePixels="true">
             <ScrollViewer x:Name="PART_ScrollViewer"
+                          wpf:ScrollViewerAssist.IgnorePadding="True"
                           Padding="{TemplateBinding Padding}"
                           Background="{TemplateBinding Background}"
                           CanContentScroll="false"

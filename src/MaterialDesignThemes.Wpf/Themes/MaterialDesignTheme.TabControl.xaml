@@ -42,6 +42,7 @@
                            Focusable="False">
               <ScrollViewer wpf:ScrollViewerAssist.BubbleVerticalScroll="True"
                             wpf:ScrollViewerAssist.SupportHorizontalScroll="True"
+                            wpf:ScrollViewerAssist.IgnorePadding="True"
                             HorizontalScrollBarVisibility="Hidden"
                             VerticalScrollBarVisibility="Hidden">
                 <StackPanel>

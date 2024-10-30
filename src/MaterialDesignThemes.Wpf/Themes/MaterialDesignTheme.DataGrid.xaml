@@ -62,6 +62,7 @@
             <Grid>
               <ScrollViewer x:Name="PART_ContentHost"
                             Focusable="false"
+                            wpf:ScrollViewerAssist.IgnorePadding="True"
                             HorizontalScrollBarVisibility="Hidden"
                             VerticalScrollBarVisibility="Hidden" />
               <wpf:SmartHint x:Name="Hint"
@@ -152,6 +153,7 @@
                       <Grid Validation.ErrorTemplate="{StaticResource MaterialDesignValidationErrorTemplate}">
                         <ScrollViewer x:Name="PART_ContentHost"
                                       Focusable="false"
+                                      wpf:ScrollViewerAssist.IgnorePadding="True"
                                       HorizontalScrollBarVisibility="Hidden"
                                       VerticalScrollBarVisibility="Hidden" />
                         <wpf:SmartHint x:Name="Hint"
