@@ -1,7 +1,3 @@
-Here are similar files focusing on different aspects of improving performance in XAML-based applications:
-
----
-
 [Home](..\README.md) > How to Optimize UI Thread Performance?
 
 ---
