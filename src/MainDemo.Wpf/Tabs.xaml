@@ -732,7 +732,7 @@
             <DataTemplate>
               <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding CustomHeader}" />
-                <Button Command="{Binding CloseCommand}" CommandParameter="{Binding .}">
+                <Button Command="{Binding CloseCommand}" CommandParameter="{Binding}">
                   <Button.Template>
                     <ControlTemplate>
                       <materialDesign:PackIcon Kind="Close"
