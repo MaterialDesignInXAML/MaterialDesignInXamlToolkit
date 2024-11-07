@@ -6,9 +6,9 @@ namespace MaterialDesignThemes.Wpf;
 
 public class DecimalUpDown
 #if NET8_0_OR_GREATER
-    : UpDownBase2<decimal>
+    : UpDownBase<decimal>
 #else
-    : UpDownBase2<decimal, DecimalArithmetic>
+    : UpDownBase<decimal, DecimalArithmetic>
 #endif
 {
     static DecimalUpDown()

@@ -6,9 +6,9 @@ namespace MaterialDesignThemes.Wpf;
 
 public class NumericUpDown
 #if NET8_0_OR_GREATER
-    : UpDownBase2<int>
+    : UpDownBase<int>
 #else
-    : UpDownBase2<int, IntArithmetic>
+    : UpDownBase<int, IntArithmetic>
 #endif
 {
     static NumericUpDown()

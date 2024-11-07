@@ -1,4 +1,5 @@
-﻿namespace MaterialDesignThemes.UITests.WPF.NumericUpDowns;
+﻿namespace MaterialDesignThemes.UITests.WPF.UpDownControls;
+
 
 public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
 {

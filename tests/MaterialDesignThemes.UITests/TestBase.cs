@@ -4,7 +4,7 @@ using System.Windows.Media;
 [assembly: CollectionBehavior(DisableTestParallelization = true)]
 [assembly: GenerateHelpers(typeof(AutoSuggestBox))]
 [assembly: GenerateHelpers(typeof(ColorPicker))]
-//[assembly: GenerateHelpers(typeof(DecimalUpDown))]
+[assembly: GenerateHelpers(typeof(DecimalUpDown))]
 [assembly: GenerateHelpers(typeof(DialogHost))]
 [assembly: GenerateHelpers(typeof(DrawerHost))]
 [assembly: GenerateHelpers(typeof(NumericUpDown))]

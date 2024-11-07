@@ -5,14 +5,13 @@ namespace MaterialDesignThemes.Wpf;
 
 
 #if NET8_0_OR_GREATER
-
 using System.Numerics;
-public class UpDownBase2<T> : UpDownBase
+public class UpDownBase<T> : UpDownBase
     where T : INumber<T>, IMinMaxValue<T>
 {
-    private static readonly Type SelfType = typeof(UpDownBase2<T>);
+    private static readonly Type SelfType = typeof(UpDownBase<T>);
 
-    private static UpDownBase2<T> ToUpDownBase(DependencyObject dependencyObject) => (UpDownBase2<T>)dependencyObject;
+    private static UpDownBase<T> ToUpDownBase(DependencyObject dependencyObject) => (UpDownBase<T>)dependencyObject;
 
     private static T MinValue => T.MinValue;
     private static T MaxValue => T.MaxValue;
@@ -25,13 +24,13 @@ public class UpDownBase2<T> : UpDownBase
         => T.TryParse(text, formatProvider, out value);
     private static int Compare(T value1, T value2) => value1.CompareTo(value2);
 #else
-public class UpDownBase2<T, TArithmetic> : UpDownBase
+public class UpDownBase<T, TArithmetic> : UpDownBase
     where TArithmetic : IArithmetic<T>, new()
 {
-    private static readonly Type SelfType = typeof(UpDownBase2<T, TArithmetic>);
+    private static readonly Type SelfType = typeof(UpDownBase<T, TArithmetic>);
     private static readonly TArithmetic _arithmetic = new();
 
-    private static UpDownBase2<T, TArithmetic> ToUpDownBase(DependencyObject dependencyObject) => (UpDownBase2<T, TArithmetic>)dependencyObject;
+    private static UpDownBase<T, TArithmetic> ToUpDownBase(DependencyObject dependencyObject) => (UpDownBase<T, TArithmetic>)dependencyObject;
 
     private static T MinValue => _arithmetic.MinValue();
     private static T MaxValue => _arithmetic.MaxValue();
@@ -43,7 +42,6 @@ public class UpDownBase2<T, TArithmetic> : UpDownBase
     private static bool TryParse(string text, IFormatProvider? formatProvider, out T? value)
         => _arithmetic.TryParse(text, formatProvider, out value);
     private static int Compare(T value1, T value2) => _arithmetic.Compare(value1, value2);
-
 #endif
 
     #region DependencyProperties
