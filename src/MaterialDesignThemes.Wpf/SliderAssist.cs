@@ -23,11 +23,11 @@ public static class SliderAssist
             typeof(SliderAssist),
             new PropertyMetadata(false));
 
-    public static void SetOnlyShowFocusVisualWhileDragging(RangeBase element, bool value)
-        => element.SetValue(OnlyShowFocusVisualWhileDraggingProperty, value);
-
     public static bool GetOnlyShowFocusVisualWhileDragging(RangeBase element)
         => (bool)element.GetValue(OnlyShowFocusVisualWhileDraggingProperty);
+
+    public static void SetOnlyShowFocusVisualWhileDragging(RangeBase element, bool value)
+        => element.SetValue(OnlyShowFocusVisualWhileDraggingProperty, value);
 
     public static readonly DependencyProperty ToolTipFormatProperty
         = DependencyProperty.RegisterAttached(
@@ -36,51 +36,49 @@ public static class SliderAssist
             typeof(SliderAssist),
             new PropertyMetadata(null));
 
-    public static void SetToolTipFormat(RangeBase element, string value)
-        => element.SetValue(ToolTipFormatProperty, value);
-
     public static string GetToolTipFormat(RangeBase element)
         => (string)element.GetValue(ToolTipFormatProperty);
 
-    #region Issue3628
-    internal static readonly DependencyProperty FocusParentSliderOnClickProperty =
+    public static void SetToolTipFormat(RangeBase element, string value)
+        => element.SetValue(ToolTipFormatProperty, value);
+
+    // Fix for Issue3628
+    public static readonly DependencyProperty FocusSliderOnClickProperty =
             DependencyProperty.RegisterAttached(
-                "FocusParentSliderOnClick",
+                "FocusSliderOnClick",
                 typeof(bool),
                 typeof(SliderAssist),
-                new PropertyMetadata(false, OnFocusParentSliderOnClickChanged));
+                new PropertyMetadata(false, OnFocusSliderOnClickChanged));
 
-    internal static bool GetFocusParentSliderOnClick(DependencyObject obj) =>
-        (bool)obj.GetValue(FocusParentSliderOnClickProperty);
+    public static bool GetFocusSliderOnClick(RangeBase obj) =>
+        (bool)obj.GetValue(FocusSliderOnClickProperty);
 
-    internal static void SetFocusParentSliderOnClick(DependencyObject obj, bool value) =>
-        obj.SetValue(FocusParentSliderOnClickProperty, value);
+    public static void SetFocusSliderOnClick(RangeBase obj, bool value) =>
+        obj.SetValue(FocusSliderOnClickProperty, value);
 
-    private static void OnFocusParentSliderOnClickChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnFocusSliderOnClickChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is RepeatButton repeatButton)
+        if (d is Slider slider)
         {
             if ((bool)e.NewValue)
             {
-                repeatButton.AddHandler(UIElement.PreviewMouseLeftButtonDownEvent,
-                                        (MouseButtonEventHandler)RepeatButton_PreviewMouseLeftButtonDown,
+                slider.AddHandler(UIElement.PreviewMouseLeftButtonDownEvent,
+                                 (MouseButtonEventHandler)Slider_PreviewMouseLeftButtonDown,
                                         true);
             }
             else
             {
-                repeatButton.RemoveHandler(UIElement.PreviewMouseLeftButtonDownEvent,
-                                           (MouseButtonEventHandler)RepeatButton_PreviewMouseLeftButtonDown);
+                slider.RemoveHandler(UIElement.PreviewMouseLeftButtonDownEvent,
+                                    (MouseButtonEventHandler)Slider_PreviewMouseLeftButtonDown);
             }
         }
     }
 
-    private static void RepeatButton_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    private static void Slider_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
-        if (sender is DependencyObject repeatButton)
+        if (sender is Slider slider)
         {
-            var slider = TreeHelper.FindParent<Slider>(repeatButton);
-            slider?.Focus();
+            slider.Focus();
         }
     }
-    #endregion
 }
