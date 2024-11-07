@@ -596,6 +596,14 @@
         <Setter TargetName="Hint" Property="FloatingMargin" Value="4,0" />
         <Setter TargetName="Hint" Property="InitialVerticalOffset" Value="{Binding ElementName=Hint, Path=ActualHeight, Converter={StaticResource DivisionConverter}, ConverterParameter=2}" />
       </Trigger>
+      <MultiTrigger>
+        <MultiTrigger.Conditions>
+          <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
+          <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
+          <Condition SourceName="Hint" Property="IsHintInFloatingPosition" Value="True" />
+        </MultiTrigger.Conditions>
+        <Setter TargetName="Hint" Property="wpf:HintAssist.ApplyHintPaddingBrush" Value="True" />
+      </MultiTrigger>
 
       <!-- Floating hint -->
       <MultiTrigger>
