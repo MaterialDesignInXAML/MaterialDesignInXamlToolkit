@@ -6,6 +6,7 @@
     <UseWPF>true</UseWPF>
     <NoWarn>$(NoWarn);CA1707</NoWarn>
     <IncludePackageReferencesDuringMarkupCompilation>true</IncludePackageReferencesDuringMarkupCompilation>
+    <!--<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>-->
   </PropertyGroup>
 
   <ItemGroup>

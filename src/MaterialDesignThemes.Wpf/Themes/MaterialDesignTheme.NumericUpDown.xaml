@@ -1,106 +1,120 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
+                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:internal="clr-namespace:MaterialDesignThemes.Wpf.Internal"
-                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters">
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
 
-  <Style x:Key="MaterialDesignNumericUpDownButtonsStyle" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFlatButton}">
+  <Style x:Key="MaterialDesignNumericUpDownButtonsStyle"
+         TargetType="{x:Type ButtonBase}"
+         BasedOn="{StaticResource MaterialDesignFlatButton}">
     <Setter Property="Focusable" Value="False" />
-    <Setter Property="VerticalAlignment" Value="Center" />
-    <Setter Property="Padding" Value="0" />
     <Setter Property="Height" Value="18" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="VerticalAlignment" Value="Center" />
   </Style>
 
-  <wpf:PackIcon x:Key="ContentIncrease" Kind="Plus" x:Shared="False" />
-  <wpf:PackIcon x:Key="ContentDecrease" Kind="Minus" x:Shared="False" />
+  <wpf:PackIcon x:Key="ContentIncrease"
+                x:Shared="False"
+                Kind="Plus" />
+  <wpf:PackIcon x:Key="ContentDecrease"
+                x:Shared="False"
+                Kind="Minus" />
 
-  <Style x:Key="MaterialDesignNumericUpDown" TargetType="{x:Type wpf:NumericUpDown}">
+  <Style x:Key="MaterialDesignNumericUpDown" TargetType="{x:Type wpf:UpDownBase}">
     <Style.Resources>
-      <Style x:Key="NestedTextBoxStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}" />
-      <Style x:Key="NestedNumericUpDownButtonsStyle" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignNumericUpDownButtonsStyle}" />
+      <Style x:Key="NestedTextBoxStyle"
+             TargetType="{x:Type TextBox}"
+             BasedOn="{StaticResource MaterialDesignTextBox}" />
+      <Style x:Key="NestedNumericUpDownButtonsStyle"
+             TargetType="{x:Type ButtonBase}"
+             BasedOn="{StaticResource MaterialDesignNumericUpDownButtonsStyle}" />
     </Style.Resources>
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
+    <Setter Property="BorderThickness" Value="0,0,0,1" />
+    <Setter Property="DecreaseContent" Value="{StaticResource ContentDecrease}" />
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-    <Setter Property="Padding" Value="{x:Static wpf:Constants.TextBoxDefaultPadding}" />
-    <Setter Property="BorderThickness" Value="0,0,0,1" />
-    <Setter Property="MinWidth" Value="100" />
     <Setter Property="IncreaseContent" Value="{StaticResource ContentIncrease}" />
-    <Setter Property="DecreaseContent" Value="{StaticResource ContentDecrease}" />
+    <Setter Property="MinWidth" Value="100" />
+    <Setter Property="Padding" Value="{x:Static wpf:Constants.TextBoxDefaultPadding}" />
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate TargetType="{x:Type wpf:NumericUpDown}">
+        <ControlTemplate TargetType="{x:Type wpf:UpDownBase}">
           <ControlTemplate.Resources>
-            <converters:ThicknessCloneConverter x:Key="NumericUpDownPaddingConverter" AdditionalOffsetRight="55" CloneEdges="All" />
-            <converters:ThicknessCloneConverter x:Key="PartButtonMarginConverter" CloneEdges="Top,Right,Bottom" FixedLeft="0" />
+            <converters:ThicknessCloneConverter x:Key="NumericUpDownPaddingConverter"
+                                                AdditionalOffsetRight="55"
+                                                CloneEdges="All" />
+            <converters:ThicknessCloneConverter x:Key="PartButtonMarginConverter"
+                                                CloneEdges="Top,Right,Bottom"
+                                                FixedLeft="0" />
             <converters:NonDefaultThicknessConverter x:Key="OutlinedBorderInactiveThicknessConverter" DefaultThickness="{x:Static wpf:Constants.DefaultOutlinedBorderInactiveThickness}" />
             <converters:NonDefaultThicknessConverter x:Key="OutlinedBorderActiveThicknessConverter" DefaultThickness="{x:Static wpf:Constants.DefaultOutlinedBorderActiveThickness}" />
             <converters:MathConverter x:Key="MathMultiplyConverter" Operation="Multiply" />
           </ControlTemplate.Resources>
           <Grid>
             <TextBox x:Name="PART_TextBox"
-                     BorderThickness="{TemplateBinding BorderThickness}"
                      Padding="{TemplateBinding Padding, Converter={StaticResource NumericUpDownPaddingConverter}}"
                      VerticalAlignment="Stretch"
                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                     internal:InternalTextFieldAssist.IsMouseOver="{TemplateBinding IsMouseOver}"
+                     wpf:HintAssist.Background="{TemplateBinding wpf:HintAssist.Background}"
                      wpf:HintAssist.FloatingOffset="{TemplateBinding wpf:HintAssist.FloatingOffset}"
                      wpf:HintAssist.FloatingScale="{TemplateBinding wpf:HintAssist.FloatingScale}"
                      wpf:HintAssist.FontFamily="{TemplateBinding wpf:HintAssist.FontFamily}"
                      wpf:HintAssist.Foreground="{TemplateBinding wpf:HintAssist.Foreground}"
-                     wpf:HintAssist.Background="{TemplateBinding wpf:HintAssist.Background}"
                      wpf:HintAssist.HelperTextStyle="{TemplateBinding wpf:HintAssist.HelperTextStyle}"
                      wpf:HintAssist.Hint="{TemplateBinding wpf:HintAssist.Hint}"
                      wpf:HintAssist.HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                      wpf:HintAssist.IsFloating="{TemplateBinding wpf:HintAssist.IsFloating}"
-                     wpf:TextFieldAssist.HasLeadingIcon="{TemplateBinding wpf:TextFieldAssist.HasLeadingIcon}"
-                     wpf:TextFieldAssist.LeadingIcon="{TemplateBinding wpf:TextFieldAssist.LeadingIcon}"
-                     wpf:TextFieldAssist.LeadingIconSize="{TemplateBinding wpf:TextFieldAssist.LeadingIconSize}"
-                     wpf:TextFieldAssist.HasTrailingIcon="{TemplateBinding wpf:TextFieldAssist.HasTrailingIcon}"
-                     wpf:TextFieldAssist.TrailingIcon="{TemplateBinding wpf:TextFieldAssist.TrailingIcon}"
-                     wpf:TextFieldAssist.TrailingIconSize="{TemplateBinding wpf:TextFieldAssist.TrailingIconSize}"
                      wpf:TextFieldAssist.DecorationVisibility="{TemplateBinding wpf:TextFieldAssist.DecorationVisibility}"
                      wpf:TextFieldAssist.HasClearButton="{TemplateBinding wpf:TextFieldAssist.HasClearButton}"
                      wpf:TextFieldAssist.HasFilledTextField="{TemplateBinding wpf:TextFieldAssist.HasFilledTextField}"
+                     wpf:TextFieldAssist.HasLeadingIcon="{TemplateBinding wpf:TextFieldAssist.HasLeadingIcon}"
                      wpf:TextFieldAssist.HasOutlinedTextField="{TemplateBinding wpf:TextFieldAssist.HasOutlinedTextField}"
+                     wpf:TextFieldAssist.HasTrailingIcon="{TemplateBinding wpf:TextFieldAssist.HasTrailingIcon}"
+                     wpf:TextFieldAssist.IconVerticalAlignment="{TemplateBinding wpf:TextFieldAssist.IconVerticalAlignment}"
+                     wpf:TextFieldAssist.LeadingIcon="{TemplateBinding wpf:TextFieldAssist.LeadingIcon}"
+                     wpf:TextFieldAssist.LeadingIconSize="{TemplateBinding wpf:TextFieldAssist.LeadingIconSize}"
                      wpf:TextFieldAssist.NewSpecHighlightingEnabled="{TemplateBinding wpf:TextFieldAssist.NewSpecHighlightingEnabled}"
                      wpf:TextFieldAssist.OutlinedBorderActiveThickness="{TemplateBinding wpf:TextFieldAssist.OutlinedBorderActiveThickness}"
                      wpf:TextFieldAssist.PrefixText="{TemplateBinding wpf:TextFieldAssist.PrefixText}"
-                     wpf:TextFieldAssist.PrefixTextVisibility="{TemplateBinding wpf:TextFieldAssist.PrefixTextVisibility}"
                      wpf:TextFieldAssist.PrefixTextHintBehavior="{TemplateBinding wpf:TextFieldAssist.PrefixTextHintBehavior}"
+                     wpf:TextFieldAssist.PrefixTextVisibility="{TemplateBinding wpf:TextFieldAssist.PrefixTextVisibility}"
                      wpf:TextFieldAssist.RippleOnFocusEnabled="{TemplateBinding wpf:TextFieldAssist.RippleOnFocusEnabled}"
                      wpf:TextFieldAssist.SuffixText="{TemplateBinding wpf:TextFieldAssist.SuffixText}"
-                     wpf:TextFieldAssist.SuffixTextVisibility="{TemplateBinding wpf:TextFieldAssist.SuffixTextVisibility}"
                      wpf:TextFieldAssist.SuffixTextHintBehavior="{TemplateBinding wpf:TextFieldAssist.SuffixTextHintBehavior}"
-                     wpf:TextFieldAssist.IconVerticalAlignment="{TemplateBinding wpf:TextFieldAssist.IconVerticalAlignment}"
-                     wpf:TextFieldAssist.TextBoxViewVerticalAlignment="{TemplateBinding wpf:TextFieldAssist.TextBoxViewVerticalAlignment}"
+                     wpf:TextFieldAssist.SuffixTextVisibility="{TemplateBinding wpf:TextFieldAssist.SuffixTextVisibility}"
                      wpf:TextFieldAssist.TextBoxViewMargin="{TemplateBinding wpf:TextFieldAssist.TextBoxViewMargin}"
+                     wpf:TextFieldAssist.TextBoxViewVerticalAlignment="{TemplateBinding wpf:TextFieldAssist.TextBoxViewVerticalAlignment}"
                      wpf:TextFieldAssist.TextFieldCornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}"
+                     wpf:TextFieldAssist.TrailingIcon="{TemplateBinding wpf:TextFieldAssist.TrailingIcon}"
+                     wpf:TextFieldAssist.TrailingIconSize="{TemplateBinding wpf:TextFieldAssist.TrailingIconSize}"
                      wpf:TextFieldAssist.UnderlineBrush="{TemplateBinding wpf:TextFieldAssist.UnderlineBrush}"
                      wpf:TextFieldAssist.UnderlineCornerRadius="{TemplateBinding wpf:TextFieldAssist.UnderlineCornerRadius}"
-                     internal:InternalTextFieldAssist.IsMouseOver="{TemplateBinding IsMouseOver}"
                      BorderBrush="{TemplateBinding BorderBrush}"
+                     BorderThickness="{TemplateBinding BorderThickness}"
                      Focusable="{TemplateBinding Focusable}"
                      Style="{DynamicResource NestedTextBoxStyle}" />
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
               <RepeatButton x:Name="PART_DecreaseButton"
                             Margin="{TemplateBinding Padding, Converter={StaticResource PartButtonMarginConverter}}"
-                            Style="{DynamicResource NestedNumericUpDownButtonsStyle}"
+                            Content="{TemplateBinding DecreaseContent}"
                             Foreground="{Binding ElementName=PART_TextBox, Path=Foreground}"
                             Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                            Content="{TemplateBinding DecreaseContent}" />
+                            Style="{DynamicResource NestedNumericUpDownButtonsStyle}" />
               <RepeatButton x:Name="PART_IncreaseButton"
                             Margin="{TemplateBinding Padding, Converter={StaticResource PartButtonMarginConverter}}"
-                            Style="{DynamicResource NestedNumericUpDownButtonsStyle}"
+                            Content="{TemplateBinding IncreaseContent}"
                             Foreground="{Binding ElementName=PART_TextBox, Path=Foreground}"
                             Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                            Content="{TemplateBinding IncreaseContent}" />
+                            Style="{DynamicResource NestedNumericUpDownButtonsStyle}" />
             </StackPanel>
           </Grid>
           <ControlTemplate.Triggers>
@@ -140,29 +154,42 @@
 
     <Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}" />
     <Setter Property="VerticalContentAlignment" Value="Stretch" />
-    <Setter Property="wpf:HintAssist.HelperTextStyle" Value="{StaticResource MaterialDesignHelperTextBlock}" />
     <Setter Property="internal:ClearText.HandlesClearCommand" Value="True" />
     <Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+    <Setter Property="wpf:HintAssist.HelperTextStyle" Value="{StaticResource MaterialDesignHelperTextBlock}" />
     <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMargin}" />
     <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
   </Style>
 
-  <Style x:Key="MaterialDesignFloatingHintNumericUpDown"
-         TargetType="{x:Type wpf:NumericUpDown}"
+  
+  <Style x:Key="MaterialDesignFloatingHintUpDownBase"
+         TargetType="{x:Type wpf:UpDownBase}"
          BasedOn="{StaticResource MaterialDesignNumericUpDown}">
     <Style.Resources>
-      <Style x:Key="NestedTextBoxStyle" TargetType="TextBox"
+      <Style x:Key="NestedTextBoxStyle"
+             TargetType="TextBox"
              BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}" />
     </Style.Resources>
-    <Setter Property="wpf:HintAssist.IsFloating" Value="True" />
     <Setter Property="Padding" Value="{x:Static wpf:Constants.FloatingTextBoxDefaultPadding}" />
+    <Setter Property="wpf:HintAssist.IsFloating" Value="True" />
   </Style>
 
-  <Style x:Key="MaterialDesignFilledNumericUpDown"
+  <Style x:Key="MaterialDesignFloatingHintNumericUpDown"
          TargetType="{x:Type wpf:NumericUpDown}"
+         BasedOn="{StaticResource MaterialDesignFloatingHintUpDownBase}" />
+
+  <Style x:Key="MaterialDesignFloatingHintDecimalUpDown"
+       TargetType="{x:Type wpf:DecimalUpDown}"
+       BasedOn="{StaticResource MaterialDesignFloatingHintUpDownBase}" />
+
+
+  <Style x:Key="MaterialDesignFilledUpDownBase"
+         TargetType="{x:Type wpf:UpDownBase}"
          BasedOn="{StaticResource MaterialDesignFloatingHintNumericUpDown}">
     <Style.Resources>
-      <Style x:Key="NestedTextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource MaterialDesignFilledTextBox}" />
+      <Style x:Key="NestedTextBoxStyle"
+             TargetType="TextBox"
+             BasedOn="{StaticResource MaterialDesignFilledTextBox}" />
     </Style.Resources>
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.FilledBackground}" />
     <Setter Property="Padding" Value="{x:Static wpf:Constants.FilledTextBoxDefaultPadding}" />
@@ -171,11 +198,22 @@
     <Setter Property="wpf:TextFieldAssist.UnderlineCornerRadius" Value="0" />
   </Style>
 
-  <Style x:Key="MaterialDesignOutlinedNumericUpDown"
+  <Style x:Key="MaterialDesignFilledNumericUpDown"
          TargetType="{x:Type wpf:NumericUpDown}"
+         BasedOn="{StaticResource MaterialDesignFilledUpDownBase}" />
+
+  <Style x:Key="MaterialDesignFilledDecimalUpDown"
+         TargetType="{x:Type wpf:DecimalUpDown}"
+         BasedOn="{StaticResource MaterialDesignFilledUpDownBase}" />
+
+  
+  <Style x:Key="MaterialDesignOutlinedUpDownBase"
+         TargetType="{x:Type wpf:UpDownBase}"
          BasedOn="{StaticResource MaterialDesignFloatingHintNumericUpDown}">
     <Style.Resources>
-      <Style x:Key="NestedTextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}" />
+      <Style x:Key="NestedTextBoxStyle"
+             TargetType="TextBox"
+             BasedOn="{StaticResource MaterialDesignOutlinedTextBox}" />
     </Style.Resources>
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.OutlineBorder}" />
     <Setter Property="BorderThickness" Value="{x:Static wpf:Constants.DefaultOutlinedBorderInactiveThickness}" />
@@ -184,4 +222,11 @@
     <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4" />
   </Style>
 
+  <Style x:Key="MaterialDesignOutlinedNumericUpDown"
+         TargetType="{x:Type wpf:NumericUpDown}"
+         BasedOn="{StaticResource MaterialDesignOutlinedUpDownBase}" />
+
+  <Style x:Key="MaterialDesignOutlinedDecimalUpDown"
+         TargetType="{x:Type wpf:DecimalUpDown}"
+         BasedOn="{StaticResource MaterialDesignOutlinedUpDownBase}" />
 </ResourceDictionary>
