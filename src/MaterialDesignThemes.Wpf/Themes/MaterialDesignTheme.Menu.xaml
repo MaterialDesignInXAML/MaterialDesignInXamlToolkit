@@ -188,7 +188,10 @@
                 <Border Background="{TemplateBinding Background}" CornerRadius="2">
 
                   <Border Background="Transparent">
-                    <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
+                    <ScrollViewer x:Name="SubMenuScrollViewer"
+                                  Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}"
+                                  wpf:ScrollViewerAssist.IgnorePadding="{Binding Path=(wpf:ScrollViewerAssist.IgnorePadding), RelativeSource={RelativeSource TemplatedParent}}"
+                                  wpf:ScrollViewerAssist.PaddingMode="{Binding Path=(wpf:ScrollViewerAssist.PaddingMode), RelativeSource={RelativeSource TemplatedParent}}">
                       <Grid Margin="0,16" RenderOptions.ClearTypeHint="Enabled">
                         <Canvas Width="0"
                                 Height="0"
@@ -324,7 +327,10 @@
                       Effect="{DynamicResource MaterialDesignShadowDepth1}" />
 
               <Border Margin="3" Background="Transparent">
-                <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
+                <ScrollViewer x:Name="SubMenuScrollViewer"
+                              Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}"
+                              wpf:ScrollViewerAssist.IgnorePadding="{Binding Path=(wpf:ScrollViewerAssist.IgnorePadding), RelativeSource={RelativeSource TemplatedParent}}"
+                              wpf:ScrollViewerAssist.PaddingMode="{Binding Path=(wpf:ScrollViewerAssist.PaddingMode), RelativeSource={RelativeSource TemplatedParent}}">
                   <Grid Margin="0,16" RenderOptions.ClearTypeHint="Enabled">
                     <ItemsPresenter x:Name="ItemsPresenter"
                                     Grid.IsSharedSizeScope="True"

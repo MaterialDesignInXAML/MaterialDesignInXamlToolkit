@@ -14,66 +14,46 @@ public static class ScrollViewerAssist
     }
 
     internal static void SetSyncHorizontalOffset(DependencyObject element, double value)
-    {
-        element.SetValue(HorizontalOffsetProperty, value);
-    }
+        => element.SetValue(HorizontalOffsetProperty, value);
 
     internal static double GetSyncHorizontalOffset(DependencyObject element)
-    {
-        return (double)element.GetValue(HorizontalOffsetProperty);
-    }
+        => (double)element.GetValue(HorizontalOffsetProperty);
 
     public static readonly DependencyProperty IsAutoHideEnabledProperty = DependencyProperty.RegisterAttached(
         "IsAutoHideEnabled", typeof(bool), typeof(ScrollViewerAssist), new PropertyMetadata(default(bool)));
 
     public static void SetIsAutoHideEnabled(DependencyObject element, bool value)
-    {
-        element.SetValue(IsAutoHideEnabledProperty, value);
-    }
+        => element.SetValue(IsAutoHideEnabledProperty, value);
 
     public static bool GetIsAutoHideEnabled(DependencyObject element)
-    {
-        return (bool)element.GetValue(IsAutoHideEnabledProperty);
-    }
+        => (bool)element.GetValue(IsAutoHideEnabledProperty);
 
     public static readonly DependencyProperty CornerRectangleVisibilityProperty = DependencyProperty.RegisterAttached(
         "CornerRectangleVisibility", typeof(Visibility), typeof(ScrollViewerAssist), new PropertyMetadata(default(Visibility)));
 
     public static void SetCornerRectangleVisibility(DependencyObject element, Visibility value)
-    {
-        element.SetValue(CornerRectangleVisibilityProperty, value);
-    }
+        => element.SetValue(CornerRectangleVisibilityProperty, value);
 
     public static Visibility GetCornerRectangleVisibility(DependencyObject element)
-    {
-        return (Visibility)element.GetValue(CornerRectangleVisibilityProperty);
-    }
+        => (Visibility)element.GetValue(CornerRectangleVisibilityProperty);
 
     public static readonly DependencyProperty ShowSeparatorsProperty = DependencyProperty.RegisterAttached(
         "ShowSeparators", typeof(bool), typeof(ScrollViewerAssist), new PropertyMetadata(default(bool)));
 
     public static void SetShowSeparators(DependencyObject element, bool value)
-    {
-        element.SetValue(ShowSeparatorsProperty, value);
-    }
+        => element.SetValue(ShowSeparatorsProperty, value);
 
     public static bool GetShowSeparators(DependencyObject element)
-    {
-        return (bool)element.GetValue(ShowSeparatorsProperty);
-    }
+        => (bool)element.GetValue(ShowSeparatorsProperty);
 
     public static readonly DependencyProperty PaddingModeProperty = DependencyProperty.RegisterAttached(
         "PaddingMode", typeof(PaddingMode), typeof(ScrollViewerAssist), new PropertyMetadata(PaddingMode.Content));
 
     public static void SetPaddingMode(DependencyObject element, PaddingMode value)
-    {
-        element.SetValue(PaddingModeProperty, value);
-    }
+        => element.SetValue(PaddingModeProperty, value);
 
     public static PaddingMode GetPaddingMode(DependencyObject element)
-    {
-        return (PaddingMode)element.GetValue(PaddingModeProperty);
-    }
+        => (PaddingMode)element.GetValue(PaddingModeProperty);
 
     public static readonly DependencyProperty IgnorePaddingProperty = DependencyProperty.RegisterAttached(
     "IgnorePadding", typeof(bool), typeof(ScrollViewerAssist), new PropertyMetadata(true));
