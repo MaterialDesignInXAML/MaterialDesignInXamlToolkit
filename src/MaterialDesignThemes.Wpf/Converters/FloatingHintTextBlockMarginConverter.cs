@@ -18,7 +18,10 @@ internal class FloatingHintTextBlockMarginConverter : IMultiValueConverter
                 double scale,
                 double lower,
                 double upper
-            ]) return Transform.Identity;        
+            ])
+        {
+            return Transform.Identity;
+        }
 
         double scaleMultiplier = upper + (lower - upper) * scale;
 

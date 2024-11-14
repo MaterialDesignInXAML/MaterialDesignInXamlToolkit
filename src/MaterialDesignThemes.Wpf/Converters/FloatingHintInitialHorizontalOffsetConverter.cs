@@ -8,7 +8,8 @@ public class FloatingHintInitialHorizontalOffsetConverter : IMultiValueConverter
     public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
     {
         if (values is not
-            [   double prefixWidth,
+            [
+                double prefixWidth,
                 Thickness prefixMargin,
                 double suffixWidth,
                 Thickness suffixMargin,
@@ -17,7 +18,10 @@ public class FloatingHintInitialHorizontalOffsetConverter : IMultiValueConverter
                 PrefixSuffixHintBehavior prefixHintBehavior,
                 PrefixSuffixHintBehavior suffixHintBehavior,
                 HorizontalAlignment horizontalContentAlignment
-            ]) return 0;
+            ])
+        {
+            return 0;
+        }
 
         return horizontalContentAlignment switch
         {

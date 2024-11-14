@@ -20,7 +20,10 @@ public class FloatingHintMarginConverter : IMultiValueConverter
                 Thickness suffixMargin,
                 PrefixSuffixVisibility prefixVisibility,
                 PrefixSuffixVisibility suffixVisibility
-            ]) return EmptyThickness;
+            ])
+        {
+            return EmptyThickness;
+        }
 
         double prefixTotalWidth = prefixWidth > 0 ? prefixWidth + prefixMargin.Right : 0;
         double suffixTotalWidth = suffixWidth > 0 ? suffixWidth + suffixMargin.Left : 0;
