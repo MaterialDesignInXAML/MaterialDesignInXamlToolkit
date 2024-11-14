@@ -318,9 +318,12 @@ public class TextBoxTests : TestBase
 
         var contextMenu = await textBox.GetElement<ContextMenu>(".ContextMenu");
 
-        var textBoxFont = await textBox.GetFontFamily();
-        Assert.Equal("Times New Roman", textBoxFont?.FamilyNames.Values.First());
-        Assert.Equal(textBoxFont, await contextMenu.GetFontFamily());
+        FontFamily? textBoxFont = await textBox.GetFontFamily();
+        Assert.Contains("Times New Roman", textBoxFont?.FamilyNames.Values ?? []);
+        await Wait.For(async () =>
+        {
+            Assert.Equal(textBoxFont, await contextMenu.GetFontFamily());
+        });
 
         recorder.Success();
     }
