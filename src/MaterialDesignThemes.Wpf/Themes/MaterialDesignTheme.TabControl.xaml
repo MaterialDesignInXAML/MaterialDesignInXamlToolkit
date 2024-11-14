@@ -42,7 +42,8 @@
                            Focusable="False">
               <ScrollViewer wpf:ScrollViewerAssist.BubbleVerticalScroll="True"
                             wpf:ScrollViewerAssist.SupportHorizontalScroll="True"
-                            wpf:ScrollViewerAssist.IgnorePadding="True"
+                            wpf:ScrollViewerAssist.IgnorePadding="{Binding Path=(wpf:ScrollViewerAssist.IgnorePadding), RelativeSource={RelativeSource TemplatedParent}}"
+                            wpf:ScrollViewerAssist.PaddingMode="{Binding Path=(wpf:ScrollViewerAssist.PaddingMode), RelativeSource={RelativeSource TemplatedParent}}"
                             HorizontalScrollBarVisibility="Hidden"
                             VerticalScrollBarVisibility="Hidden">
                 <StackPanel>
