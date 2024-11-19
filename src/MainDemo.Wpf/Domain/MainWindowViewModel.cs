@@ -475,7 +475,9 @@ public class MainWindowViewModel : ViewModelBase
         {
             DocumentationLink.DemoPageLink<NumericUpDown>(),
             DocumentationLink.StyleLink(nameof(NumericUpDown)),
-            DocumentationLink.ApiLink<NumericUpDown>()
+            DocumentationLink.ApiLink<NumericUpDown>(),
+            DocumentationLink.ApiLink<DecimalUpDown>(),
+            DocumentationLink.ApiLink<UpDownBase>()
         });
     }
 

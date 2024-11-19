@@ -229,7 +229,11 @@
                 </Grid>
               </Grid>
               <ControlTemplate.Triggers>
-                <Trigger Property="IsHintInFloatingPosition" Value="True">
+                <MultiTrigger>
+                  <MultiTrigger.Conditions>
+                    <Condition Property="IsHintInFloatingPosition" Value="True" />
+                    <Condition Property="wpf:HintAssist.ApplyHintPaddingBrush" Value="True" />
+                  </MultiTrigger.Conditions>
                   <Setter TargetName="HintBackgroundGrid" Property="Background">
                     <Setter.Value>
                       <MultiBinding Converter="{StaticResource FirstNonNullConverter}">
@@ -238,7 +242,7 @@
                       </MultiBinding>
                     </Setter.Value>
                   </Setter>
-                </Trigger>
+                </MultiTrigger>
               </ControlTemplate.Triggers>
             </ControlTemplate>
           </Setter.Value>
