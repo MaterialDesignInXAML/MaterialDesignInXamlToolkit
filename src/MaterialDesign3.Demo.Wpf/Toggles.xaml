@@ -118,6 +118,12 @@
 
       <smtx:XamlDisplay Margin="0,5,8,8"
                         VerticalAlignment="Center"
+                        UniqueKey="buttons_42221">
+        <RadioButton Content="Custom RadioButton Size" materialDesign:RadioButtonAssist.RadioButtonSize="40" Style="{StaticResource MaterialDesignRadioButton}" />
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay Margin="0,5,8,8"
+                        VerticalAlignment="Center"
                         UniqueKey="buttons_42">
         <RadioButton Content="Disabled"
                      IsEnabled="False"
