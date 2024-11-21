@@ -214,6 +214,13 @@
                      IsChecked="True"
                      Style="{StaticResource MaterialDesignSecondaryRadioButton}" />
       </smtx:XamlDisplay>
+
+
+      <smtx:XamlDisplay Margin="0,5,8,8"
+                        VerticalAlignment="Center"
+                        UniqueKey="toggle_buttons_radio_button_large">
+        <RadioButton Content="Custom RadioButton Size" materialDesign:RadioButtonAssist.RadioButtonSize="40" />
+      </smtx:XamlDisplay>
     </WrapPanel>
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
@@ -270,31 +277,6 @@
       </smtx:XamlDisplay>
     </WrapPanel>
 
-    <smtx:XamlDisplay Margin="0,0,0,8" UniqueKey="checkboxes_1">
-      <StackPanel>
-        <CheckBox Content="Checked" IsChecked="True" />
-
-        <CheckBox Content="Unchecked" IsChecked="False" />
-
-        <CheckBox Content="Indeterminate" IsChecked="{x:Null}" />
-
-        <CheckBox Content="Disabled Checked"
-                  IsChecked="True"
-                  IsEnabled="False" />
-        <CheckBox Content="Disabled Checked"
-                  IsChecked="True"
-                  IsEnabled="False" />
-
-        <CheckBox Content="Disabled Unchecked"
-                  IsChecked="False"
-                  IsEnabled="False" />
-
-        <CheckBox Content="Disabled Indeterminate"
-                  IsChecked="{x:Null}"
-                  IsEnabled="False" />
-      </StackPanel>
-    </smtx:XamlDisplay>
-
     <smtx:XamlDisplay UniqueKey="checkboxes_2">
       <StackPanel>
         <CheckBox Margin="0,0,0,8"
@@ -306,8 +288,6 @@
                   IsChecked="True" />
       </StackPanel>
     </smtx:XamlDisplay>
-
-
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
     <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Switch" />
@@ -471,64 +451,6 @@
         <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatUnderline}" />
       </ListBox>
     </smtx:XamlDisplay>
-
-
-    <Border Grid.Row="6"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            Margin="0,24,0,0"
-            BorderBrush="{DynamicResource MaterialDesignDivider}"
-            BorderThickness="0,1,0,0" />
-
-    <TextBlock Grid.Row="7"
-               Grid.Column="0"
-               Margin="0,24"
-               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-               Text="Checkboxes" />
-
-    <smtx:XamlDisplay Grid.Row="8"
-                      Grid.Column="0"
-                      HorizontalAlignment="Left"
-                      UniqueKey="checkboxes_3">
-      <StackPanel Margin="8,0">
-        <CheckBox Content="Checked" IsChecked="True" />
-
-        <CheckBox Content="Unchecked" IsChecked="False" />
-
-        <CheckBox Content="Indeterminate" IsChecked="{x:Null}" />
-
-        <CheckBox Content="Disabled Checked"
-                  IsChecked="True"
-                  IsEnabled="False" />
-        <CheckBox Content="Disabled Checked"
-                  IsChecked="True"
-                  IsEnabled="False" />
-
-        <CheckBox Content="Disabled Unchecked"
-                  IsChecked="False"
-                  IsEnabled="False" />
-
-        <CheckBox Content="Disabled Indeterminate"
-                  IsChecked="{x:Null}"
-                  IsEnabled="False" />
-      </StackPanel>
-    </smtx:XamlDisplay>
-
-    <smtx:XamlDisplay Grid.Row="8"
-                      Grid.Column="1"
-                      HorizontalAlignment="Left"
-                      VerticalAlignment="Top"
-                      UniqueKey="checkboxes_4">
-      <StackPanel Margin="8,0">
-        <CheckBox materialDesign:CheckBoxAssist.CheckBoxSize="30"
-                  Content="Custom Size"
-                  IsChecked="True" />
-        <CheckBox materialDesign:RippleAssist.IsDisabled="True"
-                  Content="Ripple disabled"
-                  IsChecked="True" />
-      </StackPanel>
-    </smtx:XamlDisplay>
-
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
     <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Tabs" />
