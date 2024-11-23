@@ -29,7 +29,7 @@ public class ShadowOpacityMaskConverter : IMultiValueConverter
 
         double blurRadius = dropShadow.BlurRadius;
 
-        Rect rect = new Rect(
+        var rect = new Rect(
                 -blurRadius,
                 -blurRadius,
                 width + blurRadius + blurRadius,
