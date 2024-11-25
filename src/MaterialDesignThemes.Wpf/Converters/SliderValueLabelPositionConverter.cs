@@ -16,7 +16,7 @@ internal class SliderValueLabelPositionConverter : IValueConverter
             {
                 Orientation.Horizontal => (-width * 0.5) + halfGripWidth,
                 Orientation.Vertical => -width - margin,
-                _ => throw new ArgumentOutOfRangeException()
+                _ => throw new ArgumentOutOfRangeException(nameof(parameter))
             };
         }
 

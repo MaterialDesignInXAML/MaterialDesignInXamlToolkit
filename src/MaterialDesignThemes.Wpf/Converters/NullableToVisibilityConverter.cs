@@ -9,12 +9,8 @@ public class NullableToVisibilityConverter : IValueConverter
     public Visibility NotNullValue { get; set; } = Visibility.Visible;
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        return value == null ? NullValue : NotNullValue;
-    }
+        => value == null ? NullValue : NotNullValue;
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        return Binding.DoNothing;
-    }
+        => Binding.DoNothing;
 }

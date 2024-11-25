@@ -13,7 +13,5 @@ public class NullableDateTimeToCurrentDateConverter : IValueConverter
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        return value;
-    }
+        => value;
 }

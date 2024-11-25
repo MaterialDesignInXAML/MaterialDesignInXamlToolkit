@@ -17,14 +17,12 @@ public class RangeLengthConverter : IMultiValueConverter
 
             return Binding.DoNothing;
 
-        var percent = (value - min) / (max - min);
-        var length = percent * containerLength;
+        double percent = (value - min) / (max - min);
+        double length = percent * containerLength;
 
         return length > containerLength ? containerLength : length;
     }
 
     public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
-    {
-        throw new NotImplementedException();
-    }
+        => throw new NotImplementedException();
 }
