@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.ObjectModel;
+using MaterialDesignDemo.Shared.Domain;
 using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesign3Demo.Domain;
