@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using MaterialDesignDemo.Shared.Domain;
 using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesign3Demo.Domain;

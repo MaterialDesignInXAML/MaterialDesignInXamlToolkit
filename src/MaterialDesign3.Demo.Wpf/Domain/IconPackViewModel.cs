@@ -1,6 +1,7 @@
 ﻿using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using BluwolfIcons;
+using MaterialDesignDemo.Shared.Domain;
 using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
 
