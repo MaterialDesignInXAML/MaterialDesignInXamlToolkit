@@ -12,13 +12,6 @@
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Thumb.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
-  <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-  <converters:NotZeroToVisibilityConverter x:Key="NotZeroToVisibilityConverter" />
-  <converters:TopThicknessConverter x:Key="TopThicknessConverter" />
-  <converters:RemoveAlphaBrushConverter x:Key="RemoveAlphaBrushConverter" />
-  <converters:GridLinesVisibilityBorderToThicknessConverter x:Key="GridLinesVisibilityBorderToThicknessConverter" />
-  <converters:StringLengthValueConverter x:Key="StringLengthValueConverter" />
-
   <Style x:Key="MaterialDesignDataGridCheckBoxColumnStyle"
          TargetType="{x:Type CheckBox}"
          BasedOn="{StaticResource MaterialDesignCheckBox}">
@@ -172,7 +165,7 @@
                             Grid.Column="0"
                             MaxWidth="{TemplateBinding ActualWidth}"
                             Background="{TemplateBinding wpf:ValidationAssist.Background}"
-                            Visibility="{TemplateBinding Validation.HasError, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            Visibility="{TemplateBinding Validation.HasError, Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}">
                       <ItemsControl ItemsSource="{TemplateBinding Validation.Errors}">
                         <ItemsControl.ItemTemplate>
                           <DataTemplate DataType="ValidationError">
@@ -191,10 +184,10 @@
                                Grid.Column="1"
                                HorizontalAlignment="Right"
                                Opacity=".56"
-                               Visibility="{TemplateBinding MaxLength, Converter={StaticResource NotZeroToVisibilityConverter}}">
+                               Visibility="{TemplateBinding MaxLength, Converter={x:Static converters:NotZeroToVisibilityConverter.Instance}}">
                       <TextBlock.Text>
                         <MultiBinding StringFormat="{}{0}/{1}">
-                          <Binding Converter="{StaticResource StringLengthValueConverter}"
+                          <Binding Converter="{x:Static converters:StringLengthValueConverter.Instance}"
                                    Path="Text"
                                    RelativeSource="{RelativeSource TemplatedParent}" />
                           <Binding Path="MaxLength" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -219,7 +212,7 @@
 
   <Style x:Key="{ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}" TargetType="{x:Type Button}">
     <Setter Property="BorderBrush" Value="{Binding HorizontalGridLinesBrush, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
-    <Setter Property="BorderThickness" Value="{Binding GridLinesVisibility, RelativeSource={RelativeSource AncestorType=DataGrid}, Converter={StaticResource GridLinesVisibilityBorderToThicknessConverter}}" />
+    <Setter Property="BorderThickness" Value="{Binding GridLinesVisibility, RelativeSource={RelativeSource AncestorType=DataGrid}, Converter={x:Static converters:GridLinesVisibilityBorderToThicknessConverter.Instance}}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type Button}">
@@ -291,7 +284,7 @@
 
   <Style x:Key="MaterialDesignDataGridColumnHeader" TargetType="{x:Type DataGridColumnHeader}">
     <Setter Property="BorderBrush" Value="{Binding HorizontalGridLinesBrush, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
-    <Setter Property="BorderThickness" Value="{Binding GridLinesVisibility, RelativeSource={RelativeSource AncestorType=DataGrid}, Converter={StaticResource GridLinesVisibilityBorderToThicknessConverter}}" />
+    <Setter Property="BorderThickness" Value="{Binding GridLinesVisibility, RelativeSource={RelativeSource AncestorType=DataGrid}, Converter={x:Static converters:GridLinesVisibilityBorderToThicknessConverter.Instance}}" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Header.Foreground}" />
     <Setter Property="Padding" Value="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:DataGridAssist.ColumnHeaderPadding)}" />
     <Setter Property="Template">
@@ -325,7 +318,7 @@
                                                 IsTabStop="False"
                                                 ListSortDirection="{TemplateBinding SortDirection}"
                                                 Opacity="0.45"
-                                                Visibility="{Binding CanUserSortColumns, RelativeSource={RelativeSource AncestorType=DataGrid}, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                                Visibility="{Binding CanUserSortColumns, RelativeSource={RelativeSource AncestorType=DataGrid}, Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}" />
                 <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                   RecognizesAccessKey="True"
                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
@@ -374,7 +367,7 @@
 
   <Style x:Key="MaterialDesignDataGridRowHeader" TargetType="{x:Type DataGridRowHeader}">
     <Setter Property="BorderBrush" Value="{Binding HorizontalGridLinesBrush, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
-    <Setter Property="BorderThickness" Value="{Binding GridLinesVisibility, RelativeSource={RelativeSource AncestorType=DataGrid}, Converter={StaticResource GridLinesVisibilityBorderToThicknessConverter}}" />
+    <Setter Property="BorderThickness" Value="{Binding GridLinesVisibility, RelativeSource={RelativeSource AncestorType=DataGrid}, Converter={x:Static converters:GridLinesVisibilityBorderToThicknessConverter.Instance}}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type DataGridRowHeader}">
@@ -389,7 +382,7 @@
                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                 <Control SnapsToDevicePixels="false"
                          Template="{Binding ValidationErrorTemplate, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"
-                         Visibility="{Binding (Validation.HasError), Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" />
+                         Visibility="{Binding (Validation.HasError), Converter={x:Static converters:BooleanToVisibilityConverter.Instance}, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" />
               </StackPanel>
             </Border>
             <Thumb x:Name="PART_TopHeaderGripper"
@@ -475,7 +468,7 @@
     <Setter Property="HeadersVisibility" Value="Column" />
     <Setter Property="HorizontalGridLinesBrush">
       <Setter.Value>
-        <MultiBinding Converter="{StaticResource RemoveAlphaBrushConverter}">
+        <MultiBinding Converter="{x:Static converters:RemoveAlphaBrushConverter.Instance}">
           <Binding Path="BorderBrush" RelativeSource="{RelativeSource Self}" />
           <Binding Path="Background" RelativeSource="{RelativeSource Self}" />
         </MultiBinding>

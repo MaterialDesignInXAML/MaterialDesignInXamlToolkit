@@ -5,6 +5,9 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 public class TextFieldHintVisibilityConverter : IValueConverter
 {
+    public static readonly TextFieldHintVisibilityConverter Instance = new();
+    public static readonly TextFieldHintVisibilityConverter StringIsEmptyInstance = new() { IsEmptyValue = Visibility.Collapsed, IsNotEmptyValue = Visibility.Visible};
+
     public Visibility IsEmptyValue { get; set; } = Visibility.Visible;
     public Visibility IsNotEmptyValue { get; set; } = Visibility.Hidden;
 

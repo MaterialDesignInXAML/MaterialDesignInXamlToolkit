@@ -6,6 +6,7 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 public class FloatingHintTranslateTransformConverter : IMultiValueConverter
 {
+    public static readonly FloatingHintTranslateTransformConverter Instance = new();
     public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
     {
         if (values is not [double scale, double lower, double upper, SmartHint hint, Point floatingOffset, double yOffset, ..])

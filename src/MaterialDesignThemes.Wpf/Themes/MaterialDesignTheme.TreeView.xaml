@@ -2,16 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
-
-  <ResourceDictionary.MergedDictionaries>
-    <ResourceDictionary>
-      <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
-      <converters:MathMultipleConverter x:Key="MathMlpMultipleConverter" Operation="Multiply" />
-      <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
-    </ResourceDictionary>
-  </ResourceDictionary.MergedDictionaries>
-
-
   <Style x:Key="MaterialDesignTreeView" TargetType="{x:Type TreeView}">
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="BorderBrush" Value="{x:Null}" />
@@ -315,14 +305,14 @@
             <Border x:Name="MouseOverBorder"
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
-                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                    Background="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                     IsHitTestVisible="False"
                     Opacity="0" />
 
             <Border x:Name="SelectedBorder"
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
-                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                    Background="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                     IsHitTestVisible="False"
                     Opacity="0" />
 
@@ -334,7 +324,7 @@
                           Padding="{TemplateBinding Padding}"
                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                          Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                          Feedback="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                           Focusable="False"
                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
                 <ContentPresenter x:Name="PART_Header" ContentSource="Header" />
@@ -356,7 +346,7 @@
                         Grid.ColumnSpan="2"
                         Margin="-16,0,0,0">
               <StackPanel.Height>
-                <MultiBinding Converter="{StaticResource MathMlpMultipleConverter}">
+                <MultiBinding Converter="{x:Static converters:MathMultipleConverter.MultiplyInstance}">
                   <Binding ElementName="ItemsHost" Path="ActualHeight" />
                   <Binding ElementName="ScaleHost" Path="Scale" />
                 </MultiBinding>
@@ -368,10 +358,10 @@
             </StackPanel>
           </Grid>
           <ControlTemplate.Triggers>
-            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:TreeViewAssist.AdditionalTemplate), Converter={StaticResource NullableToVisibilityConverter}, Mode=OneWay}" Value="Visible">
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:TreeViewAssist.AdditionalTemplate), Converter={x:Static converters:NullableToVisibilityConverter.Instance}, Mode=OneWay}" Value="Visible">
               <Setter TargetName="AdditionalContentControl" Property="Visibility" Value="Visible" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:TreeViewAssist.AdditionalTemplateSelector), Converter={StaticResource NullableToVisibilityConverter}, Mode=OneWay}" Value="Visible">
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:TreeViewAssist.AdditionalTemplateSelector), Converter={x:Static converters:NullableToVisibilityConverter.Instance}, Mode=OneWay}" Value="Visible">
               <Setter TargetName="AdditionalContentControl" Property="Visibility" Value="Visible" />
             </DataTrigger>
             <Trigger Property="HasItems" Value="false">

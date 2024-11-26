@@ -72,9 +72,6 @@
   </Style>
 
   <ControlTemplate x:Key="MaterialDesignComboBoxItemTemplate" TargetType="{x:Type ComboBoxItem}">
-    <ControlTemplate.Resources>
-      <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
-    </ControlTemplate.Resources>
     <Grid x:Name="GridWrapper">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto" />
@@ -135,13 +132,13 @@
               SnapsToDevicePixels="True" />
 
       <Border x:Name="MouseOverBorder"
-              Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+              Background="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
               BorderBrush="{TemplateBinding BorderBrush}"
               BorderThickness="{TemplateBinding BorderThickness}"
               Opacity="0"
               SnapsToDevicePixels="True" />
       <Border x:Name="SelectedBorder"
-              Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+              Background="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
               Opacity="0"
               RenderTransformOrigin="0.5,0.5" />
       <wpf:Ripple Padding="{TemplateBinding Padding}"
@@ -152,7 +149,7 @@
                   Content="{TemplateBinding Content}"
                   ContentTemplate="{TemplateBinding ContentTemplate}"
                   ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                  Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                  Feedback="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                   Focusable="False"
                   RecognizesAccessKey="False"
                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
@@ -289,17 +286,11 @@
 
   <ControlTemplate x:Key="MaterialDesignFloatingHintComboBoxTemplate" TargetType="{x:Type ComboBox}">
     <ControlTemplate.Resources>
-      <converters:MathConverter x:Key="MathMultiplyConverter" Operation="Multiply" />
       <converters:TextFieldClearButtonVisibilityConverter x:Key="ClearButtonVisibilityConverter" ContentEmptyVisibility="Collapsed" />
-      <converters:FallbackBrushConverter x:Key="FallbackBrushConverter" />
-      <converters:RemoveAlphaBrushConverter x:Key="RemoveAlphaBrushConverter" />
       <converters:ThicknessCloneConverter x:Key="HelperTextMarginConverter" CloneEdges="Left" />
       <converters:TextFieldPrefixTextVisibilityConverter x:Key="PrefixSuffixTextVisibilityConverter" HiddenState="Collapsed" />
-      <converters:FloatingHintInitialHorizontalOffsetConverter x:Key="FloatingHintInitialHorizontalOffsetConverter" />
-      <converters:FloatingHintMarginConverter x:Key="FloatingHintMarginConverter" />
       <converters:MathConverter x:Key="DivisionConverter" Operation="Divide" Offset="1.5" />
       <converters:BooleanToDashStyleConverter x:Key="BooleanToDashStyleConverter" TrueValue="{x:Static DashStyles.Solid}" />
-      <converters:OutlinedStyleActiveBorderMarginCompensationConverter x:Key="OutlinedStyleActiveBorderMarginCompensationConverter" />
     </ControlTemplate.Resources>
     <Grid>
       <AdornerDecorator>
@@ -352,7 +343,7 @@
                             VerticalAlignment="Center"
                             Kind="{TemplateBinding wpf:TextFieldAssist.LeadingIcon}"
                             Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                            Visibility="{TemplateBinding wpf:TextFieldAssist.HasLeadingIcon, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            Visibility="{TemplateBinding wpf:TextFieldAssist.HasLeadingIcon, Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}" />
 
               <TextBlock x:Name="PrefixTextBlock"
                          Grid.Column="1"
@@ -415,7 +406,7 @@
                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                              UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
                 <wpf:SmartHint.InitialHorizontalOffset>
-                  <MultiBinding Converter="{StaticResource FloatingHintInitialHorizontalOffsetConverter}">
+                  <MultiBinding Converter="{x:Static converters:FloatingHintInitialHorizontalOffsetConverter.Instance}">
                     <Binding ElementName="PrefixTextBlock" Path="ActualWidth" />
                     <Binding ElementName="PrefixTextBlock" Path="Margin" />
                     <Binding ElementName="SuffixTextBlock" Path="ActualWidth" />
@@ -428,7 +419,7 @@
                   </MultiBinding>
                 </wpf:SmartHint.InitialHorizontalOffset>
                 <wpf:SmartHint.Margin>
-                  <MultiBinding Converter="{StaticResource FloatingHintMarginConverter}">
+                  <MultiBinding Converter="{x:Static converters:FloatingHintMarginConverter.Instance}">
                     <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:HintAssist.IsFloating)" />
                     <Binding ElementName="PART_EditableTextBox" Path="IsKeyboardFocusWithin" />
                     <Binding Path="IsEditable" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -475,7 +466,7 @@
                             VerticalAlignment="Center"
                             Kind="{TemplateBinding wpf:TextFieldAssist.TrailingIcon}"
                             Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                            Visibility="{TemplateBinding wpf:TextFieldAssist.HasTrailingIcon, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            Visibility="{TemplateBinding wpf:TextFieldAssist.HasTrailingIcon, Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}" />
 
               <Button x:Name="PART_ClearButton"
                       Grid.Column="5"
@@ -541,7 +532,7 @@
                    UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
                    VerticalOffset="0">
         <wpf:ComboBoxPopup.Background>
-          <MultiBinding Converter="{StaticResource FallbackBrushConverter}">
+          <MultiBinding Converter="{x:Static converters:FallbackBrushConverter.Instance}">
             <Binding Path="Background" RelativeSource="{RelativeSource TemplatedParent}" />
             <Binding ElementName="PART_Popup" Path="Tag" />
           </MultiBinding>
@@ -641,7 +632,7 @@
         </MultiTrigger.Conditions>
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ComboBox.OutlineInactiveBorder}" />
         <Setter TargetName="HintWrapper" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
-        <Setter TargetName="PART_ClearButton" Property="Opacity" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:HintAssist.HintOpacity), Converter={StaticResource MathMultiplyConverter}, ConverterParameter={x:Static wpf:Constants.TextBoxNotEnabledOpacity}}" />
+        <Setter TargetName="PART_ClearButton" Property="Opacity" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:HintAssist.HintOpacity), Converter={x:Static converters:MathConverter.MultiplyInstance}, ConverterParameter={x:Static wpf:Constants.TextBoxNotEnabledOpacity}}" />
         <Setter TargetName="LeadingPackIcon" Property="Opacity" Value="{Binding ElementName=PART_ClearButton, Path=Opacity}" />
         <Setter TargetName="PrefixTextBlock" Property="Opacity" Value="{Binding ElementName=PART_ClearButton, Path=Opacity}" />
         <Setter TargetName="SuffixTextBlock" Property="Opacity" Value="{Binding ElementName=PART_ClearButton, Path=Opacity}" />
@@ -666,7 +657,7 @@
         <Setter TargetName="OuterBorder" Property="BorderThickness" Value="{Binding Path=(wpf:TextFieldAssist.OutlinedBorderActiveThickness), RelativeSource={RelativeSource TemplatedParent}}" />
         <Setter TargetName="ContentGrid" Property="Margin">
           <Setter.Value>
-            <MultiBinding Converter="{StaticResource OutlinedStyleActiveBorderMarginCompensationConverter}">
+            <MultiBinding Converter="{x:Static converters:OutlinedStyleActiveBorderMarginCompensationConverter.Instance}">
               <Binding Path="BorderThickness" RelativeSource="{RelativeSource TemplatedParent}" />
               <Binding Path="(wpf:TextFieldAssist.OutlinedBorderActiveThickness)" RelativeSource="{RelativeSource TemplatedParent}" />
             </MultiBinding>
@@ -687,7 +678,7 @@
         <Setter TargetName="OuterBorder" Property="BorderThickness" Value="{Binding Path=(wpf:TextFieldAssist.OutlinedBorderActiveThickness), RelativeSource={RelativeSource TemplatedParent}}" />
         <Setter TargetName="ContentGrid" Property="Margin">
           <Setter.Value>
-            <MultiBinding Converter="{StaticResource OutlinedStyleActiveBorderMarginCompensationConverter}">
+            <MultiBinding Converter="{x:Static converters:OutlinedStyleActiveBorderMarginCompensationConverter.Instance}">
               <Binding Path="BorderThickness" RelativeSource="{RelativeSource TemplatedParent}" />
               <Binding Path="(wpf:TextFieldAssist.OutlinedBorderActiveThickness)" RelativeSource="{RelativeSource TemplatedParent}" />
             </MultiBinding>
@@ -736,7 +727,7 @@
         <Setter TargetName="OuterBorder" Property="BorderThickness" Value="{Binding Path=(wpf:TextFieldAssist.OutlinedBorderActiveThickness), RelativeSource={RelativeSource TemplatedParent}}" />
         <Setter TargetName="ContentGrid" Property="Margin">
           <Setter.Value>
-            <MultiBinding Converter="{StaticResource OutlinedStyleActiveBorderMarginCompensationConverter}">
+            <MultiBinding Converter="{x:Static converters:OutlinedStyleActiveBorderMarginCompensationConverter.Instance}">
               <Binding Path="BorderThickness" RelativeSource="{RelativeSource TemplatedParent}" />
               <Binding Path="(wpf:TextFieldAssist.OutlinedBorderActiveThickness)" RelativeSource="{RelativeSource TemplatedParent}" />
             </MultiBinding>
@@ -768,7 +759,7 @@
         <Setter TargetName="OuterBorder" Property="BorderThickness" Value="{Binding Path=(wpf:TextFieldAssist.OutlinedBorderActiveThickness), RelativeSource={RelativeSource TemplatedParent}}" />
         <Setter TargetName="ContentGrid" Property="Margin">
           <Setter.Value>
-            <MultiBinding Converter="{StaticResource OutlinedStyleActiveBorderMarginCompensationConverter}">
+            <MultiBinding Converter="{x:Static converters:OutlinedStyleActiveBorderMarginCompensationConverter.Instance}">
               <Binding Path="BorderThickness" RelativeSource="{RelativeSource TemplatedParent}" />
               <Binding Path="(wpf:TextFieldAssist.OutlinedBorderActiveThickness)" RelativeSource="{RelativeSource TemplatedParent}" />
             </MultiBinding>
@@ -785,7 +776,7 @@
         <Setter TargetName="OuterBorder" Property="BorderThickness" Value="{Binding Path=(wpf:TextFieldAssist.OutlinedBorderActiveThickness), RelativeSource={RelativeSource TemplatedParent}}" />
         <Setter TargetName="ContentGrid" Property="Margin">
           <Setter.Value>
-            <MultiBinding Converter="{StaticResource OutlinedStyleActiveBorderMarginCompensationConverter}">
+            <MultiBinding Converter="{x:Static converters:OutlinedStyleActiveBorderMarginCompensationConverter.Instance}">
               <Binding Path="BorderThickness" RelativeSource="{RelativeSource TemplatedParent}" />
               <Binding Path="(wpf:TextFieldAssist.OutlinedBorderActiveThickness)" RelativeSource="{RelativeSource TemplatedParent}" />
             </MultiBinding>
@@ -798,7 +789,7 @@
           <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Standard" />
         </MultiTrigger.Conditions>
         <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
-        <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
+        <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={x:Static converters:RemoveAlphaBrushConverter.Instance}}" />
         <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesign.Brush.Background}" />
       </MultiTrigger>
       <MultiTrigger>
@@ -807,7 +798,7 @@
           <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Inverted" />
         </MultiTrigger.Conditions>
         <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesign.Brush.Background}" />
-        <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
+        <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={x:Static converters:RemoveAlphaBrushConverter.Instance}}" />
         <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
       </MultiTrigger>
       <MultiTrigger>
@@ -816,7 +807,7 @@
           <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="PrimaryLight" />
         </MultiTrigger.Conditions>
         <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Light.Foreground}" />
-        <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
+        <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={x:Static converters:RemoveAlphaBrushConverter.Instance}}" />
         <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
       </MultiTrigger>
       <MultiTrigger>
@@ -825,7 +816,7 @@
           <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="PrimaryMid" />
         </MultiTrigger.Conditions>
         <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
-        <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
+        <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={x:Static converters:RemoveAlphaBrushConverter.Instance}}" />
         <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
       </MultiTrigger>
       <MultiTrigger>
@@ -834,7 +825,7 @@
           <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="PrimaryDark" />
         </MultiTrigger.Conditions>
         <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}" />
-        <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
+        <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={x:Static converters:RemoveAlphaBrushConverter.Instance}}" />
         <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
       </MultiTrigger>
       <MultiTrigger>
@@ -843,7 +834,7 @@
           <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="SecondaryLight" />
         </MultiTrigger.Conditions>
         <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light.Foreground}" />
-        <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
+        <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={x:Static converters:RemoveAlphaBrushConverter.Instance}}" />
         <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
       </MultiTrigger>
       <MultiTrigger>
@@ -852,7 +843,7 @@
           <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="SecondaryMid" />
         </MultiTrigger.Conditions>
         <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
-        <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
+        <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={x:Static converters:RemoveAlphaBrushConverter.Instance}}" />
         <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
       </MultiTrigger>
       <MultiTrigger>
@@ -861,7 +852,7 @@
           <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="SecondaryDark" />
         </MultiTrigger.Conditions>
         <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark.Foreground}" />
-        <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
+        <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={x:Static converters:RemoveAlphaBrushConverter.Instance}}" />
         <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
       </MultiTrigger>
       <MultiTrigger>
@@ -870,7 +861,7 @@
           <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Light" />
         </MultiTrigger.Conditions>
         <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesign.Brush.ComboBox.Popup.LightForeground}" />
-        <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
+        <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={x:Static converters:RemoveAlphaBrushConverter.Instance}}" />
         <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesign.Brush.ComboBox.Popup.LightBackground}" />
       </MultiTrigger>
       <MultiTrigger>
@@ -879,7 +870,7 @@
           <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Dark" />
         </MultiTrigger.Conditions>
         <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesign.Brush.ComboBox.Popup.DarkForeground}" />
-        <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource RemoveAlphaBrushConverter}}" />
+        <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={x:Static converters:RemoveAlphaBrushConverter.Instance}}" />
         <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesign.Brush.ComboBox.Popup.DarkBackground}" />
       </MultiTrigger>
     </ControlTemplate.Triggers>

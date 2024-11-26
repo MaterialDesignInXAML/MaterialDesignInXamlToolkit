@@ -104,15 +104,9 @@
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type wpf:TreeListViewItem}">
-          <ControlTemplate.Resources>
-            <converters:TreeListViewIndentConverter x:Key="TreeListViewIndentConverter" />
-            <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
-            <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
-            <converters:MathMultipleConverter x:Key="MathMlpMultipleConverter" Operation="Multiply" />
-          </ControlTemplate.Resources>
           <Grid>
             <Grid.Margin>
-              <MultiBinding Converter="{StaticResource TreeListViewIndentConverter}">
+              <MultiBinding Converter="{x:Static converters:TreeListViewIndentConverter.Instance}">
                 <Binding Path="LevelIndentSize" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type wpf:TreeListView}}" />
                 <Binding Path="Level" RelativeSource="{RelativeSource TemplatedParent}" />
               </MultiBinding>
@@ -183,14 +177,14 @@
             <Border x:Name="MouseOverBorder"
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
-                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                    Background="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                     IsHitTestVisible="False"
                     Opacity="0" />
 
             <Border x:Name="SelectedBorder"
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
-                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                    Background="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                     IsHitTestVisible="False"
                     Opacity="0" />
 
@@ -202,7 +196,7 @@
                           Padding="{TemplateBinding Padding}"
                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                          Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                          Feedback="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                           Focusable="False"
                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
                 <internal:TreeListViewContentPresenter x:Name="PART_ContentPresenter" ContentSource="Content" />
@@ -219,10 +213,10 @@
                             Visibility="Collapsed" />
           </Grid>
           <ControlTemplate.Triggers>
-            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:TreeViewAssist.AdditionalTemplate), Converter={StaticResource NullableToVisibilityConverter}, Mode=OneWay}" Value="Visible">
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:TreeViewAssist.AdditionalTemplate), Converter={x:Static converters:NullableToVisibilityConverter.Instance}, Mode=OneWay}" Value="Visible">
               <Setter TargetName="AdditionalContentControl" Property="Visibility" Value="Visible" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:TreeViewAssist.AdditionalTemplateSelector), Converter={StaticResource NullableToVisibilityConverter}, Mode=OneWay}" Value="Visible">
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:TreeViewAssist.AdditionalTemplateSelector), Converter={x:Static converters:NullableToVisibilityConverter.Instance}, Mode=OneWay}" Value="Visible">
               <Setter TargetName="AdditionalContentControl" Property="Visibility" Value="Visible" />
             </DataTrigger>
             <Trigger Property="HasItems" Value="false">

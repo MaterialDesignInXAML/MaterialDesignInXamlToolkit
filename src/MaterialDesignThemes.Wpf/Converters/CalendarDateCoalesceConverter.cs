@@ -13,6 +13,8 @@ namespace MaterialDesignThemes.Wpf.Converters;
 /// </remarks>
 public class CalendarDateCoalesceConverter : IMultiValueConverter
 {
+    public static readonly CalendarDateCoalesceConverter Instance = new();
+
     public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
     {
         if (values?.Length != 2) throw new ArgumentException("Must specify two values", nameof(values));

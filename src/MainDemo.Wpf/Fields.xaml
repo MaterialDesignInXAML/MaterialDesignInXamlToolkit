@@ -6,6 +6,7 @@
              xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
              xmlns:domain1="clr-namespace:MaterialDesignDemo.Domain"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
@@ -258,7 +259,7 @@
 
           <TextBox VerticalAlignment="Top"
                    materialDesign:HintAssist.Hint="This is a limited text area"
-                   materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxTextCountComboBox, Converter={StaticResource BooleanToVisibilityConverter}}"
+                   materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxTextCountComboBox, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.Instance}}"
                    MaxLength="40"
                    Style="{StaticResource MaterialDesignFilledTextBox}"
                    TextWrapping="Wrap" />
@@ -282,7 +283,7 @@
 
           <PasswordBox materialDesign:HintAssist.HelperText="Helper text"
                        materialDesign:HintAssist.Hint="Password"
-                       materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignFilledPasswordBoxTextCountComboBox, Converter={StaticResource BooleanToVisibilityConverter}}"
+                       materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignFilledPasswordBoxTextCountComboBox, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.Instance}}"
                        Style="{StaticResource MaterialDesignFilledPasswordBox}" />
         </StackPanel>
       </smtx:XamlDisplay>
@@ -355,7 +356,7 @@
           <TextBox Height="100"
                    VerticalAlignment="Top"
                    materialDesign:HintAssist.Hint="This is a limited text area"
-                   materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxTextCountComboBox, Converter={StaticResource BooleanToVisibilityConverter}}"
+                   materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxTextCountComboBox, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.Instance}}"
                    MaxLength="40"
                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
                    TextWrapping="Wrap"

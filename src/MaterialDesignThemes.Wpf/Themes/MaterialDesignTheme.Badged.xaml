@@ -1,8 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
-  <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
   <SineEase x:Key="BadgeEase" EasingMode="EaseOut" />
   <Storyboard x:Key="BadgeChangedStoryboard">
     <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
@@ -52,7 +52,7 @@
                     RenderTransformOrigin=".5,.5"
                     TextElement.FontSize="11"
                     TextElement.FontWeight="DemiBold"
-                    Visibility="{TemplateBinding IsBadgeSet, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Visibility="{TemplateBinding IsBadgeSet, Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}">
               <Border.Resources>
                 <Style TargetType="wpf:PackIcon">
                   <Setter Property="Height" Value="12" />
@@ -178,7 +178,7 @@
                     RenderTransformOrigin=".5,.5"
                     TextElement.FontSize="11"
                     TextElement.FontWeight="DemiBold"
-                    Visibility="{TemplateBinding IsBadgeSet, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Visibility="{TemplateBinding IsBadgeSet, Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}">
               <Border.RenderTransform>
                 <ScaleTransform ScaleX="1" ScaleY="1" />
               </Border.RenderTransform>

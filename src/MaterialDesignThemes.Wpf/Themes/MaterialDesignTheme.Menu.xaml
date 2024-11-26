@@ -6,12 +6,6 @@
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Font.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
-  <converters:TextFieldHintVisibilityConverter x:Key="StringIsEmptyVisibilityConverter"
-                                               IsEmptyValue="Collapsed"
-                                               IsNotEmptyValue="Visible" />
-  <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
-  <converters:BrushOpacityConverter x:Key="BrushOpacityConverter" />
-
   <ContextMenu x:Key="MaterialDesignDefaultContextMenu" FontFamily="{Binding PlacementTarget.FontFamily, RelativeSource={RelativeSource Self}}">
     <MenuItem Command="Cut">
       <MenuItem.Icon>
@@ -60,7 +54,7 @@
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="OverridesDefaultStyle" Value="True" />
     <Setter Property="Padding" Value="24,0,24,0" />
-    <Setter Property="wpf:MenuItemAssist.HighlightedBackground" Value="{Binding Foreground, RelativeSource={RelativeSource Self}, Converter={StaticResource BrushOpacityConverter}, ConverterParameter=0.13}" />
+    <Setter Property="wpf:MenuItemAssist.HighlightedBackground" Value="{Binding Foreground, RelativeSource={RelativeSource Self}, Converter={x:Static converters:BrushOpacityConverter.Instance}, ConverterParameter=0.13}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type MenuItem}">
@@ -85,7 +79,7 @@
             <wpf:Ripple HorizontalContentAlignment="Stretch"
                         VerticalContentAlignment="Stretch"
                         Background="Transparent"
-                        Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                        Feedback="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                         Focusable="False">
               <Grid Height="{TemplateBinding Height}" Background="Transparent">
                 <Grid Margin="{TemplateBinding Padding}"
@@ -156,7 +150,7 @@
                                Foreground="{TemplateBinding Foreground}"
                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                Text="{TemplateBinding InputGestureText}"
-                               Visibility="{TemplateBinding InputGestureText, Converter={StaticResource StringIsEmptyVisibilityConverter}}" />
+                               Visibility="{TemplateBinding InputGestureText, Converter={x:Static converters:TextFieldHintVisibilityConverter.StringIsEmptyInstance}}" />
                   </Grid>
                   <Grid x:Name="SubBlock"
                         Grid.Column="2"

@@ -7,18 +7,8 @@
 
   <Style TargetType="{x:Type wpf:SmartHint}">
     <Style.Resources>
-      <converters:BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
-      <converters:BooleanToVisibilityConverter x:Key="InverseBoolToVisConverter"
-                                               FalseValue="Visible"
-                                               TrueValue="Collapsed" />
       <system:Double x:Key="NoContentFloatingScale">1.0</system:Double>
       <CubicEase x:Key="AnimationEasingFunction" EasingMode="EaseInOut" />
-      <converters:FloatingHintTranslateTransformConverter x:Key="FloatingHintTranslateTransformConverter" />
-      <converters:FloatingHintScaleTransformConverter x:Key="FloatingHintScaleTransformConverter" />
-      <converters:FloatingHintContainerMarginConverter x:Key="FloatingHintContainerMarginConverter" />
-      <converters:FloatingHintTextBlockMarginConverter x:Key="FloatingHintTextBlockMarginConverter" />
-      <converters:FloatingHintClippingGridConverter x:Key="FloatingHintClippingGridConverter" />
-      <converters:FirstNonNullConverter x:Key="FirstNonNullConverter" />
     </Style.Resources>
     <Setter Property="wpf:BehaviorsAssist.Behaviors">
       <Setter.Value>
@@ -82,7 +72,7 @@
                             IsHitTestVisible="False"
                             IsTabStop="False"
                             Opacity="{TemplateBinding HintOpacity}"
-                            Visibility="{TemplateBinding UseFloating, Converter={StaticResource InverseBoolToVisConverter}}" />
+                            Visibility="{TemplateBinding UseFloating, Converter={x:Static converters:BooleanToVisibilityConverter.InverseInstance}}" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -154,14 +144,14 @@
                 <wpf:ScaleHost x:Name="ScaleHost" />
                 <Grid>
                   <Grid.Clip>
-                    <MultiBinding Converter="{StaticResource FloatingHintClippingGridConverter}">
+                    <MultiBinding Converter="{x:Static converters:FloatingHintClippingGridConverter.Instance}">
                       <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}" />
                       <Binding Path="ActualHeight" RelativeSource="{RelativeSource TemplatedParent}" />
                       <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}" />
                     </MultiBinding>
                   </Grid.Clip>
                   <Grid.RenderTransform>
-                    <MultiBinding Converter="{StaticResource FloatingHintTranslateTransformConverter}">
+                    <MultiBinding Converter="{x:Static converters:FloatingHintTranslateTransformConverter.Instance}">
                       <Binding ElementName="ScaleHost" Path="Scale" />
                       <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}" />
                       <Binding Source="{StaticResource NoContentFloatingScale}" />
@@ -189,10 +179,10 @@
                                     IsTabStop="False"
                                     Opacity="{TemplateBinding HintOpacity}"
                                     RenderTransformOrigin="0,0"
-                                    Visibility="{TemplateBinding UseFloating, Converter={StaticResource BoolToVisConverter}}">
+                                    Visibility="{TemplateBinding UseFloating, Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}">
                       
                       <ContentControl.Margin>
-                        <MultiBinding Converter="{StaticResource FloatingHintTextBlockMarginConverter}">
+                        <MultiBinding Converter="{x:Static converters:FloatingHintTextBlockMarginConverter.Instance}">
                           <Binding Path="(wpf:HintAssist.HintHorizontalAlignment)" RelativeSource="{RelativeSource TemplatedParent}" />
                           <Binding Path="(wpf:HintAssist.FloatingHintHorizontalAlignment)" RelativeSource="{RelativeSource TemplatedParent}" />
                           <Binding Path="HorizontalContentAlignment" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -207,7 +197,7 @@
                         <system:Double>0.0</system:Double>
                       </ContentControl.Tag>
                       <ContentControl.RenderTransform>
-                        <MultiBinding Converter="{StaticResource FloatingHintScaleTransformConverter}">
+                        <MultiBinding Converter="{x:Static converters:FloatingHintScaleTransformConverter.Instance}">
                           <Binding ElementName="ScaleHost" Path="Scale" />
                           <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}" />
                           <Binding Source="{StaticResource NoContentFloatingScale}" />
@@ -216,7 +206,7 @@
                       <Grid x:Name="HintBackgroundGrid" Tag="{DynamicResource MaterialDesign.Brush.Background}" IsHitTestVisible="False">
                         <ContentControl Content="{TemplateBinding Hint}" IsTabStop="False">
                           <ContentControl.Margin>
-                            <MultiBinding Converter="{StaticResource FloatingHintContainerMarginConverter}">
+                            <MultiBinding Converter="{x:Static converters:FloatingHintContainerMarginConverter.Instance}">
                               <Binding ElementName="ScaleHost" Path="Scale" />
                               <Binding Path="FloatingMargin" RelativeSource="{RelativeSource TemplatedParent}" />
                               <Binding Path="FloatingScale" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -236,7 +226,7 @@
                   </MultiTrigger.Conditions>
                   <Setter TargetName="HintBackgroundGrid" Property="Background">
                     <Setter.Value>
-                      <MultiBinding Converter="{StaticResource FirstNonNullConverter}">
+                      <MultiBinding Converter="{x:Static converters:FirstNonNullConverter.Instance}">
                         <Binding Path="(wpf:HintAssist.HintPaddingBrush)" RelativeSource="{RelativeSource TemplatedParent}" />
                         <Binding Path="Tag" ElementName="HintBackgroundGrid" />
                       </MultiBinding>

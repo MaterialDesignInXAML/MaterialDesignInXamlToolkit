@@ -7,15 +7,7 @@
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
-    <ResourceDictionary>
-      <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
-      <converters:BorderClipConverter x:Key="BorderClipConverter" />
-      <converters:IsDarkConverter x:Key="IsDarkConverter" />
-      <converters:BrushOpacityConverter x:Key="BrushOpacityConverter" />
-    </ResourceDictionary>
   </ResourceDictionary.MergedDictionaries>
-
-  <converters:EqualityToVisibilityConverter x:Key="EqualityToVisibilityConverter" />
 
   <Style x:Key="FocusVisual">
     <Setter Property="Control.Template">
@@ -122,7 +114,7 @@
             </VisualStateManager.VisualStateGroups>
             <Grid>
               <Border x:Name="MouseOverBorder"
-                      Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                      Background="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                       Opacity="0" />
               <Border x:Name="SelectedBackgroundBorder"
                       Background="{DynamicResource MaterialDesign.Brush.ListBoxItem.Selected}"
@@ -134,7 +126,7 @@
                           Content="{TemplateBinding Content}"
                           ContentTemplate="{TemplateBinding ContentTemplate}"
                           ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                          Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                          Feedback="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                           Focusable="False"
                           Opacity=".56"
                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
@@ -142,7 +134,7 @@
                       BorderBrush="{DynamicResource MaterialDesign.Brush.ListBoxItem.Selected}"
                       BorderThickness="0"
                       Opacity="0"
-                      Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=SelectionMode, Converter={StaticResource EqualityToVisibilityConverter}, ConverterParameter={x:Static SelectionMode.Extended}, Mode=OneWay}" />
+                      Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=SelectionMode, Converter={x:Static converters:EqualityToVisibilityConverter.Instance}, ConverterParameter={x:Static SelectionMode.Extended}, Mode=OneWay}" />
             </Grid>
           </Border>
           <ControlTemplate.Triggers>
@@ -246,9 +238,9 @@
     <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
     <Setter Property="Padding" Value="8" />
     <Setter Property="SnapsToDevicePixels" Value="True" />
-    <Setter Property="wpf:ListBoxItemAssist.HoverBackground" Value="{Binding Foreground, RelativeSource={RelativeSource Self}, Converter={StaticResource BrushOpacityConverter}, ConverterParameter=0.1}" />
-    <Setter Property="wpf:ListBoxItemAssist.SelectedFocusedBackground" Value="{Binding Foreground, RelativeSource={RelativeSource Self}, Converter={StaticResource BrushOpacityConverter}, ConverterParameter=0.18}" />
-    <Setter Property="wpf:ListBoxItemAssist.SelectedUnfocusedBackground" Value="{Binding Foreground, RelativeSource={RelativeSource Self}, Converter={StaticResource BrushOpacityConverter}, ConverterParameter=0.09}" />
+    <Setter Property="wpf:ListBoxItemAssist.HoverBackground" Value="{Binding Foreground, RelativeSource={RelativeSource Self}, Converter={x:Static converters:BrushOpacityConverter.Instance}, ConverterParameter=0.1}" />
+    <Setter Property="wpf:ListBoxItemAssist.SelectedFocusedBackground" Value="{Binding Foreground, RelativeSource={RelativeSource Self}, Converter={x:Static converters:BrushOpacityConverter.Instance}, ConverterParameter=0.18}" />
+    <Setter Property="wpf:ListBoxItemAssist.SelectedUnfocusedBackground" Value="{Binding Foreground, RelativeSource={RelativeSource Self}, Converter={x:Static converters:BrushOpacityConverter.Instance}, ConverterParameter=0.09}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ListBoxItem}">
@@ -318,7 +310,7 @@
                           Content="{TemplateBinding Content}"
                           ContentTemplate="{TemplateBinding ContentTemplate}"
                           ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                          Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                          Feedback="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                           Focusable="False"
                           RecognizesAccessKey="False"
                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
@@ -483,7 +475,7 @@
             </VisualStateManager.VisualStateGroups>
             <Grid>
               <Grid.Clip>
-                <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                <MultiBinding Converter="{x:Static converters:BorderClipConverter.Instance}">
                   <Binding ElementName="border" Path="ActualWidth" />
                   <Binding ElementName="border" Path="ActualHeight" />
                   <Binding ElementName="border" Path="CornerRadius" />
@@ -491,7 +483,7 @@
                 </MultiBinding>
               </Grid.Clip>
               <Border x:Name="MouseOverBorder"
-                      Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                      Background="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                       Opacity="0" />
 
               <Border x:Name="SelectedBorder"
@@ -505,7 +497,7 @@
                           Content="{TemplateBinding Content}"
                           ContentTemplate="{TemplateBinding ContentTemplate}"
                           ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                          Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                          Feedback="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                           Focusable="False"
                           RecognizesAccessKey="False"
                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
@@ -541,7 +533,7 @@
     <Style.Triggers>
       <MultiDataTrigger>
         <MultiDataTrigger.Conditions>
-          <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True" />
+          <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={x:Static converters:IsDarkConverter.Instance}}" Value="True" />
           <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
         </MultiDataTrigger.Conditions>
         <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
@@ -562,7 +554,7 @@
     <Style.Triggers>
       <MultiDataTrigger>
         <MultiDataTrigger.Conditions>
-          <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True" />
+          <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={x:Static converters:IsDarkConverter.Instance}}" Value="True" />
           <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
         </MultiDataTrigger.Conditions>
         <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Light}" />
