@@ -21,12 +21,11 @@ public class PointValueConverter : IMultiValueConverter
 
     public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
     {
-        if (value is Point)
+        if (value is Point point)
         {
-            var point = (Point)value;
-            return new object[] { point.X, point.Y };
+            return [point.X, point.Y];
         }
 
-        return new object[0];
+        return [];
     }
 }

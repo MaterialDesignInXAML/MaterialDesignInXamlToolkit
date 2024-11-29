@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
@@ -993,6 +993,7 @@
     <Setter Property="Template" Value="{StaticResource MaterialDesignDiscreteSliderHorizontal}" />
     <Setter Property="UseLayoutRounding" Value="False" />
     <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp1" />
+    <Setter Property="wpf:SliderAssist.FocusSliderOnClick" Value="True" />
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.CheckBox.Disabled}" />
@@ -1015,6 +1016,7 @@
     <Setter Property="Template" Value="{StaticResource MaterialDesignDiscreteSliderVertical}" />
     <Setter Property="UseLayoutRounding" Value="False" />
     <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp1" />
+    <Setter Property="wpf:SliderAssist.FocusSliderOnClick" Value="True" />
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.CheckBox.Disabled}" />

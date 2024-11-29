@@ -1,4 +1,6 @@
-﻿namespace MaterialDesignThemes.Wpf;
+﻿using System.Windows.Media;
+
+namespace MaterialDesignThemes.Wpf;
 
 public static class SliderAssist
 {
@@ -21,11 +23,11 @@ public static class SliderAssist
             typeof(SliderAssist),
             new PropertyMetadata(false));
 
-    public static void SetOnlyShowFocusVisualWhileDragging(RangeBase element, bool value)
-        => element.SetValue(OnlyShowFocusVisualWhileDraggingProperty, value);
-
     public static bool GetOnlyShowFocusVisualWhileDragging(RangeBase element)
         => (bool)element.GetValue(OnlyShowFocusVisualWhileDraggingProperty);
+
+    public static void SetOnlyShowFocusVisualWhileDragging(RangeBase element, bool value)
+        => element.SetValue(OnlyShowFocusVisualWhileDraggingProperty, value);
 
     public static readonly DependencyProperty ToolTipFormatProperty
         = DependencyProperty.RegisterAttached(
@@ -34,9 +36,49 @@ public static class SliderAssist
             typeof(SliderAssist),
             new PropertyMetadata(null));
 
+    public static string GetToolTipFormat(RangeBase element)
+        => (string)element.GetValue(ToolTipFormatProperty);
+
     public static void SetToolTipFormat(RangeBase element, string value)
         => element.SetValue(ToolTipFormatProperty, value);
 
-    public static string GetToolTipFormat(RangeBase element)
-        => (string)element.GetValue(ToolTipFormatProperty);
+    // Fix for Issue3628
+    public static readonly DependencyProperty FocusSliderOnClickProperty =
+            DependencyProperty.RegisterAttached(
+                "FocusSliderOnClick",
+                typeof(bool),
+                typeof(SliderAssist),
+                new PropertyMetadata(false, OnFocusSliderOnClickChanged));
+
+    public static bool GetFocusSliderOnClick(RangeBase obj) =>
+        (bool)obj.GetValue(FocusSliderOnClickProperty);
+
+    public static void SetFocusSliderOnClick(RangeBase obj, bool value) =>
+        obj.SetValue(FocusSliderOnClickProperty, value);
+
+    private static void OnFocusSliderOnClickChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is Slider slider)
+        {
+            if ((bool)e.NewValue)
+            {
+                slider.AddHandler(UIElement.PreviewMouseLeftButtonDownEvent,
+                                 (MouseButtonEventHandler)Slider_PreviewMouseLeftButtonDown,
+                                        true);
+            }
+            else
+            {
+                slider.RemoveHandler(UIElement.PreviewMouseLeftButtonDownEvent,
+                                    (MouseButtonEventHandler)Slider_PreviewMouseLeftButtonDown);
+            }
+        }
+    }
+
+    private static void Slider_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    {
+        if (sender is Slider slider)
+        {
+            slider.Focus();
+        }
+    }
 }

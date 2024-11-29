@@ -7,16 +7,28 @@ public class FloatingHintInitialHorizontalOffsetConverter : IMultiValueConverter
 {
     public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (values is [double prefixWidth, Thickness prefixMargin, double suffixWidth, Thickness suffixMargin, PrefixSuffixVisibility prefixVisibility, PrefixSuffixVisibility suffixVisibility, PrefixSuffixHintBehavior prefixHintBehavior, PrefixSuffixHintBehavior suffixHintBehavior, HorizontalAlignment horizontalContentAlignment])
+        if (values is not
+            [
+                double prefixWidth,
+                Thickness prefixMargin,
+                double suffixWidth,
+                Thickness suffixMargin,
+                PrefixSuffixVisibility prefixVisibility,
+                PrefixSuffixVisibility suffixVisibility,
+                PrefixSuffixHintBehavior prefixHintBehavior,
+                PrefixSuffixHintBehavior suffixHintBehavior,
+                HorizontalAlignment horizontalContentAlignment
+            ])
         {
-            return horizontalContentAlignment switch
-            {
-                HorizontalAlignment.Center => 0,
-                HorizontalAlignment.Right => GetRightOffset(),
-                _ => GetLeftOffset(),
-            };
+            return 0;
         }
-        return 0;
+
+        return horizontalContentAlignment switch
+        {
+            HorizontalAlignment.Center => 0,
+            HorizontalAlignment.Right => GetRightOffset(),
+            _ => GetLeftOffset(),
+        };
 
         double GetLeftOffset()
         {

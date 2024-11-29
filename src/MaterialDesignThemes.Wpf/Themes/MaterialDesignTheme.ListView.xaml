@@ -29,6 +29,8 @@
 
             <DockPanel Margin="{TemplateBinding Padding}">
               <ScrollViewer wpf:ScrollViewerAssist.SyncHorizontalOffset="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                            wpf:ScrollViewerAssist.IgnorePadding="{Binding Path=(wpf:ScrollViewerAssist.IgnorePadding), RelativeSource={RelativeSource TemplatedParent}}"
+                            wpf:ScrollViewerAssist.PaddingMode="{Binding Path=(wpf:ScrollViewerAssist.PaddingMode), RelativeSource={RelativeSource TemplatedParent}}"
                             DockPanel.Dock="Top"
                             Focusable="false"
                             HorizontalScrollBarVisibility="Hidden"

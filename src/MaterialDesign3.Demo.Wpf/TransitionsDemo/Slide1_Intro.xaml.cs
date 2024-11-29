@@ -1,4 +1,5 @@
 ﻿using MaterialDesign3Demo.Domain;
+using MaterialDesignDemo.Shared.Domain;
 
 namespace MaterialDesign3Demo.TransitionsDemo;
 
