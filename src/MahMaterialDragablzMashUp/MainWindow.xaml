@@ -36,6 +36,7 @@
           <Button Content="Hello World" />
           <Button Content="Nice Popup" />
           <Button Content="Goodbye" />
+          <Button Content="Version" />
         </StackPanel>
       </wpf:PopupBox>
     </controls:WindowCommands>
