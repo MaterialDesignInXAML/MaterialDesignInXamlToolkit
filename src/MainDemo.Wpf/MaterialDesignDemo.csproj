@@ -49,4 +49,16 @@
     <PackageReference Include="ShowMeTheXAML.AvalonEdit" />
     <PackageReference Include="ShowMeTheXAML.MSBuild" />
   </ItemGroup>
+
+  <!-- This passes the environment variable values into assembly attributes that can be read in code -->
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>MDIXVersion</_Parameter1>
+      <_Parameter2>$(MDIXVersion)</_Parameter2>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>MDIXColorsVersion</_Parameter1>
+      <_Parameter2>$(MDIXColorsVersion)</_Parameter2>
+    </AssemblyAttribute>
+  </ItemGroup>
 </Project>

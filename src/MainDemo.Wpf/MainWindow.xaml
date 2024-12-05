@@ -189,6 +189,7 @@
 
                 <Separator />
 
+                <!-- TODO: Bind the text of this TextBlock to the NugetVersions property of the MainWindowViewModel -->
                 <TextBlock x:Name="VersionText" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" />
 
               </StackPanel>

@@ -72,6 +72,7 @@ public class MainWindowViewModel : ViewModelBase
     private DemoItem? _selectedItem;
     private int _selectedIndex;
     private string? _searchKeyword;
+    private string? _nugetVersions;
     private bool _controlsEnabled = true;
 
     public string? SearchKeyword
@@ -84,6 +85,13 @@ public class MainWindowViewModel : ViewModelBase
                 _demoItemsView.Refresh();
             }
         }
+    }
+
+    //TODO Set this property with the string for the version
+    public string NugetVersions
+    {
+        get => _nugetVersions;
+        set => SetProperty(ref _nugetVersions, value);
     }
 
     public ObservableCollection<DemoItem> DemoItems { get; }
