@@ -619,7 +619,7 @@
                       Margin="0,0,0,12"
                       Background="{DynamicResource MaterialDesign.Brush.Primary}"
                       CornerRadius="2 2 0 0"
-                      Visibility="{TemplateBinding IsHeaderVisible, Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}">
+                      Visibility="{TemplateBinding IsHeaderVisible, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}">
                 <StackPanel x:Name="TimeReadoutStackPanel"
                             Margin="24"
                             HorizontalAlignment="Right"
@@ -1380,7 +1380,7 @@
 
               <Border Margin="0,0,0,36"
                       HorizontalAlignment="Center"
-                      Visibility="{TemplateBinding IsHeaderVisible, Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}">
+                      Visibility="{TemplateBinding IsHeaderVisible, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}">
                 <StackPanel Orientation="Horizontal">
                   <StackPanel x:Name="TimeReadoutStackPanel"
                               HorizontalAlignment="Right"
@@ -2202,7 +2202,7 @@
 
               <Border Margin="0,0,0,36"
                       HorizontalAlignment="Center"
-                      Visibility="{TemplateBinding IsHeaderVisible, Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}">
+                      Visibility="{TemplateBinding IsHeaderVisible, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}">
                 <StackPanel Orientation="Horizontal">
                   <StackPanel x:Name="TimeReadoutStackPanel"
                               HorizontalAlignment="Right"
@@ -3014,7 +3014,7 @@
 
               <Border Margin="0,0,52,0"
                       VerticalAlignment="Center"
-                      Visibility="{TemplateBinding IsHeaderVisible, Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}">
+                      Visibility="{TemplateBinding IsHeaderVisible, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}">
                 <StackPanel>
                   <StackPanel x:Name="TimeReadoutStackPanel"
                               HorizontalAlignment="Right"
@@ -3838,7 +3838,7 @@
 
               <Border Margin="0,0,52,0"
                       VerticalAlignment="Center"
-                      Visibility="{TemplateBinding IsHeaderVisible, Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}">
+                      Visibility="{TemplateBinding IsHeaderVisible, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}">
                 <StackPanel>
                   <StackPanel x:Name="TimeReadoutStackPanel"
                               HorizontalAlignment="Right"

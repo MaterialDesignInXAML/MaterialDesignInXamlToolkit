@@ -376,20 +376,20 @@
                                 ContentTemplate="{TemplateBinding ToggleContentTemplate}"
                                 ContentTemplateSelector="{TemplateBinding ToggleContentTemplateSelector}"
                                 Focusable="False"
-                                Visibility="{TemplateBinding ToggleCheckedContent, Converter={x:Static converters:NullableToVisibilityConverter.InverseInstance}}" />
+                                Visibility="{TemplateBinding ToggleCheckedContent, Converter={x:Static converters:NullableToVisibilityConverter.NotCollapsedInstance}}" />
                 <ContentControl x:Name="ExplicitToggleContent"
                                 Content="{TemplateBinding ToggleContent}"
                                 ContentTemplate="{TemplateBinding ToggleContentTemplate}"
                                 ContentTemplateSelector="{TemplateBinding ToggleContentTemplateSelector}"
                                 Focusable="False"
-                                Visibility="{TemplateBinding ToggleCheckedContent, Converter={x:Static converters:NullableToVisibilityConverter.Instance}}" />
+                                Visibility="{TemplateBinding ToggleCheckedContent, Converter={x:Static converters:NullableToVisibilityConverter.CollapsedInstance}}" />
                 <ContentControl x:Name="ExplicitToggleCheckedContent"
                                 Content="{TemplateBinding ToggleCheckedContent}"
                                 ContentTemplate="{TemplateBinding ToggleCheckedContentTemplate}"
                                 Focusable="False"
                                 Opacity="0"
                                 RenderTransformOrigin=".5,.5"
-                                Visibility="{TemplateBinding ToggleCheckedContent, Converter={x:Static converters:NullableToVisibilityConverter.Instance}}">
+                                Visibility="{TemplateBinding ToggleCheckedContent, Converter={x:Static converters:NullableToVisibilityConverter.CollapsedInstance}}">
                   <ContentControl.RenderTransform>
                     <RotateTransform Angle="-45" />
                   </ContentControl.RenderTransform>
@@ -420,7 +420,7 @@
                                 Content="{TemplateBinding PopupContent}"
                                 ContentTemplate="{TemplateBinding PopupContentTemplate}"
                                 Opacity="0"
-                                Visibility="{TemplateBinding IsEnabled, Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}">
+                                Visibility="{TemplateBinding IsEnabled, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}">
                   <ContentControl.Resources>
                     <ResourceDictionary>
                       <Style TargetType="{x:Type ToolTip}" BasedOn="{StaticResource MaterialDesignToolTip}">

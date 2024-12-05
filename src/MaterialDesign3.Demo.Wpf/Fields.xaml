@@ -354,7 +354,7 @@
           <TextBox Height="100"
                    VerticalAlignment="Top"
                    materialDesign:HintAssist.Hint="This is a limited text area"
-                   materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordFieldTextCountComboBox, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.Instance}}"
+                   materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordFieldTextCountComboBox, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.CollapsedInstance}}"
                    MaxLength="40"
                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
                    TextWrapping="Wrap"

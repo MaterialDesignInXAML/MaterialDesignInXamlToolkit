@@ -165,7 +165,7 @@
                             Grid.Column="0"
                             MaxWidth="{TemplateBinding ActualWidth}"
                             Background="{TemplateBinding wpf:ValidationAssist.Background}"
-                            Visibility="{TemplateBinding Validation.HasError, Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}">
+                            Visibility="{TemplateBinding Validation.HasError, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}">
                       <ItemsControl ItemsSource="{TemplateBinding Validation.Errors}">
                         <ItemsControl.ItemTemplate>
                           <DataTemplate DataType="ValidationError">
@@ -318,7 +318,7 @@
                                                 IsTabStop="False"
                                                 ListSortDirection="{TemplateBinding SortDirection}"
                                                 Opacity="0.45"
-                                                Visibility="{Binding CanUserSortColumns, RelativeSource={RelativeSource AncestorType=DataGrid}, Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}" />
+                                                Visibility="{Binding CanUserSortColumns, RelativeSource={RelativeSource AncestorType=DataGrid}, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}" />
                 <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                   RecognizesAccessKey="True"
                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
@@ -382,7 +382,7 @@
                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                 <Control SnapsToDevicePixels="false"
                          Template="{Binding ValidationErrorTemplate, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"
-                         Visibility="{Binding (Validation.HasError), Converter={x:Static converters:BooleanToVisibilityConverter.Instance}, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" />
+                         Visibility="{Binding (Validation.HasError), Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" />
               </StackPanel>
             </Border>
             <Thumb x:Name="PART_TopHeaderGripper"

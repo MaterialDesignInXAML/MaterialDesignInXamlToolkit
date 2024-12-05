@@ -358,10 +358,10 @@
             </StackPanel>
           </Grid>
           <ControlTemplate.Triggers>
-            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:TreeViewAssist.AdditionalTemplate), Converter={x:Static converters:NullableToVisibilityConverter.Instance}, Mode=OneWay}" Value="Visible">
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:TreeViewAssist.AdditionalTemplate), Converter={x:Static converters:NullableToVisibilityConverter.CollapsedInstance}, Mode=OneWay}" Value="Visible">
               <Setter TargetName="AdditionalContentControl" Property="Visibility" Value="Visible" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:TreeViewAssist.AdditionalTemplateSelector), Converter={x:Static converters:NullableToVisibilityConverter.Instance}, Mode=OneWay}" Value="Visible">
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:TreeViewAssist.AdditionalTemplateSelector), Converter={x:Static converters:NullableToVisibilityConverter.CollapsedInstance}, Mode=OneWay}" Value="Visible">
               <Setter TargetName="AdditionalContentControl" Property="Visibility" Value="Visible" />
             </DataTrigger>
             <Trigger Property="HasItems" Value="false">

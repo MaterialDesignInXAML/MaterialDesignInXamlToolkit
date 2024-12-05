@@ -89,7 +89,7 @@
                     ContentTemplate="{TemplateBinding ActionContentTemplate}"
                     ContentTemplateSelector="{TemplateBinding ActionContentTemplateSelector}"
                     Style="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type wpf:Snackbar}}, Path=ActionButtonStyle}"
-                    Visibility="{TemplateBinding ActionContent, Converter={x:Static converters:NullableToVisibilityConverter.Instance}}">
+                    Visibility="{TemplateBinding ActionContent, Converter={x:Static converters:NullableToVisibilityConverter.CollapsedInstance}}">
               <DockPanel.Dock>
                 <MultiBinding Converter="{x:Static converters:SnackbarActionButtonPlacementModeConverter.Instance}">
                   <Binding Path="ActionButtonPlacement" RelativeSource="{RelativeSource AncestorType={x:Type wpf:Snackbar}}" />

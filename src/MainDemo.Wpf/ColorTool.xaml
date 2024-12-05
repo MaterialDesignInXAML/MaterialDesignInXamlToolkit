@@ -481,7 +481,7 @@
         </UniformGrid>
 
         <Grid DockPanel.Dock="Left">
-          <Grid Visibility="{Binding IsChecked, ElementName=CustomPaletteButton, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.Instance}}">
+          <Grid Visibility="{Binding IsChecked, ElementName=CustomPaletteButton, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.CollapsedInstance}}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="160" />
               <ColumnDefinition />
@@ -501,7 +501,7 @@
                                         Color="{Binding SelectedColor, Delay=25}" />
           </Grid>
 
-          <StackPanel Visibility="{Binding IsChecked, ElementName=MdPaletteButton, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.Instance}}">
+          <StackPanel Visibility="{Binding IsChecked, ElementName=MdPaletteButton, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.CollapsedInstance}}">
             <StackPanel Orientation="Horizontal">
               <StackPanel.Resources>
                 <Style TargetType="TextBlock">

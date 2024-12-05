@@ -297,7 +297,7 @@
                          Minimum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Minimum)}"
                          Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Opacity)}"
                          Style="{DynamicResource MaterialDesignLinearProgressBar}"
-                         Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndicatorVisible), Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}"
+                         Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndicatorVisible), Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}"
                          Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Value)}" />
             <Border Margin="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
               <wpf:Ripple x:Name="contentPresenter"
@@ -471,7 +471,7 @@
                       BorderBrush="{DynamicResource MaterialDesign.Brush.RadioButton.Checked}"
                       BorderThickness="0"
                       Opacity="0"
-                      Visibility="{TemplateBinding IsChecked, Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}" />
+                      Visibility="{TemplateBinding IsChecked, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}" />
             </Grid>
           </Border>
           <ControlTemplate.Triggers>

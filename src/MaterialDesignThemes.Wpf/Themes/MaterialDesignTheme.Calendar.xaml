@@ -479,7 +479,7 @@
                         FontWeight="Bold"
                         Foreground="{TemplateBinding wpf:CalendarAssist.HeaderForeground}"
                         Template="{StaticResource HeaderButtonTemplate}"
-                        Visibility="{TemplateBinding wpf:CalendarAssist.IsHeaderVisible, Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}" />
+                        Visibility="{TemplateBinding wpf:CalendarAssist.IsHeaderVisible, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}" />
                 <TextBlock x:Name="CurrentDateTextBlock"
                            Grid.Row="1"
                            Grid.Column="1"

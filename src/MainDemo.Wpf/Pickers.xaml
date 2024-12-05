@@ -229,7 +229,7 @@
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
                   UniqueKey="pickers_15">
-          <materialDesign:TimePicker ClockButtonVisibility="{Binding IsChecked, ElementName=IsClockButtonVisible, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.Instance}}"
+          <materialDesign:TimePicker ClockButtonVisibility="{Binding IsChecked, ElementName=IsClockButtonVisible, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.CollapsedInstance}}"
                              Width="100"
                              Is24Hours="True" />
         </smtx:XamlDisplay>
