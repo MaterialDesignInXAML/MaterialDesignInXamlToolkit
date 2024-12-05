@@ -25,9 +25,6 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
       </ResourceDictionary.MergedDictionaries>
       <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-      <materialDesignConverters:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter"
-                                                             FalseValue="Visible"
-                                                             TrueValue="Collapsed" />
     </ResourceDictionary>
   </UserControl.Resources>
   <StackPanel>
@@ -573,7 +570,7 @@
                     Command="{Binding DismissCommand}"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
-                    Visibility="{Binding ShowDismissButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Visibility="{Binding ShowDismissButton, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.CollapsedInstance}}">
               <StackPanel Orientation="Horizontal">
                 <TextBlock Text="DISMISS" />
                 <materialDesign:PackIcon Margin="4,.5,0,0" Kind="Close" />
@@ -582,7 +579,7 @@
 
             <TextBlock VerticalAlignment="Center"
                        Text="{Binding DemoRestartCountdownText}"
-                       Visibility="{Binding ShowDismissButton, Converter={StaticResource InvertedBooleanToVisibilityConverter}}" />
+                       Visibility="{Binding ShowDismissButton, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.NotCollapsedInstance}}" />
           </Grid>
         </smtx:XamlDisplay>
 
@@ -607,7 +604,7 @@
                     Command="{Binding DismissCommand}"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignOutlinedButton}"
-                    Visibility="{Binding ShowDismissButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Visibility="{Binding ShowDismissButton, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.CollapsedInstance}}">
               <StackPanel Orientation="Horizontal">
                 <TextBlock Text="DISMISS" />
                 <materialDesign:PackIcon Margin="4,.5,0,0" Kind="Close" />
@@ -616,7 +613,7 @@
 
             <TextBlock VerticalAlignment="Center"
                        Text="{Binding DemoRestartCountdownText}"
-                       Visibility="{Binding ShowDismissButton, Converter={StaticResource InvertedBooleanToVisibilityConverter}}" />
+                       Visibility="{Binding ShowDismissButton, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.NotCollapsedInstance}}" />
           </Grid>
         </smtx:XamlDisplay>
 
@@ -641,7 +638,7 @@
                     Command="{Binding DismissCommand}"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignFlatButton}"
-                    Visibility="{Binding ShowDismissButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Visibility="{Binding ShowDismissButton, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.CollapsedInstance}}">
               <StackPanel Orientation="Horizontal">
                 <TextBlock Text="DISMISS" />
                 <materialDesign:PackIcon Margin="4,.5,0,0" Kind="Close" />
@@ -650,7 +647,7 @@
 
             <TextBlock VerticalAlignment="Center"
                        Text="{Binding DemoRestartCountdownText}"
-                       Visibility="{Binding ShowDismissButton, Converter={StaticResource InvertedBooleanToVisibilityConverter}}" />
+                       Visibility="{Binding ShowDismissButton, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.NotCollapsedInstance}}" />
           </Grid>
         </smtx:XamlDisplay>
 

@@ -3,8 +3,6 @@
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
-  <converters:IsTransparentBrushConverter x:Key="IsTransparentBrushConverter" />
-
   <Style x:Key="MaterialDesignHeaderedContentControl" TargetType="{x:Type HeaderedContentControl}">
     <Setter Property="Template">
       <Setter.Value>
@@ -60,10 +58,10 @@
             </DockPanel>
           </Grid>
           <ControlTemplate.Triggers>
-            <DataTrigger Binding="{Binding ElementName=Border, Path=Background, Converter={StaticResource IsTransparentBrushConverter}}" Value="True">
+            <DataTrigger Binding="{Binding ElementName=Border, Path=Background, Converter={x:Static converters:IsTransparentBrushConverter.Instance}}" Value="True">
               <Setter TargetName="PART_ColorZone" Property="Effect" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding ElementName=Border, Path=Background, Converter={StaticResource IsTransparentBrushConverter}}" Value="False">
+            <DataTrigger Binding="{Binding ElementName=Border, Path=Background, Converter={x:Static converters:IsTransparentBrushConverter.Instance}}" Value="False">
               <Setter TargetName="OuterGrid" Property="Effect" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}" />
             </DataTrigger>
           </ControlTemplate.Triggers>

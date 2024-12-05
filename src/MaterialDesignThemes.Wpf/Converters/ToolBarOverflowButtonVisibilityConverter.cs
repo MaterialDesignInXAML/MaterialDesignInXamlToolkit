@@ -5,6 +5,8 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 public class ToolBarOverflowButtonVisibilityConverter : IMultiValueConverter
 {
+    public static readonly ToolBarOverflowButtonVisibilityConverter Instance = new();
+
     public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
     {
         var overflowMode = (OverflowMode)values[0];

@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
              xmlns:materialDesignDemo="clr-namespace:MaterialDesignDemo"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -191,7 +192,7 @@
             </Grid>
 
             <materialDesign:ColorPicker MinHeight="100" Margin="0,10"
-                                        IsEnabled="{Binding IsChecked, ElementName=UseTransparent, Converter={StaticResource InvertBooleanConverter}}">
+                                        IsEnabled="{Binding IsChecked, ElementName=UseTransparent, Converter={x:Static materialDesignConverters:InvertBooleanConverter.Instance}}">
               <materialDesign:ColorPicker.Style>
                 <Style TargetType="materialDesign:ColorPicker" BasedOn="{StaticResource {x:Type materialDesign:ColorPicker}}">
                   <Setter Property="Color" Value="{Binding GeneratedIconBackground, Delay=25}" />

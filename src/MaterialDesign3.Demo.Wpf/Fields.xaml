@@ -5,6 +5,7 @@
              xmlns:domain="clr-namespace:MaterialDesign3Demo.Domain"
              xmlns:domain1="clr-namespace:MaterialDesign3Demo.Domain"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              d:DataContext="{d:DesignInstance domain:FieldsViewModel,
@@ -353,7 +354,7 @@
           <TextBox Height="100"
                    VerticalAlignment="Top"
                    materialDesign:HintAssist.Hint="This is a limited text area"
-                   materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordFieldTextCountComboBox, Converter={StaticResource BooleanToVisibilityConverter}}"
+                   materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordFieldTextCountComboBox, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.CollapsedInstance}}"
                    MaxLength="40"
                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
                    TextWrapping="Wrap"

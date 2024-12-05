@@ -196,9 +196,6 @@
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type Expander}">
-          <ControlTemplate.Resources>
-            <converters:ExpanderRotateAngleConverter x:Key="ExpanderRotateAngleConverter" />
-          </ControlTemplate.Resources>
           <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="ExpansionStates">
@@ -312,7 +309,7 @@
                 <Border.LayoutTransform>
                   <TransformGroup>
                     <ScaleTransform x:Name="ContentSiteScaleTransform" />
-                    <RotateTransform Angle="{Binding Path=ExpandDirection, RelativeSource={RelativeSource AncestorType=Expander}, Converter={StaticResource ExpanderRotateAngleConverter}}" />
+                    <RotateTransform Angle="{Binding Path=ExpandDirection, RelativeSource={RelativeSource AncestorType=Expander}, Converter={x:Static converters:ExpanderRotateAngleConverter.Instance}}" />
                   </TransformGroup>
                 </Border.LayoutTransform>
 
@@ -321,7 +318,7 @@
                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                   <Grid.LayoutTransform>
-                    <RotateTransform Angle="{Binding Path=ExpandDirection, RelativeSource={RelativeSource AncestorType=Expander}, Converter={StaticResource ExpanderRotateAngleConverter}, ConverterParameter=-1}" />
+                    <RotateTransform Angle="{Binding Path=ExpandDirection, RelativeSource={RelativeSource AncestorType=Expander}, Converter={x:Static converters:ExpanderRotateAngleConverter.Instance}, ConverterParameter=-1}" />
                   </Grid.LayoutTransform>
 
                   <ContentPresenter Name="PART_Content"

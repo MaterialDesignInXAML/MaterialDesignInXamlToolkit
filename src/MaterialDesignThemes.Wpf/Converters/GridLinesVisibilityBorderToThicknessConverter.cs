@@ -5,6 +5,8 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 internal class GridLinesVisibilityBorderToThicknessConverter : IValueConverter
 {
+    public static readonly GridLinesVisibilityBorderToThicknessConverter Instance = new();
+
     private const double GridLinesThickness = 1;
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

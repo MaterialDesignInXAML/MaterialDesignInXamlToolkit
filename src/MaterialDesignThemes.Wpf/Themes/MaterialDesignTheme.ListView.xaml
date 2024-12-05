@@ -14,9 +14,6 @@
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ScrollViewer}">
-          <ControlTemplate.Resources>
-            <converters:HorizontalThicknessConverter x:Key="HorizontalThicknessConverter" />
-          </ControlTemplate.Resources>
           <Grid Background="{TemplateBinding Background}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="*" />
@@ -47,8 +44,9 @@
                                                 Columns="{Binding Path=TemplatedParent.View.Columns, RelativeSource={RelativeSource TemplatedParent}}"
                                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     <!-- NB: Rectangle added to keep the width of the header ScrollViewer the same size as the list items -->
-                    <Rectangle Margin="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ListViewAssist.ListViewItemPadding), Converter={StaticResource HorizontalThicknessConverter}}" />
+                    <Rectangle Margin="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ListViewAssist.ListViewItemPadding), Converter={x:Static converters:HorizontalThicknessConverter.Instance}}" />
                   </StackPanel>
+                  
                 </Border>
 
               </ScrollViewer>
@@ -195,38 +193,40 @@
     </Style.Triggers>
   </Style>
 
-  <converters:ListViewGridViewConverter x:Key="MaterialDesignListViewItemContainerStyleConverter"
-                                        DefaultValue="{StaticResource MaterialDesignListBoxItem}"
-                                        ViewValue="{StaticResource MaterialDesignGridViewItem}" />
 
-  <converters:ListViewGridViewConverter x:Key="MaterialDesignListViewTemplateConverter">
-    <converters:ListViewGridViewConverter.DefaultValue>
-      <ControlTemplate TargetType="{x:Type ListView}">
-        <ScrollViewer>
-          <ItemsPresenter />
-        </ScrollViewer>
-        <ControlTemplate.Triggers>
-          <Trigger Property="IsGrouping" Value="True">
-            <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
-          </Trigger>
-        </ControlTemplate.Triggers>
-      </ControlTemplate>
-    </converters:ListViewGridViewConverter.DefaultValue>
-    <converters:ListViewGridViewConverter.ViewValue>
-      <ControlTemplate TargetType="{x:Type ListView}">
-        <ScrollViewer Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}">
-          <ItemsPresenter />
-        </ScrollViewer>
-        <ControlTemplate.Triggers>
-          <Trigger Property="IsGrouping" Value="True">
-            <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
-          </Trigger>
-        </ControlTemplate.Triggers>
-      </ControlTemplate>
-    </converters:ListViewGridViewConverter.ViewValue>
-  </converters:ListViewGridViewConverter>
 
   <Style x:Key="MaterialDesignListView" TargetType="{x:Type ListView}">
+    <Style.Resources>
+      <converters:ListViewGridViewConverter x:Key="MaterialDesignListViewItemContainerStyleConverter"
+                                        DefaultValue="{StaticResource MaterialDesignListBoxItem}"
+                                        ViewValue="{StaticResource MaterialDesignGridViewItem}" />
+      <converters:ListViewGridViewConverter x:Key="MaterialDesignListViewTemplateConverter">
+        <converters:ListViewGridViewConverter.DefaultValue>
+          <ControlTemplate TargetType="{x:Type ListView}">
+            <ScrollViewer>
+              <ItemsPresenter />
+            </ScrollViewer>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsGrouping" Value="True">
+                <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </converters:ListViewGridViewConverter.DefaultValue>
+        <converters:ListViewGridViewConverter.ViewValue>
+          <ControlTemplate TargetType="{x:Type ListView}">
+            <ScrollViewer Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}">
+              <ItemsPresenter />
+            </ScrollViewer>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsGrouping" Value="True">
+                <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </converters:ListViewGridViewConverter.ViewValue>
+      </converters:ListViewGridViewConverter>
+    </Style.Resources>
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
     <Setter Property="BorderThickness" Value="0" />

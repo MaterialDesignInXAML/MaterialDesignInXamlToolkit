@@ -6,6 +6,7 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 public class BrushOpacityConverter : IValueConverter
 {
+    public static readonly BrushOpacityConverter Instance = new();
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         if (value is SolidColorBrush brush)

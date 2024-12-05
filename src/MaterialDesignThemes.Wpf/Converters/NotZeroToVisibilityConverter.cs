@@ -5,6 +5,8 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 public class NotZeroToVisibilityConverter : IValueConverter
 {
+    public static readonly NotZeroToVisibilityConverter Instance = new();
+
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         double val;

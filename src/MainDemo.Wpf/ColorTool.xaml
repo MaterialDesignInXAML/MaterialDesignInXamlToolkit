@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:MaterialDesignDemo"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:materialDesignColors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
+             xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              d:DataContext="{d:DesignInstance Type=domain:ColorToolViewModel}"
              d:DesignHeight="600"
@@ -480,7 +481,7 @@
         </UniformGrid>
 
         <Grid DockPanel.Dock="Left">
-          <Grid Visibility="{Binding IsChecked, ElementName=CustomPaletteButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+          <Grid Visibility="{Binding IsChecked, ElementName=CustomPaletteButton, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.CollapsedInstance}}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="160" />
               <ColumnDefinition />
@@ -500,7 +501,7 @@
                                         Color="{Binding SelectedColor, Delay=25}" />
           </Grid>
 
-          <StackPanel Visibility="{Binding IsChecked, ElementName=MdPaletteButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+          <StackPanel Visibility="{Binding IsChecked, ElementName=MdPaletteButton, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.CollapsedInstance}}">
             <StackPanel Orientation="Horizontal">
               <StackPanel.Resources>
                 <Style TargetType="TextBlock">

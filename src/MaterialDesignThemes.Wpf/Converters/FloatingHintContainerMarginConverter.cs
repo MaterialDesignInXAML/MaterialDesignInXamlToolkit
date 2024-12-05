@@ -5,6 +5,8 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 public class FloatingHintContainerMarginConverter : IMultiValueConverter
 {
+    public static readonly FloatingHintContainerMarginConverter Instance = new();
+
     private static readonly object EmptyThickness = new Thickness(0);
 
     public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)

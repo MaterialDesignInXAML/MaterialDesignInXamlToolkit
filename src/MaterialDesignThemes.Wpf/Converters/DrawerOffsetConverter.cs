@@ -5,6 +5,7 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 public class DrawerOffsetConverter : IValueConverter
 {
+    public static readonly DrawerOffsetConverter Instance = new();
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         double d = value as double? ?? 0;

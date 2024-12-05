@@ -5,6 +5,8 @@ namespace MaterialDesignThemes.Wpf.Converters.CircularProgressBar;
 
 public class ArcEndPointConverter : IMultiValueConverter
 {
+    public static readonly ArcEndPointConverter Instance = new();
+
     /// <summary>
     /// CircularProgressBar draws two arcs to support a full circle at 100 %.
     /// With one arc at 100 % the start point is identical the end point, so nothing is drawn.

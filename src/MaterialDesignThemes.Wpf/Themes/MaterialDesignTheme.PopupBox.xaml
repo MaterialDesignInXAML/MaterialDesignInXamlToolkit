@@ -45,7 +45,7 @@
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
             <Border x:Name="MouseOverBorder"
-                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                    Background="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                     Opacity="0" />
             <wpf:Ripple MinHeight="48"
                         Padding="{TemplateBinding Padding}"
@@ -54,7 +54,7 @@
                         Content="{TemplateBinding Content}"
                         ContentTemplate="{TemplateBinding ContentTemplate}"
                         ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                        Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                        Feedback="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                         Focusable="False"
                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
           </Grid>
@@ -63,14 +63,6 @@
     </Setter>
     <Setter Property="VerticalContentAlignment" Value="Bottom" />
   </Style>
-
-  <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-  <converters:NullableToVisibilityConverter x:Key="NullVisibilityConverter" />
-  <converters:NullableToVisibilityConverter x:Key="InvertedNullVisibilityConverter"
-                                            NotNullValue="Collapsed"
-                                            NullValue="Visible" />
-  <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
-  <converters:NotConverter x:Key="NotConverter" />
 
   <wpf:PackIcon x:Key="MaterialDesignPopupBoxToggleContent"
                 Width="24"
@@ -81,9 +73,6 @@
                 Kind="DotsVertical" />
 
   <Style x:Key="MaterialDesignPopupBox" TargetType="{x:Type wpf:PopupBox}">
-    <Style.Resources>
-      <converters:FirstNonNullConverter x:Key="FirstNonNullConverter" />
-    </Style.Resources>
     <Setter Property="Focusable" Value="True" />
     <Setter Property="HorizontalAlignment" Value="Left" />
     <Setter Property="Padding" Value="0,8,0,8" />
@@ -95,9 +84,9 @@
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type wpf:PopupBox}">
           <ControlTemplate.Resources>
-            <wpf:ElevationMarginConverter x:Key="ElevationMarginConverter" />
-            <wpf:ElevationRadiusConverter x:Key="ElevationRadiusConverter" Multiplier="-1" />
-            <wpf:ElevationRadiusConverter x:Key="RtlElevationRadiusConverter" Multiplier="1" />
+            <converters:ElevationMarginConverter x:Key="ElevationMarginConverter" />
+            <converters:ElevationRadiusConverter x:Key="ElevationRadiusConverter" Multiplier="-1" />
+            <converters:ElevationRadiusConverter x:Key="RtlElevationRadiusConverter" Multiplier="1" />
 
             <Style TargetType="Separator" BasedOn="{StaticResource MaterialDesignSeparator}" />
             <Style x:Key="ToggleButtonStyle" TargetType="ToggleButton">
@@ -140,7 +129,7 @@
                          PopupAnimation="Fade"
                          VerticalOffset="{TemplateBinding PopupElevation, Converter={StaticResource ElevationRadiusConverter}}">
               <wpf:PopupEx.PlacementTarget>
-                <MultiBinding Converter="{StaticResource FirstNonNullConverter}">
+                <MultiBinding Converter="{x:Static converters:FirstNonNullConverter.Instance}">
                   <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="PlacementTarget" />
                   <Binding ElementName="PART_Toggle" />
                 </MultiBinding>
@@ -172,7 +161,7 @@
     </Setter>
     <Setter Property="TextElement.FontWeight" Value="Normal" />
     <Setter Property="ToggleContent" Value="{StaticResource MaterialDesignPopupBoxToggleContent}" />
-    <Setter Property="ToolTipService.IsEnabled" Value="{Binding IsPopupOpen, RelativeSource={RelativeSource Self}, Converter={StaticResource NotConverter}}" />
+    <Setter Property="ToolTipService.IsEnabled" Value="{Binding IsPopupOpen, RelativeSource={RelativeSource Self}, Converter={x:Static converters:NotConverter.Instance}}" />
     <Setter Property="wpf:RippleAssist.ClipToBounds" Value="False" />
     <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Button.Ripple}" />
     <Setter Property="wpf:RippleAssist.IsCentered" Value="True" />
@@ -199,9 +188,6 @@
                 Kind="Plus" />
 
   <Style x:Key="MaterialDesignMultiFloatingActionPopupBox" TargetType="{x:Type wpf:PopupBox}">
-    <Style.Resources>
-      <converters:FirstNonNullConverter x:Key="FirstNonNullConverter" />
-    </Style.Resources>
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="BorderThickness" Value="1" />
@@ -390,20 +376,20 @@
                                 ContentTemplate="{TemplateBinding ToggleContentTemplate}"
                                 ContentTemplateSelector="{TemplateBinding ToggleContentTemplateSelector}"
                                 Focusable="False"
-                                Visibility="{TemplateBinding ToggleCheckedContent, Converter={StaticResource InvertedNullVisibilityConverter}}" />
+                                Visibility="{TemplateBinding ToggleCheckedContent, Converter={x:Static converters:NullableToVisibilityConverter.NotCollapsedInstance}}" />
                 <ContentControl x:Name="ExplicitToggleContent"
                                 Content="{TemplateBinding ToggleContent}"
                                 ContentTemplate="{TemplateBinding ToggleContentTemplate}"
                                 ContentTemplateSelector="{TemplateBinding ToggleContentTemplateSelector}"
                                 Focusable="False"
-                                Visibility="{TemplateBinding ToggleCheckedContent, Converter={StaticResource NullVisibilityConverter}}" />
+                                Visibility="{TemplateBinding ToggleCheckedContent, Converter={x:Static converters:NullableToVisibilityConverter.CollapsedInstance}}" />
                 <ContentControl x:Name="ExplicitToggleCheckedContent"
                                 Content="{TemplateBinding ToggleCheckedContent}"
                                 ContentTemplate="{TemplateBinding ToggleCheckedContentTemplate}"
                                 Focusable="False"
                                 Opacity="0"
                                 RenderTransformOrigin=".5,.5"
-                                Visibility="{TemplateBinding ToggleCheckedContent, Converter={StaticResource NullVisibilityConverter}}">
+                                Visibility="{TemplateBinding ToggleCheckedContent, Converter={x:Static converters:NullableToVisibilityConverter.CollapsedInstance}}">
                   <ContentControl.RenderTransform>
                     <RotateTransform Angle="-45" />
                   </ContentControl.RenderTransform>
@@ -417,7 +403,7 @@
                          Placement="Custom"
                          PopupAnimation="None">
               <wpf:PopupEx.PlacementTarget>
-                <MultiBinding Converter="{StaticResource FirstNonNullConverter}">
+                <MultiBinding Converter="{x:Static converters:FirstNonNullConverter.Instance}">
                   <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="PlacementTarget" />
                   <Binding ElementName="PART_Toggle" />
                 </MultiBinding>
@@ -434,7 +420,7 @@
                                 Content="{TemplateBinding PopupContent}"
                                 ContentTemplate="{TemplateBinding PopupContentTemplate}"
                                 Opacity="0"
-                                Visibility="{TemplateBinding IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                Visibility="{TemplateBinding IsEnabled, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}">
                   <ContentControl.Resources>
                     <ResourceDictionary>
                       <Style TargetType="{x:Type ToolTip}" BasedOn="{StaticResource MaterialDesignToolTip}">

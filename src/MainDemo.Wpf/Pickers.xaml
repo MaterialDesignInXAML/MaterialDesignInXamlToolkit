@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              d:DataContext="{d:DesignInstance domain:PickersViewModel}"
@@ -228,7 +229,7 @@
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
                   UniqueKey="pickers_15">
-          <materialDesign:TimePicker ClockButtonVisibility="{Binding IsChecked, ElementName=IsClockButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+          <materialDesign:TimePicker ClockButtonVisibility="{Binding IsChecked, ElementName=IsClockButtonVisible, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.CollapsedInstance}}"
                              Width="100"
                              Is24Hours="True" />
         </smtx:XamlDisplay>

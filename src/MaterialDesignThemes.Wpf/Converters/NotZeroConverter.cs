@@ -5,6 +5,8 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 public class NotZeroConverter : IValueConverter
 {
+    public static readonly NotZeroConverter Instance = new();
+
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         if (double.TryParse((value ?? "").ToString(), out double val))

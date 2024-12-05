@@ -7,9 +7,6 @@
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
-  <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-  <converters:BorderClipConverter x:Key="BorderClipConverter" />
-
   <Style x:Key="FocusVisual">
     <Setter Property="Control.Template">
       <Setter.Value>
@@ -519,7 +516,7 @@
                             TextOptions.TextFormattingMode="Ideal"
                             TextOptions.TextRenderingMode="Auto">
                   <wpf:Ripple.Clip>
-                    <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                    <MultiBinding Converter="{x:Static converters:BorderClipConverter.Instance}">
                       <Binding ElementName="MouseOverBorder" Path="ActualWidth" />
                       <Binding ElementName="MouseOverBorder" Path="ActualHeight" />
                       <Binding ElementName="MouseOverBorder" Path="CornerRadius" />

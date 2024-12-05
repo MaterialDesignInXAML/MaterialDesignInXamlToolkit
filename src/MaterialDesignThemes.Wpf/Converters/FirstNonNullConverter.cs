@@ -5,6 +5,8 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 public class FirstNonNullConverter : IMultiValueConverter
 {
+    public static readonly FirstNonNullConverter Instance = new();
+
     public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
         => values?.FirstOrDefault(v => v is not null);
 

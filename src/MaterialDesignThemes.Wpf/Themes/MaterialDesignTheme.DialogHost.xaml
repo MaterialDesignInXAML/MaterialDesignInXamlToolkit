@@ -14,9 +14,6 @@
   </Style>
 
   <Style TargetType="{x:Type wpf:DialogHost}">
-    <Style.Resources>
-      <converters:FirstNonNullConverter x:Key="FirstNonNullConverter" />
-    </Style.Resources>
     <Setter Property="DialogMargin" Value="35" />
     <Setter Property="DialogTheme" Value="Inherit" />
     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
@@ -211,7 +208,7 @@
               <Grid.OpacityMask>
                 <VisualBrush>
                   <VisualBrush.Visual>
-                    <MultiBinding Converter="{StaticResource FirstNonNullConverter}">
+                    <MultiBinding Converter="{x:Static converters:FirstNonNullConverter.Instance}">
                       <Binding ElementName="ContentCoverBorder" />
                       <Binding Source="{x:Static DependencyProperty.UnsetValue}" />
                     </MultiBinding>
@@ -247,9 +244,6 @@
   </Style>
 
   <Style x:Key="MaterialDesignEmbeddedDialogHost" TargetType="{x:Type wpf:DialogHost}">
-    <Style.Resources>
-      <converters:FirstNonNullConverter x:Key="FirstNonNullConverter" />
-    </Style.Resources>
     <Setter Property="DialogMargin" Value="35" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />
     <Setter Property="Placement" Value="Center" />
@@ -396,7 +390,7 @@
               <Grid.OpacityMask>
                 <VisualBrush>
                   <VisualBrush.Visual>
-                    <MultiBinding Converter="{StaticResource FirstNonNullConverter}">
+                    <MultiBinding Converter="{x:Static converters:FirstNonNullConverter.Instance}">
                       <Binding ElementName="ContentCoverBorder" />
                       <Binding Source="{x:Static DependencyProperty.UnsetValue}" />
                     </MultiBinding>

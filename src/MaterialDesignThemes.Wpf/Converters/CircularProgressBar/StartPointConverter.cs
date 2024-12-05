@@ -5,6 +5,8 @@ namespace MaterialDesignThemes.Wpf.Converters.CircularProgressBar;
 
 public class StartPointConverter : IValueConverter
 {
+    public static readonly StartPointConverter Instance = new();
+
     [Obsolete]
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
