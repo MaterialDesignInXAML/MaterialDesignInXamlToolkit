@@ -113,7 +113,7 @@
                     Background="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
                     CornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}"
                     RenderTransformOrigin="0.5,0.5"
-                    Visibility="{TemplateBinding wpf:TextFieldAssist.RippleOnFocusEnabled, Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}">
+                    Visibility="{TemplateBinding wpf:TextFieldAssist.RippleOnFocusEnabled, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}">
               <Border.RenderTransform>
                 <ScaleTransform x:Name="RippleOnFocusScaleTransform" ScaleX="0" ScaleY="0" />
               </Border.RenderTransform>
@@ -149,7 +149,7 @@
                                 VerticalAlignment="{TemplateBinding wpf:TextFieldAssist.IconVerticalAlignment}"
                                 Kind="{TemplateBinding wpf:TextFieldAssist.LeadingIcon}"
                                 Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                                Visibility="{TemplateBinding wpf:TextFieldAssist.HasLeadingIcon, Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}" />
+                                Visibility="{TemplateBinding wpf:TextFieldAssist.HasLeadingIcon, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}" />
 
                   <TextBlock x:Name="PrefixTextBlock"
                              Grid.Column="1"
@@ -262,7 +262,7 @@
                                 VerticalAlignment="{TemplateBinding wpf:TextFieldAssist.IconVerticalAlignment}"
                                 Kind="{TemplateBinding wpf:TextFieldAssist.TrailingIcon}"
                                 Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                                Visibility="{TemplateBinding wpf:TextFieldAssist.HasTrailingIcon, Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}" />
+                                Visibility="{TemplateBinding wpf:TextFieldAssist.HasTrailingIcon, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}" />
 
                   <Button x:Name="PART_ClearButton"
                           Grid.Column="5"

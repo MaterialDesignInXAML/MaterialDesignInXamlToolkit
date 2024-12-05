@@ -52,7 +52,7 @@
                     RenderTransformOrigin=".5,.5"
                     TextElement.FontSize="11"
                     TextElement.FontWeight="DemiBold"
-                    Visibility="{TemplateBinding IsBadgeSet, Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}">
+                    Visibility="{TemplateBinding IsBadgeSet, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}">
               <Border.Resources>
                 <Style TargetType="wpf:PackIcon">
                   <Setter Property="Height" Value="12" />
@@ -178,7 +178,7 @@
                     RenderTransformOrigin=".5,.5"
                     TextElement.FontSize="11"
                     TextElement.FontWeight="DemiBold"
-                    Visibility="{TemplateBinding IsBadgeSet, Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}">
+                    Visibility="{TemplateBinding IsBadgeSet, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}">
               <Border.RenderTransform>
                 <ScaleTransform ScaleX="1" ScaleY="1" />
               </Border.RenderTransform>

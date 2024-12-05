@@ -72,7 +72,7 @@
                             IsHitTestVisible="False"
                             IsTabStop="False"
                             Opacity="{TemplateBinding HintOpacity}"
-                            Visibility="{TemplateBinding UseFloating, Converter={x:Static converters:BooleanToVisibilityConverter.InverseInstance}}" />
+                            Visibility="{TemplateBinding UseFloating, Converter={x:Static converters:BooleanToVisibilityConverter.NotCollapsedInstance}}" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -179,7 +179,7 @@
                                     IsTabStop="False"
                                     Opacity="{TemplateBinding HintOpacity}"
                                     RenderTransformOrigin="0,0"
-                                    Visibility="{TemplateBinding UseFloating, Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}">
+                                    Visibility="{TemplateBinding UseFloating, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}">
                       
                       <ContentControl.Margin>
                         <MultiBinding Converter="{x:Static converters:FloatingHintTextBlockMarginConverter.Instance}">

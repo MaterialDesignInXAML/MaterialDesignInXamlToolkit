@@ -1036,7 +1036,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
-              <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.Instance}}" />
+              <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.CollapsedInstance}}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1096,7 +1096,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
-              <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.Instance}}" />
+              <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.CollapsedInstance}}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1157,7 +1157,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
-              <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.Instance}}" />
+              <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.CollapsedInstance}}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1227,7 +1227,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
-              <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.Instance}}" />
+              <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.CollapsedInstance}}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1288,7 +1288,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
-              <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.Instance}}" />
+              <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.CollapsedInstance}}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>
@@ -1350,7 +1350,7 @@
               <Setter Property="materialDesign:TextFieldAssist.SuffixTextHintBehavior" Value="{Binding SelectedSuffixHintBehavior}" />
               <Setter Property="materialDesign:TextFieldAssist.NewSpecHighlightingEnabled" Value="{Binding NewSpecHighlightingEnabled}" />
               <Setter Property="MaxLength" Value="{Binding MaxLength}" />
-              <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.Instance}}" />
+              <Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="{Binding ShowCharacterCounter, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.CollapsedInstance}}" />
             </Style>
           </Grid.Resources>
           <Grid.ColumnDefinitions>

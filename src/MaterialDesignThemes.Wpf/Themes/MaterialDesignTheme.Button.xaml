@@ -64,7 +64,7 @@
                              Minimum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Minimum)}"
                              Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Opacity)}"
                              Style="{DynamicResource MaterialDesignLinearProgressBar}"
-                             Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndicatorVisible), Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}"
+                             Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndicatorVisible), Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}"
                              Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Value)}">
                   <ProgressBar.Clip>
                     <MultiBinding Converter="{x:Static converters:BorderClipConverter.Instance}">
@@ -195,7 +195,7 @@
                          Minimum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Minimum)}"
                          Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Opacity)}"
                          Style="{DynamicResource MaterialDesignLinearProgressBar}"
-                         Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndicatorVisible), Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}"
+                         Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndicatorVisible), Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}"
                          Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Value)}">
               <ProgressBar.Clip>
                 <MultiBinding Converter="{x:Static converters:BorderClipConverter.Instance}">
@@ -353,7 +353,7 @@
                          Minimum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Minimum)}"
                          Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Opacity)}"
                          Style="{DynamicResource MaterialDesignLinearProgressBar}"
-                         Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndicatorVisible), Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}"
+                         Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndicatorVisible), Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}"
                          Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Value)}">
               <ProgressBar.Clip>
                 <MultiBinding Converter="{x:Static converters:BorderClipConverter.Instance}">
@@ -516,7 +516,7 @@
                          Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Opacity)}"
                          RenderTransformOrigin=".5, .5"
                          Style="{DynamicResource MaterialDesignCircularProgressBar}"
-                         Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndicatorVisible), Converter={x:Static converters:BooleanToVisibilityConverter.Instance}}"
+                         Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndicatorVisible), Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}"
                          Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Value)}">
               <ProgressBar.RenderTransform>
                 <TransformGroup>

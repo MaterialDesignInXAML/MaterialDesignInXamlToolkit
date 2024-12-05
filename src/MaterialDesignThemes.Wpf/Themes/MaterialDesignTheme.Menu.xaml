@@ -150,7 +150,7 @@
                                Foreground="{TemplateBinding Foreground}"
                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                Text="{TemplateBinding InputGestureText}"
-                               Visibility="{TemplateBinding InputGestureText, Converter={x:Static converters:TextFieldHintVisibilityConverter.StringIsEmptyInstance}}" />
+                               Visibility="{TemplateBinding InputGestureText, Converter={x:Static converters:TextFieldHintVisibilityConverter.IsEmptyInstance}}" />
                   </Grid>
                   <Grid x:Name="SubBlock"
                         Grid.Column="2"
