@@ -624,14 +624,14 @@ public class DialogHost : ContentControl
         => element.SetValue(RestoreFocusElementProperty, value);
 
     public static IInputElement GetRestoreFocusElement(DependencyObject element)
-        => (IInputElement) element.GetValue(RestoreFocusElementProperty);
+        => (IInputElement)element.GetValue(RestoreFocusElementProperty);
 
     public static readonly DependencyProperty IsRestoreFocusDisabledProperty = DependencyProperty.Register(
         nameof(IsRestoreFocusDisabled), typeof(bool), typeof(DialogHost), new PropertyMetadata(false));
 
     public bool IsRestoreFocusDisabled
     {
-        get => (bool) GetValue(IsRestoreFocusDisabledProperty);
+        get => (bool)GetValue(IsRestoreFocusDisabledProperty);
         set => SetValue(IsRestoreFocusDisabledProperty, value);
     }
 
@@ -958,10 +958,29 @@ public class DialogHost : ContentControl
 
     private void OnPreviewGotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
     {
-        
+
     }
 
     [SecurityCritical]
     [DllImport("user32.dll", EntryPoint = "SetFocus", SetLastError = true)]
     private static extern IntPtr SetFocus(IntPtr hWnd);
+
+
+    public bool ApplyBlurBackground
+    {
+        get { return (bool)GetValue(ApplyBlurBackgroundProperty); }
+        set { SetValue(ApplyBlurBackgroundProperty, value); }
+    }
+    public static readonly DependencyProperty ApplyBlurBackgroundProperty =
+        DependencyProperty.Register("ApplyBlurBackground", typeof(bool), typeof(DialogHost), new PropertyMetadata(default(bool)));
+
+
+    private const double DefaultBlurRadius = 16.0;
+    public double BlurRadius
+    {
+        get { return (double)GetValue(BlurRadiusProperty); }
+        set { SetValue(BlurRadiusProperty, value); }
+    }
+    public static readonly DependencyProperty BlurRadiusProperty =
+        DependencyProperty.Register("BlurRadius", typeof(double), typeof(DialogHost), new PropertyMetadata(DefaultBlurRadius));
 }

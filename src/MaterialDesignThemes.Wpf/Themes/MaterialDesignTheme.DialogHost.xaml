@@ -16,6 +16,7 @@
   <Style TargetType="{x:Type wpf:DialogHost}">
     <Style.Resources>
       <converters:FirstNonNullConverter x:Key="FirstNonNullConverter" />
+      <converters:DialogBackgroundBlurConverter x:Key="DialogBackgroundBlurConverter"/>
     </Style.Resources>
     <Setter Property="DialogMargin" Value="35" />
     <Setter Property="DialogTheme" Value="Inherit" />
@@ -201,7 +202,15 @@
                                 Content="{TemplateBinding ContentControl.Content}"
                                 ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
                                 ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
-                                Opacity="1" />
+                                Opacity="1">
+                <ContentPresenter.Effect>
+                  <MultiBinding Converter="{StaticResource DialogBackgroundBlurConverter}">
+                    <Binding Path="IsOpen" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="ApplyBlurBackground" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="BlurRadius" RelativeSource="{RelativeSource TemplatedParent}" />
+                  </MultiBinding>
+                </ContentPresenter.Effect>
+              </ContentPresenter>
             </AdornerDecorator>
             <Grid x:Name="PART_ContentCoverGrid"
                   Background="Transparent"
@@ -249,6 +258,7 @@
   <Style x:Key="MaterialDesignEmbeddedDialogHost" TargetType="{x:Type wpf:DialogHost}">
     <Style.Resources>
       <converters:FirstNonNullConverter x:Key="FirstNonNullConverter" />
+      
     </Style.Resources>
     <Setter Property="DialogMargin" Value="35" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -386,7 +396,15 @@
                               Content="{TemplateBinding ContentControl.Content}"
                               ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
                               ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
-                              Opacity="1" />
+                              Opacity="1">
+              <ContentPresenter.Effect>
+                <MultiBinding Converter="{StaticResource DialogBackgroundBlurConverter}">
+                  <Binding Path="IsOpen" RelativeSource="{RelativeSource TemplatedParent}" />
+                  <Binding Path="ApplyBlurBackground" RelativeSource="{RelativeSource TemplatedParent}" />
+                  <Binding Path="BlurRadius" RelativeSource="{RelativeSource TemplatedParent}" />
+                </MultiBinding>
+              </ContentPresenter.Effect>
+            </ContentPresenter>
 
             <Grid x:Name="PART_ContentCoverGrid"
                   Background="Transparent"
