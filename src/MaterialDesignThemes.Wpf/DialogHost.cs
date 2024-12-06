@@ -598,6 +598,24 @@ public class DialogHost : ContentControl
         set => SetValue(DialogBackgroundProperty, value);
     }
 
+    public bool ApplyBlurBackground
+    {
+        get => (bool)GetValue(ApplyBlurBackgroundProperty);
+        set => SetValue(ApplyBlurBackgroundProperty, value);
+    }
+    public static readonly DependencyProperty ApplyBlurBackgroundProperty = DependencyProperty.Register(
+        nameof(ApplyBlurBackground), typeof(bool), typeof(DialogHost), new PropertyMetadata(default(bool)));
+
+
+    private const double DefaultBlurRadius = 16.0;
+    public double BlurRadius
+    {
+        get => (double)GetValue(BlurRadiusProperty);
+        set => SetValue(BlurRadiusProperty, value);
+    }
+    public static readonly DependencyProperty BlurRadiusProperty = DependencyProperty.Register(
+        nameof(BlurRadius), typeof(double), typeof(DialogHost), new PropertyMetadata(DefaultBlurRadius));
+
     public override void OnApplyTemplate()
     {
         if (_contentCoverGrid != null)
@@ -964,23 +982,4 @@ public class DialogHost : ContentControl
     [SecurityCritical]
     [DllImport("user32.dll", EntryPoint = "SetFocus", SetLastError = true)]
     private static extern IntPtr SetFocus(IntPtr hWnd);
-
-
-    public bool ApplyBlurBackground
-    {
-        get { return (bool)GetValue(ApplyBlurBackgroundProperty); }
-        set { SetValue(ApplyBlurBackgroundProperty, value); }
-    }
-    public static readonly DependencyProperty ApplyBlurBackgroundProperty =
-        DependencyProperty.Register("ApplyBlurBackground", typeof(bool), typeof(DialogHost), new PropertyMetadata(default(bool)));
-
-
-    private const double DefaultBlurRadius = 16.0;
-    public double BlurRadius
-    {
-        get { return (double)GetValue(BlurRadiusProperty); }
-        set { SetValue(BlurRadiusProperty, value); }
-    }
-    public static readonly DependencyProperty BlurRadiusProperty =
-        DependencyProperty.Register("BlurRadius", typeof(double), typeof(DialogHost), new PropertyMetadata(DefaultBlurRadius));
 }
