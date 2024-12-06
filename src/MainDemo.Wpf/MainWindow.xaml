@@ -44,8 +44,6 @@
 
   <materialDesign:DialogHost DialogTheme="Inherit"
                              Identifier="RootDialog"
-                             BlurRadius="100"
-                             ApplyBlurBackground="True"
                              SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
 
     <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
