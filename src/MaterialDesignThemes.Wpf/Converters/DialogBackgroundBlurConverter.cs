@@ -11,7 +11,7 @@ namespace MaterialDesignThemes.Wpf.Converters;
 internal sealed class DialogBackgroundBlurConverter : IMultiValueConverter
 {
     public static readonly DialogBackgroundBlurConverter Instance = new();
-    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+    public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
     {
         if (values is [bool isOpen, bool applyBlurBackground, double blurRadius]
             && isOpen
