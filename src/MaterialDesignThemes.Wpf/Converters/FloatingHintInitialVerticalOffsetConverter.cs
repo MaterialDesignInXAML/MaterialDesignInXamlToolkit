@@ -16,6 +16,8 @@ namespace MaterialDesignThemes.Wpf.Converters;
 /// </summary>
 public class FloatingHintInitialVerticalOffsetConverter : IMultiValueConverter
 {
+    public static readonly FloatingHintInitialVerticalOffsetConverter Instance = new();
+
     public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
     {
         if (values is [double contentHostHeight, double hintHeight, int lineCount])

@@ -5,6 +5,12 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 public sealed class MathMultipleConverter : IMultiValueConverter
 {
+    public static readonly MathMultipleConverter AddInstance = new() { Operation = MathOperation.Add };
+    public static readonly MathMultipleConverter SubtractInstance = new() { Operation = MathOperation.Subtract };
+    public static readonly MathMultipleConverter MultiplyInstance = new() { Operation = MathOperation.Multiply };
+    public static readonly MathMultipleConverter DivideInstance = new() { Operation = MathOperation.Divide };
+    public static readonly MathMultipleConverter PowInstance = new() { Operation = MathOperation.Pow };
+
     public MathOperation Operation { get; set; }
 
     public object? Convert(object?[]? value, Type? targetType, object? parameter, CultureInfo? culture)

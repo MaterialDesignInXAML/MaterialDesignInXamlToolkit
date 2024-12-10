@@ -3,8 +3,6 @@
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
-  <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
-
   <Style x:Key="FocusVisual">
     <Setter Property="Control.Template">
       <Setter.Value>

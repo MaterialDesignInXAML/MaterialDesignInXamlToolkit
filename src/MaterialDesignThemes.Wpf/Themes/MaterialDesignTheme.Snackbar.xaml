@@ -9,10 +9,6 @@
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
-  <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
-  <converters:MathMultipleConverter x:Key="MathMultipleConverter" Operation="Multiply" />
-  <converters:SnackbarActionButtonPlacementModeConverter x:Key="SnackbarActionButtonPlacementModeConverter" />
-
   <Style x:Key="MaterialDesignSnackbarActionButton" TargetType="Button">
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="BorderBrush" Value="Transparent" />
@@ -93,9 +89,9 @@
                     ContentTemplate="{TemplateBinding ActionContentTemplate}"
                     ContentTemplateSelector="{TemplateBinding ActionContentTemplateSelector}"
                     Style="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type wpf:Snackbar}}, Path=ActionButtonStyle}"
-                    Visibility="{TemplateBinding ActionContent, Converter={StaticResource NullableToVisibilityConverter}}">
+                    Visibility="{TemplateBinding ActionContent, Converter={x:Static converters:NullableToVisibilityConverter.CollapsedInstance}}">
               <DockPanel.Dock>
-                <MultiBinding Converter="{StaticResource SnackbarActionButtonPlacementModeConverter}">
+                <MultiBinding Converter="{x:Static converters:SnackbarActionButtonPlacementModeConverter.Instance}">
                   <Binding Path="ActionButtonPlacement" RelativeSource="{RelativeSource AncestorType={x:Type wpf:Snackbar}}" />
                   <Binding Path="(wpf:SnackbarMessage.InlineActionButtonMaxHeight)" RelativeSource="{RelativeSource AncestorType={x:Type wpf:Snackbar}}" />
                   <Binding Path="ActualHeight" RelativeSource="{RelativeSource AncestorType={x:Type wpf:Snackbar}}" />
@@ -186,7 +182,7 @@
               <system:Double>0.0</system:Double>
             </StackPanel.Tag>
             <StackPanel.Height>
-              <MultiBinding Converter="{StaticResource MathMultipleConverter}">
+              <MultiBinding Converter="{x:Static converters:MathMultipleConverter.AddInstance}">
                 <Binding ElementName="ContentBorder" Path="ActualHeight" />
                 <Binding Path="Tag" RelativeSource="{RelativeSource Self}" />
               </MultiBinding>

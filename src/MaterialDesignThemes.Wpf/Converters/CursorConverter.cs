@@ -9,6 +9,9 @@ namespace MaterialDesignThemes.Wpf.Converters;
 /// </summary>
 public sealed class CursorConverter : IValueConverter
 {
+    public static readonly CursorConverter ArrowInstance = new() { FallbackCursor = Cursors.Arrow };
+    public static readonly CursorConverter IBeamInstance = new() { FallbackCursor = Cursors.IBeam };
+
     public Cursor FallbackCursor { get; set; } = Cursors.Arrow;
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture) => value as Cursor ?? FallbackCursor;

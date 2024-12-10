@@ -5,6 +5,7 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 internal class SliderToolTipConverter : IMultiValueConverter
 {
+    public static readonly SliderToolTipConverter Instance = new();
     public object? Convert(object?[]? values, Type? targetType, object? parameter, CultureInfo? culture)
     {
         if (values?.Length >= 2 && values[1] is string format && !string.IsNullOrEmpty(format))

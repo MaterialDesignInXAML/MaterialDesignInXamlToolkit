@@ -2,8 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
-  <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-
   <ControlTemplate x:Key="MaterialDesignValidationErrorTemplate">
     <ControlTemplate.Resources>
       <converters:ThicknessCloneConverter x:Key="FloatingHintValidationErrorTextMarginConverter" CloneEdges="Left" />
@@ -96,7 +94,7 @@
           <Condition Binding="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.UsePopup)}" Value="False" />
         </MultiDataTrigger.Conditions>
         <MultiDataTrigger.Setters>
-          <Setter TargetName="DefaultErrorViewer" Property="Visibility" Value="{Binding ElementName=Placeholder, Path=AdornedElement.IsKeyboardFocusWithin, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
+          <Setter TargetName="DefaultErrorViewer" Property="Visibility" Value="{Binding ElementName=Placeholder, Path=AdornedElement.IsKeyboardFocusWithin, Mode=OneWay, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}" />
         </MultiDataTrigger.Setters>
       </MultiDataTrigger>
 

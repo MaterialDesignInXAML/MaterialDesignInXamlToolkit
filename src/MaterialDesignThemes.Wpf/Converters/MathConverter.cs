@@ -5,6 +5,12 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 public sealed class MathConverter : IValueConverter
 {
+    public static readonly MathConverter AddInstance = new() { Operation = MathOperation.Add };
+    public static readonly MathConverter SubtractInstance = new() { Operation = MathOperation.Subtract };
+    public static readonly MathConverter MultiplyInstance = new() { Operation = MathOperation.Multiply };
+    public static readonly MathConverter DivideInstance = new() { Operation = MathOperation.Divide };
+    public static readonly MathConverter PowInstance = new() { Operation = MathOperation.Pow };
+
     public double Offset { get; set; }
     public MathOperation Operation { get; set; }
 
