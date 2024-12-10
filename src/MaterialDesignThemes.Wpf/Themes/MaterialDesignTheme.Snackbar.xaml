@@ -182,7 +182,7 @@
               <system:Double>0.0</system:Double>
             </StackPanel.Tag>
             <StackPanel.Height>
-              <MultiBinding Converter="{x:Static converters:MathMultipleConverter.AddInstance}">
+              <MultiBinding Converter="{x:Static converters:MathMultipleConverter.MultiplyInstance}">
                 <Binding ElementName="ContentBorder" Path="ActualHeight" />
                 <Binding Path="Tag" RelativeSource="{RelativeSource Self}" />
               </MultiBinding>
