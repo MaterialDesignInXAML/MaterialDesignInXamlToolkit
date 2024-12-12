@@ -4,8 +4,6 @@
                     xmlns:globalization="clr-namespace:System.Globalization;assembly=mscorlib"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
-  <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-
   <Style x:Key="MaterialDesignCalendarButton" TargetType="{x:Type CalendarButton}">
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="Cursor" Value="Hand" />
@@ -440,10 +438,7 @@
                                                Foreground="{TemplateBinding Foreground}"
                                                IsEnabled="{TemplateBinding IsEnabled}">
                         <wpf:MaterialDateDisplay.DisplayDate>
-                          <MultiBinding Mode="OneWay">
-                            <MultiBinding.Converter>
-                              <converters:CalendarDateCoalesceConverter />
-                            </MultiBinding.Converter>
+                          <MultiBinding Mode="OneWay" Converter="{x:Static converters:CalendarDateCoalesceConverter.Instance}">
                             <Binding Path="DisplayDate" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Calendar}}" />
                             <Binding Path="SelectedDate" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Calendar}}" />
                           </MultiBinding>
@@ -451,7 +446,6 @@
                       </wpf:MaterialDateDisplay>
                     </Grid>
                   </ControlTemplate>
-                  <converters:CalendarYearMonthConverter x:Key="CalendarYearMonthConverter" />
                 </Grid.Resources>
                 <Grid.ColumnDefinitions>
                   <ColumnDefinition Width="auto" />
@@ -485,7 +479,7 @@
                         FontWeight="Bold"
                         Foreground="{TemplateBinding wpf:CalendarAssist.HeaderForeground}"
                         Template="{StaticResource HeaderButtonTemplate}"
-                        Visibility="{TemplateBinding wpf:CalendarAssist.IsHeaderVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        Visibility="{TemplateBinding wpf:CalendarAssist.IsHeaderVisible, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}" />
                 <TextBlock x:Name="CurrentDateTextBlock"
                            Grid.Row="1"
                            Grid.Column="1"
@@ -497,7 +491,7 @@
                            Opacity="0.56"
                            RenderTransformOrigin="0, 0.5">
                   <TextBlock.Text>
-                    <MultiBinding Converter="{StaticResource CalendarYearMonthConverter}">
+                    <MultiBinding Converter="{x:Static converters:CalendarYearMonthConverter.Instance}">
                       <Binding Path="DisplayDate" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Calendar}}" />
                       <Binding Path="Language" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Calendar}}" />
                     </MultiBinding>

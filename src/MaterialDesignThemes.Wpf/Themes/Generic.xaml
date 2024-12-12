@@ -45,9 +45,6 @@
   <Style TargetType="{x:Type local:NumericUpDown}" BasedOn="{StaticResource MaterialDesignNumericUpDown}" />
   <Style TargetType="{x:Type local:DecimalUpDown}" BasedOn="{StaticResource MaterialDesignNumericUpDown}" />
 
-  <converters:BrushToRadialGradientBrushConverter x:Key="BrushToRadialGradientBrushConverter" />
-  <converters:DrawerOffsetConverter x:Key="DrawerOffsetConverter" />
-
   <system:Boolean x:Key="True">True</system:Boolean>
 
   <Style TargetType="{x:Type local:Ripple}">
@@ -606,6 +603,9 @@
   <SolidColorBrush x:Key="BlackBackground" Color="Black" po:Freeze="True" />
 
   <Style TargetType="{x:Type local:DrawerHost}">
+    <Style.Resources>
+      <converters:DrawerOffsetConverter x:Key="DrawerOffsetConverter" />
+    </Style.Resources>
     <Setter Property="BottomDrawerBackground" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="ClipToBounds" Value="True" />
     <Setter Property="IsTabStop" Value="False" />
@@ -976,7 +976,7 @@
                 </Grid.Style>
               </Grid>
               <Grid x:Name="PART_LeftDrawer"
-                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Left}}"
+                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={x:Static converters:DrawerOffsetConverter.Instance}, ConverterParameter={x:Static Dock.Left}}"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Stretch"
                     Panel.ZIndex="{TemplateBinding LeftDrawerZIndex}">
@@ -1019,7 +1019,7 @@
                                   IsEnabled="{TemplateBinding IsLeftDrawerOpen}" />
               </Grid>
               <Grid x:Name="PART_RightDrawer"
-                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Right}}"
+                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={x:Static converters:DrawerOffsetConverter.Instance}, ConverterParameter={x:Static Dock.Right}}"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Stretch"
                     Panel.ZIndex="{TemplateBinding RightDrawerZIndex}">
@@ -1061,7 +1061,7 @@
                                   IsEnabled="{TemplateBinding IsRightDrawerOpen}" />
               </Grid>
               <Grid x:Name="PART_TopDrawer"
-                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Top}}"
+                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight, Converter={x:Static converters:DrawerOffsetConverter.Instance}, ConverterParameter={x:Static Dock.Top}}"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Top"
                     Panel.ZIndex="{TemplateBinding TopDrawerZIndex}">
@@ -1103,7 +1103,7 @@
                                   IsEnabled="{TemplateBinding IsTopDrawerOpen}" />
               </Grid>
               <Grid x:Name="PART_BottomDrawer"
-                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight, Converter={StaticResource DrawerOffsetConverter}, ConverterParameter={x:Static Dock.Bottom}}"
+                    Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight, Converter={x:Static converters:DrawerOffsetConverter.Instance}, ConverterParameter={x:Static Dock.Bottom}}"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Bottom"
                     Panel.ZIndex="{TemplateBinding BottomDrawerZIndex}">

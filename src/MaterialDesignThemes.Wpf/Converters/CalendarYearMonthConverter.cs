@@ -5,6 +5,8 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 public sealed class CalendarYearMonthConverter : IMultiValueConverter
 {
+    public static readonly CalendarYearMonthConverter Instance = new();
+
     public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
     {
         long ticks = long.MaxValue;

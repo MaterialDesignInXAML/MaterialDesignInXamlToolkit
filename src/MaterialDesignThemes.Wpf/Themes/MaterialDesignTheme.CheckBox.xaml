@@ -8,9 +8,6 @@
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ValidationErrorTemplate.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
-  <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
-  <converters:IsDarkConverter x:Key="IsDarkConverter" />
-
   <Style x:Key="FocusVisual">
     <Setter Property="Control.Template">
       <Setter.Value>
@@ -438,7 +435,7 @@
             <Border x:Name="MouseOverBorder"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
-                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                    Background="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                     CornerRadius="16"
                     Opacity="0" />
             <Border x:Name="SelectedBackgroundBorder"
@@ -627,7 +624,7 @@
             <Border x:Name="MouseOverBorder"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
-                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                    Background="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
                     CornerRadius="16"
@@ -683,7 +680,7 @@
     <Style.Triggers>
       <MultiDataTrigger>
         <MultiDataTrigger.Conditions>
-          <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True" />
+          <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={x:Static converters:IsDarkConverter.Instance}}" Value="True" />
           <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
         </MultiDataTrigger.Conditions>
         <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
@@ -702,7 +699,7 @@
     <Style.Triggers>
       <MultiDataTrigger>
         <MultiDataTrigger.Conditions>
-          <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True" />
+          <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={x:Static converters:IsDarkConverter.Instance}}" Value="True" />
           <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
         </MultiDataTrigger.Conditions>
         <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
@@ -722,7 +719,7 @@
     <Style.Triggers>
       <MultiDataTrigger>
         <MultiDataTrigger.Conditions>
-          <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True" />
+          <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={x:Static converters:IsDarkConverter.Instance}}" Value="True" />
           <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
         </MultiDataTrigger.Conditions>
         <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
@@ -742,7 +739,7 @@
     <Style.Triggers>
       <MultiDataTrigger>
         <MultiDataTrigger.Conditions>
-          <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True" />
+          <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={x:Static converters:IsDarkConverter.Instance}}" Value="True" />
           <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
         </MultiDataTrigger.Conditions>
         <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />

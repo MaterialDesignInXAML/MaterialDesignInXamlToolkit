@@ -5,6 +5,8 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 public class OutlinedStyleActiveBorderMarginCompensationConverter : IMultiValueConverter
 {
+    public static readonly OutlinedStyleActiveBorderMarginCompensationConverter Instance = new();
+
     public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
     {
         if (values is not [Thickness baseThickness, Thickness thicknessToSubtract])

@@ -1,19 +1,18 @@
 ﻿using System.Globalization;
 using System.Windows.Data;
-using System.Windows.Media;
-using MaterialDesignColors.ColorManipulation;
 
 namespace MaterialDesignThemes.Wpf.Converters;
 
-public class HsbLinearGradientConverter : IValueConverter
+public class ElevationMarginConverter : IValueConverter
 {
-    public static readonly HsbLinearGradientConverter Instance = new();
-
+    public static readonly ElevationMarginConverter Instance = new();
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        if (value is not double hue) return Binding.DoNothing;
-
-        return new LinearGradientBrush(Colors.White, new Hsb(hue, 1, 1).ToColor(), 0);
+        if (value is Elevation elevation && elevation != Elevation.Dp0)
+        {
+            return new Thickness(ElevationInfo.GetDropShadow(elevation)!.BlurRadius);
+        }
+        return new Thickness(0);
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
