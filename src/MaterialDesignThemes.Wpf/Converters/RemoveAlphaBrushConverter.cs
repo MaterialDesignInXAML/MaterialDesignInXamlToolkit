@@ -6,6 +6,8 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 internal class RemoveAlphaBrushConverter : IValueConverter, IMultiValueConverter
 {
+    public static readonly RemoveAlphaBrushConverter Instance = new();
+
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         => value is SolidColorBrush brush
             ? new SolidColorBrush(RgbaToRgb(brush.Color, parameter))

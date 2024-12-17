@@ -7,6 +7,8 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 public class HsbToColorConverter : IValueConverter, IMultiValueConverter
 {
+    public static readonly HsbToColorConverter Instance = new();
+
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         if (value is not Hsb hsb) return Binding.DoNothing;

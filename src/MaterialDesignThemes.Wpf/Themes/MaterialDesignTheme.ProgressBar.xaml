@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:circularProgressBar="clr-namespace:MaterialDesignThemes.Wpf.Converters.CircularProgressBar"
+                    xmlns:circularProgressBarConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters.CircularProgressBar"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:transitions="clr-namespace:MaterialDesignThemes.Wpf.Transitions"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
@@ -133,12 +133,6 @@
     </Setter>
   </Style>
 
-  <circularProgressBar:StartPointConverter x:Key="StartPointConverter" />
-  <circularProgressBar:ArcSizeConverter x:Key="ArcSizeConverter" />
-  <circularProgressBar:ArcEndPointConverter x:Key="ArcEndPointConverter" />
-  <circularProgressBar:RotateTransformCentreConverter x:Key="RotateTransformCentreConverter" />
-  <converters:NotZeroConverter x:Key="NotZeroConverter" />
-
   <Style x:Key="MaterialDesignCircularProgressBar" TargetType="{x:Type ProgressBar}">
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
@@ -190,10 +184,10 @@
                     StrokeThickness="3">
                 <Path.Data>
                   <PathGeometry>
-                    <PathFigure StartPoint="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={StaticResource StartPointConverter}, Mode=OneWay}">
-                      <ArcSegment Size="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={StaticResource ArcSizeConverter}, Mode=OneWay}" SweepDirection="Clockwise">
+                    <PathFigure StartPoint="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={x:Static circularProgressBarConverters:StartPointConverter.Instance}, Mode=OneWay}">
+                      <ArcSegment Size="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={x:Static circularProgressBarConverters:ArcSizeConverter.Instance}, Mode=OneWay}" SweepDirection="Clockwise">
                         <ArcSegment.Point>
-                          <MultiBinding Converter="{StaticResource ArcEndPointConverter}" ConverterParameter="{x:Static circularProgressBar:ArcEndPointConverter.ParameterMidPoint}">
+                          <MultiBinding Converter="{x:Static circularProgressBarConverters:ArcEndPointConverter.Instance}" ConverterParameter="{x:Static circularProgressBarConverters:ArcEndPointConverter.ParameterMidPoint}">
                             <Binding ElementName="PathGrid" Path="ActualWidth" />
                             <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}" />
                             <Binding Path="Minimum" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -202,9 +196,9 @@
                           </MultiBinding>
                         </ArcSegment.Point>
                       </ArcSegment>
-                      <ArcSegment Size="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={StaticResource ArcSizeConverter}, Mode=OneWay}" SweepDirection="Clockwise">
+                      <ArcSegment Size="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={x:Static circularProgressBarConverters:ArcSizeConverter.Instance}, Mode=OneWay}" SweepDirection="Clockwise">
                         <ArcSegment.Point>
-                          <MultiBinding Converter="{StaticResource ArcEndPointConverter}">
+                          <MultiBinding Converter="{x:Static circularProgressBarConverters:ArcEndPointConverter.Instance}">
                             <Binding ElementName="PathGrid" Path="ActualWidth" />
                             <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}" />
                             <Binding Path="Minimum" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -218,7 +212,7 @@
                 </Path.Data>
                 <Path.RenderTransform>
                   <TransformGroup>
-                    <RotateTransform x:Name="RotateTransform" CenterX="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={StaticResource RotateTransformCentreConverter}, Mode=OneWay}" CenterY="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={StaticResource RotateTransformCentreConverter}, Mode=OneWay}" />
+                    <RotateTransform x:Name="RotateTransform" CenterX="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={x:Static circularProgressBarConverters:RotateTransformCentreConverter.Instance}, Mode=OneWay}" CenterY="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={x:Static circularProgressBarConverters:RotateTransformCentreConverter.Instance}, Mode=OneWay}" />
                   </TransformGroup>
                 </Path.RenderTransform>
               </Path>
@@ -229,7 +223,7 @@
               <MultiDataTrigger.Conditions>
                 <Condition Binding="{Binding IsIndeterminate, RelativeSource={RelativeSource Self}}" Value="True" />
                 <Condition Binding="{Binding IsVisible, RelativeSource={RelativeSource Self}}" Value="True" />
-                <Condition Binding="{Binding Value, RelativeSource={RelativeSource Self}, Converter={StaticResource NotZeroConverter}}" Value="True" />
+                <Condition Binding="{Binding Value, RelativeSource={RelativeSource Self}, Converter={x:Static converters:NotZeroConverter.Instance}}" Value="True" />
               </MultiDataTrigger.Conditions>
               <MultiDataTrigger.EnterActions>
                 <BeginStoryboard Name="IsIndeterminateStoryboard" Storyboard="{StaticResource IsIndeterminateStoryboard}" />

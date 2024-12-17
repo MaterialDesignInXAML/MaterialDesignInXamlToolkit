@@ -5,6 +5,8 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 public class FloatingHintInitialHorizontalOffsetConverter : IMultiValueConverter
 {
+    public static readonly FloatingHintInitialHorizontalOffsetConverter Instance = new();
+
     public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
     {
         if (values is not

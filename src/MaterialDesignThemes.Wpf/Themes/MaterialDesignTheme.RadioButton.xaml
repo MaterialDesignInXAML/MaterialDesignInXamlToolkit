@@ -4,10 +4,7 @@
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ValidationErrorTemplate.xaml" />
-    <ResourceDictionary>
-      <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
-      <converters:IsDarkConverter x:Key="IsDarkConverter" />
-    </ResourceDictionary>
+
   </ResourceDictionary.MergedDictionaries>
 
   <Style x:Key="OptionMarkFocusVisual">
@@ -300,7 +297,7 @@
                          Minimum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Minimum)}"
                          Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Opacity)}"
                          Style="{DynamicResource MaterialDesignLinearProgressBar}"
-                         Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndicatorVisible), Converter={StaticResource BooleanToVisibilityConverter}}"
+                         Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.IsIndicatorVisible), Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}"
                          Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Value)}" />
             <Border Margin="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
               <wpf:Ripple x:Name="contentPresenter"
@@ -454,7 +451,7 @@
             </VisualStateManager.VisualStateGroups>
             <Grid>
               <Border x:Name="MouseOverBorder"
-                      Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                      Background="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                       Opacity="0" />
               <Border x:Name="CheckedBackgroundBorder"
                       Background="{DynamicResource MaterialDesign.Brush.RadioButton.Checked}"
@@ -466,7 +463,7 @@
                           Content="{TemplateBinding Content}"
                           ContentTemplate="{TemplateBinding ContentTemplate}"
                           ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                          Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                          Feedback="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                           Focusable="False"
                           Opacity=".56"
                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
@@ -474,7 +471,7 @@
                       BorderBrush="{DynamicResource MaterialDesign.Brush.RadioButton.Checked}"
                       BorderThickness="0"
                       Opacity="0"
-                      Visibility="{TemplateBinding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                      Visibility="{TemplateBinding IsChecked, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}" />
             </Grid>
           </Border>
           <ControlTemplate.Triggers>
@@ -597,7 +594,7 @@
             <Border x:Name="MouseOverBorder"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
-                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                    Background="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                     CornerRadius="16"
                     Opacity="0" />
             <Border x:Name="SelectedBackgroundBorder"
@@ -754,7 +751,7 @@
             <Border x:Name="MouseOverBorder"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
-                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                    Background="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
                     CornerRadius="16"
@@ -802,7 +799,7 @@
     <Style.Triggers>
       <MultiDataTrigger>
         <MultiDataTrigger.Conditions>
-          <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True" />
+          <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={x:Static converters:IsDarkConverter.Instance}}" Value="True" />
           <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
         </MultiDataTrigger.Conditions>
         <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
@@ -821,7 +818,7 @@
     <Style.Triggers>
       <MultiDataTrigger>
         <MultiDataTrigger.Conditions>
-          <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True" />
+          <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={x:Static converters:IsDarkConverter.Instance}}" Value="True" />
           <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
         </MultiDataTrigger.Conditions>
         <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />
@@ -841,7 +838,7 @@
     <Style.Triggers>
       <MultiDataTrigger>
         <MultiDataTrigger.Conditions>
-          <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True" />
+          <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={x:Static converters:IsDarkConverter.Instance}}" Value="True" />
           <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
         </MultiDataTrigger.Conditions>
         <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Dark}" />
@@ -861,7 +858,7 @@
     <Style.Triggers>
       <MultiDataTrigger>
         <MultiDataTrigger.Conditions>
-          <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True" />
+          <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={x:Static converters:IsDarkConverter.Instance}}" Value="True" />
           <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
         </MultiDataTrigger.Conditions>
         <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Dark}" />

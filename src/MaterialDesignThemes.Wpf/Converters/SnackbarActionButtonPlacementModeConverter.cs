@@ -5,6 +5,7 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 public class SnackbarActionButtonPlacementModeConverter : IMultiValueConverter
 {
+    public static readonly SnackbarActionButtonPlacementModeConverter Instance = new();
     public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
     {
         var mode = (SnackbarActionButtonPlacementMode)values[0];

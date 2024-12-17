@@ -6,6 +6,7 @@ namespace MaterialDesignThemes.Wpf.Converters;
 [ValueConversion(typeof(double), typeof(double), ParameterType = typeof(Orientation))]
 internal class SliderValueLabelPositionConverter : IValueConverter
 {
+    public static readonly SliderValueLabelPositionConverter Instance = new();
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         if (parameter is Orientation orientation && value is double width)
