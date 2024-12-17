@@ -7,6 +7,8 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 public class ShadowOpacityMaskConverter : IMultiValueConverter
 {
+    public static readonly ShadowOpacityMaskConverter Instance = new();
+
     public object? Convert(object[]? values, Type targetType, object? parameter, CultureInfo culture)
     {
         static double? GetValidSize(object? value)

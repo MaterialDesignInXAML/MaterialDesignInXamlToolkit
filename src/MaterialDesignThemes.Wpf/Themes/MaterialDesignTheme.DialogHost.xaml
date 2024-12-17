@@ -14,9 +14,6 @@
   </Style>
 
   <Style TargetType="{x:Type wpf:DialogHost}">
-    <Style.Resources>
-      <converters:FirstNonNullConverter x:Key="FirstNonNullConverter" />
-    </Style.Resources>
     <Setter Property="DialogMargin" Value="35" />
     <Setter Property="DialogTheme" Value="Inherit" />
     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
@@ -201,7 +198,15 @@
                                 Content="{TemplateBinding ContentControl.Content}"
                                 ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
                                 ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
-                                Opacity="1" />
+                                Opacity="1">
+                <ContentPresenter.Effect>
+                  <MultiBinding Converter="{x:Static converters:DialogBackgroundBlurConverter.Instance}">
+                    <Binding Path="IsOpen" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="ApplyBlurBackground" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="BlurRadius" RelativeSource="{RelativeSource TemplatedParent}" />
+                  </MultiBinding>
+                </ContentPresenter.Effect>
+              </ContentPresenter>
             </AdornerDecorator>
             <Grid x:Name="PART_ContentCoverGrid"
                   Background="Transparent"
@@ -211,7 +216,7 @@
               <Grid.OpacityMask>
                 <VisualBrush>
                   <VisualBrush.Visual>
-                    <MultiBinding Converter="{StaticResource FirstNonNullConverter}">
+                    <MultiBinding Converter="{x:Static converters:FirstNonNullConverter.Instance}">
                       <Binding ElementName="ContentCoverBorder" />
                       <Binding Source="{x:Static DependencyProperty.UnsetValue}" />
                     </MultiBinding>
@@ -247,9 +252,6 @@
   </Style>
 
   <Style x:Key="MaterialDesignEmbeddedDialogHost" TargetType="{x:Type wpf:DialogHost}">
-    <Style.Resources>
-      <converters:FirstNonNullConverter x:Key="FirstNonNullConverter" />
-    </Style.Resources>
     <Setter Property="DialogMargin" Value="35" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />
     <Setter Property="Placement" Value="Center" />
@@ -386,7 +388,15 @@
                               Content="{TemplateBinding ContentControl.Content}"
                               ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
                               ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
-                              Opacity="1" />
+                              Opacity="1">
+              <ContentPresenter.Effect>
+                <MultiBinding Converter="{x:Static converters:DialogBackgroundBlurConverter.Instance}">
+                  <Binding Path="IsOpen" RelativeSource="{RelativeSource TemplatedParent}" />
+                  <Binding Path="ApplyBlurBackground" RelativeSource="{RelativeSource TemplatedParent}" />
+                  <Binding Path="BlurRadius" RelativeSource="{RelativeSource TemplatedParent}" />
+                </MultiBinding>
+              </ContentPresenter.Effect>
+            </ContentPresenter>
 
             <Grid x:Name="PART_ContentCoverGrid"
                   Background="Transparent"
@@ -396,7 +406,7 @@
               <Grid.OpacityMask>
                 <VisualBrush>
                   <VisualBrush.Visual>
-                    <MultiBinding Converter="{StaticResource FirstNonNullConverter}">
+                    <MultiBinding Converter="{x:Static converters:FirstNonNullConverter.Instance}">
                       <Binding ElementName="ContentCoverBorder" />
                       <Binding Source="{x:Static DependencyProperty.UnsetValue}" />
                     </MultiBinding>

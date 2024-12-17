@@ -6,6 +6,8 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 public sealed class IsTransparentBrushConverter : IValueConverter
 {
+    public static readonly IsTransparentBrushConverter Instance = new();
+
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         => value is null || Equals(value, Brushes.Transparent);
 

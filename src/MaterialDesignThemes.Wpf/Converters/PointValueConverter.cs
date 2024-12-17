@@ -5,6 +5,8 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 public class PointValueConverter : IMultiValueConverter
 {
+    public static readonly PointValueConverter Instance = new();
+
     public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
     {
         if (values?.Length == 2 && values[0] != null && values[1] != null)

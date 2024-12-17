@@ -16,9 +16,6 @@
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
-  <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-  <converters:ToolBarOverflowButtonVisibilityConverter x:Key="ToolBarOverflowButtonVisibilityConverter" />
-
   <Style x:Key="MaterialDesignToolBarVerticalOverflowButtonStyle" TargetType="{x:Type ToggleButton}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ToolBar.Background}" />
     <Setter Property="MinHeight" Value="0" />
@@ -173,7 +170,7 @@
                             IsChecked="{Binding IsOverflowOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                             Style="{StaticResource MaterialDesignToolBarHorizontalOverflowButtonStyle}">
                 <ToggleButton.Visibility>
-                  <MultiBinding Converter="{StaticResource ToolBarOverflowButtonVisibilityConverter}">
+                  <MultiBinding Converter="{x:Static converters:ToolBarOverflowButtonVisibilityConverter.Instance}">
                     <Binding Path="OverflowMode" RelativeSource="{RelativeSource TemplatedParent}" />
                     <Binding Path="HasOverflowItems" RelativeSource="{RelativeSource TemplatedParent}" />
                   </MultiBinding>

@@ -5,9 +5,6 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
-  <converters:MathConverter x:Key="DivisionMathConverter" Operation="Divide" />
-  <converters:PointValueConverter x:Key="PointValueConverter" />
-
   <Style x:Key="FocusVisual">
     <Setter Property="Control.Template">
       <Setter.Value>
@@ -144,14 +141,14 @@
                                 ContentTemplate="{TemplateBinding ContentTemplate}"
                                 FlowDirection="LeftToRight" />
               <Grid.Clip>
-                <EllipseGeometry RadiusX="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Width, Converter={StaticResource DivisionMathConverter}, ConverterParameter=2.0}" RadiusY="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Height, Converter={StaticResource DivisionMathConverter}, ConverterParameter=2.0}">
+                <EllipseGeometry RadiusX="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Width, Converter={x:Static converters:MathConverter.DivideInstance}, ConverterParameter=2.0}" RadiusY="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Height, Converter={x:Static converters:MathConverter.DivideInstance}, ConverterParameter=2.0}">
                   <EllipseGeometry.Center>
-                    <MultiBinding Converter="{StaticResource PointValueConverter}">
-                      <Binding Converter="{StaticResource DivisionMathConverter}"
+                    <MultiBinding Converter="{x:Static converters:PointValueConverter.Instance}">
+                      <Binding Converter="{x:Static converters:MathConverter.DivideInstance}"
                                ConverterParameter="2.0"
                                Path="Width"
                                RelativeSource="{RelativeSource TemplatedParent}" />
-                      <Binding Converter="{StaticResource DivisionMathConverter}"
+                      <Binding Converter="{x:Static converters:MathConverter.DivideInstance}"
                                ConverterParameter="2.0"
                                Path="Height"
                                RelativeSource="{RelativeSource TemplatedParent}" />
@@ -172,14 +169,14 @@
                                 ContentTemplate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ToggleButtonAssist.OnContentTemplate)}"
                                 FlowDirection="LeftToRight" />
               <Grid.Clip>
-                <EllipseGeometry RadiusX="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Width, Converter={StaticResource DivisionMathConverter}, ConverterParameter=2.0}" RadiusY="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Height, Converter={StaticResource DivisionMathConverter}, ConverterParameter=2.0}">
+                <EllipseGeometry RadiusX="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Width, Converter={x:Static converters:MathConverter.DivideInstance}, ConverterParameter=2.0}" RadiusY="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Height, Converter={x:Static converters:MathConverter.DivideInstance}, ConverterParameter=2.0}">
                   <EllipseGeometry.Center>
-                    <MultiBinding Converter="{StaticResource PointValueConverter}">
-                      <Binding Converter="{StaticResource DivisionMathConverter}"
+                    <MultiBinding Converter="{x:Static converters:PointValueConverter.Instance}">
+                      <Binding Converter="{x:Static converters:MathConverter.DivideInstance}"
                                ConverterParameter="2.0"
                                Path="Width"
                                RelativeSource="{RelativeSource TemplatedParent}" />
-                      <Binding Converter="{StaticResource DivisionMathConverter}"
+                      <Binding Converter="{x:Static converters:MathConverter.DivideInstance}"
                                ConverterParameter="2.0"
                                Path="Height"
                                RelativeSource="{RelativeSource TemplatedParent}" />

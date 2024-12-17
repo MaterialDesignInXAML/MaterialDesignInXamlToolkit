@@ -54,7 +54,6 @@
                                                 FixedLeft="0" />
             <converters:NonDefaultThicknessConverter x:Key="OutlinedBorderInactiveThicknessConverter" DefaultThickness="{x:Static wpf:Constants.DefaultOutlinedBorderInactiveThickness}" />
             <converters:NonDefaultThicknessConverter x:Key="OutlinedBorderActiveThicknessConverter" DefaultThickness="{x:Static wpf:Constants.DefaultOutlinedBorderActiveThickness}" />
-            <converters:MathConverter x:Key="MathMultiplyConverter" Operation="Multiply" />
           </ControlTemplate.Resources>
           <Grid>
             <TextBox x:Name="PART_TextBox"
@@ -127,7 +126,7 @@
               <Setter TargetName="PART_DecreaseButton" Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
             </MultiTrigger>
             <Trigger Property="IsEnabled" Value="False">
-              <Setter TargetName="PART_DecreaseButton" Property="Opacity" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:HintAssist.HintOpacity), Converter={StaticResource MathMultiplyConverter}, ConverterParameter={x:Static wpf:Constants.TextBoxNotEnabledOpacity}}" />
+              <Setter TargetName="PART_DecreaseButton" Property="Opacity" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:HintAssist.HintOpacity), Converter={x:Static converters:MathConverter.MultiplyInstance}, ConverterParameter={x:Static wpf:Constants.TextBoxNotEnabledOpacity}}" />
             </Trigger>
 
             <MultiTrigger>
@@ -138,7 +137,7 @@
               <Setter TargetName="PART_IncreaseButton" Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
             </MultiTrigger>
             <Trigger Property="IsEnabled" Value="False">
-              <Setter TargetName="PART_IncreaseButton" Property="Opacity" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:HintAssist.HintOpacity), Converter={StaticResource MathMultiplyConverter}, ConverterParameter={x:Static wpf:Constants.TextBoxNotEnabledOpacity}}" />
+              <Setter TargetName="PART_IncreaseButton" Property="Opacity" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:HintAssist.HintOpacity), Converter={x:Static converters:MathConverter.MultiplyInstance}, ConverterParameter={x:Static wpf:Constants.TextBoxNotEnabledOpacity}}" />
             </Trigger>
 
             <!-- Validation.HasError -->
