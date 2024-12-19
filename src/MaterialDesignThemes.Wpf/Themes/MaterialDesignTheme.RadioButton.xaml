@@ -203,8 +203,8 @@
               <ColumnDefinition Width="Auto" />
               <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Viewbox Width="18"
-                     Height="18"
+            <Viewbox Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:RadioButtonAssist.RadioButtonSize)}"
+                     Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:RadioButtonAssist.RadioButtonSize)}"
                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
               <Canvas Width="24" Height="24">
                 <Path x:Name="Graphic"
