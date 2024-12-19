@@ -38,6 +38,7 @@
               <ListBoxItem Content="Hello World" />
               <ListBoxItem Content="Nice Popup" />
               <ListBoxItem Content="Goodbye" />
+              <ListBoxItem Content="Version" />
             </ListBox>
           </materialDesign:PopupBox>
 

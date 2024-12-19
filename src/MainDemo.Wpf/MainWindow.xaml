@@ -186,6 +186,11 @@
                 <Separator />
 
                 <Button Click="MenuPopupButton_OnClick" Content="Goodbye" />
+
+                <Separator />
+
+                <TextBlock x:Name="VersionText" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" />
+
               </StackPanel>
             </materialDesign:PopupBox>
 
