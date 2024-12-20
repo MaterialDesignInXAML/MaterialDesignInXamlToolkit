@@ -71,4 +71,14 @@ public partial class Dialogs
         if (!string.IsNullOrWhiteSpace(AnimalTextBox.Text))
             AnimalListBox.Items.Add(AnimalTextBox.Text.Trim());
     }
+
+    private async void Sample6_OpenDialog(object sender, RoutedEventArgs e)
+    {
+        var sampleMessageDialog = new SampleMessageDialog
+        {
+            Message = { Text = "Some dialog content" }
+        };
+
+        await DialogHost.Show(sampleMessageDialog, "sampleDialog6");
+    }
 }

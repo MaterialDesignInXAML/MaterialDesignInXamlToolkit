@@ -315,5 +315,47 @@
       </materialDesign:DialogHost>
     </smtx:XamlDisplay>
     <!--#endregion-->
+
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+
+    <!--#region SAMPLE 6-->
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Sample 6" />
+
+    <TextBlock MaxWidth="700"
+               Margin="0,0,0,8"
+               HorizontalAlignment="Left"
+               Text="TODO"
+               TextWrapping="Wrap" />
+
+    <Slider x:Name="BlurRadiusSlider"
+            HorizontalAlignment="Stretch"
+            Maximum="64"
+            Minimum="1" />
+
+    <smtx:XamlDisplay UniqueKey="dialogs_sample6">
+      <materialDesign:DialogHost Identifier="sampleDialog6"
+                                 VerticalAlignment="Center"
+                                 ApplyBlurBackground="True"
+                                 BlurRadius="{Binding ElementName=BlurRadiusSlider, Path=Value}"
+                                 CloseOnClickAway="True">
+        <Border MinWidth="256"
+                MinHeight="256"
+                BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                BorderThickness="1"
+                ClipToBounds="True">
+          <StackPanel VerticalAlignment="Center">
+            <TextBlock HorizontalAlignment="Center"
+                       FontSize="30"
+                       Text="This is some text that is going to get blurred out by the dialog."
+                       TextWrapping="Wrap" />
+            <Button HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Click="Sample6_OpenDialog"
+                    Content="Open" />
+          </StackPanel>
+        </Border>
+      </materialDesign:DialogHost>
+    </smtx:XamlDisplay>
+    <!--#endregion-->
   </StackPanel>
 </UserControl>
