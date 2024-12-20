@@ -324,20 +324,31 @@
     <TextBlock MaxWidth="700"
                Margin="0,0,0,8"
                HorizontalAlignment="Left"
-               Text="TODO"
+               Text="You can also make the background blurry."
                TextWrapping="Wrap" />
 
-    <Slider x:Name="BlurRadiusSlider"
-            HorizontalAlignment="Stretch"
-            Maximum="64"
-            Minimum="1" />
+    <DockPanel Margin="0,5,16,5">
+      <Button Margin="8,0,0,0"
+              Click="Sample6_ResetBlur"
+              Content="{materialDesign:PackIcon Kind=Reload}"
+              DockPanel.Dock="Right"
+              Style="{StaticResource MaterialDesignFlatButton}"
+              ToolTip="Reset the BlurRadius of the Dialogs Background to it's default value" />
+      <Slider x:Name="BlurRadiusSlider"
+              HorizontalAlignment="Stretch"
+              DockPanel.Dock="Left"
+              Maximum="64"
+              Minimum="1"
+              Style="{StaticResource MaterialDesignDiscreteSlider}" />
+
+    </DockPanel>
 
     <smtx:XamlDisplay UniqueKey="dialogs_sample6">
-      <materialDesign:DialogHost Identifier="sampleDialog6"
-                                 VerticalAlignment="Center"
+      <materialDesign:DialogHost VerticalAlignment="Center"
                                  ApplyBlurBackground="True"
                                  BlurRadius="{Binding ElementName=BlurRadiusSlider, Path=Value}"
-                                 CloseOnClickAway="True">
+                                 CloseOnClickAway="True"
+                                 Identifier="sampleDialog6">
         <Border MinWidth="256"
                 MinHeight="256"
                 BorderBrush="{DynamicResource PrimaryHueMidBrush}"
@@ -346,7 +357,7 @@
           <StackPanel VerticalAlignment="Center">
             <TextBlock HorizontalAlignment="Center"
                        FontSize="30"
-                       Text="This is some text that is going to get blurred out by the dialog."
+                       Text="This is some long text that is going to get blurred out by the dialog."
                        TextWrapping="Wrap" />
             <Button HorizontalAlignment="Center"
                     VerticalAlignment="Center"

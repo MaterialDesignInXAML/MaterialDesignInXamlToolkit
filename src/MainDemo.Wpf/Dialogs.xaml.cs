@@ -10,6 +10,7 @@ public partial class Dialogs
     {
         DataContext = new DialogsViewModel();
         InitializeComponent();
+        BlurRadiusSlider.Value = DialogHost.DefaultBlurRadius;
     }
 
     private void Sample1_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs)
@@ -80,5 +81,10 @@ public partial class Dialogs
         };
 
         await DialogHost.Show(sampleMessageDialog, "sampleDialog6");
+    }
+
+    private void Sample6_ResetBlur(object sender, RoutedEventArgs e)
+    {
+        BlurRadiusSlider.Value = DialogHost.DefaultBlurRadius;
     }
 }
