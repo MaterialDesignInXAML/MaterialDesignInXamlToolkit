@@ -17,10 +17,9 @@ Function Main {
     # Get xaml files and loop through.
     Get-ChildItem $themesFullDir -Filter *.xaml | 
         Foreach-Object {
-            $xamlPath = $_.FullName
-            $xamlString = Get-Content -Path $xamlPath
+            $xamlLines = Get-Content -Path $_.FullName
             $file = Select-ControlNameFromFile($_.Name)
-            Read-XamlStyles -xamlString $xamlString -file $file -xamlPath $xamlPath
+            Read-XamlStyles -xamlLines $xamlLines -file $file
         }
     Set-Defaults
     Format-Output
@@ -75,9 +74,8 @@ Function Select-ControlNameFromFile {
 }
 
 Function Read-XamlStyles {
-    Param ($xamlString, $file, $xamlPath)
-    [xml]$xaml = $xamlString
-    $xamlLines = Get-Content $xamlPath
+    Param ($xamlLines, $file)
+    [xml]$xaml = $xamlLines
     $lineNum = 1
     $xaml.ResourceDictionary.Style | 
     Foreach-Object {
