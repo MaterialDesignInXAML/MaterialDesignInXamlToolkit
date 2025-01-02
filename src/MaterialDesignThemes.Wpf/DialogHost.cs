@@ -607,7 +607,7 @@ public class DialogHost : ContentControl
         nameof(ApplyBlurBackground), typeof(bool), typeof(DialogHost), new PropertyMetadata(default(bool)));
 
 
-    private const double DefaultBlurRadius = 16.0;
+    public const double DefaultBlurRadius = 16.0;
     public double BlurRadius
     {
         get => (double)GetValue(BlurRadiusProperty);
