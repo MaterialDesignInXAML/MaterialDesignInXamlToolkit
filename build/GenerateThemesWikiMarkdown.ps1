@@ -17,9 +17,9 @@ Function Main {
     # Get xaml files and loop through.
     Get-ChildItem $themesFullDir -Filter *.xaml | 
         Foreach-Object {
-            $xamlString = Get-Content -Path $_.FullName
+            $xamlLines = Get-Content -Path $_.FullName
             $file = Select-ControlNameFromFile($_.Name)
-            Read-XamlStyles -xamlString $xamlString -file $file 
+            Read-XamlStyles -xamlLines $xamlLines -file $file
         }
     Set-Defaults
     Format-Output
@@ -33,8 +33,12 @@ Function Format-Output {
         }
         $previousFile = $style.File;
         
-        $linkAndStyleName = "[$($style.Style)]($($baseURL)/$($latestHash)/" +
-                            "$($filePathURL)/MaterialDesignTheme.$($style.File).xaml)";
+        $styleLink = "$($baseURL)/$($latestHash)/$($filePathURL)/MaterialDesignTheme.$($style.File).xaml"
+        if ($style.LineNumber) {
+            $styleLink += "#L$($style.LineNumber)"
+        }
+        
+        $linkAndStyleName = "[$($style.Style)]($styleLink)";
         if ($style.IsDefault) {
             Write-OutputFile ("$listMarkdown $($linkAndStyleName) $defaultStyleText" -replace '\s+', ' ')
         }
@@ -70,83 +74,95 @@ Function Select-ControlNameFromFile {
 }
 
 Function Read-XamlStyles {
-    Param ($xamlString, $file)
-    [xml]$xaml = $xamlString
-    $xaml.ResourceDictionary.Style |
-    Foreach-Object { 
+    Param ($xamlLines, $file)
+    [xml]$xaml = $xamlLines
+    $lineNum = 1
+    $xaml.ResourceDictionary.Style | 
+    Foreach-Object {
         Write-Output $_
+        # Get line number by Key or TargetType
+        $styleLineNumber = $null
+        $searchKey = if ($_.Key) { $_.Key } else { $_.TargetType }
+        
+        for ($i = 0; $i -lt $xamlLines.Length; $i++) {
+            if ($xamlLines[$i] -match [regex]::Escape($searchKey)) {
+                $styleLineNumber = $i + 1
+                break
+            }
+        }
+        
         if ($file -eq "Defaults") {
-            # Special handeling of Defaults
-            New-Default -style $_ -file $file 
+            New-Default -style $_ -file $file -lineNumber $styleLineNumber
         }
         elseif ($file -eq "Generic") {
-            # Special handeling of Generic
-            New-GenericDefault -style $_ -file $file 
+            New-GenericDefault -style $_ -file $file -lineNumber $styleLineNumber
         }
-        else{
-            New-Style -style $_ -file $file
+        else {
+            New-Style -style $_ -file $file -lineNumber $styleLineNumber
         }
+        $lineNum++
     }
 }
 
 Function New-GenericDefault {
-    Param ($style, $file)
+    Param ($style, $file, $lineNumber)
     $targetType = Read-TargetType($style | Select-Object TargetType)
     $basedOn = Read-BasedOn($style | Select-Object BasedOn)
     $styleNameValue = ($style | Select-Object Key).Key
     $defaultStyleName = if ($null -eq $styleNameValue) { $basedOn } else { $styleNameValue }
     Write-Debug "[$file] [Type: $targetType] [StyleNameValue: $styleNameValue] [BasedOn: $basedOn] [DefaultStyleName: $defaultStyleName]"
-    Add-DefaultStyle -file $file -targetType $targetType -styleName $defaultStyleName
+    Add-DefaultStyle -file $file -targetType $targetType -styleName $defaultStyleName -lineNumber $lineNumber
 }
 
-
 Function New-Default {
-    Param ($style, $file)
+    Param ($style, $file, $lineNumber)
     $targetType = Read-TargetType($style | Select-Object TargetType)
     $basedOn = Read-BasedOn($style | Select-Object BasedOn)
     $styleNameValue = ($style | Select-Object Key).Key
     $defaultStyleName = if ($null -eq $styleNameValue) { $basedOn } else { $styleNameValue }
     Write-Debug "[$file] [Type: $targetType] [StyleNameValue: $styleNameValue] [BasedOn: $basedOn] [DefaultStyleName: $defaultStyleName]"
-    Add-DefaultStyle -file $file -targetType $targetType -styleName $defaultStyleName
+    Add-DefaultStyle -file $file -targetType $targetType -styleName $defaultStyleName -lineNumber $lineNumber
 }
 
 Function New-Style {
-    Param ($style, $file)
+    Param ($style, $file, $lineNumber)
     $targetType = Read-TargetType($style | Select-Object TargetType)
     $styleName = ($style | Select-Object Key).Key
-    $splittedFile =  $file.split('.') # Suport for "nested" file names like DataGrid.ComboBox
+    $splittedFile =  $file.split('.') # Support for "nested" file names like DataGrid.ComboBox
 
     if ($targetType -eq $splittedFile[-1]) {
         Write-Debug "[Match  ] [File: $file] [Type: $targetType] [Style: $styleName]"
-        Add-Style -targetType $targetType -styleName $styleName -fileName $file
+        Add-Style -targetType $targetType -styleName $styleName -fileName $file -lineNumber $lineNumber
     }
     else {
-        Write-Debug "[Skipped] [File: $file] [Type: $targetType] [Style: $styleName] "
+        Write-Debug "[Skipped] [File: $file] [Type: $targetType] [Style: $styleName]"
     }
 }
 
 Function Add-Style {
-    Param ($targetType, $styleName, $fileName)
-    $temp = Get-Style -targetType $targetType -styleName $styleName -fileName $file
+    Param ($targetType, $styleName, $fileName, $lineNumber)
+    $temp = Get-Style -targetType $targetType -styleName $styleName -fileName $file -lineNumber $lineNumber
     $discoverdStyles.Add($temp) | Out-Null
 }
 
 Function Get-Style {
-    Param ($targetType, $styleName, $fileName)
-    $temp = "" | Select-Object "Control", "Style", "IsDefault", "File"
+    Param ($targetType, $styleName, $fileName, $lineNumber)
+    $temp = "" | Select-Object "Control", "Style", "IsDefault", "File", "LineNumber"
     $temp.Control = $targetType
     $temp.Style = $styleName
     $temp.IsDefault = !$styleName
     $temp.File = $fileName
+    $temp.LineNumber = $lineNumber
     return $temp
 }
 
 Function Add-DefaultStyle {
-    Param ($file, $targetType, $styleName)
-    $temp = "" | Select-Object "File", "Type", "Style"
+    Param ($file, $targetType, $styleName, $lineNumber)
+    $temp = "" | Select-Object "File", "Type", "Style", "LineNumber"
     $temp.File = $file
     $temp.Type = $targetType
     $temp.Style = $styleName
+    $temp.LineNumber = $lineNumber
     $defaults.Add($temp) | Out-Null
 }
 
