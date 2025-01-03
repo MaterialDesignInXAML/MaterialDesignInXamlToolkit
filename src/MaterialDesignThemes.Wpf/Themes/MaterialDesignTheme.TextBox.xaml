@@ -266,7 +266,8 @@
 
                   <Button x:Name="PART_ClearButton"
                           Grid.Column="5"
-                          Height="Auto"
+                          Height="{TemplateBinding wpf:TextFieldAssist.ClearButtonSize}"
+                          Width="{TemplateBinding wpf:TextFieldAssist.ClearButtonSize}"
                           Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                           Padding="2,0,0,0"
                           Command="{x:Static internal:ClearText.ClearCommand}"
@@ -283,8 +284,8 @@
                     <wpf:PackIcon x:Name="ClearButtonIcon"
                                   Margin="0"
                                   Kind="CloseCircle"
-                                  Height="{TemplateBinding wpf:TextFieldAssist.ClearButtonSize}"
-                                  Width="{TemplateBinding wpf:TextFieldAssist.ClearButtonSize}" />
+                                  Height="auto"
+                                  Width="auto" />
                   </Button>
                 </Grid>
               </Border>
