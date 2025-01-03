@@ -1,4 +1,6 @@
-﻿namespace MaterialDesignThemes.UITests.WPF.UpDownControls;
+﻿using System.ComponentModel;
+
+namespace MaterialDesignThemes.UITests.WPF.UpDownControls;
 
 public class DecimalUpDownTests(ITestOutputHelper output) : TestBase(output)
 {
@@ -114,5 +116,35 @@ public class DecimalUpDownTests(ITestOutputHelper output) : TestBase(output)
         Assert.Equal(3, await numericUpDown.GetValue());
         Assert.Equal(3, await numericUpDown.GetMinimum());
         Assert.Equal(3, await numericUpDown.GetMaximum());
+    }
+
+    [Fact]
+    [Description("Issue 3654")]
+    public async Task InternalTextBoxIsFocused_WhenGettingKeyboardFocus()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // Arrange
+        var stackPanel = await LoadXaml<StackPanel>("""
+        <StackPanel>
+          <TextBox />
+          <materialDesign:DecimalUpDown />
+        </StackPanel>
+        """);
+
+        var textBox = await stackPanel.GetElement<TextBox>("/TextBox");
+        var part_textBox = await stackPanel.GetElement<TextBox>("PART_TextBox");
+
+        // Act
+        await textBox.MoveKeyboardFocus();
+        await Task.Delay(50);
+        await textBox.SendInput(new KeyboardInput(Key.Tab));
+        await Task.Delay(50);
+
+        // Assert
+        Assert.False(await textBox.GetIsFocused());
+        Assert.True(await part_textBox.GetIsFocused());
+
+        recorder.Success();
     }
 }
