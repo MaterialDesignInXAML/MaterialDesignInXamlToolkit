@@ -2,7 +2,7 @@ name: Setup Versions
 
 on:
   workflow_call:
-    inputs: 
+    inputs:
       is-full-release:
         required: false
         type: boolean
