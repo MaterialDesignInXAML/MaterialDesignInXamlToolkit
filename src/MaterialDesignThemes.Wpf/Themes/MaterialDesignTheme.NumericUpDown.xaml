@@ -184,7 +184,7 @@
 
   <Style x:Key="MaterialDesignFilledUpDownBase"
          TargetType="{x:Type wpf:UpDownBase}"
-         BasedOn="{StaticResource MaterialDesignFloatingHintNumericUpDown}">
+         BasedOn="{StaticResource MaterialDesignFloatingHintUpDownBase}">
     <Style.Resources>
       <Style x:Key="NestedTextBoxStyle"
              TargetType="TextBox"
@@ -208,7 +208,7 @@
   
   <Style x:Key="MaterialDesignOutlinedUpDownBase"
          TargetType="{x:Type wpf:UpDownBase}"
-         BasedOn="{StaticResource MaterialDesignFloatingHintNumericUpDown}">
+         BasedOn="{StaticResource MaterialDesignFloatingHintUpDownBase}">
     <Style.Resources>
       <Style x:Key="NestedTextBoxStyle"
              TargetType="TextBox"
