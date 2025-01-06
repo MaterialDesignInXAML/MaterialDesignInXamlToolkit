@@ -258,6 +258,7 @@ jobs:
         steps:
             # Doing a checkout, until this issue is resolved.
             # https://github.com/valeriobelli/gh-milestone/issues/15
+            # As of version 2.1.0 the -R doesn't appear to output valid json when filtering. So still using the checkout.
             - uses: actions/checkout@v4
 
             - name: Close Milestone
@@ -265,7 +266,7 @@ jobs:
                   gh extension install valeriobelli/gh-milestone
                   Write-Host "Using extension version $(gh milestone --version)"
                   $milestones = $(gh milestone list --json number,title) | ConvertFrom-Json
-                  $milestoneNumber = ($milestones | Where-Object { $_.title -eq "5.1.0" }).number
+                  $milestoneNumber = ($milestones | Where-Object { $_.title -eq "${{ inputs.milestone }}" }).number
                   gh milestone edit $milestoneNumber --state closed
               env:
                 GITHUB_TOKEN: ${{ secrets.SA_PAT }}
@@ -277,7 +278,7 @@ jobs:
         environment: production
 
         permissions:
-            actions: write
+          actions: write
 
         steps:
             # Checkout is needed so that we can update the get_versions.yml file
@@ -312,6 +313,8 @@ jobs:
                   Update-Version -Prefix "mdix-mahapps-version"
 
             - name: Open Pull Request
+              env:
+                GITHUB_TOKEN: ${{ secrets.SA_PAT }}
               run: |
                   git config --local user.email "github-actions[bot]@users.noreply.github.com"
                   git config --local user.name "github-actions[bot]"

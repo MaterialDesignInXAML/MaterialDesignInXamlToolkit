@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Globalization;
 
 namespace MaterialDesignThemes.Wpf;
@@ -191,9 +191,7 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
         if (_textBoxField != null)
             _textBoxField.TextChanged -= OnTextBoxFocusLost;
 
-        _increaseButton = GetTemplateChild(IncreaseButtonPartName) as RepeatButton;
-        _decreaseButton = GetTemplateChild(DecreaseButtonPartName) as RepeatButton;
-        _textBoxField = GetTemplateChild(TextBoxPartName) as TextBox;
+        base.OnApplyTemplate();
 
         if (_increaseButton != null)
             _increaseButton.Click += IncreaseButtonOnClick;
@@ -207,7 +205,6 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
             _textBoxField.Text = Value?.ToString();
         }
 
-        base.OnApplyTemplate();
     }
 
     private void OnTextBoxFocusLost(object sender, EventArgs e)
@@ -278,6 +275,55 @@ public class UpDownBase : Control
     protected TextBox? _textBoxField;
     protected RepeatButton? _decreaseButton;
     protected RepeatButton? _increaseButton;
+
+    static UpDownBase()
+    {
+        EventManager.RegisterClassHandler(typeof(UpDownBase), GotFocusEvent, new RoutedEventHandler(OnGotFocus));
+    }
+
+    // Based on work in MahApps
+    // https://github.com/MahApps/MahApps.Metro/blob/f7ba30586e9670f07c2f7b6553d129a9e32fc673/src/MahApps.Metro/Controls/NumericUpDown.cs#L966
+    private static void OnGotFocus(object sender, RoutedEventArgs e)
+    {
+        // When NumericUpDown gets logical focus, select the text inside us.
+        // If we're an editable NumericUpDown, forward focus to the TextBox element
+        if (!e.Handled)
+        {
+            var numericUpDown = (UpDownBase)sender;
+            if (numericUpDown.Focusable && e.OriginalSource == numericUpDown)
+            {
+                // MoveFocus takes a TraversalRequest as its argument.
+                var focusDirection = Keyboard.Modifiers.HasFlag(ModifierKeys.Shift)
+                    ? FocusNavigationDirection.Previous
+                    : FocusNavigationDirection.Next;
+
+                var request = new TraversalRequest(focusDirection);
+                // Gets the element with keyboard focus.
+                // And change the keyboard focus.
+                if (Keyboard.FocusedElement is UIElement elementWithFocus)
+                {
+                    elementWithFocus.MoveFocus(request);
+                }
+                else
+                {
+                    numericUpDown.Focus();
+                }
+
+                e.Handled = true;
+            }
+        }
+    }
+
+    public override void OnApplyTemplate()
+    {
+        _increaseButton = GetTemplateChild(IncreaseButtonPartName) as RepeatButton;
+        _decreaseButton = GetTemplateChild(DecreaseButtonPartName) as RepeatButton;
+        _textBoxField = GetTemplateChild(TextBoxPartName) as TextBox;
+
+        base.OnApplyTemplate();
+    }
+
+    public void SelectAll() => _textBoxField?.SelectAll();
 
     public object? IncreaseContent
     {
