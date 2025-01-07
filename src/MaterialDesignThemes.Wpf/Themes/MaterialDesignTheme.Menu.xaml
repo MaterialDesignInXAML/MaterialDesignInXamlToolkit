@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
@@ -186,7 +186,7 @@
                                   Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}"
                                   wpf:ScrollViewerAssist.IgnorePadding="{Binding Path=(wpf:ScrollViewerAssist.IgnorePadding), RelativeSource={RelativeSource TemplatedParent}}"
                                   wpf:ScrollViewerAssist.PaddingMode="{Binding Path=(wpf:ScrollViewerAssist.PaddingMode), RelativeSource={RelativeSource TemplatedParent}}">
-                      <Grid Margin="0,16" RenderOptions.ClearTypeHint="Enabled">
+                      <Grid Margin="{Binding RelativeSource={RelativeSource Mode=Self}, Path=(wpf:MenuAssist.MenuItemsPresenterMargin)}" RenderOptions.ClearTypeHint="Enabled">
                         <Canvas Width="0"
                                 Height="0"
                                 HorizontalAlignment="Left"
@@ -325,7 +325,7 @@
                               Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}"
                               wpf:ScrollViewerAssist.IgnorePadding="{Binding Path=(wpf:ScrollViewerAssist.IgnorePadding), RelativeSource={RelativeSource TemplatedParent}}"
                               wpf:ScrollViewerAssist.PaddingMode="{Binding Path=(wpf:ScrollViewerAssist.PaddingMode), RelativeSource={RelativeSource TemplatedParent}}">
-                  <Grid Margin="0,16" RenderOptions.ClearTypeHint="Enabled">
+                  <Grid Margin="{Binding RelativeSource={RelativeSource Mode=Self}, Path=(wpf:MenuAssist.MenuItemsPresenterMargin)}" RenderOptions.ClearTypeHint="Enabled">
                     <ItemsPresenter x:Name="ItemsPresenter"
                                     Grid.IsSharedSizeScope="True"
                                     KeyboardNavigation.DirectionalNavigation="Cycle"
