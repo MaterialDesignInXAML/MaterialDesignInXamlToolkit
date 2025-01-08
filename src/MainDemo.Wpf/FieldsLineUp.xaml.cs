@@ -73,6 +73,9 @@ public partial class FieldsLineUp
     {
         switch (control)
         {
+            case MaterialDesignThemes.Wpf.AutoSuggestBox autoSuggestBox:
+                autoSuggestBox.Text = nameof(MaterialDesignThemes.Wpf.AutoSuggestBox.Text);
+                break;
             case TextBox textBox:
                 textBox.Text = nameof(TextBox.Text);
                 break;
