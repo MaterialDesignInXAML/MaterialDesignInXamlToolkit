@@ -8,7 +8,10 @@
              d:DesignHeight="300"
              d:DesignWidth="300"
              mc:Ignorable="d">
-  <DockPanel>
+  <StackPanel>
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Menus and Toolbars" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Default Menu" />
+    
     <smtx:XamlDisplay Margin="5,5,0,5"
                       DockPanel.Dock="Top"
                       UniqueKey="menus_1">
@@ -57,6 +60,171 @@
       </Menu>
     </smtx:XamlDisplay>
 
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Menu with custom item margin" />
+
+    <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="menus_1_1">
+      <Menu materialDesign:MenuAssist.MenuItemsPresenterMargin="0">
+        <MenuItem Header="_File">
+          <!--
+          You can set the highlighted color with:
+          materialDesign:MenuItemAssist.HighlightedBackground="Fuchsia"
+          -->
+          <MenuItem Header="Save" Icon="{materialDesign:PackIcon Kind=ContentSave}" />
+
+          <MenuItem Header="Save As.." />
+
+          <MenuItem Header="Exit"
+                    Icon="{materialDesign:PackIcon Kind=ExitToApp}"
+                    InputGestureText="Ctrl+E" />
+
+          <Separator />
+
+          <MenuItem Header="Excellent"
+                    IsCheckable="True"
+                    IsChecked="True" />
+
+          <MenuItem Header="Rubbish" IsCheckable="True" />
+
+          <MenuItem Header="Dig Deeper" InputGestureText="Ctrl+D">
+            <MenuItem Header="Enlightenment?" IsCheckable="True" />
+            <MenuItem Header="Disappointment" IsCheckable="True" />
+          </MenuItem>
+
+          <MenuItem Header="Look Deeper" InputGestureText="Ctrl+D">
+            <MenuItem Header="Plain" />
+            <MenuItem Header="Ice Cream" />
+          </MenuItem>
+        </MenuItem>
+
+        <MenuItem Header="_Edit">
+          <MenuItem Command="Cut"
+                    Header="_Cut"
+                    Icon="{materialDesign:PackIcon Kind=ContentCut}" />
+
+          <MenuItem Command="Copy"
+                    Header="_Copy"
+                    Icon="{materialDesign:PackIcon Kind=ContentCopy}" />
+
+          <MenuItem Command="Paste"
+                    Header="_Paste"
+                    Icon="{materialDesign:PackIcon Kind=ContentPaste}" />
+        </MenuItem>
+      </Menu>
+    </smtx:XamlDisplay>
+
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Menu with custom Height" />
+
+    <smtx:XamlDisplay Margin="0,0,0,16"
+                      HorizontalAlignment="Left"
+                      UniqueKey="customHeightMenu1">
+      <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="25">
+        <MenuItem Header="Very">
+          <MenuItem Header="Item 1" />
+          <MenuItem Header="Item 2" />
+          <MenuItem Header="Item 3" />
+        </MenuItem>
+        <MenuItem Header="Small">
+          <MenuItem Header="Item 1" />
+          <MenuItem Header="Item 2" />
+          <MenuItem Header="Item 3" />
+        </MenuItem>
+        <MenuItem Header="Menu" />
+      </Menu>
+    </smtx:XamlDisplay>
+
+    <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="customHeightMenu2">
+      <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="80">
+        <MenuItem Header="Very">
+          <MenuItem Header="Item 1" />
+          <MenuItem Header="Item 2" />
+          <MenuItem Header="Item 3" />
+        </MenuItem>
+        <MenuItem Header="Big">
+          <MenuItem Header="Item 1" />
+          <MenuItem Header="Item 2" />
+          <MenuItem Header="Item 3" />
+        </MenuItem>
+        <MenuItem Header="Menu" />
+      </Menu>
+    </smtx:XamlDisplay>
+
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Adaptive Menu" />
+
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" MinHeight="25" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+
+      <smtx:XamlDisplay Grid.Row="0"
+                        HorizontalAlignment="Left"
+                        UniqueKey="adaptiveMenu">
+        <materialDesign:Card>
+          <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type materialDesign:Card}}, Path=ActualHeight}">
+            <MenuItem Header="File">
+              <MenuItem Header="Item 1" />
+              <MenuItem Header="Item 2" />
+              <MenuItem Header="Item 3" />
+            </MenuItem>
+            <MenuItem Header="Edit">
+              <MenuItem Header="Item 1" />
+              <MenuItem Header="Item 2" />
+              <MenuItem Header="Item 3" />
+            </MenuItem>
+            <MenuItem Header="About" />
+          </Menu>
+        </materialDesign:Card>
+      </smtx:XamlDisplay>
+      <GridSplitter Grid.Row="1"
+                    Height="5"
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch" />
+      <Grid Grid.Row="2">
+        <StackPanel Orientation="Horizontal">
+          <materialDesign:PackIcon Margin="0,0,5,0" Kind="Information" />
+          <TextBlock>The menu height matches with the parent panel height. Use the splitter to see the adaptive menu in action.</TextBlock>
+        </StackPanel>
+      </Grid>
+    </Grid>
+
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Menu with colored items" />
+
+    <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="coloredMenu1">
+      <Menu>
+        <MenuItem Header="Menu">
+          <MenuItem Header="Item 1" />
+          <MenuItem Header="Item 2" />
+          <MenuItem Header="Item 3" />
+        </MenuItem>
+        <MenuItem Background="{DynamicResource PrimaryHueMidBrush}"
+                  Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                  Header="In Color">
+          <MenuItem Background="{DynamicResource SecondaryHueMidBrush}"
+                    Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"
+                    Header="Item 1" />
+          <MenuItem Background="{DynamicResource SecondaryHueMidBrush}"
+                    Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"
+                    Header="Item 2" />
+          <MenuItem Background="{DynamicResource SecondaryHueMidBrush}"
+                    Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"
+                    Header="Item 3" />
+        </MenuItem>
+        <MenuItem Foreground="Crimson" Header="(1) Important">
+          <MenuItem Foreground="{DynamicResource MaterialDesign.Brush.Foreground}" Header="Item 1" />
+          <MenuItem Foreground="Crimson" Header="(1) This is important" />
+          <MenuItem Foreground="{DynamicResource MaterialDesign.Brush.Foreground}" Header="Nothing here" />
+        </MenuItem>
+      </Menu>
+    </smtx:XamlDisplay>
+
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Toolbars" />    
+    
     <smtx:XamlDisplay Margin="5,0,0,0"
                       DockPanel.Dock="Top"
                       UniqueKey="menus_2">
@@ -178,28 +346,51 @@
       </ToolBarTray>
     </smtx:XamlDisplay>
 
-    <smtx:XamlDisplay Margin="16"
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Context Menus" />
+
+    <WrapPanel>
+      <smtx:XamlDisplay Margin="16"
                       HorizontalAlignment="Left"
                       VerticalAlignment="Top"
                       UniqueKey="menus_3">
-      <TextBox Text="With Default Context Menu" />
-    </smtx:XamlDisplay>
+        <TextBox Text="With Default Context Menu" />
+      </smtx:XamlDisplay>
 
-    <smtx:XamlDisplay Margin="16"
+      <smtx:XamlDisplay Margin="16"
                       HorizontalAlignment="Left"
                       VerticalAlignment="Top"
                       UniqueKey="menus_4">
-      <TextBox Text="With Custom Context Menu">
-        <TextBox.ContextMenu>
-          <ContextMenu>
-            <MenuItem Header="Hello World" />
-            <MenuItem Header="Clickety Click">
-              <MenuItem Header="Clackety Clack" />
-            </MenuItem>
-          </ContextMenu>
-        </TextBox.ContextMenu>
-      </TextBox>
-    </smtx:XamlDisplay>
-  </DockPanel>
+        <TextBox Text="With Custom Context Menu">
+          <TextBox.ContextMenu>
+            <ContextMenu>
+              <MenuItem Header="Hello World" />
+              <MenuItem Header="Clickety Click">
+                <MenuItem Header="Clackety Clack" />
+              </MenuItem>
+            </ContextMenu>
+          </TextBox.ContextMenu>
+        </TextBox>
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay UniqueKey="menus_6"
+                        Margin="16"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top">
+        <TextBox Text="With Custom Item Margin">
+          <TextBox.ContextMenu>
+            <ContextMenu materialDesign:MenuAssist.MenuItemsPresenterMargin="0">
+              <MenuItem Header="Hello World" />
+              <MenuItem Header="Clickety Click">
+                <MenuItem Header="Clackety Clack 1" />
+                <MenuItem Header="Clackety Clack 2" />
+                <MenuItem Header="Clackety Clack 3" />
+              </MenuItem>
+            </ContextMenu>
+          </TextBox.ContextMenu>
+        </TextBox>
+      </smtx:XamlDisplay>
+    </WrapPanel>
+  </StackPanel>
 </UserControl>
 
