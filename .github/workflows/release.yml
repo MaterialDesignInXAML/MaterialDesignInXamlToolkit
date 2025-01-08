@@ -313,6 +313,8 @@ jobs:
                   Update-Version -Prefix "mdix-mahapps-version"
 
             - name: Open Pull Request
+              env:
+                GITHUB_TOKEN: ${{ secrets.SA_PAT }}
               run: |
                   git config --local user.email "github-actions[bot]@users.noreply.github.com"
                   git config --local user.name "github-actions[bot]"

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MaterialDesignDemo.MenusAndToolBars"
+<UserControl x:Class="MaterialDesignDemo.MenusAndToolBars"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -14,6 +14,59 @@
 
     <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="menus_1">
       <Menu>
+        <MenuItem Header="_File">
+          <!--
+          You can set the highlighted color with:
+          materialDesign:MenuItemAssist.HighlightedBackground="Fuchsia"
+          -->
+          <MenuItem Header="Save" Icon="{materialDesign:PackIcon Kind=ContentSave}" />
+
+          <MenuItem Header="Save As.." />
+
+          <MenuItem Header="Exit"
+                    Icon="{materialDesign:PackIcon Kind=ExitToApp}"
+                    InputGestureText="Ctrl+E" />
+
+          <Separator />
+
+          <MenuItem Header="Excellent"
+                    IsCheckable="True"
+                    IsChecked="True" />
+
+          <MenuItem Header="Rubbish" IsCheckable="True" />
+
+          <MenuItem Header="Dig Deeper" InputGestureText="Ctrl+D">
+            <MenuItem Header="Enlightenment?" IsCheckable="True" />
+            <MenuItem Header="Disappointment" IsCheckable="True" />
+          </MenuItem>
+
+          <MenuItem Header="Look Deeper" InputGestureText="Ctrl+D">
+            <MenuItem Header="Plain" />
+            <MenuItem Header="Ice Cream" />
+          </MenuItem>
+        </MenuItem>
+
+        <MenuItem Header="_Edit">
+          <MenuItem Command="Cut"
+                    Header="_Cut"
+                    Icon="{materialDesign:PackIcon Kind=ContentCut}" />
+
+          <MenuItem Command="Copy"
+                    Header="_Copy"
+                    Icon="{materialDesign:PackIcon Kind=ContentCopy}" />
+
+          <MenuItem Command="Paste"
+                    Header="_Paste"
+                    Icon="{materialDesign:PackIcon Kind=ContentPaste}" />
+        </MenuItem>
+      </Menu>
+    </smtx:XamlDisplay>
+
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Menu with custom item margin" />
+
+    <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="menus_1_1">
+      <Menu materialDesign:MenuAssist.MenuItemsPresenterMargin="0">
         <MenuItem Header="_File">
           <!--
           You can set the highlighted color with:
@@ -340,6 +393,21 @@
               <MenuItem Header="Hello World" />
               <MenuItem Header="Clickety Click">
                 <MenuItem Header="Clackety Clack" />
+              </MenuItem>
+            </ContextMenu>
+          </TextBox.ContextMenu>
+        </TextBox>
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay UniqueKey="menus_6"  Margin="0,0,16,16">
+        <TextBox Text="With Custom Item Margin">
+          <TextBox.ContextMenu>
+            <ContextMenu materialDesign:MenuAssist.MenuItemsPresenterMargin="0">
+              <MenuItem Header="Hello World" />
+              <MenuItem Header="Clickety Click">
+                <MenuItem Header="Clackety Clack 1" />
+                <MenuItem Header="Clackety Clack 2" />
+                <MenuItem Header="Clackety Clack 3" />
               </MenuItem>
             </ContextMenu>
           </TextBox.ContextMenu>
