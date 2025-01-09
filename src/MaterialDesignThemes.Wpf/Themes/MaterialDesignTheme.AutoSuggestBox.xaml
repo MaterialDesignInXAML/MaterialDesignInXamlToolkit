@@ -174,6 +174,7 @@
                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TextFieldAssist.PrefixTextHintBehavior)" />
                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TextFieldAssist.SuffixTextHintBehavior)" />
                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="HorizontalContentAlignment" />
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsReadOnly" Converter="{x:Static converters:InvertBooleanConverter.Instance}" />
                       </MultiBinding>
                     </wpf:SmartHint.InitialHorizontalOffset>
                     <wpf:SmartHint.Margin>

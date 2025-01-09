@@ -19,7 +19,8 @@ public class FloatingHintInitialHorizontalOffsetConverter : IMultiValueConverter
                 PrefixSuffixVisibility suffixVisibility,
                 PrefixSuffixHintBehavior prefixHintBehavior,
                 PrefixSuffixHintBehavior suffixHintBehavior,
-                HorizontalAlignment horizontalContentAlignment
+                HorizontalAlignment horizontalContentAlignment,
+                bool isEditable,
             ])
         {
             return 0;
@@ -37,8 +38,11 @@ public class FloatingHintInitialHorizontalOffsetConverter : IMultiValueConverter
             return prefixVisibility switch
             {
                 PrefixSuffixVisibility.WhenFocusedOrNonEmpty
-                    when prefixHintBehavior == PrefixSuffixHintBehavior.AlignWithText =>
+                    when prefixHintBehavior == PrefixSuffixHintBehavior.AlignWithText && isEditable =>
                     prefixWidth + prefixMargin.Right,
+                PrefixSuffixVisibility.WhenFocusedOrNonEmpty
+                    when prefixHintBehavior == PrefixSuffixHintBehavior.AlignWithPrefixSuffix && !isEditable =>
+                    -(prefixWidth + prefixMargin.Right),
                 PrefixSuffixVisibility.Always
                     when prefixHintBehavior == PrefixSuffixHintBehavior.AlignWithPrefixSuffix =>
                     -(prefixWidth + prefixMargin.Right),
@@ -51,8 +55,11 @@ public class FloatingHintInitialHorizontalOffsetConverter : IMultiValueConverter
             return suffixVisibility switch
             {
                 PrefixSuffixVisibility.WhenFocusedOrNonEmpty
-                    when suffixHintBehavior == PrefixSuffixHintBehavior.AlignWithText =>
+                    when suffixHintBehavior == PrefixSuffixHintBehavior.AlignWithText && isEditable =>
                     -(suffixWidth + suffixMargin.Left),
+                PrefixSuffixVisibility.WhenFocusedOrNonEmpty
+                    when suffixHintBehavior == PrefixSuffixHintBehavior.AlignWithPrefixSuffix && !isEditable =>
+                    suffixWidth + suffixMargin.Left,
                 PrefixSuffixVisibility.Always
                     when suffixHintBehavior == PrefixSuffixHintBehavior.AlignWithPrefixSuffix =>
                     suffixWidth + suffixMargin.Left,
