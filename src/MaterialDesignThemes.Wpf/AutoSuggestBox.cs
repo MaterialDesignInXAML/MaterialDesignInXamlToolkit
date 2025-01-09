@@ -145,28 +145,36 @@ public class AutoSuggestBox : TextBox
 
     protected override void OnPreviewKeyDown(KeyEventArgs e)
     {
-        base.OnPreviewKeyDown(e);
         if (_autoSuggestBoxList is null) return;
         switch (e.Key)
         {
             case Key.Down:
                 IncrementSelection();
+                e.Handled = true;
                 break;
             case Key.Up:
                 DecrementSelection();
+                e.Handled = true;
                 break;
             case Key.Enter:
                 CommitValueSelection();
+                e.Handled = true;
                 break;
             case Key.Escape:
                 CloseAutoSuggestionPopUp();
+                e.Handled = true;
                 break;
             case Key.Tab:
-                CommitValueSelection();
+                bool wasItemSelected = CommitValueSelection();
+                if (wasItemSelected)
+                {
+                    e.Handled = true;
+                }
                 break;
             default:
                 return;
         }
+        base.OnPreviewKeyDown(e);
     }
 
     protected override void OnLostFocus(RoutedEventArgs e)
@@ -227,14 +235,14 @@ public class AutoSuggestBox : TextBox
         IsSuggestionOpen = false;
     }
 
-    private void CommitValueSelection()
+    private bool CommitValueSelection()
         => CommitValueSelection(_autoSuggestBoxList?.SelectedValue);
 
-    private void CommitValueSelection(object? selectedValue)
+    private bool CommitValueSelection(object? selectedValue)
     {
         if (IsSuggestionOpen == false)
         {
-            return;
+            return false;
         }
 
         string oldValue = Text;
@@ -249,6 +257,7 @@ public class AutoSuggestBox : TextBox
             RoutedEvent = SuggestionChosenEvent
         };
         RaiseEvent(args);
+        return true;
     }
 
     private void DecrementSelection()
