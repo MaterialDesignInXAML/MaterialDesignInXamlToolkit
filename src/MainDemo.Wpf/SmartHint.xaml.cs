@@ -17,10 +17,24 @@ public partial class SmartHint : UserControl
     internal static void SetRichTextBoxText(DependencyObject element, object value) => element.SetValue(RichTextBoxTextProperty, value);
     internal static object GetRichTextBoxText(DependencyObject element) => element.GetValue(RichTextBoxTextProperty);
 
+    private SmartHintViewModel ViewModel { get; }
+
     public SmartHint()
     {
-        DataContext = new SmartHintViewModel();
+        DataContext = ViewModel = new SmartHintViewModel();
         InitializeComponent();
+
+        Loaded += SmartHint_Loaded;
+    }
+
+    private void SmartHint_Loaded(object sender, RoutedEventArgs e)
+    {
+        // HACK! For some strange reason, the calculation of the left margin for the hint is initially wrong if these values are set as default in the view model directly.
+        // Setting them here is a bit hacky, but it makes the demo page work, and I don't think this would be an issue in a real world application so I can live the hack.
+        // To see the issue in action: Simply comment out the 2 lines below, open the "Smart Hint" page and toggle the "IsReadOnly" checkbox in the "TextBox styles" section;
+        // that will place the hint on top of the prefix text for unknown reasons.
+        ViewModel.PrefixText = "Pre";
+        ViewModel.SuffixText = "Suf";
     }
 
     private void HasErrors_OnToggled(object sender, RoutedEventArgs e)
