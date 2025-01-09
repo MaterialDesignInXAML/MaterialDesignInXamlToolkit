@@ -167,7 +167,6 @@ public class AutoSuggestBox : TextBox
             default:
                 return;
         }
-        e.Handled = true;
     }
 
     protected override void OnLostFocus(RoutedEventArgs e)
@@ -233,6 +232,11 @@ public class AutoSuggestBox : TextBox
 
     private void CommitValueSelection(object? selectedValue)
     {
+        if (IsSuggestionOpen == false)
+        {
+            return;
+        }
+
         string oldValue = Text;
         Text = selectedValue?.ToString();
         if (Text != null)
