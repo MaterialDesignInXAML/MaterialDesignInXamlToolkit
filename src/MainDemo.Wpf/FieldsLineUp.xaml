@@ -108,6 +108,7 @@
             <CheckBox x:Name="IsEnabledCheckBox"
                       Content="IsEnabled"
                       IsChecked="True" />
+            <CheckBox x:Name="IsReadOnlyCheckBox" Content="TextBox.IsReadOnly" />
             <CheckBox x:Name="HasClearButtonCheckBox" Content="TextFieldAssist.HasClearButton" />
             <CheckBox x:Name="IsEditableCheckBox" Content="ComboBox.IsEditable" />
           </StackPanel>

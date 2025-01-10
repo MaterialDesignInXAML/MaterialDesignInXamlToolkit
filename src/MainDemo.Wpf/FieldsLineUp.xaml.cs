@@ -52,6 +52,8 @@ public partial class FieldsLineUp
             control.Margin = new Thickness(2, 10, 2, 10);
             if (control is ComboBox comboBox)
                 comboBox.SetBinding(ComboBox.IsEditableProperty, new Binding(nameof(CheckBox.IsChecked)) { ElementName = nameof(IsEditableCheckBox) });
+            if (control is TextBoxBase tb)
+                tb.SetBinding(TextBoxBase.IsReadOnlyProperty, new Binding(nameof(CheckBox.IsChecked)) { ElementName = nameof(IsReadOnlyCheckBox) });
             SetValue(control);
         }
     }
