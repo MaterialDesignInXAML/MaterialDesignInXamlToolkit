@@ -41,7 +41,7 @@ public static class TextFieldAssist
 
     public static void SetTextBoxViewVerticalAlignment(DependencyObject element, VerticalAlignment value) => element.SetValue(TextBoxViewVerticalAlignmentProperty, value);
 
-    public static VerticalAlignment GetTextBoxViewVerticalAlignment(DependencyObject element) => (VerticalAlignment) element.GetValue(TextBoxViewVerticalAlignmentProperty);
+    public static VerticalAlignment GetTextBoxViewVerticalAlignment(DependencyObject element) => (VerticalAlignment)element.GetValue(TextBoxViewVerticalAlignmentProperty);
 
     /// <summary>
     /// Controls the visibility of the underline decoration.
@@ -172,7 +172,7 @@ public static class TextFieldAssist
         => element.SetValue(SuffixTextVisibilityProperty, value);
 
     public static PrefixSuffixVisibility GetSuffixTextVisibility(DependencyObject element)
-        => (PrefixSuffixVisibility) element.GetValue(SuffixTextVisibilityProperty);
+        => (PrefixSuffixVisibility)element.GetValue(SuffixTextVisibilityProperty);
 
     /// <summary>
     /// SuffixTextHintBehavior dependency property. Controls how a floating hint aligns with respect to the text and suffix.
@@ -184,7 +184,7 @@ public static class TextFieldAssist
         => element.SetValue(SuffixTextHintBehaviorProperty, value);
 
     public static PrefixSuffixHintBehavior GetSuffixTextHintBehavior(DependencyObject element)
-        => (PrefixSuffixHintBehavior) element.GetValue(SuffixTextHintBehaviorProperty);
+        => (PrefixSuffixHintBehavior)element.GetValue(SuffixTextHintBehaviorProperty);
 
     /// <summary>
     /// PrefixText dependency property
@@ -208,7 +208,7 @@ public static class TextFieldAssist
         => element.SetValue(PrefixTextVisibilityProperty, value);
 
     public static PrefixSuffixVisibility GetPrefixTextVisibility(DependencyObject element)
-        => (PrefixSuffixVisibility) element.GetValue(PrefixTextVisibilityProperty);
+        => (PrefixSuffixVisibility)element.GetValue(PrefixTextVisibilityProperty);
 
     /// <summary>
     /// PrefixTextHintBehavior dependency property. Controls how a floating hint aligns with respect to the text and prefix.
@@ -233,6 +233,18 @@ public static class TextFieldAssist
 
     public static bool GetHasClearButton(DependencyObject element)
         => (bool)element.GetValue(HasClearButtonProperty);
+
+    /// <summary>
+    /// Controls the size of the clear button.
+    /// </summary>
+    public static readonly DependencyProperty ClearButtonSizeProperty = DependencyProperty.RegisterAttached(
+        "ClearButtonSize", typeof(double), typeof(TextFieldAssist), new PropertyMetadata(16.0d));
+
+    public static void SetClearButtonSize(DependencyObject element, double value)
+        => element.SetValue(ClearButtonSizeProperty, value);
+
+    public static double GetClearButtonSize(DependencyObject element)
+        => (double)element.GetValue(ClearButtonSizeProperty);
 
     /// <summary>
     /// Controls visibility of the leading icon
@@ -316,7 +328,7 @@ public static class TextFieldAssist
         => element.SetValue(IconVerticalAlignmentProperty, value);
 
     public static VerticalAlignment GetIconVerticalAlignment(DependencyObject element)
-        => (VerticalAlignment) element.GetValue(IconVerticalAlignmentProperty);
+        => (VerticalAlignment)element.GetValue(IconVerticalAlignmentProperty);
 
     public static Style GetCharacterCounterStyle(DependencyObject obj) => (Style)obj.GetValue(CharacterCounterStyleProperty);
 
@@ -373,14 +385,14 @@ public static class TextFieldAssist
     public static void SetTextBoxLineCount(DependencyObject element, int value)
         => element.SetValue(TextBoxLineCountProperty, value);
     public static int GetTextBoxLineCount(DependencyObject element)
-        => (int) element.GetValue(TextBoxLineCountProperty);
+        => (int)element.GetValue(TextBoxLineCountProperty);
 
     public static readonly DependencyProperty TextBoxIsMultiLineProperty = DependencyProperty.RegisterAttached(
         "TextBoxIsMultiLine", typeof(bool), typeof(TextFieldAssist), new PropertyMetadata(false));
     public static void SetTextBoxIsMultiLine(DependencyObject element, bool value)
         => element.SetValue(TextBoxIsMultiLineProperty, value);
     public static bool GetTextBoxIsMultiLine(DependencyObject element)
-        => (bool) element.GetValue(TextBoxIsMultiLineProperty);
+        => (bool)element.GetValue(TextBoxIsMultiLineProperty);
 
     #region Methods
 
