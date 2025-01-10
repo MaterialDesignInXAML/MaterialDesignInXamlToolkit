@@ -71,29 +71,29 @@
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
             <Border HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            Background="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
-            CornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}"
-            RenderTransformOrigin="0.5,0.5"
-            Visibility="{TemplateBinding wpf:TextFieldAssist.RippleOnFocusEnabled, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}">
+                    VerticalAlignment="Stretch"
+                    Background="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
+                    CornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}"
+                    RenderTransformOrigin="0.5,0.5"
+                    Visibility="{TemplateBinding wpf:TextFieldAssist.RippleOnFocusEnabled, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}">
               <Border.RenderTransform>
                 <ScaleTransform x:Name="RippleOnFocusScaleTransform" ScaleX="0" ScaleY="0" />
               </Border.RenderTransform>
             </Border>
             <AdornerDecorator>
               <Border x:Name="OuterBorder"
-              Padding="{TemplateBinding Padding}"
-              wpf:BottomDashedLineAdorner.Brush="{TemplateBinding BorderBrush}"
-              wpf:BottomDashedLineAdorner.Thickness="{Binding RelativeSource={RelativeSource Self}, Path=BorderThickness}"
-              Background="{TemplateBinding Background}"
-              BorderBrush="{TemplateBinding BorderBrush}"
-              BorderThickness="{TemplateBinding BorderThickness}"
-              CornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}"
-              SnapsToDevicePixels="True">
+                      Padding="{TemplateBinding Padding}"
+                      wpf:BottomDashedLineAdorner.Brush="{TemplateBinding BorderBrush}"
+                      wpf:BottomDashedLineAdorner.Thickness="{Binding RelativeSource={RelativeSource Self}, Path=BorderThickness}"
+                      Background="{TemplateBinding Background}"
+                      BorderBrush="{TemplateBinding BorderBrush}"
+                      BorderThickness="{TemplateBinding BorderThickness}"
+                      CornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}"
+                      SnapsToDevicePixels="True">
 
                 <Grid x:Name="ContentGrid"
-              MinHeight="16"
-              VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                      MinHeight="16"
+                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                   <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
@@ -104,32 +104,14 @@
                   </Grid.ColumnDefinitions>
 
                   <wpf:PackIcon x:Name="LeadingPackIcon"
-                        Grid.Column="0"
-                        Width="{TemplateBinding wpf:TextFieldAssist.LeadingIconSize}"
-                        Height="{TemplateBinding wpf:TextFieldAssist.LeadingIconSize}"
-                        Margin="0,0,6,0"
-                        VerticalAlignment="{TemplateBinding wpf:TextFieldAssist.IconVerticalAlignment}"
-                        Kind="{TemplateBinding wpf:TextFieldAssist.LeadingIcon}"
-                        Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                        Visibility="{TemplateBinding wpf:TextFieldAssist.HasLeadingIcon, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}" />
-
-                  <TextBlock x:Name="PrefixTextBlock"
-                     Grid.Column="1"
-                     Margin="0,0,2,0"
-                     VerticalAlignment="Center"
-                     FontSize="{TemplateBinding FontSize}"
-                     Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                     Text="{TemplateBinding wpf:TextFieldAssist.PrefixText}">
-                    <TextBlock.Visibility>
-                      <MultiBinding Converter="{StaticResource PrefixSuffixTextVisibilityConverter}">
-                        <Binding ElementName="Hint" Path="IsHintInFloatingPosition" />
-                        <Binding Path="(wpf:TextFieldAssist.PrefixText)" RelativeSource="{RelativeSource TemplatedParent}" />
-                        <Binding Path="(wpf:TextFieldAssist.PrefixTextVisibility)" RelativeSource="{RelativeSource TemplatedParent}" />
-                        <Binding Path="IsKeyboardFocusWithin" RelativeSource="{RelativeSource TemplatedParent}" />
-                        <Binding Path="IsReadOnly" RelativeSource="{RelativeSource TemplatedParent}" Converter="{x:Static converters:InvertBooleanConverter.Instance}" />
-                      </MultiBinding>
-                    </TextBlock.Visibility>
-                  </TextBlock>
+                                Grid.Column="0"
+                                Width="{TemplateBinding wpf:TextFieldAssist.LeadingIconSize}"
+                                Height="{TemplateBinding wpf:TextFieldAssist.LeadingIconSize}"
+                                Margin="0,0,6,0"
+                                VerticalAlignment="{TemplateBinding wpf:TextFieldAssist.IconVerticalAlignment}"
+                                Kind="{TemplateBinding wpf:TextFieldAssist.LeadingIcon}"
+                                Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
+                                Visibility="{TemplateBinding wpf:TextFieldAssist.HasLeadingIcon, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}" />
 
                   <ScrollViewer x:Name="PART_ContentHost"
                         Grid.Column="2"
@@ -174,6 +156,7 @@
                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TextFieldAssist.PrefixTextHintBehavior)" />
                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TextFieldAssist.SuffixTextHintBehavior)" />
                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="HorizontalContentAlignment" />
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsReadOnly" Converter="{x:Static converters:InvertBooleanConverter.Instance}" />
                       </MultiBinding>
                     </wpf:SmartHint.InitialHorizontalOffset>
                     <wpf:SmartHint.Margin>
@@ -191,20 +174,38 @@
                     </wpf:SmartHint.Margin>
                     <wpf:SmartHint.Hint>
                       <Border x:Name="HintBackgroundBorder"
-                      Background="{TemplateBinding wpf:HintAssist.Background}"
-                      CornerRadius="2">
+                              Background="{TemplateBinding wpf:HintAssist.Background}"
+                              CornerRadius="2">
                         <ContentPresenter x:Name="HintWrapper" Content="{TemplateBinding wpf:HintAssist.Hint}" />
                       </Border>
                     </wpf:SmartHint.Hint>
                   </wpf:SmartHint>
 
+                  <TextBlock x:Name="PrefixTextBlock"
+                             Grid.Column="1"
+                             Margin="0,0,2,0"
+                             VerticalAlignment="Center"
+                             FontSize="{TemplateBinding FontSize}"
+                             Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
+                             Text="{TemplateBinding wpf:TextFieldAssist.PrefixText}">
+                    <TextBlock.Visibility>
+                      <MultiBinding Converter="{StaticResource PrefixSuffixTextVisibilityConverter}">
+                        <Binding ElementName="Hint" Path="IsHintInFloatingPosition" />
+                        <Binding Path="(wpf:TextFieldAssist.PrefixText)" RelativeSource="{RelativeSource TemplatedParent}" />
+                        <Binding Path="(wpf:TextFieldAssist.PrefixTextVisibility)" RelativeSource="{RelativeSource TemplatedParent}" />
+                        <Binding Path="IsKeyboardFocusWithin" RelativeSource="{RelativeSource TemplatedParent}" />
+                        <Binding Path="IsReadOnly" RelativeSource="{RelativeSource TemplatedParent}" Converter="{x:Static converters:InvertBooleanConverter.Instance}" />
+                      </MultiBinding>
+                    </TextBlock.Visibility>
+                  </TextBlock>
+
                   <TextBlock x:Name="SuffixTextBlock"
-                     Grid.Column="3"
-                     Margin="2,0,0,0"
-                     VerticalAlignment="Center"
-                     FontSize="{TemplateBinding FontSize}"
-                     Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                     Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}">
+                             Grid.Column="3"
+                             Margin="2,0,0,0"
+                             VerticalAlignment="Center"
+                             FontSize="{TemplateBinding FontSize}"
+                             Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
+                             Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}">
                     <TextBlock.Visibility>
                       <MultiBinding Converter="{StaticResource PrefixSuffixTextVisibilityConverter}">
                         <Binding ElementName="Hint" Path="IsHintInFloatingPosition" />
@@ -288,11 +289,10 @@
                    CornerRadius="{TemplateBinding wpf:TextFieldAssist.UnderlineCornerRadius}"
                    Visibility="{TemplateBinding wpf:TextFieldAssist.DecorationVisibility}" />
 
-            <Canvas VerticalAlignment="Bottom"
-            IsHitTestVisible="False">
+            <Canvas VerticalAlignment="Bottom" IsHitTestVisible="False">
               <Border Canvas.Top="2"
-              Padding="{TemplateBinding Padding, Converter={StaticResource HelperTextMarginConverter}}"
-              Width="{Binding ActualWidth, ElementName=OuterBorder}">
+                      Padding="{TemplateBinding Padding, Converter={StaticResource HelperTextMarginConverter}}"
+                      Width="{Binding ActualWidth, ElementName=OuterBorder}">
                 <Grid x:Name="FooterGrid">
                   <Grid.ColumnDefinitions>
                     <ColumnDefinition />
