@@ -41,7 +41,7 @@ public class FloatingHintInitialHorizontalOffsetConverter : IMultiValueConverter
                     when prefixHintBehavior == PrefixSuffixHintBehavior.AlignWithText && isEditable =>
                     prefixWidth + prefixMargin.Right,
                 PrefixSuffixVisibility.WhenFocusedOrNonEmpty
-                    when prefixHintBehavior == PrefixSuffixHintBehavior.AlignWithPrefixSuffix && !isEditable =>
+                    when prefixHintBehavior == PrefixSuffixHintBehavior.AlignWithPrefixSuffix && !isEditable && prefixWidth > 0 =>
                     -(prefixWidth + prefixMargin.Right),
                 PrefixSuffixVisibility.Always
                     when prefixHintBehavior == PrefixSuffixHintBehavior.AlignWithPrefixSuffix =>
@@ -58,7 +58,7 @@ public class FloatingHintInitialHorizontalOffsetConverter : IMultiValueConverter
                     when suffixHintBehavior == PrefixSuffixHintBehavior.AlignWithText && isEditable =>
                     -(suffixWidth + suffixMargin.Left),
                 PrefixSuffixVisibility.WhenFocusedOrNonEmpty
-                    when suffixHintBehavior == PrefixSuffixHintBehavior.AlignWithPrefixSuffix && !isEditable =>
+                    when suffixHintBehavior == PrefixSuffixHintBehavior.AlignWithPrefixSuffix && !isEditable && suffixWidth > 0 =>
                     suffixWidth + suffixMargin.Left,
                 PrefixSuffixVisibility.Always
                     when suffixHintBehavior == PrefixSuffixHintBehavior.AlignWithPrefixSuffix =>
