@@ -3,7 +3,7 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters;
 
-internal class TextFieldClearButtonVisibilityConverter : IMultiValueConverter
+public class TextFieldClearButtonVisibilityConverter : IMultiValueConverter
 {
     public Visibility ContentEmptyVisibility { get; set; } = Visibility.Hidden;
 

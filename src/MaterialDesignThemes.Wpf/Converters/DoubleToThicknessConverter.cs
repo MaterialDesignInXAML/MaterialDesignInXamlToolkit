@@ -3,8 +3,10 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters;
 
-internal class DoubleToThicknessConverter : IValueConverter
+public class DoubleToThicknessConverter : IValueConverter
 {
+    public static readonly DoubleToThicknessConverter Instance = new();
+
     public double InitialOffset { get; set; }
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

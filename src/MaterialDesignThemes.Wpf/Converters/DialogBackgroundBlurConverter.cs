@@ -8,7 +8,7 @@ using System.Windows.Data;
 using System.Windows.Media.Effects;
 
 namespace MaterialDesignThemes.Wpf.Converters;
-internal sealed class DialogBackgroundBlurConverter : IMultiValueConverter
+public sealed class DialogBackgroundBlurConverter : IMultiValueConverter
 {
     public static readonly DialogBackgroundBlurConverter Instance = new();
     public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)

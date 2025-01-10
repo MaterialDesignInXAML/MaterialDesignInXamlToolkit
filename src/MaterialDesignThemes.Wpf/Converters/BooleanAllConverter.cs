@@ -3,7 +3,7 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters;
 
-internal class BooleanAllConverter : IMultiValueConverter
+public class BooleanAllConverter : IMultiValueConverter
 {
     public static readonly BooleanAllConverter Instance = new();
 

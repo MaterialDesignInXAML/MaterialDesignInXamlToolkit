@@ -3,7 +3,7 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters;
 
-internal class DoubleToCornerRadiusConverter : IValueConverter
+public class DoubleToCornerRadiusConverter : IValueConverter
 {
     public static readonly DoubleToCornerRadiusConverter Instance = new();
 

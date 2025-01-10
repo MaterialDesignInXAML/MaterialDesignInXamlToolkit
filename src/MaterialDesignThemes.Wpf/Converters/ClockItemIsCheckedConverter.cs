@@ -3,7 +3,7 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters;
 
-internal class ClockItemIsCheckedConverter(Func<DateTime> currentTimeGetter, ClockDisplayMode displayMode, bool is24Hours) : IValueConverter
+public class ClockItemIsCheckedConverter(Func<DateTime> currentTimeGetter, ClockDisplayMode displayMode, bool is24Hours) : IValueConverter
 {
     private readonly Func<DateTime> _currentTimeGetter = currentTimeGetter ?? throw new ArgumentNullException(nameof(currentTimeGetter));
     private readonly ClockDisplayMode _displayMode = displayMode;

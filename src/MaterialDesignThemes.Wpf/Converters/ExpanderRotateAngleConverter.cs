@@ -3,7 +3,7 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters;
 
-internal class ExpanderRotateAngleConverter : IValueConverter
+public class ExpanderRotateAngleConverter : IValueConverter
 {
     public static readonly ExpanderRotateAngleConverter Instance = new();
 

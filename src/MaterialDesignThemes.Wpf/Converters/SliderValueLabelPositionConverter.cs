@@ -4,7 +4,7 @@ using System.Windows.Data;
 namespace MaterialDesignThemes.Wpf.Converters;
 
 [ValueConversion(typeof(double), typeof(double), ParameterType = typeof(Orientation))]
-internal class SliderValueLabelPositionConverter : IValueConverter
+public class SliderValueLabelPositionConverter : IValueConverter
 {
     public static readonly SliderValueLabelPositionConverter Instance = new();
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

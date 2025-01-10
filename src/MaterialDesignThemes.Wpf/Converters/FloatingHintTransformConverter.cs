@@ -4,7 +4,7 @@ using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf.Converters;
 
-internal class FloatingHintTransformConverter : IMultiValueConverter
+public class FloatingHintTransformConverter : IMultiValueConverter
 {
     public bool ApplyScaleTransform { get; set; } = true;
     public bool ApplyTranslateTransform { get; set; } = true;
