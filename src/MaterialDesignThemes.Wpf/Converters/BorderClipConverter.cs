@@ -4,7 +4,7 @@ using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf.Converters;
 
-internal class BorderClipConverter : IMultiValueConverter
+public class BorderClipConverter : IMultiValueConverter
 {
     public static readonly BorderClipConverter Instance = new();
     public object Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)

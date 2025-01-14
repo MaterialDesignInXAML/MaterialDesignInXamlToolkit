@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:convertersInternal="clr-namespace:MaterialDesignThemes.Wpf.Converters.Internal"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
   <ResourceDictionary.MergedDictionaries>
@@ -269,7 +270,7 @@
           <Grid.RenderTransform>
             <TransformGroup>
               <ScaleTransform ScaleX="0" ScaleY="0" />
-              <TranslateTransform X="{Binding ActualWidth, ElementName=label, Converter={x:Static converters:SliderValueLabelPositionConverter.Instance}, ConverterParameter={x:Static Orientation.Horizontal}}" Y="-40" />
+              <TranslateTransform X="{Binding ActualWidth, ElementName=label, Converter={x:Static convertersInternal:SliderValueLabelPositionConverter.Instance}, ConverterParameter={x:Static Orientation.Horizontal}}" Y="-40" />
             </TransformGroup>
           </Grid.RenderTransform>
           <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
@@ -289,7 +290,7 @@
                      Foreground="{DynamicResource MaterialDesign.Brush.Background}"
                      TextAlignment="Center">
             <TextBlock.Text>
-              <MultiBinding Converter="{x:Static converters:SliderToolTipConverter.Instance}"
+              <MultiBinding Converter="{x:Static convertersInternal:SliderToolTipConverter.Instance}"
                             NotifyOnValidationError="True"
                             TargetNullValue=""
                             ValidatesOnDataErrors="True">
@@ -481,7 +482,7 @@
           <Grid.RenderTransform>
             <TransformGroup>
               <ScaleTransform ScaleX="0" ScaleY="0" />
-              <TranslateTransform X="{Binding ActualWidth, ElementName=label, Converter={x:Static converters:SliderValueLabelPositionConverter.Instance}, ConverterParameter={x:Static Orientation.Vertical}}" Y="-7" />
+              <TranslateTransform X="{Binding ActualWidth, ElementName=label, Converter={x:Static convertersInternal:SliderValueLabelPositionConverter.Instance}, ConverterParameter={x:Static Orientation.Vertical}}" Y="-7" />
             </TransformGroup>
           </Grid.RenderTransform>
           <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
@@ -501,7 +502,7 @@
                      Foreground="{DynamicResource MaterialDesign.Brush.Background}"
                      TextAlignment="Center">
             <TextBlock.Text>
-              <MultiBinding Converter="{x:Static converters:SliderToolTipConverter.Instance}"
+              <MultiBinding Converter="{x:Static convertersInternal:SliderToolTipConverter.Instance}"
                             NotifyOnValidationError="True"
                             TargetNullValue=""
                             ValidatesOnDataErrors="True">

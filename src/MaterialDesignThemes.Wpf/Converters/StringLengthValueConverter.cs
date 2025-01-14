@@ -3,7 +3,7 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters;
 
-internal class StringLengthValueConverter : IValueConverter
+public class StringLengthValueConverter : IValueConverter
 {
     public static readonly StringLengthValueConverter Instance = new();
 

@@ -5,7 +5,7 @@ using MaterialDesignColors.ColorManipulation;
 
 namespace MaterialDesignThemes.Wpf.Converters;
 
-internal class IsDarkConverter : IValueConverter
+public class IsDarkConverter : IValueConverter
 {
     public static readonly IsDarkConverter Instance = new();
 
