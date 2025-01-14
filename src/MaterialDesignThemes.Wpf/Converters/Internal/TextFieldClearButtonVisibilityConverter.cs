@@ -1,7 +1,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace MaterialDesignThemes.Wpf.Converters;
+namespace MaterialDesignThemes.Wpf.Converters.Internal;
 
 public class TextFieldClearButtonVisibilityConverter : IMultiValueConverter
 {

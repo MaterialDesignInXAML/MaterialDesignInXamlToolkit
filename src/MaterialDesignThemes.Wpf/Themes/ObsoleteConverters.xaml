@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:circularProgressBarConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters.CircularProgressBar"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:convertersInternal="clr-namespace:MaterialDesignThemes.Wpf.Converters.Internal"
                     xmlns:local="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -44,8 +45,8 @@
   <converters:PointValueConverter x:Key="PointValueConverter" />
   <converters:RemoveAlphaBrushConverter x:Key="RemoveAlphaBrushConverter" />
   <converters:SnackbarActionButtonPlacementModeConverter x:Key="SnackbarActionButtonPlacementModeConverter" />
-  <converters:SliderToolTipConverter x:Key="SliderToolTipConverter" />
-  <converters:SliderValueLabelPositionConverter x:Key="SliderValueLabelPositionConverter" />
+  <convertersInternal:SliderToolTipConverter x:Key="SliderToolTipConverter" />
+  <convertersInternal:SliderValueLabelPositionConverter x:Key="SliderValueLabelPositionConverter" />
   <converters:StringLengthValueConverter x:Key="StringLengthValueConverter" />
   <converters:TextFieldHintVisibilityConverter x:Key="TextFieldHintVisibilityConverter" />
   <converters:ToolBarOverflowButtonVisibilityConverter x:Key="ToolBarOverflowButtonVisibilityConverter" />

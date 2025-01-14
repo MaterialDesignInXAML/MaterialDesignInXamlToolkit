@@ -3,7 +3,8 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters;
 
-public class TopThicknessConverter : IValueConverter
+[Obsolete]
+internal class TopThicknessConverter : IValueConverter
 {
     public static readonly TopThicknessConverter Instance = new();
 

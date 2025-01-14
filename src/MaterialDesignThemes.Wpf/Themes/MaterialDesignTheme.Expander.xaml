@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:convertersInternal="clr-namespace:MaterialDesignThemes.Wpf.Converters.Internal"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
   <Duration x:Key="ExpandDuration">0:0:0.250</Duration>
@@ -309,7 +310,7 @@
                 <Border.LayoutTransform>
                   <TransformGroup>
                     <ScaleTransform x:Name="ContentSiteScaleTransform" />
-                    <RotateTransform Angle="{Binding Path=ExpandDirection, RelativeSource={RelativeSource AncestorType=Expander}, Converter={x:Static converters:ExpanderRotateAngleConverter.Instance}}" />
+                    <RotateTransform Angle="{Binding Path=ExpandDirection, RelativeSource={RelativeSource AncestorType=Expander}, Converter={x:Static convertersInternal:ExpanderRotateAngleConverter.Instance}}" />
                   </TransformGroup>
                 </Border.LayoutTransform>
 
@@ -318,7 +319,7 @@
                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                   <Grid.LayoutTransform>
-                    <RotateTransform Angle="{Binding Path=ExpandDirection, RelativeSource={RelativeSource AncestorType=Expander}, Converter={x:Static converters:ExpanderRotateAngleConverter.Instance}, ConverterParameter=-1}" />
+                    <RotateTransform Angle="{Binding Path=ExpandDirection, RelativeSource={RelativeSource AncestorType=Expander}, Converter={x:Static convertersInternal:ExpanderRotateAngleConverter.Instance}, ConverterParameter=-1}" />
                   </Grid.LayoutTransform>
 
                   <ContentPresenter Name="PART_Content"

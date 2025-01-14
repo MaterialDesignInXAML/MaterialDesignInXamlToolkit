@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media.Effects;
 
-namespace MaterialDesignThemes.Wpf.Converters;
+namespace MaterialDesignThemes.Wpf.Converters.Internal;
+
 public sealed class DialogBackgroundBlurConverter : IMultiValueConverter
 {
     public static readonly DialogBackgroundBlurConverter Instance = new();

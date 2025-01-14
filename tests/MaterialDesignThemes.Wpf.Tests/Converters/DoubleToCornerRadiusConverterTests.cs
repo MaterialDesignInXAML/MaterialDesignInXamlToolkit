@@ -1,5 +1,5 @@
 ﻿using System.Globalization;
-using MaterialDesignThemes.Wpf.Converters;
+using MaterialDesignThemes.Wpf.Converters.Internal;
 
 namespace MaterialDesignThemes.Wpf.Tests.Converters;
 
