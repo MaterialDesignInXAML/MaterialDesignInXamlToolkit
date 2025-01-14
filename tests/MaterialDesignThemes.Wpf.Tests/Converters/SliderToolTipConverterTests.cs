@@ -11,13 +11,6 @@ public sealed class SliderToolTipConverterTests
     [InlineData(42)]
     public void SliderConverterTest(object value)
     {
-
-/* Unmerged change from project 'MaterialDesignThemes.Wpf.Tests (net8.0-windows)'
-Before:
-        Wpf.Converters.SliderToolTipConverter converter = new ();
-After:
-        SliderToolTipConverter converter = new ();
-*/
         Wpf.Converters.Internal.SliderToolTipConverter converter = new ();
 
         //test a valid case

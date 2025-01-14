@@ -1,6 +1,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:convertersInternal="clr-namespace:MaterialDesignThemes.Wpf.Converters.Internal"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:behaviors="clr-namespace:MaterialDesignThemes.Wpf.Behaviors">
@@ -182,7 +183,7 @@
                                     Visibility="{TemplateBinding UseFloating, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}">
                       
                       <ContentControl.Margin>
-                        <MultiBinding Converter="{x:Static converters:FloatingHintTextBlockMarginConverter.Instance}">
+                        <MultiBinding Converter="{x:Static convertersInternal:FloatingHintTextBlockMarginConverter.Instance}">
                           <Binding Path="(wpf:HintAssist.HintHorizontalAlignment)" RelativeSource="{RelativeSource TemplatedParent}" />
                           <Binding Path="(wpf:HintAssist.FloatingHintHorizontalAlignment)" RelativeSource="{RelativeSource TemplatedParent}" />
                           <Binding Path="HorizontalContentAlignment" RelativeSource="{RelativeSource TemplatedParent}" />
