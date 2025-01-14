@@ -10,17 +10,12 @@ on:
 
 env:
     solution: MaterialDesignToolkit.Full.sln
-    # Needed for GitHub CLI
-    GITHUB_TOKEN: ${{ github.token }}
+    GITHUB_TOKEN: ${{ secrets.SA_PAT }}
 
 defaults:
     run:
         shell: pwsh
 
-# Needed for updating the version numbers at the end of the pipeline
-permissions:
-    id-token: write
-    contents: write
 
 jobs:
     get_versions:
@@ -277,9 +272,6 @@ jobs:
         name: Update Version Numbers
         environment: production
 
-        permissions:
-          actions: write
-
         steps:
             # Checkout is needed so that we can update the get_versions.yml file
             - uses: actions/checkout@v4
@@ -313,8 +305,6 @@ jobs:
                   Update-Version -Prefix "mdix-mahapps-version"
 
             - name: Open Pull Request
-              env:
-                GITHUB_TOKEN: ${{ secrets.SA_PAT }}
               run: |
                   git config --local user.email "github-actions[bot]@users.noreply.github.com"
                   git config --local user.name "github-actions[bot]"

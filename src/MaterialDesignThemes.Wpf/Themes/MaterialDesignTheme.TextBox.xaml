@@ -151,24 +151,6 @@
                                 Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                 Visibility="{TemplateBinding wpf:TextFieldAssist.HasLeadingIcon, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}" />
 
-                  <TextBlock x:Name="PrefixTextBlock"
-                             Grid.Column="1"
-                             Margin="0,0,2,0"
-                             VerticalAlignment="Center"
-                             FontSize="{TemplateBinding FontSize}"
-                             Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                             Text="{TemplateBinding wpf:TextFieldAssist.PrefixText}">
-                    <TextBlock.Visibility>
-                      <MultiBinding Converter="{StaticResource PrefixSuffixTextVisibilityConverter}">
-                        <Binding ElementName="Hint" Path="IsHintInFloatingPosition" />
-                        <Binding Path="(wpf:TextFieldAssist.PrefixText)" RelativeSource="{RelativeSource TemplatedParent}" />
-                        <Binding Path="(wpf:TextFieldAssist.PrefixTextVisibility)" RelativeSource="{RelativeSource TemplatedParent}" />
-                        <Binding Path="IsKeyboardFocusWithin" RelativeSource="{RelativeSource TemplatedParent}" />
-                        <Binding Path="IsReadOnly" RelativeSource="{RelativeSource TemplatedParent}" Converter="{x:Static converters:InvertBooleanConverter.Instance}" />
-                      </MultiBinding>
-                    </TextBlock.Visibility>
-                  </TextBlock>
-
                   <ScrollViewer x:Name="PART_ContentHost"
                                 Grid.Column="2"
                                 HorizontalAlignment="Stretch"
@@ -212,6 +194,7 @@
                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TextFieldAssist.PrefixTextHintBehavior)" />
                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TextFieldAssist.SuffixTextHintBehavior)" />
                         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="HorizontalContentAlignment" />
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsReadOnly" Converter="{x:Static converters:InvertBooleanConverter.Instance}" />
                       </MultiBinding>
                     </wpf:SmartHint.InitialHorizontalOffset>
                     <wpf:SmartHint.Margin>
@@ -236,6 +219,24 @@
                     </wpf:SmartHint.Hint>
                   </wpf:SmartHint>
 
+                  <TextBlock x:Name="PrefixTextBlock"
+                             Grid.Column="1"
+                             Margin="0,0,2,0"
+                             VerticalAlignment="Center"
+                             FontSize="{TemplateBinding FontSize}"
+                             Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
+                             Text="{TemplateBinding wpf:TextFieldAssist.PrefixText}">
+                    <TextBlock.Visibility>
+                      <MultiBinding Converter="{StaticResource PrefixSuffixTextVisibilityConverter}">
+                        <Binding ElementName="Hint" Path="IsHintInFloatingPosition" />
+                        <Binding Path="(wpf:TextFieldAssist.PrefixText)" RelativeSource="{RelativeSource TemplatedParent}" />
+                        <Binding Path="(wpf:TextFieldAssist.PrefixTextVisibility)" RelativeSource="{RelativeSource TemplatedParent}" />
+                        <Binding Path="IsKeyboardFocusWithin" RelativeSource="{RelativeSource TemplatedParent}" />
+                        <Binding Path="IsReadOnly" RelativeSource="{RelativeSource TemplatedParent}" Converter="{x:Static converters:InvertBooleanConverter.Instance}" />
+                      </MultiBinding>
+                    </TextBlock.Visibility>
+                  </TextBlock>
+                  
                   <TextBlock x:Name="SuffixTextBlock"
                              Grid.Column="3"
                              Margin="2,0,0,0"
@@ -266,7 +267,8 @@
 
                   <Button x:Name="PART_ClearButton"
                           Grid.Column="5"
-                          Height="Auto"
+                          Height="{TemplateBinding wpf:TextFieldAssist.ClearButtonSize}"
+                          Width="{TemplateBinding wpf:TextFieldAssist.ClearButtonSize}"
                           Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                           Padding="2,0,0,0"
                           Command="{x:Static internal:ClearText.ClearCommand}"
@@ -280,7 +282,11 @@
                         <Binding ElementName="Hint" Path="IsContentNullOrEmpty" />
                       </MultiBinding>
                     </Button.Visibility>
-                    <wpf:PackIcon x:Name="ClearButtonIcon" Margin="0" Kind="CloseCircle" />
+                    <wpf:PackIcon x:Name="ClearButtonIcon"
+                                  Margin="0"
+                                  Kind="CloseCircle"
+                                  Height="auto"
+                                  Width="auto" />
                   </Button>
                 </Grid>
               </Border>

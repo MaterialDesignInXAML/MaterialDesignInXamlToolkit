@@ -71,6 +71,7 @@
                                wpf:TextFieldAssist.TrailingIconSize="{TemplateBinding wpf:TextFieldAssist.TrailingIconSize}"
                                wpf:TextFieldAssist.DecorationVisibility="{TemplateBinding wpf:TextFieldAssist.DecorationVisibility}"
                                wpf:TextFieldAssist.HasClearButton="{TemplateBinding wpf:TextFieldAssist.HasClearButton}"
+                               wpf:TextFieldAssist.ClearButtonSize="{TemplateBinding wpf:TextFieldAssist.ClearButtonSize}"
                                wpf:TextFieldAssist.HasFilledTextField="{TemplateBinding wpf:TextFieldAssist.HasFilledTextField}"
                                wpf:TextFieldAssist.HasOutlinedTextField="{TemplateBinding wpf:TextFieldAssist.HasOutlinedTextField}"
                                wpf:TextFieldAssist.NewSpecHighlightingEnabled="{TemplateBinding wpf:TextFieldAssist.NewSpecHighlightingEnabled}"
