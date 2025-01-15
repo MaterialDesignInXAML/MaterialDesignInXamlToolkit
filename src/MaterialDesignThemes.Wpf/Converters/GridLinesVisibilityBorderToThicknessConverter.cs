@@ -3,7 +3,7 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters;
 
-internal class GridLinesVisibilityBorderToThicknessConverter : IValueConverter
+public class GridLinesVisibilityBorderToThicknessConverter : IValueConverter
 {
     public static readonly GridLinesVisibilityBorderToThicknessConverter Instance = new();
 
