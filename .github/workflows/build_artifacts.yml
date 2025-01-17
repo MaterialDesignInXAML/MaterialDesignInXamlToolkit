@@ -45,9 +45,6 @@ jobs:
                   MDIXColorsVersion: ${{ inputs.mdix-colors-version }}
                   MDIXMahAppsVersion: ${{ inputs.mdix-mahapps-version }}
 
-            - name: Generate Version File
-              run: echo ${{ inputs.mdix-version }} > src/MainDemo.Wpf/version.txt
-
             - name: Test
               timeout-minutes: 20
               run: dotnet test ${{ env.solution }} --configuration ${{ inputs.build-configuration }} --no-build --blame-crash --logger GitHubActions
