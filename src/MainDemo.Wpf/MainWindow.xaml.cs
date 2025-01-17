@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using System.Reflection;
 using System.Threading;
 using System.Windows.Media;
 using MaterialDesignDemo.Domain;
@@ -13,7 +12,6 @@ public partial class MainWindow
     public MainWindow()
     {
         InitializeComponent();
-        LoadVersion();
 
 
         Task.Factory.StartNew(() => Thread.Sleep(2500)).ContinueWith(t =>
@@ -117,25 +115,5 @@ public partial class MainWindow
 
     private void OnSelectedItemChanged(object sender, DependencyPropertyChangedEventArgs e)
         => MainScrollViewer.ScrollToHome();
-    private void LoadVersion()
-    {
-        try
-        {
-            //TODO: This should occur in the MainWindowViewModel
-            var attributes = Assembly.GetAssembly(typeof(Theme))!
-                .GetCustomAttributes<AssemblyMetadataAttribute>()
-                .ToList();
-
-            var mdixVersion = attributes
-                .SingleOrDefault(x => x.Key == "MDIXVersion")?.Value;
-
-            var mdixColorsVersion = attributes
-                .SingleOrDefault(x => x.Key == "MDIXColorsVersion")?.Value;
-
-        }
-        catch (Exception ex)
-        {
-            VersionText.Text = $"Error reading version: {ex.Message}";
-        }
-    }
+    
 }
