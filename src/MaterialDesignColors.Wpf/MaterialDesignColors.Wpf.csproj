@@ -12,4 +12,11 @@
     <Version>$(MDIXColorsVersion)</Version>
     <AssemblyVersion>$(MDIXColorsVersion)</AssemblyVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>MDIXColorsVersion</_Parameter1>
+      <_Parameter2>$(MDIXColorsVersion)</_Parameter2>
+    </AssemblyAttribute>
+  </ItemGroup>
 </Project>
