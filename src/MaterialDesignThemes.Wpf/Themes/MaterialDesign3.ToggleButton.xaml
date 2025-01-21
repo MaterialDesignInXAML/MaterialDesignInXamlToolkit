@@ -377,7 +377,7 @@
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="Thumb"
                                  Storyboard.TargetProperty="Width"
-                                 To="{Binding Tag, ElementName=SwitchGrid}"
+                                 To="{Binding Tag, ElementName=SwitchGrid, FallbackValue=0}"
                                  Duration="0:0:0.2">
                   <DoubleAnimation.EasingFunction>
                     <QuadraticEase EasingMode="EaseOut" />
@@ -385,7 +385,7 @@
                 </DoubleAnimation>
                 <DoubleAnimation Storyboard.TargetName="Thumb"
                                  Storyboard.TargetProperty="Height"
-                                 To="{Binding Tag, ElementName=SwitchGrid}"
+                                 To="{Binding Tag, ElementName=SwitchGrid, FallbackValue=0}"
                                  Duration="0:0:0.16">
                   <DoubleAnimation.EasingFunction>
                     <QuadraticEase EasingMode="EaseOut" />
@@ -399,11 +399,11 @@
                                  Duration="0" />
                 <DoubleAnimation Storyboard.TargetName="Thumb"
                                  Storyboard.TargetProperty="Width"
-                                 To="{Binding Tag, ElementName=SwitchGrid}"
+                                 To="{Binding Tag, ElementName=SwitchGrid, FallbackValue=0}"
                                  Duration="0" />
                 <DoubleAnimation Storyboard.TargetName="Thumb"
                                  Storyboard.TargetProperty="Height"
-                                 To="{Binding Tag, ElementName=SwitchGrid}"
+                                 To="{Binding Tag, ElementName=SwitchGrid, FallbackValue=0}"
                                  Duration="0" />
               </Storyboard>
             </Grid.Resources>
