@@ -119,7 +119,12 @@
       <smtx:XamlDisplay Margin="0,5,8,8"
                         VerticalAlignment="Center"
                         UniqueKey="buttons_42221">
-        <RadioButton Content="Custom RadioButton Size" materialDesign:RadioButtonAssist.RadioButtonSize="40" Style="{StaticResource MaterialDesignRadioButton}" />
+        <RadioButton Content="Custom RadioButton Size and foreground" materialDesign:RadioButtonAssist.RadioButtonSize="40" IsChecked="False" materialDesign:RadioButtonAssist.RadioButtonForeground="Blue"  />
+      </smtx:XamlDisplay>
+      <smtx:XamlDisplay Margin="0,5,8,8"
+                        VerticalAlignment="Center"
+                        UniqueKey="buttons_42222">
+        <RadioButton Content="Custom RadioButton Size and foreground for UserStyle" materialDesign:RadioButtonAssist.RadioButtonSize="30" IsChecked="True" Style="{DynamicResource MaterialDesignUserForegroundRadioButton}" materialDesign:RadioButtonAssist.RadioButtonForeground="Blue"  />
       </smtx:XamlDisplay>
 
       <smtx:XamlDisplay Margin="0,5,8,8"
@@ -425,9 +430,12 @@
                       VerticalAlignment="Top"
                       UniqueKey="checkboxes_2">
       <StackPanel Margin="8,0">
-        <CheckBox materialDesign:CheckBoxAssist.CheckBoxSize="30"
+        <CheckBox materialDesign:CheckBoxAssist.CheckBoxSize="30" 
                   Content="Custom Size"
                   IsChecked="True" />
+        <CheckBox materialDesign:CheckBoxAssist.CheckBoxSize="30" materialDesign:CheckBoxAssist.CheckBoxForeground="Red"
+                  Content="Custom Size and foreground"  IsChecked="True"  
+                  />
         <CheckBox materialDesign:RippleAssist.IsDisabled="True"
                   Content="Ripple disabled"
                   IsChecked="True" />
