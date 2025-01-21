@@ -186,6 +186,11 @@
                 <Separator />
 
                 <Button Click="MenuPopupButton_OnClick" Content="Goodbye" />
+
+                <Separator />
+
+                <TextBlock Text="{Binding NugetVersions}" TextWrapping="Wrap" Margin="10" />
+
               </StackPanel>
             </materialDesign:PopupBox>
 
