@@ -3,10 +3,6 @@
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
-  <converters:BorderClipConverter x:Key="BorderClipConverter" />
-  <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
-
-
   <Style x:Key="MaterialDesign3.NavigationDrawerListBoxItem" TargetType="{x:Type ListBoxItem}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="BorderThickness" Value="0" />
@@ -69,7 +65,7 @@
             </VisualStateManager.VisualStateGroups>
             <Grid>
               <Grid.Clip>
-                <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                <MultiBinding Converter="{x:Static converters:BorderClipConverter.Instance}">
                   <Binding ElementName="border" Path="ActualWidth" />
                   <Binding ElementName="border" Path="ActualHeight" />
                   <Binding ElementName="border" Path="CornerRadius" />
@@ -77,7 +73,7 @@
                 </MultiBinding>
               </Grid.Clip>
               <Border x:Name="MouseOverBorder"
-                      Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                      Background="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                       Opacity="0" />
 
               <Border x:Name="SelectedBorder"
@@ -90,7 +86,7 @@
                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                           ContentTemplate="{TemplateBinding ContentTemplate}"
                           ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                          Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                          Feedback="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                           Focusable="False"
                           RecognizesAccessKey="False"
                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">

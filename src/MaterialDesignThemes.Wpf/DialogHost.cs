@@ -598,6 +598,24 @@ public class DialogHost : ContentControl
         set => SetValue(DialogBackgroundProperty, value);
     }
 
+    public bool ApplyBlurBackground
+    {
+        get => (bool)GetValue(ApplyBlurBackgroundProperty);
+        set => SetValue(ApplyBlurBackgroundProperty, value);
+    }
+    public static readonly DependencyProperty ApplyBlurBackgroundProperty = DependencyProperty.Register(
+        nameof(ApplyBlurBackground), typeof(bool), typeof(DialogHost), new PropertyMetadata(default(bool)));
+
+
+    public const double DefaultBlurRadius = 16.0;
+    public double BlurRadius
+    {
+        get => (double)GetValue(BlurRadiusProperty);
+        set => SetValue(BlurRadiusProperty, value);
+    }
+    public static readonly DependencyProperty BlurRadiusProperty = DependencyProperty.Register(
+        nameof(BlurRadius), typeof(double), typeof(DialogHost), new PropertyMetadata(DefaultBlurRadius));
+
     public override void OnApplyTemplate()
     {
         if (_contentCoverGrid != null)
@@ -624,14 +642,14 @@ public class DialogHost : ContentControl
         => element.SetValue(RestoreFocusElementProperty, value);
 
     public static IInputElement GetRestoreFocusElement(DependencyObject element)
-        => (IInputElement) element.GetValue(RestoreFocusElementProperty);
+        => (IInputElement)element.GetValue(RestoreFocusElementProperty);
 
     public static readonly DependencyProperty IsRestoreFocusDisabledProperty = DependencyProperty.Register(
         nameof(IsRestoreFocusDisabled), typeof(bool), typeof(DialogHost), new PropertyMetadata(false));
 
     public bool IsRestoreFocusDisabled
     {
-        get => (bool) GetValue(IsRestoreFocusDisabledProperty);
+        get => (bool)GetValue(IsRestoreFocusDisabledProperty);
         set => SetValue(IsRestoreFocusDisabledProperty, value);
     }
 
@@ -958,7 +976,7 @@ public class DialogHost : ContentControl
 
     private void OnPreviewGotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
     {
-        
+
     }
 
     [SecurityCritical]

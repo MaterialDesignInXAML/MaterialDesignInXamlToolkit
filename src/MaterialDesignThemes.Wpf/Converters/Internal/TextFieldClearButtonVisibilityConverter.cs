@@ -1,9 +1,9 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace MaterialDesignThemes.Wpf.Converters;
+namespace MaterialDesignThemes.Wpf.Converters.Internal;
 
-internal class TextFieldClearButtonVisibilityConverter : IMultiValueConverter
+public class TextFieldClearButtonVisibilityConverter : IMultiValueConverter
 {
     public Visibility ContentEmptyVisibility { get; set; } = Visibility.Hidden;
 

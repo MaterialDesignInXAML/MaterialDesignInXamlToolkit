@@ -7,6 +7,7 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 public class BrushRoundConverter : IValueConverter
 {
+    public static readonly BrushRoundConverter Instance = new();
     public Brush? HighValue { get; set; } = Brushes.White;
 
     public Brush? LowValue { get; set; } = Brushes.Black;

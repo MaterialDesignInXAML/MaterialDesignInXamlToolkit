@@ -1,16 +1,12 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:convertersInternal="clr-namespace:MaterialDesignThemes.Wpf.Converters.Internal"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
   </ResourceDictionary.MergedDictionaries>
-
-  <converters:SliderValueLabelPositionConverter x:Key="SliderValueLabelPositionConverter" />
-  <converters:BooleanAllConverter x:Key="BooleanAllConverter" />
-  <converters:InvertBooleanConverter x:Key="InvertBooleanConverter" />
-  <converters:SliderToolTipConverter x:Key="SliderToolTipConverter" />
 
   <Style x:Key="MaterialDesignRepeatButton" TargetType="{x:Type RepeatButton}">
     <Setter Property="Background" Value="Transparent" />
@@ -128,9 +124,9 @@
       </Trigger>
       <DataTrigger Value="True">
         <DataTrigger.Binding>
-          <MultiBinding Converter="{StaticResource BooleanAllConverter}">
+          <MultiBinding Converter="{x:Static converters:BooleanAllConverter.Instance}">
             <Binding Path="IsFocused" RelativeSource="{RelativeSource FindAncestor, AncestorType=RangeBase}" />
-            <Binding Converter="{StaticResource InvertBooleanConverter}"
+            <Binding Converter="{x:Static converters:InvertBooleanConverter.Instance}"
                      Path="(wpf:SliderAssist.OnlyShowFocusVisualWhileDragging)"
                      RelativeSource="{RelativeSource FindAncestor,
                                                      AncestorType=RangeBase}" />
@@ -145,7 +141,7 @@
       </DataTrigger>
       <DataTrigger Value="True">
         <DataTrigger.Binding>
-          <MultiBinding Converter="{StaticResource BooleanAllConverter}">
+          <MultiBinding Converter="{x:Static converters:BooleanAllConverter.Instance}">
             <Binding Path="IsDragging" RelativeSource="{RelativeSource Self}" />
             <Binding Path="(wpf:SliderAssist.OnlyShowFocusVisualWhileDragging)" RelativeSource="{RelativeSource FindAncestor, AncestorType=RangeBase}" />
           </MultiBinding>
@@ -274,7 +270,7 @@
           <Grid.RenderTransform>
             <TransformGroup>
               <ScaleTransform ScaleX="0" ScaleY="0" />
-              <TranslateTransform X="{Binding ActualWidth, ElementName=label, Converter={StaticResource SliderValueLabelPositionConverter}, ConverterParameter={x:Static Orientation.Horizontal}}" Y="-40" />
+              <TranslateTransform X="{Binding ActualWidth, ElementName=label, Converter={x:Static convertersInternal:SliderValueLabelPositionConverter.Instance}, ConverterParameter={x:Static Orientation.Horizontal}}" Y="-40" />
             </TransformGroup>
           </Grid.RenderTransform>
           <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
@@ -294,7 +290,7 @@
                      Foreground="{DynamicResource MaterialDesign.Brush.Background}"
                      TextAlignment="Center">
             <TextBlock.Text>
-              <MultiBinding Converter="{StaticResource SliderToolTipConverter}"
+              <MultiBinding Converter="{x:Static convertersInternal:SliderToolTipConverter.Instance}"
                             NotifyOnValidationError="True"
                             TargetNullValue=""
                             ValidatesOnDataErrors="True">
@@ -340,9 +336,9 @@
       </Trigger>
       <DataTrigger Value="True">
         <DataTrigger.Binding>
-          <MultiBinding Converter="{StaticResource BooleanAllConverter}">
+          <MultiBinding Converter="{x:Static converters:BooleanAllConverter.Instance}">
             <Binding Path="IsFocused" RelativeSource="{RelativeSource FindAncestor, AncestorType=RangeBase}" />
-            <Binding Converter="{StaticResource InvertBooleanConverter}"
+            <Binding Converter="{x:Static converters:InvertBooleanConverter.Instance}"
                      Path="(wpf:SliderAssist.OnlyShowFocusVisualWhileDragging)"
                      RelativeSource="{RelativeSource FindAncestor,
                                                      AncestorType=RangeBase}" />
@@ -357,7 +353,7 @@
       </DataTrigger>
       <DataTrigger Value="True">
         <DataTrigger.Binding>
-          <MultiBinding Converter="{StaticResource BooleanAllConverter}">
+          <MultiBinding Converter="{x:Static converters:BooleanAllConverter.Instance}">
             <Binding Path="IsDragging" RelativeSource="{RelativeSource Self}" />
             <Binding Path="(wpf:SliderAssist.OnlyShowFocusVisualWhileDragging)" RelativeSource="{RelativeSource FindAncestor, AncestorType=RangeBase}" />
           </MultiBinding>
@@ -486,7 +482,7 @@
           <Grid.RenderTransform>
             <TransformGroup>
               <ScaleTransform ScaleX="0" ScaleY="0" />
-              <TranslateTransform X="{Binding ActualWidth, ElementName=label, Converter={StaticResource SliderValueLabelPositionConverter}, ConverterParameter={x:Static Orientation.Vertical}}" Y="-7" />
+              <TranslateTransform X="{Binding ActualWidth, ElementName=label, Converter={x:Static convertersInternal:SliderValueLabelPositionConverter.Instance}, ConverterParameter={x:Static Orientation.Vertical}}" Y="-7" />
             </TransformGroup>
           </Grid.RenderTransform>
           <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
@@ -506,7 +502,7 @@
                      Foreground="{DynamicResource MaterialDesign.Brush.Background}"
                      TextAlignment="Center">
             <TextBlock.Text>
-              <MultiBinding Converter="{StaticResource SliderToolTipConverter}"
+              <MultiBinding Converter="{x:Static convertersInternal:SliderToolTipConverter.Instance}"
                             NotifyOnValidationError="True"
                             TargetNullValue=""
                             ValidatesOnDataErrors="True">
@@ -552,9 +548,9 @@
       </Trigger>
       <DataTrigger Value="True">
         <DataTrigger.Binding>
-          <MultiBinding Converter="{StaticResource BooleanAllConverter}">
+          <MultiBinding Converter="{x:Static converters:BooleanAllConverter.Instance}">
             <Binding Path="IsFocused" RelativeSource="{RelativeSource FindAncestor, AncestorType=RangeBase}" />
-            <Binding Converter="{StaticResource InvertBooleanConverter}"
+            <Binding Converter="{x:Static converters:InvertBooleanConverter.Instance}"
                      Path="(wpf:SliderAssist.OnlyShowFocusVisualWhileDragging)"
                      RelativeSource="{RelativeSource FindAncestor,
                                                      AncestorType=RangeBase}" />
@@ -569,7 +565,7 @@
       </DataTrigger>
       <DataTrigger Value="True">
         <DataTrigger.Binding>
-          <MultiBinding Converter="{StaticResource BooleanAllConverter}">
+          <MultiBinding Converter="{x:Static converters:BooleanAllConverter.Instance}">
             <Binding Path="IsDragging" RelativeSource="{RelativeSource Self}" />
             <Binding Path="(wpf:SliderAssist.OnlyShowFocusVisualWhileDragging)" RelativeSource="{RelativeSource FindAncestor, AncestorType=RangeBase}" />
           </MultiBinding>

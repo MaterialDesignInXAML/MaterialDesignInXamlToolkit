@@ -1,10 +1,12 @@
 ﻿using System.Globalization;
 using System.Windows.Data;
 
-namespace MaterialDesignThemes.Wpf.Converters;
+namespace MaterialDesignThemes.Wpf.Converters.Internal;
 
-internal class ExpanderRotateAngleConverter : IValueConverter
+public class ExpanderRotateAngleConverter : IValueConverter
 {
+    public static readonly ExpanderRotateAngleConverter Instance = new();
+
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         double factor = 1.0;

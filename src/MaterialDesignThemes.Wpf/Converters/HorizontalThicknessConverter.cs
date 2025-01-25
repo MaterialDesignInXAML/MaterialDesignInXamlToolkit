@@ -3,8 +3,9 @@ using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters;
 
-internal class HorizontalThicknessConverter : IValueConverter
+public class HorizontalThicknessConverter : IValueConverter
 {
+    public static readonly HorizontalThicknessConverter Instance = new();
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         if (value is not Thickness thickness) return Binding.DoNothing;

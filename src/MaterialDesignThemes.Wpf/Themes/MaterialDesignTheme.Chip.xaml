@@ -3,14 +3,6 @@
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
-  <ResourceDictionary.MergedDictionaries>
-    <ResourceDictionary>
-      <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-      <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
-      <converters:BrushRoundConverter x:Key="BrushRoundConverter" />
-    </ResourceDictionary>
-  </ResourceDictionary.MergedDictionaries>
-
   <!-- not happy with where the tool tip is going right now -->
   <!--
     <Style x:Key="MaterialDesignChipToolTip" TargetType="ToolTip">
@@ -49,7 +41,7 @@
                                             Foreground="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:Chip}, Path=IconForeground}"
                                             FontSize="17"
                                             FontWeight="Regular"
-                                            Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:Chip}, Path=Icon, Converter={StaticResource NullableToVisibilityConverter}}"
+                                            Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:Chip}, Path=Icon, Converter={x:Static converters:NullableToVisibilityConverter.CollapsedInstance}}"
                                             VerticalAlignment="Center"
                                             VerticalContentAlignment="Center"
                                             HorizontalContentAlignment="Center"
@@ -113,7 +105,7 @@
                             FontWeight="Regular"
                             Foreground="{TemplateBinding IconForeground}"
                             IsTabStop="False"
-                            Visibility="{TemplateBinding Icon, Converter={StaticResource NullableToVisibilityConverter}}">
+                            Visibility="{TemplateBinding Icon, Converter={x:Static converters:NullableToVisibilityConverter.CollapsedInstance}}">
               <ContentControl.Clip>
                 <EllipseGeometry Center="16,16"
                                  RadiusX="16"
@@ -145,7 +137,7 @@
                     Margin="-6,0,8,0"
                     VerticalAlignment="Center"
                     ToolTip="{TemplateBinding DeleteToolTip}"
-                    Visibility="{TemplateBinding IsDeletable, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Visibility="{TemplateBinding IsDeletable, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}">
               <Button.Template>
                 <ControlTemplate>
                   <Grid>
@@ -221,7 +213,7 @@
             <Border x:Name="MouseOverBorder"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
-                    Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                    Background="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
                     CornerRadius="16"
@@ -238,7 +230,7 @@
                             FontWeight="Regular"
                             Foreground="{TemplateBinding IconForeground}"
                             IsTabStop="False"
-                            Visibility="{TemplateBinding Icon, Converter={StaticResource NullableToVisibilityConverter}}">
+                            Visibility="{TemplateBinding Icon, Converter={x:Static converters:NullableToVisibilityConverter.CollapsedInstance}}">
               <ContentControl.Clip>
                 <EllipseGeometry Center="16,16"
                                  RadiusX="16"
@@ -270,7 +262,7 @@
                     Margin="-6,0,8,0"
                     VerticalAlignment="Center"
                     ToolTip="{TemplateBinding DeleteToolTip}"
-                    Visibility="{TemplateBinding IsDeletable, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Visibility="{TemplateBinding IsDeletable, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}">
               <Button.Template>
                 <ControlTemplate>
                   <Grid>

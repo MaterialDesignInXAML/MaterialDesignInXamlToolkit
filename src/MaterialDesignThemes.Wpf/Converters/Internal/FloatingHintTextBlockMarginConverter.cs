@@ -2,10 +2,11 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace MaterialDesignThemes.Wpf.Converters;
+namespace MaterialDesignThemes.Wpf.Converters.Internal;
 
-internal class FloatingHintTextBlockMarginConverter : IMultiValueConverter
+public class FloatingHintTextBlockMarginConverter : IMultiValueConverter
 {
+    public static readonly FloatingHintTextBlockMarginConverter Instance = new();
     public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
     {
         if (values is not

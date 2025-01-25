@@ -258,7 +258,7 @@ public class SmartHint : Control
             string state = string.Empty;
 
             bool isEmpty = proxy.IsEmpty();
-            bool isFocused = proxy.IsFocused();
+            bool isFocused = HintHost?.IsKeyboardFocusWithin ?? proxy.IsFocused();
 
             if (UseFloating)
                 state = !isEmpty || isFocused ? HintFloatingPositionName : HintRestingPositionName;

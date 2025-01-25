@@ -10,6 +10,7 @@ public partial class Dialogs
     {
         DataContext = new DialogsViewModel();
         InitializeComponent();
+        BlurRadiusSlider.Value = DialogHost.DefaultBlurRadius;
     }
 
     private void Sample1_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs)
@@ -70,5 +71,20 @@ public partial class Dialogs
 
         if (!string.IsNullOrWhiteSpace(AnimalTextBox.Text))
             AnimalListBox.Items.Add(AnimalTextBox.Text.Trim());
+    }
+
+    private async void Sample6_OpenDialog(object sender, RoutedEventArgs e)
+    {
+        var sampleMessageDialog = new SampleMessageDialog
+        {
+            Message = { Text = "Some dialog content" }
+        };
+
+        await DialogHost.Show(sampleMessageDialog, "sampleDialog6");
+    }
+
+    private void Sample6_ResetBlur(object sender, RoutedEventArgs e)
+    {
+        BlurRadiusSlider.Value = DialogHost.DefaultBlurRadius;
     }
 }

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:domain1="clr-namespace:MaterialDesignDemo.Shared.Domain"
@@ -100,7 +101,7 @@
                             Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
 
               <Button Margin="24,0,0,0"
-                      materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"
+                      materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={x:Static materialDesignConverters:BrushRoundConverter.Instance}}"
                       Command="{Binding MovePrevCommand}"
                       Content="{materialDesign:PackIcon Kind=ArrowLeft,
                                                         Size=24}"
@@ -109,7 +110,7 @@
                       ToolTip="Previous Item" />
 
               <Button Margin="16,0,0,0"
-                      materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"
+                      materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={x:Static materialDesignConverters:BrushRoundConverter.Instance}}"
                       Command="{Binding MoveNextCommand}"
                       Content="{materialDesign:PackIcon Kind=ArrowRight,
                                                         Size=24}"
@@ -118,7 +119,7 @@
                       ToolTip="Next Item" />
 
               <Button Margin="16,0,0,0"
-                      materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"
+                      materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={x:Static materialDesignConverters:BrushRoundConverter.Instance}}"
                       Command="{Binding HomeCommand}"
                       Content="{materialDesign:PackIcon Kind=Home,
                                                         Size=24}"
@@ -187,7 +188,11 @@
 
                 <Separator />
 
+
                   <TextBlock Name="VersionText" Text="{Binding Version}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10"/>
+
+                <TextBlock Text="{Binding NugetVersions}" TextWrapping="Wrap" Margin="10" />
+
 
               </StackPanel>
             </materialDesign:PopupBox>
