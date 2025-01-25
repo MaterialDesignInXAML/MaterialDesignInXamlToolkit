@@ -10,8 +10,22 @@ namespace MaterialDesignDemo.Domain;
 
 public class MainWindowViewModel : ViewModelBase
 {
-    public MainWindowViewModel(ISnackbarMessageQueue snackbarMessageQueue, string? startupPage)
+    private string _version;
+
+    public string Version
     {
+        get => _version;
+        private set
+        {
+            _version = value;
+            OnPropertyChanged(nameof(Version));
+        }
+    }
+
+    public MainWindowViewModel(ISnackbarMessageQueue snackbarMessageQueue, string? startupPage, string version)
+    {
+        Version = version;
+
         DemoItems = new ObservableCollection<DemoItem>(new[]
         {
             new DemoItem(
@@ -67,6 +81,8 @@ public class MainWindowViewModel : ViewModelBase
            },
            _ => SelectedIndex < DemoItems.Count - 1);
     }
+
+
 
     private readonly ICollectionView _demoItemsView;
     private DemoItem? _selectedItem;
@@ -491,4 +507,24 @@ public class MainWindowViewModel : ViewModelBase
         return obj is DemoItem item
                && item.Name.ToLower().Contains(_searchKeyword!.ToLower());
     }
+    public void LoadVersion()
+    {
+        try
+        {
+            string versionFilePath = Path.Combine(Directory.GetCurrentDirectory(), "version.txt");
+            if (File.Exists(versionFilePath))
+            {
+                Version = $"Version: {File.ReadAllText(versionFilePath).Trim()}";
+            }
+            else
+            {
+                Version = "Version file not found";
+            }
+        }
+        catch (Exception ex)
+        {
+            Version = $"Error reading version: {ex.Message}";
+        }
+    }
 }
+

@@ -12,8 +12,6 @@ public partial class MainWindow
     public MainWindow()
     {
         InitializeComponent();
-        LoadVersion();
-
 
         Task.Factory.StartNew(() => Thread.Sleep(2500)).ContinueWith(t =>
         {
@@ -21,9 +19,17 @@ public partial class MainWindow
             //need to get the message queue from the snackbar, so need to be on the dispatcher
             MainSnackbar.MessageQueue?.Enqueue("Welcome to Material Design In XAML Toolkit");
         }, TaskScheduler.FromCurrentSynchronizationContext());
+
         App app = (App)Application.Current;
 
-        DataContext = new MainWindowViewModel(MainSnackbar.MessageQueue!, app.StartupPage);
+        var mainWindowViewModel = new MainWindowViewModel(
+            MainSnackbar.MessageQueue!,
+            app.StartupPage,
+            "Loading version..."
+        );
+        mainWindowViewModel.LoadVersion();
+
+        DataContext =mainWindowViewModel;
 
         var paletteHelper = new PaletteHelper();
         var theme = paletteHelper.GetTheme();
@@ -116,24 +122,6 @@ public partial class MainWindow
 
     private void OnSelectedItemChanged(object sender, DependencyPropertyChangedEventArgs e)
         => MainScrollViewer.ScrollToHome();
-    private void LoadVersion()
-    {
-        try
-        {
-            string versionFilePath = Path.Combine(Directory.GetCurrentDirectory(), "version.txt");
-            if (File.Exists(versionFilePath))
-            {
-                string version = File.ReadAllText(versionFilePath).Trim();
-                VersionText.Text = $"Version: {version}";
-            }
-            else
-            {
-                VersionText.Text = "Version file not found";
-            }
-        }
-        catch (Exception ex)
-        {
-            VersionText.Text = $"Error reading version: {ex.Message}";
-        }
-    }
+
+
 }

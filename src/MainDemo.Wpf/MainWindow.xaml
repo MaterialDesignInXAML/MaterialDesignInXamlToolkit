@@ -6,6 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:domain1="clr-namespace:MaterialDesignDemo.Shared.Domain"
         Title="Material Design in XAML"
         Width="1150"
         d:DataContext="{d:DesignInstance domain:MainWindowViewModel}"
@@ -77,10 +78,8 @@
               <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}" />
             </ListBox.Resources>
             <ListBox.ItemTemplate>
-              <DataTemplate DataType="domain:DemoItem">
-                <TextBlock Margin="24,4,0,4"
-                           AutomationProperties.AutomationId="DemoItemPage"
-                           Text="{Binding Name}" />
+              <DataTemplate DataType="{x:Type domain1:DemoItem}">
+
               </DataTemplate>
             </ListBox.ItemTemplate>
           </ListBox>
@@ -188,7 +187,7 @@
 
                 <Separator />
 
-                <TextBlock x:Name="VersionText" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" />
+                  <TextBlock Name="VersionText" Text="{Binding Version}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10"/>
 
               </StackPanel>
             </materialDesign:PopupBox>

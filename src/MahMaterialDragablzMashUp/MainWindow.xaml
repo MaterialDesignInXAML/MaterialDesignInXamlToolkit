@@ -36,7 +36,10 @@
           <Button Content="Hello World" />
           <Button Content="Nice Popup" />
           <Button Content="Goodbye" />
-          <Button Content="Version" />
+          <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Version:" FontWeight="Bold" Margin="0,0,5,0" />
+            <TextBlock Text="{Binding ApplicationVersion}" />
+          </StackPanel>
         </StackPanel>
       </wpf:PopupBox>
     </controls:WindowCommands>
