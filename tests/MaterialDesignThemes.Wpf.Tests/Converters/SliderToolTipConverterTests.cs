@@ -11,7 +11,7 @@ public sealed class SliderToolTipConverterTests
     [InlineData(42)]
     public void SliderConverterTest(object value)
     {
-        Wpf.Converters.SliderToolTipConverter converter = new ();
+        Wpf.Converters.Internal.SliderToolTipConverter converter = new ();
 
         //test a valid case
         object? result = converter.Convert([value, "Test String Format {0}"], typeof(string), null, CultureInfo.CurrentCulture);

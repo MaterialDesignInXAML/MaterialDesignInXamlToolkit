@@ -399,10 +399,12 @@
                                  Duration="0" />
                 <DoubleAnimation Storyboard.TargetName="Thumb"
                                  Storyboard.TargetProperty="Width"
+                                 From="0"
                                  To="{Binding Tag, ElementName=SwitchGrid}"
                                  Duration="0" />
                 <DoubleAnimation Storyboard.TargetName="Thumb"
                                  Storyboard.TargetProperty="Height"
+                                 From="0"
                                  To="{Binding Tag, ElementName=SwitchGrid}"
                                  Duration="0" />
               </Storyboard>

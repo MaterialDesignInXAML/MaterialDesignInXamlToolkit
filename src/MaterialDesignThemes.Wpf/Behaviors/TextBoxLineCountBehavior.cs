@@ -12,8 +12,11 @@ public class TextBoxLineCountBehavior : Behavior<TextBox>
 
     private void UpdateAttachedProperties()
     {
-        AssociatedObject.SetCurrentValue(TextFieldAssist.TextBoxLineCountProperty, AssociatedObject.LineCount);
-        AssociatedObject.SetCurrentValue(TextFieldAssist.TextBoxIsMultiLineProperty, AssociatedObject.LineCount > 1);
+        if (AssociatedObject != null)
+        {
+            AssociatedObject.SetCurrentValue(TextFieldAssist.TextBoxLineCountProperty, AssociatedObject.LineCount);
+            AssociatedObject.SetCurrentValue(TextFieldAssist.TextBoxIsMultiLineProperty, AssociatedObject.LineCount > 1);
+        }
     }
 
     protected override void OnAttached()

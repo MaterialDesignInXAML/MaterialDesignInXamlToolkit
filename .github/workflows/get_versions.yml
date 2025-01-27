@@ -2,7 +2,7 @@ name: Setup Versions
 
 on:
   workflow_call:
-    inputs: 
+    inputs:
       is-full-release:
         required: false
         type: boolean
@@ -23,9 +23,9 @@ jobs:
   getting_versions:
     env:
       #Update these base version numbers
-      mdix-version: "5.2.1"
-      mdix-colors-version: "5.2.1"
-      mdix-mahapps-version: "5.2.1"
+      mdix-version: "5.2.2"
+      mdix-colors-version: "5.2.2"
+      mdix-mahapps-version: "5.2.2"
     name: Set version numbers
     runs-on: ubuntu-latest
     defaults:

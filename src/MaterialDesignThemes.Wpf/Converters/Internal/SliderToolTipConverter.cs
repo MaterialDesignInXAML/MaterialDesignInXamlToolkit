@@ -1,9 +1,9 @@
 ﻿using System.Globalization;
 using System.Windows.Data;
 
-namespace MaterialDesignThemes.Wpf.Converters;
+namespace MaterialDesignThemes.Wpf.Converters.Internal;
 
-internal class SliderToolTipConverter : IMultiValueConverter
+public class SliderToolTipConverter : IMultiValueConverter
 {
     public static readonly SliderToolTipConverter Instance = new();
     public object? Convert(object?[]? values, Type? targetType, object? parameter, CultureInfo? culture)
