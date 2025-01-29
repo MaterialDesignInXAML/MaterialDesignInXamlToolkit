@@ -35,7 +35,11 @@
       <smtx:XamlDisplay Margin="10,5"
                   VerticalAlignment="Top"
                   UniqueKey="decimalUpDown_default">
-        <materialDesign:DecimalUpDown ValueStep="0.5" Minimum="-2.5" Maximum="2.5" />
+        <StackPanel>
+          <materialDesign:DecimalUpDown Value="{Binding MyDecimal, Mode=TwoWay}" ValueStep="0.5" Minimum="-2.5" Maximum="2.5" />
+          <TextBlock Text="{Binding MyDecimal, Mode=TwoWay}" />
+          <Button Content="a button to focus"/>
+        </StackPanel>
       </smtx:XamlDisplay>
 
       <smtx:XamlDisplay Margin="10,5"
