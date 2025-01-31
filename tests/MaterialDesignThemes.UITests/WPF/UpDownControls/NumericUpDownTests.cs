@@ -33,6 +33,8 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
             Assert.Equal("1", await textBox.GetText());
             Assert.Equal(1, await numericUpDown.GetValue());
         });
+
+        recorder.Success();
     }
 
     [Fact]
@@ -64,6 +66,8 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
         });
 
         Assert.True(await plusButton.GetIsEnabled());
+
+        recorder.Success();
     }
 
     [Fact]
@@ -95,6 +99,8 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
         });
 
         Assert.True(await minusButton.GetIsEnabled());
+
+        recorder.Success();
     }
 
     [Fact]
@@ -117,6 +123,8 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
         Assert.Equal(3, await numericUpDown.GetValue());
         Assert.Equal(3, await numericUpDown.GetMinimum());
         Assert.Equal(3, await numericUpDown.GetMaximum());
+
+        recorder.Success();
     }
 
     [Fact]
