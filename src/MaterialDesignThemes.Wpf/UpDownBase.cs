@@ -215,10 +215,8 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
             {
                 SetCurrentValue(ValueProperty, value);
             }
-            else
-            {
-                textBoxField.Text = Value?.ToString();
-            }
+            //NB: Because setting ValueProperty will coerce the value, we re-assign back to the textbox here.
+            textBoxField.Text = Value?.ToString();
         }
     }
 
