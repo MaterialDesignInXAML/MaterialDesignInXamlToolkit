@@ -213,8 +213,9 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
         {
             if (TryParse(textBoxField.Text, CultureInfo.CurrentUICulture, out T? value))
             {
-                SetCurrentValue(ValueProperty, CoerceNumericValue(this, value));
+                SetCurrentValue(ValueProperty, value);
             }
+            //NB: Because setting ValueProperty will coerce the value, we re-assign back to the textbox here.
             textBoxField.Text = Value?.ToString();
         }
     }
