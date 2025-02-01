@@ -32,6 +32,8 @@ public class DecimalUpDownTests(ITestOutputHelper output) : TestBase(output)
             Assert.Equal("1", await textBox.GetText());
             Assert.Equal(1, await numericUpDown.GetValue());
         });
+
+        recorder.Success();
     }
 
     [Fact]
@@ -63,6 +65,8 @@ public class DecimalUpDownTests(ITestOutputHelper output) : TestBase(output)
         });
 
         Assert.True(await plusButton.GetIsEnabled());
+
+        recorder.Success();
     }
 
     [Fact]
@@ -94,6 +98,8 @@ public class DecimalUpDownTests(ITestOutputHelper output) : TestBase(output)
         });
 
         Assert.True(await minusButton.GetIsEnabled());
+
+        recorder.Success();
     }
 
     [Fact]
@@ -116,6 +122,8 @@ public class DecimalUpDownTests(ITestOutputHelper output) : TestBase(output)
         Assert.Equal(3, await numericUpDown.GetValue());
         Assert.Equal(3, await numericUpDown.GetMinimum());
         Assert.Equal(3, await numericUpDown.GetMaximum());
+
+        recorder.Success();
     }
 
     [Fact]
@@ -144,6 +152,65 @@ public class DecimalUpDownTests(ITestOutputHelper output) : TestBase(output)
         // Assert
         Assert.False(await textBox.GetIsFocused());
         Assert.True(await part_textBox.GetIsFocused());
+
+        recorder.Success();
+    }
+
+    [Fact]
+    [Description("Issue 3781")]
+    public async Task IncreaseButtonClickWhenTextIsAboveMaximum_DoesNotIncreaseValue()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        var stackPanel = await LoadXaml<StackPanel>("""
+        <StackPanel>
+          <materialDesign:DecimalUpDown Minimum="-2.5" Maximum="2.5" Value="2.5" />
+          <Button Content="AlternateFocusElement" />
+        </StackPanel>
+        """);
+        var decimalUpDown = await stackPanel.GetElement<DecimalUpDown>();
+        var textBox = await decimalUpDown.GetElement<TextBox>("PART_TextBox");
+        var plusButton = await decimalUpDown.GetElement<RepeatButton>("PART_IncreaseButton");
+
+        var button = await stackPanel.GetElement<Button>();
+
+        await textBox.MoveKeyboardFocus();
+        await textBox.SendKeyboardInput($"{ModifierKeys.Control}{Key.A}{ModifierKeys.None}30");
+        await plusButton.LeftClick();
+
+        //NB: Because the focus has not left the up down control, we don't expect the text to change
+        Assert.Equal("30", await textBox.GetText());
+        Assert.Equal(2.5m, await decimalUpDown.GetValue());
+
+        recorder.Success();
+    }
+
+    [Theory]
+    [Description("Issue 3781")]
+    [InlineData("30")]
+    [InlineData("abc")]
+    [InlineData("2a")]
+    public async Task LostFocusWhenTextIsInvalid_RevertsToOriginalValue(string inputText)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        var stackPanel = await LoadXaml<StackPanel>("""
+        <StackPanel>
+          <materialDesign:DecimalUpDown Minimum="-2.5" Maximum="2.5" Value="2.5" />
+          <Button Content="AlternateFocusElement" />
+        </StackPanel>
+        """);
+        var decimalUpDown = await stackPanel.GetElement<DecimalUpDown>();
+        var textBox = await decimalUpDown.GetElement<TextBox>("PART_TextBox");
+
+        var button = await stackPanel.GetElement<Button>();
+
+        await textBox.MoveKeyboardFocus();
+        await textBox.SendKeyboardInput($"{ModifierKeys.Control}{Key.A}{ModifierKeys.None}{inputText}");
+        await button.MoveKeyboardFocus();
+
+        Assert.Equal("2.5", await textBox.GetText());
+        Assert.Equal(2.5m, await decimalUpDown.GetValue());
 
         recorder.Success();
     }

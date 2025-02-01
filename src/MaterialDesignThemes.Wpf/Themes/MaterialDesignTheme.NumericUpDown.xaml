@@ -55,7 +55,7 @@
             <converters:NonDefaultThicknessConverter x:Key="OutlinedBorderInactiveThicknessConverter" DefaultThickness="{x:Static wpf:Constants.DefaultOutlinedBorderInactiveThickness}" />
             <converters:NonDefaultThicknessConverter x:Key="OutlinedBorderActiveThicknessConverter" DefaultThickness="{x:Static wpf:Constants.DefaultOutlinedBorderActiveThickness}" />
           </ControlTemplate.Resources>
-          <Grid>
+          <Grid Background="{TemplateBinding Background}">
             <TextBox x:Name="PART_TextBox"
                      Padding="{TemplateBinding Padding, Converter={StaticResource NumericUpDownPaddingConverter}}"
                      VerticalAlignment="Stretch"
