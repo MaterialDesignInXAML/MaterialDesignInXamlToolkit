@@ -232,9 +232,11 @@
                           Grid.Column="5"
                           Height="{TemplateBinding wpf:TextFieldAssist.ClearButtonSize}"
                           Width="{TemplateBinding wpf:TextFieldAssist.ClearButtonSize}"
+                          Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                           Padding="2,0,0,0"
                           Command="{x:Static internal:ClearText.ClearCommand}"
                           Focusable="False"
+                          Foreground="{TemplateBinding Foreground}"
                           VerticalAlignment="{TemplateBinding wpf:TextFieldAssist.IconVerticalAlignment}"
                           Style="{StaticResource MaterialDesignToolButton}">
                     <Button.Visibility>
