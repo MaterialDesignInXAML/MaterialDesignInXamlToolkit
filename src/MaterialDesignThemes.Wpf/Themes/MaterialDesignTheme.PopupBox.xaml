@@ -115,6 +115,7 @@
                           ContentTemplate="{TemplateBinding ToggleContentTemplate}"
                           ContentTemplateSelector="{TemplateBinding ToggleContentTemplateSelector}"
                           Cursor="Hand"
+                          Foreground="{TemplateBinding Foreground}"
                           IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPopupOpen, Mode=TwoWay}"
                           IsTabStop="{TemplateBinding IsTabStop}"
                           Padding="0"
