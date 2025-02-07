@@ -158,15 +158,13 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
         recorder.Success();
     }
 
-    [Fact]
+    [Fact(Skip = "Needs XAMLTest 1.2.3 or later")]
     public async Task NumericUpDown_ValueSetGreaterThanMaximum_CoercesToMaximum()
     {
         await using var recorder = new TestRecorder(App);
 
         //Arrange
-        await App.InitializeWithMaterialDesign();
-        IWindow window = await App.CreateWindow<BoundNumericUpDownWindow>();
-        var userControl = await window.GetElement<BoundNumericUpDown>();
+        var userControl = await LoadUserControl<BoundNumericUpDown>();
         var numericUpDown = await userControl.GetElement<NumericUpDown>();
         var buttonToFocus = await userControl.GetElement<Button>("btnToFocus");
 
@@ -177,15 +175,15 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
         //Act
         //Input a number greater than the maximum
         await numericUpDown.MoveKeyboardFocus();
-        //await numericUpDown.SendInput(new KeyboardInput("99"));
         await numericUpDown.SendKeyboardInput($"99");
+
         await buttonToFocus.MoveKeyboardFocus();
 
         //Assert
         //The value and bound property in the VM should be set to the maximum
         Assert.Equal(10, await numericUpDown.GetValue());
         var viewModel = await userControl.GetProperty<BoundNumericUpDownViewModel>(nameof(BoundNumericUpDown.ViewModel));
-        Assert.Equal(10, viewModel.Value);
+        Assert.Equal(10, viewModel?.Value);
 
         recorder.Success();
     }
