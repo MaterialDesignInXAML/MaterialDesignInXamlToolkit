@@ -55,8 +55,9 @@
             <converters:NonDefaultThicknessConverter x:Key="OutlinedBorderInactiveThicknessConverter" DefaultThickness="{x:Static wpf:Constants.DefaultOutlinedBorderInactiveThickness}" />
             <converters:NonDefaultThicknessConverter x:Key="OutlinedBorderActiveThicknessConverter" DefaultThickness="{x:Static wpf:Constants.DefaultOutlinedBorderActiveThickness}" />
           </ControlTemplate.Resources>
-          <Grid Background="{TemplateBinding Background}">
-            <TextBox x:Name="PART_TextBox"
+          <Border Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}">
+            <Grid>
+              <TextBox x:Name="PART_TextBox"
                      Padding="{TemplateBinding Padding, Converter={StaticResource NumericUpDownPaddingConverter}}"
                      VerticalAlignment="Stretch"
                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -101,21 +102,22 @@
                      Focusable="{TemplateBinding Focusable}"
                      Style="{DynamicResource NestedTextBoxStyle}" />
 
-            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-              <RepeatButton x:Name="PART_DecreaseButton"
+              <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <RepeatButton x:Name="PART_DecreaseButton"
                             Margin="{TemplateBinding Padding, Converter={StaticResource PartButtonMarginConverter}}"
                             Content="{TemplateBinding DecreaseContent}"
                             Foreground="{Binding ElementName=PART_TextBox, Path=Foreground}"
                             Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                             Style="{DynamicResource NestedNumericUpDownButtonsStyle}" />
-              <RepeatButton x:Name="PART_IncreaseButton"
+                <RepeatButton x:Name="PART_IncreaseButton"
                             Margin="{TemplateBinding Padding, Converter={StaticResource PartButtonMarginConverter}}"
                             Content="{TemplateBinding IncreaseContent}"
                             Foreground="{Binding ElementName=PART_TextBox, Path=Foreground}"
                             Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                             Style="{DynamicResource NestedNumericUpDownButtonsStyle}" />
-            </StackPanel>
-          </Grid>
+              </StackPanel>
+            </Grid>
+          </Border>
           <ControlTemplate.Triggers>
             <!-- PART_Button hovering -->
             <MultiTrigger>
