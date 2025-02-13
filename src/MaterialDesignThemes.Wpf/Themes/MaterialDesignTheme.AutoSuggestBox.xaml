@@ -416,6 +416,7 @@
               <Setter TargetName="PART_ContentHost" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
               <Setter TargetName="PrefixTextBlock" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
               <Setter TargetName="SuffixTextBlock" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
+              <Setter TargetName="ContentGrid" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
             </MultiTrigger>
 
             <!-- IsKeyboardFocused -->
