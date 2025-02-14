@@ -1,6 +1,7 @@
 ﻿using MaterialDesign.Shared;
 using MaterialDesignThemes.Wpf;
 using ShowMeTheXAML;
+using Velopack;
 
 namespace MaterialDesignDemo;
 
@@ -41,5 +42,16 @@ public partial class App : Application
                     System.Windows.Markup.XmlLanguage.GetLanguage(System.Globalization.CultureInfo.CurrentCulture.IetfLanguageTag)));*/
 
         base.OnStartup(e);
+    }
+
+    [STAThread]
+    private static void Main(string[] args)
+    {
+        VelopackApp.Build().Run();
+
+        // We can now launch the WPF application as normal.
+        var app = new App();
+        app.InitializeComponent();
+        app.Run();
     }
 }
