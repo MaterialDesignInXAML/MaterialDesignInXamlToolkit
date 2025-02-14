@@ -9,7 +9,19 @@
     <UseWPF>true</UseWPF>
     <SignAssembly>false</SignAssembly>
     <ApplicationManifest>App.manifest</ApplicationManifest>
+
+    <StartupObject>MaterialDesignDemo.App</StartupObject>
   </PropertyGroup>
+
+  <!--
+  We do this because we are setting a custom Main method with the StartupObject property above.
+  This prevents WPF from generating a default Main method.
+  -->
+  <ItemGroup>
+    <ApplicationDefinition Remove="App.xaml" />
+    <Page Include="App.xaml" />
+  </ItemGroup>
+  
   <ItemGroup Condition="'$(TargetFramework)'=='net472'">
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
@@ -44,6 +56,7 @@
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm" />
     <PackageReference Include="System.CommandLine" />
+    <PackageReference Include="Velopack" />
     <PackageReference Include="VirtualizingWrapPanel" />
     <PackageReference Include="ShowMeTheXAML" />
     <PackageReference Include="ShowMeTheXAML.AvalonEdit" />
