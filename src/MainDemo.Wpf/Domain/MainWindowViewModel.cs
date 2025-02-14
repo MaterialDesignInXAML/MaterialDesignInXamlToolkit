@@ -9,6 +9,8 @@ using MaterialDesignColors;
 using MaterialDesignDemo.Shared.Domain;
 using MaterialDesignThemes.Wpf;
 using MaterialDesignThemes.Wpf.Transitions;
+using Velopack;
+using Velopack.Sources;
 
 namespace MaterialDesignDemo.Domain;
 
@@ -38,8 +40,19 @@ public partial class MainWindowViewModel : ObservableObject
         _demoItemsView = CollectionViewSource.GetDefaultView(DemoItems);
         _demoItemsView.Filter = DemoItemsFilter;
 
+        if (_updateManager is { IsInstalled: true, CurrentVersion: { } currentVersion })
+        {
+            InstalledStatus = currentVersion.ToFullString();
+        }
+        else
+        {
+            InstalledStatus = "Not installed";
+        }
+
         LoadVersions();
     }
+
+    private readonly UpdateManager _updateManager = new(new VelopackFlowUpdateSource());
 
     private readonly ICollectionView _demoItemsView;
 
@@ -85,6 +98,30 @@ public partial class MainWindowViewModel : ObservableObject
 
     [ObservableProperty]
     private bool _controlsEnabled = true;
+
+    [ObservableProperty]
+    private string? _installedStatus;
+
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(ApplyUpdateCommand))]
+    private UpdateInfo? _update;
+
+    [RelayCommand(CanExecute = nameof(CanCheckForUpdates))]
+    private async Task OnCheckForUpdates()
+    {
+        Update = await _updateManager.CheckForUpdatesAsync();
+    }
+
+    private bool CanCheckForUpdates() => _updateManager.IsInstalled;
+
+    [RelayCommand(CanExecute = nameof(CanApplyUpdate))]
+    private async Task OnApplyUpdate()
+    {
+        await _updateManager.DownloadUpdatesAsync(Update!);
+        _updateManager.ApplyUpdatesAndRestart(Update!);
+    }
+
+    private bool CanApplyUpdate() => Update is not null;
 
     [RelayCommand]
     private void OnHome()

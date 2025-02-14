@@ -36,6 +36,7 @@
     <PackageVersion Include="System.ValueTuple" Version="4.6.2" />
     <PackageVersion Include="System.Text.RegularExpressions" Version="4.3.1" />
     <PackageVersion Include="TUnit" Version="1.72.10" />
+    <PackageVersion Include="Velopack" Version="0.0.1126-g9740825" />
     <PackageVersion Include="VirtualizingWrapPanel" Version="2.5.4" />
     <PackageVersion Include="XAMLTest" Version="1.3.2" />
   </ItemGroup>
