@@ -395,8 +395,7 @@
                 <Condition Property="IsEnabled" Value="False" />
                 <Condition Property="wpf:TextFieldAssist.HasFilledTextField" Value="True" />
               </MultiTrigger.Conditions>
-              <Setter TargetName="PART_ClearButton" Property="Opacity" Value="1" />
-              <Setter TargetName="OuterBorder" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
+              <Setter TargetName="PART_ClearButton" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
             </MultiTrigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
