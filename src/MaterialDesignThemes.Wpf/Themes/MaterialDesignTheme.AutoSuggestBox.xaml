@@ -362,7 +362,6 @@
 
             <!-- Outlined text field -->
             <Trigger Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True">
-              <Setter TargetName="HintWrapper" Property="Opacity" Value="{Binding Path=(wpf:HintAssist.HintOpacity), RelativeSource={RelativeSource TemplatedParent}}" />
               <Setter TargetName="Underline" Property="Visibility" Value="Collapsed" />
               <Setter TargetName="Hint" Property="FloatingTarget" Value="{Binding ElementName=OuterBorder}" />
               <Setter TargetName="Hint" Property="FloatingAlignment" Value="Center" />
@@ -403,14 +402,6 @@
                 <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
               </MultiTrigger.Conditions>
               <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.OutlineInactiveBorder}" />
-              <Setter TargetName="HintWrapper" Property="Opacity">
-                <Setter.Value>
-                  <Binding Converter="{x:Static converters:MathConverter.MultiplyInstance}"
-                   ConverterParameter="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}"
-                   Path="(wpf:HintAssist.HintOpacity)"
-                   RelativeSource="{RelativeSource TemplatedParent}" />
-                </Setter.Value>
-              </Setter>
               <Setter TargetName="PART_ClearButton" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
               <Setter TargetName="PART_ContentHost" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
               <Setter TargetName="PrefixTextBlock" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
