@@ -192,28 +192,30 @@ public class AutoSuggestBox : TextBox
 
     private void AutoSuggestionListBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
     {
-        if (_autoSuggestBoxList is not null && e.OriginalSource is FrameworkElement element)
-        {
-            var selectedItem = element.DataContext;
-            if (!_autoSuggestBoxList.Items.Contains(selectedItem))
-                return;
-            if (!_autoSuggestBoxList.SelectedItem.Equals(selectedItem))
-            {
-                _autoSuggestBoxList.SelectionChanged += OnSelectionChanged;
-                _autoSuggestBoxList.SelectedItem = selectedItem;
-            }
-            else
-            {
-                _autoSuggestBoxList.SelectedItem = selectedItem;
-                CommitValueSelection();
-            }
+        if (_autoSuggestBoxList is null || e.OriginalSource is not FrameworkElement element)
+            return;
 
-            void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        var selectedItem = element.DataContext;
+        if (!_autoSuggestBoxList.Items.Contains(selectedItem))
+            return;
+
+        e.Handled = true;
+
+        if (!Equals(_autoSuggestBoxList.SelectedItem, selectedItem))
+        {
+            void OnSelectionChanged(object s, SelectionChangedEventArgs args)
             {
                 _autoSuggestBoxList.SelectionChanged -= OnSelectionChanged;
                 CommitValueSelection();
             }
-            e.Handled = true;
+
+            _autoSuggestBoxList.SelectionChanged += OnSelectionChanged;
+            _autoSuggestBoxList.SelectedItem = selectedItem;
+        }
+        else
+        {
+            _autoSuggestBoxList.SelectedItem = selectedItem;
+            CommitValueSelection();
         }
     }
 

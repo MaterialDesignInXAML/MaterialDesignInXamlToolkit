@@ -161,7 +161,6 @@ public class Badged : ContentControl
 
         var h = 0 - containerDesiredSize.Width / 2;
         var v = 0 - containerDesiredSize.Height / 2;
-        _badgeContainer.Margin = new Thickness(0);
         _badgeContainer.Margin = new Thickness(h, v, h, v);
 
         return result;

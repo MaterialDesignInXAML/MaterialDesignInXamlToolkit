@@ -3,6 +3,8 @@ using System.Globalization;
 
 namespace MaterialDesignThemes.Wpf;
 
+using System.Diagnostics.CodeAnalysis;
+
 
 #if NET8_0_OR_GREATER
 using System.Numerics;
@@ -20,7 +22,7 @@ public class UpDownBase<T> : UpDownBase
     private static T Clamp(T value, T min, T max) => T.Clamp(value, min, max);
     private static T Add(T value1, T value2) => value1 + value2;
     private static T Subtract(T value1, T value2) => value1 - value2;
-    private static bool TryParse(string text, IFormatProvider? formatProvider, out T? value)
+    private static bool TryParse(string text, IFormatProvider? formatProvider, [MaybeNullWhen(false)] out T value)
         => T.TryParse(text, formatProvider, out value);
     private static int Compare(T value1, T value2) => value1.CompareTo(value2);
 #else
@@ -39,8 +41,9 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
     private static T Clamp(T value, T min, T max) => _arithmetic.Max(_arithmetic.Min(value, max), min);
     private static T Add(T value1, T value2) => _arithmetic.Add(value1, value2);
     private static T Subtract(T value1, T value2) => _arithmetic.Subtract(value1, value2);
-    private static bool TryParse(string text, IFormatProvider? formatProvider, out T? value)
+    private static bool TryParse(string text, IFormatProvider? formatProvider, [NotNullWhen(true)] out T value)
         => _arithmetic.TryParse(text, formatProvider, out value);
+
     private static int Compare(T value1, T value2) => _arithmetic.Compare(value1, value2);
 #endif
 
@@ -134,7 +137,7 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
         if (value is T numericValue)
         {
             var upDownBase = ToUpDownBase(d);
-            numericValue = Clamp(numericValue, upDownBase.Minimum, upDownBase.Maximum);
+            numericValue = upDownBase.ClampValue(numericValue);
             return numericValue;
         }
         return value;
@@ -213,7 +216,7 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
         {
             if (TryParse(textBoxField.Text, CultureInfo.CurrentUICulture, out T? value))
             {
-                SetCurrentValue(ValueProperty, value);
+                SetCurrentValue(ValueProperty, ClampValue(value));
             }
             //NB: Because setting ValueProperty will coerce the value, we re-assign back to the textbox here.
             textBoxField.Text = Value?.ToString();
@@ -227,6 +230,9 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
     private void OnIncrease() => SetCurrentValue(ValueProperty, Clamp(Add(Value, ValueStep), Minimum, Maximum));
 
     private void OnDecrease() => SetCurrentValue(ValueProperty, Clamp(Subtract(Value, ValueStep), Minimum, Maximum));
+
+    private T ClampValue(T value)
+        => Clamp(value, Minimum, Maximum);
 
     protected override void OnPreviewKeyDown(KeyEventArgs e)
     {
@@ -364,6 +370,6 @@ public interface IArithmetic<T>
 
     T Min(T value1, T value2);
 
-    bool TryParse(string text, IFormatProvider? formatProvider, out T? value);
+    bool TryParse(string text, IFormatProvider? formatProvider, [NotNullWhen(true)] out T value);
 }
 #endif
