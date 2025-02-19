@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:internal="clr-namespace:MaterialDesignThemes.Wpf.Internal"
@@ -55,9 +55,10 @@
             <converters:NonDefaultThicknessConverter x:Key="OutlinedBorderInactiveThicknessConverter" DefaultThickness="{x:Static wpf:Constants.DefaultOutlinedBorderInactiveThickness}" />
             <converters:NonDefaultThicknessConverter x:Key="OutlinedBorderActiveThicknessConverter" DefaultThickness="{x:Static wpf:Constants.DefaultOutlinedBorderActiveThickness}" />
           </ControlTemplate.Resources>
-          <Border Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}">
+          <Border CornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}">
             <Grid>
               <TextBox x:Name="PART_TextBox"
+                       Background="{TemplateBinding Background}"
                      Padding="{TemplateBinding Padding, Converter={StaticResource NumericUpDownPaddingConverter}}"
                      VerticalAlignment="Stretch"
                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
