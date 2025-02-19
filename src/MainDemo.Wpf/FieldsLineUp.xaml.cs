@@ -56,7 +56,6 @@ public partial class FieldsLineUp
                 tb.SetBinding(TextBoxBase.IsReadOnlyProperty, new Binding(nameof(CheckBox.IsChecked)) { ElementName = nameof(IsReadOnlyCheckBox) });
             SetValue(control);
         }
-        IsEnabledCheckBox.IsChecked = false;
     }
 
     private void UpdateThickness(RangeBase slider, DependencyProperty property, bool horizontal)

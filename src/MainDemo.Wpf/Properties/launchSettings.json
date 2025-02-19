@@ -2,7 +2,7 @@
     "profiles": {
         "Demo App": {
             "commandName": "Project",
-            "commandLineArgs": "-p \"Fields line up\" -t Light -f LeftToRight"
+            "commandLineArgs": "-p Home -t Inherit -f LeftToRight"
         }
     }
 }
