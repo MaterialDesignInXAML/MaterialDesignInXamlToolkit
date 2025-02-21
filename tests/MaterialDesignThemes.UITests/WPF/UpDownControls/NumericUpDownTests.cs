@@ -187,4 +187,32 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
 
         recorder.Success();
     }
+
+    [Theory]
+    [InlineData(1, false, true)]
+    [InlineData(5, true, true)]
+    [InlineData(10, true, false)]
+    [Description("Issue 3796")]
+    public async Task NumericUpDown_WhenValueEqualsMinimum_DisableButtons(int value,
+        bool decreaseEnabled, bool increaseEnabled)
+    {
+        await using var recorder = new TestRecorder(App);
+        //Arrange
+        var numericUpDown = await LoadXaml<NumericUpDown>($"""
+        <materialDesign:NumericUpDown Value="{value}" Maximum="10" Minimum="1" />
+        """);
+        var increaseButton = await numericUpDown.GetElement<RepeatButton>("PART_IncreaseButton");
+        var decreaseButton = await numericUpDown.GetElement<RepeatButton>("PART_DecreaseButton");
+
+        //Act
+
+        bool increaseButtonEnabled = await increaseButton.GetIsEnabled();
+        bool decreaseButtonEnabled = await decreaseButton.GetIsEnabled();
+
+        //Assert
+        Assert.Equal(increaseEnabled, increaseButtonEnabled);
+        Assert.Equal(decreaseEnabled, decreaseButtonEnabled);
+
+        recorder.Success();
+    }
 }
