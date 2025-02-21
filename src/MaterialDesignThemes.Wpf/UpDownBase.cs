@@ -121,14 +121,23 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
             textBox.Text = e.NewValue.ToString();
         }
 
-        if (upDownBase._increaseButton is { } increaseButton)
-        {
-            increaseButton.IsEnabled = Compare(upDownBase.Value, upDownBase.Maximum) < 0;
-        }
+        upDownBase.UpdateDecreaseButtonEnabled();
+        upDownBase.UpdateIncreaseButtonEnabled();
+    }
 
-        if (upDownBase._decreaseButton is { } decreaseButton)
+    private void UpdateIncreaseButtonEnabled()
+    {
+        if (_increaseButton is { } increaseButton)
         {
-            decreaseButton.IsEnabled = Compare(upDownBase.Value, upDownBase.Minimum) > 0;
+            increaseButton.IsEnabled = Compare(Value, Maximum) < 0;
+        }
+    }
+
+    private void UpdateDecreaseButtonEnabled()
+    {
+        if (_decreaseButton is { } decreaseButton)
+        {
+            decreaseButton.IsEnabled = Compare(Value, Minimum) > 0;
         }
     }
 
@@ -197,10 +206,16 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
         base.OnApplyTemplate();
 
         if (_increaseButton != null)
+        {
             _increaseButton.Click += IncreaseButtonOnClick;
+            UpdateIncreaseButtonEnabled();
+        }
 
         if (_decreaseButton != null)
+        {
             _decreaseButton.Click += DecreaseButtonOnClick;
+            UpdateDecreaseButtonEnabled();
+        }
 
         if (_textBoxField != null)
         {
