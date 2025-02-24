@@ -166,6 +166,7 @@ public class AutoSuggestBox : TextBox
                 break;
             case Key.Tab:
                 bool wasItemSelected = CommitValueSelection();
+                // Only mark the event as handled if the SuggestionList is open and therefore the Selection was successful
                 if (wasItemSelected)
                 {
                     e.Handled = true;

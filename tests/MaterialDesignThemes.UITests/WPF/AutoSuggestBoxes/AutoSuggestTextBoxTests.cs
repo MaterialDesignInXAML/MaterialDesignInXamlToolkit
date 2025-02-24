@@ -145,14 +145,15 @@ public class AutoSuggestBoxTests : TestBase
         // Act
         await suggestBox.MoveKeyboardFocus();
         await Task.Delay(50);
-        await suggestBox.SendInput(new KeyboardInput("B"));
+        await suggestBox.SendInput(new KeyboardInput("B")); // Open the popup
         await Task.Delay(50);
         await suggestBox.SendInput(new KeyboardInput(Key.Escape)); // Close the popup
         await Task.Delay(50);
-        await suggestBox.SendInput(new KeyboardInput(Key.Tab)); // Press TAB to focus the next element (the TextBox)
+        await suggestBox.SendInput(new KeyboardInput(Key.Tab)); // Press TAB to focus the next element
         await Task.Delay(50);
 
         // Assert
+        Assert.False(await suggestBox.GetIsFocused());
         Assert.True(await nextTextBox.GetIsFocused());
 
         recorder.Success();
