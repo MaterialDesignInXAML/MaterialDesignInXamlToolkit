@@ -343,6 +343,7 @@ public class PasswordBoxTests : TestBase
         var stackPanel = await LoadXaml<StackPanel>("""
             <StackPanel Orientation="Vertical">
               <PasswordBox x:Name="PasswordBox" Width="200"
+                           materialDesign:PasswordBoxAssist.IsRevealButtonTabStop="False"
                            Style="{StaticResource MaterialDesignFilledRevealPasswordBox}" />
               <TextBox x:Name="TextBox" Width="200" />
             </StackPanel>
