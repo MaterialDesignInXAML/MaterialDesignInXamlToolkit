@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using MaterialDesignThemes.UITests.Samples.PasswordBox;
 using MaterialDesignThemes.UITests.WPF.TextBoxes;
 
@@ -330,6 +330,37 @@ public class PasswordBoxTests : TestBase
         Assert.True(await revealPasswordTextBox.GetIsKeyboardFocused());
         await revealPasswordTextBox.SendKeyboardInput($"{Key.Tab}{ModifierKeys.None}");
         Assert.True(await textBox1.GetIsKeyboardFocused());
+
+        recorder.Success();
+    }
+
+    [Fact]
+    [Description("Issue 3799")]
+    public async Task PasswordBox_WithRevealButtonIsTabStopSetToFalse_RespectsKeyboardTabNavigation()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        var stackPanel = await LoadXaml<StackPanel>("""
+            <StackPanel Orientation="Vertical">
+              <PasswordBox x:Name="PasswordBox" Width="200"
+                           materialDesign:PasswordBoxAssist.IsRevealButtonTabStop="False"
+                           Style="{StaticResource MaterialDesignFilledRevealPasswordBox}" />
+              <TextBox x:Name="TextBox" Width="200" />
+            </StackPanel>
+            """);
+
+        var passwordBox = await stackPanel.GetElement<PasswordBox>("PasswordBox");
+        var textBox = await stackPanel.GetElement<TextBox>("TextBox");
+
+        // Assert Tab forward
+        await passwordBox.MoveKeyboardFocus();
+        Assert.True(await passwordBox.GetIsKeyboardFocused());
+        await passwordBox.SendKeyboardInput($"{Key.Tab}");
+        Assert.True(await textBox.GetIsKeyboardFocused());
+        
+        // Assert Tab backwards
+        await textBox.SendKeyboardInput($"{ModifierKeys.Shift}{Key.Tab}{ModifierKeys.None}");
+        Assert.True(await passwordBox.GetIsKeyboardFocused());
 
         recorder.Success();
     }
