@@ -627,7 +627,7 @@
           <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="False" />
         </MultiTrigger.Conditions>
         <Setter TargetName="OuterBorder" Property="BorderBrush" Value="Transparent" />
-        <Setter TargetName="OuterBorder" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
+        <Setter TargetName="ContentGrid" Property="Opacity" Value="{x:Static wpf:Constants.TextBoxNotEnabledOpacity}" />
         <Setter TargetName="OuterBorder" Property="wpf:BottomDashedLineAdorner.IsAttached" Value="True" />
         <Setter TargetName="OuterBorder" Property="wpf:BottomDashedLineAdorner.DashStyle" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TextFieldAssist.HasFilledTextField), Converter={StaticResource BooleanToDashStyleConverter}}" />
         <Setter TargetName="toggleButton" Property="Opacity" Value="1" />
