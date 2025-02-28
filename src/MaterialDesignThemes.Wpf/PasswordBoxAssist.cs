@@ -20,7 +20,7 @@ public static class PasswordBoxAssist
     public static bool GetIsPasswordRevealed(DependencyObject element) => (bool)element.GetValue(IsPasswordRevealedProperty);
 
     public static readonly DependencyProperty IsRevealButtonTabStopProperty = DependencyProperty.RegisterAttached(
-        "IsRevealButtonTabStop", typeof(bool), typeof(PasswordBoxAssist), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits));
+        "IsRevealButtonTabStop", typeof(bool), typeof(PasswordBoxAssist), new PropertyMetadata(true));
     public static void SetIsRevealButtonTabStop(DependencyObject element, bool value) => element.SetValue(IsRevealButtonTabStopProperty, value);
     public static bool GetIsRevealButtonTabStop(DependencyObject element) => (bool)element.GetValue(IsRevealButtonTabStopProperty);
 
