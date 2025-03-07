@@ -22,6 +22,6 @@ public static class MaterialDesignSpec
         const double tolerance = 0.1;
 
         var ratio = ColorAssist.ContrastRatio(foreground, background);
-        Assert.True(ratio >= minimumContrastRatio - tolerance, $"Contrast ratio '{ratio}' is less than {minimumContrastRatio} with a tolerance of 0.1");
+        await Assert.True(ratio >= minimumContrastRatio - tolerance, $"Contrast ratio '{ratio}' is less than {minimumContrastRatio} with a tolerance of 0.1");
     }
 }

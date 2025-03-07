@@ -1,7 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Media;
+using MaterialDesignThemes.UITests;
+using TUnit.Core.Interfaces;
 
-[assembly: CollectionBehavior(DisableTestParallelization = true)]
+[assembly: ParallelLimiter<SingleParallelLimit>]
 [assembly: GenerateHelpers(typeof(AutoSuggestBox))]
 [assembly: GenerateHelpers(typeof(ColorPicker))]
 [assembly: GenerateHelpers(typeof(DecimalUpDown))]
@@ -16,10 +18,15 @@ using System.Windows.Media;
 
 namespace MaterialDesignThemes.UITests;
 
-public abstract class TestBase(ITestOutputHelper output) : IAsyncLifetime
+file record SingleParallelLimit : IParallelLimit
+{
+    public int Limit => 1;
+}
+
+public abstract class TestBase()
 {
     protected bool AttachedDebuggerToRemoteProcess { get; set; } = true;
-    protected ITestOutputHelper Output { get; } = output ?? throw new ArgumentNullException(nameof(output));
+    protected TextWriter Output => TestContext.Current?.OutputWriter ?? throw new InvalidOperationException("Could not find output writer");
 
     [NotNull]
     protected IApp? App { get; set; }
@@ -46,6 +53,7 @@ public abstract class TestBase(ITestOutputHelper output) : IAsyncLifetime
         return await App.CreateWindowWithUserControl(userControlType);
     }
 
+    [Before(Test)]
     public async ValueTask InitializeAsync() =>
         App = await XamlTest.App.StartRemote(new AppOptions
         {
@@ -56,5 +64,6 @@ public abstract class TestBase(ITestOutputHelper output) : IAsyncLifetime
             LogMessage = Output.WriteLine
         });
 
+    [After(Test)]
     public async ValueTask DisposeAsync() => await App.DisposeAsync();
 }
