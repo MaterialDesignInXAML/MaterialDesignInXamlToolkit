@@ -4,7 +4,9 @@
     <TargetFrameworks>net472;net8.0-windows</TargetFrameworks>
     <AssemblyTitle>MaterialDesignThemes.Wpf.Tests</AssemblyTitle>
     <Product>MaterialDesignThemes.Wpf.Tests</Product>
+    <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
     <OutputType>Exe</OutputType>
+    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)'=='net472'">
