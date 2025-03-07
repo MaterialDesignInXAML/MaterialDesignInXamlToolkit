@@ -862,7 +862,7 @@ public class TreeListViewTests : TestBase
         await item1.LeftClickExpander();
 
         //NB: Needs to be long enough delay so the next click does not register as a double click
-        await Task.Delay(1000);
+        await Task.Delay(1000, TestContext.Current.CancellationToken);
 
         // Add children to item "1_1" and expand
         IVisualElement<TreeListViewItem> item11 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[3]");
@@ -870,16 +870,16 @@ public class TreeListViewTests : TestBase
         await item11.LeftClickExpander();
 
         //NB: Needs to be long enough delay so the next click does not register as a double click
-        await Task.Delay(1000);
+        await Task.Delay(1000, TestContext.Current.CancellationToken);
 
         //Move parent item down
         await item1.LeftClick();
         await upButton.LeftClick();
 
-        await Task.Delay(1000);
+        await Task.Delay(1000, TestContext.Current.CancellationToken);
 
         await downButton.LeftClick();
-        await Task.Delay(1000);
+        await Task.Delay(1000, TestContext.Current.CancellationToken);
 
         //Assert the child was successfully moved
         await AssertTreeItemContent(treeListView, 0, "0");
