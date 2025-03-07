@@ -1,6 +1,7 @@
 ﻿using System.Windows.Media;
 using MaterialDesignColors.ColorManipulation;
 
+
 namespace MaterialDesignThemes.UITests.WPF;
 
 public class ColorPickerTests : TestBase
@@ -10,7 +11,7 @@ public class ColorPickerTests : TestBase
     {
     }
 
-    [Fact]
+    [Test]
     public async Task OnLostFocusIfSelectedTimeIsNull_DatePartWillBeToday()
     {
         await using var recorder = new TestRecorder(App);
@@ -34,7 +35,7 @@ public class ColorPickerTests : TestBase
 
 
         double currentBrightness = (await colorPicker.GetColor()).ToHsb().Brightness;
-        Assert.True(currentBrightness < lastBrightness, $"Brightness {currentBrightness} is not less than {lastBrightness}");
+        await Assert.True(currentBrightness < lastBrightness, $"Brightness {currentBrightness} is not less than {lastBrightness}");
 
         recorder.Success();
     }

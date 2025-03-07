@@ -1,5 +1,6 @@
 ﻿using System.Windows.Media;
 
+
 namespace MaterialDesignThemes.UITests.WPF.Cards;
 
 public class OutlinedCardTests : TestBase
@@ -8,7 +9,7 @@ public class OutlinedCardTests : TestBase
         : base(output)
     { }
 
-    [Fact]
+    [Test]
     public async Task OutlinedCard_UsesThemeColorForBorder()
     {
         await using var recorder = new TestRecorder(App);
@@ -23,12 +24,12 @@ public class OutlinedCardTests : TestBase
         Color? internalBorderColor = await internalBorder.GetBorderBrushColor();
 
         //Assert
-        Assert.Equal(dividerColor, internalBorderColor);
+        await Assert.Equal(dividerColor, internalBorderColor);
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task OutlinedCard_UniformCornerRadiusApplied_AppliesCornerRadiusOnBorder()
     {
         await using var recorder = new TestRecorder(App);
@@ -42,10 +43,10 @@ public class OutlinedCardTests : TestBase
         CornerRadius? internalBorderCornerRadius = await internalBorder.GetCornerRadius();
 
         //Assert
-        Assert.Equal(5, internalBorderCornerRadius.Value.TopLeft);
-        Assert.Equal(5, internalBorderCornerRadius.Value.TopRight);
-        Assert.Equal(5, internalBorderCornerRadius.Value.BottomRight);
-        Assert.Equal(5, internalBorderCornerRadius.Value.BottomLeft);
+        await Assert.Equal(5, internalBorderCornerRadius.Value.TopLeft);
+        await Assert.Equal(5, internalBorderCornerRadius.Value.TopRight);
+        await Assert.Equal(5, internalBorderCornerRadius.Value.BottomRight);
+        await Assert.Equal(5, internalBorderCornerRadius.Value.BottomLeft);
 
         recorder.Success();
     }
