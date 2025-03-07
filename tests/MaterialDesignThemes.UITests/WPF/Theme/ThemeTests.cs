@@ -2,6 +2,7 @@
 using System.Windows.Media;
 using MaterialDesignColors;
 
+
 namespace MaterialDesignThemes.UITests.WPF.Theme;
 
 public partial class ThemeTests : TestBase
@@ -10,7 +11,7 @@ public partial class ThemeTests : TestBase
         : base(output)
     { }
 
-    [Fact]
+    [Test]
     public async Task WhenUsingBuiltInLightXamlThemeDictionary_AllBrushesApplied()
     {
         IVisualElement<WrapPanel> panel = await Initialize("""
@@ -22,7 +23,7 @@ public partial class ThemeTests : TestBase
         await AssertAllThemeBrushesSet(panel);
     }
 
-    [Fact]
+    [Test]
     public async Task WhenUsingBuiltInDarkXamlThemeDictionary_AllBrushesApplied()
     {
         IVisualElement<WrapPanel> panel = await Initialize("""
@@ -34,7 +35,7 @@ public partial class ThemeTests : TestBase
         await AssertAllThemeBrushesSet(panel);
     }
 
-    [Fact]
+    [Test]
     public async Task WhenUsingBuiltInThemeDictionary_AllBrushesApplied()
     {
         IVisualElement<WrapPanel> panel = await Initialize("""
@@ -47,7 +48,7 @@ public partial class ThemeTests : TestBase
         await AssertAllThemeBrushesSet(panel);
     }
 
-    [Fact]
+    [Test]
     public async Task WhenUsingCustomColorThemeDictionary_AllBrushesApplied()
     {
         IVisualElement<WrapPanel> panel = await Initialize("""
@@ -94,12 +95,12 @@ public partial class ThemeTests : TestBase
             """);
         Dictionary<string, Color> xamlColorsByNames = await GetColors();
 
-        Assert.Equal(bundledColorsByNames.Count, xamlColorsByNames.Count);
+        await Assert.Equal(bundledColorsByNames.Count, xamlColorsByNames.Count);
 
         foreach (string brushName in GetBrushResourceNames())
         {
             bool areEqual = bundledColorsByNames[brushName] == xamlColorsByNames[brushName];
-            Assert.True(areEqual, $"Brush {brushName}, Bundled color {bundledColorsByNames[brushName]} does not match XAML color {xamlColorsByNames[brushName]}");
+            await Assert.True(areEqual, $"Brush {brushName}, Bundled color {bundledColorsByNames[brushName]} does not match XAML color {xamlColorsByNames[brushName]}");
         }
 
         async Task<Dictionary<string, Color>> GetColors()
@@ -127,7 +128,7 @@ public partial class ThemeTests : TestBase
     {
         IResource resource = await App.GetResource(name);
         SolidColorBrush? brush = resource.GetAs<SolidColorBrush>();
-        Assert.NotNull(brush);
+        await Assert.NotNull(brush);
         return brush.Color;
     }
 

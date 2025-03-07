@@ -186,727 +186,727 @@ partial class ThemeTests
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Background\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Background"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Background"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Foreground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Foreground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Foreground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ForegroundLight\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ForegroundLight"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ForegroundLight"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ValidationError\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ValidationError"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ValidationError"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Badged.DarkBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Badged.DarkBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Badged.DarkBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Badged.DarkForeground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Badged.DarkForeground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Badged.DarkForeground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Badged.LightBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Badged.LightBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Badged.LightBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Badged.LightForeground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Badged.LightForeground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Badged.LightForeground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Button.FlatClick\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Button.FlatClick"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Button.FlatClick"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Button.Ripple\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Button.Ripple"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Button.Ripple"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Button.FlatRipple\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Button.FlatRipple"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Button.FlatRipple"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"SnackBar.Ripple\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.SnackBar.Ripple"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.SnackBar.Ripple"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"SnackBar.Background\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.SnackBar.Background"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.SnackBar.Background"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"SnackBar.MouseOver\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.SnackBar.MouseOver"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.SnackBar.MouseOver"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Card.Background\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Card.Background"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Card.Background"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Card.Border\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Card.Border"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Card.Border"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"CheckBox.Disabled\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.CheckBox.Disabled"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.CheckBox.Disabled"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"CheckBox.UncheckedBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.CheckBox.UncheckedBorder"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.CheckBox.UncheckedBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"CheckBox.Off\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.CheckBox.Off"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.CheckBox.Off"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Chip.Background\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Chip.Background"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Chip.Background"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Chip.OutlineBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Chip.OutlineBorder"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Chip.OutlineBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ColorZone.DarkBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ColorZone.DarkBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ColorZone.DarkBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ColorZone.DarkForeground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ColorZone.DarkForeground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ColorZone.DarkForeground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ColorZone.LightBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ColorZone.LightBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ColorZone.LightBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ColorZone.LightForeground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ColorZone.LightForeground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ColorZone.LightForeground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.Disabled\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.Disabled"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.Disabled"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.FilledBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.FilledBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.FilledBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.HoverBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.HoverBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.HoverBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.OutlineInactiveBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.OutlineInactiveBorder"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.OutlineInactiveBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.HoverBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.HoverBorder"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.HoverBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.Border\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.Border"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.Border"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.OutlineBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.OutlineBorder"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.OutlineBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.Popup.DarkBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.Popup.DarkBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.Popup.DarkBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.Popup.DarkForeground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.Popup.DarkForeground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.Popup.DarkForeground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.Popup.LightBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.Popup.LightBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.Popup.LightBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.Popup.LightForeground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.Popup.LightForeground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ComboBox.Popup.LightForeground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"DataGrid.Border\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.DataGrid.Border"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.DataGrid.Border"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"DataGrid.ButtonPressed\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.DataGrid.ButtonPressed"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.DataGrid.ButtonPressed"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"DataGrid.ComboBoxHover\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.DataGrid.ComboBoxHover"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.DataGrid.ComboBoxHover"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"DataGrid.ComboBoxSelected\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.DataGrid.ComboBoxSelected"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.DataGrid.ComboBoxSelected"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"DataGrid.PopupBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.DataGrid.PopupBorder"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.DataGrid.PopupBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"DataGrid.RowHoverBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.DataGrid.RowHoverBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.DataGrid.RowHoverBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"DataGrid.Selected\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.DataGrid.Selected"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.DataGrid.Selected"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"DataGrid.ColumnHeaderForeground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.DataGrid.ColumnHeaderForeground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.DataGrid.ColumnHeaderForeground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"TextBox.HoverBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.TextBox.HoverBorder"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.TextBox.HoverBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"TextBox.Border\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.TextBox.Border"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.TextBox.Border"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"TextBox.OutlineBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.TextBox.OutlineBorder"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.TextBox.OutlineBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"TextBox.DisabledBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.TextBox.DisabledBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.TextBox.DisabledBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"TextBox.FilledBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.TextBox.FilledBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.TextBox.FilledBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"TextBox.HoverBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.TextBox.HoverBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.TextBox.HoverBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"TextBox.OutlineInactiveBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.TextBox.OutlineInactiveBorder"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.TextBox.OutlineInactiveBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"PasswordBox.HoverBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.PasswordBox.HoverBorder"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.PasswordBox.HoverBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"PasswordBox.Border\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.PasswordBox.Border"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.PasswordBox.Border"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"PasswordBox.OutlineBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.PasswordBox.OutlineBorder"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.PasswordBox.OutlineBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"PasswordBox.FilledBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.PasswordBox.FilledBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.PasswordBox.FilledBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"PasswordBox.HoverBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.PasswordBox.HoverBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.PasswordBox.HoverBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"PasswordBox.OutlineInactiveBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.PasswordBox.OutlineInactiveBorder"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.PasswordBox.OutlineInactiveBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"GridSplitter.Background\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.GridSplitter.Background"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.GridSplitter.Background"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"GridSplitter.PreviewBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.GridSplitter.PreviewBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.GridSplitter.PreviewBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Header.Foreground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Header.Foreground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Header.Foreground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ListBoxItem.Border\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ListBoxItem.Border"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ListBoxItem.Border"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ListBoxItem.Selected\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ListBoxItem.Selected"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ListBoxItem.Selected"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ListView.Hover\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ListView.Hover"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ListView.Hover"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ListView.Selected\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ListView.Selected"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ListView.Selected"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ListView.Separator\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ListView.Separator"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ListView.Separator"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"RadioButton.Border\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.RadioButton.Border"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.RadioButton.Border"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"RadioButton.Checked\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.RadioButton.Checked"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.RadioButton.Checked"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"RadioButton.Disabled\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.RadioButton.Disabled"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.RadioButton.Disabled"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"RadioButton.Outline\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.RadioButton.Outline"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.RadioButton.Outline"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"RadioButton.Chip.CheckedBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.RadioButton.Chip.CheckedBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.RadioButton.Chip.CheckedBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ScrollBar.ActiveBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ScrollBar.ActiveBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ScrollBar.ActiveBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ScrollBar.Foreground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ScrollBar.Foreground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ScrollBar.Foreground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ScrollBar.RepeatButtonBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ScrollBar.RepeatButtonBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ScrollBar.RepeatButtonBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Separator.Background\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Separator.Background"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.Separator.Background"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"TabControl.Divider\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.TabControl.Divider"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.TabControl.Divider"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToolBar.Background\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Background"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Background"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToolBar.Separator\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Separator"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Separator"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToolBar.Thumb.Foreground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Thumb.Foreground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Thumb.Foreground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToolBar.Item.Background\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Item.Background"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Item.Background"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToolBar.Item.Foreground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Item.Foreground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Item.Foreground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToolBar.Overflow.Border\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Overflow.Border"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolBar.Overflow.Border"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToggleButton.Background\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToggleButton.Background"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToggleButton.Background"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToggleButton.Foreground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToggleButton.Foreground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToggleButton.Foreground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToggleButton.Switch.TrackOffBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToggleButton.Switch.TrackOffBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToggleButton.Switch.TrackOffBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ToolTip.Background\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolTip.Background"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesign.Brush.ToolTip.Background"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignPaper\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignPaper"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignPaper"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignBody\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignBody"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignBody"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignBodyLight\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignBodyLight"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignBodyLight"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignCheckBoxOff\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignCheckBoxOff"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignCheckBoxOff"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextBoxBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignTextBoxBorder"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignTextBoxBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignValidationErrorBrush\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignValidationErrorBrush"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignValidationErrorBrush"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignFlatButtonClick\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignFlatButtonClick"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignFlatButtonClick"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignFlatButtonRipple\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignFlatButtonRipple"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignFlatButtonRipple"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignSnackbarRipple\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignSnackbarRipple"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignSnackbarRipple"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignFlatButtonRipple\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignFlatButtonRipple"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignFlatButtonRipple"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignSnackbarRipple\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignSnackbarRipple"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignSnackbarRipple"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignFlatButtonRipple\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignFlatButtonRipple"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignFlatButtonRipple"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignSnackbarRipple\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignSnackbarRipple"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignSnackbarRipple"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignSnackbarBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignSnackbarBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignSnackbarBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignSnackbarMouseOver\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignSnackbarMouseOver"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignSnackbarMouseOver"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignCardBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignCardBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignCardBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignCheckBoxDisabled\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignCheckBoxDisabled"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignCheckBoxDisabled"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignBodyLight\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignBodyLight"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignBodyLight"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignCheckBoxOff\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignCheckBoxOff"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignCheckBoxOff"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextBoxBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignTextBoxBorder"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignTextBoxBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignChipBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignChipBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignChipBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignBody\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignBody"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignBody"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignBodyLight\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignBodyLight"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignBodyLight"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignCheckBoxOff\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignCheckBoxOff"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignCheckBoxOff"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextBoxBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignTextBoxBorder"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignTextBoxBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignColumnHeader\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignColumnHeader"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignColumnHeader"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextAreaBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignTextAreaBorder"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignTextAreaBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignDataGridRowHoverBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignDataGridRowHoverBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignDataGridRowHoverBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignColumnHeader\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignColumnHeader"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignColumnHeader"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextAreaBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignTextAreaBorder"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignTextAreaBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignBody\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignBody"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignBody"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignBodyLight\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignBodyLight"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignBodyLight"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignCheckBoxOff\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignCheckBoxOff"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignCheckBoxOff"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextBoxBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignTextBoxBorder"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignTextBoxBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignColumnHeader\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignColumnHeader"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignColumnHeader"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextAreaBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignTextAreaBorder"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignTextAreaBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextFieldBoxDisabledBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignTextFieldBoxDisabledBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignTextFieldBoxDisabledBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextFieldBoxBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignTextFieldBoxBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignTextFieldBoxBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextFieldBoxHoverBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignTextFieldBoxHoverBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignTextFieldBoxHoverBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignDivider\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignDivider"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignDivider"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextAreaInactiveBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignTextAreaInactiveBorder"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignTextAreaInactiveBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignBody\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignBody"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignBody"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignBodyLight\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignBodyLight"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignBodyLight"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignCheckBoxOff\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignCheckBoxOff"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignCheckBoxOff"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextBoxBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignTextBoxBorder"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignTextBoxBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignColumnHeader\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignColumnHeader"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignColumnHeader"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextAreaBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignTextAreaBorder"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignTextAreaBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextFieldBoxBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignTextFieldBoxBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignTextFieldBoxBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextFieldBoxHoverBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignTextFieldBoxHoverBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignTextFieldBoxHoverBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignDivider\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignDivider"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignDivider"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextAreaInactiveBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignTextAreaInactiveBorder"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignTextAreaInactiveBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignColumnHeader\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignColumnHeader"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignColumnHeader"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextAreaBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignTextAreaBorder"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignTextAreaBorder"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignToolBarBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignToolBarBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignToolBarBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextFieldBoxHoverBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignTextFieldBoxHoverBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignTextFieldBoxHoverBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignDivider\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignDivider"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignDivider"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignToolBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignToolBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignToolBackground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignToolForeground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignToolForeground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignToolForeground"), textBlockBackground);
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignToolTipBackground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            Assert.Equal(await GetResourceColor("MaterialDesignToolTipBackground"), textBlockBackground);
+            await Assert.Equal(await GetResourceColor("MaterialDesignToolTipBackground"), textBlockBackground);
         }
     }
     private static IEnumerable<string> GetBrushResourceNames()

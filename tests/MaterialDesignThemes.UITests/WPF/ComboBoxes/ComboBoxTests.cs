@@ -5,12 +5,7 @@ namespace MaterialDesignThemes.UITests.WPF.ComboBoxes;
 
 public class ComboBoxTests : TestBase
 {
-    public ComboBoxTests(ITestOutputHelper output)
-        : base(output)
-    {
-    }
-
-    [Fact]
+    [Test]
     [Description("Pull Request 2192")]
     public async Task OnComboBoxHelperTextFontSize_ChangesHelperTextFontSize()
     {
@@ -26,11 +21,11 @@ public class ComboBoxTests : TestBase
 
         double fontSize = await helpTextBlock.GetFontSize();
 
-        Assert.Equal(20, fontSize);
+        await Assert.That(fontSize).IsEqualTo(20);
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Pull Request 2192")]
     public async Task OnFilledComboBoxHelperTextFontSize_ChangesHelperTextFontSize()
     {
@@ -47,11 +42,11 @@ public class ComboBoxTests : TestBase
 
         double fontSize = await helpTextBlock.GetFontSize();
 
-        Assert.Equal(20, fontSize);
+        await Assert.That(fontSize).IsEqualTo(20);
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 2495")]
     public async Task OnComboBox_WithClearButton_ClearsSelection()
     {
@@ -74,23 +69,23 @@ public class ComboBoxTests : TestBase
         int? selectedIndex = await comboBox.GetSelectedIndex();
         object? text = await comboBox.GetText();
 
-        Assert.True(selectedIndex >= 0);
-        Assert.NotNull(text);
+        await Assert.That(selectedIndex >= 0).IsTrue();
+        await Assert.That(text).IsNotNull();
 
         await clearButton.LeftClick();
 
         await Wait.For(async () =>
         {
             text = await comboBox.GetText();
-            Assert.Null(text);
+            await Assert.That(text).IsNotNull();
             selectedIndex = await comboBox.GetSelectedIndex();
-            Assert.False(selectedIndex >= 0);
+            await Assert.That(selectedIndex >= 0).IsFalse();
         });
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 2690")]
     public async Task OnEditableComboBox_WithDefaultContextMenu_ShowsCutCopyPaste()
     {
@@ -108,7 +103,7 @@ public class ComboBoxTests : TestBase
         await comboBox.RightClick();
 
         IVisualElement<ContextMenu>? contextMenu = await comboBox.GetContextMenu();
-        Assert.True(contextMenu is not null, "No context menu set on the ComboBox");
+        await Assert.That(contextMenu).IsNotNull().Because("No context menu set on the ComboBox");
         await Wait.For(async () => await contextMenu!.GetIsVisible());
         await AssertMenu("Cut");
         await AssertMenu("Copy");
@@ -119,11 +114,11 @@ public class ComboBoxTests : TestBase
         async Task AssertMenu(string menuHeader)
         {
             var menuItem = await contextMenu!.GetElement(ElementQuery.PropertyExpression<MenuItem>(x => x.Header, menuHeader));
-            Assert.True(menuItem is not null, $"{menuHeader} menu item not found");
+            await Assert.That(menuItem).IsNotNull().Because($"{menuHeader} menu item not found");
         }
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 2713")]
     public async Task OnEditableComboBox_ClickInTextArea_FocusesTextBox()
     {
@@ -160,24 +155,24 @@ public class ComboBoxTests : TestBase
         bool textBoxHasFocus = await editableTextBox.GetIsFocused();
         bool textBoxHasKeyboardFocus = await editableTextBox.GetIsKeyboardFocused();
 
-        Assert.True(wasOpenAfterClickOnToggleButton, "ComboBox should have opened drop down when clicking the toggle button");
-        Assert.False(wasOpenAfterClickOnEditableTextBox, "ComboBox should not have opened drop down when clicking the editable TextBox");
-        Assert.True(textBoxHasFocus, "Editable TextBox should have focus");
-        Assert.True(textBoxHasKeyboardFocus, "Editable TextBox should have keyboard focus");
+        await Assert.That(wasOpenAfterClickOnToggleButton).IsTrue().Because("ComboBox should have opened drop down when clicking the toggle button");
+        await Assert.That(wasOpenAfterClickOnEditableTextBox).IsFalse().Because("ComboBox should not have opened drop down when clicking the editable ait wTextBox");
+        await Assert.That(textBoxHasFocus).IsTrue().Because("Editable TextBox should have focus");
+        await Assert.That(textBoxHasKeyboardFocus).IsTrue().Because("Editable TextBox should have keyboard focus");
 
         recorder.Success();
     }
 
-    [Theory]
-    [InlineData("MaterialDesignFloatingHintComboBox", null)]
-    [InlineData("MaterialDesignFloatingHintComboBox", 5)]
-    [InlineData("MaterialDesignFloatingHintComboBox", 20)]
-    [InlineData("MaterialDesignFilledComboBox", null)]
-    [InlineData("MaterialDesignFilledComboBox", 5)]
-    [InlineData("MaterialDesignFilledComboBox", 20)]
-    [InlineData("MaterialDesignOutlinedComboBox", null)]
-    [InlineData("MaterialDesignOutlinedComboBox", 5)]
-    [InlineData("MaterialDesignOutlinedComboBox", 20)]
+    [Test]
+    [Arguments("MaterialDesignFloatingHintComboBox", null)]
+    [Arguments("MaterialDesignFloatingHintComboBox", 5)]
+    [Arguments("MaterialDesignFloatingHintComboBox", 20)]
+    [Arguments("MaterialDesignFilledComboBox", null)]
+    [Arguments("MaterialDesignFilledComboBox", 5)]
+    [Arguments("MaterialDesignFilledComboBox", 20)]
+    [Arguments("MaterialDesignOutlinedComboBox", null)]
+    [Arguments("MaterialDesignOutlinedComboBox", 5)]
+    [Arguments("MaterialDesignOutlinedComboBox", 20)]
     public async Task ComboBox_WithHintAndHelperText_RespectsPadding(string styleName, int? padding)
     {
         await using var recorder = new TestRecorder(App);
@@ -203,22 +198,22 @@ public class ComboBoxTests : TestBase
         Rect? hintCoordinates = await hint.GetCoordinates();
         Rect? helperTextCoordinates = await helperText.GetCoordinates();
 
-        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left), 0, tolerance);
-        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - helperTextCoordinates.Value.Left), 0, tolerance);
+        await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left)).IsBetween(-tolerance, tolerance);
+        await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - helperTextCoordinates.Value.Left)).IsBetween(-tolerance, tolerance);
 
         recorder.Success();
     }
 
-    [Theory]
-    [InlineData("MaterialDesignFloatingHintComboBox", null)]
-    [InlineData("MaterialDesignFloatingHintComboBox", 5)]
-    [InlineData("MaterialDesignFloatingHintComboBox", 20)]
-    [InlineData("MaterialDesignFilledComboBox", null)]
-    [InlineData("MaterialDesignFilledComboBox", 5)]
-    [InlineData("MaterialDesignFilledComboBox", 20)]
-    [InlineData("MaterialDesignOutlinedComboBox", null)]
-    [InlineData("MaterialDesignOutlinedComboBox", 5)]
-    [InlineData("MaterialDesignOutlinedComboBox", 20)]
+    [Test]
+    [Arguments("MaterialDesignFloatingHintComboBox", null)]
+    [Arguments("MaterialDesignFloatingHintComboBox", 5)]
+    [Arguments("MaterialDesignFloatingHintComboBox", 20)]
+    [Arguments("MaterialDesignFilledComboBox", null)]
+    [Arguments("MaterialDesignFilledComboBox", 5)]
+    [Arguments("MaterialDesignFilledComboBox", 20)]
+    [Arguments("MaterialDesignOutlinedComboBox", null)]
+    [Arguments("MaterialDesignOutlinedComboBox", 5)]
+    [Arguments("MaterialDesignOutlinedComboBox", 20)]
     public async Task ComboBox_WithHintAndValidationError_RespectsPadding(string styleName, int? padding)
     {
         await using var recorder = new TestRecorder(App);
@@ -252,17 +247,17 @@ public class ComboBoxTests : TestBase
         Rect? hintCoordinates = await hint.GetCoordinates();
         Rect? errorViewerCoordinates = await errorViewer.GetCoordinates();
 
-        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left), 0, tolerance);
-        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left), 0, tolerance);
+        await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left)).IsBetween(-tolerance, tolerance);
+        await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left)).IsBetween(-tolerance, tolerance);
 
         recorder.Success();
     }
 
-    [Theory]
-    [InlineData(HorizontalAlignment.Left)]
-    [InlineData(HorizontalAlignment.Right)]
-    [InlineData(HorizontalAlignment.Center)]
-    [InlineData(HorizontalAlignment.Stretch)]
+    [Test]
+    [Arguments(HorizontalAlignment.Left)]
+    [Arguments(HorizontalAlignment.Right)]
+    [Arguments(HorizontalAlignment.Center)]
+    [Arguments(HorizontalAlignment.Stretch)]
     [Description("Issue 3433")]
     public async Task ComboBox_WithHorizontalContentAlignment_RespectsAlignment(HorizontalAlignment alignment)
     {
@@ -278,15 +273,15 @@ public class ComboBoxTests : TestBase
         var comboBox = await stackPanel.GetElement<ComboBox>("/ComboBox");
         var selectedItemPresenter = await comboBox.GetElement<ContentPresenter>("contentPresenter");
 
-        Assert.Equal(alignment, await selectedItemPresenter.GetHorizontalAlignment());
+        await Assert.That(await selectedItemPresenter.GetHorizontalAlignment()).IsEqualTo(alignment);
 
         recorder.Success();
     }
 
-    [Theory]
-    [InlineData("MaterialDesignFloatingHintComboBox", 0, 0, 0, 1)]
-    [InlineData("MaterialDesignFilledComboBox", 0, 0, 0, 1)]
-    [InlineData("MaterialDesignOutlinedComboBox", 2, 2, 2, 2)]
+    [Test]
+    [Arguments("MaterialDesignFloatingHintComboBox", 0, 0, 0, 1)]
+    [Arguments("MaterialDesignFilledComboBox", 0, 0, 0, 1)]
+    [Arguments("MaterialDesignOutlinedComboBox", 2, 2, 2, 2)]
     [Description("Issue 3623")]
     public async Task ComboBox_BorderShouldDependOnAppliedStyle(string style, double left, double top, double right, double bottom)
     {
@@ -305,7 +300,7 @@ public class ComboBoxTests : TestBase
         await comboBox.LeftClick();
 
         Thickness thickness = await border.GetBorderThickness();
-        Assert.Equal(new Thickness(left, top, right, bottom), thickness);
+        await Assert.That(thickness).IsEqualTo(new Thickness(left, top, right, bottom));
 
         recorder.Success();
     }

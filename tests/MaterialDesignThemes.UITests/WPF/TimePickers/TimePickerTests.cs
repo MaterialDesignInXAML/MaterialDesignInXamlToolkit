@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Windows.Media;
 using MaterialDesignThemes.UITests.WPF.TextBoxes;
 
+
 namespace MaterialDesignThemes.UITests.WPF.TimePickers;
 
 public class TimePickerTests : TestBase
@@ -12,9 +13,9 @@ public class TimePickerTests : TestBase
     {
     }
 
-    [Theory]
-    [InlineData(1, 1, 1)]
-    [InlineData(2020, 8, 10)]
+    [Test]
+    [Arguments(1, 1, 1)]
+    [Arguments(2020, 8, 10)]
     public async Task OnTextChangedIfSelectedTimeIsNonNull_DatePartDoesNotChange(int year, int month, int day)
     {
         await using var recorder = new TestRecorder(App);
@@ -31,14 +32,14 @@ public class TimePickerTests : TestBase
         await timePickerTextBox.SetText("1:10 AM");
 
         var actual = await timePicker.GetSelectedTime();
-        Assert.Equal(new DateTime(year, month, day, 1, 10, 0), actual);
+        await Assert.Equal(new DateTime(year, month, day, 1, 10, 0), actual);
 
         recorder.Success();
     }
 
-    [Theory]
-    [InlineData(1, 1, 1)]
-    [InlineData(2020, 8, 10)]
+    [Test]
+    [Arguments(1, 1, 1)]
+    [Arguments(2020, 8, 10)]
     public async Task OnLostFocusIfSelectedTimeIsNonNull_DatePartDoesNotChange(int year, int month, int day)
     {
         await using var recorder = new TestRecorder(App);
@@ -58,14 +59,14 @@ public class TimePickerTests : TestBase
         await textBox.MoveKeyboardFocus();
 
         var actual = await timePicker.GetSelectedTime();
-        Assert.Equal(new DateTime(year, month, day, 1, 10, 0), actual);
+        await Assert.Equal(new DateTime(year, month, day, 1, 10, 0), actual);
 
         recorder.Success();
     }
 
-    [Theory]
-    [InlineData(1, 1, 1)]
-    [InlineData(2020, 8, 2)]
+    [Test]
+    [Arguments(1, 1, 1)]
+    [Arguments(2020, 8, 2)]
     public async Task OnClockPickedIfSelectedTimeIsNonNull_DatePartDoesNotChange(int year, int month, int day)
     {
         await using var recorder = new TestRecorder(App);
@@ -80,12 +81,12 @@ public class TimePickerTests : TestBase
         await timePicker.PickClock(1, 10);
 
         var actual = await timePicker.GetSelectedTime();
-        Assert.Equal(new DateTime(year, month, day, 1, 10, 0), actual);
+        await Assert.Equal(new DateTime(year, month, day, 1, 10, 0), actual);
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task OnTextChangedIfSelectedTimeIsNull_DatePartWillBeToday()
     {
         await using var recorder = new TestRecorder(App);
@@ -102,12 +103,12 @@ public class TimePickerTests : TestBase
         await timePickerTextBox.SetText("1:23 AM");
 
         var actual = await timePicker.GetSelectedTime();
-        Assert.Equal(AdjustToday(today, actual).Add(new TimeSpan(1, 23, 0)), actual);
+        await Assert.Equal(AdjustToday(today, actual).Add(new TimeSpan(1, 23, 0)), actual);
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task OnLostFocusIfSelectedTimeIsNull_DatePartWillBeToday()
     {
         await using var recorder = new TestRecorder(App);
@@ -127,12 +128,12 @@ public class TimePickerTests : TestBase
         await textBox.MoveKeyboardFocus();
 
         var actual = await timePicker.GetSelectedTime();
-        Assert.Equal(AdjustToday(today, actual).Add(new TimeSpan(1, 23, 0)), actual);
+        await Assert.Equal(AdjustToday(today, actual).Add(new TimeSpan(1, 23, 0)), actual);
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task OnClockPickedIfSelectedTimeIsNull_DatePartWillBeToday()
     {
         await using var recorder = new TestRecorder(App);
@@ -147,7 +148,7 @@ public class TimePickerTests : TestBase
         await timePicker.PickClock(1, 23);
 
         var actual = await timePicker.GetSelectedTime();
-        Assert.Equal(AdjustToday(today, actual).Add(new TimeSpan(1, 23, 0)), actual);
+        await Assert.Equal(AdjustToday(today, actual).Add(new TimeSpan(1, 23, 0)), actual);
 
         recorder.Success();
     }
@@ -163,10 +164,10 @@ public class TimePickerTests : TestBase
         return today;
     }
 
-    [Theory]
-    [InlineData("1:2")]
-    [InlineData("1:02")]
-    [InlineData("1:02 AM")]
+    [Test]
+    [Arguments("1:2")]
+    [Arguments("1:02")]
+    [Arguments("1:02 AM")]
     public async Task OnLostFocusIfTimeHasBeenChanged_TextWillBeFormatted(string text)
     {
         await using var recorder = new TestRecorder(App);
@@ -185,15 +186,15 @@ public class TimePickerTests : TestBase
         await textBox.MoveKeyboardFocus();
 
         var actual = await timePickerTextBox.GetText();
-        Assert.Equal("1:02 AM", actual);
+        await Assert.Equal("1:02 AM", actual);
 
         recorder.Success();
     }
 
-    [Theory]
-    [InlineData("1:2")]
-    [InlineData("1:02")]
-    [InlineData("1:02 AM")]
+    [Test]
+    [Arguments("1:2")]
+    [Arguments("1:02")]
+    [Arguments("1:02 AM")]
     public async Task OnLostFocusIfTimeHasNotBeenChanged_TextWillBeFormatted(string text)
     {
         await using var recorder = new TestRecorder(App);
@@ -213,15 +214,15 @@ public class TimePickerTests : TestBase
         await textBox.MoveKeyboardFocus();
 
         var actual = await timePickerTextBox.GetText();
-        Assert.Equal("1:02 AM", actual);
+        await Assert.Equal("1:02 AM", actual);
 
         recorder.Success();
     }
 
-    [Theory]
-    [InlineData("1:2")]
-    [InlineData("1:02")]
-    [InlineData("1:02 AM")]
+    [Test]
+    [Arguments("1:2")]
+    [Arguments("1:02")]
+    [Arguments("1:02 AM")]
     public async Task OnEnterKeyDownIfTimeHasNotBeenChanged_TextWillBeFormatted(string text)
     {
         await using var recorder = new TestRecorder(App);
@@ -238,15 +239,15 @@ public class TimePickerTests : TestBase
         await timePickerTextBox.SendKeyboardInput($"{text}{Key.Enter}");
 
         var actual = await timePickerTextBox.GetText();
-        Assert.Equal("1:02 AM", actual);
+        await Assert.Equal("1:02 AM", actual);
 
         recorder.Success();
     }
 
-    [Theory]
-    [InlineData("1:2")]
-    [InlineData("1:02")]
-    [InlineData("1:02 AM")]
+    [Test]
+    [Arguments("1:2")]
+    [Arguments("1:02")]
+    [Arguments("1:02 AM")]
     public async Task OnEnterKeyDownIfTimeHasBeenChanged_TextWillBeFormatted(string text)
     {
         await using var recorder = new TestRecorder(App);
@@ -263,15 +264,15 @@ public class TimePickerTests : TestBase
         await timePickerTextBox.SendKeyboardInput($"{text}{Key.Enter}");
 
         var actual = await timePickerTextBox.GetText();
-        Assert.Equal("1:02 AM", actual);
+        await Assert.Equal("1:02 AM", actual);
 
         recorder.Success();
     }
 
-    [Theory]
-    [InlineData("1:2")]
-    [InlineData("1:02")]
-    [InlineData("1:02 AM")]
+    [Test]
+    [Arguments("1:2")]
+    [Arguments("1:02")]
+    [Arguments("1:02 AM")]
     public async Task OnTimePickedIfTimeHasBeenChanged_TextWillBeFormatted(string text)
     {
         await using var recorder = new TestRecorder(App);
@@ -289,15 +290,15 @@ public class TimePickerTests : TestBase
         await timePicker.PickClock(1, 3);
 
         var actual = await timePickerTextBox.GetText();
-        Assert.Equal("1:03 AM", actual);
+        await Assert.Equal("1:03 AM", actual);
 
         recorder.Success();
     }
 
-    [Theory]
-    [InlineData("1:2")]
-    [InlineData("1:02")]
-    [InlineData("1:02 AM")]
+    [Test]
+    [Arguments("1:2")]
+    [Arguments("1:02")]
+    [Arguments("1:02 AM")]
     public async Task OnTimePickedIfTimeHasNotBeenChanged_TextWillBeFormatted(string text)
     {
         await using var recorder = new TestRecorder(App);
@@ -315,12 +316,12 @@ public class TimePickerTests : TestBase
         await timePicker.PickClock(1, 2);
 
         var actual = await timePickerTextBox.GetText();
-        Assert.Equal("1:02 AM", actual);
+        await Assert.Equal("1:02 AM", actual);
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Pull Request 2192")]
     public async Task OnTimePickerHelperTextFontSize_ChangesHelperTextFontSize()
     {
@@ -336,11 +337,11 @@ public class TimePickerTests : TestBase
 
         double fontSize = await helpTextBlock.GetFontSize();
 
-        Assert.Equal(20, fontSize);
+        await Assert.Equal(20, fontSize);
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 2737")]
     public async Task OutlinedTimePicker_RespectsActiveAndInactiveBorderThickness_WhenAttachedPropertiesAreSet()
     {
@@ -387,24 +388,24 @@ public class TimePickerTests : TestBase
         var withErrorBorderThickness = await textBoxOuterBorder.GetBorderThickness(); ;
 
         // Assert
-        Assert.Equal(expectedInactiveBorderThickness, inactiveBorderThickness);
-        Assert.Equal(expectedActiveBorderThickness, hoverBorderThickness);
-        Assert.Equal(expectedActiveBorderThickness, focusedBorderThickness);
-        Assert.Equal(expectedActiveBorderThickness, withErrorBorderThickness);
+        await Assert.Equal(expectedInactiveBorderThickness, inactiveBorderThickness);
+        await Assert.Equal(expectedActiveBorderThickness, hoverBorderThickness);
+        await Assert.Equal(expectedActiveBorderThickness, focusedBorderThickness);
+        await Assert.Equal(expectedActiveBorderThickness, withErrorBorderThickness);
 
         recorder.Success();
     }
 
-    [Theory]
-    [InlineData("MaterialDesignFloatingHintTimePicker", null)]
-    [InlineData("MaterialDesignFloatingHintTimePicker", 5)]
-    [InlineData("MaterialDesignFloatingHintTimePicker", 20)]
-    [InlineData("MaterialDesignFilledTimePicker", null)]
-    [InlineData("MaterialDesignFilledTimePicker", 5)]
-    [InlineData("MaterialDesignFilledTimePicker", 20)]
-    [InlineData("MaterialDesignOutlinedTimePicker", null)]
-    [InlineData("MaterialDesignOutlinedTimePicker", 5)]
-    [InlineData("MaterialDesignOutlinedTimePicker", 20)]
+    [Test]
+    [Arguments("MaterialDesignFloatingHintTimePicker", null)]
+    [Arguments("MaterialDesignFloatingHintTimePicker", 5)]
+    [Arguments("MaterialDesignFloatingHintTimePicker", 20)]
+    [Arguments("MaterialDesignFilledTimePicker", null)]
+    [Arguments("MaterialDesignFilledTimePicker", 5)]
+    [Arguments("MaterialDesignFilledTimePicker", 20)]
+    [Arguments("MaterialDesignOutlinedTimePicker", null)]
+    [Arguments("MaterialDesignOutlinedTimePicker", 5)]
+    [Arguments("MaterialDesignOutlinedTimePicker", 20)]
     public async Task TimePicker_WithHintAndHelperText_RespectsPadding(string styleName, int? padding)
     {
         await using var recorder = new TestRecorder(App);
@@ -430,22 +431,22 @@ public class TimePickerTests : TestBase
         Rect? hintCoordinates = await hint.GetCoordinates();
         Rect? helperTextCoordinates = await helperText.GetCoordinates();
 
-        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left), 0, tolerance);
-        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - helperTextCoordinates.Value.Left), 0, tolerance);
+        await Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left), 0, tolerance);
+        await Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - helperTextCoordinates.Value.Left), 0, tolerance);
 
         recorder.Success();
     }
 
-    [Theory]
-    [InlineData("MaterialDesignFloatingHintTimePicker", null)]
-    [InlineData("MaterialDesignFloatingHintTimePicker", 5)]
-    [InlineData("MaterialDesignFloatingHintTimePicker", 20)]
-    [InlineData("MaterialDesignFilledTimePicker", null)]
-    [InlineData("MaterialDesignFilledTimePicker", 5)]
-    [InlineData("MaterialDesignFilledTimePicker", 20)]
-    [InlineData("MaterialDesignOutlinedTimePicker", null)]
-    [InlineData("MaterialDesignOutlinedTimePicker", 5)]
-    [InlineData("MaterialDesignOutlinedTimePicker", 20)]
+    [Test]
+    [Arguments("MaterialDesignFloatingHintTimePicker", null)]
+    [Arguments("MaterialDesignFloatingHintTimePicker", 5)]
+    [Arguments("MaterialDesignFloatingHintTimePicker", 20)]
+    [Arguments("MaterialDesignFilledTimePicker", null)]
+    [Arguments("MaterialDesignFilledTimePicker", 5)]
+    [Arguments("MaterialDesignFilledTimePicker", 20)]
+    [Arguments("MaterialDesignOutlinedTimePicker", null)]
+    [Arguments("MaterialDesignOutlinedTimePicker", 5)]
+    [Arguments("MaterialDesignOutlinedTimePicker", 20)]
     public async Task TimePicker_WithHintAndValidationError_RespectsPadding(string styleName, int? padding)
     {
         await using var recorder = new TestRecorder(App);
@@ -479,13 +480,13 @@ public class TimePickerTests : TestBase
         Rect? hintCoordinates = await hint.GetCoordinates();
         Rect? errorViewerCoordinates = await errorViewer.GetCoordinates();
 
-        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left), 0, tolerance);
-        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left), 0, tolerance);
+        await Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left), 0, tolerance);
+        await Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left), 0, tolerance);
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3119")]
     public async Task TimePicker_WithClearButton_ClearButtonClearsSelectedTime()
     {
@@ -500,19 +501,19 @@ public class TimePickerTests : TestBase
 </StackPanel>");
         var timePicker = await stackPanel.GetElement<TimePicker>("/TimePicker");
         var clearButton = await timePicker.GetElement<Button>("PART_ClearButton");
-        Assert.NotNull(await timePicker.GetSelectedTime());
+        await Assert.NotNull(await timePicker.GetSelectedTime());
 
         // Act
         await clearButton.LeftClick();
         await Task.Delay(50);
 
         // Assert
-        Assert.Null(await timePicker.GetSelectedTime());
+        await Assert.Null(await timePicker.GetSelectedTime());
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3369")]
     public async Task TimePicker_WithClearButton_ClearButtonClearsUncommittedText()
     {
@@ -530,19 +531,19 @@ public class TimePickerTests : TestBase
         var clearButton = await timePicker.GetElement<Button>("PART_ClearButton");
 
         await timePickerTextBox.SendKeyboardInput($"invalid time");
-        Assert.Equal("invalid time", await timePickerTextBox.GetText());
+        await Assert.Equal("invalid time", await timePickerTextBox.GetText());
 
         // Act
         await clearButton.LeftClick();
         await Task.Delay(50);
 
         // Assert
-        Assert.Null(await timePickerTextBox.GetText());
+        await Assert.Null(await timePickerTextBox.GetText());
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3365")]
     public async Task TimePicker_WithOutlinedStyleAndNoCustomHintBackgroundSet_ShouldApplyDefaultBackgroundWhenFloated()
     {
@@ -563,23 +564,23 @@ public class TimePickerTests : TestBase
         var defaultFloatedBackground = await GetThemeColor("MaterialDesign.Brush.Background");
 
         // Assert (unfocused state)
-        Assert.Null(await hintBackgroundGrid.GetBackgroundColor());
+        await Assert.Null(await hintBackgroundGrid.GetBackgroundColor());
 
         // Act
         await timePickerTextBox.MoveKeyboardFocus();
 
         // Assert (focused state)
-        Assert.Equal(defaultFloatedBackground, await hintBackgroundGrid.GetBackgroundColor());
+        await Assert.Equal(defaultFloatedBackground, await hintBackgroundGrid.GetBackgroundColor());
 
         recorder.Success();
     }
 
-    [Theory]
+    [Test]
     [Description("Issue 3365")]
-    [InlineData("MaterialDesignTimePicker")]
-    [InlineData("MaterialDesignFloatingHintTimePicker")]
-    [InlineData("MaterialDesignFilledTimePicker")]
-    [InlineData("MaterialDesignOutlinedTimePicker")]
+    [Arguments("MaterialDesignTimePicker")]
+    [Arguments("MaterialDesignFloatingHintTimePicker")]
+    [Arguments("MaterialDesignFilledTimePicker")]
+    [Arguments("MaterialDesignOutlinedTimePicker")]
     public async Task TimePicker_WithCustomHintBackgroundSet_ShouldApplyHintBackground(string style)
     {
         await using var recorder = new TestRecorder(App);
@@ -598,18 +599,18 @@ public class TimePickerTests : TestBase
         var hintBackgroundBorder = await timePicker.GetElement<Border>("HintBackgroundBorder");
 
         // Assert (unfocused state)
-        Assert.Equal(Colors.Red, await hintBackgroundBorder.GetBackgroundColor());
+        await Assert.Equal(Colors.Red, await hintBackgroundBorder.GetBackgroundColor());
 
         // Act
         await timePickerTextBox.MoveKeyboardFocus();
 
         // Assert (focused state)
-        Assert.Equal(Colors.Red, await hintBackgroundBorder.GetBackgroundColor());
+        await Assert.Equal(Colors.Red, await hintBackgroundBorder.GetBackgroundColor());
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3547")]
     public async Task TimePicker_ShouldApplyIsMouseOverTriggers_WhenHoveringTimeButton()
     {
@@ -637,13 +638,13 @@ public class TimePickerTests : TestBase
         var timePickerTimeButtonHoverThickness = await timePickerTextBoxBorder.GetBorderThickness();
 
         // Assert
-        Assert.Equal(expectedThickness, timePickerTextBoxHoverThickness);
-        Assert.Equal(expectedThickness, timePickerTimeButtonHoverThickness);
+        await Assert.Equal(expectedThickness, timePickerTextBoxHoverThickness);
+        await Assert.Equal(expectedThickness, timePickerTimeButtonHoverThickness);
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3650")]
     public async Task TimePicker_MovesFocusToPrevious_WhenShiftAndTabIsPressed()
     {
@@ -667,8 +668,8 @@ public class TimePickerTests : TestBase
         await Task.Delay(50);
 
         // Assert
-        Assert.True(await textBox.GetIsFocused());
-        Assert.False(await timePickerTextBox.GetIsFocused());
+        await Assert.True(await textBox.GetIsFocused());
+        await Assert.False(await timePickerTextBox.GetIsFocused());
 
         recorder.Success();
     }

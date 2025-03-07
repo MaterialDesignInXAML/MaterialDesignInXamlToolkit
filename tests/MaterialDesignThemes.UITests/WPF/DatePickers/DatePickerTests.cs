@@ -3,16 +3,12 @@ using System.Globalization;
 using System.Windows.Media;
 using MaterialDesignThemes.UITests.WPF.TextBoxes;
 
+
 namespace MaterialDesignThemes.UITests.WPF.DatePickers;
 
 public class DatePickerTests : TestBase
 {
-    public DatePickerTests(ITestOutputHelper output)
-        : base(output)
-    {
-    }
-
-    [Fact]
+    [Test]
     [Description("Pull Request 2192")]
     public async Task OnDatePickerHelperTextFontSize_ChangesHelperTextFontSize()
     {
@@ -28,11 +24,11 @@ public class DatePickerTests : TestBase
 
         double fontSize = await helpTextBlock.GetFontSize();
 
-        Assert.Equal(20, fontSize);
+        await Assert.That(fontSize).IsEqualTo(20);
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 2495")]
     public async Task OnDatePicker_WithClearButton_ClearsSelectedDate()
     {
@@ -48,20 +44,20 @@ public class DatePickerTests : TestBase
 
         DateTime? selectedDate = await datePicker.GetSelectedDate();
 
-        Assert.NotNull(selectedDate);
+        await Assert.That(selectedDate).IsNull();
 
         await clearButton.LeftClick();
 
         await Wait.For(async () =>
         {
             selectedDate = await datePicker.GetSelectedDate();
-            Assert.Null(selectedDate);
+            await Assert.That(selectedDate).IsNull();
         });
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3369")]
     public async Task OnDatePicker_WithClearButton_ClearsSelectedUncommittedText()
     {
@@ -78,19 +74,19 @@ public class DatePickerTests : TestBase
         var clearButton = await datePicker.GetElement<Button>("PART_ClearButton");
 
         await datePickerTextBox.SendKeyboardInput($"invalid date");
-        Assert.Equal("invalid date", await datePickerTextBox.GetText());
+        await Assert.That(await datePickerTextBox.GetText()).IsEqualTo("invalid date");
 
         // Act
         await clearButton.LeftClick();
         await Task.Delay(50);
 
         // Assert
-        Assert.Null(await datePickerTextBox.GetText());
+        await Assert.That(await datePickerTextBox.GetText()).IsNull();
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 2737")]
     public async Task OutlinedDatePicker_RespectsActiveAndInactiveBorderThickness_WhenAttachedPropertiesAreSet()
     {
@@ -137,24 +133,24 @@ public class DatePickerTests : TestBase
         var withErrorBorderThickness = await textBoxOuterBorder.GetBorderThickness();
 
         // Assert
-        Assert.Equal(expectedInactiveBorderThickness, inactiveBorderThickness);
-        Assert.Equal(expectedActiveBorderThickness, hoverBorderThickness);
-        Assert.Equal(expectedActiveBorderThickness, focusedBorderThickness);
-        Assert.Equal(expectedActiveBorderThickness, withErrorBorderThickness);
+        await Assert.That(inactiveBorderThickness).IsEqualTo(expectedInactiveBorderThickness);
+        await Assert.That(hoverBorderThickness).IsEqualTo(expectedActiveBorderThickness);
+        await Assert.That(focusedBorderThickness).IsEqualTo(expectedActiveBorderThickness);
+        await Assert.That(withErrorBorderThickness).IsEqualTo(expectedActiveBorderThickness);
 
         recorder.Success();
     }
 
-    [Theory]
-    [InlineData("MaterialDesignFloatingHintDatePicker", null)]
-    [InlineData("MaterialDesignFloatingHintDatePicker", 5)]
-    [InlineData("MaterialDesignFloatingHintDatePicker", 20)]
-    [InlineData("MaterialDesignFilledDatePicker", null)]
-    [InlineData("MaterialDesignFilledDatePicker", 5)]
-    [InlineData("MaterialDesignFilledDatePicker", 20)]
-    [InlineData("MaterialDesignOutlinedDatePicker", null)]
-    [InlineData("MaterialDesignOutlinedDatePicker", 5)]
-    [InlineData("MaterialDesignOutlinedDatePicker", 20)]
+    [Test]
+    [Arguments("MaterialDesignFloatingHintDatePicker", null)]
+    [Arguments("MaterialDesignFloatingHintDatePicker", 5)]
+    [Arguments("MaterialDesignFloatingHintDatePicker", 20)]
+    [Arguments("MaterialDesignFilledDatePicker", null)]
+    [Arguments("MaterialDesignFilledDatePicker", 5)]
+    [Arguments("MaterialDesignFilledDatePicker", 20)]
+    [Arguments("MaterialDesignOutlinedDatePicker", null)]
+    [Arguments("MaterialDesignOutlinedDatePicker", 5)]
+    [Arguments("MaterialDesignOutlinedDatePicker", 20)]
     public async Task DatePicker_WithHintAndHelperText_RespectsPadding(string styleName, int? padding)
     {
         await using var recorder = new TestRecorder(App);
@@ -180,22 +176,22 @@ public class DatePickerTests : TestBase
         Rect? hintCoordinates = await hint.GetCoordinates();
         Rect? helperTextCoordinates = await helperText.GetCoordinates();
 
-        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left), 0, tolerance);
-        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - helperTextCoordinates.Value.Left), 0, tolerance);
+        await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left)).IsBetween(0, tolerance);
+        await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - helperTextCoordinates.Value.Left)).IsBetween(0, tolerance);
 
         recorder.Success();
     }
 
-    [Theory]
-    [InlineData("MaterialDesignFloatingHintDatePicker", null)]
-    [InlineData("MaterialDesignFloatingHintDatePicker", 5)]
-    [InlineData("MaterialDesignFloatingHintDatePicker", 20)]
-    [InlineData("MaterialDesignFilledDatePicker", null)]
-    [InlineData("MaterialDesignFilledDatePicker", 5)]
-    [InlineData("MaterialDesignFilledDatePicker", 20)]
-    [InlineData("MaterialDesignOutlinedDatePicker", null)]
-    [InlineData("MaterialDesignOutlinedDatePicker", 5)]
-    [InlineData("MaterialDesignOutlinedDatePicker", 20)]
+    [Test]
+    [Arguments("MaterialDesignFloatingHintDatePicker", null)]
+    [Arguments("MaterialDesignFloatingHintDatePicker", 5)]
+    [Arguments("MaterialDesignFloatingHintDatePicker", 20)]
+    [Arguments("MaterialDesignFilledDatePicker", null)]
+    [Arguments("MaterialDesignFilledDatePicker", 5)]
+    [Arguments("MaterialDesignFilledDatePicker", 20)]
+    [Arguments("MaterialDesignOutlinedDatePicker", null)]
+    [Arguments("MaterialDesignOutlinedDatePicker", 5)]
+    [Arguments("MaterialDesignOutlinedDatePicker", 20)]
     public async Task DatePicker_WithHintAndValidationError_RespectsPadding(string styleName, int? padding)
     {
         await using var recorder = new TestRecorder(App);
@@ -229,13 +225,13 @@ public class DatePickerTests : TestBase
         Rect? hintCoordinates = await hint.GetCoordinates();
         Rect? errorViewerCoordinates = await errorViewer.GetCoordinates();
 
-        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left), 0, tolerance);
-        Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left), 0, tolerance);
+        await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left)).IsBetween(0, tolerance);
+        await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left)).IsBetween(0, tolerance);
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3365")]
     public async Task DatePicker_WithOutlinedStyleAndNoCustomHintBackgroundSet_ShouldApplyDefaultBackgroundWhenFloated()
     {
@@ -256,23 +252,23 @@ public class DatePickerTests : TestBase
         var defaultFloatedBackground = await GetThemeColor("MaterialDesign.Brush.Background");
 
         // Assert (unfocused state)
-        Assert.Null(await hintBackgroundGrid.GetBackgroundColor());
+        await Assert.That(await hintBackgroundGrid.GetBackgroundColor()).IsNull();
 
         // Act
         await datePickerTextBox.MoveKeyboardFocus();
 
         // Assert (focused state)
-        Assert.Equal(defaultFloatedBackground, await hintBackgroundGrid.GetBackgroundColor());
+        await Assert.That(await hintBackgroundGrid.GetBackgroundColor()).IsEqualTo(defaultFloatedBackground);
 
         recorder.Success();
     }
 
-    [Theory]
+    [Test]
     [Description("Issue 3365")]
-    [InlineData("MaterialDesignDatePicker")]
-    [InlineData("MaterialDesignFloatingHintDatePicker")]
-    [InlineData("MaterialDesignFilledDatePicker")]
-    [InlineData("MaterialDesignOutlinedDatePicker")]
+    [Arguments("MaterialDesignDatePicker")]
+    [Arguments("MaterialDesignFloatingHintDatePicker")]
+    [Arguments("MaterialDesignFilledDatePicker")]
+    [Arguments("MaterialDesignOutlinedDatePicker")]
     public async Task DatePicker_WithCustomHintBackgroundSet_ShouldApplyHintBackground(string style)
     {
         await using var recorder = new TestRecorder(App);
@@ -291,18 +287,18 @@ public class DatePickerTests : TestBase
         var hintBackgroundBorder = await datePicker.GetElement<Border>("HintBackgroundBorder");
 
         // Assert (unfocused state)
-        Assert.Equal(Colors.Red, await hintBackgroundBorder.GetBackgroundColor());
+        await Assert.That(await hintBackgroundBorder.GetBackgroundColor()).IsEqualTo(Colors.Red);
 
         // Act
         await datePickerTextBox.MoveKeyboardFocus();
 
         // Assert (focused state)
-        Assert.Equal(Colors.Red, await hintBackgroundBorder.GetBackgroundColor());
+        await Assert.That(await hintBackgroundBorder.GetBackgroundColor()).IsEqualTo(Colors.Red);
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3547")]
     public async Task DatePicker_ShouldApplyIsMouseOverTriggers_WhenHoveringCalendarButton()
     {
@@ -330,8 +326,8 @@ public class DatePickerTests : TestBase
         var datePickerCalendarButtonHoverThickness = await datePickerTextBoxBorder.GetBorderThickness();
 
         // Assert
-        Assert.Equal(expectedThickness, datePickerTextBoxHoverThickness);
-        Assert.Equal(expectedThickness, datePickerCalendarButtonHoverThickness);
+        await Assert.That(datePickerTextBoxHoverThickness).IsEqualTo(expectedThickness);
+        await Assert.That(datePickerCalendarButtonHoverThickness).IsEqualTo(expectedThickness);
 
         recorder.Success();
     }

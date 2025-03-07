@@ -4,11 +4,7 @@ namespace MaterialDesignThemes.UITests.WPF.Buttons;
 
 public class RaisedButtonTests : TestBase
 {
-    public RaisedButtonTests(ITestOutputHelper output)
-        : base(output)
-    { }
-
-    [Fact]
+    [Test]
     public async Task OnLoad_ThemeBrushesSet()
     {
         await using var recorder = new TestRecorder(App);
@@ -21,7 +17,7 @@ public class RaisedButtonTests : TestBase
         Color? color = await button.GetBackgroundColor();
 
         //Assert
-        Assert.Equal(midColor, color);
+        await Assert.That(color).IsEqualTo(midColor);
 
         recorder.Success();
     }
