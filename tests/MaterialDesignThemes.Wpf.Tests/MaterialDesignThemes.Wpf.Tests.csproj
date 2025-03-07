@@ -4,6 +4,8 @@
     <TargetFrameworks>net472;net8.0-windows</TargetFrameworks>
     <AssemblyTitle>MaterialDesignThemes.Wpf.Tests</AssemblyTitle>
     <Product>MaterialDesignThemes.Wpf.Tests</Product>
+    <OutputType>Exe</OutputType>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)'=='net472'">
     <Reference Include="PresentationCore" />
@@ -26,8 +28,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="xunit" />
-    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="System.Net.Http" />
+    <PackageReference Include="System.Text.RegularExpressions" />
+    <PackageReference Include="xunit.runner.visualstudio">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="xunit.v3" />
     <PackageReference Include="Xunit.StaFact" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
   </ItemGroup>

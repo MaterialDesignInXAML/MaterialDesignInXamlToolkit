@@ -1,11 +1,12 @@
 ﻿using System.Reflection;
 using Xunit.Sdk;
+using Xunit.v3;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
 public class EnumDataAttribute : DataAttribute
 {
-    public override IEnumerable<object[]> GetData(MethodInfo testMethod)
+    public override ValueTask<IReadOnlyCollection<ITheoryDataRow>> GetData(MethodInfo testMethod, DisposalTracker disposalTracker)
     {
         ParameterInfo[] parameters = testMethod.GetParameters();
         if (parameters.Length != 1 ||
@@ -14,14 +15,15 @@ public class EnumDataAttribute : DataAttribute
             throw new Exception($"{testMethod.DeclaringType?.FullName}.{testMethod.Name} must have a single enum parameter");
         }
 
-        return GetDataImplementation(parameters[0].ParameterType);
+        return new([..GetDataImplementation(parameters[0].ParameterType)]);
 
-        static IEnumerable<object[]> GetDataImplementation(Type parameterType)
+        static IEnumerable<ITheoryDataRow> GetDataImplementation(Type parameterType)
         {
             foreach (object enumValue in Enum.GetValues(parameterType).OfType<object>())
             {
-                yield return new[] { enumValue };
+                yield return new TheoryDataRow(enumValue);
             }
         }
     }
+    public override bool SupportsDiscoveryEnumeration() => true;
 }
