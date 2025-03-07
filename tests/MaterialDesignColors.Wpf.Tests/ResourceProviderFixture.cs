@@ -1,7 +1,7 @@
 ﻿using Shouldly;
 using Xunit;
 
-namespace MaterialDesignColors.Wpf.Fixture;
+namespace MaterialDesignColors.Wpf.Tests;
 
 public class ResourceProviderFixture
 {

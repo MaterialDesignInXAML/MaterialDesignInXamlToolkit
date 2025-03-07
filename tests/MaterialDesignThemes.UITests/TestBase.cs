@@ -46,7 +46,7 @@ public abstract class TestBase(ITestOutputHelper output) : IAsyncLifetime
         return await App.CreateWindowWithUserControl(userControlType);
     }
 
-    public async Task InitializeAsync() =>
+    public async ValueTask InitializeAsync() =>
         App = await XamlTest.App.StartRemote(new AppOptions
         {
 #if !DEBUG
@@ -55,5 +55,6 @@ public abstract class TestBase(ITestOutputHelper output) : IAsyncLifetime
             AllowVisualStudioDebuggerAttach = AttachedDebuggerToRemoteProcess,
             LogMessage = Output.WriteLine
         });
-    public async Task DisposeAsync() => await App.DisposeAsync();
+
+    public async ValueTask DisposeAsync() => await App.DisposeAsync();
 }
