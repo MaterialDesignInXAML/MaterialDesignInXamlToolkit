@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 
+
 namespace MaterialDesignThemes.UITests.WPF.SnackBars;
 
 public class SnackBarTests : TestBase
@@ -9,7 +10,7 @@ public class SnackBarTests : TestBase
     {
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 1223")]
     public async Task SnackBar_WithFontSizeAndWeight_AffectsDisplayedMessage()
     {
@@ -27,8 +28,8 @@ public class SnackBarTests : TestBase
         IVisualElement<TextBlock> textBlock = await snackBar.GetElement<TextBlock>();
 
         // Assert
-        Assert.Equal(14, await textBlock.GetFontSize());
-        Assert.Equal(FontWeights.Bold, await textBlock.GetFontWeight());
+        await Assert.Equal(14, await textBlock.GetFontSize());
+        await Assert.Equal(FontWeights.Bold, await textBlock.GetFontWeight());
 
         recorder.Success();
     }

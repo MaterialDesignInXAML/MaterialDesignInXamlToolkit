@@ -4,11 +4,6 @@ namespace MaterialDesignThemes.UITests.WPF.TreeListViews;
 
 public class TreeListViewTests : TestBase
 {
-    public TreeListViewTests(ITestOutputHelper output)
-        : base(output)
-    {
-        AttachedDebuggerToRemoteProcess = true;
-    }
 
     public static IEnumerable<object[]> GetTestControls()
     {
@@ -16,8 +11,8 @@ public class TreeListViewTests : TestBase
         yield return new object[] { typeof(TreeListViewImplicitTemplate) };
     }
 
-    [Theory]
-    [MemberData(nameof(GetTestControls))]
+    [Test]
+    [MethodDataSource(nameof(GetTestControls))]
     public async Task CanResetNestedElements(Type userControlType)
     {
         await using var recorder = new TestRecorder(App);
@@ -50,7 +45,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task CanMoveNestedElementDown()
     {
         await using var recorder = new TestRecorder(App);
@@ -93,7 +88,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task CanMoveNestedElementUp()
     {
         await using var recorder = new TestRecorder(App);
@@ -136,7 +131,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task CanMoveNestedElementWithExpandedChildrenDown()
     {
         await using var recorder = new TestRecorder(App);
@@ -178,7 +173,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task CanMoveNestedElementWithExpandedChildrenUp()
     {
         await using var recorder = new TestRecorder(App);
@@ -225,7 +220,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task CanMoveTopLevelElementDown()
     {
         await using var recorder = new TestRecorder(App);
@@ -251,7 +246,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task CanMoveTopLevelElementUp()
     {
         await using var recorder = new TestRecorder(App);
@@ -277,7 +272,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task CanMoveTopLevelElementWithExpandedChildrenDown()
     {
         await using var recorder = new TestRecorder(App);
@@ -313,7 +308,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task CanMoveTopLevelElementWithExpandedChildrenUp()
     {
         await using var recorder = new TestRecorder(App);
@@ -349,7 +344,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task CanReplaceTopLevelElement()
     {
         await using var recorder = new TestRecorder(App);
@@ -375,7 +370,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task CanReplaceTopLevelElementWithExpandedChildren()
     {
         await using var recorder = new TestRecorder(App);
@@ -403,7 +398,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task CanReplaceNestedChildElement()
     {
         await using var recorder = new TestRecorder(App);
@@ -441,7 +436,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task CanReplaceNestedChildElementWithExpandedChildren()
     {
         await using var recorder = new TestRecorder(App);
@@ -495,7 +490,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Theory]
+    [Test]
     [MemberData(nameof(GetTestControls))]
     public async Task WithHierarchicalDataTemplate_CanRemoveTopLevelElement(Type userControlType)
     {
@@ -523,7 +518,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Theory]
+    [Test]
     [MemberData(nameof(GetTestControls))]
     public async Task WithHierarchicalDataTemplate_CanRemoveNestedElement(Type userControlType)
     {
@@ -570,7 +565,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task DoubleClickOnTreeListViewItem_TogglesExpansion()
     {
         await using var recorder = new TestRecorder(App);
@@ -606,7 +601,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task LeftAndRightArrowKeys_CollapseAndExpand()
     {
         await using var recorder = new TestRecorder(App);
@@ -651,7 +646,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Theory]
+    [Test]
     [MemberData(nameof(GetTestControls))]
     public async Task AddingChildrenToItemWithAlreadyExpandedChildren_InsertsNewChildAtCorrectIndex(Type userControlType)
     {
@@ -687,7 +682,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Theory]
+    [Test]
     [MemberData(nameof(GetTestControls))]
     public async Task RemovingChildrenFromItemWithAlreadyExpandedChildren_ShouldDeleteSelectedChild(Type userControlType)
     {
@@ -739,7 +734,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task MovingChildItemAfterHavingMovedRootLevelParentItem_ShouldMoveChild()
     {
         await using var recorder = new TestRecorder(App);
@@ -787,7 +782,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task MovingChildItemOfNestedItemAfterHavingMovedNestedItem_ShouldMoveChild()
     {
         await using var recorder = new TestRecorder(App);
@@ -844,7 +839,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task TopLevelItemWithNestedExpandedChild_MovesChildrenMaintainingExpansion()
     {
         await using var recorder = new TestRecorder(App);
@@ -895,7 +890,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task TopLevelItemWhichHasBeenExpandedAndCollapsed_MovesAndMaintainsCollapsedState()
     {
         await using var recorder = new TestRecorder(App);
@@ -945,7 +940,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task TreeListView_WithTemplateSelector_UsesSelectorTemplates()
     {
         await using var recorder = new TestRecorder(App);
@@ -974,7 +969,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task TreeListView_WithCollectionView_RendersItems()
     {
         await using var recorder = new TestRecorder(App);
@@ -1003,7 +998,7 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task TreeListView_AddingExpandedItemWithChildren_ShowsExpandedItem()
     {
         await using var recorder = new TestRecorder(App);
@@ -1030,8 +1025,8 @@ public class TreeListViewTests : TestBase
         await Wait.For(async () =>
         {
             IVisualElement<TreeListViewItem> treeItem = await treeListView.GetElement<TreeListViewItem>($"/TreeListViewItem[{index}]");
-            Assert.Equal(content, await treeItem.GetContentText());
-            Assert.Equal(isExpanded, await treeItem.GetIsExpanded());
+            await Assert.That(await treeItem.GetContentText()).IsEqualTo(content);
+            await Assert.That(await treeItem.GetIsExpanded()).IsEqualTo(isExpanded);
         });
     }
 
@@ -1045,10 +1040,10 @@ public class TreeListViewTests : TestBase
         await Wait.For(async () =>
         {
             IVisualElement<TreeListViewItem> treeItem = await treeListView.GetElement<TreeListViewItem>($"/TreeListViewItem[{index}]");
-            Assert.Equal(content, await treeItem.GetContentText());
-            Assert.Equal(isExpanded, await treeItem.GetIsExpanded());
+            await Assert.That(await treeItem.GetContentText()).IsEqualTo(content);
+            await Assert.That(await treeItem.GetIsExpanded()).IsEqualTo(isExpanded);
             IVisualElement<TextBlock> textBlock = await treeItem.GetElement<TextBlock>();
-            Assert.Equal(foreground, await textBlock.GetForegroundColor());
+            await Assert.That(await textBlock.GetForegroundColor()).IsEqualTo(foreground);
         });
     }
 

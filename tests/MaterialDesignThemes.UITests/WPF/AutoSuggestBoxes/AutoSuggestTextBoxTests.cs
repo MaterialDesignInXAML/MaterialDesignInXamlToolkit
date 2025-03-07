@@ -1,19 +1,11 @@
 using System.ComponentModel;
 using MaterialDesignThemes.UITests.Samples.AutoSuggestBoxes;
 using MaterialDesignThemes.UITests.Samples.AutoSuggestTextBoxes;
-using Xunit.Sdk;
-
 namespace MaterialDesignThemes.UITests.WPF.AutoSuggestBoxes;
 
 public class AutoSuggestBoxTests : TestBase
 {
-    public AutoSuggestBoxTests(ITestOutputHelper output)
-        : base(output)
-    {
-        AttachedDebuggerToRemoteProcess = true;
-    }
-
-    [Fact]
+    [Test]
     public async Task CanFilterItems_WithSuggestionsAndDisplayMember_FiltersSuggestions()
     {
         await using var recorder = new TestRecorder(App);
@@ -29,8 +21,8 @@ public class AutoSuggestBoxTests : TestBase
 
 
         //Assert
-        Assert.True(await suggestBox.GetIsSuggestionOpen());
-        Assert.True(await popup.GetIsOpen());
+        await Assert.That(await suggestBox.GetIsSuggestionOpen()).IsTrue();
+        await Assert.That(await popup.GetIsOpen()).IsTrue();
 
         //Validates these elements are found
         await AssertExists(suggestionListBox, "Bananas");
@@ -44,7 +36,7 @@ public class AutoSuggestBoxTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task CanChoiceItem_FromTheSuggestions_AssertTheTextUpdated()
     {
         await using var recorder = new TestRecorder(App);
@@ -59,8 +51,8 @@ public class AutoSuggestBoxTests : TestBase
         await suggestBox.SendInput(new KeyboardInput("B"));
 
         //Assert
-        Assert.True(await suggestBox.GetIsSuggestionOpen());
-        Assert.True(await popup.GetIsOpen());
+        await Assert.That(await suggestBox.GetIsSuggestionOpen()).IsTrue();
+        await Assert.That(await popup.GetIsOpen()).IsTrue();
 
         double? lastHeight = null;
         await Wait.For(async () =>
@@ -86,12 +78,12 @@ public class AutoSuggestBoxTests : TestBase
 
         var suggestBoxText = await suggestBox.GetText();
         //Validate that the current text is the same as the selected item
-        Assert.Equal("Bananas", suggestBoxText);
+        await Assert.That(suggestBoxText).IsEqualTo("Bananas");
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task CanFilterItems_WithCollectionView_FiltersSuggestions()
     {
         await using var recorder = new TestRecorder(App);
@@ -108,8 +100,8 @@ public class AutoSuggestBoxTests : TestBase
 
 
         //Assert
-        Assert.True(await suggestBox.GetIsSuggestionOpen());
-        Assert.True(await popup.GetIsOpen());
+        await Assert.That(await suggestBox.GetIsSuggestionOpen()).IsTrue();
+        await Assert.That(await popup.GetIsOpen()).IsTrue();
 
         //Validates these elements are found
         await AssertExists(suggestionListBox, "Bananas");
@@ -123,7 +115,7 @@ public class AutoSuggestBoxTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3761")]
     public async Task AutoSuggestBox_MovesFocusToNextElement_WhenPopupIsClosed()
     {
@@ -153,8 +145,8 @@ public class AutoSuggestBoxTests : TestBase
         await Task.Delay(50);
 
         // Assert
-        Assert.False(await suggestBox.GetIsFocused());
-        Assert.True(await nextTextBox.GetIsFocused());
+        await Assert.That(await suggestBox.GetIsFocused()).IsFalse();
+        await Assert.That(await nextTextBox.GetIsFocused()).IsTrue();
 
         recorder.Success();
     }
@@ -234,14 +226,7 @@ public class AutoSuggestBoxTests : TestBase
 
     private static async Task AssertExists(IVisualElement<ListBox> suggestionListBox, string text, bool existsOrNotCheck = true)
     {
-        try
-        {
-            _ = await suggestionListBox.GetElement(ElementQuery.PropertyExpression<TextBlock>(x => x.Text, text));
-            Assert.True(existsOrNotCheck);
-        }
-        catch (Exception e) when (e is not TrueException)
-        {
-            Assert.False(existsOrNotCheck);
-        }
+        _ = await suggestionListBox.GetElement(ElementQuery.PropertyExpression<TextBlock>(x => x.Text, text));
+        await Assert.That(existsOrNotCheck).IsTrue();
     }
 }

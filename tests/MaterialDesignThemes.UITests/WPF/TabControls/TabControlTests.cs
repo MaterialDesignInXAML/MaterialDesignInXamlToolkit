@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Windows.Media;
 
+
 namespace MaterialDesignThemes.UITests.WPF.TabControls;
 
 public class TabControlTests : TestBase
@@ -9,7 +10,7 @@ public class TabControlTests : TestBase
         : base(output)
     { }
 
-    [Fact]
+    [Test]
     [Description("Issue 2602")]
     public async Task OnLoad_ThemeBrushesSet()
     {
@@ -37,28 +38,28 @@ public class TabControlTests : TestBase
         Color? selectedTabUnderline = await selectedTabBorder.GetBorderBrushColor();
 
         //Assert
-        Assert.NotNull(foreground);
-        Assert.NotNull(background);
+        await Assert.NotNull(foreground);
+        await Assert.NotNull(background);
 
         MaterialDesignSpec.AssertContrastRatio(foreground.Value, background.Value, MaterialDesignSpec.MinimumContrastSmallText);
 
-        Assert.Equal(foreground, selectedTabUnderline);
+        await Assert.Equal(foreground, selectedTabUnderline);
 
         recorder.Success();
     }
 
     [Description("Issue 2983")]
-    [Theory]
-    [InlineData("Center", true)]
-    [InlineData("Center", false)]
-    [InlineData("Left", true)]
-    [InlineData("Left", false)]
-    [InlineData("Right", true)]
-    [InlineData("Right", false)]
-    [InlineData("Stretch", true)]
-    [InlineData("Stretch", false)]
-    [InlineData("", true)]
-    [InlineData("", false)]
+    [Test]
+    [Arguments("Center", true)]
+    [Arguments("Center", false)]
+    [Arguments("Left", true)]
+    [Arguments("Left", false)]
+    [Arguments("Right", true)]
+    [Arguments("Right", false)]
+    [Arguments("Stretch", true)]
+    [Arguments("Stretch", false)]
+    [Arguments("", true)]
+    [Arguments("", false)]
     public async Task TabItem_ShouldKeepDataContext_WhenContextMenuOpens(string horizontalContentAlignment, bool hasUniformTabWidth)
     {
         await using var recorder = new TestRecorder(App);
@@ -105,7 +106,7 @@ public class TabControlTests : TestBase
         // Assert initial data context
         IVisualElement<TabItem> tabItem = await tabControl.GetElement<TabItem>();
         object? dataContext = await tabItem.GetDataContext();
-        Assert.Equal("aaaa", dataContext);
+        await Assert.Equal("aaaa", dataContext);
 
         // Act
         await button.MoveCursorTo();
@@ -117,12 +118,12 @@ public class TabControlTests : TestBase
         // Assert data context still present
         tabItem = await tabControl.GetElement<TabItem>();
         dataContext = await tabItem.GetDataContext();
-        Assert.Equal("aaaa", dataContext);
+        await Assert.Equal("aaaa", dataContext);
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3271")]
     public async Task TabControl_ShouldRespectSelectedContentTemplate_WhenSetDirectlyOnTabItem()
     {
@@ -150,8 +151,8 @@ public class TabControlTests : TestBase
         IVisualElement<TextBlock> customContent = await customContentBorder.GetElement<TextBlock>(@"/TextBlock");
 
         //Assert
-        Assert.Equal(Colors.Fuchsia, await customContentBorder.GetBackgroundColor());
-        Assert.Equal("Tab content string", await customContent.GetText());
+        await Assert.Equal(Colors.Fuchsia, await customContentBorder.GetBackgroundColor());
+        await Assert.Equal("Tab content string", await customContent.GetText());
 
         recorder.Success();
     }

@@ -26,13 +26,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="xunit.v3" />
+    <PackageReference Include="TUnit" />
   </ItemGroup>
 
   <ItemGroup>
     <Using Include="MaterialDesignThemes.Wpf" />
     <Using Include="XamlTest" />
-    <Using Include="Xunit" />
   </ItemGroup>
 
   <ItemGroup>

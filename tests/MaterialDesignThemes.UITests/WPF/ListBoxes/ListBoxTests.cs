@@ -1,14 +1,11 @@
 ﻿using System.ComponentModel;
 
+
 namespace MaterialDesignThemes.UITests.WPF.ListBoxes;
 
 public class ListBoxTests : TestBase
 {
-    public ListBoxTests(ITestOutputHelper output)
-        : base(output)
-    { }
-
-    [Fact]
+    [Test]
     public async Task OnMouseOver_BackgroundIsSet()
     {
         await using var recorder = new TestRecorder(App);
@@ -23,18 +20,18 @@ public class ListBoxTests : TestBase
 ");
 
         var listBoxItem = await listBox.GetElement<ListBoxItem>("/ListBoxItem[2]");
-        Assert.Equal("Item3", await listBoxItem.GetContent());
+        await Assert.That(await listBoxItem.GetContent()).IsEqualTo("Item3");
         var mouseOverBorder = await listBoxItem.GetElement<Border>("MouseOverBorder");
 
         await listBox.MoveCursorTo(Position.TopLeft);
-        await Wait.For(async () => Assert.Equal(0.0, await mouseOverBorder.GetOpacity()));
+        await Wait.For(async () => await Assert.That(await mouseOverBorder.GetOpacity()).IsEqualTo(0.0));
 
         await mouseOverBorder.MoveCursorTo();
         await Wait.For(async () =>
         {
             double opacity = await mouseOverBorder.GetOpacity();
             Output.WriteLine($"Got opacity {opacity}");
-            Assert.Equal(1, opacity);
+            await Assert.That(opacity).IsEqualTo(1);
         });
 
         //Color effectiveBackground = await mouseOverBorder.GetEffectiveBackground();
@@ -42,25 +39,25 @@ public class ListBoxTests : TestBase
         //foreground = foreground?.FlattenOnto(effectiveBackground);
 
         //float? contrastRatio = foreground?.ContrastRatio(effectiveBackground);
-        //Assert.True(contrastRatio >= MaterialDesignSpec.MinimumContrastSmallText);
+        //await Assert.True(contrastRatio >= MaterialDesignSpec.MinimumContrastSmallText);
 
         recorder.Success();
     }
 
-    [Theory]
+    [Test]
     [Description("Issue 1994")]
-    [InlineData("MaterialDesignFilterChipListBox")]
-    [InlineData("MaterialDesignFilterChipPrimaryListBox")]
-    [InlineData("MaterialDesignFilterChipSecondaryListBox")]
-    [InlineData("MaterialDesignFilterChipOutlineListBox")]
-    [InlineData("MaterialDesignFilterChipPrimaryOutlineListBox")]
-    [InlineData("MaterialDesignFilterChipSecondaryOutlineListBox")]
-    [InlineData("MaterialDesignChoiceChipListBox")]
-    [InlineData("MaterialDesignChoiceChipPrimaryListBox")]
-    [InlineData("MaterialDesignChoiceChipSecondaryListBox")]
-    [InlineData("MaterialDesignChoiceChipOutlineListBox")]
-    [InlineData("MaterialDesignChoiceChipPrimaryOutlineListBox")]
-    [InlineData("MaterialDesignChoiceChipSecondaryOutlineListBox")]
+    [Arguments("MaterialDesignFilterChipListBox")]
+    [Arguments("MaterialDesignFilterChipPrimaryListBox")]
+    [Arguments("MaterialDesignFilterChipSecondaryListBox")]
+    [Arguments("MaterialDesignFilterChipOutlineListBox")]
+    [Arguments("MaterialDesignFilterChipPrimaryOutlineListBox")]
+    [Arguments("MaterialDesignFilterChipSecondaryOutlineListBox")]
+    [Arguments("MaterialDesignChoiceChipListBox")]
+    [Arguments("MaterialDesignChoiceChipPrimaryListBox")]
+    [Arguments("MaterialDesignChoiceChipSecondaryListBox")]
+    [Arguments("MaterialDesignChoiceChipOutlineListBox")]
+    [Arguments("MaterialDesignChoiceChipPrimaryOutlineListBox")]
+    [Arguments("MaterialDesignChoiceChipSecondaryOutlineListBox")]
     public async Task OnClickChoiceChipListBox_ChangesSelectedItem(string listBoxStyle)
     {
         await using var recorder = new TestRecorder(App);
@@ -76,12 +73,12 @@ public class ListBoxTests : TestBase
         var earth = await listBox.GetElement<ListBoxItem>("/ListBoxItem[2]");
         await earth.LeftClick();
 
-        await Wait.For(async () => Assert.Equal(2, await listBox.GetSelectedIndex()));
+        await Wait.For(async () => await Assert.That(await listBox.GetSelectedIndex()).IsEqualTo(2));
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task ScrollBarAssist_ButtonsVisibility_HidesButtonsOnMinimalistStyle()
     {
         await using var recorder = new TestRecorder(App);
@@ -104,26 +101,26 @@ ScrollViewer.VerticalScrollBarVisibility=""Visible"">
         var verticalScrollBar = await listBox.GetElement<ScrollBar>("PART_VerticalScrollBar");
         var horizontalScrollBar = await listBox.GetElement<ScrollBar>("PART_HorizontalScrollBar");
 
-        Assert.Equal(17.0, await verticalScrollBar.GetActualWidth(), 1.0);
+        await Assert.Equal(17.0, await verticalScrollBar.GetActualWidth(), 1.0);
         var verticalThumb = await verticalScrollBar.GetElement<Border>("/Thumb~border");
-        Assert.Equal(10.0, await verticalThumb.GetActualWidth(), 1.0);
+        await Assert.Equal(10.0, await verticalThumb.GetActualWidth(), 1.0);
         var upButton = await verticalScrollBar.GetElement<RepeatButton>("PART_LineUpButton");
-        Assert.False(await upButton.GetIsVisible());
+        await Assert.False(await upButton.GetIsVisible());
         var downButton = await verticalScrollBar.GetElement<RepeatButton>("PART_LineDownButton");
-        Assert.False(await downButton.GetIsVisible());
+        await Assert.False(await downButton.GetIsVisible());
 
-        Assert.Equal(17.0, await horizontalScrollBar.GetActualHeight(), 1.0);
+        await Assert.Equal(17.0, await horizontalScrollBar.GetActualHeight(), 1.0);
         var horizontalThumb = await horizontalScrollBar.GetElement<Border>("/Thumb~border");
-        Assert.Equal(10.0, await horizontalThumb.GetActualHeight(), 1.0);
+        await Assert.Equal(10.0, await horizontalThumb.GetActualHeight(), 1.0);
         var leftButton = await horizontalScrollBar.GetElement<RepeatButton>("PART_LineLeftButton");
-        Assert.False(await leftButton.GetIsVisible());
+        await Assert.False(await leftButton.GetIsVisible());
         var rightButton = await horizontalScrollBar.GetElement<RepeatButton>("PART_LineRightButton");
-        Assert.False(await rightButton.GetIsVisible());
+        await Assert.False(await rightButton.GetIsVisible());
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task OnListBoxAssist_WithShowSelectDisabled_SelectionIsDisabled()
     {
         await using var recorder = new TestRecorder(App);
@@ -138,12 +135,12 @@ ScrollViewer.VerticalScrollBarVisibility=""Visible"">
         var earth = await listBox.GetElement<ListBoxItem>("/ListBoxItem[2]");
         await earth.LeftClick();
         var selectedBorder = await earth.GetElement<Border>("SelectedBorder");
-        await Wait.For(async () => Assert.False(await selectedBorder.GetIsVisible()));
+        await Wait.For(async () => await Assert.False(await selectedBorder.GetIsVisible()));
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3188")]
     public async Task OnToggle_ShouldGrabFocus()
     {
@@ -167,13 +164,13 @@ ScrollViewer.VerticalScrollBarVisibility=""Visible"">
         var listBoxItem = await listBox.GetElement<ListBoxItem>("/ListBoxItem[2]");
 
         await textBox.LeftClick();
-        await Wait.For(async () => Assert.True(await textBox.GetIsKeyboardFocusWithin()));
+        await Wait.For(async () => await Assert.True(await textBox.GetIsKeyboardFocusWithin()));
 
         // Act
         await listBoxItem.LeftClick();
 
         // Assert
-        await Wait.For(async () => Assert.True(await listBox.GetIsKeyboardFocusWithin()));
+        await Wait.For(async () => await Assert.True(await listBox.GetIsKeyboardFocusWithin()));
 
         recorder.Success();
     }

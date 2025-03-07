@@ -2,6 +2,7 @@
 using System.Windows.Media;
 using MaterialDesignThemes.UITests.Samples.PopupBox;
 
+
 namespace MaterialDesignThemes.UITests.WPF.PopupBoxes;
 
 public class PopupBoxTests : TestBase
@@ -10,10 +11,10 @@ public class PopupBoxTests : TestBase
         : base(output)
     { }
 
-    [Theory]
-    [InlineData(Elevation.Dp0)]
-    [InlineData(Elevation.Dp16)]
-    [InlineData(Elevation.Dp24)]
+    [Test]
+    [Arguments(Elevation.Dp0)]
+    [Arguments(Elevation.Dp16)]
+    [Arguments(Elevation.Dp24)]
     [Description("Issue 3129")]
     public async Task PopupBox_WithElevation_AppliesElevationToNestedCard(Elevation elevation)
     {
@@ -32,12 +33,12 @@ public class PopupBoxTests : TestBase
         IVisualElement<Card> card = await popupBox.GetElement<Card>("/Card");
 
         // Assert
-        Assert.Equal(elevation, await card.GetProperty<Elevation?>(ElevationAssist.ElevationProperty));
+        await Assert.Equal(elevation, await card.GetProperty<Elevation?>(ElevationAssist.ElevationProperty));
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task PopupBox_WithContentTemplateSelector_ChangesContent()
     {
         await using var recorder = new TestRecorder(App);
@@ -51,14 +52,14 @@ public class PopupBoxTests : TestBase
 
         // Assert
         var border = await popupBox.GetElement<Border>();
-        Assert.Equal(Colors.Blue, await border.GetBackgroundColor());
+        await Assert.Equal(Colors.Blue, await border.GetBackgroundColor());
 
         await button.LeftClick();
 
         await Wait.For(async () =>
         {
             border = await popupBox.GetElement<Border>();
-            Assert.Equal(Colors.Red, await border.GetBackgroundColor());
+            await Assert.Equal(Colors.Red, await border.GetBackgroundColor());
         });
 
 
