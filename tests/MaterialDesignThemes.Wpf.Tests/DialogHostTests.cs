@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Threading;
 using System.Windows.Threading;
-using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
