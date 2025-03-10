@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.Diagnostics;
+using System.Windows.Media;
 using MaterialDesignColors;
 using Microsoft.Win32;
 
@@ -29,6 +30,44 @@ public partial class Theme
         {
             return null;
         }
+    }
+
+    /// <summary>
+    /// Get the current Windows accent color.
+    /// Based on ControlzEx
+    /// https://github.com/ControlzEx/ControlzEx/blob/48230bb023c588e1b7eb86ea83f7ddf7d25be735/src/ControlzEx/Theming/WindowsThemeHelper.cs#L53
+    /// </summary>
+    /// <returns></returns>
+    public static Color? GetSystemAccentColor()
+    {
+        Color? accentColor = null;
+
+        try
+        {
+            var registryValue = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\DWM", "ColorizationColor", null);
+
+            if (registryValue is null)
+            {
+                return null;
+            }
+
+            // We get negative values out of the registry, so we have to cast to int from object first.
+            // Casting from int to uint works afterwards and converts the number correctly.
+            var pp = (uint)(int)registryValue;
+            if (pp > 0)
+            {
+                var bytes = BitConverter.GetBytes(pp);
+                accentColor = Color.FromArgb(bytes[3], bytes[2], bytes[1], bytes[0]);
+            }
+
+            return accentColor;
+        }
+        catch (Exception exception)
+        {
+            Trace.TraceError(exception.ToString());
+        }
+
+        return accentColor;
     }
 
     public static Theme Create(BaseTheme baseTheme, Color primary, Color secondary)

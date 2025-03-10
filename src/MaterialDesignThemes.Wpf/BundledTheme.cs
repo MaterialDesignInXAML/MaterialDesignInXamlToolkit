@@ -1,4 +1,5 @@
-﻿using MaterialDesignColors;
+﻿using System.Windows.Media;
+using MaterialDesignColors;
 
 namespace MaterialDesignThemes.Wpf;
 
@@ -10,9 +11,8 @@ public class BundledTheme : ResourceDictionary, IMaterialDesignThemeDictionary
         get => _baseTheme;
         set
         {
-            if (_baseTheme != value)
+            if (SetField(ref _baseTheme, value))
             {
-                _baseTheme = value;
                 SetTheme();
             }
         }
@@ -62,17 +62,35 @@ public class BundledTheme : ResourceDictionary, IMaterialDesignThemeDictionary
 
     private void SetTheme()
     {
-        if (BaseTheme is BaseTheme baseTheme &&
-            PrimaryColor is PrimaryColor primaryColor &&
-            SecondaryColor is SecondaryColor secondaryColor)
+        if (BaseTheme is not BaseTheme baseTheme ||
+            PrimaryColor is not PrimaryColor primaryColor ||
+            SecondaryColor is not SecondaryColor secondaryColor)
         {
-            Theme theme = Theme.Create(baseTheme,
-                SwatchHelper.Lookup[(MaterialDesignColor)primaryColor],
-                SwatchHelper.Lookup[(MaterialDesignColor)secondaryColor]);
-            theme.ColorAdjustment = ColorAdjustment;
-
-            ApplyTheme(theme);
+            return;
         }
+
+        // only perform the registry lookup if needed, and only once
+        Lazy<Color?> accentColor = new(Theme.GetSystemAccentColor);
+
+        Color colorPrimary = primaryColor == MaterialDesignColors.PrimaryColor.Inherit
+                              ? (accentColor.Value ?? SwatchHelper.Lookup.First().Value)
+                              : SwatchHelper.Lookup[(MaterialDesignColor)primaryColor];
+
+        Color colorSecondary = secondaryColor == MaterialDesignColors.SecondaryColor.Inherit
+                              ? (accentColor.Value ?? SwatchHelper.Lookup.First().Value)
+                              : SwatchHelper.Lookup[(MaterialDesignColor)secondaryColor];
+
+        Theme theme = Theme.Create(baseTheme, colorPrimary, colorSecondary);
+        theme.ColorAdjustment = ColorAdjustment;
+
+        ApplyTheme(theme);
+    }
+
+    protected bool SetField<T>(ref T field, T value)
+    {
+        if (EqualityComparer<T>.Default.Equals(field, value)) return false;
+        field = value;
+        return true;
     }
 
     protected virtual void ApplyTheme(Theme theme) =>
