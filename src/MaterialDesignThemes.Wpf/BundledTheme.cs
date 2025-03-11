@@ -24,9 +24,8 @@ public class BundledTheme : ResourceDictionary, IMaterialDesignThemeDictionary
         get => _primaryColor;
         set
         {
-            if (_primaryColor != value)
+            if (SetField(ref _primaryColor, value))
             {
-                _primaryColor = value;
                 SetTheme();
             }
         }
@@ -38,9 +37,8 @@ public class BundledTheme : ResourceDictionary, IMaterialDesignThemeDictionary
         get => _secondaryColor;
         set
         {
-            if (_secondaryColor != value)
+            if (SetField(ref _secondaryColor, value))
             {
-                _secondaryColor = value;
                 SetTheme();
             }
         }
@@ -52,9 +50,8 @@ public class BundledTheme : ResourceDictionary, IMaterialDesignThemeDictionary
         get => _colorAdjustment;
         set
         {
-            if (_colorAdjustment != value)
+            if (SetField(ref _colorAdjustment, value))
             {
-                _colorAdjustment = value;
                 SetTheme();
             }
         }
