@@ -83,7 +83,7 @@ public class BundledTheme : ResourceDictionary, IMaterialDesignThemeDictionary
         ApplyTheme(theme);
     }
 
-    protected bool SetField<T>(ref T field, T value)
+    protected static bool SetField<T>(ref T field, T value)
     {
         if (EqualityComparer<T>.Default.Equals(field, value)) return false;
         field = value;
