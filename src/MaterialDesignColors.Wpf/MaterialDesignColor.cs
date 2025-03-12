@@ -2,6 +2,7 @@
 
 public enum PrimaryColor
 {
+    Inherit,
     Red = MaterialDesignColor.Red500,
     Pink = MaterialDesignColor.Pink500,
     Purple = MaterialDesignColor.Purple500,
@@ -25,6 +26,7 @@ public enum PrimaryColor
 
 public enum SecondaryColor
 {
+    Inherit,
     Red = MaterialDesignColor.RedSecondary,
     Pink = MaterialDesignColor.PinkSecondary,
     Purple = MaterialDesignColor.PurpleSecondary,
