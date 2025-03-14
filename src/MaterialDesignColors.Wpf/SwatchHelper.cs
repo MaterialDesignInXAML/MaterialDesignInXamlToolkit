@@ -5,8 +5,8 @@ namespace MaterialDesignColors;
 
 public static class SwatchHelper
 {
-    public static IEnumerable<ISwatch> Swatches { get; } = new ISwatch[]
-    {
+    public static IEnumerable<ISwatch> Swatches { get; } =
+    [
         new RedSwatch(),
         new PinkSwatch(),
         new PurpleSwatch(),
@@ -26,7 +26,7 @@ public static class SwatchHelper
         new BrownSwatch(),
         new GreySwatch(),
         new BlueGreySwatch(),
-    };
+    ];
 
     public static IDictionary<MaterialDesignColor, Color> Lookup { get; } = Swatches.SelectMany(o => o.Lookup).ToDictionary(o => o.Key, o => o.Value);
 }
