@@ -5,14 +5,8 @@ using MaterialDesignThemes.UITests.Samples.SplitButton;
 
 namespace MaterialDesignThemes.UITests.WPF.SplitButtons;
 
-
 public class SplitButtonTests : TestBase
 {
-    public SplitButtonTests(ITestOutputHelper output)
-        : base(output)
-    {
-    }
-
     [Test]
     public async Task SplitButton_ClickingSplitButton_ShowsPopup()
     {
@@ -68,9 +62,9 @@ public class SplitButtonTests : TestBase
         int rightButtonCount = (await clickEvent.GetInvocations()).Count;
 
         // Assert
-        await Assert.Equal(1, leftButtonCount);
+        await Assert.That(leftButtonCount).IsEqualTo(1);
         //NB: The popup box button should only show the popup not trigger the click event
-        await Assert.Equal(1, rightButtonCount);
+        await Assert.That(rightButtonCount).IsEqualTo(1);
 
         recorder.Success();
     }
@@ -104,7 +98,7 @@ public class SplitButtonTests : TestBase
 
         // Assert
         var invocations = await clickEvent.GetInvocations();
-        await Assert.Single(invocations);
+        await Assert.That(invocations).HasSingleItem();
 
         recorder.Success();
     }
@@ -120,14 +114,14 @@ public class SplitButtonTests : TestBase
         IVisualElement<SplitButtonWithCommandBinding> userControl = await window.GetElement<SplitButtonWithCommandBinding>();
         IVisualElement<SplitButton> splitButton = await userControl.GetElement<SplitButton>();
 
-        await Assert.False(await userControl.GetCommandInvoked());
+        await Assert.That(await userControl.GetCommandInvoked()).IsFalse();
 
         //Act
         await splitButton.LeftClick();
         await Task.Delay(50);
 
         // Assert
-        await Assert.True(await userControl.GetCommandInvoked());
+        await Assert.That(await userControl.GetCommandInvoked()).IsTrue();
 
         recorder.Success();
     }
@@ -143,13 +137,13 @@ public class SplitButtonTests : TestBase
         IVisualElement<SplitButtonWithCommandBinding> userControl = await window.GetElement<SplitButtonWithCommandBinding>();
         IVisualElement<SplitButton> splitButton = await userControl.GetElement<SplitButton>();
 
-        await Assert.True(await splitButton.GetIsEnabled());
+        await Assert.That(await splitButton.GetIsEnabled()).IsTrue();
 
         //Act
         await userControl.SetProperty(nameof(SplitButtonWithCommandBinding.CommandCanExecute), false);
 
         // Assert
-        await Assert.False(await splitButton.GetIsEnabled());
+        await Assert.That(await splitButton.GetIsEnabled()).IsFalse();
 
         recorder.Success();
     }
@@ -185,8 +179,8 @@ public class SplitButtonTests : TestBase
         await Task.Delay(50);
 
         // Assert
-        await Assert.Empty(await splitButtonClickEvent.GetInvocations());
-        await Assert.Single(await popupContentClickEvent.GetInvocations());
+        await Assert.That(await splitButtonClickEvent.GetInvocations()).IsEmpty();
+        await Assert.That(await popupContentClickEvent.GetInvocations()).HasSingleItem();
 
         recorder.Success();
     }

@@ -2,15 +2,10 @@
 using System.Windows.Media;
 using MaterialDesignThemes.UITests.Samples.PopupBox;
 
-
 namespace MaterialDesignThemes.UITests.WPF.PopupBoxes;
 
 public class PopupBoxTests : TestBase
 {
-    public PopupBoxTests(ITestOutputHelper output)
-        : base(output)
-    { }
-
     [Test]
     [Arguments(Elevation.Dp0)]
     [Arguments(Elevation.Dp16)]
@@ -33,7 +28,7 @@ public class PopupBoxTests : TestBase
         IVisualElement<Card> card = await popupBox.GetElement<Card>("/Card");
 
         // Assert
-        await Assert.Equal(elevation, await card.GetProperty<Elevation?>(ElevationAssist.ElevationProperty));
+        await Assert.That(await card.GetProperty<Elevation?>(ElevationAssist.ElevationProperty)).IsEqualTo(elevation);
 
         recorder.Success();
     }
@@ -52,14 +47,14 @@ public class PopupBoxTests : TestBase
 
         // Assert
         var border = await popupBox.GetElement<Border>();
-        await Assert.Equal(Colors.Blue, await border.GetBackgroundColor());
+        await Assert.That(await border.GetBackgroundColor()).IsEqualTo(Colors.Blue);
 
         await button.LeftClick();
 
         await Wait.For(async () =>
         {
             border = await popupBox.GetElement<Border>();
-            await Assert.Equal(Colors.Red, await border.GetBackgroundColor());
+            await Assert.That(await border.GetBackgroundColor()).IsEqualTo(Colors.Red);
         });
 
 
