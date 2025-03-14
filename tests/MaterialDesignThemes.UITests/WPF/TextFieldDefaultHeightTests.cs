@@ -1,10 +1,8 @@
-
-
 namespace MaterialDesignThemes.UITests.WPF;
 
-public class TextFieldDefaultHeightTests(ITestOutputHelper output) : TestBase(output)
+public class TextFieldDefaultHeightTests : TestBase
 {
-    private const int Precision = 3;
+    private const double Precision = 0.001;
 
     [Test]
     public async Task SameHeightWithDefaultStyle()
@@ -22,10 +20,11 @@ public class TextFieldDefaultHeightTests(ITestOutputHelper output) : TestBase(ou
             """);
 
         double height = await GetHeight(stackPanel, "TextBox");
-        await Assert.Equal(height, await GetHeight(stackPanel, "PasswordBox"), Precision);
-        await Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
-        await Assert.Equal(height, await GetHeight(stackPanel, "DatePicker"), Precision);
-        await Assert.Equal(height, await GetHeight(stackPanel, "TimePicker"), Precision);
+        
+        await Assert.That(await GetHeight(stackPanel, "PasswordBox")).IsCloseTo(height, Precision);
+        await Assert.That(await GetHeight(stackPanel, "ComboBox")).IsCloseTo(height, Precision);
+        await Assert.That(await GetHeight(stackPanel, "DatePicker")).IsCloseTo(height, Precision);
+        await Assert.That(await GetHeight(stackPanel, "TimePicker")).IsCloseTo(height, Precision);
 
         recorder.Success();
     }
@@ -47,11 +46,11 @@ public class TextFieldDefaultHeightTests(ITestOutputHelper output) : TestBase(ou
             """);
 
         double height = await GetHeight(stackPanel, "TextBox");
-        await Assert.Equal(height, await GetHeight(stackPanel, "PasswordBox"), Precision);
-        await Assert.Equal(height, await GetHeight(stackPanel, "PasswordBox", "RevealPasswordBox"), Precision);
-        await Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
-        await Assert.Equal(height, await GetHeight(stackPanel, "DatePicker"), Precision);
-        await Assert.Equal(height, await GetHeight(stackPanel, "TimePicker"), Precision);
+        await Assert.That(await GetHeight(stackPanel, "PasswordBox")).IsCloseTo(height, Precision);
+        await Assert.That(await GetHeight(stackPanel, "PasswordBox", "RevealPasswordBox")).IsCloseTo(height, Precision);
+        await Assert.That(await GetHeight(stackPanel, "ComboBox")).IsCloseTo(height, Precision);
+        await Assert.That(await GetHeight(stackPanel, "DatePicker")).IsCloseTo(height, Precision);
+        await Assert.That(await GetHeight(stackPanel, "TimePicker")).IsCloseTo(height, Precision);
 
         recorder.Success();
     }
@@ -73,11 +72,11 @@ public class TextFieldDefaultHeightTests(ITestOutputHelper output) : TestBase(ou
             """);
 
         double height = await GetHeight(stackPanel, "TextBox");
-        await Assert.Equal(height, await GetHeight(stackPanel, "PasswordBox"), Precision);
-        await Assert.Equal(height, await GetHeight(stackPanel, "PasswordBox", "RevealPasswordBox"), Precision);
-        await Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
-        await Assert.Equal(height, await GetHeight(stackPanel, "DatePicker"), Precision);
-        await Assert.Equal(height, await GetHeight(stackPanel, "TimePicker"), Precision);
+        await Assert.That(await GetHeight(stackPanel, "PasswordBox")).IsCloseTo(height, Precision);
+        await Assert.That(await GetHeight(stackPanel, "PasswordBox", "RevealPasswordBox")).IsCloseTo(height, Precision);
+        await Assert.That(await GetHeight(stackPanel, "ComboBox")).IsCloseTo(height, Precision);
+        await Assert.That(await GetHeight(stackPanel, "DatePicker")).IsCloseTo(height, Precision);
+        await Assert.That(await GetHeight(stackPanel, "TimePicker")).IsCloseTo(height, Precision);
 
         recorder.Success();
     }
@@ -99,11 +98,11 @@ public class TextFieldDefaultHeightTests(ITestOutputHelper output) : TestBase(ou
             """);
 
         double height = await GetHeight(stackPanel, "TextBox");
-        await Assert.Equal(height, await GetHeight(stackPanel, "PasswordBox"), Precision);
-        await Assert.Equal(height, await GetHeight(stackPanel, "PasswordBox", "RevealPasswordBox"), Precision);
-        await Assert.Equal(height, await GetHeight(stackPanel, "ComboBox"), Precision);
-        await Assert.Equal(height, await GetHeight(stackPanel, "DatePicker"), Precision);
-        await Assert.Equal(height, await GetHeight(stackPanel, "TimePicker"), Precision);
+        await Assert.That(await GetHeight(stackPanel, "PasswordBox")).IsCloseTo(height, Precision);
+        await Assert.That(await GetHeight(stackPanel, "PasswordBox", "RevealPasswordBox")).IsCloseTo(height, Precision);
+        await Assert.That(await GetHeight(stackPanel, "ComboBox")).IsCloseTo(height, Precision);
+        await Assert.That(await GetHeight(stackPanel, "DatePicker")).IsCloseTo(height, Precision);
+        await Assert.That(await GetHeight(stackPanel, "TimePicker")).IsCloseTo(height, Precision);
 
         recorder.Success();
     }
@@ -112,7 +111,7 @@ public class TextFieldDefaultHeightTests(ITestOutputHelper output) : TestBase(ou
     {
         var element = await container.GetElement<FrameworkElement>(optionalName ?? "/" + type);
         double height = await element.GetActualHeight();
-        await Assert.True(height > 0);
+        await Assert.That(height > 0).IsTrue();
         return height;
     }
 }

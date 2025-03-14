@@ -7,11 +7,6 @@ namespace MaterialDesignThemes.UITests.WPF.PasswordBoxes;
 
 public class PasswordBoxTests : TestBase
 {
-    public PasswordBoxTests(ITestOutputHelper output)
-        : base(output)
-    {
-    }
-
     [Test]
     public async Task OnClearButtonShown_LayoutDoesNotChange()
     {
@@ -31,7 +26,7 @@ public class PasswordBoxTests : TestBase
 
         //Assert
         var rect = await passwordBox.GetCoordinates();
-        await Assert.Equal(initialRect, rect);
+        await Assert.That(rect).IsEqualTo(initialRect);
 
         recorder.Success();
     }
@@ -51,7 +46,7 @@ public class PasswordBoxTests : TestBase
 
         double fontSize = await helpTextBlock.GetFontSize();
 
-        await Assert.Equal(20, fontSize);
+        await Assert.That(fontSize).IsEqualTo(20);
         recorder.Success();
     }
 
@@ -72,14 +67,14 @@ public class PasswordBoxTests : TestBase
 
         string? password = await passwordBox.GetPassword();
 
-        await Assert.NotNull(password);
+        await Assert.That(password).IsNotNull();
 
         await clearButton.LeftClick();
 
         await Wait.For(async () =>
         {
             password = await passwordBox.GetPassword();
-            await Assert.Null(password);
+            await Assert.That(password).IsNull();
         });
 
         recorder.Success();
@@ -121,17 +116,17 @@ public class PasswordBoxTests : TestBase
         string? clearTextPassword3 = await clearTextPasswordTextBox.GetProperty<string>(TextBox.TextProperty);
 
         // Assert
-        await Assert.Equal("1", boundText1);
-        await Assert.Equal("1", password1);
-        await Assert.Equal("1", clearTextPassword1);
+        await Assert.That(boundText1).IsEqualTo("1");
+        await Assert.That(password1).IsEqualTo("1");
+        await Assert.That(clearTextPassword1).IsEqualTo("1");
 
-        await Assert.Equal("12", boundText2);
-        await Assert.Equal("12", password2);
-        await Assert.Equal("12", clearTextPassword2);
+        await Assert.That(boundText2).IsEqualTo("12");
+        await Assert.That(password2).IsEqualTo("12");
+        await Assert.That(clearTextPassword2).IsEqualTo("12");
 
-        await Assert.Equal("3", boundText3);
-        await Assert.Equal("3", password3);
-        await Assert.Equal("3", clearTextPassword3);
+        await Assert.That(boundText3).IsEqualTo("3");
+        await Assert.That(password3).IsEqualTo("3");
+        await Assert.That(clearTextPassword3).IsEqualTo("3");
 
         recorder.Success();
     }
@@ -159,11 +154,11 @@ public class PasswordBoxTests : TestBase
         string? password2 = await passwordBox.GetProperty<string>(nameof(PasswordBox.Password));
 
         // Assert
-        await Assert.Equal("1", boundText1);
-        await Assert.Equal("1", password1);
+        await Assert.That(boundText1).IsEqualTo("1");
+        await Assert.That(password1).IsEqualTo("1");
 
-        await Assert.Equal("2", boundText2);
-        await Assert.Equal("2", password2);
+        await Assert.That(boundText2).IsEqualTo("2");
+        await Assert.That(password2).IsEqualTo("2");
 
         recorder.Success();
     }
@@ -185,7 +180,7 @@ public class PasswordBoxTests : TestBase
         int maxLength2 = await revealPasswordTextBox.GetMaxLength();
 
         // Assert
-        await Assert.Equal(maxLength1, maxLength2);
+        await Assert.That(maxLength2).IsEqualTo(maxLength1);
 
         recorder.Success();
     }
@@ -234,8 +229,10 @@ public class PasswordBoxTests : TestBase
         Rect? hintCoordinates = await hint.GetCoordinates();
         Rect? helperTextCoordinates = await helperText.GetCoordinates();
 
-        await Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left), 0, tolerance);
-        await Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - helperTextCoordinates.Value.Left), 0, tolerance);
+        await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left))
+            .IsBetween(0, tolerance);
+        await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - helperTextCoordinates.Value.Left))
+            .IsBetween(0, tolerance);
 
         recorder.Success();
     }
@@ -292,13 +289,16 @@ public class PasswordBoxTests : TestBase
         Rect? hintCoordinates = await hint.GetCoordinates();
         Rect? errorViewerCoordinates = await errorViewer.GetCoordinates();
 
-        await Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left), 0, tolerance);
-        await Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left), 0, tolerance);
+        await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left))
+    .IsBetween(0, tolerance);
+        await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left))
+            .IsBetween(0, tolerance);
 
         recorder.Success();
     }
 
-    [Fact(Skip = "Ignoring until I can figure out why this doesn't work on the GitHub Actions runner")]
+    [Test]
+    [Skip("Ignoring until I can figure out why this doesn't work on the GitHub Actions runner")]
     [Description("Issue 3095")]
     public async Task PasswordBox_WithRevealedPassword_RespectsKeyboardTabNavigation()
     {
@@ -320,17 +320,17 @@ public class PasswordBoxTests : TestBase
 
         // Assert Tab forward
         await textBox1.MoveKeyboardFocus();
-        await Assert.True(await textBox1.GetIsKeyboardFocused());
+        await Assert.That(await textBox1.GetIsKeyboardFocused()).IsTrue();
         await textBox1.SendKeyboardInput($"{Key.Tab}");
-        await Assert.True(await revealPasswordTextBox.GetIsKeyboardFocused());
+        await Assert.That(await revealPasswordTextBox.GetIsKeyboardFocused()).IsTrue();
         await revealPasswordTextBox.SendKeyboardInput($"{Key.Tab}");
-        await Assert.True(await textBox2.GetIsKeyboardFocused());
+        await Assert.That(await textBox2.GetIsKeyboardFocused()).IsTrue();
 
         // Assert Tab backwards
         await textBox2.SendKeyboardInput($"{ModifierKeys.Shift}{Key.Tab}");
-        await Assert.True(await revealPasswordTextBox.GetIsKeyboardFocused());
+        await Assert.That(await revealPasswordTextBox.GetIsKeyboardFocused()).IsTrue();
         await revealPasswordTextBox.SendKeyboardInput($"{Key.Tab}{ModifierKeys.None}");
-        await Assert.True(await textBox1.GetIsKeyboardFocused());
+        await Assert.That(await textBox1.GetIsKeyboardFocused()).IsTrue();
 
         recorder.Success();
     }
@@ -355,13 +355,13 @@ public class PasswordBoxTests : TestBase
 
         // Assert Tab forward
         await passwordBox.MoveKeyboardFocus();
-        await Assert.True(await passwordBox.GetIsKeyboardFocused());
+        await Assert.That(await passwordBox.GetIsKeyboardFocused()).IsTrue();
         await passwordBox.SendKeyboardInput($"{Key.Tab}");
-        await Assert.True(await textBox.GetIsKeyboardFocused());
+        await Assert.That(await textBox.GetIsKeyboardFocused()).IsTrue();
         
         // Assert Tab backwards
         await textBox.SendKeyboardInput($"{ModifierKeys.Shift}{Key.Tab}{ModifierKeys.None}");
-        await Assert.True(await passwordBox.GetIsKeyboardFocused());
+        await Assert.That(await passwordBox.GetIsKeyboardFocused()).IsTrue();
 
         recorder.Success();
     }

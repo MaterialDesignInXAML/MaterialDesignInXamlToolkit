@@ -5,10 +5,10 @@ namespace MaterialDesignThemes.UITests.WPF.TreeListViews;
 public class TreeListViewTests : TestBase
 {
 
-    public static IEnumerable<object[]> GetTestControls()
+    public static IEnumerable<Func<Type>> GetTestControls()
     {
-        yield return new object[] { typeof(TreeListViewDataBinding) };
-        yield return new object[] { typeof(TreeListViewImplicitTemplate) };
+        yield return () => typeof(TreeListViewDataBinding);
+        yield return () => typeof(TreeListViewImplicitTemplate);
     }
 
     [Test]
@@ -491,7 +491,7 @@ public class TreeListViewTests : TestBase
     }
 
     [Test]
-    [MemberData(nameof(GetTestControls))]
+    [MethodDataSource(nameof(GetTestControls))]
     public async Task WithHierarchicalDataTemplate_CanRemoveTopLevelElement(Type userControlType)
     {
         await using var recorder = new TestRecorder(App);
@@ -519,7 +519,7 @@ public class TreeListViewTests : TestBase
     }
 
     [Test]
-    [MemberData(nameof(GetTestControls))]
+    [MethodDataSource(nameof(GetTestControls))]
     public async Task WithHierarchicalDataTemplate_CanRemoveNestedElement(Type userControlType)
     {
         await using var recorder = new TestRecorder(App);
@@ -647,7 +647,7 @@ public class TreeListViewTests : TestBase
     }
 
     [Test]
-    [MemberData(nameof(GetTestControls))]
+    [MethodDataSource(nameof(GetTestControls))]
     public async Task AddingChildrenToItemWithAlreadyExpandedChildren_InsertsNewChildAtCorrectIndex(Type userControlType)
     {
         await using var recorder = new TestRecorder(App);
@@ -683,7 +683,7 @@ public class TreeListViewTests : TestBase
     }
 
     [Test]
-    [MemberData(nameof(GetTestControls))]
+    [MethodDataSource(nameof(GetTestControls))]
     public async Task RemovingChildrenFromItemWithAlreadyExpandedChildren_ShouldDeleteSelectedChild(Type userControlType)
     {
         await using var recorder = new TestRecorder(App);
@@ -857,7 +857,7 @@ public class TreeListViewTests : TestBase
         await item1.LeftClickExpander();
 
         //NB: Needs to be long enough delay so the next click does not register as a double click
-        await Task.Delay(1000, TestContext.Current.CancellationToken);
+        await Task.Delay(1000, TestContext.Current!.CancellationToken);
 
         // Add children to item "1_1" and expand
         IVisualElement<TreeListViewItem> item11 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[3]");

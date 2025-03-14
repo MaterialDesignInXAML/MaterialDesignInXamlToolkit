@@ -1,14 +1,9 @@
 ﻿using System.Windows.Media;
 
-
 namespace MaterialDesignThemes.UITests.WPF.Cards;
 
 public class OutlinedCardTests : TestBase
 {
-    public OutlinedCardTests(ITestOutputHelper output)
-        : base(output)
-    { }
-
     [Test]
     public async Task OutlinedCard_UsesThemeColorForBorder()
     {
@@ -24,7 +19,7 @@ public class OutlinedCardTests : TestBase
         Color? internalBorderColor = await internalBorder.GetBorderBrushColor();
 
         //Assert
-        await Assert.Equal(dividerColor, internalBorderColor);
+        await Assert.That(internalBorderColor).IsEqualTo(dividerColor);
 
         recorder.Success();
     }
@@ -43,10 +38,10 @@ public class OutlinedCardTests : TestBase
         CornerRadius? internalBorderCornerRadius = await internalBorder.GetCornerRadius();
 
         //Assert
-        await Assert.Equal(5, internalBorderCornerRadius.Value.TopLeft);
-        await Assert.Equal(5, internalBorderCornerRadius.Value.TopRight);
-        await Assert.Equal(5, internalBorderCornerRadius.Value.BottomRight);
-        await Assert.Equal(5, internalBorderCornerRadius.Value.BottomLeft);
+        await Assert.That(internalBorderCornerRadius.Value.TopLeft).IsEqualTo(5);
+        await Assert.That(internalBorderCornerRadius.Value.TopRight).IsEqualTo(5);
+        await Assert.That(internalBorderCornerRadius.Value.BottomRight).IsEqualTo(5);
+        await Assert.That(internalBorderCornerRadius.Value.BottomLeft).IsEqualTo(5);
 
         recorder.Success();
     }

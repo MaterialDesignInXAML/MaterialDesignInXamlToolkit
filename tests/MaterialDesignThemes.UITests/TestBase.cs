@@ -18,7 +18,7 @@ using TUnit.Core.Interfaces;
 
 namespace MaterialDesignThemes.UITests;
 
-file record SingleParallelLimit : IParallelLimit
+public record SingleParallelLimit : IParallelLimit
 {
     public int Limit => 1;
 }
@@ -26,7 +26,7 @@ file record SingleParallelLimit : IParallelLimit
 public abstract class TestBase()
 {
     protected bool AttachedDebuggerToRemoteProcess { get; set; } = true;
-    protected TextWriter Output => TestContext.Current?.OutputWriter ?? throw new InvalidOperationException("Could not find output writer");
+    protected static TextWriter Output => TestContext.Current?.OutputWriter ?? throw new InvalidOperationException("Could not find output writer");
 
     [NotNull]
     protected IApp? App { get; set; }

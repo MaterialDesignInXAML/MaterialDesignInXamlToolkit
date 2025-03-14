@@ -101,21 +101,21 @@ ScrollViewer.VerticalScrollBarVisibility=""Visible"">
         var verticalScrollBar = await listBox.GetElement<ScrollBar>("PART_VerticalScrollBar");
         var horizontalScrollBar = await listBox.GetElement<ScrollBar>("PART_HorizontalScrollBar");
 
-        await Assert.Equal(17.0, await verticalScrollBar.GetActualWidth(), 1.0);
+        await Assert.That(await verticalScrollBar.GetActualWidth()).IsCloseTo(17.0, 1.0);
         var verticalThumb = await verticalScrollBar.GetElement<Border>("/Thumb~border");
-        await Assert.Equal(10.0, await verticalThumb.GetActualWidth(), 1.0);
+        await Assert.That(await verticalThumb.GetActualWidth()).IsCloseTo(10.0, 1.0);
         var upButton = await verticalScrollBar.GetElement<RepeatButton>("PART_LineUpButton");
-        await Assert.False(await upButton.GetIsVisible());
+        await Assert.That(await upButton.GetIsVisible()).IsFalse();
         var downButton = await verticalScrollBar.GetElement<RepeatButton>("PART_LineDownButton");
-        await Assert.False(await downButton.GetIsVisible());
+        await Assert.That(await downButton.GetIsVisible()).IsFalse();
 
-        await Assert.Equal(17.0, await horizontalScrollBar.GetActualHeight(), 1.0);
+        await Assert.That(await horizontalScrollBar.GetActualHeight()).IsCloseTo(17.0, 1.0);
         var horizontalThumb = await horizontalScrollBar.GetElement<Border>("/Thumb~border");
-        await Assert.Equal(10.0, await horizontalThumb.GetActualHeight(), 1.0);
+        await Assert.That(await horizontalThumb.GetActualHeight()).IsCloseTo(10.0, 1.0);
         var leftButton = await horizontalScrollBar.GetElement<RepeatButton>("PART_LineLeftButton");
-        await Assert.False(await leftButton.GetIsVisible());
+        await Assert.That(await leftButton.GetIsVisible()).IsFalse();
         var rightButton = await horizontalScrollBar.GetElement<RepeatButton>("PART_LineRightButton");
-        await Assert.False(await rightButton.GetIsVisible());
+        await Assert.That(await rightButton.GetIsVisible()).IsFalse();
 
         recorder.Success();
     }
@@ -135,7 +135,7 @@ ScrollViewer.VerticalScrollBarVisibility=""Visible"">
         var earth = await listBox.GetElement<ListBoxItem>("/ListBoxItem[2]");
         await earth.LeftClick();
         var selectedBorder = await earth.GetElement<Border>("SelectedBorder");
-        await Wait.For(async () => await Assert.False(await selectedBorder.GetIsVisible()));
+        await Wait.For(async () => await Assert.That(await selectedBorder.GetIsVisible()).IsFalse());
 
         recorder.Success();
     }
@@ -164,13 +164,13 @@ ScrollViewer.VerticalScrollBarVisibility=""Visible"">
         var listBoxItem = await listBox.GetElement<ListBoxItem>("/ListBoxItem[2]");
 
         await textBox.LeftClick();
-        await Wait.For(async () => await Assert.True(await textBox.GetIsKeyboardFocusWithin()));
+        await Wait.For(async () => await Assert.That(await textBox.GetIsKeyboardFocusWithin()).IsTrue());
 
         // Act
         await listBoxItem.LeftClick();
 
         // Assert
-        await Wait.For(async () => await Assert.True(await listBox.GetIsKeyboardFocusWithin()));
+        await Wait.For(async () => await Assert.That(await listBox.GetIsKeyboardFocusWithin()).IsTrue());
 
         recorder.Success();
     }

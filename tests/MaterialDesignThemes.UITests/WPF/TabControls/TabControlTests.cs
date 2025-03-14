@@ -6,10 +6,6 @@ namespace MaterialDesignThemes.UITests.WPF.TabControls;
 
 public class TabControlTests : TestBase
 {
-    public TabControlTests(ITestOutputHelper output)
-        : base(output)
-    { }
-
     [Test]
     [Description("Issue 2602")]
     public async Task OnLoad_ThemeBrushesSet()
@@ -38,12 +34,12 @@ public class TabControlTests : TestBase
         Color? selectedTabUnderline = await selectedTabBorder.GetBorderBrushColor();
 
         //Assert
-        await Assert.NotNull(foreground);
-        await Assert.NotNull(background);
+        await Assert.That(foreground).IsNotNull();
+        await Assert.That(background).IsNotNull();
 
-        MaterialDesignSpec.AssertContrastRatio(foreground.Value, background.Value, MaterialDesignSpec.MinimumContrastSmallText);
+        await MaterialDesignSpec.AssertContrastRatio(foreground.Value, background.Value, MaterialDesignSpec.MinimumContrastSmallText);
 
-        await Assert.Equal(foreground, selectedTabUnderline);
+        await Assert.That(selectedTabUnderline).IsEqualTo(foreground);
 
         recorder.Success();
     }
@@ -106,7 +102,7 @@ public class TabControlTests : TestBase
         // Assert initial data context
         IVisualElement<TabItem> tabItem = await tabControl.GetElement<TabItem>();
         object? dataContext = await tabItem.GetDataContext();
-        await Assert.Equal("aaaa", dataContext);
+        await Assert.That(dataContext).IsEqualTo("aaaa");
 
         // Act
         await button.MoveCursorTo();
@@ -118,7 +114,7 @@ public class TabControlTests : TestBase
         // Assert data context still present
         tabItem = await tabControl.GetElement<TabItem>();
         dataContext = await tabItem.GetDataContext();
-        await Assert.Equal("aaaa", dataContext);
+        await Assert.That(dataContext).IsEqualTo("aaaa");
 
         recorder.Success();
     }
@@ -151,8 +147,8 @@ public class TabControlTests : TestBase
         IVisualElement<TextBlock> customContent = await customContentBorder.GetElement<TextBlock>(@"/TextBlock");
 
         //Assert
-        await Assert.Equal(Colors.Fuchsia, await customContentBorder.GetBackgroundColor());
-        await Assert.Equal("Tab content string", await customContent.GetText());
+        await Assert.That(await customContentBorder.GetBackgroundColor()).IsEqualTo(Colors.Fuchsia);
+        await Assert.That(await customContent.GetText()).IsEqualTo("Tab content string");
 
         recorder.Success();
     }

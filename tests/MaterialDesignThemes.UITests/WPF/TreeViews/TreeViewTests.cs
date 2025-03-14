@@ -5,10 +5,6 @@ namespace MaterialDesignThemes.UITests.WPF.TreeViews;
 
 public class TreeViewTests : TestBase
 {
-    public TreeViewTests(ITestOutputHelper output)
-        : base(output)
-    { }
-
     [Test]
     [Description("Issue 2618")]
     public async Task HasNoItemsExpanderVisibility_ChangesVisibilityOnExpander()
@@ -37,28 +33,28 @@ public class TreeViewTests : TestBase
 </TreeView>");
 
         var expander = await GetExpanderForHeader("Item1");
-        await Assert.Equal(Visibility.Hidden, await expander.GetVisibility());
+        await Assert.That(await expander.GetVisibility()).IsEqualTo(Visibility.Hidden);
 
         expander = await GetExpanderForHeader("Item2");
-        await Assert.Equal(Visibility.Hidden, await expander.GetVisibility());
+        await Assert.That(await expander.GetVisibility()).IsEqualTo(Visibility.Hidden);
 
         expander = await GetExpanderForHeader("Item3");
-        await Assert.Equal(Visibility.Collapsed, await expander.GetVisibility());
+        await Assert.That(await expander.GetVisibility()).IsEqualTo(Visibility.Collapsed);
 
         expander = await GetExpanderForHeader("Item4");
-        await Assert.Equal(Visibility.Visible, await expander.GetVisibility());
+        await Assert.That(await expander.GetVisibility()).IsEqualTo(Visibility.Visible);
 
         expander = await GetExpanderForHeader("Item5");
-        await Assert.Equal(Visibility.Visible, await expander.GetVisibility());
+        await Assert.That(await expander.GetVisibility()).IsEqualTo(Visibility.Visible);
 
         expander = await GetExpanderForHeader("Item6");
-        await Assert.Equal(Visibility.Visible, await expander.GetVisibility());
+        await Assert.That(await expander.GetVisibility()).IsEqualTo(Visibility.Visible);
 
         expander = await GetExpanderForHeader("Item7");
-        await Assert.Equal(Visibility.Visible, await expander.GetVisibility());
+        await Assert.That(await expander.GetVisibility()).IsEqualTo(Visibility.Visible);
 
         expander = await GetExpanderForHeader("Item8");
-        await Assert.Equal(Visibility.Visible, await expander.GetVisibility());
+        await Assert.That(await expander.GetVisibility()).IsEqualTo(Visibility.Visible);
 
         recorder.Success();
 
@@ -88,10 +84,10 @@ public class TreeViewTests : TestBase
 </TreeView>");
 
         var expander = await GetExpanderForHeader("NoChild");
-        await Assert.Equal(visibility, await expander.GetVisibility());
+        await Assert.That(await expander.GetVisibility()).IsEqualTo(visibility);
 
         expander = await GetExpanderForHeader("HasChild");
-        await Assert.Equal(Visibility.Visible, await expander.GetVisibility());
+        await Assert.That(await expander.GetVisibility()).IsEqualTo(Visibility.Visible);
 
         recorder.Success();
 

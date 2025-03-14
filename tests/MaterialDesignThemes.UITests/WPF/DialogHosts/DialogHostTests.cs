@@ -46,7 +46,10 @@ public class DialogHostTests : TestBase
             await Wait.For(async () => await overlay.GetVisibility() != Visibility.Visible, retry);
         }
         await testOverlayButton.LeftClick();
-        await Wait.For(async () => await Assert.That(await resultTextBlock.GetText()).IsEqualTo("Clicks: 2"), retry);
+        await Wait.For(async () =>
+        {
+            await Assert.That((await resultTextBlock.GetText())!).IsEqualTo("Clicks: 2");
+        }, retry);
 
         recorder.Success();
     }
@@ -67,7 +70,10 @@ public class DialogHostTests : TestBase
         await Task.Delay(300);
         await closeButton.LeftClick();
 
-        await Wait.For(async () => await Assert.That(await resultTextBlock.GetText()).IsEqualTo("1"));
+        await Wait.For(async () =>
+        {
+            await Assert.That(await resultTextBlock.GetText()).IsEqualTo("1");
+        });
         recorder.Success();
     }
 
@@ -226,7 +232,7 @@ public class DialogHostTests : TestBase
         {
             Color? foreground1 = await textBlock1.GetForegroundColor();
             await Assert.That(foreground1).IsNotNull();
-            AssertContrastRatio(
+            await AssertContrastRatio(
                 foreground1.Value,
                 await textBlock1.GetEffectiveBackground(),
                 MinimumContrastSmallText);
@@ -236,7 +242,7 @@ public class DialogHostTests : TestBase
         {
             Color? foreground2 = await textBlock2.GetForegroundColor();
             await Assert.That(foreground2).IsNotNull();
-            AssertContrastRatio(
+            await AssertContrastRatio(
                 foreground2.Value,
                 await textBlock2.GetEffectiveBackground(),
                 MinimumContrastSmallText);
