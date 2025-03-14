@@ -8,11 +8,6 @@ namespace MaterialDesignThemes.UITests.WPF.TimePickers;
 
 public class TimePickerTests : TestBase
 {
-    public TimePickerTests(ITestOutputHelper output)
-        : base(output)
-    {
-    }
-
     [Test]
     [Arguments(1, 1, 1)]
     [Arguments(2020, 8, 10)]
@@ -32,7 +27,7 @@ public class TimePickerTests : TestBase
         await timePickerTextBox.SetText("1:10 AM");
 
         var actual = await timePicker.GetSelectedTime();
-        await Assert.Equal(new DateTime(year, month, day, 1, 10, 0), actual);
+        await Assert.That(actual).IsEqualTo(new DateTime(year, month, day, 1, 10, 0));
 
         recorder.Success();
     }
@@ -59,7 +54,7 @@ public class TimePickerTests : TestBase
         await textBox.MoveKeyboardFocus();
 
         var actual = await timePicker.GetSelectedTime();
-        await Assert.Equal(new DateTime(year, month, day, 1, 10, 0), actual);
+        await Assert.That(actual).IsEqualTo(new DateTime(year, month, day, 1, 10, 0));
 
         recorder.Success();
     }
@@ -81,7 +76,7 @@ public class TimePickerTests : TestBase
         await timePicker.PickClock(1, 10);
 
         var actual = await timePicker.GetSelectedTime();
-        await Assert.Equal(new DateTime(year, month, day, 1, 10, 0), actual);
+        await Assert.That(actual).IsEqualTo(new DateTime(year, month, day, 1, 10, 0));
 
         recorder.Success();
     }
@@ -103,7 +98,7 @@ public class TimePickerTests : TestBase
         await timePickerTextBox.SetText("1:23 AM");
 
         var actual = await timePicker.GetSelectedTime();
-        await Assert.Equal(AdjustToday(today, actual).Add(new TimeSpan(1, 23, 0)), actual);
+        await Assert.That(actual).IsEqualTo(AdjustToday(today, actual).Add(new TimeSpan(1, 23, 0)));
 
         recorder.Success();
     }
@@ -128,7 +123,7 @@ public class TimePickerTests : TestBase
         await textBox.MoveKeyboardFocus();
 
         var actual = await timePicker.GetSelectedTime();
-        await Assert.Equal(AdjustToday(today, actual).Add(new TimeSpan(1, 23, 0)), actual);
+        await Assert.That(actual).IsEqualTo(AdjustToday(today, actual).Add(new TimeSpan(1, 23, 0)));
 
         recorder.Success();
     }
@@ -148,7 +143,7 @@ public class TimePickerTests : TestBase
         await timePicker.PickClock(1, 23);
 
         var actual = await timePicker.GetSelectedTime();
-        await Assert.Equal(AdjustToday(today, actual).Add(new TimeSpan(1, 23, 0)), actual);
+        await Assert.That(actual).IsEqualTo(AdjustToday(today, actual).Add(new TimeSpan(1, 23, 0)));
 
         recorder.Success();
     }
@@ -186,7 +181,7 @@ public class TimePickerTests : TestBase
         await textBox.MoveKeyboardFocus();
 
         var actual = await timePickerTextBox.GetText();
-        await Assert.Equal("1:02 AM", actual);
+        await Assert.That(actual).IsEqualTo("1:02 AM");
 
         recorder.Success();
     }
@@ -214,7 +209,7 @@ public class TimePickerTests : TestBase
         await textBox.MoveKeyboardFocus();
 
         var actual = await timePickerTextBox.GetText();
-        await Assert.Equal("1:02 AM", actual);
+        await Assert.That(actual).IsEqualTo("1:02 AM");
 
         recorder.Success();
     }
@@ -239,7 +234,7 @@ public class TimePickerTests : TestBase
         await timePickerTextBox.SendKeyboardInput($"{text}{Key.Enter}");
 
         var actual = await timePickerTextBox.GetText();
-        await Assert.Equal("1:02 AM", actual);
+        await Assert.That(actual).IsEqualTo("1:02 AM");
 
         recorder.Success();
     }
@@ -264,7 +259,7 @@ public class TimePickerTests : TestBase
         await timePickerTextBox.SendKeyboardInput($"{text}{Key.Enter}");
 
         var actual = await timePickerTextBox.GetText();
-        await Assert.Equal("1:02 AM", actual);
+        await Assert.That(actual).IsEqualTo("1:02 AM");
 
         recorder.Success();
     }
@@ -290,7 +285,7 @@ public class TimePickerTests : TestBase
         await timePicker.PickClock(1, 3);
 
         var actual = await timePickerTextBox.GetText();
-        await Assert.Equal("1:03 AM", actual);
+        await Assert.That(actual).IsEqualTo("1:03 AM");
 
         recorder.Success();
     }
@@ -316,7 +311,7 @@ public class TimePickerTests : TestBase
         await timePicker.PickClock(1, 2);
 
         var actual = await timePickerTextBox.GetText();
-        await Assert.Equal("1:02 AM", actual);
+        await Assert.That(actual).IsEqualTo("1:02 AM");
 
         recorder.Success();
     }
@@ -337,7 +332,7 @@ public class TimePickerTests : TestBase
 
         double fontSize = await helpTextBlock.GetFontSize();
 
-        await Assert.Equal(20, fontSize);
+        await Assert.That(fontSize).IsEqualTo(20);
         recorder.Success();
     }
 
@@ -388,10 +383,10 @@ public class TimePickerTests : TestBase
         var withErrorBorderThickness = await textBoxOuterBorder.GetBorderThickness(); ;
 
         // Assert
-        await Assert.Equal(expectedInactiveBorderThickness, inactiveBorderThickness);
-        await Assert.Equal(expectedActiveBorderThickness, hoverBorderThickness);
-        await Assert.Equal(expectedActiveBorderThickness, focusedBorderThickness);
-        await Assert.Equal(expectedActiveBorderThickness, withErrorBorderThickness);
+        await Assert.That(inactiveBorderThickness).IsEqualTo(expectedInactiveBorderThickness);
+        await Assert.That(hoverBorderThickness).IsEqualTo(expectedActiveBorderThickness);
+        await Assert.That(focusedBorderThickness).IsEqualTo(expectedActiveBorderThickness);
+        await Assert.That(withErrorBorderThickness).IsEqualTo(expectedActiveBorderThickness);
 
         recorder.Success();
     }
@@ -431,8 +426,8 @@ public class TimePickerTests : TestBase
         Rect? hintCoordinates = await hint.GetCoordinates();
         Rect? helperTextCoordinates = await helperText.GetCoordinates();
 
-        await Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left), 0, tolerance);
-        await Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - helperTextCoordinates.Value.Left), 0, tolerance);
+        await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left)).IsCloseTo(0, tolerance);
+        await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - helperTextCoordinates.Value.Left)).IsCloseTo(0, tolerance);
 
         recorder.Success();
     }
@@ -480,8 +475,8 @@ public class TimePickerTests : TestBase
         Rect? hintCoordinates = await hint.GetCoordinates();
         Rect? errorViewerCoordinates = await errorViewer.GetCoordinates();
 
-        await Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left), 0, tolerance);
-        await Assert.InRange(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left), 0, tolerance);
+        await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left)).IsCloseTo(0, tolerance);
+        await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left)).IsCloseTo(0, tolerance);
 
         recorder.Success();
     }
@@ -501,14 +496,14 @@ public class TimePickerTests : TestBase
 </StackPanel>");
         var timePicker = await stackPanel.GetElement<TimePicker>("/TimePicker");
         var clearButton = await timePicker.GetElement<Button>("PART_ClearButton");
-        await Assert.NotNull(await timePicker.GetSelectedTime());
+        await Assert.That(await timePicker.GetSelectedTime()).IsNotNull();
 
         // Act
         await clearButton.LeftClick();
         await Task.Delay(50);
 
         // Assert
-        await Assert.Null(await timePicker.GetSelectedTime());
+        await Assert.That(await timePicker.GetSelectedTime()).IsNull();
 
         recorder.Success();
     }
@@ -531,14 +526,14 @@ public class TimePickerTests : TestBase
         var clearButton = await timePicker.GetElement<Button>("PART_ClearButton");
 
         await timePickerTextBox.SendKeyboardInput($"invalid time");
-        await Assert.Equal("invalid time", await timePickerTextBox.GetText());
+        await Assert.That(await timePickerTextBox.GetText()).IsEqualTo("invalid time");
 
         // Act
         await clearButton.LeftClick();
         await Task.Delay(50);
 
         // Assert
-        await Assert.Null(await timePickerTextBox.GetText());
+        await Assert.That(await timePickerTextBox.GetText()).IsNull();
 
         recorder.Success();
     }
@@ -564,13 +559,13 @@ public class TimePickerTests : TestBase
         var defaultFloatedBackground = await GetThemeColor("MaterialDesign.Brush.Background");
 
         // Assert (unfocused state)
-        await Assert.Null(await hintBackgroundGrid.GetBackgroundColor());
+        await Assert.That(await hintBackgroundGrid.GetBackgroundColor()).IsNull();
 
         // Act
         await timePickerTextBox.MoveKeyboardFocus();
 
         // Assert (focused state)
-        await Assert.Equal(defaultFloatedBackground, await hintBackgroundGrid.GetBackgroundColor());
+        await Assert.That(await hintBackgroundGrid.GetBackgroundColor()).IsEqualTo(defaultFloatedBackground);
 
         recorder.Success();
     }
@@ -599,13 +594,13 @@ public class TimePickerTests : TestBase
         var hintBackgroundBorder = await timePicker.GetElement<Border>("HintBackgroundBorder");
 
         // Assert (unfocused state)
-        await Assert.Equal(Colors.Red, await hintBackgroundBorder.GetBackgroundColor());
+        await Assert.That(await hintBackgroundBorder.GetBackgroundColor()).IsEqualTo(Colors.Red);
 
         // Act
         await timePickerTextBox.MoveKeyboardFocus();
 
         // Assert (focused state)
-        await Assert.Equal(Colors.Red, await hintBackgroundBorder.GetBackgroundColor());
+        await Assert.That(await hintBackgroundBorder.GetBackgroundColor()).IsEqualTo(Colors.Red);
 
         recorder.Success();
     }
@@ -638,8 +633,8 @@ public class TimePickerTests : TestBase
         var timePickerTimeButtonHoverThickness = await timePickerTextBoxBorder.GetBorderThickness();
 
         // Assert
-        await Assert.Equal(expectedThickness, timePickerTextBoxHoverThickness);
-        await Assert.Equal(expectedThickness, timePickerTimeButtonHoverThickness);
+        await Assert.That(timePickerTextBoxHoverThickness).IsEqualTo(expectedThickness);
+        await Assert.That(timePickerTimeButtonHoverThickness).IsEqualTo(expectedThickness);
 
         recorder.Success();
     }
@@ -668,8 +663,8 @@ public class TimePickerTests : TestBase
         await Task.Delay(50);
 
         // Assert
-        await Assert.True(await textBox.GetIsFocused());
-        await Assert.False(await timePickerTextBox.GetIsFocused());
+        await Assert.That(await textBox.GetIsFocused()).IsTrue();
+        await Assert.That(await timePickerTextBox.GetIsFocused()).IsFalse();
 
         recorder.Success();
     }

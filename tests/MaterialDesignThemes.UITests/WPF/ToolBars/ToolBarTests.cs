@@ -5,11 +5,6 @@ namespace MaterialDesignThemes.UITests.WPF.ToolBars;
 
 public class ToolBarTests : TestBase
 {
-    public ToolBarTests(ITestOutputHelper output)
-        : base(output)
-    {
-    }
-
     [Description("Issue 2991")]
     [Test]
     [Arguments(Orientation.Horizontal, Dock.Right)]
@@ -31,7 +26,7 @@ public class ToolBarTests : TestBase
         Dock dock = await overflowGrid.GetProperty<Dock>(DockPanel.DockProperty);
 
         //Assert
-        await Assert.Equal(expectedOverflowGridDock, dock);
+        await Assert.That(dock).IsEqualTo(expectedOverflowGridDock);
 
         recorder.Success();
     }

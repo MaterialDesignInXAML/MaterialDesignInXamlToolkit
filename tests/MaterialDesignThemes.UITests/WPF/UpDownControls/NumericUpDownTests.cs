@@ -9,7 +9,7 @@ using MaterialDesignThemes.UITests.Samples.UpDownControls;
 namespace MaterialDesignThemes.UITests.WPF.UpDownControls;
 
 
-public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
+public class NumericUpDownTests : TestBase
 {
     [Test]
     public async Task NumericButtons_IncreaseAndDecreaseValue()
@@ -23,21 +23,21 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
         var minusButton = await numericUpDown.GetElement<RepeatButton>("PART_DecreaseButton");
         var textBox = await numericUpDown.GetElement<TextBox>("PART_TextBox");
 
-        await Assert.Equal("1", await textBox.GetText());
-        await Assert.Equal(1, await numericUpDown.GetValue());
+        await Assert.That(await textBox.GetText()).IsEqualTo("1");
+        await Assert.That(await numericUpDown.GetValue()).IsEqualTo(1);
 
         await plusButton.LeftClick();
         await Wait.For(async () =>
         {
-            await Assert.Equal("2", await textBox.GetText());
-            await Assert.Equal(2, await numericUpDown.GetValue());
+            await Assert.That(await textBox.GetText()).IsEqualTo("2");
+            await Assert.That(await numericUpDown.GetValue()).IsEqualTo(2);
         });
 
         await minusButton.LeftClick();
         await Wait.For(async () =>
         {
-            await Assert.Equal("1", await textBox.GetText());
-            await Assert.Equal(1, await numericUpDown.GetValue());
+            await Assert.That(await textBox.GetText()).IsEqualTo("1");
+            await Assert.That(await numericUpDown.GetValue()).IsEqualTo(1);
         });
 
         recorder.Success();
@@ -58,20 +58,20 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
         await plusButton.LeftClick();
         await Wait.For(async () =>
         {
-            await Assert.Equal("2", await textBox.GetText());
-            await Assert.Equal(2, await numericUpDown.GetValue());
+            await Assert.That(await textBox.GetText()).IsEqualTo("2");
+            await Assert.That(await numericUpDown.GetValue()).IsEqualTo(2);
         });
 
-        await Assert.False(await plusButton.GetIsEnabled());
+        await Assert.That(await plusButton.GetIsEnabled()).IsFalse();
 
         await minusButton.LeftClick();
         await Wait.For(async () =>
         {
-            await Assert.Equal("1", await textBox.GetText());
-            await Assert.Equal(1, await numericUpDown.GetValue());
+            await Assert.That(await textBox.GetText()).IsEqualTo("1");
+            await Assert.That(await numericUpDown.GetValue()).IsEqualTo(1);
         });
 
-        await Assert.True(await plusButton.GetIsEnabled());
+        await Assert.That(await plusButton.GetIsEnabled()).IsTrue();
 
         recorder.Success();
     }
@@ -91,20 +91,20 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
         await minusButton.LeftClick();
         await Wait.For(async () =>
         {
-            await Assert.Equal("1", await textBox.GetText());
-            await Assert.Equal(1, await numericUpDown.GetValue());
+            await Assert.That(await textBox.GetText()).IsEqualTo("1");
+            await Assert.That(await numericUpDown.GetValue()).IsEqualTo(1);
         });
 
-        await Assert.False(await minusButton.GetIsEnabled());
+        await Assert.That(await minusButton.GetIsEnabled()).IsFalse();
 
         await plusButton.LeftClick();
         await Wait.For(async () =>
         {
-            await Assert.Equal("2", await textBox.GetText());
-            await Assert.Equal(2, await numericUpDown.GetValue());
+            await Assert.That(await textBox.GetText()).IsEqualTo("2");
+            await Assert.That(await numericUpDown.GetValue()).IsEqualTo(2);
         });
 
-        await Assert.True(await minusButton.GetIsEnabled());
+        await Assert.That(await minusButton.GetIsEnabled()).IsTrue();
 
         recorder.Success();
     }
@@ -119,16 +119,16 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
         """);
 
         await numericUpDown.SetMaximum(1);
-        await Assert.Equal(1, await numericUpDown.GetValue());
+        await Assert.That(await numericUpDown.GetValue()).IsEqualTo(1);
 
         await numericUpDown.SetMinimum(3);
-        await Assert.Equal(3, await numericUpDown.GetValue());
-        await Assert.Equal(3, await numericUpDown.GetMaximum());
+        await Assert.That(await numericUpDown.GetValue()).IsEqualTo(3);
+        await Assert.That(await numericUpDown.GetMaximum()).IsEqualTo(3);
 
         await numericUpDown.SetMaximum(2);
-        await Assert.Equal(3, await numericUpDown.GetValue());
-        await Assert.Equal(3, await numericUpDown.GetMinimum());
-        await Assert.Equal(3, await numericUpDown.GetMaximum());
+        await Assert.That(await numericUpDown.GetValue()).IsEqualTo(3);
+        await Assert.That(await numericUpDown.GetMinimum()).IsEqualTo(3);
+        await Assert.That(await numericUpDown.GetMaximum()).IsEqualTo(3);
 
         recorder.Success();
     }
@@ -157,13 +157,14 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
         await Task.Delay(50);
 
         // Assert
-        await Assert.False(await textBox.GetIsFocused());
-        await Assert.True(await part_textBox.GetIsFocused());
+        await Assert.That(await textBox.GetIsFocused()).IsFalse();
+        await Assert.That(await part_textBox.GetIsFocused()).IsTrue();
 
         recorder.Success();
     }
 
-    [Fact(Skip = "Needs XAMLTest 1.2.3 or later")]
+    [Test]
+    [Skip("Needs XAMLTest 1.2.3 or later")]
     public async Task NumericUpDown_ValueSetGreaterThanMaximum_CoercesToMaximum()
     {
         await using var recorder = new TestRecorder(App);
@@ -186,9 +187,9 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
 
         //Assert
         //The value and bound property in the VM should be set to the maximum
-        await Assert.Equal(10, await numericUpDown.GetValue());
+        await Assert.That(await numericUpDown.GetValue()).IsEqualTo(10);
         var viewModel = await userControl.GetProperty<BoundNumericUpDownViewModel>(nameof(BoundNumericUpDown.ViewModel));
-        await Assert.Equal(10, viewModel?.Value);
+        await Assert.That(viewModel?.Value).IsEqualTo(10);
 
         recorder.Success();
     }
@@ -215,8 +216,8 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
         bool decreaseButtonEnabled = await decreaseButton.GetIsEnabled();
 
         //Assert
-        await Assert.Equal(increaseEnabled, increaseButtonEnabled);
-        await Assert.Equal(decreaseEnabled, decreaseButtonEnabled);
+        await Assert.That(increaseButtonEnabled).IsEqualTo(increaseEnabled);
+        await Assert.That(decreaseButtonEnabled).IsEqualTo(decreaseEnabled);
 
         recorder.Success();
     }

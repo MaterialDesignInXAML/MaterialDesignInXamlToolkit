@@ -3,20 +3,15 @@ using MaterialDesignColors;
 using MaterialDesignColors.ColorManipulation;
 using MaterialDesignThemes.UITests.Samples.Theme;
 
-
 namespace MaterialDesignThemes.UITests.WPF.Theme;
 
 public class ColorAdjustTests : TestBase
 {
-    public ColorAdjustTests(ITestOutputHelper output)
-        : base(output)
-    { }
-
-    public static IEnumerable<object[]> PrimaryColors()
+    public static IEnumerable<Func<PrimaryColor>> PrimaryColors()
     {
         return Enum.GetValues(typeof(PrimaryColor))
             .OfType<PrimaryColor>()
-            .Select(x => new object[] { x });
+            .Select(x => new Func<PrimaryColor>(() => x));
     }
 
     [Test]
@@ -53,10 +48,11 @@ public class ColorAdjustTests : TestBase
             Color? smallTextForeground = await smallText.GetForegroundColor();
             Color smallTextBackground = await smallText.GetEffectiveBackground();
 
-            var largeContrastRatio = ColorAssist.ContrastRatio(largeTextForeground.Value, largeTextBackground);
-            await Assert.True(largeContrastRatio >= MaterialDesignSpec.MinimumContrastLargeText - tolerance, $"Large font contrast ratio '{largeContrastRatio}' does not meet material design spec {MaterialDesignSpec.MinimumContrastLargeText}");
-            var smallContrastRatio = ColorAssist.ContrastRatio(smallTextForeground.Value, smallTextBackground);
-            await Assert.True(smallContrastRatio >= MaterialDesignSpec.MinimumContrastSmallText - tolerance, $"Small font contrast ratio '{smallContrastRatio}' does not meet material design spec {MaterialDesignSpec.MinimumContrastSmallText}");
+            double largeContrastRatio = ColorAssist.ContrastRatio(largeTextForeground.Value, largeTextBackground);
+            await Assert.That(largeContrastRatio).IsGreaterThanOrEqualTo(MaterialDesignSpec.MinimumContrastLargeText - tolerance)
+                .Because($"Large font contrast ratio '{largeContrastRatio}' does not meet material design spec {MaterialDesignSpec.MinimumContrastLargeText}");
+            double smallContrastRatio = ColorAssist.ContrastRatio(smallTextForeground.Value, smallTextBackground);
+            await Assert.That(smallContrastRatio).IsGreaterThanOrEqualTo(MaterialDesignSpec.MinimumContrastSmallText - tolerance).Because($"Small font contrast ratio '{smallContrastRatio}' does not meet material design spec {MaterialDesignSpec.MinimumContrastSmallText}");
         }
     }
 }
