@@ -70,11 +70,11 @@ public class BundledTheme : ResourceDictionary, IMaterialDesignThemeDictionary
         Lazy<Color?> accentColor = new(Theme.GetSystemAccentColor);
 
         Color colorPrimary = primaryColor == MaterialDesignColors.PrimaryColor.Inherit
-                              ? (accentColor.Value ?? SwatchHelper.Lookup.First().Value)
+                              ? (accentColor.Value ?? default)
                               : SwatchHelper.Lookup[(MaterialDesignColor)primaryColor];
 
         Color colorSecondary = secondaryColor == MaterialDesignColors.SecondaryColor.Inherit
-                              ? (accentColor.Value ?? SwatchHelper.Lookup.First().Value)
+                              ? (accentColor.Value ?? default)
                               : SwatchHelper.Lookup[(MaterialDesignColor)secondaryColor];
 
         Theme theme = Theme.Create(baseTheme, colorPrimary, colorSecondary);
