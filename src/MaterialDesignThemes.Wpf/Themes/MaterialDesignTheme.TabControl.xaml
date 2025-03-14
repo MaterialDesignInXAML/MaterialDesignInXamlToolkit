@@ -291,7 +291,7 @@
                                Duration="0" />
             </Storyboard>
           </ControlTemplate.Resources>
-          <Grid x:Name="Root" Cursor="Hand">
+          <Grid x:Name="Root" Cursor="{Binding Path=(wpf:TabAssist.TabHeaderCursor), RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}">
             <!-- This is the Header label ColorZone. -->
             <wpf:ColorZone x:Name="ColorZoneHeader"
                            HorizontalAlignment="Stretch"
