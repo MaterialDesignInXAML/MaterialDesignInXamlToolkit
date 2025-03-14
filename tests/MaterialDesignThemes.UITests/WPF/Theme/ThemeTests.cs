@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 using MaterialDesignColors;
 
 
@@ -7,10 +6,6 @@ namespace MaterialDesignThemes.UITests.WPF.Theme;
 
 public partial class ThemeTests : TestBase
 {
-    public ThemeTests(ITestOutputHelper output)
-        : base(output)
-    { }
-
     [Test]
     public async Task WhenUsingBuiltInLightXamlThemeDictionary_AllBrushesApplied()
     {
@@ -60,22 +55,16 @@ public partial class ThemeTests : TestBase
         await AssertAllThemeBrushesSet(panel);
     }
 
-    public static IEnumerable<object[]> ThemeCombinations()
-    {
-        var baseThemes = new[] { "Light", "Dark" };
-        var primaryColors = Enum.GetNames<PrimaryColor>();
-        var secondaryColors = Enum.GetNames<SecondaryColor>();
+    private static PrimaryColor[] PrimaryColors() => Enum.GetValues<PrimaryColor>();
+    private static SecondaryColor[] SecondaryColors() => Enum.GetValues<SecondaryColor>();
 
-        return (from baseTheme in baseThemes
-               from primaryColor in primaryColors
-               from secondaryColor in secondaryColors
-               select new object[] { baseTheme, primaryColor, secondaryColor });
-
-    }
-
-    [Theory(Skip = "Manual run when theme values change")]
-    [MemberData(nameof(ThemeCombinations))]
-    public async Task BundledTheme_UsesSameColorsAsXamlResources(string baseTheme, string primaryColor, string secondaryColor)
+    [Test]
+    [Skip("Manual run when theme values change")]
+    [MatrixDataSource]
+    public async Task BundledTheme_UsesSameColorsAsXamlResources(
+        [Matrix("Light", "Dark")] string baseTheme,
+        [MatrixMethod<PrimaryColor>(nameof(PrimaryColors))] PrimaryColor primaryColor,
+        [MatrixMethod<SecondaryColor>(nameof(SecondaryColors))] SecondaryColor secondaryColor)
     {
         IVisualElement<WrapPanel> bundledPanel = await Initialize($"""
             <materialDesign:BundledTheme BaseTheme="{baseTheme}"
@@ -95,12 +84,11 @@ public partial class ThemeTests : TestBase
             """);
         Dictionary<string, Color> xamlColorsByNames = await GetColors();
 
-        await Assert.Equal(bundledColorsByNames.Count, xamlColorsByNames.Count);
+        await Assert.That(xamlColorsByNames.Count).IsEqualTo(bundledColorsByNames.Count);
 
         foreach (string brushName in GetBrushResourceNames())
         {
-            bool areEqual = bundledColorsByNames[brushName] == xamlColorsByNames[brushName];
-            await Assert.True(areEqual, $"Brush {brushName}, Bundled color {bundledColorsByNames[brushName]} does not match XAML color {xamlColorsByNames[brushName]}");
+            await Assert.That(bundledColorsByNames[brushName] == xamlColorsByNames[brushName]).IsTrue().Because($"Brush {brushName}, Bundled color {bundledColorsByNames[brushName]} does not match XAML color {xamlColorsByNames[brushName]}");
         }
 
         async Task<Dictionary<string, Color>> GetColors()
@@ -128,8 +116,8 @@ public partial class ThemeTests : TestBase
     {
         IResource resource = await App.GetResource(name);
         SolidColorBrush? brush = resource.GetAs<SolidColorBrush>();
-        await Assert.NotNull(brush);
-        return brush.Color;
+        await Assert.That(brush).IsNotNull();
+        return brush!.Color;
     }
 
     protected async Task<IVisualElement<WrapPanel>> Initialize(string themeDictionary)
@@ -153,7 +141,7 @@ public partial class ThemeTests : TestBase
         await App.Initialize(applicationResourceXaml,
             Path.GetFullPath("MaterialDesignColors.dll"),
             Path.GetFullPath("MaterialDesignThemes.Wpf.dll"),
-            Assembly.GetExecutingAssembly().Location);
+            System.Reflection.Assembly.GetExecutingAssembly().Location);
         return await App.CreateWindowWith<WrapPanel>(GetXamlWrapPanel());
     }
 }

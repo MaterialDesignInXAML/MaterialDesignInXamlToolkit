@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace MaterialDesignThemes.UITests.WPF.UpDownControls;
 
-public class DecimalUpDownTests(ITestOutputHelper output) : TestBase(output)
+public class DecimalUpDownTests: TestBase
 {
     [Theory]
     [InlineData("en-US")]
@@ -26,22 +26,22 @@ public class DecimalUpDownTests(ITestOutputHelper output) : TestBase(output)
         var minusButton = await numericUpDown.GetElement<RepeatButton>("PART_DecreaseButton");
         var textBox = await numericUpDown.GetElement<TextBox>("PART_TextBox");
 
-        await Assert.Equal("1", await textBox.GetText());
-        await Assert.Equal(1, await numericUpDown.GetValue());
+        await Assert.That(await textBox.GetText()).IsEqualTo("1");
+        await Assert.That(await numericUpDown.GetValue()).IsEqualTo(1);
 
         await plusButton.LeftClick();
         await Wait.For(async () =>
         {
             Assert.Equal(Convert.ToString(1.1, CultureInfo.GetCultureInfo(culture)), await textBox.GetText());
-            await Assert.Equal("2", await textBox.GetText());
-            await Assert.Equal(2, await numericUpDown.GetValue());
+            await Assert.That(await textBox.GetText()).IsEqualTo("2");
+            await Assert.That(await numericUpDown.GetValue()).IsEqualTo(2);
         });
 
         await minusButton.LeftClick();
         await Wait.For(async () =>
         {
-            await Assert.Equal("1", await textBox.GetText());
-            await Assert.Equal(1, await numericUpDown.GetValue());
+            await Assert.That(await textBox.GetText()).IsEqualTo("1");
+            await Assert.That(await numericUpDown.GetValue()).IsEqualTo(1);
         });
 
         recorder.Success();
@@ -67,20 +67,20 @@ public class DecimalUpDownTests(ITestOutputHelper output) : TestBase(output)
         await plusButton.LeftClick();
         await Wait.For(async () =>
         {
-            await Assert.Equal("2", await textBox.GetText());
-            await Assert.Equal(2, await numericUpDown.GetValue());
+            await Assert.That(await textBox.GetText()).IsEqualTo("2");
+            await Assert.That(await numericUpDown.GetValue()).IsEqualTo(2);
         });
 
-        await Assert.False(await plusButton.GetIsEnabled());
+        await Assert.That(await plusButton.GetIsEnabled()).IsFalse();
 
         await minusButton.LeftClick();
         await Wait.For(async () =>
         {
-            await Assert.Equal("1", await textBox.GetText());
-            await Assert.Equal(1, await numericUpDown.GetValue());
+            await Assert.That(await textBox.GetText()).IsEqualTo("1");
+            await Assert.That(await numericUpDown.GetValue()).IsEqualTo(1);
         });
 
-        await Assert.True(await plusButton.GetIsEnabled());
+        await Assert.That(await plusButton.GetIsEnabled()).IsTrue();
 
         recorder.Success();
     }
@@ -100,20 +100,20 @@ public class DecimalUpDownTests(ITestOutputHelper output) : TestBase(output)
         await minusButton.LeftClick();
         await Wait.For(async () =>
         {
-            await Assert.Equal("1", await textBox.GetText());
-            await Assert.Equal(1, await numericUpDown.GetValue());
+            await Assert.That(await textBox.GetText()).IsEqualTo("1");
+            await Assert.That(await numericUpDown.GetValue()).IsEqualTo(1);
         });
 
-        await Assert.False(await minusButton.GetIsEnabled());
+        await Assert.That(await minusButton.GetIsEnabled()).IsFalse();
 
         await plusButton.LeftClick();
         await Wait.For(async () =>
         {
-            await Assert.Equal("2", await textBox.GetText());
-            await Assert.Equal(2, await numericUpDown.GetValue());
+            await Assert.That(await textBox.GetText()).IsEqualTo("2");
+            await Assert.That(await numericUpDown.GetValue()).IsEqualTo(2);
         });
 
-        await Assert.True(await minusButton.GetIsEnabled());
+        await Assert.That(await minusButton.GetIsEnabled()).IsTrue();
 
         recorder.Success();
     }
@@ -128,16 +128,16 @@ public class DecimalUpDownTests(ITestOutputHelper output) : TestBase(output)
         """);
 
         await numericUpDown.SetMaximum(1);
-        await Assert.Equal(1, await numericUpDown.GetValue());
+        await Assert.That(await numericUpDown.GetValue()).IsEqualTo(1);
 
         await numericUpDown.SetMinimum(3);
-        await Assert.Equal(3, await numericUpDown.GetValue());
-        await Assert.Equal(3, await numericUpDown.GetMaximum());
+        await Assert.That(await numericUpDown.GetValue()).IsEqualTo(3);
+        await Assert.That(await numericUpDown.GetMaximum()).IsEqualTo(3);
 
         await numericUpDown.SetMaximum(2);
-        await Assert.Equal(3, await numericUpDown.GetValue());
-        await Assert.Equal(3, await numericUpDown.GetMinimum());
-        await Assert.Equal(3, await numericUpDown.GetMaximum());
+        await Assert.That(await numericUpDown.GetValue()).IsEqualTo(3);
+        await Assert.That(await numericUpDown.GetMinimum()).IsEqualTo(3);
+        await Assert.That(await numericUpDown.GetMaximum()).IsEqualTo(3);
 
         recorder.Success();
     }
@@ -166,8 +166,8 @@ public class DecimalUpDownTests(ITestOutputHelper output) : TestBase(output)
         await Task.Delay(50);
 
         // Assert
-        await Assert.False(await textBox.GetIsFocused());
-        await Assert.True(await part_textBox.GetIsFocused());
+        await Assert.That(await textBox.GetIsFocused()).IsFalse();
+        await Assert.That(await part_textBox.GetIsFocused()).IsTrue();
 
         recorder.Success();
     }
@@ -195,8 +195,8 @@ public class DecimalUpDownTests(ITestOutputHelper output) : TestBase(output)
         await plusButton.LeftClick();
 
         //NB: Because the focus has not left the up down control, we don't expect the text to change
-        await Assert.Equal("30", await textBox.GetText());
-        await Assert.Equal(2.5m, await decimalUpDown.GetValue());
+        await Assert.That(await textBox.GetText()).IsEqualTo("30");
+        await Assert.That(await decimalUpDown.GetValue()).IsEqualTo(2.5m);
 
         recorder.Success();
     }
@@ -225,8 +225,8 @@ public class DecimalUpDownTests(ITestOutputHelper output) : TestBase(output)
         await textBox.SendKeyboardInput($"{ModifierKeys.Control}{Key.A}{ModifierKeys.None}{inputText}");
         await button.MoveKeyboardFocus();
 
-        await Assert.Equal(expectedValue.ToString(), await textBox.GetText());
-        await Assert.Equal(expectedValue, await decimalUpDown.GetValue());
+        await Assert.That(await textBox.GetText()).IsEqualTo("2.5");
+        await Assert.That(await decimalUpDown.GetValue()).IsEqualTo(2.5m);
 
         recorder.Success();
     }
