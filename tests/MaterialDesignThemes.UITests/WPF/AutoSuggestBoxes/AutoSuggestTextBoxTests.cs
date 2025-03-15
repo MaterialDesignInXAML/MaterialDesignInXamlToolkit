@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections;
+using System.ComponentModel;
 using MaterialDesignThemes.UITests.Samples.AutoSuggestBoxes;
 using MaterialDesignThemes.UITests.Samples.AutoSuggestTextBoxes;
 using Xunit.Sdk;
@@ -157,6 +158,67 @@ public class AutoSuggestBoxTests : TestBase
         Assert.True(await nextTextBox.GetIsFocused());
 
         recorder.Success();
+    }
+
+    [Fact]
+    [Description("Issue 3815")]
+    public async Task AutoSuggestBox_KeysUpAndDown_WrapAround()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        //Arrange
+        IVisualElement<AutoSuggestBox> suggestBox = (await LoadUserControl<AutoSuggestTextBoxWithTemplate>()).As<AutoSuggestBox>();
+        IVisualElement<Popup> popup = await suggestBox.GetElement<Popup>();
+        IVisualElement<ListBox> suggestionListBox = await popup.GetElement<ListBox>();
+
+        const int delay = 50;
+
+        //Act & Assert
+        await suggestBox.MoveKeyboardFocus();
+        await suggestBox.SendInput(new KeyboardInput("e"));
+        await Task.Delay(delay);
+
+        //var itemSource = (await suggestBox.GetSuggestions()).Cast<object>().ToList();
+
+        //var suggestions = await suggestionListBox.GetProperty<IEnumerable>(nameof(ListBox.ItemsSource));
+        //int itemCount = suggestions.Cast<object>().Count();
+
+        int itemCount = CountNonGenericEnumerable(await suggestBox.GetSuggestions());
+
+        //Assert that initially the first item is selected
+        int selectedIndex = await suggestionListBox.GetSelectedIndex();
+        Assert.Equal(0, selectedIndex);
+        await Task.Delay(delay);
+
+        //Assert that the last item is selected after pressing ArrowUp
+        await suggestBox.SendInput(new KeyboardInput(Key.Up));
+        Assert.Equal(itemCount - 1, await suggestionListBox.GetSelectedIndex());
+        await Task.Delay(delay);
+
+        //Assert that the first item is selected after pressing ArrowDown
+        await suggestBox.SendInput(new KeyboardInput(Key.Down));
+        Assert.Equal(0, await suggestionListBox.GetSelectedIndex());
+
+
+    }
+
+    internal static int CountNonGenericEnumerable(IEnumerable? source)
+    {
+        ArgumentNullException.ThrowIfNull(source);
+
+        if (source is ICollection collection)
+        {
+            return collection.Count;
+        }
+
+        int count = 0;
+        IEnumerator e = source.GetEnumerator();
+        while (e.MoveNext())
+        {
+            count++;
+        }
+
+        return count;
     }
 
     private static async Task AssertExists(IVisualElement<ListBox> suggestionListBox, string text, bool existsOrNotCheck = true)
