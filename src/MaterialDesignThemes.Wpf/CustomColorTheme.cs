@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.ComponentModel;
+using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf;
 
@@ -19,6 +20,7 @@ public class CustomColorTheme : ResourceDictionary, IMaterialDesignThemeDictiona
     }
 
     private Color? _primaryColor;
+    [TypeConverter(typeof(InheritSystemColorTypeConverter))]
     public Color? PrimaryColor
     {
         get => _primaryColor;
@@ -33,6 +35,7 @@ public class CustomColorTheme : ResourceDictionary, IMaterialDesignThemeDictiona
     }
 
     private Color? _secondaryColor;
+    [TypeConverter(typeof(InheritSystemColorTypeConverter))]
     public Color? SecondaryColor
     {
         get => _secondaryColor;

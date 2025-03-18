@@ -1,4 +1,5 @@
-﻿using MaterialDesignThemes.UITests.Samples.AutoSuggestBoxes;
+﻿using System.ComponentModel;
+using MaterialDesignThemes.UITests.Samples.AutoSuggestBoxes;
 using MaterialDesignThemes.UITests.Samples.AutoSuggestTextBoxes;
 using Xunit.Sdk;
 
@@ -47,7 +48,7 @@ public class AutoSuggestBoxTests : TestBase
     public async Task CanChoiceItem_FromTheSuggestions_AssertTheTextUpdated()
     {
         await using var recorder = new TestRecorder(App);
-        
+
         //Arrange
         IVisualElement<AutoSuggestBox> suggestBox = (await LoadUserControl<AutoSuggestTextBoxWithTemplate>()).As<AutoSuggestBox>();
         IVisualElement<Popup> popup = await suggestBox.GetElement<Popup>();
@@ -118,6 +119,42 @@ public class AutoSuggestBoxTests : TestBase
         await AssertExists(suggestionListBox, "Apples", false);
         await AssertExists(suggestionListBox, "Mtn Dew", false);
         await AssertExists(suggestionListBox, "Orange", false);
+
+        recorder.Success();
+    }
+
+    [Fact]
+    [Description("Issue 3761")]
+    public async Task AutoSuggestBox_MovesFocusToNextElement_WhenPopupIsClosed()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // Arrange
+        string xaml = """
+            <StackPanel>
+                <local:AutoSuggestTextBoxWithCollectionView x:Name="AutoSuggestBoxSample" />
+                <TextBox x:Name="NextTextBox" />
+            </StackPanel>
+        """;
+
+        IVisualElement<StackPanel> stackPanel = await LoadXaml<StackPanel>(xaml, ("local", typeof(AutoSuggestTextBoxWithCollectionView)));
+        var suggestBoxSample = await stackPanel.GetElement<AutoSuggestTextBoxWithCollectionView>("AutoSuggestBoxSample");
+        IVisualElement<AutoSuggestBox> suggestBox = await suggestBoxSample.GetElement<AutoSuggestBox>();
+        IVisualElement<TextBox> nextTextBox = await stackPanel.GetElement<TextBox>("NextTextBox");
+
+        // Act
+        await suggestBox.MoveKeyboardFocus();
+        await Task.Delay(50);
+        await suggestBox.SendInput(new KeyboardInput("B")); // Open the popup
+        await Task.Delay(50);
+        await suggestBox.SendInput(new KeyboardInput(Key.Escape)); // Close the popup
+        await Task.Delay(50);
+        await suggestBox.SendInput(new KeyboardInput(Key.Tab)); // Press TAB to focus the next element
+        await Task.Delay(50);
+
+        // Assert
+        Assert.False(await suggestBox.GetIsFocused());
+        Assert.True(await nextTextBox.GetIsFocused());
 
         recorder.Success();
     }
