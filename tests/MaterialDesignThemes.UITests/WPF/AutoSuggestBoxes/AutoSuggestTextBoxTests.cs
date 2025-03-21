@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.ComponentModel;
 using MaterialDesignThemes.UITests.Samples.AutoSuggestBoxes;
 using MaterialDesignThemes.UITests.Samples.AutoSuggestTextBoxes;
@@ -178,12 +178,13 @@ public class AutoSuggestBoxTests : TestBase
         await suggestBox.SendInput(new KeyboardInput("e"));
         await Task.Delay(delay);
 
-        //var itemSource = (await suggestBox.GetSuggestions()).Cast<object>().ToList();
+        static int? GetSuggestionCount(AutoSuggestBox autoSuggestBox)
+        {
+            int? count = autoSuggestBox.Suggestions?.OfType<object>().Count();
+            return count;
+        }
 
-        //var suggestions = await suggestionListBox.GetProperty<IEnumerable>(nameof(ListBox.ItemsSource));
-        //int itemCount = suggestions.Cast<object>().Count();
-
-        int itemCount = CountNonGenericEnumerable(await suggestBox.GetSuggestions());
+        int itemCount = await suggestBox.RemoteExecute(GetSuggestionCount) ?? 0;
 
         //Assert that initially the first item is selected
         int selectedIndex = await suggestionListBox.GetSelectedIndex();
@@ -198,27 +199,6 @@ public class AutoSuggestBoxTests : TestBase
         //Assert that the first item is selected after pressing ArrowDown
         await suggestBox.SendInput(new KeyboardInput(Key.Down));
         Assert.Equal(0, await suggestionListBox.GetSelectedIndex());
-
-
-    }
-
-    internal static int CountNonGenericEnumerable(IEnumerable? source)
-    {
-        ArgumentNullException.ThrowIfNull(source);
-
-        if (source is ICollection collection)
-        {
-            return collection.Count;
-        }
-
-        int count = 0;
-        IEnumerator e = source.GetEnumerator();
-        while (e.MoveNext())
-        {
-            count++;
-        }
-
-        return count;
     }
 
     private static async Task AssertExists(IVisualElement<ListBox> suggestionListBox, string text, bool existsOrNotCheck = true)
