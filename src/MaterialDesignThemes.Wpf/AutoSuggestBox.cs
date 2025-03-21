@@ -268,7 +268,9 @@ public class AutoSuggestBox : TextBox
         if (_autoSuggestBoxList is null || Suggestions is null)
             return;
         ICollectionView collectionView = CollectionViewSource.GetDefaultView(Suggestions);
-        if (collectionView.IsCurrentBeforeFirst)
+
+        // If we're at the first item, wrap around to the last.
+        if (collectionView.CurrentPosition == 0)
             collectionView.MoveCurrentToLast();
         else
             collectionView.MoveCurrentToPrevious();
@@ -280,7 +282,10 @@ public class AutoSuggestBox : TextBox
         if (_autoSuggestBoxList is null || Suggestions is null)
             return;
         ICollectionView collectionView = CollectionViewSource.GetDefaultView(Suggestions);
-        if (collectionView.IsCurrentAfterLast)
+        int itemCount = collectionView.Cast<object>().Count();
+
+        // If we're at the last item, wrap around to the first.
+        if (collectionView.CurrentPosition == itemCount - 1)
             collectionView.MoveCurrentToFirst();
         else
             collectionView.MoveCurrentToNext();
