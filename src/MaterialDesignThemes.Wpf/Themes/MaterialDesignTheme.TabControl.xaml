@@ -291,7 +291,7 @@
                                Duration="0" />
             </Storyboard>
           </ControlTemplate.Resources>
-          <Grid x:Name="Root">
+          <Grid x:Name="Root" Cursor="{Binding Path=(wpf:TabAssist.TabHeaderCursor), RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}">
             <!-- This is the Header label ColorZone. -->
             <wpf:ColorZone x:Name="ColorZoneHeader"
                            HorizontalAlignment="Stretch"
@@ -333,6 +333,9 @@
             </Border>
           </Grid>
           <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True" SourceName="ColorZoneHeader">
+              <Setter TargetName="Root" Property="Background" Value="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={x:Static converters:BrushOpacityConverter.Instance}, ConverterParameter=0.16}" />
+            </Trigger>
             <Trigger Property="IsEnabled" Value="False">
               <Setter Property="Opacity" Value="0.38" />
             </Trigger>
