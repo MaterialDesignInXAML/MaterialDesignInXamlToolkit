@@ -65,6 +65,8 @@ public class DialogHost : ContentControl
     private DialogClosedEventHandler? _attachedDialogClosedEventHandler;
     private IInputElement? _restoreFocusDialogClose;
     private Action? _currentSnackbarMessageQueueUnPauseAction;
+    private Thickness _previousDialogMargin;
+    private double _previousDialogContentUniformCornerRadius;
 
     static DialogHost()
     {
@@ -264,24 +266,16 @@ public class DialogHost : ContentControl
 
         AssertTargetableContent();
 
+        // Remove the dialogs margin and corner radius if a fullscreen dialog is requested
         if (isFullscreenDialog)
         {
-            if (_popup is PopupEx popupEx)
-            {
-                _nonFullScreenDialogMargin = DialogMargin;
-                DialogMargin = new Thickness(0);
+            _previousDialogMargin = DialogMargin;
+            DialogMargin = new Thickness(0);
 
-                _nonFullScreenDialogContentUniformCornerRadius = DialogContentUniformCornerRadius;
-                DialogContentUniformCornerRadius = 0;
-                RefreshPopupSize();
-                popupEx.RefreshPosition();
-            }
-            // TODO handle overwritten Dialog Templates
-        }
-        else
-        {
-            DialogMargin = _nonFullScreenDialogMargin;
-            DialogContentUniformCornerRadius = _nonFullScreenDialogContentUniformCornerRadius;
+            _previousDialogContentUniformCornerRadius = DialogContentUniformCornerRadius;
+            DialogContentUniformCornerRadius = 0;
+
+            SetPopupSize(ActualHeight, ActualWidth);
         }
 
         if (content != null)
@@ -298,17 +292,24 @@ public class DialogHost : ContentControl
         _asyncShowClosingEventHandler = null;
         _asyncShowClosedEventHandler = null;
 
+        // Set the dialogs margin and corner radius to be a non-fullscreen dialog
+        if (isFullscreenDialog)
+        {
+            DialogMargin = _previousDialogMargin;
+            DialogContentUniformCornerRadius = _previousDialogContentUniformCornerRadius;
+            SetPopupSize(double.NaN, double.NaN);
+        }
         return result;
     }
 
-    private void _popup_SizeChanged(object sender, SizeChangedEventArgs e) => RefreshPopupSize();
-
-    private void RefreshPopupSize()
+    private void SetPopupSize(double height, double width)
     {
-        if (_popup is not null)
+        // TODO handle overwritten "PART_Popup"s which are not of type "PopupEx"
+        if (_popup is PopupEx popupEx)
         {
-            _popup.Height = this.ActualHeight;
-            _popup.Width = this.ActualWidth;
+            _popup.Height = height;
+            _popup.Width = width;
+            popupEx.RefreshPosition();
         }
     }
     #endregion
@@ -476,15 +477,8 @@ public class DialogHost : ContentControl
     }
 
     public static readonly DependencyProperty DialogContentUniformCornerRadiusProperty = DependencyProperty.Register(
-        nameof(DialogContentUniformCornerRadius), typeof(double), typeof(DialogHost), new PropertyMetadata(4d, OnDialogContentUniformCornerRadiusChanged));
+        nameof(DialogContentUniformCornerRadius), typeof(double), typeof(DialogHost), new PropertyMetadata(4d));
 
-    private static void OnDialogContentUniformCornerRadiusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        var obj = (DialogHost)d;
-        obj._nonFullScreenDialogContentUniformCornerRadius = (double)e.NewValue;
-    }
-
-    private double _nonFullScreenDialogContentUniformCornerRadius;
     public double DialogContentUniformCornerRadius
     {
         get => (double)GetValue(DialogContentUniformCornerRadiusProperty);
@@ -521,7 +515,6 @@ public class DialogHost : ContentControl
     public static readonly DependencyProperty DialogMarginProperty = DependencyProperty.Register(
         "DialogMargin", typeof(Thickness), typeof(DialogHost), new PropertyMetadata(default(Thickness)));
 
-    private Thickness _nonFullScreenDialogMargin;
     public Thickness DialogMargin
     {
         get => (Thickness)GetValue(DialogMarginProperty);
@@ -529,13 +522,7 @@ public class DialogHost : ContentControl
     }
 
     public static readonly DependencyProperty OpenDialogCommandDataContextSourceProperty = DependencyProperty.Register(
-        nameof(OpenDialogCommandDataContextSource), typeof(DialogHostOpenDialogCommandDataContextSource), typeof(DialogHost), new PropertyMetadata(default(DialogHostOpenDialogCommandDataContextSource), OnDialogMarginChanged));
-
-    private static void OnDialogMarginChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        var obj = (DialogHost)d;
-        obj._nonFullScreenDialogMargin = (Thickness)e.NewValue;
-    }
+        nameof(OpenDialogCommandDataContextSource), typeof(DialogHostOpenDialogCommandDataContextSource), typeof(DialogHost), new PropertyMetadata(default(DialogHostOpenDialogCommandDataContextSource)));
 
     /// <summary>
     /// Defines how a data context is sourced for a dialog if a <see cref="FrameworkElement"/>
@@ -572,7 +559,7 @@ public class DialogHost : ContentControl
     }
 
     public static readonly DependencyProperty SnackbarMessageQueueProperty = DependencyProperty.Register(
-        "SnackbarMessageQueue", typeof(SnackbarMessageQueue), typeof(DialogHost), new PropertyMetadata(default(SnackbarMessageQueue), SnackbarMessageQueuePropertyChangedCallback));
+        nameof(SnackbarMessageQueue), typeof(SnackbarMessageQueue), typeof(DialogHost), new PropertyMetadata(default(SnackbarMessageQueue), SnackbarMessageQueuePropertyChangedCallback));
 
     private static void SnackbarMessageQueuePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
     {
