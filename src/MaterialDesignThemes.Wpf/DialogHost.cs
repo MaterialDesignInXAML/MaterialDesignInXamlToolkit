@@ -91,7 +91,7 @@ public class DialogHost : ContentControl
     /// <param name="openedEventHandler">Allows access to opened event which would otherwise have been subscribed to on a instance.</param>
     /// <param name="isFullscreenDialog">Controls whether the dialog is fullscreen or not.</param>
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-    public static Task<object?> Show(object content, DialogOpenedEventHandler openedEventHandler, bool isFullscreenDialog = false)
+    public static Task<object?> Show(object content, DialogOpenedEventHandler? openedEventHandler, bool isFullscreenDialog = false)
         => Show(content, null, openedEventHandler, null, isFullscreenDialog);
 
     /// <summary>
@@ -101,7 +101,7 @@ public class DialogHost : ContentControl
     /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
     /// <param name="isFullscreenDialog">Controls whether the dialog is fullscreen or not.</param>
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-    public static Task<object?> Show(object content, DialogClosingEventHandler closingEventHandler, bool isFullscreenDialog = false)
+    public static Task<object?> Show(object content, DialogClosingEventHandler? closingEventHandler, bool isFullscreenDialog = false)
         => Show(content, null, null, closingEventHandler, isFullscreenDialog);
 
     /// <summary>
@@ -145,7 +145,7 @@ public class DialogHost : ContentControl
     /// <param name="openedEventHandler">Allows access to opened event which would otherwise have been subscribed to on a instance.</param>
     /// <param name="isFullscreenDialog">Controls whether the dialog is fullscreen or not.</param>
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-    public static Task<object?> Show(object content, object dialogIdentifier, DialogOpenedEventHandler openedEventHandler, bool isFullscreenDialog = false)
+    public static Task<object?> Show(object content, object dialogIdentifier, DialogOpenedEventHandler? openedEventHandler, bool isFullscreenDialog = false)
         => Show(content, dialogIdentifier, openedEventHandler, null, isFullscreenDialog);
 
     /// <summary>
@@ -156,7 +156,7 @@ public class DialogHost : ContentControl
     /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
     /// <param name="isFullscreenDialog">Controls whether the dialog is fullscreen or not.</param>
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-    public static Task<object?> Show(object content, object dialogIdentifier, DialogClosingEventHandler closingEventHandler, bool isFullscreenDialog = false)
+    public static Task<object?> Show(object content, object dialogIdentifier, DialogClosingEventHandler? closingEventHandler, bool isFullscreenDialog = false)
         => Show(content, dialogIdentifier, null, closingEventHandler, isFullscreenDialog);
 
     /// <summary>
@@ -183,7 +183,11 @@ public class DialogHost : ContentControl
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
     public static async Task<object?> Show(object content, object? dialogIdentifier, DialogOpenedEventHandler? openedEventHandler, DialogClosingEventHandler? closingEventHandler, DialogClosedEventHandler? closedEventHandler, bool isFullscreenDialog = false)
     {
+#if NET7_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(content);
+#else
         if (content is null) throw new ArgumentNullException(nameof(content));
+#endif
         return await GetInstance(dialogIdentifier).ShowInternal(content, openedEventHandler, closingEventHandler, closedEventHandler, isFullscreenDialog);
     }
 
@@ -288,7 +292,7 @@ public class DialogHost : ContentControl
             SetPopupSize(ActualHeight, ActualWidth);
         }
 
-        if (content != null)
+        if (content is not null)
             DialogContent = content;
 
         _asyncShowOpenedEventHandler = openedEventHandler;
@@ -352,7 +356,7 @@ public class DialogHost : ContentControl
     {
         var dialogHost = (DialogHost)dependencyObject;
 
-        if (dialogHost._popupContentControl != null)
+        if (dialogHost._popupContentControl is not null)
             ValidationAssist.SetSuppress(dialogHost._popupContentControl, !dialogHost.IsOpen);
         VisualStateManager.GoToState(dialogHost, dialogHost.GetStateName(), !TransitionAssist.GetDisableTransitions(dialogHost));
 
@@ -363,7 +367,7 @@ public class DialogHost : ContentControl
         else
         {
             dialogHost._attachedDialogClosingEventHandler = null;
-            if (dialogHost._currentSnackbarMessageQueueUnPauseAction != null)
+            if (dialogHost._currentSnackbarMessageQueueUnPauseAction is not null)
             {
                 dialogHost._currentSnackbarMessageQueueUnPauseAction();
                 dialogHost._currentSnackbarMessageQueueUnPauseAction = null;
@@ -413,7 +417,7 @@ public class DialogHost : ContentControl
         var window = Window.GetWindow(dialogHost);
         if (!dialogHost.IsRestoreFocusDisabled)
         {
-            dialogHost._restoreFocusDialogClose = window != null ? FocusManager.GetFocusedElement(window) : null;
+            dialogHost._restoreFocusDialogClose = window is not null ? FocusManager.GetFocusedElement(window) : null;
 
             // Check restore focus override
             if (dialogHost._restoreFocusDialogClose is DependencyObject dependencyObj &&
@@ -439,7 +443,7 @@ public class DialogHost : ContentControl
             CommandManager.InvalidateRequerySuggested();
             UIElement? child = dialogHost.FocusPopup();
 
-            if (child != null)
+            if (child is not null)
             {
                 //https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/187
                 //totally not happy about this, but on immediate validation we can get some weird looking stuff...give WPF a kick to refresh...
@@ -523,7 +527,7 @@ public class DialogHost : ContentControl
     }
 
     public static readonly DependencyProperty DialogMarginProperty = DependencyProperty.Register(
-        "DialogMargin", typeof(Thickness), typeof(DialogHost), new PropertyMetadata(default(Thickness)));
+        nameof(DialogMargin), typeof(Thickness), typeof(DialogHost), new PropertyMetadata(default(Thickness)));
 
     public Thickness DialogMargin
     {
@@ -545,7 +549,7 @@ public class DialogHost : ContentControl
     }
 
     public static readonly DependencyProperty CloseOnClickAwayProperty = DependencyProperty.Register(
-        "CloseOnClickAway", typeof(bool), typeof(DialogHost), new PropertyMetadata(default(bool)));
+        nameof(CloseOnClickAway), typeof(bool), typeof(DialogHost), new PropertyMetadata(default(bool)));
 
     /// <summary>
     /// Indicates whether the dialog will close if the user clicks off the dialog, on the obscured background.
@@ -557,7 +561,7 @@ public class DialogHost : ContentControl
     }
 
     public static readonly DependencyProperty CloseOnClickAwayParameterProperty = DependencyProperty.Register(
-        "CloseOnClickAwayParameter", typeof(object), typeof(DialogHost), new PropertyMetadata(default(object)));
+        nameof(CloseOnClickAwayParameter), typeof(object), typeof(DialogHost), new PropertyMetadata(default(object)));
 
     /// <summary>
     /// Parameter to provide to close handlers if an close due to click away is instigated.
@@ -574,7 +578,7 @@ public class DialogHost : ContentControl
     private static void SnackbarMessageQueuePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
     {
         var dialogHost = (DialogHost)dependencyObject;
-        if (dialogHost._currentSnackbarMessageQueueUnPauseAction != null)
+        if (dialogHost._currentSnackbarMessageQueueUnPauseAction is not null)
         {
             dialogHost._currentSnackbarMessageQueueUnPauseAction();
             dialogHost._currentSnackbarMessageQueueUnPauseAction = null;
@@ -659,14 +663,14 @@ public class DialogHost : ContentControl
 
     public override void OnApplyTemplate()
     {
-        if (_contentCoverGrid != null)
+        if (_contentCoverGrid is not null)
             _contentCoverGrid.MouseLeftButtonUp -= ContentCoverGridOnMouseLeftButtonUp;
 
         _popup = GetTemplateChild(PopupPartName) as Popup;
         _popupContentControl = GetTemplateChild(PopupContentPartName) as ContentControl;
         _contentCoverGrid = GetTemplateChild(ContentCoverGridName) as Grid;
 
-        if (_contentCoverGrid != null)
+        if (_contentCoverGrid is not null)
             _contentCoverGrid.MouseLeftButtonUp += ContentCoverGridOnMouseLeftButtonUp;
 
         VisualStateManager.GoToState(this, GetStateName(), false);
@@ -700,7 +704,7 @@ public class DialogHost : ContentControl
 
     public static readonly RoutedEvent DialogOpenedEvent =
         EventManager.RegisterRoutedEvent(
-            "DialogOpened",
+            nameof(DialogOpened),
             RoutingStrategy.Bubble,
             typeof(DialogOpenedEventHandler),
             typeof(DialogHost));
@@ -747,7 +751,7 @@ public class DialogHost : ContentControl
 
     public static readonly RoutedEvent DialogClosingEvent =
         EventManager.RegisterRoutedEvent(
-            "DialogClosing",
+            nameof(DialogClosing),
             RoutingStrategy.Bubble,
             typeof(DialogClosingEventHandler),
             typeof(DialogHost));
@@ -790,7 +794,7 @@ public class DialogHost : ContentControl
 
     public static readonly RoutedEvent DialogClosedEvent =
         EventManager.RegisterRoutedEvent(
-            "DialogClosed",
+            nameof(DialogClosed),
             RoutingStrategy.Bubble,
             typeof(DialogClosedEventHandler),
             typeof(DialogHost));
@@ -836,7 +840,7 @@ public class DialogHost : ContentControl
     internal void AssertTargetableContent()
     {
         var existingBinding = BindingOperations.GetBindingExpression(this, DialogContentProperty);
-        if (existingBinding != null)
+        if (existingBinding is not null)
             throw new InvalidOperationException(
                 "Content cannot be passed to a dialog via the OpenDialog if DialogContent already has a binding.");
     }
@@ -927,7 +931,7 @@ public class DialogHost : ContentControl
 
     private void ContentCoverGridOnMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
     {
-        if (CloseOnClickAway && CurrentSession != null)
+        if (CloseOnClickAway && CurrentSession is not null)
             InternalClose(CloseOnClickAwayParameter);
     }
 
@@ -942,11 +946,11 @@ public class DialogHost : ContentControl
             _attachedDialogClosedEventHandler = GetDialogClosedAttached(dependencyObject);
         }
 
-        if (executedRoutedEventArgs.Parameter != null)
+        if (executedRoutedEventArgs.Parameter is not null)
         {
             AssertTargetableContent();
 
-            if (_popupContentControl != null)
+            if (_popupContentControl is not null)
             {
                 _popupContentControl.DataContext = OpenDialogCommandDataContextSource switch
                 {
