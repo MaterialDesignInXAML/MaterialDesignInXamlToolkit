@@ -78,8 +78,8 @@ public class DialogHost : ContentControl
     /// </summary>
     /// <param name="content">Content to show (can be a control or view model).</param>
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-    public static Task<object?> Show(object content)
-        => Show(content, null, null);
+    public static Task<object?> Show(object content, bool isFullscreenDialog = false)
+        => Show(content, null, null, isFullscreenDialog);
 
     /// <summary>
     /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
@@ -87,8 +87,8 @@ public class DialogHost : ContentControl
     /// <param name="content">Content to show (can be a control or view model).</param>        
     /// <param name="openedEventHandler">Allows access to opened event which would otherwise have been subscribed to on a instance.</param>        
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-    public static Task<object?> Show(object content, DialogOpenedEventHandler openedEventHandler)
-        => Show(content, null, openedEventHandler, null);
+    public static Task<object?> Show(object content, DialogOpenedEventHandler openedEventHandler, bool isFullscreenDialog = false)
+        => Show(content, null, openedEventHandler, null, isFullscreenDialog);
 
     /// <summary>
     /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
@@ -96,8 +96,8 @@ public class DialogHost : ContentControl
     /// <param name="content">Content to show (can be a control or view model).</param>
     /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-    public static Task<object?> Show(object content, DialogClosingEventHandler closingEventHandler)
-        => Show(content, null, null, closingEventHandler);
+    public static Task<object?> Show(object content, DialogClosingEventHandler closingEventHandler, bool isFullscreenDialog = false)
+        => Show(content, null, null, closingEventHandler, isFullscreenDialog);
 
     /// <summary>
     /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
@@ -106,8 +106,8 @@ public class DialogHost : ContentControl
     /// <param name="openedEventHandler">Allows access to opened event which would otherwise have been subscribed to on a instance.</param>
     /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-    public static Task<object?> Show(object content, DialogOpenedEventHandler? openedEventHandler, DialogClosingEventHandler? closingEventHandler)
-        => Show(content, null, openedEventHandler, closingEventHandler);
+    public static Task<object?> Show(object content, DialogOpenedEventHandler? openedEventHandler, DialogClosingEventHandler? closingEventHandler, bool isFullscreenDialog = false)
+        => Show(content, null, openedEventHandler, closingEventHandler, isFullscreenDialog);
 
     /// <summary>
     /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
@@ -117,8 +117,8 @@ public class DialogHost : ContentControl
     /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
     /// <param name="closedEventHandler">Allows access to closed event which would otherwise have been subscribed to on a instance.</param>
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-    public static Task<object?> Show(object content, DialogOpenedEventHandler? openedEventHandler, DialogClosingEventHandler? closingEventHandler, DialogClosedEventHandler? closedEventHandler)
-        => Show(content, null, openedEventHandler, closingEventHandler, closedEventHandler);
+    public static Task<object?> Show(object content, DialogOpenedEventHandler? openedEventHandler, DialogClosingEventHandler? closingEventHandler, DialogClosedEventHandler? closedEventHandler, bool isFullscreenDialog = false)
+        => Show(content, null, openedEventHandler, closingEventHandler, closedEventHandler, isFullscreenDialog);
 
     /// <summary>
     /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
@@ -126,8 +126,8 @@ public class DialogHost : ContentControl
     /// <param name="content">Content to show (can be a control or view model).</param>
     /// <param name="dialogIdentifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifier set in XAML. <c>null</c> is allowed.</param>
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-    public static Task<object?> Show(object content, object dialogIdentifier)
-        => Show(content, dialogIdentifier, null, null);
+    public static Task<object?> Show(object content, object dialogIdentifier, bool isFullscreenDialog = false)
+        => Show(content, dialogIdentifier, null, null, isFullscreenDialog);
 
     /// <summary>
     /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
@@ -136,8 +136,8 @@ public class DialogHost : ContentControl
     /// <param name="dialogIdentifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifier set in XAML. <c>null</c> is allowed.</param>
     /// <param name="openedEventHandler">Allows access to opened event which would otherwise have been subscribed to on a instance.</param>
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-    public static Task<object?> Show(object content, object dialogIdentifier, DialogOpenedEventHandler openedEventHandler)
-        => Show(content, dialogIdentifier, openedEventHandler, null);
+    public static Task<object?> Show(object content, object dialogIdentifier, DialogOpenedEventHandler openedEventHandler, bool isFullscreenDialog = false)
+        => Show(content, dialogIdentifier, openedEventHandler, null, isFullscreenDialog);
 
     /// <summary>
     /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
@@ -146,8 +146,8 @@ public class DialogHost : ContentControl
     /// <param name="dialogIdentifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifier set in XAML. <c>null</c> is allowed.</param>        
     /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-    public static Task<object?> Show(object content, object dialogIdentifier, DialogClosingEventHandler closingEventHandler)
-        => Show(content, dialogIdentifier, null, closingEventHandler);
+    public static Task<object?> Show(object content, object dialogIdentifier, DialogClosingEventHandler closingEventHandler, bool isFullscreenDialog = false)
+        => Show(content, dialogIdentifier, null, closingEventHandler, isFullscreenDialog);
 
     /// <summary>
     /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
@@ -157,8 +157,8 @@ public class DialogHost : ContentControl
     /// <param name="openedEventHandler">Allows access to opened event which would otherwise have been subscribed to on a instance.</param>
     /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-    public static Task<object?> Show(object content, object? dialogIdentifier, DialogOpenedEventHandler? openedEventHandler, DialogClosingEventHandler? closingEventHandler)
-        => Show(content, dialogIdentifier, openedEventHandler, closingEventHandler, null);
+    public static Task<object?> Show(object content, object? dialogIdentifier, DialogOpenedEventHandler? openedEventHandler, DialogClosingEventHandler? closingEventHandler, bool isFullscreenDialog = false)
+        => Show(content, dialogIdentifier, openedEventHandler, closingEventHandler, null, isFullscreenDialog);
 
     /// <summary>
     /// Shows a modal dialog. To use, a <see cref="DialogHost"/> instance must be in a visual tree (typically this may be specified towards the root of a Window's XAML).
@@ -169,10 +169,10 @@ public class DialogHost : ContentControl
     /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
     /// <param name="closedEventHandler">Allows access to closed event which would otherwise have been subscribed to on a instance.</param>
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-    public static async Task<object?> Show(object content, object? dialogIdentifier, DialogOpenedEventHandler? openedEventHandler, DialogClosingEventHandler? closingEventHandler, DialogClosedEventHandler? closedEventHandler)
+    public static async Task<object?> Show(object content, object? dialogIdentifier, DialogOpenedEventHandler? openedEventHandler, DialogClosingEventHandler? closingEventHandler, DialogClosedEventHandler? closedEventHandler, bool isFullscreenDialog = false)
     {
         if (content is null) throw new ArgumentNullException(nameof(content));
-        return await GetInstance(dialogIdentifier).ShowInternal(content, openedEventHandler, closingEventHandler, closedEventHandler);
+        return await GetInstance(dialogIdentifier).ShowInternal(content, openedEventHandler, closingEventHandler, closedEventHandler, isFullscreenDialog);
     }
 
     /// <summary>
@@ -255,7 +255,7 @@ public class DialogHost : ContentControl
         return targets[0];
     }
 
-    internal async Task<object?> ShowInternal(object content, DialogOpenedEventHandler? openedEventHandler, DialogClosingEventHandler? closingEventHandler, DialogClosedEventHandler? closedEventHandler)
+    internal async Task<object?> ShowInternal(object content, DialogOpenedEventHandler? openedEventHandler, DialogClosingEventHandler? closingEventHandler, DialogClosedEventHandler? closedEventHandler, bool isFullscreenDialog = false)
     {
         if (IsOpen)
             throw new InvalidOperationException("DialogHost is already open.");
@@ -263,6 +263,26 @@ public class DialogHost : ContentControl
         _dialogTaskCompletionSource = new TaskCompletionSource<object?>();
 
         AssertTargetableContent();
+
+        if (isFullscreenDialog)
+        {
+            if (_popup is PopupEx popupEx)
+            {
+                _nonFullScreenDialogMargin = DialogMargin;
+                DialogMargin = new Thickness(0);
+
+                _nonFullScreenDialogContentUniformCornerRadius = DialogContentUniformCornerRadius;
+                DialogContentUniformCornerRadius = 0;
+                RefreshPopupSize();
+                popupEx.RefreshPosition();
+            }
+            // TODO handle overwritten Dialog Templates
+        }
+        else
+        {
+            DialogMargin = _nonFullScreenDialogMargin;
+            DialogContentUniformCornerRadius = _nonFullScreenDialogContentUniformCornerRadius;
+        }
 
         if (content != null)
             DialogContent = content;
@@ -281,6 +301,16 @@ public class DialogHost : ContentControl
         return result;
     }
 
+    private void _popup_SizeChanged(object sender, SizeChangedEventArgs e) => RefreshPopupSize();
+
+    private void RefreshPopupSize()
+    {
+        if (_popup is not null)
+        {
+            _popup.Height = this.ActualHeight;
+            _popup.Width = this.ActualWidth;
+        }
+    }
     #endregion
 
     public DialogHost()
@@ -446,8 +476,15 @@ public class DialogHost : ContentControl
     }
 
     public static readonly DependencyProperty DialogContentUniformCornerRadiusProperty = DependencyProperty.Register(
-        nameof(DialogContentUniformCornerRadius), typeof(double), typeof(DialogHost), new PropertyMetadata(4d));
+        nameof(DialogContentUniformCornerRadius), typeof(double), typeof(DialogHost), new PropertyMetadata(4d, OnDialogContentUniformCornerRadiusChanged));
 
+    private static void OnDialogContentUniformCornerRadiusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var obj = (DialogHost)d;
+        obj._nonFullScreenDialogContentUniformCornerRadius = (double)e.NewValue;
+    }
+
+    private double _nonFullScreenDialogContentUniformCornerRadius;
     public double DialogContentUniformCornerRadius
     {
         get => (double)GetValue(DialogContentUniformCornerRadiusProperty);
@@ -484,6 +521,7 @@ public class DialogHost : ContentControl
     public static readonly DependencyProperty DialogMarginProperty = DependencyProperty.Register(
         "DialogMargin", typeof(Thickness), typeof(DialogHost), new PropertyMetadata(default(Thickness)));
 
+    private Thickness _nonFullScreenDialogMargin;
     public Thickness DialogMargin
     {
         get => (Thickness)GetValue(DialogMarginProperty);
@@ -491,7 +529,13 @@ public class DialogHost : ContentControl
     }
 
     public static readonly DependencyProperty OpenDialogCommandDataContextSourceProperty = DependencyProperty.Register(
-        nameof(OpenDialogCommandDataContextSource), typeof(DialogHostOpenDialogCommandDataContextSource), typeof(DialogHost), new PropertyMetadata(default(DialogHostOpenDialogCommandDataContextSource)));
+        nameof(OpenDialogCommandDataContextSource), typeof(DialogHostOpenDialogCommandDataContextSource), typeof(DialogHost), new PropertyMetadata(default(DialogHostOpenDialogCommandDataContextSource), OnDialogMarginChanged));
+
+    private static void OnDialogMarginChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var obj = (DialogHost)d;
+        obj._nonFullScreenDialogMargin = (Thickness)e.NewValue;
+    }
 
     /// <summary>
     /// Defines how a data context is sourced for a dialog if a <see cref="FrameworkElement"/>
