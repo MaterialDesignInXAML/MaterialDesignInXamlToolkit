@@ -68,14 +68,15 @@ public partial class MainWindow
         MenuToggleButton.IsChecked = false;
     }
 
+    int i = 0;
     private async void MenuPopupButton_OnClick(object sender, RoutedEventArgs e)
     {
         var sampleMessageDialog = new SampleMessageDialog
         {
             Message = { Text = ((ButtonBase)sender).Content.ToString() }
         };
-
-        await DialogHost.Show(sampleMessageDialog, "RootDialog");
+        i++;
+        await DialogHost.Show(sampleMessageDialog, "RootDialog", (i % 2) == 0);
     }
 
     private void OnCopy(object sender, ExecutedRoutedEventArgs e)
@@ -115,5 +116,5 @@ public partial class MainWindow
 
     private void OnSelectedItemChanged(object sender, DependencyPropertyChangedEventArgs e)
         => MainScrollViewer.ScrollToHome();
-    
+
 }

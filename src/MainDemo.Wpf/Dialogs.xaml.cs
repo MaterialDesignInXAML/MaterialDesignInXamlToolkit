@@ -80,7 +80,7 @@ public partial class Dialogs
             Message = { Text = "Some dialog content" }
         };
 
-        await DialogHost.Show(sampleMessageDialog, "sampleDialog6");
+        //await DialogHost.Show(sampleMessageDialog, "sampleDialog6");
     }
 
     private void Sample6_ResetBlur(object sender, RoutedEventArgs e)
