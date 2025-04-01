@@ -31,6 +31,7 @@ public enum DialogHostOpenDialogCommandDataContextSource
 [TemplatePart(Name = PopupPartName, Type = typeof(Popup))]
 [TemplatePart(Name = PopupPartName, Type = typeof(ContentControl))]
 [TemplatePart(Name = ContentCoverGridName, Type = typeof(Grid))]
+[TemplatePart(Name = CloseButtonPartName, Type = typeof(Button))]
 [TemplateVisualState(GroupName = "PopupStates", Name = OpenStateName)]
 [TemplateVisualState(GroupName = "PopupStates", Name = ClosedStateName)]
 public class DialogHost : ContentControl
@@ -38,6 +39,7 @@ public class DialogHost : ContentControl
     public const string PopupPartName = "PART_Popup";
     public const string PopupContentPartName = "PART_PopupContentElement";
     public const string ContentCoverGridName = "PART_ContentCoverGrid";
+    public const string CloseButtonPartName = "PART_CloseButton";
     public const string OpenStateName = "Open";
     public const string ClosedStateName = "Closed";
 
@@ -60,6 +62,7 @@ public class DialogHost : ContentControl
     private Popup? _popup;
     private ContentControl? _popupContentControl;
     private Grid? _contentCoverGrid;
+    private Button? _closeButton;
     private DialogOpenedEventHandler? _attachedDialogOpenedEventHandler;
     private DialogClosingEventHandler? _attachedDialogClosingEventHandler;
     private DialogClosedEventHandler? _attachedDialogClosedEventHandler;
@@ -674,17 +677,26 @@ public class DialogHost : ContentControl
         if (_contentCoverGrid is not null)
             _contentCoverGrid.MouseLeftButtonUp -= ContentCoverGridOnMouseLeftButtonUp;
 
+        if (_closeButton is not null)
+            _closeButton.Click -= CloseButtonOnClick;
+
         _popup = GetTemplateChild(PopupPartName) as Popup;
         _popupContentControl = GetTemplateChild(PopupContentPartName) as ContentControl;
         _contentCoverGrid = GetTemplateChild(ContentCoverGridName) as Grid;
+        _closeButton = GetTemplateChild(CloseButtonPartName) as Button;
 
         if (_contentCoverGrid is not null)
             _contentCoverGrid.MouseLeftButtonUp += ContentCoverGridOnMouseLeftButtonUp;
+
+        if (_closeButton is not null)
+            _closeButton.Click += CloseButtonOnClick;
 
         VisualStateManager.GoToState(this, GetStateName(), false);
 
         base.OnApplyTemplate();
     }
+
+    private void CloseButtonOnClick(object sender, RoutedEventArgs e) => CurrentSession?.Close();
 
     #region restore focus properties
 
