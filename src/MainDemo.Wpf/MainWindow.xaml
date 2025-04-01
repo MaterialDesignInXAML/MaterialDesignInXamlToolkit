@@ -129,7 +129,7 @@
                       Style="{StaticResource MaterialDesignToolButton}"
                       ToolTip="Home" />
 
-              <Button Click="MenuPopupButton_OnClick" Content="Nice Popup" />
+              <Button Click="NewDialogAPITest" Content="Test new Dialog API" />
 
             </StackPanel>
 
