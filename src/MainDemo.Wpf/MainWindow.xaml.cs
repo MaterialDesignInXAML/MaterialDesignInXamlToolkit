@@ -117,4 +117,14 @@ public partial class MainWindow
     private void OnSelectedItemChanged(object sender, DependencyPropertyChangedEventArgs e)
         => MainScrollViewer.ScrollToHome();
 
+    private async void NewDialogAPITest(object sender, RoutedEventArgs e)
+    {
+        var options = new DialogOptions()
+        {
+            IsFullscreen = true,
+            ShowCloseButton = true,
+
+        };
+        await DialogHost.Show<int>(new TextBlock() { Text = "Hello world", Margin = new(32) }, "RootDialog", options);
+    }
 }
