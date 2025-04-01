@@ -128,6 +128,9 @@
                       Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
                       Style="{StaticResource MaterialDesignToolButton}"
                       ToolTip="Home" />
+
+              <Button Click="MenuPopupButton_OnClick" Content="Nice Popup" />
+
             </StackPanel>
 
             <materialDesign:PopupBox DockPanel.Dock="Right"

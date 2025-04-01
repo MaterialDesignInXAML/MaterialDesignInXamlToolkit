@@ -289,6 +289,12 @@ public class DialogHost : ContentControl
             _previousDialogContentUniformCornerRadius = DialogContentUniformCornerRadius;
             DialogContentUniformCornerRadius = 0;
 
+            if (Window.GetWindow(this) is Window window)
+            {
+                window.LocationChanged += Window_SizeOrLocationChanged;
+                window.SizeChanged += Window_SizeOrLocationChanged;
+            }
+
             SetPopupSize(ActualHeight, ActualWidth);
         }
 
@@ -315,6 +321,8 @@ public class DialogHost : ContentControl
         }
         return result;
     }
+
+    private void Window_SizeOrLocationChanged(object sender, EventArgs e) => SetPopupSize(ActualHeight, ActualWidth);
 
     private void SetPopupSize(double height, double width)
     {
