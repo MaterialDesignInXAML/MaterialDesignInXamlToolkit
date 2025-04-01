@@ -9,6 +9,14 @@ namespace MaterialDesignThemes.Wpf;
 
 public record DialogOptions
 {
+    // Internal properties to "restore" the dialogs looks as it was before a fullscreen dialog was shown
+    internal Visibility PreviousCloseButtonVisibility { get; set; }
+    internal Thickness PreviousDialogMargin { get; set; }
+    internal double PreviousDialogContentUniformCornerRadius { get; set; }
+    internal double PreviousPopupHeight { get; set; }
+    internal double PreviousPopupWidth { get; set; }
+
+
     public static readonly DialogOptions Default = new();
 
     // maybe in the future we should have a "OpeningEventHandler" if we already have a "ClosingEventHandler"?
@@ -18,6 +26,8 @@ public record DialogOptions
 
     public bool IsFullscreen { get; set; } = false;
     public bool ShowCloseButton { get; set; } = false;
+
+    public bool CloseOnClickAway { get; set; } = false;
 
     //public bool ApplyBlurEffect { get; set; } = false;
     //public double BlurRadius { get; set; } = 16d;
@@ -329,27 +339,32 @@ public class DialogHost : ContentControl
         return await GetInstance(dialogIdentifier).ShowInternal<T>(content, options);
     }
 
-    internal async Task<T?> ShowInternal<T>(object content, DialogOptions options)
+    private void ApplyDialogOptions(DialogOptions options)
     {
-        if (IsOpen)
-            throw new InvalidOperationException("DialogHost is already open.");
-
-        _dialogTaskCompletionSource = new TaskCompletionSource<object?>();
-
-        AssertTargetableContent();
-
         if (_closeButton is not null)
         {
+            options.PreviousCloseButtonVisibility = _closeButton.Visibility;
             _closeButton.Visibility = options.ShowCloseButton ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        if (options.CloseOnClickAway)
+        {
+            if (_contentCoverGrid is not null)
+                _contentCoverGrid.MouseLeftButtonUp += OnCloseOnClickAway;
+        }
+        else
+        {
+            if (_contentCoverGrid is not null)
+                _contentCoverGrid.MouseLeftButtonUp -= OnCloseOnClickAway;
         }
 
         // Remove the dialogs margin and corner radius if a fullscreen dialog is requested
         if (options.IsFullscreen)
         {
-            _previousDialogMargin = DialogMargin;
+            options.PreviousDialogMargin = DialogMargin;
             DialogMargin = new Thickness(0);
 
-            _previousDialogContentUniformCornerRadius = DialogContentUniformCornerRadius;
+            options.PreviousDialogContentUniformCornerRadius = DialogContentUniformCornerRadius;
             DialogContentUniformCornerRadius = 0;
 
             if (Window.GetWindow(this) is Window window)
@@ -360,6 +375,43 @@ public class DialogHost : ContentControl
 
             SetPopupSize(ActualHeight, ActualWidth);
         }
+    }
+
+    private void RevertDialogOptions(DialogOptions options)
+    {
+        if (_closeButton is not null)
+        {
+            _closeButton.Visibility = options.PreviousCloseButtonVisibility;
+        }
+
+        if (options.CloseOnClickAway)
+        {
+            if (_contentCoverGrid is not null)
+                _contentCoverGrid.MouseLeftButtonUp -= OnCloseOnClickAway;
+        }
+
+        DialogMargin = options.PreviousDialogMargin;
+        DialogContentUniformCornerRadius = options.PreviousDialogContentUniformCornerRadius;
+
+        if (Window.GetWindow(this) is Window window)
+        {
+            window.LocationChanged -= Window_SizeOrLocationChanged;
+            window.SizeChanged -= Window_SizeOrLocationChanged;
+        }
+
+        SetPopupSize(options.PreviousPopupHeight, options.PreviousPopupWidth);
+    }
+
+    internal async Task<T?> ShowInternal<T>(object content, DialogOptions options)
+    {
+        if (IsOpen)
+            throw new InvalidOperationException("DialogHost is already open.");
+
+        _dialogTaskCompletionSource = new TaskCompletionSource<object?>();
+
+        AssertTargetableContent();
+
+        ApplyDialogOptions(options);
 
         if (content is not null)
             DialogContent = content;
@@ -375,16 +427,17 @@ public class DialogHost : ContentControl
         _asyncShowClosingEventHandler = null;
         _asyncShowClosedEventHandler = null;
 
-        // Set the dialogs margin and corner radius to be a non-fullscreen dialog
-        if (options.IsFullscreen)
-        {
-            DialogMargin = _previousDialogMargin;
-            DialogContentUniformCornerRadius = _previousDialogContentUniformCornerRadius;
-            SetPopupSize(double.NaN, double.NaN);
-        }
+        RevertDialogOptions(options);
+
         return result is null ? default : (T)result;
     }
 
+    private void OnCloseOnClickAway(object sender, MouseButtonEventArgs e)
+    {
+        // TODO implement CloseOnClickAwayParameter in DialogOptions class
+        if (CurrentSession is not null)
+            InternalClose(CloseOnClickAwayParameter);
+    }
     private void Window_SizeOrLocationChanged(object sender, EventArgs e) => SetPopupSize(ActualHeight, ActualWidth);
 
     private void SetPopupSize(double height, double width)
