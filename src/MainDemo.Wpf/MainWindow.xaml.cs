@@ -68,15 +68,13 @@ public partial class MainWindow
         MenuToggleButton.IsChecked = false;
     }
 
-    int i = 0;
     private async void MenuPopupButton_OnClick(object sender, RoutedEventArgs e)
     {
         var sampleMessageDialog = new SampleMessageDialog
         {
             Message = { Text = ((ButtonBase)sender).Content.ToString() }
         };
-        i++;
-        await DialogHost.Show(sampleMessageDialog, "RootDialog", (i % 2) == 0);
+        await DialogHost.Show(sampleMessageDialog, "RootDialog");
     }
 
     private void OnCopy(object sender, ExecutedRoutedEventArgs e)
@@ -117,14 +115,4 @@ public partial class MainWindow
     private void OnSelectedItemChanged(object sender, DependencyPropertyChangedEventArgs e)
         => MainScrollViewer.ScrollToHome();
 
-    private async void NewDialogAPITest(object sender, RoutedEventArgs e)
-    {
-        var options = new DialogOptions()
-        {
-            IsFullscreen = true,
-            ShowCloseButton = true,
-
-        };
-        await DialogHost.Show<int>(new TextBlock() { Text = "Hello world", Margin = new(32) }, "RootDialog", options);
-    }
 }

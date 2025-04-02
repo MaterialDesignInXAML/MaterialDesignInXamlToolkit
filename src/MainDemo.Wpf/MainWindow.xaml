@@ -128,9 +128,6 @@
                       Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
                       Style="{StaticResource MaterialDesignToolButton}"
                       ToolTip="Home" />
-
-              <Button Click="NewDialogAPITest" Content="Test new Dialog API" />
-
             </StackPanel>
 
             <materialDesign:PopupBox DockPanel.Dock="Right"
