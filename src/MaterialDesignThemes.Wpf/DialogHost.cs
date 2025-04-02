@@ -341,12 +341,14 @@ public class DialogHost : ContentControl
 
     private void ApplyDialogOptions(DialogOptions options)
     {
+        // Show/Hide CloseButton
         if (_closeButton is not null)
         {
             options.PreviousCloseButtonVisibility = _closeButton.Visibility;
             _closeButton.Visibility = options.ShowCloseButton ? Visibility.Visible : Visibility.Collapsed;
         }
 
+        // Handle CloseOnClickAway
         if (options.CloseOnClickAway)
         {
             if (_contentCoverGrid is not null)
@@ -358,7 +360,7 @@ public class DialogHost : ContentControl
                 _contentCoverGrid.MouseLeftButtonUp -= OnCloseOnClickAway;
         }
 
-        // Remove the dialogs margin and corner radius if a fullscreen dialog is requested
+        // Handle IsFullScreen (remove the dialogs margin and corner radius)
         if (options.IsFullscreen)
         {
             options.PreviousDialogMargin = DialogMargin;
@@ -371,6 +373,12 @@ public class DialogHost : ContentControl
             {
                 window.LocationChanged += Window_SizeOrLocationChanged;
                 window.SizeChanged += Window_SizeOrLocationChanged;
+            }
+
+            if (_popup is Popup popup)
+            {
+                options.PreviousPopupHeight = popup.Height;
+                options.PreviousPopupWidth = popup.Width;
             }
 
             SetPopupSize(ActualHeight, ActualWidth);
@@ -390,16 +398,19 @@ public class DialogHost : ContentControl
                 _contentCoverGrid.MouseLeftButtonUp -= OnCloseOnClickAway;
         }
 
-        DialogMargin = options.PreviousDialogMargin;
-        DialogContentUniformCornerRadius = options.PreviousDialogContentUniformCornerRadius;
-
-        if (Window.GetWindow(this) is Window window)
+        if (options.IsFullscreen)
         {
-            window.LocationChanged -= Window_SizeOrLocationChanged;
-            window.SizeChanged -= Window_SizeOrLocationChanged;
-        }
+            DialogMargin = options.PreviousDialogMargin;
+            DialogContentUniformCornerRadius = options.PreviousDialogContentUniformCornerRadius;
 
-        SetPopupSize(options.PreviousPopupHeight, options.PreviousPopupWidth);
+            if (Window.GetWindow(this) is Window window)
+            {
+                window.LocationChanged -= Window_SizeOrLocationChanged;
+                window.SizeChanged -= Window_SizeOrLocationChanged;
+            }
+
+            SetPopupSize(options.PreviousPopupHeight, options.PreviousPopupWidth);
+        }
     }
 
     internal async Task<T?> ShowInternal<T>(object content, DialogOptions options)
