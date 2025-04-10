@@ -3,6 +3,7 @@ using System.Security;
 using System.Windows.Data;
 using System.Windows.Interop;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Threading;
 
 namespace MaterialDesignThemes.Wpf;
@@ -15,11 +16,12 @@ public record DialogOptions
     internal double PreviousDialogContentUniformCornerRadius { get; set; }
     internal double PreviousPopupHeight { get; set; }
     internal double PreviousPopupWidth { get; set; }
-
+    internal bool PreviousApplyBlurEffect { get; set; }
+    internal double PreviousBlurRadius { get; set; }
 
     public static readonly DialogOptions Default = new();
 
-    // maybe in the future we should have a "OpeningEventHandler" if we already have a "ClosingEventHandler"?
+    // if there is demand for it we could have a "OpeningEventHandler" too
     public DialogOpenedEventHandler? OpenedEventHandler { get; set; } = null;
     public DialogClosingEventHandler? ClosingEventHandler { get; set; } = null;
     public DialogClosedEventHandler? ClosedEventHandler { get; set; } = null;
@@ -29,8 +31,8 @@ public record DialogOptions
 
     public bool CloseOnClickAway { get; set; } = false;
 
-    //public bool ApplyBlurEffect { get; set; } = false;
-    //public double BlurRadius { get; set; } = 16d;
+    public bool ApplyBlurEffect { get; set; } = false;
+    public double BlurRadius { get; set; } = 16d;
 }
 
 /// <summary>
@@ -68,6 +70,7 @@ public class DialogHost : ContentControl
     public const string CloseButtonPartName = "PART_CloseButton";
     public const string OpenStateName = "Open";
     public const string ClosedStateName = "Closed";
+    public const string ContentPresenterName = "ContentPresenter";
 
     /// <summary>
     /// Routed command to be used somewhere inside an instance to trigger showing of the dialog. Content can be passed to the dialog via a <see cref="Button.CommandParameter"/>.
@@ -89,6 +92,7 @@ public class DialogHost : ContentControl
     private ContentControl? _popupContentControl;
     private Grid? _contentCoverGrid;
     private Button? _closeButton;
+    private ContentPresenter? _contentPresenter;
     private DialogOpenedEventHandler? _attachedDialogOpenedEventHandler;
     private DialogClosingEventHandler? _attachedDialogClosingEventHandler;
     private DialogClosedEventHandler? _attachedDialogClosedEventHandler;
@@ -371,6 +375,17 @@ public class DialogHost : ContentControl
 
             SetPopupSize(ActualHeight, ActualWidth);
         }
+
+        if (options.ApplyBlurEffect && _contentPresenter is not null)
+        {
+            options.PreviousApplyBlurEffect = ApplyBlurBackground;
+            options.BlurRadius = BlurRadius;
+
+            _contentPresenter.Effect = new BlurEffect()
+            {
+                Radius = options.BlurRadius
+            };
+        }
     }
 
     private void RevertDialogOptions(DialogOptions options)
@@ -398,6 +413,13 @@ public class DialogHost : ContentControl
             }
 
             SetPopupSize(options.PreviousPopupHeight, options.PreviousPopupWidth);
+        }
+
+        if (options.ApplyBlurEffect && _contentPresenter is not null)
+        {
+            _contentPresenter.Effect = null;
+            ApplyBlurBackground = options.PreviousApplyBlurEffect;
+            BlurRadius = options.BlurRadius;
         }
     }
 
@@ -796,6 +818,7 @@ public class DialogHost : ContentControl
         _popupContentControl = GetTemplateChild(PopupContentPartName) as ContentControl;
         _contentCoverGrid = GetTemplateChild(ContentCoverGridName) as Grid;
         _closeButton = GetTemplateChild(CloseButtonPartName) as Button;
+        _contentPresenter = GetTemplateChild(ContentPresenterName) as ContentPresenter;
 
         if (_contentCoverGrid is not null)
             _contentCoverGrid.MouseLeftButtonUp += ContentCoverGridOnMouseLeftButtonUp;

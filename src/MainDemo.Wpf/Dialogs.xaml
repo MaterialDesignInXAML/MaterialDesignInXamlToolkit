@@ -54,6 +54,12 @@
               <CheckBox x:Name="cbCloseOnClickAway"
                         Content="CloseOnClickAway"
                         IsChecked="False" />
+              <CheckBox x:Name="cbApplyBlurEffect"
+                        Content="ApplyBlurEffect"
+                        IsChecked="False" />
+              <TextBox x:Name="tbBlurRadius"
+                       materialDesign:HintAssist.Hint="BlurRadius"
+                       Style="{StaticResource MaterialDesignFilledTextBox}" />
             </StackPanel>
           </GroupBox>
           <Button Margin="0,8,0,0"
