@@ -12,6 +12,7 @@ public partial class Dialogs
         DataContext = new DialogsViewModel();
         InitializeComponent();
         BlurRadiusSlider.Value = DialogHost.DefaultBlurRadius;
+        tbBlurRadius.Text = DialogOptions.Default.BlurRadius.ToString();
     }
 
     private void Sample1_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs)
@@ -99,6 +100,8 @@ public partial class Dialogs
             IsFullscreen = cbIsFullscreen.IsChecked!.Value,
             ShowCloseButton = cbShowCloseButton.IsChecked!.Value,
             CloseOnClickAway = cbCloseOnClickAway.IsChecked!.Value,
+            ApplyBlurEffect = cbApplyBlurEffect.IsChecked!.Value,
+            BlurRadius = double.TryParse(tbBlurRadius.Text, out double parsedRadius) ? parsedRadius : 0
         };
 
         var dialogContent = new TextBlock()
@@ -106,6 +109,6 @@ public partial class Dialogs
             Text = "Some dialog content",
             Margin = new Thickness(32)
         };
-        await DialogHost.Show<int>(dialogContent, "RootDialog", options);
+        await DialogHost.Show(dialogContent, "RootDialog", options);
     }
 }
