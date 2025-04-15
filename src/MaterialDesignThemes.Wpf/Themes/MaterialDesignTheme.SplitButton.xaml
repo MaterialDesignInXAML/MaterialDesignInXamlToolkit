@@ -37,7 +37,6 @@
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type wpf:SplitButton}">
           <Grid x:Name="OuterGrid"
-                Margin="{TemplateBinding Margin}"
                 Height="{TemplateBinding Height}"
                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                 UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
@@ -64,6 +63,7 @@
                     FontStyle="{TemplateBinding FontStyle}"
                     FontWeight="{TemplateBinding FontWeight}"
                     Height="{TemplateBinding Height}"
+                    Margin="0"
                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                     Style="{TemplateBinding ButtonStyle}"
                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -76,6 +76,7 @@
                           wpf:RippleAssist.IsDisabled="True"
                           Height="{TemplateBinding Height}"
                           Padding="0"
+                          Margin="0"
                           PopupUniformCornerRadius="{TemplateBinding PopupUniformCornerRadius}"
                           PopupElevation="{TemplateBinding PopupElevation}"
                           PlacementMode="{TemplateBinding PopupPlacementMode}"
