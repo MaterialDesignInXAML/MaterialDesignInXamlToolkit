@@ -10,29 +10,55 @@
              d:DesignWidth="1080"
              mc:Ignorable="d">
   <DockPanel>
-    <TextBlock DockPanel.Dock="Top" Style="{StaticResource PageTitleTextBlock}" Text="Drawer" />
+    <TextBlock DockPanel.Dock="Top"
+               Style="{StaticResource PageTitleTextBlock}"
+               Text="Drawer" />
 
-    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-      <TextBlock VerticalAlignment="Center" Text="Black Overlay Background" />
+    <StackPanel DockPanel.Dock="Left">
 
-      <ToggleButton x:Name="BackgroundToggle" Margin="8,0,16,0" />
+      <StackPanel Orientation="Horizontal">
+        <TextBlock VerticalAlignment="Center" Text="Black Overlay Background" />
+        <ToggleButton x:Name="BackgroundToggle" Margin="8,0,16,0" />
+        <TextBlock VerticalAlignment="Center" Text="Primary Overlay Background" />
+      </StackPanel>
 
-      <TextBlock VerticalAlignment="Center" Text="Primary Overlay Background" />
+      <StackPanel Margin="0,8,0,0" Orientation="Horizontal">
+        <TextBlock VerticalAlignment="Center" Text="Open Mode" />
+        <ComboBox SelectedValue="{Binding OpenMode, ElementName=DrawerHost}" SelectedValuePath="Content">
+          <ComboBoxItem Content="{x:Static materialDesign:DrawerHostOpenMode.Modal}" />
+          <ComboBoxItem Content="{x:Static materialDesign:DrawerHostOpenMode.Standard}" />
+        </ComboBox>
+      </StackPanel>
 
-      <TextBlock Margin="30,0,16,0"
-                 VerticalAlignment="Center"
-                 Text="Open Mode" />
-      <ComboBox SelectedValue="{Binding OpenMode, ElementName=DrawerHost}" SelectedValuePath="Content">
-        <ComboBoxItem Content="{x:Static materialDesign:DrawerHostOpenMode.Modal}" />
-        <ComboBoxItem Content="{x:Static materialDesign:DrawerHostOpenMode.Standard}" />
-      </ComboBox>
+      <StackPanel Margin="0,8,0,0">
+
+        <CheckBox x:Name="cbApplyBlurBackground" Content="ApplyBlurBackground" />
+
+        <DockPanel>
+          <Button Click="Drawer_ResetBlur"
+                  Content="{materialDesign:PackIcon Kind=Reload}"
+                  DockPanel.Dock="Right"
+                  Style="{StaticResource MaterialDesignFlatButton}"
+                  ToolTip="Reset the BlurRadius of the Drawers Background to it's default value" />
+          <Slider x:Name="BlurRadiusSlider"
+                  DockPanel.Dock="Left"
+                  Maximum="64"
+                  Minimum="1"
+                  Style="{StaticResource MaterialDesignDiscreteSlider}" />
+        </DockPanel>
+      </StackPanel>
+
     </StackPanel>
 
-    <smtx:XamlDisplay MaxHeight="{x:Static system:Double.MaxValue}" UniqueKey="drawers_1">
+    <smtx:XamlDisplay MaxHeight="{x:Static system:Double.MaxValue}"
+                      DockPanel.Dock="Left"
+                      UniqueKey="drawers_1">
       <materialDesign:DrawerHost x:Name="DrawerHost"
                                  Width="480"
                                  Height="480"
                                  Margin="32"
+                                 ApplyBlurBackground="{Binding ElementName=cbApplyBlurBackground, Path=IsChecked}"
+                                 BlurRadius="{Binding ElementName=BlurRadiusSlider, Path=Value}"
                                  HorizontalAlignment="Center"
                                  VerticalAlignment="Center"
                                  BorderBrush="{DynamicResource MaterialDesignDivider}"
