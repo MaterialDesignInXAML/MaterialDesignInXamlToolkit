@@ -25,7 +25,7 @@ public class DocumentationLink
 
     public static DocumentationLink StyleLink(string nameChunk, bool isMd3Style = false)
     {
-        var themesUrl = $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/MaterialDesignThemes.Wpf/Themes/";
+        var themesUrl = $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/src/MaterialDesignThemes.Wpf/Themes/";
 
         return new DocumentationLink(
             DocumentationLinkType.StyleSource,
@@ -39,7 +39,7 @@ public class DocumentationLink
 
         return new DocumentationLink(
             DocumentationLinkType.ControlSource,
-            $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/MaterialDesignThemes.Wpf/{subNamespace}/{typeName}.cs",
+            $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/src/MaterialDesignThemes.Wpf/{subNamespace}/{typeName}.cs",
             typeName);
     }
 
@@ -53,7 +53,7 @@ public class DocumentationLink
 
         return new DocumentationLink(
             DocumentationLinkType.ControlSource,
-            $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/MaterialDesignThemes.Wpf/{typeName}.cs",
+            $"{ConfigurationManager.AppSettings["GitHub"]}/blob/master/src/MaterialDesignThemes.Wpf/{typeName}.cs",
             typeName);
     }
 
