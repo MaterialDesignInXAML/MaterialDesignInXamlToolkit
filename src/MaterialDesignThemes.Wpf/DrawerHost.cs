@@ -586,7 +586,7 @@ public class DrawerHost : ContentControl
 
     private void UpdateVisualStates(bool? useTransitions = null)
     {
-        var anyOpen = IsTopDrawerOpen || IsLeftDrawerOpen || IsBottomDrawerOpen || IsRightDrawerOpen;
+        var anyOpen = IsAnyDrawerOpen();
 
         VisualStateManager.GoToState(this,
             !anyOpen ? TemplateAllDrawersAllClosedStateName : TemplateAllDrawersAnyOpenStateName, useTransitions ?? !TransitionAssist.GetDisableTransitions(this));
@@ -661,11 +661,11 @@ public class DrawerHost : ContentControl
                 drawerContent.Effect = null;
             }
         }
+    }
 
-        bool IsAnyDrawerOpen()
-        {
-            return IsLeftDrawerOpen || IsTopDrawerOpen || IsRightDrawerOpen || IsBottomDrawerOpen;
-        }
+    private bool IsAnyDrawerOpen()
+    {
+        return IsLeftDrawerOpen || IsTopDrawerOpen || IsRightDrawerOpen || IsBottomDrawerOpen;
     }
 
     private static void RaiseDrawerOpened(DrawerHost drawerHost, Dock dock)
