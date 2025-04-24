@@ -1,4 +1,5 @@
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 
 namespace MaterialDesignThemes.Wpf;
 
@@ -445,6 +446,31 @@ public class DrawerHost : ContentControl
 
     #endregion
 
+    #region Blur effect
+    public bool ApplyBlurBackground
+    {
+        get => (bool)GetValue(ApplyBlurBackgroundProperty);
+        set => SetValue(ApplyBlurBackgroundProperty, value);
+    }
+    public static readonly DependencyProperty ApplyBlurBackgroundProperty = DependencyProperty.Register(
+        nameof(ApplyBlurBackground), typeof(bool), typeof(DrawerHost), new PropertyMetadata(default(bool), OnBlurPropertyChanged));
+
+    public const double DefaultBlurRadius = 16.0;
+    public double BlurRadius
+    {
+        get => (double)GetValue(BlurRadiusProperty);
+        set => SetValue(BlurRadiusProperty, value);
+    }
+    public static readonly DependencyProperty BlurRadiusProperty = DependencyProperty.Register(
+        nameof(BlurRadius), typeof(double), typeof(DrawerHost), new PropertyMetadata(DefaultBlurRadius, OnBlurPropertyChanged));
+
+    private static void OnBlurPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var drawerHost = (DrawerHost)d;
+        drawerHost.HandleBackgroundBlur();
+    }
+    #endregion
+
     #region open drawer events/callbacks
 
     public static readonly RoutedEvent DrawerOpenedEvent =
@@ -560,7 +586,7 @@ public class DrawerHost : ContentControl
 
     private void UpdateVisualStates(bool? useTransitions = null)
     {
-        var anyOpen = IsTopDrawerOpen || IsLeftDrawerOpen || IsBottomDrawerOpen || IsRightDrawerOpen;
+        var anyOpen = IsAnyDrawerOpen();
 
         VisualStateManager.GoToState(this,
             !anyOpen ? TemplateAllDrawersAllClosedStateName : TemplateAllDrawersAnyOpenStateName, useTransitions ?? !TransitionAssist.GetDisableTransitions(this));
@@ -593,7 +619,8 @@ public class DrawerHost : ContentControl
     private static void IsDrawerOpenPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs, Dock dock)
     {
         var drawerHost = (DrawerHost)dependencyObject;
-        if (!(bool)dependencyPropertyChangedEventArgs.NewValue)
+        bool isOpened = (bool)dependencyPropertyChangedEventArgs.NewValue;
+        if (!isOpened)
         {
             var args = new DrawerClosingEventArgs(dock, DrawerClosingEvent);
             drawerHost.OnDrawerClosing(args);
@@ -604,14 +631,41 @@ public class DrawerHost : ContentControl
             }
         }
 
-        if (!drawerHost._lockZIndexes && (bool)dependencyPropertyChangedEventArgs.NewValue)
+        if (!drawerHost._lockZIndexes && isOpened)
             drawerHost.PrepareZIndexes(drawerHost._zIndexPropertyLookup[dependencyPropertyChangedEventArgs.Property]);
         drawerHost.UpdateVisualStates();
 
-        if ((bool)dependencyPropertyChangedEventArgs.NewValue)
+        drawerHost.HandleBackgroundBlur(isOpened);
+
+        if (isOpened)
         {
             RaiseDrawerOpened(drawerHost, dock);
         }
+    }
+
+    private void HandleBackgroundBlur(bool? isOpened = null)
+    {
+        isOpened ??= IsAnyDrawerOpen();
+
+        if (Content is UIElement drawerContent)
+        {
+            if (ApplyBlurBackground && isOpened.Value)
+            {
+                drawerContent.Effect = new BlurEffect()
+                {
+                    Radius = BlurRadius
+                };
+            }
+            else
+            {
+                drawerContent.Effect = null;
+            }
+        }
+    }
+
+    private bool IsAnyDrawerOpen()
+    {
+        return IsLeftDrawerOpen || IsTopDrawerOpen || IsRightDrawerOpen || IsBottomDrawerOpen;
     }
 
     private static void RaiseDrawerOpened(DrawerHost drawerHost, Dock dock)
