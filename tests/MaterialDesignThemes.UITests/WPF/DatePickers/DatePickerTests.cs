@@ -78,7 +78,7 @@ public class DatePickerTests : TestBase
 
         // Act
         await clearButton.LeftClick();
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current!.CancellationToken);
 
         // Assert
         await Assert.That(await datePickerTextBox.GetText()).IsNull();
@@ -118,18 +118,18 @@ public class DatePickerTests : TestBase
 
         // Act
         await button.MoveCursorTo();
-        await Task.Delay(50);   // Wait for the visual change
+        await Task.Delay(50, TestContext.Current!.CancellationToken);   // Wait for the visual change
         var inactiveBorderThickness = await textBoxOuterBorder.GetBorderThickness();
         await datePickerTextBox.MoveCursorTo();
-        await Task.Delay(50);   // Wait for the visual change
+        await Task.Delay(50, TestContext.Current.CancellationToken);   // Wait for the visual change
         var hoverBorderThickness = await textBoxOuterBorder.GetBorderThickness();
         await datePickerTextBox.LeftClick();
-        await Task.Delay(50);   // Wait for the visual change
+        await Task.Delay(50, TestContext.Current.CancellationToken);   // Wait for the visual change
         var focusedBorderThickness = await textBoxOuterBorder.GetBorderThickness();
 
         // TODO: It would be cool if a validation error could be set via XAMLTest without the need for the Binding and ValidationRules elements in the XAML above.
         await datePicker.SetProperty(DatePicker.SelectedDateProperty, DateTime.Now);
-        await Task.Delay(50);   // Wait for the visual change
+        await Task.Delay(50, TestContext.Current.CancellationToken);   // Wait for the visual change
         var withErrorBorderThickness = await textBoxOuterBorder.GetBorderThickness();
 
         // Assert
@@ -319,10 +319,10 @@ public class DatePickerTests : TestBase
 
         // Act
         await datePickerTextBoxBorder.MoveCursorTo();
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current!.CancellationToken);
         var datePickerTextBoxHoverThickness = await datePickerTextBoxBorder.GetBorderThickness();
         await datePickerTimeButton.MoveCursorTo();
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current.CancellationToken);
         var datePickerCalendarButtonHoverThickness = await datePickerTextBoxBorder.GetBorderThickness();
 
         // Assert

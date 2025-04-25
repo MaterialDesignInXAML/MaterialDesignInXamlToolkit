@@ -32,7 +32,7 @@ public class DialogHostTests : TestBase
 
         await testOverlayButton.LeftClick();
         await Wait.For(async () => await resultTextBlock.GetText() == "Clicks: 1");
-        await Task.Delay(200);
+        await Task.Delay(200, TestContext.Current!.CancellationToken);
         await closeDialogButton.LeftClick();
 
         var retry = new Retry(5, TimeSpan.FromSeconds(5));
@@ -67,7 +67,7 @@ public class DialogHostTests : TestBase
 
         await showButton.LeftClick();
         await Wait.For(async () => await closeButton.GetIsVisible());
-        await Task.Delay(300);
+        await Task.Delay(300, TestContext.Current!.CancellationToken);
         await closeButton.LeftClick();
 
         await Wait.For(async () =>
@@ -109,7 +109,7 @@ public class DialogHostTests : TestBase
 
         await showButton1.LeftClick();
         await showButton2.LeftClick();
-        await Task.Delay(300);
+        await Task.Delay(300, TestContext.Current!.CancellationToken);
 
         var text1 = await grid.GetElement<TextBlock>("TextBlock1");
         var text2 = await grid.GetElement<TextBlock>("TextBlock2");
@@ -373,14 +373,14 @@ public class DialogHostTests : TestBase
         // Open menu
         IVisualElement<MenuItem> menuItem1 = await rootGrid.GetElement<MenuItem>("MenuItem1");
         await menuItem1.LeftClick();
-        await Task.Delay(1000); // Wait for menu to open
+        await Task.Delay(1000, TestContext.Current!.CancellationToken); // Wait for menu to open
         IVisualElement<MenuItem> menuItem2 = await rootGrid.GetElement<MenuItem>("MenuItem2");
         await menuItem2.LeftClick();
-        await Task.Delay(1000); // Wait for dialog content to show
+        await Task.Delay(1000, TestContext.Current.CancellationToken); // Wait for dialog content to show
 
         // Click navigate button
         await navigateHomeButton.LeftClick();
-        await Task.Delay(1000); // Wait for dialog content to close
+        await Task.Delay(1000, TestContext.Current.CancellationToken); // Wait for dialog content to close
 
         await Assert.That(await tabItem1.GetIsSelected()).IsTrue();
         await Assert.That(await tabItem2.GetIsSelected()).IsFalse();
@@ -405,14 +405,14 @@ public class DialogHostTests : TestBase
         // Open menu
         IVisualElement<MenuItem> menuItem1 = await rootGrid.GetElement<MenuItem>("MenuItem1");
         await menuItem1.LeftClick();
-        await Task.Delay(1000); // Wait for menu to open
+        await Task.Delay(1000, TestContext.Current!.CancellationToken); // Wait for menu to open
         IVisualElement<MenuItem> menuItem2 = await rootGrid.GetElement<MenuItem>("MenuItem2");
         await menuItem2.LeftClick();
-        await Task.Delay(1000); // Wait for dialog content to show
+        await Task.Delay(1000, TestContext.Current.CancellationToken); // Wait for dialog content to show
 
         // Click navigate button
         await navigateHomeButton.LeftClick();
-        await Task.Delay(1000); // Wait for dialog content to close
+        await Task.Delay(1000, TestContext.Current.CancellationToken); // Wait for dialog content to close
 
         await Assert.That(await railItem1.GetIsSelected()).IsTrue();
         await Assert.That(await railItem2.GetIsSelected()).IsFalse();
@@ -437,14 +437,14 @@ public class DialogHostTests : TestBase
         // Open menu
         IVisualElement<MenuItem> menuItem1 = await rootGrid.GetElement<MenuItem>("MenuItem1");
         await menuItem1.LeftClick();
-        await Task.Delay(1000); // Wait for menu to open
+        await Task.Delay(1000, TestContext.Current!.CancellationToken); // Wait for menu to open
         IVisualElement<MenuItem> menuItem2 = await rootGrid.GetElement<MenuItem>("MenuItem2");
         await menuItem2.LeftClick();
-        await Task.Delay(1000); // Wait for dialog content to show
+        await Task.Delay(1000, TestContext.Current.CancellationToken); // Wait for dialog content to show
 
         // Click navigate button
         await navigateHomeButton.LeftClick();
-        await Task.Delay(1000); // Wait for dialog content to close
+        await Task.Delay(1000, TestContext.Current.CancellationToken); // Wait for dialog content to close
 
         await Assert.That(await tabItem1.GetIsSelected()).IsTrue();
         await Assert.That(await tabItem2.GetIsSelected()).IsFalse();
@@ -469,14 +469,14 @@ public class DialogHostTests : TestBase
         // Open menu
         IVisualElement<MenuItem> menuItem1 = await rootGrid.GetElement<MenuItem>("MenuItem1");
         await menuItem1.LeftClick();
-        await Task.Delay(1000); // Wait for menu to open
+        await Task.Delay(1000, TestContext.Current!.CancellationToken); // Wait for menu to open
         IVisualElement<MenuItem> menuItem2 = await rootGrid.GetElement<MenuItem>("MenuItem2");
         await menuItem2.LeftClick();
-        await Task.Delay(1000); // Wait for dialog content to show
+        await Task.Delay(1000, TestContext.Current.CancellationToken); // Wait for dialog content to show
 
         // Click navigate button
         await navigateHomeButton.LeftClick();
-        await Task.Delay(1000); // Wait for dialog content to close
+        await Task.Delay(1000, TestContext.Current.CancellationToken); // Wait for dialog content to close
 
         await Assert.That(await railItem1.GetIsSelected()).IsTrue();
         await Assert.That(await railItem2.GetIsSelected()).IsFalse();
@@ -493,7 +493,7 @@ public class DialogHostTests : TestBase
         IVisualElement dialogHost = await LoadUserControl<WithComboBox>();
 
         var comboBox = await dialogHost.GetElement<ComboBox>("TargetedPlatformComboBox");
-        await Task.Delay(500);
+        await Task.Delay(500, TestContext.Current!.CancellationToken);
         await comboBox.LeftClick();
         
         var item = await Wait.For(() => comboBox.GetElement<ComboBoxItem>("TargetItem"));
