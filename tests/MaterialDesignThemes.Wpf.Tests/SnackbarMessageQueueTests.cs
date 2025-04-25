@@ -1,6 +1,10 @@
 ﻿using System.ComponentModel;
 using System.Windows.Threading;
-using Xunit;
+
+using TUnit.Core;
+using TUnit.Assertions;
+using TUnit.Assertions.Extensions;
+using System.Threading.Tasks;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
@@ -16,17 +20,17 @@ public sealed class SnackbarMessageQueueTests : IDisposable
         _snackbarMessageQueue = new SnackbarMessageQueue(TimeSpan.FromSeconds(3), _dispatcher);
     }
 
-    [StaFact]
+    [Test, STAThreadExecutor]
     [Description("Ensures that GetSnackbarMessage raises an exception on null values")]
-    public void GetSnackbarMessageNullValues()
+    public async Task GetSnackbarMessageNullValues()
     {
-        _ = Assert.Throws<ArgumentNullException>(() => _snackbarMessageQueue.Enqueue(null!));
-        _ = Assert.Throws<ArgumentNullException>(() => _snackbarMessageQueue.Enqueue("", null, null));
+        await _ = Assert.That(() => _snackbarMessageQueue.Enqueue(null!)).ThrowsExactly<ArgumentNullException>();
+        await _ = Assert.That(() => _snackbarMessageQueue.Enqueue("", null, null)).ThrowsExactly<ArgumentNullException>();
         _ = Assert.Throws<ArgumentNullException>(() => _snackbarMessageQueue.Enqueue(null!, "", null));
         _ = Assert.Throws<ArgumentNullException>(() => _snackbarMessageQueue.Enqueue(null!, null, new Action(() => { })));
     }
 
-    [StaFact]
+    [Test, STAThreadExecutor]
     [Description("Ensures that GetSnackbarMessage behaves correctly if the queue should discard duplicate items")]
     public void GetSnackbarMessageDiscardDuplicatesQueue()
     {
@@ -42,19 +46,19 @@ public sealed class SnackbarMessageQueueTests : IDisposable
 
         IReadOnlyList<SnackbarMessageQueueItem> messages = _snackbarMessageQueue.QueuedMessages;
 
-        Assert.Equal(2, messages.Count);
+        await Assert.That(messages.Count).IsEqualTo(2);
 
-        Assert.Equal("String & Action content", messages[0].Content);
-        Assert.Equal("Action content", messages[0].ActionContent);
-        Assert.Equal("Different String & Action content", messages[1].Content);
-        Assert.Equal("Action content", messages[1].ActionContent);
+        await Assert.That(messages[0].Content).IsEqualTo("String & Action content");
+        await Assert.That(messages[0].ActionContent).IsEqualTo("Action content");
+        await Assert.That(messages[1].Content).IsEqualTo("Different String & Action content");
+        await Assert.That(messages[1].ActionContent).IsEqualTo("Action content");
     }
 
     [StaTheory]
     [Description("Ensures that GetSnackbarMessage behaves correctly if the queue simply outputs items")]
-    [InlineData("String & Action content", "Action content")]
-    [InlineData("Different String & Action content", "Action content")]
-    [InlineData("", "")]
+    [Arguments("String & Action content", "Action content")]
+    [Arguments("Different String & Action content", "Action content")]
+    [Arguments("", "")]
     public void GetSnackbarMessageSimpleQueue(object content, object actionContent)
     {
         _snackbarMessageQueue.DiscardDuplicates = false;
@@ -65,8 +69,8 @@ public sealed class SnackbarMessageQueueTests : IDisposable
 
         Assert.Single(messages);
 
-        Assert.Equal(content, messages[0].Content);
-        Assert.Equal(actionContent, messages[0].ActionContent);
+        await Assert.That(messages[0].Content).IsEqualTo(content);
+        await Assert.That(messages[0].ActionContent).IsEqualTo(actionContent);
     }
 
     [Fact]
@@ -77,8 +81,8 @@ public sealed class SnackbarMessageQueueTests : IDisposable
 
         IReadOnlyList<SnackbarMessageQueueItem> messages = _snackbarMessageQueue.QueuedMessages;
         Assert.Single(messages);
-        Assert.Equal("Content", messages[0].Content);
-        Assert.Equal("Action Content", messages[0].ActionContent);
+        await Assert.That(messages[0].Content).IsEqualTo("Content");
+        await Assert.That(messages[0].ActionContent).IsEqualTo("Action Content");
         Assert.True(messages[0].IsPromoted);
     }
 

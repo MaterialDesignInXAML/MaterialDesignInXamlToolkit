@@ -4,6 +4,7 @@ using MaterialDesignThemes.UITests;
 using TUnit.Core.Interfaces;
 
 [assembly: ParallelLimiter<SingleParallelLimit>]
+
 [assembly: GenerateHelpers(typeof(AutoSuggestBox))]
 [assembly: GenerateHelpers(typeof(ColorPicker))]
 [assembly: GenerateHelpers(typeof(DecimalUpDown))]

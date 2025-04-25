@@ -1,4 +1,7 @@
 ﻿using System.Collections;
+using TUnit.Assertions;
+using TUnit.Assertions.Extensions;
+using System.Threading.Tasks;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
@@ -13,14 +16,14 @@ public static class MdixHelper
 
     private static ResourceDictionary GenericResourceDictionary => GetResourceDictionary("Generic.xaml");
 
-    public static void ApplyStyle<T>(this T control, object styleKey, bool applyTemplate = true) where T : FrameworkElement
+    public static async Task ApplyStyle<T>(this T control, object styleKey, bool applyTemplate = true) where T : FrameworkElement
     {
         var style = GetStyle(styleKey);
-        Assert.True(style != null, $"Could not find style with key '{styleKey}' for control type {typeof(T).FullName}");
+        await Assert.That($"Could not find style with key '{styleKey}' for control type {typeof(T).FullName}").IsTrue();
         control.Style = style;
         if (applyTemplate)
         {
-            Assert.True(control.ApplyTemplate(), "Failed to apply template");
+            await Assert.That("Failed to apply template").IsTrue();
         }
     }
 

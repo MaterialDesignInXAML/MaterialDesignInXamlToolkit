@@ -1,6 +1,10 @@
 ﻿using System.Windows.Media;
 using MaterialDesignColors.ColorManipulation;
-using Xunit;
+
+using TUnit.Core;
+using TUnit.Assertions;
+using TUnit.Assertions.Extensions;
+using System.Threading.Tasks;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
@@ -23,26 +27,26 @@ public class ColorPickerTests
         _saturationBrightnessPickerThumb = _colorPicker.FindVisualChild<Thumb>(ColorPicker.SaturationBrightnessPickerThumbPartName);
     }
 
-    [StaFact]
-    public void ColorPickerDefaultsToDefaultColor()
+    [Test, STAThreadExecutor]
+    public async Task ColorPickerDefaultsToDefaultColor()
     {
-        Assert.Equal(default, _colorPicker.Color);
-        Assert.Equal(0, _hueSlider.Value);
+        await Assert.That(_colorPicker.Color).IsEqualTo(default);
+        await Assert.That(_hueSlider.Value).IsEqualTo(0);
 
         //Thumb should be in the bottom left corner
-        Assert.Equal(0, Canvas.GetLeft(_saturationBrightnessPickerThumb));
-        Assert.Equal(_saturationBrightnessPicker.ActualHeight, Canvas.GetTop(_saturationBrightnessPickerThumb));
+        await Assert.That(Canvas.GetLeft(_saturationBrightnessPickerThumb)).IsEqualTo(0);
+        await Assert.That(Canvas.GetTop(_saturationBrightnessPickerThumb)).IsEqualTo(_saturationBrightnessPicker.ActualHeight);
     }
 
     [StaTheory]
-    [InlineData(nameof(Colors.Green))]
-    [InlineData(nameof(Colors.Red))]
-    [InlineData(nameof(Colors.Blue))]
-    [InlineData(nameof(Colors.Aqua))]
-    [InlineData(nameof(Colors.Purple))]
-    [InlineData(nameof(Colors.Pink))]
-    [InlineData(nameof(Colors.Yellow))]
-    [InlineData(nameof(Colors.Orange))]
+    [Arguments(nameof(Colors.Green))]
+    [Arguments(nameof(Colors.Red))]
+    [Arguments(nameof(Colors.Blue))]
+    [Arguments(nameof(Colors.Aqua))]
+    [Arguments(nameof(Colors.Purple))]
+    [Arguments(nameof(Colors.Pink))]
+    [Arguments(nameof(Colors.Yellow))]
+    [Arguments(nameof(Colors.Orange))]
     public void SettingTheColorUpdatesTheControls(string colorName)
     {
         var converter = new ColorConverter();
@@ -52,14 +56,14 @@ public class ColorPickerTests
 
         SetColor(color);
 
-        Assert.Equal(hsb.Hue, _hueSlider.Value);
+        await Assert.That(_hueSlider.Value).IsEqualTo(hsb.Hue);
         var left = (_saturationBrightnessPicker.ActualWidth) / (1 / hsb.Saturation);
         var top = ((1 - hsb.Brightness) * _saturationBrightnessPicker.ActualHeight);
-        Assert.Equal(left, Canvas.GetLeft(_saturationBrightnessPickerThumb));
-        Assert.Equal(top, Canvas.GetTop(_saturationBrightnessPickerThumb));
+        await Assert.That(Canvas.GetLeft(_saturationBrightnessPickerThumb)).IsEqualTo(left);
+        await Assert.That(Canvas.GetTop(_saturationBrightnessPickerThumb)).IsEqualTo(top);
     }
 
-    [StaFact]
+    [Test, STAThreadExecutor]
     public void SettingTheColorRaisesColorChangedEvent()
     {
         // capture variables
@@ -76,8 +80,8 @@ public class ColorPickerTests
 
         SetColor(Colors.Green);
 
-        Assert.Equal(default(Color), oldValue);
-        Assert.Equal(Colors.Green, newValue);
+        await Assert.That(oldValue).IsEqualTo(default(Color));
+        await Assert.That(newValue).IsEqualTo(Colors.Green);
         Assert.True(wasRaised);
 
         // reset capture variables
@@ -87,12 +91,12 @@ public class ColorPickerTests
 
         SetColor(Colors.Red);
 
-        Assert.Equal(Colors.Green, oldValue);
-        Assert.Equal(Colors.Red, newValue);
+        await Assert.That(oldValue).IsEqualTo(Colors.Green);
+        await Assert.That(newValue).IsEqualTo(Colors.Red);
         Assert.True(wasRaised);
     }
 
-    [StaFact]
+    [Test, STAThreadExecutor]
     public void DraggingTheHueSliderChangesHue()
     {
         //This ensures we have some saturation and brightness
@@ -107,7 +111,7 @@ public class ColorPickerTests
         }
     }
 
-    [StaFact]
+    [Test, STAThreadExecutor]
     public void DraggingTheThumbChangesSaturation()
     {
         SetColor(Colors.Red);
