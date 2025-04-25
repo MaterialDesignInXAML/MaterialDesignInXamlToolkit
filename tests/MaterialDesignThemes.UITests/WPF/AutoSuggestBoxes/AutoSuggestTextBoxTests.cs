@@ -63,7 +63,7 @@ public class AutoSuggestBoxTests : TestBase
             lastHeight = currentHeight;
             if (!rv)
             {
-                await Task.Delay(100);
+                await Task.Delay(100, TestContext.Current!.CancellationToken);
             }
             return rv;
         });
@@ -74,7 +74,7 @@ public class AutoSuggestBoxTests : TestBase
         await bananas.LeftClick();
 
         // Wait for the text to be updated
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current!.CancellationToken);
 
         var suggestBoxText = await suggestBox.GetText();
         //Validate that the current text is the same as the selected item
@@ -136,13 +136,13 @@ public class AutoSuggestBoxTests : TestBase
 
         // Act
         await suggestBox.MoveKeyboardFocus();
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current!.CancellationToken);
         await suggestBox.SendInput(new KeyboardInput("B")); // Open the popup
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current.CancellationToken);
         await suggestBox.SendInput(new KeyboardInput(Key.Escape)); // Close the popup
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current.CancellationToken);
         await suggestBox.SendInput(new KeyboardInput(Key.Tab)); // Press TAB to focus the next element
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current.CancellationToken);
 
         // Assert
         await Assert.That(await suggestBox.GetIsFocused()).IsFalse();
@@ -151,7 +151,7 @@ public class AutoSuggestBoxTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3815")]
     public async Task AutoSuggestBox_KeysUpAndDown_WrapAround()
     {
@@ -167,7 +167,7 @@ public class AutoSuggestBoxTests : TestBase
         //Act & Assert
         await suggestBox.MoveKeyboardFocus();
         await suggestBox.SendInput(new KeyboardInput("e"));
-        await Task.Delay(delay);
+        await Task.Delay(delay, TestContext.Current!.CancellationToken);
 
         static int? GetSuggestionCount(AutoSuggestBox autoSuggestBox)
         {
@@ -179,17 +179,17 @@ public class AutoSuggestBoxTests : TestBase
 
         //Assert that initially the first item is selected
         int selectedIndex = await suggestionListBox.GetSelectedIndex();
-        Assert.Equal(0, selectedIndex);
-        await Task.Delay(delay);
+        await Assert.That(selectedIndex).IsEqualTo(0);
+        await Task.Delay(delay, TestContext.Current.CancellationToken);
 
         //Assert that the last item is selected after pressing ArrowUp
         await suggestBox.SendInput(new KeyboardInput(Key.Up));
-        Assert.Equal(itemCount - 1, await suggestionListBox.GetSelectedIndex());
-        await Task.Delay(delay);
+        await Assert.That(await suggestionListBox.GetSelectedIndex()).IsEqualTo(itemCount - 1);
+        await Task.Delay(delay, TestContext.Current.CancellationToken);
 
         //Assert that the first item is selected after pressing ArrowDown
         await suggestBox.SendInput(new KeyboardInput(Key.Down));
-        Assert.Equal(0, await suggestionListBox.GetSelectedIndex());
+        await Assert.That(await suggestionListBox.GetSelectedIndex()).IsEqualTo(0);
     }
 
     [Fact]
