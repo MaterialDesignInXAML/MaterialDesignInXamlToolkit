@@ -1,11 +1,15 @@
 ﻿using MaterialDesignThemes.Wpf.Transitions;
+using TUnit.Core;
+using TUnit.Assertions;
+using TUnit.Assertions.Extensions;
+using System.Threading.Tasks;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
 public class TransitionerTests
 {
-    [StaFact]
-    public void WhenMoveNext_ItCanAdvanceMultipleSlides()
+    [Test, STAThreadExecutor]
+    public async Task WhenMoveNext_ItCanAdvanceMultipleSlides()
     {
         //Arrange
         var child1 = new UserControl();
@@ -21,14 +25,14 @@ public class TransitionerTests
         object parameter = 2;
 
         //Act
-        Assert.True(Transitioner.MoveNextCommand.CanExecute(parameter, transitioner));
+        await Assert.That(Transitioner.MoveNextCommand.CanExecute(parameter, transitioner)).IsTrue();
         Transitioner.MoveNextCommand.Execute(parameter, transitioner);
 
         //Assert
-        Assert.Equal(2, transitioner.SelectedIndex);
+        await Assert.That(transitioner.SelectedIndex).IsEqualTo(2);
     }
 
-    [StaFact]
+    [Test, STAThreadExecutor]
     public void WhenMovePrevious_ItCanRetreatMultipleSlides()
     {
         //Arrange
@@ -49,10 +53,10 @@ public class TransitionerTests
         Transitioner.MovePreviousCommand.Execute(parameter, transitioner);
 
         //Assert
-        Assert.Equal(0, transitioner.SelectedIndex);
+        await Assert.That(transitioner.SelectedIndex).IsEqualTo(0);
     }
 
-    [StaFact]
+    [Test, STAThreadExecutor]
     public void ShortCircuitIssue3268()
     {
         //Arrange
@@ -81,7 +85,7 @@ public class TransitionerTests
         lb.SelectedItem = lb.Items[1];
 
         //Assert
-        Assert.Equal(1, selectionChangedCounter);
-        Assert.Equal(0, transitioner.SelectedIndex);
+        await Assert.That(selectionChangedCounter).IsEqualTo(1);
+        await Assert.That(transitioner.SelectedIndex).IsEqualTo(0);
     }
 }

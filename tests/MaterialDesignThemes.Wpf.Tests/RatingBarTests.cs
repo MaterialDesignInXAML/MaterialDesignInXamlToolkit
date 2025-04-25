@@ -1,14 +1,18 @@
 ﻿using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
-using Xunit;
+
+using TUnit.Core;
+using TUnit.Assertions;
+using TUnit.Assertions.Extensions;
+using System.Threading.Tasks;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
 public class RatingBarTests
 {
-    [StaFact]
-    public void SetMin_ShouldCoerceToMax_WhenMinIsGreaterThanMax()
+    [Test, STAThreadExecutor]
+    public async Task SetMin_ShouldCoerceToMax_WhenMinIsGreaterThanMax()
     {
         // Arrange
         RatingBar ratingBar = new() { Min = 1, Max = 10 };
@@ -17,11 +21,11 @@ public class RatingBarTests
         ratingBar.Min = 15;
 
         // Assert
-        Assert.Equal(10, ratingBar.Min);
+        await Assert.That(ratingBar.Min).IsEqualTo(10);
     }
 
-    [StaFact]
-    public void SetMin_ShouldNotCoerceValue_WhenFractionalValuesAreDisabled()
+    [Test, STAThreadExecutor]
+    public async Task SetMin_ShouldNotCoerceValue_WhenFractionalValuesAreDisabled()
     {
         // Arrange
         RatingBar ratingBar = new() { Min = 1, Max = 10, Value = 5 };
@@ -30,10 +34,10 @@ public class RatingBarTests
         ratingBar.Min = 7;
 
         // Assert
-        Assert.Equal(5, ratingBar.Value);
+        await Assert.That(ratingBar.Value).IsEqualTo(5);
     }
 
-    [StaFact]
+    [Test, STAThreadExecutor]
     public void SetMin_ShouldCoerceValue_WhenFractionalValuesAreEnabled()
     {
         // Arrange
@@ -43,10 +47,10 @@ public class RatingBarTests
         ratingBar.Min = 7;
 
         // Assert
-        Assert.Equal(7, ratingBar.Value);
+        await Assert.That(ratingBar.Value).IsEqualTo(7);
     }
 
-    [StaFact]
+    [Test, STAThreadExecutor]
     public void SetMax_ShouldNotCoerceValue_WhenFractionalValuesAreDisabled()
     {
         // Arrange
@@ -56,10 +60,10 @@ public class RatingBarTests
         ratingBar.Max = 3;
 
         // Assert
-        Assert.Equal(5, ratingBar.Value);
+        await Assert.That(ratingBar.Value).IsEqualTo(5);
     }
 
-    [StaFact]
+    [Test, STAThreadExecutor]
     public void SetMax_ShouldCoerceValue_WhenFractionalValuesAreEnabled()
     {
         // Arrange
@@ -69,10 +73,10 @@ public class RatingBarTests
         ratingBar.Max = 3;
 
         // Assert
-        Assert.Equal(3, ratingBar.Value);
+        await Assert.That(ratingBar.Value).IsEqualTo(3);
     }
 
-    [StaFact]
+    [Test, STAThreadExecutor]
     public void SetMax_ShouldCoerceToMin_WhenMaxIsLessThanMin()
     {
         // Arrange
@@ -82,19 +86,19 @@ public class RatingBarTests
         ratingBar.Max = -5;
 
         // Assert
-        Assert.Equal(1, ratingBar.Max);
+        await Assert.That(ratingBar.Max).IsEqualTo(1);
     }
 
     [StaTheory]
-    [InlineData(-5, 1.0)]
-    [InlineData(5, 5.0)]
-    [InlineData(15, 10.0)]
-    [InlineData(1.2, 1.0)]
-    [InlineData(1.3, 1.5)]
-    [InlineData(1.7, 1.5)]
-    [InlineData(1.8, 2.0)]
-    [InlineData(2.2, 2.0)]
-    [InlineData(2.3, 2.5)]
+    [Arguments(-5, 1.0)]
+    [Arguments(5, 5.0)]
+    [Arguments(15, 10.0)]
+    [Arguments(1.2, 1.0)]
+    [Arguments(1.3, 1.5)]
+    [Arguments(1.7, 1.5)]
+    [Arguments(1.8, 2.0)]
+    [Arguments(2.2, 2.0)]
+    [Arguments(2.3, 2.5)]
     public void SetValue_ShouldCoerceToCorrectMultipleAndStaysWithinBounds_WhenFractionalValuesAreEnabled(double valueToSet, double expectedValue)
     {
         // Arrange
@@ -104,15 +108,15 @@ public class RatingBarTests
         ratingBar.Value = valueToSet;
 
         // Assert
-        Assert.Equal(expectedValue, ratingBar.Value);
+        await Assert.That(ratingBar.Value).IsEqualTo(expectedValue);
     }
 
     [StaTheory]
-    [InlineData(-5, -5.0)]
-    [InlineData(5, 5.0)]
-    [InlineData(15, 15.0)]
-    [InlineData(1.2, 1.2)]
-    [InlineData(2.3, 2.3)]
+    [Arguments(-5, -5.0)]
+    [Arguments(5, 5.0)]
+    [Arguments(15, 15.0)]
+    [Arguments(1.2, 1.2)]
+    [Arguments(2.3, 2.3)]
     public void SetValue_ShouldNotCoerceValue_WhenFractionalValuesAreDisabled(double valueToSet, double expectedValue)
     {
         // Arrange
@@ -122,7 +126,7 @@ public class RatingBarTests
         ratingBar.Value = valueToSet;
 
         // Assert
-        Assert.Equal(expectedValue, ratingBar.Value);
+        await Assert.That(ratingBar.Value).IsEqualTo(expectedValue);
     }
 
     [Fact]
@@ -137,7 +141,7 @@ public class RatingBarTests
         var result = converter.Convert(values, typeof(Brush), null, CultureInfo.CurrentCulture) as Brush;
 
         // Assert
-        Assert.Equal(brush, result);
+        await Assert.That(result).IsEqualTo(brush);
     }
 
     [Fact]
@@ -152,7 +156,7 @@ public class RatingBarTests
         var result = converter.Convert(values, typeof(Brush), null, CultureInfo.CurrentCulture) as Brush;
 
         // Assert
-        Assert.Equal(brush, result);
+        await Assert.That(result).IsEqualTo(brush);
     }
 
     [Fact]
@@ -169,7 +173,7 @@ public class RatingBarTests
         // Assert
         Assert.IsAssignableFrom<SolidColorBrush>(result);
         SolidColorBrush resultBrush = (SolidColorBrush)result!;
-        Assert.Equal(RatingBar.TextBlockForegroundConverter.SemiTransparent, resultBrush.Color.A);
+        await Assert.That(resultBrush.Color.A).IsEqualTo(RatingBar.TextBlockForegroundConverter.SemiTransparent);
     }
 
     [Fact]
@@ -186,8 +190,8 @@ public class RatingBarTests
         // Assert
         Assert.IsAssignableFrom<LinearGradientBrush>(result);
         LinearGradientBrush resultBrush = (LinearGradientBrush)result!;
-        Assert.Equal(new Point(0, 0.5), resultBrush.StartPoint);
-        Assert.Equal(new Point(1, 0.5), resultBrush.EndPoint);
+        await Assert.That(0.5), resultBrush.StartPoint).IsEqualTo(new Point(0);
+        await Assert.That(0.5), resultBrush.EndPoint).IsEqualTo(new Point(1);
     }
 
     [Fact]
@@ -204,8 +208,8 @@ public class RatingBarTests
         // Assert
         Assert.IsAssignableFrom<LinearGradientBrush>(result);
         LinearGradientBrush resultBrush = (LinearGradientBrush)result!;
-        Assert.Equal(new Point(0.5, 0), resultBrush.StartPoint);
-        Assert.Equal(new Point(0.5, 1), resultBrush.EndPoint);
+        await Assert.That(0), resultBrush.StartPoint).IsEqualTo(new Point(0.5);
+        await Assert.That(1), resultBrush.EndPoint).IsEqualTo(new Point(0.5);
     }
 
     [Fact]
@@ -222,13 +226,13 @@ public class RatingBarTests
         // Assert
         Assert.IsAssignableFrom<LinearGradientBrush>(result);
         LinearGradientBrush resultBrush = (LinearGradientBrush)result!;
-        Assert.Equal(2, resultBrush.GradientStops.Count);
+        await Assert.That(resultBrush.GradientStops.Count).IsEqualTo(2);
         GradientStop stop1 = resultBrush.GradientStops[0];
         GradientStop stop2 = resultBrush.GradientStops[1];
-        Assert.Equal(0.1, stop1.Offset, 10);
-        Assert.Equal(brush.Color, stop1.Color);
-        Assert.Equal(0.1, stop2.Offset, 10);
-        Assert.Equal(brush.Color.WithAlphaChannel(RatingBar.TextBlockForegroundConverter.SemiTransparent), stop2.Color);
+        await Assert.That(stop1.Offset, 10).IsEqualTo(0.1);
+        await Assert.That(stop1.Color).IsEqualTo(brush.Color);
+        await Assert.That(stop2.Offset, 10).IsEqualTo(0.1);
+        await Assert.That(stop2.Color).IsEqualTo(brush.Color.WithAlphaChannel(RatingBar.TextBlockForegroundConverter.SemiTransparent));
     }
 
     [Fact]
@@ -245,13 +249,13 @@ public class RatingBarTests
         // Assert
         Assert.IsAssignableFrom<LinearGradientBrush>(result);
         LinearGradientBrush resultBrush = (LinearGradientBrush)result!;
-        Assert.Equal(2, resultBrush.GradientStops.Count);
+        await Assert.That(resultBrush.GradientStops.Count).IsEqualTo(2);
         GradientStop stop1 = resultBrush.GradientStops[0];
         GradientStop stop2 = resultBrush.GradientStops[1];
-        Assert.Equal(0.9, stop1.Offset, 10);
-        Assert.Equal(brush.Color.WithAlphaChannel(RatingBar.TextBlockForegroundConverter.SemiTransparent), stop1.Color);
-        Assert.Equal(0.9, stop2.Offset, 10);
-        Assert.Equal(brush.Color, stop2.Color);
+        await Assert.That(stop1.Offset, 10).IsEqualTo(0.9);
+        await Assert.That(stop1.Color).IsEqualTo(brush.Color.WithAlphaChannel(RatingBar.TextBlockForegroundConverter.SemiTransparent));
+        await Assert.That(stop2.Offset, 10).IsEqualTo(0.9);
+        await Assert.That(stop2.Color).IsEqualTo(brush.Color);
     }
 
     [Fact]
@@ -268,13 +272,13 @@ public class RatingBarTests
         // Assert
         Assert.IsAssignableFrom<LinearGradientBrush>(result);
         LinearGradientBrush resultBrush = (LinearGradientBrush)result!;
-        Assert.Equal(2, resultBrush.GradientStops.Count);
+        await Assert.That(resultBrush.GradientStops.Count).IsEqualTo(2);
         GradientStop stop1 = resultBrush.GradientStops[0];
         GradientStop stop2 = resultBrush.GradientStops[1];
-        Assert.Equal(0.42, stop1.Offset, 10);
-        Assert.Equal(brush.Color, stop1.Color);
-        Assert.Equal(0.42, stop2.Offset, 10);
-        Assert.Equal(brush.Color.WithAlphaChannel(RatingBar.TextBlockForegroundConverter.SemiTransparent), stop2.Color);
+        await Assert.That(stop1.Offset, 10).IsEqualTo(0.42);
+        await Assert.That(stop1.Color).IsEqualTo(brush.Color);
+        await Assert.That(stop2.Offset, 10).IsEqualTo(0.42);
+        await Assert.That(stop2.Color).IsEqualTo(brush.Color.WithAlphaChannel(RatingBar.TextBlockForegroundConverter.SemiTransparent));
     }
 
     [Fact]
@@ -291,13 +295,13 @@ public class RatingBarTests
         // Assert
         Assert.IsAssignableFrom<LinearGradientBrush>(result);
         LinearGradientBrush resultBrush = (LinearGradientBrush)result!;
-        Assert.Equal(2, resultBrush.GradientStops.Count);
+        await Assert.That(resultBrush.GradientStops.Count).IsEqualTo(2);
         GradientStop stop1 = resultBrush.GradientStops[0];
         GradientStop stop2 = resultBrush.GradientStops[1];
-        Assert.Equal(0.87, stop1.Offset, 10);
-        Assert.Equal(brush.Color, stop1.Color);
-        Assert.Equal(0.87, stop2.Offset, 10);
-        Assert.Equal(brush.Color.WithAlphaChannel(RatingBar.TextBlockForegroundConverter.SemiTransparent), stop2.Color);
+        await Assert.That(stop1.Offset, 10).IsEqualTo(0.87);
+        await Assert.That(stop1.Color).IsEqualTo(brush.Color);
+        await Assert.That(stop2.Offset, 10).IsEqualTo(0.87);
+        await Assert.That(stop2.Color).IsEqualTo(brush.Color.WithAlphaChannel(RatingBar.TextBlockForegroundConverter.SemiTransparent));
     }
 
     private static object[] Arrange_TextBlockForegroundConverterValues(SolidColorBrush brush, double value, int buttonValue, Orientation orientation = Orientation.Horizontal, bool invertDirection = false) =>
@@ -315,12 +319,12 @@ public class RatingBarTests
 
         // Assert
         Assert.NotNull(result);
-        Assert.Equal(40.0, result); // 50% of 100 minus 20/2
+        await Assert.That(result).IsEqualTo(40.0); // 50% of 100 minus 20/2
     }
 
     [Theory]
-    [InlineData(false, 15.0)] // 25% of 100 minus 20/2
-    [InlineData(true, 65.0)]  // 75% of 100 minus 20/2
+    [Arguments(false, 15.0)] // 25% of 100 minus 20/2
+    [Arguments(true, 65.0)]  // 75% of 100 minus 20/2
     public void PreviewIndicatorTransformXConverter_ShouldOffsetPreviewIndicatorByPercentage_WhenFractionalValuesAreEnabledAndOrientationIsHorizontal(bool invertDirection, double expectedValue)
     {
         // Arrange
@@ -332,7 +336,7 @@ public class RatingBarTests
 
         // Assert
         Assert.NotNull(result);
-        Assert.Equal(expectedValue, result); 
+        await Assert.That(result).IsEqualTo(expectedValue); 
     }
 
     [Fact]
@@ -348,7 +352,7 @@ public class RatingBarTests
 
         // Assert
         Assert.NotNull(result);
-        Assert.Equal(expectedValue, result); // 100% of 20 minus fixed margin
+        await Assert.That(result).IsEqualTo(expectedValue); // 100% of 20 minus fixed margin
     }
 
     [Fact]
@@ -364,7 +368,7 @@ public class RatingBarTests
 
         // Assert
         Assert.NotNull(result);
-        Assert.Equal(expectedValue, result); // 100% of 20 minus fixed margin
+        await Assert.That(result).IsEqualTo(expectedValue); // 100% of 20 minus fixed margin
     }
 
 
@@ -385,7 +389,7 @@ public class RatingBarTests
 
         // Assert
         Assert.NotNull(result);
-        Assert.Equal(expectedValue, result); // 100% of 20 minus fixed margin
+        await Assert.That(result).IsEqualTo(expectedValue); // 100% of 20 minus fixed margin
     }
 
     [Fact]
@@ -401,7 +405,7 @@ public class RatingBarTests
 
         // Assert
         Assert.NotNull(result);
-        Assert.Equal(expectedValue, result); // 100% of 20 minus fixed margin
+        await Assert.That(result).IsEqualTo(expectedValue); // 100% of 20 minus fixed margin
     }
 
     [Fact]
@@ -416,12 +420,12 @@ public class RatingBarTests
 
         // Assert
         Assert.NotNull(result);
-        Assert.Equal(40.0, result); // 50% of 100 minus 20/2
+        await Assert.That(result).IsEqualTo(40.0); // 50% of 100 minus 20/2
     }
 
     [Theory]
-    [InlineData(false, 15.0)] // 25% of 100 minus 20/2
-    [InlineData(true, 65.0)]  // 75% of 100 minus 20/2
+    [Arguments(false, 15.0)] // 25% of 100 minus 20/2
+    [Arguments(true, 65.0)]  // 75% of 100 minus 20/2
     public void PreviewIndicatorTransformYConverter_ShouldPreviewIndicatorByPercentage_WhenFractionalValuesAreEnabledAndOrientationIsVertical(bool invertDirection, double expectedValue)
     {
         // Arrange
@@ -433,7 +437,7 @@ public class RatingBarTests
 
         // Assert
         Assert.NotNull(result);
-        Assert.Equal(expectedValue, result);
+        await Assert.That(result).IsEqualTo(expectedValue);
     }
 
     private static object[] Arrange_PreviewIndicatorTransformYConverterValues(double ratingBarButtonActualHeight, double previewValueActualHeight, Orientation orientation, bool invertDirection, bool isFractionalValueEnabled, double previewValue, int buttonValue) =>

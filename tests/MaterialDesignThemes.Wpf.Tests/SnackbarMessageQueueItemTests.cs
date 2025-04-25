@@ -1,18 +1,22 @@
-﻿using Xunit;
+﻿
+using TUnit.Core;
+using TUnit.Assertions;
+using TUnit.Assertions.Extensions;
+using System.Threading.Tasks;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
 public class SnackbarMessageQueueItemTests
 {
-    [Fact]
-    public void IsDuplicate_ThrowsOnNullArgument()
+    [Test]
+    public async Task IsDuplicate_ThrowsOnNullArgument()
     {
         SnackbarMessageQueueItem item = CreateItem();
-        var ex = Assert.Throws<ArgumentNullException>(() => item.IsDuplicate(null!));
-        Assert.Equal("value", ex.ParamName);
+        var ex = await Assert.That(() => item.IsDuplicate(null!)).ThrowsExactly<ArgumentNullException>();
+        Assert.That(ex.ParamName).IsEqualTo("value");
     }
 
-    [Fact]
+    [Test]
     public void IsDuplicate_WithDuplicateItems_ItReturnsTrue()
     {
         SnackbarMessageQueueItem item = CreateItem();

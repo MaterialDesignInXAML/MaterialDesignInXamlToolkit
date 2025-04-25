@@ -5,6 +5,11 @@ namespace MaterialDesignThemes.UITests.WPF.AutoSuggestBoxes;
 
 public class AutoSuggestBoxTests : TestBase
 {
+    public AutoSuggestBoxTests()
+    {
+        AttachedDebuggerToRemoteProcess = false;
+    }
+
     [Test]
     public async Task CanFilterItems_WithSuggestionsAndDisplayMember_FiltersSuggestions()
     {

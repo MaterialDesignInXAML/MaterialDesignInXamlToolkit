@@ -1,11 +1,15 @@
-﻿using Xunit;
+﻿
+using TUnit.Core;
+using TUnit.Assertions;
+using TUnit.Assertions.Extensions;
+using System.Threading.Tasks;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
 public class ClockTests
 {
     [StaFact(Timeout = 500)]
-    public void CanGenerateHoursButtons()
+    public async Task CanGenerateHoursButtons()
     {
         var clock = new Clock();
         clock.ApplyDefaultStyle();
@@ -14,11 +18,11 @@ public class ClockTests
         var buttonContents = hoursCanvas.GetVisualChildren<ClockItemButton>().Select(x => x.Content.ToString());
 
         var expected = Enumerable.Range(1, 12).Select(x => $"{x:0}");
-        Assert.Equal(expected.OrderBy(x => x), buttonContents.OrderBy(x => x));
+        await Assert.That(buttonContents.OrderBy(x => x)).IsEqualTo(expected.OrderBy(x => x));
     }
 
     [StaFact(Timeout = 500)]
-    public void CanGenerateHoursButtonsWith24Hours()
+    public async Task CanGenerateHoursButtonsWith24Hours()
     {
         var clock = new Clock { Is24Hours = true };
         clock.ApplyDefaultStyle();
@@ -29,7 +33,7 @@ public class ClockTests
         var expected = Enumerable.Range(13, 11).Select(x => $"{x:00}")
             .Concat(new[] { "00" })
             .Concat(Enumerable.Range(1, 12).Select(x => $"{x:#}"));
-        Assert.Equal(expected.OrderBy(x => x), buttonContents.OrderBy(x => x));
+        await Assert.That(buttonContents.OrderBy(x => x)).IsEqualTo(expected.OrderBy(x => x));
     }
 
     [StaFact(Timeout = 500)]
@@ -42,7 +46,7 @@ public class ClockTests
         var buttonContents = minutesCanvas.GetVisualChildren<ClockItemButton>().Select(x => x.Content.ToString());
 
         var expected = Enumerable.Range(0, 60).Select(x => $"{x:0}");
-        Assert.Equal(expected.OrderBy(x => x), buttonContents.OrderBy(x => x));
+        await Assert.That(buttonContents.OrderBy(x => x)).IsEqualTo(expected.OrderBy(x => x));
     }
 
     [StaFact(Timeout = 500)]
@@ -55,7 +59,7 @@ public class ClockTests
         var buttonContents = secondsCanvas.GetVisualChildren<ClockItemButton>().Select(x => x.Content.ToString());
 
         var expected = Enumerable.Range(0, 60).Select(x => $"{x:0}");
-        Assert.Equal(expected.OrderBy(x => x), buttonContents.OrderBy(x => x));
+        await Assert.That(buttonContents.OrderBy(x => x)).IsEqualTo(expected.OrderBy(x => x));
     }
 
     [StaFact(Timeout = 500)]
@@ -74,13 +78,13 @@ public class ClockTests
         clock.Time = now;
         clock.Time += TimeSpan.FromMinutes(-2);
 
-        Assert.Equal(2, invocations.Count);
+        await Assert.That(invocations.Count).IsEqualTo(2);
 
-        Assert.Equal(default, invocations[0].OldTime);
-        Assert.Equal(now, invocations[0].NewTime);
+        await Assert.That(invocations[0].OldTime).IsEqualTo(default);
+        await Assert.That(invocations[0].NewTime).IsEqualTo(now);
 
-        Assert.Equal(now, invocations[1].OldTime);
-        Assert.Equal(now + TimeSpan.FromMinutes(-2), invocations[1].NewTime);
+        await Assert.That(invocations[1].OldTime).IsEqualTo(now);
+        await Assert.That(invocations[1].NewTime).IsEqualTo(now + TimeSpan.FromMinutes(-2));
     }
 
 
