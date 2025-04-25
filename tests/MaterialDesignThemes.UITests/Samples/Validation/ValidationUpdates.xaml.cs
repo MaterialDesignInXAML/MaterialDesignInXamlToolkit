@@ -46,7 +46,7 @@ public partial class ValidationUpdatesViewModel : ObservableObject, INotifyDataE
     {
         Error = "Some error";
         ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(Text)));
-        await Task.Delay(100);
+        await Task.Delay(100, TestContext.Current!.CancellationToken);
         Error += " + more";
         ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(Text)));
     }

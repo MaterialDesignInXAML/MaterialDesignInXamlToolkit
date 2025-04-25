@@ -55,10 +55,10 @@ public class SplitButtonTests : TestBase
 
         //Act
         await leftButton.LeftClick();
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current!.CancellationToken);
         int leftButtonCount = (await clickEvent.GetInvocations()).Count;
         await popupBox.LeftClick();
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current.CancellationToken);
         int rightButtonCount = (await clickEvent.GetInvocations()).Count;
 
         // Assert
@@ -94,7 +94,7 @@ public class SplitButtonTests : TestBase
         await Wait.For(async () => await popupContent.GetIsVisible());
         await Wait.For(async () => await popupContent.GetActualHeight() > 10);
         await popupContent.LeftClick();
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current!.CancellationToken);
 
         // Assert
         var invocations = await clickEvent.GetInvocations();
@@ -118,7 +118,7 @@ public class SplitButtonTests : TestBase
 
         //Act
         await splitButton.LeftClick();
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current!.CancellationToken);
 
         // Assert
         await Assert.That(await userControl.GetCommandInvoked()).IsTrue();
@@ -176,7 +176,7 @@ public class SplitButtonTests : TestBase
         await Wait.For(async () => await popupContent.GetIsVisible());
         await Wait.For(async () => await popupContent.GetActualHeight() > 10);
         await popupContent.LeftClick();
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current!.CancellationToken);
 
         // Assert
         await Assert.That(await splitButtonClickEvent.GetInvocations()).IsEmpty();
