@@ -1,35 +1,39 @@
 ﻿using System.ComponentModel;
-using Xunit;
+
+using TUnit.Core;
+using TUnit.Assertions;
+using TUnit.Assertions.Extensions;
+using System.Threading.Tasks;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
 public class PopupBoxTests
 {
-    [StaFact]
+    [Test, STAThreadExecutor]
     [Description("Issue 1091")]
-    public void ToggleButtonInheritsTabIndex()
+    public async Task ToggleButtonInheritsTabIndex()
     {
         var popupBox = new PopupBox { TabIndex = 3 };
         popupBox.ApplyDefaultStyle();
 
         ToggleButton togglePart = popupBox.FindVisualChild<ToggleButton>(PopupBox.TogglePartName);
 
-        Assert.Equal(3, togglePart.TabIndex);
+        await Assert.That(togglePart.TabIndex).IsEqualTo(3);
     }
 
-    [StaFact]
+    [Test, STAThreadExecutor]
     [Description("Issue 1231")]
-    public void ToggleButtonInheritsIsTabStopWhenFalse()
+    public async Task ToggleButtonInheritsIsTabStopWhenFalse()
     {
         var popupBox = new PopupBox { IsTabStop = false };
         popupBox.ApplyDefaultStyle();
 
         ToggleButton togglePart = popupBox.FindVisualChild<ToggleButton>(PopupBox.TogglePartName);
 
-        Assert.False(togglePart.IsTabStop);
+        await Assert.That(togglePart.IsTabStop).IsFalse();
     }
 
-    [StaFact]
+    [Test, STAThreadExecutor]
     [Description("Issue 1231")]
     public void ToggleButtonInheritsIsTabStopWhenTrue()
     {

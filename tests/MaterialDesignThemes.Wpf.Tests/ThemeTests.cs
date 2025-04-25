@@ -1,25 +1,29 @@
 ﻿using System.Windows.Media;
+using TUnit.Core;
+using TUnit.Assertions;
+using TUnit.Assertions.Extensions;
+using System.Threading.Tasks;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
 public class ThemeTests
 {
-    [Fact]
-    public void CanSetForegroundWithColor()
+    [Test]
+    public async Task CanSetForegroundWithColor()
     {
         var theme = Theme.Create(BaseTheme.Dark, Colors.Red, Colors.Blue);
         theme.Foreground = Colors.Green;
 
-        Assert.Equal<Color>(Colors.Green, theme.Foreground);
+        await Assert.That(theme.Foreground).IsEqualTo(Colors.Green);
     }
 
-    [Fact]
-    public void CanSetForegroundWithThemeColorReference()
+    [Test]
+    public async Task CanSetForegroundWithThemeColorReference()
     {
         var theme = Theme.Create(BaseTheme.Dark, Colors.Red, Colors.Blue);
         theme.Foreground = ThemeColorReference.PrimaryMid;
 
-        Assert.Equal<Color>(Colors.Red, theme.Foreground);
+        await Assert.That(theme.Foreground).IsEqualTo(Colors.Red);
     }
 
     [Fact]
