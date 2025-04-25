@@ -1,6 +1,10 @@
 using System.ComponentModel;
 using System.Globalization;
-using Xunit;
+
+using TUnit.Core;
+using TUnit.Assertions;
+using TUnit.Assertions.Extensions;
+using System.Threading.Tasks;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
@@ -15,20 +19,20 @@ public class TimePickerUnitTests
         _timePicker.ApplyDefaultStyle();
     }
 
-    [StaFact]
+    [Test, STAThreadExecutor]
     [Description("Issue 1691")]
-    public void DontOverwriteDate()
+    public async Task DontOverwriteDate()
     {
         var expectedDate = new DateTime(2000, 1, 1, 20, 0, 0);
 
         _timePicker.SelectedTime = expectedDate;
 
-        Assert.Equal(_timePicker.SelectedTime, expectedDate);
+        await Assert.That(expectedDate).IsEqualTo(_timePicker.SelectedTime);
     }
 
     [StaTheory]
     [MemberData(nameof(GetDisplaysExpectedTextData))]
-    public void DisplaysExpectedText(CultureInfo culture, DatePickerFormat format, bool is24Hour, bool withSeconds,
+    public async Task DisplaysExpectedText(CultureInfo culture, DatePickerFormat format, bool is24Hour, bool withSeconds,
         DateTime? selectedTime, string expectedText)
     {
         _timePicker.Language = XmlLanguage.GetLanguage(culture.IetfLanguageTag);
@@ -37,7 +41,7 @@ public class TimePickerUnitTests
         _timePicker.WithSeconds = withSeconds;
         _timePicker.SelectedTime = selectedTime;
 
-        Assert.Equal(expectedText, _timePicker.Text);
+        await Assert.That(_timePicker.Text).IsEqualTo(expectedText);
     }
 
     [StaTheory]
@@ -55,7 +59,7 @@ public class TimePickerUnitTests
         textBox.Text = timeString;
         textBox.RaiseEvent(new RoutedEventArgs(UIElement.LostFocusEvent));
 
-        Assert.Equal(expectedTime, _timePicker.SelectedTime);
+        await Assert.That(_timePicker.SelectedTime).IsEqualTo(expectedTime);
     }
 
     public static IEnumerable<object[]> GetParseLocalizedTimeStringData()

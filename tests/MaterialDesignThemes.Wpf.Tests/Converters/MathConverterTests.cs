@@ -1,30 +1,34 @@
 ﻿using System.Globalization;
 using System.Windows.Data;
 using MaterialDesignThemes.Wpf.Converters;
+using TUnit.Core;
+using TUnit.Assertions;
+using TUnit.Assertions.Extensions;
+using System.Threading.Tasks;
 
 namespace MaterialDesignThemes.Wpf.Tests.Converters;
 
 public sealed class MathConverterTests
 {
-    [Theory]
+    [Test]
     [EnumData]
-    public void EnumValues_AreAllHandled(MathOperation operation)
+    public async Task EnumValues_AreAllHandled(MathOperation operation)
     {
-        MathConverter converter = new ()
+        MathConverter converter = new()
         {
             Operation = operation
         };
 
-        Assert.True(converter.Convert(1.0, null, 1.0, CultureInfo.CurrentUICulture) is double);
+        await Assert.That(converter.Convert(1.0, null, 1.0, CultureInfo.CurrentUICulture) is double).IsTrue();
     }
 
-    [Fact]
-    public void NoneDoubleArguments_ShouldReturnDoNothing()
+    [Test]
+    public async Task NoneDoubleArguments_ShouldReturnDoNothing()
     {
         MathConverter converter = new();
         object? actual1 = converter.Convert("", null, 1.0, CultureInfo.CurrentUICulture);
-        Assert.Equal(Binding.DoNothing, actual1);
+        await Assert.That(actual1).IsEqualTo(Binding.DoNothing);
         object? actual2 = converter.Convert(1.0, null, "", CultureInfo.CurrentUICulture);
-        Assert.Equal(Binding.DoNothing, actual2);
+        await Assert.That(actual2).IsEqualTo(Binding.DoNothing);
     }
 }

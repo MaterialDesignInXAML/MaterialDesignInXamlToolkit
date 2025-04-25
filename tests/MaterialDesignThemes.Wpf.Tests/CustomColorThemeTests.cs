@@ -1,13 +1,17 @@
 ﻿using System.Windows.Media;
-using Xunit;
+
+using TUnit.Core;
+using TUnit.Assertions;
+using TUnit.Assertions.Extensions;
+using System.Threading.Tasks;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
 public class CustomColorThemeTests
 {
     [StaTheory]
-    [MemberData(nameof(GetThemeValues))]
-    public void WhenValueIsMissingThemeIsNotSet(BaseTheme? baseTheme, Color? primaryColor, Color? secondaryColor)
+    [MethodDataSource(nameof(GetThemeValues))]
+    public async Task WhenValueIsMissingThemeIsNotSet(BaseTheme? baseTheme, Color? primaryColor, Color? secondaryColor)
     {
         //Arrange
         var bundledTheme = new CustomColorTheme();
@@ -18,7 +22,7 @@ public class CustomColorThemeTests
         bundledTheme.SecondaryColor = secondaryColor;
 
         //Assert
-        Assert.Throws<InvalidOperationException>(() => bundledTheme.GetTheme());
+        await Assert.That(() => bundledTheme.GetTheme()).ThrowsExactly<InvalidOperationException>();
     }
 
     public static IEnumerable<object?[]> GetThemeValues()
@@ -34,8 +38,8 @@ public class CustomColorThemeTests
         yield return new object?[] { BaseTheme.Inherit, null, Colors.Blue };
     }
 
-    [StaFact]
-    public void WhenAllValuesAreSetThemeIsSet()
+    [Test, STAThreadExecutor]
+    public async Task WhenAllValuesAreSetThemeIsSet()
     {
         //Arrange
         var bundledTheme = new CustomColorTheme();
@@ -47,12 +51,12 @@ public class CustomColorThemeTests
 
         //Assert
         Theme theme = bundledTheme.GetTheme();
-        Assert.Equal(Colors.Fuchsia, theme.PrimaryMid.Color);
-        Assert.Equal(Colors.Lime, theme.SecondaryMid.Color);
+        await Assert.That(theme.PrimaryMid.Color).IsEqualTo(Colors.Fuchsia);
+        await Assert.That(theme.SecondaryMid.Color).IsEqualTo(Colors.Lime);
 
         var lightTheme = new Theme();
         lightTheme.SetLightTheme();
-        Assert.Equal(lightTheme.Foreground, theme.Foreground);
+        await Assert.That(theme.Foreground).IsEqualTo(lightTheme.Foreground);
         Assert.NotEqual(default, theme.Foreground);
     }
 }

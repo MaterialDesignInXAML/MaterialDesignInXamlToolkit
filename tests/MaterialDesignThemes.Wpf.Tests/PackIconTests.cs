@@ -1,18 +1,22 @@
 ﻿using System.ComponentModel;
-using Xunit;
+
+using TUnit.Core;
+using TUnit.Assertions;
+using TUnit.Assertions.Extensions;
+using System.Threading.Tasks;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
 public class PackIconTests
 {
-    [Fact]
+    [Test]
     [Description("Issue 1255")]
-    public void EnumMembersMustNotDifferByOnlyCase()
+    public async Task EnumMembersMustNotDifferByOnlyCase()
     {
         var enumValues = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         foreach (var enumMember in Enum.GetNames(typeof(PackIconKind)))
         {
-            Assert.True(enumValues.Add(enumMember), $"{enumMember} matches existing enum value and differs only by case");
+            await Assert.That($"{enumMember} matches existing enum value and differs only by case").IsTrue();
         }
     }
 }
