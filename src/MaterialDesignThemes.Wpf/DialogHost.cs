@@ -395,7 +395,7 @@ public class DialogHost : ContentControl
         if (options.ApplyBlurEffect && _contentPresenter is not null)
         {
             options.PreviousApplyBlurEffect = ApplyBlurBackground;
-            options.BlurRadius = BlurRadius;
+            options.PreviousBlurRadius = BlurRadius;
 
             _contentPresenter.Effect = new BlurEffect()
             {
@@ -435,7 +435,7 @@ public class DialogHost : ContentControl
         {
             _contentPresenter.Effect = null;
             ApplyBlurBackground = options.PreviousApplyBlurEffect;
-            BlurRadius = options.BlurRadius;
+            BlurRadius = options.PreviousBlurRadius;
         }
     }
 
