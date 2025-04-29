@@ -8,6 +8,11 @@ using System.Windows.Threading;
 
 namespace MaterialDesignThemes.Wpf;
 
+public interface IDialogService
+{
+    Task<object?> Show(object? content, DialogOptions? options);
+}
+
 public record DialogOptions
 {
     // Internal properties to "restore" the dialogs looks as it was before a fullscreen dialog was shown
@@ -62,7 +67,7 @@ public enum DialogHostOpenDialogCommandDataContextSource
 [TemplatePart(Name = CloseButtonPartName, Type = typeof(Button))]
 [TemplateVisualState(GroupName = "PopupStates", Name = OpenStateName)]
 [TemplateVisualState(GroupName = "PopupStates", Name = ClosedStateName)]
-public class DialogHost : ContentControl
+public class DialogHost : ContentControl, IDialogService
 {
     public const string PopupPartName = "PART_Popup";
     public const string PopupContentPartName = "PART_PopupContentElement";
@@ -101,8 +106,9 @@ public class DialogHost : ContentControl
 
     private const string OBSOLETE_SHOW_API_MESSAGE = $"""
         This method is obsolete and will be removed in a future version.
-        Please use a different overload of this method which accepts {nameof(DialogOptions)} instead.
+        Please use the '{nameof(IDialogService)}' interface and the default implementation '{nameof(DialogHost)}' instead.
         """;
+    private const bool OLD_API_THROWS_ERROR = false;
 
     static DialogHost()
     {
@@ -116,7 +122,7 @@ public class DialogHost : ContentControl
     /// </summary>
     /// <param name="content">Content to show (can be a control or view model).</param>
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-    [Obsolete(OBSOLETE_SHOW_API_MESSAGE)]
+    [Obsolete(OBSOLETE_SHOW_API_MESSAGE, OLD_API_THROWS_ERROR)]
     public static Task<object?> Show(object content)
         => Show(content, null, null);
 
@@ -126,7 +132,7 @@ public class DialogHost : ContentControl
     /// <param name="content">Content to show (can be a control or view model).</param>        
     /// <param name="openedEventHandler">Allows access to opened event which would otherwise have been subscribed to on a instance.</param>
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-    [Obsolete(OBSOLETE_SHOW_API_MESSAGE)]
+    [Obsolete(OBSOLETE_SHOW_API_MESSAGE, OLD_API_THROWS_ERROR)]
     public static Task<object?> Show(object content, DialogOpenedEventHandler? openedEventHandler)
         => Show(content, null, openedEventHandler, null);
 
@@ -136,7 +142,7 @@ public class DialogHost : ContentControl
     /// <param name="content">Content to show (can be a control or view model).</param>
     /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-    [Obsolete(OBSOLETE_SHOW_API_MESSAGE)]
+    [Obsolete(OBSOLETE_SHOW_API_MESSAGE, OLD_API_THROWS_ERROR)]
     public static Task<object?> Show(object content, DialogClosingEventHandler? closingEventHandler)
         => Show(content, null, null, closingEventHandler);
 
@@ -147,7 +153,7 @@ public class DialogHost : ContentControl
     /// <param name="openedEventHandler">Allows access to opened event which would otherwise have been subscribed to on a instance.</param>
     /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-    [Obsolete(OBSOLETE_SHOW_API_MESSAGE)]
+    [Obsolete(OBSOLETE_SHOW_API_MESSAGE, OLD_API_THROWS_ERROR)]
     public static Task<object?> Show(object content, DialogOpenedEventHandler? openedEventHandler, DialogClosingEventHandler? closingEventHandler)
         => Show(content, null, openedEventHandler, closingEventHandler);
 
@@ -159,7 +165,7 @@ public class DialogHost : ContentControl
     /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
     /// <param name="closedEventHandler">Allows access to closed event which would otherwise have been subscribed to on a instance.</param>
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-    [Obsolete(OBSOLETE_SHOW_API_MESSAGE)]
+    [Obsolete(OBSOLETE_SHOW_API_MESSAGE, OLD_API_THROWS_ERROR)]
     public static Task<object?> Show(object content, DialogOpenedEventHandler? openedEventHandler, DialogClosingEventHandler? closingEventHandler, DialogClosedEventHandler? closedEventHandler)
         => Show(content, null, openedEventHandler, closingEventHandler, closedEventHandler);
 
@@ -169,7 +175,7 @@ public class DialogHost : ContentControl
     /// <param name="content">Content to show (can be a control or view model).</param>
     /// <param name="dialogIdentifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifier set in XAML. <c>null</c> is allowed.</param>
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-    [Obsolete(OBSOLETE_SHOW_API_MESSAGE)]
+    [Obsolete(OBSOLETE_SHOW_API_MESSAGE, OLD_API_THROWS_ERROR)]
     public static Task<object?> Show(object content, object dialogIdentifier)
         => Show(content, dialogIdentifier, null, null);
 
@@ -180,7 +186,7 @@ public class DialogHost : ContentControl
     /// <param name="dialogIdentifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifier set in XAML. <c>null</c> is allowed.</param>
     /// <param name="openedEventHandler">Allows access to opened event which would otherwise have been subscribed to on a instance.</param>
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-    [Obsolete(OBSOLETE_SHOW_API_MESSAGE)]
+    [Obsolete(OBSOLETE_SHOW_API_MESSAGE, OLD_API_THROWS_ERROR)]
     public static Task<object?> Show(object content, object dialogIdentifier, DialogOpenedEventHandler? openedEventHandler)
         => Show(content, dialogIdentifier, openedEventHandler, null);
 
@@ -191,7 +197,7 @@ public class DialogHost : ContentControl
     /// <param name="dialogIdentifier"><see cref="Identifier"/> of the instance where the dialog should be shown. Typically this will match an identifier set in XAML. <c>null</c> is allowed.</param>        
     /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-    [Obsolete(OBSOLETE_SHOW_API_MESSAGE)]
+    [Obsolete(OBSOLETE_SHOW_API_MESSAGE, OLD_API_THROWS_ERROR)]
     public static Task<object?> Show(object content, object dialogIdentifier, DialogClosingEventHandler? closingEventHandler)
         => Show(content, dialogIdentifier, null, closingEventHandler);
 
@@ -203,7 +209,7 @@ public class DialogHost : ContentControl
     /// <param name="openedEventHandler">Allows access to opened event which would otherwise have been subscribed to on a instance.</param>
     /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-    [Obsolete(OBSOLETE_SHOW_API_MESSAGE)]
+    [Obsolete(OBSOLETE_SHOW_API_MESSAGE, OLD_API_THROWS_ERROR)]
     public static Task<object?> Show(object content, object? dialogIdentifier, DialogOpenedEventHandler? openedEventHandler, DialogClosingEventHandler? closingEventHandler)
         => Show(content, dialogIdentifier, openedEventHandler, closingEventHandler, null);
 
@@ -216,7 +222,7 @@ public class DialogHost : ContentControl
     /// <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
     /// <param name="closedEventHandler">Allows access to closed event which would otherwise have been subscribed to on a instance.</param>
     /// <returns>Task result is the parameter used to close the dialog, typically what is passed to the <see cref="CloseDialogCommand"/> command.</returns>
-    [Obsolete(OBSOLETE_SHOW_API_MESSAGE)]
+    [Obsolete(OBSOLETE_SHOW_API_MESSAGE, OLD_API_THROWS_ERROR)]
     public static async Task<object?> Show(object content, object? dialogIdentifier, DialogOpenedEventHandler? openedEventHandler, DialogClosingEventHandler? closingEventHandler, DialogClosedEventHandler? closedEventHandler)
     {
 #if NET7_0_OR_GREATER
@@ -307,7 +313,7 @@ public class DialogHost : ContentControl
         return targets[0];
     }
 
-    [Obsolete(OBSOLETE_SHOW_API_MESSAGE)]
+    [Obsolete(OBSOLETE_SHOW_API_MESSAGE, OLD_API_THROWS_ERROR)]
     internal async Task<object?> ShowInternal(object content, DialogOpenedEventHandler? openedEventHandler, DialogClosingEventHandler? closingEventHandler, DialogClosedEventHandler? closedEventHandler)
     {
         if (IsOpen)
@@ -334,10 +340,10 @@ public class DialogHost : ContentControl
         return result;
     }
 
-    public static Task<object?> Show(object? content, DialogOptions options)
+    public Task<object?> Show(object? content, DialogOptions? options = null)
         => Show(content, null, options);
 
-    public static async Task<object?> Show(object? content, object? dialogIdentifier, DialogOptions options)
+    public static async Task<object?> Show(object? content, object? dialogIdentifier, DialogOptions? options = null)
     {
 #if NET7_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(content);
@@ -439,10 +445,12 @@ public class DialogHost : ContentControl
         }
     }
 
-    internal async Task<object?> ShowInternal(object content, DialogOptions options)
+    internal async Task<object?> ShowInternal(object content, DialogOptions? options = null)
     {
         if (IsOpen)
             throw new InvalidOperationException("DialogHost is already open.");
+
+        options ??= DialogOptions.Default;
 
         _dialogTaskCompletionSource = new TaskCompletionSource<object?>();
 
