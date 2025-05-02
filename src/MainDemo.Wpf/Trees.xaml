@@ -209,53 +209,85 @@
                   Grid.Column="2"
                   VerticalContentAlignment="Top"
                   UniqueKey="trees_3">
-        <Grid>
-          <materialDesign:TreeListView MinWidth="220" MaxHeight="450"
-                                     ItemsSource="{Binding TreeItems}"
-                                     SelectedItem="{Binding SelectedTreeItem}">
-            <materialDesign:TreeListView.Resources>
-              <HierarchicalDataTemplate DataType="{x:Type domain:TestItem}"
-                          ItemsSource="{Binding Items, Mode=OneTime}">
-                <TextBlock Margin="3,2" Text="{Binding Name, Mode=OneTime}" />
-              </HierarchicalDataTemplate>
+        <StackPanel Orientation="Horizontal">
+          <Grid>
+            <materialDesign:TreeListView MinWidth="220"
+                                         MaxHeight="450"
+                                         ItemsSource="{Binding TreeItems}"
+                                         SelectedItem="{Binding SelectedTreeItem}"
+                                         SelectedItems="{Binding SelectedTreeItems}">
+              <materialDesign:TreeListView.Resources>
+                <HierarchicalDataTemplate DataType="{x:Type domain:TestItem}"
+                                          ItemsSource="{Binding Items, Mode=OneTime}">
+                  <TextBlock Margin="3,2" Text="{Binding Name, Mode=OneTime}" />
+                </HierarchicalDataTemplate>
 
-              <HierarchicalDataTemplate DataType="{x:Type domain:MovieCategory}"
-                                      ItemsSource="{Binding Movies, Mode=OneTime}">
-                <TextBlock Margin="3,2" Text="{Binding Name, Mode=OneTime}" />
-              </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type domain:MovieCategory}"
+                                          ItemsSource="{Binding Movies, Mode=OneTime}">
+                  <TextBlock Margin="3,2" Text="{Binding Name, Mode=OneTime}" />
+                </HierarchicalDataTemplate>
 
-              <DataTemplate DataType="{x:Type domain:Movie}">
-                <TextBlock Margin="3,2"
-                           Text="{Binding Name, Mode=OneTime}"
-                           ToolTip="{Binding Director, Mode=OneTime}" />
-              </DataTemplate>
-            </materialDesign:TreeListView.Resources>
+                <DataTemplate DataType="{x:Type domain:Movie}">
+                  <TextBlock Margin="3,2"
+                             Text="{Binding Name, Mode=OneTime}"
+                             ToolTip="{Binding Director, Mode=OneTime}" />
+                </DataTemplate>
+              </materialDesign:TreeListView.Resources>
 
-            <!--
-            Because Data Virtualization is enabled on this tree view by default, if you don't bind the IsExpanded property to something in the bound view model,
-            you can loose the expanded state of items when the TreeListViewItem is recycled.
+              <!--
+              Because Data Virtualization is enabled on this tree view by default, if you don't bind the IsExpanded property to something in the bound view model,
+              you can loose the expanded state of items when the TreeListViewItem is recycled.
+              
+              For more information:
+              https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/3640#issuecomment-2274086113
+              https://learn.microsoft.com/dotnet/desktop/wpf/advanced/optimizing-performance-controls?view=netframeworkdesktop-4.8&WT.mc_id=DT-MVP-5003472
+              -->
+              <materialDesign:TreeListView.ItemContainerStyle>
+                <Style TargetType="materialDesign:TreeListViewItem" BasedOn="{StaticResource {x:Type materialDesign:TreeListViewItem}}">
+                  <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
+                </Style>
+              </materialDesign:TreeListView.ItemContainerStyle>
+            </materialDesign:TreeListView>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+              <Button Command="{Binding AddListTreeItemCommand}"
+                      ToolTip="Add an item"
+                      Content="{materialDesign:PackIcon Kind=Add}"/>
 
-            For more information:
-            https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/3640#issuecomment-2274086113
-            https://learn.microsoft.com/dotnet/desktop/wpf/advanced/optimizing-performance-controls?view=netframeworkdesktop-4.8&WT.mc_id=DT-MVP-5003472
-            -->
-            <materialDesign:TreeListView.ItemContainerStyle>
-              <Style TargetType="materialDesign:TreeListViewItem" BasedOn="{StaticResource {x:Type materialDesign:TreeListViewItem}}">
-                <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
-              </Style>
-            </materialDesign:TreeListView.ItemContainerStyle>
-          </materialDesign:TreeListView>
-          <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-            <Button Command="{Binding AddListTreeItemCommand}"
-                    ToolTip="Add an item"
-                    Content="{materialDesign:PackIcon Kind=Add}"/>
+              <Button Command="{Binding RemoveListTreeItemCommand}"
+                      ToolTip="Remove selected item(s)"
+                      Content="{materialDesign:PackIcon Kind=Remove}"/>
 
-            <Button Command="{Binding RemoveListTreeItemCommand}"
-                    ToolTip="Remove selected item(s)"
-                    Content="{materialDesign:PackIcon Kind=Remove}"/>
+            </StackPanel>
+          </Grid>
 
-          </StackPanel>
-        </Grid>
+          <GroupBox Margin="4,0,0,0" Header="TreeListView.SelectedItems">
+            <ListBox ItemsSource="{Binding SelectedTreeItems}" HorizontalContentAlignment="Stretch">
+              <ListBox.ItemTemplate>
+                <DataTemplate>
+                  <Grid>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="*" />
+                      <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0"
+                               Text="{Binding Name}"
+                               VerticalAlignment="Center" />
+                    <Button Grid.Column="1"
+                            Padding="4"
+                            Width="{Binding Path=ActualHeight, RelativeSource={RelativeSource Mode=Self}}"
+                            Command="{Binding DataContext.RemoveSelectedListTreeItemCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                            CommandParameter="{Binding .}"
+                            Content="{materialDesign:PackIcon Kind=Bin}"
+                            Foreground="Red"
+                            Style="{StaticResource MaterialDesignFlatButton}" />
+                  </Grid>
+                </DataTemplate>
+              </ListBox.ItemTemplate>
+            </ListBox>
+          </GroupBox>
+
+        </StackPanel>
+        
       </smtx:XamlDisplay>
 
       <TextBlock Grid.Row="2"
