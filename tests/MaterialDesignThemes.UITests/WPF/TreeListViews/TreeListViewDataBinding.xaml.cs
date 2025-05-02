@@ -8,7 +8,8 @@ namespace MaterialDesignThemes.UITests.WPF.TreeListViews;
 public partial class TreeListViewDataBinding
 {
     //NB: making the assumption changes occur on the UI thread
-    public ObservableCollection<TreeItem> Items { get; } = new();
+    public ObservableCollection<TreeItem> Items { get; } = [];
+    public ObservableCollection<TreeItem> SelectedItems { get; } = [];
 
     public TreeListViewDataBinding()
     {

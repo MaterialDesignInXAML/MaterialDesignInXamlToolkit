@@ -15,7 +15,8 @@
     </Grid.RowDefinitions>
     <materialDesign:TreeListView
       x:Name="TreeListView"
-      ItemsSource="{Binding Items}">
+      ItemsSource="{Binding Items}"
+      SelectedItems="{Binding SelectedItems}">
       <materialDesign:TreeListView.ItemTemplate>
         <HierarchicalDataTemplate DataType="{x:Type local:TreeItem}"
             ItemsSource="{Binding Children}">

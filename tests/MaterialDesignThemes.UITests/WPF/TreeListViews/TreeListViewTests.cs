@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Windows.Media;
 
 namespace MaterialDesignThemes.UITests.WPF.TreeListViews;
@@ -155,7 +156,7 @@ public class TreeListViewTests : TestBase
         await secondItem.LeftClickExpander();
 
         // Select child item and add three children and expand it
-        IVisualElement<TreeListViewItem>? childElement =  await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[3]");
+        IVisualElement<TreeListViewItem>? childElement = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[3]");
         await AddChildren(childElement!, 3, addButton);
 
         //NB: Needs to be long enough delay so the next click does not register as a double click
@@ -519,7 +520,7 @@ public class TreeListViewTests : TestBase
 
         await AssertTreeItemContent(treeListView, 0, "0");
         await AssertTreeItemContent(treeListView, 1, "2");
-        
+
         recorder.Success();
     }
 
@@ -930,7 +931,7 @@ public class TreeListViewTests : TestBase
 
         // NOTE: This may not be needed, I am not entirely sure.
         item1 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[2]");
-        
+
         // Expand item "1"
         await item1.LeftClickExpander();
 
@@ -1021,6 +1022,40 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 4, "3_0");
         await AssertTreeItemContent(treeListView, 5, "3_1");
         await AssertTreeItemContent(treeListView, 6, "3_2");
+
+        recorder.Success();
+    }
+
+    [Theory]
+    [MemberData(nameof(GetTestControls))]
+    public async Task TreeListView_SelectingMultipleItems_AddsThemToSelectedItems(Type userControlType)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> root = (await LoadUserControl(userControlType)).As<Grid>();
+        IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+
+        IVisualElement<TreeListViewItem> item1 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
+        IVisualElement<TreeListViewItem> item2 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[2]");
+        await item1.LeftClick();
+        await Task.Delay(100);
+
+        // TODO: Hold Ctrl and select item2
+        item2.SendInput(new KeyboardInput(Key.LeftCtrl));
+        await item2.LeftClick();
+
+        await Task.Delay(1000);
+
+        static IList GetSelectedItems(TreeListView treeListView)
+        {
+            var idk = treeListView.SelectedItems;
+            string type = idk.GetType().ToString();
+            return (IList)idk;
+        }
+
+        var selectedItems = await treeListView.RemoteExecute(GetSelectedItems);
+
+        Assert.Equal(2, selectedItems.Count);
 
         recorder.Success();
     }
