@@ -201,7 +201,7 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
         if (_decreaseButton != null)
             _decreaseButton.Click -= DecreaseButtonOnClick;
         if (_textBoxField != null)
-            _textBoxField.TextChanged -= OnTextBoxFocusLost;
+            _textBoxField.TextChanged -= OnTextBoxTextChanged;
 
         base.OnApplyTemplate();
 
@@ -219,13 +219,13 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
 
         if (_textBoxField != null)
         {
-            _textBoxField.LostFocus += OnTextBoxFocusLost;
+            _textBoxField.TextChanged += OnTextBoxTextChanged;
             _textBoxField.Text = Value?.ToString();
         }
 
     }
 
-    private void OnTextBoxFocusLost(object sender, EventArgs e)
+    private void OnTextBoxTextChanged(object sender, EventArgs e)
     {
         if (_textBoxField is { } textBoxField)
         {
