@@ -1037,27 +1037,28 @@ public class TreeListViewTests : TestBase
 
         IVisualElement<TreeListViewItem> item1 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
         IVisualElement<TreeListViewItem> item2 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[2]");
+
+        // Select multiple items
         await item1.LeftClick();
-        await Task.Delay(100);
-
-        // TODO: Hold Ctrl and select item2
-        item2.SendInput(new KeyboardInput(Key.LeftCtrl));
+        await Task.Delay(50);
+        await treeListView.SendKeyboardInput($"{ModifierKeys.Control}");
         await item2.LeftClick();
+        await Task.Delay(50);
 
-        await Task.Delay(1000);
-
-        static IList GetSelectedItems(TreeListView treeListView)
-        {
-            var idk = treeListView.SelectedItems;
-            string type = idk.GetType().ToString();
-            return (IList)idk;
-        }
+        // Release modifiers
+        await treeListView.SendKeyboardInput($"{ModifierKeys.None}");
 
         var selectedItems = await treeListView.RemoteExecute(GetSelectedItems);
 
+        Assert.NotNull(selectedItems);
         Assert.Equal(2, selectedItems.Count);
 
         recorder.Success();
+
+        static IList GetSelectedItems(TreeListView treeListView)
+        {
+            return treeListView.SelectedItems;
+        }
     }
 
     private static async Task AssertTreeItemContent(IVisualElement<TreeListView> treeListView, int index, string content, bool isExpanded = false)
