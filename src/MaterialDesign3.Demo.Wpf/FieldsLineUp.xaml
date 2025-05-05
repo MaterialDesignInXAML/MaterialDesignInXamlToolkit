@@ -10,8 +10,8 @@
   <GroupBox Margin="10"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            materialDesign:ColorZoneAssist.Background="{DynamicResource PrimaryHueLightBrush}"
-            materialDesign:ColorZoneAssist.Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+            materialDesign:ColorZoneAssist.Background="{DynamicResource MaterialDesign.Brush.Primary.Light}"
+            materialDesign:ColorZoneAssist.Foreground="{DynamicResource MaterialDesign.Brush.Primary.Light.Foreground}"
             materialDesign:ColorZoneAssist.Mode="Custom">
     <GroupBox.Header>
       <StackPanel Orientation="Horizontal">

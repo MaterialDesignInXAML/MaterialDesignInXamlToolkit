@@ -54,7 +54,7 @@
     <smtx:XamlDisplay Grid.Row="0"
                       Grid.Column="2"
                       UniqueKey="groupbox_3">
-      <Border Background="{DynamicResource MaterialDesignBackground}">
+      <Border Background="{DynamicResource MaterialDesign.Brush.Card.Background}">
         <GroupBox Margin="16"
                   Header="Transparent Background"
                   Style="{StaticResource MaterialDesignGroupBox}"

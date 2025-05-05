@@ -83,8 +83,8 @@
 
             <ComboBox Margin="8,0,0,0"
                       materialDesign:ColorZoneAssist.Mode="Standard"
-                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource MaterialDesignPaper}"
-                      BorderBrush="{DynamicResource MaterialDesignPaper}"
+                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource MaterialDesign.Brush.Background}"
+                      BorderBrush="{DynamicResource MaterialDesign.Brush.Background}"
                       BorderThickness="0"
                       SelectedIndex="0">
               <ComboBoxItem Content="Android" />

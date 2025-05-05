@@ -76,7 +76,7 @@
                   materialDesign:HintAssist.Hint="OS"
                   materialDesign:TextFieldAssist.HasClearButton="True"
                   materialDesign:TextFieldAssist.SuffixText="sw"
-                  materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                  materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource MaterialDesign.Brush.Secondary}"
                   Style="{StaticResource MaterialDesignFloatingHintComboBox}">
           <ComboBoxItem Content="Android" />
           <ComboBoxItem Content="iOS" />
@@ -121,7 +121,7 @@
 
     <Rectangle Height="1"
                Margin="0,32,0,0"
-               Fill="{DynamicResource MaterialDesignDivider}" />
+               Fill="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
     <TextBlock Style="{StaticResource SectionTitle}" Text="Virtualised ComboBoxes" />
 
     <StackPanel Orientation="Horizontal">
@@ -213,7 +213,7 @@
 
     <Rectangle Height="1"
                Margin="0,32,0,0"
-               Fill="{DynamicResource MaterialDesignDivider}" />
+               Fill="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
     <TextBlock Style="{StaticResource SectionTitle}" Text="Filled ComboBox" />
 
     <StackPanel Margin="0,8,0,0" Orientation="Horizontal">

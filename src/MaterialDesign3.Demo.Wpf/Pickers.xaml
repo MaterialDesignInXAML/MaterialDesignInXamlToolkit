@@ -393,22 +393,22 @@
                   <Style x:Key="SecondaryCalendarDayButton"
                          TargetType="CalendarDayButton"
                          BasedOn="{StaticResource MaterialDesignCalendarDayButton}">
-                    <Setter Property="materialDesign:CalendarAssist.SelectionColor" Value="{DynamicResource SecondaryHueMidBrush}" />
-                    <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+                    <Setter Property="materialDesign:CalendarAssist.SelectionColor" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+                    <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
                   </Style>
                   <Style x:Key="SecondaryCalendarButton"
                          TargetType="CalendarButton"
                          BasedOn="{StaticResource MaterialDesignCalendarButton}">
-                    <Setter Property="materialDesign:CalendarAssist.SelectionColor" Value="{DynamicResource SecondaryHueMidBrush}" />
-                    <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+                    <Setter Property="materialDesign:CalendarAssist.SelectionColor" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
+                    <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
                   </Style>
                 </Grid.Resources>
-                <Calendar materialDesign:CalendarAssist.HeaderBackground="{DynamicResource PrimaryHueDarkBrush}"
-                          materialDesign:CalendarAssist.HeaderForeground="{DynamicResource PrimaryHueDarkForegroundBrush}"
-                          Background="{DynamicResource PrimaryHueLightBrush}"
+                <Calendar materialDesign:CalendarAssist.HeaderBackground="{DynamicResource MaterialDesign.Brush.Primary.Dark}"
+                          materialDesign:CalendarAssist.HeaderForeground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"
+                          Background="{DynamicResource MaterialDesign.Brush.Primary.Light}"
                           CalendarButtonStyle="{StaticResource SecondaryCalendarButton}"
                           CalendarDayButtonStyle="{StaticResource SecondaryCalendarDayButton}"
-                          Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" />
+                          Foreground="{DynamicResource MaterialDesign.Brush.Primary.Light.Foreground}" />
               </Grid>
             </smtx:XamlDisplay>
           </GroupBox>
