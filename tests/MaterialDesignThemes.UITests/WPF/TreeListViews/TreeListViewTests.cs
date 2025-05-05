@@ -1048,16 +1048,16 @@ public class TreeListViewTests : TestBase
         // Release modifiers
         await treeListView.SendKeyboardInput($"{ModifierKeys.None}");
 
-        var selectedItems = await treeListView.RemoteExecute(GetSelectedItems);
-
-        Assert.NotNull(selectedItems);
-        Assert.Equal(2, selectedItems.Count);
+        await treeListView.RemoteExecute(AssertSelectedItems);
 
         recorder.Success();
 
-        static IList GetSelectedItems(TreeListView treeListView)
+        // Assert inside of the remote executed method because we can't return an IList, since it's not serializable
+        static void AssertSelectedItems(TreeListView treeListView)
         {
-            return treeListView.SelectedItems;
+            var selectedItems = treeListView.SelectedItems;
+            Assert.NotNull(selectedItems);
+            Assert.Equal(2, selectedItems.Count);
         }
     }
 
