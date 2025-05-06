@@ -201,6 +201,33 @@ public class AutoSuggestBoxTests : TestBase
         Assert.Equal(0, await suggestionListBox.GetSelectedIndex());
     }
 
+    [Fact]
+    [Description("Issue 3845")]
+    public async Task AutoSuggestBox_SelectingAnItem_SetsSelectedItem()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        //Arrange
+        IVisualElement<AutoSuggestBox> suggestBox = (await LoadUserControl<AutoSuggestTextBoxWithTemplate>()).As<AutoSuggestBox>();
+        IVisualElement<Popup> popup = await suggestBox.GetElement<Popup>();
+        IVisualElement<ListBox> suggestionListBox = await popup.GetElement<ListBox>();
+
+        //Act
+        await suggestBox.MoveKeyboardFocus();
+        await Task.Delay(50);
+        await suggestBox.SendInput(new KeyboardInput("B"));
+        await Task.Delay(50);
+        await suggestBox.SendInput(new KeyboardInput(Key.Enter));
+        await Task.Delay(50);
+
+        //Assert
+        string? selectedItem = (await suggestBox.GetSelectedItem()) as string;
+        Assert.NotNull(selectedItem);
+        Assert.Equal("Bananas", selectedItem);
+
+        recorder.Success();
+    }
+
     private static async Task AssertExists(IVisualElement<ListBox> suggestionListBox, string text, bool existsOrNotCheck = true)
     {
         try

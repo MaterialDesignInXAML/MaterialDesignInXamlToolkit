@@ -96,7 +96,11 @@ public class AutoSuggestBox : TextBox
         set => SetValue(SelectedItemProperty, value);
     }
     public static readonly DependencyProperty SelectedItemProperty =
-        DependencyProperty.Register(nameof(SelectedItem), typeof(object), typeof(AutoSuggestBox), new PropertyMetadata(default(object)));
+        DependencyProperty.Register(
+            nameof(SelectedItem),
+            typeof(object),
+            typeof(AutoSuggestBox),
+            new FrameworkPropertyMetadata(default(object), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
 
     public object SelectedValue
@@ -254,6 +258,7 @@ public class AutoSuggestBox : TextBox
         {
             CaretIndex = Text.Length;
         }
+        SetCurrentValue(SelectedItemProperty, selectedValue);
         CloseAutoSuggestionPopUp();
         var args = new RoutedPropertyChangedEventArgs<object?>(oldValue, Text)
         {
