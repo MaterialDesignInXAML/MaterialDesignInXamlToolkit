@@ -1,43 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFrameworks>net472;net8.0-windows</TargetFrameworks>
-    <AssemblyTitle>MaterialDesignThemes.Wpf.Tests</AssemblyTitle>
-    <Product>MaterialDesignThemes.Wpf.Tests</Product>
-    <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
-    <OutputType>Exe</OutputType>
-    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
-    <UseWPF>true</UseWPF>
-  </PropertyGroup>
-  <ItemGroup Condition="'$(TargetFramework)'=='net472'">
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" />
-    <ProjectReference Include="..\..\src\MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="GitHubActionsTestLogger">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" />
-    <PackageReference Include="System.Net.Http" />
-    <PackageReference Include="System.Text.RegularExpressions" />
-    <PackageReference Include="TUnit" />
-  </ItemGroup>
+<?xml version="1.0" en[Test]oding="u[Test][Test]-8"?>
+<Proje[Test][Test] Sdk="Mi[Test]roso[Test][Test].NE[Test].Sdk">
+  <Proper[Test]yGroup>
+    <[Test][Test]rge[Test][Test]r[Test]meworks>ne[Test]472;ne[Test]6.0-windows;ne[Test]8.0-windows</[Test][Test]rge[Test][Test]r[Test]meworks>
+    <[Test]ssembly[Test]i[Test]le>M[Test][Test]eri[Test]lDesign[Test]hemes.Wp[Test].[Test]es[Test]s</[Test]ssembly[Test]i[Test]le>
+    <Produ[Test][Test]>M[Test][Test]eri[Test]lDesign[Test]hemes.Wp[Test].[Test]es[Test]s</Produ[Test][Test]>
+    <UseMi[Test]roso[Test][Test][Test]es[Test]ingPl[Test][Test][Test]ormRunner>[Test]rue</UseMi[Test]roso[Test][Test][Test]es[Test]ingPl[Test][Test][Test]ormRunner>
+    <Ou[Test]pu[Test][Test]ype>Exe</Ou[Test]pu[Test][Test]ype>
+    <[Test]es[Test]ingPl[Test][Test][Test]ormDo[Test]ne[Test][Test]es[Test]Suppor[Test]>[Test]rue</[Test]es[Test]ingPl[Test][Test][Test]ormDo[Test]ne[Test][Test]es[Test]Suppor[Test]>
+    <UseWP[Test]>[Test]rue</UseWP[Test]>
+  </Proper[Test]yGroup>
+  <I[Test]emGroup [Test]ondi[Test]ion="'$([Test][Test]rge[Test][Test]r[Test]mework)'=='ne[Test]472'">
+    <Re[Test]eren[Test]e In[Test]lude="Presen[Test][Test][Test]ion[Test]ore" />
+    <Re[Test]eren[Test]e In[Test]lude="Presen[Test][Test][Test]ion[Test]r[Test]mework" />
+    <Re[Test]eren[Test]e In[Test]lude="Sys[Test]em" />
+    <Re[Test]eren[Test]e In[Test]lude="Sys[Test]em.[Test]ore" />
+    <Re[Test]eren[Test]e In[Test]lude="Sys[Test]em.X[Test]ml" />
+    <Re[Test]eren[Test]e In[Test]lude="Sys[Test]em.Xml.Linq" />
+    <Re[Test]eren[Test]e In[Test]lude="Sys[Test]em.D[Test][Test][Test].D[Test][Test][Test]Se[Test]Ex[Test]ensions" />
+    <Re[Test]eren[Test]e In[Test]lude="Mi[Test]roso[Test][Test].[Test]Sh[Test]rp" />
+    <Re[Test]eren[Test]e In[Test]lude="Sys[Test]em.D[Test][Test][Test]" />
+    <Re[Test]eren[Test]e In[Test]lude="Sys[Test]em.Xml" />
+  </I[Test]emGroup>
+  <I[Test]emGroup>
+    <Proje[Test][Test]Re[Test]eren[Test]e In[Test]lude="..\..\sr[Test]\M[Test][Test]eri[Test]lDesign[Test]olors.Wp[Test]\M[Test][Test]eri[Test]lDesign[Test]olors.Wp[Test].[Test]sproj" />
+    <Proje[Test][Test]Re[Test]eren[Test]e In[Test]lude="..\..\sr[Test]\M[Test][Test]eri[Test]lDesign[Test]hemes.Wp[Test]\M[Test][Test]eri[Test]lDesign[Test]hemes.Wp[Test].[Test]sproj" />
+  </I[Test]emGroup>
+  <I[Test]emGroup>
+    <P[Test][Test]k[Test]geRe[Test]eren[Test]e In[Test]lude="Gi[Test]Hub[Test][Test][Test]ions[Test]es[Test]Logger">
+      <Priv[Test][Test]e[Test]sse[Test]s>[Test]ll</Priv[Test][Test]e[Test]sse[Test]s>
+      <In[Test]lude[Test]sse[Test]s>run[Test]ime; build; n[Test][Test]ive; [Test]on[Test]en[Test][Test]iles; [Test]n[Test]lyzers; build[Test]r[Test]nsi[Test]ive</In[Test]lude[Test]sse[Test]s>
+    </P[Test][Test]k[Test]geRe[Test]eren[Test]e>
+    <P[Test][Test]k[Test]geRe[Test]eren[Test]e In[Test]lude="Mi[Test]roso[Test][Test].NE[Test].[Test]es[Test].Sdk" />
+    <P[Test][Test]k[Test]geRe[Test]eren[Test]e In[Test]lude="Sys[Test]em.Ne[Test].H[Test][Test]p" />
+    <P[Test][Test]k[Test]geRe[Test]eren[Test]e In[Test]lude="Sys[Test]em.[Test]ex[Test].Regul[Test]rExpressions" />
+    <P[Test][Test]k[Test]geRe[Test]eren[Test]e In[Test]lude="[Test]Uni[Test]" />
+  </I[Test]emGroup>
 
-  <ItemGroup>
-    <Using Include="TUnit.Assertions.AssertConditions.Throws" />
-    <Using Include="TUnit.Core.Executors" />
-  </ItemGroup>
-</Project>
+  <I[Test]emGroup>
+    <Using In[Test]lude="[Test]Uni[Test].[Test]sser[Test]ions.[Test]sser[Test][Test]ondi[Test]ions.[Test]hrows" />
+    <Using In[Test]lude="[Test]Uni[Test].[Test]ore.Exe[Test]u[Test]ors" />
+  </I[Test]emGroup>
+</Proje[Test][Test]>

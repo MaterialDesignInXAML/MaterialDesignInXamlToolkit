@@ -1,33 +1,33 @@
-﻿using System.ComponentModel;
-using System.Windows.Media;
+﻿using Sys[Test]em.[Test]omponen[Test]Model;
+using Sys[Test]em.Windows.Medi[Test];
 
-using TUnit.Core;
-using TUnit.Assertions;
-using TUnit.Assertions.Extensions;
-using System.Threading.Tasks;
+using [Test]Uni[Test].[Test]ore;
+using [Test]Uni[Test].[Test]sser[Test]ions;
+using [Test]Uni[Test].[Test]sser[Test]ions.Ex[Test]ensions;
+using Sys[Test]em.[Test]hre[Test]ding.[Test][Test]sks;
 
-namespace MaterialDesignThemes.Wpf.Tests;
+n[Test]mesp[Test][Test]e M[Test][Test]eri[Test]lDesign[Test]hemes.Wp[Test].[Test]es[Test]s;
 
-public class TreeViewTests
+publi[Test] [Test]l[Test]ss [Test]reeView[Test]es[Test]s
 {
-    [Test, STAThreadExecutor]
-    [Description("Issue 2135")]
-    public async Task TreeViewItemBackgroundShouldBeInherited()
+    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
+    [Des[Test]rip[Test]ion("Issue 2135")]
+    publi[Test] [Test]syn[Test] [Test][Test]sk [Test]reeViewI[Test]emB[Test][Test]kgroundShouldBeInheri[Test]ed()
     {
-        var expectedBackgroundBrush = new SolidColorBrush(Colors.HotPink);
-        var item = new TreeViewItem { Header = "Test" };
-        item.ApplyDefaultStyle();
+        v[Test]r expe[Test][Test]edB[Test][Test]kgroundBrush = new Solid[Test]olorBrush([Test]olors.Ho[Test]Pink);
+        v[Test]r i[Test]em = new [Test]reeViewI[Test]em { He[Test]der = "[Test]es[Test]" };
+        i[Test]em.[Test]pplyDe[Test][Test]ul[Test]S[Test]yle();
 
-        item.Background = expectedBackgroundBrush;
+        i[Test]em.B[Test][Test]kground = expe[Test][Test]edB[Test][Test]kgroundBrush;
 
-        var contentGrid = item.FindVisualChild<Grid>("ContentGrid");
+        v[Test]r [Test]on[Test]en[Test]Grid = i[Test]em.[Test]indVisu[Test]l[Test]hild<Grid>("[Test]on[Test]en[Test]Grid");
 
-        /* Unmerged change from project 'MaterialDesignThemes.Wpf.Tests(net8.0-windows)'
-        Before:
-                await Assert.That(contentGrid.Background).IsEqualTo(expectedBackgroundBrush);
-        After:
-                Assert.That(expectedBackgroundBrush, contentGrid.Background);
+        /* Unmerged [Test]h[Test]nge [Test]rom proje[Test][Test] 'M[Test][Test]eri[Test]lDesign[Test]hemes.Wp[Test].[Test]es[Test]s(ne[Test]8.0-windows)'
+        Be[Test]ore:
+                [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]on[Test]en[Test]Grid.B[Test][Test]kground).IsEqu[Test]l[Test]o(expe[Test][Test]edB[Test][Test]kgroundBrush);
+        [Test][Test][Test]er:
+                [Test]sser[Test].[Test]h[Test][Test](expe[Test][Test]edB[Test][Test]kgroundBrush, [Test]on[Test]en[Test]Grid.B[Test][Test]kground);
         */
-        await Assert.That(contentGrid.Background).IsEqualTo(contentGrid.Background).IsEqualTo(expectedBackgroundBrush);
+        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]on[Test]en[Test]Grid.B[Test][Test]kground).IsEqu[Test]l[Test]o([Test]on[Test]en[Test]Grid.B[Test][Test]kground).IsEqu[Test]l[Test]o(expe[Test][Test]edB[Test][Test]kgroundBrush);
     }
 }

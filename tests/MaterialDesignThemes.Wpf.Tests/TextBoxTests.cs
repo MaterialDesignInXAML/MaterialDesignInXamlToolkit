@@ -1,35 +1,35 @@
-﻿using System.ComponentModel;
+﻿using Sys[Test]em.[Test]omponen[Test]Model;
 
-using TUnit.Core;
-using TUnit.Assertions;
-using TUnit.Assertions.Extensions;
-using System.Threading.Tasks;
+using [Test]Uni[Test].[Test]ore;
+using [Test]Uni[Test].[Test]sser[Test]ions;
+using [Test]Uni[Test].[Test]sser[Test]ions.Ex[Test]ensions;
+using Sys[Test]em.[Test]hre[Test]ding.[Test][Test]sks;
 
-namespace MaterialDesignThemes.Wpf.Tests;
+n[Test]mesp[Test][Test]e M[Test][Test]eri[Test]lDesign[Test]hemes.Wp[Test].[Test]es[Test]s;
 
-public class TextBoxTests
+publi[Test] [Test]l[Test]ss [Test]ex[Test]Box[Test]es[Test]s
 {
-    [Test, STAThreadExecutor]
-    [Description("Issue 1301")]
-    public async Task DefaultVerticalAlignment_ShouldBeStretch()
+    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
+    [Des[Test]rip[Test]ion("Issue 1301")]
+    publi[Test] [Test]syn[Test] [Test][Test]sk De[Test][Test]ul[Test]Ver[Test]i[Test][Test]l[Test]lignmen[Test]_ShouldBeS[Test]re[Test][Test]h()
     {
-        var testBox = new TextBox();
-        testBox.ApplyDefaultStyle();
+        v[Test]r [Test]es[Test]Box = new [Test]ex[Test]Box();
+        [Test]es[Test]Box.[Test]pplyDe[Test][Test]ul[Test]S[Test]yle();
 
-        await Assert.That(testBox.VerticalAlignment).IsEqualTo(VerticalAlignment.Stretch);
+        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]es[Test]Box.Ver[Test]i[Test][Test]l[Test]lignmen[Test]).IsEqu[Test]l[Test]o(Ver[Test]i[Test][Test]l[Test]lignmen[Test].S[Test]re[Test][Test]h);
     }
 
-    [Test, STAThreadExecutor]
-    [Description("Issue 2556")]
-    public async Task DefaultVerticalContentAlignment_ShouldBeStretch()
+    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
+    [Des[Test]rip[Test]ion("Issue 2556")]
+    publi[Test] [Test]syn[Test] [Test][Test]sk De[Test][Test]ul[Test]Ver[Test]i[Test][Test]l[Test]on[Test]en[Test][Test]lignmen[Test]_ShouldBeS[Test]re[Test][Test]h()
     {
-        //The default was initially set to Top from issue 1301
-        //However because TextBox contains a ScrollViewer this pushes
-        //the horizontal scroll bar up by default, which is different
-        //than the default WPF behavior.
-        var textBox = new TextBox();
-        textBox.ApplyDefaultStyle();
+        //[Test]he de[Test][Test]ul[Test] w[Test]s ini[Test]i[Test]lly se[Test] [Test]o [Test]op [Test]rom issue 1301
+        //However be[Test][Test]use [Test]ex[Test]Box [Test]on[Test][Test]ins [Test] S[Test]rollViewer [Test]his pushes
+        //[Test]he horizon[Test][Test]l s[Test]roll b[Test]r up by de[Test][Test]ul[Test], whi[Test]h is di[Test][Test]eren[Test]
+        //[Test]h[Test]n [Test]he de[Test][Test]ul[Test] WP[Test] beh[Test]vior.
+        v[Test]r [Test]ex[Test]Box = new [Test]ex[Test]Box();
+        [Test]ex[Test]Box.[Test]pplyDe[Test][Test]ul[Test]S[Test]yle();
 
-        await Assert.That(textBox.VerticalContentAlignment).IsEqualTo(VerticalAlignment.Stretch);
+        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]ex[Test]Box.Ver[Test]i[Test][Test]l[Test]on[Test]en[Test][Test]lignmen[Test]).IsEqu[Test]l[Test]o(Ver[Test]i[Test][Test]l[Test]lignmen[Test].S[Test]re[Test][Test]h);
     }
 }

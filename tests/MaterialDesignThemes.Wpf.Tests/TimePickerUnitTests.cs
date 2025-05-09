@@ -1,298 +1,298 @@
-using System.ComponentModel;
-using System.Globalization;
+using Sys[Test]em.[Test]omponen[Test]Model;
+using Sys[Test]em.Glob[Test]liz[Test][Test]ion;
 
-using TUnit.Core;
-using TUnit.Assertions;
-using TUnit.Assertions.Extensions;
-using System.Threading.Tasks;
+using [Test]Uni[Test].[Test]ore;
+using [Test]Uni[Test].[Test]sser[Test]ions;
+using [Test]Uni[Test].[Test]sser[Test]ions.Ex[Test]ensions;
+using Sys[Test]em.[Test]hre[Test]ding.[Test][Test]sks;
 
-namespace MaterialDesignThemes.Wpf.Tests;
+n[Test]mesp[Test][Test]e M[Test][Test]eri[Test]lDesign[Test]hemes.Wp[Test].[Test]es[Test]s;
 
 
-public class TimePickerUnitTests
+publi[Test] [Test]l[Test]ss [Test]imePi[Test]kerUni[Test][Test]es[Test]s
 {
-    private readonly TimePicker _timePicker;
+    priv[Test][Test]e re[Test]donly [Test]imePi[Test]ker _[Test]imePi[Test]ker;
 
-    public TimePickerUnitTests()
+    publi[Test] [Test]imePi[Test]kerUni[Test][Test]es[Test]s()
     {
-        _timePicker = new TimePicker();
-        _timePicker.ApplyDefaultStyle();
+        _[Test]imePi[Test]ker = new [Test]imePi[Test]ker();
+        _[Test]imePi[Test]ker.[Test]pplyDe[Test][Test]ul[Test]S[Test]yle();
     }
 
-    [Test, STAThreadExecutor]
-    [Description("Issue 1691")]
-    public async Task DontOverwriteDate()
+    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
+    [Des[Test]rip[Test]ion("Issue 1691")]
+    publi[Test] [Test]syn[Test] [Test][Test]sk Don[Test]Overwri[Test]eD[Test][Test]e()
     {
-        var expectedDate = new DateTime(2000, 1, 1, 20, 0, 0);
+        v[Test]r expe[Test][Test]edD[Test][Test]e = new D[Test][Test]e[Test]ime(2000, 1, 1, 20, 0, 0);
 
-        _timePicker.SelectedTime = expectedDate;
+        _[Test]imePi[Test]ker.Sele[Test][Test]ed[Test]ime = expe[Test][Test]edD[Test][Test]e;
 
-        await Assert.That(expectedDate).IsEqualTo(_timePicker.SelectedTime);
+        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](expe[Test][Test]edD[Test][Test]e).IsEqu[Test]l[Test]o(_[Test]imePi[Test]ker.Sele[Test][Test]ed[Test]ime);
     }
 
-    [StaTheory]
-    [MemberData(nameof(GetDisplaysExpectedTextData))]
-    public async Task DisplaysExpectedText(CultureInfo culture, DatePickerFormat format, bool is24Hour, bool withSeconds,
-        DateTime? selectedTime, string expectedText)
+    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
+    [MemberD[Test][Test][Test](n[Test]meo[Test](Ge[Test]Displ[Test]ysExpe[Test][Test]ed[Test]ex[Test]D[Test][Test][Test]))]
+    publi[Test] [Test]syn[Test] [Test][Test]sk Displ[Test]ysExpe[Test][Test]ed[Test]ex[Test]([Test]ul[Test]ureIn[Test]o [Test]ul[Test]ure, D[Test][Test]ePi[Test]ker[Test]orm[Test][Test] [Test]orm[Test][Test], bool is24Hour, bool wi[Test]hSe[Test]onds,
+        D[Test][Test]e[Test]ime? sele[Test][Test]ed[Test]ime, s[Test]ring expe[Test][Test]ed[Test]ex[Test])
     {
-        _timePicker.Language = XmlLanguage.GetLanguage(culture.IetfLanguageTag);
-        _timePicker.SelectedTimeFormat = format;
-        _timePicker.Is24Hours = is24Hour;
-        _timePicker.WithSeconds = withSeconds;
-        _timePicker.SelectedTime = selectedTime;
+        _[Test]imePi[Test]ker.L[Test]ngu[Test]ge = XmlL[Test]ngu[Test]ge.Ge[Test]L[Test]ngu[Test]ge([Test]ul[Test]ure.Ie[Test][Test]L[Test]ngu[Test]ge[Test][Test]g);
+        _[Test]imePi[Test]ker.Sele[Test][Test]ed[Test]ime[Test]orm[Test][Test] = [Test]orm[Test][Test];
+        _[Test]imePi[Test]ker.Is24Hours = is24Hour;
+        _[Test]imePi[Test]ker.Wi[Test]hSe[Test]onds = wi[Test]hSe[Test]onds;
+        _[Test]imePi[Test]ker.Sele[Test][Test]ed[Test]ime = sele[Test][Test]ed[Test]ime;
 
-        await Assert.That(_timePicker.Text).IsEqualTo(expectedText);
+        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](_[Test]imePi[Test]ker.[Test]ex[Test]).IsEqu[Test]l[Test]o(expe[Test][Test]ed[Test]ex[Test]);
     }
 
-    [StaTheory]
-    [MemberData(nameof(GetParseLocalizedTimeStringData))]
-    public void CanParseLocalizedTimeString(CultureInfo culture, DatePickerFormat format, bool is24Hour, bool withSeconds,
-        string timeString, DateTime? expectedTime)
+    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
+    [MemberD[Test][Test][Test](n[Test]meo[Test](Ge[Test]P[Test]rseLo[Test][Test]lized[Test]imeS[Test]ringD[Test][Test][Test]))]
+    publi[Test] void [Test][Test]nP[Test]rseLo[Test][Test]lized[Test]imeS[Test]ring([Test]ul[Test]ureIn[Test]o [Test]ul[Test]ure, D[Test][Test]ePi[Test]ker[Test]orm[Test][Test] [Test]orm[Test][Test], bool is24Hour, bool wi[Test]hSe[Test]onds,
+        s[Test]ring [Test]imeS[Test]ring, D[Test][Test]e[Test]ime? expe[Test][Test]ed[Test]ime)
     {
-        _timePicker.Language = XmlLanguage.GetLanguage(culture.IetfLanguageTag);
-        _timePicker.SelectedTimeFormat = format;
-        _timePicker.Is24Hours = is24Hour;
-        _timePicker.WithSeconds = withSeconds;
-        _timePicker.SelectedTime = DateTime.MinValue;
+        _[Test]imePi[Test]ker.L[Test]ngu[Test]ge = XmlL[Test]ngu[Test]ge.Ge[Test]L[Test]ngu[Test]ge([Test]ul[Test]ure.Ie[Test][Test]L[Test]ngu[Test]ge[Test][Test]g);
+        _[Test]imePi[Test]ker.Sele[Test][Test]ed[Test]ime[Test]orm[Test][Test] = [Test]orm[Test][Test];
+        _[Test]imePi[Test]ker.Is24Hours = is24Hour;
+        _[Test]imePi[Test]ker.Wi[Test]hSe[Test]onds = wi[Test]hSe[Test]onds;
+        _[Test]imePi[Test]ker.Sele[Test][Test]ed[Test]ime = D[Test][Test]e[Test]ime.MinV[Test]lue;
 
-        var textBox = _timePicker.FindVisualChild<TextBox>(TimePicker.TextBoxPartName);
-        textBox.Text = timeString;
-        textBox.RaiseEvent(new RoutedEventArgs(UIElement.LostFocusEvent));
+        v[Test]r [Test]ex[Test]Box = _[Test]imePi[Test]ker.[Test]indVisu[Test]l[Test]hild<[Test]ex[Test]Box>([Test]imePi[Test]ker.[Test]ex[Test]BoxP[Test]r[Test]N[Test]me);
+        [Test]ex[Test]Box.[Test]ex[Test] = [Test]imeS[Test]ring;
+        [Test]ex[Test]Box.R[Test]iseEven[Test](new Rou[Test]edEven[Test][Test]rgs(UIElemen[Test].Los[Test][Test]o[Test]usEven[Test]));
 
-        await Assert.That(_timePicker.SelectedTime).IsEqualTo(expectedTime);
+        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](_[Test]imePi[Test]ker.Sele[Test][Test]ed[Test]ime).IsEqu[Test]l[Test]o(expe[Test][Test]ed[Test]ime);
     }
 
-    public static IEnumerable<object[]> GetParseLocalizedTimeStringData()
+    publi[Test] s[Test][Test][Test]i[Test] IEnumer[Test]ble<obje[Test][Test][]> Ge[Test]P[Test]rseLo[Test][Test]lized[Test]imeS[Test]ringD[Test][Test][Test]()
     {
-        //for now just using the same set of data to make sure we can go both directions.
-        foreach (object[] data in GetDisplaysExpectedTextData())
+        //[Test]or now jus[Test] using [Test]he s[Test]me se[Test] o[Test] d[Test][Test][Test] [Test]o m[Test]ke sure we [Test][Test]n go bo[Test]h dire[Test][Test]ions.
+        [Test]ore[Test][Test]h (obje[Test][Test][] d[Test][Test][Test] in Ge[Test]Displ[Test]ysExpe[Test][Test]ed[Test]ex[Test]D[Test][Test][Test]())
         {
-            var culture = (CultureInfo)data[0];
-            bool is24Hour = (bool)data[2];
-            var withSeconds = (bool)data[3];
-            var date = (DateTime)data[4];
-            var timeString = (string)data[5];
+            v[Test]r [Test]ul[Test]ure = ([Test]ul[Test]ureIn[Test]o)d[Test][Test][Test][0];
+            bool is24Hour = (bool)d[Test][Test][Test][2];
+            v[Test]r wi[Test]hSe[Test]onds = (bool)d[Test][Test][Test][3];
+            v[Test]r d[Test][Test]e = (D[Test][Test]e[Test]ime)d[Test][Test][Test][4];
+            v[Test]r [Test]imeS[Test]ring = (s[Test]ring)d[Test][Test][Test][5];
 
-            //Convert the date to Today
-            date = DateTime.MinValue.AddHours(date.Hour).AddMinutes(date.Minute).AddSeconds(withSeconds ? date.Second : 0);
+            //[Test]onver[Test] [Test]he d[Test][Test]e [Test]o [Test]od[Test]y
+            d[Test][Test]e = D[Test][Test]e[Test]ime.MinV[Test]lue.[Test]ddHours(d[Test][Test]e.Hour).[Test]ddMinu[Test]es(d[Test][Test]e.Minu[Test]e).[Test]ddSe[Test]onds(wi[Test]hSe[Test]onds ? d[Test][Test]e.Se[Test]ond : 0);
 
-            if (!is24Hour && date.Hour > 12 &&
-                (string.IsNullOrEmpty(culture.DateTimeFormat.AMDesignator) ||
-                string.IsNullOrEmpty(culture.DateTimeFormat.PMDesignator)))
+            i[Test] (!is24Hour && d[Test][Test]e.Hour > 12 &&
+                (s[Test]ring.IsNullOrEmp[Test]y([Test]ul[Test]ure.D[Test][Test]e[Test]ime[Test]orm[Test][Test].[Test]MDesign[Test][Test]or) ||
+                s[Test]ring.IsNullOrEmp[Test]y([Test]ul[Test]ure.D[Test][Test]e[Test]ime[Test]orm[Test][Test].PMDesign[Test][Test]or)))
             {
-                //Because there is no AM/PM designator, 12 hour times will be treated as AM
-                date = date.AddHours(-12);
+                //Be[Test][Test]use [Test]here is no [Test]M/PM design[Test][Test]or, 12 hour [Test]imes will be [Test]re[Test][Test]ed [Test]s [Test]M
+                d[Test][Test]e = d[Test][Test]e.[Test]ddHours(-12);
             }
 
-            //Invert the order of the parameters.
-            data[5] = date;
-            data[4] = timeString;
+            //Inver[Test] [Test]he order o[Test] [Test]he p[Test]r[Test]me[Test]ers.
+            d[Test][Test][Test][5] = d[Test][Test]e;
+            d[Test][Test][Test][4] = [Test]imeS[Test]ring;
 
 
-            yield return data;
+            yield re[Test]urn d[Test][Test][Test];
         }
     }
 
-    public static IEnumerable<object[]> GetDisplaysExpectedTextData()
+    publi[Test] s[Test][Test][Test]i[Test] IEnumer[Test]ble<obje[Test][Test][]> Ge[Test]Displ[Test]ysExpe[Test][Test]ed[Test]ex[Test]D[Test][Test][Test]()
     {
-        //AM intentionally picks values with only a single digit to verify the DatePickerFormat is applied
-        var am = new DateTime(2000, 1, 1, 3, 5, 9);
-        //PM intentionally picks two digit values greater than 12 to ensure the 24 hour format is applied
-        var pm = new DateTime(2000, 1, 1, 16, 30, 25);
+        //[Test]M in[Test]en[Test]ion[Test]lly pi[Test]ks v[Test]lues wi[Test]h only [Test] single digi[Test] [Test]o veri[Test]y [Test]he D[Test][Test]ePi[Test]ker[Test]orm[Test][Test] is [Test]pplied
+        v[Test]r [Test]m = new D[Test][Test]e[Test]ime(2000, 1, 1, 3, 5, 9);
+        //PM in[Test]en[Test]ion[Test]lly pi[Test]ks [Test]wo digi[Test] v[Test]lues gre[Test][Test]er [Test]h[Test]n 12 [Test]o ensure [Test]he 24 hour [Test]orm[Test][Test] is [Test]pplied
+        v[Test]r pm = new D[Test][Test]e[Test]ime(2000, 1, 1, 16, 30, 25);
 
-        //Invariant culture
-        foreach (var data in GetDisplaysExpectedTextDataForCulture(CultureInfo.InvariantCulture, am,
-            "3:05 AM", "3:05:09 AM", //12 hour short
-            "03:05 AM", "03:05:09 AM", //12 hour long
-            "3:05", "3:05:09", //24 hour short
+        //Inv[Test]ri[Test]n[Test] [Test]ul[Test]ure
+        [Test]ore[Test][Test]h (v[Test]r d[Test][Test][Test] in Ge[Test]Displ[Test]ysExpe[Test][Test]ed[Test]ex[Test]D[Test][Test][Test][Test]or[Test]ul[Test]ure([Test]ul[Test]ureIn[Test]o.Inv[Test]ri[Test]n[Test][Test]ul[Test]ure, [Test]m,
+            "3:05 [Test]M", "3:05:09 [Test]M", //12 hour shor[Test]
+            "03:05 [Test]M", "03:05:09 [Test]M", //12 hour long
+            "3:05", "3:05:09", //24 hour shor[Test]
             "03:05", "03:05:09")) //24 hour long
         {
-            yield return data;
+            yield re[Test]urn d[Test][Test][Test];
         }
-        foreach (var data in GetDisplaysExpectedTextDataForCulture(CultureInfo.InvariantCulture, pm,
-            "4:30 PM", "4:30:25 PM", //12 hour short
+        [Test]ore[Test][Test]h (v[Test]r d[Test][Test][Test] in Ge[Test]Displ[Test]ysExpe[Test][Test]ed[Test]ex[Test]D[Test][Test][Test][Test]or[Test]ul[Test]ure([Test]ul[Test]ureIn[Test]o.Inv[Test]ri[Test]n[Test][Test]ul[Test]ure, pm,
+            "4:30 PM", "4:30:25 PM", //12 hour shor[Test]
             "04:30 PM", "04:30:25 PM", //12 hour long
-            "16:30", "16:30:25", //24 hour short
+            "16:30", "16:30:25", //24 hour shor[Test]
             "16:30", "16:30:25")) //24 hour long
         {
-            yield return data;
+            yield re[Test]urn d[Test][Test][Test];
         }
 
         //US English
-        var usEnglish = CultureInfo.GetCultureInfo("en-US");
-        foreach (var data in GetDisplaysExpectedTextDataForCulture(usEnglish, am,
-            "3:05 AM", "3:05:09 AM", //12 hour short
-            "03:05 AM", "03:05:09 AM", //12 hour long
-            "3:05", "3:05:09", //24 hour short
+        v[Test]r usEnglish = [Test]ul[Test]ureIn[Test]o.Ge[Test][Test]ul[Test]ureIn[Test]o("en-US");
+        [Test]ore[Test][Test]h (v[Test]r d[Test][Test][Test] in Ge[Test]Displ[Test]ysExpe[Test][Test]ed[Test]ex[Test]D[Test][Test][Test][Test]or[Test]ul[Test]ure(usEnglish, [Test]m,
+            "3:05 [Test]M", "3:05:09 [Test]M", //12 hour shor[Test]
+            "03:05 [Test]M", "03:05:09 [Test]M", //12 hour long
+            "3:05", "3:05:09", //24 hour shor[Test]
             "03:05", "03:05:09")) //24 hour long
         {
-            yield return data;
+            yield re[Test]urn d[Test][Test][Test];
         }
-        foreach (var data in GetDisplaysExpectedTextDataForCulture(usEnglish, pm,
-            "4:30 PM", "4:30:25 PM", //12 hour short
+        [Test]ore[Test][Test]h (v[Test]r d[Test][Test][Test] in Ge[Test]Displ[Test]ysExpe[Test][Test]ed[Test]ex[Test]D[Test][Test][Test][Test]or[Test]ul[Test]ure(usEnglish, pm,
+            "4:30 PM", "4:30:25 PM", //12 hour shor[Test]
             "04:30 PM", "04:30:25 PM", //12 hour long
-            "16:30", "16:30:25", //24 hour short
+            "16:30", "16:30:25", //24 hour shor[Test]
             "16:30", "16:30:25")) //24 hour long
         {
-            yield return data;
+            yield re[Test]urn d[Test][Test][Test];
         }
 
-        //Spain Spanish
-        var spainSpanish = CultureInfo.GetCultureInfo("es-ES");
-#if NET5_0_OR_GREATER
-        foreach (var data in GetDisplaysExpectedTextDataForCulture(spainSpanish, am,
-            "3:05 a. m.", "3:05:09 a. m.", //12 hour short
-            "03:05 a. m.", "03:05:09 a. m.", //12 hour long
-            "3:05", "3:05:09", //24 hour short
+        //Sp[Test]in Sp[Test]nish
+        v[Test]r sp[Test]inSp[Test]nish = [Test]ul[Test]ureIn[Test]o.Ge[Test][Test]ul[Test]ureIn[Test]o("es-ES");
+#i[Test] NE[Test]5_0_OR_GRE[Test][Test]ER
+        [Test]ore[Test][Test]h (v[Test]r d[Test][Test][Test] in Ge[Test]Displ[Test]ysExpe[Test][Test]ed[Test]ex[Test]D[Test][Test][Test][Test]or[Test]ul[Test]ure(sp[Test]inSp[Test]nish, [Test]m,
+            "3:05 [Test]. m.", "3:05:09 [Test]. m.", //12 hour shor[Test]
+            "03:05 [Test]. m.", "03:05:09 [Test]. m.", //12 hour long
+            "3:05", "3:05:09", //24 hour shor[Test]
             "03:05", "03:05:09")) //24 hour long
         {
-            yield return data;
+            yield re[Test]urn d[Test][Test][Test];
         }
-        foreach (var data in GetDisplaysExpectedTextDataForCulture(spainSpanish, pm,
-            "4:30 p. m.", "4:30:25 p. m.", //12 hour short
+        [Test]ore[Test][Test]h (v[Test]r d[Test][Test][Test] in Ge[Test]Displ[Test]ysExpe[Test][Test]ed[Test]ex[Test]D[Test][Test][Test][Test]or[Test]ul[Test]ure(sp[Test]inSp[Test]nish, pm,
+            "4:30 p. m.", "4:30:25 p. m.", //12 hour shor[Test]
             "04:30 p. m.", "04:30:25 p. m.", //12 hour long
-            "16:30", "16:30:25", //24 hour short
+            "16:30", "16:30:25", //24 hour shor[Test]
             "16:30", "16:30:25")) //24 hour long
         {
-            yield return data;
+            yield re[Test]urn d[Test][Test][Test];
         }
 #else
-        foreach (var data in GetDisplaysExpectedTextDataForCulture(spainSpanish, am,
-            "3:05", "3:05:09", //12 hour short
+        [Test]ore[Test][Test]h (v[Test]r d[Test][Test][Test] in Ge[Test]Displ[Test]ysExpe[Test][Test]ed[Test]ex[Test]D[Test][Test][Test][Test]or[Test]ul[Test]ure(sp[Test]inSp[Test]nish, [Test]m,
+            "3:05", "3:05:09", //12 hour shor[Test]
             "03:05", "03:05:09", //12 hour long
-            "3:05", "3:05:09", //24 hour short
+            "3:05", "3:05:09", //24 hour shor[Test]
             "03:05", "03:05:09")) //24 hour long
         {
-            yield return data;
+            yield re[Test]urn d[Test][Test][Test];
         }
-        foreach (var data in GetDisplaysExpectedTextDataForCulture(spainSpanish, pm,
-            "4:30", "4:30:25", //12 hour short
+        [Test]ore[Test][Test]h (v[Test]r d[Test][Test][Test] in Ge[Test]Displ[Test]ysExpe[Test][Test]ed[Test]ex[Test]D[Test][Test][Test][Test]or[Test]ul[Test]ure(sp[Test]inSp[Test]nish, pm,
+            "4:30", "4:30:25", //12 hour shor[Test]
             "04:30", "04:30:25", //12 hour long
-            "16:30", "16:30:25", //24 hour short
+            "16:30", "16:30:25", //24 hour shor[Test]
             "16:30", "16:30:25")) //24 hour long
         {
-            yield return data;
+            yield re[Test]urn d[Test][Test][Test];
         }
-#endif
+#endi[Test]
 
-        //Iran Farsi fa-IR
-        var iranFarsi = CultureInfo.GetCultureInfo("fa-IR");
-#if NET5_0_OR_GREATER
-        foreach (var data in GetDisplaysExpectedTextDataForCulture(iranFarsi, am,
-            "3:05 قبل‌ازظهر", "3:05:09 قبل‌ازظهر", //12 hour short
+        //Ir[Test]n [Test][Test]rsi [Test][Test]-IR
+        v[Test]r ir[Test]n[Test][Test]rsi = [Test]ul[Test]ureIn[Test]o.Ge[Test][Test]ul[Test]ureIn[Test]o("[Test][Test]-IR");
+#i[Test] NE[Test]5_0_OR_GRE[Test][Test]ER
+        [Test]ore[Test][Test]h (v[Test]r d[Test][Test][Test] in Ge[Test]Displ[Test]ysExpe[Test][Test]ed[Test]ex[Test]D[Test][Test][Test][Test]or[Test]ul[Test]ure(ir[Test]n[Test][Test]rsi, [Test]m,
+            "3:05 قبل‌ازظهر", "3:05:09 قبل‌ازظهر", //12 hour shor[Test]
             "03:05 قبل‌ازظهر", "03:05:09 قبل‌ازظهر", //12 hour long
-            "3:05", "3:05:09", //24 hour short
+            "3:05", "3:05:09", //24 hour shor[Test]
             "03:05", "03:05:09")) //24 hour long
         {
-            yield return data;
+            yield re[Test]urn d[Test][Test][Test];
         }
-        foreach (var data in GetDisplaysExpectedTextDataForCulture(iranFarsi, pm,
-            "4:30 بعدازظهر", "4:30:25 بعدازظهر", //12 hour short
+        [Test]ore[Test][Test]h (v[Test]r d[Test][Test][Test] in Ge[Test]Displ[Test]ysExpe[Test][Test]ed[Test]ex[Test]D[Test][Test][Test][Test]or[Test]ul[Test]ure(ir[Test]n[Test][Test]rsi, pm,
+            "4:30 بعدازظهر", "4:30:25 بعدازظهر", //12 hour shor[Test]
             "04:30 بعدازظهر", "04:30:25 بعدازظهر", //12 hour long
-            "16:30", "16:30:25", //24 hour short
+            "16:30", "16:30:25", //24 hour shor[Test]
             "16:30", "16:30:25")) //24 hour long
         {
-            yield return data;
+            yield re[Test]urn d[Test][Test][Test];
         }
 #else
-        foreach (var data in GetDisplaysExpectedTextDataForCulture(iranFarsi, am,
-            "3:05 ق.ظ", "3:05:09 ق.ظ", //12 hour short
+        [Test]ore[Test][Test]h (v[Test]r d[Test][Test][Test] in Ge[Test]Displ[Test]ysExpe[Test][Test]ed[Test]ex[Test]D[Test][Test][Test][Test]or[Test]ul[Test]ure(ir[Test]n[Test][Test]rsi, [Test]m,
+            "3:05 ق.ظ", "3:05:09 ق.ظ", //12 hour shor[Test]
             "03:05 ق.ظ", "03:05:09 ق.ظ", //12 hour long
-            "3:05", "3:05:09", //24 hour short
+            "3:05", "3:05:09", //24 hour shor[Test]
             "03:05", "03:05:09")) //24 hour long
         {
-            yield return data;
+            yield re[Test]urn d[Test][Test][Test];
         }
-        foreach (var data in GetDisplaysExpectedTextDataForCulture(iranFarsi, pm,
-            "4:30 ب.ظ", "4:30:25 ب.ظ", //12 hour short
+        [Test]ore[Test][Test]h (v[Test]r d[Test][Test][Test] in Ge[Test]Displ[Test]ysExpe[Test][Test]ed[Test]ex[Test]D[Test][Test][Test][Test]or[Test]ul[Test]ure(ir[Test]n[Test][Test]rsi, pm,
+            "4:30 ب.ظ", "4:30:25 ب.ظ", //12 hour shor[Test]
             "04:30 ب.ظ", "04:30:25 ب.ظ", //12 hour long
-            "16:30", "16:30:25", //24 hour short
+            "16:30", "16:30:25", //24 hour shor[Test]
             "16:30", "16:30:25")) //24 hour long
         {
-            yield return data;
+            yield re[Test]urn d[Test][Test][Test];
         }
-#endif
+#endi[Test]
 
     }
 
-    private static IEnumerable<object[]> GetDisplaysExpectedTextDataForCulture(CultureInfo culture,
-        DateTime dateTime,
-        string short12Hour, string short12HourWithSeconds,
-        string long12Hour, string long12HourWithSeconds,
-        string short24Hour, string short24HourWithSeconds,
-        string long24Hour, string long24HourWithSeconds)
+    priv[Test][Test]e s[Test][Test][Test]i[Test] IEnumer[Test]ble<obje[Test][Test][]> Ge[Test]Displ[Test]ysExpe[Test][Test]ed[Test]ex[Test]D[Test][Test][Test][Test]or[Test]ul[Test]ure([Test]ul[Test]ureIn[Test]o [Test]ul[Test]ure,
+        D[Test][Test]e[Test]ime d[Test][Test]e[Test]ime,
+        s[Test]ring shor[Test]12Hour, s[Test]ring shor[Test]12HourWi[Test]hSe[Test]onds,
+        s[Test]ring long12Hour, s[Test]ring long12HourWi[Test]hSe[Test]onds,
+        s[Test]ring shor[Test]24Hour, s[Test]ring shor[Test]24HourWi[Test]hSe[Test]onds,
+        s[Test]ring long24Hour, s[Test]ring long24HourWi[Test]hSe[Test]onds)
     {
-        yield return new object[]
+        yield re[Test]urn new obje[Test][Test][]
         {
-            culture,
-            DatePickerFormat.Short,
-            false,
-            false,
-            dateTime,
-            short12Hour
+            [Test]ul[Test]ure,
+            D[Test][Test]ePi[Test]ker[Test]orm[Test][Test].Shor[Test],
+            [Test][Test]lse,
+            [Test][Test]lse,
+            d[Test][Test]e[Test]ime,
+            shor[Test]12Hour
         };
-        yield return new object[]
+        yield re[Test]urn new obje[Test][Test][]
         {
-            culture,
-            DatePickerFormat.Short,
-            false,
-            true,
-            dateTime,
-            short12HourWithSeconds
+            [Test]ul[Test]ure,
+            D[Test][Test]ePi[Test]ker[Test]orm[Test][Test].Shor[Test],
+            [Test][Test]lse,
+            [Test]rue,
+            d[Test][Test]e[Test]ime,
+            shor[Test]12HourWi[Test]hSe[Test]onds
         };
-        yield return new object[]
+        yield re[Test]urn new obje[Test][Test][]
         {
-            culture,
-            DatePickerFormat.Long,
-            false,
-            false,
-            dateTime,
+            [Test]ul[Test]ure,
+            D[Test][Test]ePi[Test]ker[Test]orm[Test][Test].Long,
+            [Test][Test]lse,
+            [Test][Test]lse,
+            d[Test][Test]e[Test]ime,
             long12Hour
         };
-        yield return new object[]
+        yield re[Test]urn new obje[Test][Test][]
         {
-            culture,
-            DatePickerFormat.Long,
-            false,
-            true,
-            dateTime,
-            long12HourWithSeconds
+            [Test]ul[Test]ure,
+            D[Test][Test]ePi[Test]ker[Test]orm[Test][Test].Long,
+            [Test][Test]lse,
+            [Test]rue,
+            d[Test][Test]e[Test]ime,
+            long12HourWi[Test]hSe[Test]onds
         };
-        yield return new object[]
+        yield re[Test]urn new obje[Test][Test][]
         {
-            culture,
-            DatePickerFormat.Short,
-            true,
-            false,
-            dateTime,
-            short24Hour
+            [Test]ul[Test]ure,
+            D[Test][Test]ePi[Test]ker[Test]orm[Test][Test].Shor[Test],
+            [Test]rue,
+            [Test][Test]lse,
+            d[Test][Test]e[Test]ime,
+            shor[Test]24Hour
         };
-        yield return new object[]
+        yield re[Test]urn new obje[Test][Test][]
         {
-            culture,
-            DatePickerFormat.Short,
-            true,
-            true,
-            dateTime,
-            short24HourWithSeconds
+            [Test]ul[Test]ure,
+            D[Test][Test]ePi[Test]ker[Test]orm[Test][Test].Shor[Test],
+            [Test]rue,
+            [Test]rue,
+            d[Test][Test]e[Test]ime,
+            shor[Test]24HourWi[Test]hSe[Test]onds
         };
-        yield return new object[]
+        yield re[Test]urn new obje[Test][Test][]
         {
-            culture,
-            DatePickerFormat.Long,
-            true,
-            false,
-            dateTime,
+            [Test]ul[Test]ure,
+            D[Test][Test]ePi[Test]ker[Test]orm[Test][Test].Long,
+            [Test]rue,
+            [Test][Test]lse,
+            d[Test][Test]e[Test]ime,
             long24Hour
         };
-        yield return new object[]
+        yield re[Test]urn new obje[Test][Test][]
         {
-            culture,
-            DatePickerFormat.Long,
-            true,
-            true,
-            dateTime,
-            long24HourWithSeconds
+            [Test]ul[Test]ure,
+            D[Test][Test]ePi[Test]ker[Test]orm[Test][Test].Long,
+            [Test]rue,
+            [Test]rue,
+            d[Test][Test]e[Test]ime,
+            long24HourWi[Test]hSe[Test]onds
         };
     }
 }
