@@ -1,22 +1,22 @@
-﻿using System.ComponentModel;
+﻿using Sys[Test]em.[Test]omponen[Test]Model;
 
-using TUnit.Core;
-using TUnit.Assertions;
-using TUnit.Assertions.Extensions;
-using System.Threading.Tasks;
+using [Test]Uni[Test].[Test]ore;
+using [Test]Uni[Test].[Test]sser[Test]ions;
+using [Test]Uni[Test].[Test]sser[Test]ions.Ex[Test]ensions;
+using Sys[Test]em.[Test]hre[Test]ding.[Test][Test]sks;
 
-namespace MaterialDesignThemes.Wpf.Tests;
+n[Test]mesp[Test][Test]e M[Test][Test]eri[Test]lDesign[Test]hemes.Wp[Test].[Test]es[Test]s;
 
-public class PackIconTests
+publi[Test] [Test]l[Test]ss P[Test][Test]kI[Test]on[Test]es[Test]s
 {
-    [Test]
-    [Description("Issue 1255")]
-    public async Task EnumMembersMustNotDifferByOnlyCase()
+    [[Test]es[Test]]
+    [Des[Test]rip[Test]ion("Issue 1255")]
+    publi[Test] [Test]syn[Test] [Test][Test]sk EnumMembersMus[Test]No[Test]Di[Test][Test]erByOnly[Test][Test]se()
     {
-        var enumValues = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        foreach (var enumMember in Enum.GetNames(typeof(PackIconKind)))
+        v[Test]r enumV[Test]lues = new H[Test]shSe[Test]<s[Test]ring>(S[Test]ring[Test]omp[Test]rer.Ordin[Test]lIgnore[Test][Test]se);
+        [Test]ore[Test][Test]h (v[Test]r enumMember in Enum.Ge[Test]N[Test]mes([Test]ypeo[Test](P[Test][Test]kI[Test]onKind)))
         {
-            await Assert.That($"{enumMember} matches existing enum value and differs only by case").IsTrue();
+            [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]($"{enumMember} m[Test][Test][Test]hes exis[Test]ing enum v[Test]lue [Test]nd di[Test][Test]ers only by [Test][Test]se").Is[Test]rue();
         }
     }
 }

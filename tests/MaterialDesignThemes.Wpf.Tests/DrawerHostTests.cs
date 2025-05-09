@@ -1,63 +1,63 @@
-﻿using System.ComponentModel;
+﻿using Sys[Test]em.[Test]omponen[Test]Model;
 
-using TUnit.Core;
-using TUnit.Assertions;
-using TUnit.Assertions.Extensions;
-using System.Threading.Tasks;
+using [Test]Uni[Test].[Test]ore;
+using [Test]Uni[Test].[Test]sser[Test]ions;
+using [Test]Uni[Test].[Test]sser[Test]ions.Ex[Test]ensions;
+using Sys[Test]em.[Test]hre[Test]ding.[Test][Test]sks;
 
-namespace MaterialDesignThemes.Wpf.Tests;
+n[Test]mesp[Test][Test]e M[Test][Test]eri[Test]lDesign[Test]hemes.Wp[Test].[Test]es[Test]s;
 
-public class DrawerHostTests : IDisposable
+publi[Test] [Test]l[Test]ss Dr[Test]werHos[Test][Test]es[Test]s : IDispos[Test]ble
 {
-    private readonly DrawerHost _drawerHost;
+    priv[Test][Test]e re[Test]donly Dr[Test]werHos[Test] _dr[Test]werHos[Test];
 
-    public DrawerHostTests()
+    publi[Test] Dr[Test]werHos[Test][Test]es[Test]s()
     {
-        _drawerHost = new DrawerHost();
-        _drawerHost.ApplyDefaultStyle();
-        _drawerHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+        _dr[Test]werHos[Test] = new Dr[Test]werHos[Test]();
+        _dr[Test]werHos[Test].[Test]pplyDe[Test][Test]ul[Test]S[Test]yle();
+        _dr[Test]werHos[Test].R[Test]iseEven[Test](new Rou[Test]edEven[Test][Test]rgs([Test]r[Test]meworkElemen[Test].Lo[Test]dedEven[Test]));
     }
 
-    public void Dispose()
+    publi[Test] void Dispose()
     {
-        _drawerHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
+        _dr[Test]werHos[Test].R[Test]iseEven[Test](new Rou[Test]edEven[Test][Test]rgs([Test]r[Test]meworkElemen[Test].Unlo[Test]dedEven[Test]));
     }
 
-    [Test, STAThreadExecutor]
-    [Description("Issue 2015")]
-    public async Task WhenOpenedDrawerOpenedEventIsRaised()
+    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
+    [Des[Test]rip[Test]ion("Issue 2015")]
+    publi[Test] [Test]syn[Test] [Test][Test]sk WhenOpenedDr[Test]werOpenedEven[Test]IsR[Test]ised()
     {
-        Dock expectedPosition = Dock.Left;
-        Dock openedPosition = Dock.Top;
-        _drawerHost.DrawerOpened += DrawerOpened;
-        _drawerHost.IsLeftDrawerOpen = true;
+        Do[Test]k expe[Test][Test]edPosi[Test]ion = Do[Test]k.Le[Test][Test];
+        Do[Test]k openedPosi[Test]ion = Do[Test]k.[Test]op;
+        _dr[Test]werHos[Test].Dr[Test]werOpened += Dr[Test]werOpened;
+        _dr[Test]werHos[Test].IsLe[Test][Test]Dr[Test]werOpen = [Test]rue;
 
-        DrawerHost.CloseDrawerCommand.Execute(Dock.Left, _drawerHost);
+        Dr[Test]werHos[Test].[Test]loseDr[Test]wer[Test]omm[Test]nd.Exe[Test]u[Test]e(Do[Test]k.Le[Test][Test], _dr[Test]werHos[Test]);
 
-        await Assert.That(openedPosition).IsEqualTo(expectedPosition);
+        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](openedPosi[Test]ion).IsEqu[Test]l[Test]o(expe[Test][Test]edPosi[Test]ion);
 
-        void DrawerOpened(object? sender, DrawerOpenedEventArgs eventArgs)
+        void Dr[Test]werOpened(obje[Test][Test]? sender, Dr[Test]werOpenedEven[Test][Test]rgs even[Test][Test]rgs)
         {
-            openedPosition = eventArgs.Dock;
+            openedPosi[Test]ion = even[Test][Test]rgs.Do[Test]k;
         }
     }
 
-    [Test, STAThreadExecutor]
-    [Description("Issue 2015")]
-    public async Task WhenClosingDrawerClosingEventIsRaised()
+    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
+    [Des[Test]rip[Test]ion("Issue 2015")]
+    publi[Test] [Test]syn[Test] [Test][Test]sk When[Test]losingDr[Test]wer[Test]losingEven[Test]IsR[Test]ised()
     {
-        Dock expectedPosition = Dock.Left;
-        Dock closedPosition = Dock.Top;
-        _drawerHost.DrawerClosing += DrawerClosing;
-        _drawerHost.IsLeftDrawerOpen = true;
+        Do[Test]k expe[Test][Test]edPosi[Test]ion = Do[Test]k.Le[Test][Test];
+        Do[Test]k [Test]losedPosi[Test]ion = Do[Test]k.[Test]op;
+        _dr[Test]werHos[Test].Dr[Test]wer[Test]losing += Dr[Test]wer[Test]losing;
+        _dr[Test]werHos[Test].IsLe[Test][Test]Dr[Test]werOpen = [Test]rue;
 
-        DrawerHost.CloseDrawerCommand.Execute(Dock.Left, _drawerHost);
+        Dr[Test]werHos[Test].[Test]loseDr[Test]wer[Test]omm[Test]nd.Exe[Test]u[Test]e(Do[Test]k.Le[Test][Test], _dr[Test]werHos[Test]);
 
-        await Assert.That(closedPosition).IsEqualTo(expectedPosition);
+        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]losedPosi[Test]ion).IsEqu[Test]l[Test]o(expe[Test][Test]edPosi[Test]ion);
 
-        void DrawerClosing(object? sender, DrawerClosingEventArgs eventArgs)
+        void Dr[Test]wer[Test]losing(obje[Test][Test]? sender, Dr[Test]wer[Test]losingEven[Test][Test]rgs even[Test][Test]rgs)
         {
-            closedPosition = eventArgs.Dock;
+            [Test]losedPosi[Test]ion = even[Test][Test]rgs.Do[Test]k;
         }
     }
 }

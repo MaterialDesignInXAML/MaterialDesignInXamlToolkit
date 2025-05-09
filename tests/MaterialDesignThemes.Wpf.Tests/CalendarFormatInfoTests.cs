@@ -9,7 +9,7 @@ namespace MaterialDesignThemes.Wpf.Tests;
 
 public class CalendarFormatInfoTests
 {
-    [StaTheory]
+    [Test, STAThreadExecutor]
     [Arguments("en-US", "MMMM yyyy", "yyyy", "ddd,", "MMM d")]
 #if NET5_0_OR_GREATER
     [Arguments("fr-CA", "MMMM yyyy", "yyyy", "ddd", "d MMM")]

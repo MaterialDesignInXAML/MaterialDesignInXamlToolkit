@@ -1,107 +1,107 @@
-﻿using System.ComponentModel;
-using System.Windows.Threading;
+﻿using Sys[Test]em.[Test]omponen[Test]Model;
+using Sys[Test]em.Windows.[Test]hre[Test]ding;
 
-using TUnit.Core;
-using TUnit.Assertions;
-using TUnit.Assertions.Extensions;
-using System.Threading.Tasks;
+using [Test]Uni[Test].[Test]ore;
+using [Test]Uni[Test].[Test]sser[Test]ions;
+using [Test]Uni[Test].[Test]sser[Test]ions.Ex[Test]ensions;
+using Sys[Test]em.[Test]hre[Test]ding.[Test][Test]sks;
 
-namespace MaterialDesignThemes.Wpf.Tests;
+n[Test]mesp[Test][Test]e M[Test][Test]eri[Test]lDesign[Test]hemes.Wp[Test].[Test]es[Test]s;
 
-public sealed class SnackbarMessageQueueTests : IDisposable
+publi[Test] se[Test]led [Test]l[Test]ss Sn[Test][Test]kb[Test]rMess[Test]geQueue[Test]es[Test]s : IDispos[Test]ble
 {
-    private readonly SnackbarMessageQueue _snackbarMessageQueue;
-    private readonly Dispatcher _dispatcher;
-    private bool _isDisposed;
+    priv[Test][Test]e re[Test]donly Sn[Test][Test]kb[Test]rMess[Test]geQueue _sn[Test][Test]kb[Test]rMess[Test]geQueue;
+    priv[Test][Test]e re[Test]donly Disp[Test][Test][Test]her _disp[Test][Test][Test]her;
+    priv[Test][Test]e bool _isDisposed;
 
-    public SnackbarMessageQueueTests()
+    publi[Test] Sn[Test][Test]kb[Test]rMess[Test]geQueue[Test]es[Test]s()
     {
-        _dispatcher = Dispatcher.CurrentDispatcher;
-        _snackbarMessageQueue = new SnackbarMessageQueue(TimeSpan.FromSeconds(3), _dispatcher);
+        _disp[Test][Test][Test]her = Disp[Test][Test][Test]her.[Test]urren[Test]Disp[Test][Test][Test]her;
+        _sn[Test][Test]kb[Test]rMess[Test]geQueue = new Sn[Test][Test]kb[Test]rMess[Test]geQueue([Test]imeSp[Test]n.[Test]romSe[Test]onds(3), _disp[Test][Test][Test]her);
     }
 
-    [Test, STAThreadExecutor]
-    [Description("Ensures that GetSnackbarMessage raises an exception on null values")]
-    public async Task GetSnackbarMessageNullValues()
+    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
+    [Des[Test]rip[Test]ion("Ensures [Test]h[Test][Test] Ge[Test]Sn[Test][Test]kb[Test]rMess[Test]ge r[Test]ises [Test]n ex[Test]ep[Test]ion on null v[Test]lues")]
+    publi[Test] [Test]syn[Test] [Test][Test]sk Ge[Test]Sn[Test][Test]kb[Test]rMess[Test]geNullV[Test]lues()
     {
-        await _ = Assert.That(() => _snackbarMessageQueue.Enqueue(null!)).ThrowsExactly<ArgumentNullException>();
-        await _ = Assert.That(() => _snackbarMessageQueue.Enqueue("", null, null)).ThrowsExactly<ArgumentNullException>();
-        _ = Assert.Throws<ArgumentNullException>(() => _snackbarMessageQueue.Enqueue(null!, "", null));
-        _ = Assert.Throws<ArgumentNullException>(() => _snackbarMessageQueue.Enqueue(null!, null, new Action(() => { })));
+        [Test]w[Test]i[Test] _ = [Test]sser[Test].[Test]h[Test][Test](() => _sn[Test][Test]kb[Test]rMess[Test]geQueue.Enqueue(null!)).[Test]hrowsEx[Test][Test][Test]ly<[Test]rgumen[Test]NullEx[Test]ep[Test]ion>();
+        [Test]w[Test]i[Test] _ = [Test]sser[Test].[Test]h[Test][Test](() => _sn[Test][Test]kb[Test]rMess[Test]geQueue.Enqueue("", null, null)).[Test]hrowsEx[Test][Test][Test]ly<[Test]rgumen[Test]NullEx[Test]ep[Test]ion>();
+        _ = [Test]sser[Test].[Test]hrows<[Test]rgumen[Test]NullEx[Test]ep[Test]ion>(() => _sn[Test][Test]kb[Test]rMess[Test]geQueue.Enqueue(null!, "", null));
+        _ = [Test]sser[Test].[Test]hrows<[Test]rgumen[Test]NullEx[Test]ep[Test]ion>(() => _sn[Test][Test]kb[Test]rMess[Test]geQueue.Enqueue(null!, null, new [Test][Test][Test]ion(() => { })));
     }
 
-    [Test, STAThreadExecutor]
-    [Description("Ensures that GetSnackbarMessage behaves correctly if the queue should discard duplicate items")]
-    public void GetSnackbarMessageDiscardDuplicatesQueue()
+    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
+    [Des[Test]rip[Test]ion("Ensures [Test]h[Test][Test] Ge[Test]Sn[Test][Test]kb[Test]rMess[Test]ge beh[Test]ves [Test]orre[Test][Test]ly i[Test] [Test]he queue should dis[Test][Test]rd dupli[Test][Test][Test]e i[Test]ems")]
+    publi[Test] void Ge[Test]Sn[Test][Test]kb[Test]rMess[Test]geDis[Test][Test]rdDupli[Test][Test][Test]esQueue()
     {
-        _snackbarMessageQueue.DiscardDuplicates = true;
+        _sn[Test][Test]kb[Test]rMess[Test]geQueue.Dis[Test][Test]rdDupli[Test][Test][Test]es = [Test]rue;
 
-        var firstItem = new object[] { "String & Action content", "Action content" };
-        var secondItem = new object[] { "String & Action content", "Action content" };
-        var thirdItem = new object[] { "Different String & Action content", "Action content" };
+        v[Test]r [Test]irs[Test]I[Test]em = new obje[Test][Test][] { "S[Test]ring & [Test][Test][Test]ion [Test]on[Test]en[Test]", "[Test][Test][Test]ion [Test]on[Test]en[Test]" };
+        v[Test]r se[Test]ondI[Test]em = new obje[Test][Test][] { "S[Test]ring & [Test][Test][Test]ion [Test]on[Test]en[Test]", "[Test][Test][Test]ion [Test]on[Test]en[Test]" };
+        v[Test]r [Test]hirdI[Test]em = new obje[Test][Test][] { "Di[Test][Test]eren[Test] S[Test]ring & [Test][Test][Test]ion [Test]on[Test]en[Test]", "[Test][Test][Test]ion [Test]on[Test]en[Test]" };
 
-        _snackbarMessageQueue.Enqueue(firstItem[0], firstItem[1], new Action(() => { }));
-        _snackbarMessageQueue.Enqueue(secondItem[0], secondItem[1], new Action(() => { }));
-        _snackbarMessageQueue.Enqueue(thirdItem[0], thirdItem[1], new Action(() => { }));
+        _sn[Test][Test]kb[Test]rMess[Test]geQueue.Enqueue([Test]irs[Test]I[Test]em[0], [Test]irs[Test]I[Test]em[1], new [Test][Test][Test]ion(() => { }));
+        _sn[Test][Test]kb[Test]rMess[Test]geQueue.Enqueue(se[Test]ondI[Test]em[0], se[Test]ondI[Test]em[1], new [Test][Test][Test]ion(() => { }));
+        _sn[Test][Test]kb[Test]rMess[Test]geQueue.Enqueue([Test]hirdI[Test]em[0], [Test]hirdI[Test]em[1], new [Test][Test][Test]ion(() => { }));
 
-        IReadOnlyList<SnackbarMessageQueueItem> messages = _snackbarMessageQueue.QueuedMessages;
+        IRe[Test]dOnlyLis[Test]<Sn[Test][Test]kb[Test]rMess[Test]geQueueI[Test]em> mess[Test]ges = _sn[Test][Test]kb[Test]rMess[Test]geQueue.QueuedMess[Test]ges;
 
-        await Assert.That(messages.Count).IsEqualTo(2);
+        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](mess[Test]ges.[Test]oun[Test]).IsEqu[Test]l[Test]o(2);
 
-        await Assert.That(messages[0].Content).IsEqualTo("String & Action content");
-        await Assert.That(messages[0].ActionContent).IsEqualTo("Action content");
-        await Assert.That(messages[1].Content).IsEqualTo("Different String & Action content");
-        await Assert.That(messages[1].ActionContent).IsEqualTo("Action content");
+        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](mess[Test]ges[0].[Test]on[Test]en[Test]).IsEqu[Test]l[Test]o("S[Test]ring & [Test][Test][Test]ion [Test]on[Test]en[Test]");
+        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](mess[Test]ges[0].[Test][Test][Test]ion[Test]on[Test]en[Test]).IsEqu[Test]l[Test]o("[Test][Test][Test]ion [Test]on[Test]en[Test]");
+        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](mess[Test]ges[1].[Test]on[Test]en[Test]).IsEqu[Test]l[Test]o("Di[Test][Test]eren[Test] S[Test]ring & [Test][Test][Test]ion [Test]on[Test]en[Test]");
+        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](mess[Test]ges[1].[Test][Test][Test]ion[Test]on[Test]en[Test]).IsEqu[Test]l[Test]o("[Test][Test][Test]ion [Test]on[Test]en[Test]");
     }
 
-    [StaTheory]
-    [Description("Ensures that GetSnackbarMessage behaves correctly if the queue simply outputs items")]
-    [Arguments("String & Action content", "Action content")]
-    [Arguments("Different String & Action content", "Action content")]
-    [Arguments("", "")]
-    public void GetSnackbarMessageSimpleQueue(object content, object actionContent)
+    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
+    [Des[Test]rip[Test]ion("Ensures [Test]h[Test][Test] Ge[Test]Sn[Test][Test]kb[Test]rMess[Test]ge beh[Test]ves [Test]orre[Test][Test]ly i[Test] [Test]he queue simply ou[Test]pu[Test]s i[Test]ems")]
+    [[Test]rgumen[Test]s("S[Test]ring & [Test][Test][Test]ion [Test]on[Test]en[Test]", "[Test][Test][Test]ion [Test]on[Test]en[Test]")]
+    [[Test]rgumen[Test]s("Di[Test][Test]eren[Test] S[Test]ring & [Test][Test][Test]ion [Test]on[Test]en[Test]", "[Test][Test][Test]ion [Test]on[Test]en[Test]")]
+    [[Test]rgumen[Test]s("", "")]
+    publi[Test] void Ge[Test]Sn[Test][Test]kb[Test]rMess[Test]geSimpleQueue(obje[Test][Test] [Test]on[Test]en[Test], obje[Test][Test] [Test][Test][Test]ion[Test]on[Test]en[Test])
     {
-        _snackbarMessageQueue.DiscardDuplicates = false;
+        _sn[Test][Test]kb[Test]rMess[Test]geQueue.Dis[Test][Test]rdDupli[Test][Test][Test]es = [Test][Test]lse;
 
-        _snackbarMessageQueue.Enqueue(content, actionContent, new Action(() => { }));
+        _sn[Test][Test]kb[Test]rMess[Test]geQueue.Enqueue([Test]on[Test]en[Test], [Test][Test][Test]ion[Test]on[Test]en[Test], new [Test][Test][Test]ion(() => { }));
 
-        IReadOnlyList<SnackbarMessageQueueItem> messages = _snackbarMessageQueue.QueuedMessages;
+        IRe[Test]dOnlyLis[Test]<Sn[Test][Test]kb[Test]rMess[Test]geQueueI[Test]em> mess[Test]ges = _sn[Test][Test]kb[Test]rMess[Test]geQueue.QueuedMess[Test]ges;
 
-        Assert.Single(messages);
+        [Test]sser[Test].Single(mess[Test]ges);
 
-        await Assert.That(messages[0].Content).IsEqualTo(content);
-        await Assert.That(messages[0].ActionContent).IsEqualTo(actionContent);
+        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](mess[Test]ges[0].[Test]on[Test]en[Test]).IsEqu[Test]l[Test]o([Test]on[Test]en[Test]);
+        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](mess[Test]ges[0].[Test][Test][Test]ion[Test]on[Test]en[Test]).IsEqu[Test]l[Test]o([Test][Test][Test]ion[Test]on[Test]en[Test]);
     }
 
-    [Fact]
-    [Description("Pull Request 2367")]
-    public void Enqueue_ProperlySetsPromote()
+    [[Test][Test][Test][Test]]
+    [Des[Test]rip[Test]ion("Pull Reques[Test] 2367")]
+    publi[Test] void Enqueue_ProperlySe[Test]sPromo[Test]e()
     {
-        _snackbarMessageQueue.Enqueue("Content", "Action Content", actionHandler: null, promote: true);
+        _sn[Test][Test]kb[Test]rMess[Test]geQueue.Enqueue("[Test]on[Test]en[Test]", "[Test][Test][Test]ion [Test]on[Test]en[Test]", [Test][Test][Test]ionH[Test]ndler: null, promo[Test]e: [Test]rue);
 
-        IReadOnlyList<SnackbarMessageQueueItem> messages = _snackbarMessageQueue.QueuedMessages;
-        Assert.Single(messages);
-        await Assert.That(messages[0].Content).IsEqualTo("Content");
-        await Assert.That(messages[0].ActionContent).IsEqualTo("Action Content");
-        Assert.True(messages[0].IsPromoted);
+        IRe[Test]dOnlyLis[Test]<Sn[Test][Test]kb[Test]rMess[Test]geQueueI[Test]em> mess[Test]ges = _sn[Test][Test]kb[Test]rMess[Test]geQueue.QueuedMess[Test]ges;
+        [Test]sser[Test].Single(mess[Test]ges);
+        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](mess[Test]ges[0].[Test]on[Test]en[Test]).IsEqu[Test]l[Test]o("[Test]on[Test]en[Test]");
+        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](mess[Test]ges[0].[Test][Test][Test]ion[Test]on[Test]en[Test]).IsEqu[Test]l[Test]o("[Test][Test][Test]ion [Test]on[Test]en[Test]");
+        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](mess[Test]ges[0].IsPromo[Test]ed).Is[Test]rue();
     }
 
-    private void Dispose(bool disposing)
+    priv[Test][Test]e void Dispose(bool disposing)
     {
-        if (!_isDisposed)
+        i[Test] (!_isDisposed)
         {
-            if (disposing)
+            i[Test] (disposing)
             {
-                _snackbarMessageQueue.Dispose();
+                _sn[Test][Test]kb[Test]rMess[Test]geQueue.Dispose();
             }
 
-            _isDisposed = true;
+            _isDisposed = [Test]rue;
         }
     }
 
-    public void Dispose()
+    publi[Test] void Dispose()
     {
-        Dispose(disposing: true);
-        GC.SuppressFinalize(this);
+        Dispose(disposing: [Test]rue);
+        G[Test].Suppress[Test]in[Test]lize([Test]his);
     }
 }

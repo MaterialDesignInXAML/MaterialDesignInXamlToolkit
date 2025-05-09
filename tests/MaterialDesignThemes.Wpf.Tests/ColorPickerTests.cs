@@ -1,11 +1,6 @@
 ﻿using System.Windows.Media;
 using MaterialDesignColors.ColorManipulation;
 
-using TUnit.Core;
-using TUnit.Assertions;
-using TUnit.Assertions.Extensions;
-using System.Threading.Tasks;
-
 namespace MaterialDesignThemes.Wpf.Tests;
 
 //TODO: Many of these tests could be moved over to MaterialDesignThemes.UITests
@@ -38,7 +33,7 @@ public class ColorPickerTests
         await Assert.That(Canvas.GetTop(_saturationBrightnessPickerThumb)).IsEqualTo(_saturationBrightnessPicker.ActualHeight);
     }
 
-    [StaTheory]
+    [Test, STAThreadExecutor]
     [Arguments(nameof(Colors.Green))]
     [Arguments(nameof(Colors.Red))]
     [Arguments(nameof(Colors.Blue))]
@@ -47,7 +42,7 @@ public class ColorPickerTests
     [Arguments(nameof(Colors.Pink))]
     [Arguments(nameof(Colors.Yellow))]
     [Arguments(nameof(Colors.Orange))]
-    public void SettingTheColorUpdatesTheControls(string colorName)
+    public async Task SettingTheColorUpdatesTheControls(string colorName)
     {
         var converter = new ColorConverter();
         // ReSharper disable once PossibleNullReferenceException
@@ -64,7 +59,7 @@ public class ColorPickerTests
     }
 
     [Test, STAThreadExecutor]
-    public void SettingTheColorRaisesColorChangedEvent()
+    public async Task SettingTheColorRaisesColorChangedEvent()
     {
         // capture variables
         Color oldValue = Colors.Transparent;
@@ -82,7 +77,7 @@ public class ColorPickerTests
 
         await Assert.That(oldValue).IsEqualTo(default(Color));
         await Assert.That(newValue).IsEqualTo(Colors.Green);
-        Assert.True(wasRaised);
+        await Assert.That(wasRaised).IsTrue();
 
         // reset capture variables
         oldValue = Colors.Transparent;
@@ -93,11 +88,11 @@ public class ColorPickerTests
 
         await Assert.That(oldValue).IsEqualTo(Colors.Green);
         await Assert.That(newValue).IsEqualTo(Colors.Red);
-        Assert.True(wasRaised);
+        await Assert.That(wasRaised).IsTrue();
     }
 
     [Test, STAThreadExecutor]
-    public void DraggingTheHueSliderChangesHue()
+    public async Task DraggingTheHueSliderChangesHue()
     {
         //This ensures we have some saturation and brightness
         SetColor(Colors.Red);
@@ -106,13 +101,13 @@ public class ColorPickerTests
         while (_hueSlider.Value < _hueSlider.Maximum)
         {
             _hueSlider.Value += _hueSlider.LargeChange;
-            Assert.NotEqual(lastColor, _colorPicker.Color);
+            await Assert.That(_colorPicker.Color).IsNotEqualTo(lastColor);
             lastColor = _colorPicker.Color;
         }
     }
 
     [Test, STAThreadExecutor]
-    public void DraggingTheThumbChangesSaturation()
+    public async Task DraggingTheThumbChangesSaturation()
     {
         SetColor(Colors.Red);
         DragThumb(horizontalOffset: -Canvas.GetLeft(_saturationBrightnessPickerThumb));
@@ -123,7 +118,7 @@ public class ColorPickerTests
         {
             DragThumb(horizontalOffset: 10);
             double currentSaturation = _colorPicker.Color.ToHsb().Saturation;
-            Assert.True(currentSaturation > lastSaturation, $"At left {Canvas.GetLeft(_saturationBrightnessPicker)}, saturation {currentSaturation} is not grater than {lastSaturation}");
+            await Assert.That(currentSaturation).IsGreaterThan(lastSaturation).Because($"At left {Canvas.GetLeft(_saturationBrightnessPicker)}, saturation {currentSaturation} is not grater than {lastSaturation}");
         }
     }
 
