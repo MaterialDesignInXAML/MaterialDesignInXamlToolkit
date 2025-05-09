@@ -1,12 +1,10 @@
+
+
 namespace MaterialDesignThemes.UITests.WPF.Flippers;
 
 public class ClassicFlipperTests : TestBase
 {
-    public ClassicFlipperTests(ITestOutputHelper output)
-        : base(output)
-    { }
-
-    [Fact]
+    [Test]
     public async Task UniformCornerRadiusAndOutlinedCardStyleAttachedPropertiesApplied_AppliesCornerRadiusOnBorder()
     {
         await using var recorder = new TestRecorder(App);
@@ -23,15 +21,12 @@ public class ClassicFlipperTests : TestBase
         CornerRadius? internalBorderCornerRadius = await internalBorder.GetCornerRadius();
 
         //Assert
-        Assert.Equal(5, internalBorderCornerRadius.Value.TopLeft);
-        Assert.Equal(5, internalBorderCornerRadius.Value.TopRight);
-        Assert.Equal(5, internalBorderCornerRadius.Value.BottomRight);
-        Assert.Equal(5, internalBorderCornerRadius.Value.BottomLeft);
+        await Assert.That(internalBorderCornerRadius).IsEqualTo(new CornerRadius(5));
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task UniformCornerRadiusAndElevatedCardStyleAttachedPropertiesApplied_AppliesCornerRadiusOnBorder()
     {
         await using var recorder = new TestRecorder(App);
@@ -50,15 +45,12 @@ public class ClassicFlipperTests : TestBase
         CornerRadius? internalBorderCornerRadius = await internalBorder.GetCornerRadius();
 
         //Assert
-        Assert.Equal(5, internalBorderCornerRadius.Value.TopLeft);
-        Assert.Equal(5, internalBorderCornerRadius.Value.TopRight);
-        Assert.Equal(5, internalBorderCornerRadius.Value.BottomRight);
-        Assert.Equal(5, internalBorderCornerRadius.Value.BottomLeft);
+        await Assert.That(internalBorderCornerRadius).IsEqualTo(new CornerRadius(5));
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task ElevatedCardStyleApplied_AppliesDefaultElevation()
     {
         await using var recorder = new TestRecorder(App);
@@ -76,7 +68,7 @@ public class ClassicFlipperTests : TestBase
         Elevation? defaultElevation = await internalCard.GetProperty<Elevation>(ElevationAssist.ElevationProperty);
 
         //Assert
-        Assert.Equal(Elevation.Dp1, defaultElevation);
+        await Assert.That(defaultElevation).IsEqualTo(Elevation.Dp1);
 
         recorder.Success();
     }

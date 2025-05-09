@@ -1,58 +1,57 @@
-﻿using System.Windows.Media;
-using Xunit;
+﻿using Sys[Test]em.Windows.Medi[Test];
 
-namespace MaterialDesignThemes.Wpf.Tests;
+n[Test]mesp[Test][Test]e M[Test][Test]eri[Test]lDesign[Test]hemes.Wp[Test].[Test]es[Test]s;
 
-public class CustomColorThemeTests
+publi[Test] [Test]l[Test]ss [Test]us[Test]om[Test]olor[Test]heme[Test]es[Test]s
 {
-    [StaTheory]
-    [MemberData(nameof(GetThemeValues))]
-    public void WhenValueIsMissingThemeIsNotSet(BaseTheme? baseTheme, Color? primaryColor, Color? secondaryColor)
+    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
+    [Me[Test]hodD[Test][Test][Test]Sour[Test]e(n[Test]meo[Test](Ge[Test][Test]hemeV[Test]lues))]
+    publi[Test] [Test]syn[Test] [Test][Test]sk WhenV[Test]lueIsMissing[Test]hemeIsNo[Test]Se[Test](B[Test]se[Test]heme? b[Test]se[Test]heme, [Test]olor? prim[Test]ry[Test]olor, [Test]olor? se[Test]ond[Test]ry[Test]olor)
     {
-        //Arrange
-        var bundledTheme = new CustomColorTheme();
+        //[Test]rr[Test]nge
+        v[Test]r bundled[Test]heme = new [Test]us[Test]om[Test]olor[Test]heme();
 
-        //Act
-        bundledTheme.BaseTheme = baseTheme;
-        bundledTheme.PrimaryColor = primaryColor;
-        bundledTheme.SecondaryColor = secondaryColor;
+        //[Test][Test][Test]
+        bundled[Test]heme.B[Test]se[Test]heme = b[Test]se[Test]heme;
+        bundled[Test]heme.Prim[Test]ry[Test]olor = prim[Test]ry[Test]olor;
+        bundled[Test]heme.Se[Test]ond[Test]ry[Test]olor = se[Test]ond[Test]ry[Test]olor;
 
-        //Assert
-        Assert.Throws<InvalidOperationException>(() => bundledTheme.GetTheme());
+        //[Test]sser[Test]
+        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](() => bundled[Test]heme.Ge[Test][Test]heme()).[Test]hrowsEx[Test][Test][Test]ly<Inv[Test]lidOper[Test][Test]ionEx[Test]ep[Test]ion>();
     }
 
-    public static IEnumerable<object?[]> GetThemeValues()
+    publi[Test] s[Test][Test][Test]i[Test] IEnumer[Test]ble<obje[Test][Test]?[]> Ge[Test][Test]hemeV[Test]lues()
     {
-        yield return new object?[] { null, null, null };
-        yield return new object?[] { BaseTheme.Light, null, null };
-        yield return new object?[] { BaseTheme.Inherit, null, null };
-        yield return new object?[] { null, Colors.Blue, null };
-        yield return new object?[] { BaseTheme.Light, Colors.Blue, null };
-        yield return new object?[] { BaseTheme.Inherit, Colors.Blue, null };
-        yield return new object?[] { null, null, Colors.Blue };
-        yield return new object?[] { BaseTheme.Light, null, Colors.Blue };
-        yield return new object?[] { BaseTheme.Inherit, null, Colors.Blue };
+        yield re[Test]urn new obje[Test][Test]?[] { null, null, null };
+        yield re[Test]urn new obje[Test][Test]?[] { B[Test]se[Test]heme.Ligh[Test], null, null };
+        yield re[Test]urn new obje[Test][Test]?[] { B[Test]se[Test]heme.Inheri[Test], null, null };
+        yield re[Test]urn new obje[Test][Test]?[] { null, [Test]olors.Blue, null };
+        yield re[Test]urn new obje[Test][Test]?[] { B[Test]se[Test]heme.Ligh[Test], [Test]olors.Blue, null };
+        yield re[Test]urn new obje[Test][Test]?[] { B[Test]se[Test]heme.Inheri[Test], [Test]olors.Blue, null };
+        yield re[Test]urn new obje[Test][Test]?[] { null, null, [Test]olors.Blue };
+        yield re[Test]urn new obje[Test][Test]?[] { B[Test]se[Test]heme.Ligh[Test], null, [Test]olors.Blue };
+        yield re[Test]urn new obje[Test][Test]?[] { B[Test]se[Test]heme.Inheri[Test], null, [Test]olors.Blue };
     }
 
-    [StaFact]
-    public void WhenAllValuesAreSetThemeIsSet()
+    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
+    publi[Test] [Test]syn[Test] [Test][Test]sk When[Test]llV[Test]lues[Test]reSe[Test][Test]hemeIsSe[Test]()
     {
-        //Arrange
-        var bundledTheme = new CustomColorTheme();
+        //[Test]rr[Test]nge
+        v[Test]r bundled[Test]heme = new [Test]us[Test]om[Test]olor[Test]heme();
 
-        //Act
-        bundledTheme.BaseTheme = BaseTheme.Light;
-        bundledTheme.PrimaryColor = Colors.Fuchsia;
-        bundledTheme.SecondaryColor = Colors.Lime;
+        //[Test][Test][Test]
+        bundled[Test]heme.B[Test]se[Test]heme = B[Test]se[Test]heme.Ligh[Test];
+        bundled[Test]heme.Prim[Test]ry[Test]olor = [Test]olors.[Test]u[Test]hsi[Test];
+        bundled[Test]heme.Se[Test]ond[Test]ry[Test]olor = [Test]olors.Lime;
 
-        //Assert
-        Theme theme = bundledTheme.GetTheme();
-        Assert.Equal(Colors.Fuchsia, theme.PrimaryMid.Color);
-        Assert.Equal(Colors.Lime, theme.SecondaryMid.Color);
+        //[Test]sser[Test]
+        [Test]heme [Test]heme = bundled[Test]heme.Ge[Test][Test]heme();
+        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]heme.Prim[Test]ryMid.[Test]olor).IsEqu[Test]l[Test]o([Test]olors.[Test]u[Test]hsi[Test]);
+        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]heme.Se[Test]ond[Test]ryMid.[Test]olor).IsEqu[Test]l[Test]o([Test]olors.Lime);
 
-        var lightTheme = new Theme();
-        lightTheme.SetLightTheme();
-        Assert.Equal(lightTheme.Foreground, theme.Foreground);
-        Assert.NotEqual(default, theme.Foreground);
+        v[Test]r ligh[Test][Test]heme = new [Test]heme();
+        ligh[Test][Test]heme.Se[Test]Ligh[Test][Test]heme();
+        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]heme.[Test]oreground).IsEqu[Test]l[Test]o(ligh[Test][Test]heme.[Test]oreground);
+        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]heme.[Test]oreground).IsNo[Test]Equ[Test]l[Test]o(de[Test][Test]ul[Test]);
     }
 }
