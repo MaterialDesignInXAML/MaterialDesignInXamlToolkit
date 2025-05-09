@@ -187,10 +187,10 @@ public class DecimalUpDownTests(ITestOutputHelper output) : TestBase(output)
 
     [Theory]
     [Description("Issue 3781")]
-    [InlineData("30")]
-    [InlineData("abc")]
-    [InlineData("2a")]
-    public async Task LostFocusWhenTextIsInvalid_RevertsToOriginalValue(string inputText)
+    [InlineData("30", 2.5)]
+    [InlineData("abc", 2.5)]
+    [InlineData("2a", 2)]
+    public async Task LostFocusWhenTextIsInvalid_RevertsToOriginalValue(string inputText, decimal expectedValue)
     {
         await using var recorder = new TestRecorder(App);
 
@@ -209,8 +209,8 @@ public class DecimalUpDownTests(ITestOutputHelper output) : TestBase(output)
         await textBox.SendKeyboardInput($"{ModifierKeys.Control}{Key.A}{ModifierKeys.None}{inputText}");
         await button.MoveKeyboardFocus();
 
-        Assert.Equal("2.5", await textBox.GetText());
-        Assert.Equal(2.5m, await decimalUpDown.GetValue());
+        Assert.Equal(expectedValue.ToString(), await textBox.GetText());
+        Assert.Equal(expectedValue, await decimalUpDown.GetValue());
 
         recorder.Success();
     }

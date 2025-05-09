@@ -1,4 +1,8 @@
-﻿using System.ComponentModel;
+using System;
+using System.ComponentModel;
+using System.Windows.Controls;
+using System.Windows.Data;
+using Google.Protobuf.WellKnownTypes;
 using MaterialDesignThemes.UITests.Samples.UpDownControls;
 
 namespace MaterialDesignThemes.UITests.WPF.UpDownControls;
@@ -212,6 +216,76 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
         //Assert
         Assert.Equal(increaseEnabled, increaseButtonEnabled);
         Assert.Equal(decreaseEnabled, decreaseButtonEnabled);
+
+        recorder.Success();
+    }
+
+    [Fact]
+    [Description("Issue 3827")]
+    public async Task NumericUpDown_WhenBindingUpdateTriggerIsPropertyChanged_ItUpdatesBeforeLoosingFocus()
+    {
+        await using var recorder = new TestRecorder(App);
+        //Arrange
+        var numericUpDown = await LoadXaml<NumericUpDown>("""
+        <materialDesign:NumericUpDown Tag="{Binding Value, RelativeSource={RelativeSource Self}, UpdateSourceTrigger=PropertyChanged}" Maximum="10" Minimum="1" />
+        """);
+        
+        var textBox = await numericUpDown.GetElement<TextBox>("PART_TextBox");
+        //Act
+        await textBox.MoveKeyboardFocus();
+        await textBox.SendKeyboardInput($"{ModifierKeys.Control}{Key.A}{ModifierKeys.None}4");
+
+        //Act
+        object? tag = await numericUpDown.GetTag();
+
+        //Assert
+        Assert.Equal("4", tag?.ToString());
+
+        recorder.Success();
+    }
+
+    [Fact]
+    [Description("Issue 3827")]
+    public async Task NumericUpDown_WhenBindingUpdateTriggerIsLostFocus_ItDoesNotUpdateUntilItLoosesFocus()
+    {
+        await using var recorder = new TestRecorder(App);
+        //Arrange
+        var userControl = await LoadUserControl<BoundNumericUpDown>();
+        var numericUpDown = await userControl.GetElement<NumericUpDown>();
+        var buttonToFocus = await userControl.GetElement<Button>("btnToFocus");
+        await numericUpDown.SetValue(2);
+
+        static void SetBindingToLostFocus(NumericUpDown numericUpDown)
+        {
+            var binding = new Binding(nameof(NumericUpDown.Value))
+            {
+                Path = new(nameof(BoundNumericUpDownViewModel.Value)),
+                UpdateSourceTrigger = UpdateSourceTrigger.LostFocus
+            };
+            BindingOperations.SetBinding(numericUpDown, NumericUpDown.ValueProperty, binding);
+        }
+        await numericUpDown.RemoteExecute(SetBindingToLostFocus);
+
+        var textBox = await numericUpDown.GetElement<TextBox>("PART_TextBox");
+
+        static int GetViewModelValue(NumericUpDown numericUpDown)
+        {
+            return ((BoundNumericUpDownViewModel)numericUpDown.DataContext).Value;
+        }
+
+        //Act
+        await textBox.MoveKeyboardFocus();
+        await textBox.SendKeyboardInput($"{ModifierKeys.Control}{Key.A}{ModifierKeys.None}4");
+
+        //Act
+        int valueBeforeLostFocus = await numericUpDown.RemoteExecute(GetViewModelValue);
+        await textBox.SendKeyboardInput($"{Key.Tab}");
+        int valueAfterLostFocus = await numericUpDown.RemoteExecute(GetViewModelValue);
+
+
+        //Assert
+        Assert.Equal("2", valueBeforeLostFocus.ToString());
+        Assert.Equal("4", valueAfterLostFocus.ToString());
 
         recorder.Success();
     }
