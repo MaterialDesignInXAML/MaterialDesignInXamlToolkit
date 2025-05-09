@@ -201,7 +201,10 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
         if (_decreaseButton != null)
             _decreaseButton.Click -= DecreaseButtonOnClick;
         if (_textBoxField != null)
+        {
             _textBoxField.TextChanged -= OnTextBoxTextChanged;
+            _textBoxField.LostFocus -= OnTextBoxLostFocus;
+        }
 
         base.OnApplyTemplate();
 
@@ -220,9 +223,18 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
         if (_textBoxField != null)
         {
             _textBoxField.TextChanged += OnTextBoxTextChanged;
+            _textBoxField.LostFocus += OnTextBoxLostFocus;
             _textBoxField.Text = Value?.ToString();
         }
 
+    }
+
+    private void OnTextBoxLostFocus(object sender, EventArgs e)
+    {
+        if (_textBoxField is { } textBoxField)
+        {
+            textBoxField.Text = Value?.ToString();
+        }
     }
 
     private void OnTextBoxTextChanged(object sender, EventArgs e)
@@ -233,8 +245,6 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
             {
                 SetCurrentValue(ValueProperty, ClampValue(value));
             }
-            //NB: Because setting ValueProperty will coerce the value, we re-assign back to the textbox here.
-            textBoxField.Text = Value?.ToString();
         }
     }
 
