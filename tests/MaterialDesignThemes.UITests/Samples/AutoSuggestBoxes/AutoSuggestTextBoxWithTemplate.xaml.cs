@@ -21,7 +21,7 @@ public partial class AutoSuggestTextBoxWithTemplateViewModel : ObservableObject
     private List<SuggestionThing> BaseSuggestions { get; }
 
     [ObservableProperty]
-    private ObservableCollection<SuggestionThing> _suggestions = new();
+    private ObservableCollection<SuggestionThing> _suggestions = [];
 
     [ObservableProperty]
     private string? _autoSuggestText;
@@ -41,14 +41,14 @@ public partial class AutoSuggestTextBoxWithTemplateViewModel : ObservableObject
 
     public AutoSuggestTextBoxWithTemplateViewModel()
     {
-        BaseSuggestions = new()
-        {
+        BaseSuggestions =
+        [
             new("Apples"),
             new("Bananas"),
             new("Beans"),
             new("Mtn Dew"),
             new("Orange"),
-        };
+        ];
         Suggestions = new ObservableCollection<SuggestionThing>(BaseSuggestions);
     }
 
@@ -62,9 +62,7 @@ public partial class AutoSuggestTextBoxWithTemplateViewModel : ObservableObject
     }
 }
 
-public class SuggestionThing
+public class SuggestionThing(string name)
 {
-    public string Name { get; }
-
-    public SuggestionThing(string name) => Name = name;
+    public string Name { get; } = name;
 }
