@@ -1,4 +1,3 @@
-using System.Collections;
 using System.ComponentModel;
 using MaterialDesignThemes.UITests.Samples.AutoSuggestBoxes;
 using MaterialDesignThemes.UITests.Samples.AutoSuggestTextBoxes;
@@ -208,22 +207,27 @@ public class AutoSuggestBoxTests : TestBase
         await using var recorder = new TestRecorder(App);
 
         //Arrange
-        IVisualElement<AutoSuggestBox> suggestBox = (await LoadUserControl<AutoSuggestTextBoxWithTemplate>()).As<AutoSuggestBox>();
+        IVisualElement userControl = await LoadUserControl<AutoSuggestTextBoxWithCollectionView>();
+        IVisualElement<AutoSuggestBox> suggestBox = await userControl.GetElement<AutoSuggestBox>();
         IVisualElement<Popup> popup = await suggestBox.GetElement<Popup>();
         IVisualElement<ListBox> suggestionListBox = await popup.GetElement<ListBox>();
 
         //Act
         await suggestBox.MoveKeyboardFocus();
         await Task.Delay(50);
-        await suggestBox.SendInput(new KeyboardInput("B"));
-        await Task.Delay(50);
-        await suggestBox.SendInput(new KeyboardInput(Key.Enter));
+        await suggestBox.SendKeyboardInput($"B{Key.Down}{Key.Enter}");
         await Task.Delay(50);
 
         //Assert
         string? selectedItem = (await suggestBox.GetSelectedItem()) as string;
-        Assert.NotNull(selectedItem);
         Assert.Equal("Bananas", selectedItem);
+
+        static void AssertViewModelProperty(AutoSuggestBox autoSuggestBox)
+        {
+            var viewModel = (AutoSuggestTextBoxWithCollectionViewViewModel)autoSuggestBox.DataContext;
+            Assert.Equal("Bananas", viewModel.SelectedItem);
+        }
+        await suggestBox.RemoteExecute(AssertViewModelProperty);
 
         recorder.Success();
     }

@@ -14,7 +14,9 @@
       materialDesign:HintAssist.HelperText="Name"
       materialDesign:TextFieldAssist.HasClearButton="True"
       Text="{Binding AutoSuggestText, UpdateSourceTrigger=PropertyChanged}"
-      Suggestions="{Binding Suggestions}">
+      Suggestions="{Binding Suggestions}"
+      SelectedItem="{Binding SelectedItem}"
+      >
     </materialDesign:AutoSuggestBox>
     <!--
     <ComboBox ItemsSource="{Binding Suggestions}"

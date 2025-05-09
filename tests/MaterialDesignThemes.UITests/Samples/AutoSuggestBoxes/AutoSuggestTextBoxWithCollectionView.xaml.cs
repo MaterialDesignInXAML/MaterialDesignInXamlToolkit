@@ -1,7 +1,7 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Data;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace MaterialDesignThemes.UITests.Samples.AutoSuggestBoxes;
 
@@ -26,6 +26,9 @@ public partial class AutoSuggestTextBoxWithCollectionViewViewModel : ObservableO
     [ObservableProperty]
     private string? _autoSuggestText;
 
+    [ObservableProperty]
+    private string? _selectedItem;
+
     partial void OnAutoSuggestTextChanged(string? oldValue, string? newValue)
     {
         if (!string.IsNullOrWhiteSpace(newValue))
@@ -36,19 +39,19 @@ public partial class AutoSuggestTextBoxWithCollectionViewViewModel : ObservableO
         {
             Suggestions.Filter = null;
         }
-        base.OnPropertyChanged(nameof(Suggestions));
+        OnPropertyChanged(nameof(Suggestions));
     }
 
     public AutoSuggestTextBoxWithCollectionViewViewModel()
     {
-        BaseSuggestions = new()
-        {
+        BaseSuggestions =
+        [
             "Apples",
             "Bananas",
             "Beans",
             "Mtn Dew",
             "Orange",
-        };
+        ];
         Suggestions = CollectionViewSource.GetDefaultView(BaseSuggestions);
     }
 
