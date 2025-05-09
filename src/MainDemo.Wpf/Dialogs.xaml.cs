@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using MaterialDesignDemo.Domain;
 using MaterialDesignThemes.Wpf;
 
@@ -11,6 +12,7 @@ public partial class Dialogs
         DataContext = new DialogsViewModel();
         InitializeComponent();
         BlurRadiusSlider.Value = DialogHost.DefaultBlurRadius;
+        tbBlurRadius.Text = DialogOptions.Default.BlurRadius.ToString();
     }
 
     private void Sample1_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs)
@@ -86,5 +88,27 @@ public partial class Dialogs
     private void Sample6_ResetBlur(object sender, RoutedEventArgs e)
     {
         BlurRadiusSlider.Value = DialogHost.DefaultBlurRadius;
+    }
+
+    private async void Sample7_OpenWithDialogOptions(object sender, RoutedEventArgs e)
+    {
+        var options = new DialogOptions()
+        {
+            OpenedEventHandler = cbOpenedEventHandler.IsChecked == true ? (_, _) => MessageBox.Show("OpenedEventHandler raised") : null,
+            ClosingEventHandler = cbClosingEventHandler.IsChecked == true ? (_, _) => MessageBox.Show("ClosingEventHandler raised") : null,
+            ClosedEventHandler = cbClosedEventHandler.IsChecked == true ? (_, _) => MessageBox.Show("ClosedEventHandler raised") : null,
+            IsFullscreen = cbIsFullscreen.IsChecked!.Value,
+            ShowCloseButton = cbShowCloseButton.IsChecked!.Value,
+            CloseOnClickAway = cbCloseOnClickAway.IsChecked!.Value,
+            ApplyBlurEffect = cbApplyBlurEffect.IsChecked!.Value,
+            BlurRadius = double.TryParse(tbBlurRadius.Text, out double parsedRadius) ? parsedRadius : 0
+        };
+
+        var dialogContent = new TextBlock()
+        {
+            Text = "Some dialog content",
+            Margin = new Thickness(32)
+        };
+        await DialogHost.Show(dialogContent, "RootDialog", options);
     }
 }
