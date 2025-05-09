@@ -272,17 +272,18 @@
                                   Clip="{Binding ElementName=GeometryEllipse, Path=RenderedGeometry}"
                                   ClipToBounds="True"
                                   Focusable="False"
-                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                        <!-- additional layer so we don't rotate the ripple directly which can cause jumpyness under certain layouts -->
-                        <ContentControl Content="{TemplateBinding Content}"
-                                        ContentTemplate="{TemplateBinding ContentTemplate}"
-                                        Focusable="False"
-                                        RenderTransformOrigin=".5,.5">
-                          <ContentControl.RenderTransform>
-                            <RotateTransform x:Name="ContentRotateTransform" Angle="0" />
-                          </ContentControl.RenderTransform>
-                        </ContentControl>
-                      </wpf:Ripple>
+                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                      <!-- additional layer so we don't rotate the ripple directly which can cause jumpyness under certain layouts -->
+                      <ContentControl Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      Focusable="False"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      RenderTransformOrigin=".5,.5">
+                        <ContentControl.RenderTransform>
+                          <RotateTransform x:Name="ContentRotateTransform" Angle="0" />
+                        </ContentControl.RenderTransform>
+                      </ContentControl>
                       <Ellipse x:Name="GeometryEllipse"
                                Fill="Transparent"
                                Focusable="False"
