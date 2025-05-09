@@ -378,7 +378,7 @@ public class RatingBar : Control
 
         public static TextBlockForegroundConverter Instance { get; } = new();
 
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
         {
             if (values?.Length == 5
                 && values[0] is SolidColorBrush brush
@@ -416,23 +416,23 @@ public class RatingBar : Control
                 if (invertDirection)
                 {
                     return new()
-                        {
-                            new GradientStop {Color = semiTransparent, Offset = offset},
-                            new GradientStop {Color = originalColor, Offset = offset},
-                        };
+                    {
+                        new GradientStop {Color = semiTransparent, Offset = offset},
+                        new GradientStop {Color = originalColor, Offset = offset},
+                    };
                 }
                 return new()
-                    {
-                        new GradientStop {Color = originalColor, Offset = offset},
-                        new GradientStop {Color = semiTransparent, Offset = offset}
-                    };
+                {
+                    new GradientStop {Color = originalColor, Offset = offset},
+                    new GradientStop {Color = semiTransparent, Offset = offset}
+                };
             }
 
             // This should never happen (returning actual brush to avoid the compilers squiggly line warning)
             return Brushes.Transparent;
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException();
+        public object?[]? ConvertBack(object? value, Type[] targetTypes, object? parameter, CultureInfo culture) => throw new NotImplementedException();
     }
 
     internal class PreviewIndicatorTransformXConverter : IMultiValueConverter
@@ -441,9 +441,9 @@ public class RatingBar : Control
 
         internal static double Margin => 2.0;
 
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
         {
-            if (values.Length >= 7
+            if (values?.Length >= 7
                 && values[0] is double ratingBarButtonActualWidth
                 && values[1] is double previewValueActualWidth
                 && values[2] is Orientation ratingBarOrientation
@@ -482,7 +482,7 @@ public class RatingBar : Control
             return 1.0;
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException();
+        public object?[]? ConvertBack(object? value, Type[] targetTypes, object? parameter, CultureInfo culture) => throw new NotImplementedException();
     }
 
     internal class PreviewIndicatorTransformYConverter : IMultiValueConverter
@@ -491,9 +491,9 @@ public class RatingBar : Control
 
         internal static double Margin => 2.0;
 
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
         {
-            if (values.Length >= 7
+            if (values?.Length >= 7
                 && values[0] is double ratingBarButtonActualHeight
                 && values[1] is double previewValueActualHeight
                 && values[2] is Orientation ratingBarOrientation
@@ -531,6 +531,6 @@ public class RatingBar : Control
             return 1.0;
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotImplementedException();
+        public object?[]? ConvertBack(object? value, Type[] targetTypes, object? parameter, CultureInfo culture) => throw new NotImplementedException();
     }
 }
