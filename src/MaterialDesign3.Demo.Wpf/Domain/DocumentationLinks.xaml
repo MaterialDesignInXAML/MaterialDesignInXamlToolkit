@@ -78,6 +78,6 @@
         </ItemsControl>
       </StackPanel>
     </ScrollViewer>
-    <Border BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0,0,0,1" />
+    <Border BorderBrush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" BorderThickness="0,0,0,1" />
   </Grid>
 </UserControl>

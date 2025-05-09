@@ -96,14 +96,14 @@
                          Grid.Column="1"
                          Margin="16,0,16,8"
                          VerticalAlignment="Center"
-                         Foreground="{DynamicResource MaterialDesignBodyLight}"
+                         Foreground="{DynamicResource MaterialDesign.Brush.ForegroundLight}"
                          Text="Say hello, make a feature request, or raise a bug through one of these channels:"
                          TextWrapping="Wrap" />
 
               <Border Grid.Row="2"
                       Grid.Column="1"
                       Margin="0,8,0,0"
-                      BorderBrush="{DynamicResource MaterialDesignDivider}"
+                      BorderBrush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
                       BorderThickness="0,1,0,0">
                 <Grid Margin="8">
                   <Button x:Name="GitHubButton"
@@ -134,7 +134,7 @@
 
               <Border Grid.Row="3"
                       Grid.Column="1"
-                      BorderBrush="{DynamicResource MaterialDesignDivider}"
+                      BorderBrush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
                       BorderThickness="0,1,0,0">
                 <Grid Margin="8">
                   <Button x:Name="ChatButton"
@@ -192,7 +192,7 @@
 
                 <TextBlock Margin="16,0,16,8"
                            VerticalAlignment="Top"
-                           Foreground="{DynamicResource MaterialDesignBodyLight}"
+                           Foreground="{DynamicResource MaterialDesign.Brush.ForegroundLight}"
                            Text="This project is completely open source. If you like it and want to say thanks you could hit the GitHub Star button, tweet or post about it, or tell your mum about it!"
                            TextWrapping="Wrap" />
               </StackPanel>
@@ -200,7 +200,7 @@
               <Border Grid.Row="1"
                       Grid.ColumnSpan="2"
                       Padding="8"
-                      BorderBrush="{DynamicResource MaterialDesignDivider}"
+                      BorderBrush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
                       BorderThickness="0,1,0,0">
                 <DockPanel>
                   <Button x:Name="DonateButton"
@@ -217,7 +217,7 @@
 
                   <TextBlock Margin="16"
                              VerticalAlignment="Center"
-                             Foreground="{DynamicResource MaterialDesignBodyLight}"
+                             Foreground="{DynamicResource MaterialDesign.Brush.ForegroundLight}"
                              Text="Feel like you want to make a donation?  It would be gratefully received.  Click the button to donate via Open Collective."
                              TextWrapping="Wrap" />
                 </DockPanel>
@@ -243,8 +243,8 @@
                 <Button
                     ToolTip="Twitter"
                     Click="TwitterButton_OnClick"
-                    Background="{DynamicResource PrimaryHueMidBrush}"
-                    Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                    Background="{DynamicResource MaterialDesign.Brush.Primary}"
+                    Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
                     Content="{materialDesign:PackIcon Kind=Twitter, Size=20}"/>
 
                 <Button
@@ -266,8 +266,8 @@
                 <Button
                     ToolTip="Email"
                     Click="EmailButton_OnClick"
-                    Background="{DynamicResource SecondaryHueMidBrush}"
-                    Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"
+                    Background="{DynamicResource MaterialDesign.Brush.Secondary}"
+                    Foreground="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}"
                     Content="{materialDesign:PackIcon Kind=Email, Size=20}"/>
 
                 <Button

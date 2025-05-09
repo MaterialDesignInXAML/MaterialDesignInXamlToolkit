@@ -382,7 +382,7 @@
             Grid.Column="0"
             Grid.ColumnSpan="2"
             Margin="0,24,0,0"
-            BorderBrush="{DynamicResource MaterialDesignDivider}"
+            BorderBrush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
             BorderThickness="0,1,0,0" />
 
     <TextBlock Grid.Row="7"
@@ -445,7 +445,7 @@
             Grid.Column="0"
             Grid.ColumnSpan="2"
             Margin="0,24,0,0"
-            BorderBrush="{DynamicResource MaterialDesignDivider}"
+            BorderBrush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
             BorderThickness="0,1,0,0" />
 
     <StackPanel Grid.Row="11">
@@ -498,19 +498,19 @@
           <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="buttons_71">
             <StackPanel Margin="4" Orientation="Horizontal">
               <RadioButton Margin="4"
-                           BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                           BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}"
                            Content="FIRST"
                            IsChecked="True"
                            Style="{StaticResource MaterialDesignTabRadioButtonTop}" />
 
               <RadioButton Margin="4"
-                           BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                           BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}"
                            Content="SECOND"
                            IsChecked="False"
                            Style="{StaticResource MaterialDesignTabRadioButtonTop}" />
 
               <RadioButton Margin="4"
-                           BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                           BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}"
                            Content="THIRD"
                            IsChecked="False"
                            IsEnabled="False"
@@ -522,19 +522,19 @@
             <materialDesign:ColorZone Mode="SecondaryMid">
               <StackPanel Margin="2" Orientation="Horizontal">
                 <RadioButton Margin="4"
-                             BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                             BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}"
                              Content="FIRST"
                              IsChecked="True"
                              Style="{StaticResource MaterialDesignTabRadioButtonTop}" />
 
                 <RadioButton Margin="4"
-                             BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                             BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}"
                              Content="SECOND"
                              IsChecked="False"
                              Style="{StaticResource MaterialDesignTabRadioButtonTop}" />
 
                 <RadioButton Margin="4"
-                             BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                             BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}"
                              Content="THIRD"
                              IsChecked="False"
                              IsEnabled="False"

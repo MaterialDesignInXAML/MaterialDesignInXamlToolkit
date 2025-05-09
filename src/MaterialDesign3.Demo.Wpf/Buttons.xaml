@@ -503,7 +503,7 @@
           </smtx:XamlDisplay>
 
           <smtx:XamlDisplay UniqueKey="buttons_254">
-            <Button Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+            <Button Background="{DynamicResource MaterialDesign.Brush.TextBox.FilledBackground}"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignIconButton}"
                     ToolTip="MaterialDesignIconButton">
@@ -518,7 +518,7 @@
     <Rectangle Grid.Row="2"
                Height="1"
                Margin="0,24,0,0"
-               Fill="{DynamicResource MaterialDesignDivider}" />
+               Fill="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
 
     <TextBlock Grid.Row="3"
                Margin="0,24"
@@ -584,7 +584,7 @@
     <Rectangle Grid.Row="5"
                Height="1"
                Margin="0,24,0,0"
-               Fill="{DynamicResource MaterialDesignDivider}" />
+               Fill="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
 
     <TextBlock Grid.Row="6"
                Margin="0,24"
@@ -786,7 +786,7 @@
     <Rectangle Grid.Row="8"
                Height="1"
                Margin="0,24,0,0"
-               Fill="{DynamicResource MaterialDesignDivider}" />
+               Fill="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
 
     <TextBlock Grid.Row="9"
                Margin="0,24"
@@ -941,7 +941,7 @@
     <Rectangle Grid.Row="11"
            Height="1"
            Margin="0,24,0,0"
-           Fill="{DynamicResource MaterialDesignDivider}" />
+           Fill="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
 
     <TextBlock Grid.Row="12"
            Margin="0,24"

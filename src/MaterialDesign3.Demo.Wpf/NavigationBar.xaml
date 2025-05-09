@@ -23,7 +23,7 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
                     materialDesign:ButtonAssist.CornerRadius="16"
-                    Background="{DynamicResource SecondaryHueMidBrush}"
+                    Background="{DynamicResource MaterialDesign.Brush.Secondary}"
                     BorderThickness="0"
                     Foreground="{DynamicResource SecondaryHueMidBrushForeground}">
               <materialDesign:PackIcon Width="24"
@@ -31,7 +31,7 @@
                                        Kind="PencilOutline" />
             </Button>
 
-            <Grid Height="80" Background="{DynamicResource MaterialDesignCardBackground}">
+            <Grid Height="80" Background="{DynamicResource MaterialDesign.Brush.Card.Background}">
               <ListBox Height="80"
                        SelectedIndex="0"
                        Style="{StaticResource MaterialDesign3.NavigationBarPrimaryListBox}">
@@ -71,7 +71,7 @@
       <StackPanel Margin="0,20,0,0">
         <TextBlock Text="MVVM" />
         <smtx:XamlDisplay UniqueKey="navbar_2">
-          <Grid Height="80" Background="{DynamicResource MaterialDesignCardBackground}">
+          <Grid Height="80" Background="{DynamicResource MaterialDesign.Brush.Card.Background}">
             <ListBox Height="80"
                      ItemsSource="{Binding SampleList}"
                      SelectedIndex="0"
@@ -96,7 +96,7 @@
       <StackPanel Margin="0,20,0,0">
         <TextBlock Text="Without Text" />
         <smtx:XamlDisplay UniqueKey="navbar_3">
-          <Grid Height="80" Background="{DynamicResource MaterialDesignCardBackground}">
+          <Grid Height="80" Background="{DynamicResource MaterialDesign.Brush.Card.Background}">
             <ListBox Height="80"
                      ItemsSource="{Binding SampleList}"
                      SelectedIndex="0"

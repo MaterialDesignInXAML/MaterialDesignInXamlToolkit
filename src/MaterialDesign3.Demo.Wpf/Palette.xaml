@@ -28,35 +28,35 @@
       <ColumnDefinition Width="1*" />
     </Grid.ColumnDefinitions>
 
-    <Border Grid.ColumnSpan="3" Background="{DynamicResource PrimaryHueMidBrush}">
-      <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Text="Primary - Mid" />
+    <Border Grid.ColumnSpan="3" Background="{DynamicResource MaterialDesign.Brush.Primary}">
+      <TextBlock Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" Text="Primary - Mid" />
     </Border>
 
     <Border Grid.Row="1"
             Grid.Column="0"
-            Background="{DynamicResource PrimaryHueLightBrush}">
+            Background="{DynamicResource MaterialDesign.Brush.Primary.Light}">
       <TextBlock FontWeight="Bold"
-                 Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+                 Foreground="{DynamicResource MaterialDesign.Brush.Primary.Light.Foreground}"
                  Text="Light" />
     </Border>
 
     <Border Grid.Row="1"
             Grid.Column="1"
-            Background="{DynamicResource PrimaryHueMidBrush}">
-      <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" Text="Mid" />
+            Background="{DynamicResource MaterialDesign.Brush.Primary}">
+      <TextBlock Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" Text="Mid" />
     </Border>
 
     <Border Grid.Row="1"
             Grid.Column="2"
-            Background="{DynamicResource PrimaryHueDarkBrush}">
-      <TextBlock Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Text="Dark" />
+            Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}">
+      <TextBlock Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}" Text="Dark" />
     </Border>
 
     <Border Grid.Row="2"
             Grid.Column="0"
             Grid.ColumnSpan="3"
-            Background="{DynamicResource SecondaryHueMidBrush}">
-      <TextBlock Foreground="{DynamicResource SecondaryHueMidForegroundBrush}" Text="Secondary" />
+            Background="{DynamicResource MaterialDesign.Brush.Secondary}">
+      <TextBlock Foreground="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" Text="Secondary" />
     </Border>
   </Grid>
 </UserControl>

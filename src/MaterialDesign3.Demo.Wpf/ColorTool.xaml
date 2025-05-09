@@ -128,7 +128,7 @@
             <Style x:Key="PaletteButton"
                    TargetType="Button"
                    BasedOn="{StaticResource MaterialDesignRaisedButton}">
-              <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
               <Setter Property="BorderBrush" Value="Transparent" />
               <Setter Property="Height" Value="Auto" />
               <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -171,15 +171,15 @@
                   <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <TextBlock Foreground="{DynamicResource MaterialDesignBody}"
+                <TextBlock Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
                            Style="{StaticResource MaterialDesignBody1TextBlock}"
                            Text="Primary" />
 
                 <!-- Primary mid section -->
-                <Border Grid.Row="1" Background="{DynamicResource PrimaryHueMidBrush}">
+                <Border Grid.Row="1" Background="{DynamicResource MaterialDesign.Brush.Primary}">
                   <Grid>
-                    <TextBlock DataContext="{DynamicResource PrimaryHueMidBrush}"
-                               Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                    <TextBlock DataContext="{DynamicResource MaterialDesign.Brush.Primary}"
+                               Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
                                Style="{StaticResource HexLabelTextBlock}"
                                Text="{Binding Converter={StaticResource BrushToHexConverter}}" />
 
@@ -190,7 +190,7 @@
                         <Style TargetType="Border">
                           <Style.Triggers>
                             <DataTrigger Binding="{Binding ActiveScheme}" Value="Primary">
-                              <Setter Property="Background" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+                              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
                             </DataTrigger>
                           </Style.Triggers>
                         </Style>
@@ -202,10 +202,10 @@
                                  Text="P">
                         <TextBlock.Style>
                           <Style TargetType="TextBlock">
-                            <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+                            <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding ActiveScheme}" Value="Primary">
-                                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -217,16 +217,16 @@
 
                 <UniformGrid Grid.Row="2" Rows="1">
                   <!-- Primary light -->
-                  <Border Background="{DynamicResource PrimaryHueLightBrush}">
-                    <TextBlock DataContext="{DynamicResource PrimaryHueLightBrush}"
-                               Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+                  <Border Background="{DynamicResource MaterialDesign.Brush.Primary.Light}">
+                    <TextBlock DataContext="{DynamicResource MaterialDesign.Brush.Primary.Light}"
+                               Foreground="{DynamicResource MaterialDesign.Brush.Primary.Light.Foreground}"
                                Style="{StaticResource HexLabelTextBlock}"
                                Text="{Binding Converter={StaticResource BrushToHexConverter}}" />
                   </Border>
                   <!-- Primary dark -->
-                  <Border Background="{DynamicResource PrimaryHueDarkBrush}">
-                    <TextBlock DataContext="{DynamicResource PrimaryHueDarkBrush}"
-                               Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                  <Border Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}">
+                    <TextBlock DataContext="{DynamicResource MaterialDesign.Brush.Primary.Dark}"
+                               Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"
                                Style="{StaticResource HexLabelTextBlock}"
                                Text="{Binding Converter={StaticResource BrushToHexConverter}}" />
                   </Border>
@@ -257,15 +257,15 @@
                   <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <TextBlock Foreground="{DynamicResource MaterialDesignBody}"
+                <TextBlock Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
                            Style="{StaticResource MaterialDesignBody1TextBlock}"
                            Text="Secondary" />
 
                 <!-- Secondary mid section -->
-                <Border Grid.Row="1" Background="{DynamicResource SecondaryHueMidBrush}">
+                <Border Grid.Row="1" Background="{DynamicResource MaterialDesign.Brush.Secondary}">
                   <Grid>
-                    <TextBlock DataContext="{DynamicResource SecondaryHueMidBrush}"
-                               Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"
+                    <TextBlock DataContext="{DynamicResource MaterialDesign.Brush.Secondary}"
+                               Foreground="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}"
                                Style="{StaticResource HexLabelTextBlock}"
                                Text="{Binding Converter={StaticResource BrushToHexConverter}}" />
 
@@ -276,7 +276,7 @@
                         <Style TargetType="Border">
                           <Style.Triggers>
                             <DataTrigger Binding="{Binding ActiveScheme}" Value="Secondary">
-                              <Setter Property="Background" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+                              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
                             </DataTrigger>
                           </Style.Triggers>
                         </Style>
@@ -288,10 +288,10 @@
                                  Text="S">
                         <TextBlock.Style>
                           <Style TargetType="TextBlock">
-                            <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+                            <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding ActiveScheme}" Value="Secondary">
-                                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidBrush}" />
+                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -303,17 +303,17 @@
 
                 <UniformGrid Grid.Row="2" Rows="1">
                   <!-- Secondary light -->
-                  <Border Background="{DynamicResource SecondaryHueLightBrush}">
-                    <TextBlock DataContext="{DynamicResource SecondaryHueLightBrush}"
-                               Foreground="{DynamicResource SecondaryHueLightForegroundBrush}"
+                  <Border Background="{DynamicResource MaterialDesign.Brush.Secondary.Light}">
+                    <TextBlock DataContext="{DynamicResource MaterialDesign.Brush.Secondary.Light}"
+                               Foreground="{DynamicResource MaterialDesign.Brush.Secondary.Light.Foreground}"
                                Style="{StaticResource HexLabelTextBlock}"
                                Text="{Binding Converter={StaticResource BrushToHexConverter}}" />
                   </Border>
 
                   <!-- Secondary dark -->
-                  <Border Background="{DynamicResource SecondaryHueDarkBrush}">
-                    <TextBlock DataContext="{DynamicResource SecondaryHueDarkBrush}"
-                               Foreground="{DynamicResource SecondaryHueDarkForegroundBrush}"
+                  <Border Background="{DynamicResource MaterialDesign.Brush.Secondary.Dark}">
+                    <TextBlock DataContext="{DynamicResource MaterialDesign.Brush.Secondary.Dark}"
+                               Foreground="{DynamicResource MaterialDesign.Brush.Secondary.Dark.Foreground}"
                                Style="{StaticResource HexLabelTextBlock}"
                                Text="{Binding Converter={StaticResource BrushToHexConverter}}" />
                   </Border>
@@ -342,14 +342,14 @@
                     <RowDefinition Height="*" />
                   </Grid.RowDefinitions>
 
-                  <TextBlock Foreground="{DynamicResource MaterialDesignBody}"
+                  <TextBlock Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
                              Style="{StaticResource MaterialDesignBody1TextBlock}"
                              Text="Text on Primary" />
 
-                  <Border Grid.Row="1" Background="{DynamicResource PrimaryHueMidBrush}">
+                  <Border Grid.Row="1" Background="{DynamicResource MaterialDesign.Brush.Primary}">
                     <Grid>
-                      <TextBlock DataContext="{DynamicResource PrimaryHueMidForegroundBrush}"
-                                 Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                      <TextBlock DataContext="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
+                                 Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
                                  Style="{StaticResource HexLabelTextBlock}"
                                  Text="{Binding Converter={StaticResource BrushToHexConverter}}" />
 
@@ -360,7 +360,7 @@
                           <Style TargetType="Border">
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding ActiveScheme}" Value="PrimaryForeground">
-                                <Setter Property="Background" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+                                <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -372,10 +372,10 @@
                                    Text="T">
                           <TextBlock.Style>
                             <Style TargetType="TextBlock">
-                              <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+                              <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
                               <Style.Triggers>
                                 <DataTrigger Binding="{Binding ActiveScheme}" Value="PrimaryForeground">
-                                  <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                  <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
                                 </DataTrigger>
                               </Style.Triggers>
                             </Style>
@@ -407,14 +407,14 @@
                     <RowDefinition Height="*" />
                   </Grid.RowDefinitions>
 
-                  <TextBlock Foreground="{DynamicResource MaterialDesignBody}"
+                  <TextBlock Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
                              Style="{StaticResource MaterialDesignBody1TextBlock}"
                              Text="Text on Secondary" />
 
-                  <Border Grid.Row="1" Background="{DynamicResource SecondaryHueMidBrush}">
+                  <Border Grid.Row="1" Background="{DynamicResource MaterialDesign.Brush.Secondary}">
                     <Grid>
-                      <TextBlock DataContext="{DynamicResource SecondaryHueMidForegroundBrush}"
-                                 Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"
+                      <TextBlock DataContext="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}"
+                                 Foreground="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}"
                                  Style="{StaticResource HexLabelTextBlock}"
                                  Text="{Binding Converter={StaticResource BrushToHexConverter}}" />
 
@@ -425,7 +425,7 @@
                           <Style TargetType="Border">
                             <Style.Triggers>
                               <DataTrigger Binding="{Binding ActiveScheme}" Value="SecondaryForeground">
-                                <Setter Property="Background" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+                                <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
                               </DataTrigger>
                             </Style.Triggers>
                           </Style>
@@ -437,10 +437,10 @@
                                    Text="T">
                           <TextBlock.Style>
                             <Style TargetType="TextBlock">
-                              <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+                              <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}" />
                               <Style.Triggers>
                                 <DataTrigger Binding="{Binding ActiveScheme}" Value="SecondaryForeground">
-                                  <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidBrush}" />
+                                  <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Secondary}" />
                                 </DataTrigger>
                               </Style.Triggers>
                             </Style>

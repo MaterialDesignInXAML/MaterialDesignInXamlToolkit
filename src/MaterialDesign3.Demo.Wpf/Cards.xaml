@@ -175,7 +175,7 @@
         <materialDesign:Card Width="200"
                              Padding="0"
                              Background="#03a9f4"
-                             Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                             Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}">
           <Grid>
             <Grid.RowDefinitions>
               <RowDefinition Height="Auto" />
@@ -222,8 +222,8 @@
                         UniqueKey="cards_4">
         <materialDesign:Card Width="200"
                              Padding="8"
-                             Background="{DynamicResource PrimaryHueLightBrush}"
-                             Foreground="{DynamicResource PrimaryHueLightForegroundBrush}">
+                             Background="{DynamicResource MaterialDesign.Brush.Primary.Light}"
+                             Foreground="{DynamicResource MaterialDesign.Brush.Primary.Light.Foreground}">
           <TextBlock FontSize="16" Text="Boring Text" />
         </materialDesign:Card>
       </smtx:XamlDisplay>
@@ -231,8 +231,8 @@
       <smtx:XamlDisplay Margin="4,4,0,16" UniqueKey="cards_5">
         <materialDesign:Card Width="200"
                              Padding="8"
-                             Background="{DynamicResource PrimaryHueDarkBrush}"
-                             Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                             Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}"
+                             Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"
                              UniformCornerRadius="6">
           <TextBlock Text="You can adjust the corner radius" TextWrapping="Wrap" />
         </materialDesign:Card>
@@ -244,8 +244,8 @@
                       UniqueKey="cards_6">
       <materialDesign:Card Width="200"
                            Padding="8"
-                           Background="{DynamicResource PrimaryHueDarkBrush}"
-                           Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                           Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}"
+                           Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}">
         <StackPanel>
           <TextBlock Margin="16,16,12,8"
                      FontSize="16"

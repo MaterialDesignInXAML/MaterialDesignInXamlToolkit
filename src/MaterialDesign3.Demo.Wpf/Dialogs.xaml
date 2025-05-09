@@ -94,7 +94,7 @@
           </materialDesign:DialogHost.DialogContent>
 
           <Border MinHeight="256"
-                  BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                  BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}"
                   BorderThickness="1"
                   ClipToBounds="True">
             <Grid>
@@ -226,11 +226,11 @@
                                    DialogContent="{Binding Sample4Content}"
                                    DialogTheme="Inherit"
                                    IsOpen="{Binding IsSample4DialogOpen}"
-                                   OverlayBackground="{DynamicResource PrimaryHueDarkBrush}">
+                                   OverlayBackground="{DynamicResource MaterialDesign.Brush.Primary.Dark}">
 
           <Border MinWidth="256"
                   MinHeight="256"
-                  BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                  BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}"
                   BorderThickness="1"
                   ClipToBounds="True">
             <Button HorizontalAlignment="Center"
@@ -291,7 +291,7 @@
           </materialDesign:DialogHost.DialogContent>
 
           <Border HorizontalAlignment="Stretch"
-                  BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                  BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}"
                   BorderThickness="1"
                   ClipToBounds="True">
             <Grid>

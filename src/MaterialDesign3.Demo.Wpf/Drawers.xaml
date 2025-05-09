@@ -37,16 +37,16 @@
                                  Margin="32"
                                  HorizontalAlignment="Center"
                                  VerticalAlignment="Center"
-                                 BorderBrush="{DynamicResource MaterialDesignDivider}"
+                                 BorderBrush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
                                  BorderThickness="2"
-                                 BottomDrawerBackground="{DynamicResource SecondaryHueLightBrush}"
+                                 BottomDrawerBackground="{DynamicResource MaterialDesign.Brush.Secondary.Light}"
                                  BottomDrawerCornerRadius="20 20 0 0">
 
         <materialDesign:DrawerHost.Style>
           <Style TargetType="materialDesign:DrawerHost" BasedOn="{StaticResource {x:Type materialDesign:DrawerHost}}">
             <Style.Triggers>
               <DataTrigger Binding="{Binding IsChecked, ElementName=BackgroundToggle}" Value="True">
-                <Setter Property="OverlayBackground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                <Setter Property="OverlayBackground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
               </DataTrigger>
             </Style.Triggers>
           </Style>
@@ -123,7 +123,7 @@
                       Orientation="Horizontal">
             <TextBlock Margin="4"
                        VerticalAlignment="Center"
-                       Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"
+                       Foreground="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}"
                        Text="BOTTOM BRACKET" />
 
             <Button Margin="4"

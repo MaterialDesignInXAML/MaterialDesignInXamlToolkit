@@ -26,7 +26,7 @@
     <StackPanel Margin="20,0">
       <TextBlock HorizontalAlignment="Center" Text="Custom Icon Size" />
       <smtx:XamlDisplay VerticalAlignment="Top" UniqueKey="navrail_1">
-        <Grid Width="80" Background="{DynamicResource MaterialDesignCardBackground}">
+        <Grid Width="80" Background="{DynamicResource MaterialDesign.Brush.Card.Background}">
           <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
@@ -36,7 +36,7 @@
                   Height="56"
                   Margin="0,40,0,80"
                   materialDesign:ButtonAssist.CornerRadius="16"
-                  Background="{DynamicResource SecondaryHueMidBrush}"
+                  Background="{DynamicResource MaterialDesign.Brush.Secondary}"
                   BorderThickness="0"
                   Foreground="{DynamicResource SecondaryHueMidBrushForeground}">
             <materialDesign:PackIcon Width="24"
@@ -86,7 +86,7 @@
     <StackPanel Margin="20,0">
       <TextBlock HorizontalAlignment="Center" Text="MVVM" />
       <smtx:XamlDisplay UniqueKey="navrail_2">
-        <Grid Width="80" Background="{DynamicResource MaterialDesignCardBackground}">
+        <Grid Width="80" Background="{DynamicResource MaterialDesign.Brush.Card.Background}">
           <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
@@ -100,7 +100,7 @@
                   Height="56"
                   Margin="0,10,0,40"
                   materialDesign:ButtonAssist.CornerRadius="16"
-                  Background="{DynamicResource SecondaryHueMidBrush}"
+                  Background="{DynamicResource MaterialDesign.Brush.Secondary}"
                   BorderThickness="0"
                   Click="Button_Click"
                   Foreground="{DynamicResource SecondaryHueMidBrushForeground}"
@@ -136,7 +136,7 @@
     <StackPanel Margin="20,0">
       <TextBlock HorizontalAlignment="Center" Text="Without Text" />
       <smtx:XamlDisplay UniqueKey="navrail_3">
-        <Grid Width="80" Background="{DynamicResource MaterialDesignCardBackground}">
+        <Grid Width="80" Background="{DynamicResource MaterialDesign.Brush.Card.Background}">
           <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
@@ -146,7 +146,7 @@
                   Height="56"
                   Margin="0,37,0,80"
                   materialDesign:ButtonAssist.CornerRadius="16"
-                  Background="{DynamicResource SecondaryHueMidBrush}"
+                  Background="{DynamicResource MaterialDesign.Brush.Secondary}"
                   BorderThickness="0"
                   Click="Button_Click_1"
                   Foreground="{DynamicResource SecondaryHueMidBrushForeground}"
@@ -316,7 +316,7 @@
       <TextBlock HorizontalAlignment="Center" Text="Custom Size" />
       <StackPanel Orientation="Horizontal">
         <smtx:XamlDisplay UniqueKey="navrail_6">
-          <Grid Width="120" Background="{DynamicResource MaterialDesignCardBackground}">
+          <Grid Width="120" Background="{DynamicResource MaterialDesign.Brush.Card.Background}">
             <Grid.RowDefinitions>
               <RowDefinition Height="auto" />
               <RowDefinition Height="*" />
@@ -326,7 +326,7 @@
                     Height="96"
                     Margin="0,60,0,120"
                     materialDesign:ButtonAssist.CornerRadius="28"
-                    Background="{DynamicResource SecondaryHueMidBrush}"
+                    Background="{DynamicResource MaterialDesign.Brush.Secondary}"
                     BorderThickness="0"
                     Foreground="{DynamicResource SecondaryHueMidBrushForeground}"
                     Style="{StaticResource MaterialDesignFlatMidBgButton}">

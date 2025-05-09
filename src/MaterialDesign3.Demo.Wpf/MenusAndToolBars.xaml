@@ -201,17 +201,17 @@
           <MenuItem Header="Item 2" />
           <MenuItem Header="Item 3" />
         </MenuItem>
-        <MenuItem Background="{DynamicResource PrimaryHueMidBrush}"
-                  Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+        <MenuItem Background="{DynamicResource MaterialDesign.Brush.Primary}"
+                  Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
                   Header="In Color">
-          <MenuItem Background="{DynamicResource SecondaryHueMidBrush}"
-                    Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"
+          <MenuItem Background="{DynamicResource MaterialDesign.Brush.Secondary}"
+                    Foreground="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}"
                     Header="Item 1" />
-          <MenuItem Background="{DynamicResource SecondaryHueMidBrush}"
-                    Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"
+          <MenuItem Background="{DynamicResource MaterialDesign.Brush.Secondary}"
+                    Foreground="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}"
                     Header="Item 2" />
-          <MenuItem Background="{DynamicResource SecondaryHueMidBrush}"
-                    Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"
+          <MenuItem Background="{DynamicResource MaterialDesign.Brush.Secondary}"
+                    Foreground="{DynamicResource MaterialDesign.Brush.Secondary.Foreground}"
                     Header="Item 3" />
         </MenuItem>
         <MenuItem Foreground="Crimson" Header="(1) Important">
