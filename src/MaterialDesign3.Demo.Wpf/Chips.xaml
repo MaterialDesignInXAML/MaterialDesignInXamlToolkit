@@ -55,8 +55,8 @@
 
         <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_5">
           <materialDesign:Chip Content="Twitter"
-                               IconBackground="{DynamicResource PrimaryHueDarkBrush}"
-                               IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                               IconBackground="{DynamicResource MaterialDesign.Brush.Primary.Dark}"
+                               IconForeground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}">
             <materialDesign:Chip.Icon>
               <materialDesign:PackIcon Kind="Twitter" />
             </materialDesign:Chip.Icon>
@@ -93,8 +93,8 @@
         <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_9">
           <materialDesign:Chip Content="ZNA Inc"
                                Icon="Z"
-                               IconBackground="{DynamicResource PrimaryHueLightBrush}"
-                               IconForeground="{DynamicResource PrimaryHueLightForegroundBrush}"
+                               IconBackground="{DynamicResource MaterialDesign.Brush.Primary.Light}"
+                               IconForeground="{DynamicResource MaterialDesign.Brush.Primary.Light.Foreground}"
                                IsDeletable="True" />
         </smtx:XamlDisplay>
       </WrapPanel>
@@ -126,8 +126,8 @@
 
         <smtx:XamlDisplay Margin="0,0,4,4" UniqueKey="chips_38">
           <materialDesign:Chip Content="Twitter"
-                               IconBackground="{DynamicResource PrimaryHueDarkBrush}"
-                               IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                               IconBackground="{DynamicResource MaterialDesign.Brush.Primary.Dark}"
+                               IconForeground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"
                                Style="{StaticResource MaterialDesignOutlineChip}">
             <materialDesign:Chip.Icon>
               <materialDesign:PackIcon Kind="Twitter" />
@@ -140,7 +140,7 @@
     <StackPanel Grid.Row="2">
       <Rectangle Height="1"
                  Margin="0,24,0,0"
-                 Fill="{DynamicResource MaterialDesignDivider}" />
+                 Fill="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
       <TextBlock Style="{StaticResource ChipsHeadline}" Text="Filter Chips" />
     </StackPanel>
 
@@ -257,7 +257,7 @@
     <StackPanel Grid.Row="4">
       <Rectangle Height="1"
                  Margin="0,24,0,0"
-                 Fill="{DynamicResource MaterialDesignDivider}" />
+                 Fill="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
       <TextBlock Style="{StaticResource ChipsHeadline}" Text="Choice Chips" />
     </StackPanel>
 

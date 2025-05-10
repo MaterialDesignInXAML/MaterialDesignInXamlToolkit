@@ -47,7 +47,7 @@
     <Border Grid.Row="0"
             Grid.Column="1"
             Padding="8,0,8,0"
-            Background="{DynamicResource MaterialDesignPaper}">
+            Background="{DynamicResource MaterialDesign.Brush.Background}">
       <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
           <StackPanel.Resources>
@@ -136,7 +136,7 @@
     <Border Grid.Row="0"
             Grid.Column="3"
             Padding="8,0,8,0"
-            Background="{DynamicResource MaterialDesignPaper}">
+            Background="{DynamicResource MaterialDesign.Brush.Background}">
       <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
           <StackPanel.Resources>
@@ -186,7 +186,7 @@
     <Border Grid.Row="1"
             Grid.Column="0"
             Grid.ColumnSpan="2"
-            Background="{DynamicResource MaterialDesignChipBackground}">
+            Background="{DynamicResource MaterialDesign.Brush.Chip.Background}">
       <StackPanel VerticalAlignment="Bottom">
         <StackPanel Margin="0,0,0,32"
                     HorizontalAlignment="Center"
@@ -268,7 +268,7 @@
     <Border Grid.Row="1"
             Grid.Column="3"
             Padding="8,0,8,0"
-            Background="{DynamicResource MaterialDesignPaper}">
+            Background="{DynamicResource MaterialDesign.Brush.Background}">
       <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
           <StackPanel.Resources>

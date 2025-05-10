@@ -122,7 +122,7 @@
             <DataTemplate DataType="{x:Type domain:SelectableViewModel}">
               <Border x:Name="Border"
                       Padding="8"
-                      BorderBrush="{DynamicResource MaterialDesignDivider}"
+                      BorderBrush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
                       BorderThickness="0,0,0,1">
                 <Grid>
                   <Grid.ColumnDefinitions>

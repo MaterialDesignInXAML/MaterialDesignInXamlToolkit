@@ -23,7 +23,7 @@
     </Style>
 
     <Style x:Key="HorizontalDividerBorder" TargetType="{x:Type Border}">
-      <Setter Property="Background" Value="{DynamicResource MaterialDesignDivider}" />
+      <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}" />
       <Setter Property="Height" Value="1" />
       <Setter Property="HorizontalAlignment" Value="Stretch" />
       <Setter Property="UseLayoutRounding" Value="True" />
@@ -54,7 +54,7 @@
           <Expander HorizontalAlignment="Stretch" Header="Expander Example 1a">
             <StackPanel Margin="24,8,24,16"
                         Orientation="Vertical"
-                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                        TextBlock.Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">
               <TextBlock Text="Your Content" />
               <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
             </StackPanel>
@@ -65,7 +65,7 @@
                     Header="Expander Example 1b">
             <StackPanel Margin="24,8,24,16"
                         Orientation="Vertical"
-                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                        TextBlock.Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">
               <TextBlock Text="Your Content" />
               <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
             </StackPanel>
@@ -74,7 +74,7 @@
           <Expander HorizontalAlignment="Stretch" Header="Expander Example 1c">
             <StackPanel Margin="24,8,24,16"
                         Orientation="Vertical"
-                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                        TextBlock.Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">
               <TextBlock Text="Your Content" />
               <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
             </StackPanel>
@@ -85,7 +85,7 @@
                     Header="Custom Header Padding">
             <StackPanel Margin="24,8,24,16"
                         Orientation="Vertical"
-                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                        TextBlock.Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">
               <TextBlock Text="Your Content" />
               <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
             </StackPanel>
@@ -102,7 +102,7 @@
             <Expander HorizontalAlignment="Stretch" Header="Expander Example 2a">
               <StackPanel Margin="24,8,24,16"
                           Orientation="Vertical"
-                          TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                          TextBlock.Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">
                 <TextBlock Text="Your Content" />
                 <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
               </StackPanel>
@@ -113,7 +113,7 @@
             <Expander HorizontalAlignment="Stretch" Header="Expander Example 2b">
               <StackPanel Margin="24,8,24,16"
                           Orientation="Vertical"
-                          TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                          TextBlock.Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">
                 <TextBlock Text="Your Content" />
                 <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
               </StackPanel>
@@ -124,7 +124,7 @@
             <Expander HorizontalAlignment="Stretch" Header="Expander Example 2c">
               <StackPanel Margin="24,8,24,16"
                           Orientation="Vertical"
-                          TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                          TextBlock.Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">
                 <TextBlock Text="Your Content" />
                 <TextBlock Style="{StaticResource HorizontalExpanderContentTextBlock}" />
               </StackPanel>
@@ -153,7 +153,7 @@
 
             <StackPanel Margin="8,24,16,24"
                         Orientation="Vertical"
-                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                        TextBlock.Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">
               <TextBlock Text="Your Content" />
               <TextBlock Style="{StaticResource VerticalExpanderContentTextBlock}" />
             </StackPanel>
@@ -172,7 +172,7 @@
 
             <StackPanel Margin="8,24,16,24"
                         Orientation="Vertical"
-                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                        TextBlock.Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">
               <TextBlock Text="Your Content" />
               <TextBlock Style="{StaticResource VerticalExpanderContentTextBlock}" />
             </StackPanel>
@@ -191,7 +191,7 @@
 
             <StackPanel Margin="8,24,16,24"
                         Orientation="Vertical"
-                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                        TextBlock.Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">
               <TextBlock Text="Your Content" />
               <TextBlock Style="{StaticResource VerticalExpanderContentTextBlock}" />
             </StackPanel>
@@ -210,7 +210,7 @@
 
             <StackPanel Margin="8,24,16,24"
                         Orientation="Vertical"
-                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                        TextBlock.Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">
               <TextBlock Text="Your Content" />
               <TextBlock Style="{StaticResource VerticalExpanderContentTextBlock}" />
             </StackPanel>

@@ -171,7 +171,7 @@
                       Margin="0,0,20,0"
                       Padding="2"
                       HorizontalAlignment="Center"
-                      BorderBrush="{DynamicResource MaterialDesignBody}"
+                      BorderBrush="{DynamicResource MaterialDesign.Brush.Foreground}"
                       BorderThickness="1"
                       CornerRadius="4">
                 <materialDesign:PackIcon Width="40"

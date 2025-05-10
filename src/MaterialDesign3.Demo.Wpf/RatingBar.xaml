@@ -39,7 +39,7 @@
                 <TextBlock HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            FontSize="8"
-                           Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                           Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
                            Text="{Binding}" />
               </Grid>
             </DataTemplate>

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.ComponentModel;
 using MaterialDesignThemes.UITests.Samples.AutoSuggestBoxes;
 using MaterialDesignThemes.UITests.Samples.AutoSuggestTextBoxes;
@@ -199,6 +198,38 @@ public class AutoSuggestBoxTests : TestBase
         //Assert that the first item is selected after pressing ArrowDown
         await suggestBox.SendInput(new KeyboardInput(Key.Down));
         Assert.Equal(0, await suggestionListBox.GetSelectedIndex());
+    }
+
+    [Fact]
+    [Description("Issue 3845")]
+    public async Task AutoSuggestBox_SelectingAnItem_SetsSelectedItem()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        //Arrange
+        IVisualElement userControl = await LoadUserControl<AutoSuggestTextBoxWithCollectionView>();
+        IVisualElement<AutoSuggestBox> suggestBox = await userControl.GetElement<AutoSuggestBox>();
+        IVisualElement<Popup> popup = await suggestBox.GetElement<Popup>();
+        IVisualElement<ListBox> suggestionListBox = await popup.GetElement<ListBox>();
+
+        //Act
+        await suggestBox.MoveKeyboardFocus();
+        await Task.Delay(50);
+        await suggestBox.SendKeyboardInput($"B{Key.Down}{Key.Enter}");
+        await Task.Delay(50);
+
+        //Assert
+        string? selectedItem = (await suggestBox.GetSelectedItem()) as string;
+        Assert.Equal("Bananas", selectedItem);
+
+        static void AssertViewModelProperty(AutoSuggestBox autoSuggestBox)
+        {
+            var viewModel = (AutoSuggestTextBoxWithCollectionViewViewModel)autoSuggestBox.DataContext;
+            Assert.Equal("Bananas", viewModel.SelectedItem);
+        }
+        await suggestBox.RemoteExecute(AssertViewModelProperty);
+
+        recorder.Success();
     }
 
     private static async Task AssertExists(IVisualElement<ListBox> suggestionListBox, string text, bool existsOrNotCheck = true)
