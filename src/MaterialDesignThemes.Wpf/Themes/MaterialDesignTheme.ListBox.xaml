@@ -241,6 +241,7 @@
     <Setter Property="wpf:ListBoxItemAssist.HoverBackground" Value="{Binding Foreground, RelativeSource={RelativeSource Self}, Converter={x:Static converters:BrushOpacityConverter.Instance}, ConverterParameter=0.1}" />
     <Setter Property="wpf:ListBoxItemAssist.SelectedFocusedBackground" Value="{Binding Foreground, RelativeSource={RelativeSource Self}, Converter={x:Static converters:BrushOpacityConverter.Instance}, ConverterParameter=0.18}" />
     <Setter Property="wpf:ListBoxItemAssist.SelectedUnfocusedBackground" Value="{Binding Foreground, RelativeSource={RelativeSource Self}, Converter={x:Static converters:BrushOpacityConverter.Instance}, ConverterParameter=0.09}" />
+    <Setter Property="Cursor" Value="{Binding Path=(wpf:ListBoxItemAssist.Cursor), RelativeSource={RelativeSource AncestorType=ListBox}}"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ListBoxItem}">
@@ -423,6 +424,7 @@
     <Setter Property="Margin" Value="4,2,4,2" />
     <Setter Property="Padding" Value="8" />
     <Setter Property="SnapsToDevicePixels" Value="True" />
+    <Setter Property="Cursor" Value="{Binding Path=(wpf:ListBoxItemAssist.Cursor), RelativeSource={RelativeSource AncestorType=ListBox}}"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ListBoxItem}">
