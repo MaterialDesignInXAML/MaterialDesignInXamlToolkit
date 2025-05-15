@@ -1,4 +1,5 @@
 using System.Collections;
+using System.ComponentModel;
 using System.Windows.Media;
 
 namespace MaterialDesignThemes.UITests.WPF.TreeListViews;
@@ -1069,6 +1070,7 @@ public class TreeListViewTests : TestBase
     }
 
     [Fact]
+    [Description($"When collapsing a parent node all child nodes are visually removed (due to its impl.) from the ListView. A selected child nodes should stay in the {nameof(TreeListView.SelectedItems)} DP even when collapsing its parent.")]
     public async Task TreeListView_CollapsingParentOfSelectedChild_DoesNotRemoveChildFromSelectedItems()
     {
         await using var recorder = new TestRecorder(App);
