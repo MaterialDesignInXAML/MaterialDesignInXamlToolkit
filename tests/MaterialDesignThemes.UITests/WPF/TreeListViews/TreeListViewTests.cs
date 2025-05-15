@@ -521,7 +521,6 @@ public class TreeListViewTests : TestBase
 
         await AssertTreeItemContent(treeListView, 0, "0");
         await AssertTreeItemContent(treeListView, 1, "2");
-
         recorder.Success();
     }
 
@@ -932,7 +931,6 @@ public class TreeListViewTests : TestBase
 
         // NOTE: This may not be needed, I am not entirely sure.
         item1 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[2]");
-
         // Expand item "1"
         await item1.LeftClickExpander();
 
