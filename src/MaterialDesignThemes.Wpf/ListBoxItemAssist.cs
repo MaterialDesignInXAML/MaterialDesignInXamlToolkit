@@ -61,4 +61,15 @@ public static class ListBoxItemAssist
     public static readonly DependencyProperty ShowSelectionProperty =
         DependencyProperty.RegisterAttached("ShowSelection", typeof(bool), typeof(ListBoxItemAssist), new PropertyMetadata(true));
     #endregion
+
+    #region Cursor
+    public static Cursor GetCursor(DependencyObject obj)
+        => (Cursor)obj.GetValue(CursorProperty);
+
+    public static void SetCursor(DependencyObject obj, Cursor value)
+        => obj.SetValue(CursorProperty, value);
+
+    public static readonly DependencyProperty CursorProperty =
+        DependencyProperty.RegisterAttached("Cursor", typeof(Cursor), typeof(ListBoxItemAssist), new PropertyMetadata(Cursors.Hand));
+    #endregion
 }
