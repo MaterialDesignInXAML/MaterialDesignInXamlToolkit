@@ -20,7 +20,7 @@ public class TreeListView : ListView
 
     internal TreeListViewItemsCollection? InternalItemsSource { get; set; }
 
-    internal bool IsCollapsingItem { get; set; } = false;
+    private bool IsCollapsingItem { get; set; }
     public new IList SelectedItems
     {
         get => (IList)GetValue(SelectedItemsProperty);
@@ -88,16 +88,13 @@ public class TreeListView : ListView
         // Add newly selected
         foreach (var item in e.AddedItems)
         {
-            if (!SelectedItems.Contains(item))
-            {
-                SelectedItems.Add(item);
-            }
+            SelectedItems.Add(item);
         }
     }
 
     private void SelectedItems_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
-        // NB: Everytime we modify the base.SelectedItems we have to unsubscribe from the SelectionChanged event
+        // NB: Every time we modify the base.SelectedItems we have to unsubscribe from the SelectionChanged event
         //     The base.SelectedItems only contains the visually selected items,
         //     while the SelectedItems contains all selected items, even ones which are not "visible"
         this.SelectionChanged -= TreeListView_SelectionChanged;
@@ -122,10 +119,7 @@ public class TreeListView : ListView
 
             foreach (var item in e.NewItems ?? Array.Empty<object>())
             {
-                if (!base.SelectedItems.Contains(item))
-                {
-                    base.SelectedItems.Add(item);
-                }
+                base.SelectedItems.Add(item);
             }
         }
 
@@ -210,7 +204,7 @@ public class TreeListView : ListView
                 {
                     itemsSource.InsertWithLevel(i + index + 1, children[i], parentLevel + 1);
                 }
-                // if a node, which has a selected childs, is expanded (added) we need to visually select the child (i.e.: update base.SelectedItems)
+                // if a node, which has a selected child, is expanded (added) we need to visually select the child (i.e.: update base.SelectedItems)
                 SyncUISelectionWithSelectedItems();
             }
             else
@@ -343,7 +337,7 @@ public class TreeListView : ListView
 
     private List<object?> GetExpandedChildrenAndGrandChildren(object? dataItem)
     {
-        List<object?> expandedChildren = new();
+        List<object?> expandedChildren = [];
         if (dataItem is null || ItemContainerGenerator.ContainerFromItem(dataItem) is not TreeListViewItem { IsExpanded: true } container)
             return expandedChildren;
 

@@ -41,12 +41,9 @@ public partial class TreeListViewImplicitTemplate
         }
     }
 
-    private void RemoveItem(IList<TreeItem> items, TreeItem toRemove)
+    private static void RemoveItem(IList<TreeItem> items, TreeItem toRemove)
     {
-        if (items.Contains(toRemove))
-        {
-            items.Remove(toRemove);
-        }
+        items.Remove(toRemove);
         foreach (TreeItem item in items)
         {
             RemoveItem(item.Children, toRemove);
