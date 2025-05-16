@@ -27,7 +27,7 @@ public static class TabAssist
         => element.SetValue(HeaderPanelMarginProperty, value);
 
     public static Thickness GetHeaderPanelMargin(DependencyObject element)
-        => (Thickness) element.GetValue(HeaderPanelMarginProperty);
+        => (Thickness)element.GetValue(HeaderPanelMarginProperty);
 
     internal static Visibility GetBindableIsItemsHost(DependencyObject obj)
         => (Visibility)obj.GetValue(BindableIsItemsHostProperty);
@@ -45,4 +45,13 @@ public static class TabAssist
             panel.IsItemsHost = (Visibility)e.NewValue == Visibility.Visible;
         }
     }
+
+    public static Cursor GetTabHeaderCursor(DependencyObject obj)
+        => (Cursor)obj.GetValue(TabHeaderCursorProperty);
+
+    public static void SetTabHeaderCursor(DependencyObject obj, Cursor value)
+        => obj.SetValue(TabHeaderCursorProperty, value);
+
+    public static readonly DependencyProperty TabHeaderCursorProperty =
+        DependencyProperty.RegisterAttached("TabHeaderCursor", typeof(Cursor), typeof(TabAssist), new PropertyMetadata(Cursors.Hand));
 }
