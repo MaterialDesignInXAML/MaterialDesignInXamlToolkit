@@ -22,7 +22,7 @@
         If you would prefer to use your own colors, there is an option for that as well:
         PrimaryColor and SecondaryColor also support the constant string "Inherit" to specify the color should use the system theme accent color
         -->
-        <materialDesign:CustomColorTheme BaseTheme="Light" PrimaryColor="Aqua" SecondaryColor="#FF006400" />
+        <!--<materialDesign:CustomColorTheme BaseTheme="Light" PrimaryColor="Aqua" SecondaryColor="#FF006400" />-->
 
         <!-- You can also use the built-in theme dictionaries: -->
         <!--
