@@ -81,6 +81,7 @@
     <Setter Property="IconBackground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="IconForeground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
     <Setter Property="Margin" Value="4" />
+    <Setter Property="Padding" Value="8,0,12,0" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type wpf:Chip}">
@@ -123,7 +124,7 @@
             </ContentControl>
             <ContentControl x:Name="TextBlock"
                             Grid.Column="1"
-                            Margin="8,0,12,0"
+                            Margin="{TemplateBinding Padding}"
                             VerticalAlignment="Center"
                             Content="{TemplateBinding Content}"
                             ContentStringFormat="{TemplateBinding ContentStringFormat}"
@@ -175,6 +176,7 @@
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Chip.OutlineBorder}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
+    <Setter Property="Padding" Value="8,0,12,0" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type wpf:Chip}">
@@ -248,7 +250,7 @@
             </ContentControl>
             <ContentControl x:Name="TextBlock"
                             Grid.Column="1"
-                            Margin="8,0,12,0"
+                            Margin="{TemplateBinding Padding}"
                             VerticalAlignment="Center"
                             Content="{TemplateBinding Content}"
                             ContentStringFormat="{TemplateBinding ContentStringFormat}"
