@@ -108,7 +108,7 @@
           </ControlTemplate.Resources>
           <Grid>
             <ToggleButton x:Name="PART_Toggle"
-                          VerticalAlignment="Center"
+                          VerticalAlignment="Stretch"
                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                           Content="{TemplateBinding ToggleContent}"
