@@ -1,10 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Threading;
 using System.Windows.Threading;
-using TUnit.Core;
-using TUnit.Assertions;
-using TUnit.Assertions.Extensions;
-using System.Threading.Tasks;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
@@ -33,7 +29,7 @@ public class DialogHostTests : IDisposable
         _dialogHost.IsOpen = false;
 
         await Assert.That(_dialogHost.IsOpen).IsFalse();
-        Assert.Null(_dialogHost.CurrentSession);
+        await Assert.That(_dialogHost.CurrentSession).IsNull();
         Assert.True(session?.IsEnded);
     }
 
@@ -142,7 +138,7 @@ public class DialogHostTests : IDisposable
         otherDialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
 
 
-        await Assert.That(especially where multiple Windows are a concern.", ex.Message).IsEqualTo("Multiple viable DialogHosts. Specify a unique Identifier on each DialogHost);
+        await Assert.That(ex.Message).IsEqualTo("Multiple viable DialogHosts. Specify a unique Identifier on each DialogHost especially where multiple Windows are a concern.");
     }
 
     [Test, STAThreadExecutor]

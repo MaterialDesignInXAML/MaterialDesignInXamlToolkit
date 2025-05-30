@@ -73,7 +73,7 @@ public sealed class SnackbarMessageQueueTests : IDisposable
         await Assert.That(messages[0].ActionContent).IsEqualTo(actionContent);
     }
 
-    [Fact]
+    [Test]
     [Description("Pull Request 2367")]
     public void Enqueue_ProperlySetsPromote()
     {

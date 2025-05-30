@@ -129,7 +129,7 @@ public class RatingBarTests
         await Assert.That(ratingBar.Value).IsEqualTo(expectedValue);
     }
 
-    [Fact]
+    [Test]
     public void TextBlockForegroundConverter_ShouldReturnOriginalBrush_WhenValueIsEqualToButtonValue()
     {
         // Arrange
@@ -144,7 +144,7 @@ public class RatingBarTests
         await Assert.That(result).IsEqualTo(brush);
     }
 
-    [Fact]
+    [Test]
     public void TextBlockForegroundConverter_ShouldReturnOriginalBrush_WhenValueIsGreaterThanButtonValue()
     {
         // Arrange
@@ -159,7 +159,7 @@ public class RatingBarTests
         await Assert.That(result).IsEqualTo(brush);
     }
 
-    [Fact]
+    [Test]
     public void TextBlockForegroundConverter_ShouldReturnSemiTransparentBrush_WhenValueIsLessThanButtonValueMinusOne()
     {
         // Arrange
@@ -176,7 +176,7 @@ public class RatingBarTests
         await Assert.That(resultBrush.Color.A).IsEqualTo(RatingBar.TextBlockForegroundConverter.SemiTransparent);
     }
 
-    [Fact]
+    [Test]
     public void TextBlockForegroundConverter_ShouldReturnHorizontalLinearGradientBrush_WhenValueIsBetweenButtonValueAndButtonValueMinusOne()
     {
         // Arrange
@@ -194,7 +194,7 @@ public class RatingBarTests
         await Assert.That(0.5), resultBrush.EndPoint).IsEqualTo(new Point(1);
     }
 
-    [Fact]
+    [Test]
     public void TextBlockForegroundConverter_ShouldReturnVerticalLinearGradientBrush_WhenValueIsBetweenButtonValueAndButtonValueMinusOne()
     {
         // Arrange
@@ -212,7 +212,7 @@ public class RatingBarTests
         await Assert.That(1), resultBrush.EndPoint).IsEqualTo(new Point(0.5);
     }
 
-    [Fact]
+    [Test]
     public void TextBlockForegroundConverter_ShouldReturnFractionalGradientStops_WhenValueCovers10PercentOfButtonValue()
     {
         // Arrange
@@ -235,7 +235,7 @@ public class RatingBarTests
         await Assert.That(stop2.Color).IsEqualTo(brush.Color.WithAlphaChannel(RatingBar.TextBlockForegroundConverter.SemiTransparent));
     }
 
-    [Fact]
+    [Test]
     public void TextBlockForegroundConverter_ShouldReturnFractionalGradientStops_WhenValueCovers10PercentOfButtonValueAndDirectionIsInverted()
     {
         // Arrange
@@ -258,7 +258,7 @@ public class RatingBarTests
         await Assert.That(stop2.Color).IsEqualTo(brush.Color);
     }
 
-    [Fact]
+    [Test]
     public void TextBlockForegroundConverter_ShouldReturnFractionalGradientStops_WhenValueCovers42PercentOfButtonValue()
     {
         // Arrange
@@ -281,7 +281,7 @@ public class RatingBarTests
         await Assert.That(stop2.Color).IsEqualTo(brush.Color.WithAlphaChannel(RatingBar.TextBlockForegroundConverter.SemiTransparent));
     }
 
-    [Fact]
+    [Test]
     public void TextBlockForegroundConverter_ShouldReturnFractionalGradientStops_WhenValueCovers87PercentOfButtonValue()
     {
         // Arrange
@@ -307,7 +307,7 @@ public class RatingBarTests
     private static object[] Arrange_TextBlockForegroundConverterValues(SolidColorBrush brush, double value, int buttonValue, Orientation orientation = Orientation.Horizontal, bool invertDirection = false) =>
         new object[] { brush, orientation, invertDirection, value, buttonValue };
 
-    [Fact]
+    [Test]
     public void PreviewIndicatorTransformXConverter_ShouldCenterPreviewIndicator_WhenFractionalValuesAreDisabledAndOrientationIsHorizontal()
     {
         // Arrange
@@ -322,7 +322,7 @@ public class RatingBarTests
         await Assert.That(result).IsEqualTo(40.0); // 50% of 100 minus 20/2
     }
 
-    [Theory]
+    [Test]
     [Arguments(false, 15.0)] // 25% of 100 minus 20/2
     [Arguments(true, 65.0)]  // 75% of 100 minus 20/2
     public void PreviewIndicatorTransformXConverter_ShouldOffsetPreviewIndicatorByPercentage_WhenFractionalValuesAreEnabledAndOrientationIsHorizontal(bool invertDirection, double expectedValue)
@@ -339,7 +339,7 @@ public class RatingBarTests
         await Assert.That(result).IsEqualTo(expectedValue); 
     }
 
-    [Fact]
+    [Test]
     public void PreviewIndicatorTransformXConverter_ShouldPlacePreviewIndicatorWithSmallMargin_WhenFractionalValuesAreDisabledAndOrientationIsVertical()
     {
         // Arrange
@@ -355,7 +355,7 @@ public class RatingBarTests
         await Assert.That(result).IsEqualTo(expectedValue); // 100% of 20 minus fixed margin
     }
 
-    [Fact]
+    [Test]
     public void PreviewIndicatorTransformXConverter_ShouldPlacePreviewIndicatorWithSmallMargin_WhenFractionalValuesAreEnabledAndOrientationIsVertical()
     {
         // Arrange
@@ -376,7 +376,7 @@ public class RatingBarTests
     private static object[] Arrange_PreviewIndicatorTransformXConverterValues(double ratingBarButtonActualWidth, double previewValueActualWidth, Orientation orientation, bool invertDirection, bool isFractionalValueEnabled, double previewValue, int buttonValue) =>
         new object[] { ratingBarButtonActualWidth, previewValueActualWidth, orientation, invertDirection, isFractionalValueEnabled, previewValue, buttonValue };
 
-    [Fact]
+    [Test]
     public void PreviewIndicatorTransformYConverter_ShouldPlacePreviewIndicatorWithSmallMargin_WhenFractionalValuesAreDisabledAndOrientationIsHorizontal()
     {
         // Arrange
@@ -392,7 +392,7 @@ public class RatingBarTests
         await Assert.That(result).IsEqualTo(expectedValue); // 100% of 20 minus fixed margin
     }
 
-    [Fact]
+    [Test]
     public void PreviewIndicatorTransformYConverter_ShouldPlacePreviewIndicatorWithSmallMargin_WhenFractionalValuesAreEnabledAndOrientationIsHorizontal()
     {
         // Arrange
@@ -408,7 +408,7 @@ public class RatingBarTests
         await Assert.That(result).IsEqualTo(expectedValue); // 100% of 20 minus fixed margin
     }
 
-    [Fact]
+    [Test]
     public void PreviewIndicatorTransformYConverter_ShouldCenterPreviewIndicator_WhenFractionalValuesAreDisabledAndOrientationIsVertical()
     {
         // Arrange
@@ -423,7 +423,7 @@ public class RatingBarTests
         await Assert.That(result).IsEqualTo(40.0); // 50% of 100 minus 20/2
     }
 
-    [Theory]
+    [Test]
     [Arguments(false, 15.0)] // 25% of 100 minus 20/2
     [Arguments(true, 65.0)]  // 75% of 100 minus 20/2
     public void PreviewIndicatorTransformYConverter_ShouldPreviewIndicatorByPercentage_WhenFractionalValuesAreEnabledAndOrientationIsVertical(bool invertDirection, double expectedValue)
