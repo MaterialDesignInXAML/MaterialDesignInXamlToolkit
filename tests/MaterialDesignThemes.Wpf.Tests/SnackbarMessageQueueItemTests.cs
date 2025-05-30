@@ -7,7 +7,7 @@ public class SnackbarMessageQueueItemTests
     {
         SnackbarMessageQueueItem item = CreateItem();
         var ex = await Assert.That(() => item.IsDuplicate(null!)).ThrowsExactly<ArgumentNullException>();
-        await Assert.That(ex.ParamName).IsEqualTo("value");
+        await Assert.That(ex?.ParamName).IsEqualTo("value");
     }
 
     [Test]
