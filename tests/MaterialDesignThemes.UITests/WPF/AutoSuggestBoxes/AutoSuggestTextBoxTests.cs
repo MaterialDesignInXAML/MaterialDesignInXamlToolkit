@@ -197,7 +197,7 @@ public class AutoSuggestBoxTests : TestBase
         await Assert.That(await suggestionListBox.GetSelectedIndex()).IsEqualTo(0);
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3845")]
     public async Task AutoSuggestBox_SelectingAnItem_SetsSelectedItem()
     {
@@ -217,12 +217,12 @@ public class AutoSuggestBoxTests : TestBase
 
         //Assert
         string? selectedItem = (await suggestBox.GetSelectedItem()) as string;
-        Assert.Equal("Bananas", selectedItem);
+        await Assert.That(selectedItem).IsEqualTo("Bananas");
 
-        static void AssertViewModelProperty(AutoSuggestBox autoSuggestBox)
+        static async Task AssertViewModelProperty(AutoSuggestBox autoSuggestBox)
         {
             var viewModel = (AutoSuggestTextBoxWithCollectionViewViewModel)autoSuggestBox.DataContext;
-            Assert.Equal("Bananas", viewModel.SelectedItem);
+            await Assert.That(viewModel.SelectedItem).IsEqualTo("Bananas");
         }
         await suggestBox.RemoteExecute(AssertViewModelProperty);
 
