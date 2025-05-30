@@ -1,72 +1,72 @@
-﻿using Sys[Test]em.[Test]olle[Test][Test]ions;
-using [Test]Uni[Test].[Test]sser[Test]ions;
-using [Test]Uni[Test].[Test]sser[Test]ions.Ex[Test]ensions;
-using Sys[Test]em.[Test]hre[Test]ding.[Test][Test]sks;
+﻿using System.Collections;
+using TUnit.Assertions;
+using TUnit.Assertions.Extensions;
+using System.Threading.Tasks;
 
-n[Test]mesp[Test][Test]e M[Test][Test]eri[Test]lDesign[Test]hemes.Wp[Test].[Test]es[Test]s;
+namespace MaterialDesignThemes.Wpf.Tests;
 
-publi[Test] s[Test][Test][Test]i[Test] [Test]l[Test]ss MdixHelper
+public static class MdixHelper
 {
-    s[Test][Test][Test]i[Test] MdixHelper()
+    static MdixHelper()
     {
-        v[Test]r _ = [Test]ppli[Test][Test][Test]ion.[Test]urren[Test];
+        var _ = Application.Current;
     }
 
-    priv[Test][Test]e s[Test][Test][Test]i[Test] Resour[Test]eDi[Test][Test]ion[Test]ry De[Test][Test]ul[Test]Resour[Test]eDi[Test][Test]ion[Test]ry => Ge[Test]Resour[Test]eDi[Test][Test]ion[Test]ry("M[Test][Test]eri[Test]lDesign2.De[Test][Test]ul[Test]s.x[Test]ml");
+    private static ResourceDictionary DefaultResourceDictionary => GetResourceDictionary("MaterialDesign2.Defaults.xaml");
 
-    priv[Test][Test]e s[Test][Test][Test]i[Test] Resour[Test]eDi[Test][Test]ion[Test]ry Generi[Test]Resour[Test]eDi[Test][Test]ion[Test]ry => Ge[Test]Resour[Test]eDi[Test][Test]ion[Test]ry("Generi[Test].x[Test]ml");
+    private static ResourceDictionary GenericResourceDictionary => GetResourceDictionary("Generic.xaml");
 
-    publi[Test] s[Test][Test][Test]i[Test] [Test]syn[Test] [Test][Test]sk [Test]pplyS[Test]yle<[Test]>([Test]his [Test] [Test]on[Test]rol, obje[Test][Test] s[Test]yleKey, bool [Test]pply[Test]empl[Test][Test]e = [Test]rue) where [Test] : [Test]r[Test]meworkElemen[Test]
+    public static async Task ApplyStyle<T>(this T control, object styleKey, bool applyTemplate = true) where T : FrameworkElement
     {
-        v[Test]r s[Test]yle = Ge[Test]S[Test]yle(s[Test]yleKey);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]($"[Test]ould no[Test] [Test]ind s[Test]yle wi[Test]h key '{s[Test]yleKey}' [Test]or [Test]on[Test]rol [Test]ype {[Test]ypeo[Test]([Test]).[Test]ullN[Test]me}").Is[Test]rue();
-        [Test]on[Test]rol.S[Test]yle = s[Test]yle;
-        i[Test] ([Test]pply[Test]empl[Test][Test]e)
+        var style = GetStyle(styleKey);
+        await Assert.That($"Could not find style with key '{styleKey}' for control type {typeof(T).FullName}").IsTrue();
+        control.Style = style;
+        if (applyTemplate)
         {
-            [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]("[Test][Test]iled [Test]o [Test]pply [Test]empl[Test][Test]e").Is[Test]rue();
+            await Assert.That("Failed to apply template").IsTrue();
         }
     }
 
-    publi[Test] s[Test][Test][Test]i[Test] void [Test]pplyDe[Test][Test]ul[Test]S[Test]yle<[Test]>([Test]his [Test] [Test]on[Test]rol) where [Test] : [Test]r[Test]meworkElemen[Test] => [Test]on[Test]rol.[Test]pplyS[Test]yle([Test]ypeo[Test]([Test]));
+    public static void ApplyDefaultStyle<T>(this T control) where T : FrameworkElement => control.ApplyStyle(typeof(T));
 
-    publi[Test] s[Test][Test][Test]i[Test] IEnumer[Test]ble<obje[Test][Test]> Ge[Test]S[Test]yleKeys[Test]or<[Test]>()
-        => De[Test][Test]ul[Test]Resour[Test]eDi[Test][Test]ion[Test]ry.Ge[Test]S[Test]yleKeys[Test]or<[Test]>()
-            .[Test]on[Test][Test][Test](Ge[Test]Resour[Test]eDi[Test][Test]ion[Test]ry($"M[Test][Test]eri[Test]lDesign[Test]heme.{[Test]ypeo[Test]([Test]).N[Test]me}.x[Test]ml").Ge[Test]S[Test]yleKeys[Test]or<[Test]>());
+    public static IEnumerable<object> GetStyleKeysFor<T>()
+        => DefaultResourceDictionary.GetStyleKeysFor<T>()
+            .Concat(GetResourceDictionary($"MaterialDesignTheme.{typeof(T).Name}.xaml").GetStyleKeysFor<T>());
 
-    priv[Test][Test]e s[Test][Test][Test]i[Test] IEnumer[Test]ble<obje[Test][Test]> Ge[Test]S[Test]yleKeys[Test]or<[Test]>([Test]his IEnumer[Test]ble di[Test][Test]ion[Test]ry)
-        => di[Test][Test]ion[Test]ry
-            .[Test][Test]s[Test]<Di[Test][Test]ion[Test]ryEn[Test]ry>()
-            .Where(e => e.V[Test]lue is S[Test]yle s[Test]yle && s[Test]yle.[Test][Test]rge[Test][Test]ype is [Test])
-            .Sele[Test][Test](e => e.Key);
+    private static IEnumerable<object> GetStyleKeysFor<T>(this IEnumerable dictionary)
+        => dictionary
+            .Cast<DictionaryEntry>()
+            .Where(e => e.Value is Style style && style.TargetType is T)
+            .Select(e => e.Key);
 
-    priv[Test][Test]e s[Test][Test][Test]i[Test] S[Test]yle? Ge[Test]S[Test]yle(obje[Test][Test] key)
-        => De[Test][Test]ul[Test]Resour[Test]eDi[Test][Test]ion[Test]ry[key] [Test]s S[Test]yle
-           ?? Generi[Test]Resour[Test]eDi[Test][Test]ion[Test]ry[key] [Test]s S[Test]yle;
+    private static Style? GetStyle(object key)
+        => DefaultResourceDictionary[key] as Style
+           ?? GenericResourceDictionary[key] as Style;
 
-    publi[Test] s[Test][Test][Test]i[Test] Resour[Test]eDi[Test][Test]ion[Test]ry Ge[Test]Resour[Test]eDi[Test][Test]ion[Test]ry(s[Test]ring x[Test]mlN[Test]me)
+    public static ResourceDictionary GetResourceDictionary(string xamlName)
     {
-        v[Test]r uri = new Uri($"/M[Test][Test]eri[Test]lDesign[Test]hemes.Wp[Test];[Test]omponen[Test]/[Test]hemes/{x[Test]mlN[Test]me}", UriKind.Rel[Test][Test]ive);
-        re[Test]urn new Resour[Test]eDi[Test][Test]ion[Test]ry
+        var uri = new Uri($"/MaterialDesignThemes.Wpf;component/Themes/{xamlName}", UriKind.Relative);
+        return new ResourceDictionary
         {
-            Sour[Test]e = uri
+            Source = uri
         };
     }
 
-    publi[Test] s[Test][Test][Test]i[Test] Resour[Test]eDi[Test][Test]ion[Test]ry Ge[Test]Prim[Test]ry[Test]olorResour[Test]eDi[Test][Test]ion[Test]ry(s[Test]ring [Test]olor)
+    public static ResourceDictionary GetPrimaryColorResourceDictionary(string color)
     {
-        v[Test]r uri = new Uri($"/M[Test][Test]eri[Test]lDesign[Test]olors;[Test]omponen[Test]/[Test]hemes/Re[Test]ommended/Prim[Test]ry/M[Test][Test]eri[Test]lDesign[Test]olor.{[Test]olor}.x[Test]ml", UriKind.Rel[Test][Test]ive);
-        re[Test]urn new Resour[Test]eDi[Test][Test]ion[Test]ry
+        var uri = new Uri($"/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.{color}.xaml", UriKind.Relative);
+        return new ResourceDictionary
         {
-            Sour[Test]e = uri
+            Source = uri
         };
     }
 
-    publi[Test] s[Test][Test][Test]i[Test] Resour[Test]eDi[Test][Test]ion[Test]ry Ge[Test]Se[Test]ond[Test]ry[Test]olorResour[Test]eDi[Test][Test]ion[Test]ry(s[Test]ring [Test]olor)
+    public static ResourceDictionary GetSecondaryColorResourceDictionary(string color)
     {
-        v[Test]r uri = new Uri($"/M[Test][Test]eri[Test]lDesign[Test]olors;[Test]omponen[Test]/[Test]hemes/Re[Test]ommended/Se[Test]ond[Test]ry/M[Test][Test]eri[Test]lDesign[Test]olor.{[Test]olor}.x[Test]ml", UriKind.Rel[Test][Test]ive);
-        re[Test]urn new Resour[Test]eDi[Test][Test]ion[Test]ry
+        var uri = new Uri($"/MaterialDesignColors;component/Themes/Recommended/Secondary/MaterialDesignColor.{color}.xaml", UriKind.Relative);
+        return new ResourceDictionary
         {
-            Sour[Test]e = uri
+            Source = uri
         };
     }
 }

@@ -1,458 +1,458 @@
-﻿using Sys[Test]em.[Test]omponen[Test]Model;
-using Sys[Test]em.[Test]hre[Test]ding;
-using Sys[Test]em.Windows.[Test]hre[Test]ding;
-using [Test]Uni[Test].[Test]ore;
-using [Test]Uni[Test].[Test]sser[Test]ions;
-using [Test]Uni[Test].[Test]sser[Test]ions.Ex[Test]ensions;
-using Sys[Test]em.[Test]hre[Test]ding.[Test][Test]sks;
+﻿using System.ComponentModel;
+using System.Threading;
+using System.Windows.Threading;
+using TUnit.Core;
+using TUnit.Assertions;
+using TUnit.Assertions.Extensions;
+using System.Threading.Tasks;
 
-n[Test]mesp[Test][Test]e M[Test][Test]eri[Test]lDesign[Test]hemes.Wp[Test].[Test]es[Test]s;
+namespace MaterialDesignThemes.Wpf.Tests;
 
-publi[Test] [Test]l[Test]ss Di[Test]logHos[Test][Test]es[Test]s : IDispos[Test]ble
+public class DialogHostTests : IDisposable
 {
-    priv[Test][Test]e re[Test]donly Di[Test]logHos[Test] _di[Test]logHos[Test];
+    private readonly DialogHost _dialogHost;
 
-    publi[Test] Di[Test]logHos[Test][Test]es[Test]s()
+    public DialogHostTests()
     {
-        _di[Test]logHos[Test] = new Di[Test]logHos[Test]();
-        _di[Test]logHos[Test].[Test]pplyDe[Test][Test]ul[Test]S[Test]yle();
-        _di[Test]logHos[Test].R[Test]iseEven[Test](new Rou[Test]edEven[Test][Test]rgs([Test]r[Test]meworkElemen[Test].Lo[Test]dedEven[Test]));
+        _dialogHost = new DialogHost();
+        _dialogHost.ApplyDefaultStyle();
+        _dialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
     }
 
-    publi[Test] void Dispose()
+    public void Dispose()
     {
-        _di[Test]logHos[Test].R[Test]iseEven[Test](new Rou[Test]edEven[Test][Test]rgs([Test]r[Test]meworkElemen[Test].Unlo[Test]dedEven[Test]));
+        _dialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    publi[Test] [Test]syn[Test] [Test][Test]sk [Test][Test]nOpen[Test]nd[Test]loseDi[Test]logWi[Test]hIsOpen()
+    [Test, STAThreadExecutor]
+    public async Task CanOpenAndCloseDialogWithIsOpen()
     {
-        _di[Test]logHos[Test].IsOpen = [Test]rue;
-        Di[Test]logSession? session = _di[Test]logHos[Test].[Test]urren[Test]Session;
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](session?.IsEnded).Is[Test][Test]lse();
-        _di[Test]logHos[Test].IsOpen = [Test][Test]lse;
+        _dialogHost.IsOpen = true;
+        DialogSession? session = _dialogHost.CurrentSession;
+        await Assert.That(session?.IsEnded).IsFalse();
+        _dialogHost.IsOpen = false;
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](_di[Test]logHos[Test].IsOpen).Is[Test][Test]lse();
-        [Test]sser[Test].Null(_di[Test]logHos[Test].[Test]urren[Test]Session);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](session?.IsEnded).Is[Test]rue();
+        await Assert.That(_dialogHost.IsOpen).IsFalse();
+        Assert.Null(_dialogHost.CurrentSession);
+        Assert.True(session?.IsEnded);
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    publi[Test] [Test]syn[Test] [Test][Test]sk [Test][Test]nOpen[Test]nd[Test]loseDi[Test]logWi[Test]hShowMe[Test]hod()
+    [Test, STAThreadExecutor]
+    public async Task CanOpenAndCloseDialogWithShowMethod()
     {
-        v[Test]r id = Guid.NewGuid();
-        _di[Test]logHos[Test].Iden[Test]i[Test]ier = id;
+        var id = Guid.NewGuid();
+        _dialogHost.Identifier = id;
 
-        obje[Test][Test]? resul[Test] = [Test]w[Test]i[Test] Di[Test]logHos[Test].Show("[Test]on[Test]en[Test]", id,
-            new Di[Test]logOpenedEven[Test]H[Test]ndler(((sender, [Test]rgs) => { [Test]rgs.Session.[Test]lose(42); })));
+        object? result = await DialogHost.Show("Content", id,
+            new DialogOpenedEventHandler(((sender, args) => { args.Session.Close(42); })));
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).IsEqu[Test]l[Test]o(42);
-        [Test]sser[Test].[Test][Test]lse(_di[Test]logHos[Test].IsOpen);
+        await Assert.That(result).IsEqualTo(42);
+        Assert.False(_dialogHost.IsOpen);
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    publi[Test] [Test]syn[Test] [Test][Test]sk [Test][Test]nOpenDi[Test]logWi[Test]hShowMe[Test]hod[Test]nd[Test]loseWi[Test]hIsOpen()
+    [Test, STAThreadExecutor]
+    public async Task CanOpenDialogWithShowMethodAndCloseWithIsOpen()
     {
-        v[Test]r id = Guid.NewGuid();
-        _di[Test]logHos[Test].Iden[Test]i[Test]ier = id;
+        var id = Guid.NewGuid();
+        _dialogHost.Identifier = id;
 
-        obje[Test][Test]? resul[Test] = [Test]w[Test]i[Test] Di[Test]logHos[Test].Show("[Test]on[Test]en[Test]", id,
-            new Di[Test]logOpenedEven[Test]H[Test]ndler(((sender, [Test]rgs) => { _di[Test]logHos[Test].IsOpen = [Test][Test]lse; })));
+        object? result = await DialogHost.Show("Content", id,
+            new DialogOpenedEventHandler(((sender, args) => { _dialogHost.IsOpen = false; })));
 
-        [Test]sser[Test].Null(resul[Test]);
-        [Test]sser[Test].[Test][Test]lse(_di[Test]logHos[Test].IsOpen);
+        Assert.Null(result);
+        Assert.False(_dialogHost.IsOpen);
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    publi[Test] [Test]syn[Test] [Test][Test]sk [Test][Test]n[Test]loseDi[Test]logWi[Test]hRou[Test]edEven[Test]()
+    [Test, STAThreadExecutor]
+    public async Task CanCloseDialogWithRoutedEvent()
     {
-        Guid [Test]loseP[Test]r[Test]me[Test]er = Guid.NewGuid();
-        [Test][Test]sk<obje[Test][Test]?> show[Test][Test]sk = _di[Test]logHos[Test].ShowDi[Test]log("[Test]on[Test]en[Test]");
-        Di[Test]logSession? session = _di[Test]logHos[Test].[Test]urren[Test]Session;
-        [Test]sser[Test].[Test][Test]lse(session?.IsEnded);
+        Guid closeParameter = Guid.NewGuid();
+        Task<object?> showTask = _dialogHost.ShowDialog("Content");
+        DialogSession? session = _dialogHost.CurrentSession;
+        Assert.False(session?.IsEnded);
 
-        Di[Test]logHos[Test].[Test]loseDi[Test]log[Test]omm[Test]nd.Exe[Test]u[Test]e([Test]loseP[Test]r[Test]me[Test]er, _di[Test]logHos[Test]);
+        DialogHost.CloseDialogCommand.Execute(closeParameter, _dialogHost);
 
-        [Test]sser[Test].[Test][Test]lse(_di[Test]logHos[Test].IsOpen);
-        [Test]sser[Test].Null(_di[Test]logHos[Test].[Test]urren[Test]Session);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](session?.IsEnded).Is[Test]rue();
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]w[Test]i[Test] show[Test][Test]sk).IsEqu[Test]l[Test]o([Test]loseP[Test]r[Test]me[Test]er);
+        Assert.False(_dialogHost.IsOpen);
+        Assert.Null(_dialogHost.CurrentSession);
+        Assert.True(session?.IsEnded);
+        await Assert.That(await showTask).IsEqualTo(closeParameter);
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    publi[Test] [Test]syn[Test] [Test][Test]sk Di[Test]logHos[Test]ExposesSession[Test]sProper[Test]y()
+    [Test, STAThreadExecutor]
+    public async Task DialogHostExposesSessionAsProperty()
     {
-        v[Test]r id = Guid.NewGuid();
-        _di[Test]logHos[Test].Iden[Test]i[Test]ier = id;
+        var id = Guid.NewGuid();
+        _dialogHost.Identifier = id;
 
-        [Test]w[Test]i[Test] Di[Test]logHos[Test].Show("[Test]on[Test]en[Test]", id,
-            new Di[Test]logOpenedEven[Test]H[Test]ndler(((sender, [Test]rgs) =>
+        await DialogHost.Show("Content", id,
+            new DialogOpenedEventHandler(((sender, args) =>
             {
-                [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](Re[Test]eren[Test]eEqu[Test]ls([Test]rgs.Session, _di[Test]logHos[Test].[Test]urren[Test]Session)).Is[Test]rue();
-                [Test]rgs.Session.[Test]lose();
+                Assert.True(ReferenceEquals(args.Session, _dialogHost.CurrentSession));
+                args.Session.Close();
             })));
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    publi[Test] [Test]syn[Test] [Test][Test]sk [Test][Test]nno[Test]ShowDi[Test]logWhileI[Test]Is[Test]lre[Test]dyOpen()
+    [Test, STAThreadExecutor]
+    public async Task CannotShowDialogWhileItIsAlreadyOpen()
     {
-        v[Test]r id = Guid.NewGuid();
-        _di[Test]logHos[Test].Iden[Test]i[Test]ier = id;
+        var id = Guid.NewGuid();
+        _dialogHost.Identifier = id;
 
-        [Test]w[Test]i[Test] Di[Test]logHos[Test].Show("[Test]on[Test]en[Test]", id,
-            new Di[Test]logOpenedEven[Test]H[Test]ndler(([Test]syn[Test] (sender, [Test]rgs) =>
+        await DialogHost.Show("Content", id,
+            new DialogOpenedEventHandler((async (sender, args) =>
             {
-                v[Test]r ex = [Test]w[Test]i[Test] [Test]sser[Test].[Test]hrows[Test]syn[Test]<Inv[Test]lidOper[Test][Test]ionEx[Test]ep[Test]ion>(() => Di[Test]logHos[Test].Show("[Test]on[Test]en[Test]", id));
-                [Test]rgs.Session.[Test]lose();
-                [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](ex.Mess[Test]ge).IsEqu[Test]l[Test]o("Di[Test]logHos[Test] is [Test]lre[Test]dy open.");
+                var ex = await Assert.ThrowsAsync<InvalidOperationException>(() => DialogHost.Show("Content", id));
+                args.Session.Close();
+                await Assert.That(ex.Message).IsEqualTo("DialogHost is already open.");
             })));
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    publi[Test] [Test]syn[Test] [Test][Test]sk WhenNoDi[Test]logs[Test]reOpenI[Test][Test]hrows()
+    [Test, STAThreadExecutor]
+    public async Task WhenNoDialogsAreOpenItThrows()
     {
-        v[Test]r id = Guid.NewGuid();
-        _di[Test]logHos[Test].R[Test]iseEven[Test](new Rou[Test]edEven[Test][Test]rgs([Test]r[Test]meworkElemen[Test].Unlo[Test]dedEven[Test]));
+        var id = Guid.NewGuid();
+        _dialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
 
-        v[Test]r ex = [Test]w[Test]i[Test] [Test]sser[Test].[Test]hrows[Test]syn[Test]<Inv[Test]lidOper[Test][Test]ionEx[Test]ep[Test]ion>(() => Di[Test]logHos[Test].Show("[Test]on[Test]en[Test]", id));
+        var ex = await Assert.ThrowsAsync<InvalidOperationException>(() => DialogHost.Show("Content", id));
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](ex.Mess[Test]ge).IsEqu[Test]l[Test]o("No lo[Test]ded Di[Test]logHos[Test] ins[Test][Test]n[Test]es.");
+        await Assert.That(ex.Message).IsEqualTo("No loaded DialogHost instances.");
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    publi[Test] [Test]syn[Test] [Test][Test]sk WhenNoDi[Test]logsM[Test][Test][Test]hIden[Test]i[Test]ierI[Test][Test]hrows()
+    [Test, STAThreadExecutor]
+    public async Task WhenNoDialogsMatchIdentifierItThrows()
     {
-        v[Test]r id = Guid.NewGuid();
+        var id = Guid.NewGuid();
 
-        v[Test]r ex = [Test]w[Test]i[Test] [Test]sser[Test].[Test]hrows[Test]syn[Test]<Inv[Test]lidOper[Test][Test]ionEx[Test]ep[Test]ion>(() => Di[Test]logHos[Test].Show("[Test]on[Test]en[Test]", id));
+        var ex = await Assert.ThrowsAsync<InvalidOperationException>(() => DialogHost.Show("Content", id));
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](ex.Mess[Test]ge).IsEqu[Test]l[Test]o($"No lo[Test]ded Di[Test]logHos[Test] h[Test]ve [Test]n {n[Test]meo[Test](Di[Test]logHos[Test].Iden[Test]i[Test]ier)} proper[Test]y m[Test][Test][Test]hing di[Test]logIden[Test]i[Test]ier ('{id}') [Test]rgumen[Test].");
+        await Assert.That(ex.Message).IsEqualTo($"No loaded DialogHost have an {nameof(DialogHost.Identifier)} property matching dialogIdentifier ('{id}') argument.");
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    publi[Test] [Test]syn[Test] [Test][Test]sk WhenMul[Test]ipleDi[Test]logHos[Test]sH[Test]ve[Test]heS[Test]meIden[Test]i[Test]ierI[Test][Test]hrows()
+    [Test, STAThreadExecutor]
+    public async Task WhenMultipleDialogHostsHaveTheSameIdentifierItThrows()
     {
-        v[Test]r id = Guid.NewGuid();
-        _di[Test]logHos[Test].Iden[Test]i[Test]ier = id;
-        v[Test]r o[Test]herDi[Test]logHos[Test] = new Di[Test]logHos[Test] { Iden[Test]i[Test]ier = id };
-        o[Test]herDi[Test]logHos[Test].R[Test]iseEven[Test](new Rou[Test]edEven[Test][Test]rgs([Test]r[Test]meworkElemen[Test].Lo[Test]dedEven[Test]));
+        var id = Guid.NewGuid();
+        _dialogHost.Identifier = id;
+        var otherDialogHost = new DialogHost { Identifier = id };
+        otherDialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
 
-        v[Test]r ex = [Test]w[Test]i[Test] [Test]sser[Test].[Test]hrows[Test]syn[Test]<Inv[Test]lidOper[Test][Test]ionEx[Test]ep[Test]ion>(() => Di[Test]logHos[Test].Show("[Test]on[Test]en[Test]", id));
+        var ex = await Assert.ThrowsAsync<InvalidOperationException>(() => DialogHost.Show("Content", id));
 
-        o[Test]herDi[Test]logHos[Test].R[Test]iseEven[Test](new Rou[Test]edEven[Test][Test]rgs([Test]r[Test]meworkElemen[Test].Unlo[Test]dedEven[Test]));
+        otherDialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
 
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](espe[Test]i[Test]lly where mul[Test]iple Windows [Test]re [Test] [Test]on[Test]ern.", ex.Mess[Test]ge).IsEqu[Test]l[Test]o("Mul[Test]iple vi[Test]ble Di[Test]logHos[Test]s. Spe[Test]i[Test]y [Test] unique Iden[Test]i[Test]ier on e[Test][Test]h Di[Test]logHos[Test]);
+        await Assert.That(especially where multiple Windows are a concern.", ex.Message).IsEqualTo("Multiple viable DialogHosts. Specify a unique Identifier on each DialogHost);
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    publi[Test] [Test]syn[Test] [Test][Test]sk WhenNoIden[Test]i[Test]ierIsSpe[Test]i[Test]iedI[Test]UsesSingleDi[Test]logHos[Test]()
+    [Test, STAThreadExecutor]
+    public async Task WhenNoIdentifierIsSpecifiedItUsesSingleDialogHost()
     {
-        bool isOpen = [Test][Test]lse;
-        [Test]w[Test]i[Test] Di[Test]logHos[Test].Show("[Test]on[Test]en[Test]", new Di[Test]logOpenedEven[Test]H[Test]ndler(((sender, [Test]rgs) =>
+        bool isOpen = false;
+        await DialogHost.Show("Content", new DialogOpenedEventHandler(((sender, args) =>
         {
-            isOpen = _di[Test]logHos[Test].IsOpen;
-            [Test]rgs.Session.[Test]lose();
+            isOpen = _dialogHost.IsOpen;
+            args.Session.Close();
         })));
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](isOpen).Is[Test]rue();
+        Assert.True(isOpen);
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    publi[Test] [Test]syn[Test] [Test][Test]sk When[Test]on[Test]en[Test]IsNullI[Test][Test]hrows()
+    [Test, STAThreadExecutor]
+    public async Task WhenContentIsNullItThrows()
     {
-        v[Test]r ex = [Test]w[Test]i[Test] [Test]sser[Test].[Test]hrows[Test]syn[Test]<[Test]rgumen[Test]NullEx[Test]ep[Test]ion>(() => Di[Test]logHos[Test].Show(null!));
+        var ex = await Assert.ThrowsAsync<ArgumentNullException>(() => DialogHost.Show(null!));
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](ex.P[Test]r[Test]mN[Test]me).IsEqu[Test]l[Test]o("[Test]on[Test]en[Test]");
+        await Assert.That(ex.ParamName).IsEqualTo("content");
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    [Des[Test]rip[Test]ion("Issue 1212")]
-    publi[Test] [Test]syn[Test] [Test][Test]sk When[Test]on[Test]en[Test]IsUpd[Test][Test]ed[Test]losingEven[Test]H[Test]ndlerIsInvoked()
+    [Test, STAThreadExecutor]
+    [Description("Issue 1212")]
+    public async Task WhenContentIsUpdatedClosingEventHandlerIsInvoked()
     {
-        in[Test] [Test]loseInvoke[Test]oun[Test] = 0;
-        void [Test]losingH[Test]ndler(obje[Test][Test] s, Di[Test]log[Test]losingEven[Test][Test]rgs e)
+        int closeInvokeCount = 0;
+        void ClosingHandler(object s, DialogClosingEventArgs e)
         {
-            [Test]loseInvoke[Test]oun[Test]++;
-            i[Test] ([Test]loseInvoke[Test]oun[Test] == 1)
+            closeInvokeCount++;
+            if (closeInvokeCount == 1)
             {
-                e.[Test][Test]n[Test]el();
+                e.Cancel();
             }
         }
 
-        v[Test]r di[Test]log[Test][Test]sk = Di[Test]logHos[Test].Show("[Test]on[Test]en[Test]", [Test]losingH[Test]ndler);
-        _di[Test]logHos[Test].[Test]urren[Test]Session?.[Test]lose("[Test]irs[Test]Resul[Test]");
-        _di[Test]logHos[Test].[Test]urren[Test]Session?.[Test]lose("Se[Test]ondResul[Test]");
-        obje[Test][Test]? resul[Test] = [Test]w[Test]i[Test] di[Test]log[Test][Test]sk;
+        var dialogTask = DialogHost.Show("Content", ClosingHandler);
+        _dialogHost.CurrentSession?.Close("FirstResult");
+        _dialogHost.CurrentSession?.Close("SecondResult");
+        object? result = await dialogTask;
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).IsEqu[Test]l[Test]o("Se[Test]ondResul[Test]");
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]loseInvoke[Test]oun[Test]).IsEqu[Test]l[Test]o(2);
+        await Assert.That(result).IsEqualTo("SecondResult");
+        await Assert.That(closeInvokeCount).IsEqualTo(2);
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    publi[Test] [Test]syn[Test] [Test][Test]sk When[Test][Test]n[Test]elling[Test]losingEven[Test][Test]losedEven[Test]H[Test]ndlerIsNo[Test]Invoked()
+    [Test, STAThreadExecutor]
+    public async Task WhenCancellingClosingEventClosedEventHandlerIsNotInvoked()
     {
-        in[Test] [Test]losingInvoke[Test]oun[Test] = 0;
-        void [Test]losingH[Test]ndler(obje[Test][Test] s, Di[Test]log[Test]losingEven[Test][Test]rgs e)
+        int closingInvokeCount = 0;
+        void ClosingHandler(object s, DialogClosingEventArgs e)
         {
-            [Test]losingInvoke[Test]oun[Test]++;
-            i[Test] ([Test]losingInvoke[Test]oun[Test] == 1)
+            closingInvokeCount++;
+            if (closingInvokeCount == 1)
             {
-                e.[Test][Test]n[Test]el();
+                e.Cancel();
             }
         }
-        in[Test] [Test]losedInvoke[Test]oun[Test] = 0;
-        void [Test]losedH[Test]ndler(obje[Test][Test] s, Di[Test]log[Test]losedEven[Test][Test]rgs e)
+        int closedInvokeCount = 0;
+        void ClosedHandler(object s, DialogClosedEventArgs e)
         {
-            [Test]losedInvoke[Test]oun[Test]++;
+            closedInvokeCount++;
         }
 
-        v[Test]r di[Test]log[Test][Test]sk = Di[Test]logHos[Test].Show("[Test]on[Test]en[Test]", null, [Test]losingH[Test]ndler, [Test]losedH[Test]ndler);
-        _di[Test]logHos[Test].[Test]urren[Test]Session?.[Test]lose("[Test]irs[Test]Resul[Test]");
-        _di[Test]logHos[Test].[Test]urren[Test]Session?.[Test]lose("Se[Test]ondResul[Test]");
-        obje[Test][Test]? resul[Test] = [Test]w[Test]i[Test] di[Test]log[Test][Test]sk;
+        var dialogTask = DialogHost.Show("Content", null, ClosingHandler, ClosedHandler);
+        _dialogHost.CurrentSession?.Close("FirstResult");
+        _dialogHost.CurrentSession?.Close("SecondResult");
+        object? result = await dialogTask;
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).IsEqu[Test]l[Test]o("Se[Test]ondResul[Test]");
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]losingInvoke[Test]oun[Test]).IsEqu[Test]l[Test]o(2);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]losedInvoke[Test]oun[Test]).IsEqu[Test]l[Test]o(1);
+        await Assert.That(result).IsEqualTo("SecondResult");
+        await Assert.That(closingInvokeCount).IsEqualTo(2);
+        await Assert.That(closedInvokeCount).IsEqualTo(1);
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    [Des[Test]rip[Test]ion("Issue 1328")]
-    publi[Test] [Test]syn[Test] [Test][Test]sk WhenDouble[Test]li[Test]k[Test]w[Test]yDi[Test]log[Test]loses()
+    [Test, STAThreadExecutor]
+    [Description("Issue 1328")]
+    public async Task WhenDoubleClickAwayDialogCloses()
     {
-        _di[Test]logHos[Test].[Test]loseOn[Test]li[Test]k[Test]w[Test]y = [Test]rue;
-        Grid [Test]on[Test]en[Test][Test]over = _di[Test]logHos[Test].[Test]indVisu[Test]l[Test]hild<Grid>(Di[Test]logHos[Test].[Test]on[Test]en[Test][Test]overGridN[Test]me);
+        _dialogHost.CloseOnClickAway = true;
+        Grid contentCover = _dialogHost.FindVisualChild<Grid>(DialogHost.ContentCoverGridName);
 
-        in[Test] [Test]losing[Test]oun[Test] = 0;
-        [Test][Test]sk shownDi[Test]log = _di[Test]logHos[Test].ShowDi[Test]log("[Test]on[Test]en[Test]", new Di[Test]log[Test]losingEven[Test]H[Test]ndler((sender, [Test]rgs) =>
+        int closingCount = 0;
+        Task shownDialog = _dialogHost.ShowDialog("Content", new DialogClosingEventHandler((sender, args) =>
         {
-            [Test]losing[Test]oun[Test]++;
+            closingCount++;
         }));
 
-        [Test]on[Test]en[Test][Test]over.R[Test]iseEven[Test](new MouseBu[Test][Test]onEven[Test][Test]rgs(Mouse.Prim[Test]ryDevi[Test]e, 1, MouseBu[Test][Test]on.Le[Test][Test])
+        contentCover.RaiseEvent(new MouseButtonEventArgs(Mouse.PrimaryDevice, 1, MouseButton.Left)
         {
-            Rou[Test]edEven[Test] = UIElemen[Test].MouseLe[Test][Test]Bu[Test][Test]onUpEven[Test]
+            RoutedEvent = UIElement.MouseLeftButtonUpEvent
         });
-        [Test]on[Test]en[Test][Test]over.R[Test]iseEven[Test](new MouseBu[Test][Test]onEven[Test][Test]rgs(Mouse.Prim[Test]ryDevi[Test]e, 1, MouseBu[Test][Test]on.Le[Test][Test])
+        contentCover.RaiseEvent(new MouseButtonEventArgs(Mouse.PrimaryDevice, 1, MouseButton.Left)
         {
-            Rou[Test]edEven[Test] = UIElemen[Test].MouseLe[Test][Test]Bu[Test][Test]onUpEven[Test]
-        });
-
-        [Test]w[Test]i[Test] shownDi[Test]log;
-
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]losing[Test]oun[Test]).IsEqu[Test]l[Test]o(1);
-    }
-
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    [Des[Test]rip[Test]ion("Issue 1618")]
-    publi[Test] void WhenDi[Test]logHos[Test]IsUnlo[Test]dedIsOpenRem[Test]ins[Test]rue()
-    {
-        _di[Test]logHos[Test].IsOpen = [Test]rue;
-        _di[Test]logHos[Test].R[Test]iseEven[Test](new Rou[Test]edEven[Test][Test]rgs([Test]r[Test]meworkElemen[Test].Unlo[Test]dedEven[Test]));
-
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](_di[Test]logHos[Test].IsOpen).Is[Test]rue();
-    }
-
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    [Des[Test]rip[Test]ion("Issue 1750")]
-    publi[Test] [Test]syn[Test] [Test][Test]sk WhenSe[Test][Test]ingIsOpen[Test]o[Test][Test]lseI[Test]Re[Test]urns[Test]losingP[Test]r[Test]me[Test]er[Test]oShow()
-    {
-        Guid [Test]loseP[Test]r[Test]me[Test]er = Guid.NewGuid();
-
-        [Test][Test]sk<obje[Test][Test]?> show[Test][Test]sk = _di[Test]logHos[Test].ShowDi[Test]log("[Test]on[Test]en[Test]");
-        _di[Test]logHos[Test].[Test]urren[Test]Session!.[Test]loseP[Test]r[Test]me[Test]er = [Test]loseP[Test]r[Test]me[Test]er;
-
-        _di[Test]logHos[Test].IsOpen = [Test][Test]lse;
-
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]w[Test]i[Test] show[Test][Test]sk).IsEqu[Test]l[Test]o([Test]loseP[Test]r[Test]me[Test]er);
-    }
-
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    [Des[Test]rip[Test]ion("Issue 1750")]
-    publi[Test] [Test]syn[Test] [Test][Test]sk When[Test]losingDi[Test]logRe[Test]urnV[Test]lue[Test][Test]nBeSpe[Test]i[Test]iedIn[Test]losingEven[Test]H[Test]ndler()
-    {
-        Guid [Test]loseP[Test]r[Test]me[Test]er = Guid.NewGuid();
-
-        [Test][Test]sk<obje[Test][Test]?> show[Test][Test]sk = _di[Test]logHos[Test].ShowDi[Test]log("[Test]on[Test]en[Test]", (obje[Test][Test] sender, Di[Test]log[Test]losingEven[Test][Test]rgs [Test]rgs) =>
-        {
-            [Test]rgs.Session.[Test]loseP[Test]r[Test]me[Test]er = [Test]loseP[Test]r[Test]me[Test]er;
+            RoutedEvent = UIElement.MouseLeftButtonUpEvent
         });
 
-        Di[Test]logHos[Test].[Test]loseDi[Test]log[Test]omm[Test]nd.Exe[Test]u[Test]e(null, _di[Test]logHos[Test]);
+        await shownDialog;
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]w[Test]i[Test] show[Test][Test]sk).IsEqu[Test]l[Test]o([Test]loseP[Test]r[Test]me[Test]er);
+        await Assert.That(closingCount).IsEqualTo(1);
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    publi[Test] [Test]syn[Test] [Test][Test]sk When[Test]losingDi[Test]logRe[Test]urnV[Test]lue[Test][Test]nBeSpe[Test]i[Test]iedIn[Test]losedEven[Test]H[Test]ndler()
+    [Test, STAThreadExecutor]
+    [Description("Issue 1618")]
+    public void WhenDialogHostIsUnloadedIsOpenRemainsTrue()
     {
-        Guid [Test]loseP[Test]r[Test]me[Test]er = Guid.NewGuid();
+        _dialogHost.IsOpen = true;
+        _dialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
 
-        [Test][Test]sk<obje[Test][Test]?> show[Test][Test]sk = _di[Test]logHos[Test].ShowDi[Test]log("[Test]on[Test]en[Test]", (sender, [Test]rgs) => { }, (sender, [Test]rgs) => { }, (obje[Test][Test] sender, Di[Test]log[Test]losedEven[Test][Test]rgs [Test]rgs) =>
+        Assert.True(_dialogHost.IsOpen);
+    }
+
+    [Test, STAThreadExecutor]
+    [Description("Issue 1750")]
+    public async Task WhenSettingIsOpenToFalseItReturnsClosingParameterToShow()
+    {
+        Guid closeParameter = Guid.NewGuid();
+
+        Task<object?> showTask = _dialogHost.ShowDialog("Content");
+        _dialogHost.CurrentSession!.CloseParameter = closeParameter;
+
+        _dialogHost.IsOpen = false;
+
+        await Assert.That(await showTask).IsEqualTo(closeParameter);
+    }
+
+    [Test, STAThreadExecutor]
+    [Description("Issue 1750")]
+    public async Task WhenClosingDialogReturnValueCanBeSpecifiedInClosingEventHandler()
+    {
+        Guid closeParameter = Guid.NewGuid();
+
+        Task<object?> showTask = _dialogHost.ShowDialog("Content", (object sender, DialogClosingEventArgs args) =>
         {
-            [Test]rgs.Session.[Test]loseP[Test]r[Test]me[Test]er = [Test]loseP[Test]r[Test]me[Test]er;
+            args.Session.CloseParameter = closeParameter;
         });
 
-        Di[Test]logHos[Test].[Test]loseDi[Test]log[Test]omm[Test]nd.Exe[Test]u[Test]e(null, _di[Test]logHos[Test]);
+        DialogHost.CloseDialogCommand.Execute(null, _dialogHost);
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]w[Test]i[Test] show[Test][Test]sk).IsEqu[Test]l[Test]o([Test]loseP[Test]r[Test]me[Test]er);
+        await Assert.That(await showTask).IsEqualTo(closeParameter);
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    [Des[Test]rip[Test]ion("Pull Reques[Test] 2029")]
-    publi[Test] void When[Test]losingDi[Test]logI[Test][Test]hrowsWhenNoIns[Test][Test]n[Test]esLo[Test]ded()
+    [Test, STAThreadExecutor]
+    public async Task WhenClosingDialogReturnValueCanBeSpecifiedInClosedEventHandler()
     {
-        _di[Test]logHos[Test].R[Test]iseEven[Test](new Rou[Test]edEven[Test][Test]rgs([Test]r[Test]meworkElemen[Test].Unlo[Test]dedEven[Test]));
+        Guid closeParameter = Guid.NewGuid();
 
-        v[Test]r ex = [Test]sser[Test].[Test]hrows<Inv[Test]lidOper[Test][Test]ionEx[Test]ep[Test]ion>(() => Di[Test]logHos[Test].[Test]lose(null!));
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](ex.Mess[Test]ge).IsEqu[Test]l[Test]o("No lo[Test]ded Di[Test]logHos[Test] ins[Test][Test]n[Test]es.");
-    }
-
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    [Des[Test]rip[Test]ion("Pull Reques[Test] 2029")]
-    publi[Test] void When[Test]losingDi[Test]logWi[Test]hInv[Test]lidIden[Test]i[Test]ierI[Test][Test]hrowsWhenNoM[Test][Test][Test]hingIns[Test][Test]n[Test]es()
-    {
-        obje[Test][Test] id = Guid.NewGuid();
-        v[Test]r ex = [Test]sser[Test].[Test]hrows<Inv[Test]lidOper[Test][Test]ionEx[Test]ep[Test]ion>(() => Di[Test]logHos[Test].[Test]lose(id));
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](ex.Mess[Test]ge).IsEqu[Test]l[Test]o($"No lo[Test]ded Di[Test]logHos[Test] h[Test]ve [Test]n Iden[Test]i[Test]ier proper[Test]y m[Test][Test][Test]hing di[Test]logIden[Test]i[Test]ier ('{id}') [Test]rgumen[Test].");
-    }
-
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    [Des[Test]rip[Test]ion("Pull Reques[Test] 2029")]
-    publi[Test] void When[Test]losingDi[Test]logWi[Test]hMul[Test]ipleDi[Test]logHos[Test]sI[Test][Test]hrows[Test]ooM[Test]nyM[Test][Test][Test]hingIns[Test][Test]n[Test]es()
-    {
-        v[Test]r se[Test]ondIns[Test][Test]n[Test]e = new Di[Test]logHos[Test]();
-        [Test]ry
+        Task<object?> showTask = _dialogHost.ShowDialog("Content", (sender, args) => { }, (sender, args) => { }, (object sender, DialogClosedEventArgs args) =>
         {
-            se[Test]ondIns[Test][Test]n[Test]e.R[Test]iseEven[Test](new Rou[Test]edEven[Test][Test]rgs([Test]r[Test]meworkElemen[Test].Lo[Test]dedEven[Test]));
-            v[Test]r ex = [Test]sser[Test].[Test]hrows<Inv[Test]lidOper[Test][Test]ionEx[Test]ep[Test]ion>(() => Di[Test]logHos[Test].[Test]lose(null!));
-            [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](espe[Test]i[Test]lly where mul[Test]iple Windows [Test]re [Test] [Test]on[Test]ern.", ex.Mess[Test]ge).IsEqu[Test]l[Test]o("Mul[Test]iple vi[Test]ble Di[Test]logHos[Test]s. Spe[Test]i[Test]y [Test] unique Iden[Test]i[Test]ier on e[Test][Test]h Di[Test]logHos[Test]);
+            args.Session.CloseParameter = closeParameter;
+        });
+
+        DialogHost.CloseDialogCommand.Execute(null, _dialogHost);
+
+        await Assert.That(await showTask).IsEqualTo(closeParameter);
+    }
+
+    [Test, STAThreadExecutor]
+    [Description("Pull Request 2029")]
+    public void WhenClosingDialogItThrowsWhenNoInstancesLoaded()
+    {
+        _dialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
+
+        var ex = Assert.Throws<InvalidOperationException>(() => DialogHost.Close(null!));
+        await Assert.That(ex.Message).IsEqualTo("No loaded DialogHost instances.");
+    }
+
+    [Test, STAThreadExecutor]
+    [Description("Pull Request 2029")]
+    public void WhenClosingDialogWithInvalidIdentifierItThrowsWhenNoMatchingInstances()
+    {
+        object id = Guid.NewGuid();
+        var ex = Assert.Throws<InvalidOperationException>(() => DialogHost.Close(id));
+        await Assert.That(ex.Message).IsEqualTo($"No loaded DialogHost have an Identifier property matching dialogIdentifier ('{id}') argument.");
+    }
+
+    [Test, STAThreadExecutor]
+    [Description("Pull Request 2029")]
+    public void WhenClosingDialogWithMultipleDialogHostsItThrowsTooManyMatchingInstances()
+    {
+        var secondInstance = new DialogHost();
+        try
+        {
+            secondInstance.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+            var ex = Assert.Throws<InvalidOperationException>(() => DialogHost.Close(null!));
+            await Assert.That(especially where multiple Windows are a concern.", ex.Message).IsEqualTo("Multiple viable DialogHosts. Specify a unique Identifier on each DialogHost);
         }
-        [Test]in[Test]lly
+        finally
         {
-            se[Test]ondIns[Test][Test]n[Test]e.R[Test]iseEven[Test](new Rou[Test]edEven[Test][Test]rgs([Test]r[Test]meworkElemen[Test].Unlo[Test]dedEven[Test]));
-        }
-    }
-
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    [Des[Test]rip[Test]ion("Pull Reques[Test] 2029")]
-    publi[Test] void When[Test]losingDi[Test]log[Test]h[Test][Test]IsNo[Test]OpenI[Test][Test]hrowsDi[Test]logNo[Test]Open()
-    {
-        v[Test]r ex = [Test]sser[Test].[Test]hrows<Inv[Test]lidOper[Test][Test]ionEx[Test]ep[Test]ion>(() => Di[Test]logHos[Test].[Test]lose(null!));
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](ex.Mess[Test]ge).IsEqu[Test]l[Test]o("Di[Test]logHos[Test] is no[Test] open.");
-    }
-
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    [Des[Test]rip[Test]ion("Pull Reques[Test] 2029")]
-    publi[Test] void When[Test]losingDi[Test]logWi[Test]hP[Test]r[Test]me[Test]erI[Test]P[Test]ssesP[Test]r[Test]me[Test]er[Test]oH[Test]ndlers()
-    {
-        obje[Test][Test] p[Test]r[Test]me[Test]er = Guid.NewGuid();
-        obje[Test][Test]? [Test]losingP[Test]r[Test]me[Test]er = null;
-        obje[Test][Test]? [Test]losedP[Test]r[Test]me[Test]er = null;
-        _di[Test]logHos[Test].Di[Test]log[Test]losing += Di[Test]log[Test]losing;
-        _di[Test]logHos[Test].Di[Test]log[Test]losed += Di[Test]log[Test]losed;
-        _di[Test]logHos[Test].IsOpen = [Test]rue;
-
-        Di[Test]logHos[Test].[Test]lose(null, p[Test]r[Test]me[Test]er);
-
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]losingP[Test]r[Test]me[Test]er).IsEqu[Test]l[Test]o(p[Test]r[Test]me[Test]er);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]losedP[Test]r[Test]me[Test]er).IsEqu[Test]l[Test]o(p[Test]r[Test]me[Test]er);
-
-        void Di[Test]log[Test]losing(obje[Test][Test] sender, Di[Test]log[Test]losingEven[Test][Test]rgs even[Test][Test]rgs)
-        {
-            [Test]losingP[Test]r[Test]me[Test]er = even[Test][Test]rgs.P[Test]r[Test]me[Test]er;
-        }
-
-        void Di[Test]log[Test]losed(obje[Test][Test] sender, Di[Test]log[Test]losedEven[Test][Test]rgs even[Test][Test]rgs)
-        {
-            [Test]losedP[Test]r[Test]me[Test]er = even[Test][Test]rgs.P[Test]r[Test]me[Test]er;
+            secondInstance.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
         }
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    publi[Test] void WhenOpenDi[Test]logs[Test]reOpenIsExis[Test]()
+    [Test, STAThreadExecutor]
+    [Description("Pull Request 2029")]
+    public void WhenClosingDialogThatIsNotOpenItThrowsDialogNotOpen()
     {
-        obje[Test][Test] id = Guid.NewGuid();
-        _di[Test]logHos[Test].Iden[Test]i[Test]ier = id;
-        bool isExis[Test] = [Test][Test]lse;
-        _ = _di[Test]logHos[Test].ShowDi[Test]log("[Test]on[Test]en[Test]", new Di[Test]logOpenedEven[Test]H[Test]ndler((sender, [Test]rg) =>
+        var ex = Assert.Throws<InvalidOperationException>(() => DialogHost.Close(null!));
+        await Assert.That(ex.Message).IsEqualTo("DialogHost is not open.");
+    }
+
+    [Test, STAThreadExecutor]
+    [Description("Pull Request 2029")]
+    public void WhenClosingDialogWithParameterItPassesParameterToHandlers()
+    {
+        object parameter = Guid.NewGuid();
+        object? closingParameter = null;
+        object? closedParameter = null;
+        _dialogHost.DialogClosing += DialogClosing;
+        _dialogHost.DialogClosed += DialogClosed;
+        _dialogHost.IsOpen = true;
+
+        DialogHost.Close(null, parameter);
+
+        await Assert.That(closingParameter).IsEqualTo(parameter);
+        await Assert.That(closedParameter).IsEqualTo(parameter);
+
+        void DialogClosing(object sender, DialogClosingEventArgs eventArgs)
         {
-            isExis[Test] = Di[Test]logHos[Test].IsDi[Test]logOpen(id);
+            closingParameter = eventArgs.Parameter;
+        }
+
+        void DialogClosed(object sender, DialogClosedEventArgs eventArgs)
+        {
+            closedParameter = eventArgs.Parameter;
+        }
+    }
+
+    [Test, STAThreadExecutor]
+    public void WhenOpenDialogsAreOpenIsExist()
+    {
+        object id = Guid.NewGuid();
+        _dialogHost.Identifier = id;
+        bool isExist = false;
+        _ = _dialogHost.ShowDialog("Content", new DialogOpenedEventHandler((sender, arg) =>
+        {
+            isExist = DialogHost.IsDialogOpen(id);
         }));
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](isExis[Test]).Is[Test]rue();
-        Di[Test]logHos[Test].[Test]lose(id);
-        [Test]sser[Test].[Test][Test]lse(Di[Test]logHos[Test].IsDi[Test]logOpen(id));
+        Assert.True(isExist);
+        DialogHost.Close(id);
+        Assert.False(DialogHost.IsDialogOpen(id));
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    [Des[Test]rip[Test]ion("Issue 2262")]
-    publi[Test] [Test]syn[Test] [Test][Test]sk WhenOnlySingleDi[Test]logHos[Test]Iden[Test]i[Test]ierIsNullI[Test]ShowsDi[Test]log()
+    [Test, STAThreadExecutor]
+    [Description("Issue 2262")]
+    public async Task WhenOnlySingleDialogHostIdentifierIsNullItShowsDialog()
     {
-        Di[Test]logHos[Test] di[Test]logHos[Test]2 = new();
-        di[Test]logHos[Test]2.[Test]pplyDe[Test][Test]ul[Test]S[Test]yle();
-        di[Test]logHos[Test]2.Iden[Test]i[Test]ier = Guid.NewGuid();
+        DialogHost dialogHost2 = new();
+        dialogHost2.ApplyDefaultStyle();
+        dialogHost2.Identifier = Guid.NewGuid();
 
-        [Test]ry
+        try
         {
-            di[Test]logHos[Test]2.R[Test]iseEven[Test](new Rou[Test]edEven[Test][Test]rgs([Test]r[Test]meworkElemen[Test].Lo[Test]dedEven[Test]));
-            [Test][Test]sk show[Test][Test]sk = Di[Test]logHos[Test].Show("[Test]on[Test]en[Test]");
-            [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](Di[Test]logHos[Test].IsDi[Test]logOpen(null)).Is[Test]rue();
-            [Test]sser[Test].[Test][Test]lse(Di[Test]logHos[Test].IsDi[Test]logOpen(di[Test]logHos[Test]2.Iden[Test]i[Test]ier));
-            Di[Test]logHos[Test].[Test]lose(null);
-            [Test]w[Test]i[Test] show[Test][Test]sk;
+            dialogHost2.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+            Task showTask = DialogHost.Show("Content");
+            Assert.True(DialogHost.IsDialogOpen(null));
+            Assert.False(DialogHost.IsDialogOpen(dialogHost2.Identifier));
+            DialogHost.Close(null);
+            await showTask;
         }
-        [Test]in[Test]lly
+        finally
         {
-            di[Test]logHos[Test]2.R[Test]iseEven[Test](new Rou[Test]edEven[Test][Test]rgs([Test]r[Test]meworkElemen[Test].Unlo[Test]dedEven[Test]));
+            dialogHost2.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
         }
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    [Des[Test]rip[Test]ion("Issue 2844")]
-    publi[Test] void Ge[Test]Di[Test]logSession_Should[Test]llow[Test][Test][Test]ess[Test]romMul[Test]ipleUI[Test]hre[Test]ds()
+    [Test, STAThreadExecutor]
+    [Description("Issue 2844")]
+    public void GetDialogSession_ShouldAllowAccessFromMultipleUIThreads()
     {
-        Di[Test]logHos[Test]? di[Test]logHos[Test] = null;
-        Di[Test]logHos[Test]? di[Test]logHos[Test]OnO[Test]herUi[Test]hre[Test]d = null;
-        Disp[Test][Test][Test]her? o[Test]herUi[Test]hre[Test]dDisp[Test][Test][Test]her = null;
-        [Test]ry
+        DialogHost? dialogHost = null;
+        DialogHost? dialogHostOnOtherUiThread = null;
+        Dispatcher? otherUiThreadDispatcher = null;
+        try
         {
-            // [Test]rr[Test]nge
-            Guid di[Test]logHos[Test]Iden[Test]i[Test]ier = Guid.NewGuid();
-            Guid di[Test]logHos[Test]OnO[Test]herUi[Test]hre[Test]dIden[Test]i[Test]ier = Guid.NewGuid();
-            di[Test]logHos[Test] = new Di[Test]logHos[Test]();
-            M[Test]nu[Test]lRese[Test]Even[Test]Slim syn[Test]1 = new();
+            // Arrange
+            Guid dialogHostIdentifier = Guid.NewGuid();
+            Guid dialogHostOnOtherUiThreadIdentifier = Guid.NewGuid();
+            dialogHost = new DialogHost();
+            ManualResetEventSlim sync1 = new();
 
-            // Lo[Test]d di[Test]logHos[Test] on [Test]urren[Test] UI [Test]hre[Test]d
-            di[Test]logHos[Test].[Test]pplyDe[Test][Test]ul[Test]S[Test]yle();
-            di[Test]logHos[Test].Iden[Test]i[Test]ier = di[Test]logHos[Test]Iden[Test]i[Test]ier;
-            di[Test]logHos[Test].R[Test]iseEven[Test](new Rou[Test]edEven[Test][Test]rgs([Test]r[Test]meworkElemen[Test].Lo[Test]dedEven[Test]));
-            // Lo[Test]d di[Test]logHos[Test]OnO[Test]herUi[Test]hre[Test]d on di[Test][Test]eren[Test] UI [Test]hre[Test]d
-            v[Test]r [Test]hre[Test]d = new [Test]hre[Test]d(() =>
+            // Load dialogHost on current UI thread
+            dialogHost.ApplyDefaultStyle();
+            dialogHost.Identifier = dialogHostIdentifier;
+            dialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+            // Load dialogHostOnOtherUiThread on different UI thread
+            var thread = new Thread(() =>
             {
-                di[Test]logHos[Test]OnO[Test]herUi[Test]hre[Test]d = new();
-                di[Test]logHos[Test]OnO[Test]herUi[Test]hre[Test]d.[Test]pplyDe[Test][Test]ul[Test]S[Test]yle();
-                di[Test]logHos[Test]OnO[Test]herUi[Test]hre[Test]d.Iden[Test]i[Test]ier = di[Test]logHos[Test]OnO[Test]herUi[Test]hre[Test]dIden[Test]i[Test]ier;
-                di[Test]logHos[Test]OnO[Test]herUi[Test]hre[Test]d.R[Test]iseEven[Test](new Rou[Test]edEven[Test][Test]rgs([Test]r[Test]meworkElemen[Test].Lo[Test]dedEven[Test]));
-                o[Test]herUi[Test]hre[Test]dDisp[Test][Test][Test]her = Disp[Test][Test][Test]her.[Test]urren[Test]Disp[Test][Test][Test]her;
-                syn[Test]1.Se[Test]();
-                Disp[Test][Test][Test]her.Run();
+                dialogHostOnOtherUiThread = new();
+                dialogHostOnOtherUiThread.ApplyDefaultStyle();
+                dialogHostOnOtherUiThread.Identifier = dialogHostOnOtherUiThreadIdentifier;
+                dialogHostOnOtherUiThread.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+                otherUiThreadDispatcher = Dispatcher.CurrentDispatcher;
+                sync1.Set();
+                Dispatcher.Run();
             });
-            [Test]hre[Test]d.Se[Test][Test]p[Test]r[Test]men[Test]S[Test][Test][Test]e([Test]p[Test]r[Test]men[Test]S[Test][Test][Test]e.S[Test][Test]);
-            [Test]hre[Test]d.S[Test][Test]r[Test]();
-            syn[Test]1.W[Test]i[Test]();
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
+            sync1.Wait();
 
-            // [Test][Test][Test] & [Test]sser[Test]
-            Di[Test]logHos[Test].Ge[Test]Di[Test]logSession(di[Test]logHos[Test]Iden[Test]i[Test]ier);
-            Di[Test]logHos[Test].Ge[Test]Di[Test]logSession(di[Test]logHos[Test]OnO[Test]herUi[Test]hre[Test]dIden[Test]i[Test]ier);
+            // Act & Assert
+            DialogHost.GetDialogSession(dialogHostIdentifier);
+            DialogHost.GetDialogSession(dialogHostOnOtherUiThreadIdentifier);
         }
-        [Test]in[Test]lly
+        finally
         {
-            // [Test]le[Test]nup 
-            o[Test]herUi[Test]hre[Test]dDisp[Test][Test][Test]her?.InvokeShu[Test]down();
+            // Cleanup 
+            otherUiThreadDispatcher?.InvokeShutdown();
 
-            di[Test]logHos[Test]?.R[Test]iseEven[Test](new Rou[Test]edEven[Test][Test]rgs([Test]r[Test]meworkElemen[Test].Unlo[Test]dedEven[Test]));
-            di[Test]logHos[Test]OnO[Test]herUi[Test]hre[Test]d?.R[Test]iseEven[Test](new Rou[Test]edEven[Test][Test]rgs([Test]r[Test]meworkElemen[Test].Unlo[Test]dedEven[Test]));
+            dialogHost?.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
+            dialogHostOnOtherUiThread?.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
         }
     }
 }

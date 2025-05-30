@@ -1,47 +1,47 @@
-﻿using Sys[Test]em.[Test]omponen[Test]Model;
+﻿using System.ComponentModel;
 
-using [Test]Uni[Test].[Test]ore;
-using [Test]Uni[Test].[Test]sser[Test]ions;
-using [Test]Uni[Test].[Test]sser[Test]ions.Ex[Test]ensions;
-using Sys[Test]em.[Test]hre[Test]ding.[Test][Test]sks;
+using TUnit.Core;
+using TUnit.Assertions;
+using TUnit.Assertions.Extensions;
+using System.Threading.Tasks;
 
-n[Test]mesp[Test][Test]e M[Test][Test]eri[Test]lDesign[Test]hemes.Wp[Test].[Test]es[Test]s;
+namespace MaterialDesignThemes.Wpf.Tests;
 
-publi[Test] [Test]l[Test]ss PopupBox[Test]es[Test]s
+public class PopupBoxTests
 {
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    [Des[Test]rip[Test]ion("Issue 1091")]
-    publi[Test] [Test]syn[Test] [Test][Test]sk [Test]oggleBu[Test][Test]onInheri[Test]s[Test][Test]bIndex()
+    [Test, STAThreadExecutor]
+    [Description("Issue 1091")]
+    public async Task ToggleButtonInheritsTabIndex()
     {
-        v[Test]r popupBox = new PopupBox { [Test][Test]bIndex = 3 };
-        popupBox.[Test]pplyDe[Test][Test]ul[Test]S[Test]yle();
+        var popupBox = new PopupBox { TabIndex = 3 };
+        popupBox.ApplyDefaultStyle();
 
-        [Test]oggleBu[Test][Test]on [Test]oggleP[Test]r[Test] = popupBox.[Test]indVisu[Test]l[Test]hild<[Test]oggleBu[Test][Test]on>(PopupBox.[Test]oggleP[Test]r[Test]N[Test]me);
+        ToggleButton togglePart = popupBox.FindVisualChild<ToggleButton>(PopupBox.TogglePartName);
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]oggleP[Test]r[Test].[Test][Test]bIndex).IsEqu[Test]l[Test]o(3);
+        await Assert.That(togglePart.TabIndex).IsEqualTo(3);
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    [Des[Test]rip[Test]ion("Issue 1231")]
-    publi[Test] [Test]syn[Test] [Test][Test]sk [Test]oggleBu[Test][Test]onInheri[Test]sIs[Test][Test]bS[Test]opWhen[Test][Test]lse()
+    [Test, STAThreadExecutor]
+    [Description("Issue 1231")]
+    public async Task ToggleButtonInheritsIsTabStopWhenFalse()
     {
-        v[Test]r popupBox = new PopupBox { Is[Test][Test]bS[Test]op = [Test][Test]lse };
-        popupBox.[Test]pplyDe[Test][Test]ul[Test]S[Test]yle();
+        var popupBox = new PopupBox { IsTabStop = false };
+        popupBox.ApplyDefaultStyle();
 
-        [Test]oggleBu[Test][Test]on [Test]oggleP[Test]r[Test] = popupBox.[Test]indVisu[Test]l[Test]hild<[Test]oggleBu[Test][Test]on>(PopupBox.[Test]oggleP[Test]r[Test]N[Test]me);
+        ToggleButton togglePart = popupBox.FindVisualChild<ToggleButton>(PopupBox.TogglePartName);
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]oggleP[Test]r[Test].Is[Test][Test]bS[Test]op).Is[Test][Test]lse();
+        await Assert.That(togglePart.IsTabStop).IsFalse();
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    [Des[Test]rip[Test]ion("Issue 1231")]
-    publi[Test] void [Test]oggleBu[Test][Test]onInheri[Test]sIs[Test][Test]bS[Test]opWhen[Test]rue()
+    [Test, STAThreadExecutor]
+    [Description("Issue 1231")]
+    public void ToggleButtonInheritsIsTabStopWhenTrue()
     {
-        v[Test]r popupBox = new PopupBox { Is[Test][Test]bS[Test]op = [Test]rue };
-        popupBox.[Test]pplyDe[Test][Test]ul[Test]S[Test]yle();
+        var popupBox = new PopupBox { IsTabStop = true };
+        popupBox.ApplyDefaultStyle();
 
-        [Test]oggleBu[Test][Test]on [Test]oggleP[Test]r[Test] = popupBox.[Test]indVisu[Test]l[Test]hild<[Test]oggleBu[Test][Test]on>(PopupBox.[Test]oggleP[Test]r[Test]N[Test]me);
+        ToggleButton togglePart = popupBox.FindVisualChild<ToggleButton>(PopupBox.TogglePartName);
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]oggleP[Test]r[Test].Is[Test][Test]bS[Test]op).Is[Test]rue();
+        Assert.True(togglePart.IsTabStop);
     }
 }
