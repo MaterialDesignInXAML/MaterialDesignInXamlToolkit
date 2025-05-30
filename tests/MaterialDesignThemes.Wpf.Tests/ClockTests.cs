@@ -1,14 +1,8 @@
-﻿
-using TUnit.Core;
-using TUnit.Assertions;
-using TUnit.Assertions.Extensions;
-using System.Threading.Tasks;
-
-namespace MaterialDesignThemes.Wpf.Tests;
+﻿namespace MaterialDesignThemes.Wpf.Tests;
 
 public class ClockTests
 {
-    [StaFact(Timeout = 500)]
+    [Test, STAThreadExecutor]
     public async Task CanGenerateHoursButtons()
     {
         var clock = new Clock();
@@ -21,7 +15,7 @@ public class ClockTests
         await Assert.That(buttonContents.OrderBy(x => x)).IsEqualTo(expected.OrderBy(x => x));
     }
 
-    [StaFact(Timeout = 500)]
+    [Test, STAThreadExecutor]
     public async Task CanGenerateHoursButtonsWith24Hours()
     {
         var clock = new Clock { Is24Hours = true };
@@ -36,8 +30,8 @@ public class ClockTests
         await Assert.That(buttonContents.OrderBy(x => x)).IsEqualTo(expected.OrderBy(x => x));
     }
 
-    [StaFact(Timeout = 500)]
-    public void CanGenerateMinuteButtons()
+    [Test, STAThreadExecutor]
+    public async Task CanGenerateMinuteButtons()
     {
         var clock = new Clock();
         clock.ApplyDefaultStyle();
@@ -49,8 +43,8 @@ public class ClockTests
         await Assert.That(buttonContents.OrderBy(x => x)).IsEqualTo(expected.OrderBy(x => x));
     }
 
-    [StaFact(Timeout = 500)]
-    public void CanGenerateSecondsButtons()
+    [Test, STAThreadExecutor]
+    public async Task CanGenerateSecondsButtons()
     {
         var clock = new Clock();
         clock.ApplyDefaultStyle();
@@ -62,8 +56,8 @@ public class ClockTests
         await Assert.That(buttonContents.OrderBy(x => x)).IsEqualTo(expected.OrderBy(x => x));
     }
 
-    [StaFact(Timeout = 500)]
-    public void TimeChangedEvent_WhenTimeChanges_EventIsRaised()
+    [Test, STAThreadExecutor]
+    public async Task TimeChangedEvent_WhenTimeChanges_EventIsRaised()
     {
         var clock = new Clock();
         clock.ApplyDefaultStyle();
