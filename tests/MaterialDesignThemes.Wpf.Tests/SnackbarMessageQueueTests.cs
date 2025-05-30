@@ -83,7 +83,7 @@ public sealed class SnackbarMessageQueueTests : IDisposable
         Assert.Single(messages);
         await Assert.That(messages[0].Content).IsEqualTo("Content");
         await Assert.That(messages[0].ActionContent).IsEqualTo("Action Content");
-        Assert.True(messages[0].IsPromoted);
+        await Assert.That(messages[0].IsPromoted).IsTrue();
     }
 
     private void Dispose(bool disposing)

@@ -1,5 +1,4 @@
-﻿
-using TUnit.Core;
+﻿using TUnit.Core;
 using TUnit.Assertions;
 using TUnit.Assertions.Extensions;
 using System.Threading.Tasks;
@@ -22,7 +21,7 @@ public class SnackbarMessageQueueItemTests
         SnackbarMessageQueueItem item = CreateItem();
         SnackbarMessageQueueItem other = CreateItem();
 
-        Assert.True(item.IsDuplicate(other));
+        await Assert.That(item.IsDuplicate(other)).IsTrue();
     }
 
     [Test]

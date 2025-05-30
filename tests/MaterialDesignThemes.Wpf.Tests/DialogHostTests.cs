@@ -30,7 +30,7 @@ public class DialogHostTests : IDisposable
 
         await Assert.That(_dialogHost.IsOpen).IsFalse();
         await Assert.That(_dialogHost.CurrentSession).IsNull();
-        Assert.True(session?.IsEnded);
+        await Assert.That(session?.IsEnded).IsTrue();
     }
 
     [Test, STAThreadExecutor]
@@ -151,7 +151,7 @@ public class DialogHostTests : IDisposable
             args.Session.Close();
         })));
 
-        Assert.True(isOpen);
+        await Assert.That(_dialogHost.IsOpen).IsTrue();
     }
 
     [Test, STAThreadExecutor]
