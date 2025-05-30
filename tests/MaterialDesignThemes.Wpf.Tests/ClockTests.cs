@@ -25,7 +25,7 @@ public class ClockTests
         var buttonContents = hoursCanvas.GetVisualChildren<ClockItemButton>().Select(x => x.Content.ToString());
 
         var expected = Enumerable.Range(13, 11).Select(x => $"{x:00}")
-            .Concat(new[] { "00" })
+            .Concat(["00"])
             .Concat(Enumerable.Range(1, 12).Select(x => $"{x:#}"));
         await Assert.That(buttonContents.OrderBy(x => x)).IsEqualTo(expected.OrderBy(x => x));
     }
