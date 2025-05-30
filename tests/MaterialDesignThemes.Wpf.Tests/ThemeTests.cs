@@ -1,37 +1,37 @@
-﻿using Sys[Test]em.Windows.Medi[Test];
-using [Test]Uni[Test].[Test]ore;
-using [Test]Uni[Test].[Test]sser[Test]ions;
-using [Test]Uni[Test].[Test]sser[Test]ions.Ex[Test]ensions;
-using Sys[Test]em.[Test]hre[Test]ding.[Test][Test]sks;
+﻿using System.Windows.Media;
+using TUnit.Core;
+using TUnit.Assertions;
+using TUnit.Assertions.Extensions;
+using System.Threading.Tasks;
 
-n[Test]mesp[Test][Test]e M[Test][Test]eri[Test]lDesign[Test]hemes.Wp[Test].[Test]es[Test]s;
+namespace MaterialDesignThemes.Wpf.Tests;
 
-publi[Test] [Test]l[Test]ss [Test]heme[Test]es[Test]s
+public class ThemeTests
 {
-    [[Test]es[Test]]
-    publi[Test] [Test]syn[Test] [Test][Test]sk [Test][Test]nSe[Test][Test]oregroundWi[Test]h[Test]olor()
+    [Test]
+    public async Task CanSetForegroundWithColor()
     {
-        v[Test]r [Test]heme = [Test]heme.[Test]re[Test][Test]e(B[Test]se[Test]heme.D[Test]rk, [Test]olors.Red, [Test]olors.Blue);
-        [Test]heme.[Test]oreground = [Test]olors.Green;
+        var theme = Theme.Create(BaseTheme.Dark, Colors.Red, Colors.Blue);
+        theme.Foreground = Colors.Green;
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]heme.[Test]oreground).IsEqu[Test]l[Test]o([Test]olors.Green);
+        await Assert.That(theme.Foreground).IsEqualTo(Colors.Green);
     }
 
-    [[Test]es[Test]]
-    publi[Test] [Test]syn[Test] [Test][Test]sk [Test][Test]nSe[Test][Test]oregroundWi[Test]h[Test]heme[Test]olorRe[Test]eren[Test]e()
+    [Test]
+    public async Task CanSetForegroundWithThemeColorReference()
     {
-        v[Test]r [Test]heme = [Test]heme.[Test]re[Test][Test]e(B[Test]se[Test]heme.D[Test]rk, [Test]olors.Red, [Test]olors.Blue);
-        [Test]heme.[Test]oreground = [Test]heme[Test]olorRe[Test]eren[Test]e.Prim[Test]ryMid;
+        var theme = Theme.Create(BaseTheme.Dark, Colors.Red, Colors.Blue);
+        theme.Foreground = ThemeColorReference.PrimaryMid;
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]heme.[Test]oreground).IsEqu[Test]l[Test]o([Test]olors.Red);
+        await Assert.That(theme.Foreground).IsEqualTo(Colors.Red);
     }
 
-    [[Test][Test][Test][Test]]
-    publi[Test] void [Test][Test]nSe[Test][Test]oregroundWi[Test]h[Test]olorRe[Test]eren[Test]e()
+    [Fact]
+    public void CanSetForegroundWithColorReference()
     {
-        v[Test]r [Test]heme = [Test]heme.[Test]re[Test][Test]e(B[Test]se[Test]heme.D[Test]rk, [Test]olors.Red, [Test]olors.Blue);
-        [Test]heme.[Test]oreground = [Test]olorRe[Test]eren[Test]e.Prim[Test]ryMid;
+        var theme = Theme.Create(BaseTheme.Dark, Colors.Red, Colors.Blue);
+        theme.Foreground = ColorReference.PrimaryMid;
 
-        [Test]sser[Test].Equ[Test]l<[Test]olor>([Test]olors.Red, [Test]heme.[Test]oreground);
+        Assert.Equal<Color>(Colors.Red, theme.Foreground);
     }
 }
