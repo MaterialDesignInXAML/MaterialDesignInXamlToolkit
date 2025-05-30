@@ -1,13 +1,13 @@
 ﻿<UserControl x:Class="MaterialDesign3Demo.ComboBoxes"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:colorsDomain="clr-namespace:MaterialDesign3Demo.Domain"
+             xmlns:sharedDomain="clr-namespace:MaterialDesignDemo.Shared.Domain;assembly=MaterialDesignDemo.Shared"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:demoAppDomain="clr-namespace:MaterialDesign3Demo.Domain"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
-             d:DataContext="{d:DesignInstance colorsDomain:ComboBoxesViewModel,
+             d:DataContext="{d:DesignInstance sharedDomain:ComboBoxesViewModel,
                                               IsDesignTimeCreatable=False}"
              d:DesignHeight="300"
              d:DesignWidth="600"

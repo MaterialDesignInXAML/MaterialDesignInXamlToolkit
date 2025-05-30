@@ -7,6 +7,7 @@
         xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:sharedDomain="clr-namespace:MaterialDesignDemo.Shared.Domain"
         Title="Material Design in XAML"
         Width="1150"
         d:DataContext="{d:DesignInstance domain:MainWindowViewModel}"
@@ -78,7 +79,7 @@
               <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}" />
             </ListBox.Resources>
             <ListBox.ItemTemplate>
-              <DataTemplate DataType="domain:DemoItem">
+              <DataTemplate DataType="sharedDomain:DemoItem">
                 <TextBlock Margin="24,4,0,4"
                            AutomationProperties.AutomationId="DemoItemPage"
                            Text="{Binding Name}" />
