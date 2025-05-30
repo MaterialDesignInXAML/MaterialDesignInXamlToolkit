@@ -63,8 +63,8 @@ public partial class ThemeTests : TestBase
     [MatrixDataSource]
     public async Task BundledTheme_UsesSameColorsAsXamlResources(
         [Matrix("Light", "Dark")] string baseTheme,
-        [MatrixMethod<PrimaryColor>(nameof(PrimaryColors))] PrimaryColor primaryColor,
-        [MatrixMethod<SecondaryColor>(nameof(SecondaryColors))] SecondaryColor secondaryColor)
+        [MatrixMethod<ThemeTests>(nameof(PrimaryColors))] PrimaryColor primaryColor,
+        [MatrixMethod<ThemeTests>(nameof(SecondaryColors))] SecondaryColor secondaryColor)
     {
         IVisualElement<WrapPanel> bundledPanel = await Initialize($"""
             <materialDesign:BundledTheme BaseTheme="{baseTheme}"

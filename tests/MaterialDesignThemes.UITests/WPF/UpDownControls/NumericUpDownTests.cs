@@ -222,7 +222,7 @@ public class NumericUpDownTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3827")]
     public async Task NumericUpDown_WhenBindingUpdateTriggerIsPropertyChanged_ItUpdatesBeforeLoosingFocus()
     {
@@ -241,12 +241,12 @@ public class NumericUpDownTests : TestBase
         object? tag = await numericUpDown.GetTag();
 
         //Assert
-        Assert.Equal("4", tag?.ToString());
+        await Assert.That(tag?.ToString()).IsEqualTo("4");
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3827")]
     public async Task NumericUpDown_WhenBindingUpdateTriggerIsLostFocus_ItDoesNotUpdateUntilItLoosesFocus()
     {
@@ -286,8 +286,8 @@ public class NumericUpDownTests : TestBase
 
 
         //Assert
-        Assert.Equal("2", valueBeforeLostFocus.ToString());
-        Assert.Equal("4", valueAfterLostFocus.ToString());
+        await Assert.That(valueBeforeLostFocus.ToString()).IsEqualTo("2");
+        await Assert.That(valueAfterLostFocus.ToString()).IsEqualTo("4");
 
         recorder.Success();
     }
