@@ -1,8 +1,4 @@
 ﻿using MaterialDesignThemes.Wpf.Transitions;
-using TUnit.Core;
-using TUnit.Assertions;
-using TUnit.Assertions.Extensions;
-using System.Threading.Tasks;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
@@ -33,7 +29,7 @@ public class TransitionerTests
     }
 
     [Test, STAThreadExecutor]
-    public void WhenMovePrevious_ItCanRetreatMultipleSlides()
+    public async Task WhenMovePrevious_ItCanRetreatMultipleSlides()
     {
         //Arrange
         var child1 = new UserControl();
@@ -57,7 +53,7 @@ public class TransitionerTests
     }
 
     [Test, STAThreadExecutor]
-    public void ShortCircuitIssue3268()
+    public async Task ShortCircuitIssue3268()
     {
         //Arrange
         Grid child1 = new();
@@ -80,7 +76,7 @@ public class TransitionerTests
         Transitioner.MoveNextCommand.Execute(0, transitioner);
 
         //Act
-        Assert.NotNull(transitioner.SelectedItem);
+        await Assert.That(transitioner.SelectedItem).IsNotNull();
         await Assert.That(transitioner.SelectedItem == child1).IsTrue();
         lb.SelectedItem = lb.Items[1];
 
