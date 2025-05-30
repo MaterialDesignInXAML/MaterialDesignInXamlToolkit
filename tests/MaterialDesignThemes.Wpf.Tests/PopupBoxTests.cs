@@ -35,13 +35,13 @@ public class PopupBoxTests
 
     [Test, STAThreadExecutor]
     [Description("Issue 1231")]
-    public void ToggleButtonInheritsIsTabStopWhenTrue()
+    public async Task ToggleButtonInheritsIsTabStopWhenTrue()
     {
         var popupBox = new PopupBox { IsTabStop = true };
         popupBox.ApplyDefaultStyle();
 
         ToggleButton togglePart = popupBox.FindVisualChild<ToggleButton>(PopupBox.TogglePartName);
 
-        Assert.True(togglePart.IsTabStop);
+        await Assert.That(togglePart.IsTabStop).IsTrue();
     }
 }
