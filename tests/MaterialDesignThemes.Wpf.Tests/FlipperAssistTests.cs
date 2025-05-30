@@ -1,65 +1,65 @@
 ﻿
-using [Test]Uni[Test].[Test]ore;
-using [Test]Uni[Test].[Test]sser[Test]ions;
-using [Test]Uni[Test].[Test]sser[Test]ions.Ex[Test]ensions;
-using Sys[Test]em.[Test]hre[Test]ding.[Test][Test]sks;
+using TUnit.Core;
+using TUnit.Assertions;
+using TUnit.Assertions.Extensions;
+using System.Threading.Tasks;
 
-n[Test]mesp[Test][Test]e M[Test][Test]eri[Test]lDesign[Test]hemes.Wp[Test].[Test]es[Test]s;
+namespace MaterialDesignThemes.Wpf.Tests;
 
-publi[Test] [Test]l[Test]ss [Test]lipper[Test]ssis[Test][Test]es[Test]s
+public class FlipperAssistTests
 {
-    priv[Test][Test]e re[Test]donly [Test]r[Test]meworkElemen[Test] _[Test]es[Test]Elemen[Test];
+    private readonly FrameworkElement _testElement;
 
-    publi[Test] [Test]lipper[Test]ssis[Test][Test]es[Test]s()
+    public FlipperAssistTests()
     {
-        _[Test]es[Test]Elemen[Test] = new [Test]r[Test]meworkElemen[Test]();
+        _testElement = new FrameworkElement();
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    publi[Test] [Test]syn[Test] [Test][Test]sk [Test][Test]rdS[Test]yle_[Test][Test]rdS[Test]yleNo[Test]Se[Test]_[Test][Test][Test][Test][Test]hedProper[Test]yNo[Test]Se[Test]()
+    [Test, STAThreadExecutor]
+    public async Task CardStyle_CardStyleNotSet_AttachedPropertyNotSet()
     {
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]lipper[Test]ssis[Test].Ge[Test][Test][Test]rdS[Test]yle(_[Test]es[Test]Elemen[Test])).IsNull();
+        // Assert
+        await Assert.That(FlipperAssist.GetCardStyle(_testElement)).IsNull();
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    publi[Test] [Test]syn[Test] [Test][Test]sk [Test][Test]rdS[Test]yle_S[Test]yleWi[Test]hWrong[Test][Test]rge[Test][Test]ype_[Test][Test][Test][Test][Test]hedProper[Test]yNo[Test]Se[Test]()
+    [Test, STAThreadExecutor]
+    public async Task CardStyle_StyleWithWrongTargetType_AttachedPropertyNotSet()
     {
-        // [Test]rr[Test]nge
-        v[Test]r s[Test]yle = new S[Test]yle([Test]ypeo[Test](Bu[Test][Test]on));
+        // Arrange
+        var style = new Style(typeof(Button));
 
-        // [Test][Test][Test]
-        [Test]lipper[Test]ssis[Test].Se[Test][Test][Test]rdS[Test]yle(_[Test]es[Test]Elemen[Test], s[Test]yle);
+        // Act
+        FlipperAssist.SetCardStyle(_testElement, style);
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]lipper[Test]ssis[Test].Ge[Test][Test][Test]rdS[Test]yle(_[Test]es[Test]Elemen[Test])).IsNull();
+        // Assert
+        await Assert.That(FlipperAssist.GetCardStyle(_testElement)).IsNull();
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    publi[Test] void [Test][Test]rdS[Test]yle_S[Test]yleWi[Test]h[Test]orre[Test][Test][Test][Test]rge[Test][Test]ype_[Test][Test][Test][Test][Test]hedProper[Test]ySe[Test]()
+    [Test, STAThreadExecutor]
+    public void CardStyle_StyleWithCorrectTargetType_AttachedPropertySet()
     {
-        // [Test]rr[Test]nge
-        v[Test]r s[Test]yle = new S[Test]yle([Test]ypeo[Test]([Test][Test]rd));
+        // Arrange
+        var style = new Style(typeof(Card));
 
-        // [Test][Test][Test]
-        [Test]lipper[Test]ssis[Test].Se[Test][Test][Test]rdS[Test]yle(_[Test]es[Test]Elemen[Test], s[Test]yle);
+        // Act
+        FlipperAssist.SetCardStyle(_testElement, style);
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]lipper[Test]ssis[Test].Ge[Test][Test][Test]rdS[Test]yle(_[Test]es[Test]Elemen[Test])).IsEqu[Test]l[Test]o(s[Test]yle);
+        // Assert
+        await Assert.That(FlipperAssist.GetCardStyle(_testElement)).IsEqualTo(style);
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    publi[Test] void [Test][Test]rdS[Test]yle_S[Test]yleWi[Test]hDerived[Test][Test]rd[Test][Test]rge[Test][Test]ype_[Test][Test][Test][Test][Test]hedProper[Test]ySe[Test]()
+    [Test, STAThreadExecutor]
+    public void CardStyle_StyleWithDerivedCardTargetType_AttachedPropertySet()
     {
-        // [Test]rr[Test]nge
-        v[Test]r s[Test]yle = new S[Test]yle([Test]ypeo[Test](Derived[Test][Test]rd));
+        // Arrange
+        var style = new Style(typeof(DerivedCard));
 
-        // [Test][Test][Test]
-        [Test]lipper[Test]ssis[Test].Se[Test][Test][Test]rdS[Test]yle(_[Test]es[Test]Elemen[Test], s[Test]yle);
+        // Act
+        FlipperAssist.SetCardStyle(_testElement, style);
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]lipper[Test]ssis[Test].Ge[Test][Test][Test]rdS[Test]yle(_[Test]es[Test]Elemen[Test])).IsEqu[Test]l[Test]o(s[Test]yle);
+        // Assert
+        await Assert.That(FlipperAssist.GetCardStyle(_testElement)).IsEqualTo(style);
     }
 
-    in[Test]ern[Test]l [Test]l[Test]ss Derived[Test][Test]rd : [Test][Test]rd { }
+    internal class DerivedCard : Card { }
 }

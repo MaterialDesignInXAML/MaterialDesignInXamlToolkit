@@ -1,417 +1,417 @@
-﻿using Sys[Test]em.[Test]olle[Test][Test]ions.Obje[Test][Test]Model;
-using Sys[Test]em.[Test]olle[Test][Test]ions.Spe[Test]i[Test]lized;
-using Sys[Test]em.[Test]hre[Test]ding;
-using M[Test][Test]eri[Test]lDesign[Test]hemes.Wp[Test].In[Test]ern[Test]l;
-using [Test]Uni[Test].[Test]ore;
-using [Test]Uni[Test].[Test]sser[Test]ions;
-using [Test]Uni[Test].[Test]sser[Test]ions.Ex[Test]ensions;
-using Sys[Test]em.[Test]hre[Test]ding.[Test][Test]sks;
+﻿using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Threading;
+using MaterialDesignThemes.Wpf.Internal;
+using TUnit.Core;
+using TUnit.Assertions;
+using TUnit.Assertions.Extensions;
+using System.Threading.Tasks;
 
-n[Test]mesp[Test][Test]e M[Test][Test]eri[Test]lDesign[Test]hemes.Wp[Test].[Test]es[Test]s.In[Test]ern[Test]l;
+namespace MaterialDesignThemes.Wpf.Tests.Internal;
 
-publi[Test] [Test]l[Test]ss [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion[Test]es[Test]s
+public class TreeListViewItemsCollectionTests
 {
-    [[Test]es[Test]]
-    publi[Test] [Test]syn[Test] [Test][Test]sk [Test]ons[Test]ru[Test][Test]or_[Test][Test][Test]ep[Test]sNull()
+    [Test]
+    public async Task Constructor_AcceptsNull()
     {
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]olle[Test][Test]ion = new(null);
+        TreeListViewItemsCollection collection = new(null);
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]olle[Test][Test]ion).IsEmp[Test]y();
+        await Assert.That(collection).IsEmpty();
     }
 
-    [[Test]es[Test]]
-    publi[Test] [Test]syn[Test] [Test][Test]sk [Test]ons[Test]ru[Test][Test]or_[Test][Test][Test]ep[Test]sObje[Test][Test]()
+    [Test]
+    public async Task Constructor_AcceptsObject()
     {
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]olle[Test][Test]ion = new(new obje[Test][Test]());
+        TreeListViewItemsCollection collection = new(new object());
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]olle[Test][Test]ion).IsEmp[Test]y();
+        await Assert.That(collection).IsEmpty();
     }
 
-    [[Test][Test][Test][Test]]
-    publi[Test] void [Test]ons[Test]ru[Test][Test]or_[Test][Test][Test]ep[Test]sIEnumer[Test]ble()
+    [Fact]
+    public void Constructor_AcceptsIEnumerable()
     {
-        IEnumer[Test]ble<s[Test]ring> enumer[Test]ble = new[] { "[Test]", "b", "[Test]" };
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]olle[Test][Test]ion = new(enumer[Test]ble);
+        IEnumerable<string> enumerable = new[] { "a", "b", "c" };
+        TreeListViewItemsCollection collection = new(enumerable);
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]("b", "[Test]" }, [Test]olle[Test][Test]ion).IsEqu[Test]l[Test]o(new[] { "[Test]");
+        await Assert.That("b", "c" }, collection).IsEqualTo(new[] { "a");
     }
 
-    [[Test][Test][Test][Test]]
-    publi[Test] void WhenWr[Test]ppedObje[Test][Test]Implemen[Test]sIn[Test][Test]_I[Test]H[Test]ndles[Test]ddi[Test]ions()
+    [Fact]
+    public void WhenWrappedObjectImplementsIncc_ItHandlesAdditions()
     {
-        //[Test]rr[Test]nge
-        Observ[Test]ble[Test]olle[Test][Test]ion<s[Test]ring> [Test]olle[Test][Test]ion = new();
+        //Arrange
+        ObservableCollection<string> collection = new();
 
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion = new([Test]olle[Test][Test]ion);
+        TreeListViewItemsCollection treeListViewItemsCollection = new(collection);
 
-        //[Test][Test][Test]
-        [Test]olle[Test][Test]ion.[Test]dd("[Test]");
+        //Act
+        collection.Add("a");
 
-        //[Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion).IsEqu[Test]l[Test]o(new[] { "[Test]" });
+        //Assert
+        await Assert.That(treeListViewItemsCollection).IsEqualTo(new[] { "a" });
     }
 
-    [[Test][Test][Test][Test]]
-    publi[Test] void WhenWr[Test]ppedObje[Test][Test]Implemen[Test]sIn[Test][Test]_I[Test]H[Test]ndlesRemov[Test]ls()
+    [Fact]
+    public void WhenWrappedObjectImplementsIncc_ItHandlesRemovals()
     {
-        //[Test]rr[Test]nge
-        Observ[Test]ble[Test]olle[Test][Test]ion<s[Test]ring> [Test]olle[Test][Test]ion = new() { "[Test]" };
+        //Arrange
+        ObservableCollection<string> collection = new() { "a" };
 
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion = new([Test]olle[Test][Test]ion);
+        TreeListViewItemsCollection treeListViewItemsCollection = new(collection);
 
-        //[Test][Test][Test]
-        [Test]olle[Test][Test]ion.Remove("[Test]");
+        //Act
+        collection.Remove("a");
 
-        //[Test]sser[Test]
-        [Test]sser[Test].Emp[Test]y([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion);
+        //Assert
+        Assert.Empty(treeListViewItemsCollection);
     }
 
-    [[Test][Test][Test][Test]]
-    publi[Test] void WhenWr[Test]ppedObje[Test][Test]Implemen[Test]sIn[Test][Test]_I[Test]H[Test]ndlesRepl[Test][Test]emen[Test]s()
+    [Fact]
+    public void WhenWrappedObjectImplementsIncc_ItHandlesReplacements()
     {
-        //[Test]rr[Test]nge
-        Observ[Test]ble[Test]olle[Test][Test]ion<s[Test]ring> [Test]olle[Test][Test]ion = new() { "[Test]", "b", "[Test]" };
+        //Arrange
+        ObservableCollection<string> collection = new() { "a", "b", "c" };
 
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion = new([Test]olle[Test][Test]ion);
+        TreeListViewItemsCollection treeListViewItemsCollection = new(collection);
 
-        // Simul[Test][Test]e exp[Test]nsion
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(1, "[Test]_[Test]", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(2, "[Test]_b", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(4, "b_[Test]", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(6, "[Test]_[Test]", 1);
+        // Simulate expansion
+        treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(2, "a_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(4, "b_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(6, "c_a", 1);
         /*
-         * 0. [Test]
-         * 1.  [Test]_[Test]
-         * 2.  [Test]_b
+         * 0. a
+         * 1.  a_a
+         * 2.  a_b
          * 3. b
-         * 4.  b_[Test]
-         * 5. [Test]
-         * 6.  [Test]_[Test]
+         * 4.  b_a
+         * 5. c
+         * 6.  c_a
          */
 
-        //[Test][Test][Test]
-        [Test]olle[Test][Test]ion[1] = "x";    // Repl[Test][Test]e b ([Test]nd i[Test]s [Test]hildren) wi[Test]h x (whi[Test]h does no[Test] h[Test]ve [Test]hildren); [Test]olle[Test][Test]ion only knows [Test]bou[Test] roo[Test] level i[Test]ems, so index (1) re[Test]le[Test][Test]s [Test]h[Test][Test]
+        //Act
+        collection[1] = "x";    // Replace b (and its children) with x (which does not have children); collection only knows about root level items, so index (1) reflects that
 
-        //[Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]("[Test]_[Test]", "[Test]_b", "x", "[Test]", "[Test]_[Test]" }, [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion).IsEqu[Test]l[Test]o(new[] { "[Test]");
+        //Assert
+        await Assert.That("a_a", "a_b", "x", "c", "c_a" }, treeListViewItemsCollection).IsEqualTo(new[] { "a");
     }
 
-    [[Test][Test][Test][Test]]
-    publi[Test] void WhenWr[Test]ppedObje[Test][Test]Implemen[Test]sIn[Test][Test]_I[Test]H[Test]ndlesRese[Test]()
+    [Fact]
+    public void WhenWrappedObjectImplementsIncc_ItHandlesReset()
     {
-        //[Test]rr[Test]nge
-        [Test]es[Test][Test]ble[Test]olle[Test][Test]ion<s[Test]ring> [Test]olle[Test][Test]ion = new() { "[Test]" };
+        //Arrange
+        TestableCollection<string> collection = new() { "a" };
 
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion = new([Test]olle[Test][Test]ion);
+        TreeListViewItemsCollection treeListViewItemsCollection = new(collection);
 
-        //[Test][Test][Test]
-        [Test]olle[Test][Test]ion.Repl[Test][Test]e[Test]llI[Test]ems("b", "[Test]");
+        //Act
+        collection.ReplaceAllItems("b", "c");
 
-        //[Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]("[Test]" }, [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion).IsEqu[Test]l[Test]o(new[] { "b");
+        //Assert
+        await Assert.That("c" }, treeListViewItemsCollection).IsEqualTo(new[] { "b");
     }
 
-    [[Test][Test][Test][Test]]
-    publi[Test] void WhenWr[Test]ppedObje[Test][Test]Implemen[Test]sIn[Test][Test]_I[Test]H[Test]ndlesMoves()
+    [Fact]
+    public void WhenWrappedObjectImplementsIncc_ItHandlesMoves()
     {
-        //[Test]rr[Test]nge
-        Observ[Test]ble[Test]olle[Test][Test]ion<s[Test]ring> [Test]olle[Test][Test]ion = new() { "[Test]", "b", "[Test]" };
+        //Arrange
+        ObservableCollection<string> collection = new() { "a", "b", "c" };
 
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion = new([Test]olle[Test][Test]ion);
+        TreeListViewItemsCollection treeListViewItemsCollection = new(collection);
 
-        //[Test][Test][Test]
-        [Test]olle[Test][Test]ion.Move(0, 2);
+        //Act
+        collection.Move(0, 2);
 
-        //[Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]("[Test]", "[Test]" }, [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion).IsEqu[Test]l[Test]o(new[] { "b");
+        //Assert
+        await Assert.That("c", "a" }, treeListViewItemsCollection).IsEqualTo(new[] { "b");
     }
 
-    [[Test]heory]
-    [[Test]rgumen[Test]s(0, 0)] //x is [Test] sibling o[Test] [Test]
-    [[Test]rgumen[Test]s(1, 1)] //x nes[Test]ed under [Test]
-    [[Test]rgumen[Test]s(2, 1)] //x is [Test] sibling o[Test] [Test]_[Test]
-    [[Test]rgumen[Test]s(2, 2)] //x is [Test] [Test]hild o[Test] [Test]_[Test]
-    [[Test]rgumen[Test]s(3, 1)] //x is [Test] sibling o[Test] [Test]_b
-    [[Test]rgumen[Test]s(3, 2)] //x is [Test] [Test]hild o[Test] [Test]_b
-    [[Test]rgumen[Test]s(4, 1)] //x is [Test] [Test]hild o[Test] b
-    [[Test]rgumen[Test]s(4, 0)] //x is [Test] sibling o[Test] b
-    publi[Test] void When[Test]ddingI[Test]em[Test][Test]Nes[Test]edLevel_I[Test]Se[Test]s[Test]heI[Test]emsLevel(in[Test] inser[Test]ionIndex, in[Test] reques[Test]edLevel)
+    [Theory]
+    [Arguments(0, 0)] //x is a sibling of a
+    [Arguments(1, 1)] //x nested under a
+    [Arguments(2, 1)] //x is a sibling of a_a
+    [Arguments(2, 2)] //x is a child of a_a
+    [Arguments(3, 1)] //x is a sibling of a_b
+    [Arguments(3, 2)] //x is a child of a_b
+    [Arguments(4, 1)] //x is a child of b
+    [Arguments(4, 0)] //x is a sibling of b
+    public void WhenAddingItemAtNestedLevel_ItSetsTheItemsLevel(int insertionIndex, int requestedLevel)
     {
-        //[Test]rr[Test]nge
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion = new(new[] { "[Test]", "b" });
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(1, "[Test]_[Test]", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(2, "[Test]_b", 1);
+        //Arrange
+        TreeListViewItemsCollection treeListViewItemsCollection = new(new[] { "a", "b" });
+        treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(2, "a_b", 1);
         /*
-         * 0. [Test]
-         * 1.  [Test]_[Test]
-         * 2.  [Test]_b
-         * 3. b
-         */
-
-        //[Test][Test][Test]
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(inser[Test]ionIndex, "x", reques[Test]edLevel);
-
-        //[Test]sser[Test]
-        Lis[Test]<s[Test]ring> expe[Test][Test]edI[Test]ems = new(new[] { "[Test]", "[Test]_[Test]", "[Test]_b", "b" });
-        expe[Test][Test]edI[Test]ems.Inser[Test](inser[Test]ionIndex, "x");
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion).IsEqu[Test]l[Test]o(expe[Test][Test]edI[Test]ems);
-
-        Lis[Test]<in[Test]> expe[Test][Test]edLevels = new(new[] { 0, 1, 1, 0 });
-        expe[Test][Test]edLevels.Inser[Test](inser[Test]ionIndex, reques[Test]edLevel);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test][Test]llLevels()).IsEqu[Test]l[Test]o(expe[Test][Test]edLevels);
-    }
-
-    [[Test]heory]
-    [[Test]rgumen[Test]s(0, 1)]
-    [[Test]rgumen[Test]s(1, 2)]
-    [[Test]rgumen[Test]s(2, 4)]
-    [[Test]rgumen[Test]s(2, 0)]
-    [[Test]rgumen[Test]s(0, -1)]
-    [[Test]rgumen[Test]s(4, 2)]
-    publi[Test] void Inser[Test]Wi[Test]hLevel_When[Test]ddingI[Test]em[Test][Test]Nes[Test]edLevel_I[Test][Test]hrowsI[Test]Reques[Test]IsOu[Test]O[Test]R[Test]nge(in[Test] inser[Test]ionIndex, in[Test] reques[Test]edLevel)
-    {
-        //[Test]rr[Test]nge
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion = new(new[] { "[Test]", "b" });
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(1, "[Test]_[Test]", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(2, "[Test]_b", 1);
-        /*
-         * 0. [Test]
-         * 1.  [Test]_[Test]
-         * 2.  [Test]_b
+         * 0. a
+         * 1.  a_a
+         * 2.  a_b
          * 3. b
          */
 
-        //[Test][Test][Test]/[Test]sser[Test]
-        [Test]sser[Test].[Test]hrows<[Test]rgumen[Test]Ou[Test]O[Test]R[Test]ngeEx[Test]ep[Test]ion>(() => [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(inser[Test]ionIndex, "x", reques[Test]edLevel));
+        //Act
+        treeListViewItemsCollection.InsertWithLevel(insertionIndex, "x", requestedLevel);
+
+        //Assert
+        List<string> expectedItems = new(new[] { "a", "a_a", "a_b", "b" });
+        expectedItems.Insert(insertionIndex, "x");
+        await Assert.That(treeListViewItemsCollection).IsEqualTo(expectedItems);
+
+        List<int> expectedLevels = new(new[] { 0, 1, 1, 0 });
+        expectedLevels.Insert(insertionIndex, requestedLevel);
+        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEqualTo(expectedLevels);
     }
 
-    [[Test][Test][Test][Test]]
-    publi[Test] void Inser[Test]Wi[Test]hLevel_WhenInser[Test]ing[Test]irs[Test]Sibling_M[Test]rksIndex[Test]sExp[Test]nded()
+    [Theory]
+    [Arguments(0, 1)]
+    [Arguments(1, 2)]
+    [Arguments(2, 4)]
+    [Arguments(2, 0)]
+    [Arguments(0, -1)]
+    [Arguments(4, 2)]
+    public void InsertWithLevel_WhenAddingItemAtNestedLevel_ItThrowsIfRequestIsOutOfRange(int insertionIndex, int requestedLevel)
     {
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion = new(new[] { "[Test]", "b" });
-
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(1, "[Test]_[Test]", 1);
+        //Arrange
+        TreeListViewItemsCollection treeListViewItemsCollection = new(new[] { "a", "b" });
+        treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(2, "a_b", 1);
         /*
-         * 0. [Test]
-         * 1.  [Test]_[Test]
+         * 0. a
+         * 1.  a_a
+         * 2.  a_b
+         * 3. b
+         */
+
+        //Act/Assert
+        Assert.Throws<ArgumentOutOfRangeException>(() => treeListViewItemsCollection.InsertWithLevel(insertionIndex, "x", requestedLevel));
+    }
+
+    [Fact]
+    public void InsertWithLevel_WhenInsertingFirstSibling_MarksIndexAsExpanded()
+    {
+        TreeListViewItemsCollection treeListViewItemsCollection = new(new[] { "a", "b" });
+
+        treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
+        /*
+         * 0. a
+         * 1.  a_a
          * 2. b
          */
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test][Test]lse, [Test][Test]lse }, [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test][Test]llIsExp[Test]nded()).IsEqu[Test]l[Test]o(new[] { [Test]rue);
+        await Assert.That(false, false }, treeListViewItemsCollection.GetAllIsExpanded()).IsEqualTo(new[] { true);
     }
 
-    [[Test]heory]
-    [[Test]rgumen[Test]s(0, new[] { "b", "b_[Test]", "[Test]" }, new[] { 0, 1, 0})]
-    [[Test]rgumen[Test]s(1, new[] { "[Test]", "[Test]_[Test]", "[Test]_[Test]_[Test]", "[Test]_[Test]_b", "[Test]_b", "[Test]" }, new[] { 0, 1, 2, 2, 1, 0 })]
-    [[Test]rgumen[Test]s(2, new[] { "[Test]", "[Test]_[Test]", "[Test]_[Test]_[Test]", "[Test]_[Test]_b", "[Test]_b", "b", "b_[Test]" }, new[] { 0, 1, 2, 2, 1, 0, 1 })]
-    publi[Test] void WhenRemovingI[Test]em_I[Test]RemovesI[Test]ems[Test]nd[Test]ny[Test]hildren(in[Test] index[Test]oRemove, s[Test]ring[] expe[Test][Test]edI[Test]ems, in[Test][] expe[Test][Test]edLevels)
+    [Theory]
+    [Arguments(0, new[] { "b", "b_a", "c" }, new[] { 0, 1, 0})]
+    [Arguments(1, new[] { "a", "a_a", "a_a_a", "a_a_b", "a_b", "c" }, new[] { 0, 1, 2, 2, 1, 0 })]
+    [Arguments(2, new[] { "a", "a_a", "a_a_a", "a_a_b", "a_b", "b", "b_a" }, new[] { 0, 1, 2, 2, 1, 0, 1 })]
+    public void WhenRemovingItem_ItRemovesItemsAndAnyChildren(int indexToRemove, string[] expectedItems, int[] expectedLevels)
     {
-        //[Test]rr[Test]nge
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion = new(new[] { "[Test]", "b", "[Test]" });
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(1, "[Test]_[Test]", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(2, "[Test]_[Test]_[Test]", 2);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(3, "[Test]_[Test]_b", 2);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(4, "[Test]_b", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(6, "b_[Test]", 1);
+        //Arrange
+        TreeListViewItemsCollection treeListViewItemsCollection = new(new[] { "a", "b", "c" });
+        treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(2, "a_a_a", 2);
+        treeListViewItemsCollection.InsertWithLevel(3, "a_a_b", 2);
+        treeListViewItemsCollection.InsertWithLevel(4, "a_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(6, "b_a", 1);
         /*
-         * 0. [Test]
-         * 1.  [Test]_[Test]
-         * 2.   [Test]_[Test]_[Test]
-         * 3.   [Test]_[Test]_b
-         * 4.  [Test]_b
+         * 0. a
+         * 1.  a_a
+         * 2.   a_a_a
+         * 3.   a_a_b
+         * 4.  a_b
          * 5. b
-         * 6.  b_[Test]
-         * 7. [Test]
+         * 6.  b_a
+         * 7. c
          */
 
-        //[Test][Test][Test]
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Remove[Test][Test](index[Test]oRemove); // Remove[Test][Test]() only knows [Test]bou[Test] roo[Test] level i[Test]ems, so indi[Test]es in inpu[Test] should re[Test]le[Test][Test] [Test]h[Test][Test]
+        //Act
+        treeListViewItemsCollection.RemoveAt(indexToRemove); // RemoveAt() only knows about root level items, so indices in input should reflect that
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion).IsEqu[Test]l[Test]o(expe[Test][Test]edI[Test]ems);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test][Test]llLevels()).IsEqu[Test]l[Test]o(expe[Test][Test]edLevels);
+        await Assert.That(treeListViewItemsCollection).IsEqualTo(expectedItems);
+        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEqualTo(expectedLevels);
     }
 
-    [[Test][Test][Test][Test]]
-    publi[Test] void Move_WhenMovingI[Test]emUp_I[Test]Moves[Test]hildren[Test]longWi[Test]hI[Test]()
+    [Fact]
+    public void Move_WhenMovingItemUp_ItMovesChildrenAlongWithIt()
     {
-        //[Test]rr[Test]nge
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion = new(new[] { "[Test]", "b", "[Test]" });
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(1, "[Test]_[Test]", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(2, "[Test]_b", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(4, "b_[Test]", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(5, "b_b", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(6, "b_[Test]", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(8, "[Test]_[Test]", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(9, "[Test]_b", 1);
+        //Arrange
+        TreeListViewItemsCollection treeListViewItemsCollection = new(new[] { "a", "b", "c" });
+        treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(2, "a_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(4, "b_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(5, "b_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(6, "b_c", 1);
+        treeListViewItemsCollection.InsertWithLevel(8, "c_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(9, "c_b", 1);
         /*
-         * 0. [Test]
-         * 1.  [Test]_[Test]
-         * 2.  [Test]_b
+         * 0. a
+         * 1.  a_a
+         * 2.  a_b
          * 3. b
-         * 4.  b_[Test]
+         * 4.  b_a
          * 5.  b_b
-         * 6.  b_[Test]
-         * 7. [Test]
-         * 8   [Test]_[Test]
-         * 9.  [Test]_b
+         * 6.  b_c
+         * 7. c
+         * 8   c_a
+         * 9.  c_b
          */
 
-        //[Test][Test][Test]
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Move(3, 0); //Sw[Test]p b [Test]nd [Test];
+        //Act
+        treeListViewItemsCollection.Move(3, 0); //Swap b and a;
 
-        //[Test]sser[Test]
-        Lis[Test]<s[Test]ring> expe[Test][Test]edI[Test]ems = new(new[] { "b", "b_[Test]", "b_b", "b_[Test]", "[Test]", "[Test]_[Test]", "[Test]_b", "[Test]", "[Test]_[Test]", "[Test]_b" });
-        Lis[Test]<in[Test]> expe[Test][Test]edLevels = new(new[] { 0, 1, 1, 1, 0, 1, 1, 0, 1, 1 });
+        //Assert
+        List<string> expectedItems = new(new[] { "b", "b_a", "b_b", "b_c", "a", "a_a", "a_b", "c", "c_a", "c_b" });
+        List<int> expectedLevels = new(new[] { 0, 1, 1, 1, 0, 1, 1, 0, 1, 1 });
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion).IsEqu[Test]l[Test]o(expe[Test][Test]edI[Test]ems);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test][Test]llLevels()).IsEqu[Test]l[Test]o(expe[Test][Test]edLevels);
+        await Assert.That(treeListViewItemsCollection).IsEqualTo(expectedItems);
+        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEqualTo(expectedLevels);
     }
 
-    [[Test][Test][Test][Test]]
-    publi[Test] void Move_WhenMovingI[Test]emUpMul[Test]ipleLevels_I[Test]Moves[Test]hildren[Test]longWi[Test]hI[Test]()
+    [Fact]
+    public void Move_WhenMovingItemUpMultipleLevels_ItMovesChildrenAlongWithIt()
     {
-        //[Test]rr[Test]nge
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion = new(new[] { "[Test]", "b", "[Test]" });
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(1, "[Test]_[Test]", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(2, "[Test]_b", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(4, "b_[Test]", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(5, "b_b", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(6, "b_[Test]", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(8, "[Test]_[Test]", 1);
+        //Arrange
+        TreeListViewItemsCollection treeListViewItemsCollection = new(new[] { "a", "b", "c" });
+        treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(2, "a_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(4, "b_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(5, "b_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(6, "b_c", 1);
+        treeListViewItemsCollection.InsertWithLevel(8, "c_a", 1);
         /*
-         * 0. [Test]
-         * 1.  [Test]_[Test]
-         * 2.  [Test]_b
+         * 0. a
+         * 1.  a_a
+         * 2.  a_b
          * 3. b
-         * 4.  b_[Test]
+         * 4.  b_a
          * 5.  b_b
-         * 6.  b_[Test]
-         * 7. [Test]
-         * 8   [Test]_[Test]
+         * 6.  b_c
+         * 7. c
+         * 8   c_a
          */
 
-        //[Test][Test][Test]
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Move(7, 0); // Move [Test] [Test]o [Test]'s posi[Test]ion; Move() only knows [Test]bou[Test] roo[Test] level i[Test]ems, so indi[Test]es re[Test]le[Test][Test] [Test]h[Test][Test]
+        //Act
+        treeListViewItemsCollection.Move(7, 0); // Move c to a's position; Move() only knows about root level items, so indices reflect that
 
-        //[Test]sser[Test]
-        Lis[Test]<s[Test]ring> expe[Test][Test]edI[Test]ems = new(new[] { "[Test]", "[Test]_[Test]", "[Test]", "[Test]_[Test]", "[Test]_b", "b", "b_[Test]", "b_b", "b_[Test]" });
-        Lis[Test]<in[Test]> expe[Test][Test]edLevels = new(new[] { 0, 1, 0, 1, 1, 0, 1, 1, 1 });
+        //Assert
+        List<string> expectedItems = new(new[] { "c", "c_a", "a", "a_a", "a_b", "b", "b_a", "b_b", "b_c" });
+        List<int> expectedLevels = new(new[] { 0, 1, 0, 1, 1, 0, 1, 1, 1 });
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion).IsEqu[Test]l[Test]o(expe[Test][Test]edI[Test]ems);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test][Test]llLevels()).IsEqu[Test]l[Test]o(expe[Test][Test]edLevels);
+        await Assert.That(treeListViewItemsCollection).IsEqualTo(expectedItems);
+        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEqualTo(expectedLevels);
     }
 
-    [[Test][Test][Test][Test]]
-    publi[Test] void Move_WhenMovingI[Test]emDown_I[Test]Moves[Test]hildren[Test]longWi[Test]hI[Test]()
+    [Fact]
+    public void Move_WhenMovingItemDown_ItMovesChildrenAlongWithIt()
     {
-        //[Test]rr[Test]nge
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion = new(new[] { "[Test]", "b", "[Test]" });
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(1, "[Test]_[Test]", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(2, "[Test]_b", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(4, "b_[Test]", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(5, "b_b", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(6, "b_[Test]", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(8, "[Test]_[Test]", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(9, "[Test]_b", 1);
+        //Arrange
+        TreeListViewItemsCollection treeListViewItemsCollection = new(new[] { "a", "b", "c" });
+        treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(2, "a_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(4, "b_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(5, "b_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(6, "b_c", 1);
+        treeListViewItemsCollection.InsertWithLevel(8, "c_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(9, "c_b", 1);
         /*
-         * 0. [Test]
-         * 1.  [Test]_[Test]
-         * 2.  [Test]_b
+         * 0. a
+         * 1.  a_a
+         * 2.  a_b
          * 3. b
-         * 4.  b_[Test]
+         * 4.  b_a
          * 5.  b_b
-         * 6.  b_[Test]
-         * 7. [Test]
-         * 8   [Test]_[Test]
-         * 9.  [Test]_b
+         * 6.  b_c
+         * 7. c
+         * 8   c_a
+         * 9.  c_b
          */
 
-        //[Test][Test][Test]
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Move(3, 7); // Sw[Test]p b [Test]nd [Test];
+        //Act
+        treeListViewItemsCollection.Move(3, 7); // Swap b and c;
 
-        //[Test]sser[Test]
-        s[Test]ring[] expe[Test][Test]edI[Test]ems = new[] { "[Test]", "[Test]_[Test]", "[Test]_b", "[Test]", "[Test]_[Test]", "[Test]_b", "b", "b_[Test]", "b_b", "b_[Test]" };
-        in[Test][] expe[Test][Test]edLevels = new[] { 0, 1, 1, 0, 1, 1, 0, 1, 1, 1 };
+        //Assert
+        string[] expectedItems = new[] { "a", "a_a", "a_b", "c", "c_a", "c_b", "b", "b_a", "b_b", "b_c" };
+        int[] expectedLevels = new[] { 0, 1, 1, 0, 1, 1, 0, 1, 1, 1 };
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion).IsEqu[Test]l[Test]o(expe[Test][Test]edI[Test]ems);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test][Test]llLevels()).IsEqu[Test]l[Test]o(expe[Test][Test]edLevels);
+        await Assert.That(treeListViewItemsCollection).IsEqualTo(expectedItems);
+        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEqualTo(expectedLevels);
     }
 
-    [[Test][Test][Test][Test]]
-    publi[Test] void Move_WhenMovingI[Test]emDownMul[Test]ipleLevels_I[Test]Moves[Test]hildren[Test]longWi[Test]hI[Test]()
+    [Fact]
+    public void Move_WhenMovingItemDownMultipleLevels_ItMovesChildrenAlongWithIt()
     {
-        //[Test]rr[Test]nge
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion = new(new[] { "[Test]", "b", "[Test]" });
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(1, "[Test]_[Test]", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(2, "[Test]_b", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(4, "b_[Test]", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(5, "b_b", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(6, "b_[Test]", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(8, "[Test]_[Test]", 1);
+        //Arrange
+        TreeListViewItemsCollection treeListViewItemsCollection = new(new[] { "a", "b", "c" });
+        treeListViewItemsCollection.InsertWithLevel(1, "a_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(2, "a_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(4, "b_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(5, "b_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(6, "b_c", 1);
+        treeListViewItemsCollection.InsertWithLevel(8, "c_a", 1);
         /*
-         * 0. [Test]
-         * 1.  [Test]_[Test]
-         * 2.  [Test]_b
+         * 0. a
+         * 1.  a_a
+         * 2.  a_b
          * 3. b
-         * 4.  b_[Test]
+         * 4.  b_a
          * 5.  b_b
-         * 6.  b_[Test]
-         * 7. [Test]
-         * 8   [Test]_[Test]
+         * 6.  b_c
+         * 7. c
+         * 8   c_a
          */
 
-        //[Test][Test][Test]
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Move(0, 7); // Move [Test] [Test]o [Test]'s posi[Test]ion; Move() only knows [Test]bou[Test] roo[Test] level i[Test]ems, so indi[Test]es re[Test]le[Test][Test] [Test]h[Test][Test]
+        //Act
+        treeListViewItemsCollection.Move(0, 7); // Move a to c's position; Move() only knows about root level items, so indices reflect that
 
-        //[Test]sser[Test]
-        Lis[Test]<s[Test]ring> expe[Test][Test]edI[Test]ems = new(new[] { "b", "b_[Test]", "b_b", "b_[Test]", "[Test]", "[Test]_[Test]", "[Test]", "[Test]_[Test]", "[Test]_b" });
-        Lis[Test]<in[Test]> expe[Test][Test]edLevels = new(new[] { 0, 1, 1, 1, 0, 1, 0, 1, 1 });
+        //Assert
+        List<string> expectedItems = new(new[] { "b", "b_a", "b_b", "b_c", "c", "c_a", "a", "a_a", "a_b" });
+        List<int> expectedLevels = new(new[] { 0, 1, 1, 1, 0, 1, 0, 1, 1 });
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion).IsEqu[Test]l[Test]o(expe[Test][Test]edI[Test]ems);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test][Test]llLevels()).IsEqu[Test]l[Test]o(expe[Test][Test]edLevels);
+        await Assert.That(treeListViewItemsCollection).IsEqualTo(expectedItems);
+        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEqualTo(expectedLevels);
     }
 
-    [[Test][Test][Test][Test]]
-    publi[Test] void Move_Wi[Test]hWr[Test]pped[Test]olle[Test][Test]ion_I[Test]Moves[Test]hildren[Test]longWi[Test]hI[Test]()
+    [Fact]
+    public void Move_WithWrappedCollection_ItMovesChildrenAlongWithIt()
     {
-        //[Test]rr[Test]nge
-        Observ[Test]ble[Test]olle[Test][Test]ion<s[Test]ring> bound[Test]olle[Test][Test]ion = new() { "[Test]", "b", "[Test]" };
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion = new(bound[Test]olle[Test][Test]ion);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(2, "b_[Test]", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(3, "b_b", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(4, "b_[Test]", 1);
+        //Arrange
+        ObservableCollection<string> boundCollection = new() { "a", "b", "c" };
+        TreeListViewItemsCollection treeListViewItemsCollection = new(boundCollection);
+        treeListViewItemsCollection.InsertWithLevel(2, "b_a", 1);
+        treeListViewItemsCollection.InsertWithLevel(3, "b_b", 1);
+        treeListViewItemsCollection.InsertWithLevel(4, "b_c", 1);
         /*
-         * 0. [Test]
+         * 0. a
          * 1. b
-         * 2.  b_[Test]
+         * 2.  b_a
          * 3.  b_b
-         * 4.  b_[Test]
-         * 5. [Test]
+         * 4.  b_c
+         * 5. c
          */
 
-        //[Test][Test][Test]
-        bound[Test]olle[Test][Test]ion.Move(1, 2); // Move b [Test]o [Test]'s posi[Test]ion;
+        //Act
+        boundCollection.Move(1, 2); // Move b to c's position;
 
-        //[Test]sser[Test]
-        Lis[Test]<s[Test]ring> expe[Test][Test]edI[Test]ems = new(new[] { "[Test]", "[Test]", "b", "b_[Test]", "b_b", "b_[Test]" });
-        Lis[Test]<in[Test]> expe[Test][Test]edLevels = new(new[] { 0, 0, 0, 1, 1, 1 });
+        //Assert
+        List<string> expectedItems = new(new[] { "a", "c", "b", "b_a", "b_b", "b_c" });
+        List<int> expectedLevels = new(new[] { 0, 0, 0, 1, 1, 1 });
 
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion).IsEqu[Test]l[Test]o(expe[Test][Test]edI[Test]ems);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test][Test]llLevels()).IsEqu[Test]l[Test]o(expe[Test][Test]edLevels);
+        await Assert.That(treeListViewItemsCollection).IsEqualTo(expectedItems);
+        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEqualTo(expectedLevels);
     }
 
-    [[Test][Test][Test][Test]]
-    publi[Test] void Move_Wi[Test]hExp[Test]nded[Test]hild_I[Test]Moves[Test]hildrenUp()
+    [Fact]
+    public void Move_WithExpandedChild_ItMovesChildrenUp()
     {
-        //[Test]rr[Test]nge
-        Observ[Test]ble[Test]olle[Test][Test]ion<s[Test]ring> bound[Test]olle[Test][Test]ion = new() { "0", "1", "2" };
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion = new(bound[Test]olle[Test][Test]ion);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(2, "1_0", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(3, "1_1", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(4, "1_1_0", 2);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(5, "1_1_1", 2);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(6, "1_1_2", 2);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(7, "1_2", 1);
+        //Arrange
+        ObservableCollection<string> boundCollection = new() { "0", "1", "2" };
+        TreeListViewItemsCollection treeListViewItemsCollection = new(boundCollection);
+        treeListViewItemsCollection.InsertWithLevel(2, "1_0", 1);
+        treeListViewItemsCollection.InsertWithLevel(3, "1_1", 1);
+        treeListViewItemsCollection.InsertWithLevel(4, "1_1_0", 2);
+        treeListViewItemsCollection.InsertWithLevel(5, "1_1_1", 2);
+        treeListViewItemsCollection.InsertWithLevel(6, "1_1_2", 2);
+        treeListViewItemsCollection.InsertWithLevel(7, "1_2", 1);
         /*
          * 0. 0
          * 1. 1
@@ -424,11 +424,11 @@ publi[Test] [Test]l[Test]ss [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Tes
          * 8. 2
          */
 
-        //[Test][Test][Test]
-        bound[Test]olle[Test][Test]ion.Move(1, 0); // Move 1 [Test]o 0's posi[Test]ion;
+        //Act
+        boundCollection.Move(1, 0); // Move 1 to 0's position;
 
-        //[Test]sser[Test]
-        Lis[Test]<s[Test]ring> expe[Test][Test]edI[Test]ems = new(new[]
+        //Assert
+        List<string> expectedItems = new(new[]
         {
             "1",
             "1_0",
@@ -440,36 +440,36 @@ publi[Test] [Test]l[Test]ss [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Tes
             "0",
             "2",
         });
-        Lis[Test]<in[Test]> expe[Test][Test]edLevels = new(new[] { 0, 1, 1, 2, 2, 2, 1, 0, 0 });
-        Lis[Test]<bool> expe[Test][Test]edExp[Test]nded = new()
+        List<int> expectedLevels = new(new[] { 0, 1, 1, 2, 2, 2, 1, 0, 0 });
+        List<bool> expectedExpanded = new()
         {
-            [Test]rue,
-            [Test][Test]lse,
-            [Test]rue,
-            [Test][Test]lse,
-            [Test][Test]lse,
-            [Test][Test]lse,
-            [Test][Test]lse,
-            [Test][Test]lse,
-            [Test][Test]lse,
+            true,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
         };
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion).IsEqu[Test]l[Test]o(expe[Test][Test]edI[Test]ems);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test][Test]llLevels()).IsEqu[Test]l[Test]o(expe[Test][Test]edLevels);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test][Test]llIsExp[Test]nded()).IsEqu[Test]l[Test]o(expe[Test][Test]edExp[Test]nded);
+        await Assert.That(treeListViewItemsCollection).IsEqualTo(expectedItems);
+        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEqualTo(expectedLevels);
+        await Assert.That(treeListViewItemsCollection.GetAllIsExpanded()).IsEqualTo(expectedExpanded);
     }
 
-    [[Test][Test][Test][Test]]
-    publi[Test] void Move_Wi[Test]hExp[Test]nded[Test]hild_I[Test]Moves[Test]hildrenDown()
+    [Fact]
+    public void Move_WithExpandedChild_ItMovesChildrenDown()
     {
-        //[Test]rr[Test]nge
-        Observ[Test]ble[Test]olle[Test][Test]ion<s[Test]ring> bound[Test]olle[Test][Test]ion = new() { "0", "1", "2" };
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion = new(bound[Test]olle[Test][Test]ion);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(1, "0_0", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(2, "0_1", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(3, "0_1_0", 2);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(4, "0_1_1", 2);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(5, "0_1_2", 2);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(6, "0_2", 1);
+        //Arrange
+        ObservableCollection<string> boundCollection = new() { "0", "1", "2" };
+        TreeListViewItemsCollection treeListViewItemsCollection = new(boundCollection);
+        treeListViewItemsCollection.InsertWithLevel(1, "0_0", 1);
+        treeListViewItemsCollection.InsertWithLevel(2, "0_1", 1);
+        treeListViewItemsCollection.InsertWithLevel(3, "0_1_0", 2);
+        treeListViewItemsCollection.InsertWithLevel(4, "0_1_1", 2);
+        treeListViewItemsCollection.InsertWithLevel(5, "0_1_2", 2);
+        treeListViewItemsCollection.InsertWithLevel(6, "0_2", 1);
         /*
          * 0. 0
          * 1.  0_0
@@ -482,11 +482,11 @@ publi[Test] [Test]l[Test]ss [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Tes
          * 8. 2
          */
 
-        //[Test][Test][Test]
-        bound[Test]olle[Test][Test]ion.Move(0, 1); // Move 0 [Test]o 1's posi[Test]ion;
+        //Act
+        boundCollection.Move(0, 1); // Move 0 to 1's position;
 
-        //[Test]sser[Test]
-        Lis[Test]<s[Test]ring> expe[Test][Test]edI[Test]ems = new(new[]
+        //Assert
+        List<string> expectedItems = new(new[]
         {
             "1",
             "0",
@@ -498,33 +498,33 @@ publi[Test] [Test]l[Test]ss [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Tes
             "0_2",
             "2",
         });
-        Lis[Test]<in[Test]> expe[Test][Test]edLevels = new(new[] { 0, 0, 1, 1, 2, 2, 2, 1, 0 });
-        Lis[Test]<bool> expe[Test][Test]edExp[Test]nded = new()
+        List<int> expectedLevels = new(new[] { 0, 0, 1, 1, 2, 2, 2, 1, 0 });
+        List<bool> expectedExpanded = new()
         {
-            [Test][Test]lse,
-            [Test]rue,
-            [Test][Test]lse,
-            [Test]rue,
-            [Test][Test]lse,
-            [Test][Test]lse,
-            [Test][Test]lse,
-            [Test][Test]lse,
-            [Test][Test]lse,
+            false,
+            true,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
         };
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion).IsEqu[Test]l[Test]o(expe[Test][Test]edI[Test]ems);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test][Test]llLevels()).IsEqu[Test]l[Test]o(expe[Test][Test]edLevels);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test][Test]llIsExp[Test]nded()).IsEqu[Test]l[Test]o(expe[Test][Test]edExp[Test]nded);
+        await Assert.That(treeListViewItemsCollection).IsEqualTo(expectedItems);
+        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEqualTo(expectedLevels);
+        await Assert.That(treeListViewItemsCollection.GetAllIsExpanded()).IsEqualTo(expectedExpanded);
     }
 
-    [[Test][Test][Test][Test]]
-    publi[Test] void Repl[Test][Test]e_Wi[Test]hExp[Test]nded[Test]hild_I[Test]Removes[Test]hildren()
+    [Fact]
+    public void Replace_WithExpandedChild_ItRemovesChildren()
     {
-        //[Test]rr[Test]nge
-        Observ[Test]ble[Test]olle[Test][Test]ion<s[Test]ring> bound[Test]olle[Test][Test]ion = new() { "0", "1", "2" };
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion = new(bound[Test]olle[Test][Test]ion);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(3, "2_0", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(4, "2_1", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(5, "2_2", 1);
+        //Arrange
+        ObservableCollection<string> boundCollection = new() { "0", "1", "2" };
+        TreeListViewItemsCollection treeListViewItemsCollection = new(boundCollection);
+        treeListViewItemsCollection.InsertWithLevel(3, "2_0", 1);
+        treeListViewItemsCollection.InsertWithLevel(4, "2_1", 1);
+        treeListViewItemsCollection.InsertWithLevel(5, "2_2", 1);
         /*
          * 0. 0
          * 1. 1
@@ -534,37 +534,37 @@ publi[Test] [Test]l[Test]ss [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Tes
          * 5.   2_2
          */
 
-        //[Test][Test][Test]
-        bound[Test]olle[Test][Test]ion[2] = "repl[Test][Test]ed";
+        //Act
+        boundCollection[2] = "replaced";
 
-        //[Test]sser[Test]
-        Lis[Test]<s[Test]ring> expe[Test][Test]edI[Test]ems = new(new[]
+        //Assert
+        List<string> expectedItems = new(new[]
         {
             "0",
             "1",
-            "repl[Test][Test]ed",
+            "replaced",
         });
-        Lis[Test]<in[Test]> expe[Test][Test]edLevels = new(new[] { 0, 0, 0 });
-        Lis[Test]<bool> expe[Test][Test]edExp[Test]nded = new()
+        List<int> expectedLevels = new(new[] { 0, 0, 0 });
+        List<bool> expectedExpanded = new()
         {
-            [Test][Test]lse,
-            [Test][Test]lse,
-            [Test][Test]lse,
+            false,
+            false,
+            false,
         };
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion).IsEqu[Test]l[Test]o(expe[Test][Test]edI[Test]ems);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test][Test]llLevels()).IsEqu[Test]l[Test]o(expe[Test][Test]edLevels);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test][Test]llIsExp[Test]nded()).IsEqu[Test]l[Test]o(expe[Test][Test]edExp[Test]nded);
+        await Assert.That(treeListViewItemsCollection).IsEqualTo(expectedItems);
+        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEqualTo(expectedLevels);
+        await Assert.That(treeListViewItemsCollection.GetAllIsExpanded()).IsEqualTo(expectedExpanded);
     }
 
-    [[Test]heory]
-    [[Test]rgumen[Test]s(0)]
-    [[Test]rgumen[Test]s(1)]
-    [[Test]rgumen[Test]s(2)]
-    publi[Test] void Repl[Test][Test]e_[Test]opLevelI[Test]em_IsRepl[Test][Test]ed(in[Test] index[Test]oRepl[Test][Test]e)
+    [Theory]
+    [Arguments(0)]
+    [Arguments(1)]
+    [Arguments(2)]
+    public void Replace_TopLevelItem_IsReplaced(int indexToReplace)
     {
-        //[Test]rr[Test]nge
-        Observ[Test]ble[Test]olle[Test][Test]ion<s[Test]ring> bound[Test]olle[Test][Test]ion = new() { "0", "1", "2" };
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion = new(bound[Test]olle[Test][Test]ion);
+        //Arrange
+        ObservableCollection<string> boundCollection = new() { "0", "1", "2" };
+        TreeListViewItemsCollection treeListViewItemsCollection = new(boundCollection);
         
         /*
          * 0. 0
@@ -572,55 +572,55 @@ publi[Test] [Test]l[Test]ss [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Tes
          * 3. 2
          */
 
-        //[Test][Test][Test]
-        bound[Test]olle[Test][Test]ion[index[Test]oRepl[Test][Test]e] = "[Test]h[Test]nged";
+        //Act
+        boundCollection[indexToReplace] = "changed";
 
-        //[Test]sser[Test]
-        Lis[Test]<s[Test]ring> expe[Test][Test]edI[Test]ems = new(new[]
+        //Assert
+        List<string> expectedItems = new(new[]
         {
             "0",
             "1",
             "2",
         });
-        expe[Test][Test]edI[Test]ems[index[Test]oRepl[Test][Test]e] = "[Test]h[Test]nged";
-        Lis[Test]<in[Test]> expe[Test][Test]edLevels = new(new[] { 0, 0, 0 });
-        Lis[Test]<bool> expe[Test][Test]edExp[Test]nded = new()
+        expectedItems[indexToReplace] = "changed";
+        List<int> expectedLevels = new(new[] { 0, 0, 0 });
+        List<bool> expectedExpanded = new()
         {
-            [Test][Test]lse,
-            [Test][Test]lse,
-            [Test][Test]lse,
+            false,
+            false,
+            false,
         };
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion).IsEqu[Test]l[Test]o(expe[Test][Test]edI[Test]ems);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test][Test]llLevels()).IsEqu[Test]l[Test]o(expe[Test][Test]edLevels);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test][Test]llIsExp[Test]nded()).IsEqu[Test]l[Test]o(expe[Test][Test]edExp[Test]nded);
+        await Assert.That(treeListViewItemsCollection).IsEqualTo(expectedItems);
+        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEqualTo(expectedLevels);
+        await Assert.That(treeListViewItemsCollection.GetAllIsExpanded()).IsEqualTo(expectedExpanded);
     }
 
-    [[Test]heory]
-    [[Test]rgumen[Test]s(-1)]
-    [[Test]rgumen[Test]s(3)]
-    publi[Test] void Ge[Test]P[Test]ren[Test]_Wi[Test]hInv[Test]lidIndex_[Test]hrowsOu[Test]O[Test]R[Test]ngeEx[Test]ep[Test]ion(in[Test] index)
+    [Theory]
+    [Arguments(-1)]
+    [Arguments(3)]
+    public void GetParent_WithInvalidIndex_ThrowsOutOfRangeException(int index)
     {
-        //[Test]rr[Test]nge
-        Observ[Test]ble[Test]olle[Test][Test]ion<s[Test]ring> bound[Test]olle[Test][Test]ion = new() { "0", "1", "2" };
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion = new(bound[Test]olle[Test][Test]ion);
+        //Arrange
+        ObservableCollection<string> boundCollection = new() { "0", "1", "2" };
+        TreeListViewItemsCollection treeListViewItemsCollection = new(boundCollection);
 
-        //[Test][Test][Test]/[Test]sser[Test]
-        v[Test]r ex = [Test]sser[Test].[Test]hrows<[Test]rgumen[Test]Ou[Test]O[Test]R[Test]ngeEx[Test]ep[Test]ion>(() => [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test]P[Test]ren[Test](index));
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](ex.P[Test]r[Test]mN[Test]me).IsEqu[Test]l[Test]o("index");
+        //Act/Assert
+        var ex = Assert.Throws<ArgumentOutOfRangeException>(() => treeListViewItemsCollection.GetParent(index));
+        await Assert.That(ex.ParamName).IsEqualTo("index");
     }
 
-    [[Test][Test][Test][Test]]
-    publi[Test] void Ge[Test]P[Test]ren[Test]_Wi[Test]hNes[Test]edI[Test]em_Re[Test]urnsP[Test]ren[Test]()
+    [Fact]
+    public void GetParent_WithNestedItem_ReturnsParent()
     {
-        //[Test]rr[Test]nge
-        Observ[Test]ble[Test]olle[Test][Test]ion<s[Test]ring> bound[Test]olle[Test][Test]ion = new() { "0", "1", "2" };
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion = new(bound[Test]olle[Test][Test]ion);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(2, "1_0", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(3, "1_1", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(4, "1_2", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(5, "1_2_0", 2);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(6, "1_2_1", 2);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(7, "1_2_2", 2);
+        //Arrange
+        ObservableCollection<string> boundCollection = new() { "0", "1", "2" };
+        TreeListViewItemsCollection treeListViewItemsCollection = new(boundCollection);
+        treeListViewItemsCollection.InsertWithLevel(2, "1_0", 1);
+        treeListViewItemsCollection.InsertWithLevel(3, "1_1", 1);
+        treeListViewItemsCollection.InsertWithLevel(4, "1_2", 1);
+        treeListViewItemsCollection.InsertWithLevel(5, "1_2_0", 2);
+        treeListViewItemsCollection.InsertWithLevel(6, "1_2_1", 2);
+        treeListViewItemsCollection.InsertWithLevel(7, "1_2_2", 2);
 
         /*
          * 0. 0
@@ -635,30 +635,30 @@ publi[Test] [Test]l[Test]ss [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Tes
          */
 
 
-        //[Test][Test][Test]/[Test]sser[Test]
-        [Test]sser[Test].Null([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test]P[Test]ren[Test](0));
-        [Test]sser[Test].Null([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test]P[Test]ren[Test](1));
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test]P[Test]ren[Test](2)).IsEqu[Test]l[Test]o("1");
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test]P[Test]ren[Test](3)).IsEqu[Test]l[Test]o("1");
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test]P[Test]ren[Test](4)).IsEqu[Test]l[Test]o("1");
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test]P[Test]ren[Test](5)).IsEqu[Test]l[Test]o("1_2");
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test]P[Test]ren[Test](6)).IsEqu[Test]l[Test]o("1_2");
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test]([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test]P[Test]ren[Test](7)).IsEqu[Test]l[Test]o("1_2");
-        [Test]sser[Test].Null([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test]P[Test]ren[Test](8));
+        //Act/Assert
+        Assert.Null(treeListViewItemsCollection.GetParent(0));
+        Assert.Null(treeListViewItemsCollection.GetParent(1));
+        await Assert.That(treeListViewItemsCollection.GetParent(2)).IsEqualTo("1");
+        await Assert.That(treeListViewItemsCollection.GetParent(3)).IsEqualTo("1");
+        await Assert.That(treeListViewItemsCollection.GetParent(4)).IsEqualTo("1");
+        await Assert.That(treeListViewItemsCollection.GetParent(5)).IsEqualTo("1_2");
+        await Assert.That(treeListViewItemsCollection.GetParent(6)).IsEqualTo("1_2");
+        await Assert.That(treeListViewItemsCollection.GetParent(7)).IsEqualTo("1_2");
+        Assert.Null(treeListViewItemsCollection.GetParent(8));
     }
 
-    [[Test][Test][Test][Test]]
-    publi[Test] void Ge[Test]Dire[Test][Test][Test]hildrenIndexes_Ge[Test]sExpe[Test][Test]ed[Test]hildrenIndexes()
+    [Fact]
+    public void GetDirectChildrenIndexes_GetsExpectedChildrenIndexes()
     {
-        //[Test]rr[Test]nge
-        Observ[Test]ble[Test]olle[Test][Test]ion<s[Test]ring> bound[Test]olle[Test][Test]ion = new() { "0", "1", "2" };
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion = new(bound[Test]olle[Test][Test]ion);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(2, "1_0", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(3, "1_1", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(4, "1_2", 1);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(5, "1_2_0", 2);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(6, "1_2_1", 2);
-        [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Inser[Test]Wi[Test]hLevel(7, "1_2_2", 2);
+        //Arrange
+        ObservableCollection<string> boundCollection = new() { "0", "1", "2" };
+        TreeListViewItemsCollection treeListViewItemsCollection = new(boundCollection);
+        treeListViewItemsCollection.InsertWithLevel(2, "1_0", 1);
+        treeListViewItemsCollection.InsertWithLevel(3, "1_1", 1);
+        treeListViewItemsCollection.InsertWithLevel(4, "1_2", 1);
+        treeListViewItemsCollection.InsertWithLevel(5, "1_2_0", 2);
+        treeListViewItemsCollection.InsertWithLevel(6, "1_2_1", 2);
+        treeListViewItemsCollection.InsertWithLevel(7, "1_2_2", 2);
 
         /*
          * 0. 0
@@ -673,63 +673,63 @@ publi[Test] [Test]l[Test]ss [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Tes
          */
 
 
-        //[Test][Test][Test]/[Test]sser[Test]
-        [Test]sser[Test].Emp[Test]y([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test]Dire[Test][Test][Test]hildrenIndexes(0));
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](3, 4 }, [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test]Dire[Test][Test][Test]hildrenIndexes(1)).IsEqu[Test]l[Test]o(new[] { 2);
-        [Test]sser[Test].Emp[Test]y([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test]Dire[Test][Test][Test]hildrenIndexes(2));
-        [Test]sser[Test].Emp[Test]y([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test]Dire[Test][Test][Test]hildrenIndexes(3));
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](6, 7 }, [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test]Dire[Test][Test][Test]hildrenIndexes(4)).IsEqu[Test]l[Test]o(new[] { 5);
-        [Test]sser[Test].Emp[Test]y([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test]Dire[Test][Test][Test]hildrenIndexes(5));
-        [Test]sser[Test].Emp[Test]y([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test]Dire[Test][Test][Test]hildrenIndexes(6));
-        [Test]sser[Test].Emp[Test]y([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test]Dire[Test][Test][Test]hildrenIndexes(7));
-        [Test]sser[Test].Emp[Test]y([Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion.Ge[Test]Dire[Test][Test][Test]hildrenIndexes(8));
+        //Act/Assert
+        Assert.Empty(treeListViewItemsCollection.GetDirectChildrenIndexes(0));
+        await Assert.That(3, 4 }, treeListViewItemsCollection.GetDirectChildrenIndexes(1)).IsEqualTo(new[] { 2);
+        Assert.Empty(treeListViewItemsCollection.GetDirectChildrenIndexes(2));
+        Assert.Empty(treeListViewItemsCollection.GetDirectChildrenIndexes(3));
+        await Assert.That(6, 7 }, treeListViewItemsCollection.GetDirectChildrenIndexes(4)).IsEqualTo(new[] { 5);
+        Assert.Empty(treeListViewItemsCollection.GetDirectChildrenIndexes(5));
+        Assert.Empty(treeListViewItemsCollection.GetDirectChildrenIndexes(6));
+        Assert.Empty(treeListViewItemsCollection.GetDirectChildrenIndexes(7));
+        Assert.Empty(treeListViewItemsCollection.GetDirectChildrenIndexes(8));
         
     }
 
-    priv[Test][Test]e [Test]l[Test]ss [Test]es[Test][Test]ble[Test]olle[Test][Test]ion<[Test]> : Observ[Test]ble[Test]olle[Test][Test]ion<[Test]>
+    private class TestableCollection<T> : ObservableCollection<T>
     {
-        priv[Test][Test]e in[Test] _blo[Test]k[Test]olle[Test][Test]ion[Test]h[Test]nges;
+        private int _blockCollectionChanges;
 
-        pro[Test]e[Test][Test]ed override void On[Test]olle[Test][Test]ion[Test]h[Test]nged(No[Test]i[Test]y[Test]olle[Test][Test]ion[Test]h[Test]ngedEven[Test][Test]rgs e)
+        protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
         {
-            i[Test] (In[Test]erlo[Test]ked.[Test]omp[Test]reEx[Test]h[Test]nge(re[Test] _blo[Test]k[Test]olle[Test][Test]ion[Test]h[Test]nges, 0, 0) == 0)
+            if (Interlocked.CompareExchange(ref _blockCollectionChanges, 0, 0) == 0)
             {
-                b[Test]se.On[Test]olle[Test][Test]ion[Test]h[Test]nged(e);
+                base.OnCollectionChanged(e);
             }
         }
 
-        publi[Test] void Repl[Test][Test]e[Test]llI[Test]ems(p[Test]r[Test]ms [Test][] newI[Test]ems)
+        public void ReplaceAllItems(params T[] newItems)
         {
-            In[Test]erlo[Test]ked.Ex[Test]h[Test]nge(re[Test] _blo[Test]k[Test]olle[Test][Test]ion[Test]h[Test]nges, 1);
+            Interlocked.Exchange(ref _blockCollectionChanges, 1);
 
-            [Test]le[Test]r();
-            [Test]ore[Test][Test]h ([Test] newI[Test]em in newI[Test]ems)
+            Clear();
+            foreach (T newItem in newItems)
             {
-                [Test]dd(newI[Test]em);
+                Add(newItem);
             }
 
-            In[Test]erlo[Test]ked.Ex[Test]h[Test]nge(re[Test] _blo[Test]k[Test]olle[Test][Test]ion[Test]h[Test]nges, 0);
+            Interlocked.Exchange(ref _blockCollectionChanges, 0);
 
-            On[Test]olle[Test][Test]ion[Test]h[Test]nged(new No[Test]i[Test]y[Test]olle[Test][Test]ion[Test]h[Test]ngedEven[Test][Test]rgs(No[Test]i[Test]y[Test]olle[Test][Test]ion[Test]h[Test]nged[Test][Test][Test]ion.Rese[Test]));
+            OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
     }
 }
 
-publi[Test] s[Test][Test][Test]i[Test] [Test]l[Test]ss [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ionEx[Test]ensions
+public static class TreeListViewItemsCollectionExtensions
 {
-    publi[Test] s[Test][Test][Test]i[Test] IEnumer[Test]ble<in[Test]> Ge[Test][Test]llLevels([Test]his [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]olle[Test][Test]ion)
+    public static IEnumerable<int> GetAllLevels(this TreeListViewItemsCollection collection)
     {
-        [Test]or (in[Test] i = 0; i < [Test]olle[Test][Test]ion.[Test]oun[Test]; i++)
+        for (int i = 0; i < collection.Count; i++)
         {
-            yield re[Test]urn [Test]olle[Test][Test]ion.Ge[Test]Level(i);
+            yield return collection.GetLevel(i);
         }
     }
 
-    publi[Test] s[Test][Test][Test]i[Test] IEnumer[Test]ble<bool> Ge[Test][Test]llIsExp[Test]nded([Test]his [Test]reeLis[Test]ViewI[Test]ems[Test]olle[Test][Test]ion [Test]olle[Test][Test]ion)
+    public static IEnumerable<bool> GetAllIsExpanded(this TreeListViewItemsCollection collection)
     {
-        [Test]or (in[Test] i = 0; i < [Test]olle[Test][Test]ion.[Test]oun[Test]; i++)
+        for (int i = 0; i < collection.Count; i++)
         {
-            yield re[Test]urn [Test]olle[Test][Test]ion.Ge[Test]IsExp[Test]nded(i);
+            yield return collection.GetIsExpanded(i);
         }
     }
 }

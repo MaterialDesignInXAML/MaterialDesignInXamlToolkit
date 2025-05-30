@@ -1,458 +1,451 @@
-﻿using Sys[Test]em.Glob[Test]liz[Test][Test]ion;
-using Sys[Test]em.Windows.D[Test][Test][Test];
-using Sys[Test]em.Windows.Medi[Test];
+﻿using System.Globalization;
+using System.Windows.Data;
+using System.Windows.Media;
 
-n[Test]mesp[Test][Test]e M[Test][Test]eri[Test]lDesign[Test]hemes.Wp[Test].[Test]es[Test]s;
+using TUnit.Core;
+using TUnit.Assertions;
+using TUnit.Assertions.Extensions;
+using System.Threading.Tasks;
 
-publi[Test] [Test]l[Test]ss R[Test][Test]ingB[Test]r[Test]es[Test]s
+namespace MaterialDesignThemes.Wpf.Tests;
+
+public class RatingBarTests
 {
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    publi[Test] [Test]syn[Test] [Test][Test]sk Se[Test]Min_Should[Test]oer[Test]e[Test]oM[Test]x_WhenMinIsGre[Test][Test]er[Test]h[Test]nM[Test]x()
+    [Test, STAThreadExecutor]
+    public async Task SetMin_ShouldCoerceToMax_WhenMinIsGreaterThanMax()
     {
-        // [Test]rr[Test]nge
-        R[Test][Test]ingB[Test]r r[Test][Test]ingB[Test]r = new() { Min = 1, M[Test]x = 10 };
+        // Arrange
+        RatingBar ratingBar = new() { Min = 1, Max = 10 };
 
-        // [Test][Test][Test]
-        r[Test][Test]ingB[Test]r.Min = 15;
+        // Act
+        ratingBar.Min = 15;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](r[Test][Test]ingB[Test]r.Min).IsEqu[Test]l[Test]o(10);
+        // Assert
+        await Assert.That(ratingBar.Min).IsEqualTo(10);
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    publi[Test] [Test]syn[Test] [Test][Test]sk Se[Test]Min_ShouldNo[Test][Test]oer[Test]eV[Test]lue_When[Test]r[Test][Test][Test]ion[Test]lV[Test]lues[Test]reDis[Test]bled()
+    [Test, STAThreadExecutor]
+    public async Task SetMin_ShouldNotCoerceValue_WhenFractionalValuesAreDisabled()
     {
-        // [Test]rr[Test]nge
-        R[Test][Test]ingB[Test]r r[Test][Test]ingB[Test]r = new() { Min = 1, M[Test]x = 10, V[Test]lue = 5 };
+        // Arrange
+        RatingBar ratingBar = new() { Min = 1, Max = 10, Value = 5 };
 
-        // [Test][Test][Test]
-        r[Test][Test]ingB[Test]r.Min = 7;
+        // Act
+        ratingBar.Min = 7;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](r[Test][Test]ingB[Test]r.V[Test]lue).IsEqu[Test]l[Test]o(5);
+        // Assert
+        await Assert.That(ratingBar.Value).IsEqualTo(5);
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    publi[Test] [Test]syn[Test] [Test][Test]sk Se[Test]Min_Should[Test]oer[Test]eV[Test]lue_When[Test]r[Test][Test][Test]ion[Test]lV[Test]lues[Test]reEn[Test]bled()
+    [Test, STAThreadExecutor]
+    public void SetMin_ShouldCoerceValue_WhenFractionalValuesAreEnabled()
     {
-        // [Test]rr[Test]nge
-        R[Test][Test]ingB[Test]r r[Test][Test]ingB[Test]r = new() { Min = 1, M[Test]x = 10, V[Test]lue = 5, V[Test]lueIn[Test]remen[Test]s = 0.5 };
+        // Arrange
+        RatingBar ratingBar = new() { Min = 1, Max = 10, Value = 5, ValueIncrements = 0.5 };
 
-        // [Test][Test][Test]
-        r[Test][Test]ingB[Test]r.Min = 7;
+        // Act
+        ratingBar.Min = 7;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](r[Test][Test]ingB[Test]r.V[Test]lue).IsEqu[Test]l[Test]o(7);
+        // Assert
+        await Assert.That(ratingBar.Value).IsEqualTo(7);
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    publi[Test] [Test]syn[Test] [Test][Test]sk Se[Test]M[Test]x_ShouldNo[Test][Test]oer[Test]eV[Test]lue_When[Test]r[Test][Test][Test]ion[Test]lV[Test]lues[Test]reDis[Test]bled()
+    [Test, STAThreadExecutor]
+    public void SetMax_ShouldNotCoerceValue_WhenFractionalValuesAreDisabled()
     {
-        // [Test]rr[Test]nge
-        R[Test][Test]ingB[Test]r r[Test][Test]ingB[Test]r = new() { Min = 1, M[Test]x = 10, V[Test]lue = 5 };
+        // Arrange
+        RatingBar ratingBar = new() { Min = 1, Max = 10, Value = 5 };
 
-        // [Test][Test][Test]
-        r[Test][Test]ingB[Test]r.M[Test]x = 3;
+        // Act
+        ratingBar.Max = 3;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](r[Test][Test]ingB[Test]r.V[Test]lue).IsEqu[Test]l[Test]o(5);
+        // Assert
+        await Assert.That(ratingBar.Value).IsEqualTo(5);
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    publi[Test] [Test]syn[Test] [Test][Test]sk Se[Test]M[Test]x_Should[Test]oer[Test]eV[Test]lue_When[Test]r[Test][Test][Test]ion[Test]lV[Test]lues[Test]reEn[Test]bled()
+    [Test, STAThreadExecutor]
+    public void SetMax_ShouldCoerceValue_WhenFractionalValuesAreEnabled()
     {
-        // [Test]rr[Test]nge
-        R[Test][Test]ingB[Test]r r[Test][Test]ingB[Test]r = new() { Min = 1, M[Test]x = 10, V[Test]lue = 5, V[Test]lueIn[Test]remen[Test]s = 0.5 };
+        // Arrange
+        RatingBar ratingBar = new() { Min = 1, Max = 10, Value = 5, ValueIncrements = 0.5 };
 
-        // [Test][Test][Test]
-        r[Test][Test]ingB[Test]r.M[Test]x = 3;
+        // Act
+        ratingBar.Max = 3;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](r[Test][Test]ingB[Test]r.V[Test]lue).IsEqu[Test]l[Test]o(3);
+        // Assert
+        await Assert.That(ratingBar.Value).IsEqualTo(3);
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    publi[Test] [Test]syn[Test] [Test][Test]sk Se[Test]M[Test]x_Should[Test]oer[Test]e[Test]oMin_WhenM[Test]xIsLess[Test]h[Test]nMin()
+    [Test, STAThreadExecutor]
+    public void SetMax_ShouldCoerceToMin_WhenMaxIsLessThanMin()
     {
-        // [Test]rr[Test]nge
-        R[Test][Test]ingB[Test]r r[Test][Test]ingB[Test]r = new() { Min = 1, M[Test]x = 10 };
+        // Arrange
+        RatingBar ratingBar = new() { Min = 1, Max = 10 };
 
-        // [Test][Test][Test]
-        r[Test][Test]ingB[Test]r.M[Test]x = -5;
+        // Act
+        ratingBar.Max = -5;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](r[Test][Test]ingB[Test]r.M[Test]x).IsEqu[Test]l[Test]o(1);
+        // Assert
+        await Assert.That(ratingBar.Max).IsEqualTo(1);
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    [[Test]rgumen[Test]s(-5, 1.0)]
-    [[Test]rgumen[Test]s(5, 5.0)]
-    [[Test]rgumen[Test]s(15, 10.0)]
-    [[Test]rgumen[Test]s(1.2, 1.0)]
-    [[Test]rgumen[Test]s(1.3, 1.5)]
-    [[Test]rgumen[Test]s(1.7, 1.5)]
-    [[Test]rgumen[Test]s(1.8, 2.0)]
-    [[Test]rgumen[Test]s(2.2, 2.0)]
-    [[Test]rgumen[Test]s(2.3, 2.5)]
-    publi[Test] [Test]syn[Test] [Test][Test]sk Se[Test]V[Test]lue_Should[Test]oer[Test]e[Test]o[Test]orre[Test][Test]Mul[Test]iple[Test]ndS[Test][Test]ysWi[Test]hinBounds_When[Test]r[Test][Test][Test]ion[Test]lV[Test]lues[Test]reEn[Test]bled(double v[Test]lue[Test]oSe[Test], double expe[Test][Test]edV[Test]lue)
+    [StaTheory]
+    [Arguments(-5, 1.0)]
+    [Arguments(5, 5.0)]
+    [Arguments(15, 10.0)]
+    [Arguments(1.2, 1.0)]
+    [Arguments(1.3, 1.5)]
+    [Arguments(1.7, 1.5)]
+    [Arguments(1.8, 2.0)]
+    [Arguments(2.2, 2.0)]
+    [Arguments(2.3, 2.5)]
+    public void SetValue_ShouldCoerceToCorrectMultipleAndStaysWithinBounds_WhenFractionalValuesAreEnabled(double valueToSet, double expectedValue)
     {
-        // [Test]rr[Test]nge
-        R[Test][Test]ingB[Test]r r[Test][Test]ingB[Test]r = new() { Min = 1, M[Test]x = 10, V[Test]lueIn[Test]remen[Test]s = 0.5 };
+        // Arrange
+        RatingBar ratingBar = new() { Min = 1, Max = 10, ValueIncrements = 0.5 };
 
-        // [Test][Test][Test]
-        r[Test][Test]ingB[Test]r.V[Test]lue = v[Test]lue[Test]oSe[Test];
+        // Act
+        ratingBar.Value = valueToSet;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](r[Test][Test]ingB[Test]r.V[Test]lue).IsEqu[Test]l[Test]o(expe[Test][Test]edV[Test]lue);
+        // Assert
+        await Assert.That(ratingBar.Value).IsEqualTo(expectedValue);
     }
 
-    [[Test]es[Test], S[Test][Test][Test]hre[Test]dExe[Test]u[Test]or]
-    [[Test]rgumen[Test]s(-5, -5.0)]
-    [[Test]rgumen[Test]s(5, 5.0)]
-    [[Test]rgumen[Test]s(15, 15.0)]
-    [[Test]rgumen[Test]s(1.2, 1.2)]
-    [[Test]rgumen[Test]s(2.3, 2.3)]
-    publi[Test] [Test]syn[Test] [Test][Test]sk Se[Test]V[Test]lue_ShouldNo[Test][Test]oer[Test]eV[Test]lue_When[Test]r[Test][Test][Test]ion[Test]lV[Test]lues[Test]reDis[Test]bled(double v[Test]lue[Test]oSe[Test], double expe[Test][Test]edV[Test]lue)
+    [StaTheory]
+    [Arguments(-5, -5.0)]
+    [Arguments(5, 5.0)]
+    [Arguments(15, 15.0)]
+    [Arguments(1.2, 1.2)]
+    [Arguments(2.3, 2.3)]
+    public void SetValue_ShouldNotCoerceValue_WhenFractionalValuesAreDisabled(double valueToSet, double expectedValue)
     {
-        // [Test]rr[Test]nge
-        R[Test][Test]ingB[Test]r r[Test][Test]ingB[Test]r = new() { Min = 1, M[Test]x = 10 };
+        // Arrange
+        RatingBar ratingBar = new() { Min = 1, Max = 10 };
 
-        // [Test][Test][Test]
-        r[Test][Test]ingB[Test]r.V[Test]lue = v[Test]lue[Test]oSe[Test];
+        // Act
+        ratingBar.Value = valueToSet;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](r[Test][Test]ingB[Test]r.V[Test]lue).IsEqu[Test]l[Test]o(expe[Test][Test]edV[Test]lue);
+        // Assert
+        await Assert.That(ratingBar.Value).IsEqualTo(expectedValue);
     }
 
-    [[Test]es[Test]]
-    publi[Test] [Test]syn[Test] [Test][Test]sk [Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er_ShouldRe[Test]urnOrigin[Test]lBrush_WhenV[Test]lueIsEqu[Test]l[Test]oBu[Test][Test]onV[Test]lue()
+    [Fact]
+    public void TextBlockForegroundConverter_ShouldReturnOriginalBrush_WhenValueIsEqualToButtonValue()
     {
-        // [Test]rr[Test]nge
-        Solid[Test]olorBrush brush = Brushes.Red;
-        R[Test][Test]ingB[Test]r.[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er [Test]onver[Test]er = R[Test][Test]ingB[Test]r.[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er.Ins[Test][Test]n[Test]e;
-        obje[Test][Test][] v[Test]lues = [Test]rr[Test]nge_[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]erV[Test]lues(brush, v[Test]lue: 1, bu[Test][Test]onV[Test]lue: 1);
+        // Arrange
+        SolidColorBrush brush = Brushes.Red;
+        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
+        object[] values = Arrange_TextBlockForegroundConverterValues(brush, value: 1, buttonValue: 1);
 
-        // [Test][Test][Test]
-        v[Test]r resul[Test] = [Test]onver[Test]er.[Test]onver[Test](v[Test]lues, [Test]ypeo[Test](Brush), null, [Test]ul[Test]ureIn[Test]o.[Test]urren[Test][Test]ul[Test]ure) [Test]s Brush;
+        // Act
+        var result = converter.Convert(values, typeof(Brush), null, CultureInfo.CurrentCulture) as Brush;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).IsEqu[Test]l[Test]o(brush);
+        // Assert
+        await Assert.That(result).IsEqualTo(brush);
     }
 
-    [[Test]es[Test]]
-    publi[Test] [Test]syn[Test] [Test][Test]sk [Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er_ShouldRe[Test]urnOrigin[Test]lBrush_WhenV[Test]lueIsGre[Test][Test]er[Test]h[Test]nBu[Test][Test]onV[Test]lue()
+    [Fact]
+    public void TextBlockForegroundConverter_ShouldReturnOriginalBrush_WhenValueIsGreaterThanButtonValue()
     {
-        // [Test]rr[Test]nge
-        Solid[Test]olorBrush brush = Brushes.Red;
-        R[Test][Test]ingB[Test]r.[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er [Test]onver[Test]er = R[Test][Test]ingB[Test]r.[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er.Ins[Test][Test]n[Test]e;
-        obje[Test][Test][] v[Test]lues = [Test]rr[Test]nge_[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]erV[Test]lues(brush, v[Test]lue: 2, bu[Test][Test]onV[Test]lue: 1);
+        // Arrange
+        SolidColorBrush brush = Brushes.Red;
+        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
+        object[] values = Arrange_TextBlockForegroundConverterValues(brush, value: 2, buttonValue: 1);
 
-        // [Test][Test][Test]
-        v[Test]r resul[Test] = [Test]onver[Test]er.[Test]onver[Test](v[Test]lues, [Test]ypeo[Test](Brush), null, [Test]ul[Test]ureIn[Test]o.[Test]urren[Test][Test]ul[Test]ure) [Test]s Brush;
+        // Act
+        var result = converter.Convert(values, typeof(Brush), null, CultureInfo.CurrentCulture) as Brush;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).IsEqu[Test]l[Test]o(brush);
+        // Assert
+        await Assert.That(result).IsEqualTo(brush);
     }
 
-    [[Test]es[Test]]
-    publi[Test] [Test]syn[Test] [Test][Test]sk [Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er_ShouldRe[Test]urnSemi[Test]r[Test]nsp[Test]ren[Test]Brush_WhenV[Test]lueIsLess[Test]h[Test]nBu[Test][Test]onV[Test]lueMinusOne()
+    [Fact]
+    public void TextBlockForegroundConverter_ShouldReturnSemiTransparentBrush_WhenValueIsLessThanButtonValueMinusOne()
     {
-        // [Test]rr[Test]nge
-        Solid[Test]olorBrush brush = Brushes.Red;
-        R[Test][Test]ingB[Test]r.[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er [Test]onver[Test]er = R[Test][Test]ingB[Test]r.[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er.Ins[Test][Test]n[Test]e;
-        obje[Test][Test][] v[Test]lues = [Test]rr[Test]nge_[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]erV[Test]lues(brush, v[Test]lue: 0.5, bu[Test][Test]onV[Test]lue: 2);
+        // Arrange
+        SolidColorBrush brush = Brushes.Red;
+        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
+        object[] values = Arrange_TextBlockForegroundConverterValues(brush, value: 0.5, buttonValue: 2);
 
-        // [Test][Test][Test]
-        v[Test]r resul[Test] = [Test]onver[Test]er.[Test]onver[Test](v[Test]lues, [Test]ypeo[Test](Brush), null, [Test]ul[Test]ureIn[Test]o.[Test]urren[Test][Test]ul[Test]ure) [Test]s Brush;
+        // Act
+        var result = converter.Convert(values, typeof(Brush), null, CultureInfo.CurrentCulture) as Brush;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).Is[Test]ypeO[Test]<Solid[Test]olorBrush>();
-        Solid[Test]olorBrush resul[Test]Brush = (Solid[Test]olorBrush)resul[Test]!;
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]Brush.[Test]olor.[Test]).IsEqu[Test]l[Test]o(R[Test][Test]ingB[Test]r.[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er.Semi[Test]r[Test]nsp[Test]ren[Test]);
+        // Assert
+        Assert.IsAssignableFrom<SolidColorBrush>(result);
+        SolidColorBrush resultBrush = (SolidColorBrush)result!;
+        await Assert.That(resultBrush.Color.A).IsEqualTo(RatingBar.TextBlockForegroundConverter.SemiTransparent);
     }
 
-    [[Test]es[Test]]
-    publi[Test] [Test]syn[Test] [Test][Test]sk [Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er_ShouldRe[Test]urnHorizon[Test][Test]lLine[Test]rGr[Test]dien[Test]Brush_WhenV[Test]lueIsBe[Test]weenBu[Test][Test]onV[Test]lue[Test]ndBu[Test][Test]onV[Test]lueMinusOne()
+    [Fact]
+    public void TextBlockForegroundConverter_ShouldReturnHorizontalLinearGradientBrush_WhenValueIsBetweenButtonValueAndButtonValueMinusOne()
     {
-        // [Test]rr[Test]nge
-        Solid[Test]olorBrush brush = Brushes.Red;
-        R[Test][Test]ingB[Test]r.[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er [Test]onver[Test]er = R[Test][Test]ingB[Test]r.[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er.Ins[Test][Test]n[Test]e;
-        obje[Test][Test][] v[Test]lues = [Test]rr[Test]nge_[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]erV[Test]lues(brush, v[Test]lue: 1.5, bu[Test][Test]onV[Test]lue: 2, orien[Test][Test][Test]ion: Orien[Test][Test][Test]ion.Horizon[Test][Test]l);
+        // Arrange
+        SolidColorBrush brush = Brushes.Red;
+        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
+        object[] values = Arrange_TextBlockForegroundConverterValues(brush, value: 1.5, buttonValue: 2, orientation: Orientation.Horizontal);
 
-        // [Test][Test][Test]
-        v[Test]r resul[Test] = [Test]onver[Test]er.[Test]onver[Test](v[Test]lues, [Test]ypeo[Test](Brush), null, [Test]ul[Test]ureIn[Test]o.[Test]urren[Test][Test]ul[Test]ure) [Test]s Brush;
+        // Act
+        var result = converter.Convert(values, typeof(Brush), null, CultureInfo.CurrentCulture) as Brush;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).Is[Test]ypeO[Test]<Line[Test]rGr[Test]dien[Test]Brush>();
-
-        Line[Test]rGr[Test]dien[Test]Brush resul[Test]Brush = (Line[Test]rGr[Test]dien[Test]Brush)resul[Test]!;
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]Brush.S[Test][Test]r[Test]Poin[Test]).IsEqu[Test]l[Test]o(new Poin[Test](0, 0.5));
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]Brush.EndPoin[Test]).IsEqu[Test]l[Test]o(new Poin[Test](1, 0.5));
+        // Assert
+        Assert.IsAssignableFrom<LinearGradientBrush>(result);
+        LinearGradientBrush resultBrush = (LinearGradientBrush)result!;
+        await Assert.That(0.5), resultBrush.StartPoint).IsEqualTo(new Point(0);
+        await Assert.That(0.5), resultBrush.EndPoint).IsEqualTo(new Point(1);
     }
 
-    [[Test]es[Test]]
-    publi[Test] [Test]syn[Test] [Test][Test]sk [Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er_ShouldRe[Test]urnVer[Test]i[Test][Test]lLine[Test]rGr[Test]dien[Test]Brush_WhenV[Test]lueIsBe[Test]weenBu[Test][Test]onV[Test]lue[Test]ndBu[Test][Test]onV[Test]lueMinusOne()
+    [Fact]
+    public void TextBlockForegroundConverter_ShouldReturnVerticalLinearGradientBrush_WhenValueIsBetweenButtonValueAndButtonValueMinusOne()
     {
-        // [Test]rr[Test]nge
-        Solid[Test]olorBrush brush = Brushes.Red;
-        R[Test][Test]ingB[Test]r.[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er [Test]onver[Test]er = R[Test][Test]ingB[Test]r.[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er.Ins[Test][Test]n[Test]e;
-        obje[Test][Test][] v[Test]lues = [Test]rr[Test]nge_[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]erV[Test]lues(brush, v[Test]lue: 1.5, bu[Test][Test]onV[Test]lue: 2, orien[Test][Test][Test]ion: Orien[Test][Test][Test]ion.Ver[Test]i[Test][Test]l);
+        // Arrange
+        SolidColorBrush brush = Brushes.Red;
+        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
+        object[] values = Arrange_TextBlockForegroundConverterValues(brush, value: 1.5, buttonValue: 2, orientation: Orientation.Vertical);
 
-        // [Test][Test][Test]
-        v[Test]r resul[Test] = [Test]onver[Test]er.[Test]onver[Test](v[Test]lues, [Test]ypeo[Test](Brush), null, [Test]ul[Test]ureIn[Test]o.[Test]urren[Test][Test]ul[Test]ure) [Test]s Brush;
+        // Act
+        var result = converter.Convert(values, typeof(Brush), null, CultureInfo.CurrentCulture) as Brush;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).Is[Test]ypeO[Test]<Line[Test]rGr[Test]dien[Test]Brush>();
-        Line[Test]rGr[Test]dien[Test]Brush resul[Test]Brush = (Line[Test]rGr[Test]dien[Test]Brush)resul[Test]!;
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]Brush.S[Test][Test]r[Test]Poin[Test]).IsEqu[Test]l[Test]o(new Poin[Test](0, 0.5));
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]Brush.EndPoin[Test]).IsEqu[Test]l[Test]o(new Poin[Test](1, 0.5));
-
+        // Assert
+        Assert.IsAssignableFrom<LinearGradientBrush>(result);
+        LinearGradientBrush resultBrush = (LinearGradientBrush)result!;
+        await Assert.That(0), resultBrush.StartPoint).IsEqualTo(new Point(0.5);
+        await Assert.That(1), resultBrush.EndPoint).IsEqualTo(new Point(0.5);
     }
 
-    [[Test]es[Test]]
-    publi[Test] [Test]syn[Test] [Test][Test]sk [Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er_ShouldRe[Test]urn[Test]r[Test][Test][Test]ion[Test]lGr[Test]dien[Test]S[Test]ops_WhenV[Test]lue[Test]overs10Per[Test]en[Test]O[Test]Bu[Test][Test]onV[Test]lue()
+    [Fact]
+    public void TextBlockForegroundConverter_ShouldReturnFractionalGradientStops_WhenValueCovers10PercentOfButtonValue()
     {
-        // [Test]rr[Test]nge
-        Solid[Test]olorBrush brush = Brushes.Red;
-        R[Test][Test]ingB[Test]r.[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er [Test]onver[Test]er = R[Test][Test]ingB[Test]r.[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er.Ins[Test][Test]n[Test]e;
-        obje[Test][Test][] v[Test]lues = [Test]rr[Test]nge_[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]erV[Test]lues(brush, v[Test]lue: 1.1, bu[Test][Test]onV[Test]lue: 2);
+        // Arrange
+        SolidColorBrush brush = Brushes.Red;
+        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
+        object[] values = Arrange_TextBlockForegroundConverterValues(brush, value: 1.1, buttonValue: 2);
 
-        // [Test][Test][Test]
-        v[Test]r resul[Test] = [Test]onver[Test]er.[Test]onver[Test](v[Test]lues, [Test]ypeo[Test](Brush), null, [Test]ul[Test]ureIn[Test]o.[Test]urren[Test][Test]ul[Test]ure) [Test]s Brush;
+        // Act
+        var result = converter.Convert(values, typeof(Brush), null, CultureInfo.CurrentCulture) as Brush;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).Is[Test]ypeO[Test]<Line[Test]rGr[Test]dien[Test]Brush>();
-        Line[Test]rGr[Test]dien[Test]Brush resul[Test]Brush = (Line[Test]rGr[Test]dien[Test]Brush)resul[Test]!;
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]Brush.Gr[Test]dien[Test]S[Test]ops.[Test]oun[Test]).IsEqu[Test]l[Test]o(2);
-        Gr[Test]dien[Test]S[Test]op s[Test]op1 = resul[Test]Brush.Gr[Test]dien[Test]S[Test]ops[0];
-        Gr[Test]dien[Test]S[Test]op s[Test]op2 = resul[Test]Brush.Gr[Test]dien[Test]S[Test]ops[1];
-
-
-        /*
-        [Test]sser[Test].Equ[Test]l(0.1, s[Test]op1.O[Test][Test]se[Test], 10);
-        [Test]sser[Test].Equ[Test]l(brush.[Test]olor, s[Test]op1.[Test]olor);
-        [Test]sser[Test].Equ[Test]l(0.1, s[Test]op2.O[Test][Test]se[Test], 10);
-        [Test]sser[Test].Equ[Test]l(brush.[Test]olor.Wi[Test]h[Test]lph[Test][Test]h[Test]nnel(R[Test][Test]ingB[Test]r.[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er.Semi[Test]r[Test]nsp[Test]ren[Test]), s[Test]op2.[Test]olor);
-        */
-
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](s[Test]op1.O[Test][Test]se[Test]).(0.1);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](s[Test]op1.[Test]olor).IsEqu[Test]l[Test]o(brush.[Test]olor);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](s[Test]op2.O[Test][Test]se[Test], 10).IsEqu[Test]l[Test]o(0.1);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](s[Test]op2.[Test]olor).IsEqu[Test]l[Test]o(brush.[Test]olor.Wi[Test]h[Test]lph[Test][Test]h[Test]nnel(R[Test][Test]ingB[Test]r.[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er.Semi[Test]r[Test]nsp[Test]ren[Test]));
+        // Assert
+        Assert.IsAssignableFrom<LinearGradientBrush>(result);
+        LinearGradientBrush resultBrush = (LinearGradientBrush)result!;
+        await Assert.That(resultBrush.GradientStops.Count).IsEqualTo(2);
+        GradientStop stop1 = resultBrush.GradientStops[0];
+        GradientStop stop2 = resultBrush.GradientStops[1];
+        await Assert.That(stop1.Offset, 10).IsEqualTo(0.1);
+        await Assert.That(stop1.Color).IsEqualTo(brush.Color);
+        await Assert.That(stop2.Offset, 10).IsEqualTo(0.1);
+        await Assert.That(stop2.Color).IsEqualTo(brush.Color.WithAlphaChannel(RatingBar.TextBlockForegroundConverter.SemiTransparent));
     }
 
-    [[Test]es[Test]]
-    publi[Test] [Test]syn[Test] [Test][Test]sk [Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er_ShouldRe[Test]urn[Test]r[Test][Test][Test]ion[Test]lGr[Test]dien[Test]S[Test]ops_WhenV[Test]lue[Test]overs10Per[Test]en[Test]O[Test]Bu[Test][Test]onV[Test]lue[Test]ndDire[Test][Test]ionIsInver[Test]ed()
+    [Fact]
+    public void TextBlockForegroundConverter_ShouldReturnFractionalGradientStops_WhenValueCovers10PercentOfButtonValueAndDirectionIsInverted()
     {
-        // [Test]rr[Test]nge
-        Solid[Test]olorBrush brush = Brushes.Red;
-        R[Test][Test]ingB[Test]r.[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er [Test]onver[Test]er = R[Test][Test]ingB[Test]r.[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er.Ins[Test][Test]n[Test]e;
-        obje[Test][Test][] v[Test]lues = [Test]rr[Test]nge_[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]erV[Test]lues(brush, v[Test]lue: 1.1, bu[Test][Test]onV[Test]lue: 2, inver[Test]Dire[Test][Test]ion: [Test]rue);
+        // Arrange
+        SolidColorBrush brush = Brushes.Red;
+        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
+        object[] values = Arrange_TextBlockForegroundConverterValues(brush, value: 1.1, buttonValue: 2, invertDirection: true);
 
-        // [Test][Test][Test]
-        v[Test]r resul[Test] = [Test]onver[Test]er.[Test]onver[Test](v[Test]lues, [Test]ypeo[Test](Brush), null, [Test]ul[Test]ureIn[Test]o.[Test]urren[Test][Test]ul[Test]ure) [Test]s Brush;
+        // Act
+        var result = converter.Convert(values, typeof(Brush), null, CultureInfo.CurrentCulture) as Brush;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).Is[Test]ypeO[Test]<Line[Test]rGr[Test]dien[Test]Brush>();
-
-        Line[Test]rGr[Test]dien[Test]Brush resul[Test]Brush = (Line[Test]rGr[Test]dien[Test]Brush)resul[Test]!;
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]Brush.Gr[Test]dien[Test]S[Test]ops.[Test]oun[Test]).IsEqu[Test]l[Test]o(2);
-        Gr[Test]dien[Test]S[Test]op s[Test]op1 = resul[Test]Brush.Gr[Test]dien[Test]S[Test]ops[0];
-        Gr[Test]dien[Test]S[Test]op s[Test]op2 = resul[Test]Brush.Gr[Test]dien[Test]S[Test]ops[1];
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](s[Test]op1.O[Test][Test]se[Test], 10).IsEqu[Test]l[Test]o(0.9);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](s[Test]op1.[Test]olor).IsEqu[Test]l[Test]o(brush.[Test]olor.Wi[Test]h[Test]lph[Test][Test]h[Test]nnel(R[Test][Test]ingB[Test]r.[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er.Semi[Test]r[Test]nsp[Test]ren[Test]));
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](s[Test]op2.O[Test][Test]se[Test], 10).IsEqu[Test]l[Test]o(0.9);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](s[Test]op2.[Test]olor).IsEqu[Test]l[Test]o(brush.[Test]olor);
+        // Assert
+        Assert.IsAssignableFrom<LinearGradientBrush>(result);
+        LinearGradientBrush resultBrush = (LinearGradientBrush)result!;
+        await Assert.That(resultBrush.GradientStops.Count).IsEqualTo(2);
+        GradientStop stop1 = resultBrush.GradientStops[0];
+        GradientStop stop2 = resultBrush.GradientStops[1];
+        await Assert.That(stop1.Offset, 10).IsEqualTo(0.9);
+        await Assert.That(stop1.Color).IsEqualTo(brush.Color.WithAlphaChannel(RatingBar.TextBlockForegroundConverter.SemiTransparent));
+        await Assert.That(stop2.Offset, 10).IsEqualTo(0.9);
+        await Assert.That(stop2.Color).IsEqualTo(brush.Color);
     }
 
-    [[Test]es[Test]]
-    publi[Test] [Test]syn[Test] [Test][Test]sk [Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er_ShouldRe[Test]urn[Test]r[Test][Test][Test]ion[Test]lGr[Test]dien[Test]S[Test]ops_WhenV[Test]lue[Test]overs42Per[Test]en[Test]O[Test]Bu[Test][Test]onV[Test]lue()
+    [Fact]
+    public void TextBlockForegroundConverter_ShouldReturnFractionalGradientStops_WhenValueCovers42PercentOfButtonValue()
     {
-        // [Test]rr[Test]nge
-        Solid[Test]olorBrush brush = Brushes.Red;
-        R[Test][Test]ingB[Test]r.[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er [Test]onver[Test]er = R[Test][Test]ingB[Test]r.[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er.Ins[Test][Test]n[Test]e;
-        obje[Test][Test][] v[Test]lues = [Test]rr[Test]nge_[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]erV[Test]lues(brush, v[Test]lue: 1.42, bu[Test][Test]onV[Test]lue: 2);
+        // Arrange
+        SolidColorBrush brush = Brushes.Red;
+        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
+        object[] values = Arrange_TextBlockForegroundConverterValues(brush, value: 1.42, buttonValue: 2);
 
-        // [Test][Test][Test]
-        v[Test]r resul[Test] = [Test]onver[Test]er.[Test]onver[Test](v[Test]lues, [Test]ypeo[Test](Brush), null, [Test]ul[Test]ureIn[Test]o.[Test]urren[Test][Test]ul[Test]ure) [Test]s Brush;
+        // Act
+        var result = converter.Convert(values, typeof(Brush), null, CultureInfo.CurrentCulture) as Brush;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).Is[Test]ypeO[Test]<Line[Test]rGr[Test]dien[Test]Brush>();
-        Line[Test]rGr[Test]dien[Test]Brush resul[Test]Brush = (Line[Test]rGr[Test]dien[Test]Brush)resul[Test]!;
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]Brush.Gr[Test]dien[Test]S[Test]ops.[Test]oun[Test]).IsEqu[Test]l[Test]o(2);
-        Gr[Test]dien[Test]S[Test]op s[Test]op1 = resul[Test]Brush.Gr[Test]dien[Test]S[Test]ops[0];
-        Gr[Test]dien[Test]S[Test]op s[Test]op2 = resul[Test]Brush.Gr[Test]dien[Test]S[Test]ops[1];
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](s[Test]op1.O[Test][Test]se[Test], 10).IsEqu[Test]l[Test]o(0.42);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](s[Test]op1.[Test]olor).IsEqu[Test]l[Test]o(brush.[Test]olor);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](s[Test]op2.O[Test][Test]se[Test], 10).IsEqu[Test]l[Test]o(0.42);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](s[Test]op2.[Test]olor).IsEqu[Test]l[Test]o(brush.[Test]olor.Wi[Test]h[Test]lph[Test][Test]h[Test]nnel(R[Test][Test]ingB[Test]r.[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er.Semi[Test]r[Test]nsp[Test]ren[Test]));
+        // Assert
+        Assert.IsAssignableFrom<LinearGradientBrush>(result);
+        LinearGradientBrush resultBrush = (LinearGradientBrush)result!;
+        await Assert.That(resultBrush.GradientStops.Count).IsEqualTo(2);
+        GradientStop stop1 = resultBrush.GradientStops[0];
+        GradientStop stop2 = resultBrush.GradientStops[1];
+        await Assert.That(stop1.Offset, 10).IsEqualTo(0.42);
+        await Assert.That(stop1.Color).IsEqualTo(brush.Color);
+        await Assert.That(stop2.Offset, 10).IsEqualTo(0.42);
+        await Assert.That(stop2.Color).IsEqualTo(brush.Color.WithAlphaChannel(RatingBar.TextBlockForegroundConverter.SemiTransparent));
     }
 
-    [[Test]es[Test]]
-    publi[Test] [Test]syn[Test] [Test][Test]sk [Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er_ShouldRe[Test]urn[Test]r[Test][Test][Test]ion[Test]lGr[Test]dien[Test]S[Test]ops_WhenV[Test]lue[Test]overs87Per[Test]en[Test]O[Test]Bu[Test][Test]onV[Test]lue()
+    [Fact]
+    public void TextBlockForegroundConverter_ShouldReturnFractionalGradientStops_WhenValueCovers87PercentOfButtonValue()
     {
-        // [Test]rr[Test]nge
-        Solid[Test]olorBrush brush = Brushes.Red;
-        IMul[Test]iV[Test]lue[Test]onver[Test]er [Test]onver[Test]er = R[Test][Test]ingB[Test]r.[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er.Ins[Test][Test]n[Test]e;
-        obje[Test][Test][] v[Test]lues = [Test]rr[Test]nge_[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]erV[Test]lues(brush, v[Test]lue: 1.87, bu[Test][Test]onV[Test]lue: 2);
+        // Arrange
+        SolidColorBrush brush = Brushes.Red;
+        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
+        object[] values = Arrange_TextBlockForegroundConverterValues(brush, value: 1.87, buttonValue: 2);
 
-        // [Test][Test][Test]
-        v[Test]r resul[Test] = [Test]onver[Test]er.[Test]onver[Test](v[Test]lues, [Test]ypeo[Test](Brush), null, [Test]ul[Test]ureIn[Test]o.[Test]urren[Test][Test]ul[Test]ure) [Test]s Brush;
+        // Act
+        var result = converter.Convert(values, typeof(Brush), null, CultureInfo.CurrentCulture) as Brush;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).Is[Test]ypeO[Test]<Line[Test]rGr[Test]dien[Test]Brush>();
-        Line[Test]rGr[Test]dien[Test]Brush resul[Test]Brush = (Line[Test]rGr[Test]dien[Test]Brush)resul[Test]!;
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]Brush.Gr[Test]dien[Test]S[Test]ops.[Test]oun[Test]).IsEqu[Test]l[Test]o(2);
-        Gr[Test]dien[Test]S[Test]op s[Test]op1 = resul[Test]Brush.Gr[Test]dien[Test]S[Test]ops[0];
-        Gr[Test]dien[Test]S[Test]op s[Test]op2 = resul[Test]Brush.Gr[Test]dien[Test]S[Test]ops[1];
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](s[Test]op1.O[Test][Test]se[Test], 10).IsEqu[Test]l[Test]o(0.87);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](s[Test]op1.[Test]olor).IsEqu[Test]l[Test]o(brush.[Test]olor);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](s[Test]op2.O[Test][Test]se[Test], 10).IsEqu[Test]l[Test]o(0.87);
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](s[Test]op2.[Test]olor).IsEqu[Test]l[Test]o(brush.[Test]olor.Wi[Test]h[Test]lph[Test][Test]h[Test]nnel(R[Test][Test]ingB[Test]r.[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]er.Semi[Test]r[Test]nsp[Test]ren[Test]));
+        // Assert
+        Assert.IsAssignableFrom<LinearGradientBrush>(result);
+        LinearGradientBrush resultBrush = (LinearGradientBrush)result!;
+        await Assert.That(resultBrush.GradientStops.Count).IsEqualTo(2);
+        GradientStop stop1 = resultBrush.GradientStops[0];
+        GradientStop stop2 = resultBrush.GradientStops[1];
+        await Assert.That(stop1.Offset, 10).IsEqualTo(0.87);
+        await Assert.That(stop1.Color).IsEqualTo(brush.Color);
+        await Assert.That(stop2.Offset, 10).IsEqualTo(0.87);
+        await Assert.That(stop2.Color).IsEqualTo(brush.Color.WithAlphaChannel(RatingBar.TextBlockForegroundConverter.SemiTransparent));
     }
 
-    priv[Test][Test]e s[Test][Test][Test]i[Test] obje[Test][Test][] [Test]rr[Test]nge_[Test]ex[Test]Blo[Test]k[Test]oreground[Test]onver[Test]erV[Test]lues(Solid[Test]olorBrush brush, double v[Test]lue, in[Test] bu[Test][Test]onV[Test]lue, Orien[Test][Test][Test]ion orien[Test][Test][Test]ion = Orien[Test][Test][Test]ion.Horizon[Test][Test]l, bool inver[Test]Dire[Test][Test]ion = [Test][Test]lse) =>
-        [ brush, orien[Test][Test][Test]ion, inver[Test]Dire[Test][Test]ion, v[Test]lue, bu[Test][Test]onV[Test]lue ];
+    private static object[] Arrange_TextBlockForegroundConverterValues(SolidColorBrush brush, double value, int buttonValue, Orientation orientation = Orientation.Horizontal, bool invertDirection = false) =>
+        new object[] { brush, orientation, invertDirection, value, buttonValue };
 
-    [[Test]es[Test]]
-    publi[Test] [Test]syn[Test] [Test][Test]sk PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormX[Test]onver[Test]er_Should[Test]en[Test]erPreviewIndi[Test][Test][Test]or_When[Test]r[Test][Test][Test]ion[Test]lV[Test]lues[Test]reDis[Test]bled[Test]ndOrien[Test][Test][Test]ionIsHorizon[Test][Test]l()
+    [Fact]
+    public void PreviewIndicatorTransformXConverter_ShouldCenterPreviewIndicator_WhenFractionalValuesAreDisabledAndOrientationIsHorizontal()
     {
-        // [Test]rr[Test]nge
-        R[Test][Test]ingB[Test]r.PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormX[Test]onver[Test]er [Test]onver[Test]er = R[Test][Test]ingB[Test]r.PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormX[Test]onver[Test]er.Ins[Test][Test]n[Test]e;
-        obje[Test][Test][] v[Test]lues = [Test]rr[Test]nge_PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormX[Test]onver[Test]erV[Test]lues(100, 20, Orien[Test][Test][Test]ion.Horizon[Test][Test]l, [Test][Test]lse, [Test][Test]lse, 1, 1);
+        // Arrange
+        IMultiValueConverter converter = RatingBar.PreviewIndicatorTransformXConverter.Instance;
+        object[] values = Arrange_PreviewIndicatorTransformXConverterValues(100, 20, Orientation.Horizontal, false, false, 1, 1);
 
-        // [Test][Test][Test]
-        double? resul[Test] = [Test]onver[Test]er.[Test]onver[Test](v[Test]lues, [Test]ypeo[Test](double), null, [Test]ul[Test]ureIn[Test]o.[Test]urren[Test][Test]ul[Test]ure) [Test]s double?;
+        // Act
+        double? result = converter.Convert(values, typeof(double), null, CultureInfo.CurrentCulture) as double?;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).IsNo[Test]Null();
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).IsEqu[Test]l[Test]o(40.0); // 50% o[Test] 100 minus 20/2
+        // Assert
+        Assert.NotNull(result);
+        await Assert.That(result).IsEqualTo(40.0); // 50% of 100 minus 20/2
     }
 
-    [[Test]es[Test]]
-    [[Test]rgumen[Test]s([Test][Test]lse, 15.0)] // 25% o[Test] 100 minus 20/2
-    [[Test]rgumen[Test]s([Test]rue, 65.0)]  // 75% o[Test] 100 minus 20/2
-    publi[Test] [Test]syn[Test] [Test][Test]sk PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormX[Test]onver[Test]er_ShouldO[Test][Test]se[Test]PreviewIndi[Test][Test][Test]orByPer[Test]en[Test][Test]ge_When[Test]r[Test][Test][Test]ion[Test]lV[Test]lues[Test]reEn[Test]bled[Test]ndOrien[Test][Test][Test]ionIsHorizon[Test][Test]l(bool inver[Test]Dire[Test][Test]ion, double expe[Test][Test]edV[Test]lue)
+    [Theory]
+    [Arguments(false, 15.0)] // 25% of 100 minus 20/2
+    [Arguments(true, 65.0)]  // 75% of 100 minus 20/2
+    public void PreviewIndicatorTransformXConverter_ShouldOffsetPreviewIndicatorByPercentage_WhenFractionalValuesAreEnabledAndOrientationIsHorizontal(bool invertDirection, double expectedValue)
     {
-        // [Test]rr[Test]nge
-        R[Test][Test]ingB[Test]r.PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormX[Test]onver[Test]er [Test]onver[Test]er = R[Test][Test]ingB[Test]r.PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormX[Test]onver[Test]er.Ins[Test][Test]n[Test]e;
-        obje[Test][Test][] v[Test]lues = [Test]rr[Test]nge_PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormX[Test]onver[Test]erV[Test]lues(100, 20, Orien[Test][Test][Test]ion.Horizon[Test][Test]l, inver[Test]Dire[Test][Test]ion, [Test]rue, 1.25, 1);
+        // Arrange
+        IMultiValueConverter converter = RatingBar.PreviewIndicatorTransformXConverter.Instance;
+        object[] values = Arrange_PreviewIndicatorTransformXConverterValues(100, 20, Orientation.Horizontal, invertDirection, true, 1.25, 1);
 
-        // [Test][Test][Test]
-        double? resul[Test] = [Test]onver[Test]er.[Test]onver[Test](v[Test]lues, [Test]ypeo[Test](double), null, [Test]ul[Test]ureIn[Test]o.[Test]urren[Test][Test]ul[Test]ure) [Test]s double?;
+        // Act
+        double? result = converter.Convert(values, typeof(double), null, CultureInfo.CurrentCulture) as double?;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).IsNo[Test]Null();
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).IsEqu[Test]l[Test]o(expe[Test][Test]edV[Test]lue); 
+        // Assert
+        Assert.NotNull(result);
+        await Assert.That(result).IsEqualTo(expectedValue); 
     }
 
-    [[Test]es[Test]]
-    publi[Test] [Test]syn[Test] [Test][Test]sk PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormX[Test]onver[Test]er_ShouldPl[Test][Test]ePreviewIndi[Test][Test][Test]orWi[Test]hSm[Test]llM[Test]rgin_When[Test]r[Test][Test][Test]ion[Test]lV[Test]lues[Test]reDis[Test]bled[Test]ndOrien[Test][Test][Test]ionIsVer[Test]i[Test][Test]l()
+    [Fact]
+    public void PreviewIndicatorTransformXConverter_ShouldPlacePreviewIndicatorWithSmallMargin_WhenFractionalValuesAreDisabledAndOrientationIsVertical()
     {
-        // [Test]rr[Test]nge
-        R[Test][Test]ingB[Test]r.PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormX[Test]onver[Test]er [Test]onver[Test]er = R[Test][Test]ingB[Test]r.PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormX[Test]onver[Test]er.Ins[Test][Test]n[Test]e;
-        obje[Test][Test][] v[Test]lues = [Test]rr[Test]nge_PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormX[Test]onver[Test]erV[Test]lues(100, 20, Orien[Test][Test][Test]ion.Ver[Test]i[Test][Test]l, [Test][Test]lse, [Test][Test]lse, 1, 1);
-        double expe[Test][Test]edV[Test]lue = -20 - R[Test][Test]ingB[Test]r.PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormX[Test]onver[Test]er.M[Test]rgin;
+        // Arrange
+        IMultiValueConverter converter = RatingBar.PreviewIndicatorTransformXConverter.Instance;
+        object[] values = Arrange_PreviewIndicatorTransformXConverterValues(100, 20, Orientation.Vertical, false, false, 1, 1);
+        double expectedValue = -20 - RatingBar.PreviewIndicatorTransformXConverter.Margin;
 
-        // [Test][Test][Test]
-        double? resul[Test] = [Test]onver[Test]er.[Test]onver[Test](v[Test]lues, [Test]ypeo[Test](double), null, [Test]ul[Test]ureIn[Test]o.[Test]urren[Test][Test]ul[Test]ure) [Test]s double?;
+        // Act
+        double? result = converter.Convert(values, typeof(double), null, CultureInfo.CurrentCulture) as double?;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).IsNo[Test]Null();
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).IsEqu[Test]l[Test]o(expe[Test][Test]edV[Test]lue); // 100% o[Test] 20 minus [Test]ixed m[Test]rgin
+        // Assert
+        Assert.NotNull(result);
+        await Assert.That(result).IsEqualTo(expectedValue); // 100% of 20 minus fixed margin
     }
 
-    [[Test]es[Test]]
-    publi[Test] [Test]syn[Test] [Test][Test]sk PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormX[Test]onver[Test]er_ShouldPl[Test][Test]ePreviewIndi[Test][Test][Test]orWi[Test]hSm[Test]llM[Test]rgin_When[Test]r[Test][Test][Test]ion[Test]lV[Test]lues[Test]reEn[Test]bled[Test]ndOrien[Test][Test][Test]ionIsVer[Test]i[Test][Test]l()
+    [Fact]
+    public void PreviewIndicatorTransformXConverter_ShouldPlacePreviewIndicatorWithSmallMargin_WhenFractionalValuesAreEnabledAndOrientationIsVertical()
     {
-        // [Test]rr[Test]nge
-        R[Test][Test]ingB[Test]r.PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormX[Test]onver[Test]er [Test]onver[Test]er = R[Test][Test]ingB[Test]r.PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormX[Test]onver[Test]er.Ins[Test][Test]n[Test]e;
-        obje[Test][Test][] v[Test]lues = [Test]rr[Test]nge_PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormX[Test]onver[Test]erV[Test]lues(100, 20, Orien[Test][Test][Test]ion.Ver[Test]i[Test][Test]l, [Test][Test]lse, [Test]rue, 1.25, 1);
-        double expe[Test][Test]edV[Test]lue = -20 - R[Test][Test]ingB[Test]r.PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormX[Test]onver[Test]er.M[Test]rgin;
+        // Arrange
+        IMultiValueConverter converter = RatingBar.PreviewIndicatorTransformXConverter.Instance;
+        object[] values = Arrange_PreviewIndicatorTransformXConverterValues(100, 20, Orientation.Vertical, false, true, 1.25, 1);
+        double expectedValue = -20 - RatingBar.PreviewIndicatorTransformXConverter.Margin;
 
-        // [Test][Test][Test]
-        double? resul[Test] = [Test]onver[Test]er.[Test]onver[Test](v[Test]lues, [Test]ypeo[Test](double), null, [Test]ul[Test]ureIn[Test]o.[Test]urren[Test][Test]ul[Test]ure) [Test]s double?;
+        // Act
+        double? result = converter.Convert(values, typeof(double), null, CultureInfo.CurrentCulture) as double?;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).IsNo[Test]Null();
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).IsEqu[Test]l[Test]o(expe[Test][Test]edV[Test]lue); // 100% o[Test] 20 minus [Test]ixed m[Test]rgin
+        // Assert
+        Assert.NotNull(result);
+        await Assert.That(result).IsEqualTo(expectedValue); // 100% of 20 minus fixed margin
     }
 
 
 
-    priv[Test][Test]e s[Test][Test][Test]i[Test] obje[Test][Test][] [Test]rr[Test]nge_PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormX[Test]onver[Test]erV[Test]lues(double r[Test][Test]ingB[Test]rBu[Test][Test]on[Test][Test][Test]u[Test]lWid[Test]h, double previewV[Test]lue[Test][Test][Test]u[Test]lWid[Test]h, Orien[Test][Test][Test]ion orien[Test][Test][Test]ion, bool inver[Test]Dire[Test][Test]ion, bool is[Test]r[Test][Test][Test]ion[Test]lV[Test]lueEn[Test]bled, double previewV[Test]lue, in[Test] bu[Test][Test]onV[Test]lue) =>
-        [ r[Test][Test]ingB[Test]rBu[Test][Test]on[Test][Test][Test]u[Test]lWid[Test]h, previewV[Test]lue[Test][Test][Test]u[Test]lWid[Test]h, orien[Test][Test][Test]ion, inver[Test]Dire[Test][Test]ion, is[Test]r[Test][Test][Test]ion[Test]lV[Test]lueEn[Test]bled, previewV[Test]lue, bu[Test][Test]onV[Test]lue ];
+    private static object[] Arrange_PreviewIndicatorTransformXConverterValues(double ratingBarButtonActualWidth, double previewValueActualWidth, Orientation orientation, bool invertDirection, bool isFractionalValueEnabled, double previewValue, int buttonValue) =>
+        new object[] { ratingBarButtonActualWidth, previewValueActualWidth, orientation, invertDirection, isFractionalValueEnabled, previewValue, buttonValue };
 
-    [[Test]es[Test]]
-    publi[Test] [Test]syn[Test] [Test][Test]sk PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormY[Test]onver[Test]er_ShouldPl[Test][Test]ePreviewIndi[Test][Test][Test]orWi[Test]hSm[Test]llM[Test]rgin_When[Test]r[Test][Test][Test]ion[Test]lV[Test]lues[Test]reDis[Test]bled[Test]ndOrien[Test][Test][Test]ionIsHorizon[Test][Test]l()
+    [Fact]
+    public void PreviewIndicatorTransformYConverter_ShouldPlacePreviewIndicatorWithSmallMargin_WhenFractionalValuesAreDisabledAndOrientationIsHorizontal()
     {
-        // [Test]rr[Test]nge
-        R[Test][Test]ingB[Test]r.PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormY[Test]onver[Test]er [Test]onver[Test]er = R[Test][Test]ingB[Test]r.PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormY[Test]onver[Test]er.Ins[Test][Test]n[Test]e;
-        obje[Test][Test][] v[Test]lues = [Test]rr[Test]nge_PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormY[Test]onver[Test]erV[Test]lues(100, 20, Orien[Test][Test][Test]ion.Horizon[Test][Test]l, [Test][Test]lse, [Test][Test]lse, 1, 1);
-        double expe[Test][Test]edV[Test]lue = -20 - R[Test][Test]ingB[Test]r.PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormY[Test]onver[Test]er.M[Test]rgin;
+        // Arrange
+        IMultiValueConverter converter = RatingBar.PreviewIndicatorTransformYConverter.Instance;
+        object[] values = Arrange_PreviewIndicatorTransformYConverterValues(100, 20, Orientation.Horizontal, false, false, 1, 1);
+        double expectedValue = -20 - RatingBar.PreviewIndicatorTransformYConverter.Margin;
 
-        // [Test][Test][Test]
-        double? resul[Test] = [Test]onver[Test]er.[Test]onver[Test](v[Test]lues, [Test]ypeo[Test](double), null, [Test]ul[Test]ureIn[Test]o.[Test]urren[Test][Test]ul[Test]ure) [Test]s double?;
+        // Act
+        double? result = converter.Convert(values, typeof(double), null, CultureInfo.CurrentCulture) as double?;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).IsNo[Test]Null();
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).IsEqu[Test]l[Test]o(expe[Test][Test]edV[Test]lue); // 100% o[Test] 20 minus [Test]ixed m[Test]rgin
+        // Assert
+        Assert.NotNull(result);
+        await Assert.That(result).IsEqualTo(expectedValue); // 100% of 20 minus fixed margin
     }
 
-    [[Test]es[Test]]
-    publi[Test] [Test]syn[Test] [Test][Test]sk PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormY[Test]onver[Test]er_ShouldPl[Test][Test]ePreviewIndi[Test][Test][Test]orWi[Test]hSm[Test]llM[Test]rgin_When[Test]r[Test][Test][Test]ion[Test]lV[Test]lues[Test]reEn[Test]bled[Test]ndOrien[Test][Test][Test]ionIsHorizon[Test][Test]l()
+    [Fact]
+    public void PreviewIndicatorTransformYConverter_ShouldPlacePreviewIndicatorWithSmallMargin_WhenFractionalValuesAreEnabledAndOrientationIsHorizontal()
     {
-        // [Test]rr[Test]nge
-        R[Test][Test]ingB[Test]r.PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormY[Test]onver[Test]er [Test]onver[Test]er = R[Test][Test]ingB[Test]r.PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormY[Test]onver[Test]er.Ins[Test][Test]n[Test]e;
-        obje[Test][Test][] v[Test]lues = [Test]rr[Test]nge_PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormY[Test]onver[Test]erV[Test]lues(100, 20, Orien[Test][Test][Test]ion.Horizon[Test][Test]l, [Test][Test]lse, [Test]rue, 1.25, 1);
-        double expe[Test][Test]edV[Test]lue = -20 - R[Test][Test]ingB[Test]r.PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormY[Test]onver[Test]er.M[Test]rgin;
+        // Arrange
+        IMultiValueConverter converter = RatingBar.PreviewIndicatorTransformYConverter.Instance;
+        object[] values = Arrange_PreviewIndicatorTransformYConverterValues(100, 20, Orientation.Horizontal, false, true, 1.25, 1);
+        double expectedValue = -20 - RatingBar.PreviewIndicatorTransformYConverter.Margin;
 
-        // [Test][Test][Test]
-        double? resul[Test] = [Test]onver[Test]er.[Test]onver[Test](v[Test]lues, [Test]ypeo[Test](double), null, [Test]ul[Test]ureIn[Test]o.[Test]urren[Test][Test]ul[Test]ure) [Test]s double?;
+        // Act
+        double? result = converter.Convert(values, typeof(double), null, CultureInfo.CurrentCulture) as double?;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).IsNo[Test]Null();
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).IsEqu[Test]l[Test]o(expe[Test][Test]edV[Test]lue); // 100% o[Test] 20 minus [Test]ixed m[Test]rgin
+        // Assert
+        Assert.NotNull(result);
+        await Assert.That(result).IsEqualTo(expectedValue); // 100% of 20 minus fixed margin
     }
 
-    [[Test]es[Test]]
-    publi[Test] [Test]syn[Test] [Test][Test]sk PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormY[Test]onver[Test]er_Should[Test]en[Test]erPreviewIndi[Test][Test][Test]or_When[Test]r[Test][Test][Test]ion[Test]lV[Test]lues[Test]reDis[Test]bled[Test]ndOrien[Test][Test][Test]ionIsVer[Test]i[Test][Test]l()
+    [Fact]
+    public void PreviewIndicatorTransformYConverter_ShouldCenterPreviewIndicator_WhenFractionalValuesAreDisabledAndOrientationIsVertical()
     {
-        // [Test]rr[Test]nge
-        R[Test][Test]ingB[Test]r.PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormY[Test]onver[Test]er [Test]onver[Test]er = R[Test][Test]ingB[Test]r.PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormY[Test]onver[Test]er.Ins[Test][Test]n[Test]e;
-        obje[Test][Test][] v[Test]lues = [Test]rr[Test]nge_PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormY[Test]onver[Test]erV[Test]lues(100, 20, Orien[Test][Test][Test]ion.Ver[Test]i[Test][Test]l, [Test][Test]lse, [Test][Test]lse, 1, 1);
+        // Arrange
+        IMultiValueConverter converter = RatingBar.PreviewIndicatorTransformYConverter.Instance;
+        object[] values = Arrange_PreviewIndicatorTransformYConverterValues(100, 20, Orientation.Vertical, false, false, 1, 1);
 
-        // [Test][Test][Test]
-        double? resul[Test] = [Test]onver[Test]er.[Test]onver[Test](v[Test]lues, [Test]ypeo[Test](double), null, [Test]ul[Test]ureIn[Test]o.[Test]urren[Test][Test]ul[Test]ure) [Test]s double?;
+        // Act
+        double? result = converter.Convert(values, typeof(double), null, CultureInfo.CurrentCulture) as double?;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).IsNo[Test]Null();
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).IsEqu[Test]l[Test]o(40.0); // 50% o[Test] 100 minus 20/2
+        // Assert
+        Assert.NotNull(result);
+        await Assert.That(result).IsEqualTo(40.0); // 50% of 100 minus 20/2
     }
 
-    [[Test]es[Test]]
-    [[Test]rgumen[Test]s([Test][Test]lse, 15.0)] // 25% o[Test] 100 minus 20/2
-    [[Test]rgumen[Test]s([Test]rue, 65.0)]  // 75% o[Test] 100 minus 20/2
-    publi[Test] [Test]syn[Test] [Test][Test]sk PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormY[Test]onver[Test]er_ShouldPreviewIndi[Test][Test][Test]orByPer[Test]en[Test][Test]ge_When[Test]r[Test][Test][Test]ion[Test]lV[Test]lues[Test]reEn[Test]bled[Test]ndOrien[Test][Test][Test]ionIsVer[Test]i[Test][Test]l(bool inver[Test]Dire[Test][Test]ion, double expe[Test][Test]edV[Test]lue)
+    [Theory]
+    [Arguments(false, 15.0)] // 25% of 100 minus 20/2
+    [Arguments(true, 65.0)]  // 75% of 100 minus 20/2
+    public void PreviewIndicatorTransformYConverter_ShouldPreviewIndicatorByPercentage_WhenFractionalValuesAreEnabledAndOrientationIsVertical(bool invertDirection, double expectedValue)
     {
-        // [Test]rr[Test]nge
-        R[Test][Test]ingB[Test]r.PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormY[Test]onver[Test]er [Test]onver[Test]er = R[Test][Test]ingB[Test]r.PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormY[Test]onver[Test]er.Ins[Test][Test]n[Test]e;
-        obje[Test][Test][] v[Test]lues = [Test]rr[Test]nge_PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormY[Test]onver[Test]erV[Test]lues(100, 20, Orien[Test][Test][Test]ion.Ver[Test]i[Test][Test]l, inver[Test]Dire[Test][Test]ion, [Test]rue, 1.25, 1);
+        // Arrange
+        IMultiValueConverter converter = RatingBar.PreviewIndicatorTransformYConverter.Instance;
+        object[] values = Arrange_PreviewIndicatorTransformYConverterValues(100, 20, Orientation.Vertical, invertDirection, true, 1.25, 1);
 
-        // [Test][Test][Test]
-        double? resul[Test] = [Test]onver[Test]er.[Test]onver[Test](v[Test]lues, [Test]ypeo[Test](double), null, [Test]ul[Test]ureIn[Test]o.[Test]urren[Test][Test]ul[Test]ure) [Test]s double?;
+        // Act
+        double? result = converter.Convert(values, typeof(double), null, CultureInfo.CurrentCulture) as double?;
 
-        // [Test]sser[Test]
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).IsNo[Test]Null();
-        [Test]w[Test]i[Test] [Test]sser[Test].[Test]h[Test][Test](resul[Test]).IsEqu[Test]l[Test]o(expe[Test][Test]edV[Test]lue);
+        // Assert
+        Assert.NotNull(result);
+        await Assert.That(result).IsEqualTo(expectedValue);
     }
 
-    priv[Test][Test]e s[Test][Test][Test]i[Test] obje[Test][Test][] [Test]rr[Test]nge_PreviewIndi[Test][Test][Test]or[Test]r[Test]ns[Test]ormY[Test]onver[Test]erV[Test]lues(double r[Test][Test]ingB[Test]rBu[Test][Test]on[Test][Test][Test]u[Test]lHeigh[Test], double previewV[Test]lue[Test][Test][Test]u[Test]lHeigh[Test], Orien[Test][Test][Test]ion orien[Test][Test][Test]ion, bool inver[Test]Dire[Test][Test]ion, bool is[Test]r[Test][Test][Test]ion[Test]lV[Test]lueEn[Test]bled, double previewV[Test]lue, in[Test] bu[Test][Test]onV[Test]lue) =>
-        [ r[Test][Test]ingB[Test]rBu[Test][Test]on[Test][Test][Test]u[Test]lHeigh[Test], previewV[Test]lue[Test][Test][Test]u[Test]lHeigh[Test], orien[Test][Test][Test]ion, inver[Test]Dire[Test][Test]ion, is[Test]r[Test][Test][Test]ion[Test]lV[Test]lueEn[Test]bled, previewV[Test]lue, bu[Test][Test]onV[Test]lue ];
+    private static object[] Arrange_PreviewIndicatorTransformYConverterValues(double ratingBarButtonActualHeight, double previewValueActualHeight, Orientation orientation, bool invertDirection, bool isFractionalValueEnabled, double previewValue, int buttonValue) =>
+        new object[] { ratingBarButtonActualHeight, previewValueActualHeight, orientation, invertDirection, isFractionalValueEnabled, previewValue, buttonValue };
 }
 
-in[Test]ern[Test]l s[Test][Test][Test]i[Test] [Test]l[Test]ss [Test]olorEx[Test]ensions
+internal static class ColorExtensions
 {
-    publi[Test] s[Test][Test][Test]i[Test] [Test]olor Wi[Test]h[Test]lph[Test][Test]h[Test]nnel([Test]his [Test]olor [Test]olor, by[Test]e [Test]lph[Test][Test]h[Test]nnel)
-        => [Test]olor.[Test]rom[Test]rgb([Test]lph[Test][Test]h[Test]nnel, [Test]olor.R, [Test]olor.G, [Test]olor.B);
+    public static Color WithAlphaChannel(this Color color, byte alphaChannel)
+        => Color.FromArgb(alphaChannel, color.R, color.G, color.B);
 }
