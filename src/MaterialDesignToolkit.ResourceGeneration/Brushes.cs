@@ -482,7 +482,7 @@ public static partial class Brushes
                     {{indent}}{{indent}}{
                     {{indent}}{{indent}}{{indent}}IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"{{name}}\"]");
                     {{indent}}{{indent}}{{indent}}Color? textBlockBackground = await textBlock.GetBackgroundColor();
-                    {{indent}}{{indent}}{{indent}}Assert.Equal(await GetResourceColor("{{brush.Name}}"), textBlockBackground);
+                    {{indent}}{{indent}}{{indent}}await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("{{brush.Name}}"));
                     {{indent}}{{indent}}}
                     """);
             }

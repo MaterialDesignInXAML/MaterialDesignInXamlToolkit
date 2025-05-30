@@ -4,11 +4,7 @@ namespace MaterialDesignThemes.UITests.WPF.Buttons;
 
 public class OutlineButtonTests : TestBase
 {
-    public OutlineButtonTests(ITestOutputHelper output)
-        : base(output)
-    { }
-
-    [Fact]
+    [Test]
     public async Task OutlinedButton_UsesThemeColorForBorder()
     {
         await using var recorder = new TestRecorder(App);
@@ -24,13 +20,13 @@ public class OutlineButtonTests : TestBase
         Color? internalBorderColor = await internalBorder.GetBorderBrushColor();
 
         //Assert
-        Assert.Equal(midColor, borderColor);
-        Assert.Equal(midColor, internalBorderColor);
+        await Assert.That(borderColor).IsEqualTo(midColor);
+        await Assert.That(internalBorderColor).IsEqualTo(midColor);
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task OutlinedButton_BorderCanBeOverridden()
     {
         await using var recorder = new TestRecorder(App);
@@ -50,13 +46,13 @@ public class OutlineButtonTests : TestBase
         Color? borderBrush = await internalBorder.GetBorderBrushColor();
 
         //Assert
-        Assert.Equal(new Thickness(5), borderThickness);
-        Assert.Equal(Colors.Red, borderBrush);
+        await Assert.That(borderThickness).IsEqualTo(new Thickness(5));
+        await Assert.That(borderBrush).IsEqualTo(Colors.Red);
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task OutlinedButton_OnMouseOver_UsesThemeBrush()
     {
         await using var recorder = new TestRecorder(App);
@@ -74,7 +70,7 @@ public class OutlineButtonTests : TestBase
             SolidColorBrush? internalBorderBackground = (await internalBorder.GetBackground()) as SolidColorBrush;
 
             //Assert
-            Assert.Equal(midColor, internalBorderBackground?.Color);
+            await Assert.That(internalBorderBackground?.Color).IsEqualTo(midColor);
         });
 
         recorder.Success();

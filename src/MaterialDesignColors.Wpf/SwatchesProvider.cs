@@ -12,6 +12,7 @@ namespace MaterialDesignColors;
 /// </summary>
 public class SwatchesProvider
 {
+    private static readonly object _syncLock = new();
     /// <summary>
     /// Generates an instance reading swatches from the provided assembly, allowing 
     /// colours outside of the standard material palette to be loaded provided the are stored in the expected XAML format.
@@ -39,12 +40,7 @@ public class SwatchesProvider
                 Read(assemblyName, x.SingleOrDefault(y => y.match.Groups["type"].Value == "primary")?.key),
                 Read(assemblyName, x.SingleOrDefault(y => y.match.Groups["type"].Value == "secondary")?.key)
             ))
-            .ToList() ??
-#if NETCOREAPP3_1_OR_GREATER
-            (IEnumerable<Swatch>)Array.Empty<Swatch>();
-#else
-            (IEnumerable<Swatch>)new Swatch[0];
-#endif
+            .ToList() ?? [];
     }
 
     /// <summary>
@@ -98,8 +94,12 @@ public class SwatchesProvider
         if (assemblyName is null || path is null)
             return null;
 
-        return (ResourceDictionary)Application.LoadComponent(new Uri(
-            $"/{assemblyName};component/{path.Replace(".baml", ".xaml")}",
-            UriKind.RelativeOrAbsolute));
+        lock (_syncLock)
+        {
+            //NB: Application.LoadComponent is not thread safe
+            return (ResourceDictionary)Application.LoadComponent(new Uri(
+                $"/{assemblyName};component/{path.Replace(".baml", ".xaml")}",
+                UriKind.RelativeOrAbsolute));
+        }
     }
 }

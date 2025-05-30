@@ -17,11 +17,12 @@ public static class MaterialDesignSpec
     /// </summary>
     public const double MinimumContrastLargeText = 3.0;
 
-    public static void AssertContrastRatio(Color foreground, Color background, double minimumContrastRatio)
+    public static async Task AssertContrastRatio(Color foreground, Color background, double minimumContrastRatio)
     {
         const double tolerance = 0.1;
 
-        var ratio = ColorAssist.ContrastRatio(foreground, background);
-        Assert.True(ratio >= minimumContrastRatio - tolerance, $"Contrast ratio '{ratio}' is less than {minimumContrastRatio} with a tolerance of 0.1");
+        double ratio = ColorAssist.ContrastRatio(foreground, background);
+        await Assert.That(ratio).IsGreaterThanOrEqualTo(minimumContrastRatio - tolerance)
+            .Because($"Contrast ratio '{ratio}' is less than {minimumContrastRatio} with a tolerance of 0.1");
     }
 }

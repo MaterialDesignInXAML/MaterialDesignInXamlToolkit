@@ -1,18 +1,13 @@
 using MaterialDesignThemes.UITests.Samples.SplitButton;
 
+
 [assembly: GenerateHelpers(typeof(SplitButtonWithCommandBinding))]
 
 namespace MaterialDesignThemes.UITests.WPF.SplitButtons;
 
-
 public class SplitButtonTests : TestBase
 {
-    public SplitButtonTests(ITestOutputHelper output)
-        : base(output)
-    {
-    }
-
-    [Fact]
+    [Test]
     public async Task SplitButton_ClickingSplitButton_ShowsPopup()
     {
         await using var recorder = new TestRecorder(App);
@@ -39,7 +34,7 @@ public class SplitButtonTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task SplitButton_RegisterForClick_RaisesEvent()
     {
         await using var recorder = new TestRecorder(App);
@@ -60,21 +55,21 @@ public class SplitButtonTests : TestBase
 
         //Act
         await leftButton.LeftClick();
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current!.CancellationToken);
         int leftButtonCount = (await clickEvent.GetInvocations()).Count;
         await popupBox.LeftClick();
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current.CancellationToken);
         int rightButtonCount = (await clickEvent.GetInvocations()).Count;
 
         // Assert
-        Assert.Equal(1, leftButtonCount);
+        await Assert.That(leftButtonCount).IsEqualTo(1);
         //NB: The popup box button should only show the popup not trigger the click event
-        Assert.Equal(1, rightButtonCount);
+        await Assert.That(rightButtonCount).IsEqualTo(1);
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task SplitButton_WithButtonInPopup_CanBeInvoked()
     {
         await using var recorder = new TestRecorder(App);
@@ -99,16 +94,16 @@ public class SplitButtonTests : TestBase
         await Wait.For(async () => await popupContent.GetIsVisible());
         await Wait.For(async () => await popupContent.GetActualHeight() > 10);
         await popupContent.LeftClick();
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current!.CancellationToken);
 
         // Assert
         var invocations = await clickEvent.GetInvocations();
-        Assert.Single(invocations);
+        await Assert.That(invocations).HasSingleItem();
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task SplitButton_RegisterCommandBinding_InvokesCommand()
     {
         await using var recorder = new TestRecorder(App);
@@ -119,19 +114,19 @@ public class SplitButtonTests : TestBase
         IVisualElement<SplitButtonWithCommandBinding> userControl = await window.GetElement<SplitButtonWithCommandBinding>();
         IVisualElement<SplitButton> splitButton = await userControl.GetElement<SplitButton>();
 
-        Assert.False(await userControl.GetCommandInvoked());
+        await Assert.That(await userControl.GetCommandInvoked()).IsFalse();
 
         //Act
         await splitButton.LeftClick();
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current!.CancellationToken);
 
         // Assert
-        Assert.True(await userControl.GetCommandInvoked());
+        await Assert.That(await userControl.GetCommandInvoked()).IsTrue();
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task SplitButton_CommandCanExecuteFalse_DisablesButton()
     {
         await using var recorder = new TestRecorder(App);
@@ -142,18 +137,18 @@ public class SplitButtonTests : TestBase
         IVisualElement<SplitButtonWithCommandBinding> userControl = await window.GetElement<SplitButtonWithCommandBinding>();
         IVisualElement<SplitButton> splitButton = await userControl.GetElement<SplitButton>();
 
-        Assert.True(await splitButton.GetIsEnabled());
+        await Assert.That(await splitButton.GetIsEnabled()).IsTrue();
 
         //Act
         await userControl.SetProperty(nameof(SplitButtonWithCommandBinding.CommandCanExecute), false);
 
         // Assert
-        Assert.False(await splitButton.GetIsEnabled());
+        await Assert.That(await splitButton.GetIsEnabled()).IsFalse();
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task SplitButton_ClickingPopupContent_DoesNotExecuteSplitButtonClick()
     {
         await using var recorder = new TestRecorder(App);
@@ -181,11 +176,11 @@ public class SplitButtonTests : TestBase
         await Wait.For(async () => await popupContent.GetIsVisible());
         await Wait.For(async () => await popupContent.GetActualHeight() > 10);
         await popupContent.LeftClick();
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current!.CancellationToken);
 
         // Assert
-        Assert.Empty(await splitButtonClickEvent.GetInvocations());
-        Assert.Single(await popupContentClickEvent.GetInvocations());
+        await Assert.That(await splitButtonClickEvent.GetInvocations()).IsEmpty();
+        await Assert.That(await popupContentClickEvent.GetInvocations()).HasSingleItem();
 
         recorder.Success();
     }
