@@ -9,7 +9,7 @@ namespace MaterialDesignThemes.UITests.WPF.TreeListViews;
 /// </summary>
 public partial class TreeListViewWithCollectionView : UserControl
 {
-    private ObservableCollection<TreeItem> ItemsSource { get; } = new();
+    private ObservableCollection<TreeItem> ItemsSource { get; } = [];
 
     public ICollectionView Items { get; }
 
