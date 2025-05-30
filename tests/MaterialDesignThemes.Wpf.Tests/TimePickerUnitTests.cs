@@ -1,11 +1,6 @@
 using System.ComponentModel;
 using System.Globalization;
 
-using TUnit.Core;
-using TUnit.Assertions;
-using TUnit.Assertions.Extensions;
-using System.Threading.Tasks;
-
 namespace MaterialDesignThemes.Wpf.Tests;
 
 
@@ -27,11 +22,11 @@ public class TimePickerUnitTests
 
         _timePicker.SelectedTime = expectedDate;
 
-        await Assert.That(expectedDate).IsEqualTo(_timePicker.SelectedTime);
+        await Assert.That(_timePicker.SelectedTime).IsEqualTo(expectedDate);
     }
 
-    [StaTheory]
-    [MemberData(nameof(GetDisplaysExpectedTextData))]
+    [Test, STAThreadExecutor]
+    [MethodDataSource(nameof(GetDisplaysExpectedTextData))]
     public async Task DisplaysExpectedText(CultureInfo culture, DatePickerFormat format, bool is24Hour, bool withSeconds,
         DateTime? selectedTime, string expectedText)
     {
@@ -44,9 +39,9 @@ public class TimePickerUnitTests
         await Assert.That(_timePicker.Text).IsEqualTo(expectedText);
     }
 
-    [StaTheory]
-    [MemberData(nameof(GetParseLocalizedTimeStringData))]
-    public void CanParseLocalizedTimeString(CultureInfo culture, DatePickerFormat format, bool is24Hour, bool withSeconds,
+    [Test, STAThreadExecutor]
+    [MethodDataSource(nameof(GetParseLocalizedTimeStringData))]
+    public async Task CanParseLocalizedTimeString(CultureInfo culture, DatePickerFormat format, bool is24Hour, bool withSeconds,
         string timeString, DateTime? expectedTime)
     {
         _timePicker.Language = XmlLanguage.GetLanguage(culture.IetfLanguageTag);
@@ -62,38 +57,40 @@ public class TimePickerUnitTests
         await Assert.That(_timePicker.SelectedTime).IsEqualTo(expectedTime);
     }
 
-    public static IEnumerable<object[]> GetParseLocalizedTimeStringData()
+    public static IEnumerable<(CultureInfo culture,
+         DatePickerFormat format,
+         bool is24Hour,
+         bool withSeconds,
+         string timeString,
+         DateTime expectedTime)> GetParseLocalizedTimeStringData()
     {
         //for now just using the same set of data to make sure we can go both directions.
-        foreach (object[] data in GetDisplaysExpectedTextData())
+        foreach ((CultureInfo culture, DatePickerFormat format, bool is24Hour, bool withSeconds, DateTime date, string timeString) in GetDisplaysExpectedTextData())
         {
-            var culture = (CultureInfo)data[0];
-            bool is24Hour = (bool)data[2];
-            var withSeconds = (bool)data[3];
-            var date = (DateTime)data[4];
-            var timeString = (string)data[5];
-
             //Convert the date to Today
-            date = DateTime.MinValue.AddHours(date.Hour).AddMinutes(date.Minute).AddSeconds(withSeconds ? date.Second : 0);
+            var newDate = DateTime.MinValue.AddHours(date.Hour).AddMinutes(date.Minute).AddSeconds(withSeconds ? date.Second : 0);
 
             if (!is24Hour && date.Hour > 12 &&
                 (string.IsNullOrEmpty(culture.DateTimeFormat.AMDesignator) ||
                 string.IsNullOrEmpty(culture.DateTimeFormat.PMDesignator)))
             {
                 //Because there is no AM/PM designator, 12 hour times will be treated as AM
-                date = date.AddHours(-12);
+                newDate = newDate.AddHours(-12);
             }
 
             //Invert the order of the parameters.
-            data[5] = date;
-            data[4] = timeString;
-
-
-            yield return data;
+            yield return (culture, format, is24Hour, withSeconds, timeString, date);
         }
     }
 
-    public static IEnumerable<object[]> GetDisplaysExpectedTextData()
+    public static IEnumerable<
+        (CultureInfo culture,
+         DatePickerFormat format,
+         bool is24Hour,
+         bool withSeconds,
+         DateTime dateTime,
+         string expectedText)
+        > GetDisplaysExpectedTextData()
     {
         //AM intentionally picks values with only a single digit to verify the DatePickerFormat is applied
         var am = new DateTime(2000, 1, 1, 3, 5, 9);
@@ -215,84 +212,27 @@ public class TimePickerUnitTests
 
     }
 
-    private static IEnumerable<object[]> GetDisplaysExpectedTextDataForCulture(CultureInfo culture,
+    private static IEnumerable<
+        (CultureInfo culture,
+         DatePickerFormat format,
+         bool is24Hour,
+         bool withSeconds,
+         DateTime dateTime,
+         string expectedText)
+        > GetDisplaysExpectedTextDataForCulture(CultureInfo culture,
         DateTime dateTime,
         string short12Hour, string short12HourWithSeconds,
         string long12Hour, string long12HourWithSeconds,
         string short24Hour, string short24HourWithSeconds,
         string long24Hour, string long24HourWithSeconds)
     {
-        yield return new object[]
-        {
-            culture,
-            DatePickerFormat.Short,
-            false,
-            false,
-            dateTime,
-            short12Hour
-        };
-        yield return new object[]
-        {
-            culture,
-            DatePickerFormat.Short,
-            false,
-            true,
-            dateTime,
-            short12HourWithSeconds
-        };
-        yield return new object[]
-        {
-            culture,
-            DatePickerFormat.Long,
-            false,
-            false,
-            dateTime,
-            long12Hour
-        };
-        yield return new object[]
-        {
-            culture,
-            DatePickerFormat.Long,
-            false,
-            true,
-            dateTime,
-            long12HourWithSeconds
-        };
-        yield return new object[]
-        {
-            culture,
-            DatePickerFormat.Short,
-            true,
-            false,
-            dateTime,
-            short24Hour
-        };
-        yield return new object[]
-        {
-            culture,
-            DatePickerFormat.Short,
-            true,
-            true,
-            dateTime,
-            short24HourWithSeconds
-        };
-        yield return new object[]
-        {
-            culture,
-            DatePickerFormat.Long,
-            true,
-            false,
-            dateTime,
-            long24Hour
-        };
-        yield return new object[]
-        {
-            culture,
-            DatePickerFormat.Long,
-            true,
-            true,
-            dateTime,
-            long24HourWithSeconds
-        };
+        yield return (culture, DatePickerFormat.Short, false, false, dateTime, short12Hour);
+        yield return (culture, DatePickerFormat.Short, false, true, dateTime, short12HourWithSeconds);
+        yield return (culture, DatePickerFormat.Long, false, false, dateTime, long12Hour);
+        yield return (culture, DatePickerFormat.Long, false, true, dateTime, long12HourWithSeconds);
+        yield return (culture, DatePickerFormat.Short, true, false, dateTime, short24Hour);
+        yield return (culture, DatePickerFormat.Short, true, true, dateTime, short24HourWithSeconds);
+        yield return (culture, DatePickerFormat.Long, true, false, dateTime, long24Hour);
+        yield return (culture, DatePickerFormat.Long, true, true, dateTime, long24HourWithSeconds);
     }
 }

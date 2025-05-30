@@ -1,10 +1,5 @@
 ﻿using System.Globalization;
 
-using TUnit.Core;
-using TUnit.Assertions;
-using TUnit.Assertions.Extensions;
-using System.Threading.Tasks;
-
 namespace MaterialDesignThemes.Wpf.Tests;
 
 public class CalendarFormatInfoTests
@@ -56,7 +51,7 @@ public class CalendarFormatInfoTests
     [Arguments("X' , 'ddd", "ddd", ",", false)]
     [Arguments("Xddddd", "ddd", "", false)]
     [Arguments("X,ddddd", "ddd", "", false)]
-    public void CanParseDayOfWeek(string s, string pattern, string separator, bool isFirst)
+    public async Task CanParseDayOfWeek(string s, string pattern, string separator, bool isFirst)
     {
         var result = CalendarFormatInfo.DayOfWeekStyle.Parse(s);
 
@@ -66,7 +61,7 @@ public class CalendarFormatInfoTests
     }
 
     [Test, STAThreadExecutor]
-    public void SettingYearPattern()
+    public async Task SettingYearPattern()
     {
         const string cultureName = "en-001";
         CalendarFormatInfo.SetYearPattern(cultureName, "A");
@@ -79,7 +74,7 @@ public class CalendarFormatInfoTests
     }
 
     [Test, STAThreadExecutor]
-    public void SettingYearPatternOfMultipleCultures()
+    public async Task SettingYearPatternOfMultipleCultures()
     {
         string[] cultureNames = { "en-001", "en-150" };
         CalendarFormatInfo.SetYearPattern(cultureNames, "B");
@@ -91,7 +86,7 @@ public class CalendarFormatInfoTests
     }
 
     [Test, STAThreadExecutor]
-    public void SettingDayOfWeekStyle()
+    public async Task SettingDayOfWeekStyle()
     {
         const string cultureName = "en-001";
         CalendarFormatInfo.SetDayOfWeekStyle(cultureName, new CalendarFormatInfo.DayOfWeekStyle("Z", "@", true));
@@ -106,7 +101,7 @@ public class CalendarFormatInfoTests
     }
 
     [Test, STAThreadExecutor]
-    public void SettingDayOfWeekStyleOfMultipleCultures()
+    public async Task SettingDayOfWeekStyleOfMultipleCultures()
     {
         string[] cultureNames = { "en-001", "en-150" };
         CalendarFormatInfo.SetDayOfWeekStyle(cultureNames, new CalendarFormatInfo.DayOfWeekStyle("Z", "@", true));
@@ -119,18 +114,18 @@ public class CalendarFormatInfoTests
     }
 
     [Test, STAThreadExecutor]
-    public void ResettingDayOfWeekStyle()
+    public async Task ResettingDayOfWeekStyle()
     {
         const string cultureName = "en-001";
         CalendarFormatInfo.SetDayOfWeekStyle(cultureName, new CalendarFormatInfo.DayOfWeekStyle("Z", "@", true));
         CalendarFormatInfo.ResetDayOfWeekStyle(cultureName);
         var result = CalendarFormatInfo.FromCultureInfo(CultureInfo.GetCultureInfo(cultureName));
         await Assert.That(result.ComponentOnePattern).IsEqualTo("d MMM");
-        await Assert.That(", result.ComponentTwoPattern).IsEqualTo("ddd);
+        await Assert.That(result.ComponentTwoPattern).IsEqualTo("ddd");
     }
 
     [Test, STAThreadExecutor]
-    public void ResettingDayOfWeekStyleOfMultipleCultures()
+    public async Task ResettingDayOfWeekStyleOfMultipleCultures()
     {
         string[] cultureNames = { "en-001", "en-150" };
         CalendarFormatInfo.SetDayOfWeekStyle(cultureNames, new CalendarFormatInfo.DayOfWeekStyle("Z", "@", true));
@@ -139,7 +134,7 @@ public class CalendarFormatInfoTests
         {
             var result = CalendarFormatInfo.FromCultureInfo(CultureInfo.GetCultureInfo(cultureName));
             await Assert.That(result.ComponentOnePattern).IsEqualTo("d MMM");
-            await Assert.That(", result.ComponentTwoPattern).IsEqualTo("ddd);
+            await Assert.That(result.ComponentTwoPattern).IsEqualTo("ddd");
         }
     }
 }

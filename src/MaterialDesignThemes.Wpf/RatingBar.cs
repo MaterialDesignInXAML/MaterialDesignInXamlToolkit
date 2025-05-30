@@ -411,21 +411,21 @@ public class RatingBar : Control
                 return new SolidColorBrush(semiTransparent);
             }
 
-            GradientStopCollection CreateGradientStopCollection(Color originalColor, Color semiTransparent, double offset, bool invertDirection)
+            static GradientStopCollection CreateGradientStopCollection(Color originalColor, Color semiTransparent, double offset, bool invertDirection)
             {
                 if (invertDirection)
                 {
-                    return new()
-                    {
+                    return
+                    [
                         new GradientStop {Color = semiTransparent, Offset = offset},
                         new GradientStop {Color = originalColor, Offset = offset},
-                    };
+                    ];
                 }
-                return new()
-                {
+                return
+                [
                     new GradientStop {Color = originalColor, Offset = offset},
                     new GradientStop {Color = semiTransparent, Offset = offset}
-                };
+                ];
             }
 
             // This should never happen (returning actual brush to avoid the compilers squiggly line warning)

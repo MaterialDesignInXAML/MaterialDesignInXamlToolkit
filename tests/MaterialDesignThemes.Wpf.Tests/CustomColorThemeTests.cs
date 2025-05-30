@@ -1,15 +1,10 @@
 ﻿using System.Windows.Media;
 
-using TUnit.Core;
-using TUnit.Assertions;
-using TUnit.Assertions.Extensions;
-using System.Threading.Tasks;
-
 namespace MaterialDesignThemes.Wpf.Tests;
 
 public class CustomColorThemeTests
 {
-    [StaTheory]
+    [Test, STAThreadExecutor]
     [MethodDataSource(nameof(GetThemeValues))]
     public async Task WhenValueIsMissingThemeIsNotSet(BaseTheme? baseTheme, Color? primaryColor, Color? secondaryColor)
     {
@@ -22,20 +17,20 @@ public class CustomColorThemeTests
         bundledTheme.SecondaryColor = secondaryColor;
 
         //Assert
-        await Assert.That(() => bundledTheme.GetTheme()).ThrowsExactly<InvalidOperationException>();
+        await Assert.That(bundledTheme.GetTheme).ThrowsExactly<InvalidOperationException>();
     }
 
-    public static IEnumerable<object?[]> GetThemeValues()
+    public static IEnumerable<(BaseTheme?, Color?, Color?)> GetThemeValues()
     {
-        yield return new object?[] { null, null, null };
-        yield return new object?[] { BaseTheme.Light, null, null };
-        yield return new object?[] { BaseTheme.Inherit, null, null };
-        yield return new object?[] { null, Colors.Blue, null };
-        yield return new object?[] { BaseTheme.Light, Colors.Blue, null };
-        yield return new object?[] { BaseTheme.Inherit, Colors.Blue, null };
-        yield return new object?[] { null, null, Colors.Blue };
-        yield return new object?[] { BaseTheme.Light, null, Colors.Blue };
-        yield return new object?[] { BaseTheme.Inherit, null, Colors.Blue };
+        yield return (null, null, null);
+        yield return (BaseTheme.Light, null, null);
+        yield return (BaseTheme.Inherit, null, null);
+        yield return (null, Colors.Blue, null);
+        yield return (BaseTheme.Light, Colors.Blue, null);
+        yield return (BaseTheme.Inherit, Colors.Blue, null);
+        yield return (null, null, Colors.Blue);
+        yield return (BaseTheme.Light, null, Colors.Blue);
+        yield return (BaseTheme.Inherit, null, Colors.Blue);
     }
 
     [Test, STAThreadExecutor]
@@ -57,6 +52,6 @@ public class CustomColorThemeTests
         var lightTheme = new Theme();
         lightTheme.SetLightTheme();
         await Assert.That(theme.Foreground).IsEqualTo(lightTheme.Foreground);
-        Assert.NotEqual(default, theme.Foreground);
+        await Assert.That(theme.Foreground).IsNotDefault();
     }
 }

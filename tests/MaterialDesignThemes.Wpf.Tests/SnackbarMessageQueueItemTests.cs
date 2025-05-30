@@ -1,9 +1,4 @@
-﻿using TUnit.Core;
-using TUnit.Assertions;
-using TUnit.Assertions.Extensions;
-using System.Threading.Tasks;
-
-namespace MaterialDesignThemes.Wpf.Tests;
+﻿namespace MaterialDesignThemes.Wpf.Tests;
 
 public class SnackbarMessageQueueItemTests
 {
@@ -12,11 +7,11 @@ public class SnackbarMessageQueueItemTests
     {
         SnackbarMessageQueueItem item = CreateItem();
         var ex = await Assert.That(() => item.IsDuplicate(null!)).ThrowsExactly<ArgumentNullException>();
-        Assert.That(ex.ParamName).IsEqualTo("value");
+        await Assert.That(ex.ParamName).IsEqualTo("value");
     }
 
     [Test]
-    public void IsDuplicate_WithDuplicateItems_ItReturnsTrue()
+    public async Task IsDuplicate_WithDuplicateItems_ItReturnsTrue()
     {
         SnackbarMessageQueueItem item = CreateItem();
         SnackbarMessageQueueItem other = CreateItem();
@@ -25,30 +20,30 @@ public class SnackbarMessageQueueItemTests
     }
 
     [Test]
-    public void IsDuplicate_AlwaysShowIsTrue_ItReturnsFalse()
+    public async Task IsDuplicate_AlwaysShowIsTrue_ItReturnsFalse()
     {
         SnackbarMessageQueueItem item = CreateItem(alwaysShow: true);
         SnackbarMessageQueueItem other = CreateItem();
 
-        Assert.False(item.IsDuplicate(other));
+        await Assert.That(item.IsDuplicate(other)).IsFalse();
     }
 
     [Test]
-    public void IsDuplicate_WithDifferentContent_ItReturnsFalse()
+    public async Task IsDuplicate_WithDifferentContent_ItReturnsFalse()
     {
         SnackbarMessageQueueItem item = CreateItem();
         SnackbarMessageQueueItem other = CreateItem(content: Guid.NewGuid().ToString());
 
-        Assert.False(item.IsDuplicate(other));
+        await Assert.That(item.IsDuplicate(other)).IsFalse();
     }
 
     [Test]
-    public void IsDuplicate_WithDifferentActionContent_ItReturnsFalse()
+    public async Task IsDuplicate_WithDifferentActionContent_ItReturnsFalse()
     {
         SnackbarMessageQueueItem item = CreateItem();
         SnackbarMessageQueueItem other = CreateItem(actionContent: Guid.NewGuid().ToString());
 
-        Assert.False(item.IsDuplicate(other));
+        await Assert.That(item.IsDuplicate(other)).IsFalse();
     }
 
     private static SnackbarMessageQueueItem CreateItem(
