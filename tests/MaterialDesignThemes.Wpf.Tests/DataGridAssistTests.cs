@@ -1,5 +1,4 @@
-﻿
-using TUnit.Core;
+﻿using TUnit.Core;
 using TUnit.Assertions;
 using TUnit.Assertions.Extensions;
 using System.Threading.Tasks;
@@ -104,7 +103,7 @@ public class DataGridAssistTests
 
         // Assert setting works
         DataGridAssist.SetEnableEditBoxAssist(_testElement, true);
-        Assert.True(DataGridAssist.GetEnableEditBoxAssist(_testElement));
+        await Assert.That(DataGridAssist.GetEnableEditBoxAssist(_testElement)).IsTrue();
     }
 
     [Test, STAThreadExecutor]

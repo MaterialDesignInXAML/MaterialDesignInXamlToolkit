@@ -49,7 +49,7 @@ public class TransitionerTests
         object parameter = 2;
 
         //Act
-        Assert.True(Transitioner.MovePreviousCommand.CanExecute(parameter, transitioner));
+        await Assert.That(Transitioner.MovePreviousCommand.CanExecute(parameter, transitioner)).IsTrue();
         Transitioner.MovePreviousCommand.Execute(parameter, transitioner);
 
         //Assert
@@ -81,7 +81,7 @@ public class TransitionerTests
 
         //Act
         Assert.NotNull(transitioner.SelectedItem);
-        Assert.True(transitioner.SelectedItem == child1);
+        await Assert.That(transitioner.SelectedItem == child1).IsTrue();
         lb.SelectedItem = lb.Items[1];
 
         //Assert
