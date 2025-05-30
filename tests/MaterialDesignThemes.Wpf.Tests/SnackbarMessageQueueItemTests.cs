@@ -25,7 +25,7 @@ public class SnackbarMessageQueueItemTests
         Assert.True(item.IsDuplicate(other));
     }
 
-    [Fact]
+    [Test]
     public void IsDuplicate_AlwaysShowIsTrue_ItReturnsFalse()
     {
         SnackbarMessageQueueItem item = CreateItem(alwaysShow: true);
@@ -34,7 +34,7 @@ public class SnackbarMessageQueueItemTests
         Assert.False(item.IsDuplicate(other));
     }
 
-    [Fact]
+    [Test]
     public void IsDuplicate_WithDifferentContent_ItReturnsFalse()
     {
         SnackbarMessageQueueItem item = CreateItem();
@@ -43,7 +43,7 @@ public class SnackbarMessageQueueItemTests
         Assert.False(item.IsDuplicate(other));
     }
 
-    [Fact]
+    [Test]
     public void IsDuplicate_WithDifferentActionContent_ItReturnsFalse()
     {
         SnackbarMessageQueueItem item = CreateItem();

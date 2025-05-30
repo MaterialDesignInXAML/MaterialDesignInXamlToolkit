@@ -26,7 +26,7 @@ public class ThemeTests
         await Assert.That(theme.Foreground).IsEqualTo(Colors.Red);
     }
 
-    [Fact]
+    [Test]
     public void CanSetForegroundWithColorReference()
     {
         var theme = Theme.Create(BaseTheme.Dark, Colors.Red, Colors.Blue);
