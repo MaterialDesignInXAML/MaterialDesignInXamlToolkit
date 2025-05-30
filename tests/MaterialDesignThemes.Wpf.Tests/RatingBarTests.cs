@@ -190,7 +190,7 @@ public class RatingBarTests
         // Assert
         Assert.IsAssignableFrom<LinearGradientBrush>(result);
         LinearGradientBrush resultBrush = (LinearGradientBrush)result!;
-        await Assert.That(0.5), resultBrush.StartPoint).IsEqualTo(new Point(0);
+        await Assert.That(resultBrush.StartPoint).IsEqualTo(new Point(0, 0.5));
         await Assert.That(0.5), resultBrush.EndPoint).IsEqualTo(new Point(1);
     }
 
