@@ -30,7 +30,7 @@ public class FlipperAssistTests
     }
 
     [Test, STAThreadExecutor]
-    public void CardStyle_StyleWithCorrectTargetType_AttachedPropertySet()
+    public async Task CardStyle_StyleWithCorrectTargetType_AttachedPropertySet()
     {
         // Arrange
         var style = new Style(typeof(Card));
@@ -43,7 +43,7 @@ public class FlipperAssistTests
     }
 
     [Test, STAThreadExecutor]
-    public void CardStyle_StyleWithDerivedCardTargetType_AttachedPropertySet()
+    public async Task CardStyle_StyleWithDerivedCardTargetType_AttachedPropertySet()
     {
         // Arrange
         var style = new Style(typeof(DerivedCard));

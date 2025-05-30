@@ -4,18 +4,19 @@ using System.Windows.Threading;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
-public class DialogHostTests : IDisposable
+public class DialogHostTests
 {
-    private readonly DialogHost _dialogHost;
+    private readonly DialogHost _dialogHost = new();
 
-    public DialogHostTests()
+    [Before(Test)]
+    public void Setup()
     {
-        _dialogHost = new DialogHost();
         _dialogHost.ApplyDefaultStyle();
         _dialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
     }
 
-    public void Dispose()
+    [After(Test)]
+    public void Cleanup()
     {
         _dialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
     }
@@ -403,7 +404,7 @@ public class DialogHostTests : IDisposable
     }
 
     [Test, STAThreadExecutor]
-    public async Task GetDialogSession_ShouldAllowAccessFromMultipleUIThreads()
+    public void GetDialogSession_ShouldAllowAccessFromMultipleUIThreads()
     {
         DialogHost? dialogHost = null;
         DialogHost? dialogHostOnOtherUiThread = null;

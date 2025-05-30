@@ -11,7 +11,7 @@ public class TextBlockTests
         foreach (var styleKey in MdixHelper.GetStyleKeysFor<TextBlock>())
         {
             var textBlock = new TextBlock();
-            await textBlock.ApplyStyle(styleKey, false);
+            textBlock.ApplyStyle(styleKey, false);
 
             await Assert.That(textBlock.VerticalAlignment).IsEqualTo(VerticalAlignment.Stretch);
         }

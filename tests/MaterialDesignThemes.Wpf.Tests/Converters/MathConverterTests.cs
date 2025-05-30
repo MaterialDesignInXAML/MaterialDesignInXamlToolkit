@@ -1,18 +1,15 @@
 ﻿using System.Globalization;
 using System.Windows.Data;
 using MaterialDesignThemes.Wpf.Converters;
-using TUnit.Core;
-using TUnit.Assertions;
-using TUnit.Assertions.Extensions;
-using System.Threading.Tasks;
 
 namespace MaterialDesignThemes.Wpf.Tests.Converters;
 
 public sealed class MathConverterTests
 {
     [Test]
-    [EnumData]
-    public async Task EnumValues_AreAllHandled(MathOperation operation)
+    [MatrixDataSource]
+    public async Task EnumValues_AreAllHandled(
+        [EnumData<MathOperation>] MathOperation operation)
     {
         MathConverter converter = new()
         {

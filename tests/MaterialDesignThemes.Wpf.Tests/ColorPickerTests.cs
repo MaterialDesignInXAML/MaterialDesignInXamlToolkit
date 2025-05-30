@@ -6,14 +6,14 @@ namespace MaterialDesignThemes.Wpf.Tests;
 //TODO: Many of these tests could be moved over to MaterialDesignThemes.UITests
 public class ColorPickerTests
 {
-    private readonly ColorPicker _colorPicker;
-    private readonly Slider _hueSlider;
-    private readonly Canvas _saturationBrightnessPicker;
-    private readonly Thumb _saturationBrightnessPickerThumb;
+    private readonly ColorPicker _colorPicker = new();
+    private Slider _hueSlider = null!;
+    private Canvas _saturationBrightnessPicker = null!;
+    private Thumb _saturationBrightnessPickerThumb = null!;
 
-    public ColorPickerTests()
+    [Before(Test)]
+    public void Setup()
     {
-        _colorPicker = new ColorPicker();
         _colorPicker.ApplyDefaultStyle();
         _colorPicker.Arrange(new Rect(0, 0, 400, 100));
 
