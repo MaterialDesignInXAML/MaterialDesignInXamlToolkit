@@ -35,7 +35,7 @@ public class CalendarFormatInfoTests
         await Assert.That(result.ComponentThreePattern).IsEqualTo(componentThree);
     }
 
-    [Theory]
+    [Test]
     [Arguments("", "ddd", "", true)]
     [Arguments("ddd", "ddd", "", true)]
     [Arguments("dddd", "ddd", "", true)]
