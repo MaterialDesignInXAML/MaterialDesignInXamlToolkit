@@ -76,10 +76,21 @@ public class TreeListView : ListView
             return;
         }
 
-        // Remove unselected
-        foreach (var item in e.RemovedItems)
+        bool isSingleSelection = Keyboard.Modifiers == ModifierKeys.None && e.AddedItems.Count == 1;
+        // If no modifier keys, treat as single selection (like normal ListView)
+        if (isSingleSelection)
         {
-            if (!IsCollapsingItem)
+            // Remove all except the newly selected item
+            var selected = e.AddedItems[0];
+            SelectedItems.Clear();
+            SelectedItems.Add(selected);
+            return;
+        }
+
+        // Remove unselected
+        if (!IsCollapsingItem)
+        {
+            foreach (var item in e.RemovedItems)
             {
                 SelectedItems.Remove(item);
             }
@@ -88,7 +99,10 @@ public class TreeListView : ListView
         // Add newly selected
         foreach (var item in e.AddedItems)
         {
-            SelectedItems.Add(item);
+            if (!SelectedItems.Contains(item))
+            {
+                SelectedItems.Add(item);
+            }
         }
     }
 
