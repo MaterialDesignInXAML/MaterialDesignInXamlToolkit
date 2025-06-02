@@ -99,10 +99,7 @@ public class TreeListView : ListView
         // Add newly selected
         foreach (var item in e.AddedItems)
         {
-            if (!SelectedItems.Contains(item))
-            {
-                SelectedItems.Add(item);
-            }
+            SelectedItems.Add(item);
         }
     }
 
