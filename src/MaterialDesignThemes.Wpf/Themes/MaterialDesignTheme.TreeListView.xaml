@@ -98,8 +98,8 @@
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="FocusVisualStyle" Value="{StaticResource MaterialDesignTreeListViewItemFocusVisual}" />
-    <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type wpf:TreeListView}}}" />
-    <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+    <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type wpf:TreeListView}}, FallbackValue=Black}" />
+    <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, FallbackValue=Left}" />
     <Setter Property="Padding" Value="8" />
     <Setter Property="Template">
       <Setter.Value>
@@ -107,7 +107,7 @@
           <Grid>
             <Grid.Margin>
               <MultiBinding Converter="{x:Static converters:TreeListViewIndentConverter.Instance}">
-                <Binding Path="LevelIndentSize" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type wpf:TreeListView}}" />
+                <Binding Path="LevelIndentSize" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type wpf:TreeListView}}" FallbackValue="16" />
                 <Binding Path="Level" RelativeSource="{RelativeSource TemplatedParent}" />
               </MultiBinding>
             </Grid.Margin>
@@ -234,7 +234,7 @@
         </ControlTemplate>
       </Setter.Value>
     </Setter>
-    <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+    <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, FallbackValue=Center}" />
     <Setter Property="wpf:TreeViewAssist.ExpanderSize" Value="16" />
     <Setter Property="wpf:TreeViewAssist.HasNoItemsExpanderVisibility" Value="{Binding RelativeSource={RelativeSource AncestorType=wpf:TreeListView}, Path=(wpf:TreeViewAssist.HasNoItemsExpanderVisibility)}" />
     <Setter Property="wpf:TreeViewAssist.ShowSelection" Value="True" />

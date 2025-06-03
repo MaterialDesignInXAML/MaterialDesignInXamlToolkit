@@ -12,7 +12,7 @@
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ValidationErrorTemplate.xaml" />
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Menu.xaml" />
   </ResourceDictionary.MergedDictionaries>
-  
+
   <system:String x:Key="AllowCollapse">AllowCollapse</system:String>
 
   <ControlTemplate x:Key="PopupContentClassicTemplate" TargetType="ContentControl">
@@ -189,11 +189,11 @@
     <Setter Property="BorderBrush" Value="Transparent" />
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-    <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+    <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, FallbackValue=Left}" />
     <Setter Property="Padding" Value="16,8" />
     <Setter Property="SnapsToDevicePixels" Value="True" />
     <Setter Property="Template" Value="{StaticResource MaterialDesignComboBoxItemTemplate}" />
-    <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+    <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, FallbackValue=Center}" />
   </Style>
 
   <Style x:Key="MaterialDesignComboBoxItemSelectedCollapsedStyle"
@@ -206,7 +206,7 @@
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="ClickMode" Value="Press" />
     <Setter Property="Focusable" Value="False" />
-    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground), FallbackValue=Black}" />
     <Setter Property="IsTabStop" Value="False" />
     <Setter Property="OverridesDefaultStyle" Value="True" />
     <Setter Property="Template">
@@ -241,15 +241,15 @@
             <MultiDataTrigger>
               <MultiDataTrigger.Conditions>
                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
-                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="False" />
+                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}, FallbackValue=False}" Value="False" />
               </MultiDataTrigger.Conditions>
             </MultiDataTrigger>
             <MultiDataTrigger>
               <MultiDataTrigger.Conditions>
                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
-                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="True" />
+                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}, FallbackValue=False}" Value="True" />
               </MultiDataTrigger.Conditions>
-              <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" />
+              <Setter Property="BorderBrush" Value="{Binding Path=(wpf:TextFieldAssist.UnderlineBrush), RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}, FallbackValue=Black}" />
             </MultiDataTrigger>
             <Trigger Property="IsPressed" Value="True">
               <Setter TargetName="arrow" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
@@ -260,14 +260,14 @@
             <MultiDataTrigger>
               <MultiDataTrigger.Conditions>
                 <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="False" />
-                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="False" />
+                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}, FallbackValue=False}" Value="False" />
               </MultiDataTrigger.Conditions>
               <Setter TargetName="ToggleOuterBorder" Property="BorderBrush" Value="Transparent" />
             </MultiDataTrigger>
             <MultiDataTrigger>
               <MultiDataTrigger.Conditions>
                 <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="False" />
-                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="True" />
+                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}, FallbackValue=False}" Value="True" />
               </MultiDataTrigger.Conditions>
               <Setter TargetName="ToggleOuterBorder" Property="BorderBrush" Value="Transparent" />
               <Setter TargetName="splitBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ComboBox.Disabled}" />
@@ -373,7 +373,7 @@
                                 ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 IsHitTestVisible="False"
-                                VerticalAlignment="Center"/>
+                                VerticalAlignment="Center" />
               <TextBox x:Name="PART_EditableTextBox"
                        Grid.Column="2"
                        MinWidth="10"
@@ -888,7 +888,7 @@
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ComboBox.Border}" />
     <Setter Property="BorderThickness" Value="0,0,0,1" />
     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground), FallbackValue=Black}" />
     <Setter Property="HorizontalAlignment" Value="Stretch" />
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemStyle}" />

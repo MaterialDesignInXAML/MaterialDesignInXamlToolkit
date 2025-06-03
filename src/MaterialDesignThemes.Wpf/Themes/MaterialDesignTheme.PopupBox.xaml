@@ -178,7 +178,7 @@
   <Style x:Key="MaterialDesignToolForegroundPopupBox"
          TargetType="wpf:PopupBox"
          BasedOn="{StaticResource MaterialDesignToolPopupBox}">
-    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground), FallbackValue=Black}" />
   </Style>
 
   <wpf:PackIcon x:Key="MaterialDesignMultiFloatingActionPopupBoxIcon"

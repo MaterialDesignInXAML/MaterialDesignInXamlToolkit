@@ -165,8 +165,8 @@
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="FocusVisualStyle" Value="{StaticResource MaterialDesignTreeViewItemFocusVisual}" />
-    <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type TreeView}}}" />
-    <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+    <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type TreeView}}, FallbackValue=Black}" />
+    <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, FallbackValue=Left}" />
     <Setter Property="Padding" Value="8" />
     <Setter Property="Template">
       <Setter.Value>
@@ -379,7 +379,7 @@
         </ControlTemplate>
       </Setter.Value>
     </Setter>
-    <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+    <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, FallbackValue=Center}" />
     <Setter Property="wpf:TreeViewAssist.ExpanderSize" Value="16" />
     <Setter Property="wpf:TreeViewAssist.HasNoItemsExpanderVisibility" Value="{Binding RelativeSource={RelativeSource AncestorType=TreeView}, Path=(wpf:TreeViewAssist.HasNoItemsExpanderVisibility)}" />
     <Setter Property="wpf:TreeViewAssist.ShowSelection" Value="True" />

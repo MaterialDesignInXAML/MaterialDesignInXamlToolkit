@@ -2,6 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:globalization="clr-namespace:System.Globalization;assembly=mscorlib"
+                    xmlns:controls="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
   <Style x:Key="MaterialDesignCalendarButton" TargetType="{x:Type CalendarButton}">
@@ -142,7 +144,7 @@
           </Grid>
           <ControlTemplate.Triggers>
             <Trigger Property="HasSelectedDays" Value="False">
-              <Setter TargetName="NormalText" Property="TextElement.Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}}" />
+              <Setter TargetName="NormalText" Property="TextElement.Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}, FallbackValue=Black}" />
             </Trigger>
             <Trigger Property="IsInactive" Value="True">
               <Setter TargetName="NormalText" Property="Opacity" Value="0.56" />
@@ -301,7 +303,7 @@
           </Grid>
           <ControlTemplate.Triggers>
             <Trigger Property="IsSelected" Value="False">
-              <Setter TargetName="NormalText" Property="TextElement.Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}}" />
+              <Setter TargetName="NormalText" Property="TextElement.Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}, FallbackValue=Black}" />
             </Trigger>
             <Trigger Property="IsInactive" Value="True">
               <Setter TargetName="NormalText" Property="Opacity" Value="0.56" />
@@ -315,7 +317,7 @@
     </Setter>
     <Setter Property="VerticalContentAlignment" Value="Center" />
     <Setter Property="MinWidth" Value="28" />
-    <Setter Property="MinHeight" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"/>
+    <Setter Property="MinHeight" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" />
     <Setter Property="wpf:CalendarAssist.SelectionColor" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="wpf:CalendarAssist.SelectionForegroundColor" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
     <Style.Triggers>
@@ -439,8 +441,8 @@
                                                IsEnabled="{TemplateBinding IsEnabled}">
                         <wpf:MaterialDateDisplay.DisplayDate>
                           <MultiBinding Mode="OneWay" Converter="{x:Static converters:CalendarDateCoalesceConverter.Instance}">
-                            <Binding Path="DisplayDate" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Calendar}}" />
-                            <Binding Path="SelectedDate" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Calendar}}" />
+                            <Binding Path="DisplayDate" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Calendar}}" FallbackValue="{x:Static system:DateTime.Today}" />
+                            <Binding Path="SelectedDate" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Calendar}}" FallbackValue="{x:Null}" />
                           </MultiBinding>
                         </wpf:MaterialDateDisplay.DisplayDate>
                       </wpf:MaterialDateDisplay>
@@ -492,8 +494,8 @@
                            RenderTransformOrigin="0, 0.5">
                   <TextBlock.Text>
                     <MultiBinding Converter="{x:Static converters:CalendarYearMonthConverter.Instance}">
-                      <Binding Path="DisplayDate" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Calendar}}" />
-                      <Binding Path="Language" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Calendar}}" />
+                      <Binding Path="DisplayDate" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Calendar}}" FallbackValue="{x:Static system:DateTime.Today}" />
+                      <Binding Path="Language" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Calendar}}" FallbackValue="{x:Static x:XmlLanguage.Empty}" />
                     </MultiBinding>
                   </TextBlock.Text>
                   <TextBlock.RenderTransform>
@@ -617,11 +619,11 @@
             <Trigger Property="IsEnabled" Value="False">
               <Setter TargetName="PART_DisabledVisual" Property="Visibility" Value="Visible" />
             </Trigger>
-            <DataTrigger Binding="{Binding DisplayMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}}" Value="Year">
+            <DataTrigger Binding="{Binding DisplayMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}, FallbackValue={x:Static controls:CalendarMode.Month}}" Value="Year">
               <Setter TargetName="MonthViewWrapperGrid" Property="Visibility" Value="Hidden" />
               <Setter TargetName="YearViewWrapperGrid" Property="Visibility" Value="Visible" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding DisplayMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}}" Value="Decade">
+            <DataTrigger Binding="{Binding DisplayMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}, FallbackValue={x:Static controls:CalendarMode.Month}}" Value="Decade">
               <Setter TargetName="MonthViewWrapperGrid" Property="Visibility" Value="Hidden" />
               <Setter TargetName="YearViewWrapperGrid" Property="Visibility" Value="Visible" />
             </DataTrigger>

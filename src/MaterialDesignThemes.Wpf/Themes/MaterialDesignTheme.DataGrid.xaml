@@ -111,7 +111,7 @@
                          HorizontalOffset="-6"
                          IsOpen="True"
                          Placement="RelativePoint"
-                         PlacementTarget="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridCell}}}"
+                         PlacementTarget="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridCell}}, FallbackValue={x:Null}}"
                          PopupAnimation="Fade"
                          VerticalOffset="-6">
               <Grid>
@@ -381,8 +381,8 @@
                                   RecognizesAccessKey="True"
                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                 <Control SnapsToDevicePixels="false"
-                         Template="{Binding ValidationErrorTemplate, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"
-                         Visibility="{Binding (Validation.HasError), Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" />
+                         Template="{Binding ValidationErrorTemplate, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}},FallbackValue={x:Null}}"
+                         Visibility="{Binding (Validation.HasError), Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, FallbackValue=Collapsed}" />
               </StackPanel>
             </Border>
             <Thumb x:Name="PART_TopHeaderGripper"
@@ -422,13 +422,13 @@
                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
               <DataGridDetailsPresenter Grid.Row="1"
                                         Grid.Column="1"
-                                        SelectiveScrollingGrid.SelectiveScrollingOrientation="{Binding AreRowDetailsFrozen, ConverterParameter={x:Static SelectiveScrollingOrientation.Vertical}, Converter={x:Static DataGrid.RowDetailsScrollingConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                        SelectiveScrollingGrid.SelectiveScrollingOrientation="{Binding AreRowDetailsFrozen, ConverterParameter={x:Static SelectiveScrollingOrientation.Vertical}, Converter={x:Static DataGrid.RowDetailsScrollingConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, FallbackValue=None}"
                                         Visibility="{TemplateBinding DetailsVisibility}" />
               <DataGridRowHeader Grid.Row="0"
                                  Grid.RowSpan="2"
                                  Grid.Column="0"
                                  SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
-                                 Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Row}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                                 Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Row}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, FallbackValue=Visible}" />
             </SelectiveScrollingGrid>
           </Border>
         </ControlTemplate>
@@ -453,7 +453,7 @@
         <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.DataGrid.RowHoverBackground}" />
       </Trigger>
       <Trigger Property="IsNewItem" Value="True">
-        <Setter Property="Margin" Value="{Binding NewItemMargin, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+        <Setter Property="Margin" Value="{Binding NewItemMargin, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, FallbackValue=0}" />
       </Trigger>
     </Style.Triggers>
   </Style>
@@ -501,14 +501,14 @@
                       <RowDefinition Height="*" />
                       <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <Button Width="{Binding CellsPanelHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                    <Button Width="{Binding CellsPanelHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, FallbackValue=0}"
                             Command="{x:Static DataGrid.SelectAllCommand}"
                             Focusable="false"
                             Style="{DynamicResource {ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}}"
-                            Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.All}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                            Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.All}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, FallbackValue=Visible}" />
                     <Border Grid.Row="0"
                             Grid.Column="1"
-                            Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Column}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}">
+                            Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Column}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, FallbackValue=Visible}">
                       <DataGridColumnHeadersPresenter x:Name="PART_ColumnHeadersPresenter" />
                     </Border>
                     <ScrollContentPresenter x:Name="PART_ScrollContentPresenter"
@@ -526,7 +526,7 @@
                                Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
                     <Grid Grid.Row="2" Grid.Column="1">
                       <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="{Binding NonFrozenColumnsViewportHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                        <ColumnDefinition Width="{Binding NonFrozenColumnsViewportHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, FallbackValue=0}" />
                         <ColumnDefinition Width="*" />
                       </Grid.ColumnDefinitions>
                       <ScrollBar x:Name="PART_HorizontalScrollBar"

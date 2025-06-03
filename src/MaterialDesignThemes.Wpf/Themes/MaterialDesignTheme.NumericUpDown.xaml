@@ -8,7 +8,6 @@
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
-
   <Style x:Key="MaterialDesignNumericUpDownButtonsStyle"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignFlatButton}">
@@ -37,7 +36,7 @@
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
     <Setter Property="BorderThickness" Value="0,0,0,1" />
     <Setter Property="DecreaseContent" Value="{StaticResource ContentDecrease}" />
-    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground), FallbackValue=Black}" />
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     <Setter Property="IncreaseContent" Value="{StaticResource ContentIncrease}" />
     <Setter Property="MinWidth" Value="100" />
@@ -149,7 +148,6 @@
               <Setter TargetName="PART_TextBox" Property="wpf:ValidationAssist.HasError" Value="True" />
             </Trigger>
           </ControlTemplate.Triggers>
-
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -163,7 +161,6 @@
     <Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
   </Style>
 
-  
   <Style x:Key="MaterialDesignFloatingHintUpDownBase"
          TargetType="{x:Type wpf:UpDownBase}"
          BasedOn="{StaticResource MaterialDesignNumericUpDown}">
@@ -183,7 +180,6 @@
   <Style x:Key="MaterialDesignFloatingHintDecimalUpDown"
        TargetType="{x:Type wpf:DecimalUpDown}"
        BasedOn="{StaticResource MaterialDesignFloatingHintUpDownBase}" />
-
 
   <Style x:Key="MaterialDesignFilledUpDownBase"
          TargetType="{x:Type wpf:UpDownBase}"
@@ -208,7 +204,6 @@
          TargetType="{x:Type wpf:DecimalUpDown}"
          BasedOn="{StaticResource MaterialDesignFilledUpDownBase}" />
 
-  
   <Style x:Key="MaterialDesignOutlinedUpDownBase"
          TargetType="{x:Type wpf:UpDownBase}"
          BasedOn="{StaticResource MaterialDesignFloatingHintUpDownBase}">
