@@ -118,7 +118,7 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
 
         if (upDownBase._textBoxField is { } textBox)
         {
-            textBox.Text = e.NewValue.ToString();
+            textBox.Text = Convert.ToString(e.NewValue, CultureInfo.CurrentCulture);
         }
 
         upDownBase.UpdateDecreaseButtonEnabled();
@@ -224,7 +224,7 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
         {
             _textBoxField.TextChanged += OnTextBoxTextChanged;
             _textBoxField.LostFocus += OnTextBoxLostFocus;
-            _textBoxField.Text = Value?.ToString();
+            _textBoxField.Text = Convert.ToString(Value, CultureInfo.CurrentCulture);
         }
 
     }
@@ -233,7 +233,7 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
     {
         if (_textBoxField is { } textBoxField)
         {
-            textBoxField.Text = Value?.ToString();
+            textBoxField.Text = Convert.ToString(Value, CultureInfo.CurrentCulture);
         }
     }
 
@@ -241,7 +241,7 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
     {
         if (_textBoxField is { } textBoxField)
         {
-            if (TryParse(textBoxField.Text, CultureInfo.CurrentUICulture, out T? value))
+            if (TryParse(textBoxField.Text, CultureInfo.CurrentCulture, out T? value))
             {
                 SetCurrentValue(ValueProperty, ClampValue(value));
             }
