@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
@@ -19,9 +18,9 @@ public class DrawerHostTests : IDisposable
         _drawerHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
     }
 
-    [StaFact]
+    [Test, STAThreadExecutor]
     [Description("Issue 2015")]
-    public void WhenOpenedDrawerOpenedEventIsRaised()
+    public async Task WhenOpenedDrawerOpenedEventIsRaised()
     {
         Dock expectedPosition = Dock.Left;
         Dock openedPosition = Dock.Top;
@@ -30,7 +29,7 @@ public class DrawerHostTests : IDisposable
 
         DrawerHost.CloseDrawerCommand.Execute(Dock.Left, _drawerHost);
 
-        Assert.Equal(expectedPosition, openedPosition);
+        await Assert.That(openedPosition).IsEqualTo(expectedPosition);
 
         void DrawerOpened(object? sender, DrawerOpenedEventArgs eventArgs)
         {
@@ -38,9 +37,9 @@ public class DrawerHostTests : IDisposable
         }
     }
 
-    [StaFact]
+    [Test, STAThreadExecutor]
     [Description("Issue 2015")]
-    public void WhenClosingDrawerClosingEventIsRaised()
+    public async Task WhenClosingDrawerClosingEventIsRaised()
     {
         Dock expectedPosition = Dock.Left;
         Dock closedPosition = Dock.Top;
@@ -49,7 +48,7 @@ public class DrawerHostTests : IDisposable
 
         DrawerHost.CloseDrawerCommand.Execute(Dock.Left, _drawerHost);
 
-        Assert.Equal(expectedPosition, closedPosition);
+        await Assert.That(closedPosition).IsEqualTo(expectedPosition);
 
         void DrawerClosing(object? sender, DrawerClosingEventArgs eventArgs)
         {

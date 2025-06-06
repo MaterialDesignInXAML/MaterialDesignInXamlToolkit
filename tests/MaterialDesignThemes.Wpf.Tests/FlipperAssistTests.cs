@@ -1,6 +1,4 @@
-﻿using Xunit;
-
-namespace MaterialDesignThemes.Wpf.Tests;
+﻿namespace MaterialDesignThemes.Wpf.Tests;
 
 public class FlipperAssistTests
 {
@@ -11,15 +9,15 @@ public class FlipperAssistTests
         _testElement = new FrameworkElement();
     }
 
-    [StaFact]
-    public void CardStyle_CardStyleNotSet_AttachedPropertyNotSet()
+    [Test, STAThreadExecutor]
+    public async Task CardStyle_CardStyleNotSet_AttachedPropertyNotSet()
     {
         // Assert
-        Assert.Null(FlipperAssist.GetCardStyle(_testElement));
+        await Assert.That(FlipperAssist.GetCardStyle(_testElement)).IsNull();
     }
 
-    [StaFact]
-    public void CardStyle_StyleWithWrongTargetType_AttachedPropertyNotSet()
+    [Test, STAThreadExecutor]
+    public async Task CardStyle_StyleWithWrongTargetType_AttachedPropertyNotSet()
     {
         // Arrange
         var style = new Style(typeof(Button));
@@ -28,11 +26,11 @@ public class FlipperAssistTests
         FlipperAssist.SetCardStyle(_testElement, style);
 
         // Assert
-        Assert.Null(FlipperAssist.GetCardStyle(_testElement));
+        await Assert.That(FlipperAssist.GetCardStyle(_testElement)).IsNull();
     }
 
-    [StaFact]
-    public void CardStyle_StyleWithCorrectTargetType_AttachedPropertySet()
+    [Test, STAThreadExecutor]
+    public async Task CardStyle_StyleWithCorrectTargetType_AttachedPropertySet()
     {
         // Arrange
         var style = new Style(typeof(Card));
@@ -41,11 +39,11 @@ public class FlipperAssistTests
         FlipperAssist.SetCardStyle(_testElement, style);
 
         // Assert
-        Assert.Equal(style, FlipperAssist.GetCardStyle(_testElement));
+        await Assert.That(FlipperAssist.GetCardStyle(_testElement)).IsEqualTo(style);
     }
 
-    [StaFact]
-    public void CardStyle_StyleWithDerivedCardTargetType_AttachedPropertySet()
+    [Test, STAThreadExecutor]
+    public async Task CardStyle_StyleWithDerivedCardTargetType_AttachedPropertySet()
     {
         // Arrange
         var style = new Style(typeof(DerivedCard));
@@ -54,7 +52,7 @@ public class FlipperAssistTests
         FlipperAssist.SetCardStyle(_testElement, style);
 
         // Assert
-        Assert.Equal(style, FlipperAssist.GetCardStyle(_testElement));
+        await Assert.That(FlipperAssist.GetCardStyle(_testElement)).IsEqualTo(style);
     }
 
     internal class DerivedCard : Card { }

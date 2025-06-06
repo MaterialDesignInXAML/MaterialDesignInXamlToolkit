@@ -1,6 +1,7 @@
 ﻿namespace MaterialDesignThemes.Wpf.Tests;
 
-public class AdornerExtensionsTests : IClassFixture<AdornerExtensionsTests.AdornerFixture>
+[ClassDataSource<AdornerFixture>(Shared = SharedType.PerClass)]
+public class AdornerExtensionsTests
 {
     private readonly AdornerFixture _testFixture;
 
@@ -9,18 +10,16 @@ public class AdornerExtensionsTests : IClassFixture<AdornerExtensionsTests.Adorn
         _testFixture = fixture;
     }
 
-    [Fact]
-    public void AddAdornerNullArgumentThrowsException()
+    [Test]
+    public async Task AddAdornerNullArgumentThrowsException()
     {
-        Assert.Throws<ArgumentNullException>(
-            () => _testFixture._testElement.AddAdorner<BottomDashedLineAdorner>(null!));
+        await Assert.That(() => _testFixture._testElement.AddAdorner<BottomDashedLineAdorner>(null!)).ThrowsExactly<ArgumentNullException>();
     }
 
-    [Fact]
-    public void AddAdornerToElementWithoutAdornerLayerThrowsException()
+    [Test]
+    public async Task AddAdornerToElementWithoutAdornerLayerThrowsException()
     {
-        Assert.Throws<InvalidOperationException>(
-            () => _testFixture._testElement.AddAdorner(new BottomDashedLineAdorner(_testFixture._testElement)));
+        await Assert.That(() => _testFixture._testElement.AddAdorner(new BottomDashedLineAdorner(_testFixture._testElement))).ThrowsExactly<InvalidOperationException>();
     }
 
     #region Class : AdornerFixture

@@ -1,14 +1,12 @@
 ﻿using System.ComponentModel;
 using System.Windows.Threading;
-using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
-public sealed class SnackbarMessageQueueTests : IDisposable
+public sealed class SnackbarMessageQueueTests
 {
     private readonly SnackbarMessageQueue _snackbarMessageQueue;
     private readonly Dispatcher _dispatcher;
-    private bool _isDisposed;
 
     public SnackbarMessageQueueTests()
     {
@@ -16,19 +14,25 @@ public sealed class SnackbarMessageQueueTests : IDisposable
         _snackbarMessageQueue = new SnackbarMessageQueue(TimeSpan.FromSeconds(3), _dispatcher);
     }
 
-    [StaFact]
-    [Description("Ensures that GetSnackbarMessage raises an exception on null values")]
-    public void GetSnackbarMessageNullValues()
+    [After(Test)]
+    public void Cleanup()
     {
-        _ = Assert.Throws<ArgumentNullException>(() => _snackbarMessageQueue.Enqueue(null!));
-        _ = Assert.Throws<ArgumentNullException>(() => _snackbarMessageQueue.Enqueue("", null, null));
+        _snackbarMessageQueue.Dispose();
+    }
+
+    [Test, STAThreadExecutor]
+    [Description("Ensures that GetSnackbarMessage raises an exception on null values")]
+    public async Task GetSnackbarMessageNullValues()
+    {
+        await Assert.That(() => _snackbarMessageQueue.Enqueue(null!)).ThrowsExactly<ArgumentNullException>();
+        await Assert.That(() => _snackbarMessageQueue.Enqueue("", null, null)).ThrowsExactly<ArgumentNullException>();
         _ = Assert.Throws<ArgumentNullException>(() => _snackbarMessageQueue.Enqueue(null!, "", null));
         _ = Assert.Throws<ArgumentNullException>(() => _snackbarMessageQueue.Enqueue(null!, null, new Action(() => { })));
     }
 
-    [StaFact]
+    [Test, STAThreadExecutor]
     [Description("Ensures that GetSnackbarMessage behaves correctly if the queue should discard duplicate items")]
-    public void GetSnackbarMessageDiscardDuplicatesQueue()
+    public async Task GetSnackbarMessageDiscardDuplicatesQueue()
     {
         _snackbarMessageQueue.DiscardDuplicates = true;
 
@@ -42,20 +46,20 @@ public sealed class SnackbarMessageQueueTests : IDisposable
 
         IReadOnlyList<SnackbarMessageQueueItem> messages = _snackbarMessageQueue.QueuedMessages;
 
-        Assert.Equal(2, messages.Count);
+        await Assert.That(messages.Count).IsEqualTo(2);
 
-        Assert.Equal("String & Action content", messages[0].Content);
-        Assert.Equal("Action content", messages[0].ActionContent);
-        Assert.Equal("Different String & Action content", messages[1].Content);
-        Assert.Equal("Action content", messages[1].ActionContent);
+        await Assert.That(messages[0].Content).IsEqualTo("String & Action content");
+        await Assert.That(messages[0].ActionContent).IsEqualTo("Action content");
+        await Assert.That(messages[1].Content).IsEqualTo("Different String & Action content");
+        await Assert.That(messages[1].ActionContent).IsEqualTo("Action content");
     }
 
-    [StaTheory]
+    [Test, STAThreadExecutor]
     [Description("Ensures that GetSnackbarMessage behaves correctly if the queue simply outputs items")]
-    [InlineData("String & Action content", "Action content")]
-    [InlineData("Different String & Action content", "Action content")]
-    [InlineData("", "")]
-    public void GetSnackbarMessageSimpleQueue(object content, object actionContent)
+    [Arguments("String & Action content", "Action content")]
+    [Arguments("Different String & Action content", "Action content")]
+    [Arguments("", "")]
+    public async Task GetSnackbarMessageSimpleQueue(object content, object actionContent)
     {
         _snackbarMessageQueue.DiscardDuplicates = false;
 
@@ -63,41 +67,24 @@ public sealed class SnackbarMessageQueueTests : IDisposable
 
         IReadOnlyList<SnackbarMessageQueueItem> messages = _snackbarMessageQueue.QueuedMessages;
 
-        Assert.Single(messages);
+        await Assert.That(messages.Count).IsEqualTo(1);
 
-        Assert.Equal(content, messages[0].Content);
-        Assert.Equal(actionContent, messages[0].ActionContent);
+        await Assert.That(messages[0].Content).IsEqualTo(content);
+        await Assert.That(messages[0].ActionContent).IsEqualTo(actionContent);
     }
 
-    [Fact]
+    [Test]
     [Description("Pull Request 2367")]
-    public void Enqueue_ProperlySetsPromote()
+    public async Task Enqueue_ProperlySetsPromote()
     {
         _snackbarMessageQueue.Enqueue("Content", "Action Content", actionHandler: null, promote: true);
 
         IReadOnlyList<SnackbarMessageQueueItem> messages = _snackbarMessageQueue.QueuedMessages;
-        Assert.Single(messages);
-        Assert.Equal("Content", messages[0].Content);
-        Assert.Equal("Action Content", messages[0].ActionContent);
-        Assert.True(messages[0].IsPromoted);
+        await Assert.That(messages.Count).IsEqualTo(1);
+
+        await Assert.That(messages[0].Content).IsEqualTo("Content");
+        await Assert.That(messages[0].ActionContent).IsEqualTo("Action Content");
+        await Assert.That(messages[0].IsPromoted).IsTrue();
     }
 
-    private void Dispose(bool disposing)
-    {
-        if (!_isDisposed)
-        {
-            if (disposing)
-            {
-                _snackbarMessageQueue.Dispose();
-            }
-
-            _isDisposed = true;
-        }
-    }
-
-    public void Dispose()
-    {
-        Dispose(disposing: true);
-        GC.SuppressFinalize(this);
-    }
 }

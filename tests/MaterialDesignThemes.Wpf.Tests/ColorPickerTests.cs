@@ -1,20 +1,19 @@
 ﻿using System.Windows.Media;
 using MaterialDesignColors.ColorManipulation;
-using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
 //TODO: Many of these tests could be moved over to MaterialDesignThemes.UITests
 public class ColorPickerTests
 {
-    private readonly ColorPicker _colorPicker;
-    private readonly Slider _hueSlider;
-    private readonly Canvas _saturationBrightnessPicker;
-    private readonly Thumb _saturationBrightnessPickerThumb;
+    private readonly ColorPicker _colorPicker = new();
+    private Slider _hueSlider = null!;
+    private Canvas _saturationBrightnessPicker = null!;
+    private Thumb _saturationBrightnessPickerThumb = null!;
 
-    public ColorPickerTests()
+    [Before(Test)]
+    public void Setup()
     {
-        _colorPicker = new ColorPicker();
         _colorPicker.ApplyDefaultStyle();
         _colorPicker.Arrange(new Rect(0, 0, 400, 100));
 
@@ -23,27 +22,27 @@ public class ColorPickerTests
         _saturationBrightnessPickerThumb = _colorPicker.FindVisualChild<Thumb>(ColorPicker.SaturationBrightnessPickerThumbPartName);
     }
 
-    [StaFact]
-    public void ColorPickerDefaultsToDefaultColor()
+    [Test, STAThreadExecutor]
+    public async Task ColorPickerDefaultsToDefaultColor()
     {
-        Assert.Equal(default, _colorPicker.Color);
-        Assert.Equal(0, _hueSlider.Value);
+        await Assert.That(_colorPicker.Color).IsEqualTo(default);
+        await Assert.That(_hueSlider.Value).IsEqualTo(0);
 
         //Thumb should be in the bottom left corner
-        Assert.Equal(0, Canvas.GetLeft(_saturationBrightnessPickerThumb));
-        Assert.Equal(_saturationBrightnessPicker.ActualHeight, Canvas.GetTop(_saturationBrightnessPickerThumb));
+        await Assert.That(Canvas.GetLeft(_saturationBrightnessPickerThumb)).IsEqualTo(0);
+        await Assert.That(Canvas.GetTop(_saturationBrightnessPickerThumb)).IsEqualTo(_saturationBrightnessPicker.ActualHeight);
     }
 
-    [StaTheory]
-    [InlineData(nameof(Colors.Green))]
-    [InlineData(nameof(Colors.Red))]
-    [InlineData(nameof(Colors.Blue))]
-    [InlineData(nameof(Colors.Aqua))]
-    [InlineData(nameof(Colors.Purple))]
-    [InlineData(nameof(Colors.Pink))]
-    [InlineData(nameof(Colors.Yellow))]
-    [InlineData(nameof(Colors.Orange))]
-    public void SettingTheColorUpdatesTheControls(string colorName)
+    [Test, STAThreadExecutor]
+    [Arguments(nameof(Colors.Green))]
+    [Arguments(nameof(Colors.Red))]
+    [Arguments(nameof(Colors.Blue))]
+    [Arguments(nameof(Colors.Aqua))]
+    [Arguments(nameof(Colors.Purple))]
+    [Arguments(nameof(Colors.Pink))]
+    [Arguments(nameof(Colors.Yellow))]
+    [Arguments(nameof(Colors.Orange))]
+    public async Task SettingTheColorUpdatesTheControls(string colorName)
     {
         var converter = new ColorConverter();
         // ReSharper disable once PossibleNullReferenceException
@@ -52,15 +51,15 @@ public class ColorPickerTests
 
         SetColor(color);
 
-        Assert.Equal(hsb.Hue, _hueSlider.Value);
+        await Assert.That(_hueSlider.Value).IsEqualTo(hsb.Hue);
         var left = (_saturationBrightnessPicker.ActualWidth) / (1 / hsb.Saturation);
         var top = ((1 - hsb.Brightness) * _saturationBrightnessPicker.ActualHeight);
-        Assert.Equal(left, Canvas.GetLeft(_saturationBrightnessPickerThumb));
-        Assert.Equal(top, Canvas.GetTop(_saturationBrightnessPickerThumb));
+        await Assert.That(Canvas.GetLeft(_saturationBrightnessPickerThumb)).IsEqualTo(left);
+        await Assert.That(Canvas.GetTop(_saturationBrightnessPickerThumb)).IsEqualTo(top);
     }
 
-    [StaFact]
-    public void SettingTheColorRaisesColorChangedEvent()
+    [Test, STAThreadExecutor]
+    public async Task SettingTheColorRaisesColorChangedEvent()
     {
         // capture variables
         Color oldValue = Colors.Transparent;
@@ -76,9 +75,9 @@ public class ColorPickerTests
 
         SetColor(Colors.Green);
 
-        Assert.Equal(default(Color), oldValue);
-        Assert.Equal(Colors.Green, newValue);
-        Assert.True(wasRaised);
+        await Assert.That(oldValue).IsEqualTo(default(Color));
+        await Assert.That(newValue).IsEqualTo(Colors.Green);
+        await Assert.That(wasRaised).IsTrue();
 
         // reset capture variables
         oldValue = Colors.Transparent;
@@ -87,13 +86,13 @@ public class ColorPickerTests
 
         SetColor(Colors.Red);
 
-        Assert.Equal(Colors.Green, oldValue);
-        Assert.Equal(Colors.Red, newValue);
-        Assert.True(wasRaised);
+        await Assert.That(oldValue).IsEqualTo(Colors.Green);
+        await Assert.That(newValue).IsEqualTo(Colors.Red);
+        await Assert.That(wasRaised).IsTrue();
     }
 
-    [StaFact]
-    public void DraggingTheHueSliderChangesHue()
+    [Test, STAThreadExecutor]
+    public async Task DraggingTheHueSliderChangesHue()
     {
         //This ensures we have some saturation and brightness
         SetColor(Colors.Red);
@@ -102,13 +101,13 @@ public class ColorPickerTests
         while (_hueSlider.Value < _hueSlider.Maximum)
         {
             _hueSlider.Value += _hueSlider.LargeChange;
-            Assert.NotEqual(lastColor, _colorPicker.Color);
+            await Assert.That(_colorPicker.Color).IsNotEqualTo(lastColor);
             lastColor = _colorPicker.Color;
         }
     }
 
-    [StaFact]
-    public void DraggingTheThumbChangesSaturation()
+    [Test, STAThreadExecutor]
+    public async Task DraggingTheThumbChangesSaturation()
     {
         SetColor(Colors.Red);
         DragThumb(horizontalOffset: -Canvas.GetLeft(_saturationBrightnessPickerThumb));
@@ -119,7 +118,7 @@ public class ColorPickerTests
         {
             DragThumb(horizontalOffset: 10);
             double currentSaturation = _colorPicker.Color.ToHsb().Saturation;
-            Assert.True(currentSaturation > lastSaturation, $"At left {Canvas.GetLeft(_saturationBrightnessPicker)}, saturation {currentSaturation} is not grater than {lastSaturation}");
+            await Assert.That(currentSaturation).IsGreaterThan(lastSaturation).Because($"At left {Canvas.GetLeft(_saturationBrightnessPicker)}, saturation {currentSaturation} is not grater than {lastSaturation}");
         }
     }
 
