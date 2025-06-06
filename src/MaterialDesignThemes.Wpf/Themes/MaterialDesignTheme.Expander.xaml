@@ -157,7 +157,6 @@
                           </Setter.Value>
                         </Setter>
                       </DataTrigger>
-
                     </Style.Triggers>
                   </Style>
                 </ToggleButton.Style>
@@ -169,7 +168,6 @@
                                 ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                 ContentTemplate="{TemplateBinding ContentTemplate}"
                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
-
             </Grid>
           </Border>
           <ControlTemplate.Triggers>
@@ -191,7 +189,7 @@
   <Style x:Key="MaterialDesignExpander" TargetType="{x:Type Expander}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="BorderThickness" Value="0" />
-    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground), FallbackValue=Black}" />
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
 
     <Setter Property="Template">
@@ -286,7 +284,6 @@
                     </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
-
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
             <DockPanel Background="{TemplateBinding Background}">
@@ -328,7 +325,6 @@
                                     ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
                                     Focusable="False"
                                     Visibility="Collapsed" />
-
                 </Grid>
               </Border>
             </DockPanel>

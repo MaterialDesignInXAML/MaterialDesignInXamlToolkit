@@ -52,7 +52,7 @@
                         CornerRadius="{Binding Path=(wpf:ButtonAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
                         Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}" />
                 <ProgressBar x:Name="ProgressBar"
-                             Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}, Path=ActualWidth}"
+                             Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}, Path=ActualWidth, FallbackValue={x:Static system:Double.NaN}}"
                              Height="{TemplateBinding Height}"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Center"
@@ -183,7 +183,7 @@
                     BorderThickness="{TemplateBinding BorderThickness}"
                     CornerRadius="{Binding Path=(wpf:ButtonAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}" />
             <ProgressBar x:Name="ProgressBar"
-                         Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}, Path=ActualWidth}"
+                         Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}, Path=ActualWidth, FallbackValue={x:Static system:Double.NaN}}"
                          Height="{TemplateBinding Height}"
                          HorizontalAlignment="Left"
                          VerticalAlignment="Center"
@@ -341,7 +341,7 @@
                     BorderThickness="{TemplateBinding BorderThickness}"
                     CornerRadius="{Binding Path=(wpf:ButtonAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}" />
             <ProgressBar x:Name="ProgressBar"
-                         Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}, Path=ActualWidth}"
+                         Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}, Path=ActualWidth, FallbackValue={x:Static system:Double.NaN}}"
                          Height="{TemplateBinding Height}"
                          HorizontalAlignment="Left"
                          VerticalAlignment="Center"
@@ -386,7 +386,6 @@
           <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
               <Setter TargetName="border" Property="Background" Value="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={x:Static converters:BrushOpacityConverter.Instance}, ConverterParameter=0.16}" />
-
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
               <Setter Property="Opacity" Value="0.38" />
@@ -474,8 +473,8 @@
   <Style x:Key="MaterialDesignToolForegroundButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignToolButton}">
-    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
-    <Setter Property="wpf:RippleAssist.Feedback" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground), FallbackValue=Black}" />
+    <Setter Property="wpf:RippleAssist.Feedback" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground), FallbackValue=Black}" />
   </Style>
 
   <!--#endregion-->
@@ -760,8 +759,8 @@
   <Style x:Key="MaterialDesignIconForegroundButton"
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignIconButton}">
-    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
-    <Setter Property="wpf:RippleAssist.Feedback" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground), FallbackValue=Black}" />
+    <Setter Property="wpf:RippleAssist.Feedback" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground), FallbackValue=Black}" />
   </Style>
 
   <!--#endregion-->
@@ -864,5 +863,4 @@
   </Style>
 
   <!--#endregion-->
-
 </ResourceDictionary>

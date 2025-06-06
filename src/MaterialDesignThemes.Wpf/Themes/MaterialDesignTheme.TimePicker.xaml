@@ -35,7 +35,7 @@
       </Setter.Value>
     </Setter>
     <Setter Property="ClockStyle" Value="{DynamicResource MaterialDesignClock}" />
-    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground), FallbackValue=Black}" />
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     <Setter Property="IsHeaderVisible" Value="True" />
     <Setter Property="Padding" Value="{x:Static wpf:Constants.TextBoxDefaultPadding}" />
@@ -202,5 +202,4 @@
     <Setter Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
     <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="4" />
   </Style>
-
 </ResourceDictionary>

@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
@@ -177,12 +177,12 @@
                   <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}" />
                   <Binding>
                     <Binding.Source>
-                      <sys:Double>1</sys:Double>
+                      <system:Double>1</system:Double>
                     </Binding.Source>
                   </Binding>
                   <Binding>
                     <Binding.Source>
-                      <sys:Double>1</sys:Double>
+                      <system:Double>1</system:Double>
                     </Binding.Source>
                   </Binding>
                 </MultiBinding>
@@ -241,12 +241,12 @@
                   <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}" />
                   <Binding>
                     <Binding.Source>
-                      <sys:Double>1</sys:Double>
+                      <system:Double>1</system:Double>
                     </Binding.Source>
                   </Binding>
                   <Binding>
                     <Binding.Source>
-                      <sys:Double>1</sys:Double>
+                      <system:Double>1</system:Double>
                     </Binding.Source>
                   </Binding>
                 </MultiBinding>

@@ -9,7 +9,7 @@
     <Setter Property="FontWeight" Value="Medium" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="Height" Value="56" />
-    <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+    <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, FallbackValue=Left}" />
     <Setter Property="Margin" Value="0" />
     <Setter Property="Padding" Value="8" />
     <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -130,7 +130,7 @@
         </ControlTemplate>
       </Setter.Value>
     </Setter>
-    <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+    <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, FallbackValue=Center}" />
     <Setter Property="Width" Value="360" />
     <Setter Property="wpf:NavigationDrawerAssist.CornerRadius" Value="26" />
     <Setter Property="wpf:NavigationDrawerAssist.IconSize" Value="24" />
@@ -145,5 +145,4 @@
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Light}" />
     <Setter Property="wpf:ThemeAssist.TriggerBrush" Value="{DynamicResource MaterialDesign.Brush.Background}" />
   </Style>
-
 </ResourceDictionary>

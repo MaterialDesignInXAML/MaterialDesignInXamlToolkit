@@ -23,7 +23,7 @@
 
   <Style x:Key="MaterialDesignTabControlBase" TargetType="{x:Type TabControl}">
     <Setter Property="Background" Value="Transparent" />
-    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground), FallbackValue=Black}" />
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     <Setter Property="Padding" Value="0" />
     <Setter Property="Template">
@@ -240,7 +240,7 @@
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
     <!-- Foreground is for the content, not the header -->
-    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabControl}}, Path=(TextElement.Foreground)}" />
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabControl}}, Path=(TextElement.Foreground), FallbackValue=Black}" />
     <Setter Property="Height" Value="48" />
     <Setter Property="MinWidth" Value="90" />
     <Setter Property="Padding" Value="16,12" />
@@ -341,13 +341,13 @@
               <Setter TargetName="contentPresenter" Property="Opacity" Value="1" />
               <Setter TargetName="contentPresenter" Property="wpf:RippleAssist.IsDisabled" Value="True" />
             </Trigger>
-            <DataTrigger Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Bottom">
+            <DataTrigger Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}, FallbackValue=Top}" Value="Bottom">
               <Setter TargetName="SelectionHighlightBorder" Property="BorderThickness" Value="0,2,0,0" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Left">
+            <DataTrigger Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}, FallbackValue=Top}" Value="Left">
               <Setter TargetName="SelectionHighlightBorder" Property="BorderThickness" Value="0,0,2,0" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Right">
+            <DataTrigger Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}, FallbackValue=Top}" Value="Right">
               <Setter TargetName="SelectionHighlightBorder" Property="BorderThickness" Value="2,0,0,0" />
             </DataTrigger>
 
@@ -355,7 +355,7 @@
             <MultiDataTrigger>
               <MultiDataTrigger.Conditions>
                 <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True" />
-                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Top" />
+                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}, FallbackValue=Top}" Value="Top" />
               </MultiDataTrigger.Conditions>
               <MultiDataTrigger.EnterActions>
                 <BeginStoryboard Storyboard="{StaticResource SelectHorizontalTabItem}" />
@@ -364,7 +364,7 @@
             <MultiDataTrigger>
               <MultiDataTrigger.Conditions>
                 <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True" />
-                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Bottom" />
+                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}, FallbackValue=Top}" Value="Bottom" />
               </MultiDataTrigger.Conditions>
               <MultiDataTrigger.EnterActions>
                 <BeginStoryboard Storyboard="{StaticResource SelectHorizontalTabItem}" />
@@ -373,7 +373,7 @@
             <MultiDataTrigger>
               <MultiDataTrigger.Conditions>
                 <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True" />
-                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Left" />
+                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}, FallbackValue=Top}" Value="Left" />
               </MultiDataTrigger.Conditions>
               <MultiDataTrigger.EnterActions>
                 <BeginStoryboard Storyboard="{StaticResource SelectVerticalTabItem}" />
@@ -382,7 +382,7 @@
             <MultiDataTrigger>
               <MultiDataTrigger.Conditions>
                 <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True" />
-                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Right" />
+                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}, FallbackValue=Top}" Value="Right" />
               </MultiDataTrigger.Conditions>
               <MultiDataTrigger.EnterActions>
                 <BeginStoryboard Storyboard="{StaticResource SelectVerticalTabItem}" />
@@ -464,11 +464,11 @@
       </Setter.Value>
     </Setter>
     <Setter Property="wpf:ColorZoneAssist.Background" Value="Transparent" />
-    <Setter Property="wpf:ColorZoneAssist.Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabControl}}, Path=(wpf:ColorZoneAssist.Foreground)}" />
-    <Setter Property="wpf:ColorZoneAssist.Mode" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabControl}}, Path=(wpf:ColorZoneAssist.Mode)}" />
+    <Setter Property="wpf:ColorZoneAssist.Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabControl}}, Path=(wpf:ColorZoneAssist.Foreground), FallbackValue=Black}" />
+    <Setter Property="wpf:ColorZoneAssist.Mode" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabControl}}, Path=(wpf:ColorZoneAssist.Mode), FallbackValue=Standard}" />
     <Setter Property="wpf:DialogHost.RestoreFocusElement" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=TabControl}}" />
     <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Button.Ripple}" />
-    <Setter Property="wpf:TabAssist.HasFilledTab" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabControl}}, Path=(wpf:TabAssist.HasFilledTab)}" />
+    <Setter Property="wpf:TabAssist.HasFilledTab" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabControl}}, Path=(wpf:TabAssist.HasFilledTab), FallbackValue=False}" />
   </Style>
 
   <!-- NAVIGATION RAIL -->
@@ -486,7 +486,7 @@
             <Grid>
               <Border x:Name="MouseOverBorder"
                       Background="{TemplateBinding Background}"
-                      CornerRadius="{Binding Path=(wpf:NavigationRailAssist.SelectionCornerRadius), RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"
+                      CornerRadius="{Binding Path=(wpf:NavigationRailAssist.SelectionCornerRadius), RelativeSource={RelativeSource AncestorType={x:Type TabControl}}, FallbackValue=0}"
                       Opacity=".08"
                       Visibility="Hidden" />
               <wpf:ColorZone x:Name="colorZone"
@@ -529,7 +529,7 @@
             <Border x:Name="SelectionHighlightBorder" Visibility="Hidden">
               <Border x:Name="PART_BackgroundSelection"
                       Background="{TemplateBinding Background}"
-                      CornerRadius="{Binding Path=(wpf:NavigationRailAssist.SelectionCornerRadius), RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"
+                      CornerRadius="{Binding Path=(wpf:NavigationRailAssist.SelectionCornerRadius), RelativeSource={RelativeSource AncestorType={x:Type TabControl}}, FallbackValue=0}"
                       IsHitTestVisible="False"
                       Opacity="0.12" />
             </Border>
@@ -557,7 +557,7 @@
             <MultiDataTrigger>
               <MultiDataTrigger.Conditions>
                 <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
-                <Condition Binding="{Binding Path=(wpf:NavigationRailAssist.ShowSelectionBackground), RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="True" />
+                <Condition Binding="{Binding Path=(wpf:NavigationRailAssist.ShowSelectionBackground), RelativeSource={RelativeSource AncestorType={x:Type TabControl}}, FallbackValue=False}" Value="True" />
               </MultiDataTrigger.Conditions>
               <Setter TargetName="SelectionHighlightBorder" Property="Visibility" Value="Visible" />
             </MultiDataTrigger>
@@ -594,7 +594,6 @@
               <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Foreground)}" />
               <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ColorZoneAssist.Foreground)}" />
             </Trigger>
-
           </ControlTemplate.Triggers>
         </ControlTemplate>
       </Setter.Value>
@@ -669,7 +668,6 @@
                              Visibility="Collapsed" />
                 </Grid>
               </wpf:ColorZone>
-
             </Grid>
             <!-- selected content -->
             <wpf:ColorZone x:Name="PART_HeaderCardSelectedContent"
