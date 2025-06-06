@@ -8,7 +8,8 @@ namespace MaterialDesignThemes.UITests.WPF.TreeListViews;
 public partial class TreeListViewDataBinding
 {
     //NB: making the assumption changes occur on the UI thread
-    public ObservableCollection<TreeItem> Items { get; } = new();
+    public ObservableCollection<TreeItem> Items { get; } = [];
+    public ObservableCollection<TreeItem> SelectedItems { get; } = [];
 
     public TreeListViewDataBinding()
     {
@@ -20,6 +21,7 @@ public partial class TreeListViewDataBinding
 
     public void Add_OnClick(object sender, EventArgs e) => AddItem();
     public void AddWithChildren_OnClick(object sender, EventArgs e) => AddItemWithChildren();
+    public void AddDuplicate_OnClick(object sender, EventArgs e) => AddDuplicateItem();
 
     private void AddItem()
     {
@@ -30,6 +32,23 @@ public partial class TreeListViewDataBinding
         else
         {
             Items.Add(new TreeItem(Items.Count.ToString(), null));
+        }
+    }
+
+    private void AddDuplicateItem()
+    {
+        if (TreeListView.SelectedItem is TreeItem selectedItem)
+        {
+            if (selectedItem.Parent is { } parent)
+            {
+                int childIndex = parent.Children.IndexOf(selectedItem);
+                parent.Children.Insert(childIndex + 1, selectedItem);
+            }
+            else
+            {
+                int itemIndex = Items.IndexOf(selectedItem);
+                Items.Insert(itemIndex + 1, selectedItem);
+            }
         }
     }
 
