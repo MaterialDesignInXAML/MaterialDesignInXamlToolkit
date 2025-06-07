@@ -1,17 +1,26 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
+using System.Globalization;
+using System.Threading;
 
 namespace MaterialDesignThemes.UITests.WPF.UpDownControls;
 
 public class DecimalUpDownTests(ITestOutputHelper output) : TestBase(output)
 {
-    [Fact]
-    public async Task NumericButtons_IncreaseAndDecreaseValue()
+    [Theory]
+    [InlineData("en-US")]
+    [InlineData("da-DK")]
+    [InlineData("fa-IR")]
+    [InlineData("ja-JP")]
+    [InlineData("zh-CN")]
+    public async Task NumericButtons_IncreaseAndDecreaseValue(string culture)
     {
         await using var recorder = new TestRecorder(App);
 
         var numericUpDown = await LoadXaml<DecimalUpDown>("""
-        <materialDesign:DecimalUpDown Value="1" />
+        <materialDesign:DecimalUpDown Value="1" ValueStep="0.1" />
         """);
+        await App.RemoteExecute<string>(SetCulture, [culture]);
+
         var plusButton = await numericUpDown.GetElement<RepeatButton>("PART_IncreaseButton");
         var minusButton = await numericUpDown.GetElement<RepeatButton>("PART_DecreaseButton");
         var textBox = await numericUpDown.GetElement<TextBox>("PART_TextBox");
@@ -22,8 +31,8 @@ public class DecimalUpDownTests(ITestOutputHelper output) : TestBase(output)
         await plusButton.LeftClick();
         await Wait.For(async () =>
         {
-            Assert.Equal("2", await textBox.GetText());
-            Assert.Equal(2, await numericUpDown.GetValue());
+            Assert.Equal(Convert.ToString(1.1, CultureInfo.GetCultureInfo(culture)), await textBox.GetText());
+            Assert.Equal((decimal)1.1, await numericUpDown.GetValue());
         });
 
         await minusButton.LeftClick();
@@ -34,6 +43,11 @@ public class DecimalUpDownTests(ITestOutputHelper output) : TestBase(output)
         });
 
         recorder.Success();
+
+        static void SetCulture(Application _, string culture)
+        {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(culture);
+        }
     }
 
     [Fact]
