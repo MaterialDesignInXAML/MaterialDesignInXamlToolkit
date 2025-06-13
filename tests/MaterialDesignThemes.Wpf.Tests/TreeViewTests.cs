@@ -3,9 +3,10 @@ using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
+[TestExecutor<STAThreadExecutor>]
 public class TreeViewTests
 {
-    [Test, STAThreadExecutor]
+    [Test]
     [Description("Issue 2135")]
     public async Task TreeViewItemBackgroundShouldBeInherited()
     {
@@ -16,13 +17,6 @@ public class TreeViewTests
         item.Background = expectedBackgroundBrush;
 
         var contentGrid = item.FindVisualChild<Grid>("ContentGrid");
-
-        /* Unmerged change from project 'MaterialDesignThemes.Wpf.Tests(net8.0-windows)'
-        Before:
-                await Assert.That(contentGrid.Background).IsEqualTo(expectedBackgroundBrush);
-        After:
-                Assert.That(expectedBackgroundBrush, contentGrid.Background);
-        */
-        await Assert.That(contentGrid.Background).IsEqualTo(contentGrid.Background).IsEqualTo(expectedBackgroundBrush);
+        await Assert.That(contentGrid.Background).IsEqualTo(expectedBackgroundBrush);
     }
 }

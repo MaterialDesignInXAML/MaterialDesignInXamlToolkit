@@ -104,7 +104,7 @@ public class TreeListViewItemsCollectionTests
         collection.ReplaceAllItems("b", "c");
 
         //Assert
-        await Assert.That(treeListViewItemsCollection).IsEquivalentTo(new[] { "c", "b" });
+        await Assert.That(treeListViewItemsCollection).IsEquivalentTo(new[] { "b", "c" });
     }
 
     [Test]
@@ -154,7 +154,7 @@ public class TreeListViewItemsCollectionTests
 
         List<int> expectedLevels = new([ 0, 1, 1, 0 ]);
         expectedLevels.Insert(insertionIndex, requestedLevel);
-        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEqualTo(expectedLevels);
+        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEquivalentTo(expectedLevels);
     }
 
     [Test]
@@ -194,7 +194,7 @@ public class TreeListViewItemsCollectionTests
          * 2. b
          */
 
-        await Assert.That(treeListViewItemsCollection.GetAllIsExpanded()).IsEqualTo(new[] { true, false, false });
+        await Assert.That(treeListViewItemsCollection.GetAllIsExpanded()).IsEquivalentTo(new[] { true, false, false });
     }
 
     [Test]
@@ -225,7 +225,7 @@ public class TreeListViewItemsCollectionTests
         treeListViewItemsCollection.RemoveAt(indexToRemove); // RemoveAt() only knows about root level items, so indices in input should reflect that
 
         await Assert.That(treeListViewItemsCollection).IsEquivalentTo(expectedItems);
-        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEqualTo(expectedLevels);
+        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEquivalentTo(expectedLevels);
     }
 
     [Test]
@@ -261,7 +261,7 @@ public class TreeListViewItemsCollectionTests
         List<int> expectedLevels = new([0, 1, 1, 1, 0, 1, 1, 0, 1, 1]);
 
         await Assert.That(treeListViewItemsCollection).IsEquivalentTo(expectedItems);
-        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEqualTo(expectedLevels);
+        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEquivalentTo(expectedLevels);
     }
 
     [Test]
@@ -295,7 +295,7 @@ public class TreeListViewItemsCollectionTests
         List<int> expectedLevels = new([0, 1, 0, 1, 1, 0, 1, 1, 1]);
 
         await Assert.That(treeListViewItemsCollection).IsEquivalentTo(expectedItems);
-        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEqualTo(expectedLevels);
+        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEquivalentTo(expectedLevels);
     }
 
     [Test]
@@ -331,7 +331,7 @@ public class TreeListViewItemsCollectionTests
         int[] expectedLevels = [0, 1, 1, 0, 1, 1, 0, 1, 1, 1];
 
         await Assert.That(treeListViewItemsCollection).IsEquivalentTo(expectedItems);
-        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEqualTo(expectedLevels);
+        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEquivalentTo(expectedLevels);
     }
 
     [Test]
@@ -365,7 +365,7 @@ public class TreeListViewItemsCollectionTests
         List<int> expectedLevels = new([0, 1, 1, 1, 0, 1, 0, 1, 1]);
 
         await Assert.That(treeListViewItemsCollection).IsEquivalentTo(expectedItems);
-        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEqualTo(expectedLevels);
+        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEquivalentTo(expectedLevels);
     }
 
     [Test]
@@ -394,14 +394,14 @@ public class TreeListViewItemsCollectionTests
         List<int> expectedLevels = new([0, 0, 0, 1, 1, 1]);
 
         await Assert.That(treeListViewItemsCollection).IsEquivalentTo(expectedItems);
-        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEqualTo(expectedLevels);
+        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEquivalentTo(expectedLevels);
     }
 
     [Test]
     public async Task Move_WithExpandedChild_ItMovesChildrenUp()
     {
         //Arrange
-        ObservableCollection<string> boundCollection = new() { "0", "1", "2" };
+        ObservableCollection<string> boundCollection = [ "0", "1", "2" ];
         TreeListViewItemsCollection treeListViewItemsCollection = new(boundCollection);
         treeListViewItemsCollection.InsertWithLevel(2, "1_0", 1);
         treeListViewItemsCollection.InsertWithLevel(3, "1_1", 1);
@@ -451,8 +451,8 @@ public class TreeListViewItemsCollectionTests
             false,
         ];
         await Assert.That(treeListViewItemsCollection).IsEquivalentTo(expectedItems);
-        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEqualTo(expectedLevels);
-        await Assert.That(treeListViewItemsCollection.GetAllIsExpanded()).IsEqualTo(expectedExpanded);
+        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEquivalentTo(expectedLevels);
+        await Assert.That(treeListViewItemsCollection.GetAllIsExpanded()).IsEquivalentTo(expectedExpanded);
     }
 
     [Test]
@@ -509,15 +509,15 @@ public class TreeListViewItemsCollectionTests
             false,
         ];
         await Assert.That(treeListViewItemsCollection).IsEquivalentTo(expectedItems);
-        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEqualTo(expectedLevels);
-        await Assert.That(treeListViewItemsCollection.GetAllIsExpanded()).IsEqualTo(expectedExpanded);
+        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEquivalentTo(expectedLevels);
+        await Assert.That(treeListViewItemsCollection.GetAllIsExpanded()).IsEquivalentTo(expectedExpanded);
     }
 
     [Test]
     public async Task Replace_WithExpandedChild_ItRemovesChildren()
     {
         //Arrange
-        ObservableCollection<string> boundCollection = new() { "0", "1", "2" };
+        ObservableCollection<string> boundCollection = [ "0", "1", "2" ];
         TreeListViewItemsCollection treeListViewItemsCollection = new(boundCollection);
         treeListViewItemsCollection.InsertWithLevel(3, "2_0", 1);
         treeListViewItemsCollection.InsertWithLevel(4, "2_1", 1);
@@ -550,8 +550,8 @@ public class TreeListViewItemsCollectionTests
         ];
 
         await Assert.That(treeListViewItemsCollection).IsEquivalentTo(expectedItems);
-        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEqualTo(expectedLevels);
-        await Assert.That(treeListViewItemsCollection.GetAllIsExpanded()).IsEqualTo(expectedExpanded);
+        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEquivalentTo(expectedLevels);
+        await Assert.That(treeListViewItemsCollection.GetAllIsExpanded()).IsEquivalentTo(expectedExpanded);
     }
 
     [Test]
@@ -589,8 +589,8 @@ public class TreeListViewItemsCollectionTests
             false,
         ];
         await Assert.That(treeListViewItemsCollection).IsEquivalentTo(expectedItems);
-        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEqualTo(expectedLevels);
-        await Assert.That(treeListViewItemsCollection.GetAllIsExpanded()).IsEqualTo(expectedExpanded);
+        await Assert.That(treeListViewItemsCollection.GetAllLevels()).IsEquivalentTo(expectedLevels);
+        await Assert.That(treeListViewItemsCollection.GetAllIsExpanded()).IsEquivalentTo(expectedExpanded);
     }
 
     [Test]
@@ -673,10 +673,10 @@ public class TreeListViewItemsCollectionTests
 
         //Act/Assert
         await Assert.That(treeListViewItemsCollection.GetDirectChildrenIndexes(0)).IsEmpty();
-        await Assert.That(treeListViewItemsCollection.GetDirectChildrenIndexes(1)).IsEqualTo([2, 3, 4]);
+        await Assert.That(treeListViewItemsCollection.GetDirectChildrenIndexes(1)).IsEquivalentTo([2, 3, 4]);
         await Assert.That(treeListViewItemsCollection.GetDirectChildrenIndexes(2)).IsEmpty();
         await Assert.That(treeListViewItemsCollection.GetDirectChildrenIndexes(3)).IsEmpty();
-        await Assert.That(treeListViewItemsCollection.GetDirectChildrenIndexes(4)).IsEqualTo([5, 6, 7]);
+        await Assert.That(treeListViewItemsCollection.GetDirectChildrenIndexes(4)).IsEquivalentTo([5, 6, 7]);
         await Assert.That(treeListViewItemsCollection.GetDirectChildrenIndexes(5)).IsEmpty();
         await Assert.That(treeListViewItemsCollection.GetDirectChildrenIndexes(6)).IsEmpty();
         await Assert.That(treeListViewItemsCollection.GetDirectChildrenIndexes(7)).IsEmpty();

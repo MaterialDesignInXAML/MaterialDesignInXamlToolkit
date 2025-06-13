@@ -2,9 +2,10 @@
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
+[TestExecutor<STAThreadExecutor>]
 public class PopupBoxTests
 {
-    [Test, STAThreadExecutor]
+    [Test]
     [Description("Issue 1091")]
     public async Task ToggleButtonInheritsTabIndex()
     {
@@ -16,7 +17,7 @@ public class PopupBoxTests
         await Assert.That(togglePart.TabIndex).IsEqualTo(3);
     }
 
-    [Test, STAThreadExecutor]
+    [Test]
     [Description("Issue 1231")]
     public async Task ToggleButtonInheritsIsTabStopWhenFalse()
     {
@@ -28,7 +29,7 @@ public class PopupBoxTests
         await Assert.That(togglePart.IsTabStop).IsFalse();
     }
 
-    [Test, STAThreadExecutor]
+    [Test]
     [Description("Issue 1231")]
     public async Task ToggleButtonInheritsIsTabStopWhenTrue()
     {

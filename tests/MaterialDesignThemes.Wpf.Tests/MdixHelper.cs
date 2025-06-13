@@ -18,7 +18,7 @@ public static class MdixHelper
         var style = GetStyle(styleKey) ?? throw new InvalidOperationException($"Could not find style with key '{styleKey}' for control type {typeof(T).FullName}");
 
         control.Style = style;
-        if (applyTemplate)
+        if (applyTemplate && !control.ApplyTemplate())
         {
             Assert.Fail("Failed to apply template");
         }

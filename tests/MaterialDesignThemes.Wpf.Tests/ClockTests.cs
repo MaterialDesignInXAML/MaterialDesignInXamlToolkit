@@ -1,8 +1,9 @@
 ﻿namespace MaterialDesignThemes.Wpf.Tests;
 
+[TestExecutor<STAThreadExecutor>]
 public class ClockTests
 {
-    [Test, STAThreadExecutor]
+    [Test]
     public async Task CanGenerateHoursButtons()
     {
         var clock = new Clock();
@@ -12,10 +13,11 @@ public class ClockTests
         var buttonContents = hoursCanvas.GetVisualChildren<ClockItemButton>().Select(x => x.Content.ToString());
 
         var expected = Enumerable.Range(1, 12).Select(x => $"{x:0}");
-        await Assert.That(buttonContents.OrderBy(x => x)).IsEqualTo(expected.OrderBy(x => x));
+        await Assert.That(buttonContents.OrderBy(x => x))
+            .IsEquivalentTo(expected.OrderBy(x => x));
     }
 
-    [Test, STAThreadExecutor]
+    [Test]
     public async Task CanGenerateHoursButtonsWith24Hours()
     {
         var clock = new Clock { Is24Hours = true };
@@ -27,10 +29,10 @@ public class ClockTests
         var expected = Enumerable.Range(13, 11).Select(x => $"{x:00}")
             .Concat(["00"])
             .Concat(Enumerable.Range(1, 12).Select(x => $"{x:#}"));
-        await Assert.That(buttonContents.OrderBy(x => x)).IsEqualTo(expected.OrderBy(x => x));
+        await Assert.That(buttonContents.OrderBy(x => x)).IsEquivalentTo(expected.OrderBy(x => x));
     }
 
-    [Test, STAThreadExecutor]
+    [Test]
     public async Task CanGenerateMinuteButtons()
     {
         var clock = new Clock();
@@ -40,10 +42,10 @@ public class ClockTests
         var buttonContents = minutesCanvas.GetVisualChildren<ClockItemButton>().Select(x => x.Content.ToString());
 
         var expected = Enumerable.Range(0, 60).Select(x => $"{x:0}");
-        await Assert.That(buttonContents.OrderBy(x => x)).IsEqualTo(expected.OrderBy(x => x));
+        await Assert.That(buttonContents.OrderBy(x => x)).IsEquivalentTo(expected.OrderBy(x => x));
     }
 
-    [Test, STAThreadExecutor]
+    [Test]
     public async Task CanGenerateSecondsButtons()
     {
         var clock = new Clock();
@@ -53,10 +55,10 @@ public class ClockTests
         var buttonContents = secondsCanvas.GetVisualChildren<ClockItemButton>().Select(x => x.Content.ToString());
 
         var expected = Enumerable.Range(0, 60).Select(x => $"{x:0}");
-        await Assert.That(buttonContents.OrderBy(x => x)).IsEqualTo(expected.OrderBy(x => x));
+        await Assert.That(buttonContents.OrderBy(x => x)).IsEquivalentTo(expected.OrderBy(x => x));
     }
 
-    [Test, STAThreadExecutor]
+    [Test]
     public async Task TimeChangedEvent_WhenTimeChanges_EventIsRaised()
     {
         var clock = new Clock();
@@ -80,6 +82,4 @@ public class ClockTests
         await Assert.That(invocations[1].OldTime).IsEqualTo(now);
         await Assert.That(invocations[1].NewTime).IsEqualTo(now + TimeSpan.FromMinutes(-2));
     }
-
-
 }

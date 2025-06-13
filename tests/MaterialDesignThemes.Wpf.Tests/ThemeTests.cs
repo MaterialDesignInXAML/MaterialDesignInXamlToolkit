@@ -10,7 +10,7 @@ public class ThemeTests
         var theme = Theme.Create(BaseTheme.Dark, Colors.Red, Colors.Blue);
         theme.Foreground = Colors.Green;
 
-        await Assert.That(theme.Foreground).IsEqualTo(Colors.Green);
+        await Assert.That(theme.Foreground.Color).IsEqualTo(Colors.Green);
     }
 
     [Test]
@@ -19,7 +19,7 @@ public class ThemeTests
         var theme = Theme.Create(BaseTheme.Dark, Colors.Red, Colors.Blue);
         theme.Foreground = ThemeColorReference.PrimaryMid;
 
-        await Assert.That(theme.Foreground).IsEqualTo(Colors.Red);
+        await Assert.That(theme.Foreground.Color).IsEqualTo(Colors.Red);
     }
 
     [Test]
@@ -28,6 +28,6 @@ public class ThemeTests
         var theme = Theme.Create(BaseTheme.Dark, Colors.Red, Colors.Blue);
         theme.Foreground = ColorReference.PrimaryMid;
 
-        await Assert.That(theme.Foreground).IsEqualTo(Colors.Red);
+        await Assert.That(theme.Foreground.Color).IsEqualTo(Colors.Red);
     }
 }

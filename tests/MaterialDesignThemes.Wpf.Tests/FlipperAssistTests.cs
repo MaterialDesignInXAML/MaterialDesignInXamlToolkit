@@ -1,58 +1,59 @@
 ﻿namespace MaterialDesignThemes.Wpf.Tests;
 
+[TestExecutor<STAThreadExecutor>]
 public class FlipperAssistTests
 {
-    private readonly FrameworkElement _testElement;
-
-    public FlipperAssistTests()
-    {
-        _testElement = new FrameworkElement();
-    }
-
-    [Test, STAThreadExecutor]
+    [Test]
     public async Task CardStyle_CardStyleNotSet_AttachedPropertyNotSet()
     {
+        FrameworkElement testElement = new();
         // Assert
-        await Assert.That(FlipperAssist.GetCardStyle(_testElement)).IsNull();
+        await Assert.That(FlipperAssist.GetCardStyle(testElement)).IsNull();
     }
 
-    [Test, STAThreadExecutor]
+    [Test]
     public async Task CardStyle_StyleWithWrongTargetType_AttachedPropertyNotSet()
     {
         // Arrange
+        FrameworkElement testElement = new();
+
         var style = new Style(typeof(Button));
 
         // Act
-        FlipperAssist.SetCardStyle(_testElement, style);
+        FlipperAssist.SetCardStyle(testElement, style);
 
         // Assert
-        await Assert.That(FlipperAssist.GetCardStyle(_testElement)).IsNull();
+        await Assert.That(FlipperAssist.GetCardStyle(testElement)).IsNull();
     }
 
-    [Test, STAThreadExecutor]
+    [Test]
     public async Task CardStyle_StyleWithCorrectTargetType_AttachedPropertySet()
     {
         // Arrange
+        FrameworkElement testElement = new();
+
         var style = new Style(typeof(Card));
 
         // Act
-        FlipperAssist.SetCardStyle(_testElement, style);
+        FlipperAssist.SetCardStyle(testElement, style);
 
         // Assert
-        await Assert.That(FlipperAssist.GetCardStyle(_testElement)).IsEqualTo(style);
+        await Assert.That(FlipperAssist.GetCardStyle(testElement)).IsEqualTo(style);
     }
 
-    [Test, STAThreadExecutor]
+    [Test]
     public async Task CardStyle_StyleWithDerivedCardTargetType_AttachedPropertySet()
     {
         // Arrange
+        FrameworkElement testElement = new();
+
         var style = new Style(typeof(DerivedCard));
 
         // Act
-        FlipperAssist.SetCardStyle(_testElement, style);
+        FlipperAssist.SetCardStyle(testElement, style);
 
         // Assert
-        await Assert.That(FlipperAssist.GetCardStyle(_testElement)).IsEqualTo(style);
+        await Assert.That(FlipperAssist.GetCardStyle(testElement)).IsEqualTo(style);
     }
 
     internal class DerivedCard : Card { }
