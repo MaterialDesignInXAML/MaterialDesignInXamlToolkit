@@ -136,20 +136,10 @@
                                 ContentTemplate="{TemplateBinding ContentTemplate}"
                                 FlowDirection="LeftToRight" />
               <Grid.Clip>
-                <EllipseGeometry RadiusX="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Width, Converter={x:Static converters:MathConverter.DivideInstance}, ConverterParameter=2.0}" RadiusY="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Height, Converter={x:Static converters:MathConverter.DivideInstance}, ConverterParameter=2.0}">
-                  <EllipseGeometry.Center>
-                    <MultiBinding Converter="{x:Static converters:PointValueConverter.Instance}">
-                      <Binding Converter="{x:Static converters:MathConverter.DivideInstance}"
-                               ConverterParameter="2.0"
-                               Path="Width"
-                               RelativeSource="{RelativeSource TemplatedParent}" />
-                      <Binding Converter="{x:Static converters:MathConverter.DivideInstance}"
-                               ConverterParameter="2.0"
-                               Path="Height"
-                               RelativeSource="{RelativeSource TemplatedParent}" />
-                    </MultiBinding>
-                  </EllipseGeometry.Center>
-                </EllipseGeometry>
+                <MultiBinding Converter="{x:Static converters:EllipseClipConverter.Instance}">
+                  <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}" />
+                  <Binding Path="ActualHeight" RelativeSource="{RelativeSource TemplatedParent}" />
+                </MultiBinding>
               </Grid.Clip>
               <Grid.RenderTransform>
                 <ScaleTransform x:Name="OffScaleTransform" ScaleX="1" ScaleY="1" />
@@ -164,20 +154,10 @@
                                 ContentTemplate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ToggleButtonAssist.OnContentTemplate)}"
                                 FlowDirection="LeftToRight" />
               <Grid.Clip>
-                <EllipseGeometry RadiusX="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Width, Converter={x:Static converters:MathConverter.DivideInstance}, ConverterParameter=2.0}" RadiusY="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Height, Converter={x:Static converters:MathConverter.DivideInstance}, ConverterParameter=2.0}">
-                  <EllipseGeometry.Center>
-                    <MultiBinding Converter="{x:Static converters:PointValueConverter.Instance}">
-                      <Binding Converter="{x:Static converters:MathConverter.DivideInstance}"
-                               ConverterParameter="2.0"
-                               Path="Width"
-                               RelativeSource="{RelativeSource TemplatedParent}" />
-                      <Binding Converter="{x:Static converters:MathConverter.DivideInstance}"
-                               ConverterParameter="2.0"
-                               Path="Height"
-                               RelativeSource="{RelativeSource TemplatedParent}" />
-                    </MultiBinding>
-                  </EllipseGeometry.Center>
-                </EllipseGeometry>
+                <MultiBinding Converter="{x:Static converters:EllipseClipConverter.Instance}">
+                  <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}" />
+                  <Binding Path="ActualHeight" RelativeSource="{RelativeSource TemplatedParent}" />
+                </MultiBinding>
               </Grid.Clip>
               <Grid.RenderTransform>
                 <ScaleTransform x:Name="OnScaleTransform" ScaleX="0" ScaleY="1" />
