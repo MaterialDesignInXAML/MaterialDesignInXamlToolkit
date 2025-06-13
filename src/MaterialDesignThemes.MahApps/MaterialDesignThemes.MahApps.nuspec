@@ -22,11 +22,6 @@
         <dependency id="MaterialDesignThemes" version="0.0.0" />
         <dependency id="MahApps.Metro" version="2.0.0" />
       </group>
-      <group targetFramework="net6.0">
-        <dependency id="MaterialDesignColors" version="0.0.0" />
-        <dependency id="MaterialDesignThemes" version="0.0.0" />
-        <dependency id="MahApps.Metro" version="2.0.0" />
-      </group>
       <group targetFramework="net8.0">
         <dependency id="MaterialDesignColors" version="0.0.0" />
         <dependency id="MaterialDesignThemes" version="0.0.0" />
@@ -38,8 +33,6 @@
     <file src="..\..\README.md" target="docs\" />
     <file src="bin\$configuration$\net462\MaterialDesignThemes.MahApps.*" target="lib\net462"
       exclude="**\*.json" />
-    <file src="bin\$configuration$\net6.0-windows\MaterialDesignThemes.MahApps.*"
-      target="lib\net6.0" exclude="**\*.json" />
     <file src="bin\$configuration$\net8.0-windows\MaterialDesignThemes.MahApps.*"
       target="lib\net8.0" exclude="**\*.json" />
   </files>
