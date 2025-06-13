@@ -1,4 +1,5 @@
-﻿using Microsoft.Xaml.Behaviors;
+﻿using System.Windows.Threading;
+using Microsoft.Xaml.Behaviors;
 
 namespace MaterialDesignThemes.Wpf.Behaviors;
 
@@ -14,8 +15,13 @@ public class TextBoxLineCountBehavior : Behavior<TextBox>
     {
         if (AssociatedObject is { } associatedObject)
         {
-            associatedObject.SetCurrentValue(TextFieldAssist.TextBoxLineCountProperty, associatedObject.LineCount);
-            associatedObject.SetCurrentValue(TextFieldAssist.TextBoxIsMultiLineProperty, associatedObject.LineCount > 1);
+            associatedObject.Dispatcher
+                .BeginInvoke(() =>
+                {
+                    associatedObject.SetCurrentValue(TextFieldAssist.TextBoxLineCountProperty, associatedObject.LineCount);
+                    associatedObject.SetCurrentValue(TextFieldAssist.TextBoxIsMultiLineProperty, associatedObject.LineCount > 1);
+                },
+                DispatcherPriority.Background);
         }
     }
 
