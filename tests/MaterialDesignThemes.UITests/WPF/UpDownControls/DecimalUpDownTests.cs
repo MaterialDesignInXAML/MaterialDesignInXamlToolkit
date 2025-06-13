@@ -7,12 +7,12 @@ namespace MaterialDesignThemes.UITests.WPF.UpDownControls;
 
 public class DecimalUpDownTests: TestBase
 {
-    [Theory]
-    [InlineData("en-US")]
-    [InlineData("da-DK")]
-    [InlineData("fa-IR")]
-    [InlineData("ja-JP")]
-    [InlineData("zh-CN")]
+    [Test]
+    [Arguments("en-US")]
+    [Arguments("da-DK")]
+    [Arguments("fa-IR")]
+    [Arguments("ja-JP")]
+    [Arguments("zh-CN")]
     public async Task NumericButtons_IncreaseAndDecreaseValue(string culture)
     {
         await using var recorder = new TestRecorder(App);
@@ -32,7 +32,7 @@ public class DecimalUpDownTests: TestBase
         await plusButton.LeftClick();
         await Wait.For(async () =>
         {
-            Assert.Equal(Convert.ToString(1.1, CultureInfo.GetCultureInfo(culture)), await textBox.GetText());
+            await Assert.That(await textBox.GetText()).IsEqualTo(Convert.ToString(1.1, CultureInfo.GetCultureInfo(culture)));
             await Assert.That(await textBox.GetText()).IsEqualTo("2");
             await Assert.That(await numericUpDown.GetValue()).IsEqualTo(2);
         });
