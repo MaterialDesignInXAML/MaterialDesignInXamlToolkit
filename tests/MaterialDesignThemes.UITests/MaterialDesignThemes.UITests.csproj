@@ -27,7 +27,7 @@
 
   <ItemGroup>
     <Using Include="MaterialDesignThemes.Wpf" />
-    <Using Include="MaterialDesignThemes.UITests.TUnit"/>
+    <Using Include="MaterialDesignThemes.Tests.TUnit"/>
     <Using Include="XamlTest" />
   </ItemGroup>
 

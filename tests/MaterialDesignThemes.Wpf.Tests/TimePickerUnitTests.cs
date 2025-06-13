@@ -3,57 +3,61 @@ using System.Globalization;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
+[TestExecutor<STAThreadExecutor>]
 public class TimePickerUnitTests
 {
-    private readonly TimePicker _timePicker;
-
-    public TimePickerUnitTests()
+    public static TimePicker CreateElement()
     {
-        _timePicker = new TimePicker();
-        _timePicker.ApplyDefaultStyle();
+        TimePicker timePicker = new();
+        timePicker.ApplyDefaultStyle();
+        return timePicker;
     }
 
-    [Test, STAThreadExecutor]
+    [Test]
     [Description("Issue 1691")]
     public async Task DontOverwriteDate()
     {
+        TimePicker timePicker = CreateElement();
+
         var expectedDate = new DateTime(2000, 1, 1, 20, 0, 0);
 
-        _timePicker.SelectedTime = expectedDate;
+        timePicker.SelectedTime = expectedDate;
 
-        await Assert.That(_timePicker.SelectedTime).IsEqualTo(expectedDate);
+        await Assert.That(timePicker.SelectedTime).IsEqualTo(expectedDate);
     }
 
-    [Test, STAThreadExecutor]
+    [Test]
     [MethodDataSource(nameof(GetDisplaysExpectedTextData))]
     public async Task DisplaysExpectedText(CultureInfo culture, DatePickerFormat format, bool is24Hour, bool withSeconds,
         DateTime selectedTime, string expectedText)
     {
-        _timePicker.Language = XmlLanguage.GetLanguage(culture.IetfLanguageTag);
-        _timePicker.SelectedTimeFormat = format;
-        _timePicker.Is24Hours = is24Hour;
-        _timePicker.WithSeconds = withSeconds;
-        _timePicker.SelectedTime = selectedTime;
+        var timePicker = CreateElement();
+        timePicker.Language = XmlLanguage.GetLanguage(culture.IetfLanguageTag);
+        timePicker.SelectedTimeFormat = format;
+        timePicker.Is24Hours = is24Hour;
+        timePicker.WithSeconds = withSeconds;
+        timePicker.SelectedTime = selectedTime;
 
-        await Assert.That(_timePicker.Text).IsEqualTo( expectedText);
+        await Assert.That(timePicker.Text).IsEqualTo(expectedText);
     }
 
-    [Test, STAThreadExecutor]
+    [Test]
     [MethodDataSource(nameof(GetParseLocalizedTimeStringData))]
     public async Task CanParseLocalizedTimeString(CultureInfo culture, DatePickerFormat format, bool is24Hour, bool withSeconds,
         string timeString, DateTime expectedTime)
     {
-        _timePicker.Language = XmlLanguage.GetLanguage(culture.IetfLanguageTag);
-        _timePicker.SelectedTimeFormat = format;
-        _timePicker.Is24Hours = is24Hour;
-        _timePicker.WithSeconds = withSeconds;
-        _timePicker.SelectedTime = DateTime.MinValue;
+        var timePicker = CreateElement();
+        timePicker.Language = XmlLanguage.GetLanguage(culture.IetfLanguageTag);
+        timePicker.SelectedTimeFormat = format;
+        timePicker.Is24Hours = is24Hour;
+        timePicker.WithSeconds = withSeconds;
+        timePicker.SelectedTime = DateTime.MinValue;
 
-        var textBox = _timePicker.FindVisualChild<TextBox>(TimePicker.TextBoxPartName);
+        var textBox = timePicker.FindVisualChild<TextBox>(TimePicker.TextBoxPartName);
         textBox.Text = timeString;
         textBox.RaiseEvent(new RoutedEventArgs(UIElement.LostFocusEvent));
 
-        await Assert.That(_timePicker.SelectedTime).IsEqualTo(expectedTime);
+        await Assert.That(timePicker.SelectedTime).IsEqualTo(expectedTime);
     }
 
     public static IEnumerable<Func<(CultureInfo culture,
@@ -78,7 +82,7 @@ public class TimePickerUnitTests
             }
 
             //Invert the order of the parameters.
-            yield return () => (culture, format, is24Hour, withSeconds, timeString, date);
+            yield return () => (culture, format, is24Hour, withSeconds, timeString, newDate);
         }
     }
 

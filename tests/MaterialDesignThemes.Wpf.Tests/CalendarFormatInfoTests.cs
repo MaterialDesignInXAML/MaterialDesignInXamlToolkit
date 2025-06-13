@@ -2,9 +2,11 @@
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
+[NotInParallel(nameof(CalendarFormatInfo))]
+[TestExecutor<STAThreadExecutor>]
 public class CalendarFormatInfoTests
 {
-    [Test, STAThreadExecutor]
+    [Test]
     [Arguments("en-US", "MMMM yyyy", "yyyy", "ddd,", "MMM d")]
 #if NET5_0_OR_GREATER
     [Arguments("fr-CA", "MMMM yyyy", "yyyy", "ddd", "d MMM")]
@@ -19,13 +21,7 @@ public class CalendarFormatInfoTests
 
         await Assert.That(result.YearMonthPattern).IsEqualTo(yearMonth);
 
-        /* Unmerged change from project 'MaterialDesignThemes.Wpf.Tests(net6.0-windows)'
-        Before:
-                await Assert.That(result.ComponentOnePattern).IsEqualTo(componentOne);
-        After:
-                Assert.Equal(result.ComponentOnePattern);
-        */
-        await Assert.That(result.ComponentOnePattern).IsEqualTo(componentOne).IsEqualTo(componentOne);
+        await Assert.That(result.ComponentOnePattern).IsEqualTo(componentOne);
         await Assert.That(result.ComponentTwoPattern).IsEqualTo(componentTwo);
         await Assert.That(result.ComponentThreePattern).IsEqualTo(componentThree);
     }
@@ -60,7 +56,7 @@ public class CalendarFormatInfoTests
         await Assert.That(result.IsFirst).IsEqualTo(isFirst);
     }
 
-    [Test, STAThreadExecutor]
+    [Test]
     public async Task SettingYearPattern()
     {
         const string cultureName = "en-001";
@@ -73,7 +69,7 @@ public class CalendarFormatInfoTests
         await Assert.That(result.ComponentThreePattern).IsEqualTo("yyyy");
     }
 
-    [Test, STAThreadExecutor]
+    [Test]
     public async Task SettingYearPatternOfMultipleCultures()
     {
         string[] cultureNames = { "en-001", "en-150" };
@@ -85,7 +81,7 @@ public class CalendarFormatInfoTests
         }
     }
 
-    [Test, STAThreadExecutor]
+    [Test]
     public async Task SettingDayOfWeekStyle()
     {
         const string cultureName = "en-001";
@@ -100,12 +96,12 @@ public class CalendarFormatInfoTests
         await Assert.That(result.ComponentTwoPattern).IsEqualTo("d MMM@");
     }
 
-    [Test, STAThreadExecutor]
+    [Test]
     public async Task SettingDayOfWeekStyleOfMultipleCultures()
     {
         string[] cultureNames = { "en-001", "en-150" };
         CalendarFormatInfo.SetDayOfWeekStyle(cultureNames, new CalendarFormatInfo.DayOfWeekStyle("Z", "@", true));
-        foreach (var cultureName in cultureNames)
+        foreach (string cultureName in cultureNames)
         {
             var result = CalendarFormatInfo.FromCultureInfo(CultureInfo.GetCultureInfo(cultureName));
             await Assert.That(result.ComponentOnePattern).IsEqualTo("d MMM");
@@ -113,7 +109,7 @@ public class CalendarFormatInfoTests
         }
     }
 
-    [Test, STAThreadExecutor]
+    [Test]
     public async Task ResettingDayOfWeekStyle()
     {
         const string cultureName = "en-001";
@@ -121,20 +117,20 @@ public class CalendarFormatInfoTests
         CalendarFormatInfo.ResetDayOfWeekStyle(cultureName);
         var result = CalendarFormatInfo.FromCultureInfo(CultureInfo.GetCultureInfo(cultureName));
         await Assert.That(result.ComponentOnePattern).IsEqualTo("d MMM");
-        await Assert.That(result.ComponentTwoPattern).IsEqualTo("ddd");
+        await Assert.That(result.ComponentTwoPattern).IsEqualTo("ddd,");
     }
 
-    [Test, STAThreadExecutor]
+    [Test]
     public async Task ResettingDayOfWeekStyleOfMultipleCultures()
     {
         string[] cultureNames = { "en-001", "en-150" };
         CalendarFormatInfo.SetDayOfWeekStyle(cultureNames, new CalendarFormatInfo.DayOfWeekStyle("Z", "@", true));
         CalendarFormatInfo.ResetDayOfWeekStyle(cultureNames);
-        foreach (var cultureName in cultureNames)
+        foreach (string cultureName in cultureNames)
         {
             var result = CalendarFormatInfo.FromCultureInfo(CultureInfo.GetCultureInfo(cultureName));
             await Assert.That(result.ComponentOnePattern).IsEqualTo("d MMM");
-            await Assert.That(result.ComponentTwoPattern).IsEqualTo("ddd");
+            await Assert.That(result.ComponentTwoPattern).IsEqualTo("ddd,");
         }
     }
 }

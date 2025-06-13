@@ -50,7 +50,7 @@ public class DialogHost : ContentControl
     /// </summary>
     public static readonly RoutedCommand CloseDialogCommand = new();
 
-    private static readonly HashSet<WeakReference<DialogHost>> LoadedInstances = new();
+    private static readonly HashSet<WeakReference<DialogHost>> LoadedInstances = [];
 
     private DialogOpenedEventHandler? _asyncShowOpenedEventHandler;
     private DialogClosingEventHandler? _asyncShowClosingEventHandler;
@@ -221,7 +221,7 @@ public class DialogHost : ContentControl
         if (LoadedInstances.Count == 0)
             throw new InvalidOperationException("No loaded DialogHost instances.");
 
-        List<DialogHost> targets = new();
+        List<DialogHost> targets = [];
         foreach (var instance in LoadedInstances.ToList())
         {
             if (instance.TryGetTarget(out DialogHost? dialogInstance))

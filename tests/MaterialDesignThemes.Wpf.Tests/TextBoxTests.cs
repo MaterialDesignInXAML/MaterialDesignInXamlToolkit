@@ -2,9 +2,10 @@
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
+[TestExecutor<STAThreadExecutor>]
 public class TextBoxTests
 {
-    [Test, STAThreadExecutor]
+    [Test]
     [Description("Issue 1301")]
     public async Task DefaultVerticalAlignment_ShouldBeStretch()
     {
@@ -14,7 +15,7 @@ public class TextBoxTests
         await Assert.That(testBox.VerticalAlignment).IsEqualTo(VerticalAlignment.Stretch);
     }
 
-    [Test, STAThreadExecutor]
+    [Test]
     [Description("Issue 2556")]
     public async Task DefaultVerticalContentAlignment_ShouldBeStretch()
     {

@@ -4,7 +4,7 @@ using TUnit.Assertions.AssertConditions;
 using TUnit.Assertions.AssertConditions.Interfaces;
 using TUnit.Assertions.AssertionBuilders;
 
-namespace MaterialDesignThemes.UITests.TUnit;
+namespace MaterialDesignThemes.Tests.TUnit;
 
 public static class IsCloseToExtensions
 {

@@ -6,7 +6,7 @@ namespace MaterialDesignThemes.Wpf.Tests;
 
 public class RatingBarTests
 {
-    [Test, STAThreadExecutor]
+    [Test, TestExecutor<STAThreadExecutor>]
     public async Task SetMin_ShouldCoerceToMax_WhenMinIsGreaterThanMax()
     {
         // Arrange
@@ -19,7 +19,7 @@ public class RatingBarTests
         await Assert.That(ratingBar.Min).IsEqualTo(10);
     }
 
-    [Test, STAThreadExecutor]
+    [Test, TestExecutor<STAThreadExecutor>]
     public async Task SetMin_ShouldNotCoerceValue_WhenFractionalValuesAreDisabled()
     {
         // Arrange
@@ -32,7 +32,7 @@ public class RatingBarTests
         await Assert.That(ratingBar.Value).IsEqualTo(5);
     }
 
-    [Test, STAThreadExecutor]
+    [Test, TestExecutor<STAThreadExecutor>]
     public async Task SetMin_ShouldCoerceValue_WhenFractionalValuesAreEnabled()
     {
         // Arrange
@@ -45,7 +45,7 @@ public class RatingBarTests
         await Assert.That(ratingBar.Value).IsEqualTo(7);
     }
 
-    [Test, STAThreadExecutor]
+    [Test, TestExecutor<STAThreadExecutor>]
     public async Task SetMax_ShouldNotCoerceValue_WhenFractionalValuesAreDisabled()
     {
         // Arrange
@@ -58,7 +58,7 @@ public class RatingBarTests
         await Assert.That(ratingBar.Value).IsEqualTo(5);
     }
 
-    [Test, STAThreadExecutor]
+    [Test, TestExecutor<STAThreadExecutor>]
     public async Task SetMax_ShouldCoerceValue_WhenFractionalValuesAreEnabled()
     {
         // Arrange
@@ -71,7 +71,7 @@ public class RatingBarTests
         await Assert.That(ratingBar.Value).IsEqualTo(3);
     }
 
-    [Test, STAThreadExecutor]
+    [Test, TestExecutor<STAThreadExecutor>]
     public async Task SetMax_ShouldCoerceToMin_WhenMaxIsLessThanMin()
     {
         // Arrange
@@ -84,7 +84,7 @@ public class RatingBarTests
         await Assert.That(ratingBar.Max).IsEqualTo(1);
     }
 
-    [Test, STAThreadExecutor]
+    [Test, TestExecutor<STAThreadExecutor>]
     [Arguments(-5, 1.0)]
     [Arguments(5, 5.0)]
     [Arguments(15, 10.0)]
@@ -106,7 +106,7 @@ public class RatingBarTests
         await Assert.That(ratingBar.Value).IsEqualTo(expectedValue);
     }
 
-    [Test, STAThreadExecutor]
+    [Test, TestExecutor<STAThreadExecutor>]
     [Arguments(-5, -5.0)]
     [Arguments(5, 5.0)]
     [Arguments(15, 15.0)]
@@ -129,7 +129,7 @@ public class RatingBarTests
     {
         // Arrange
         SolidColorBrush brush = Brushes.Red;
-        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
+        var converter = RatingBar.TextBlockForegroundConverter.Instance;
         object[] values = Arrange_TextBlockForegroundConverterValues(brush, value: 1, buttonValue: 1);
 
         // Act
@@ -144,7 +144,7 @@ public class RatingBarTests
     {
         // Arrange
         SolidColorBrush brush = Brushes.Red;
-        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
+        var converter = RatingBar.TextBlockForegroundConverter.Instance;
         object[] values = Arrange_TextBlockForegroundConverterValues(brush, value: 2, buttonValue: 1);
 
         // Act
@@ -159,14 +159,14 @@ public class RatingBarTests
     {
         // Arrange
         SolidColorBrush brush = Brushes.Red;
-        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
+        var converter = RatingBar.TextBlockForegroundConverter.Instance;
         object[] values = Arrange_TextBlockForegroundConverterValues(brush, value: 0.5, buttonValue: 2);
 
         // Act
         var result = converter.Convert(values, typeof(Brush), null, CultureInfo.CurrentCulture) as Brush;
 
         // Assert
-        await Assert.That(result).IsAssignableTo<LinearGradientBrush>();
+        await Assert.That(result).IsAssignableTo<SolidColorBrush>();
         SolidColorBrush resultBrush = (SolidColorBrush)result!;
         await Assert.That(resultBrush.Color.A).IsEqualTo(RatingBar.TextBlockForegroundConverter.SemiTransparent);
     }
@@ -176,7 +176,7 @@ public class RatingBarTests
     {
         // Arrange
         SolidColorBrush brush = Brushes.Red;
-        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
+        var converter = RatingBar.TextBlockForegroundConverter.Instance;
         object[] values = Arrange_TextBlockForegroundConverterValues(brush, value: 1.5, buttonValue: 2, orientation: Orientation.Horizontal);
 
         // Act
@@ -194,7 +194,7 @@ public class RatingBarTests
     {
         // Arrange
         SolidColorBrush brush = Brushes.Red;
-        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
+        var converter = RatingBar.TextBlockForegroundConverter.Instance;
         object[] values = Arrange_TextBlockForegroundConverterValues(brush, value: 1.5, buttonValue: 2, orientation: Orientation.Vertical);
 
         // Act
@@ -202,7 +202,7 @@ public class RatingBarTests
 
         // Assert
         await Assert.That(result).IsAssignableTo<LinearGradientBrush>();
-        LinearGradientBrush resultBrush = (LinearGradientBrush)result!;
+        var resultBrush = (LinearGradientBrush)result!;
         await Assert.That(resultBrush.StartPoint).IsEqualTo(new Point(0.5, 0));
         await Assert.That(resultBrush.EndPoint).IsEqualTo(new Point(0.5, 1));
     }
@@ -212,7 +212,7 @@ public class RatingBarTests
     {
         // Arrange
         SolidColorBrush brush = Brushes.Red;
-        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
+        var converter = RatingBar.TextBlockForegroundConverter.Instance;
         object[] values = Arrange_TextBlockForegroundConverterValues(brush, value: 1.1, buttonValue: 2);
 
         // Act
@@ -220,13 +220,13 @@ public class RatingBarTests
 
         // Assert
         await Assert.That(result).IsAssignableTo<LinearGradientBrush>();
-        LinearGradientBrush resultBrush = (LinearGradientBrush)result!;
+        var resultBrush = (LinearGradientBrush)result!;
         await Assert.That(resultBrush.GradientStops.Count).IsEqualTo(2);
         GradientStop stop1 = resultBrush.GradientStops[0];
         GradientStop stop2 = resultBrush.GradientStops[1];
-        await Assert.That(stop1.Offset).IsEqualTo(0.1);
+        await Assert.That(stop1.Offset).IsCloseTo(0.1, 0.0001);
         await Assert.That(stop1.Color).IsEqualTo(brush.Color);
-        await Assert.That(stop2.Offset).IsEqualTo(0.1);
+        await Assert.That(stop2.Offset).IsCloseTo(0.1, 0.0001);
         await Assert.That(stop2.Color).IsEqualTo(brush.Color.WithAlphaChannel(RatingBar.TextBlockForegroundConverter.SemiTransparent));
     }
 
@@ -235,7 +235,7 @@ public class RatingBarTests
     {
         // Arrange
         SolidColorBrush brush = Brushes.Red;
-        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
+        var converter = RatingBar.TextBlockForegroundConverter.Instance;
         object[] values = Arrange_TextBlockForegroundConverterValues(brush, value: 1.1, buttonValue: 2, invertDirection: true);
 
         // Act
@@ -247,9 +247,9 @@ public class RatingBarTests
         await Assert.That(resultBrush.GradientStops.Count).IsEqualTo(2);
         GradientStop stop1 = resultBrush.GradientStops[0];
         GradientStop stop2 = resultBrush.GradientStops[1];
-        await Assert.That(stop1.Offset).IsEqualTo(0.9);
+        await Assert.That(stop1.Offset).IsCloseTo(0.9, 0.0001);
         await Assert.That(stop1.Color).IsEqualTo(brush.Color.WithAlphaChannel(RatingBar.TextBlockForegroundConverter.SemiTransparent));
-        await Assert.That(stop2.Offset).IsEqualTo(0.9);
+        await Assert.That(stop2.Offset).IsCloseTo(0.9, 0.0001);
         await Assert.That(stop2.Color).IsEqualTo(brush.Color);
     }
 
@@ -258,7 +258,7 @@ public class RatingBarTests
     {
         // Arrange
         SolidColorBrush brush = Brushes.Red;
-        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
+        var converter = RatingBar.TextBlockForegroundConverter.Instance;
         object[] values = Arrange_TextBlockForegroundConverterValues(brush, value: 1.42, buttonValue: 2);
 
         // Act
@@ -270,9 +270,9 @@ public class RatingBarTests
         await Assert.That(resultBrush.GradientStops.Count).IsEqualTo(2);
         GradientStop stop1 = resultBrush.GradientStops[0];
         GradientStop stop2 = resultBrush.GradientStops[1];
-        await Assert.That(stop1.Offset).IsEqualTo(0.42);
+        await Assert.That(stop1.Offset).IsCloseTo(0.42, 0.0001);
         await Assert.That(stop1.Color).IsEqualTo(brush.Color);
-        await Assert.That(stop2.Offset).IsEqualTo(0.42);
+        await Assert.That(stop2.Offset).IsCloseTo(0.42, 0.0001);
         await Assert.That(stop2.Color).IsEqualTo(brush.Color.WithAlphaChannel(RatingBar.TextBlockForegroundConverter.SemiTransparent));
     }
 
@@ -281,7 +281,7 @@ public class RatingBarTests
     {
         // Arrange
         SolidColorBrush brush = Brushes.Red;
-        IMultiValueConverter converter = RatingBar.TextBlockForegroundConverter.Instance;
+        var converter = RatingBar.TextBlockForegroundConverter.Instance;
         object[] values = Arrange_TextBlockForegroundConverterValues(brush, value: 1.87, buttonValue: 2);
 
         // Act
@@ -293,20 +293,20 @@ public class RatingBarTests
         await Assert.That(resultBrush.GradientStops.Count).IsEqualTo(2);
         GradientStop stop1 = resultBrush.GradientStops[0];
         GradientStop stop2 = resultBrush.GradientStops[1];
-        await Assert.That(stop1.Offset).IsEqualTo(0.87);
+        await Assert.That(stop1.Offset).IsCloseTo(0.87, 0.0001);
         await Assert.That(stop1.Color).IsEqualTo(brush.Color);
-        await Assert.That(stop2.Offset).IsEqualTo(0.87);
+        await Assert.That(stop2.Offset).IsCloseTo(0.87, 0.0001);
         await Assert.That(stop2.Color).IsEqualTo(brush.Color.WithAlphaChannel(RatingBar.TextBlockForegroundConverter.SemiTransparent));
     }
 
     private static object[] Arrange_TextBlockForegroundConverterValues(SolidColorBrush brush, double value, int buttonValue, Orientation orientation = Orientation.Horizontal, bool invertDirection = false) =>
-        new object[] { brush, orientation, invertDirection, value, buttonValue };
+        [brush, orientation, invertDirection, value, buttonValue];
 
     [Test]
     public async Task PreviewIndicatorTransformXConverter_ShouldCenterPreviewIndicator_WhenFractionalValuesAreDisabledAndOrientationIsHorizontal()
     {
         // Arrange
-        IMultiValueConverter converter = RatingBar.PreviewIndicatorTransformXConverter.Instance;
+        var converter = RatingBar.PreviewIndicatorTransformXConverter.Instance;
         object[] values = Arrange_PreviewIndicatorTransformXConverterValues(100, 20, Orientation.Horizontal, false, false, 1, 1);
 
         // Act
@@ -323,7 +323,7 @@ public class RatingBarTests
     public async Task PreviewIndicatorTransformXConverter_ShouldOffsetPreviewIndicatorByPercentage_WhenFractionalValuesAreEnabledAndOrientationIsHorizontal(bool invertDirection, double expectedValue)
     {
         // Arrange
-        IMultiValueConverter converter = RatingBar.PreviewIndicatorTransformXConverter.Instance;
+        var converter = RatingBar.PreviewIndicatorTransformXConverter.Instance;
         object[] values = Arrange_PreviewIndicatorTransformXConverterValues(100, 20, Orientation.Horizontal, invertDirection, true, 1.25, 1);
 
         // Act
@@ -338,7 +338,7 @@ public class RatingBarTests
     public async Task PreviewIndicatorTransformXConverter_ShouldPlacePreviewIndicatorWithSmallMargin_WhenFractionalValuesAreDisabledAndOrientationIsVertical()
     {
         // Arrange
-        IMultiValueConverter converter = RatingBar.PreviewIndicatorTransformXConverter.Instance;
+        var converter = RatingBar.PreviewIndicatorTransformXConverter.Instance;
         object[] values = Arrange_PreviewIndicatorTransformXConverterValues(100, 20, Orientation.Vertical, false, false, 1, 1);
         double expectedValue = -20 - RatingBar.PreviewIndicatorTransformXConverter.Margin;
 
@@ -354,7 +354,7 @@ public class RatingBarTests
     public async Task PreviewIndicatorTransformXConverter_ShouldPlacePreviewIndicatorWithSmallMargin_WhenFractionalValuesAreEnabledAndOrientationIsVertical()
     {
         // Arrange
-        IMultiValueConverter converter = RatingBar.PreviewIndicatorTransformXConverter.Instance;
+        var converter = RatingBar.PreviewIndicatorTransformXConverter.Instance;
         object[] values = Arrange_PreviewIndicatorTransformXConverterValues(100, 20, Orientation.Vertical, false, true, 1.25, 1);
         double expectedValue = -20 - RatingBar.PreviewIndicatorTransformXConverter.Margin;
 
@@ -369,13 +369,13 @@ public class RatingBarTests
 
 
     private static object[] Arrange_PreviewIndicatorTransformXConverterValues(double ratingBarButtonActualWidth, double previewValueActualWidth, Orientation orientation, bool invertDirection, bool isFractionalValueEnabled, double previewValue, int buttonValue) =>
-        new object[] { ratingBarButtonActualWidth, previewValueActualWidth, orientation, invertDirection, isFractionalValueEnabled, previewValue, buttonValue };
+        [ratingBarButtonActualWidth, previewValueActualWidth, orientation, invertDirection, isFractionalValueEnabled, previewValue, buttonValue];
 
     [Test]
     public async Task PreviewIndicatorTransformYConverter_ShouldPlacePreviewIndicatorWithSmallMargin_WhenFractionalValuesAreDisabledAndOrientationIsHorizontal()
     {
         // Arrange
-        IMultiValueConverter converter = RatingBar.PreviewIndicatorTransformYConverter.Instance;
+        var converter = RatingBar.PreviewIndicatorTransformYConverter.Instance;
         object[] values = Arrange_PreviewIndicatorTransformYConverterValues(100, 20, Orientation.Horizontal, false, false, 1, 1);
         double expectedValue = -20 - RatingBar.PreviewIndicatorTransformYConverter.Margin;
 
@@ -391,7 +391,7 @@ public class RatingBarTests
     public async Task PreviewIndicatorTransformYConverter_ShouldPlacePreviewIndicatorWithSmallMargin_WhenFractionalValuesAreEnabledAndOrientationIsHorizontal()
     {
         // Arrange
-        IMultiValueConverter converter = RatingBar.PreviewIndicatorTransformYConverter.Instance;
+        var converter = RatingBar.PreviewIndicatorTransformYConverter.Instance;
         object[] values = Arrange_PreviewIndicatorTransformYConverterValues(100, 20, Orientation.Horizontal, false, true, 1.25, 1);
         double expectedValue = -20 - RatingBar.PreviewIndicatorTransformYConverter.Margin;
 
@@ -407,7 +407,7 @@ public class RatingBarTests
     public async Task PreviewIndicatorTransformYConverter_ShouldCenterPreviewIndicator_WhenFractionalValuesAreDisabledAndOrientationIsVertical()
     {
         // Arrange
-        IMultiValueConverter converter = RatingBar.PreviewIndicatorTransformYConverter.Instance;
+        var converter = RatingBar.PreviewIndicatorTransformYConverter.Instance;
         object[] values = Arrange_PreviewIndicatorTransformYConverterValues(100, 20, Orientation.Vertical, false, false, 1, 1);
 
         // Act
@@ -424,7 +424,7 @@ public class RatingBarTests
     public async Task PreviewIndicatorTransformYConverter_ShouldPreviewIndicatorByPercentage_WhenFractionalValuesAreEnabledAndOrientationIsVertical(bool invertDirection, double expectedValue)
     {
         // Arrange
-        IMultiValueConverter converter = RatingBar.PreviewIndicatorTransformYConverter.Instance;
+        var converter = RatingBar.PreviewIndicatorTransformYConverter.Instance;
         object[] values = Arrange_PreviewIndicatorTransformYConverterValues(100, 20, Orientation.Vertical, invertDirection, true, 1.25, 1);
 
         // Act
