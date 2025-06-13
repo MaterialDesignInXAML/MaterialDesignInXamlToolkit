@@ -74,7 +74,6 @@ public partial class MainWindow
         {
             Message = { Text = ((ButtonBase)sender).Content.ToString() }
         };
-
         await DialogHost.Show(sampleMessageDialog, "RootDialog");
     }
 
@@ -115,5 +114,5 @@ public partial class MainWindow
 
     private void OnSelectedItemChanged(object sender, DependencyPropertyChangedEventArgs e)
         => MainScrollViewer.ScrollToHome();
-    
+
 }
