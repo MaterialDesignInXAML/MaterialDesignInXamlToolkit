@@ -3,7 +3,6 @@ using System.Globalization;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
-
 public class TimePickerUnitTests
 {
     private readonly TimePicker _timePicker;
@@ -28,7 +27,7 @@ public class TimePickerUnitTests
     [Test, STAThreadExecutor]
     [MethodDataSource(nameof(GetDisplaysExpectedTextData))]
     public async Task DisplaysExpectedText(CultureInfo culture, DatePickerFormat format, bool is24Hour, bool withSeconds,
-        DateTime? selectedTime, string expectedText)
+        DateTime selectedTime, string expectedText)
     {
         _timePicker.Language = XmlLanguage.GetLanguage(culture.IetfLanguageTag);
         _timePicker.SelectedTimeFormat = format;
@@ -36,13 +35,13 @@ public class TimePickerUnitTests
         _timePicker.WithSeconds = withSeconds;
         _timePicker.SelectedTime = selectedTime;
 
-        await Assert.That(_timePicker.Text).IsEqualTo(expectedText);
+        await Assert.That(_timePicker.Text).IsEqualTo( expectedText);
     }
 
     [Test, STAThreadExecutor]
     [MethodDataSource(nameof(GetParseLocalizedTimeStringData))]
     public async Task CanParseLocalizedTimeString(CultureInfo culture, DatePickerFormat format, bool is24Hour, bool withSeconds,
-        string timeString, DateTime? expectedTime)
+        string timeString, DateTime expectedTime)
     {
         _timePicker.Language = XmlLanguage.GetLanguage(culture.IetfLanguageTag);
         _timePicker.SelectedTimeFormat = format;
@@ -57,15 +56,15 @@ public class TimePickerUnitTests
         await Assert.That(_timePicker.SelectedTime).IsEqualTo(expectedTime);
     }
 
-    public static IEnumerable<(CultureInfo culture,
+    public static IEnumerable<Func<(CultureInfo culture,
          DatePickerFormat format,
          bool is24Hour,
          bool withSeconds,
          string timeString,
-         DateTime expectedTime)> GetParseLocalizedTimeStringData()
+         DateTime expectedTime)>> GetParseLocalizedTimeStringData()
     {
         //for now just using the same set of data to make sure we can go both directions.
-        foreach ((CultureInfo culture, DatePickerFormat format, bool is24Hour, bool withSeconds, DateTime date, string timeString) in GetDisplaysExpectedTextData())
+        foreach ((CultureInfo culture, DatePickerFormat format, bool is24Hour, bool withSeconds, DateTime date, string timeString) in GetDisplaysExpectedTextData().Select(x => x()))
         {
             //Convert the date to Today
             var newDate = DateTime.MinValue.AddHours(date.Hour).AddMinutes(date.Minute).AddSeconds(withSeconds ? date.Second : 0);
@@ -79,18 +78,18 @@ public class TimePickerUnitTests
             }
 
             //Invert the order of the parameters.
-            yield return (culture, format, is24Hour, withSeconds, timeString, date);
+            yield return () => (culture, format, is24Hour, withSeconds, timeString, date);
         }
     }
 
-    public static IEnumerable<
+    public static IEnumerable<Func<
         (CultureInfo culture,
          DatePickerFormat format,
          bool is24Hour,
          bool withSeconds,
          DateTime dateTime,
          string expectedText)
-        > GetDisplaysExpectedTextData()
+        >> GetDisplaysExpectedTextData()
     {
         //AM intentionally picks values with only a single digit to verify the DatePickerFormat is applied
         var am = new DateTime(2000, 1, 1, 3, 5, 9);
@@ -104,7 +103,7 @@ public class TimePickerUnitTests
             "3:05", "3:05:09", //24 hour short
             "03:05", "03:05:09")) //24 hour long
         {
-            yield return data;
+            yield return () => data;
         }
         foreach (var data in GetDisplaysExpectedTextDataForCulture(CultureInfo.InvariantCulture, pm,
             "4:30 PM", "4:30:25 PM", //12 hour short
@@ -112,7 +111,7 @@ public class TimePickerUnitTests
             "16:30", "16:30:25", //24 hour short
             "16:30", "16:30:25")) //24 hour long
         {
-            yield return data;
+            yield return () => data;
         }
 
         //US English
@@ -123,7 +122,7 @@ public class TimePickerUnitTests
             "3:05", "3:05:09", //24 hour short
             "03:05", "03:05:09")) //24 hour long
         {
-            yield return data;
+            yield return () => data;
         }
         foreach (var data in GetDisplaysExpectedTextDataForCulture(usEnglish, pm,
             "4:30 PM", "4:30:25 PM", //12 hour short
@@ -131,7 +130,7 @@ public class TimePickerUnitTests
             "16:30", "16:30:25", //24 hour short
             "16:30", "16:30:25")) //24 hour long
         {
-            yield return data;
+            yield return () => data;
         }
 
         //Spain Spanish
@@ -143,7 +142,7 @@ public class TimePickerUnitTests
             "3:05", "3:05:09", //24 hour short
             "03:05", "03:05:09")) //24 hour long
         {
-            yield return data;
+            yield return () => data;
         }
         foreach (var data in GetDisplaysExpectedTextDataForCulture(spainSpanish, pm,
             "4:30 p. m.", "4:30:25 p. m.", //12 hour short
@@ -151,7 +150,7 @@ public class TimePickerUnitTests
             "16:30", "16:30:25", //24 hour short
             "16:30", "16:30:25")) //24 hour long
         {
-            yield return data;
+            yield return () => data;
         }
 #else
         foreach (var data in GetDisplaysExpectedTextDataForCulture(spainSpanish, am,
@@ -160,7 +159,7 @@ public class TimePickerUnitTests
             "3:05", "3:05:09", //24 hour short
             "03:05", "03:05:09")) //24 hour long
         {
-            yield return data;
+            yield return () => data;
         }
         foreach (var data in GetDisplaysExpectedTextDataForCulture(spainSpanish, pm,
             "4:30", "4:30:25", //12 hour short
@@ -168,7 +167,7 @@ public class TimePickerUnitTests
             "16:30", "16:30:25", //24 hour short
             "16:30", "16:30:25")) //24 hour long
         {
-            yield return data;
+            yield return () => data;
         }
 #endif
 
@@ -181,7 +180,7 @@ public class TimePickerUnitTests
             "3:05", "3:05:09", //24 hour short
             "03:05", "03:05:09")) //24 hour long
         {
-            yield return data;
+            yield return () => data;
         }
         foreach (var data in GetDisplaysExpectedTextDataForCulture(iranFarsi, pm,
             "4:30 بعدازظهر", "4:30:25 بعدازظهر", //12 hour short
@@ -189,7 +188,7 @@ public class TimePickerUnitTests
             "16:30", "16:30:25", //24 hour short
             "16:30", "16:30:25")) //24 hour long
         {
-            yield return data;
+            yield return () => data;
         }
 #else
         foreach (var data in GetDisplaysExpectedTextDataForCulture(iranFarsi, am,
@@ -198,7 +197,7 @@ public class TimePickerUnitTests
             "3:05", "3:05:09", //24 hour short
             "03:05", "03:05:09")) //24 hour long
         {
-            yield return data;
+            yield return () => data;
         }
         foreach (var data in GetDisplaysExpectedTextDataForCulture(iranFarsi, pm,
             "4:30 ب.ظ", "4:30:25 ب.ظ", //12 hour short
@@ -206,7 +205,7 @@ public class TimePickerUnitTests
             "16:30", "16:30:25", //24 hour short
             "16:30", "16:30:25")) //24 hour long
         {
-            yield return data;
+            yield return () => data;
         }
 #endif
 
