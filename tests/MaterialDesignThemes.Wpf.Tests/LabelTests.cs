@@ -1,27 +1,27 @@
 ﻿using System.ComponentModel;
-using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
+[TestExecutor<STAThreadExecutor>]
 public class LabelTests
 {
-    [StaFact]
+    [Test]
     [Description("Issue 1301")]
-    public void DefaultVerticalAlignment_ShouldBeStretch()
+    public async Task DefaultVerticalAlignment_ShouldBeStretch()
     {
         var label = new Label();
         label.ApplyDefaultStyle();
 
-        Assert.Equal(VerticalAlignment.Stretch, label.VerticalAlignment);
+        await Assert.That(label.VerticalAlignment).IsEqualTo(VerticalAlignment.Stretch);
     }
 
-    [StaFact]
+    [Test]
     [Description("Issue 1301")]
-    public void DefaultVerticalContentAlignment_ShouldBeTop()
+    public async Task DefaultVerticalContentAlignment_ShouldBeTop()
     {
         var label = new Label();
         label.ApplyDefaultStyle();
 
-        Assert.Equal(VerticalAlignment.Top, label.VerticalContentAlignment);
+        await Assert.That(label.VerticalContentAlignment).IsEqualTo(VerticalAlignment.Top);
     }
 }

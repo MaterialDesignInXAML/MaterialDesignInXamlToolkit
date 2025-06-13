@@ -1,14 +1,14 @@
 ﻿using System.ComponentModel;
 using System.Windows.Media;
-using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
+[TestExecutor<STAThreadExecutor>]
 public class TreeViewTests
 {
-    [StaFact]
+    [Test]
     [Description("Issue 2135")]
-    public void TreeViewItemBackgroundShouldBeInherited()
+    public async Task TreeViewItemBackgroundShouldBeInherited()
     {
         var expectedBackgroundBrush = new SolidColorBrush(Colors.HotPink);
         var item = new TreeViewItem { Header = "Test" };
@@ -17,6 +17,6 @@ public class TreeViewTests
         item.Background = expectedBackgroundBrush;
 
         var contentGrid = item.FindVisualChild<Grid>("ContentGrid");
-        Assert.Equal(expectedBackgroundBrush, contentGrid.Background);
+        await Assert.That(contentGrid.Background).IsEqualTo(expectedBackgroundBrush);
     }
 }

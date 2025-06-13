@@ -1,23 +1,23 @@
 ﻿using System.ComponentModel;
-using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
+[TestExecutor<STAThreadExecutor>]
 public class TextBoxTests
 {
-    [StaFact]
+    [Test]
     [Description("Issue 1301")]
-    public void DefaultVerticalAlignment_ShouldBeStretch()
+    public async Task DefaultVerticalAlignment_ShouldBeStretch()
     {
         var testBox = new TextBox();
         testBox.ApplyDefaultStyle();
 
-        Assert.Equal(VerticalAlignment.Stretch, testBox.VerticalAlignment);
+        await Assert.That(testBox.VerticalAlignment).IsEqualTo(VerticalAlignment.Stretch);
     }
 
-    [StaFact]
+    [Test]
     [Description("Issue 2556")]
-    public void DefaultVerticalContentAlignment_ShouldBeStretch()
+    public async Task DefaultVerticalContentAlignment_ShouldBeStretch()
     {
         //The default was initially set to Top from issue 1301
         //However because TextBox contains a ScrollViewer this pushes
@@ -26,6 +26,6 @@ public class TextBoxTests
         var textBox = new TextBox();
         textBox.ApplyDefaultStyle();
 
-        Assert.Equal(VerticalAlignment.Stretch, textBox.VerticalContentAlignment);
+        await Assert.That(textBox.VerticalContentAlignment).IsEqualTo(VerticalAlignment.Stretch);
     }
 }

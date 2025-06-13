@@ -1,36 +1,32 @@
 ﻿using System.ComponentModel;
-using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
-public class DrawerHostTests : IDisposable
+[TestExecutor<STAThreadExecutor>]
+public class DrawerHostTests
 {
-    private readonly DrawerHost _drawerHost;
-
-    public DrawerHostTests()
+    public static DrawerHost CreateDrawerHost()
     {
-        _drawerHost = new DrawerHost();
-        _drawerHost.ApplyDefaultStyle();
-        _drawerHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+        var drawerHost = new DrawerHost();
+        drawerHost.ApplyDefaultStyle();
+        drawerHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+        return drawerHost;
     }
 
-    public void Dispose()
-    {
-        _drawerHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
-    }
-
-    [StaFact]
+    [Test]
     [Description("Issue 2015")]
-    public void WhenOpenedDrawerOpenedEventIsRaised()
+    public async Task WhenOpenedDrawerOpenedEventIsRaised()
     {
+        DrawerHost drawerHost = CreateDrawerHost();
         Dock expectedPosition = Dock.Left;
         Dock openedPosition = Dock.Top;
-        _drawerHost.DrawerOpened += DrawerOpened;
-        _drawerHost.IsLeftDrawerOpen = true;
+        drawerHost.DrawerOpened += DrawerOpened;
+        drawerHost.IsLeftDrawerOpen = true;
 
-        DrawerHost.CloseDrawerCommand.Execute(Dock.Left, _drawerHost);
+        DrawerHost.CloseDrawerCommand.Execute(Dock.Left, drawerHost);
 
-        Assert.Equal(expectedPosition, openedPosition);
+        await Assert.That(openedPosition).IsEqualTo(expectedPosition);
+
 
         void DrawerOpened(object? sender, DrawerOpenedEventArgs eventArgs)
         {
@@ -38,18 +34,20 @@ public class DrawerHostTests : IDisposable
         }
     }
 
-    [StaFact]
+    [Test]
     [Description("Issue 2015")]
-    public void WhenClosingDrawerClosingEventIsRaised()
+    public async Task WhenClosingDrawerClosingEventIsRaised()
     {
+        DrawerHost drawerHost = CreateDrawerHost();
+
         Dock expectedPosition = Dock.Left;
         Dock closedPosition = Dock.Top;
-        _drawerHost.DrawerClosing += DrawerClosing;
-        _drawerHost.IsLeftDrawerOpen = true;
+        drawerHost.DrawerClosing += DrawerClosing;
+        drawerHost.IsLeftDrawerOpen = true;
 
-        DrawerHost.CloseDrawerCommand.Execute(Dock.Left, _drawerHost);
+        DrawerHost.CloseDrawerCommand.Execute(Dock.Left, drawerHost);
 
-        Assert.Equal(expectedPosition, closedPosition);
+        await Assert.That(closedPosition).IsEqualTo(expectedPosition);
 
         void DrawerClosing(object? sender, DrawerClosingEventArgs eventArgs)
         {

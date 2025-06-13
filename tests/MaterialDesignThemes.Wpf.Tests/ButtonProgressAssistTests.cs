@@ -1,111 +1,114 @@
 ﻿using System.Windows.Media;
-using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
+[TestExecutor<STAThreadExecutor>]
 public class ButtonProgressAssistTests
 {
-    private readonly Button _testElement;
 
-    public ButtonProgressAssistTests()
+    [Test]
+    public async Task TestMinimumProperty()
     {
-        _testElement = new Button();
-    }
+        Button testElement = new();
 
-    [StaFact]
-    public void TestMinimumProperty()
-    {
         // Assert defaults
-        Assert.Equal("Minimum", ButtonProgressAssist.MinimumProperty.Name);
-        Assert.Equal(default, ButtonProgressAssist.GetMinimum(_testElement));
+        await Assert.That(ButtonProgressAssist.MinimumProperty.Name).IsEqualTo("Minimum");
+        await Assert.That(ButtonProgressAssist.GetMinimum(testElement)).IsEqualTo(default);
 
         // Assert setting works
-        ButtonProgressAssist.SetMinimum(_testElement, 133.14);
-        Assert.Equal(133.14, ButtonProgressAssist.GetMinimum(_testElement));
+        ButtonProgressAssist.SetMinimum(testElement, 133.14);
+        await Assert.That(ButtonProgressAssist.GetMinimum(testElement)).IsEqualTo(133.14);
     }
 
-    [StaFact]
-    public void TestMaximumProperty()
+    [Test]
+    public async Task TestMaximumProperty()
     {
+        Button testElement = new();
         // Assert defaults
-        Assert.Equal("Maximum", ButtonProgressAssist.MaximumProperty.Name);
-        Assert.Equal(100.0, ButtonProgressAssist.GetMaximum(_testElement));
+        await Assert.That(ButtonProgressAssist.MaximumProperty.Name).IsEqualTo("Maximum");
+        await Assert.That(ButtonProgressAssist.GetMaximum(testElement)).IsEqualTo(100.0);
 
         // Assert setting works
-        ButtonProgressAssist.SetMaximum(_testElement, 39.56);
-        Assert.Equal(39.56, ButtonProgressAssist.GetMaximum(_testElement));
+        ButtonProgressAssist.SetMaximum(testElement, 39.56);
+        await Assert.That(ButtonProgressAssist.GetMaximum(testElement)).IsEqualTo(39.56);
     }
 
-    [StaFact]
-    public void TestValueProperty()
+    [Test]
+    public async Task TestValueProperty()
     {
+        Button testElement = new();
         // Assert defaults
-        Assert.Equal("Value", ButtonProgressAssist.ValueProperty.Name);
-        Assert.Equal(default, ButtonProgressAssist.GetValue(_testElement));
+        await Assert.That(ButtonProgressAssist.ValueProperty.Name).IsEqualTo("Value");
+        await Assert.That(ButtonProgressAssist.GetValue(testElement)).IsEqualTo(default);
 
         // Assert setting works
-        ButtonProgressAssist.SetValue(_testElement, 99.1);
-        Assert.Equal(99.1, ButtonProgressAssist.GetValue(_testElement));
+        ButtonProgressAssist.SetValue(testElement, 99.1);
+        await Assert.That(ButtonProgressAssist.GetValue(testElement)).IsEqualTo(99.1);
     }
 
-    [StaFact]
-    public void TestIsIndeterminateProperty()
+    [Test]
+    public async Task TestIsIndeterminateProperty()
     {
+        Button testElement = new();
         // Assert defaults
-        Assert.Equal("IsIndeterminate", ButtonProgressAssist.IsIndeterminateProperty.Name);
-        Assert.Equal(default, ButtonProgressAssist.GetIsIndeterminate(_testElement));
+        await Assert.That(ButtonProgressAssist.IsIndeterminateProperty.Name).IsEqualTo("IsIndeterminate");
+        await Assert.That(ButtonProgressAssist.GetIsIndeterminate(testElement)).IsEqualTo(default);
 
         // Assert setting works
-        ButtonProgressAssist.SetIsIndeterminate(_testElement, false);
-        Assert.False(ButtonProgressAssist.GetIsIndeterminate(_testElement));
+        ButtonProgressAssist.SetIsIndeterminate(testElement, false);
+        await Assert.That(ButtonProgressAssist.GetIsIndeterminate(testElement)).IsFalse();
     }
 
-    [StaFact]
-    public void TestIndicatorForegroundProperty()
+    [Test]
+    public async Task TestIndicatorForegroundProperty()
     {
+        Button testElement = new();
         // Assert defaults
-        Assert.Equal("IndicatorForeground", ButtonProgressAssist.IndicatorForegroundProperty.Name);
-        Assert.Equal(default, ButtonProgressAssist.GetIndicatorForeground(_testElement));
+        await Assert.That(ButtonProgressAssist.IndicatorForegroundProperty.Name).IsEqualTo("IndicatorForeground");
+        await Assert.That(ButtonProgressAssist.GetIndicatorForeground(testElement)).IsEqualTo(default);
 
         // Assert setting works
-        ButtonProgressAssist.SetIndicatorForeground(_testElement, Brushes.LightBlue);
-        Assert.Equal(Brushes.LightBlue, ButtonProgressAssist.GetIndicatorForeground(_testElement));
+        ButtonProgressAssist.SetIndicatorForeground(testElement, Brushes.LightBlue);
+        await Assert.That(ButtonProgressAssist.GetIndicatorForeground(testElement)).IsEqualTo(Brushes.LightBlue);
     }
 
-    [StaFact]
-    public void TestIndicatorBackgroundProperty()
+    [Test]
+    public async Task TestIndicatorBackgroundProperty()
     {
+        Button testElement = new();
         // Assert defaults
-        Assert.Equal("IndicatorBackground", ButtonProgressAssist.IndicatorBackgroundProperty.Name);
-        Assert.Equal(default, ButtonProgressAssist.GetIndicatorBackground(_testElement));
+        await Assert.That(ButtonProgressAssist.IndicatorBackgroundProperty.Name).IsEqualTo("IndicatorBackground");
+        await Assert.That(ButtonProgressAssist.GetIndicatorBackground(testElement)).IsEqualTo(default);
 
         // Assert setting works
-        ButtonProgressAssist.SetIndicatorBackground(_testElement, Brushes.DarkGoldenrod);
-        Assert.Equal(Brushes.DarkGoldenrod, ButtonProgressAssist.GetIndicatorBackground(_testElement));
+        ButtonProgressAssist.SetIndicatorBackground(testElement, Brushes.DarkGoldenrod);
+        await Assert.That(ButtonProgressAssist.GetIndicatorBackground(testElement)).IsEqualTo(Brushes.DarkGoldenrod);
     }
 
-    [StaFact]
-    public void TestIsIndicatorVisibleProperty()
+    [Test]
+    public async Task TestIsIndicatorVisibleProperty()
     {
+        Button testElement = new();
         // Assert defaults
-        Assert.Equal("IsIndicatorVisible", ButtonProgressAssist.IsIndicatorVisibleProperty.Name);
-        Assert.Equal(default, ButtonProgressAssist.GetIsIndicatorVisible(_testElement));
+        await Assert.That(ButtonProgressAssist.IsIndicatorVisibleProperty.Name).IsEqualTo("IsIndicatorVisible");
+        await Assert.That(ButtonProgressAssist.GetIsIndicatorVisible(testElement)).IsEqualTo(default);
 
         // Assert setting works
-        ButtonProgressAssist.SetIsIndicatorVisible(_testElement, true);
-        Assert.True(ButtonProgressAssist.GetIsIndicatorVisible(_testElement));
+        ButtonProgressAssist.SetIsIndicatorVisible(testElement, true);
+        await Assert.That(ButtonProgressAssist.GetIsIndicatorVisible(testElement)).IsTrue();
     }
 
-    [StaFact]
-    public void TestOpacityProperty()
+    [Test]
+    public async Task TestOpacityProperty()
     {
+        Button testElement = new();
         // Assert defaults
-        Assert.Equal("Opacity", ButtonProgressAssist.OpacityProperty.Name);
-        Assert.Equal(default, ButtonProgressAssist.GetOpacity(_testElement));
+        await Assert.That(ButtonProgressAssist.OpacityProperty.Name).IsEqualTo("Opacity");
+        await Assert.That(ButtonProgressAssist.GetOpacity(testElement)).IsEqualTo(default);
 
         // Assert setting works
-        ButtonProgressAssist.SetOpacity(_testElement, 311);
-        Assert.Equal(311, ButtonProgressAssist.GetOpacity(_testElement));
+        ButtonProgressAssist.SetOpacity(testElement, 311);
+        await Assert.That(ButtonProgressAssist.GetOpacity(testElement)).IsEqualTo(311);
     }
 
 }

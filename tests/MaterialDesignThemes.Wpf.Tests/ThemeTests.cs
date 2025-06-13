@@ -4,30 +4,30 @@ namespace MaterialDesignThemes.Wpf.Tests;
 
 public class ThemeTests
 {
-    [Fact]
-    public void CanSetForegroundWithColor()
+    [Test]
+    public async Task CanSetForegroundWithColor()
     {
         var theme = Theme.Create(BaseTheme.Dark, Colors.Red, Colors.Blue);
         theme.Foreground = Colors.Green;
 
-        Assert.Equal<Color>(Colors.Green, theme.Foreground);
+        await Assert.That(theme.Foreground.Color).IsEqualTo(Colors.Green);
     }
 
-    [Fact]
-    public void CanSetForegroundWithThemeColorReference()
+    [Test]
+    public async Task CanSetForegroundWithThemeColorReference()
     {
         var theme = Theme.Create(BaseTheme.Dark, Colors.Red, Colors.Blue);
         theme.Foreground = ThemeColorReference.PrimaryMid;
 
-        Assert.Equal<Color>(Colors.Red, theme.Foreground);
+        await Assert.That(theme.Foreground.Color).IsEqualTo(Colors.Red);
     }
 
-    [Fact]
-    public void CanSetForegroundWithColorReference()
+    [Test]
+    public async Task CanSetForegroundWithColorReference()
     {
         var theme = Theme.Create(BaseTheme.Dark, Colors.Red, Colors.Blue);
         theme.Foreground = ColorReference.PrimaryMid;
 
-        Assert.Equal<Color>(Colors.Red, theme.Foreground);
+        await Assert.That(theme.Foreground.Color).IsEqualTo(Colors.Red);
     }
 }
