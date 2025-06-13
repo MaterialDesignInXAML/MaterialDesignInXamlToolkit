@@ -68,10 +68,10 @@
                              Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Value)}">
                   <ProgressBar.Clip>
                     <MultiBinding Converter="{x:Static converters:BorderClipConverter.Instance}">
-                      <Binding ElementName="border" Path="ActualWidth" />
-                      <Binding ElementName="border" Path="ActualHeight" />
-                      <Binding ElementName="border" Path="CornerRadius" />
-                      <Binding ElementName="border" Path="BorderThickness" />
+                      <Binding Source="{x:Reference border}" Path="ActualWidth" />
+                      <Binding Source="{x:Reference border}" Path="ActualHeight" />
+                      <Binding Source="{x:Reference border}" Path="CornerRadius" />
+                      <Binding Source="{x:Reference border}" Path="BorderThickness" />
                     </MultiBinding>
                   </ProgressBar.Clip>
                 </ProgressBar>
@@ -87,10 +87,10 @@
                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
               <wpf:Ripple.Clip>
                 <MultiBinding Converter="{x:Static converters:BorderClipConverter.Instance}">
-                  <Binding ElementName="border" Path="ActualWidth" />
-                  <Binding ElementName="border" Path="ActualHeight" />
-                  <Binding ElementName="border" Path="CornerRadius" />
-                  <Binding ElementName="border" Path="BorderThickness" />
+                  <Binding Source="{x:Reference border}" Path="ActualWidth" />
+                  <Binding Source="{x:Reference border}" Path="ActualHeight" />
+                  <Binding Source="{x:Reference border}" Path="CornerRadius" />
+                  <Binding Source="{x:Reference border}" Path="BorderThickness" />
                 </MultiBinding>
               </wpf:Ripple.Clip>
             </wpf:Ripple>
@@ -199,10 +199,10 @@
                          Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Value)}">
               <ProgressBar.Clip>
                 <MultiBinding Converter="{x:Static converters:BorderClipConverter.Instance}">
-                  <Binding ElementName="border" Path="ActualWidth" />
-                  <Binding ElementName="border" Path="ActualHeight" />
-                  <Binding ElementName="border" Path="CornerRadius" />
-                  <Binding ElementName="border" Path="BorderThickness" />
+                  <Binding Source="{x:Reference border}" Path="ActualWidth" />
+                  <Binding Source="{x:Reference border}" Path="ActualHeight" />
+                  <Binding Source="{x:Reference border}" Path="CornerRadius" />
+                  <Binding Source="{x:Reference border}" Path="BorderThickness" />
                 </MultiBinding>
               </ProgressBar.Clip>
             </ProgressBar>
@@ -217,10 +217,10 @@
                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
               <wpf:Ripple.Clip>
                 <MultiBinding Converter="{x:Static converters:BorderClipConverter.Instance}">
-                  <Binding ElementName="border" Path="ActualWidth" />
-                  <Binding ElementName="border" Path="ActualHeight" />
-                  <Binding ElementName="border" Path="CornerRadius" />
-                  <Binding ElementName="border" Path="BorderThickness" />
+                  <Binding Source="{x:Reference border}" Path="ActualWidth" />
+                  <Binding Source="{x:Reference border}" Path="ActualHeight" />
+                  <Binding Source="{x:Reference border}" Path="CornerRadius" />
+                  <Binding Source="{x:Reference border}" Path="BorderThickness" />
                 </MultiBinding>
               </wpf:Ripple.Clip>
             </wpf:Ripple>
@@ -357,10 +357,10 @@
                          Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonProgressAssist.Value)}">
               <ProgressBar.Clip>
                 <MultiBinding Converter="{x:Static converters:BorderClipConverter.Instance}">
-                  <Binding ElementName="border" Path="ActualWidth" />
-                  <Binding ElementName="border" Path="ActualHeight" />
-                  <Binding ElementName="border" Path="CornerRadius" />
-                  <Binding ElementName="border" Path="BorderThickness" />
+                  <Binding Source="{x:Reference border}" Path="ActualWidth" />
+                  <Binding Source="{x:Reference border}" Path="ActualHeight" />
+                  <Binding Source="{x:Reference border}" Path="CornerRadius" />
+                  <Binding Source="{x:Reference border}" Path="BorderThickness" />
                 </MultiBinding>
               </ProgressBar.Clip>
             </ProgressBar>
@@ -375,10 +375,10 @@
                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
               <wpf:Ripple.Clip>
                 <MultiBinding Converter="{x:Static converters:BorderClipConverter.Instance}">
-                  <Binding ElementName="border" Path="ActualWidth" />
-                  <Binding ElementName="border" Path="ActualHeight" />
-                  <Binding ElementName="border" Path="CornerRadius" />
-                  <Binding ElementName="border" Path="BorderThickness" />
+                  <Binding Source="{x:Reference border}" Path="ActualWidth" />
+                  <Binding Source="{x:Reference border}" Path="ActualHeight" />
+                  <Binding Source="{x:Reference border}" Path="CornerRadius" />
+                  <Binding Source="{x:Reference border}" Path="BorderThickness" />
                 </MultiBinding>
               </wpf:Ripple.Clip>
             </wpf:Ripple>
@@ -802,10 +802,10 @@
                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
               <wpf:Ripple.Clip>
                 <MultiBinding Converter="{x:Static converters:BorderClipConverter.Instance}">
-                  <Binding ElementName="border" Path="ActualWidth" />
-                  <Binding ElementName="border" Path="ActualHeight" />
-                  <Binding ElementName="border" Path="CornerRadius" />
-                  <Binding ElementName="border" Path="BorderThickness" />
+                  <Binding Source="{x:Reference border}" Path="ActualWidth" />
+                  <Binding Source="{x:Reference border}" Path="ActualHeight" />
+                  <Binding Source="{x:Reference border}" Path="CornerRadius" />
+                  <Binding Source="{x:Reference border}" Path="BorderThickness" />
                 </MultiBinding>
               </wpf:Ripple.Clip>
             </wpf:Ripple>
