@@ -26,8 +26,6 @@
     <file src="..\..\README.md" target="docs\" />
     <file src="bin\$configuration$\net462\MaterialDesignColors.*" target="lib\net462"
       exclude="**\*.json" />
-    <file src="bin\$configuration$\net6.0-windows\MaterialDesignColors.*" target="lib\net6.0"
-      exclude="**\*.json" />
     <file src="bin\$configuration$\net8.0-windows\MaterialDesignColors.*" target="lib\net8.0"
       exclude="**\*.json" />
   </files>
