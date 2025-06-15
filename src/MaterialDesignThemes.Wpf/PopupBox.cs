@@ -384,8 +384,23 @@ public class PopupBox : ContentControl
     /// </summary>
     public Elevation PopupElevation
     {
-        get { return (Elevation) GetValue(PopupElevationProperty); }
-        set { SetValue(PopupElevationProperty, value); }
+        get => (Elevation)GetValue(PopupElevationProperty);
+        set => SetValue(PopupElevationProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the animation of the popup card.
+    /// </summary>
+    public static readonly DependencyProperty PopupAnimationProperty = DependencyProperty.Register(
+        nameof(PopupAnimation), typeof(PopupAnimation), typeof(PopupBox), new PropertyMetadata(PopupAnimation.Fade));
+
+    /// <summary>
+    /// Gets or sets the animation of the popup card.
+    /// </summary>
+    public PopupAnimation PopupAnimation
+    {
+        get => (PopupAnimation)GetValue(PopupAnimationProperty);
+        set => SetValue(PopupAnimationProperty, value);
     }
 
     /// <summary>
