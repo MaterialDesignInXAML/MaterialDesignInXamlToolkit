@@ -1,5 +1,11 @@
 namespace MaterialDesignThemes.Wpf;
 
+public enum TabControlHeaderBehavior
+{
+    Scrolling,
+    Wrapping
+}
+
 public static class TabAssist
 {
     public static readonly DependencyProperty HasFilledTabProperty = DependencyProperty.RegisterAttached(
@@ -54,4 +60,14 @@ public static class TabAssist
 
     public static readonly DependencyProperty TabHeaderCursorProperty =
         DependencyProperty.RegisterAttached("TabHeaderCursor", typeof(Cursor), typeof(TabAssist), new PropertyMetadata(Cursors.Hand));
+
+    public static TabControlHeaderBehavior GetHeaderBehavior(DependencyObject obj)
+    => (TabControlHeaderBehavior)obj.GetValue(HeaderBehaviorProperty);
+
+    public static void SetHeaderBehavior(DependencyObject obj, TabControlHeaderBehavior value)
+        => obj.SetValue(HeaderBehaviorProperty, value);
+
+    public static readonly DependencyProperty HeaderBehaviorProperty =
+        DependencyProperty.RegisterAttached("HeaderBehavior", typeof(TabControlHeaderBehavior), typeof(TabAssist),
+            new PropertyMetadata(TabControlHeaderBehavior.Scrolling));
 }

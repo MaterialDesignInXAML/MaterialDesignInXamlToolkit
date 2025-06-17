@@ -31,57 +31,83 @@
         <ControlTemplate TargetType="{x:Type TabControl}">
           <DockPanel KeyboardNavigation.TabNavigation="Local">
             <wpf:ColorZone x:Name="PART_HeaderZone"
-                           VerticalAlignment="Stretch"
-                           Panel.ZIndex="1"
-                           wpf:ElevationAssist.Elevation="{TemplateBinding wpf:ElevationAssist.Elevation}"
-                           Background="{TemplateBinding wpf:ColorZoneAssist.Background}"
-                           DockPanel.Dock="Top"
-                           Focusable="False">
-              <ScrollViewer wpf:ScrollViewerAssist.BubbleVerticalScroll="True"
-                            wpf:ScrollViewerAssist.SupportHorizontalScroll="True"
+                         VerticalAlignment="Stretch"
+                         Panel.ZIndex="1"
+                         wpf:ElevationAssist.Elevation="{TemplateBinding wpf:ElevationAssist.Elevation}"
+                         Background="{TemplateBinding wpf:ColorZoneAssist.Background}"
+                         DockPanel.Dock="Top"
+                         Focusable="False">
+              <Grid>
+                <!-- Scrollable headers -->
+                <ScrollViewer x:Name="PART_HeaderScrollViewer"
+                            wpf:ScrollViewerAssist.BubbleVerticalScroll="True"
                             wpf:ScrollViewerAssist.IgnorePadding="{Binding Path=(wpf:ScrollViewerAssist.IgnorePadding), RelativeSource={RelativeSource TemplatedParent}}"
                             wpf:ScrollViewerAssist.PaddingMode="{Binding Path=(wpf:ScrollViewerAssist.PaddingMode), RelativeSource={RelativeSource TemplatedParent}}"
+                            wpf:ScrollViewerAssist.SupportHorizontalScroll="True"
                             HorizontalScrollBarVisibility="Hidden"
                             VerticalScrollBarVisibility="Hidden">
-                <StackPanel>
-                  <UniformGrid x:Name="CenteredHeaderPanel"
-                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                  <StackPanel>
+                    <UniformGrid x:Name="CenteredHeaderPanel"
                                Margin="{Binding Path=(wpf:TabAssist.HeaderPanelMargin), RelativeSource={RelativeSource TemplatedParent}}"
+                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                wpf:TabAssist.BindableIsItemsHost="{Binding Visibility, RelativeSource={RelativeSource Self}}"
                                Focusable="False"
                                KeyboardNavigation.TabIndex="1"
                                Rows="1" />
-                  <VirtualizingStackPanel x:Name="HeaderPanel"
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                    <VirtualizingStackPanel x:Name="HeaderPanel"
                                           Margin="{Binding Path=(wpf:TabAssist.HeaderPanelMargin), RelativeSource={RelativeSource TemplatedParent}}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           wpf:TabAssist.BindableIsItemsHost="{Binding Visibility, RelativeSource={RelativeSource Self}}"
                                           Focusable="False"
                                           KeyboardNavigation.TabIndex="1"
                                           Orientation="Horizontal" />
-                </StackPanel>
-              </ScrollViewer>
+                  </StackPanel>
+                </ScrollViewer>
+
+                <!-- Wrapping headers -->
+                <ScrollViewer x:Name="PART_HeaderWrapScrollViewer"
+                            HorizontalScrollBarVisibility="Disabled"
+                            VerticalScrollBarVisibility="Auto"
+                            Visibility="Collapsed">
+                  <WrapPanel x:Name="HeaderWrapPanel"
+                           Margin="{Binding Path=(wpf:TabAssist.HeaderPanelMargin), RelativeSource={RelativeSource TemplatedParent}}"
+                           Background="Transparent"
+                           IsItemsHost="True"
+                           KeyboardNavigation.TabIndex="1" />
+                </ScrollViewer>
+              </Grid>
             </wpf:ColorZone>
             <Border x:Name="PART_BorderSelectedContent"
-                    Padding="{TemplateBinding Padding}"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    Panel.ZIndex="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Panel.ZIndex)}"
-                    Background="{x:Null}"
-                    Focusable="False">
+                  Padding="{TemplateBinding Padding}"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  Panel.ZIndex="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Panel.ZIndex)}"
+                  Background="{x:Null}"
+                  Focusable="False">
               <ContentPresenter x:Name="PART_SelectedContentHost"
-                                Margin="{TemplateBinding Padding}"
-                                ContentSource="SelectedContent"
-                                ContentStringFormat="{TemplateBinding SelectedContentStringFormat}"
-                                ContentTemplate="{TemplateBinding SelectedContentTemplate}"
-                                ContentTemplateSelector="{TemplateBinding SelectedContentTemplateSelector}"
-                                Focusable="False"
-                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                              Margin="{TemplateBinding Padding}"
+                              ContentSource="SelectedContent"
+                              ContentStringFormat="{TemplateBinding SelectedContentStringFormat}"
+                              ContentTemplate="{TemplateBinding SelectedContentTemplate}"
+                              ContentTemplateSelector="{TemplateBinding SelectedContentTemplateSelector}"
+                              Focusable="False"
+                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
             </Border>
           </DockPanel>
 
           <ControlTemplate.Triggers>
+
+            <Trigger Property="wpf:TabAssist.HeaderBehavior" Value="Scrolling">
+              <Setter TargetName="PART_HeaderScrollViewer" Property="Visibility" Value="Visible"/>
+              <Setter TargetName="PART_HeaderWrapScrollViewer" Property="Visibility" Value="Collapsed"/>
+            </Trigger>
+            <Trigger Property="wpf:TabAssist.HeaderBehavior" Value="Wrapping">
+              <Setter TargetName="PART_HeaderScrollViewer" Property="Visibility" Value="Collapsed"/>
+              <Setter TargetName="PART_HeaderWrapScrollViewer" Property="Visibility" Value="Visible"/>
+            </Trigger>
+
             <Trigger Property="HorizontalContentAlignment" Value="Stretch">
               <Setter TargetName="CenteredHeaderPanel" Property="Visibility" Value="Visible" />
               <Setter TargetName="HeaderPanel" Property="Visibility" Value="Collapsed" />
