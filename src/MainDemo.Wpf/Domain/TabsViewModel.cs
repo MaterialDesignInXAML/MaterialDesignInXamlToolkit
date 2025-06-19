@@ -4,10 +4,10 @@ using MaterialDesignDemo.Shared.Domain;
 
 namespace MaterialDesignDemo.Domain;
 
-internal class TabsViewModel : ViewModelBase
+internal partial class TabsViewModel : ObservableObject
 {
     public ObservableCollection<CustomTab> CustomTabs { get; }
-
+    public List<int> LongList { get; }
     public CustomTab? SelectedTab { get; set; }
 
     public string? VeryLongText { get; set; } = @"
@@ -47,6 +47,8 @@ Nulla a porta libero, quis hendrerit ex. In ut pharetra sem. Nunc gravida ante r
                 CustomContent = "Custom content 3",
             },
         };
+
+        LongList = Enumerable.Range(1, 20).ToList();
     }
 
 }
