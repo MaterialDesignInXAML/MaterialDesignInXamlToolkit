@@ -1,0 +1,167 @@
+﻿<UserControl x:Class="MaterialDesign3Demo.ToolTips"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:domain="clr-namespace:MaterialDesignDemo.Shared.Domain;assembly=MaterialDesignDemo.Shared"
+             xmlns:local="clr-namespace:MaterialDesign3Demo"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+             d:DataContext="{d:DesignInstance Type=domain:ToolTipsViewModel}"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+  <UserControl.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <Thickness x:Key="Spacer">0,16,0,0</Thickness>
+    </ResourceDictionary>
+  </UserControl.Resources>
+  <StackPanel>
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="ToolTip" />
+
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Default" />
+
+    <smtx:XamlDisplay UniqueKey="toolTip_1">
+      <Button HorizontalAlignment="Left"
+              Content="Example"
+              ToolTip="This a simple tooltip" />
+    </smtx:XamlDisplay>
+
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Rich tool tips" />
+
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="250" />
+      </Grid.ColumnDefinitions>
+
+      <Grid Grid.Column="0">
+
+        <smtx:XamlDisplay HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          UniqueKey="richToolTip_1">
+
+          <materialDesign:PopupBox IsPopupOpen="{Binding IsPopupOpen}"
+                                   PlacementMode="{Binding SelectedPopupBoxPlacementMode}"
+                                   PopupAnimation="{Binding SelectedPopupAnimation}"
+                                   PopupElevation="{Binding SelectedElevation}"
+                                   PopupHorizontalOffset="{Binding PopupHorizontalOffset}"
+                                   PopupMode="{Binding SelectedPopupBoxPopupMode}"
+                                   PopupUniformCornerRadius="{Binding PopupUniformCornerRadius}"
+                                   PopupVerticalOffset="{Binding PopupVerticalOffset}">
+            <materialDesign:PopupBox.ToggleContent>
+              <materialDesign:PackIcon Width="40"
+                                       Height="{Binding ActualWidth, RelativeSource={RelativeSource Mode=Self}}"
+                                       Foreground="DodgerBlue"
+                                       Kind="Information" />
+            </materialDesign:PopupBox.ToggleContent>
+            <materialDesign:PopupBox.PopupContent>
+              <Grid Width="312" Margin="16,12,16,8">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="4" />
+                  <RowDefinition Height="*" />
+                  <RowDefinition Height="12" />
+                  <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                           Text="Rich tooltip" />
+                <TextBlock Grid.Row="2"
+                           Text="Rich tooltips bring attention to a particular element of feature that warrants the user's focus. It supports multiple lines of informational text."
+                           TextWrapping="Wrap" />
+
+                <StackPanel Grid.Row="4" Orientation="Horizontal">
+                  <Button Content="Action 1" Style="{StaticResource MaterialDesignFlatButton}" />
+                  <Button Margin="4,0,0,0"
+                          Content="Action 2"
+                          Style="{StaticResource MaterialDesignFlatButton}" />
+                </StackPanel>
+              </Grid>
+            </materialDesign:PopupBox.PopupContent>
+          </materialDesign:PopupBox>
+        </smtx:XamlDisplay>
+      </Grid>
+
+      <StackPanel Grid.Column="1">
+        <GroupBox Padding="8">
+          <GroupBox.Header>
+            <StackPanel Orientation="Horizontal">
+              <materialDesign:PackIcon Kind="Wrench" />
+              <TextBlock Margin="8,0,0,0" Text="Properties" />
+
+            </StackPanel>
+          </GroupBox.Header>
+
+          <StackPanel Orientation="Vertical">
+            <Button HorizontalAlignment="Stretch"
+                    Command="{Binding ResetToDefaultsCommand}"
+                    Content="{materialDesign:PackIcon Kind=Reload}" />
+
+            <DockPanel Margin="{StaticResource Spacer}">
+              <ToggleButton DockPanel.Dock="Right"
+                            IsChecked="{Binding IsPopupOpen}"
+                            Style="{StaticResource MaterialDesignSwitchToggleButton}" />
+              <TextBlock DockPanel.Dock="Left" Text="IsPopupOpen" />
+            </DockPanel>
+
+            <ComboBox Margin="{StaticResource Spacer}"
+                      materialDesign:HintAssist.Hint="PopupElevation"
+                      materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                      materialDesign:TextFieldAssist.LeadingIcon="Layers"
+                      ItemsSource="{Binding Elevations}"
+                      SelectedItem="{Binding SelectedElevation}"
+                      Style="{StaticResource MaterialDesignFilledComboBox}" />
+
+            <materialDesign:NumericUpDown Margin="{StaticResource Spacer}"
+                                          materialDesign:HintAssist.Hint="PopupUniformCornerRadius"
+                                          materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                          materialDesign:TextFieldAssist.LeadingIcon="BorderRadius"
+                                          Minimum="0"
+                                          Style="{StaticResource MaterialDesignFilledNumericUpDown}"
+                                          Value="{Binding PopupUniformCornerRadius}" />
+
+            <materialDesign:NumericUpDown Margin="{StaticResource Spacer}"
+                                          materialDesign:HintAssist.Hint="PopupHorizontalOffset"
+                                          materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                          materialDesign:TextFieldAssist.LeadingIcon="CompareHorizontal"
+                                          Style="{StaticResource MaterialDesignFilledNumericUpDown}"
+                                          Value="{Binding PopupHorizontalOffset}" />
+
+            <materialDesign:NumericUpDown Margin="{StaticResource Spacer}"
+                                          materialDesign:HintAssist.Hint="PopupVerticalOffset"
+                                          materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                          materialDesign:TextFieldAssist.LeadingIcon="CompareVertical"
+                                          Style="{StaticResource MaterialDesignFilledNumericUpDown}"
+                                          Value="{Binding PopupVerticalOffset}" />
+
+            <ComboBox Margin="{StaticResource Spacer}"
+                      materialDesign:HintAssist.Hint="PlacementMode"
+                      ItemsSource="{Binding PopupBoxPlacementModes}"
+                      SelectedItem="{Binding SelectedPopupBoxPlacementMode}"
+                      Style="{StaticResource MaterialDesignFilledComboBox}" />
+
+            <ComboBox Margin="{StaticResource Spacer}"
+                      materialDesign:HintAssist.Hint="PopupAnimation"
+                      ItemsSource="{Binding PopupAnimations}"
+                      SelectedItem="{Binding SelectedPopupAnimation}"
+                      Style="{StaticResource MaterialDesignFilledComboBox}" />
+
+            <ComboBox Margin="{StaticResource Spacer}"
+                      materialDesign:HintAssist.Hint="PopupBoxPopupMode"
+                      ItemsSource="{Binding PopupBoxPopupModes}"
+                      SelectedItem="{Binding SelectedPopupBoxPopupMode}"
+                      Style="{StaticResource MaterialDesignFilledComboBox}" />
+          </StackPanel>
+        </GroupBox>
+      </StackPanel>
+    </Grid>
+  </StackPanel>
+</UserControl>
