@@ -15,12 +15,12 @@ public static class MdixHelper
 
     public static void ApplyStyle<T>(this T control, object styleKey, bool applyTemplate = true) where T : FrameworkElement
     {
-        var style = GetStyle(styleKey);
-        Assert.True(style != null, $"Could not find style with key '{styleKey}' for control type {typeof(T).FullName}");
+        var style = GetStyle(styleKey) ?? throw new InvalidOperationException($"Could not find style with key '{styleKey}' for control type {typeof(T).FullName}");
+
         control.Style = style;
-        if (applyTemplate)
+        if (applyTemplate && !control.ApplyTemplate())
         {
-            Assert.True(control.ApplyTemplate(), "Failed to apply template");
+            Assert.Fail("Failed to apply template");
         }
     }
 

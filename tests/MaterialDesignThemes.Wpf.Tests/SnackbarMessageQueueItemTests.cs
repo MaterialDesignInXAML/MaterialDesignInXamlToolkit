@@ -1,51 +1,49 @@
-﻿using Xunit;
-
-namespace MaterialDesignThemes.Wpf.Tests;
+﻿namespace MaterialDesignThemes.Wpf.Tests;
 
 public class SnackbarMessageQueueItemTests
 {
-    [Fact]
-    public void IsDuplicate_ThrowsOnNullArgument()
+    [Test]
+    public async Task IsDuplicate_ThrowsOnNullArgument()
     {
         SnackbarMessageQueueItem item = CreateItem();
-        var ex = Assert.Throws<ArgumentNullException>(() => item.IsDuplicate(null!));
-        Assert.Equal("value", ex.ParamName);
+        var ex = await Assert.That(() => item.IsDuplicate(null!)).ThrowsExactly<ArgumentNullException>();
+        await Assert.That(ex?.ParamName).IsEqualTo("value");
     }
 
-    [Fact]
-    public void IsDuplicate_WithDuplicateItems_ItReturnsTrue()
+    [Test]
+    public async Task IsDuplicate_WithDuplicateItems_ItReturnsTrue()
     {
         SnackbarMessageQueueItem item = CreateItem();
         SnackbarMessageQueueItem other = CreateItem();
 
-        Assert.True(item.IsDuplicate(other));
+        await Assert.That(item.IsDuplicate(other)).IsTrue();
     }
 
-    [Fact]
-    public void IsDuplicate_AlwaysShowIsTrue_ItReturnsFalse()
+    [Test]
+    public async Task IsDuplicate_AlwaysShowIsTrue_ItReturnsFalse()
     {
         SnackbarMessageQueueItem item = CreateItem(alwaysShow: true);
         SnackbarMessageQueueItem other = CreateItem();
 
-        Assert.False(item.IsDuplicate(other));
+        await Assert.That(item.IsDuplicate(other)).IsFalse();
     }
 
-    [Fact]
-    public void IsDuplicate_WithDifferentContent_ItReturnsFalse()
+    [Test]
+    public async Task IsDuplicate_WithDifferentContent_ItReturnsFalse()
     {
         SnackbarMessageQueueItem item = CreateItem();
         SnackbarMessageQueueItem other = CreateItem(content: Guid.NewGuid().ToString());
 
-        Assert.False(item.IsDuplicate(other));
+        await Assert.That(item.IsDuplicate(other)).IsFalse();
     }
 
-    [Fact]
-    public void IsDuplicate_WithDifferentActionContent_ItReturnsFalse()
+    [Test]
+    public async Task IsDuplicate_WithDifferentActionContent_ItReturnsFalse()
     {
         SnackbarMessageQueueItem item = CreateItem();
         SnackbarMessageQueueItem other = CreateItem(actionContent: Guid.NewGuid().ToString());
 
-        Assert.False(item.IsDuplicate(other));
+        await Assert.That(item.IsDuplicate(other)).IsFalse();
     }
 
     private static SnackbarMessageQueueItem CreateItem(

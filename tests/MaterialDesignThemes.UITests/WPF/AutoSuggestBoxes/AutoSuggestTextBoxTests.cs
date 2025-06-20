@@ -1,19 +1,16 @@
 using System.ComponentModel;
 using MaterialDesignThemes.UITests.Samples.AutoSuggestBoxes;
 using MaterialDesignThemes.UITests.Samples.AutoSuggestTextBoxes;
-using Xunit.Sdk;
-
 namespace MaterialDesignThemes.UITests.WPF.AutoSuggestBoxes;
 
 public class AutoSuggestBoxTests : TestBase
 {
-    public AutoSuggestBoxTests(ITestOutputHelper output)
-        : base(output)
+    public AutoSuggestBoxTests()
     {
-        AttachedDebuggerToRemoteProcess = true;
+        AttachedDebuggerToRemoteProcess = false;
     }
 
-    [Fact]
+    [Test]
     public async Task CanFilterItems_WithSuggestionsAndDisplayMember_FiltersSuggestions()
     {
         await using var recorder = new TestRecorder(App);
@@ -29,8 +26,8 @@ public class AutoSuggestBoxTests : TestBase
 
 
         //Assert
-        Assert.True(await suggestBox.GetIsSuggestionOpen());
-        Assert.True(await popup.GetIsOpen());
+        await Assert.That(await suggestBox.GetIsSuggestionOpen()).IsTrue();
+        await Assert.That(await popup.GetIsOpen()).IsTrue();
 
         //Validates these elements are found
         await AssertExists(suggestionListBox, "Bananas");
@@ -44,7 +41,7 @@ public class AutoSuggestBoxTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task CanChoiceItem_FromTheSuggestions_AssertTheTextUpdated()
     {
         await using var recorder = new TestRecorder(App);
@@ -59,8 +56,8 @@ public class AutoSuggestBoxTests : TestBase
         await suggestBox.SendInput(new KeyboardInput("B"));
 
         //Assert
-        Assert.True(await suggestBox.GetIsSuggestionOpen());
-        Assert.True(await popup.GetIsOpen());
+        await Assert.That(await suggestBox.GetIsSuggestionOpen()).IsTrue();
+        await Assert.That(await popup.GetIsOpen()).IsTrue();
 
         double? lastHeight = null;
         await Wait.For(async () =>
@@ -71,7 +68,7 @@ public class AutoSuggestBoxTests : TestBase
             lastHeight = currentHeight;
             if (!rv)
             {
-                await Task.Delay(100);
+                await Task.Delay(100, TestContext.Current!.CancellationToken);
             }
             return rv;
         });
@@ -82,16 +79,16 @@ public class AutoSuggestBoxTests : TestBase
         await bananas.LeftClick();
 
         // Wait for the text to be updated
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current!.CancellationToken);
 
         var suggestBoxText = await suggestBox.GetText();
         //Validate that the current text is the same as the selected item
-        Assert.Equal("Bananas", suggestBoxText);
+        await Assert.That(suggestBoxText).IsEqualTo("Bananas");
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task CanFilterItems_WithCollectionView_FiltersSuggestions()
     {
         await using var recorder = new TestRecorder(App);
@@ -108,8 +105,8 @@ public class AutoSuggestBoxTests : TestBase
 
 
         //Assert
-        Assert.True(await suggestBox.GetIsSuggestionOpen());
-        Assert.True(await popup.GetIsOpen());
+        await Assert.That(await suggestBox.GetIsSuggestionOpen()).IsTrue();
+        await Assert.That(await popup.GetIsOpen()).IsTrue();
 
         //Validates these elements are found
         await AssertExists(suggestionListBox, "Bananas");
@@ -123,7 +120,7 @@ public class AutoSuggestBoxTests : TestBase
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3761")]
     public async Task AutoSuggestBox_MovesFocusToNextElement_WhenPopupIsClosed()
     {
@@ -144,22 +141,22 @@ public class AutoSuggestBoxTests : TestBase
 
         // Act
         await suggestBox.MoveKeyboardFocus();
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current!.CancellationToken);
         await suggestBox.SendInput(new KeyboardInput("B")); // Open the popup
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current.CancellationToken);
         await suggestBox.SendInput(new KeyboardInput(Key.Escape)); // Close the popup
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current.CancellationToken);
         await suggestBox.SendInput(new KeyboardInput(Key.Tab)); // Press TAB to focus the next element
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current.CancellationToken);
 
         // Assert
-        Assert.False(await suggestBox.GetIsFocused());
-        Assert.True(await nextTextBox.GetIsFocused());
+        await Assert.That(await suggestBox.GetIsFocused()).IsFalse();
+        await Assert.That(await nextTextBox.GetIsFocused()).IsTrue();
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3815")]
     public async Task AutoSuggestBox_KeysUpAndDown_WrapAround()
     {
@@ -175,7 +172,7 @@ public class AutoSuggestBoxTests : TestBase
         //Act & Assert
         await suggestBox.MoveKeyboardFocus();
         await suggestBox.SendInput(new KeyboardInput("e"));
-        await Task.Delay(delay);
+        await Task.Delay(delay, TestContext.Current!.CancellationToken);
 
         static int? GetSuggestionCount(AutoSuggestBox autoSuggestBox)
         {
@@ -187,20 +184,20 @@ public class AutoSuggestBoxTests : TestBase
 
         //Assert that initially the first item is selected
         int selectedIndex = await suggestionListBox.GetSelectedIndex();
-        Assert.Equal(0, selectedIndex);
-        await Task.Delay(delay);
+        await Assert.That(selectedIndex).IsEqualTo(0);
+        await Task.Delay(delay, TestContext.Current.CancellationToken);
 
         //Assert that the last item is selected after pressing ArrowUp
         await suggestBox.SendInput(new KeyboardInput(Key.Up));
-        Assert.Equal(itemCount - 1, await suggestionListBox.GetSelectedIndex());
-        await Task.Delay(delay);
+        await Assert.That(await suggestionListBox.GetSelectedIndex()).IsEqualTo(itemCount - 1);
+        await Task.Delay(delay, TestContext.Current.CancellationToken);
 
         //Assert that the first item is selected after pressing ArrowDown
         await suggestBox.SendInput(new KeyboardInput(Key.Down));
-        Assert.Equal(0, await suggestionListBox.GetSelectedIndex());
+        await Assert.That(await suggestionListBox.GetSelectedIndex()).IsEqualTo(0);
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3845")]
     public async Task AutoSuggestBox_SelectingAnItem_SetsSelectedItem()
     {
@@ -220,12 +217,12 @@ public class AutoSuggestBoxTests : TestBase
 
         //Assert
         string? selectedItem = (await suggestBox.GetSelectedItem()) as string;
-        Assert.Equal("Bananas", selectedItem);
+        await Assert.That(selectedItem).IsEqualTo("Bananas");
 
-        static void AssertViewModelProperty(AutoSuggestBox autoSuggestBox)
+        static async Task AssertViewModelProperty(AutoSuggestBox autoSuggestBox)
         {
             var viewModel = (AutoSuggestTextBoxWithCollectionViewViewModel)autoSuggestBox.DataContext;
-            Assert.Equal("Bananas", viewModel.SelectedItem);
+            await Assert.That(viewModel.SelectedItem).IsEqualTo("Bananas");
         }
         await suggestBox.RemoteExecute(AssertViewModelProperty);
 
@@ -234,14 +231,7 @@ public class AutoSuggestBoxTests : TestBase
 
     private static async Task AssertExists(IVisualElement<ListBox> suggestionListBox, string text, bool existsOrNotCheck = true)
     {
-        try
-        {
-            _ = await suggestionListBox.GetElement(ElementQuery.PropertyExpression<TextBlock>(x => x.Text, text));
-            Assert.True(existsOrNotCheck);
-        }
-        catch (Exception e) when (e is not TrueException)
-        {
-            Assert.False(existsOrNotCheck);
-        }
+        _ = await suggestionListBox.GetElement(ElementQuery.PropertyExpression<TextBlock>(x => x.Text, text));
+        await Assert.That(existsOrNotCheck).IsTrue();
     }
 }
