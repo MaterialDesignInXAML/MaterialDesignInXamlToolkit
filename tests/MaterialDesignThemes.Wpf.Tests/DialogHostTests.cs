@@ -100,7 +100,7 @@ public class DialogHostTests
             {
                 var ex = await Assert.ThrowsAsync<InvalidOperationException>(() => DialogHost.Show("Content", id));
                 args.Session.Close();
-                await Assert.That(ex.Message).IsEqualTo("DialogHost is already open.");
+                await Assert.That(ex?.Message).IsEqualTo("DialogHost is already open.");
             })));
     }
 
@@ -113,7 +113,7 @@ public class DialogHostTests
 
         var ex = await Assert.ThrowsAsync<InvalidOperationException>(() => DialogHost.Show("Content", id));
 
-        await Assert.That(ex.Message).IsEqualTo("No loaded DialogHost instances.");
+        await Assert.That(ex?.Message).IsEqualTo("No loaded DialogHost instances.");
     }
 
     [Test]
@@ -124,7 +124,7 @@ public class DialogHostTests
 
         var ex = await Assert.ThrowsAsync<InvalidOperationException>(() => DialogHost.Show("Content", id));
 
-        await Assert.That(ex.Message).IsEqualTo($"No loaded DialogHost have an {nameof(DialogHost.Identifier)} property matching dialogIdentifier ('{id}') argument.");
+        await Assert.That(ex?.Message).IsEqualTo($"No loaded DialogHost have an {nameof(DialogHost.Identifier)} property matching dialogIdentifier ('{id}') argument.");
     }
 
     [Test]
@@ -141,7 +141,7 @@ public class DialogHostTests
 
         otherDialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
 
-        await Assert.That(ex.Message).IsEqualTo("Multiple viable DialogHosts. Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.");
+        await Assert.That(ex?.Message).IsEqualTo("Multiple viable DialogHosts. Specify a unique Identifier on each DialogHost, especially where multiple Windows are a concern.");
     }
 
     [Test]
@@ -164,7 +164,7 @@ public class DialogHostTests
         CreateElement(); // ensure at least one DialogHost exists
         var ex = await Assert.ThrowsAsync<ArgumentNullException>(() => DialogHost.Show(null!));
 
-        await Assert.That(ex.ParamName).IsEqualTo("content");
+        await Assert.That(ex?.ParamName).IsEqualTo("content");
     }
 
     [Test]
