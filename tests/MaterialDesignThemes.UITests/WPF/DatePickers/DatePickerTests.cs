@@ -176,8 +176,8 @@ public class DatePickerTests : TestBase
         Rect? hintCoordinates = await hint.GetCoordinates();
         Rect? helperTextCoordinates = await helperText.GetCoordinates();
 
-        await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left)).IsBetween(0, tolerance);
-        await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - helperTextCoordinates.Value.Left)).IsBetween(0, tolerance);
+        await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left)).IsCloseTo(0, tolerance);
+        await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - helperTextCoordinates.Value.Left)).IsCloseTo(0, tolerance);
 
         recorder.Success();
     }
@@ -225,8 +225,8 @@ public class DatePickerTests : TestBase
         Rect? hintCoordinates = await hint.GetCoordinates();
         Rect? errorViewerCoordinates = await errorViewer.GetCoordinates();
 
-        await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left)).IsBetween(0, tolerance);
-        await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left)).IsBetween(0, tolerance);
+        await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left)).IsCloseTo(0, tolerance);
+        await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left)).IsCloseTo(0, tolerance);
 
         recorder.Success();
     }

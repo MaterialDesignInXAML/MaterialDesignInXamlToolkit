@@ -230,9 +230,9 @@ public class PasswordBoxTests : TestBase
         Rect? helperTextCoordinates = await helperText.GetCoordinates();
 
         await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left))
-            .IsBetween(0, tolerance);
+            .IsCloseTo(0, tolerance);
         await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - helperTextCoordinates.Value.Left))
-            .IsBetween(0, tolerance);
+            .IsCloseTo(0, tolerance);
 
         recorder.Success();
     }
@@ -290,9 +290,9 @@ public class PasswordBoxTests : TestBase
         Rect? errorViewerCoordinates = await errorViewer.GetCoordinates();
 
         await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left))
-    .IsBetween(0, tolerance);
+            .IsCloseTo(0, tolerance);
         await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left))
-            .IsBetween(0, tolerance);
+            .IsCloseTo(0, tolerance);
 
         recorder.Success();
     }
