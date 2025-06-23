@@ -77,7 +77,7 @@ public class ComboBoxTests : TestBase
         await Wait.For(async () =>
         {
             text = await comboBox.GetText();
-            await Assert.That(text).IsNotNull();
+            await Assert.That(text).IsNull();
             selectedIndex = await comboBox.GetSelectedIndex();
             await Assert.That(selectedIndex >= 0).IsFalse();
         });
