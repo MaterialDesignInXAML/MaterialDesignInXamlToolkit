@@ -6,6 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+             xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
              d:DataContext="{d:DesignInstance domain:TreesViewModel}"
              d:DesignHeight="1080"
              d:DesignWidth="1920"
@@ -18,6 +19,8 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
       </ResourceDictionary.MergedDictionaries>
+      
+      <converters:TreeListViewIndentConverter x:Key="TreeListViewIndentConverter" />
     </ResourceDictionary>
   </UserControl.Resources>
 
@@ -214,9 +217,19 @@
                                      ItemsSource="{Binding TreeItems}"
                                      SelectedItem="{Binding SelectedTreeItem}">
             <materialDesign:TreeListView.Resources>
-              <HierarchicalDataTemplate DataType="{x:Type domain:TestItem}"
-                          ItemsSource="{Binding Items, Mode=OneTime}">
-                <TextBlock Margin="3,2" Text="{Binding Name, Mode=OneTime}" />
+              <HierarchicalDataTemplate DataType="{x:Type domain:TestItem}" ItemsSource="{Binding Items, Mode=OneTime}">
+                <StackPanel Orientation="Horizontal">
+                  <StackPanel.Margin>
+                    <MultiBinding Converter="{StaticResource TreeListViewIndentConverter}">
+                      <Binding Path="LevelIndentSize" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type materialDesign:TreeListView}}" />
+                      <Binding Path="Level" RelativeSource="{RelativeSource AncestorType={x:Type materialDesign:TreeListViewItem}}" />
+                    </MultiBinding>
+                  </StackPanel.Margin>
+
+                  <ToggleButton IsChecked="{Binding RelativeSource={RelativeSource AncestorType=materialDesign:TreeListViewItem, Mode=FindAncestor}, Path=IsExpanded}" Style="{StaticResource MaterialDesignTreeListViewToggleButtonStyle}" />
+
+                  <TextBlock VerticalAlignment="Center" Text="{Binding Name, Mode=OneTime}" />
+                </StackPanel>
               </HierarchicalDataTemplate>
 
               <HierarchicalDataTemplate DataType="{x:Type domain:MovieCategory}"
@@ -231,19 +244,52 @@
               </DataTemplate>
             </materialDesign:TreeListView.Resources>
 
-            <!--
-            Because Data Virtualization is enabled on this tree view by default, if you don't bind the IsExpanded property to something in the bound view model,
-            you can loose the expanded state of items when the TreeListViewItem is recycled.
-
-            For more information:
-            https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/3640#issuecomment-2274086113
-            https://learn.microsoft.com/dotnet/desktop/wpf/advanced/optimizing-performance-controls?view=netframeworkdesktop-4.8&WT.mc_id=DT-MVP-5003472
-            -->
+             <!--
+             Because Data Virtualization is enabled on this tree view by default, if you don't bind the IsExpanded property to something in the bound view model,
+             you can loose the expanded state of items when the TreeListViewItem is recycled.
+   
+             For more information:
+             https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/3640#issuecomment-2274086113
+             https://learn.microsoft.com/dotnet/desktop/wpf/advanced/optimizing-performance-controls?view=netframeworkdesktop-4.8&WT.mc_id=DT-MVP-5003472
+             -->
             <materialDesign:TreeListView.ItemContainerStyle>
               <Style TargetType="materialDesign:TreeListViewItem" BasedOn="{StaticResource {x:Type materialDesign:TreeListViewItem}}">
                 <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
               </Style>
             </materialDesign:TreeListView.ItemContainerStyle>
+
+            <materialDesign:TreeListView.View>
+              <GridView>
+                <GridView.Columns>
+                  <GridViewColumn Width="250" Header="Name">
+                    <GridViewColumn.CellTemplate>
+                      <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                          <StackPanel.Margin>
+                            <MultiBinding Converter="{StaticResource TreeListViewIndentConverter}">
+                              <Binding Path="LevelIndentSize" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type materialDesign:TreeListView}}" />
+                              <Binding Path="Level" RelativeSource="{RelativeSource AncestorType={x:Type materialDesign:TreeListViewItem}}" />
+                            </MultiBinding>
+                          </StackPanel.Margin>
+
+                          <ToggleButton IsChecked="{Binding RelativeSource={RelativeSource AncestorType=materialDesign:TreeListViewItem, Mode=FindAncestor}, Path=IsExpanded}" Style="{StaticResource MaterialDesignTreeListViewToggleButtonStyle}" />
+
+                          <TextBlock VerticalAlignment="Center" Text="{Binding Name, Mode=OneTime}" />
+                        </StackPanel>
+                      </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                  </GridViewColumn>
+
+                  <GridViewColumn Width="100" Header="Count">
+                    <GridViewColumn.CellTemplate>
+                      <DataTemplate>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding Items.Count, Mode=OneWay}" />
+                      </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                  </GridViewColumn>
+                </GridView.Columns>
+              </GridView>
+            </materialDesign:TreeListView.View>
           </materialDesign:TreeListView>
           <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
             <Button Command="{Binding AddListTreeItemCommand}"
