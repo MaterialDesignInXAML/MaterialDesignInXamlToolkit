@@ -417,6 +417,7 @@ public class DialogHostTests
     }
 
     [Test]
+    [Skip("This has not been working since moving to TUnit. There is a deadlock")]
     public async Task GetDialogSession_ShouldAllowAccessFromMultipleUIThreads()
     {
         Dispatcher? otherUiThreadDispatcher = null;
@@ -442,8 +443,8 @@ public class DialogHostTests
                     dialogHostOnOtherUiThread.Identifier = dialogHostOnOtherUiThreadIdentifier;
                     otherUiThreadDispatcher = Dispatcher.CurrentDispatcher;
                     sync1.Set();
-                    Dispatcher.Run();
                     tcs.SetResult(null);
+                    Dispatcher.Run();
                 }
                 catch (Exception ex)
                 {
@@ -457,7 +458,8 @@ public class DialogHostTests
 
             await tcs.Task;
             // Act & Assert
-            //await Assert.That(DialogHost.GetDialogSession(dialogHostIdentifier)).IsNull();
+
+            await Assert.That(DialogHost.GetDialogSession(dialogHostIdentifier)).IsNull();
             await Assert.That(DialogHost.GetDialogSession(dialogHostOnOtherUiThreadIdentifier)).IsNull();
         }
         finally
