@@ -196,6 +196,8 @@ public class AutoSuggestBoxTests : TestBase
         //Assert that the first item is selected after pressing ArrowDown
         await suggestBox.SendInput(new KeyboardInput(Key.Down));
         await Assert.That(await suggestionListBox.GetSelectedIndex()).IsEqualTo(0);
+
+        recorder.Success();
     }
 
     [Test]
