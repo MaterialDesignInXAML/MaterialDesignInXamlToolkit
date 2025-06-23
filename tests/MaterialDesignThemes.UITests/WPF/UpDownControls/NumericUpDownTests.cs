@@ -1,8 +1,5 @@
-using System;
 using System.ComponentModel;
-using System.Windows.Controls;
 using System.Windows.Data;
-using Google.Protobuf.WellKnownTypes;
 using MaterialDesignThemes.UITests.Samples.UpDownControls;
 
 

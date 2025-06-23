@@ -135,7 +135,7 @@ ScrollViewer.VerticalScrollBarVisibility=""Visible"">
         var earth = await listBox.GetElement<ListBoxItem>("/ListBoxItem[2]");
         await earth.LeftClick();
         var selectedBorder = await earth.GetElement<Border>("SelectedBorder");
-        await Wait.For(async () => await Assert.That(await selectedBorder.GetIsVisible()).IsFalse());
+        await Wait.For(async () => await Assert.That(await selectedBorder.GetIsVisible()).IsFalse() == false);
 
         recorder.Success();
     }

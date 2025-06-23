@@ -33,8 +33,7 @@ public class DecimalUpDownTests: TestBase
         await Wait.For(async () =>
         {
             await Assert.That(await textBox.GetText()).IsEqualTo(Convert.ToString(1.1, CultureInfo.GetCultureInfo(culture)));
-            await Assert.That(await textBox.GetText()).IsEqualTo("2");
-            await Assert.That(await numericUpDown.GetValue()).IsEqualTo(2);
+            await Assert.That(await numericUpDown.GetValue()).IsEqualTo((decimal)1.1);
         });
 
         await minusButton.LeftClick();
@@ -225,8 +224,8 @@ public class DecimalUpDownTests: TestBase
         await textBox.SendKeyboardInput($"{ModifierKeys.Control}{Key.A}{ModifierKeys.None}{inputText}");
         await button.MoveKeyboardFocus();
 
-        await Assert.That(await textBox.GetText()).IsEqualTo("2.5");
-        await Assert.That(await decimalUpDown.GetValue()).IsEqualTo(2.5m);
+        await Assert.That(await textBox.GetText()).IsEqualTo(expectedValue.ToString());
+        await Assert.That(await decimalUpDown.GetValue()).IsEqualTo(expectedValue);
 
         recorder.Success();
     }

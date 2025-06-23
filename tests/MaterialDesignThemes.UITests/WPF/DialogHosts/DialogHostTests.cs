@@ -9,6 +9,11 @@ namespace MaterialDesignThemes.UITests.WPF.DialogHosts;
 
 public class DialogHostTests : TestBase
 {
+    public DialogHostTests()
+    {
+        AttachedDebuggerToRemoteProcess = false;
+    }
+
     [Test]
     public async Task OnOpenDialog_OverlayCoversContent()
     {
@@ -341,7 +346,7 @@ public class DialogHostTests : TestBase
 
         await unloadButton.LeftClick();
 
-        await Wait.For(async () => await Assert.That(await closeButton.GetIsVisible()).IsFalse());
+        await Wait.For(async () => await Assert.That(await closeButton.GetIsVisible()).IsFalse() == false);
 
         await loadButton.LeftClick();
 

@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using MaterialDesignThemes.UITests.Samples.AutoSuggestBoxes;
 using MaterialDesignThemes.UITests.Samples.AutoSuggestTextBoxes;
+using TUnit.Core.Exceptions;
 namespace MaterialDesignThemes.UITests.WPF.AutoSuggestBoxes;
 
 public class AutoSuggestBoxTests : TestBase
@@ -231,7 +232,14 @@ public class AutoSuggestBoxTests : TestBase
 
     private static async Task AssertExists(IVisualElement<ListBox> suggestionListBox, string text, bool existsOrNotCheck = true)
     {
-        _ = await suggestionListBox.GetElement(ElementQuery.PropertyExpression<TextBlock>(x => x.Text, text));
-        await Assert.That(existsOrNotCheck).IsTrue();
+        try
+        {
+            _ = await suggestionListBox.GetElement(ElementQuery.PropertyExpression<TextBlock>(x => x.Text, text));
+            await Assert.That(existsOrNotCheck).IsTrue();
+        }
+        catch (Exception e) when (e is not TUnitException)
+        {
+            await Assert.That(existsOrNotCheck).IsFalse();
+        }
     }
 }

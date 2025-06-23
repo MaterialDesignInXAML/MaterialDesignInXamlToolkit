@@ -44,7 +44,7 @@ public class DatePickerTests : TestBase
 
         DateTime? selectedDate = await datePicker.GetSelectedDate();
 
-        await Assert.That(selectedDate).IsNull();
+        await Assert.That(selectedDate).IsNotNull();
 
         await clearButton.LeftClick();
 
