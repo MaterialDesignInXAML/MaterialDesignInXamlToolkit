@@ -51,24 +51,24 @@ public class TreeListView : ListView
     protected override bool IsItemItsOwnContainerOverride(object? item)
         => item is TreeListViewItem;
 
-    protected override void PrepareContainerForItemOverride(DependencyObject element, object? item)
-    {
-        base.PrepareContainerForItemOverride(element, item);
+    //protected override void PrepareContainerForItemOverride(DependencyObject element, object? item)
+    //{
+    //    base.PrepareContainerForItemOverride(element, item);
 
-        if (element is TreeListViewItem treeListViewItem)
-        {
-            int level = 0;
-            bool isExpanded = false;
-            int index = ItemContainerGenerator.IndexFromContainer(treeListViewItem);
-            if (index >= 0 && InternalItemsSource is { } itemsSource)
-            {
-                level = itemsSource.GetLevel(index);
-                isExpanded = itemsSource.GetIsExpanded(index);
-            }
+    //    if (element is TreeListViewItem treeListViewItem)
+    //    {
+    //        int level = 0;
+    //        bool isExpanded = false;
+    //        int index = ItemContainerGenerator.IndexFromContainer(treeListViewItem);
+    //        if (index >= 0 && InternalItemsSource is { } itemsSource)
+    //        {
+    //            level = itemsSource.GetLevel(index);
+    //            isExpanded = itemsSource.GetIsExpanded(index);
+    //        }
 
-            treeListViewItem.PrepareTreeListViewItem(item, this, level, isExpanded);
-        }
-    }
+    //        treeListViewItem.PrepareTreeListViewItem(item, this, level, isExpanded);
+    //    }
+    //}
 
     protected override void ClearContainerForItemOverride(DependencyObject element, object item)
     {
@@ -86,11 +86,19 @@ public class TreeListView : ListView
             int index = ItemContainerGenerator.IndexFromContainer(item);
             //Issue 3572
             if (index < 0) return;
-            var children = item.GetChildren().ToList();
-            bool isExpanded = item.IsExpanded;
+            var isExpanded = item.IsExpanded;
+            var internalIsExpanded = itemsSource.GetIsExpanded(index);
+
+            if (internalIsExpanded == isExpanded)
+            {
+                return;
+            }
+
             itemsSource.SetIsExpanded(index, isExpanded);
+
             if (isExpanded)
             {
+                var children = item.GetChildren().ToList();
                 int parentLevel = itemsSource.GetLevel(index);
                 for (int i = 0; i < children.Count; i++)
                 {

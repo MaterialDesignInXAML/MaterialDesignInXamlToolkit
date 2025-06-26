@@ -146,7 +146,18 @@ public class TreeListViewItem : ListViewItem
 
             void OnTemplateChanged(object? sender, EventArgs e)
             {
-                PrepareTreeListViewItem(Content, TreeListView!, Level, IsExpanded);
+                int level = 0;
+                bool isExpanded = false;
+                int index = TreeListView!.ItemContainerGenerator.IndexFromContainer(this);
+
+
+                if (index >= 0 && TreeListView.InternalItemsSource is { } itemsSource)
+                {
+                    level = itemsSource.GetLevel(index);
+                    isExpanded = itemsSource.GetIsExpanded(index);
+                }
+
+                PrepareTreeListViewItem(Content, TreeListView, level, isExpanded);
             }
         }
     }
