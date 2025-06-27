@@ -90,6 +90,10 @@ public sealed class TreesViewModel : ViewModelBase
 
     public AnotherCommandImplementation RemoveListTreeItemCommand { get; }
 
+    public AnotherCommandImplementation RemoveSelectedListTreeItemCommand { get; }
+
+    public ObservableCollection<TestItem?> SelectedTreeItems { get; } = [];
+
     public TestItem? SelectedTreeItem
     {
         get => _selectedTreeItem;
@@ -210,6 +214,14 @@ public sealed class TreesViewModel : ViewModelBase
                 }
             },
             _ => SelectedItem != null);
+
+        RemoveSelectedListTreeItemCommand = new(item =>
+        {
+            if (item is TestItem treeItem)
+            {
+                SelectedTreeItems.Remove(treeItem);
+            }
+        });
     }
 
     private static string GenerateString(int length)

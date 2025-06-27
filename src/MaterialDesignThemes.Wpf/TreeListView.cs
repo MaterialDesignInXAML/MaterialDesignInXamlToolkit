@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Specialized;
 using System.Windows.Automation.Peers;
 using MaterialDesignThemes.Wpf.Automation.Peers;
@@ -5,7 +6,6 @@ using MaterialDesignThemes.Wpf.Internal;
 
 namespace MaterialDesignThemes.Wpf;
 
-//TODO: Implement bindable property for getting selected items
 //TODO: Implement GridView support for having columns
 public class TreeListView : ListView
 {
@@ -20,6 +20,41 @@ public class TreeListView : ListView
 
     internal TreeListViewItemsCollection? InternalItemsSource { get; set; }
 
+    private bool IsCollapsingItem { get; set; }
+    public new IList SelectedItems
+    {
+        get => (IList)GetValue(SelectedItemsProperty);
+        set => SetValue(SelectedItemsProperty, value);
+    }
+    public static new readonly DependencyProperty SelectedItemsProperty =
+            DependencyProperty.Register(
+                nameof(SelectedItems),
+                typeof(IList),
+                typeof(TreeListView),
+                new FrameworkPropertyMetadata(default, OnSelectedItemsPropertyChanged));
+
+    private static void OnSelectedItemsPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is TreeListView tree)
+        {
+            // Unsubscribe old collection changed
+            if (e.OldValue is INotifyCollectionChanged oldCollection)
+            {
+                oldCollection.CollectionChanged -= tree.SelectedItems_CollectionChanged;
+            }
+
+            // Subscribe new collection changed
+            if (e.NewValue is INotifyCollectionChanged newCollection)
+            {
+                newCollection.CollectionChanged += tree.SelectedItems_CollectionChanged;
+            }
+
+            tree.SyncUISelectionWithSelectedItems();
+        }
+    }
+
+
+
     static TreeListView()
     {
         ItemsSourceProperty.OverrideMetadata(typeof(TreeListView), new FrameworkPropertyMetadata()
@@ -30,6 +65,90 @@ public class TreeListView : ListView
 
     public TreeListView()
     {
+        SelectionChanged += TreeListView_SelectionChanged;
+    }
+
+    private void TreeListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        // Keep the DP collection in sync when UI selection changes
+        if (SelectedItems is null)
+        {
+            return;
+        }
+
+        bool isSingleSelection = Keyboard.Modifiers == ModifierKeys.None && e.AddedItems.Count == 1;
+        // If no modifier keys, treat as single selection (like normal ListView)
+        if (isSingleSelection)
+        {
+            // Remove all except the newly selected item
+            var selected = e.AddedItems[0];
+            SelectedItems.Clear();
+            SelectedItems.Add(selected);
+            return;
+        }
+
+        // Remove unselected
+        if (!IsCollapsingItem)
+        {
+            foreach (var item in e.RemovedItems)
+            {
+                SelectedItems.Remove(item);
+            }
+        }
+
+        // Add newly selected
+        foreach (var item in e.AddedItems)
+        {
+            SelectedItems.Add(item);
+        }
+    }
+
+    private void SelectedItems_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        // NB: Every time we modify the base.SelectedItems we have to unsubscribe from the SelectionChanged event
+        //     The base.SelectedItems only contains the visually selected items,
+        //     while the SelectedItems contains all selected items, even ones which are not "visible"
+        this.SelectionChanged -= TreeListView_SelectionChanged;
+
+        if (e.Action == NotifyCollectionChangedAction.Reset)
+        {
+            base.SelectedItems.Clear();
+            foreach (var item in SelectedItems)
+            {
+                base.SelectedItems.Add(item);
+            }
+        }
+        else
+        {
+            foreach (var item in e.OldItems ?? Array.Empty<object>())
+            {
+                if (!IsCollapsingItem)
+                {
+                    base.SelectedItems.Remove(item);
+                }
+            }
+
+            foreach (var item in e.NewItems ?? Array.Empty<object>())
+            {
+                base.SelectedItems.Add(item);
+            }
+        }
+
+        this.SelectionChanged += TreeListView_SelectionChanged;
+    }
+
+    /// <summary>
+    /// Updates/syncs the List containing all SelectedItems with the visually selected items (base.SelectedItems)
+    /// </summary>
+    private void SyncUISelectionWithSelectedItems()
+    {
+        this.SelectionChanged -= TreeListView_SelectionChanged;
+        base.SelectedItems.Clear();
+        foreach (var item in SelectedItems ?? Array.Empty<object>())
+        {
+            base.SelectedItems.Add(item);
+        }
+        this.SelectionChanged += TreeListView_SelectionChanged;
     }
 
     protected override AutomationPeer OnCreateAutomationPeer()
@@ -104,10 +223,14 @@ public class TreeListView : ListView
                 {
                     itemsSource.InsertWithLevel(i + index + 1, children[i], parentLevel + 1);
                 }
+                // if a node, which has a selected child, is expanded (added) we need to visually select the child (i.e.: update base.SelectedItems)
+                SyncUISelectionWithSelectedItems();
             }
             else
             {
+                IsCollapsingItem = true;
                 itemsSource.RemoveChildrenOfOffsetAdjustedItem(index);
+                IsCollapsingItem = false;
             }
         }
     }
@@ -233,7 +356,7 @@ public class TreeListView : ListView
 
     private List<object?> GetExpandedChildrenAndGrandChildren(object? dataItem)
     {
-        List<object?> expandedChildren = new();
+        List<object?> expandedChildren = [];
         if (dataItem is null || ItemContainerGenerator.ContainerFromItem(dataItem) is not TreeListViewItem { IsExpanded: true } container)
             return expandedChildren;
 

@@ -15,7 +15,8 @@
     </Grid.RowDefinitions>
     <materialDesign:TreeListView
       x:Name="TreeListView"
-      ItemsSource="{Binding Items}">
+      ItemsSource="{Binding Items}"
+      SelectedItems="{Binding SelectedItems}">
       <materialDesign:TreeListView.ItemTemplate>
         <HierarchicalDataTemplate DataType="{x:Type local:TreeItem}"
             ItemsSource="{Binding Children}">
@@ -31,6 +32,7 @@
     <StackPanel Grid.Row="1" Orientation="Horizontal">
       <Button Content="Add" Click="Add_OnClick" />
       <Button Content="Add with Children" Click="AddWithChildren_OnClick" />
+      <Button Content="Add Duplicate" Click="AddDuplicate_OnClick" />
       <Button Content="Remove" Click="Remove_OnClick" />
       <Button Content="Replace" Click="Replace_OnClick" />
       <Button Content="Down" Click="MoveDown_OnClick" />
