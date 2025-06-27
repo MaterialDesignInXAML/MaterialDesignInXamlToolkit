@@ -6,7 +6,6 @@ using MaterialDesignThemes.Wpf.Internal;
 namespace MaterialDesignThemes.Wpf;
 
 //TODO: Implement bindable property for getting selected items
-//TODO: Implement GridView support for having columns
 public class TreeListView : ListView
 {
     public double LevelIndentSize
