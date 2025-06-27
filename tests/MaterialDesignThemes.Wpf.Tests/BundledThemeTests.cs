@@ -1,21 +1,20 @@
 ﻿using MaterialDesignColors;
-using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
 public class BundledThemeTests
 {
-    [StaTheory]
-    [InlineData(null, null, null)]
-    [InlineData(BaseTheme.Light, null, null)]
-    [InlineData(BaseTheme.Inherit, null, null)]
-    [InlineData(null, PrimaryColor.Blue, null)]
-    [InlineData(BaseTheme.Light, PrimaryColor.Blue, null)]
-    [InlineData(BaseTheme.Inherit, PrimaryColor.Blue, null)]
-    [InlineData(null, null, SecondaryColor.Blue)]
-    [InlineData(BaseTheme.Light, null, SecondaryColor.Blue)]
-    [InlineData(BaseTheme.Inherit, null, SecondaryColor.Blue)]
-    public void WhenValueIsMissingThemeIsNotSet(BaseTheme? baseTheme, PrimaryColor? primaryColor, SecondaryColor? secondaryColor)
+    [Test, STAThreadExecutor]
+    [Arguments(null, null, null)]
+    [Arguments(BaseTheme.Light, null, null)]
+    [Arguments(BaseTheme.Inherit, null, null)]
+    [Arguments(null, PrimaryColor.Blue, null)]
+    [Arguments(BaseTheme.Light, PrimaryColor.Blue, null)]
+    [Arguments(BaseTheme.Inherit, PrimaryColor.Blue, null)]
+    [Arguments(null, null, SecondaryColor.Blue)]
+    [Arguments(BaseTheme.Light, null, SecondaryColor.Blue)]
+    [Arguments(BaseTheme.Inherit, null, SecondaryColor.Blue)]
+    public async Task WhenValueIsMissingThemeIsNotSet(BaseTheme? baseTheme, PrimaryColor? primaryColor, SecondaryColor? secondaryColor)
     {
         //Arrange
         var bundledTheme = new BundledTheme();
@@ -26,11 +25,11 @@ public class BundledThemeTests
         bundledTheme.SecondaryColor = secondaryColor;
 
         //Assert
-        Assert.Throws<InvalidOperationException>(() => bundledTheme.GetTheme());
+        await Assert.That(() => bundledTheme.GetTheme()).ThrowsExactly<InvalidOperationException>();
     }
 
-    [StaFact]
-    public void WhenAllValuesAreSetThemeIsSet()
+    [Test, STAThreadExecutor]
+    public async Task WhenAllValuesAreSetThemeIsSet()
     {
         //Arrange
         var bundledTheme = new BundledTheme();
@@ -42,12 +41,11 @@ public class BundledThemeTests
 
         //Assert
         Theme theme = bundledTheme.GetTheme();
-        Assert.Equal(SwatchHelper.Lookup[(MaterialDesignColor)PrimaryColor.Purple], theme.PrimaryMid.Color);
-        Assert.Equal(SwatchHelper.Lookup[(MaterialDesignColor)SecondaryColor.Lime], theme.SecondaryMid.Color);
+        await Assert.That(theme.PrimaryMid.Color).IsEqualTo(SwatchHelper.Lookup[(MaterialDesignColor)PrimaryColor.Purple]);
+        await Assert.That(theme.SecondaryMid.Color).IsEqualTo(SwatchHelper.Lookup[(MaterialDesignColor)SecondaryColor.Lime]);
 
         var lightTheme = new Theme();
         lightTheme.SetLightTheme();
-        Assert.Equal(lightTheme.Foreground, theme.Foreground);
-        Assert.NotEqual(default, theme.Foreground);
+        await Assert.That(theme.Foreground).IsEqualTo(lightTheme.Foreground).And.IsNotEqualTo(default);
     }
 }

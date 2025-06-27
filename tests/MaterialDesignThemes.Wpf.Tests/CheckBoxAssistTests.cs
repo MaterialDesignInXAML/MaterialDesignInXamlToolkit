@@ -1,25 +1,19 @@
-﻿using Xunit;
+﻿namespace MaterialDesignThemes.Wpf.Tests;
 
-namespace MaterialDesignThemes.Wpf.Tests;
-
+[TestExecutor<STAThreadExecutor>]
 public class CheckBoxAssistTests
 {
-    private readonly CheckBox _testElement;
-
-    public CheckBoxAssistTests()
+    [Test, STAThreadExecutor]
+    public async Task TestCheckBoxSizeProperty()
     {
-        _testElement = new CheckBox();
-    }
+        CheckBox testElement = new();
 
-    [StaFact]
-    public void TestCheckBoxSizeProperty()
-    {
         // Assert defaults
-        Assert.Equal("CheckBoxSize", CheckBoxAssist.CheckBoxSizeProperty.Name);
-        Assert.Equal(18.0, CheckBoxAssist.GetCheckBoxSize(_testElement));
+        await Assert.That(CheckBoxAssist.CheckBoxSizeProperty.Name).IsEqualTo("CheckBoxSize");
+        await Assert.That(CheckBoxAssist.GetCheckBoxSize(testElement)).IsEqualTo(18.0);
 
         // Assert setting works
-        CheckBoxAssist.SetCheckBoxSize(_testElement, 27.1);
-        Assert.Equal(27.1, CheckBoxAssist.GetCheckBoxSize(_testElement));
+        CheckBoxAssist.SetCheckBoxSize(testElement, 27.1);
+        await Assert.That(CheckBoxAssist.GetCheckBoxSize(testElement)).IsEqualTo(27.1);
     }
 }

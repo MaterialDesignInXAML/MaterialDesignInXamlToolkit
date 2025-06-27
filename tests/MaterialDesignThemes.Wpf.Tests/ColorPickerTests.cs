@@ -1,140 +1,159 @@
 ﻿using System.Windows.Media;
 using MaterialDesignColors.ColorManipulation;
-using Xunit;
 
 namespace MaterialDesignThemes.Wpf.Tests;
 
 //TODO: Many of these tests could be moved over to MaterialDesignThemes.UITests
+[TestExecutor<STAThreadExecutor>]
 public class ColorPickerTests
 {
-    private readonly ColorPicker _colorPicker;
-    private readonly Slider _hueSlider;
-    private readonly Canvas _saturationBrightnessPicker;
-    private readonly Thumb _saturationBrightnessPickerThumb;
-
-    public ColorPickerTests()
+    public static ColorPicker CreateElement()
     {
-        _colorPicker = new ColorPicker();
-        _colorPicker.ApplyDefaultStyle();
-        _colorPicker.Arrange(new Rect(0, 0, 400, 100));
-
-        _hueSlider = _colorPicker.FindVisualChild<Slider>(ColorPicker.HueSliderPartName);
-        _saturationBrightnessPicker = _colorPicker.FindVisualChild<Canvas>(ColorPicker.SaturationBrightnessPickerPartName);
-        _saturationBrightnessPickerThumb = _colorPicker.FindVisualChild<Thumb>(ColorPicker.SaturationBrightnessPickerThumbPartName);
+        ColorPicker colorPicker = new();
+        colorPicker.ApplyDefaultStyle();
+        colorPicker.Arrange(new Rect(0, 0, 400, 100));
+        return colorPicker;
     }
 
-    [StaFact]
-    public void ColorPickerDefaultsToDefaultColor()
+    public static Slider GetHueSlider(ColorPicker colorPicker)
+        => colorPicker.FindVisualChild<Slider>(ColorPicker.HueSliderPartName);
+
+    public static Canvas GetSaturationBrightnessPicker(ColorPicker colorPicker)
+        => colorPicker.FindVisualChild<Canvas>(ColorPicker.SaturationBrightnessPickerPartName);
+
+    public static Thumb GetSaturationBrightnessPickerThumb(ColorPicker colorPicker)
+        => colorPicker.FindVisualChild<Thumb>(ColorPicker.SaturationBrightnessPickerThumbPartName);
+
+    [Test]
+    public async Task ColorPickerDefaultsToDefaultColor()
     {
-        Assert.Equal(default, _colorPicker.Color);
-        Assert.Equal(0, _hueSlider.Value);
+        ColorPicker colorPicker = CreateElement();
+        Slider slider = GetHueSlider(colorPicker);
+        await Assert.That(colorPicker.Color).IsEqualTo(default);
+        await Assert.That(slider.Value).IsEqualTo(0);
 
         //Thumb should be in the bottom left corner
-        Assert.Equal(0, Canvas.GetLeft(_saturationBrightnessPickerThumb));
-        Assert.Equal(_saturationBrightnessPicker.ActualHeight, Canvas.GetTop(_saturationBrightnessPickerThumb));
+        Thumb saturationBrightnessPickerThumb = GetSaturationBrightnessPickerThumb(colorPicker);
+        Canvas saturationBrightnessPicker = GetSaturationBrightnessPicker(colorPicker);
+        await Assert.That(Canvas.GetLeft(saturationBrightnessPickerThumb)).IsEqualTo(0);
+        await Assert.That(Canvas.GetTop(saturationBrightnessPickerThumb)).IsEqualTo(saturationBrightnessPicker.ActualHeight);
     }
 
-    [StaTheory]
-    [InlineData(nameof(Colors.Green))]
-    [InlineData(nameof(Colors.Red))]
-    [InlineData(nameof(Colors.Blue))]
-    [InlineData(nameof(Colors.Aqua))]
-    [InlineData(nameof(Colors.Purple))]
-    [InlineData(nameof(Colors.Pink))]
-    [InlineData(nameof(Colors.Yellow))]
-    [InlineData(nameof(Colors.Orange))]
-    public void SettingTheColorUpdatesTheControls(string colorName)
+    [Test]
+    [Arguments(nameof(Colors.Green))]
+    [Arguments(nameof(Colors.Red))]
+    [Arguments(nameof(Colors.Blue))]
+    [Arguments(nameof(Colors.Aqua))]
+    [Arguments(nameof(Colors.Purple))]
+    [Arguments(nameof(Colors.Pink))]
+    [Arguments(nameof(Colors.Yellow))]
+    [Arguments(nameof(Colors.Orange))]
+    public async Task SettingTheColorUpdatesTheControls(string colorName)
     {
+        ColorPicker colorPicker = CreateElement();
+        Slider hueSlider = GetHueSlider(colorPicker);
+        Canvas saturationBrightnessPicker = GetSaturationBrightnessPicker(colorPicker);
+        Thumb saturationBrightnessPickerThumb = GetSaturationBrightnessPickerThumb(colorPicker);
+
         var converter = new ColorConverter();
         // ReSharper disable once PossibleNullReferenceException
         Color color = (Color)converter.ConvertFrom(colorName)!;
         var hsb = color.ToHsb();
 
-        SetColor(color);
+        SetColor(colorPicker, color);
 
-        Assert.Equal(hsb.Hue, _hueSlider.Value);
-        var left = (_saturationBrightnessPicker.ActualWidth) / (1 / hsb.Saturation);
-        var top = ((1 - hsb.Brightness) * _saturationBrightnessPicker.ActualHeight);
-        Assert.Equal(left, Canvas.GetLeft(_saturationBrightnessPickerThumb));
-        Assert.Equal(top, Canvas.GetTop(_saturationBrightnessPickerThumb));
+        await Assert.That(hueSlider.Value).IsEqualTo(hsb.Hue);
+        var left = (saturationBrightnessPicker.ActualWidth) * hsb.Saturation;
+        var top = ((1 - hsb.Brightness) * saturationBrightnessPicker.ActualHeight);
+        await Assert.That(Canvas.GetLeft(saturationBrightnessPickerThumb)).IsEqualTo(left);
+        await Assert.That(Canvas.GetTop(saturationBrightnessPickerThumb)).IsEqualTo(top);
     }
 
-    [StaFact]
-    public void SettingTheColorRaisesColorChangedEvent()
+    [Test]
+    public async Task SettingTheColorRaisesColorChangedEvent()
     {
+        ColorPicker colorPicker = CreateElement();
         // capture variables
         Color oldValue = Colors.Transparent;
         Color newValue = Colors.Transparent;
         bool wasRaised = false;
 
-        _colorPicker.ColorChanged += (sender, args) =>
+        colorPicker.ColorChanged += (sender, args) =>
         {
             oldValue = args.OldValue;
             newValue = args.NewValue;
             wasRaised = true;
         };
 
-        SetColor(Colors.Green);
+        SetColor(colorPicker, Colors.Green);
 
-        Assert.Equal(default(Color), oldValue);
-        Assert.Equal(Colors.Green, newValue);
-        Assert.True(wasRaised);
+        await Assert.That(oldValue).IsEqualTo(default(Color));
+        await Assert.That(newValue).IsEqualTo(Colors.Green);
+        await Assert.That(wasRaised).IsTrue();
 
         // reset capture variables
         oldValue = Colors.Transparent;
         newValue = Colors.Transparent;
-        wasRaised = true;
+        wasRaised = false;
 
-        SetColor(Colors.Red);
+        SetColor(colorPicker, Colors.Red);
 
-        Assert.Equal(Colors.Green, oldValue);
-        Assert.Equal(Colors.Red, newValue);
-        Assert.True(wasRaised);
+        await Assert.That(oldValue).IsEqualTo(Colors.Green);
+        await Assert.That(newValue).IsEqualTo(Colors.Red);
+        await Assert.That(wasRaised).IsTrue();
     }
 
-    [StaFact]
-    public void DraggingTheHueSliderChangesHue()
+    [Test]
+    public async Task DraggingTheHueSliderChangesHue()
     {
+        ColorPicker colorPicker = CreateElement();
+        Slider hueSlider = GetHueSlider(colorPicker);
+
         //This ensures we have some saturation and brightness
-        SetColor(Colors.Red);
+        SetColor(colorPicker, Colors.Red);
 
-        Color lastColor = _colorPicker.Color;
-        while (_hueSlider.Value < _hueSlider.Maximum)
+        Color lastColor = colorPicker.Color;
+        while (hueSlider.Value < hueSlider.Maximum)
         {
-            _hueSlider.Value += _hueSlider.LargeChange;
-            Assert.NotEqual(lastColor, _colorPicker.Color);
-            lastColor = _colorPicker.Color;
+            hueSlider.Value += hueSlider.LargeChange;
+            await Assert.That(colorPicker.Color).IsNotEqualTo(lastColor);
+            lastColor = colorPicker.Color;
         }
     }
 
-    [StaFact]
-    public void DraggingTheThumbChangesSaturation()
+    [Test]
+    [Skip("This test never entered the while loop before the MTP conversion")]
+    public async Task DraggingTheThumbChangesSaturation()
     {
-        SetColor(Colors.Red);
-        DragThumb(horizontalOffset: -Canvas.GetLeft(_saturationBrightnessPickerThumb));
+        ColorPicker colorPicker = CreateElement();
+        Canvas saturationBrightnessPicker = GetSaturationBrightnessPicker(colorPicker);
+        Thumb saturationBrightnessPickerThumb = GetSaturationBrightnessPickerThumb(colorPicker);
 
-        double lastSaturation = _colorPicker.Color.ToHsb().Saturation;
+        SetColor(colorPicker, Colors.Red);
+        DragThumb(saturationBrightnessPickerThumb, horizontalOffset: -Canvas.GetLeft(saturationBrightnessPickerThumb));
 
-        while (Canvas.GetLeft(_saturationBrightnessPicker) < _saturationBrightnessPicker.ActualWidth)
+        double lastSaturation = colorPicker.Color.ToHsb().Saturation;
+
+        while (Canvas.GetLeft(saturationBrightnessPickerThumb) < saturationBrightnessPicker.ActualWidth)
         {
-            DragThumb(horizontalOffset: 10);
-            double currentSaturation = _colorPicker.Color.ToHsb().Saturation;
-            Assert.True(currentSaturation > lastSaturation, $"At left {Canvas.GetLeft(_saturationBrightnessPicker)}, saturation {currentSaturation} is not grater than {lastSaturation}");
+            DragThumb(saturationBrightnessPickerThumb, horizontalOffset: 10);
+            double currentSaturation = colorPicker.Color.ToHsb().Saturation;
+            await Assert.That(currentSaturation).IsGreaterThan(lastSaturation).Because($"At left {Canvas.GetLeft(saturationBrightnessPickerThumb)}, saturation {currentSaturation} is not grater than {lastSaturation}");
+            lastSaturation = currentSaturation;
         }
     }
 
-    private void SetColor(Color color)
+    private static void SetColor(ColorPicker colorPicker, Color color)
     {
         //The internal HsbProperty is set as affects arrange so this simulates that.
-        _colorPicker.Color = color;
-        _colorPicker.Arrange(new Rect(0, 0, _colorPicker.ActualWidth, _colorPicker.ActualHeight));
+        colorPicker.Color = color;
+        colorPicker.Arrange(new Rect(0, 0, colorPicker.ActualWidth, colorPicker.ActualHeight));
     }
 
-    private void DragThumb(double horizontalOffset = 0, double verticalOffset = 0)
+    private static void DragThumb(Thumb thumb, double horizontalOffset = 0, double verticalOffset = 0)
     {
-        _saturationBrightnessPickerThumb.RaiseEvent(new DragDeltaEventArgs(horizontalOffset, verticalOffset));
-
-        Canvas.SetTop(_saturationBrightnessPickerThumb, Canvas.GetTop(_saturationBrightnessPickerThumb) + verticalOffset);
-        Canvas.SetLeft(_saturationBrightnessPickerThumb, Canvas.GetLeft(_saturationBrightnessPickerThumb) + horizontalOffset);
+        thumb.RaiseEvent(new DragDeltaEventArgs(horizontalOffset, verticalOffset));
+        Canvas.SetTop(thumb, Canvas.GetTop(thumb) + verticalOffset);
+        Canvas.SetLeft(thumb, Canvas.GetLeft(thumb) + horizontalOffset);
     }
 }

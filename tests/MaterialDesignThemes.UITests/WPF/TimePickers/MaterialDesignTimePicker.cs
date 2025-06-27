@@ -22,14 +22,14 @@ public static class MaterialDesignTimePicker
     {
         const int delay = 250;
 
-        await Task.Delay(delay);
+        await Task.Delay(delay, TestContext.Current!.CancellationToken);
         var canvas = await Wait.For(async () => await popup.GetElement(partName));
         var button = await canvas.GetElement<ClockItemButton>($"/ClockItemButton[{index}]");
-        await Task.Delay(delay);
+        await Task.Delay(delay, TestContext.Current.CancellationToken);
         await Wait.For(async () =>
         {
             await button.LeftClick();
-            await Task.Delay(delay);
+            await Task.Delay(delay, TestContext.Current.CancellationToken);
             return await button.GetIsChecked() == true;
         });
     }

@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+using System.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -46,7 +46,7 @@ public partial class ValidationUpdatesViewModel : ObservableObject, INotifyDataE
     {
         Error = "Some error";
         ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(Text)));
-        await Task.Delay(100);
+        await Task.Delay(100, CancellationToken.None);
         Error += " + more";
         ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(Text)));
     }

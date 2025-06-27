@@ -4,8 +4,8 @@ namespace MaterialDesignThemes.Wpf.Tests;
 
 public class TransitionerTests
 {
-    [StaFact]
-    public void WhenMoveNext_ItCanAdvanceMultipleSlides()
+    [Test, STAThreadExecutor]
+    public async Task WhenMoveNext_ItCanAdvanceMultipleSlides()
     {
         //Arrange
         var child1 = new UserControl();
@@ -21,15 +21,15 @@ public class TransitionerTests
         object parameter = 2;
 
         //Act
-        Assert.True(Transitioner.MoveNextCommand.CanExecute(parameter, transitioner));
+        await Assert.That(Transitioner.MoveNextCommand.CanExecute(parameter, transitioner)).IsTrue();
         Transitioner.MoveNextCommand.Execute(parameter, transitioner);
 
         //Assert
-        Assert.Equal(2, transitioner.SelectedIndex);
+        await Assert.That(transitioner.SelectedIndex).IsEqualTo(2);
     }
 
-    [StaFact]
-    public void WhenMovePrevious_ItCanRetreatMultipleSlides()
+    [Test, STAThreadExecutor]
+    public async Task WhenMovePrevious_ItCanRetreatMultipleSlides()
     {
         //Arrange
         var child1 = new UserControl();
@@ -45,15 +45,15 @@ public class TransitionerTests
         object parameter = 2;
 
         //Act
-        Assert.True(Transitioner.MovePreviousCommand.CanExecute(parameter, transitioner));
+        await Assert.That(Transitioner.MovePreviousCommand.CanExecute(parameter, transitioner)).IsTrue();
         Transitioner.MovePreviousCommand.Execute(parameter, transitioner);
 
         //Assert
-        Assert.Equal(0, transitioner.SelectedIndex);
+        await Assert.That(transitioner.SelectedIndex).IsEqualTo(0);
     }
 
-    [StaFact]
-    public void ShortCircuitIssue3268()
+    [Test, STAThreadExecutor]
+    public async Task ShortCircuitIssue3268()
     {
         //Arrange
         Grid child1 = new();
@@ -76,12 +76,12 @@ public class TransitionerTests
         Transitioner.MoveNextCommand.Execute(0, transitioner);
 
         //Act
-        Assert.NotNull(transitioner.SelectedItem);
-        Assert.True(transitioner.SelectedItem == child1);
+        await Assert.That(transitioner.SelectedItem).IsNotNull();
+        await Assert.That(transitioner.SelectedItem == child1).IsTrue();
         lb.SelectedItem = lb.Items[1];
 
         //Assert
-        Assert.Equal(1, selectionChangedCounter);
-        Assert.Equal(0, transitioner.SelectedIndex);
+        await Assert.That(selectionChangedCounter).IsEqualTo(1);
+        await Assert.That(transitioner.SelectedIndex).IsEqualTo(0);
     }
 }

@@ -1,40 +1,35 @@
-﻿using System.Reflection;
-using MaterialDesignColors;
+﻿using MaterialDesignColors;
 
 namespace MaterialDesignThemes.UITests;
 
 public class AllStyles : TestBase
 {
-    public AllStyles(ITestOutputHelper output)
-        : base(output)
-    { }
-
-    [Theory]
-    [InlineData("Button", "MaterialDesignRaisedButton")]
-    [InlineData("Calendar", "MaterialDesignCalendarPortrait")]
-    [InlineData("CheckBox", "MaterialDesignCheckBox")]
-    [InlineData("ComboBox", "MaterialDesignComboBox")]
-    [InlineData("DataGrid", "MaterialDesignDataGrid")]
-    [InlineData("DatePicker", "MaterialDesignDatePicker")]
-    [InlineData("Expander", "MaterialDesignExpander")]
-    [InlineData("GridSplitter", "MaterialDesignGridSplitter")]
-    [InlineData("GroupBox", "MaterialDesignGroupBox")]
-    [InlineData("Label", "MaterialDesignLabel")]
-    [InlineData("ListBox", "MaterialDesignListBox")]
-    [InlineData("ListView", "MaterialDesignListView")]
-    [InlineData("Menu", "MaterialDesignMenu")]
-    [InlineData("PasswordBox", "MaterialDesignPasswordBox")]
-    [InlineData("ProgressBar", "MaterialDesignLinearProgressBar")]
-    [InlineData("RadioButton", "MaterialDesignRadioButton")]
-    [InlineData("RichTextBox", "MaterialDesignRichTextBox")]
-    [InlineData("ScrollBar", "MaterialDesignScrollBar")]
-    [InlineData("ScrollViewer", "MaterialDesignScrollViewer")]
-    [InlineData("Slider", "MaterialDesignSlider")]
-    [InlineData("TabControl", "MaterialDesignTabControl")]
-    [InlineData("TextBox", "MaterialDesignTextBox")]
-    [InlineData("ToggleButton", "MaterialDesignSwitchToggleButton")]
-    [InlineData("ToolBar", "MaterialDesignToolBar")]
-    [InlineData("TreeView", "MaterialDesignTreeView")]
+    [Test]
+    [Arguments("Button", "MaterialDesignRaisedButton")]
+    [Arguments("Calendar", "MaterialDesignCalendarPortrait")]
+    [Arguments("CheckBox", "MaterialDesignCheckBox")]
+    [Arguments("ComboBox", "MaterialDesignComboBox")]
+    [Arguments("DataGrid", "MaterialDesignDataGrid")]
+    [Arguments("DatePicker", "MaterialDesignDatePicker")]
+    [Arguments("Expander", "MaterialDesignExpander")]
+    [Arguments("GridSplitter", "MaterialDesignGridSplitter")]
+    [Arguments("GroupBox", "MaterialDesignGroupBox")]
+    [Arguments("Label", "MaterialDesignLabel")]
+    [Arguments("ListBox", "MaterialDesignListBox")]
+    [Arguments("ListView", "MaterialDesignListView")]
+    [Arguments("Menu", "MaterialDesignMenu")]
+    [Arguments("PasswordBox", "MaterialDesignPasswordBox")]
+    [Arguments("ProgressBar", "MaterialDesignLinearProgressBar")]
+    [Arguments("RadioButton", "MaterialDesignRadioButton")]
+    [Arguments("RichTextBox", "MaterialDesignRichTextBox")]
+    [Arguments("ScrollBar", "MaterialDesignScrollBar")]
+    [Arguments("ScrollViewer", "MaterialDesignScrollViewer")]
+    [Arguments("Slider", "MaterialDesignSlider")]
+    [Arguments("TabControl", "MaterialDesignTabControl")]
+    [Arguments("TextBox", "MaterialDesignTextBox")]
+    [Arguments("ToggleButton", "MaterialDesignSwitchToggleButton")]
+    [Arguments("ToolBar", "MaterialDesignToolBar")]
+    [Arguments("TreeView", "MaterialDesignTreeView")]
     public async Task LoadStyleInIsolation_CanBeLoaded(string controlName, string styleName)
     {
         await using var recorder = new TestRecorder(App);
@@ -57,7 +52,7 @@ public class AllStyles : TestBase
         await App.Initialize(applicationResourceXaml,
             Path.GetFullPath("MaterialDesignColors.dll"),
             Path.GetFullPath("MaterialDesignThemes.Wpf.dll"),
-            Assembly.GetExecutingAssembly().Location);
+            System.Reflection.Assembly.GetExecutingAssembly().Location);
 
         IWindow window = await App.CreateWindow($$"""
              <Window
@@ -82,7 +77,7 @@ public class AllStyles : TestBase
             </Window>
             """);
 
-        Assert.True(await window.GetIsVisible());
+        await Assert.That(await window.GetIsVisible()).IsTrue();
 
         recorder.Success();
     }

@@ -6,6 +6,9 @@
     <UseWPF>true</UseWPF>
     <NoWarn>$(NoWarn);CA1707</NoWarn>
     <IncludePackageReferencesDuringMarkupCompilation>true</IncludePackageReferencesDuringMarkupCompilation>
+    <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
+    <OutputType>Exe</OutputType>
+    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
     <!--<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>-->
   </PropertyGroup>
 
@@ -19,18 +22,13 @@
     <PackageReference Include="System.Net.Http" />
     <PackageReference Include="System.Text.RegularExpressions" />
     <PackageReference Include="XAMLTest" />
-    <PackageReference Include="xunit" />
-    <PackageReference Include="xunit.runner.visualstudio">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="TUnit" />
   </ItemGroup>
 
   <ItemGroup>
     <Using Include="MaterialDesignThemes.Wpf" />
+    <Using Include="MaterialDesignThemes.Tests.TUnit"/>
     <Using Include="XamlTest" />
-    <Using Include="Xunit" />
-    <Using Include="Xunit.Abstractions" />
   </ItemGroup>
 
   <ItemGroup>

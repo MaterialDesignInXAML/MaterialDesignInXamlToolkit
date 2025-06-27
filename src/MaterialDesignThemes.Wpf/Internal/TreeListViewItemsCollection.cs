@@ -6,8 +6,8 @@ namespace MaterialDesignThemes.Wpf.Internal;
 
 public class TreeListViewItemsCollection : ObservableCollection<object?>
 {
-    private List<int> ItemLevels { get; } = new();
-    private List<bool> ItemIsExpanded { get; } = new();
+    private List<int> ItemLevels { get; } = [];
+    private List<bool> ItemIsExpanded { get; } = [];
 
     public TreeListViewItemsCollection(object? wrappedSource)
     {

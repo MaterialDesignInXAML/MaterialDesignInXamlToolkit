@@ -1,18 +1,14 @@
 ﻿using System.ComponentModel;
 
+
 namespace MaterialDesignThemes.UITests.WPF.ToolBars;
 
 public class ToolBarTests : TestBase
 {
-    public ToolBarTests(ITestOutputHelper output)
-        : base(output)
-    {
-    }
-
     [Description("Issue 2991")]
-    [Theory]
-    [InlineData(Orientation.Horizontal, Dock.Right)]
-    [InlineData(Orientation.Vertical, Dock.Bottom)]
+    [Test]
+    [Arguments(Orientation.Horizontal, Dock.Right)]
+    [Arguments(Orientation.Vertical, Dock.Bottom)]
     public async Task ToolBar_OverflowGrid_RespectsOrientation(Orientation orientation, Dock expectedOverflowGridDock)
     {
         await using var recorder = new TestRecorder(App);
@@ -30,7 +26,7 @@ public class ToolBarTests : TestBase
         Dock dock = await overflowGrid.GetProperty<Dock>(DockPanel.DockProperty);
 
         //Assert
-        Assert.Equal(expectedOverflowGridDock, dock);
+        await Assert.That(dock).IsEqualTo(expectedOverflowGridDock);
 
         recorder.Success();
     }

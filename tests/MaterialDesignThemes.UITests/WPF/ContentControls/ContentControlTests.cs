@@ -1,16 +1,11 @@
 ﻿using System.ComponentModel;
 
+
 namespace MaterialDesignThemes.UITests.WPF.ContentControls;
 
 public class ContentControlTests : TestBase
 {
-    public ContentControlTests(ITestOutputHelper output)
-           : base(output)
-    {
-    }
-
-
-    [Fact]
+    [Test]
     [Description("Issue 2510")]
     public async Task ClearButton_InsideOfControlTemplate_CanStillClearContent()
     {
@@ -34,10 +29,10 @@ public class ContentControlTests : TestBase
         await clearButton.LeftClick();
 
         //Assert
-        Assert.Equal("Some Text", initial);
+        await Assert.That(initial).IsEqualTo("Some Text");
         await Wait.For(async () =>
         {
-            Assert.True(string.IsNullOrEmpty(await textBox.GetText()));
+            await Assert.That(await textBox.GetText()).IsNullOrEmpty();
         });
 
         recorder.Success();

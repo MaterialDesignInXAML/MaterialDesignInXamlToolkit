@@ -1,27 +1,15 @@
-﻿using System.Reflection;
-using Xunit.Sdk;
+﻿namespace MaterialDesignThemes.Wpf.Tests;
 
-namespace MaterialDesignThemes.Wpf.Tests;
-
-public class EnumDataAttribute : DataAttribute
+public class EnumDataAttribute<TEnum> : MatrixAttribute<TEnum>
+    where TEnum : struct, Enum
 {
-    public override IEnumerable<object[]> GetData(MethodInfo testMethod)
+    public EnumDataAttribute()
+#if NET6_0_OR_GREATER
+        : base(Enum.GetValues<TEnum>())
+#else
+        : base([.. Enum.GetValues(typeof(TEnum)).OfType<TEnum>()])
+#endif
     {
-        ParameterInfo[] parameters = testMethod.GetParameters();
-        if (parameters.Length != 1 ||
-            !parameters[0].ParameterType.IsEnum)
-        {
-            throw new Exception($"{testMethod.DeclaringType?.FullName}.{testMethod.Name} must have a single enum parameter");
-        }
 
-        return GetDataImplementation(parameters[0].ParameterType);
-
-        static IEnumerable<object[]> GetDataImplementation(Type parameterType)
-        {
-            foreach (object enumValue in Enum.GetValues(parameterType).OfType<object>())
-            {
-                yield return new[] { enumValue };
-            }
-        }
     }
 }

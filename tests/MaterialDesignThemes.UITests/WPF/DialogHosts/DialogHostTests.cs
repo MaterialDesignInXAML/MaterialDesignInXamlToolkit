@@ -4,11 +4,17 @@ using MaterialDesignThemes.UITests.Samples.DialogHost;
 
 using static MaterialDesignThemes.UITests.MaterialDesignSpec;
 
+
 namespace MaterialDesignThemes.UITests.WPF.DialogHosts;
 
-public class DialogHostTests(ITestOutputHelper output) : TestBase(output)
+public class DialogHostTests : TestBase
 {
-    [Fact]
+    public DialogHostTests()
+    {
+        AttachedDebuggerToRemoteProcess = false;
+    }
+
+    [Test]
     public async Task OnOpenDialog_OverlayCoversContent()
     {
         await using var recorder = new TestRecorder(App);
@@ -31,7 +37,7 @@ public class DialogHostTests(ITestOutputHelper output) : TestBase(output)
 
         await testOverlayButton.LeftClick();
         await Wait.For(async () => await resultTextBlock.GetText() == "Clicks: 1");
-        await Task.Delay(200);
+        await Task.Delay(200, TestContext.Current!.CancellationToken);
         await closeDialogButton.LeftClick();
 
         var retry = new Retry(5, TimeSpan.FromSeconds(5));
@@ -45,12 +51,15 @@ public class DialogHostTests(ITestOutputHelper output) : TestBase(output)
             await Wait.For(async () => await overlay.GetVisibility() != Visibility.Visible, retry);
         }
         await testOverlayButton.LeftClick();
-        await Wait.For(async () => Assert.Equal("Clicks: 2", await resultTextBlock.GetText()), retry);
+        await Wait.For(async () =>
+        {
+            await Assert.That((await resultTextBlock.GetText())!).IsEqualTo("Clicks: 2");
+        }, retry);
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 2282")]
     public async Task ClosingDialogWithIsOpenProperty_ShouldRaiseDialogClosingEvent()
     {
@@ -63,14 +72,17 @@ public class DialogHostTests(ITestOutputHelper output) : TestBase(output)
 
         await showButton.LeftClick();
         await Wait.For(async () => await closeButton.GetIsVisible());
-        await Task.Delay(300);
+        await Task.Delay(300, TestContext.Current!.CancellationToken);
         await closeButton.LeftClick();
 
-        await Wait.For(async () => Assert.Equal("1", await resultTextBlock.GetText()));
+        await Wait.For(async () =>
+        {
+            await Assert.That(await resultTextBlock.GetText()).IsEqualTo("1");
+        });
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 2398")]
     public async Task FontSettingsShouldInheritIntoDialog()
     {
@@ -102,23 +114,23 @@ public class DialogHostTests(ITestOutputHelper output) : TestBase(output)
 
         await showButton1.LeftClick();
         await showButton2.LeftClick();
-        await Task.Delay(300);
+        await Task.Delay(300, TestContext.Current!.CancellationToken);
 
         var text1 = await grid.GetElement<TextBlock>("TextBlock1");
         var text2 = await grid.GetElement<TextBlock>("TextBlock2");
 
-        Assert.Equal(42, await text1.GetFontSize());
-        Assert.True((await text1.GetFontFamily())?.FamilyNames.Values.Contains("Times New Roman"));
-        Assert.Equal(FontWeights.ExtraBold, await text1.GetFontWeight());
+        await Assert.That(await text1.GetFontSize()).IsEqualTo(42);
+        await Assert.That((await text1.GetFontFamily())?.FamilyNames.Values.Contains("Times New Roman")).IsTrue();
+        await Assert.That(await text1.GetFontWeight()).IsEqualTo(FontWeights.ExtraBold);
 
-        Assert.Equal(42, await text2.GetFontSize());
-        Assert.True((await text2.GetFontFamily())?.FamilyNames.Values.Contains("Times New Roman"));
-        Assert.Equal(FontWeights.ExtraBold, await text2.GetFontWeight());
+        await Assert.That(await text2.GetFontSize()).IsEqualTo(42);
+        await Assert.That((await text2.GetFontFamily())?.FamilyNames.Values.Contains("Times New Roman")).IsTrue();
+        await Assert.That(await text2.GetFontWeight()).IsEqualTo(FontWeights.ExtraBold);
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("PR 2236")]
     public async Task ContentBackground_SetsDialogBackground()
     {
@@ -157,17 +169,17 @@ public class DialogHostTests(ITestOutputHelper output) : TestBase(output)
             var card1 = await dialogHost1.GetElement<Card>("PART_PopupContentElement");
             var card2 = await dialogHost2.GetElement<Card>("PART_PopupContentElement");
 
-            Assert.Equal(Colors.Red, await card1.GetBackgroundColor());
-            Assert.Equal(Colors.Red, await card2.GetBackgroundColor());
+            await Assert.That(await card1.GetBackgroundColor()).IsEqualTo(Colors.Red);
+            await Assert.That(await card2.GetBackgroundColor()).IsEqualTo(Colors.Red);
         });
 
         recorder.Success();
     }
 
-    [Theory]
-    [InlineData(BaseTheme.Inherit)]
-    [InlineData(BaseTheme.Dark)]
-    [InlineData(BaseTheme.Light)]
+    [Test]
+    [Arguments(BaseTheme.Inherit)]
+    [Arguments(BaseTheme.Dark)]
+    [Arguments(BaseTheme.Light)]
     public async Task DialogBackgroundShouldInheritThemeBackground(BaseTheme dialogTheme)
     {
         await using var recorder = new TestRecorder(App);
@@ -208,15 +220,15 @@ public class DialogHostTests(ITestOutputHelper output) : TestBase(output)
 
         IResource paperResource1 = await card1.GetResource("MaterialDesign.Brush.Background");
         var paperBrush1 = paperResource1.GetAs<SolidColorBrush>();
-        Assert.NotNull(paperBrush1);
+        await Assert.That(paperBrush1).IsNotNull();
         paperBrush1!.Freeze();
         IResource paperResource2 = await card1.GetResource("MaterialDesign.Brush.Background");
         var paperBrush2 = paperResource2.GetAs<SolidColorBrush>();
-        Assert.NotNull(paperBrush2);
+        await Assert.That(paperBrush2).IsNotNull();
         paperBrush2!.Freeze();
 
-        Assert.Equal(paperBrush1.Color, await card1.GetBackgroundColor());
-        Assert.Equal(paperBrush2.Color, await card2.GetBackgroundColor());
+        await Assert.That(await card1.GetBackgroundColor()).IsEqualTo(paperBrush1.Color);
+        await Assert.That(await card2.GetBackgroundColor()).IsEqualTo(paperBrush2.Color);
 
         var textBlock1 = await dialogHost1.GetElement<TextBlock>("TextBlock1");
         var textBlock2 = await dialogHost2.GetElement<TextBlock>("TextBlock2");
@@ -224,8 +236,8 @@ public class DialogHostTests(ITestOutputHelper output) : TestBase(output)
         await Wait.For(async () =>
         {
             Color? foreground1 = await textBlock1.GetForegroundColor();
-            Assert.NotNull(foreground1);
-            AssertContrastRatio(
+            await Assert.That(foreground1).IsNotNull();
+            await AssertContrastRatio(
                 foreground1.Value,
                 await textBlock1.GetEffectiveBackground(),
                 MinimumContrastSmallText);
@@ -234,8 +246,8 @@ public class DialogHostTests(ITestOutputHelper output) : TestBase(output)
         await Wait.For(async () =>
         {
             Color? foreground2 = await textBlock2.GetForegroundColor();
-            Assert.NotNull(foreground2);
-            AssertContrastRatio(
+            await Assert.That(foreground2).IsNotNull();
+            await AssertContrastRatio(
                 foreground2.Value,
                 await textBlock2.GetEffectiveBackground(),
                 MinimumContrastSmallText);
@@ -244,7 +256,7 @@ public class DialogHostTests(ITestOutputHelper output) : TestBase(output)
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 2772")]
     public async Task CornerRadius_AppliedToContentCoverBorder_WhenSetOnDialogHost()
     {
@@ -269,16 +281,16 @@ public class DialogHostTests(ITestOutputHelper output) : TestBase(output)
         {
             var contentCoverBorder = await dialogHost.GetElement<Border>("ContentCoverBorder");
 
-            Assert.Equal(1, (await contentCoverBorder.GetCornerRadius()).TopLeft);
-            Assert.Equal(2, (await contentCoverBorder.GetCornerRadius()).TopRight);
-            Assert.Equal(3, (await contentCoverBorder.GetCornerRadius()).BottomRight);
-            Assert.Equal(4, (await contentCoverBorder.GetCornerRadius()).BottomLeft);
+            await Assert.That((await contentCoverBorder.GetCornerRadius()).TopLeft).IsEqualTo(1);
+            await Assert.That((await contentCoverBorder.GetCornerRadius()).TopRight).IsEqualTo(2);
+            await Assert.That((await contentCoverBorder.GetCornerRadius()).BottomRight).IsEqualTo(3);
+            await Assert.That((await contentCoverBorder.GetCornerRadius()).BottomLeft).IsEqualTo(4);
         });
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 2772")]
     public async Task CornerRadius_AppliedToContentCoverBorder_WhenSetOnEmbeddedDialogHost()
     {
@@ -302,17 +314,17 @@ public class DialogHostTests(ITestOutputHelper output) : TestBase(output)
         await Wait.For(async () =>
         {
             var contentCoverBorder = await dialogHost.GetElement<Border>("ContentCoverBorder");
-
-            Assert.Equal(1, (await contentCoverBorder.GetCornerRadius()).TopLeft);
-            Assert.Equal(2, (await contentCoverBorder.GetCornerRadius()).TopRight);
-            Assert.Equal(3, (await contentCoverBorder.GetCornerRadius()).BottomRight);
-            Assert.Equal(4, (await contentCoverBorder.GetCornerRadius()).BottomLeft);
+                
+            await Assert.That((await contentCoverBorder.GetCornerRadius()).TopLeft).IsEqualTo(1);
+            await Assert.That((await contentCoverBorder.GetCornerRadius()).TopRight).IsEqualTo(2);
+            await Assert.That((await contentCoverBorder.GetCornerRadius()).BottomRight).IsEqualTo(3);
+            await Assert.That((await contentCoverBorder.GetCornerRadius()).BottomLeft).IsEqualTo(4);
         });
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3069")]
     public async Task DialogHost_WithOpenDialog_ShowsPopupWhenLoaded()
     {
@@ -329,27 +341,27 @@ public class DialogHostTests(ITestOutputHelper output) : TestBase(output)
 
         await toggleButton.LeftClick();
 
-        await Wait.For(async () => Assert.True(await dialogHost.GetIsOpen()));
-        await Wait.For(async () => Assert.True(await closeButton.GetIsVisible()));
+        await Wait.For(async () => await Assert.That(await dialogHost.GetIsOpen()).IsTrue());
+        await Wait.For(async () => await Assert.That(await closeButton.GetIsVisible()).IsTrue());
 
         await unloadButton.LeftClick();
 
-        await Wait.For(async () => Assert.False(await closeButton.GetIsVisible()));
+        await Wait.For(async () => await Assert.That(await closeButton.GetIsVisible()).IsFalse() == false);
 
         await loadButton.LeftClick();
 
-        await Wait.For(async () => Assert.True(await closeButton.GetIsVisible()));
+        await Wait.For(async () => await Assert.That(await closeButton.GetIsVisible()).IsTrue());
 
         await Wait.For(async () =>
         {
             await closeButton.LeftClick();
-            Assert.False(await dialogHost.GetIsOpen());
+            await Assert.That(await dialogHost.GetIsOpen()).IsFalse();
         });
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3094")]
     public async Task DialogHost_ChangesSelectedTabItem_DoesNotPerformTabChangeWhenRestoringFocus()
     {
@@ -366,22 +378,22 @@ public class DialogHostTests(ITestOutputHelper output) : TestBase(output)
         // Open menu
         IVisualElement<MenuItem> menuItem1 = await rootGrid.GetElement<MenuItem>("MenuItem1");
         await menuItem1.LeftClick();
-        await Task.Delay(1000); // Wait for menu to open
+        await Task.Delay(1000, TestContext.Current!.CancellationToken); // Wait for menu to open
         IVisualElement<MenuItem> menuItem2 = await rootGrid.GetElement<MenuItem>("MenuItem2");
         await menuItem2.LeftClick();
-        await Task.Delay(1000); // Wait for dialog content to show
+        await Task.Delay(1000, TestContext.Current.CancellationToken); // Wait for dialog content to show
 
         // Click navigate button
         await navigateHomeButton.LeftClick();
-        await Task.Delay(1000); // Wait for dialog content to close
+        await Task.Delay(1000, TestContext.Current.CancellationToken); // Wait for dialog content to close
 
-        Assert.True(await tabItem1.GetIsSelected());
-        Assert.False(await tabItem2.GetIsSelected());
+        await Assert.That(await tabItem1.GetIsSelected()).IsTrue();
+        await Assert.That(await tabItem2.GetIsSelected()).IsFalse();
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3094")]
     public async Task DialogHost_ChangesSelectedRailItem_DoesNotPerformRailChangeWhenRestoringFocus()
     {
@@ -398,22 +410,22 @@ public class DialogHostTests(ITestOutputHelper output) : TestBase(output)
         // Open menu
         IVisualElement<MenuItem> menuItem1 = await rootGrid.GetElement<MenuItem>("MenuItem1");
         await menuItem1.LeftClick();
-        await Task.Delay(1000); // Wait for menu to open
+        await Task.Delay(1000, TestContext.Current!.CancellationToken); // Wait for menu to open
         IVisualElement<MenuItem> menuItem2 = await rootGrid.GetElement<MenuItem>("MenuItem2");
         await menuItem2.LeftClick();
-        await Task.Delay(1000); // Wait for dialog content to show
+        await Task.Delay(1000, TestContext.Current.CancellationToken); // Wait for dialog content to show
 
         // Click navigate button
         await navigateHomeButton.LeftClick();
-        await Task.Delay(1000); // Wait for dialog content to close
+        await Task.Delay(1000, TestContext.Current.CancellationToken); // Wait for dialog content to close
 
-        Assert.True(await railItem1.GetIsSelected());
-        Assert.False(await railItem2.GetIsSelected());
+        await Assert.That(await railItem1.GetIsSelected()).IsTrue();
+        await Assert.That(await railItem2.GetIsSelected()).IsFalse();
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3094")]
     public async Task DialogHost_ChangesSelectedTabItem_DoesNotPerformTabChangeWhenRestoreFocusIsDisabled()
     {
@@ -430,22 +442,22 @@ public class DialogHostTests(ITestOutputHelper output) : TestBase(output)
         // Open menu
         IVisualElement<MenuItem> menuItem1 = await rootGrid.GetElement<MenuItem>("MenuItem1");
         await menuItem1.LeftClick();
-        await Task.Delay(1000); // Wait for menu to open
+        await Task.Delay(1000, TestContext.Current!.CancellationToken); // Wait for menu to open
         IVisualElement<MenuItem> menuItem2 = await rootGrid.GetElement<MenuItem>("MenuItem2");
         await menuItem2.LeftClick();
-        await Task.Delay(1000); // Wait for dialog content to show
+        await Task.Delay(1000, TestContext.Current.CancellationToken); // Wait for dialog content to show
 
         // Click navigate button
         await navigateHomeButton.LeftClick();
-        await Task.Delay(1000); // Wait for dialog content to close
+        await Task.Delay(1000, TestContext.Current.CancellationToken); // Wait for dialog content to close
 
-        Assert.True(await tabItem1.GetIsSelected());
-        Assert.False(await tabItem2.GetIsSelected());
+        await Assert.That(await tabItem1.GetIsSelected()).IsTrue();
+        await Assert.That(await tabItem2.GetIsSelected()).IsFalse();
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3094")]
     public async Task DialogHost_ChangesSelectedRailItem_DoesNotPerformRailChangeWhenRestoreFocusIsDisabled()
     {
@@ -462,22 +474,22 @@ public class DialogHostTests(ITestOutputHelper output) : TestBase(output)
         // Open menu
         IVisualElement<MenuItem> menuItem1 = await rootGrid.GetElement<MenuItem>("MenuItem1");
         await menuItem1.LeftClick();
-        await Task.Delay(1000); // Wait for menu to open
+        await Task.Delay(1000, TestContext.Current!.CancellationToken); // Wait for menu to open
         IVisualElement<MenuItem> menuItem2 = await rootGrid.GetElement<MenuItem>("MenuItem2");
         await menuItem2.LeftClick();
-        await Task.Delay(1000); // Wait for dialog content to show
+        await Task.Delay(1000, TestContext.Current.CancellationToken); // Wait for dialog content to show
 
         // Click navigate button
         await navigateHomeButton.LeftClick();
-        await Task.Delay(1000); // Wait for dialog content to close
+        await Task.Delay(1000, TestContext.Current.CancellationToken); // Wait for dialog content to close
 
-        Assert.True(await railItem1.GetIsSelected());
-        Assert.False(await railItem2.GetIsSelected());
+        await Assert.That(await railItem1.GetIsSelected()).IsTrue();
+        await Assert.That(await railItem2.GetIsSelected()).IsFalse();
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3450")]
     public async Task DialogHost_WithComboBox_CanSelectItem()
     {
@@ -486,7 +498,7 @@ public class DialogHostTests(ITestOutputHelper output) : TestBase(output)
         IVisualElement dialogHost = await LoadUserControl<WithComboBox>();
 
         var comboBox = await dialogHost.GetElement<ComboBox>("TargetedPlatformComboBox");
-        await Task.Delay(500);
+        await Task.Delay(500, TestContext.Current!.CancellationToken);
         await comboBox.LeftClick();
         
         var item = await Wait.For(() => comboBox.GetElement<ComboBoxItem>("TargetItem"));
@@ -496,7 +508,7 @@ public class DialogHostTests(ITestOutputHelper output) : TestBase(output)
         await Wait.For(async () =>
         {
             var index = await comboBox.GetSelectedIndex();
-            Assert.Equal(1, index);
+            await Assert.That(index).IsEqualTo(1);
         });
 
 

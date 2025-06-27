@@ -1,16 +1,14 @@
-using System;
 using System.ComponentModel;
-using System.Windows.Controls;
 using System.Windows.Data;
-using Google.Protobuf.WellKnownTypes;
 using MaterialDesignThemes.UITests.Samples.UpDownControls;
+
 
 namespace MaterialDesignThemes.UITests.WPF.UpDownControls;
 
 
-public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
+public class NumericUpDownTests : TestBase
 {
-    [Fact]
+    [Test]
     public async Task NumericButtons_IncreaseAndDecreaseValue()
     {
         await using var recorder = new TestRecorder(App);
@@ -22,27 +20,27 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
         var minusButton = await numericUpDown.GetElement<RepeatButton>("PART_DecreaseButton");
         var textBox = await numericUpDown.GetElement<TextBox>("PART_TextBox");
 
-        Assert.Equal("1", await textBox.GetText());
-        Assert.Equal(1, await numericUpDown.GetValue());
+        await Assert.That(await textBox.GetText()).IsEqualTo("1");
+        await Assert.That(await numericUpDown.GetValue()).IsEqualTo(1);
 
         await plusButton.LeftClick();
         await Wait.For(async () =>
         {
-            Assert.Equal("2", await textBox.GetText());
-            Assert.Equal(2, await numericUpDown.GetValue());
+            await Assert.That(await textBox.GetText()).IsEqualTo("2");
+            await Assert.That(await numericUpDown.GetValue()).IsEqualTo(2);
         });
 
         await minusButton.LeftClick();
         await Wait.For(async () =>
         {
-            Assert.Equal("1", await textBox.GetText());
-            Assert.Equal(1, await numericUpDown.GetValue());
+            await Assert.That(await textBox.GetText()).IsEqualTo("1");
+            await Assert.That(await numericUpDown.GetValue()).IsEqualTo(1);
         });
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task NumericButtons_WithMaximum_DisablesPlusButton()
     {
         await using var recorder = new TestRecorder(App);
@@ -57,25 +55,25 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
         await plusButton.LeftClick();
         await Wait.For(async () =>
         {
-            Assert.Equal("2", await textBox.GetText());
-            Assert.Equal(2, await numericUpDown.GetValue());
+            await Assert.That(await textBox.GetText()).IsEqualTo("2");
+            await Assert.That(await numericUpDown.GetValue()).IsEqualTo(2);
         });
 
-        Assert.False(await plusButton.GetIsEnabled());
+        await Assert.That(await plusButton.GetIsEnabled()).IsFalse();
 
         await minusButton.LeftClick();
         await Wait.For(async () =>
         {
-            Assert.Equal("1", await textBox.GetText());
-            Assert.Equal(1, await numericUpDown.GetValue());
+            await Assert.That(await textBox.GetText()).IsEqualTo("1");
+            await Assert.That(await numericUpDown.GetValue()).IsEqualTo(1);
         });
 
-        Assert.True(await plusButton.GetIsEnabled());
+        await Assert.That(await plusButton.GetIsEnabled()).IsTrue();
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task NumericButtons_WithMinimum_DisablesMinusButton()
     {
         await using var recorder = new TestRecorder(App);
@@ -90,25 +88,25 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
         await minusButton.LeftClick();
         await Wait.For(async () =>
         {
-            Assert.Equal("1", await textBox.GetText());
-            Assert.Equal(1, await numericUpDown.GetValue());
+            await Assert.That(await textBox.GetText()).IsEqualTo("1");
+            await Assert.That(await numericUpDown.GetValue()).IsEqualTo(1);
         });
 
-        Assert.False(await minusButton.GetIsEnabled());
+        await Assert.That(await minusButton.GetIsEnabled()).IsFalse();
 
         await plusButton.LeftClick();
         await Wait.For(async () =>
         {
-            Assert.Equal("2", await textBox.GetText());
-            Assert.Equal(2, await numericUpDown.GetValue());
+            await Assert.That(await textBox.GetText()).IsEqualTo("2");
+            await Assert.That(await numericUpDown.GetValue()).IsEqualTo(2);
         });
 
-        Assert.True(await minusButton.GetIsEnabled());
+        await Assert.That(await minusButton.GetIsEnabled()).IsTrue();
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     public async Task MaxAndMinAssignments_CoerceValueToBeInRange()
     {
         await using var recorder = new TestRecorder(App);
@@ -118,21 +116,21 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
         """);
 
         await numericUpDown.SetMaximum(1);
-        Assert.Equal(1, await numericUpDown.GetValue());
+        await Assert.That(await numericUpDown.GetValue()).IsEqualTo(1);
 
         await numericUpDown.SetMinimum(3);
-        Assert.Equal(3, await numericUpDown.GetValue());
-        Assert.Equal(3, await numericUpDown.GetMaximum());
+        await Assert.That(await numericUpDown.GetValue()).IsEqualTo(3);
+        await Assert.That(await numericUpDown.GetMaximum()).IsEqualTo(3);
 
         await numericUpDown.SetMaximum(2);
-        Assert.Equal(3, await numericUpDown.GetValue());
-        Assert.Equal(3, await numericUpDown.GetMinimum());
-        Assert.Equal(3, await numericUpDown.GetMaximum());
+        await Assert.That(await numericUpDown.GetValue()).IsEqualTo(3);
+        await Assert.That(await numericUpDown.GetMinimum()).IsEqualTo(3);
+        await Assert.That(await numericUpDown.GetMaximum()).IsEqualTo(3);
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3654")]
     public async Task InternalTextBoxIsFocused_WhenGettingKeyboardFocus()
     {
@@ -151,18 +149,19 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
 
         // Act
         await textBox.MoveKeyboardFocus();
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current!.CancellationToken);
         await textBox.SendInput(new KeyboardInput(Key.Tab));
-        await Task.Delay(50);
+        await Task.Delay(50, TestContext.Current.CancellationToken);
 
         // Assert
-        Assert.False(await textBox.GetIsFocused());
-        Assert.True(await part_textBox.GetIsFocused());
+        await Assert.That(await textBox.GetIsFocused()).IsFalse();
+        await Assert.That(await part_textBox.GetIsFocused()).IsTrue();
 
         recorder.Success();
     }
 
-    [Fact(Skip = "Needs XAMLTest 1.2.3 or later")]
+    [Test]
+    [Skip("Needs XAMLTest 1.2.3 or later")]
     public async Task NumericUpDown_ValueSetGreaterThanMaximum_CoercesToMaximum()
     {
         await using var recorder = new TestRecorder(App);
@@ -185,17 +184,17 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
 
         //Assert
         //The value and bound property in the VM should be set to the maximum
-        Assert.Equal(10, await numericUpDown.GetValue());
+        await Assert.That(await numericUpDown.GetValue()).IsEqualTo(10);
         var viewModel = await userControl.GetProperty<BoundNumericUpDownViewModel>(nameof(BoundNumericUpDown.ViewModel));
-        Assert.Equal(10, viewModel?.Value);
+        await Assert.That(viewModel?.Value).IsEqualTo(10);
 
         recorder.Success();
     }
 
-    [Theory]
-    [InlineData(1, false, true)]
-    [InlineData(5, true, true)]
-    [InlineData(10, true, false)]
+    [Test]
+    [Arguments(1, false, true)]
+    [Arguments(5, true, true)]
+    [Arguments(10, true, false)]
     [Description("Issue 3796")]
     public async Task NumericUpDown_WhenValueEqualsMinimum_DisableButtons(int value,
         bool decreaseEnabled, bool increaseEnabled)
@@ -214,13 +213,13 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
         bool decreaseButtonEnabled = await decreaseButton.GetIsEnabled();
 
         //Assert
-        Assert.Equal(increaseEnabled, increaseButtonEnabled);
-        Assert.Equal(decreaseEnabled, decreaseButtonEnabled);
+        await Assert.That(increaseButtonEnabled).IsEqualTo(increaseEnabled);
+        await Assert.That(decreaseButtonEnabled).IsEqualTo(decreaseEnabled);
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3827")]
     public async Task NumericUpDown_WhenBindingUpdateTriggerIsPropertyChanged_ItUpdatesBeforeLoosingFocus()
     {
@@ -239,12 +238,12 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
         object? tag = await numericUpDown.GetTag();
 
         //Assert
-        Assert.Equal("4", tag?.ToString());
+        await Assert.That(tag?.ToString()).IsEqualTo("4");
 
         recorder.Success();
     }
 
-    [Fact]
+    [Test]
     [Description("Issue 3827")]
     public async Task NumericUpDown_WhenBindingUpdateTriggerIsLostFocus_ItDoesNotUpdateUntilItLoosesFocus()
     {
@@ -284,8 +283,8 @@ public class NumericUpDownTests(ITestOutputHelper output) : TestBase(output)
 
 
         //Assert
-        Assert.Equal("2", valueBeforeLostFocus.ToString());
-        Assert.Equal("4", valueAfterLostFocus.ToString());
+        await Assert.That(valueBeforeLostFocus.ToString()).IsEqualTo("2");
+        await Assert.That(valueAfterLostFocus.ToString()).IsEqualTo("4");
 
         recorder.Success();
     }

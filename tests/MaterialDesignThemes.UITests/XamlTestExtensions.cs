@@ -32,7 +32,7 @@ xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"">
         await app.Initialize(applicationResourceXaml,
             Path.GetFullPath("MaterialDesignColors.dll"),
             Path.GetFullPath("MaterialDesignThemes.Wpf.dll"),
-            Assembly.GetExecutingAssembly().Location);
+            System.Reflection.Assembly.GetExecutingAssembly().Location);
     }
 
     public static async Task<IVisualElement<T>> CreateWindowWith<T>(this IApp app, string xaml, params (string namespacePrefix, Type type)[] additionalNamespaceDeclarations)
