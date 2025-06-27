@@ -1,25 +1,60 @@
 ﻿using System.ComponentModel;
-using System.Threading;
-using System.Windows.Threading;
 
 namespace MaterialDesignThemes.Wpf.Tests;
+
+public sealed class ControlHost<T>(Action<T> cleanup) : IDisposable
+        where T : Control, new()
+{
+    private bool disposedValue;
+
+    public T Content { get; } = new T();
+    private Action<T> Cleanup { get; } = cleanup;
+
+    private void Dispose(bool disposing)
+    {
+        if (!disposedValue)
+        {
+            if (disposing)
+            {
+                // Dispose managed state (managed objects)
+                Cleanup?.Invoke(Content);
+            }
+            disposedValue = true;
+        }
+    }
+
+    public void Dispose()
+    {
+        // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+        Dispose(disposing: true);
+        GC.SuppressFinalize(this);
+    }
+
+    public static implicit operator T(ControlHost<T> host)
+    {
+        return host.Content;
+    }
+}
 
 [NotInParallel(nameof(DialogHost))]
 [TestExecutor<STAThreadExecutor>]
 public class DialogHostTests
 {
-    private static DialogHost CreateElement()
+    private static ControlHost<DialogHost> CreateElement()
     {
-        DialogHost dialogHost = new();
+        ControlHost<DialogHost> host = new(x => x.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent)));
+        DialogHost dialogHost = host;
         dialogHost.ApplyDefaultStyle();
         dialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
-        return dialogHost;
+        return host;
     }
 
     [Test]
     public async Task CanOpenAndCloseDialogWithIsOpen()
     {
-        var dialogHost = CreateElement();
+        using var host = CreateElement();
+        DialogHost dialogHost = host.Content;
+
         dialogHost.IsOpen = true;
         DialogSession? session = dialogHost.CurrentSession;
         await Assert.That(session?.IsEnded).IsFalse();
@@ -33,7 +68,8 @@ public class DialogHostTests
     [Test]
     public async Task CanOpenAndCloseDialogWithShowMethod()
     {
-        var dialogHost = CreateElement();
+        using var host = CreateElement();
+        DialogHost dialogHost = host.Content;
         var id = Guid.NewGuid();
         dialogHost.Identifier = id;
 
@@ -46,7 +82,8 @@ public class DialogHostTests
     [Test]
     public async Task CanOpenDialogWithShowMethodAndCloseWithIsOpen()
     {
-        var dialogHost = CreateElement();
+        using var host = CreateElement();
+        DialogHost dialogHost = host.Content;
         var id = Guid.NewGuid();
         dialogHost.Identifier = id;
 
@@ -59,7 +96,8 @@ public class DialogHostTests
     [Test]
     public async Task CanCloseDialogWithRoutedEvent()
     {
-        var dialogHost = CreateElement();
+        using var host = CreateElement();
+        DialogHost dialogHost = host.Content;
         Guid closeParameter = Guid.NewGuid();
         Task<object?> showTask = dialogHost.ShowDialog("Content");
         DialogSession? session = dialogHost.CurrentSession;
@@ -76,7 +114,8 @@ public class DialogHostTests
     [Test]
     public async Task DialogHostExposesSessionAsProperty()
     {
-        var dialogHost = CreateElement();
+        using var host = CreateElement();
+        DialogHost dialogHost = host.Content;
         var id = Guid.NewGuid();
         dialogHost.Identifier = id;
 
@@ -91,7 +130,8 @@ public class DialogHostTests
     [Test]
     public async Task CannotShowDialogWhileItIsAlreadyOpen()
     {
-        var dialogHost = CreateElement();
+        using var host = CreateElement();
+        DialogHost dialogHost = host.Content;
         var id = Guid.NewGuid();
         dialogHost.Identifier = id;
 
@@ -107,7 +147,8 @@ public class DialogHostTests
     [Test]
     public async Task WhenNoDialogsAreOpenItThrows()
     {
-        var dialogHost = CreateElement();
+        using var host = CreateElement();
+        DialogHost dialogHost = host.Content;
         var id = Guid.NewGuid();
         dialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
 
@@ -119,7 +160,8 @@ public class DialogHostTests
     [Test]
     public async Task WhenNoDialogsMatchIdentifierItThrows()
     {
-        var _ = CreateElement();
+        using var host = CreateElement();
+        DialogHost dialogHost = host.Content;
         var id = Guid.NewGuid();
 
         var ex = await Assert.ThrowsAsync<InvalidOperationException>(() => DialogHost.Show("Content", id));
@@ -130,7 +172,8 @@ public class DialogHostTests
     [Test]
     public async Task WhenMultipleDialogHostsHaveTheSameIdentifierItThrows()
     {
-        var dialogHost = CreateElement();
+        using var host = CreateElement();
+        DialogHost dialogHost = host.Content;
         var id = Guid.NewGuid();
         dialogHost.Identifier = id;
         var otherDialogHost = new DialogHost { Identifier = id };
@@ -147,7 +190,8 @@ public class DialogHostTests
     [Test]
     public async Task WhenNoIdentifierIsSpecifiedItUsesSingleDialogHost()
     {
-        var dialogHost = CreateElement();
+        using var host = CreateElement();
+        DialogHost dialogHost = host.Content;
         bool isOpen = false;
         await DialogHost.Show("Content", new DialogOpenedEventHandler(((sender, args) =>
         {
@@ -161,7 +205,8 @@ public class DialogHostTests
     [Test]
     public async Task WhenContentIsNullItThrows()
     {
-        CreateElement(); // ensure at least one DialogHost exists
+        using var host = CreateElement(); // ensure at least one DialogHost exists
+        DialogHost dialogHost = host.Content;
         var ex = await Assert.ThrowsAsync<ArgumentNullException>(() => DialogHost.Show(null!));
 
         await Assert.That(ex?.ParamName).IsEqualTo("content");
@@ -171,7 +216,8 @@ public class DialogHostTests
     [Description("Issue 1212")]
     public async Task WhenContentIsUpdatedClosingEventHandlerIsInvoked()
     {
-        var dialogHost = CreateElement();
+        using var host = CreateElement();
+        DialogHost dialogHost = host.Content;
         int closeInvokeCount = 0;
         void ClosingHandler(object s, DialogClosingEventArgs e)
         {
@@ -194,7 +240,8 @@ public class DialogHostTests
     [Test]
     public async Task WhenCancellingClosingEventClosedEventHandlerIsNotInvoked()
     {
-        var dialogHost = CreateElement();
+        using var host = CreateElement();
+        DialogHost dialogHost = host.Content;
         int closingInvokeCount = 0;
         void ClosingHandler(object s, DialogClosingEventArgs e)
         {
@@ -224,7 +271,8 @@ public class DialogHostTests
     [Description("Issue 1328")]
     public async Task WhenDoubleClickAwayDialogCloses()
     {
-        var dialogHost = CreateElement();
+        using var host = CreateElement();
+        DialogHost dialogHost = host.Content;
         dialogHost.CloseOnClickAway = true;
         Grid contentCover = dialogHost.FindVisualChild<Grid>(DialogHost.ContentCoverGridName);
 
@@ -252,7 +300,8 @@ public class DialogHostTests
     [Description("Issue 1618")]
     public async Task WhenDialogHostIsUnloadedIsOpenRemainsTrue()
     {
-        var dialogHost = CreateElement();
+        using var host = CreateElement();
+        DialogHost dialogHost = host.Content;
         dialogHost.IsOpen = true;
         dialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
 
@@ -263,7 +312,8 @@ public class DialogHostTests
     [Description("Issue 1750")]
     public async Task WhenSettingIsOpenToFalseItReturnsClosingParameterToShow()
     {
-        var dialogHost = CreateElement();
+        using var host = CreateElement();
+        DialogHost dialogHost = host.Content;
         Guid closeParameter = Guid.NewGuid();
 
         Task<object?> showTask = dialogHost.ShowDialog("Content");
@@ -278,7 +328,9 @@ public class DialogHostTests
     [Description("Issue 1750")]
     public async Task WhenClosingDialogReturnValueCanBeSpecifiedInClosingEventHandler()
     {
-        var dialogHost = CreateElement();
+        using var host = CreateElement();
+        DialogHost dialogHost = host.Content;
+
         Guid closeParameter = Guid.NewGuid();
 
         Task<object?> showTask = dialogHost.ShowDialog("Content", (object sender, DialogClosingEventArgs args) =>
@@ -294,7 +346,8 @@ public class DialogHostTests
     [Test]
     public async Task WhenClosingDialogReturnValueCanBeSpecifiedInClosedEventHandler()
     {
-        var dialogHost = CreateElement();
+        using var host = CreateElement();
+        DialogHost dialogHost = host.Content;
         Guid closeParameter = Guid.NewGuid();
 
         Task<object?> showTask = dialogHost.ShowDialog("Content", (sender, args) => { }, (sender, args) => { }, (object sender, DialogClosedEventArgs args) =>
@@ -311,7 +364,8 @@ public class DialogHostTests
     [Description("Pull Request 2029")]
     public async Task WhenClosingDialogItThrowsWhenNoInstancesLoaded()
     {
-        var dialogHost = CreateElement();
+        using var host = CreateElement();
+        DialogHost dialogHost = host.Content;
         dialogHost.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
 
         var ex = Assert.Throws<InvalidOperationException>(() => DialogHost.Close(null!));
@@ -322,7 +376,8 @@ public class DialogHostTests
     [Description("Pull Request 2029")]
     public async Task WhenClosingDialogWithInvalidIdentifierItThrowsWhenNoMatchingInstances()
     {
-        CreateElement(); // ensure at least one DialogHost exists
+        using var host = CreateElement(); // ensure at least one DialogHost exists
+        DialogHost dialogHost = host.Content;
         object id = Guid.NewGuid();
         var ex = Assert.Throws<InvalidOperationException>(() => DialogHost.Close(id));
         await Assert.That(ex.Message).IsEqualTo($"No loaded DialogHost have an Identifier property matching dialogIdentifier ('{id}') argument.");
@@ -332,7 +387,9 @@ public class DialogHostTests
     [Description("Pull Request 2029")]
     public async Task WhenClosingDialogWithMultipleDialogHostsItThrowsTooManyMatchingInstances()
     {
-        var dialogHost = CreateElement();
+        using var host = CreateElement();
+        DialogHost dialogHost = host.Content;
+
         var secondInstance = new DialogHost();
         try
         {
@@ -351,7 +408,7 @@ public class DialogHostTests
     [Description("Pull Request 2029")]
     public async Task WhenClosingDialogThatIsNotOpenItThrowsDialogNotOpen()
     {
-        CreateElement(); // ensure at least one DialogHost exists
+        using var host = CreateElement(); // ensure at least one DialogHost exists
         var ex = Assert.Throws<InvalidOperationException>(() => DialogHost.Close(null!));
         await Assert.That(ex.Message).IsEqualTo("DialogHost is not open.");
     }
@@ -360,7 +417,9 @@ public class DialogHostTests
     [Description("Pull Request 2029")]
     public async Task WhenClosingDialogWithParameterItPassesParameterToHandlers()
     {
-        var dialogHost = CreateElement();
+        using var host = CreateElement();
+        DialogHost dialogHost = host.Content;
+
         object parameter = Guid.NewGuid();
         object? closingParameter = null;
         object? closedParameter = null;
@@ -387,7 +446,9 @@ public class DialogHostTests
     [Test]
     public async Task WhenOpenDialogsAreOpenIsExist()
     {
-        var dialogHost = CreateElement();
+        using var host = CreateElement();
+        DialogHost dialogHost = host.Content;
+
         object id = Guid.NewGuid();
         dialogHost.Identifier = id;
         bool isOpen = false;
@@ -404,9 +465,10 @@ public class DialogHostTests
     [Description("Issue 2262")]
     public async Task WhenOnlySingleDialogHostIdentifierIsNullItShowsDialog()
     {
-        var _ = CreateElement();
+        using var _ = CreateElement();
 
-        var dialogHost2 = CreateElement();
+        using var host = CreateElement();
+        DialogHost dialogHost2 = host.Content;
         dialogHost2.Identifier = Guid.NewGuid();
 
         Task showTask = DialogHost.Show("Content");
@@ -416,56 +478,56 @@ public class DialogHostTests
         await showTask;
     }
 
-    [Test]
-    [Skip("This has not been working since moving to TUnit. There is a deadlock")]
-    public async Task GetDialogSession_ShouldAllowAccessFromMultipleUIThreads()
-    {
-        Dispatcher? otherUiThreadDispatcher = null;
-        try
-        {
-            // Arrange
-            DialogHost? dialogHostOnOtherUiThread = null;
-            Guid dialogHostIdentifier = Guid.NewGuid();
-            Guid dialogHostOnOtherUiThreadIdentifier = Guid.NewGuid();
-            ManualResetEventSlim sync1 = new();
+    //[Test]
+    //[Skip("This has not been working since moving to TUnit. There is a deadlock")]
+    //public async Task GetDialogSession_ShouldAllowAccessFromMultipleUIThreads()
+    //{
+    //    Dispatcher? otherUiThreadDispatcher = null;
+    //    try
+    //    {
+    //        // Arrange
+    //        DialogHost? dialogHostOnOtherUiThread = null;
+    //        Guid dialogHostIdentifier = Guid.NewGuid();
+    //        Guid dialogHostOnOtherUiThreadIdentifier = Guid.NewGuid();
+    //        ManualResetEventSlim sync1 = new();
 
-            // Load dialogHost on current UI thread
-            DialogHost dialogHost = CreateElement();
-            dialogHost.Identifier = dialogHostIdentifier;
+    //        // Load dialogHost on current UI thread
+    //        DialogHost dialogHost = CreateElement();
+    //        dialogHost.Identifier = dialogHostIdentifier;
 
-            // Load dialogHostOnOtherUiThread on different UI thread
-            TaskCompletionSource<object?> tcs = new();
-            var thread = new Thread(() =>
-            {
-                try
-                {
-                    dialogHostOnOtherUiThread = CreateElement();
-                    dialogHostOnOtherUiThread.Identifier = dialogHostOnOtherUiThreadIdentifier;
-                    otherUiThreadDispatcher = Dispatcher.CurrentDispatcher;
-                    sync1.Set();
-                    tcs.SetResult(null);
-                    Dispatcher.Run();
-                }
-                catch (Exception ex)
-                {
-                    tcs.SetException(ex);
-                }
+    //        // Load dialogHostOnOtherUiThread on different UI thread
+    //        TaskCompletionSource<object?> tcs = new();
+    //        var thread = new Thread(() =>
+    //        {
+    //            try
+    //            {
+    //                dialogHostOnOtherUiThread = CreateElement();
+    //                dialogHostOnOtherUiThread.Identifier = dialogHostOnOtherUiThreadIdentifier;
+    //                otherUiThreadDispatcher = Dispatcher.CurrentDispatcher;
+    //                sync1.Set();
+    //                tcs.SetResult(null);
+    //                Dispatcher.Run();
+    //            }
+    //            catch (Exception ex)
+    //            {
+    //                tcs.SetException(ex);
+    //            }
 
-            });
-            thread.SetApartmentState(ApartmentState.STA);
-            thread.Start();
-            sync1.Wait();
+    //        });
+    //        thread.SetApartmentState(ApartmentState.STA);
+    //        thread.Start();
+    //        sync1.Wait();
 
-            await tcs.Task;
-            // Act & Assert
+    //        await tcs.Task;
+    //        // Act & Assert
 
-            await Assert.That(DialogHost.GetDialogSession(dialogHostIdentifier)).IsNull();
-            await Assert.That(DialogHost.GetDialogSession(dialogHostOnOtherUiThreadIdentifier)).IsNull();
-        }
-        finally
-        {
-            // Cleanup 
-            otherUiThreadDispatcher?.InvokeShutdown();
-        }
-    }
+    //        await Assert.That(DialogHost.GetDialogSession(dialogHostIdentifier)).IsNull();
+    //        await Assert.That(DialogHost.GetDialogSession(dialogHostOnOtherUiThreadIdentifier)).IsNull();
+    //    }
+    //    finally
+    //    {
+    //        // Cleanup 
+    //        otherUiThreadDispatcher?.InvokeShutdown();
+    //    }
+    //}
 }
