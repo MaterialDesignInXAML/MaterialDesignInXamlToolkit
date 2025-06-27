@@ -29,13 +29,13 @@ public static class TabAssist
     public static Thickness GetHeaderPanelMargin(DependencyObject element)
         => (Thickness) element.GetValue(HeaderPanelMarginProperty);
 
-    internal static Visibility GetBindableIsItemsHost(DependencyObject obj)
+    public static Visibility GetBindableIsItemsHost(DependencyObject obj)
         => (Visibility)obj.GetValue(BindableIsItemsHostProperty);
 
-    internal static void SetBindableIsItemsHost(DependencyObject obj, Visibility value)
+    public static void SetBindableIsItemsHost(DependencyObject obj, Visibility value)
         => obj.SetValue(BindableIsItemsHostProperty, value);
 
-    internal static readonly DependencyProperty BindableIsItemsHostProperty =
+    public static readonly DependencyProperty BindableIsItemsHostProperty =
         DependencyProperty.RegisterAttached("BindableIsItemsHost", typeof(Visibility), typeof(TabAssist), new PropertyMetadata(Visibility.Collapsed, OnBindableIsItemsHostChanged));
 
     private static void OnBindableIsItemsHostChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
