@@ -1,12 +1,14 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:internalConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters.Internal"
                     xmlns:internal="clr-namespace:MaterialDesignThemes.Wpf.Internal"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
-  <converters:ViewIsGridViewConverter x:Key="ViewIsGridViewConverter" />
+  <internalConverters:ViewIsGridViewConverter x:Key="ViewIsGridViewConverter" />
 
   <Style x:Key="MaterialDesignTreeListViewToggleButtonStyle" TargetType="{x:Type ToggleButton}">
     <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType=wpf:TreeListViewItem}}" />
     <Setter Property="Focusable" Value="False" />
     <Setter Property="Height" Value="16" />
     <Setter Property="Template">
@@ -229,7 +231,7 @@
               <Setter TargetName="Ripple" Property="Feedback" Value="Transparent" />
               <Setter TargetName="SelectedBorder" Property="Visibility" Value="Collapsed" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding View, RelativeSource={RelativeSource Self}, Converter={StaticResource ViewIsGridViewConverter}}" Value="True">
+            <DataTrigger Binding="{Binding View, RelativeSource={RelativeSource AncestorType=wpf:TreeListView}, Converter={StaticResource ViewIsGridViewConverter}}" Value="True">
               <Setter TargetName="PART_ContentPresenter" Property="Visibility" Value="Hidden" />
               <Setter TargetName="PART_GridViewRowPresenterr" Property="Visibility" Value="Visible" />
             </DataTrigger>
