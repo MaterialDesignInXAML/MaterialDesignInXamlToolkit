@@ -304,11 +304,11 @@ public class TreeListView : ListView
         {
             Converter = TreeListViewIndentConverter.Instance,
         };
-        marginMultiBinding.Bindings.Add(new Binding("LevelIndentSize")
+        marginMultiBinding.Bindings.Add(new Binding(LevelIndentSizeProperty.Name)
         {
             RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(TreeListView), 1)
         });
-        marginMultiBinding.Bindings.Add(new Binding("Level")
+        marginMultiBinding.Bindings.Add(new Binding(TreeListViewItem.LevelProperty.Name)
         {
             RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(TreeListViewItem), 1)
         });
@@ -317,7 +317,7 @@ public class TreeListView : ListView
         var toggleButtonFactory = new FrameworkElementFactory(typeof(ToggleButton));
         toggleButtonFactory.SetValue(ToggleButton.StyleProperty, Application.Current.Resources["MaterialDesignTreeListViewToggleButtonStyle"]);
 
-        toggleButtonFactory.SetBinding(ToggleButton.IsCheckedProperty, new Binding("IsExpanded")
+        toggleButtonFactory.SetBinding(ToggleButton.IsCheckedProperty, new Binding(TreeListViewItem.IsExpandedProperty.Name)
         {
             RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(TreeListViewItem), 1)
         });
