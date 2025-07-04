@@ -1,6 +1,10 @@
+using System.Collections;
 using System.Collections.Specialized;
 using System.Windows.Automation.Peers;
+using System.Windows.Data;
+
 using MaterialDesignThemes.Wpf.Automation.Peers;
+using MaterialDesignThemes.Wpf.Converters;
 using MaterialDesignThemes.Wpf.Internal;
 
 namespace MaterialDesignThemes.Wpf;
@@ -265,5 +269,69 @@ public class TreeListView : ListView
                 }
             }
         }
+    }
+
+    protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
+    {
+        base.OnPropertyChanged(e);
+
+        if (e.Property == ViewProperty)
+        {
+            if (View is GridView gridView)
+            {
+                AddToggleButtonToFirstColumn(gridView);
+            }
+        }
+    }
+
+    private void AddToggleButtonToFirstColumn(GridView gridView)
+    {
+        if (gridView.Columns.Count > 0)
+        {
+            var firstColumn = gridView.Columns[0];
+            firstColumn.CellTemplate = CreateToggleButtonTemplate(firstColumn.CellTemplate);
+        }
+    }
+
+    private DataTemplate CreateToggleButtonTemplate(DataTemplate originalTemplate)
+    {
+        var template = new DataTemplate();
+
+        var stackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));
+        stackPanelFactory.SetValue(StackPanel.OrientationProperty, Orientation.Horizontal);
+
+        var marginMultiBinding = new MultiBinding
+        {
+            Converter = TreeListViewIndentConverter.Instance,
+        };
+        marginMultiBinding.Bindings.Add(new Binding("LevelIndentSize")
+        {
+            RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(TreeListView), 1)
+        });
+        marginMultiBinding.Bindings.Add(new Binding("Level")
+        {
+            RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(TreeListViewItem), 1)
+        });
+        stackPanelFactory.SetBinding(StackPanel.MarginProperty, marginMultiBinding);
+
+        var toggleButtonFactory = new FrameworkElementFactory(typeof(ToggleButton));
+        toggleButtonFactory.SetValue(ToggleButton.StyleProperty, Application.Current.Resources["MaterialDesignTreeListViewToggleButtonStyle"]);
+
+        toggleButtonFactory.SetBinding(ToggleButton.IsCheckedProperty, new Binding("IsExpanded")
+        {
+            RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(TreeListViewItem), 1)
+        });
+
+        stackPanelFactory.AppendChild(toggleButtonFactory);
+
+        if (originalTemplate != null)
+        {
+            var originalContentFactory = new FrameworkElementFactory(typeof(ContentPresenter));
+            originalContentFactory.SetValue(ContentPresenter.ContentTemplateProperty, originalTemplate);
+            stackPanelFactory.AppendChild(originalContentFactory);
+        }
+
+        template.VisualTree = stackPanelFactory;
+        return template;
     }
 }
