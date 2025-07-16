@@ -132,6 +132,8 @@
     <Setter Property="ClipToBounds" Value="True" />
     <Setter Property="FontSize" Value="14" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Background}" />
+    <Setter Property="BorderBrush" Value="{TemplateBinding BorderBrush}" />
+    <Setter Property="BorderThickness" Value="{TemplateBinding BorderThickness}" />
     <Setter Property="HorizontalAlignment" Value="Center" />
     <Setter Property="MaxWidth" Value="568" />
     <Setter Property="MinWidth" Value="288" />
