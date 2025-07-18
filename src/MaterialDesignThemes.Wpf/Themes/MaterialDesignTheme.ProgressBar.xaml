@@ -184,26 +184,26 @@
                     StrokeThickness="3">
                 <Path.Data>
                   <PathGeometry>
-                    <PathFigure StartPoint="{Binding Source={x:Reference PathGrid}, Path=ActualWidth, Converter={x:Static circularProgressBarConverters:StartPointConverter.Instance}, Mode=OneWay}">
-                      <ArcSegment Size="{Binding Source={x:Reference PathGrid}, Path=ActualWidth, Converter={x:Static circularProgressBarConverters:ArcSizeConverter.Instance}, Mode=OneWay}" SweepDirection="Clockwise">
+                    <PathFigure StartPoint="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={x:Static circularProgressBarConverters:StartPointConverter.Instance}, Mode=OneWay}">
+                      <ArcSegment Size="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={x:Static circularProgressBarConverters:ArcSizeConverter.Instance}, Mode=OneWay}" SweepDirection="Clockwise">
                         <ArcSegment.Point>
                           <MultiBinding Converter="{x:Static circularProgressBarConverters:ArcEndPointConverter.Instance}" ConverterParameter="{x:Static circularProgressBarConverters:ArcEndPointConverter.ParameterMidPoint}">
-                            <Binding Source="{x:Reference PathGrid}" Path="ActualWidth" />
+                            <Binding ElementName="PathGrid" Path="ActualWidth" />
                             <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}" />
                             <Binding Path="Minimum" RelativeSource="{RelativeSource TemplatedParent}" />
                             <Binding Path="Maximum" RelativeSource="{RelativeSource TemplatedParent}" />
-                            <Binding Source="{x:Reference FullyIndeterminateGridScaleTransform}" Path="ScaleX" />
+                            <Binding ElementName="FullyIndeterminateGridScaleTransform" Path="ScaleX" />
                           </MultiBinding>
                         </ArcSegment.Point>
                       </ArcSegment>
-                      <ArcSegment Size="{Binding Source={x:Reference PathGrid}, Path=ActualWidth, Converter={x:Static circularProgressBarConverters:ArcSizeConverter.Instance}, Mode=OneWay}" SweepDirection="Clockwise">
+                      <ArcSegment Size="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={x:Static circularProgressBarConverters:ArcSizeConverter.Instance}, Mode=OneWay}" SweepDirection="Clockwise">
                         <ArcSegment.Point>
                           <MultiBinding Converter="{x:Static circularProgressBarConverters:ArcEndPointConverter.Instance}">
-                            <Binding Source="{x:Reference PathGrid}" Path="ActualWidth" />
+                            <Binding ElementName="PathGrid" Path="ActualWidth" />
                             <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}" />
                             <Binding Path="Minimum" RelativeSource="{RelativeSource TemplatedParent}" />
                             <Binding Path="Maximum" RelativeSource="{RelativeSource TemplatedParent}" />
-                            <Binding Source="{x:Reference FullyIndeterminateGridScaleTransform}" Path="ScaleX" />
+                            <Binding ElementName="FullyIndeterminateGridScaleTransform" Path="ScaleX" />
                           </MultiBinding>
                         </ArcSegment.Point>
                       </ArcSegment>
@@ -212,9 +212,7 @@
                 </Path.Data>
                 <Path.RenderTransform>
                   <TransformGroup>
-                    <RotateTransform x:Name="RotateTransform"
-                                     CenterX="{Binding Source={x:Reference PathGrid}, Path=ActualWidth, Converter={x:Static circularProgressBarConverters:RotateTransformCentreConverter.Instance}, Mode=OneWay}"
-                                     CenterY="{Binding Source={x:Reference PathGrid}, Path=ActualWidth, Converter={x:Static circularProgressBarConverters:RotateTransformCentreConverter.Instance}, Mode=OneWay}" />
+                    <RotateTransform x:Name="RotateTransform" CenterX="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={x:Static circularProgressBarConverters:RotateTransformCentreConverter.Instance}, Mode=OneWay}" CenterY="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={x:Static circularProgressBarConverters:RotateTransformCentreConverter.Instance}, Mode=OneWay}" />
                   </TransformGroup>
                 </Path.RenderTransform>
               </Path>
