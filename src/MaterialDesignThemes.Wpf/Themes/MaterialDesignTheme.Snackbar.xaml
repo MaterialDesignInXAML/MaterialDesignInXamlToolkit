@@ -192,6 +192,8 @@
                     VerticalAlignment="Stretch"
                     Background="{TemplateBinding Background}"
                     CornerRadius="3"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
                     SnapsToDevicePixels="True">
               <ContentPresenter x:Name="ContentPresenter"
                                 Margin="{TemplateBinding Padding}"
