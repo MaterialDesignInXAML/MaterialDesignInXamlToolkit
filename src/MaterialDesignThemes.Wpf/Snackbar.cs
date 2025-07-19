@@ -1,4 +1,5 @@
-﻿using System.Windows.Media.Animation;
+﻿using System.ComponentModel;
+using System.Windows.Media.Animation;
 using System.Windows.Threading;
 
 namespace MaterialDesignThemes.Wpf;
@@ -185,5 +186,16 @@ public class Snackbar : Control
     {
         get => (SnackbarActionButtonPlacementMode)GetValue(ActionButtonPlacementProperty);
         set => SetValue(ActionButtonPlacementProperty, value);
+    }
+
+    public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
+        nameof(CornerRadius), typeof(Thickness), typeof(Snackbar), new PropertyMetadata(new Thickness(0)));
+
+    [Bindable(true)]
+    [Category("Appearance")]
+    public Thickness CornerRadius
+    {
+        get => (Thickness)GetValue(CornerRadiusProperty);
+        set => SetValue(CornerRadiusProperty, value);
     }
 }
