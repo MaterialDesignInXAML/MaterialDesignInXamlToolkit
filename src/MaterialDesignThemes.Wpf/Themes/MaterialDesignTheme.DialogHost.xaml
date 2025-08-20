@@ -22,6 +22,9 @@
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="wpf:DialogHost">
+          <ControlTemplate.Resources>
+            <converters:FirstNonNullConverter x:Key="FirstNonNullConverter" />
+          </ControlTemplate.Resources>
           <Grid x:Name="DialogHostRoot" Focusable="False">
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="PopupStates">
@@ -217,7 +220,7 @@
               <Grid.OpacityMask>
                 <VisualBrush>
                   <VisualBrush.Visual>
-                    <MultiBinding Converter="{x:Static converters:FirstNonNullConverter.Instance}">
+                    <MultiBinding Converter="{StaticResource FirstNonNullConverter}">
                       <Binding ElementName="ContentCoverBorder" />
                       <Binding Source="{x:Static DependencyProperty.UnsetValue}" />
                     </MultiBinding>
@@ -259,6 +262,9 @@
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="wpf:DialogHost">
+          <ControlTemplate.Resources>
+            <converters:FirstNonNullConverter x:Key="FirstNonNullConverter" />
+          </ControlTemplate.Resources>
           <Grid x:Name="DialogHostRoot" Focusable="False">
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="PopupStates">
@@ -407,7 +413,7 @@
               <Grid.OpacityMask>
                 <VisualBrush>
                   <VisualBrush.Visual>
-                    <MultiBinding Converter="{x:Static converters:FirstNonNullConverter.Instance}">
+                    <MultiBinding Converter="{StaticResource FirstNonNullConverter}">
                       <Binding ElementName="ContentCoverBorder" />
                       <Binding Source="{x:Static DependencyProperty.UnsetValue}" />
                     </MultiBinding>
