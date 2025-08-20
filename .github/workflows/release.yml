@@ -85,7 +85,7 @@ jobs:
         name: Get Icon Changes
 
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v5
               with:
                   fetch-depth: 0
 
@@ -156,7 +156,7 @@ jobs:
 
         steps:
             - name: Checkout Wiki Repo
-              uses: actions/checkout@v4
+              uses: actions/checkout@v5
               with:
                   repository: ${{ github.repository }}.wiki
 
@@ -254,7 +254,7 @@ jobs:
             # Doing a checkout, until this issue is resolved.
             # https://github.com/valeriobelli/gh-milestone/issues/15
             # As of version 2.1.0 the -R doesn't appear to output valid json when filtering. So still using the checkout.
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v5
 
             - name: Close Milestone
               run: |
@@ -274,7 +274,7 @@ jobs:
 
         steps:
             # Checkout is needed so that we can update the get_versions.yml file
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v5
 
             - name: Increment Version Numbers
               run: |
