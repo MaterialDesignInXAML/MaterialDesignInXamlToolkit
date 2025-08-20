@@ -32,8 +32,6 @@
     <file src="..\..\README.md" target="docs\" />
     <file src="bin\$configuration$\net462\MaterialDesignThemes.Wpf.*"
       target="lib\net462" exclude="**\*.json" />
-      src="bin\$configuration$\net8.0-windows\MaterialDesignThemes.Wpf.*"
-      target="lib\net8.0" exclude="**\*.json" />
     <file src="Resources\Roboto\*.ttf" target="build\Resources\Roboto" />
     <file src="MaterialDesignThemes.targets" target="build" />
     <file src="VisualStudioToolsManifest.xml" target="tools" />
