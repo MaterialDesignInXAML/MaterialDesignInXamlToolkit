@@ -393,18 +393,16 @@ public class DialogHost : ContentControl
         dialogHost.DialogOpenedCallback?.Invoke(dialogHost, dialogOpenedEventArgs);
         dialogHost._asyncShowOpenedEventHandler?.Invoke(dialogHost, dialogOpenedEventArgs);
 
-        dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
-        {
+        //https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/187
+        //totally not happy about this, but on immediate validation we can get some weird looking stuff...give WPF a kick to refresh...
+        Task.Delay(300).ContinueWith(t => dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => {
             CommandManager.InvalidateRequerySuggested();
+            //Delay focusing the popup until after the animation has some time, Issue #2912
             UIElement? child = dialogHost.FocusPopup();
 
-            if (child != null)
-            {
-                //https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/187
-                //totally not happy about this, but on immediate validation we can get some weird looking stuff...give WPF a kick to refresh...
-                Task.Delay(300).ContinueWith(t => child.Dispatcher.BeginInvoke(new Action(() => child.InvalidateVisual())));
-            }
-        }));
+            child?.InvalidateVisual();
+
+        })));
     }
 
     /// <summary>
