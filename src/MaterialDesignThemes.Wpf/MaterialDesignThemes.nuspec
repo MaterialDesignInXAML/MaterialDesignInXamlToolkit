@@ -8,7 +8,7 @@
     <owners>James Willock</owners>
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit</projectUrl>
-    <iconUrl>http://materialdesigninxaml.net/images/MD4XAML32.png</iconUrl>
+    <icon>images\MaterialDesign.Icon.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>ResourceDictionary instances containing Material Design templates and styles for
       WPF controls in .NET.</description>
@@ -28,6 +28,7 @@
     </dependencies>
   </metadata>
   <files>
+    <file src="..\..\build\MaterialDesign.Icon.png" target="images\" />
     <file src="..\..\README.md" target="docs\" />
     <file src="bin\$configuration$\net462\MaterialDesignThemes.Wpf.*"
       target="lib\net462" exclude="**\*.json" />
