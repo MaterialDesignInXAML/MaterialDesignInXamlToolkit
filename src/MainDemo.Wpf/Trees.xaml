@@ -36,6 +36,8 @@
         <RowDefinition Height="Auto" />
         <RowDefinition Height="Auto" MaxHeight="450" />
         <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" MaxHeight="450" />
+        <RowDefinition Height="Auto" />
         <RowDefinition Height="Auto" />
       </Grid.RowDefinitions>
       <TextBlock Style="{StaticResource PageSectionTitleTextBlock}"
@@ -203,12 +205,15 @@
         </Grid>
       </smtx:XamlDisplay>
 
-      <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="Multi-Select Tree View:"
-                 Grid.Column="2"/>
-      <smtx:XamlDisplay Grid.Row="1"
-                  Grid.Column="2"
-                  VerticalContentAlignment="Top"
-                  UniqueKey="trees_3">
+      <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="Multi-Select Tree List View:"
+                 Grid.Row="2"
+                 Grid.Column="0"
+                 Margin="0,40,0,0"/>
+      <smtx:XamlDisplay Grid.Row="3"
+                        Grid.Column="0"
+                        VerticalContentAlignment="Top"
+                        UniqueKey="trees_3"
+                        Margin="0,75,0,20">
         <Grid>
           <materialDesign:TreeListView MinWidth="220" MaxHeight="450"
                                      ItemsSource="{Binding TreeItems}"
@@ -244,27 +249,6 @@
               </Style>
             </materialDesign:TreeListView.ItemContainerStyle>
 
-            <!--<materialDesign:TreeListView.View>
-              <GridView>
-                <GridView.Columns>
-                  <GridViewColumn Width="250" Header="Name">
-                    <GridViewColumn.CellTemplate>
-                      <DataTemplate>
-                        <TextBlock VerticalAlignment="Center" Text="{Binding Name, Mode=OneTime}" />
-                      </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                  </GridViewColumn>
-
-                  <GridViewColumn Width="100" Header="Count">
-                    <GridViewColumn.CellTemplate>
-                      <DataTemplate>
-                        <TextBlock VerticalAlignment="Center" Text="{Binding Items.Count, Mode=OneWay}" />
-                      </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                  </GridViewColumn>
-                </GridView.Columns>
-              </GridView>
-            </materialDesign:TreeListView.View>-->
           </materialDesign:TreeListView>
           <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
             <Button Command="{Binding AddListTreeItemCommand}"
@@ -279,11 +263,95 @@
         </Grid>
       </smtx:XamlDisplay>
 
-      <TextBlock Grid.Row="2"
+      <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                 Text="Multi-Select Tree Grid View:"
+                 Grid.Row="2"
+                 Grid.Column="1"
+                 Margin="0,40,0,0" />
+      <smtx:XamlDisplay Grid.Row="3"
+                        Grid.Column="1"
+                        VerticalContentAlignment="Top"
+                        UniqueKey="trees_7"
+                        Margin="0,20,0,20">
+        <Grid>
+          <materialDesign:TreeListView MinWidth="220"
+                                       MaxHeight="450"
+                                       ItemsSource="{Binding TreeItems}"
+                                       SelectedItem="{Binding SelectedTreeItem}">
+            <materialDesign:TreeListView.Resources>
+              <HierarchicalDataTemplate DataType="{x:Type domain:TestItem}"
+                                        ItemsSource="{Binding Items, Mode=OneTime}">
+                <TextBlock VerticalAlignment="Center"
+                           Text="{Binding Name, Mode=OneTime}" />
+              </HierarchicalDataTemplate>
+
+              <HierarchicalDataTemplate DataType="{x:Type domain:MovieCategory}"
+                                        ItemsSource="{Binding Movies, Mode=OneTime}">
+                <TextBlock Margin="3,2"
+                           Text="{Binding Name, Mode=OneTime}" />
+              </HierarchicalDataTemplate>
+
+              <DataTemplate DataType="{x:Type domain:Movie}">
+                <TextBlock Margin="3,2"
+                           Text="{Binding Name, Mode=OneTime}"
+                           ToolTip="{Binding Director, Mode=OneTime}" />
+              </DataTemplate>
+            </materialDesign:TreeListView.Resources>
+
+            <materialDesign:TreeListView.ItemContainerStyle>
+              <Style TargetType="materialDesign:TreeListViewItem"
+                     BasedOn="{StaticResource {x:Type materialDesign:TreeListViewItem}}">
+                <Setter Property="IsExpanded"
+                        Value="{Binding IsExpanded}" />
+              </Style>
+            </materialDesign:TreeListView.ItemContainerStyle>
+
+            <materialDesign:TreeListView.View>
+              <GridView>
+                <GridView.Columns>
+                  <GridViewColumn Width="250"
+                                  Header="Name">
+                    <GridViewColumn.CellTemplate>
+                      <DataTemplate>
+                        <TextBlock VerticalAlignment="Center"
+                                   Text="{Binding Name, Mode=OneTime}" />
+                      </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                  </GridViewColumn>
+
+                  <GridViewColumn Width="100"
+                                  Header="Count">
+                    <GridViewColumn.CellTemplate>
+                      <DataTemplate>
+                        <TextBlock VerticalAlignment="Center"
+                                   Text="{Binding Items.Count, Mode=OneWay}" />
+                      </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                  </GridViewColumn>
+                </GridView.Columns>
+              </GridView>
+            </materialDesign:TreeListView.View>
+          </materialDesign:TreeListView>
+          <StackPanel Orientation="Horizontal"
+                      VerticalAlignment="Bottom"
+                      HorizontalAlignment="Right">
+            <Button Command="{Binding AddListTreeItemCommand}"
+                    ToolTip="Add an item"
+                    Content="{materialDesign:PackIcon Kind=Add}" />
+
+            <Button Command="{Binding RemoveListTreeItemCommand}"
+                    ToolTip="Remove selected item(s)"
+                    Content="{materialDesign:PackIcon Kind=Remove}" />
+
+          </StackPanel>
+        </Grid>
+      </smtx:XamlDisplay>
+
+      <TextBlock Grid.Row="4"
                  Style="{StaticResource PageSectionTitleTextBlock}"
                  Text="Additional node content, syntax 1" />
 
-      <smtx:XamlDisplay Grid.Row="3"
+      <smtx:XamlDisplay Grid.Row="5"
                         UniqueKey="trees_4">
         <TreeView>
           <materialDesign:TreeViewAssist.AdditionalTemplate>
@@ -326,13 +394,13 @@
         </TreeView>
       </smtx:XamlDisplay>
 
-      <TextBlock Grid.Row="2"
+      <TextBlock Grid.Row="4"
                  Grid.Column="1"
                  Margin="32,0,0,0"
                  Style="{StaticResource PageSectionTitleTextBlock}"
                  Text="Additional node content, syntax 2" />
 
-      <smtx:XamlDisplay Grid.Row="3"
+      <smtx:XamlDisplay Grid.Row="5"
                         Grid.Column="1"
                         Margin="32,0,0,0"
                         UniqueKey="trees_5">
@@ -376,13 +444,13 @@
         </TreeView>
       </smtx:XamlDisplay>
 
-      <TextBlock Grid.Row="2"
+      <TextBlock Grid.Row="4"
                  Grid.Column="2"
                  Margin="32,0,0,0"
                  Style="{StaticResource PageSectionTitleTextBlock}"
                  Text="Additional node content, showcase" />
 
-      <smtx:XamlDisplay Grid.Row="3"
+      <smtx:XamlDisplay Grid.Row="5"
                         Grid.Column="2"
                         Margin="32,0,0,0"
                         UniqueKey="trees_6">

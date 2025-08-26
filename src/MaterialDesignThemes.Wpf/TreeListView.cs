@@ -275,12 +275,9 @@ public class TreeListView : ListView
     {
         base.OnPropertyChanged(e);
 
-        if (e.Property == ViewProperty)
+        if (e.Property == ViewProperty && View is GridView gridView)
         {
-            if (View is GridView gridView)
-            {
-                AddToggleButtonToFirstColumn(gridView);
-            }
+            AddToggleButtonToFirstColumn(gridView);
         }
     }
 
@@ -312,10 +309,10 @@ public class TreeListView : ListView
         {
             RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(TreeListViewItem), 1)
         });
-        stackPanelFactory.SetBinding(StackPanel.MarginProperty, marginMultiBinding);
+        stackPanelFactory.SetBinding(MarginProperty, marginMultiBinding);
 
         var toggleButtonFactory = new FrameworkElementFactory(typeof(ToggleButton));
-        toggleButtonFactory.SetValue(ToggleButton.StyleProperty, Application.Current.Resources["MaterialDesignTreeListViewToggleButtonStyle"]);
+        toggleButtonFactory.SetValue(StyleProperty, FindResource("MaterialDesignTreeListViewToggleButtonStyle"));
 
         toggleButtonFactory.SetBinding(ToggleButton.IsCheckedProperty, new Binding(TreeListViewItem.IsExpandedProperty.Name)
         {
