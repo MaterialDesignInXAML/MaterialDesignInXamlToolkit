@@ -12,6 +12,22 @@
     <AssemblyVersion>$(MDIXVersion)</AssemblyVersion>
     <NoWarn>CS1591;CS1574</NoWarn>
     <DocumentationFile>bin\$(Configuration)\MaterialDesignThemes.Wpf.xml</DocumentationFile>
+    
+    <!-- Package Properties -->
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageId>MaterialDesignThemes</PackageId>
+    <Title>Material Design Themes XAML Resources</Title>
+    <Authors>James Willock</Authors>
+    <Owners>James Willock</Owners>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit</PackageProjectUrl>
+    <PackageIcon>MaterialDesign.Icon.png</PackageIcon>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageDescription>ResourceDictionary instances containing Material Design templates and styles for WPF controls in .NET.</PackageDescription>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/releases</PackageReleaseNotes>
+    <Copyright>$(Copyright)</Copyright>
+    <PackageTags>WPF XAML Material Design Theme Colour Color UI UX</PackageTags>
   </PropertyGroup>
   <ItemGroup>
     <Resource Include="Resources\Roboto\*.ttf" />
@@ -41,5 +57,14 @@
       <_Parameter1>MDIXVersion</_Parameter1>
       <_Parameter2>$(MDIXVersion)</_Parameter2>
     </AssemblyAttribute>
+  </ItemGroup>
+  
+  <!-- Package Content -->
+  <ItemGroup>
+    <None Include="..\..\build\MaterialDesign.Icon.png" Pack="true" PackagePath="\" />
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+    <None Include="Resources\Roboto\*.ttf" Pack="true" PackagePath="build\Resources\Roboto" />
+    <None Include="MaterialDesignThemes.targets" Pack="true" PackagePath="build" />
+    <None Include="VisualStudioToolsManifest.xml" Pack="true" PackagePath="tools" />
   </ItemGroup>
 </Project>

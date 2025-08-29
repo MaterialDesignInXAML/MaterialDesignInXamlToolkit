@@ -8,42 +8,26 @@ $year = [System.DateTime]::Now.ToString("yyyy")
 $copyright = "Copyright $year James Willock/Mulholland Software Ltd"
 $configuration = "Release"
 
-function Update-Versions {
+function New-DotNetPackage {
   param (
-    [string]$Path
-  )
-  $Path = Resolve-Path $Path
-  [xml] $xml = Get-Content $Path
-
-  foreach ($dependency in $xml.package.metadata.dependencies.group.dependency) {
-    if ($dependency.id -eq "MaterialDesignColors") {
-      $dependency.version = $MDIXColorsVersion
-    }
-    elseif ($dependency.id -eq "MaterialDesignThemes") {
-      $dependency.version = $MDIXVersion
-    }
-  }
-  $xml.Save($Path)
-}
-
-function New-Nuget {
-  param (
-    [string]$NuSpecPath,
+    [string]$ProjectPath,
     [string]$Version
   )
 
-  $NuSpecPath = Resolve-Path $NuSpecPath
-  nuget pack "$NuSpecPath" -version "$Version" -Properties "Configuration=$configuration;Copyright=$copyright"
+  $ProjectPath = Resolve-Path $ProjectPath
+  Write-Host "Packing $ProjectPath with version $Version"
+  dotnet pack "$ProjectPath" -c $configuration -p:PackageVersion="$Version" -p:Copyright="$copyright" --no-build
 }
 
 Push-Location "$(Join-Path $PSScriptRoot "..")"
 
-Update-Versions .\src\MaterialDesignColors.Wpf\MaterialDesignColors.nuspec
-Update-Versions .\src\MaterialDesignThemes.Wpf\MaterialDesignThemes.nuspec
-Update-Versions .\src\MaterialDesignThemes.MahApps\MaterialDesignThemes.MahApps.nuspec
+# Build the solution first
+Write-Host "Building solution..."
+dotnet build MaterialDesignToolkit.Full.sln -c $configuration --nologo
 
-New-Nuget .\src\MaterialDesignColors.Wpf\MaterialDesignColors.nuspec $MDIXColorsVersion
-New-Nuget .\src\MaterialDesignThemes.Wpf\MaterialDesignThemes.nuspec $MDIXVersion
-New-Nuget .\src\MaterialDesignThemes.MahApps\MaterialDesignThemes.MahApps.nuspec $MDIXMahAppsVersion
+# Pack the projects
+New-DotNetPackage .\src\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj $MDIXColorsVersion
+New-DotNetPackage .\src\MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj $MDIXVersion
+New-DotNetPackage .\src\MaterialDesignThemes.MahApps\MaterialDesignThemes.MahApps.csproj $MDIXMahAppsVersion
 
 Pop-Location

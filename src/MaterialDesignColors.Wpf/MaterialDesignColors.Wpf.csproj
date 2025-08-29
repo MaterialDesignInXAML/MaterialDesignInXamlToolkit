@@ -11,6 +11,22 @@
     <Description>Material Design in XAML Toolkit - Colors</Description>
     <Version>$(MDIXColorsVersion)</Version>
     <AssemblyVersion>$(MDIXColorsVersion)</AssemblyVersion>
+    
+    <!-- Package Properties -->
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageId>MaterialDesignColors</PackageId>
+    <Title>Material Design Colors XAML Resources</Title>
+    <Authors>James Willock</Authors>
+    <Owners>James Willock</Owners>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit</PackageProjectUrl>
+    <PackageIcon>MaterialDesign.Icon.png</PackageIcon>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageDescription>ResourceDictionary instances containing standard Google Material Design swatches, for inclusion in a XAML application.</PackageDescription>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/releases</PackageReleaseNotes>
+    <Copyright>$(Copyright)</Copyright>
+    <PackageTags>WPF XAML Material Design Colour Color UI UX</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,5 +34,11 @@
       <_Parameter1>MDIXColorsVersion</_Parameter1>
       <_Parameter2>$(MDIXColorsVersion)</_Parameter2>
     </AssemblyAttribute>
+  </ItemGroup>
+  
+  <!-- Package Content -->
+  <ItemGroup>
+    <None Include="..\..\build\MaterialDesign.Icon.png" Pack="true" PackagePath="\" />
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 </Project>

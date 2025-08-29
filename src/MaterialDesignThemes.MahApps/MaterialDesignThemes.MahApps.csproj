@@ -10,6 +10,22 @@
     <Version>$(MDIXMahAppsVersion)</Version>
     <AssemblyVersion>$(MDIXMahAppsVersion)</AssemblyVersion>
     <UseWPF>true</UseWPF>
+    
+    <!-- Package Properties -->
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageId>MaterialDesignThemes.MahApps</PackageId>
+    <Title>Material Design Themes XAML Resources For MahApps Controls</Title>
+    <Authors>James Willock</Authors>
+    <Owners>James Willock</Owners>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit</PackageProjectUrl>
+    <PackageIcon>MaterialDesign.Icon.png</PackageIcon>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageDescription>ResourceDictionary instances containing Material Design templates and styles for WPF controls in the MahApps library.</PackageDescription>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes>https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/releases</PackageReleaseNotes>
+    <Copyright>$(Copyright)</Copyright>
+    <PackageTags>WPF XAML MahApps Material Design Theme Colour Color UI UX</PackageTags>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" />
@@ -17,5 +33,11 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MahApps.Metro" />
+  </ItemGroup>
+  
+  <!-- Package Content -->
+  <ItemGroup>
+    <None Include="..\..\build\MaterialDesign.Icon.png" Pack="true" PackagePath="\" />
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 </Project>
