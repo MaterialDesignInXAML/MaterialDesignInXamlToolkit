@@ -21,10 +21,6 @@ function New-DotNetPackage {
 
 Push-Location "$(Join-Path $PSScriptRoot "..")"
 
-# Build the solution first
-Write-Host "Building solution..."
-dotnet build MaterialDesignToolkit.Full.sln -c $configuration --nologo
-
 # Pack the projects
 New-DotNetPackage .\src\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj $MDIXColorsVersion
 New-DotNetPackage .\src\MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj $MDIXVersion
