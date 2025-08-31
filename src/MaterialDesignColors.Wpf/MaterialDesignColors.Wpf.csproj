@@ -25,9 +25,5 @@
       <_Parameter2>$(MDIXColorsVersion)</_Parameter2>
     </AssemblyAttribute>
   </ItemGroup>
-  
-  <!-- Package Content -->
-  <ItemGroup>
-    <!-- No additional package content needed - inherited from Directory.Build.props -->
-  </ItemGroup>
+
 </Project>

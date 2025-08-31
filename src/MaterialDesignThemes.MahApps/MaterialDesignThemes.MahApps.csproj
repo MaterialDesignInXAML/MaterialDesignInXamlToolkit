@@ -24,9 +24,5 @@
   <ItemGroup>
     <PackageReference Include="MahApps.Metro" />
   </ItemGroup>
-  
-  <!-- Package Content -->
-  <ItemGroup>
-    <!-- Common content inherited from Directory.Build.props -->
-  </ItemGroup>
+
 </Project>
