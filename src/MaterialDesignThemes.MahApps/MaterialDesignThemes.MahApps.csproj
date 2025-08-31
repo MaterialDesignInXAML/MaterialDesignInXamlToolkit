@@ -10,6 +10,12 @@
     <Version>$(MDIXMahAppsVersion)</Version>
     <AssemblyVersion>$(MDIXMahAppsVersion)</AssemblyVersion>
     <UseWPF>true</UseWPF>
+    
+    <!-- Package Properties -->
+    <PackageId>MaterialDesignThemes.MahApps</PackageId>
+    <Title>Material Design Themes XAML Resources For MahApps Controls</Title>
+    <PackageDescription>ResourceDictionary instances containing Material Design templates and styles for WPF controls in the MahApps library.</PackageDescription>
+    <PackageTags>WPF XAML MahApps Material Design Theme Colour Color UI UX</PackageTags>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" />
@@ -18,4 +24,5 @@
   <ItemGroup>
     <PackageReference Include="MahApps.Metro" />
   </ItemGroup>
+
 </Project>

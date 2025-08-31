@@ -11,6 +11,12 @@
     <Description>Material Design in XAML Toolkit - Colors</Description>
     <Version>$(MDIXColorsVersion)</Version>
     <AssemblyVersion>$(MDIXColorsVersion)</AssemblyVersion>
+    
+    <!-- Package Properties -->
+    <PackageId>MaterialDesignColors</PackageId>
+    <Title>Material Design Colors XAML Resources</Title>
+    <PackageDescription>ResourceDictionary instances containing standard Google Material Design swatches, for inclusion in a XAML application.</PackageDescription>
+    <PackageTags>WPF XAML Material Design Colour Color UI UX</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,4 +25,5 @@
       <_Parameter2>$(MDIXColorsVersion)</_Parameter2>
     </AssemblyAttribute>
   </ItemGroup>
+
 </Project>

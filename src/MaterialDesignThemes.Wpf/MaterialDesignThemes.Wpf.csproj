@@ -12,6 +12,12 @@
     <AssemblyVersion>$(MDIXVersion)</AssemblyVersion>
     <NoWarn>CS1591;CS1574</NoWarn>
     <DocumentationFile>bin\$(Configuration)\MaterialDesignThemes.Wpf.xml</DocumentationFile>
+    
+    <!-- Package Properties -->
+    <PackageId>MaterialDesignThemes</PackageId>
+    <Title>Material Design Themes XAML Resources</Title>
+    <PackageDescription>ResourceDictionary instances containing Material Design templates and styles for WPF controls in .NET.</PackageDescription>
+    <PackageTags>WPF XAML Material Design Theme Colour Color UI UX</PackageTags>
   </PropertyGroup>
   <ItemGroup>
     <Resource Include="Resources\Roboto\*.ttf" />
@@ -41,5 +47,14 @@
       <_Parameter1>MDIXVersion</_Parameter1>
       <_Parameter2>$(MDIXVersion)</_Parameter2>
     </AssemblyAttribute>
+  </ItemGroup>
+  
+  <!-- Package Content -->
+  <ItemGroup>
+    <!-- Common content inherited from Directory.Build.props -->
+    <!-- Project-specific content -->
+    <None Include="Resources\Roboto\*.ttf" Pack="true" PackagePath="build\Resources\Roboto" />
+    <None Include="MaterialDesignThemes.targets" Pack="true" PackagePath="build" />
+    <None Include="VisualStudioToolsManifest.xml" Pack="true" PackagePath="tools" />
   </ItemGroup>
 </Project>
