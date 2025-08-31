@@ -16,7 +16,7 @@ function New-DotNetPackage {
 
   $ProjectPath = Resolve-Path $ProjectPath
   Write-Host "Packing $ProjectPath with version $Version"
-  dotnet pack "$ProjectPath" -c $configuration -p:PackageVersion="$Version" -p:Copyright="$copyright" --no-build
+  dotnet pack "$ProjectPath" -c $configuration -p:PackageVersion="$Version" -p:Copyright="$copyright" --no-build -o "."
 }
 
 Push-Location "$(Join-Path $PSScriptRoot "..")"
