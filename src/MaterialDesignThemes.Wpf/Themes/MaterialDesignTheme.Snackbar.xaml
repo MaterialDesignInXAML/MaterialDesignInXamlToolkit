@@ -130,6 +130,7 @@
     <Setter Property="ActionButtonStyle" Value="{StaticResource MaterialDesignSnackbarActionButton}" />
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.SnackBar.Background}" />
     <Setter Property="ClipToBounds" Value="True" />
+    <Setter Property="CornerRadius" Value="3" />
     <Setter Property="FontSize" Value="14" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="HorizontalAlignment" Value="Center" />
@@ -191,7 +192,9 @@
                     MinHeight="48"
                     VerticalAlignment="Stretch"
                     Background="{TemplateBinding Background}"
-                    CornerRadius="3"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}"
                     SnapsToDevicePixels="True">
               <ContentPresenter x:Name="ContentPresenter"
                                 Margin="{TemplateBinding Padding}"
