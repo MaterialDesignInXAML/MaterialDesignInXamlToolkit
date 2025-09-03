@@ -54,11 +54,6 @@
             <TextBlock Margin="8,0,0,0" Text="EXPLORE" />
           </StackPanel>
         </Button>
-
-        <ComboBox materialDesign:HintAssist.Hint="Routing"
-                  Style="{StaticResource MaterialDesignFilledComboBox}"
-                  Width="400"/>
-        
       </StackPanel>
     </Grid>
 
