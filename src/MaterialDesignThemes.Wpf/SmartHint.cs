@@ -253,6 +253,8 @@ public class SmartHint : Control
         if (proxy is null) return;
         if (!proxy.IsVisible) return;
 
+        IsContentNullOrEmpty = proxy.IsEmpty();
+
         var action = new Action(() =>
         {
             string state = string.Empty;
