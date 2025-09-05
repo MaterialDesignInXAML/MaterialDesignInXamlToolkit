@@ -33,6 +33,7 @@
              TargetType="{x:Type ButtonBase}"
              BasedOn="{StaticResource MaterialDesignNumericUpDownButtonsStyle}" />
     </Style.Resources>
+    <Setter Property="AutomationProperties.Name" Value="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource Self}}" />
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
     <Setter Property="BorderThickness" Value="0,0,0,1" />
     <Setter Property="DecreaseContent" Value="{StaticResource ContentDecrease}" />
