@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ValidationErrorTemplate.xaml" />
@@ -39,6 +39,7 @@
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Cursor" Value="Hand" />
     <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground), FallbackValue=Black}" />
     <Setter Property="Template">
@@ -75,20 +76,23 @@
               <ColumnDefinition Width="Auto" />
               <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Viewbox  Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:RadioButtonAssist.RadioButtonSize)}"
-                      Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:RadioButtonAssist.RadioButtonSize)}"
-                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-              <Canvas Width="24" Height="24">
+            <Viewbox x:Name="IconHost"
+                     Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:RadioButtonAssist.RadioButtonSize)}"
+                     Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:RadioButtonAssist.RadioButtonSize)}"
+                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+              <Canvas Width="24"
+                      Height="24"
+                      Background="Transparent">
                 <Path x:Name="Graphic"
                       Data="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
                       Fill="{DynamicResource MaterialDesign.Brush.RadioButton.Outline}" />
                 <Ellipse x:Name="InteractionEllipse"
                          Canvas.Left="12"
                          Canvas.Top="12"
-                         IsHitTestVisible="False"
                          Width="0"
                          Height="0"
                          Fill="{TemplateBinding Foreground}"
+                         IsHitTestVisible="False"
                          Opacity="0"
                          RenderTransformOrigin="0.5,0.5">
                   <Ellipse.RenderTransform>
@@ -102,6 +106,19 @@
                 </Ellipse>
               </Canvas>
             </Viewbox>
+
+            <!-- halo shown when hovering -->
+            <Ellipse x:Name="halo"
+                     Grid.Column="0"
+                     Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:RadioButtonAssist.RadioButtonSize), Converter={x:Static converters:MathConverter.MultiplyInstance}, ConverterParameter=1.6}"
+                     Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:RadioButtonAssist.RadioButtonSize), Converter={x:Static converters:MathConverter.MultiplyInstance}, ConverterParameter=1.6}"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     Fill="{TemplateBinding Foreground}"
+                     IsHitTestVisible="False"
+                     Opacity="0"
+                     RenderTransformOrigin="0.5,0.5" />
+
             <ContentPresenter x:Name="contentPresenter"
                               Grid.Column="1"
                               Margin="{TemplateBinding Padding}"
@@ -117,7 +134,7 @@
             </EventTrigger>
             <Trigger Property="HasContent" Value="true">
               <Setter Property="FocusVisualStyle" Value="{StaticResource OptionMarkFocusVisual}" />
-              <Setter Property="Padding" Value="4,2,0,0" />
+              <Setter Property="Padding" Value="0,2,0,0" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
               <Setter Property="Opacity" Value="0.26" />
@@ -135,6 +152,9 @@
             <Trigger Property="Validation.HasError" Value="true">
               <Setter TargetName="Graphic" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
               <Setter TargetName="contentPresenter" Property="Control.Foreground" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
+            </Trigger>
+            <Trigger SourceName="IconHost" Property="IsMouseOver" Value="True">
+              <Setter TargetName="halo" Property="Opacity" Value="{x:Static wpf:Constants.InteractionHoverOpacity}" />
             </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
@@ -213,10 +233,10 @@
                 <Ellipse x:Name="InteractionEllipse"
                          Canvas.Left="12"
                          Canvas.Top="12"
-                         IsHitTestVisible="False"
                          Width="0"
                          Height="0"
                          Fill="{TemplateBinding Foreground}"
+                         IsHitTestVisible="False"
                          Opacity="0"
                          RenderTransformOrigin="0.5,0.5">
                   <Ellipse.RenderTransform>

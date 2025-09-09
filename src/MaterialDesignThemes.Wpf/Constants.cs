@@ -13,4 +13,5 @@ public static class Constants
     public static readonly Thickness DefaultOutlinedBorderActiveThickness = new(2);
     public const double TextBoxNotEnabledOpacity = 0.56;
     public const double ComboBoxArrowSize = 8;
+    public const double InteractionHoverOpacity = 0.15;
 }

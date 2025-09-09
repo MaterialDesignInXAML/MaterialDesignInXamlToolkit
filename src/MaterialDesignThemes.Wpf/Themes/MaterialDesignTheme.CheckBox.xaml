@@ -187,7 +187,7 @@
               <Setter TargetName="contentPresenter" Property="Control.Foreground" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
             </Trigger>
             <Trigger SourceName="IconHost" Property="IsMouseOver" Value="True">
-              <Setter TargetName="halo" Property="Opacity" Value="0.15" />
+              <Setter TargetName="halo" Property="Opacity" Value="{x:Static wpf:Constants.InteractionHoverOpacity}" />
             </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
