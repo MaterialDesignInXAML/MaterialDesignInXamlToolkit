@@ -29,5 +29,8 @@
     <PackageVersion Include="TUnit" Version="0.25.21" />
     <PackageVersion Include="VirtualizingWrapPanel" Version="1.5.8" />
     <PackageVersion Include="XAMLTest" Version="1.3.0-ci616" />
+    <PackageVersion Include="System.Memory" Version="4.6.3" />
+    <PackageVersion Include="System.ValueTuple" Version="4.6.1" />
+    <PackageVersion Include="Polyfill" Version="8.8.1" />
   </ItemGroup>
 </Project>
