@@ -131,8 +131,6 @@ This repository also contains 3 different demo applications:
 ## More examples
 
 * [Keboo/MaterialDesign.Examples](https://github.com/Keboo/MaterialDesignInXaml.Examples)
-* [doobry](http://materialdesigninxaml.net/doobry)
-* [F1ix](http://materialdesigninxaml.net/f1ix)
 * [Motion List](https://github.com/MaterialDesignInXAML/MotionList)
 
 ## FAQ
