@@ -585,6 +585,33 @@ public class TextBoxTests : TestBase
 
         recorder.Success();
     }
+
+    [Test]
+    [Description("Issue 3914")]
+    public async Task TextBox_ClearButtonRemainsHidden_WhenInitiallyCollapsedAndMadeVisible()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        var grid = await LoadXaml<Grid>($"""
+            <Grid Margin="30">
+                <TextBox Visibility="Collapsed"
+                         VerticalAlignment="Center"
+                         materialDesign:TextFieldAssist.HasClearButton="True">
+                </TextBox>
+            </Grid>
+         """);
+
+        var textBox = await grid.GetElement<TextBox>("/TextBox");
+
+        await textBox.SetVisibility(Visibility.Visible);
+
+        var clearButton = await grid.GetElement<Button>("PART_ClearButton");
+        Visibility clearButtonVisibility = await clearButton.GetVisibility();
+
+        await Assert.That(clearButtonVisibility).IsEqualTo(Visibility.Collapsed);
+
+        recorder.Success();
+    }
 }
 
 public class NotEmptyValidationRule : ValidationRule
