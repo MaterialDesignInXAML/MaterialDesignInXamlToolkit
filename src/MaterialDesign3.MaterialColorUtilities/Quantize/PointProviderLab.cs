@@ -22,12 +22,9 @@ public sealed class PointProviderLab: PointProvider
     /// </summary>
     /// <param name="lab"></param>
     /// <returns></returns>
-    public int ToInt(double[] lab)
-    {
-        return ColorUtils.ArgbFromLab(lab[0], lab[1], lab[2]);
-    }
+    public int ToInt(double[] lab) => ColorUtils.ArgbFromLab(lab[0], lab[1], lab[2]);
 
-     /// <summary>
+    /// <summary>
      /// Standard CIE 1976 delta E formula also takes the square root, unneeded here. This method is
      /// used by quantization algorithms to compare distance, and the relative ordering is the same,
      /// with or without a square root.

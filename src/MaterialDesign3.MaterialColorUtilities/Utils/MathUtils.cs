@@ -18,10 +18,7 @@ public static class MathUtils
     /// <summary>
     /// Linear interpolation between start and stop by amount.
     /// </summary>
-    public static double Lerp(double start, double stop, double amount)
-    {
-        return (1.0 - amount) * start + amount * stop;
-    }
+    public static double Lerp(double start, double stop, double amount) => (1.0 - amount) * start + amount * stop;
 
     /// <summary>
     /// Clamp an int between min and max (inclusive).
@@ -75,10 +72,7 @@ public static class MathUtils
     /// <summary>
     /// Shortest arc distance between two angles in degrees.
     /// </summary>
-    public static double DifferenceDegrees(double a, double b)
-    {
-        return 180.0 - Math.Abs(Math.Abs(a - b) - 180.0);
-    }
+    public static double DifferenceDegrees(double a, double b) => 180.0 - Math.Abs(Math.Abs(a - b) - 180.0);
 
     /// <summary>
     /// Multiply a 1x3 row vector by a 3x3 matrix.
@@ -144,8 +138,8 @@ public static class MathUtils
     /// <summary>
     /// Cube root that supports negative inputs.
     /// </summary>
-    public static double Cbrt(double x)
-    {
-        return x < 0 ? -Math.Pow(-x, 1.0 / 3.0) : Math.Pow(x, 1.0 / 3.0);
-    }
+    public static double Cbrt(double x) => x < 0 ? -Math.Pow(-x, 1.0 / 3.0) : Math.Pow(x, 1.0 / 3.0);
+
+    public static double Clamp(double min, double max, double value)
+        => value < min ? min : (value > max ? max : value);
 }

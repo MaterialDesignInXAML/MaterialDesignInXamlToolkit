@@ -2,12 +2,12 @@
 
 public enum TonePolarity
 {
-    DARKER,
-    LIGHTER,
-    RELATIVE_DARKER,
-    RELATIVE_LIGHTER,
+    Darker,
+    Lighter,
+    RelativeDarker,
+    RelativeLighter,
     [Obsolete("Use DeltaConstraint instead.")]
-    NEARER,
+    Nearer,
     [Obsolete("Use DeltaConstraint instead.")]
-    FARTHER,
+    Farther,
 }

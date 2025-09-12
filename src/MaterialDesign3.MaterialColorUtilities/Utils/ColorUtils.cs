@@ -24,10 +24,7 @@ public static class ColorUtils
     /// <summary>
     /// Converts a color from RGB components to ARGB format.
     /// </summary>
-    public static int ArgbFromRgb(int red, int green, int blue)
-    {
-        return (255 << 24) | ((red & 255) << 16) | ((green & 255) << 8) | (blue & 255);
-    }
+    public static int ArgbFromRgb(int red, int green, int blue) => (255 << 24) | ((red & 255) << 16) | ((green & 255) << 8) | (blue & 255);
 
     /// <summary>
     /// Converts a color from linear RGB components to ARGB format.
@@ -43,42 +40,27 @@ public static class ColorUtils
     /// <summary>
     /// Returns the alpha component of a color in ARGB format.
     /// </summary>
-    public static int AlphaFromArgb(int argb)
-    {
-        return (argb >> 24) & 255;
-    }
+    public static int AlphaFromArgb(int argb) => (argb >> 24) & 255;
 
     /// <summary>
     /// Returns the red component of a color in ARGB format.
     /// </summary>
-    public static int RedFromArgb(int argb)
-    {
-        return (argb >> 16) & 255;
-    }
+    public static int RedFromArgb(int argb) => (argb >> 16) & 255;
 
     /// <summary>
     /// Returns the green component of a color in ARGB format.
     /// </summary>
-    public static int GreenFromArgb(int argb)
-    {
-        return (argb >> 8) & 255;
-    }
+    public static int GreenFromArgb(int argb) => (argb >> 8) & 255;
 
     /// <summary>
     /// Returns the blue component of a color in ARGB format.
     /// </summary>
-    public static int BlueFromArgb(int argb)
-    {
-        return argb & 255;
-    }
+    public static int BlueFromArgb(int argb) => argb & 255;
 
     /// <summary>
     /// Returns whether a color in ARGB format is opaque.
     /// </summary>
-    public static bool IsOpaque(int argb)
-    {
-        return AlphaFromArgb(argb) >= 255;
-    }
+    public static bool IsOpaque(int argb) => AlphaFromArgb(argb) >= 255;
 
     /// <summary>
     /// Converts a color from XYZ to ARGB.
@@ -169,18 +151,12 @@ public static class ColorUtils
     /// <summary>
     /// Converts an L* value to a Y value.
     /// </summary>
-    public static double YFromLstar(double lstar)
-    {
-        return 100.0 * LabInvf((lstar + 16.0) / 116.0);
-    }
+    public static double YFromLstar(double lstar) => 100.0 * LabInvf((lstar + 16.0) / 116.0);
 
     /// <summary>
     /// Converts a Y value to an L* value.
     /// </summary>
-    public static double LstarFromY(double y)
-    {
-        return LabF(y / 100.0) * 116.0 - 16.0;
-    }
+    public static double LstarFromY(double y) => LabF(y / 100.0) * 116.0 - 16.0;
 
     /// <summary>
     /// Linearizes an RGB component.
@@ -217,10 +193,7 @@ public static class ColorUtils
     /// <summary>
     /// Returns the standard white point; white on a sunny day.
     /// </summary>
-    public static double[] WhitePointD65()
-    {
-        return WHITE_POINT_D65;
-    }
+    public static double[] WhitePointD65() => WHITE_POINT_D65;
 
     internal static double LabF(double t)
     {

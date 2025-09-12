@@ -155,10 +155,7 @@ public sealed class DynamicColor
         return answer;
     }
 
-    public double GetTone(DynamicScheme scheme)
-    {
-        return ColorSpecs.Get(scheme.SpecVersion).GetTone(scheme, this);
-    }
+    public double GetTone(DynamicScheme scheme) => ColorSpecs.Get(scheme.SpecVersion).GetTone(scheme, this);
 
     public static double ForegroundTone(double bgTone, double ratio)
     {
@@ -196,15 +193,9 @@ public sealed class DynamicColor
         return tone;
     }
 
-    public static bool TonePrefersLightForeground(double tone)
-    {
-        return Round(tone) < 60.0;
-    }
+    public static bool TonePrefersLightForeground(double tone) => Round(tone) < 60.0;
 
-    public static bool ToneAllowsLightForeground(double tone)
-    {
-        return Round(tone) <= 49.0;
-    }
+    public static bool ToneAllowsLightForeground(double tone) => Round(tone) <= 49.0;
 
     public static Func<DynamicScheme, double> GetInitialToneFromBackground(
         Func<DynamicScheme, DynamicColor?>? background)

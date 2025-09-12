@@ -192,7 +192,7 @@ public class ColorSpec2021 : ColorSpec
         .SetIsBackground(true)
         .SetBackground(HighestSurface)
         .SetContrastCurve(_ => new ContrastCurve(3.0, 4.5, 7.0, 7.0))
-        .SetToneDeltaPair(_ => new ToneDeltaPair(PrimaryContainer, Primary, 10.0, TonePolarity.NEARER, false))
+        .SetToneDeltaPair(_ => new ToneDeltaPair(PrimaryContainer, Primary, 10.0, TonePolarity.Nearer, false))
         .Build();
 
     public DynamicColor? PrimaryDim => null;
@@ -217,7 +217,7 @@ public class ColorSpec2021 : ColorSpec
         .SetIsBackground(true)
         .SetBackground(HighestSurface)
         .SetContrastCurve(_ => new ContrastCurve(1.0, 1.0, 3.0, 4.5))
-        .SetToneDeltaPair(_ => new ToneDeltaPair(PrimaryContainer, Primary, 10.0, TonePolarity.NEARER, false))
+        .SetToneDeltaPair(_ => new ToneDeltaPair(PrimaryContainer, Primary, 10.0, TonePolarity.Nearer, false))
         .Build();
 
     public DynamicColor OnPrimaryContainer => new DynamicColor.Builder()
@@ -249,7 +249,7 @@ public class ColorSpec2021 : ColorSpec
         .SetIsBackground(true)
         .SetBackground(HighestSurface)
         .SetContrastCurve(_ => new ContrastCurve(3.0, 4.5, 7.0, 7.0))
-        .SetToneDeltaPair(_ => new ToneDeltaPair(SecondaryContainer, Secondary, 10.0, TonePolarity.NEARER, false))
+        .SetToneDeltaPair(_ => new ToneDeltaPair(SecondaryContainer, Secondary, 10.0, TonePolarity.Nearer, false))
         .Build();
 
     public DynamicColor? SecondaryDim => null;
@@ -275,7 +275,7 @@ public class ColorSpec2021 : ColorSpec
         .SetIsBackground(true)
         .SetBackground(HighestSurface)
         .SetContrastCurve(_ => new ContrastCurve(1.0, 1.0, 3.0, 4.5))
-        .SetToneDeltaPair(_ => new ToneDeltaPair(SecondaryContainer, Secondary, 10.0, TonePolarity.NEARER, false))
+        .SetToneDeltaPair(_ => new ToneDeltaPair(SecondaryContainer, Secondary, 10.0, TonePolarity.Nearer, false))
         .Build();
 
     public DynamicColor OnSecondaryContainer => new DynamicColor.Builder()
@@ -299,7 +299,7 @@ public class ColorSpec2021 : ColorSpec
         .SetIsBackground(true)
         .SetBackground(HighestSurface)
         .SetContrastCurve(_ => new ContrastCurve(3.0, 4.5, 7.0, 7.0))
-        .SetToneDeltaPair(_ => new ToneDeltaPair(TertiaryContainer, Tertiary, 10.0, TonePolarity.NEARER, false))
+        .SetToneDeltaPair(_ => new ToneDeltaPair(TertiaryContainer, Tertiary, 10.0, TonePolarity.Nearer, false))
         .Build();
 
     public DynamicColor? TertiaryDim => null;
@@ -325,7 +325,7 @@ public class ColorSpec2021 : ColorSpec
         .SetIsBackground(true)
         .SetBackground(HighestSurface)
         .SetContrastCurve(_ => new ContrastCurve(1.0, 1.0, 3.0, 4.5))
-        .SetToneDeltaPair(_ => new ToneDeltaPair(TertiaryContainer, Tertiary, 10.0, TonePolarity.NEARER, false))
+        .SetToneDeltaPair(_ => new ToneDeltaPair(TertiaryContainer, Tertiary, 10.0, TonePolarity.Nearer, false))
         .Build();
 
     public DynamicColor OnTertiaryContainer => new DynamicColor.Builder()
@@ -349,7 +349,7 @@ public class ColorSpec2021 : ColorSpec
         .SetIsBackground(true)
         .SetBackground(HighestSurface)
         .SetContrastCurve(_ => new ContrastCurve(3.0, 4.5, 7.0, 7.0))
-        .SetToneDeltaPair(_ => new ToneDeltaPair(ErrorContainer, Error, 10.0, TonePolarity.NEARER, false))
+        .SetToneDeltaPair(_ => new ToneDeltaPair(ErrorContainer, Error, 10.0, TonePolarity.Nearer, false))
         .Build();
 
     public DynamicColor? ErrorDim => null;
@@ -369,7 +369,7 @@ public class ColorSpec2021 : ColorSpec
         .SetIsBackground(true)
         .SetBackground(HighestSurface)
         .SetContrastCurve(_ => new ContrastCurve(1.0, 1.0, 3.0, 4.5))
-        .SetToneDeltaPair(_ => new ToneDeltaPair(ErrorContainer, Error, 10.0, TonePolarity.NEARER, false))
+        .SetToneDeltaPair(_ => new ToneDeltaPair(ErrorContainer, Error, 10.0, TonePolarity.Nearer, false))
         .Build();
 
     public DynamicColor OnErrorContainer => new DynamicColor.Builder()
@@ -388,7 +388,7 @@ public class ColorSpec2021 : ColorSpec
         .SetIsBackground(true)
         .SetBackground(HighestSurface)
         .SetContrastCurve(_ => new ContrastCurve(1.0, 1.0, 3.0, 4.5))
-        .SetToneDeltaPair(_ => new ToneDeltaPair(PrimaryFixed, PrimaryFixedDim, 10.0, TonePolarity.LIGHTER, true))
+        .SetToneDeltaPair(_ => new ToneDeltaPair(PrimaryFixed, PrimaryFixedDim, 10.0, TonePolarity.Lighter, true))
         .Build();
 
     public DynamicColor PrimaryFixedDim => new DynamicColor.Builder()
@@ -398,7 +398,7 @@ public class ColorSpec2021 : ColorSpec
         .SetIsBackground(true)
         .SetBackground(HighestSurface)
         .SetContrastCurve(_ => new ContrastCurve(1.0, 1.0, 3.0, 4.5))
-        .SetToneDeltaPair(_ => new ToneDeltaPair(PrimaryFixed, PrimaryFixedDim, 10.0, TonePolarity.LIGHTER, true))
+        .SetToneDeltaPair(_ => new ToneDeltaPair(PrimaryFixed, PrimaryFixedDim, 10.0, TonePolarity.Lighter, true))
         .Build();
 
     public DynamicColor OnPrimaryFixed => new DynamicColor.Builder()
@@ -427,7 +427,7 @@ public class ColorSpec2021 : ColorSpec
         .SetIsBackground(true)
         .SetBackground(HighestSurface)
         .SetContrastCurve(_ => new ContrastCurve(1.0, 1.0, 3.0, 4.5))
-        .SetToneDeltaPair(_ => new ToneDeltaPair(SecondaryFixed, SecondaryFixedDim, 10.0, TonePolarity.LIGHTER, true))
+        .SetToneDeltaPair(_ => new ToneDeltaPair(SecondaryFixed, SecondaryFixedDim, 10.0, TonePolarity.Lighter, true))
         .Build();
 
     public DynamicColor SecondaryFixedDim => new DynamicColor.Builder()
@@ -437,7 +437,7 @@ public class ColorSpec2021 : ColorSpec
         .SetIsBackground(true)
         .SetBackground(HighestSurface)
         .SetContrastCurve(_ => new ContrastCurve(1.0, 1.0, 3.0, 4.5))
-        .SetToneDeltaPair(_ => new ToneDeltaPair(SecondaryFixed, SecondaryFixedDim, 10.0, TonePolarity.LIGHTER, true))
+        .SetToneDeltaPair(_ => new ToneDeltaPair(SecondaryFixed, SecondaryFixedDim, 10.0, TonePolarity.Lighter, true))
         .Build();
 
     public DynamicColor OnSecondaryFixed => new DynamicColor.Builder()
@@ -466,7 +466,7 @@ public class ColorSpec2021 : ColorSpec
         .SetIsBackground(true)
         .SetBackground(HighestSurface)
         .SetContrastCurve(_ => new ContrastCurve(1.0, 1.0, 3.0, 4.5))
-        .SetToneDeltaPair(_ => new ToneDeltaPair(TertiaryFixed, TertiaryFixedDim, 10.0, TonePolarity.LIGHTER, true))
+        .SetToneDeltaPair(_ => new ToneDeltaPair(TertiaryFixed, TertiaryFixedDim, 10.0, TonePolarity.Lighter, true))
         .Build();
 
     public DynamicColor TertiaryFixedDim => new DynamicColor.Builder()
@@ -476,7 +476,7 @@ public class ColorSpec2021 : ColorSpec
         .SetIsBackground(true)
         .SetBackground(HighestSurface)
         .SetContrastCurve(_ => new ContrastCurve(1.0, 1.0, 3.0, 4.5))
-        .SetToneDeltaPair(_ => new ToneDeltaPair(TertiaryFixed, TertiaryFixedDim, 10.0, TonePolarity.LIGHTER, true))
+        .SetToneDeltaPair(_ => new ToneDeltaPair(TertiaryFixed, TertiaryFixedDim, 10.0, TonePolarity.Lighter, true))
         .Build();
 
     public DynamicColor OnTertiaryFixed => new DynamicColor.Builder()
@@ -605,9 +605,9 @@ public class ColorSpec2021 : ColorSpec
             var polarity = toneDeltaPair.Polarity;
             var stayTogether = toneDeltaPair.StayTogether;
 
-            var aIsNearer = (polarity == TonePolarity.NEARER
-                || (polarity == TonePolarity.LIGHTER && !scheme.IsDark)
-                || (polarity == TonePolarity.DARKER && !scheme.IsDark));
+            var aIsNearer = (polarity == TonePolarity.Nearer
+                || (polarity == TonePolarity.Lighter && !scheme.IsDark)
+                || (polarity == TonePolarity.Darker && !scheme.IsDark));
             var nearer = aIsNearer ? roleA : roleB;
             var farther = aIsNearer ? roleB : roleA;
             var amNearer = color.name.Equals(nearer.name, System.StringComparison.Ordinal);
@@ -848,8 +848,5 @@ public class ColorSpec2021 : ColorSpec
         };
     }
 
-    public TonalPalette? GetErrorPalette(Variant variant, Hct sourceColorHct, bool isDark, Platform platform, double contrastLevel)
-    {
-        return null;
-    }
+    public TonalPalette? GetErrorPalette(Variant variant, Hct sourceColorHct, bool isDark, Platform platform, double contrastLevel) => null;
 }

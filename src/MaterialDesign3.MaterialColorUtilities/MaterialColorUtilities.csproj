@@ -7,6 +7,8 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <RootNamespace>MaterialColorUtilities</RootNamespace>
     <Nullable>enable</Nullable>
+    <EnableSourceLink>false</EnableSourceLink>
+    <SuppressImplicitGitSourceLink>true</SuppressImplicitGitSourceLink>
     <UseWpf>true</UseWpf>
     <MDIXColorsVersion Condition="$(MDIXColorsVersion) == '' Or $(MDIXColorsVersion) == '*Undefined*'">1.0.1</MDIXColorsVersion>
     <MDIXColorsVersion>$([System.Text.RegularExpressions.Regex]::Replace("$(MDIXColorsVersion)", "-ci\d+$", ""))</MDIXColorsVersion>

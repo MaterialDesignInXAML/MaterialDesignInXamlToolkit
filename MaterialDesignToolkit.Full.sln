@@ -65,6 +65,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialDesignDemo.Shared",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialColorUtilities", "src\MaterialDesign3.MaterialColorUtilities\MaterialColorUtilities.csproj", "{2C29B80E-1689-43CE-85AC-71799666B4AC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialColorUtilities.Tests", "tests\MaterialColorUtilities.Tests\MaterialColorUtilities.Tests.csproj", "{91485BEA-759F-406E-87B7-68D94CF66DE4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -269,6 +271,22 @@ Global
 		{2C29B80E-1689-43CE-85AC-71799666B4AC}.Release|x64.Build.0 = Release|Any CPU
 		{2C29B80E-1689-43CE-85AC-71799666B4AC}.Release|x86.ActiveCfg = Release|Any CPU
 		{2C29B80E-1689-43CE-85AC-71799666B4AC}.Release|x86.Build.0 = Release|Any CPU
+		{91485BEA-759F-406E-87B7-68D94CF66DE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91485BEA-759F-406E-87B7-68D94CF66DE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91485BEA-759F-406E-87B7-68D94CF66DE4}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{91485BEA-759F-406E-87B7-68D94CF66DE4}.Debug|ARM.Build.0 = Debug|Any CPU
+		{91485BEA-759F-406E-87B7-68D94CF66DE4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{91485BEA-759F-406E-87B7-68D94CF66DE4}.Debug|x64.Build.0 = Debug|Any CPU
+		{91485BEA-759F-406E-87B7-68D94CF66DE4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{91485BEA-759F-406E-87B7-68D94CF66DE4}.Debug|x86.Build.0 = Debug|Any CPU
+		{91485BEA-759F-406E-87B7-68D94CF66DE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91485BEA-759F-406E-87B7-68D94CF66DE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91485BEA-759F-406E-87B7-68D94CF66DE4}.Release|ARM.ActiveCfg = Release|Any CPU
+		{91485BEA-759F-406E-87B7-68D94CF66DE4}.Release|ARM.Build.0 = Release|Any CPU
+		{91485BEA-759F-406E-87B7-68D94CF66DE4}.Release|x64.ActiveCfg = Release|Any CPU
+		{91485BEA-759F-406E-87B7-68D94CF66DE4}.Release|x64.Build.0 = Release|Any CPU
+		{91485BEA-759F-406E-87B7-68D94CF66DE4}.Release|x86.ActiveCfg = Release|Any CPU
+		{91485BEA-759F-406E-87B7-68D94CF66DE4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -281,6 +299,7 @@ Global
 		{98627CBE-F009-482E-97E9-C69C7135E91F} = {D34BE232-DE51-43C1-ABDC-B69003BB50FF}
 		{B39795A7-D66A-4F2F-9F41-050838D14048} = {D34BE232-DE51-43C1-ABDC-B69003BB50FF}
 		{2C29B80E-1689-43CE-85AC-71799666B4AC} = {9E303A4A-3712-44B9-91EE-830FDC087795}
+		{91485BEA-759F-406E-87B7-68D94CF66DE4} = {9E303A4A-3712-44B9-91EE-830FDC087795}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {730B2F9E-74AE-46CE-9E61-89AA5C6D5DD3}

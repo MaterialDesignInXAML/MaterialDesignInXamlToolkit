@@ -94,9 +94,11 @@ public static class Contrast
     /// color's lightness to in order to reach their desired contrast, instead of guessing &amp; checking
     /// with hex codes.
     /// </summary>
-    public static double RatioOfTones(double t1, double t2)
+    public static double RatioOfTones(double toneA, double toneB)
     {
-        return RatioOfYs(ColorUtils.YFromLstar(t1), ColorUtils.YFromLstar(t2));
+        return RatioOfYs(
+            ColorUtils.YFromLstar(MathUtils.Clamp(0.0, 100.0, toneA)),
+            ColorUtils.YFromLstar(MathUtils.Clamp(0.0, 100.0, toneB)));
     }
 
     /// <summary>
