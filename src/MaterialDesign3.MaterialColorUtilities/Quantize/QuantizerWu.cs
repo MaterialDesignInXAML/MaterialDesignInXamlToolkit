@@ -29,10 +29,7 @@ public sealed class QuantizerWu: Quantizer
         return new QuantizerResult(resultMap);
     }
 
-    private static int GetIndex(int r, int g, int b)
-    {
-        return (r << (INDEX_BITS * 2)) + (r << (INDEX_BITS + 1)) + r + (g << INDEX_BITS) + g + b;
-    }
+    private static int GetIndex(int r, int g, int b) => (r << (INDEX_BITS * 2)) + (r << (INDEX_BITS + 1)) + r + (g << INDEX_BITS) + g + b;
 
     private void ConstructHistogram(Dictionary<int, int> pixels)
     {

@@ -4,10 +4,7 @@ public sealed class MaterialDynamicColors
 {
     private static readonly ColorSpec colorSpec = new ColorSpec2025();
 
-    public DynamicColor HighestSurface(DynamicScheme s)
-    {
-        return colorSpec.HighestSurface(s);
-    }
+    public DynamicColor HighestSurface(DynamicScheme s) => colorSpec.HighestSurface(s);
 
     // Main Palettes
     public DynamicColor PrimaryPaletteKeyColor => colorSpec.PrimaryPaletteKeyColor;

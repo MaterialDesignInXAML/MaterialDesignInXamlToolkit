@@ -94,10 +94,7 @@ public static class HctSolver
 
     // Below are method signatures ported from Java; implementations intentionally omitted.
 
-    internal static double SanitizeRadians(double angle)
-    {
-        return (angle + PI * 8) % (PI * 2);
-    }
+    internal static double SanitizeRadians(double angle) => (angle + PI * 8) % (PI * 2);
 
     internal static double TrueDelinearized(double rgbComponent)
     {
@@ -144,10 +141,7 @@ public static class HctSolver
     /// <summary>
     /// Solves the lerp equation: returns t such that lerp(source, target, t) = mid
     /// </summary>
-    internal static double Intercept(double source, double mid, double target)
-    {
-        return (mid - source) / (target - source);
-    }
+    internal static double Intercept(double source, double mid, double target) => (mid - source) / (target - source);
 
     internal static double[] LerpPoint(double[] source, double t, double[] target)
     {
@@ -167,10 +161,7 @@ public static class HctSolver
         return LerpPoint(source, t, target);
     }
 
-    internal static bool IsBounded(double x)
-    {
-        return 0.0 <= x && x <= 100.0;
-    }
+    internal static bool IsBounded(double x) => 0.0 <= x && x <= 100.0;
 
     /// <summary>
     /// Returns the nth possible vertex of the polygonal intersection of the Y plane and RGB cube.
@@ -272,20 +263,11 @@ public static class HctSolver
         return new double[][] { left, right };
     }
 
-    internal static double[] Midpoint(double[] a, double[] b)
-    {
-        return [(a[0] + b[0]) / 2.0, (a[1] + b[1]) / 2.0, (a[2] + b[2]) / 2.0];
-    }
+    internal static double[] Midpoint(double[] a, double[] b) => [(a[0] + b[0]) / 2.0, (a[1] + b[1]) / 2.0, (a[2] + b[2]) / 2.0];
 
-    internal static int CriticalPlaneBelow(double x)
-    {
-        return (int)Floor(x - 0.5);
-    }
+    internal static int CriticalPlaneBelow(double x) => (int)Floor(x - 0.5);
 
-    internal static int CriticalPlaneAbove(double x)
-    {
-        return (int)Ceiling(x - 0.5);
-    }
+    internal static int CriticalPlaneAbove(double x) => (int)Ceiling(x - 0.5);
 
     /// <summary>
     /// Finds a color with the given Y and hue on the boundary of the cube.
@@ -433,8 +415,5 @@ public static class HctSolver
     /// <summary>
     /// Finds an sRGB color with the given hue, chroma, and L*, if possible, returning CAM16.
     /// </summary>
-    public static Cam16 SolveToCam(double hueDegrees, double chroma, double lstar)
-    {
-        return Cam16.FromInt(SolveToInt(hueDegrees, chroma, lstar));
-    }
+    public static Cam16 SolveToCam(double hueDegrees, double chroma, double lstar) => Cam16.FromInt(SolveToInt(hueDegrees, chroma, lstar));
 }

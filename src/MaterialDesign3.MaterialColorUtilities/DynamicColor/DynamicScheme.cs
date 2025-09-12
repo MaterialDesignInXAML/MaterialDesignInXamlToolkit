@@ -23,10 +23,7 @@ public class DynamicScheme
     public TonalPalette NeutralVariantPalette { get; }
     public TonalPalette ErrorPalette { get; }
 
-    public DynamicScheme()
-    {
-        throw new NotImplementedException();
-    }
+    public DynamicScheme() => throw new NotImplementedException();
 
     public DynamicScheme(
         Hct sourceColorHct,
@@ -111,10 +108,7 @@ public class DynamicScheme
         ErrorPalette = errorPalette ?? TonalPalette.FromHueAndChroma(25.0, 84.0);
     }
 
-    public static DynamicScheme From(DynamicScheme other, bool isDark)
-    {
-        return From(other, isDark, other.ContrastLevel);
-    }
+    public static DynamicScheme From(DynamicScheme other, bool isDark) => From(other, isDark, other.ContrastLevel);
 
     public static DynamicScheme From(DynamicScheme other, bool isDark, double contrastLevel)
     {
@@ -135,6 +129,9 @@ public class DynamicScheme
 
     public static double GetPiecewiseValue(Hct sourceColorHct, double[] hueBreakpoints, double[] hues)
     {
+        if (hueBreakpoints == null || hues == null)
+            throw new ArgumentNullException(hueBreakpoints == null ? nameof(hueBreakpoints) : nameof(hues));
+
         var size = Min(hueBreakpoints.Length - 1, hues.Length);
         var sourceHue = sourceColorHct.Hue;
         for (var i = 0; i < size; i++)
@@ -144,12 +141,18 @@ public class DynamicScheme
                 return MathUtils.SanitizeDegreesDouble(hues[i]);
             }
         }
+
         // No condition matched, return the source value.
         return sourceHue;
     }
 
     public static double GetRotatedHue(Hct sourceColorHct, double[] hueBreakpoints, double[] rotations)
     {
+        if (hueBreakpoints.Length != rotations.Length)
+        {
+            throw new ArgumentException("hueBreakpoints length must equal rotations length");
+        }
+
         var rotation = GetPiecewiseValue(sourceColorHct, hueBreakpoints, rotations);
         if (Min(hueBreakpoints.Length - 1, rotations.Length) <= 0)
         {
@@ -158,15 +161,9 @@ public class DynamicScheme
         return MathUtils.SanitizeDegreesDouble(sourceColorHct.Hue + rotation);
     }
 
-    public Hct GetHct(DynamicColor dynamicColor)
-    {
-        return dynamicColor.GetHct(this);
-    }
+    public Hct GetHct(DynamicColor dynamicColor) => dynamicColor.GetHct(this);
 
-    public int GetArgb(DynamicColor dynamicColor)
-    {
-        return dynamicColor.GetArgb(this);
-    }
+    public int GetArgb(DynamicColor dynamicColor) => dynamicColor.GetArgb(this);
 
     public override string ToString()
     {

@@ -60,74 +60,47 @@ public sealed class Cam16
     /// <summary>
     /// Hue in CAM16.
     /// </summary>
-    public double GetHue()
-    {
-        return Hue;
-    }
+    public double GetHue() => Hue;
 
     /// <summary>
     /// Chroma in CAM16.
     /// </summary>
-    public double GetChroma()
-    {
-        return Chroma;
-    }
+    public double GetChroma() => Chroma;
 
     /// <summary>
     /// Lightness in CAM16.
     /// </summary>
-    public double GetJ()
-    {
-        return J;
-    }
+    public double GetJ() => J;
 
     /// <summary>
     /// Brightness in CAM16. Prefer lightness.
     /// </summary>
-    public double GetQ()
-    {
-        return Q;
-    }
+    public double GetQ() => Q;
 
     /// <summary>
     /// Colorfulness in CAM16. Prefer chroma.
     /// </summary>
-    public double GetM()
-    {
-        return M;
-    }
+    public double GetM() => M;
 
     /// <summary>
     /// Saturation in CAM16. Prefer chroma.
     /// </summary>
-    public double GetS()
-    {
-        return S;
-    }
+    public double GetS() => S;
 
     /// <summary>
     /// Lightness coordinate in CAM16-UCS.
     /// </summary>
-    public double GetJstar()
-    {
-        return Jstar;
-    }
+    public double GetJstar() => Jstar;
 
     /// <summary>
     /// a* coordinate in CAM16-UCS.
     /// </summary>
-    public double GetAstar()
-    {
-        return Astar;
-    }
+    public double GetAstar() => Astar;
 
     /// <summary>
     /// b* coordinate in CAM16-UCS.
     /// </summary>
-    public double GetBstar()
-    {
-        return Bstar;
-    }
+    public double GetBstar() => Bstar;
 
     /// <summary>
     /// Constructor that sets all CAM16 and CAM16-UCS dimensions.
@@ -157,10 +130,7 @@ public sealed class Cam16
     /// <summary>
     /// Create a CAM16 color from an ARGB color in default viewing conditions.
     /// </summary>
-    public static Cam16 FromInt(int argb)
-    {
-        return FromIntInViewingConditions(argb, ViewingConditions.DEFAULT);
-    }
+    public static Cam16 FromInt(int argb) => FromIntInViewingConditions(argb, ViewingConditions.DEFAULT);
 
     /// <summary>
     /// Create a CAM16 color from an ARGB color in defined viewing conditions.
@@ -262,10 +232,7 @@ public sealed class Cam16
     /// <summary>
     /// Create CAM16 from J, C, and H.
     /// </summary>
-    internal static Cam16 FromJch(double j, double c, double h)
-    {
-        return FromJchInViewingConditions(j, c, h, ViewingConditions.DEFAULT);
-    }
+    internal static Cam16 FromJch(double j, double c, double h) => FromJchInViewingConditions(j, c, h, ViewingConditions.DEFAULT);
 
     /// <summary>
     /// Create CAM16 from J, C, H and viewing conditions.
@@ -294,10 +261,7 @@ public sealed class Cam16
     /// <summary>
     /// Create CAM16 from CAM16-UCS coordinates in default viewing conditions.
     /// </summary>
-    public static Cam16 FromUcs(double jstar, double astar, double bstar)
-    {
-        return FromUcsInViewingConditions(jstar, astar, bstar, ViewingConditions.DEFAULT);
-    }
+    public static Cam16 FromUcs(double jstar, double astar, double bstar) => FromUcsInViewingConditions(jstar, astar, bstar, ViewingConditions.DEFAULT);
 
     /// <summary>
     /// Create CAM16 from CAM16-UCS coordinates in defined viewing conditions.
@@ -319,10 +283,7 @@ public sealed class Cam16
     /// <summary>
     /// ARGB representation of this color in default viewing conditions.
     /// </summary>
-    public int ToInt()
-    {
-        return Viewed(ViewingConditions.DEFAULT);
-    }
+    public int ToInt() => Viewed(ViewingConditions.DEFAULT);
 
     /// <summary>
     /// ARGB representation of this color in specified viewing conditions.
@@ -333,7 +294,7 @@ public sealed class Cam16
         return ColorUtils.ArgbFromXyz(xyz[0], xyz[1], xyz[2]);
     }
 
-    internal double[] XyzInViewingConditions(ViewingConditions viewingConditions, double[] returnArray)
+    public double[] XyzInViewingConditions(ViewingConditions viewingConditions, double[]? returnArray = null)
     {
         double alpha =
             (Chroma == 0.0 || J == 0.0) ? 0.0 : Chroma / Sqrt(J / 100.0);
@@ -378,16 +339,14 @@ public sealed class Cam16
         double y = (rF * matrix[1][0]) + (gF * matrix[1][1]) + (bF * matrix[1][2]);
         double z = (rF * matrix[2][0]) + (gF * matrix[2][1]) + (bF * matrix[2][2]);
 
-        if (returnArray != null)
+        if (returnArray is { Length: 3 })
         {
             returnArray[0] = x;
             returnArray[1] = y;
             returnArray[2] = z;
             return returnArray;
         }
-        else
-        {
-            return [x, y, z];
-        }
+
+        return [x, y, z];
     }
 }

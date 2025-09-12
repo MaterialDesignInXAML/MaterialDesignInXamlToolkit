@@ -19,19 +19,13 @@ public sealed class CorePalette
     /// Create key palettes from a color.
     /// </summary>
     [Obsolete("Use DynamicScheme for color scheme generation. Use CorePalettes for core palettes container class.")]
-    public static CorePalette Of(int argb)
-    {
-        return new CorePalette(argb, false);
-    }
+    public static CorePalette Of(int argb) => new(argb, false);
 
     /// <summary>
     /// Create content key palettes from a color.
     /// </summary>
     [Obsolete("Use DynamicScheme for color scheme generation. Use CorePalettes for core palettes container class.")]
-    public static CorePalette ContentOf(int argb)
-    {
-        return new CorePalette(argb, true);
-    }
+    public static CorePalette ContentOf(int argb) => new(argb, true);
 
     private CorePalette(int argb, bool isContent)
     {

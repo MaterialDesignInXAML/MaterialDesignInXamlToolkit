@@ -18,10 +18,7 @@ public sealed class TemperatureCache
     /// Create a cache that allows calculation of complementary and analogous colors.
     /// Any returned colors will have the same tone and chroma as the input (subject to gamut limits).
     /// </summary>
-    public TemperatureCache(Hct input)
-    {
-        this.input = input;
-    }
+    public TemperatureCache(Hct input) => this.input = input;
 
     /// <summary>
     /// A color that complements the input color aesthetically.
@@ -70,10 +67,7 @@ public sealed class TemperatureCache
     /// <summary>
     /// 5 colors that pair well with the input color (equidistant in temperature and adjacent in hue).
     /// </summary>
-    public List<Hct> GetAnalogousColors()
-    {
-        return GetAnalogousColors(5, 12);
-    }
+    public List<Hct> GetAnalogousColors() => GetAnalogousColors(5, 12);
 
     /// <summary>
     /// A set of colors with differing hues, equidistant in temperature.
@@ -205,10 +199,7 @@ public sealed class TemperatureCache
     /// <summary>
     /// Coldest color with same chroma and tone as input.
     /// </summary>
-    private Hct GetColdest()
-    {
-        return GetHctsByTemp()[0];
-    }
+    private Hct GetColdest() => GetHctsByTemp()[0];
 
     /// <summary>
     /// HCTs for all colors with the same chroma/tone as the input, sorted by hue index (0..360).

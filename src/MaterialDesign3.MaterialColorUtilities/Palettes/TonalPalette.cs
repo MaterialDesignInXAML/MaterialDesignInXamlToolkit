@@ -16,18 +16,12 @@ public sealed class TonalPalette
     /// <summary>
     /// Create tones using the HCT hue and chroma from a color.
     /// </summary>
-    public static TonalPalette FromInt(int argb)
-    {
-        return FromHct(Hct.FromInt(argb));
-    }
+    public static TonalPalette FromInt(int argb) => FromHct(Hct.FromInt(argb));
 
     /// <summary>
     /// Create tones using a HCT color.
     /// </summary>
-    public static TonalPalette FromHct(Hct hct)
-    {
-        return new TonalPalette(hct.Hue, hct.Chroma, hct);
-    }
+    public static TonalPalette FromHct(Hct hct) => new(hct.Hue, hct.Chroma, hct);
 
     /// <summary>
     /// Create tones from a defined HCT hue and chroma.
@@ -70,10 +64,7 @@ public sealed class TonalPalette
     /// <summary>
     /// Given a tone, use hue and chroma of palette to create a color, and return it as HCT.
     /// </summary>
-    public Hct GetHct(double tone)
-    {
-        return Hct.From(_hue, _chroma, tone);
-    }
+    public Hct GetHct(double tone) => Hct.From(_hue, _chroma, tone);
 
     /// <summary> The chroma of the Tonal Palette, in HCT. </summary>
     public double GetChroma() => _chroma;

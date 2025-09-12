@@ -520,7 +520,7 @@ public class ColorSpec2025 : ColorSpec2021
                 })
                 .SetContrastCurve(s => s.PlatformType == Platform.PHONE ? GetContrastCurve(4.5) : GetContrastCurve(7))
                 .SetToneDeltaPair(s => s.PlatformType == Platform.PHONE
-                    ? new ToneDeltaPair(PrimaryContainer, Primary, 5.0, TonePolarity.RELATIVE_LIGHTER, DeltaConstraint.FARTHER)
+                    ? new ToneDeltaPair(PrimaryContainer, Primary, 5.0, TonePolarity.RelativeLighter, DeltaConstraint.FARTHER)
                     : null!)
                 .Build();
             return base.Primary.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
@@ -543,7 +543,7 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetIsBackground(true)
                 .SetBackground(s => SurfaceContainerHigh)
                 .SetContrastCurve(s => GetContrastCurve(4.5))
-                .SetToneDeltaPair(s => new ToneDeltaPair(PrimaryDim!, Primary, 5.0, TonePolarity.DARKER, DeltaConstraint.FARTHER))
+                .SetToneDeltaPair(s => new ToneDeltaPair(PrimaryDim!, Primary, 5.0, TonePolarity.Darker, DeltaConstraint.FARTHER))
                 .Build();
         }
     }
@@ -584,7 +584,7 @@ public class ColorSpec2025 : ColorSpec2021
                     if (s.PlatformType == Platform.PHONE) return s.IsDark ? SurfaceBright : SurfaceDim;
                     return null!;
                 })
-                .SetToneDeltaPair(s => s.PlatformType == Platform.WATCH ? new ToneDeltaPair(PrimaryContainer, PrimaryDim!, 10.0, TonePolarity.DARKER, DeltaConstraint.FARTHER) : null!)
+                .SetToneDeltaPair(s => s.PlatformType == Platform.WATCH ? new ToneDeltaPair(PrimaryContainer, PrimaryDim!, 10.0, TonePolarity.Darker, DeltaConstraint.FARTHER) : null!)
                 .SetContrastCurve(s => s.PlatformType == Platform.PHONE && s.ContrastLevel > 0 ? GetContrastCurve(1.5) : null!)
                 .Build();
             return base.PrimaryContainer.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
@@ -644,7 +644,7 @@ public class ColorSpec2025 : ColorSpec2021
                 })
                 .SetContrastCurve(s => s.PlatformType == Platform.PHONE ? GetContrastCurve(4.5) : GetContrastCurve(7))
                 .SetToneDeltaPair(s => s.PlatformType == Platform.PHONE
-                    ? new ToneDeltaPair(SecondaryContainer, Secondary, 5.0, TonePolarity.RELATIVE_LIGHTER, DeltaConstraint.FARTHER)
+                    ? new ToneDeltaPair(SecondaryContainer, Secondary, 5.0, TonePolarity.RelativeLighter, DeltaConstraint.FARTHER)
                     : null!)
                 .Build();
             return base.Secondary.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
@@ -666,7 +666,7 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetIsBackground(true)
                 .SetBackground(s => SurfaceContainerHigh)
                 .SetContrastCurve(s => GetContrastCurve(4.5))
-                .SetToneDeltaPair(s => new ToneDeltaPair(SecondaryDim!, Secondary, 5.0, TonePolarity.DARKER, DeltaConstraint.FARTHER))
+                .SetToneDeltaPair(s => new ToneDeltaPair(SecondaryDim!, Secondary, 5.0, TonePolarity.Darker, DeltaConstraint.FARTHER))
                 .Build();
         }
     }
@@ -705,7 +705,7 @@ public class ColorSpec2025 : ColorSpec2021
                     if (s.PlatformType == Platform.PHONE) return s.IsDark ? SurfaceBright : SurfaceDim;
                     return null!;
                 })
-                .SetToneDeltaPair(s => s.PlatformType == Platform.WATCH ? new ToneDeltaPair(SecondaryContainer, SecondaryDim!, 10.0, TonePolarity.DARKER, DeltaConstraint.FARTHER) : null!)
+                .SetToneDeltaPair(s => s.PlatformType == Platform.WATCH ? new ToneDeltaPair(SecondaryContainer, SecondaryDim!, 10.0, TonePolarity.Darker, DeltaConstraint.FARTHER) : null!)
                 .SetContrastCurve(s => s.PlatformType == Platform.PHONE && s.ContrastLevel > 0 ? GetContrastCurve(1.5) : null!)
                 .Build();
             return base.SecondaryContainer.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
@@ -756,7 +756,7 @@ public class ColorSpec2025 : ColorSpec2021
                     return SurfaceContainerHigh;
                 })
                 .SetContrastCurve(s => s.PlatformType == Platform.PHONE ? GetContrastCurve(4.5) : GetContrastCurve(7))
-                .SetToneDeltaPair(s => s.PlatformType == Platform.PHONE ? new ToneDeltaPair(TertiaryContainer, Tertiary, 5.0, TonePolarity.RELATIVE_LIGHTER, DeltaConstraint.FARTHER) : null!)
+                .SetToneDeltaPair(s => s.PlatformType == Platform.PHONE ? new ToneDeltaPair(TertiaryContainer, Tertiary, 5.0, TonePolarity.RelativeLighter, DeltaConstraint.FARTHER) : null!)
                 .Build();
             return base.Tertiary.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
         }
@@ -773,7 +773,7 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetIsBackground(true)
                 .SetBackground(s => SurfaceContainerHigh)
                 .SetContrastCurve(s => GetContrastCurve(4.5))
-                .SetToneDeltaPair(s => new ToneDeltaPair(TertiaryDim!, Tertiary, 5.0, TonePolarity.DARKER, DeltaConstraint.FARTHER))
+                .SetToneDeltaPair(s => new ToneDeltaPair(TertiaryDim!, Tertiary, 5.0, TonePolarity.Darker, DeltaConstraint.FARTHER))
                 .Build();
         }
     }
@@ -831,7 +831,7 @@ public class ColorSpec2025 : ColorSpec2021
                     if (s.PlatformType == Platform.PHONE) return s.IsDark ? SurfaceBright : SurfaceDim;
                     return null!;
                 })
-                .SetToneDeltaPair(s => s.PlatformType == Platform.WATCH ? new ToneDeltaPair(TertiaryContainer, TertiaryDim!, 10.0, TonePolarity.DARKER, DeltaConstraint.FARTHER) : null!)
+                .SetToneDeltaPair(s => s.PlatformType == Platform.WATCH ? new ToneDeltaPair(TertiaryContainer, TertiaryDim!, 10.0, TonePolarity.Darker, DeltaConstraint.FARTHER) : null!)
                 .SetContrastCurve(s => s.PlatformType == Platform.PHONE && s.ContrastLevel > 0 ? GetContrastCurve(1.5) : null!)
                 .Build();
             return base.TertiaryContainer.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
@@ -868,7 +868,7 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetIsBackground(true)
                 .SetBackground(s => s.PlatformType == Platform.PHONE ? (s.IsDark ? SurfaceBright : SurfaceDim) : SurfaceContainerHigh)
                 .SetContrastCurve(s => s.PlatformType == Platform.PHONE ? GetContrastCurve(4.5) : GetContrastCurve(7))
-                .SetToneDeltaPair(s => s.PlatformType == Platform.PHONE ? new ToneDeltaPair(ErrorContainer, Error, 5.0, TonePolarity.RELATIVE_LIGHTER, DeltaConstraint.FARTHER) : null!)
+                .SetToneDeltaPair(s => s.PlatformType == Platform.PHONE ? new ToneDeltaPair(ErrorContainer, Error, 5.0, TonePolarity.RelativeLighter, DeltaConstraint.FARTHER) : null!)
                 .Build();
             return base.Error.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
         }
@@ -885,7 +885,7 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetIsBackground(true)
                 .SetBackground(s => SurfaceContainerHigh)
                 .SetContrastCurve(s => GetContrastCurve(4.5))
-                .SetToneDeltaPair(s => new ToneDeltaPair(ErrorDim!, Error, 5.0, TonePolarity.DARKER, DeltaConstraint.FARTHER))
+                .SetToneDeltaPair(s => new ToneDeltaPair(ErrorDim!, Error, 5.0, TonePolarity.Darker, DeltaConstraint.FARTHER))
                 .Build();
         }
     }
@@ -918,7 +918,7 @@ public class ColorSpec2025 : ColorSpec2021
                 })
                 .SetIsBackground(true)
                 .SetBackground(s => s.PlatformType == Platform.PHONE ? (s.IsDark ? SurfaceBright : SurfaceDim) : null!)
-                .SetToneDeltaPair(s => s.PlatformType == Platform.WATCH ? new ToneDeltaPair(ErrorContainer, ErrorDim!, 10.0, TonePolarity.DARKER, DeltaConstraint.FARTHER) : null!)
+                .SetToneDeltaPair(s => s.PlatformType == Platform.WATCH ? new ToneDeltaPair(ErrorContainer, ErrorDim!, 10.0, TonePolarity.Darker, DeltaConstraint.FARTHER) : null!)
                 .SetContrastCurve(s => s.PlatformType == Platform.PHONE && s.ContrastLevel > 0 ? GetContrastCurve(1.5) : null!)
                 .Build();
             return base.ErrorContainer.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
@@ -969,7 +969,7 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.PrimaryPalette)
                 .SetTone(s => PrimaryFixed.GetTone(s))
                 .SetIsBackground(true)
-                .SetToneDeltaPair(s => new ToneDeltaPair(PrimaryFixedDim, PrimaryFixed, 5.0, TonePolarity.DARKER, DeltaConstraint.EXACT))
+                .SetToneDeltaPair(s => new ToneDeltaPair(PrimaryFixedDim, PrimaryFixed, 5.0, TonePolarity.Darker, DeltaConstraint.EXACT))
                 .Build();
             return base.PrimaryFixedDim.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
         }
@@ -1033,7 +1033,7 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.SecondaryPalette)
                 .SetTone(s => SecondaryFixed.GetTone(s))
                 .SetIsBackground(true)
-                .SetToneDeltaPair(s => new ToneDeltaPair(SecondaryFixedDim, SecondaryFixed, 5.0, TonePolarity.DARKER, DeltaConstraint.EXACT))
+                .SetToneDeltaPair(s => new ToneDeltaPair(SecondaryFixedDim, SecondaryFixed, 5.0, TonePolarity.Darker, DeltaConstraint.EXACT))
                 .Build();
             return base.SecondaryFixedDim.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
         }
@@ -1097,7 +1097,7 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.TertiaryPalette)
                 .SetTone(s => TertiaryFixed.GetTone(s))
                 .SetIsBackground(true)
-                .SetToneDeltaPair(s => new ToneDeltaPair(TertiaryFixedDim, TertiaryFixed, 5.0, TonePolarity.DARKER, DeltaConstraint.EXACT))
+                .SetToneDeltaPair(s => new ToneDeltaPair(TertiaryFixedDim, TertiaryFixed, 5.0, TonePolarity.Darker, DeltaConstraint.EXACT))
                 .Build();
             return base.TertiaryFixedDim.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
         }
@@ -1178,15 +1178,9 @@ public class ColorSpec2025 : ColorSpec2021
         return answer;
     }
 
-    private static double TMaxC(TonalPalette palette)
-    {
-        return TMaxC(palette, 0, 100);
-    }
+    private static double TMaxC(TonalPalette palette) => TMaxC(palette, 0, 100);
 
-    private static double TMaxC(TonalPalette palette, double lowerBound, double upperBound)
-    {
-        return TMaxC(palette, lowerBound, upperBound, 1.0);
-    }
+    private static double TMaxC(TonalPalette palette, double lowerBound, double upperBound) => TMaxC(palette, lowerBound, upperBound, 1.0);
 
     private static double TMaxC(TonalPalette palette, double lowerBound, double upperBound, double chromaMultiplier)
     {
@@ -1194,10 +1188,7 @@ public class ColorSpec2025 : ColorSpec2021
         return MathUtils.ClampDouble(lowerBound, upperBound, answer);
     }
 
-    private static double TMinC(TonalPalette palette)
-    {
-        return TMinC(palette, 0, 100);
-    }
+    private static double TMinC(TonalPalette palette) => TMinC(palette, 0, 100);
 
     private static double TMinC(TonalPalette palette, double lowerBound, double upperBound)
     {
@@ -1239,7 +1230,7 @@ public class ColorSpec2025 : ColorSpec2021
             var roleB = toneDeltaPair.RoleB;
             var polarity = toneDeltaPair.Polarity;
             var constraint = toneDeltaPair.Constraint;
-            var absoluteDelta = (polarity == TonePolarity.DARKER || (polarity == TonePolarity.RELATIVE_LIGHTER && scheme.IsDark) || (polarity == TonePolarity.RELATIVE_DARKER && !scheme.IsDark))
+            var absoluteDelta = (polarity == TonePolarity.Darker || (polarity == TonePolarity.RelativeLighter && scheme.IsDark) || (polarity == TonePolarity.RelativeDarker && !scheme.IsDark))
                 ? -toneDeltaPair.Delta : toneDeltaPair.Delta;
 
             var amRoleA = color.name.Equals(roleA.name);
