@@ -265,6 +265,7 @@ public class SmartHint : Control
             else
                 state = !isEmpty ? HintFloatingPositionName : HintRestingPositionName;
 
+            IsContentNullOrEmpty = proxy?.IsEmpty() == true;
             IsHintInFloatingPosition = state == HintFloatingPositionName;
 
             VisualStateManager.GoToState(this, state, useTransitions);
