@@ -314,7 +314,6 @@ public class DialogHostTests : TestBase
         await Wait.For(async () =>
         {
             var contentCoverBorder = await dialogHost.GetElement<Border>("ContentCoverBorder");
-
             await Assert.That((await contentCoverBorder.GetCornerRadius()).TopLeft).IsEqualTo(1);
             await Assert.That((await contentCoverBorder.GetCornerRadius()).TopRight).IsEqualTo(2);
             await Assert.That((await contentCoverBorder.GetCornerRadius()).BottomRight).IsEqualTo(3);
@@ -500,7 +499,6 @@ public class DialogHostTests : TestBase
         var comboBox = await dialogHost.GetElement<ComboBox>("TargetedPlatformComboBox");
         await Task.Delay(500, TestContext.Current!.CancellationToken);
         await comboBox.LeftClick();
-
         var item = await Wait.For(() => comboBox.GetElement<ComboBoxItem>("TargetItem"));
         await Task.Delay(TimeSpan.FromSeconds(1));
         await item.LeftClick();
