@@ -64,6 +64,8 @@ public class DialogHost : ContentControl
     private DialogClosingEventHandler? _attachedDialogClosingEventHandler;
     private DialogClosedEventHandler? _attachedDialogClosedEventHandler;
     private IInputElement? _restoreFocusDialogClose;
+    private IInputElement? _lastFocusedDialogElement;
+    private WindowState _previousWindowState;
     private Action? _currentSnackbarMessageQueueUnPauseAction;
 
     static DialogHost()
@@ -370,6 +372,7 @@ public class DialogHost : ContentControl
 
         dialogHost.CurrentSession = new DialogSession(dialogHost);
         var window = Window.GetWindow(dialogHost);
+        dialogHost.ListenForWindowStateChanged(window);
         if (!dialogHost.IsRestoreFocusDisabled)
         {
             dialogHost._restoreFocusDialogClose = window != null ? FocusManager.GetFocusedElement(window) : null;
@@ -395,7 +398,8 @@ public class DialogHost : ContentControl
 
         //https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/187
         //totally not happy about this, but on immediate validation we can get some weird looking stuff...give WPF a kick to refresh...
-        Task.Delay(300).ContinueWith(t => dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => {
+        Task.Delay(300).ContinueWith(t => dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+        {
             CommandManager.InvalidateRequerySuggested();
             //Delay focusing the popup until after the animation has some time, Issue #2912
             UIElement? child = dialogHost.FocusPopup();
@@ -403,6 +407,50 @@ public class DialogHost : ContentControl
             child?.InvalidateVisual();
 
         })));
+    }
+
+    
+    private void ListenForWindowStateChanged(Window? window)
+    {
+        window ??= Window.GetWindow(this);
+
+        if (window is not null)
+        {
+            window.StateChanged += Window_StateChanged;
+        }
+    }
+
+    private void Window_StateChanged(object? sender, EventArgs e)
+    {
+        if (sender is not Window window)
+        {
+            return;
+        }
+
+        var windowState = window.WindowState;
+        if (windowState == WindowState.Minimized)
+        {
+            _lastFocusedDialogElement = FocusManager.GetFocusedElement(window);
+            _previousWindowState = windowState;
+            return;
+        }
+
+        // We only need to focus anything manually if the window changes state from Minimized --> (Normal or Maximized)
+        // Going from Normal --> Maximized (and vice versa) is fine since the focus is already kept correctly
+        if (IsWindowRestoredFromMinimized() && IsLastFocusedDialogElementFocusable())
+        {
+            // Kinda hacky, but without a delay the focus doesn't always get set correctly because the Focus() method fires too early
+            Task.Delay(50).ContinueWith(_ => this.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                _lastFocusedDialogElement!.Focus();
+            })));
+        }
+        _previousWindowState = windowState;
+
+        bool IsWindowRestoredFromMinimized() => (windowState == WindowState.Normal || windowState == WindowState.Maximized) &&
+                                                _previousWindowState == WindowState.Minimized;
+
+        bool IsLastFocusedDialogElementFocusable() => _lastFocusedDialogElement is UIElement { Focusable: true, IsVisible: true };
     }
 
     /// <summary>
