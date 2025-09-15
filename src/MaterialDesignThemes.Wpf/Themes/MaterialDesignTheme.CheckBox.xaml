@@ -67,6 +67,7 @@
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Cursor" Value="Hand" />
     <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground), FallbackValue=Black}" />
     <Setter Property="Template">
@@ -103,11 +104,12 @@
               <ColumnDefinition Width="Auto" />
               <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Viewbox Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:CheckBoxAssist.CheckBoxSize)}"
+            <Viewbox x:Name="IconHost"
+                     Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:CheckBoxAssist.CheckBoxSize)}"
                      Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:CheckBoxAssist.CheckBoxSize)}"
                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                      FlowDirection="LeftToRight">
-              <Canvas Width="24" Height="24">
+              <Canvas Width="24" Height="24" Background="Transparent">
                 <Path x:Name="Graphic"
                       Data="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,5V19H5V5H19Z"
                       Fill="{DynamicResource MaterialDesign.Brush.ForegroundLight}" />
@@ -131,6 +133,19 @@
                 </Ellipse>
               </Canvas>
             </Viewbox>
+
+            <!-- halo shown when hovering -->
+            <Ellipse x:Name="halo"
+                     Grid.Column="0"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:CheckBoxAssist.CheckBoxSize), Converter={x:Static converters:MathConverter.MultiplyInstance}, ConverterParameter=1.6}"
+                     Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:CheckBoxAssist.CheckBoxSize), Converter={x:Static converters:MathConverter.MultiplyInstance}, ConverterParameter=1.6}"
+                     Fill="{TemplateBinding Foreground}"
+                     Opacity="0"
+                     IsHitTestVisible="False"
+                     RenderTransformOrigin="0.5,0.5" />
+
             <ContentPresenter x:Name="contentPresenter"
                               Grid.Column="1"
                               Margin="{TemplateBinding Padding}"
@@ -152,7 +167,7 @@
             </MultiDataTrigger>
             <Trigger Property="HasContent" Value="true">
               <Setter Property="FocusVisualStyle" Value="{StaticResource OptionMarkFocusVisual}" />
-              <Setter Property="Padding" Value="4,2,0,0" />
+              <Setter Property="Padding" Value="0,2,0,0" />
             </Trigger>
             <Trigger Property="IsPressed" Value="true" />
             <Trigger Property="IsChecked" Value="true">
@@ -170,6 +185,9 @@
             <Trigger Property="Validation.HasError" Value="true">
               <Setter TargetName="Graphic" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
               <Setter TargetName="contentPresenter" Property="Control.Foreground" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
+            </Trigger>
+            <Trigger SourceName="IconHost" Property="IsMouseOver" Value="True">
+              <Setter TargetName="halo" Property="Opacity" Value="{x:Static wpf:Constants.InteractionHoverOpacity}" />
             </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
@@ -242,7 +260,7 @@
                      Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:CheckBoxAssist.CheckBoxSize)}"
                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                      FlowDirection="LeftToRight">
-              <Canvas Width="24" Height="24">
+              <Canvas Width="24" Height="24" Background="Transparent">
                 <Path x:Name="Graphic"
                       Data="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,5V19H5V5H19Z"
                       Fill="{TemplateBinding Foreground}" />
