@@ -412,10 +412,10 @@ public class DialogHost : ContentControl
     
     private void ListenForWindowStateChanged(Window? window)
     {
-        window ??= Window.GetWindow(this);
 
         if (window is not null)
         {
+            window.StateChanged -= Window_StateChanged;
             window.StateChanged += Window_StateChanged;
         }
     }
@@ -437,12 +437,15 @@ public class DialogHost : ContentControl
 
         // We only need to focus anything manually if the window changes state from Minimized --> (Normal or Maximized)
         // Going from Normal --> Maximized (and vice versa) is fine since the focus is already kept correctly
-        if (IsWindowRestoredFromMinimized() && IsLastFocusedDialogElementFocusable())
+        if (IsWindowRestoredFromMinimized())
         {
             // Kinda hacky, but without a delay the focus doesn't always get set correctly because the Focus() method fires too early
             Task.Delay(50).ContinueWith(_ => this.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
-                _lastFocusedDialogElement!.Focus();
+                if (IsLastFocusedDialogElementFocusable())
+                {
+                    _lastFocusedDialogElement!.Focus();
+                }
             })));
         }
         _previousWindowState = windowState;
