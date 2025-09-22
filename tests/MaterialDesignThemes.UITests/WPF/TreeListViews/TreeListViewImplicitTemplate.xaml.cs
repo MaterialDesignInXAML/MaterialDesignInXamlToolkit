@@ -8,7 +8,8 @@ namespace MaterialDesignThemes.UITests.WPF.TreeListViews;
 public partial class TreeListViewImplicitTemplate
 {
     //NB: making the assumption changes occur on the UI thread
-    public ObservableCollection<TreeItem> Items { get; } = new();
+    public ObservableCollection<TreeItem> Items { get; } = [];
+    public ObservableCollection<TreeItem> SelectedItems { get; } = [];
 
     public TreeListViewImplicitTemplate()
     {
@@ -40,12 +41,9 @@ public partial class TreeListViewImplicitTemplate
         }
     }
 
-    private void RemoveItem(IList<TreeItem> items, TreeItem toRemove)
+    private static void RemoveItem(IList<TreeItem> items, TreeItem toRemove)
     {
-        if (items.Contains(toRemove))
-        {
-            items.Remove(toRemove);
-        }
+        items.Remove(toRemove);
         foreach (TreeItem item in items)
         {
             RemoveItem(item.Children, toRemove);

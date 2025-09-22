@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Windows.Media;
 
 namespace MaterialDesignThemes.UITests.WPF.TreeListViews;
@@ -150,7 +151,7 @@ public class TreeListViewTests : TestBase
         await secondItem.LeftClickExpander();
 
         // Select child item and add three children and expand it
-        IVisualElement<TreeListViewItem>? childElement =  await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[3]");
+        IVisualElement<TreeListViewItem>? childElement = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[3]");
         await AddChildren(childElement!, 3, addButton);
 
         //NB: Needs to be long enough delay so the next click does not register as a double click
@@ -514,7 +515,6 @@ public class TreeListViewTests : TestBase
 
         await AssertTreeItemContent(treeListView, 0, "0");
         await AssertTreeItemContent(treeListView, 1, "2");
-        
         recorder.Success();
     }
 
@@ -925,7 +925,6 @@ public class TreeListViewTests : TestBase
 
         // NOTE: This may not be needed, I am not entirely sure.
         item1 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[2]");
-        
         // Expand item "1"
         await item1.LeftClickExpander();
 
@@ -1020,6 +1019,195 @@ public class TreeListViewTests : TestBase
         recorder.Success();
     }
 
+    [Theory]
+    [MemberData(nameof(GetTestControls))]
+    public async Task TreeListView_SelectingMultipleItems_AddsThemToSelectedItems(Type userControlType)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> root = (await LoadUserControl(userControlType)).As<Grid>();
+        IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+
+        IVisualElement<TreeListViewItem> item1 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
+        IVisualElement<TreeListViewItem> item2 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[2]");
+
+        // Select multiple items
+        await item1.LeftClick();
+        await Task.Delay(50);
+        await treeListView.SendKeyboardInput($"{ModifierKeys.Control}");
+        await item2.LeftClick();
+        await Task.Delay(50);
+
+        // Release modifiers
+        await treeListView.SendKeyboardInput($"{ModifierKeys.None}");
+
+        await treeListView.RemoteExecute(AssertSelectedItems);
+
+        recorder.Success();
+
+        // Assert inside of the remote executed method because we can't return an IList, since it's not serializable
+        static void AssertSelectedItems(TreeListView treeListView)
+        {
+            var dataContext = treeListView.DataContext;
+
+            if (dataContext is TreeListViewDataBinding viewModelA)
+            {
+                Assert.Equal(2, viewModelA.SelectedItems.Count);
+            }
+            if (dataContext is TreeListViewImplicitTemplate viewModelB)
+            {
+                Assert.Equal(2, viewModelB.SelectedItems.Count);
+            }
+        }
+    }
+
+    [Fact]
+    [Description($"When collapsing a parent node all child nodes are visually removed (due to its impl.) from the ListView. A selected child nodes should stay in the {nameof(TreeListView.SelectedItems)} DP even when collapsing its parent.")]
+    public async Task TreeListView_CollapsingParentOfSelectedChild_DoesNotRemoveChildFromSelectedItems()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> root = (await LoadUserControl(typeof(TreeListViewDataBinding))).As<Grid>();
+        IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+        IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
+
+        IVisualElement<TreeListViewItem> item1 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
+        IVisualElement<TreeListViewItem> item2 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[2]");
+
+        // add three children to the second item
+        await AddChildren(item2, 3, addButton);
+
+        // Expand and select second item
+        await item2.LeftClickExpander();
+        await item2.LeftClick();
+        await Task.Delay(50);
+
+        // also select the second child
+        IVisualElement<TreeListViewItem> child2 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[4]");
+        await treeListView.SendKeyboardInput($"{ModifierKeys.Control}");
+        await child2.LeftClick();
+
+        // Release modifiers
+        await treeListView.SendKeyboardInput($"{ModifierKeys.None}");
+
+        // Assert that the parent and child are selected
+        await treeListView.RemoteExecute(AssertSelectedItems);
+
+        // Collapse the parent
+        await item2.LeftClickExpander(false);
+        await Task.Delay(50);
+
+        // Assert that the child is still selected, even though it was visually removed from the list
+        await treeListView.RemoteExecute(AssertSelectedItems);
+
+        recorder.Success();
+
+        // Assert inside of the remote executed method because we can't return an IList, since it's not serializable
+        static void AssertSelectedItems(TreeListView treeListView)
+        {
+            var viewModel = (TreeListViewDataBinding)treeListView.DataContext;
+
+            Assert.Equal("2", viewModel.SelectedItems[0].Value);
+            Assert.Equal("2_1", viewModel.SelectedItems[1].Value);
+        }
+    }
+
+    [Fact]
+    public async Task TreeListView_CollapsingParentAndMovingSelection_ClearsSelectionsFromHiddenChildNode()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> root = (await LoadUserControl(typeof(TreeListViewDataBinding))).As<Grid>();
+        IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+        IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
+
+        IVisualElement<TreeListViewItem> item1 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
+        IVisualElement<TreeListViewItem> item2 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[2]");
+
+        // add three children to the second item
+        await AddChildren(item2, 3, addButton);
+
+        // Expand the second item
+        await item2.LeftClickExpander();
+        await Task.Delay(50);
+
+        // select the second child
+        IVisualElement<TreeListViewItem> child2 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[4]");
+        await child2.LeftClick();
+
+        // Collapse the parent item
+        await item2.LeftClickExpander();
+        await Task.Delay(50);
+
+        // Left click on item 1, this should cause the previous selection to clear
+        await item1.LeftClick();
+        await Task.Delay(50);
+
+        await treeListView.RemoteExecute(AssertSelectedItems);
+
+        recorder.Success();
+
+        // Assert inside of the remote executed method because we can't return an IList, since it's not serializable
+        static void AssertSelectedItems(TreeListView treeListView)
+        {
+            var viewModel = (TreeListViewDataBinding)treeListView.DataContext;
+
+            Assert.Equal(["1"], viewModel.SelectedItems.Select(x => x.Value));
+        }
+    }
+
+    [Fact]
+    public async Task TreeListView_AddingDuplicateItemsAndSelectingWithArrowKeys_SelectsEachItemInTurn()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        IVisualElement<Grid> root = (await LoadUserControl(typeof(TreeListViewDataBinding))).As<Grid>();
+        IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
+        IVisualElement<Button> addDuplicateButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add Duplicate"));
+
+        IVisualElement<TreeListViewItem> item1 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[1]");
+
+        // Left click on item 1 to select it
+        await item1.LeftClick();
+        await Task.Delay(50);
+
+        // Add two duplicates to the tree
+        await addDuplicateButton.LeftClick();
+        await Task.Delay(50);
+
+        await addDuplicateButton.LeftClick();
+        await Task.Delay(50);
+
+        IVisualElement<TreeListViewItem> item = await treeListView.GetElement<TreeListViewItem>($"/TreeListViewItem[0]");
+        await item.LeftClick();
+        await Task.Delay(50);
+
+        await treeListView.RemoteExecute(AssertSelectedItems, "0");
+
+        for(int i = 0; i < 2; i++)
+        {
+            // Press down arrow to select the next item
+            await treeListView.SendKeyboardInput($"{Key.Down}");
+            await Task.Delay(50);
+            await treeListView.RemoteExecute(AssertSelectedItems, "1");
+        }
+
+        await treeListView.SendKeyboardInput($"{Key.Down}");
+        await Task.Delay(50);
+        await treeListView.RemoteExecute(AssertSelectedItems, "2");
+
+        recorder.Success();
+
+        // Assert inside of the remote executed method because we can't return an IList, since it's not serializable
+        static void AssertSelectedItems(TreeListView treeListView, string expected)
+        {
+            var viewModel = (TreeListViewDataBinding)treeListView.DataContext;
+
+            Assert.Equal([expected], viewModel.SelectedItems.Select(x => x.Value));
+        }
+    }
+
+    
     private static async Task AssertTreeItemContent(IVisualElement<TreeListView> treeListView, int index, string content, bool isExpanded = false)
     {
         await Wait.For(async () =>

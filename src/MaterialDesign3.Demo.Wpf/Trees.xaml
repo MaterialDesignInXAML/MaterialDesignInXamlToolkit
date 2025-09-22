@@ -175,35 +175,69 @@
         </Grid>
       </smtx:XamlDisplay>
 
-      <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="Multi-Select Tree View:"
-                 Grid.Column="2"/>
+      <TextBlock Grid.Column="2"
+                 Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                 Text="Multi-Select Tree View:" />
       <smtx:XamlDisplay Grid.Row="1"
                         Grid.Column="2"
                         VerticalContentAlignment="Top"
                         UniqueKey="trees_3">
-        <Grid>
-          <materialDesign:TreeListView MinWidth="220" MaxHeight="450"
-                                       ItemsSource="{Binding TreeItems}"
-                                       SelectedItem="{Binding SelectedTreeItem}">
-            <materialDesign:TreeListView.ItemTemplate>
-              <HierarchicalDataTemplate DataType="{x:Type domain:TestItem}"
-                                        ItemsSource="{Binding Items, Mode=OneWay}">
-                <TextBlock Margin="3,2" Text="{Binding Name, Mode=OneWay}" />
-              </HierarchicalDataTemplate>
-            </materialDesign:TreeListView.ItemTemplate>
+        <StackPanel Orientation="Horizontal">
+          <Grid>
+            <materialDesign:TreeListView MinWidth="220"
+                                         MaxHeight="450"
+                                         ItemsSource="{Binding TreeItems}"
+                                         SelectedItem="{Binding SelectedTreeItem}"
+                                         SelectedItems="{Binding SelectedTreeItems}">
+              <materialDesign:TreeListView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type domain:TestItem}" ItemsSource="{Binding Items, Mode=OneWay}">
+                  <TextBlock Margin="3,2" Text="{Binding Name, Mode=OneWay}" />
+                </HierarchicalDataTemplate>
+              </materialDesign:TreeListView.ItemTemplate>
 
-          </materialDesign:TreeListView>
-          <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-            <Button Command="{Binding AddListTreeItemCommand}"
-                    ToolTip="Add an item"
-                    Content="{materialDesign:PackIcon Kind=Add}"/>
+            </materialDesign:TreeListView>
+            <StackPanel HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Orientation="Horizontal">
+              <Button Command="{Binding AddListTreeItemCommand}"
+                      Content="{materialDesign:PackIcon Kind=Add}"
+                      ToolTip="Add an item" />
 
-            <Button Command="{Binding RemoveListTreeItemCommand}"
-                    ToolTip="Remove selected item(s)"
-                    Content="{materialDesign:PackIcon Kind=Remove}"/>
+              <Button Command="{Binding RemoveListTreeItemCommand}"
+                      Content="{materialDesign:PackIcon Kind=Remove}"
+                      ToolTip="Remove selected item(s)" />
 
-          </StackPanel>
-        </Grid>
+            </StackPanel>
+          </Grid>
+
+          <GroupBox Margin="4,0,0,0" Header="TreeListView.SelectedItems">
+            <ListBox HorizontalContentAlignment="Stretch" ItemsSource="{Binding SelectedTreeItems}">
+              <ListBox.ItemTemplate>
+                <DataTemplate>
+                  <Grid>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="*" />
+                      <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Text="{Binding Name}" />
+                    <Button Grid.Column="1"
+                            Width="{Binding Path=ActualHeight, RelativeSource={RelativeSource Mode=Self}}"
+                            Padding="4"
+                            Command="{Binding DataContext.RemoveSelectedListTreeItemCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                            CommandParameter="{Binding .}"
+                            Content="{materialDesign:PackIcon Kind=Bin}"
+                            Foreground="Red"
+                            Style="{StaticResource MaterialDesignFlatButton}" />
+                  </Grid>
+                </DataTemplate>
+              </ListBox.ItemTemplate>
+            </ListBox>
+          </GroupBox>
+
+        </StackPanel>
+
       </smtx:XamlDisplay>
 
       <TextBlock Grid.Row="2"

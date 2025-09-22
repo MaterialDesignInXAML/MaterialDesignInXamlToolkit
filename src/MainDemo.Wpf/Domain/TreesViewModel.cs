@@ -104,6 +104,10 @@ public sealed class TreesViewModel : ViewModelBase
 
     public AnotherCommandImplementation RemoveListTreeItemCommand { get; }
 
+    public AnotherCommandImplementation RemoveSelectedListTreeItemCommand { get; }
+
+    public ObservableCollection<TestItem?> SelectedTreeItems { get; } = [];
+
     public TestItem? SelectedTreeItem
     {
         get => _selectedTreeItem;
@@ -119,7 +123,7 @@ public sealed class TreesViewModel : ViewModelBase
     public TreesViewModel()
     {
         Random random = new();
-        for(int i = 0; i < 10; i++)
+        for (int i = 0; i < 10; i++)
         {
             TreeItems.Add(CreateTestItem(random, 1));
         }
@@ -128,8 +132,8 @@ public sealed class TreesViewModel : ViewModelBase
         {
             int numberOfChildren = depth < 5 ? random.Next(0, 6) : 0;
             var children = Enumerable.Range(0, numberOfChildren).Select(_ => CreateTestItem(random, depth + 1));
-            var rv = new TestItem(GenerateString(random.Next(4, 10)), children); 
-            foreach(var child in rv.Items)
+            var rv = new TestItem(GenerateString(random.Next(4, 10)), children);
+            foreach (var child in rv.Items)
             {
                 child.Parent = rv;
             }
@@ -154,7 +158,7 @@ public sealed class TreesViewModel : ViewModelBase
         {
             if (items is IEnumerable enumerable)
             {
-                foreach(TestItem testItem in enumerable)
+                foreach (TestItem testItem in enumerable)
                 {
                     if (testItem.Parent is { } parent)
                     {
@@ -226,6 +230,14 @@ public sealed class TreesViewModel : ViewModelBase
                 }
             },
             _ => SelectedItem != null);
+
+        RemoveSelectedListTreeItemCommand = new(item =>
+        {
+            if (item is TestItem treeItem)
+            {
+                SelectedTreeItems.Remove(treeItem);
+            }
+        });
     }
 
     private static string GenerateString(int length)
