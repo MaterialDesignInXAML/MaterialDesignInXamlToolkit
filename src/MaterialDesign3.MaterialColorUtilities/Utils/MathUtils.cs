@@ -65,7 +65,7 @@ public static class MathUtils
     /// </summary>
     public static double RotationDirection(double from, double to)
     {
-        var increasingDifference = SanitizeDegreesDouble(to - from);
+        double increasingDifference = SanitizeDegreesDouble(to - from);
         return increasingDifference <= 180.0 ? 1.0 : -1.0;
     }
 
@@ -79,9 +79,9 @@ public static class MathUtils
     /// </summary>
     public static double[] MatrixMultiply(double[] row, double[][] matrix)
     {
-        var a = row[0] * matrix[0][0] + row[1] * matrix[0][1] + row[2] * matrix[0][2];
-        var b = row[0] * matrix[1][0] + row[1] * matrix[1][1] + row[2] * matrix[1][2];
-        var c = row[0] * matrix[2][0] + row[1] * matrix[2][1] + row[2] * matrix[2][2];
+        double a = row[0] * matrix[0][0] + row[1] * matrix[0][1] + row[2] * matrix[0][2];
+        double b = row[0] * matrix[1][0] + row[1] * matrix[1][1] + row[2] * matrix[1][2];
+        double c = row[0] * matrix[2][0] + row[1] * matrix[2][1] + row[2] * matrix[2][2];
         return [a, b, c];
     }
 
@@ -94,10 +94,10 @@ public static class MathUtils
     {
         x = Math.Abs(x);
         y = Math.Abs(y);
-        var max = Math.Max(x, y);
-        var min = Math.Min(x, y);
+        double max = Math.Max(x, y);
+        double min = Math.Min(x, y);
         if (max == 0) return 0;
-        var r = min / max;
+        double r = min / max;
         return max * Math.Sqrt(1 + r * r);
     }
 
@@ -107,7 +107,7 @@ public static class MathUtils
     public static double Expm1(double x)
     {
         if (x == 0.0) return 0.0;
-        var ax = Math.Abs(x);
+        double ax = Math.Abs(x);
         if (ax < 1e-5)
         {
             // Series expansion: x + x^2/2 + x^3/6
@@ -126,7 +126,7 @@ public static class MathUtils
             // Domain error maps to -Infinity like Java's log1p for x == -1 and NaN for x < -1.
             return x == -1.0 ? double.NegativeInfinity : double.NaN;
         }
-        var ax = Math.Abs(x);
+        double ax = Math.Abs(x);
         if (ax < 1e-5)
         {
             // Series expansion: x - x^2/2 + x^3/3

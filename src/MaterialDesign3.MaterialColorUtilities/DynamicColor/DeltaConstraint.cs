@@ -2,7 +2,7 @@
 
 public enum DeltaConstraint
 {
-    EXACT,
-    NEARER,
-    FARTHER
+    Exact,
+    Nearer,
+    Farther
 }

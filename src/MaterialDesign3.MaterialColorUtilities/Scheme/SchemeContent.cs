@@ -15,17 +15,17 @@ public class SchemeContent: DynamicScheme
         Platform platform)
         : base(
             sourceColorHct,
-            Variant.CONTENT,
+            Variant.Content,
             isDark,
             contrastLevel,
             platform,
             specVersion,
-            ColorSpecs.Get(specVersion).GetPrimaryPalette(Variant.CONTENT, sourceColorHct, isDark, platform, contrastLevel),
-            ColorSpecs.Get(specVersion).GetSecondaryPalette(Variant.CONTENT, sourceColorHct, isDark, platform, contrastLevel),
-            ColorSpecs.Get(specVersion).GetTertiaryPalette(Variant.CONTENT, sourceColorHct, isDark, platform, contrastLevel),
-            ColorSpecs.Get(specVersion).GetNeutralPalette(Variant.CONTENT, sourceColorHct, isDark, platform, contrastLevel),
-            ColorSpecs.Get(specVersion).GetNeutralVariantPalette(Variant.CONTENT, sourceColorHct, isDark, platform, contrastLevel),
-            ColorSpecs.Get(specVersion).GetErrorPalette(Variant.CONTENT, sourceColorHct, isDark, platform, contrastLevel))
+            ColorSpecs.Get(specVersion).GetPrimaryPalette(Variant.Content, sourceColorHct, isDark, platform, contrastLevel),
+            ColorSpecs.Get(specVersion).GetSecondaryPalette(Variant.Content, sourceColorHct, isDark, platform, contrastLevel),
+            ColorSpecs.Get(specVersion).GetTertiaryPalette(Variant.Content, sourceColorHct, isDark, platform, contrastLevel),
+            ColorSpecs.Get(specVersion).GetNeutralPalette(Variant.Content, sourceColorHct, isDark, platform, contrastLevel),
+            ColorSpecs.Get(specVersion).GetNeutralVariantPalette(Variant.Content, sourceColorHct, isDark, platform, contrastLevel),
+            ColorSpecs.Get(specVersion).GetErrorPalette(Variant.Content, sourceColorHct, isDark, platform, contrastLevel))
     {
     }
 }

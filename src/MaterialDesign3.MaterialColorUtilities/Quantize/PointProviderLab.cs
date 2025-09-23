@@ -13,7 +13,7 @@ public sealed class PointProviderLab: PointProvider
     /// <returns></returns>
     public double[] FromInt(int argb)
     {
-        var lab = ColorUtils.LabFromArgb(argb);
+        double[] lab = ColorUtils.LabFromArgb(argb);
         return [lab[0], lab[1], lab[2]];
     }
 
@@ -34,9 +34,9 @@ public sealed class PointProviderLab: PointProvider
      /// </summary>
     public double Distance(double[] one, double[] two)
     {
-        var dL = one[0] - two[0];
-        var dA = one[1] - two[1];
-        var dB = one[2] - two[2];
+        double dL = one[0] - two[0];
+        double dA = one[1] - two[1];
+        double dB = one[2] - two[2];
         return dL * dL + dA * dA + dB * dB;
     }
 }

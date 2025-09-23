@@ -44,7 +44,7 @@ public sealed class TonalPalette
     /// </summary>
     public int Tone(int tone)
     {
-        if (_cache.TryGetValue(tone, out var cached))
+        if (_cache.TryGetValue(tone, out int cached))
         {
             return cached;
         }
@@ -77,15 +77,15 @@ public sealed class TonalPalette
 
     private static int AverageArgb(int argb1, int argb2)
     {
-        var red1 = (argb1 >> 16) & 0xff;
-        var green1 = (argb1 >> 8) & 0xff;
-        var blue1 = argb1 & 0xff;
-        var red2 = (argb2 >> 16) & 0xff;
-        var green2 = (argb2 >> 8) & 0xff;
-        var blue2 = argb2 & 0xff;
-        var red = (int)Round((red1 + red2) / 2.0);
-        var green = (int)Round((green1 + green2) / 2.0);
-        var blue = (int)Round((blue1 + blue2) / 2.0);
+        int red1 = (argb1 >> 16) & 0xff;
+        int green1 = (argb1 >> 8) & 0xff;
+        int blue1 = argb1 & 0xff;
+        int red2 = (argb2 >> 16) & 0xff;
+        int green2 = (argb2 >> 8) & 0xff;
+        int blue2 = argb2 & 0xff;
+        int red = (int)Round((red1 + red2) / 2.0);
+        int green = (int)Round((green1 + green2) / 2.0);
+        int blue = (int)Round((blue1 + blue2) / 2.0);
         return (255 << 24) | ((red & 255) << 16) | ((green & 255) << 8) | (blue & 255);
     }
 
@@ -111,13 +111,13 @@ public sealed class TonalPalette
             const int toneStepSize = 1;
             const double epsilon = 0.01;
 
-            var lowerTone = 0;
-            var upperTone = 100;
+            int lowerTone = 0;
+            int upperTone = 100;
             while (lowerTone < upperTone)
             {
-                var midTone = (lowerTone + upperTone) / 2;
-                var isAscending = MaxChroma(midTone) < MaxChroma(midTone + toneStepSize);
-                var sufficientChroma = MaxChroma(midTone) >= _requestedChroma - epsilon;
+                int midTone = (lowerTone + upperTone) / 2;
+                bool isAscending = MaxChroma(midTone) < MaxChroma(midTone + toneStepSize);
+                bool sufficientChroma = MaxChroma(midTone) >= _requestedChroma - epsilon;
 
                 if (sufficientChroma)
                 {
@@ -151,9 +151,9 @@ public sealed class TonalPalette
 
         private double MaxChroma(int tone)
         {
-            if (!_chromaCache.TryGetValue(tone, out var cached))
+            if (!_chromaCache.TryGetValue(tone, out double cached))
             {
-                var newChroma = Hct.From(_hue, MAX_CHROMA_VALUE, tone).Chroma;
+                double newChroma = Hct.From(_hue, MAX_CHROMA_VALUE, tone).Chroma;
                 _chromaCache[tone] = newChroma;
                 return newChroma;
             }

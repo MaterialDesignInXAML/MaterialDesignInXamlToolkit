@@ -16,7 +16,7 @@ public sealed class ToneDeltaPair
         Delta = delta;
         Polarity = polarity;
         StayTogether = stayTogether;
-        Constraint = DeltaConstraint.EXACT;
+        Constraint = DeltaConstraint.Exact;
     }
 
     public ToneDeltaPair(DynamicColor roleA, DynamicColor roleB, double delta, TonePolarity polarity, DeltaConstraint constraint)

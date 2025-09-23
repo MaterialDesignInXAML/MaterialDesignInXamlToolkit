@@ -49,11 +49,11 @@ public sealed class Cam16
     /// </summary>
     public double Distance(Cam16 other)
     {
-        var dJ = Jstar - other.Jstar;
-        var dA = Astar - other.Astar;
-        var dB = Bstar - other.Bstar;
-        var dEPrime = Sqrt(dJ * dJ + dA * dA + dB * dB);
-        var dE = 1.41 * Pow(dEPrime, 0.63);
+        double dJ = Jstar - other.Jstar;
+        double dA = Astar - other.Astar;
+        double dB = Bstar - other.Bstar;
+        double dEPrime = Sqrt(dJ * dJ + dA * dA + dB * dB);
+        double dE = 1.41 * Pow(dEPrime, 0.63);
         return dE;
     }
 

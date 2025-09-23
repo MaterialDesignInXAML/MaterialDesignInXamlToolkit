@@ -10,9 +10,9 @@ public static class StringUtils
     /// </summary>
     public static string HexFromArgb(int argb)
     {
-        var red = ColorUtils.RedFromArgb(argb);
-        var green = ColorUtils.GreenFromArgb(argb);
-        var blue = ColorUtils.BlueFromArgb(argb);
+        int red = ColorUtils.RedFromArgb(argb);
+        int green = ColorUtils.GreenFromArgb(argb);
+        int blue = ColorUtils.BlueFromArgb(argb);
         return $"#{red:X2}{green:X2}{blue:X2}".ToLowerInvariant();
     }
 }

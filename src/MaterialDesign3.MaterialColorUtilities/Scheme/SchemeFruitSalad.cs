@@ -15,17 +15,17 @@ public class SchemeFruitSalad: DynamicScheme
         Platform platform)
         : base(
             sourceColorHct,
-            Variant.FRUIT_SALAD,
+            Variant.FruitSalad,
             isDark,
             contrastLevel,
             platform,
             specVersion,
-            ColorSpecs.Get(specVersion).GetPrimaryPalette(Variant.FRUIT_SALAD, sourceColorHct, isDark, platform, contrastLevel),
-            ColorSpecs.Get(specVersion).GetSecondaryPalette(Variant.FRUIT_SALAD, sourceColorHct, isDark, platform, contrastLevel),
-            ColorSpecs.Get(specVersion).GetTertiaryPalette(Variant.FRUIT_SALAD, sourceColorHct, isDark, platform, contrastLevel),
-            ColorSpecs.Get(specVersion).GetNeutralPalette(Variant.FRUIT_SALAD, sourceColorHct, isDark, platform, contrastLevel),
-            ColorSpecs.Get(specVersion).GetNeutralVariantPalette(Variant.FRUIT_SALAD, sourceColorHct, isDark, platform, contrastLevel),
-            ColorSpecs.Get(specVersion).GetErrorPalette(Variant.FRUIT_SALAD, sourceColorHct, isDark, platform, contrastLevel))
+            ColorSpecs.Get(specVersion).GetPrimaryPalette(Variant.FruitSalad, sourceColorHct, isDark, platform, contrastLevel),
+            ColorSpecs.Get(specVersion).GetSecondaryPalette(Variant.FruitSalad, sourceColorHct, isDark, platform, contrastLevel),
+            ColorSpecs.Get(specVersion).GetTertiaryPalette(Variant.FruitSalad, sourceColorHct, isDark, platform, contrastLevel),
+            ColorSpecs.Get(specVersion).GetNeutralPalette(Variant.FruitSalad, sourceColorHct, isDark, platform, contrastLevel),
+            ColorSpecs.Get(specVersion).GetNeutralVariantPalette(Variant.FruitSalad, sourceColorHct, isDark, platform, contrastLevel),
+            ColorSpecs.Get(specVersion).GetErrorPalette(Variant.FruitSalad, sourceColorHct, isDark, platform, contrastLevel))
     {
     }
 }

@@ -267,7 +267,7 @@ public class ColorSpec2021 : ColorSpec
         .SetPalette(s => s.SecondaryPalette)
         .SetTone(s =>
         {
-            var initialTone = s.IsDark ? 30.0 : 90.0;
+            double initialTone = s.IsDark ? 30.0 : 90.0;
             if (IsMonochrome(s)) return s.IsDark ? 30.0 : 85.0;
             if (!IsFidelity(s)) return initialTone;
             return FindDesiredChromaByTone(s.SecondaryPalette.GetHue(), s.SecondaryPalette.GetChroma(), initialTone, !s.IsDark);
@@ -551,16 +551,16 @@ public class ColorSpec2021 : ColorSpec
     // Other
     public DynamicColor HighestSurface(DynamicScheme s) => s.IsDark ? SurfaceBright : SurfaceDim;
 
-    private static bool IsFidelity(DynamicScheme scheme) => scheme.Variant == Variant.FIDELITY || scheme.Variant == Variant.CONTENT;
-    private static bool IsMonochrome(DynamicScheme scheme) => scheme.Variant == Variant.MONOCHROME;
+    private static bool IsFidelity(DynamicScheme scheme) => scheme.Variant == Variant.Fidelity || scheme.Variant == Variant.Content;
+    private static bool IsMonochrome(DynamicScheme scheme) => scheme.Variant == Variant.Monochrome;
 
     private static double FindDesiredChromaByTone(double hue, double chroma, double tone, bool byDecreasingTone)
     {
-        var answer = tone;
+        double answer = tone;
         var closest = Hct.From(hue, chroma, tone);
         if (closest.Chroma < chroma)
         {
-            var chromaPeak = closest.Chroma;
+            double chromaPeak = closest.Chroma;
             while (closest.Chroma < chroma)
             {
                 answer += byDecreasingTone ? -1.0 : 1.0;
@@ -573,8 +573,8 @@ public class ColorSpec2021 : ColorSpec
                 {
                     break;
                 }
-                var potentialDelta = System.Math.Abs(potential.Chroma - chroma);
-                var currentDelta = System.Math.Abs(closest.Chroma - chroma);
+                double potentialDelta = System.Math.Abs(potential.Chroma - chroma);
+                double currentDelta = System.Math.Abs(closest.Chroma - chroma);
                 if (potentialDelta < currentDelta)
                 {
                     closest = potential;
@@ -588,32 +588,32 @@ public class ColorSpec2021 : ColorSpec
     // Color value calculations
     public Hct GetHct(DynamicScheme scheme, DynamicColor color)
     {
-        var tone = GetTone(scheme, color);
+        double tone = GetTone(scheme, color);
         return color.palette(scheme).GetHct(tone);
     }
 
     public double GetTone(DynamicScheme scheme, DynamicColor color)
     {
-        var decreasingContrast = scheme.ContrastLevel < 0;
+        bool decreasingContrast = scheme.ContrastLevel < 0;
         var toneDeltaPair = color.toneDeltaPair == null ? null : color.toneDeltaPair(scheme);
 
         if (toneDeltaPair != null)
         {
             var roleA = toneDeltaPair.RoleA;
             var roleB = toneDeltaPair.RoleB;
-            var delta = toneDeltaPair.Delta;
+            double delta = toneDeltaPair.Delta;
             var polarity = toneDeltaPair.Polarity;
-            var stayTogether = toneDeltaPair.StayTogether;
+            bool stayTogether = toneDeltaPair.StayTogether;
 
-            var aIsNearer = (polarity == TonePolarity.Nearer
-                || (polarity == TonePolarity.Lighter && !scheme.IsDark)
-                || (polarity == TonePolarity.Darker && !scheme.IsDark));
+            bool aIsNearer = (polarity == TonePolarity.Nearer
+                              || (polarity == TonePolarity.Lighter && !scheme.IsDark)
+                              || (polarity == TonePolarity.Darker && !scheme.IsDark));
             var nearer = aIsNearer ? roleA : roleB;
             var farther = aIsNearer ? roleB : roleA;
-            var amNearer = color.name.Equals(nearer.name, System.StringComparison.Ordinal);
-            var expansionDir = scheme.IsDark ? 1 : -1;
-            var nTone = nearer.tone(scheme);
-            var fTone = farther.tone(scheme);
+            bool amNearer = color.name.Equals(nearer.name, System.StringComparison.Ordinal);
+            int expansionDir = scheme.IsDark ? 1 : -1;
+            double nTone = nearer.tone(scheme);
+            double fTone = farther.tone(scheme);
 
             if (color.background != null && nearer.contrastCurve != null && farther.contrastCurve != null)
             {
@@ -622,9 +622,9 @@ public class ColorSpec2021 : ColorSpec
                 var fCurve = farther.contrastCurve(scheme);
                 if (bg != null && nCurve != null && fCurve != null)
                 {
-                    var nContrast = nCurve.Get(scheme.ContrastLevel);
-                    var fContrast = fCurve.Get(scheme.ContrastLevel);
-                    var bgTone = bg.GetTone(scheme);
+                    double nContrast = nCurve.Get(scheme.ContrastLevel);
+                    double fContrast = fCurve.Get(scheme.ContrastLevel);
+                    double bgTone = bg.GetTone(scheme);
                     if (Contrast.RatioOfTones(bgTone, nTone) < nContrast)
                     {
                         nTone = DynamicColor.ForegroundTone(bgTone, nContrast);
@@ -694,13 +694,13 @@ public class ColorSpec2021 : ColorSpec
         }
         else
         {
-            var answer = color.tone(scheme);
+            double answer = color.tone(scheme);
             if (color.background == null || color.background(scheme) == null || color.contrastCurve == null || color.contrastCurve(scheme) == null)
             {
                 return answer;
             }
-            var bgTone = color.background(scheme).GetTone(scheme);
-            var desiredRatio = color.contrastCurve(scheme).Get(scheme.ContrastLevel);
+            double bgTone = color.background(scheme).GetTone(scheme);
+            double desiredRatio = color.contrastCurve(scheme).Get(scheme.ContrastLevel);
             if (Contrast.RatioOfTones(bgTone, answer) < desiredRatio)
             {
                 answer = DynamicColor.ForegroundTone(bgTone, desiredRatio);
@@ -724,17 +724,17 @@ public class ColorSpec2021 : ColorSpec
             {
                 return answer;
             }
-            var bgTone1 = color.background(scheme).GetTone(scheme);
-            var bgTone2 = color.secondBackground(scheme).GetTone(scheme);
-            var upper = System.Math.Max(bgTone1, bgTone2);
-            var lower = System.Math.Min(bgTone1, bgTone2);
+            double bgTone1 = color.background(scheme).GetTone(scheme);
+            double bgTone2 = color.secondBackground(scheme).GetTone(scheme);
+            double upper = System.Math.Max(bgTone1, bgTone2);
+            double lower = System.Math.Min(bgTone1, bgTone2);
             if (Contrast.RatioOfTones(upper, answer) >= desiredRatio && Contrast.RatioOfTones(lower, answer) >= desiredRatio)
             {
                 return answer;
             }
-            var lightOption = Contrast.Lighter(upper, desiredRatio);
-            var darkOption = Contrast.Darker(lower, desiredRatio);
-            var prefersLight = DynamicColor.TonePrefersLightForeground(bgTone1) || DynamicColor.TonePrefersLightForeground(bgTone2);
+            double lightOption = Contrast.Lighter(upper, desiredRatio);
+            double darkOption = Contrast.Darker(lower, desiredRatio);
+            bool prefersLight = DynamicColor.TonePrefersLightForeground(bgTone1) || DynamicColor.TonePrefersLightForeground(bgTone2);
             if (prefersLight)
             {
                 return lightOption == -1 ? 100 : lightOption;
@@ -752,14 +752,14 @@ public class ColorSpec2021 : ColorSpec
     {
         return variant switch
         {
-            Variant.CONTENT or Variant.FIDELITY => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, sourceColorHct.Chroma),
-            Variant.FRUIT_SALAD => TonalPalette.FromHueAndChroma(MathUtils.SanitizeDegreesDouble(sourceColorHct.Hue - 50.0), 48.0),
-            Variant.MONOCHROME => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 0.0),
-            Variant.NEUTRAL => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 12.0),
-            Variant.RAINBOW => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 48.0),
-            Variant.TONAL_SPOT => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 36.0),
-            Variant.EXPRESSIVE => TonalPalette.FromHueAndChroma(MathUtils.SanitizeDegreesDouble(sourceColorHct.Hue + 240.0), 40.0),
-            Variant.VIBRANT => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 200.0),
+            Variant.Content or Variant.Fidelity => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, sourceColorHct.Chroma),
+            Variant.FruitSalad => TonalPalette.FromHueAndChroma(MathUtils.SanitizeDegreesDouble(sourceColorHct.Hue - 50.0), 48.0),
+            Variant.Monochrome => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 0.0),
+            Variant.Neutral => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 12.0),
+            Variant.Rainbow => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 48.0),
+            Variant.TonalSpot => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 36.0),
+            Variant.Expressive => TonalPalette.FromHueAndChroma(MathUtils.SanitizeDegreesDouble(sourceColorHct.Hue + 240.0), 40.0),
+            Variant.Vibrant => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 200.0),
             _ => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, sourceColorHct.Chroma),
         };
     }
@@ -768,19 +768,19 @@ public class ColorSpec2021 : ColorSpec
     {
         return variant switch
         {
-            Variant.CONTENT or Variant.FIDELITY => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, System.Math.Max(sourceColorHct.Chroma - 32.0, sourceColorHct.Chroma * 0.5)),
-            Variant.FRUIT_SALAD => TonalPalette.FromHueAndChroma(MathUtils.SanitizeDegreesDouble(sourceColorHct.Hue - 50.0), 36.0),
-            Variant.MONOCHROME => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 0.0),
-            Variant.NEUTRAL => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 8.0),
-            Variant.RAINBOW => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 16.0),
-            Variant.TONAL_SPOT => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 16.0),
-            Variant.EXPRESSIVE => TonalPalette.FromHueAndChroma(
+            Variant.Content or Variant.Fidelity => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, System.Math.Max(sourceColorHct.Chroma - 32.0, sourceColorHct.Chroma * 0.5)),
+            Variant.FruitSalad => TonalPalette.FromHueAndChroma(MathUtils.SanitizeDegreesDouble(sourceColorHct.Hue - 50.0), 36.0),
+            Variant.Monochrome => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 0.0),
+            Variant.Neutral => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 8.0),
+            Variant.Rainbow => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 16.0),
+            Variant.TonalSpot => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 16.0),
+            Variant.Expressive => TonalPalette.FromHueAndChroma(
                 DynamicScheme.GetRotatedHue(
                     sourceColorHct,
                     [0.0, 21.0, 51.0, 121.0, 151.0, 191.0, 271.0, 321.0, 360.0],
                     [45.0, 95.0, 45.0, 20.0, 45.0, 90.0, 45.0, 45.0, 45.0]
                 ), 24.0),
-            Variant.VIBRANT => TonalPalette.FromHueAndChroma(
+            Variant.Vibrant => TonalPalette.FromHueAndChroma(
                 DynamicScheme.GetRotatedHue(
                     sourceColorHct,
                     [0.0, 41.0, 61.0, 101.0, 131.0, 181.0, 251.0, 301.0, 360.0],
@@ -794,19 +794,19 @@ public class ColorSpec2021 : ColorSpec
     {
         return variant switch
         {
-            Variant.CONTENT => TonalPalette.FromHct(DislikeAnalyzer.FixIfDisliked(new TemperatureCache(sourceColorHct).GetAnalogousColors(3, 6)[2])),
-            Variant.FIDELITY => TonalPalette.FromHct(DislikeAnalyzer.FixIfDisliked(new TemperatureCache(sourceColorHct).GetComplement())),
-            Variant.FRUIT_SALAD => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 36.0),
-            Variant.MONOCHROME => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 0.0),
-            Variant.NEUTRAL => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 16.0),
-            Variant.RAINBOW or Variant.TONAL_SPOT => TonalPalette.FromHueAndChroma(MathUtils.SanitizeDegreesDouble(sourceColorHct.Hue + 60.0), 24.0),
-            Variant.EXPRESSIVE => TonalPalette.FromHueAndChroma(
+            Variant.Content => TonalPalette.FromHct(DislikeAnalyzer.FixIfDisliked(new TemperatureCache(sourceColorHct).GetAnalogousColors(3, 6)[2])),
+            Variant.Fidelity => TonalPalette.FromHct(DislikeAnalyzer.FixIfDisliked(new TemperatureCache(sourceColorHct).GetComplement())),
+            Variant.FruitSalad => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 36.0),
+            Variant.Monochrome => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 0.0),
+            Variant.Neutral => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 16.0),
+            Variant.Rainbow or Variant.TonalSpot => TonalPalette.FromHueAndChroma(MathUtils.SanitizeDegreesDouble(sourceColorHct.Hue + 60.0), 24.0),
+            Variant.Expressive => TonalPalette.FromHueAndChroma(
                 DynamicScheme.GetRotatedHue(
                     sourceColorHct,
                     [0.0, 21.0, 51.0, 121.0, 151.0, 191.0, 271.0, 321.0, 360.0],
                     [120.0, 120.0, 20.0, 45.0, 20.0, 15.0, 20.0, 120.0, 120.0]
                 ), 32.0),
-            Variant.VIBRANT => TonalPalette.FromHueAndChroma(
+            Variant.Vibrant => TonalPalette.FromHueAndChroma(
                 DynamicScheme.GetRotatedHue(
                     sourceColorHct,
                     [0.0, 41.0, 61.0, 101.0, 131.0, 181.0, 251.0, 301.0, 360.0],
@@ -820,14 +820,14 @@ public class ColorSpec2021 : ColorSpec
     {
         return variant switch
         {
-            Variant.CONTENT or Variant.FIDELITY => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, sourceColorHct.Chroma / 8.0),
-            Variant.FRUIT_SALAD => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 10.0),
-            Variant.MONOCHROME => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 0.0),
-            Variant.NEUTRAL => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 2.0),
-            Variant.RAINBOW => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 0.0),
-            Variant.TONAL_SPOT => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 6.0),
-            Variant.EXPRESSIVE => TonalPalette.FromHueAndChroma(MathUtils.SanitizeDegreesDouble(sourceColorHct.Hue + 15.0), 8.0),
-            Variant.VIBRANT => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 10.0),
+            Variant.Content or Variant.Fidelity => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, sourceColorHct.Chroma / 8.0),
+            Variant.FruitSalad => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 10.0),
+            Variant.Monochrome => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 0.0),
+            Variant.Neutral => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 2.0),
+            Variant.Rainbow => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 0.0),
+            Variant.TonalSpot => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 6.0),
+            Variant.Expressive => TonalPalette.FromHueAndChroma(MathUtils.SanitizeDegreesDouble(sourceColorHct.Hue + 15.0), 8.0),
+            Variant.Vibrant => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 10.0),
             _ => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, sourceColorHct.Chroma),
         };
     }
@@ -836,14 +836,14 @@ public class ColorSpec2021 : ColorSpec
     {
         return variant switch
         {
-            Variant.CONTENT or Variant.FIDELITY => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, (sourceColorHct.Chroma / 8.0) + 4.0),
-            Variant.FRUIT_SALAD => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 16.0),
-            Variant.MONOCHROME => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 0.0),
-            Variant.NEUTRAL => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 2.0),
-            Variant.RAINBOW => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 0.0),
-            Variant.TONAL_SPOT => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 8.0),
-            Variant.EXPRESSIVE => TonalPalette.FromHueAndChroma(MathUtils.SanitizeDegreesDouble(sourceColorHct.Hue + 15.0), 12.0),
-            Variant.VIBRANT => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 12.0),
+            Variant.Content or Variant.Fidelity => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, (sourceColorHct.Chroma / 8.0) + 4.0),
+            Variant.FruitSalad => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 16.0),
+            Variant.Monochrome => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 0.0),
+            Variant.Neutral => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 2.0),
+            Variant.Rainbow => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 0.0),
+            Variant.TonalSpot => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 8.0),
+            Variant.Expressive => TonalPalette.FromHueAndChroma(MathUtils.SanitizeDegreesDouble(sourceColorHct.Hue + 15.0), 12.0),
+            Variant.Vibrant => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 12.0),
             _ => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, sourceColorHct.Chroma),
         };
     }

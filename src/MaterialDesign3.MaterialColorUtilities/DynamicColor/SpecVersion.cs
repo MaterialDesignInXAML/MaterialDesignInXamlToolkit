@@ -2,6 +2,6 @@
 
 public enum SpecVersion
 {
-    SPEC_2021,
-    SPEC_2025,
+    Spec2021,
+    Spec2025,
 }

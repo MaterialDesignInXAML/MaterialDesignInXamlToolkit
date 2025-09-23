@@ -74,8 +74,8 @@ public static class Contrast
     /// </summary>
     public static double RatioOfYs(double y1, double y2)
     {
-        var lighter = y1 > y2 ? y1 : y2;
-        var darker = (lighter == y2) ? y1 : y2;
+        double lighter = y1 > y2 ? y1 : y2;
+        double darker = (lighter == y2) ? y1 : y2;
         return (lighter + 5.0) / (darker + 5.0);
     }
 
@@ -113,20 +113,20 @@ public static class Contrast
         {
             return -1.0;
         }
-        var darkY = ColorUtils.YFromLstar(tone);
-        var lightY = ratio * (darkY + 5.0) - 5.0;
+        double darkY = ColorUtils.YFromLstar(tone);
+        double lightY = ratio * (darkY + 5.0) - 5.0;
         if (lightY is < 0.0 or > 100.0)
         {
             return -1.0;
         }
-        var realContrast = RatioOfYs(lightY, darkY);
-        var delta = Abs(realContrast - ratio);
+        double realContrast = RatioOfYs(lightY, darkY);
+        double delta = Abs(realContrast - ratio);
         if (realContrast < ratio && delta > ContrastRatioEpsilon)
         {
             return -1.0;
         }
 
-        var returnValue = ColorUtils.LstarFromY(lightY) + LuminanceGamutMapTolerance;
+        double returnValue = ColorUtils.LstarFromY(lightY) + LuminanceGamutMapTolerance;
         if (returnValue is < 0.0 or > 100.0)
         {
             return -1.0;
@@ -144,7 +144,7 @@ public static class Contrast
     /// <param name="ratio">Desired contrast ratio of return value and tone parameter.</param>
     public static double LighterUnsafe(double tone, double ratio)
     {
-        var lighterSafe = Lighter(tone, ratio);
+        double lighterSafe = Lighter(tone, ratio);
         return lighterSafe < 0.0 ? 100.0 : lighterSafe;
     }
 
@@ -160,19 +160,19 @@ public static class Contrast
         {
             return -1.0;
         }
-        var lightY = ColorUtils.YFromLstar(tone);
-        var darkY = ((lightY + 5.0) / ratio) - 5.0;
+        double lightY = ColorUtils.YFromLstar(tone);
+        double darkY = ((lightY + 5.0) / ratio) - 5.0;
         if (darkY is < 0.0 or > 100.0)
         {
             return -1.0;
         }
-        var realContrast = RatioOfYs(lightY, darkY);
-        var delta = Abs(realContrast - ratio);
+        double realContrast = RatioOfYs(lightY, darkY);
+        double delta = Abs(realContrast - ratio);
         if (realContrast < ratio && delta > ContrastRatioEpsilon)
         {
             return -1.0;
         }
-        var returnValue = ColorUtils.LstarFromY(darkY) - LuminanceGamutMapTolerance;
+        double returnValue = ColorUtils.LstarFromY(darkY) - LuminanceGamutMapTolerance;
         if (returnValue is < 0.0 or > 100.0)
         {
             return -1.0;
@@ -190,7 +190,7 @@ public static class Contrast
     /// <param name="ratio">Desired contrast ratio of return value and tone parameter.</param>
     public static double DarkerUnsafe(double tone, double ratio)
     {
-        var darkerSafe = Darker(tone, ratio);
+        double darkerSafe = Darker(tone, ratio);
         return Max(0.0, darkerSafe);
     }
 }

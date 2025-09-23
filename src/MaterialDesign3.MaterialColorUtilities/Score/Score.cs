@@ -31,25 +31,25 @@ public static class Score
     {
         // Get the HCT color for each Argb value, while finding the per hue count and total count.
         List<Hct> colorsHct = [];
-        var huePopulation = new int[360];
-        var populationSum = 0.0;
+        int[] huePopulation = new int[360];
+        double populationSum = 0.0;
         foreach (var entry in colorsToPopulation)
         {
             var hct = Hct.FromInt(entry.Key);
             colorsHct.Add(hct);
-            var hue = (int)Math.Floor(hct.Hue);
+            int hue = (int)Math.Floor(hct.Hue);
             huePopulation[hue] += entry.Value;
             populationSum += entry.Value;
         }
 
         // Hues with more usage in neighboring 30 degree slice get a larger number.
-        var hueExcitedProportions = new double[360];
-        for (var hue = 0; hue < 360; hue++)
+        double[] hueExcitedProportions = new double[360];
+        for (int hue = 0; hue < 360; hue++)
         {
-            var proportion = populationSum == 0.0 ? 0.0 : huePopulation[hue] / populationSum;
-            for (var i = hue - 14; i < hue + 16; i++)
+            double proportion = populationSum == 0.0 ? 0.0 : huePopulation[hue] / populationSum;
+            for (int i = hue - 14; i < hue + 16; i++)
             {
-                var neighborHue = MathUtils.SanitizeDegreesInt(i);
+                int neighborHue = MathUtils.SanitizeDegreesInt(i);
                 hueExcitedProportions[neighborHue] += proportion;
             }
         }
@@ -59,17 +59,17 @@ public static class Score
         List<ScoredHct> scoredHcts = [];
         foreach (var hct in colorsHct)
         {
-            var hue = MathUtils.SanitizeDegreesInt((int)Math.Round(hct.Hue));
-            var proportion = hueExcitedProportions[hue];
+            int hue = MathUtils.SanitizeDegreesInt((int)Math.Round(hct.Hue));
+            double proportion = hueExcitedProportions[hue];
             if (filter && (hct.Chroma < CutoffChroma || proportion <= CutoffExcitedProportion))
             {
                 continue;
             }
 
-            var proportionScore = proportion * 100.0 * WeightProportion;
-            var chromaWeight = hct.Chroma < TargetChroma ? WeightChromaBelow : WeightChromaAbove;
-            var chromaScore = (hct.Chroma - TargetChroma) * chromaWeight;
-            var score = proportionScore + chromaScore;
+            double proportionScore = proportion * 100.0 * WeightProportion;
+            double chromaWeight = hct.Chroma < TargetChroma ? WeightChromaBelow : WeightChromaAbove;
+            double chromaScore = (hct.Chroma - TargetChroma) * chromaWeight;
+            double score = proportionScore + chromaScore;
             scoredHcts.Add(new ScoredHct(hct, score));
         }
 
@@ -80,13 +80,13 @@ public static class Score
         // the largest distribution of hues possible. Starting at 90 degrees (maximum difference for
         // 4 colors) then decreasing down to a 15 degree minimum.
         List<Hct> chosenColors = [];
-        for (var differenceDegrees = 90; differenceDegrees >= 15; differenceDegrees--)
+        for (int differenceDegrees = 90; differenceDegrees >= 15; differenceDegrees--)
         {
             chosenColors.Clear();
             foreach (var entry in scoredHcts)
             {
                 var hct = entry.Hct;
-                var hasDuplicateHue = false;
+                bool hasDuplicateHue = false;
                 foreach (var chosenHct in chosenColors)
                 {
                     if (MathUtils.DifferenceDegrees(hct.Hue, chosenHct.Hue) < differenceDegrees)

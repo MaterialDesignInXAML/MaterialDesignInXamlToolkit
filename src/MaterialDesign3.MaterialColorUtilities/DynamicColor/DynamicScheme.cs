@@ -4,8 +4,8 @@ namespace MaterialColorUtilities;
 
 public class DynamicScheme
 {
-    public static readonly SpecVersion DEFAULT_SPEC_VERSION = SpecVersion.SPEC_2021;
-    public static readonly Platform DEFAULT_PLATFORM = Platform.PHONE;
+    public static readonly SpecVersion DEFAULT_SPEC_VERSION = SpecVersion.Spec2021;
+    public static readonly Platform DEFAULT_PLATFORM = Platform.Phone;
 
     // Core properties
     public int SourceColorArgb { get; private set; }
@@ -40,8 +40,8 @@ public class DynamicScheme
             variant,
             isDark,
             contrastLevel,
-            Platform.PHONE,
-            SpecVersion.SPEC_2021,
+            Platform.Phone,
+            SpecVersion.Spec2021,
             primaryPalette,
             secondaryPalette,
             tertiaryPalette,
@@ -67,8 +67,8 @@ public class DynamicScheme
             variant,
             isDark,
             contrastLevel,
-            Platform.PHONE,
-            SpecVersion.SPEC_2021,
+            Platform.Phone,
+            SpecVersion.Spec2021,
             primaryPalette,
             secondaryPalette,
             tertiaryPalette,
@@ -132,9 +132,9 @@ public class DynamicScheme
         if (hueBreakpoints == null || hues == null)
             throw new ArgumentNullException(hueBreakpoints == null ? nameof(hueBreakpoints) : nameof(hues));
 
-        var size = Min(hueBreakpoints.Length - 1, hues.Length);
-        var sourceHue = sourceColorHct.Hue;
-        for (var i = 0; i < size; i++)
+        int size = Min(hueBreakpoints.Length - 1, hues.Length);
+        double sourceHue = sourceColorHct.Hue;
+        for (int i = 0; i < size; i++)
         {
             if (sourceHue >= hueBreakpoints[i] && sourceHue < hueBreakpoints[i + 1])
             {
@@ -153,7 +153,7 @@ public class DynamicScheme
             throw new ArgumentException("hueBreakpoints length must equal rotations length");
         }
 
-        var rotation = GetPiecewiseValue(sourceColorHct, hueBreakpoints, rotations);
+        double rotation = GetPiecewiseValue(sourceColorHct, hueBreakpoints, rotations);
         if (Min(hueBreakpoints.Length - 1, rotations.Length) <= 0)
         {
             rotation = 0;
@@ -167,7 +167,7 @@ public class DynamicScheme
 
     public override string ToString()
     {
-        var mode = IsDark ? "dark" : "light";
+        string mode = IsDark ? "dark" : "light";
         return $"Scheme: variant={Variant}, mode={mode}, platform={PlatformType.ToString().ToLowerInvariant()}, contrastLevel={ContrastLevel:0.0}, seed={SourceColorHct}, specVersion={SpecVersion}";
     }
 }

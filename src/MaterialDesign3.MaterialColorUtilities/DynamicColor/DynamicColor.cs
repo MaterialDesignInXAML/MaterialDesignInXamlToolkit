@@ -130,13 +130,13 @@ public sealed class DynamicColor
 
     public int GetArgb(DynamicScheme scheme)
     {
-        var argb = GetHct(scheme).Argb;
+        int argb = GetHct(scheme).Argb;
         if (opacity == null)
         {
             return argb;
         }
-        var percentage = opacity(scheme);
-        var alpha = MathUtils.ClampInt(0, 255, (int)Round(percentage * 255.0));
+        double percentage = opacity(scheme);
+        int alpha = MathUtils.ClampInt(0, 255, (int)Round(percentage * 255.0));
         return (argb & 0x00ffffff) | (alpha << 24);
     }
 
@@ -159,15 +159,15 @@ public sealed class DynamicColor
 
     public static double ForegroundTone(double bgTone, double ratio)
     {
-        var lighterTone = Contrast.LighterUnsafe(bgTone, ratio);
-        var darkerTone = Contrast.DarkerUnsafe(bgTone, ratio);
-        var lighterRatio = Contrast.RatioOfTones(lighterTone, bgTone);
-        var darkerRatio = Contrast.RatioOfTones(darkerTone, bgTone);
-        var preferLighter = TonePrefersLightForeground(bgTone);
+        double lighterTone = Contrast.LighterUnsafe(bgTone, ratio);
+        double darkerTone = Contrast.DarkerUnsafe(bgTone, ratio);
+        double lighterRatio = Contrast.RatioOfTones(lighterTone, bgTone);
+        double darkerRatio = Contrast.RatioOfTones(darkerTone, bgTone);
+        bool preferLighter = TonePrefersLightForeground(bgTone);
 
         if (preferLighter)
         {
-            var negligibleDifference =
+            bool negligibleDifference =
                 Abs(lighterRatio - darkerRatio) < 0.1 && lighterRatio < ratio && darkerRatio < ratio;
             if (lighterRatio >= ratio || lighterRatio >= darkerRatio || negligibleDifference)
             {
@@ -255,8 +255,8 @@ public sealed class DynamicColor
         {
             ValidateExtendedColor(specVersion, extendedColor);
 
-            var prevName = _name;
-            var prevIsBg = _isBackground;
+            string? prevName = _name;
+            bool prevIsBg = _isBackground;
             var prevPalette = _palette;
             var prevTone = _tone;
             var prevChromaMultiplier = _chromaMultiplier;

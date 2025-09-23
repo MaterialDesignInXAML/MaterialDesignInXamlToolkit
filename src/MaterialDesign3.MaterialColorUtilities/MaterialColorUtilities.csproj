@@ -21,6 +21,7 @@
     <Title>Material Design 3 Color Utilities</Title>
     <PackageDescription>Utilities to create Material Design 3 Color Palettes</PackageDescription>
     <PackageTags>WPF XAML Material Design Colour Color UI UX</PackageTags>
+    <NoWarn>CS0618</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

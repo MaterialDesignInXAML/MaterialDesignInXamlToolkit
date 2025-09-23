@@ -23,15 +23,15 @@ public static class QuantizerWsMeans
         var random = new Random(0x42688);
 
         var pixelToCount = new Dictionary<int, int>();
-        var points = new double[inputPixels.Length][];
-        var pixels = new int[inputPixels.Length];
+        double[][] points = new double[inputPixels.Length][];
+        int[] pixels = new int[inputPixels.Length];
         PointProvider pointProvider = new PointProviderLab();
 
         int pointCount = 0;
         for (int i = 0; i < inputPixels.Length; i++)
         {
             int inputPixel = inputPixels[i];
-            if (!pixelToCount.TryGetValue(inputPixel, out var pixelCount))
+            if (!pixelToCount.TryGetValue(inputPixel, out int pixelCount))
             {
                 points[pointCount] = pointProvider.FromInt(inputPixel);
                 pixels[pointCount] = inputPixel;
@@ -44,7 +44,7 @@ public static class QuantizerWsMeans
             }
         }
 
-        var counts = new int[pointCount];
+        int[] counts = new int[pointCount];
         for (int i = 0; i < pointCount; i++)
         {
             int pixel = pixels[i];
@@ -57,7 +57,7 @@ public static class QuantizerWsMeans
             clusterCount = Min(clusterCount, startingClusters.Length);
         }
 
-        var clusters = new double[clusterCount][];
+        double[][] clusters = new double[clusterCount][];
         int clustersCreated = 0;
         for (int i = 0; i < startingClusters.Length && i < clusterCount; i++)
         {
@@ -78,13 +78,13 @@ public static class QuantizerWsMeans
             }
         }
 
-        var clusterIndices = new int[pointCount];
+        int[] clusterIndices = new int[pointCount];
         for (int i = 0; i < pointCount; i++)
         {
             clusterIndices[i] = random.Next(clusterCount);
         }
 
-        var indexMatrix = new int[clusterCount][];
+        int[][] indexMatrix = new int[clusterCount][];
         for (int i = 0; i < clusterCount; i++) indexMatrix[i] = new int[clusterCount];
 
         var distanceToIndexMatrix = new Distance[clusterCount][];
@@ -97,7 +97,7 @@ public static class QuantizerWsMeans
             }
         }
 
-        var pixelCountSums = new int[clusterCount];
+        int[] pixelCountSums = new int[clusterCount];
         for (int iteration = 0; iteration < MAX_ITERATIONS; iteration++)
         {
             // Update cluster pair distances and sorted indices
@@ -121,9 +121,9 @@ public static class QuantizerWsMeans
             int pointsMoved = 0;
             for (int i = 0; i < pointCount; i++)
             {
-                var point = points[i];
+                double[] point = points[i];
                 int previousClusterIndex = clusterIndices[i];
-                var previousCluster = clusters[previousClusterIndex];
+                double[] previousCluster = clusters[previousClusterIndex];
                 double previousDistance = pointProvider.Distance(point, previousCluster);
 
                 double minimumDistance = previousDistance;
@@ -157,14 +157,14 @@ public static class QuantizerWsMeans
                 break;
             }
 
-            var componentASums = new double[clusterCount];
-            var componentBSums = new double[clusterCount];
-            var componentCSums = new double[clusterCount];
+            double[] componentASums = new double[clusterCount];
+            double[] componentBSums = new double[clusterCount];
+            double[] componentCSums = new double[clusterCount];
             pixelCountSums.AsSpan().Fill(0);
             for (int i = 0; i < pointCount; i++)
             {
                 int clusterIndex = clusterIndices[i];
-                var point = points[i];
+                double[] point = points[i];
                 int count = counts[i];
                 pixelCountSums[clusterIndex] += count;
                 componentASums[clusterIndex] += point[0] * count;

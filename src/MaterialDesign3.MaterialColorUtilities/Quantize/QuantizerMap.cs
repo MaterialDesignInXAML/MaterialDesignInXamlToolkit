@@ -6,9 +6,9 @@ public sealed class QuantizerMap: Quantizer
 
     public QuantizerResult Quantize(int[] pixels, int colorCount)
     {
-        foreach (var pixel in pixels)
+        foreach (int pixel in pixels)
         {
-            ColorToCount.TryGetValue(pixel, out var current);
+            ColorToCount.TryGetValue(pixel, out int current);
             ColorToCount[pixel] = current + 1;
         }
 

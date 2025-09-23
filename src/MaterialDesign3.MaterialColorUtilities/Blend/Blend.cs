@@ -22,9 +22,9 @@ public static class Blend
     {
         var fromHct = Hct.FromInt(designColor);
         var toHct = Hct.FromInt(sourceColor);
-        var differenceDegrees = DifferenceDegrees(fromHct.Hue, toHct.Hue);
-        var rotationDegrees = Min(differenceDegrees * 0.5, 15.0);
-        var outputHue = SanitizeDegreesDouble(
+        double differenceDegrees = DifferenceDegrees(fromHct.Hue, toHct.Hue);
+        double rotationDegrees = Min(differenceDegrees * 0.5, 15.0);
+        double outputHue = SanitizeDegreesDouble(
             fromHct.Hue + rotationDegrees * RotationDirection(fromHct.Hue, toHct.Hue));
         return Hct.From(outputHue, fromHct.Chroma, fromHct.Tone).Argb;
     }
@@ -41,7 +41,7 @@ public static class Blend
     /// </returns>
     public static int HctHue(int from, int to, double amount)
     {
-        var ucs = Cam16Ucs(from, to, amount);
+        int ucs = Cam16Ucs(from, to, amount);
         var ucsCam = Cam16.FromInt(ucs);
         var fromCam = Cam16.FromInt(from);
         var blended = Hct.From(ucsCam.GetHue(), fromCam.GetChroma(), ColorUtils.LstarFromArgb(from));
@@ -61,15 +61,15 @@ public static class Blend
     {
         var fromCam = Cam16.FromInt(from);
         var toCam = Cam16.FromInt(to);
-        var fromJ = fromCam.GetJstar();
-        var fromA = fromCam.GetAstar();
-        var fromB = fromCam.GetBstar();
-        var toJ = toCam.GetJstar();
-        var toA = toCam.GetAstar();
-        var toB = toCam.GetBstar();
-        var jstar = fromJ + (toJ - fromJ) * amount;
-        var astar = fromA + (toA - fromA) * amount;
-        var bstar = fromB + (toB - fromB) * amount;
+        double fromJ = fromCam.GetJstar();
+        double fromA = fromCam.GetAstar();
+        double fromB = fromCam.GetBstar();
+        double toJ = toCam.GetJstar();
+        double toA = toCam.GetAstar();
+        double toB = toCam.GetBstar();
+        double jstar = fromJ + (toJ - fromJ) * amount;
+        double astar = fromA + (toA - fromA) * amount;
+        double bstar = fromB + (toB - fromB) * amount;
         return Cam16.FromUcs(jstar, astar, bstar).ToInt();
     }
 }

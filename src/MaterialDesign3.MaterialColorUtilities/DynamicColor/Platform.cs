@@ -2,6 +2,6 @@
 
 public enum Platform
 {
-    PHONE,
-    WATCH
+    Phone,
+    Watch
 }

@@ -30,30 +30,30 @@ public sealed class TemperatureCache
             return precomputedComplement;
         }
 
-        var coldestHue = GetColdest().Hue;
-        var coldestTemp = GetTempsByHct()[GetColdest()];
+        double coldestHue = GetColdest().Hue;
+        double coldestTemp = GetTempsByHct()[GetColdest()];
 
-        var warmestHue = GetWarmest().Hue;
-        var warmestTemp = GetTempsByHct()[GetWarmest()];
-        var range = warmestTemp - coldestTemp;
-        var startHueIsColdestToWarmest = IsBetween(input.Hue, coldestHue, warmestHue);
-        var startHue = startHueIsColdestToWarmest ? warmestHue : coldestHue;
-        var endHue = startHueIsColdestToWarmest ? coldestHue : warmestHue;
-        var directionOfRotation = 1.0;
-        var smallestError = 1000.0;
+        double warmestHue = GetWarmest().Hue;
+        double warmestTemp = GetTempsByHct()[GetWarmest()];
+        double range = warmestTemp - coldestTemp;
+        bool startHueIsColdestToWarmest = IsBetween(input.Hue, coldestHue, warmestHue);
+        double startHue = startHueIsColdestToWarmest ? warmestHue : coldestHue;
+        double endHue = startHueIsColdestToWarmest ? coldestHue : warmestHue;
+        double directionOfRotation = 1.0;
+        double smallestError = 1000.0;
         var answer = GetHctsByHue()[(int)Round(input.Hue)];
 
-        var complementRelativeTemp = (1.0 - GetRelativeTemperature(input));
-        for (var hueAddend = 0.0; hueAddend <= 360.0; hueAddend += 1.0)
+        double complementRelativeTemp = (1.0 - GetRelativeTemperature(input));
+        for (double hueAddend = 0.0; hueAddend <= 360.0; hueAddend += 1.0)
         {
-            var hue = SanitizeDegreesDouble(startHue + directionOfRotation * hueAddend);
+            double hue = SanitizeDegreesDouble(startHue + directionOfRotation * hueAddend);
             if (!IsBetween(hue, startHue, endHue))
             {
                 continue;
             }
             var possibleAnswer = GetHctsByHue()[(int)Round(hue)];
-            var relativeTemp = (GetTempsByHct()[possibleAnswer] - coldestTemp) / range;
-            var error = Abs(complementRelativeTemp - relativeTemp);
+            double relativeTemp = (GetTempsByHct()[possibleAnswer] - coldestTemp) / range;
+            double error = Abs(complementRelativeTemp - relativeTemp);
             if (error < smallestError)
             {
                 smallestError = error;
@@ -76,41 +76,41 @@ public sealed class TemperatureCache
     /// <param name="divisions">The number of divisions on the color wheel.</param>
     public List<Hct> GetAnalogousColors(int count, int divisions)
     {
-        var startHue = (int)Round(input.Hue);
+        int startHue = (int)Round(input.Hue);
         var startHct = GetHctsByHue()[startHue];
-        var lastTemp = GetRelativeTemperature(startHct);
+        double lastTemp = GetRelativeTemperature(startHct);
 
         List<Hct> allColors =
         [
             startHct
         ];
 
-        var absoluteTotalTempDelta = 0.0;
-        for (var i = 0; i < 360; i++)
+        double absoluteTotalTempDelta = 0.0;
+        for (int i = 0; i < 360; i++)
         {
-            var hue = SanitizeDegreesInt(startHue + i);
+            int hue = SanitizeDegreesInt(startHue + i);
             var hct = GetHctsByHue()[hue];
-            var temp = GetRelativeTemperature(hct);
-            var tempDelta = Abs(temp - lastTemp);
+            double temp = GetRelativeTemperature(hct);
+            double tempDelta = Abs(temp - lastTemp);
             lastTemp = temp;
             absoluteTotalTempDelta += tempDelta;
         }
 
-        var hueAddend = 1;
-        var tempStep = absoluteTotalTempDelta / (double)divisions;
-        var totalTempDelta = 0.0;
+        int hueAddend = 1;
+        double tempStep = absoluteTotalTempDelta / (double)divisions;
+        double totalTempDelta = 0.0;
         lastTemp = GetRelativeTemperature(startHct);
         while (allColors.Count < divisions)
         {
-            var hue = SanitizeDegreesInt(startHue + hueAddend);
+            int hue = SanitizeDegreesInt(startHue + hueAddend);
             var hct = GetHctsByHue()[hue];
-            var temp = GetRelativeTemperature(hct);
-            var tempDelta = Abs(temp - lastTemp);
+            double temp = GetRelativeTemperature(hct);
+            double tempDelta = Abs(temp - lastTemp);
             totalTempDelta += tempDelta;
 
-            var desiredTotalTempDeltaForIndex = (allColors.Count * tempStep);
-            var indexSatisfied = totalTempDelta >= desiredTotalTempDeltaForIndex;
-            var indexAddend = 1;
+            double desiredTotalTempDeltaForIndex = (allColors.Count * tempStep);
+            bool indexSatisfied = totalTempDelta >= desiredTotalTempDeltaForIndex;
+            int indexAddend = 1;
             while (indexSatisfied && allColors.Count < divisions)
             {
                 allColors.Add(hct);
@@ -136,10 +136,10 @@ public sealed class TemperatureCache
             input
         ];
 
-        var ccwCount = (int)Floor(((double)count - 1.0) / 2.0);
-        for (var i = 1; i < (ccwCount + 1); i++)
+        int ccwCount = (int)Floor(((double)count - 1.0) / 2.0);
+        for (int i = 1; i < (ccwCount + 1); i++)
         {
-            var index = 0 - i;
+            int index = 0 - i;
             while (index < 0)
             {
                 index = allColors.Count + index;
@@ -151,10 +151,10 @@ public sealed class TemperatureCache
             answers.Insert(0, allColors[index]);
         }
 
-        var cwCount = count - ccwCount - 1;
-        for (var i = 1; i < (cwCount + 1); i++)
+        int cwCount = count - ccwCount - 1;
+        for (int i = 1; i < (cwCount + 1); i++)
         {
-            var index = i;
+            int index = i;
             while (index < 0)
             {
                 index = allColors.Count + index;
@@ -175,8 +175,8 @@ public sealed class TemperatureCache
     /// </summary>
     public double GetRelativeTemperature(Hct hct)
     {
-        var range = GetTempsByHct()[GetWarmest()] - GetTempsByHct()[GetColdest()];
-        var differenceFromColdest = GetTempsByHct()[hct] - GetTempsByHct()[GetColdest()];
+        double range = GetTempsByHct()[GetWarmest()] - GetTempsByHct()[GetColdest()];
+        double differenceFromColdest = GetTempsByHct()[hct] - GetTempsByHct()[GetColdest()];
         if (range == 0.0)
         {
             return 0.5;
@@ -190,9 +190,9 @@ public sealed class TemperatureCache
     /// </summary>
     public static double RawTemperature(Hct color)
     {
-        var lab = ColorUtils.LabFromArgb(color.Argb);
-        var hue = SanitizeDegreesDouble(Atan2(lab[2], lab[1]) * 180.0 / PI);
-        var chroma = Sqrt(lab[1] * lab[1] + lab[2] * lab[2]);
+        double[] lab = ColorUtils.LabFromArgb(color.Argb);
+        double hue = SanitizeDegreesDouble(Atan2(lab[2], lab[1]) * 180.0 / PI);
+        double chroma = Sqrt(lab[1] * lab[1] + lab[2] * lab[2]);
         return -0.5 + 0.02 * Pow(chroma, 1.07) * Cos((SanitizeDegreesDouble(hue - 50.0)) * PI / 180.0);
     }
 
@@ -211,7 +211,7 @@ public sealed class TemperatureCache
             return precomputedHctsByHue;
         }
         List<Hct> hcts = [];
-        for (var hue = 0.0; hue <= 360.0; hue += 1.0)
+        for (double hue = 0.0; hue <= 360.0; hue += 1.0)
         {
             var colorAtHue = Hct.From(hue, input.Chroma, input.Tone);
             hcts.Add(colorAtHue);

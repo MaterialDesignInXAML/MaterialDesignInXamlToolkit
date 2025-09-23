@@ -30,8 +30,8 @@ public sealed class CorePalette
     private CorePalette(int argb, bool isContent)
     {
         var hct = Hct.FromInt(argb);
-        var hue = hct.Hue;
-        var chroma = hct.Chroma;
+        double hue = hct.Hue;
+        double chroma = hct.Chroma;
         if (isContent)
         {
             a1 = TonalPalette.FromHueAndChroma(hue, chroma);

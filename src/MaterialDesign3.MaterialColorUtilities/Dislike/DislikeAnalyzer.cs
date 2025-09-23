@@ -20,13 +20,13 @@ public static class DislikeAnalyzer
     /// </summary>
     public static bool IsDisliked(Hct hct)
     {
-        var roundedHue = Round(hct.Hue);
-        var roundedChroma = Round(hct.Chroma);
-        var roundedTone = Round(hct.Tone);
+        double roundedHue = Round(hct.Hue);
+        double roundedChroma = Round(hct.Chroma);
+        double roundedTone = Round(hct.Tone);
 
-        var huePasses = roundedHue is >= 90.0 and <= 111.0;
-        var chromaPasses = roundedChroma > 16.0;
-        var tonePasses = roundedTone < 65.0;
+        bool huePasses = roundedHue is >= 90.0 and <= 111.0;
+        bool chromaPasses = roundedChroma > 16.0;
+        bool tonePasses = roundedTone < 65.0;
 
         return huePasses && chromaPasses && tonePasses;
     }

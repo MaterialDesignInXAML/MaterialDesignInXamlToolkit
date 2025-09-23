@@ -31,9 +31,9 @@ public static class ColorUtils
     /// </summary>
     public static int ArgbFromLinrgb(double[] linrgb)
     {
-        var r = Delinearized(linrgb[0]);
-        var g = Delinearized(linrgb[1]);
-        var b = Delinearized(linrgb[2]);
+        int r = Delinearized(linrgb[0]);
+        int g = Delinearized(linrgb[1]);
+        int b = Delinearized(linrgb[2]);
         return ArgbFromRgb(r, g, b);
     }
 
@@ -67,13 +67,13 @@ public static class ColorUtils
     /// </summary>
     public static int ArgbFromXyz(double x, double y, double z)
     {
-        var m = XYZ_TO_SRGB;
-        var linearR = m[0][0] * x + m[0][1] * y + m[0][2] * z;
-        var linearG = m[1][0] * x + m[1][1] * y + m[1][2] * z;
-        var linearB = m[2][0] * x + m[2][1] * y + m[2][2] * z;
-        var r = Delinearized(linearR);
-        var g = Delinearized(linearG);
-        var b = Delinearized(linearB);
+        double[][] m = XYZ_TO_SRGB;
+        double linearR = m[0][0] * x + m[0][1] * y + m[0][2] * z;
+        double linearG = m[1][0] * x + m[1][1] * y + m[1][2] * z;
+        double linearB = m[2][0] * x + m[2][1] * y + m[2][2] * z;
+        int r = Delinearized(linearR);
+        int g = Delinearized(linearG);
+        int b = Delinearized(linearB);
         return ArgbFromRgb(r, g, b);
     }
 
@@ -82,9 +82,9 @@ public static class ColorUtils
     /// </summary>
     public static double[] XyzFromArgb(int argb)
     {
-        var r = Linearized(RedFromArgb(argb));
-        var g = Linearized(GreenFromArgb(argb));
-        var b = Linearized(BlueFromArgb(argb));
+        double r = Linearized(RedFromArgb(argb));
+        double g = Linearized(GreenFromArgb(argb));
+        double b = Linearized(BlueFromArgb(argb));
         return MathUtils.MatrixMultiply([r, g, b], SRGB_TO_XYZ);
     }
 
@@ -93,15 +93,15 @@ public static class ColorUtils
     /// </summary>
     public static int ArgbFromLab(double l, double a, double b)
     {
-        var fy = (l + 16.0) / 116.0;
-        var fx = a / 500.0 + fy;
-        var fz = fy - b / 200.0;
-        var xNormalized = LabInvf(fx);
-        var yNormalized = LabInvf(fy);
-        var zNormalized = LabInvf(fz);
-        var x = xNormalized * WHITE_POINT_D65[0];
-        var y = yNormalized * WHITE_POINT_D65[1];
-        var z = zNormalized * WHITE_POINT_D65[2];
+        double fy = (l + 16.0) / 116.0;
+        double fx = a / 500.0 + fy;
+        double fz = fy - b / 200.0;
+        double xNormalized = LabInvf(fx);
+        double yNormalized = LabInvf(fy);
+        double zNormalized = LabInvf(fz);
+        double x = xNormalized * WHITE_POINT_D65[0];
+        double y = yNormalized * WHITE_POINT_D65[1];
+        double z = zNormalized * WHITE_POINT_D65[2];
         return ArgbFromXyz(x, y, z);
     }
 
@@ -110,22 +110,22 @@ public static class ColorUtils
     /// </summary>
     public static double[] LabFromArgb(int argb)
     {
-        var linearR = Linearized(RedFromArgb(argb));
-        var linearG = Linearized(GreenFromArgb(argb));
-        var linearB = Linearized(BlueFromArgb(argb));
-        var m = SRGB_TO_XYZ;
-        var x = m[0][0] * linearR + m[0][1] * linearG + m[0][2] * linearB;
-        var y = m[1][0] * linearR + m[1][1] * linearG + m[1][2] * linearB;
-        var z = m[2][0] * linearR + m[2][1] * linearG + m[2][2] * linearB;
-        var xNorm = x / WHITE_POINT_D65[0];
-        var yNorm = y / WHITE_POINT_D65[1];
-        var zNorm = z / WHITE_POINT_D65[2];
-        var fx = LabF(xNorm);
-        var fy = LabF(yNorm);
-        var fz = LabF(zNorm);
-        var l = 116.0 * fy - 16.0;
-        var a = 500.0 * (fx - fy);
-        var b = 200.0 * (fy - fz);
+        double linearR = Linearized(RedFromArgb(argb));
+        double linearG = Linearized(GreenFromArgb(argb));
+        double linearB = Linearized(BlueFromArgb(argb));
+        double[][] m = SRGB_TO_XYZ;
+        double x = m[0][0] * linearR + m[0][1] * linearG + m[0][2] * linearB;
+        double y = m[1][0] * linearR + m[1][1] * linearG + m[1][2] * linearB;
+        double z = m[2][0] * linearR + m[2][1] * linearG + m[2][2] * linearB;
+        double xNorm = x / WHITE_POINT_D65[0];
+        double yNorm = y / WHITE_POINT_D65[1];
+        double zNorm = z / WHITE_POINT_D65[2];
+        double fx = LabF(xNorm);
+        double fy = LabF(yNorm);
+        double fz = LabF(zNorm);
+        double l = 116.0 * fy - 16.0;
+        double a = 500.0 * (fx - fy);
+        double b = 200.0 * (fy - fz);
         return [l, a, b];
     }
 
@@ -134,8 +134,8 @@ public static class ColorUtils
     /// </summary>
     public static int ArgbFromLstar(double lstar)
     {
-        var y = YFromLstar(lstar);
-        var component = Delinearized(y);
+        double y = YFromLstar(lstar);
+        int component = Delinearized(y);
         return ArgbFromRgb(component, component, component);
     }
 
@@ -144,7 +144,7 @@ public static class ColorUtils
     /// </summary>
     public static double LstarFromArgb(int argb)
     {
-        var y = XyzFromArgb(argb)[1];
+        double y = XyzFromArgb(argb)[1];
         return 116.0 * LabF(y / 100.0) - 16.0;
     }
 
@@ -163,7 +163,7 @@ public static class ColorUtils
     /// </summary>
     public static double Linearized(int rgbComponent)
     {
-        var normalized = rgbComponent / 255.0;
+        double normalized = rgbComponent / 255.0;
         if (normalized <= 0.040449936)
         {
             return normalized / 12.92 * 100.0;
@@ -177,7 +177,7 @@ public static class ColorUtils
     /// </summary>
     public static int Delinearized(double rgbComponent)
     {
-        var normalized = rgbComponent / 100.0;
+        double normalized = rgbComponent / 100.0;
         double delinearized;
         if (normalized <= 0.0031308)
         {
@@ -197,8 +197,8 @@ public static class ColorUtils
 
     internal static double LabF(double t)
     {
-        var e = 216.0 / 24389.0;
-        var kappa = 24389.0 / 27.0;
+        double e = 216.0 / 24389.0;
+        double kappa = 24389.0 / 27.0;
         if (t > e)
         {
             return Math.Pow(t, 1.0 / 3.0);
@@ -209,9 +209,9 @@ public static class ColorUtils
 
     internal static double LabInvf(double ft)
     {
-        var e = 216.0 / 24389.0;
-        var kappa = 24389.0 / 27.0;
-        var ft3 = ft * ft * ft;
+        double e = 216.0 / 24389.0;
+        double kappa = 24389.0 / 27.0;
+        double ft3 = ft * ft * ft;
         if (ft3 > e)
         {
             return ft3;

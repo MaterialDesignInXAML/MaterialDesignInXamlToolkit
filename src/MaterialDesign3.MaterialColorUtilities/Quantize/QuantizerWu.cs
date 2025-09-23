@@ -22,7 +22,7 @@ public sealed class QuantizerWu: Quantizer
         var createBoxesResult = CreateBoxes(colorCount);
         var colors = CreateResult(createBoxesResult.resultCount);
         var resultMap = new Dictionary<int, int>();
-        foreach (var color in colors)
+        foreach (int color in colors)
         {
             resultMap[color] = 0;
         }
@@ -63,11 +63,11 @@ public sealed class QuantizerWu: Quantizer
     {
         for (int r = 1; r < INDEX_COUNT; ++r)
         {
-            var area = new int[INDEX_COUNT];
-            var areaR = new int[INDEX_COUNT];
-            var areaG = new int[INDEX_COUNT];
-            var areaB = new int[INDEX_COUNT];
-            var area2 = new double[INDEX_COUNT];
+            int[] area = new int[INDEX_COUNT];
+            int[] areaR = new int[INDEX_COUNT];
+            int[] areaG = new int[INDEX_COUNT];
+            int[] areaB = new int[INDEX_COUNT];
+            double[] area2 = new double[INDEX_COUNT];
 
             for (int g = 1; g < INDEX_COUNT; ++g)
             {
@@ -106,7 +106,7 @@ public sealed class QuantizerWu: Quantizer
     {
         cubes = new Box[maxColorCount];
         for (int i = 0; i < maxColorCount; i++) cubes[i] = new Box();
-        var volumeVariance = new double[maxColorCount];
+        double[] volumeVariance = new double[maxColorCount];
         var firstBox = cubes[0];
         firstBox.r1 = INDEX_COUNT - 1;
         firstBox.g1 = INDEX_COUNT - 1;

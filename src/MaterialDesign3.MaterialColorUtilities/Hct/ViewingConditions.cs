@@ -42,8 +42,8 @@ public sealed class ViewingConditions
         backgroundLstar = Max(0.1, backgroundLstar);
 
         // Transform white point XYZ to 'cone'/'rgb' responses
-        var matrix = Cam16.XYZ_TO_CAM16RGB;
-        var xyz = whitePoint;
+        double[][] matrix = Cam16.XYZ_TO_CAM16RGB;
+        double[] xyz = whitePoint;
         double rW = (xyz[0] * matrix[0][0]) + (xyz[1] * matrix[0][1]) + (xyz[2] * matrix[0][2]);
         double gW = (xyz[0] * matrix[1][0]) + (xyz[1] * matrix[1][1]) + (xyz[2] * matrix[1][2]);
         double bW = (xyz[0] * matrix[2][0]) + (xyz[1] * matrix[2][1]) + (xyz[2] * matrix[2][2]);

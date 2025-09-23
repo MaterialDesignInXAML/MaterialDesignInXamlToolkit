@@ -10,7 +10,7 @@ public class ColorSpec2025 : ColorSpec2021
             // Remap to surface for 2025
             var color2025 = Surface.ToBuilder().SetName("background").Build();
             return base.Background.ToBuilder()
-                .ExtendSpecVersion(SpecVersion.SPEC_2025, color2025)
+                .ExtendSpecVersion(SpecVersion.Spec2025, color2025)
                 .Build();
         }
     }
@@ -21,9 +21,9 @@ public class ColorSpec2025 : ColorSpec2021
         {
             // Remap to onSurface for 2025; watch tweaks tone to 100
             var color2025Builder = OnSurface.ToBuilder().SetName("on_background");
-            color2025Builder.SetTone(s => s.PlatformType == Platform.WATCH ? 100.0 : OnSurface.GetTone(s));
+            color2025Builder.SetTone(s => s.PlatformType == Platform.Watch ? 100.0 : OnSurface.GetTone(s));
             return base.OnBackground.ToBuilder()
-                .ExtendSpecVersion(SpecVersion.SPEC_2025, color2025Builder.Build())
+                .ExtendSpecVersion(SpecVersion.Spec2025, color2025Builder.Build())
                 .Build();
         }
     }
@@ -37,11 +37,11 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.NeutralPalette)
                 .SetTone(s =>
                 {
-                    if (s.PlatformType == Platform.PHONE)
+                    if (s.PlatformType == Platform.Phone)
                     {
                         if (s.IsDark) return 4.0;
                         if (Hct.IsYellow(s.NeutralPalette.GetHue())) return 99.0;
-                        if (s.Variant == Variant.VIBRANT) return 97.0;
+                        if (s.Variant == Variant.Vibrant) return 97.0;
                         return 98.0;
                     }
                     else
@@ -51,7 +51,7 @@ public class ColorSpec2025 : ColorSpec2021
                 })
                 .SetIsBackground(true)
                 .Build();
-            return base.Surface.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.Surface.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -66,7 +66,7 @@ public class ColorSpec2025 : ColorSpec2021
                 {
                     if (s.IsDark) return 4.0;
                     if (Hct.IsYellow(s.NeutralPalette.GetHue())) return 90.0;
-                    if (s.Variant == Variant.VIBRANT) return 85.0;
+                    if (s.Variant == Variant.Vibrant) return 85.0;
                     return 87.0;
                 })
                 .SetIsBackground(true)
@@ -74,15 +74,15 @@ public class ColorSpec2025 : ColorSpec2021
                 {
                     if (!s.IsDark)
                     {
-                        if (s.Variant == Variant.NEUTRAL) return 2.5;
-                        if (s.Variant == Variant.TONAL_SPOT) return 1.7;
-                        if (s.Variant == Variant.EXPRESSIVE) return Hct.IsYellow(s.NeutralPalette.GetHue()) ? 2.7 : 1.75;
-                        if (s.Variant == Variant.VIBRANT) return 1.36;
+                        if (s.Variant == Variant.Neutral) return 2.5;
+                        if (s.Variant == Variant.TonalSpot) return 1.7;
+                        if (s.Variant == Variant.Expressive) return Hct.IsYellow(s.NeutralPalette.GetHue()) ? 2.7 : 1.75;
+                        if (s.Variant == Variant.Vibrant) return 1.36;
                     }
                     return 1.0;
                 })
                 .Build();
-            return base.SurfaceDim.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.SurfaceDim.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -97,7 +97,7 @@ public class ColorSpec2025 : ColorSpec2021
                 {
                     if (s.IsDark) return 18.0;
                     if (Hct.IsYellow(s.NeutralPalette.GetHue())) return 99.0;
-                    if (s.Variant == Variant.VIBRANT) return 97.0;
+                    if (s.Variant == Variant.Vibrant) return 97.0;
                     return 98.0;
                 })
                 .SetIsBackground(true)
@@ -105,15 +105,15 @@ public class ColorSpec2025 : ColorSpec2021
                 {
                     if (s.IsDark)
                     {
-                        if (s.Variant == Variant.NEUTRAL) return 2.5;
-                        if (s.Variant == Variant.TONAL_SPOT) return 1.7;
-                        if (s.Variant == Variant.EXPRESSIVE) return Hct.IsYellow(s.NeutralPalette.GetHue()) ? 2.7 : 1.75;
-                        if (s.Variant == Variant.VIBRANT) return 1.36;
+                        if (s.Variant == Variant.Neutral) return 2.5;
+                        if (s.Variant == Variant.TonalSpot) return 1.7;
+                        if (s.Variant == Variant.Expressive) return Hct.IsYellow(s.NeutralPalette.GetHue()) ? 2.7 : 1.75;
+                        if (s.Variant == Variant.Vibrant) return 1.36;
                     }
                     return 1.0;
                 })
                 .Build();
-            return base.SurfaceBright.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.SurfaceBright.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -127,7 +127,7 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetTone(s => s.IsDark ? 0.0 : 100.0)
                 .SetIsBackground(true)
                 .Build();
-            return base.SurfaceContainerLowest.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.SurfaceContainerLowest.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -140,11 +140,11 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.NeutralPalette)
                 .SetTone(s =>
                 {
-                    if (s.PlatformType == Platform.PHONE)
+                    if (s.PlatformType == Platform.Phone)
                     {
                         if (s.IsDark) return 6.0;
                         if (Hct.IsYellow(s.NeutralPalette.GetHue())) return 98.0;
-                        if (s.Variant == Variant.VIBRANT) return 95.0;
+                        if (s.Variant == Variant.Vibrant) return 95.0;
                         return 96.0;
                     }
                     return 15.0;
@@ -152,17 +152,17 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetIsBackground(true)
                 .SetChromaMultiplier(s =>
                 {
-                    if (s.PlatformType == Platform.PHONE)
+                    if (s.PlatformType == Platform.Phone)
                     {
-                        if (s.Variant == Variant.NEUTRAL) return 1.3;
-                        if (s.Variant == Variant.TONAL_SPOT) return 1.25;
-                        if (s.Variant == Variant.EXPRESSIVE) return Hct.IsYellow(s.NeutralPalette.GetHue()) ? 1.3 : 1.15;
-                        if (s.Variant == Variant.VIBRANT) return 1.08;
+                        if (s.Variant == Variant.Neutral) return 1.3;
+                        if (s.Variant == Variant.TonalSpot) return 1.25;
+                        if (s.Variant == Variant.Expressive) return Hct.IsYellow(s.NeutralPalette.GetHue()) ? 1.3 : 1.15;
+                        if (s.Variant == Variant.Vibrant) return 1.08;
                     }
                     return 1.0;
                 })
                 .Build();
-            return base.SurfaceContainerLow.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.SurfaceContainerLow.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -175,11 +175,11 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.NeutralPalette)
                 .SetTone(s =>
                 {
-                    if (s.PlatformType == Platform.PHONE)
+                    if (s.PlatformType == Platform.Phone)
                     {
                         if (s.IsDark) return 9.0;
                         if (Hct.IsYellow(s.NeutralPalette.GetHue())) return 96.0;
-                        if (s.Variant == Variant.VIBRANT) return 92.0;
+                        if (s.Variant == Variant.Vibrant) return 92.0;
                         return 94.0;
                     }
                     return 20.0;
@@ -187,17 +187,17 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetIsBackground(true)
                 .SetChromaMultiplier(s =>
                 {
-                    if (s.PlatformType == Platform.PHONE)
+                    if (s.PlatformType == Platform.Phone)
                     {
-                        if (s.Variant == Variant.NEUTRAL) return 1.6;
-                        if (s.Variant == Variant.TONAL_SPOT) return 1.4;
-                        if (s.Variant == Variant.EXPRESSIVE) return Hct.IsYellow(s.NeutralPalette.GetHue()) ? 1.6 : 1.3;
-                        if (s.Variant == Variant.VIBRANT) return 1.15;
+                        if (s.Variant == Variant.Neutral) return 1.6;
+                        if (s.Variant == Variant.TonalSpot) return 1.4;
+                        if (s.Variant == Variant.Expressive) return Hct.IsYellow(s.NeutralPalette.GetHue()) ? 1.6 : 1.3;
+                        if (s.Variant == Variant.Vibrant) return 1.15;
                     }
                     return 1.0;
                 })
                 .Build();
-            return base.SurfaceContainer.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.SurfaceContainer.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -210,11 +210,11 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.NeutralPalette)
                 .SetTone(s =>
                 {
-                    if (s.PlatformType == Platform.PHONE)
+                    if (s.PlatformType == Platform.Phone)
                     {
                         if (s.IsDark) return 12.0;
                         if (Hct.IsYellow(s.NeutralPalette.GetHue())) return 94.0;
-                        if (s.Variant == Variant.VIBRANT) return 90.0;
+                        if (s.Variant == Variant.Vibrant) return 90.0;
                         return 92.0;
                     }
                     return 25.0;
@@ -222,17 +222,17 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetIsBackground(true)
                 .SetChromaMultiplier(s =>
                 {
-                    if (s.PlatformType == Platform.PHONE)
+                    if (s.PlatformType == Platform.Phone)
                     {
-                        if (s.Variant == Variant.NEUTRAL) return 1.9;
-                        if (s.Variant == Variant.TONAL_SPOT) return 1.5;
-                        if (s.Variant == Variant.EXPRESSIVE) return Hct.IsYellow(s.NeutralPalette.GetHue()) ? 1.95 : 1.45;
-                        if (s.Variant == Variant.VIBRANT) return 1.22;
+                        if (s.Variant == Variant.Neutral) return 1.9;
+                        if (s.Variant == Variant.TonalSpot) return 1.5;
+                        if (s.Variant == Variant.Expressive) return Hct.IsYellow(s.NeutralPalette.GetHue()) ? 1.95 : 1.45;
+                        if (s.Variant == Variant.Vibrant) return 1.22;
                     }
                     return 1.0;
                 })
                 .Build();
-            return base.SurfaceContainerHigh.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.SurfaceContainerHigh.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -247,20 +247,20 @@ public class ColorSpec2025 : ColorSpec2021
                 {
                     if (s.IsDark) return 15.0;
                     if (Hct.IsYellow(s.NeutralPalette.GetHue())) return 92.0;
-                    if (s.Variant == Variant.VIBRANT) return 88.0;
+                    if (s.Variant == Variant.Vibrant) return 88.0;
                     return 90.0;
                 })
                 .SetIsBackground(true)
                 .SetChromaMultiplier(s =>
                 {
-                    if (s.Variant == Variant.NEUTRAL) return 2.2;
-                    if (s.Variant == Variant.TONAL_SPOT) return 1.7;
-                    if (s.Variant == Variant.EXPRESSIVE) return Hct.IsYellow(s.NeutralPalette.GetHue()) ? 2.3 : 1.6;
-                    if (s.Variant == Variant.VIBRANT) return 1.29;
+                    if (s.Variant == Variant.Neutral) return 2.2;
+                    if (s.Variant == Variant.TonalSpot) return 1.7;
+                    if (s.Variant == Variant.Expressive) return Hct.IsYellow(s.NeutralPalette.GetHue()) ? 2.3 : 1.6;
+                    if (s.Variant == Variant.Vibrant) return 1.29;
                     return 1.0;
                 })
                 .Build();
-            return base.SurfaceContainerHighest.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.SurfaceContainerHighest.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -273,7 +273,7 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.NeutralPalette)
                 .SetTone(s =>
                 {
-                    if (s.Variant == Variant.VIBRANT)
+                    if (s.Variant == Variant.Vibrant)
                     {
                         return TMaxC(s.NeutralPalette, 0, 100, 1.1);
                     }
@@ -282,7 +282,7 @@ public class ColorSpec2025 : ColorSpec2021
                         return DynamicColor.GetInitialToneFromBackground(
                             scheme =>
                             {
-                                if (scheme.PlatformType == Platform.PHONE)
+                                if (scheme.PlatformType == Platform.Phone)
                                 {
                                     return scheme.IsDark ? SurfaceBright : SurfaceDim;
                                 }
@@ -296,17 +296,17 @@ public class ColorSpec2025 : ColorSpec2021
                 })
                 .SetChromaMultiplier(s =>
                 {
-                    if (s.PlatformType == Platform.PHONE)
+                    if (s.PlatformType == Platform.Phone)
                     {
-                        if (s.Variant == Variant.NEUTRAL) return 2.2;
-                        if (s.Variant == Variant.TONAL_SPOT) return 1.7;
-                        if (s.Variant == Variant.EXPRESSIVE) return Hct.IsYellow(s.NeutralPalette.GetHue()) ? (s.IsDark ? 3.0 : 2.3) : 1.6;
+                        if (s.Variant == Variant.Neutral) return 2.2;
+                        if (s.Variant == Variant.TonalSpot) return 1.7;
+                        if (s.Variant == Variant.Expressive) return Hct.IsYellow(s.NeutralPalette.GetHue()) ? (s.IsDark ? 3.0 : 2.3) : 1.6;
                     }
                     return 1.0;
                 })
                 .SetBackground(s =>
                 {
-                    if (s.PlatformType == Platform.PHONE)
+                    if (s.PlatformType == Platform.Phone)
                     {
                         return s.IsDark ? SurfaceBright : SurfaceDim;
                     }
@@ -317,7 +317,7 @@ public class ColorSpec2025 : ColorSpec2021
                 })
                 .SetContrastCurve(s => s.IsDark ? GetContrastCurve(11) : GetContrastCurve(9))
                 .Build();
-            return base.OnSurface.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.OnSurface.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -326,7 +326,7 @@ public class ColorSpec2025 : ColorSpec2021
         get
         {
             var color2025 = SurfaceContainerHighest.ToBuilder().SetName("surface_variant").Build();
-            return base.SurfaceVariant.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.SurfaceVariant.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -339,17 +339,17 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.NeutralPalette)
                 .SetChromaMultiplier(s =>
                 {
-                    if (s.PlatformType == Platform.PHONE)
+                    if (s.PlatformType == Platform.Phone)
                     {
-                        if (s.Variant == Variant.NEUTRAL) return 2.2;
-                        if (s.Variant == Variant.TONAL_SPOT) return 1.7;
-                        if (s.Variant == Variant.EXPRESSIVE) return Hct.IsYellow(s.NeutralPalette.GetHue()) ? (s.IsDark ? 3.0 : 2.3) : 1.6;
+                        if (s.Variant == Variant.Neutral) return 2.2;
+                        if (s.Variant == Variant.TonalSpot) return 1.7;
+                        if (s.Variant == Variant.Expressive) return Hct.IsYellow(s.NeutralPalette.GetHue()) ? (s.IsDark ? 3.0 : 2.3) : 1.6;
                     }
                     return 1.0;
                 })
                 .SetBackground(s =>
                 {
-                    if (s.PlatformType == Platform.PHONE)
+                    if (s.PlatformType == Platform.Phone)
                     {
                         return s.IsDark ? SurfaceBright : SurfaceDim;
                     }
@@ -359,11 +359,11 @@ public class ColorSpec2025 : ColorSpec2021
                     }
                 })
                 .SetContrastCurve(s =>
-                    s.PlatformType == Platform.PHONE
+                    s.PlatformType == Platform.Phone
                         ? (s.IsDark ? GetContrastCurve(6) : GetContrastCurve(4.5))
                         : GetContrastCurve(7))
                 .Build();
-            return base.OnSurfaceVariant.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.OnSurfaceVariant.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -377,7 +377,7 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetTone(s => s.IsDark ? 98.0 : 4.0)
                 .SetIsBackground(true)
                 .Build();
-            return base.InverseSurface.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.InverseSurface.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -391,7 +391,7 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetBackground(s => InverseSurface)
                 .SetContrastCurve(s => GetContrastCurve(7))
                 .Build();
-            return base.InverseOnSurface.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.InverseOnSurface.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -404,17 +404,17 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.NeutralPalette)
                 .SetChromaMultiplier(s =>
                 {
-                    if (s.PlatformType == Platform.PHONE)
+                    if (s.PlatformType == Platform.Phone)
                     {
-                        if (s.Variant == Variant.NEUTRAL) return 2.2;
-                        if (s.Variant == Variant.TONAL_SPOT) return 1.7;
-                        if (s.Variant == Variant.EXPRESSIVE) return Hct.IsYellow(s.NeutralPalette.GetHue()) ? (s.IsDark ? 3.0 : 2.3) : 1.6;
+                        if (s.Variant == Variant.Neutral) return 2.2;
+                        if (s.Variant == Variant.TonalSpot) return 1.7;
+                        if (s.Variant == Variant.Expressive) return Hct.IsYellow(s.NeutralPalette.GetHue()) ? (s.IsDark ? 3.0 : 2.3) : 1.6;
                     }
                     return 1.0;
                 })
                 .SetBackground(s =>
                 {
-                    if (s.PlatformType == Platform.PHONE)
+                    if (s.PlatformType == Platform.Phone)
                     {
                         return s.IsDark ? SurfaceBright : SurfaceDim;
                     }
@@ -423,9 +423,9 @@ public class ColorSpec2025 : ColorSpec2021
                         return SurfaceContainerHigh;
                     }
                 })
-                .SetContrastCurve(s => s.PlatformType == Platform.PHONE ? GetContrastCurve(3) : GetContrastCurve(4.5))
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(3) : GetContrastCurve(4.5))
                 .Build();
-            return base.Outline.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.Outline.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -438,17 +438,17 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.NeutralPalette)
                 .SetChromaMultiplier(s =>
                 {
-                    if (s.PlatformType == Platform.PHONE)
+                    if (s.PlatformType == Platform.Phone)
                     {
-                        if (s.Variant == Variant.NEUTRAL) return 2.2;
-                        if (s.Variant == Variant.TONAL_SPOT) return 1.7;
-                        if (s.Variant == Variant.EXPRESSIVE) return Hct.IsYellow(s.NeutralPalette.GetHue()) ? (s.IsDark ? 3.0 : 2.3) : 1.6;
+                        if (s.Variant == Variant.Neutral) return 2.2;
+                        if (s.Variant == Variant.TonalSpot) return 1.7;
+                        if (s.Variant == Variant.Expressive) return Hct.IsYellow(s.NeutralPalette.GetHue()) ? (s.IsDark ? 3.0 : 2.3) : 1.6;
                     }
                     return 1.0;
                 })
                 .SetBackground(s =>
                 {
-                    if (s.PlatformType == Platform.PHONE)
+                    if (s.PlatformType == Platform.Phone)
                     {
                         return s.IsDark ? SurfaceBright : SurfaceDim;
                     }
@@ -457,9 +457,9 @@ public class ColorSpec2025 : ColorSpec2021
                         return SurfaceContainerHigh;
                     }
                 })
-                .SetContrastCurve(s => s.PlatformType == Platform.PHONE ? GetContrastCurve(1.5) : GetContrastCurve(3))
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(1.5) : GetContrastCurve(3))
                 .Build();
-            return base.OutlineVariant.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.OutlineVariant.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -469,7 +469,7 @@ public class ColorSpec2025 : ColorSpec2021
         {
             // Remapped to primary
             var color2025 = Primary.ToBuilder().SetName("surface_tint").Build();
-            return base.SurfaceTint.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.SurfaceTint.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -483,14 +483,14 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.PrimaryPalette)
                 .SetTone(s =>
                 {
-                    if (s.Variant == Variant.NEUTRAL)
+                    if (s.Variant == Variant.Neutral)
                     {
-                        if (s.PlatformType == Platform.PHONE) return s.IsDark ? 80.0 : 40.0;
+                        if (s.PlatformType == Platform.Phone) return s.IsDark ? 80.0 : 40.0;
                         return 90.0;
                     }
-                    else if (s.Variant == Variant.TONAL_SPOT)
+                    else if (s.Variant == Variant.TonalSpot)
                     {
-                        if (s.PlatformType == Platform.PHONE)
+                        if (s.PlatformType == Platform.Phone)
                         {
                             if (s.IsDark) return 80.0;
                             return TMaxC(s.PrimaryPalette);
@@ -500,7 +500,7 @@ public class ColorSpec2025 : ColorSpec2021
                             return TMaxC(s.PrimaryPalette, 0, 90);
                         }
                     }
-                    else if (s.Variant == Variant.EXPRESSIVE)
+                    else if (s.Variant == Variant.Expressive)
                     {
                         return TMaxC(
                             s.PrimaryPalette,
@@ -515,15 +515,15 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetIsBackground(true)
                 .SetBackground(s =>
                 {
-                    if (s.PlatformType == Platform.PHONE) return s.IsDark ? SurfaceBright : SurfaceDim;
+                    if (s.PlatformType == Platform.Phone) return s.IsDark ? SurfaceBright : SurfaceDim;
                     return SurfaceContainerHigh;
                 })
-                .SetContrastCurve(s => s.PlatformType == Platform.PHONE ? GetContrastCurve(4.5) : GetContrastCurve(7))
-                .SetToneDeltaPair(s => s.PlatformType == Platform.PHONE
-                    ? new ToneDeltaPair(PrimaryContainer, Primary, 5.0, TonePolarity.RelativeLighter, DeltaConstraint.FARTHER)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(4.5) : GetContrastCurve(7))
+                .SetToneDeltaPair(s => s.PlatformType == Platform.Phone
+                    ? new ToneDeltaPair(PrimaryContainer, Primary, 5.0, TonePolarity.RelativeLighter, DeltaConstraint.Farther)
                     : null!)
                 .Build();
-            return base.Primary.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.Primary.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -536,14 +536,14 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.PrimaryPalette)
                 .SetTone(s =>
                 {
-                    if (s.Variant == Variant.NEUTRAL) return 85.0;
-                    if (s.Variant == Variant.TONAL_SPOT) return TMaxC(s.PrimaryPalette, 0, 90);
+                    if (s.Variant == Variant.Neutral) return 85.0;
+                    if (s.Variant == Variant.TonalSpot) return TMaxC(s.PrimaryPalette, 0, 90);
                     return TMaxC(s.PrimaryPalette);
                 })
                 .SetIsBackground(true)
                 .SetBackground(s => SurfaceContainerHigh)
                 .SetContrastCurve(s => GetContrastCurve(4.5))
-                .SetToneDeltaPair(s => new ToneDeltaPair(PrimaryDim!, Primary, 5.0, TonePolarity.Darker, DeltaConstraint.FARTHER))
+                .SetToneDeltaPair(s => new ToneDeltaPair(PrimaryDim!, Primary, 5.0, TonePolarity.Darker, DeltaConstraint.Farther))
                 .Build();
         }
     }
@@ -555,10 +555,10 @@ public class ColorSpec2025 : ColorSpec2021
             var color2025 = new DynamicColor.Builder()
                 .SetName("on_primary")
                 .SetPalette(s => s.PrimaryPalette)
-                .SetBackground(s => s.PlatformType == Platform.PHONE ? Primary : PrimaryDim!)
-                .SetContrastCurve(s => s.PlatformType == Platform.PHONE ? GetContrastCurve(6) : GetContrastCurve(7))
+                .SetBackground(s => s.PlatformType == Platform.Phone ? Primary : PrimaryDim!)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(6) : GetContrastCurve(7))
                 .Build();
-            return base.OnPrimary.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.OnPrimary.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -571,23 +571,23 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.PrimaryPalette)
                 .SetTone(s =>
                 {
-                    if (s.PlatformType == Platform.WATCH) return 30.0;
-                    if (s.Variant == Variant.NEUTRAL) return s.IsDark ? 30.0 : 90.0;
-                    if (s.Variant == Variant.TONAL_SPOT) return s.IsDark ? TMinC(s.PrimaryPalette, 35, 93) : TMaxC(s.PrimaryPalette, 0, 90);
-                    if (s.Variant == Variant.EXPRESSIVE) return s.IsDark ? TMaxC(s.PrimaryPalette, 30, 93) : TMaxC(s.PrimaryPalette, 78, Hct.IsCyan(s.PrimaryPalette.GetHue()) ? 88 : 90);
+                    if (s.PlatformType == Platform.Watch) return 30.0;
+                    if (s.Variant == Variant.Neutral) return s.IsDark ? 30.0 : 90.0;
+                    if (s.Variant == Variant.TonalSpot) return s.IsDark ? TMinC(s.PrimaryPalette, 35, 93) : TMaxC(s.PrimaryPalette, 0, 90);
+                    if (s.Variant == Variant.Expressive) return s.IsDark ? TMaxC(s.PrimaryPalette, 30, 93) : TMaxC(s.PrimaryPalette, 78, Hct.IsCyan(s.PrimaryPalette.GetHue()) ? 88 : 90);
                     // VIBRANT
                     return s.IsDark ? TMinC(s.PrimaryPalette, 66, 93) : TMaxC(s.PrimaryPalette, 66, Hct.IsCyan(s.PrimaryPalette.GetHue()) ? 88 : 93);
                 })
                 .SetIsBackground(true)
                 .SetBackground(s =>
                 {
-                    if (s.PlatformType == Platform.PHONE) return s.IsDark ? SurfaceBright : SurfaceDim;
+                    if (s.PlatformType == Platform.Phone) return s.IsDark ? SurfaceBright : SurfaceDim;
                     return null!;
                 })
-                .SetToneDeltaPair(s => s.PlatformType == Platform.WATCH ? new ToneDeltaPair(PrimaryContainer, PrimaryDim!, 10.0, TonePolarity.Darker, DeltaConstraint.FARTHER) : null!)
-                .SetContrastCurve(s => s.PlatformType == Platform.PHONE && s.ContrastLevel > 0 ? GetContrastCurve(1.5) : null!)
+                .SetToneDeltaPair(s => s.PlatformType == Platform.Watch ? new ToneDeltaPair(PrimaryContainer, PrimaryDim!, 10.0, TonePolarity.Darker, DeltaConstraint.Farther) : null!)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone && s.ContrastLevel > 0 ? GetContrastCurve(1.5) : null!)
                 .Build();
-            return base.PrimaryContainer.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.PrimaryContainer.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -599,9 +599,9 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetName("on_primary_container")
                 .SetPalette(s => s.PrimaryPalette)
                 .SetBackground(s => PrimaryContainer)
-                .SetContrastCurve(s => s.PlatformType == Platform.PHONE ? GetContrastCurve(6) : GetContrastCurve(7))
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(6) : GetContrastCurve(7))
                 .Build();
-            return base.OnPrimaryContainer.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.OnPrimaryContainer.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -614,9 +614,9 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.PrimaryPalette)
                 .SetTone(s => TMaxC(s.PrimaryPalette))
                 .SetBackground(s => InverseSurface)
-                .SetContrastCurve(s => s.PlatformType == Platform.PHONE ? GetContrastCurve(6) : GetContrastCurve(7))
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(6) : GetContrastCurve(7))
                 .Build();
-            return base.InversePrimary.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.InversePrimary.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -630,24 +630,24 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.SecondaryPalette)
                 .SetTone(s =>
                 {
-                    if (s.PlatformType == Platform.WATCH) return s.Variant == Variant.NEUTRAL ? 90.0 : TMaxC(s.SecondaryPalette, 0, 90);
-                    if (s.Variant == Variant.NEUTRAL) return s.IsDark ? TMinC(s.SecondaryPalette, 0, 98) : TMaxC(s.SecondaryPalette);
-                    if (s.Variant == Variant.VIBRANT) return TMaxC(s.SecondaryPalette, 0, s.IsDark ? 90 : 98);
+                    if (s.PlatformType == Platform.Watch) return s.Variant == Variant.Neutral ? 90.0 : TMaxC(s.SecondaryPalette, 0, 90);
+                    if (s.Variant == Variant.Neutral) return s.IsDark ? TMinC(s.SecondaryPalette, 0, 98) : TMaxC(s.SecondaryPalette);
+                    if (s.Variant == Variant.Vibrant) return TMaxC(s.SecondaryPalette, 0, s.IsDark ? 90 : 98);
                     // EXPRESSIVE, TONAL_SPOT
                     return s.IsDark ? 80.0 : TMaxC(s.SecondaryPalette);
                 })
                 .SetIsBackground(true)
                 .SetBackground(s =>
                 {
-                    if (s.PlatformType == Platform.PHONE) return s.IsDark ? SurfaceBright : SurfaceDim;
+                    if (s.PlatformType == Platform.Phone) return s.IsDark ? SurfaceBright : SurfaceDim;
                     return SurfaceContainerHigh;
                 })
-                .SetContrastCurve(s => s.PlatformType == Platform.PHONE ? GetContrastCurve(4.5) : GetContrastCurve(7))
-                .SetToneDeltaPair(s => s.PlatformType == Platform.PHONE
-                    ? new ToneDeltaPair(SecondaryContainer, Secondary, 5.0, TonePolarity.RelativeLighter, DeltaConstraint.FARTHER)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(4.5) : GetContrastCurve(7))
+                .SetToneDeltaPair(s => s.PlatformType == Platform.Phone
+                    ? new ToneDeltaPair(SecondaryContainer, Secondary, 5.0, TonePolarity.RelativeLighter, DeltaConstraint.Farther)
                     : null!)
                 .Build();
-            return base.Secondary.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.Secondary.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -660,13 +660,13 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.SecondaryPalette)
                 .SetTone(s =>
                 {
-                    if (s.Variant == Variant.NEUTRAL) return 85.0;
+                    if (s.Variant == Variant.Neutral) return 85.0;
                     return TMaxC(s.SecondaryPalette, 0, 90);
                 })
                 .SetIsBackground(true)
                 .SetBackground(s => SurfaceContainerHigh)
                 .SetContrastCurve(s => GetContrastCurve(4.5))
-                .SetToneDeltaPair(s => new ToneDeltaPair(SecondaryDim!, Secondary, 5.0, TonePolarity.Darker, DeltaConstraint.FARTHER))
+                .SetToneDeltaPair(s => new ToneDeltaPair(SecondaryDim!, Secondary, 5.0, TonePolarity.Darker, DeltaConstraint.Farther))
                 .Build();
         }
     }
@@ -678,10 +678,10 @@ public class ColorSpec2025 : ColorSpec2021
             var color2025 = new DynamicColor.Builder()
                 .SetName("on_secondary")
                 .SetPalette(s => s.SecondaryPalette)
-                .SetBackground(s => s.PlatformType == Platform.PHONE ? Secondary : SecondaryDim!)
-                .SetContrastCurve(s => s.PlatformType == Platform.PHONE ? GetContrastCurve(6) : GetContrastCurve(7))
+                .SetBackground(s => s.PlatformType == Platform.Phone ? Secondary : SecondaryDim!)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(6) : GetContrastCurve(7))
                 .Build();
-            return base.OnSecondary.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.OnSecondary.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -694,21 +694,21 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.SecondaryPalette)
                 .SetTone(s =>
                 {
-                    if (s.PlatformType == Platform.WATCH) return 30.0;
-                    if (s.Variant == Variant.VIBRANT) return s.IsDark ? TMinC(s.SecondaryPalette, 30, 40) : TMaxC(s.SecondaryPalette, 84, 90);
-                    if (s.Variant == Variant.EXPRESSIVE) return s.IsDark ? 15.0 : TMaxC(s.SecondaryPalette, 90, 95);
+                    if (s.PlatformType == Platform.Watch) return 30.0;
+                    if (s.Variant == Variant.Vibrant) return s.IsDark ? TMinC(s.SecondaryPalette, 30, 40) : TMaxC(s.SecondaryPalette, 84, 90);
+                    if (s.Variant == Variant.Expressive) return s.IsDark ? 15.0 : TMaxC(s.SecondaryPalette, 90, 95);
                     return s.IsDark ? 25.0 : 90.0;
                 })
                 .SetIsBackground(true)
                 .SetBackground(s =>
                 {
-                    if (s.PlatformType == Platform.PHONE) return s.IsDark ? SurfaceBright : SurfaceDim;
+                    if (s.PlatformType == Platform.Phone) return s.IsDark ? SurfaceBright : SurfaceDim;
                     return null!;
                 })
-                .SetToneDeltaPair(s => s.PlatformType == Platform.WATCH ? new ToneDeltaPair(SecondaryContainer, SecondaryDim!, 10.0, TonePolarity.Darker, DeltaConstraint.FARTHER) : null!)
-                .SetContrastCurve(s => s.PlatformType == Platform.PHONE && s.ContrastLevel > 0 ? GetContrastCurve(1.5) : null!)
+                .SetToneDeltaPair(s => s.PlatformType == Platform.Watch ? new ToneDeltaPair(SecondaryContainer, SecondaryDim!, 10.0, TonePolarity.Darker, DeltaConstraint.Farther) : null!)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone && s.ContrastLevel > 0 ? GetContrastCurve(1.5) : null!)
                 .Build();
-            return base.SecondaryContainer.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.SecondaryContainer.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -720,9 +720,9 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetName("on_secondary_container")
                 .SetPalette(s => s.SecondaryPalette)
                 .SetBackground(s => SecondaryContainer)
-                .SetContrastCurve(s => s.PlatformType == Platform.PHONE ? GetContrastCurve(6) : GetContrastCurve(7))
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(6) : GetContrastCurve(7))
                 .Build();
-            return base.OnSecondaryContainer.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.OnSecondaryContainer.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -736,11 +736,11 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.TertiaryPalette)
                 .SetTone(s =>
                 {
-                    if (s.PlatformType == Platform.WATCH)
+                    if (s.PlatformType == Platform.Watch)
                     {
-                        return s.Variant == Variant.TONAL_SPOT ? TMaxC(s.TertiaryPalette, 0, 90) : TMaxC(s.TertiaryPalette);
+                        return s.Variant == Variant.TonalSpot ? TMaxC(s.TertiaryPalette, 0, 90) : TMaxC(s.TertiaryPalette);
                     }
-                    else if (s.Variant == Variant.EXPRESSIVE || s.Variant == Variant.VIBRANT)
+                    else if (s.Variant == Variant.Expressive || s.Variant == Variant.Vibrant)
                     {
                         return TMaxC(s.TertiaryPalette, 0, Hct.IsCyan(s.TertiaryPalette.GetHue()) ? 88 : (s.IsDark ? 98 : 100));
                     }
@@ -752,13 +752,13 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetIsBackground(true)
                 .SetBackground(s =>
                 {
-                    if (s.PlatformType == Platform.PHONE) return s.IsDark ? SurfaceBright : SurfaceDim;
+                    if (s.PlatformType == Platform.Phone) return s.IsDark ? SurfaceBright : SurfaceDim;
                     return SurfaceContainerHigh;
                 })
-                .SetContrastCurve(s => s.PlatformType == Platform.PHONE ? GetContrastCurve(4.5) : GetContrastCurve(7))
-                .SetToneDeltaPair(s => s.PlatformType == Platform.PHONE ? new ToneDeltaPair(TertiaryContainer, Tertiary, 5.0, TonePolarity.RelativeLighter, DeltaConstraint.FARTHER) : null!)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(4.5) : GetContrastCurve(7))
+                .SetToneDeltaPair(s => s.PlatformType == Platform.Phone ? new ToneDeltaPair(TertiaryContainer, Tertiary, 5.0, TonePolarity.RelativeLighter, DeltaConstraint.Farther) : null!)
                 .Build();
-            return base.Tertiary.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.Tertiary.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -769,11 +769,11 @@ public class ColorSpec2025 : ColorSpec2021
             return new DynamicColor.Builder()
                 .SetName("tertiary_dim")
                 .SetPalette(s => s.TertiaryPalette)
-                .SetTone(s => s.Variant == Variant.TONAL_SPOT ? TMaxC(s.TertiaryPalette, 0, 90) : TMaxC(s.TertiaryPalette))
+                .SetTone(s => s.Variant == Variant.TonalSpot ? TMaxC(s.TertiaryPalette, 0, 90) : TMaxC(s.TertiaryPalette))
                 .SetIsBackground(true)
                 .SetBackground(s => SurfaceContainerHigh)
                 .SetContrastCurve(s => GetContrastCurve(4.5))
-                .SetToneDeltaPair(s => new ToneDeltaPair(TertiaryDim!, Tertiary, 5.0, TonePolarity.Darker, DeltaConstraint.FARTHER))
+                .SetToneDeltaPair(s => new ToneDeltaPair(TertiaryDim!, Tertiary, 5.0, TonePolarity.Darker, DeltaConstraint.Farther))
                 .Build();
         }
     }
@@ -785,10 +785,10 @@ public class ColorSpec2025 : ColorSpec2021
             var color2025 = new DynamicColor.Builder()
                 .SetName("on_tertiary")
                 .SetPalette(s => s.TertiaryPalette)
-                .SetBackground(s => s.PlatformType == Platform.PHONE ? Tertiary : TertiaryDim!)
-                .SetContrastCurve(s => s.PlatformType == Platform.PHONE ? GetContrastCurve(6) : GetContrastCurve(7))
+                .SetBackground(s => s.PlatformType == Platform.Phone ? Tertiary : TertiaryDim!)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(6) : GetContrastCurve(7))
                 .Build();
-            return base.OnTertiary.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.OnTertiary.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -801,21 +801,21 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.TertiaryPalette)
                 .SetTone(s =>
                 {
-                    if (s.PlatformType == Platform.WATCH)
+                    if (s.PlatformType == Platform.Watch)
                     {
-                        return s.Variant == Variant.TONAL_SPOT ? TMaxC(s.TertiaryPalette, 0, 90) : TMaxC(s.TertiaryPalette);
+                        return s.Variant == Variant.TonalSpot ? TMaxC(s.TertiaryPalette, 0, 90) : TMaxC(s.TertiaryPalette);
                     }
                     else
                     {
-                        if (s.Variant == Variant.NEUTRAL)
+                        if (s.Variant == Variant.Neutral)
                         {
                             return s.IsDark ? TMaxC(s.TertiaryPalette, 0, 93) : TMaxC(s.TertiaryPalette, 0, 96);
                         }
-                        else if (s.Variant == Variant.TONAL_SPOT)
+                        else if (s.Variant == Variant.TonalSpot)
                         {
                             return TMaxC(s.TertiaryPalette, 0, s.IsDark ? 93 : 100);
                         }
-                        else if (s.Variant == Variant.EXPRESSIVE)
+                        else if (s.Variant == Variant.Expressive)
                         {
                             return TMaxC(s.TertiaryPalette, 75, Hct.IsCyan(s.TertiaryPalette.GetHue()) ? 88 : (s.IsDark ? 93 : 100));
                         }
@@ -828,13 +828,13 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetIsBackground(true)
                 .SetBackground(s =>
                 {
-                    if (s.PlatformType == Platform.PHONE) return s.IsDark ? SurfaceBright : SurfaceDim;
+                    if (s.PlatformType == Platform.Phone) return s.IsDark ? SurfaceBright : SurfaceDim;
                     return null!;
                 })
-                .SetToneDeltaPair(s => s.PlatformType == Platform.WATCH ? new ToneDeltaPair(TertiaryContainer, TertiaryDim!, 10.0, TonePolarity.Darker, DeltaConstraint.FARTHER) : null!)
-                .SetContrastCurve(s => s.PlatformType == Platform.PHONE && s.ContrastLevel > 0 ? GetContrastCurve(1.5) : null!)
+                .SetToneDeltaPair(s => s.PlatformType == Platform.Watch ? new ToneDeltaPair(TertiaryContainer, TertiaryDim!, 10.0, TonePolarity.Darker, DeltaConstraint.Farther) : null!)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone && s.ContrastLevel > 0 ? GetContrastCurve(1.5) : null!)
                 .Build();
-            return base.TertiaryContainer.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.TertiaryContainer.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -846,9 +846,9 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetName("on_tertiary_container")
                 .SetPalette(s => s.TertiaryPalette)
                 .SetBackground(s => TertiaryContainer)
-                .SetContrastCurve(s => s.PlatformType == Platform.PHONE ? GetContrastCurve(6) : GetContrastCurve(7))
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(6) : GetContrastCurve(7))
                 .Build();
-            return base.OnTertiaryContainer.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.OnTertiaryContainer.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -862,15 +862,15 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.ErrorPalette)
                 .SetTone(s =>
                 {
-                    if (s.PlatformType == Platform.PHONE) return s.IsDark ? TMinC(s.ErrorPalette, 0, 98) : TMaxC(s.ErrorPalette);
+                    if (s.PlatformType == Platform.Phone) return s.IsDark ? TMinC(s.ErrorPalette, 0, 98) : TMaxC(s.ErrorPalette);
                     return TMinC(s.ErrorPalette);
                 })
                 .SetIsBackground(true)
-                .SetBackground(s => s.PlatformType == Platform.PHONE ? (s.IsDark ? SurfaceBright : SurfaceDim) : SurfaceContainerHigh)
-                .SetContrastCurve(s => s.PlatformType == Platform.PHONE ? GetContrastCurve(4.5) : GetContrastCurve(7))
-                .SetToneDeltaPair(s => s.PlatformType == Platform.PHONE ? new ToneDeltaPair(ErrorContainer, Error, 5.0, TonePolarity.RelativeLighter, DeltaConstraint.FARTHER) : null!)
+                .SetBackground(s => s.PlatformType == Platform.Phone ? (s.IsDark ? SurfaceBright : SurfaceDim) : SurfaceContainerHigh)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(4.5) : GetContrastCurve(7))
+                .SetToneDeltaPair(s => s.PlatformType == Platform.Phone ? new ToneDeltaPair(ErrorContainer, Error, 5.0, TonePolarity.RelativeLighter, DeltaConstraint.Farther) : null!)
                 .Build();
-            return base.Error.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.Error.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -885,7 +885,7 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetIsBackground(true)
                 .SetBackground(s => SurfaceContainerHigh)
                 .SetContrastCurve(s => GetContrastCurve(4.5))
-                .SetToneDeltaPair(s => new ToneDeltaPair(ErrorDim!, Error, 5.0, TonePolarity.Darker, DeltaConstraint.FARTHER))
+                .SetToneDeltaPair(s => new ToneDeltaPair(ErrorDim!, Error, 5.0, TonePolarity.Darker, DeltaConstraint.Farther))
                 .Build();
         }
     }
@@ -897,10 +897,10 @@ public class ColorSpec2025 : ColorSpec2021
             var color2025 = new DynamicColor.Builder()
                 .SetName("on_error")
                 .SetPalette(s => s.ErrorPalette)
-                .SetBackground(s => s.PlatformType == Platform.PHONE ? Error : ErrorDim!)
-                .SetContrastCurve(s => s.PlatformType == Platform.PHONE ? GetContrastCurve(6) : GetContrastCurve(7))
+                .SetBackground(s => s.PlatformType == Platform.Phone ? Error : ErrorDim!)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(6) : GetContrastCurve(7))
                 .Build();
-            return base.OnError.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.OnError.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -913,15 +913,15 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.ErrorPalette)
                 .SetTone(s =>
                 {
-                    if (s.PlatformType == Platform.WATCH) return 30.0;
+                    if (s.PlatformType == Platform.Watch) return 30.0;
                     return s.IsDark ? TMinC(s.ErrorPalette, 30, 93) : TMaxC(s.ErrorPalette, 0, 90);
                 })
                 .SetIsBackground(true)
-                .SetBackground(s => s.PlatformType == Platform.PHONE ? (s.IsDark ? SurfaceBright : SurfaceDim) : null!)
-                .SetToneDeltaPair(s => s.PlatformType == Platform.WATCH ? new ToneDeltaPair(ErrorContainer, ErrorDim!, 10.0, TonePolarity.Darker, DeltaConstraint.FARTHER) : null!)
-                .SetContrastCurve(s => s.PlatformType == Platform.PHONE && s.ContrastLevel > 0 ? GetContrastCurve(1.5) : null!)
+                .SetBackground(s => s.PlatformType == Platform.Phone ? (s.IsDark ? SurfaceBright : SurfaceDim) : null!)
+                .SetToneDeltaPair(s => s.PlatformType == Platform.Watch ? new ToneDeltaPair(ErrorContainer, ErrorDim!, 10.0, TonePolarity.Darker, DeltaConstraint.Farther) : null!)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone && s.ContrastLevel > 0 ? GetContrastCurve(1.5) : null!)
                 .Build();
-            return base.ErrorContainer.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.ErrorContainer.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -933,9 +933,9 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetName("on_error_container")
                 .SetPalette(s => s.ErrorPalette)
                 .SetBackground(s => ErrorContainer)
-                .SetContrastCurve(s => s.PlatformType == Platform.PHONE ? GetContrastCurve(4.5) : GetContrastCurve(7))
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(4.5) : GetContrastCurve(7))
                 .Build();
-            return base.OnErrorContainer.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.OnErrorContainer.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -953,10 +953,10 @@ public class ColorSpec2025 : ColorSpec2021
                     return PrimaryContainer.GetTone(tempS);
                 })
                 .SetIsBackground(true)
-                .SetBackground(s => s.PlatformType == Platform.PHONE ? (s.IsDark ? SurfaceBright : SurfaceDim) : null!)
-                .SetContrastCurve(s => s.PlatformType == Platform.PHONE && s.ContrastLevel > 0 ? GetContrastCurve(1.5) : null!)
+                .SetBackground(s => s.PlatformType == Platform.Phone ? (s.IsDark ? SurfaceBright : SurfaceDim) : null!)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone && s.ContrastLevel > 0 ? GetContrastCurve(1.5) : null!)
                 .Build();
-            return base.PrimaryFixed.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.PrimaryFixed.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -969,9 +969,9 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.PrimaryPalette)
                 .SetTone(s => PrimaryFixed.GetTone(s))
                 .SetIsBackground(true)
-                .SetToneDeltaPair(s => new ToneDeltaPair(PrimaryFixedDim, PrimaryFixed, 5.0, TonePolarity.Darker, DeltaConstraint.EXACT))
+                .SetToneDeltaPair(s => new ToneDeltaPair(PrimaryFixedDim, PrimaryFixed, 5.0, TonePolarity.Darker, DeltaConstraint.Exact))
                 .Build();
-            return base.PrimaryFixedDim.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.PrimaryFixedDim.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -985,7 +985,7 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetBackground(s => PrimaryFixedDim)
                 .SetContrastCurve(s => GetContrastCurve(7))
                 .Build();
-            return base.OnPrimaryFixed.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.OnPrimaryFixed.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -999,7 +999,7 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetBackground(s => PrimaryFixedDim)
                 .SetContrastCurve(s => GetContrastCurve(4.5))
                 .Build();
-            return base.OnPrimaryFixedVariant.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.OnPrimaryFixedVariant.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -1017,10 +1017,10 @@ public class ColorSpec2025 : ColorSpec2021
                     return SecondaryContainer.GetTone(tempS);
                 })
                 .SetIsBackground(true)
-                .SetBackground(s => s.PlatformType == Platform.PHONE ? (s.IsDark ? SurfaceBright : SurfaceDim) : null!)
-                .SetContrastCurve(s => s.PlatformType == Platform.PHONE && s.ContrastLevel > 0 ? GetContrastCurve(1.5) : null!)
+                .SetBackground(s => s.PlatformType == Platform.Phone ? (s.IsDark ? SurfaceBright : SurfaceDim) : null!)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone && s.ContrastLevel > 0 ? GetContrastCurve(1.5) : null!)
                 .Build();
-            return base.SecondaryFixed.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.SecondaryFixed.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -1033,9 +1033,9 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.SecondaryPalette)
                 .SetTone(s => SecondaryFixed.GetTone(s))
                 .SetIsBackground(true)
-                .SetToneDeltaPair(s => new ToneDeltaPair(SecondaryFixedDim, SecondaryFixed, 5.0, TonePolarity.Darker, DeltaConstraint.EXACT))
+                .SetToneDeltaPair(s => new ToneDeltaPair(SecondaryFixedDim, SecondaryFixed, 5.0, TonePolarity.Darker, DeltaConstraint.Exact))
                 .Build();
-            return base.SecondaryFixedDim.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.SecondaryFixedDim.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -1049,7 +1049,7 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetBackground(s => SecondaryFixedDim)
                 .SetContrastCurve(s => GetContrastCurve(7))
                 .Build();
-            return base.OnSecondaryFixed.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.OnSecondaryFixed.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -1063,7 +1063,7 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetBackground(s => SecondaryFixedDim)
                 .SetContrastCurve(s => GetContrastCurve(4.5))
                 .Build();
-            return base.OnSecondaryFixedVariant.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.OnSecondaryFixedVariant.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -1081,10 +1081,10 @@ public class ColorSpec2025 : ColorSpec2021
                     return TertiaryContainer.GetTone(tempS);
                 })
                 .SetIsBackground(true)
-                .SetBackground(s => s.PlatformType == Platform.PHONE ? (s.IsDark ? SurfaceBright : SurfaceDim) : null!)
-                .SetContrastCurve(s => s.PlatformType == Platform.PHONE && s.ContrastLevel > 0 ? GetContrastCurve(1.5) : null!)
+                .SetBackground(s => s.PlatformType == Platform.Phone ? (s.IsDark ? SurfaceBright : SurfaceDim) : null!)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone && s.ContrastLevel > 0 ? GetContrastCurve(1.5) : null!)
                 .Build();
-            return base.TertiaryFixed.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.TertiaryFixed.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -1097,9 +1097,9 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetPalette(s => s.TertiaryPalette)
                 .SetTone(s => TertiaryFixed.GetTone(s))
                 .SetIsBackground(true)
-                .SetToneDeltaPair(s => new ToneDeltaPair(TertiaryFixedDim, TertiaryFixed, 5.0, TonePolarity.Darker, DeltaConstraint.EXACT))
+                .SetToneDeltaPair(s => new ToneDeltaPair(TertiaryFixedDim, TertiaryFixed, 5.0, TonePolarity.Darker, DeltaConstraint.Exact))
                 .Build();
-            return base.TertiaryFixedDim.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.TertiaryFixedDim.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -1113,7 +1113,7 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetBackground(s => TertiaryFixedDim)
                 .SetContrastCurve(s => GetContrastCurve(7))
                 .Build();
-            return base.OnTertiaryFixed.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.OnTertiaryFixed.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -1127,7 +1127,7 @@ public class ColorSpec2025 : ColorSpec2021
                 .SetBackground(s => TertiaryFixedDim)
                 .SetContrastCurve(s => GetContrastCurve(4.5))
                 .Build();
-            return base.OnTertiaryFixedVariant.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.OnTertiaryFixedVariant.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -1137,7 +1137,7 @@ public class ColorSpec2025 : ColorSpec2021
         get
         {
             var color2025 = PrimaryContainer.ToBuilder().SetName("control_activated").Build();
-            return base.ControlActivated.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.ControlActivated.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -1146,7 +1146,7 @@ public class ColorSpec2025 : ColorSpec2021
         get
         {
             var color2025 = OnSurfaceVariant.ToBuilder().SetName("control_normal").Build();
-            return base.ControlNormal.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.ControlNormal.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
@@ -1155,14 +1155,14 @@ public class ColorSpec2025 : ColorSpec2021
         get
         {
             var color2025 = InverseOnSurface.ToBuilder().SetName("text_primary_inverse").Build();
-            return base.TextPrimaryInverse.ToBuilder().ExtendSpecVersion(SpecVersion.SPEC_2025, color2025).Build();
+            return base.TextPrimaryInverse.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
         }
     }
 
     // Other helpers
     private static double FindBestToneForChroma(double hue, double chroma, double tone, bool byDecreasingTone)
     {
-        var answer = tone;
+        double answer = tone;
         var bestCandidate = Hct.From(hue, chroma, answer);
         while (bestCandidate.Chroma < chroma)
         {
@@ -1184,7 +1184,7 @@ public class ColorSpec2025 : ColorSpec2021
 
     private static double TMaxC(TonalPalette palette, double lowerBound, double upperBound, double chromaMultiplier)
     {
-        var answer = FindBestToneForChroma(palette.GetHue(), palette.GetChroma() * chromaMultiplier, 100, true);
+        double answer = FindBestToneForChroma(palette.GetHue(), palette.GetChroma() * chromaMultiplier, 100, true);
         return MathUtils.ClampDouble(lowerBound, upperBound, answer);
     }
 
@@ -1192,7 +1192,7 @@ public class ColorSpec2025 : ColorSpec2021
 
     private static double TMinC(TonalPalette palette, double lowerBound, double upperBound)
     {
-        var answer = FindBestToneForChroma(palette.GetHue(), palette.GetChroma(), 0, false);
+        double answer = FindBestToneForChroma(palette.GetHue(), palette.GetChroma(), 0, false);
         return MathUtils.ClampDouble(lowerBound, upperBound, answer);
     }
 
@@ -1213,10 +1213,10 @@ public class ColorSpec2025 : ColorSpec2021
     public new Hct GetHct(DynamicScheme scheme, DynamicColor color)
     {
         var palette = color.palette(scheme);
-        var tone = GetTone(scheme, color);
-        var hue = palette.GetHue();
-        var chromaMultiplier = color.chromaMultiplier?.Invoke(scheme) ?? 1.0;
-        var chroma = palette.GetChroma() * chromaMultiplier;
+        double tone = GetTone(scheme, color);
+        double hue = palette.GetHue();
+        double chromaMultiplier = color.chromaMultiplier?.Invoke(scheme) ?? 1.0;
+        double chroma = palette.GetChroma() * chromaMultiplier;
         return Hct.From(hue, chroma, tone);
     }
 
@@ -1230,22 +1230,22 @@ public class ColorSpec2025 : ColorSpec2021
             var roleB = toneDeltaPair.RoleB;
             var polarity = toneDeltaPair.Polarity;
             var constraint = toneDeltaPair.Constraint;
-            var absoluteDelta = (polarity == TonePolarity.Darker || (polarity == TonePolarity.RelativeLighter && scheme.IsDark) || (polarity == TonePolarity.RelativeDarker && !scheme.IsDark))
+            double absoluteDelta = (polarity == TonePolarity.Darker || (polarity == TonePolarity.RelativeLighter && scheme.IsDark) || (polarity == TonePolarity.RelativeDarker && !scheme.IsDark))
                 ? -toneDeltaPair.Delta : toneDeltaPair.Delta;
 
-            var amRoleA = color.name.Equals(roleA.name);
+            bool amRoleA = color.name.Equals(roleA.name);
             var selfRole = amRoleA ? roleA : roleB;
             var referenceRole = amRoleA ? roleB : roleA;
-            var selfTone = selfRole.tone(scheme);
-            var referenceTone = referenceRole.GetTone(scheme);
-            var relativeDelta = absoluteDelta * (amRoleA ? 1 : -1);
+            double selfTone = selfRole.tone(scheme);
+            double referenceTone = referenceRole.GetTone(scheme);
+            double relativeDelta = absoluteDelta * (amRoleA ? 1 : -1);
 
             switch (constraint)
             {
-                case DeltaConstraint.EXACT:
+                case DeltaConstraint.Exact:
                     selfTone = MathUtils.ClampDouble(0, 100, referenceTone + relativeDelta);
                     break;
-                case DeltaConstraint.NEARER:
+                case DeltaConstraint.Nearer:
                     if (relativeDelta > 0)
                     {
                         selfTone = MathUtils.ClampDouble(0, 100, MathUtils.ClampDouble(referenceTone, referenceTone + relativeDelta, selfTone));
@@ -1255,7 +1255,7 @@ public class ColorSpec2025 : ColorSpec2021
                         selfTone = MathUtils.ClampDouble(0, 100, MathUtils.ClampDouble(referenceTone + relativeDelta, referenceTone, selfTone));
                     }
                     break;
-                case DeltaConstraint.FARTHER:
+                case DeltaConstraint.Farther:
                     if (relativeDelta > 0)
                     {
                         selfTone = MathUtils.ClampDouble(referenceTone + relativeDelta, 100, selfTone);
@@ -1273,8 +1273,8 @@ public class ColorSpec2025 : ColorSpec2021
                 var contrastCurve = color.contrastCurve(scheme);
                 if (background != null && contrastCurve != null)
                 {
-                    var bgTone = background.GetTone(scheme);
-                    var selfContrast = contrastCurve.Get(scheme.ContrastLevel);
+                    double bgTone = background.GetTone(scheme);
+                    double selfContrast = contrastCurve.Get(scheme.ContrastLevel);
                     selfTone = (Contrast.RatioOfTones(bgTone, selfTone) >= selfContrast && scheme.ContrastLevel >= 0)
                         ? selfTone
                         : DynamicColor.ForegroundTone(bgTone, selfContrast);
@@ -1298,15 +1298,15 @@ public class ColorSpec2025 : ColorSpec2021
         }
         else
         {
-            var answer = color.tone(scheme);
+            double answer = color.tone(scheme);
 
             if (color.background == null || color.background(scheme) == null || color.contrastCurve == null || color.contrastCurve(scheme) == null)
             {
                 return answer;
             }
 
-            var bgTone = color.background(scheme).GetTone(scheme);
-            var desiredRatio = color.contrastCurve(scheme).Get(scheme.ContrastLevel);
+            double bgTone = color.background(scheme).GetTone(scheme);
+            double desiredRatio = color.contrastCurve(scheme).Get(scheme.ContrastLevel);
 
             answer = (Contrast.RatioOfTones(bgTone, answer) >= desiredRatio && scheme.ContrastLevel >= 0)
                 ? answer
@@ -1330,20 +1330,20 @@ public class ColorSpec2025 : ColorSpec2021
                 return answer;
             }
 
-            var bgTone1 = color.background(scheme).GetTone(scheme);
-            var bgTone2 = color.secondBackground(scheme).GetTone(scheme);
-            var upper = System.Math.Max(bgTone1, bgTone2);
-            var lower = System.Math.Min(bgTone1, bgTone2);
+            double bgTone1 = color.background(scheme).GetTone(scheme);
+            double bgTone2 = color.secondBackground(scheme).GetTone(scheme);
+            double upper = System.Math.Max(bgTone1, bgTone2);
+            double lower = System.Math.Min(bgTone1, bgTone2);
 
             if (Contrast.RatioOfTones(upper, answer) >= desiredRatio && Contrast.RatioOfTones(lower, answer) >= desiredRatio)
             {
                 return answer;
             }
 
-            var lightOption = Contrast.Lighter(upper, desiredRatio);
-            var darkOption = Contrast.Darker(lower, desiredRatio);
+            double lightOption = Contrast.Lighter(upper, desiredRatio);
+            double darkOption = Contrast.Darker(lower, desiredRatio);
 
-            var prefersLight = DynamicColor.TonePrefersLightForeground(bgTone1) || DynamicColor.TonePrefersLightForeground(bgTone2);
+            bool prefersLight = DynamicColor.TonePrefersLightForeground(bgTone1) || DynamicColor.TonePrefersLightForeground(bgTone2);
             if (prefersLight)
             {
                 return (lightOption < 0) ? 100 : lightOption;
@@ -1361,12 +1361,12 @@ public class ColorSpec2025 : ColorSpec2021
     {
         return variant switch
         {
-            Variant.NEUTRAL => TonalPalette.FromHueAndChroma(
+            Variant.Neutral => TonalPalette.FromHueAndChroma(
                 sourceColorHct.Hue,
-                platform == Platform.PHONE ? (Hct.IsBlue(sourceColorHct.Hue) ? 12 : 8) : (Hct.IsBlue(sourceColorHct.Hue) ? 16 : 12)),
-            Variant.TONAL_SPOT => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, platform == Platform.PHONE && isDark ? 26 : 32),
-            Variant.EXPRESSIVE => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, platform == Platform.PHONE ? (isDark ? 36 : 48) : 40),
-            Variant.VIBRANT => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, platform == Platform.PHONE ? 74 : 56),
+                platform == Platform.Phone ? (Hct.IsBlue(sourceColorHct.Hue) ? 12 : 8) : (Hct.IsBlue(sourceColorHct.Hue) ? 16 : 12)),
+            Variant.TonalSpot => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, platform == Platform.Phone && isDark ? 26 : 32),
+            Variant.Expressive => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, platform == Platform.Phone ? (isDark ? 36 : 48) : 40),
+            Variant.Vibrant => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, platform == Platform.Phone ? 74 : 56),
             _ => base.GetPrimaryPalette(variant, sourceColorHct, isDark, platform, contrastLevel),
         };
     }
@@ -1375,20 +1375,20 @@ public class ColorSpec2025 : ColorSpec2021
     {
         return variant switch
         {
-            Variant.NEUTRAL => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, platform == Platform.PHONE ? (Hct.IsBlue(sourceColorHct.Hue) ? 6 : 4) : (Hct.IsBlue(sourceColorHct.Hue) ? 10 : 6)),
-            Variant.TONAL_SPOT => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 16),
-            Variant.EXPRESSIVE => TonalPalette.FromHueAndChroma(
+            Variant.Neutral => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, platform == Platform.Phone ? (Hct.IsBlue(sourceColorHct.Hue) ? 6 : 4) : (Hct.IsBlue(sourceColorHct.Hue) ? 10 : 6)),
+            Variant.TonalSpot => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, 16),
+            Variant.Expressive => TonalPalette.FromHueAndChroma(
                 DynamicScheme.GetRotatedHue(
                     sourceColorHct,
                     [0.0, 105.0, 140.0, 204.0, 253.0, 278.0, 300.0, 333.0, 360.0],
                     [-160.0, 155.0, -100.0, 96.0, -96.0, -156.0, -165.0, -160.0]
-                ), platform == Platform.PHONE ? (isDark ? 16 : 24) : 24),
-            Variant.VIBRANT => TonalPalette.FromHueAndChroma(
+                ), platform == Platform.Phone ? (isDark ? 16 : 24) : 24),
+            Variant.Vibrant => TonalPalette.FromHueAndChroma(
                 DynamicScheme.GetRotatedHue(
                     sourceColorHct,
                     [0.0, 38.0, 105.0, 140.0, 333.0, 360.0],
                     [-14.0, 10.0, -14.0, 10.0, -14.0]
-                ), platform == Platform.PHONE ? 56 : 36),
+                ), platform == Platform.Phone ? 56 : 36),
             _ => base.GetSecondaryPalette(variant, sourceColorHct, isDark, platform, contrastLevel),
         };
     }
@@ -1397,25 +1397,25 @@ public class ColorSpec2025 : ColorSpec2021
     {
         return variant switch
         {
-            Variant.NEUTRAL => TonalPalette.FromHueAndChroma(
+            Variant.Neutral => TonalPalette.FromHueAndChroma(
                 DynamicScheme.GetRotatedHue(
                     sourceColorHct,
                     [0.0, 38.0, 105.0, 161.0, 204.0, 278.0, 333.0, 360.0],
                     [-32.0, 26.0, 10.0, -39.0, 24.0, -15.0, -32.0]
-                ), platform == Platform.PHONE ? 20 : 36),
-            Variant.TONAL_SPOT => TonalPalette.FromHueAndChroma(
+                ), platform == Platform.Phone ? 20 : 36),
+            Variant.TonalSpot => TonalPalette.FromHueAndChroma(
                 DynamicScheme.GetRotatedHue(
                     sourceColorHct,
                     [0.0, 20.0, 71.0, 161.0, 333.0, 360.0],
                     [-40.0, 48.0, -32.0, 40.0, -32.0]
-                ), platform == Platform.PHONE ? 28 : 32),
-            Variant.EXPRESSIVE => TonalPalette.FromHueAndChroma(
+                ), platform == Platform.Phone ? 28 : 32),
+            Variant.Expressive => TonalPalette.FromHueAndChroma(
                 DynamicScheme.GetRotatedHue(
                     sourceColorHct,
                     [0.0, 105.0, 140.0, 204.0, 253.0, 278.0, 300.0, 333.0, 360.0],
                     [-165.0, 160.0, -105.0, 101.0, -101.0, -160.0, -170.0, -165.0]
                 ), 48),
-            Variant.VIBRANT => TonalPalette.FromHueAndChroma(
+            Variant.Vibrant => TonalPalette.FromHueAndChroma(
                 DynamicScheme.GetRotatedHue(
                     sourceColorHct,
                     [0.0, 38.0, 71.0, 105.0, 140.0, 161.0, 253.0, 333.0, 360.0],
@@ -1429,10 +1429,10 @@ public class ColorSpec2025 : ColorSpec2021
     {
         return variant switch
         {
-            Variant.NEUTRAL => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, platform == Platform.PHONE ? 1.4 : 6.0),
-            Variant.TONAL_SPOT => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, platform == Platform.PHONE ? 5.0 : 10.0),
-            Variant.EXPRESSIVE => TonalPalette.FromHueAndChroma(GetExpressiveNeutralHue(sourceColorHct), GetExpressiveNeutralChroma(sourceColorHct, isDark, platform)),
-            Variant.VIBRANT => TonalPalette.FromHueAndChroma(GetVibrantNeutralHue(sourceColorHct), GetVibrantNeutralChroma(sourceColorHct, platform)),
+            Variant.Neutral => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, platform == Platform.Phone ? 1.4 : 6.0),
+            Variant.TonalSpot => TonalPalette.FromHueAndChroma(sourceColorHct.Hue, platform == Platform.Phone ? 5.0 : 10.0),
+            Variant.Expressive => TonalPalette.FromHueAndChroma(GetExpressiveNeutralHue(sourceColorHct), GetExpressiveNeutralChroma(sourceColorHct, isDark, platform)),
+            Variant.Vibrant => TonalPalette.FromHueAndChroma(GetVibrantNeutralHue(sourceColorHct), GetVibrantNeutralChroma(sourceColorHct, platform)),
             _ => base.GetNeutralPalette(variant, sourceColorHct, isDark, platform, contrastLevel),
         };
     }
@@ -1441,19 +1441,19 @@ public class ColorSpec2025 : ColorSpec2021
     {
         switch (variant)
         {
-            case Variant.NEUTRAL:
-                return TonalPalette.FromHueAndChroma(sourceColorHct.Hue, (platform == Platform.PHONE ? 1.4 : 6.0) * 2.2);
-            case Variant.TONAL_SPOT:
-                return TonalPalette.FromHueAndChroma(sourceColorHct.Hue, (platform == Platform.PHONE ? 5.0 : 10.0) * 1.7);
-            case Variant.EXPRESSIVE:
-                var expressiveNeutralHue = GetExpressiveNeutralHue(sourceColorHct);
-                var expressiveNeutralChroma = GetExpressiveNeutralChroma(sourceColorHct, isDark, platform);
+            case Variant.Neutral:
+                return TonalPalette.FromHueAndChroma(sourceColorHct.Hue, (platform == Platform.Phone ? 1.4 : 6.0) * 2.2);
+            case Variant.TonalSpot:
+                return TonalPalette.FromHueAndChroma(sourceColorHct.Hue, (platform == Platform.Phone ? 5.0 : 10.0) * 1.7);
+            case Variant.Expressive:
+                double expressiveNeutralHue = GetExpressiveNeutralHue(sourceColorHct);
+                double expressiveNeutralChroma = GetExpressiveNeutralChroma(sourceColorHct, isDark, platform);
                 return TonalPalette.FromHueAndChroma(
                     expressiveNeutralHue,
                     expressiveNeutralChroma * (expressiveNeutralHue >= 105 && expressiveNeutralHue < 125 ? 1.6 : 2.3));
-            case Variant.VIBRANT:
-                var vibrantNeutralHue = GetVibrantNeutralHue(sourceColorHct);
-                var vibrantNeutralChroma = GetVibrantNeutralChroma(sourceColorHct, platform);
+            case Variant.Vibrant:
+                double vibrantNeutralHue = GetVibrantNeutralHue(sourceColorHct);
+                double vibrantNeutralChroma = GetVibrantNeutralChroma(sourceColorHct, platform);
                 return TonalPalette.FromHueAndChroma(vibrantNeutralHue, vibrantNeutralChroma * 1.29);
             default:
                 return base.GetNeutralVariantPalette(variant, sourceColorHct, isDark, platform, contrastLevel);
@@ -1462,16 +1462,16 @@ public class ColorSpec2025 : ColorSpec2021
 
     public new TonalPalette? GetErrorPalette(Variant variant, Hct sourceColorHct, bool isDark, Platform platform, double contrastLevel)
     {
-        var errorHue = DynamicScheme.GetPiecewiseValue(
+        double errorHue = DynamicScheme.GetPiecewiseValue(
             sourceColorHct,
             [0.0, 3.0, 13.0, 23.0, 33.0, 43.0, 153.0, 273.0, 360.0],
             [12.0, 22.0, 32.0, 12.0, 22.0, 32.0, 22.0, 12.0]);
         return variant switch
         {
-            Variant.NEUTRAL => TonalPalette.FromHueAndChroma(errorHue, platform == Platform.PHONE ? 50.0 : 40.0),
-            Variant.TONAL_SPOT => TonalPalette.FromHueAndChroma(errorHue, platform == Platform.PHONE ? 60.0 : 48.0),
-            Variant.EXPRESSIVE => TonalPalette.FromHueAndChroma(errorHue, platform == Platform.PHONE ? 64.0 : 48.0),
-            Variant.VIBRANT => TonalPalette.FromHueAndChroma(errorHue, platform == Platform.PHONE ? 80.0 : 60.0),
+            Variant.Neutral => TonalPalette.FromHueAndChroma(errorHue, platform == Platform.Phone ? 50.0 : 40.0),
+            Variant.TonalSpot => TonalPalette.FromHueAndChroma(errorHue, platform == Platform.Phone ? 60.0 : 48.0),
+            Variant.Expressive => TonalPalette.FromHueAndChroma(errorHue, platform == Platform.Phone ? 64.0 : 48.0),
+            Variant.Vibrant => TonalPalette.FromHueAndChroma(errorHue, platform == Platform.Phone ? 80.0 : 60.0),
             _ => base.GetErrorPalette(variant, sourceColorHct, isDark, platform, contrastLevel),
         };
     }
@@ -1486,8 +1486,8 @@ public class ColorSpec2025 : ColorSpec2021
 
     private static double GetExpressiveNeutralChroma(Hct sourceColorHct, bool isDark, Platform platform)
     {
-        var neutralHue = GetExpressiveNeutralHue(sourceColorHct);
-        return platform == Platform.PHONE ? (isDark ? (Hct.IsYellow(neutralHue) ? 6.0 : 14.0) : 18.0) : 12.0;
+        double neutralHue = GetExpressiveNeutralHue(sourceColorHct);
+        return platform == Platform.Phone ? (isDark ? (Hct.IsYellow(neutralHue) ? 6.0 : 14.0) : 18.0) : 12.0;
     }
 
     private static double GetVibrantNeutralHue(Hct sourceColorHct)
@@ -1500,7 +1500,7 @@ public class ColorSpec2025 : ColorSpec2021
 
     private static double GetVibrantNeutralChroma(Hct sourceColorHct, Platform platform)
     {
-        var neutralHue = GetVibrantNeutralHue(sourceColorHct);
-        return platform == Platform.PHONE ? 28.0 : (Hct.IsBlue(neutralHue) ? 28.0 : 20.0);
+        double neutralHue = GetVibrantNeutralHue(sourceColorHct);
+        return platform == Platform.Phone ? 28.0 : (Hct.IsBlue(neutralHue) ? 28.0 : 20.0);
     }
 }
