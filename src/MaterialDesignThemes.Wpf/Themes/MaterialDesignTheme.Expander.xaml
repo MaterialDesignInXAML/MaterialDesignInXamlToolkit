@@ -316,7 +316,7 @@
                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                   <Grid.LayoutTransform>
-                    <RotateTransform Angle="{Binding Path=ExpandDirection, RelativeSource={RelativeSource AncestorType=Expander}, Converter={x:Static convertersInternal:ExpanderRotateAngleConverter.Instance}, ConverterParameter=-1}" />
+                    <RotateTransform Angle="{TemplateBinding ExpandDirection, Converter={x:Static convertersInternal:ExpanderRotateAngleConverter.Instance}, ConverterParameter=-1}" />
                   </Grid.LayoutTransform>
 
                   <ContentPresenter Name="PART_Content"
