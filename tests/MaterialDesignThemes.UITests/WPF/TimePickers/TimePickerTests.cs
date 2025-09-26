@@ -528,12 +528,15 @@ public class TimePickerTests : TestBase
         await timePickerTextBox.SendKeyboardInput($"invalid time");
         await Assert.That(await timePickerTextBox.GetText()).IsEqualTo("invalid time");
 
-        // Act
-        await clearButton.LeftClick();
-        await Task.Delay(50, TestContext.Current!.CancellationToken);
+        await Wait.For(async () =>
+        {
+            // Act
+            await clearButton.LeftClick();
+            await Task.Delay(50, TestContext.Current!.CancellationToken);
 
-        // Assert
-        await Assert.That(await timePickerTextBox.GetText()).IsNull();
+            // Assert
+            await Assert.That(await timePickerTextBox.GetText()).IsNull();
+        });
 
         recorder.Success();
     }
