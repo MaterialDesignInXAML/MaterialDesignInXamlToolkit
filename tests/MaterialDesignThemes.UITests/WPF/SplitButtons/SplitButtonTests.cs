@@ -97,9 +97,11 @@ public class SplitButtonTests : TestBase
         await Task.Delay(50, TestContext.Current!.CancellationToken);
 
         // Assert
-        var invocations = await clickEvent.GetInvocations();
-        await Assert.That(invocations).HasSingleItem();
-
+        await Wait.For(async () =>
+        {
+            var invocations = await clickEvent.GetInvocations();
+            await Assert.That(invocations).HasSingleItem();
+        });
         recorder.Success();
     }
 
