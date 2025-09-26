@@ -515,15 +515,24 @@ public class DialogHostTests : TestBase
 
     [Test]
     [Description("Issue 3434")]
-    [Arguments(WindowState.Minimized, WindowState.Maximized)]
-    [Arguments(WindowState.Minimized, WindowState.Normal)]
-    [Arguments(WindowState.Maximized, WindowState.Normal)]
-	public async Task DialogHost_WhenWindowStateChanges_FocusedElementStaysFocused(WindowState firstWindowState, WindowState secondWindowState)
+    [Arguments(WindowState.Minimized, WindowState.Maximized, null)]
+    [Arguments(WindowState.Minimized, WindowState.Normal, null)]
+    [Arguments(WindowState.Maximized, WindowState.Normal, null)]
+    [Arguments(WindowState.Minimized, WindowState.Maximized, "MaterialDesignEmbeddedDialogHost")]
+    [Arguments(WindowState.Minimized, WindowState.Normal, "MaterialDesignEmbeddedDialogHost")]
+    [Arguments(WindowState.Maximized, WindowState.Normal, "MaterialDesignEmbeddedDialogHost")]
+    public async Task DialogHost_WhenWindowStateChanges_FocusedElementStaysFocused(WindowState firstWindowState,
+                                                                                   WindowState secondWindowState,
+                                                                                   string? styleName)
 	{
 		await using var recorder = new TestRecorder(App);
 
 		var dialogHost = (await LoadUserControl<WithMultipleTextBoxes>()).As<DialogHost>();
-		await Task.Delay(400, TestContext.Current!.CancellationToken);
+        if (styleName is not null)
+        {
+            await dialogHost.RemoteExecute(SetDialogHostStyle, styleName);
+        }
+        await Task.Delay(400, TestContext.Current!.CancellationToken);
 
         // Select the second TextBox
         var tbTwo = await dialogHost.GetElement<TextBox>("TextBoxTwo");
@@ -547,5 +556,11 @@ public class DialogHostTests : TestBase
             window.WindowState = state;
             return null!;
         }
-	}
+        static object SetDialogHostStyle(DialogHost dialogHost, string styleName)
+        {
+            Style style = (Style)dialogHost.FindResource(styleName);
+            dialogHost.Style = style;
+            return null!;
+        }
+    }
 }
