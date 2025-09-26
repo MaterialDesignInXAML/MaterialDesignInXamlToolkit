@@ -193,8 +193,6 @@
     </Style.Triggers>
   </Style>
 
-
-
   <Style x:Key="MaterialDesignListView" TargetType="{x:Type ListView}">
     <Style.Resources>
       <converters:ListViewGridViewConverter x:Key="MaterialDesignListViewItemContainerStyleConverter"

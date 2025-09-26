@@ -324,6 +324,7 @@ public class TreeListView : ListView
         if (originalTemplate != null)
         {
             var originalContentFactory = new FrameworkElementFactory(typeof(ContentPresenter));
+            originalContentFactory.SetValue(ContentPresenter.MarginProperty, new Thickness(8, 0, 0, 0));
             originalContentFactory.SetValue(ContentPresenter.ContentTemplateProperty, originalTemplate);
             stackPanelFactory.AppendChild(originalContentFactory);
         }
