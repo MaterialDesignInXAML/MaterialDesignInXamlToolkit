@@ -43,6 +43,7 @@
     <Style.Resources>
       <convertersInternal:TextFieldClearButtonVisibilityConverter x:Key="ClearButtonVisibilityConverter" ContentEmptyVisibility="Collapsed" />
       <converters:TextFieldPrefixTextVisibilityConverter x:Key="PrefixSuffixTextVisibilityConverter" HiddenState="Collapsed" />
+      <converters:VerticalAlignmentConverter x:Key="PrefixSuffixTextVerticalAlignmentConverter" StretchReplacement="Center" />
       <converters:BooleanToDashStyleConverter x:Key="BooleanToDashStyleConverter" TrueValue="{x:Static DashStyles.Solid}" />
       <converters:ThicknessCloneConverter x:Key="HelperTextMarginConverter" CloneEdges="Left,Right" />
       <converters:MathConverter x:Key="DivisionConverter" Operation="Divide" Offset="1.5" />
@@ -133,7 +134,7 @@
 
                 <Grid x:Name="ContentGrid"
                       MinHeight="16"
-                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                      VerticalAlignment="Stretch">
                   <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
@@ -156,7 +157,7 @@
                   <ScrollViewer x:Name="PART_ContentHost"
                                 Grid.Column="2"
                                 HorizontalAlignment="Stretch"
-                                VerticalAlignment="Center"
+                                VerticalAlignment="Stretch"
                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                 Panel.ZIndex="1"
@@ -224,7 +225,7 @@
                   <TextBlock x:Name="PrefixTextBlock"
                              Grid.Column="1"
                              Margin="0,0,2,0"
-                             VerticalAlignment="Center"
+                             VerticalAlignment="{TemplateBinding VerticalContentAlignment, Converter={StaticResource PrefixSuffixTextVerticalAlignmentConverter}}"
                              FontSize="{TemplateBinding FontSize}"
                              Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                              Text="{TemplateBinding wpf:TextFieldAssist.PrefixText}">
@@ -242,7 +243,7 @@
                   <TextBlock x:Name="SuffixTextBlock"
                              Grid.Column="3"
                              Margin="2,0,0,0"
-                             VerticalAlignment="Center"
+                             VerticalAlignment="{TemplateBinding VerticalContentAlignment, Converter={StaticResource PrefixSuffixTextVerticalAlignmentConverter}}"
                              FontSize="{TemplateBinding FontSize}"
                              Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                              Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}">

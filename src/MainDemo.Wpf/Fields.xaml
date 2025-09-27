@@ -340,12 +340,14 @@
 
           <TextBox Height="100"
                    VerticalAlignment="Top"
+                   VerticalContentAlignment="Top"
                    materialDesign:HintAssist.Hint="This is a text area"
                    AcceptsReturn="True"
                    IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}"
                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                   TextWrapping="Wrap"
-                   VerticalScrollBarVisibility="Auto" />
+                   TextWrapping="NoWrap"
+                   VerticalScrollBarVisibility="Auto"
+                   HorizontalScrollBarVisibility="Auto" />
         </StackPanel>
       </smtx:XamlDisplay>
 

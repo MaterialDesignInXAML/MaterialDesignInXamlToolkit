@@ -537,34 +537,6 @@ public class TextBoxTests : TestBase
     }
 
     [Test]
-    [Arguments(VerticalAlignment.Stretch, VerticalAlignment.Stretch)]
-    [Arguments(VerticalAlignment.Top, VerticalAlignment.Top)]
-    [Arguments(VerticalAlignment.Bottom, VerticalAlignment.Bottom)]
-    [Arguments(VerticalAlignment.Center, VerticalAlignment.Center)]
-    [Description("Issue 3161")]
-    public async Task TextBox_MultiLineAndFixedHeight_RespectsVerticalContentAlignment(VerticalAlignment alignment, VerticalAlignment expectedFloatingHintAlignment)
-    {
-        await using var recorder = new TestRecorder(App);
-
-        var stackPanel = await LoadXaml<StackPanel>($$"""
-            <StackPanel>
-              <TextBox Style="{StaticResource MaterialDesignFilledTextBox}"
-                materialDesign:HintAssist.Hint="Hint text"
-                VerticalContentAlignment="{{alignment}}"
-                AcceptsReturn="True"
-                Height="200" />
-            </StackPanel>
-            """);
-
-        IVisualElement<TextBox> textBox = await stackPanel.GetElement<TextBox>("/TextBox");
-        IVisualElement<Grid> contentGrid = await textBox.GetElement<Grid>("ContentGrid");
-
-        await Assert.That(await contentGrid.GetVerticalAlignment()).IsEqualTo(expectedFloatingHintAlignment);
-
-        recorder.Success();
-    }
-
-    [Test]
     [Description("Issue 3176")]
     public async Task ValidationErrorTemplate_WithChangingErrors_UpdatesValidation()
     {
