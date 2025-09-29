@@ -48,6 +48,8 @@
       <converters:ThicknessCloneConverter x:Key="HelperTextMarginConverter" CloneEdges="Left,Right" />
       <converters:MathConverter x:Key="DivisionConverter" Operation="Divide" Offset="1.5" />
       <converters:ThicknessCloneConverter x:Key="ThicknessCloneConverter" CloneEdges="All" AdditionalOffsetBottom="-1" />
+      <converters:TextBoxHorizontalScrollBarMarginConverter x:Key="TextBoxHorizontalScrollBarMarginConverter" />
+      <converters:TextBoxHorizontalScrollBarWidthConverter x:Key="TextBoxHorizontalScrollBarWidthConverter" />
     </Style.Resources>
 
     <Setter Property="AutomationProperties.Name" Value="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource Self}}" />
@@ -232,78 +234,95 @@
                     </wpf:SmartHint.Hint>
                   </wpf:SmartHint>
 
-                  <TextBlock x:Name="PrefixTextBlock"
-                             Grid.Column="1"
-                             Margin="0,0,2,0"
-                             VerticalAlignment="Center"
-                             FontSize="{TemplateBinding FontSize}"
-                             Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                             Text="{TemplateBinding wpf:TextFieldAssist.PrefixText}">
-                    <TextBlock.Visibility>
-                      <MultiBinding Converter="{StaticResource PrefixSuffixTextVisibilityConverter}">
-                        <Binding ElementName="Hint" Path="IsHintInFloatingPosition" />
-                        <Binding Path="(wpf:TextFieldAssist.PrefixText)" RelativeSource="{RelativeSource TemplatedParent}" />
-                        <Binding Path="(wpf:TextFieldAssist.PrefixTextVisibility)" RelativeSource="{RelativeSource TemplatedParent}" />
-                        <Binding Path="IsKeyboardFocusWithin" RelativeSource="{RelativeSource TemplatedParent}" />
-                        <Binding Path="IsReadOnly" RelativeSource="{RelativeSource TemplatedParent}" Converter="{x:Static converters:InvertBooleanConverter.Instance}" />
+                    <TextBlock x:Name="PrefixTextBlock"
+                               Grid.Column="1"
+                               Margin="0,0,2,0"
+                               VerticalAlignment="Center"
+                               FontSize="{TemplateBinding FontSize}"
+                               Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
+                               Text="{TemplateBinding wpf:TextFieldAssist.PrefixText}">
+                      <TextBlock.Visibility>
+                        <MultiBinding Converter="{StaticResource PrefixSuffixTextVisibilityConverter}">
+                          <Binding ElementName="Hint" Path="IsHintInFloatingPosition" />
+                          <Binding Path="(wpf:TextFieldAssist.PrefixText)" RelativeSource="{RelativeSource TemplatedParent}" />
+                          <Binding Path="(wpf:TextFieldAssist.PrefixTextVisibility)" RelativeSource="{RelativeSource TemplatedParent}" />
+                          <Binding Path="IsKeyboardFocusWithin" RelativeSource="{RelativeSource TemplatedParent}" />
+                          <Binding Path="IsReadOnly" RelativeSource="{RelativeSource TemplatedParent}" Converter="{x:Static converters:InvertBooleanConverter.Instance}" />
+                        </MultiBinding>
+                      </TextBlock.Visibility>
+                    </TextBlock>
+
+                    <TextBlock x:Name="SuffixTextBlock"
+                               Grid.Column="3"
+                               Margin="2,0,0,0"
+                               VerticalAlignment="Center"
+                               FontSize="{TemplateBinding FontSize}"
+                               Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
+                               Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}">
+                      <TextBlock.Visibility>
+                        <MultiBinding Converter="{StaticResource PrefixSuffixTextVisibilityConverter}">
+                          <Binding ElementName="Hint" Path="IsHintInFloatingPosition" />
+                          <Binding Path="(wpf:TextFieldAssist.SuffixText)" RelativeSource="{RelativeSource TemplatedParent}" />
+                          <Binding Path="(wpf:TextFieldAssist.SuffixTextVisibility)" RelativeSource="{RelativeSource TemplatedParent}" />
+                          <Binding Path="IsKeyboardFocusWithin" RelativeSource="{RelativeSource TemplatedParent}" />
+                          <Binding Path="IsReadOnly" RelativeSource="{RelativeSource TemplatedParent}" Converter="{x:Static converters:InvertBooleanConverter.Instance}" />
+                        </MultiBinding>
+                      </TextBlock.Visibility>
+                    </TextBlock>
+
+                    <wpf:PackIcon x:Name="TrailingPackIcon"
+                                  Grid.Column="4"
+                                  Width="{TemplateBinding wpf:TextFieldAssist.TrailingIconSize}"
+                                  Height="{TemplateBinding wpf:TextFieldAssist.TrailingIconSize}"
+                                  Margin="4,0,0,0"
+                                  VerticalAlignment="{TemplateBinding wpf:TextFieldAssist.IconVerticalAlignment}"
+                                  Kind="{TemplateBinding wpf:TextFieldAssist.TrailingIcon}"
+                                  Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
+                                  Visibility="{TemplateBinding wpf:TextFieldAssist.HasTrailingIcon, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}" />
+
+                    <Button x:Name="PART_ClearButton"
+                            Grid.Column="5"
+                            Height="{TemplateBinding wpf:TextFieldAssist.ClearButtonSize}"
+                            Width="{TemplateBinding wpf:TextFieldAssist.ClearButtonSize}"
+                            Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
+                            Padding="2,0,0,0"
+                            Command="{x:Static internal:ClearText.ClearCommand}"
+                            Focusable="False"
+                            Foreground="{TemplateBinding Foreground}"
+                            VerticalAlignment="{TemplateBinding wpf:TextFieldAssist.IconVerticalAlignment}"
+                            Style="{StaticResource MaterialDesignToolButton}">
+                      <Button.Visibility>
+                        <MultiBinding Converter="{StaticResource ClearButtonVisibilityConverter}">
+                          <Binding Path="(wpf:TextFieldAssist.HasClearButton)" RelativeSource="{RelativeSource TemplatedParent}" />
+                          <Binding ElementName="Hint" Path="IsContentNullOrEmpty" />
+                        </MultiBinding>
+                      </Button.Visibility>
+                      <wpf:PackIcon x:Name="ClearButtonIcon"
+                                    Margin="0"
+                                    Kind="CloseCircle"
+                                    Height="auto"
+                                    Width="auto" />
+                    </Button>
+                  </Grid>
+                  <ScrollBar x:Name="CustomScrollBar"
+                             Grid.Row="1"
+                             HorizontalAlignment="Left"
+                             Orientation="Horizontal">
+                    <ScrollBar.Margin>
+                      <MultiBinding Converter="{StaticResource TextBoxHorizontalScrollBarMarginConverter}">
+                        <Binding ElementName="LeadingPackIcon" Path="ActualWidth" />
+                        <Binding ElementName="LeadingPackIcon" Path="Margin" />
+                        <Binding ElementName="PrefixTextBlock" Path="ActualWidth" />
+                        <Binding ElementName="PrefixTextBlock" Path="Margin" />
                       </MultiBinding>
-                    </TextBlock.Visibility>
-                  </TextBlock>
-
-                  <TextBlock x:Name="SuffixTextBlock"
-                             Grid.Column="3"
-                             Margin="2,0,0,0"
-                             VerticalAlignment="Center"
-                             FontSize="{TemplateBinding FontSize}"
-                             Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                             Text="{TemplateBinding wpf:TextFieldAssist.SuffixText}">
-                    <TextBlock.Visibility>
-                      <MultiBinding Converter="{StaticResource PrefixSuffixTextVisibilityConverter}">
-                        <Binding ElementName="Hint" Path="IsHintInFloatingPosition" />
-                        <Binding Path="(wpf:TextFieldAssist.SuffixText)" RelativeSource="{RelativeSource TemplatedParent}" />
-                        <Binding Path="(wpf:TextFieldAssist.SuffixTextVisibility)" RelativeSource="{RelativeSource TemplatedParent}" />
-                        <Binding Path="IsKeyboardFocusWithin" RelativeSource="{RelativeSource TemplatedParent}" />
-                        <Binding Path="IsReadOnly" RelativeSource="{RelativeSource TemplatedParent}" Converter="{x:Static converters:InvertBooleanConverter.Instance}" />
+                    </ScrollBar.Margin>
+                    <ScrollBar.Width>
+                      <MultiBinding Converter="{StaticResource TextBoxHorizontalScrollBarWidthConverter}">
+                        <Binding ElementName="PART_ContentHost" Path="ActualWidth" />
+                        <Binding ElementName="PART_ContentHost" Path="ComputedVerticalScrollBarVisibility" />
                       </MultiBinding>
-                    </TextBlock.Visibility>
-                  </TextBlock>
-
-                  <wpf:PackIcon x:Name="TrailingPackIcon"
-                                Grid.Column="4"
-                                Width="{TemplateBinding wpf:TextFieldAssist.TrailingIconSize}"
-                                Height="{TemplateBinding wpf:TextFieldAssist.TrailingIconSize}"
-                                Margin="4,0,0,0"
-                                VerticalAlignment="{TemplateBinding wpf:TextFieldAssist.IconVerticalAlignment}"
-                                Kind="{TemplateBinding wpf:TextFieldAssist.TrailingIcon}"
-                                Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                                Visibility="{TemplateBinding wpf:TextFieldAssist.HasTrailingIcon, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}" />
-
-                  <Button x:Name="PART_ClearButton"
-                          Grid.Column="5"
-                          Height="{TemplateBinding wpf:TextFieldAssist.ClearButtonSize}"
-                          Width="{TemplateBinding wpf:TextFieldAssist.ClearButtonSize}"
-                          Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                          Padding="2,0,0,0"
-                          Command="{x:Static internal:ClearText.ClearCommand}"
-                          Focusable="False"
-                          Foreground="{TemplateBinding Foreground}"
-                          VerticalAlignment="{TemplateBinding wpf:TextFieldAssist.IconVerticalAlignment}"
-                          Style="{StaticResource MaterialDesignToolButton}">
-                    <Button.Visibility>
-                      <MultiBinding Converter="{StaticResource ClearButtonVisibilityConverter}">
-                        <Binding Path="(wpf:TextFieldAssist.HasClearButton)" RelativeSource="{RelativeSource TemplatedParent}" />
-                        <Binding ElementName="Hint" Path="IsContentNullOrEmpty" />
-                      </MultiBinding>
-                    </Button.Visibility>
-                    <wpf:PackIcon x:Name="ClearButtonIcon"
-                                  Margin="0"
-                                  Kind="CloseCircle"
-                                  Height="auto"
-                                  Width="auto" />
-                  </Button>
-                </Grid>
-                  <ScrollBar x:Name="CustomScrollBar" Grid.Row="1" Orientation="Horizontal" />
-
+                    </ScrollBar.Width>
+                  </ScrollBar>
                 </Grid>
               </Border>
             </AdornerDecorator>
