@@ -314,8 +314,11 @@
                         <Binding ElementName="LeadingPackIcon" Path="Margin" />
                         <Binding ElementName="PrefixTextBlock" Path="ActualWidth" />
                         <Binding ElementName="PrefixTextBlock" Path="Margin" />
-                        <Binding RelativeSource="{RelativeSource AncestorType=TextBox}" Path="IsMouseOver" />
-                        <Binding RelativeSource="{RelativeSource AncestorType=TextBox}" Path="IsKeyboardFocusWithin" />
+                        <Binding Path="IsMouseOver" RelativeSource="{RelativeSource TemplatedParent}" />
+                        <Binding Path="IsKeyboardFocusWithin" RelativeSource="{RelativeSource TemplatedParent}" />
+                        <Binding Path="(wpf:TextFieldAssist.HasOutlinedTextField)" RelativeSource="{RelativeSource TemplatedParent}" />
+                        <Binding Path="BorderThickness" RelativeSource="{RelativeSource TemplatedParent}" />
+                        <Binding Path="(wpf:TextFieldAssist.OutlinedBorderActiveThickness)" RelativeSource="{RelativeSource TemplatedParent}" />
                       </MultiBinding>
                     </ScrollBar.Margin>
                     <ScrollBar.Width>
