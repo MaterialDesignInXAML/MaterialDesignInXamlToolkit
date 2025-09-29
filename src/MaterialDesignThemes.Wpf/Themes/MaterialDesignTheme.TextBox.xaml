@@ -177,7 +177,7 @@
                                 UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
                                 VerticalScrollBarVisibility="Hidden">
                       <b:Interaction.Behaviors>
-                        <behaviors:TextBoxHorizontalScrollBarBehavior TargetScrollBar="{Binding ElementName=CustomScrollBar}" TargetScrollBarVisibility="{Binding RelativeSource={RelativeSource AncestorType=TextBox}, Path=HorizontalScrollBarVisibility}" />
+                        <behaviors:TextBoxHorizontalScrollBarBehavior TargetScrollBar="{Binding ElementName=CustomScrollBar}" TargetScrollBarVisibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=HorizontalScrollBarVisibility}" />
                       </b:Interaction.Behaviors>
                     </ScrollViewer>
 
@@ -307,7 +307,8 @@
                   <ScrollBar x:Name="CustomScrollBar"
                              Grid.Row="1"
                              HorizontalAlignment="Left"
-                             Orientation="Horizontal">
+                             Orientation="Horizontal"
+                             Visibility="Collapsed">
                     <ScrollBar.Margin>
                       <MultiBinding Converter="{StaticResource TextBoxHorizontalScrollBarMarginConverter}">
                         <Binding ElementName="LeadingPackIcon" Path="ActualWidth" />

@@ -9,7 +9,7 @@ public class TextBoxHorizontalScrollBarWidthConverter : IMultiValueConverter
     {
         if (values is [double contentHostWidth, Visibility verticalScrollBarVisibility])
         {
-            return contentHostWidth - (verticalScrollBarVisibility == Visibility.Visible ? SystemParameters.VerticalScrollBarWidth : 0);
+            return Math.Max(0, contentHostWidth - (verticalScrollBarVisibility == Visibility.Visible ? SystemParameters.VerticalScrollBarWidth : 0));
         }
         return double.NaN;
     }

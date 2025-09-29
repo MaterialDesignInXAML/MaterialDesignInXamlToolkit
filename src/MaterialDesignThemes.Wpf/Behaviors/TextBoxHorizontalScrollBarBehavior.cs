@@ -1,4 +1,4 @@
-﻿using Microsoft.Xaml.Behaviors;
+using Microsoft.Xaml.Behaviors;
 
 namespace MaterialDesignThemes.Wpf.Behaviors;
 
@@ -29,7 +29,7 @@ internal class TextBoxHorizontalScrollBarBehavior : Behavior<ScrollViewer>
     }
 
     public static readonly DependencyProperty TargetScrollBarVisibilityProperty =
-        DependencyProperty.Register(nameof(TargetScrollBarVisibility), typeof(ScrollBarVisibility), typeof(TextBoxHorizontalScrollBarBehavior), new PropertyMetadata(ScrollBarVisibility.Auto));
+        DependencyProperty.Register(nameof(TargetScrollBarVisibility), typeof(ScrollBarVisibility), typeof(TextBoxHorizontalScrollBarBehavior), new PropertyMetadata(ScrollBarVisibility.Hidden));
     public ScrollBarVisibility TargetScrollBarVisibility
     {
         get => (ScrollBarVisibility)GetValue(TargetScrollBarVisibilityProperty);
