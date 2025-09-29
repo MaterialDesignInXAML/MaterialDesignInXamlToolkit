@@ -54,6 +54,27 @@
             <TextBlock Margin="8,0,0,0" Text="EXPLORE" />
           </StackPanel>
         </Button>
+
+        <Grid Height="150">
+          
+          <TextBox TextWrapping="NoWrap"
+                   AcceptsReturn="True"
+                   IsReadOnly="False"
+                   VerticalScrollBarVisibility="Auto"
+                   VerticalContentAlignment="Top"
+                   HorizontalScrollBarVisibility="Auto"
+                   materialDesign:HintAssist.Hint="Output from backend"
+                   materialDesign:TextFieldAssist.PrefixText="pre"
+                   materialDesign:TextFieldAssist.SuffixText="suffix"
+                   materialDesign:TextFieldAssist.LeadingIcon="Github"
+                   materialDesign:TextFieldAssist.TrailingIcon="About"
+                   materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                   materialDesign:TextFieldAssist.HasTrailingIcon="True"
+                   materialDesign:TextFieldAssist.HasClearButton="True"
+                   Text="Very long text asdf asd gs th rh ae bae tjtye jr ghrwEG SF JETY JA ERG Wrh ery js ag SA Hs ghst h ef s gs df a 123"
+                   Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+        </Grid>        
+        
       </StackPanel>
     </Grid>
 
