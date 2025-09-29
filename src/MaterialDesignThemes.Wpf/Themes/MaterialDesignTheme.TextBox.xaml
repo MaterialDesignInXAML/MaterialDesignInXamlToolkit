@@ -4,7 +4,8 @@
                     xmlns:convertersInternal="clr-namespace:MaterialDesignThemes.Wpf.Converters.Internal"
                     xmlns:internal="clr-namespace:MaterialDesignThemes.Wpf.Internal"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
-                    xmlns:behaviors="clr-namespace:MaterialDesignThemes.Wpf.Behaviors">
+                    xmlns:behaviors="clr-namespace:MaterialDesignThemes.Wpf.Behaviors"
+                    xmlns:b="http://schemas.microsoft.com/xaml/behaviors">
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ValidationErrorTemplate.xaml" />
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
@@ -131,7 +132,13 @@
                       CornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}"
                       SnapsToDevicePixels="True">
 
-                <Grid x:Name="ContentGrid"
+                <Grid>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                  </Grid.RowDefinitions>
+
+                  <Grid x:Name="ContentGrid"
                       MinHeight="16"
                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                   <Grid.ColumnDefinitions>
@@ -153,7 +160,7 @@
                                 Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
                                 Visibility="{TemplateBinding wpf:TextFieldAssist.HasLeadingIcon, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}" />
 
-                  <ScrollViewer x:Name="PART_ContentHost"
+                    <ScrollViewer x:Name="PART_ContentHost"
                                 Grid.Column="2"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Center"
@@ -166,9 +173,13 @@
                                 HorizontalScrollBarVisibility="Hidden"
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                 UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                                VerticalScrollBarVisibility="Hidden" />
+                                VerticalScrollBarVisibility="Hidden">
+                      <b:Interaction.Behaviors>
+                        <behaviors:TextBoxHorizontalScrollBarBehavior TargetScrollBar="{Binding ElementName=CustomScrollBar}"/>
+                      </b:Interaction.Behaviors>
+                    </ScrollViewer>
 
-                  <wpf:SmartHint x:Name="Hint"
+                    <wpf:SmartHint x:Name="Hint"
                                  Grid.Column="1"
                                  Grid.ColumnSpan="3"
                                  VerticalAlignment="Center"
@@ -290,6 +301,9 @@
                                   Height="auto"
                                   Width="auto" />
                   </Button>
+                </Grid>
+                  <ScrollBar x:Name="CustomScrollBar" Grid.Row="1" Orientation="Horizontal" />
+
                 </Grid>
               </Border>
             </AdornerDecorator>
