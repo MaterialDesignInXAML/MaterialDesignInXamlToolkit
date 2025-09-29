@@ -55,7 +55,7 @@ internal class TextBoxHorizontalScrollBarBehavior : Behavior<ScrollViewer>
         ts.ViewportSize = AssociatedObject.ViewportWidth;
         ts.Value = AssociatedObject.HorizontalOffset;
         ts.Maximum = _builtInScrollBar.Maximum;
-        UpdateTargetScrollBarVisibility(_builtInScrollBar!.Maximum > 0);
+        UpdateTargetScrollBarVisibility(_builtInScrollBar.Maximum > 0);
     }
 
     private void AssociatedObject_ScrollChanged(object sender, ScrollChangedEventArgs e)
@@ -64,7 +64,7 @@ internal class TextBoxHorizontalScrollBarBehavior : Behavior<ScrollViewer>
 
         ts.Value = AssociatedObject.HorizontalOffset;
         ts.Maximum = _builtInScrollBar.Maximum;
-        UpdateTargetScrollBarVisibility(_builtInScrollBar!.Maximum > 0);
+        UpdateTargetScrollBarVisibility(_builtInScrollBar.Maximum > 0);
     }
 
     private void UpdateTargetScrollBarVisibility(bool showIfRequired)
