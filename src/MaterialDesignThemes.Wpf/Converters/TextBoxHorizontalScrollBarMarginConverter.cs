@@ -11,10 +11,23 @@ public class TextBoxHorizontalScrollBarMarginConverter : IMultiValueConverter
             double leadingIconWidth,
             Thickness leadingIconMargin,
             double prefixTextWidth,
-            Thickness prefixTextMargin])
+            Thickness prefixTextMargin,
+            bool isMouseOver,
+            bool hasKeyboardFocus])
         {
-            double offset = leadingIconWidth + leadingIconMargin.Left + leadingIconMargin.Right + prefixTextWidth + prefixTextMargin.Left + prefixTextMargin.Right;
-            return new Thickness(offset, 1, 0, 0);
+            double iconMargin = leadingIconWidth > 0 ? leadingIconMargin.Left + leadingIconMargin.Right : 0;
+            double prefixMargin = prefixTextWidth > 0 ? prefixTextMargin.Left + prefixTextMargin.Right : 0;
+            double offset = leadingIconWidth + iconMargin + prefixTextWidth + prefixMargin;
+            double bottomOffset = 0;
+            double topOffset = 0;
+
+            if (isMouseOver || hasKeyboardFocus)
+            {
+                offset -= 1;
+                topOffset += 1;
+                bottomOffset -= 1;
+            }
+            return new Thickness(offset, topOffset, 0, bottomOffset);
         }
         return new Thickness(0);
     }

@@ -314,6 +314,8 @@
                         <Binding ElementName="LeadingPackIcon" Path="Margin" />
                         <Binding ElementName="PrefixTextBlock" Path="ActualWidth" />
                         <Binding ElementName="PrefixTextBlock" Path="Margin" />
+                        <Binding RelativeSource="{RelativeSource AncestorType=TextBox}" Path="IsMouseOver" />
+                        <Binding RelativeSource="{RelativeSource AncestorType=TextBox}" Path="IsKeyboardFocusWithin" />
                       </MultiBinding>
                     </ScrollBar.Margin>
                     <ScrollBar.Width>
