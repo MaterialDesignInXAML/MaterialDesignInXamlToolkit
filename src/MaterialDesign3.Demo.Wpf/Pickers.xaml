@@ -341,7 +341,9 @@
                   </Grid.RowDefinitions>
 
                   <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <Calendar x:Name="CombinedCalendar" Margin="-1,-4,-1,0" />
+                    <Calendar x:Name="CombinedCalendar"
+                              Margin="-1,-4,-1,0"
+                              IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
 
                     <materialDesign:Clock x:Name="CombinedClock"
                                           DisplayAutomation="CycleWithSeconds"
@@ -378,7 +380,7 @@
                     Header="Default"
                     Style="{StaticResource MaterialDesignCardGroupBox}">
             <smtx:XamlDisplay UniqueKey="calendar_1">
-              <Calendar />
+              <Calendar IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
             </smtx:XamlDisplay>
           </GroupBox>
 
@@ -405,6 +407,7 @@
                 </Grid.Resources>
                 <Calendar materialDesign:CalendarAssist.HeaderBackground="{DynamicResource MaterialDesign.Brush.Primary.Dark}"
                           materialDesign:CalendarAssist.HeaderForeground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"
+                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                           Background="{DynamicResource MaterialDesign.Brush.Primary.Light}"
                           CalendarButtonStyle="{StaticResource SecondaryCalendarButton}"
                           CalendarDayButtonStyle="{StaticResource SecondaryCalendarDayButton}"
@@ -436,6 +439,7 @@
                 </Grid.Resources>
                 <Calendar materialDesign:CalendarAssist.HeaderBackground="#A2E9FF"
                           materialDesign:CalendarAssist.HeaderForeground="Black"
+                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                           Background="#343C3F"
                           CalendarButtonStyle="{StaticResource CustomCalendarButton}"
                           CalendarDayButtonStyle="{StaticResource CustomCalendarDayButton}"
@@ -451,7 +455,7 @@
                     Header="Horizontal"
                     Style="{StaticResource MaterialDesignCardGroupBox}">
             <smtx:XamlDisplay UniqueKey="calendar_4">
-              <Calendar materialDesign:CalendarAssist.Orientation="Horizontal" />
+              <Calendar materialDesign:CalendarAssist.Orientation="Horizontal" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
             </smtx:XamlDisplay>
           </GroupBox>
 
@@ -463,7 +467,9 @@
                     Header="Transparent Header and shadow"
                     Style="{StaticResource MaterialDesignCardGroupBox}">
             <smtx:XamlDisplay UniqueKey="calendar_5">
-              <Calendar materialDesign:ElevationAssist.Elevation="Dp8" Style="{StaticResource MaterialDesignCalendarPortraitForeground}" />
+              <Calendar materialDesign:ElevationAssist.Elevation="Dp8"
+                        Style="{StaticResource MaterialDesignCalendarPortraitForeground}"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
             </smtx:XamlDisplay>
           </GroupBox>
 

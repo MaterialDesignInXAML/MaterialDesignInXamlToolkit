@@ -176,6 +176,13 @@
                   <VisualTransition GeneratedDuration="0:0:0.1" />
                 </VisualStateGroup.Transitions>
                 <VisualState x:Name="Normal" />
+                <VisualState x:Name="Disabled">
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                     To=".56"
+                                     Duration="0" />
+                  </Storyboard>
+                </VisualState>
                 <VisualState x:Name="MouseOver">
                   <Storyboard>
                     <DoubleAnimation Storyboard.TargetName="HighlightingBorder"
@@ -349,23 +356,6 @@
           </ControlTemplate.Resources>
 
           <Grid x:Name="PART_Root">
-            <Grid.Resources>
-              <SolidColorBrush x:Key="DisabledColor" Color="#A5FFFFFF" />
-            </Grid.Resources>
-            <VisualStateManager.VisualStateGroups>
-              <VisualStateGroup x:Name="CommonStates">
-                <VisualState x:Name="Normal" />
-                <VisualState x:Name="Disabled">
-                  <Storyboard>
-                    <DoubleAnimation Storyboard.TargetName="PART_DisabledVisual"
-                                     Storyboard.TargetProperty="Opacity"
-                                     To="1"
-                                     Duration="0" />
-                  </Storyboard>
-                </VisualState>
-              </VisualStateGroup>
-            </VisualStateManager.VisualStateGroups>
-
             <wpf:Card Padding="0,-1,0,0"
                       wpf:ElevationAssist.Elevation="{TemplateBinding wpf:ElevationAssist.Elevation}"
                       Background="{TemplateBinding Background}"
@@ -607,18 +597,8 @@
                 </Grid>
               </Grid>
             </wpf:Card>
-            <Rectangle x:Name="PART_DisabledVisual"
-                       Fill="white"
-                       Opacity="0.5"
-                       RadiusX="2"
-                       RadiusY="2"
-                       Stretch="Fill"
-                       Visibility="Collapsed" />
           </Grid>
           <ControlTemplate.Triggers>
-            <Trigger Property="IsEnabled" Value="False">
-              <Setter TargetName="PART_DisabledVisual" Property="Visibility" Value="Visible" />
-            </Trigger>
             <DataTrigger Binding="{Binding DisplayMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}, FallbackValue={x:Static controls:CalendarMode.Month}}" Value="Year">
               <Setter TargetName="MonthViewWrapperGrid" Property="Visibility" Value="Hidden" />
               <Setter TargetName="YearViewWrapperGrid" Property="Visibility" Value="Visible" />
