@@ -19,6 +19,7 @@
     <sys:Double x:Key="FieldWidth">200</sys:Double>
     <Thickness x:Key="IconMargin">0,0,8,0</Thickness>
     <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
+    <converters:BoolToTextWrappingConverter x:Key="BoolToTextWrappingConverter" />
 
     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
       <Setter Property="Margin" Value="0,8" />
@@ -172,15 +173,28 @@
 
     <StackPanel>
       <smtx:XamlDisplay Margin="0,0,0,32" UniqueKey="fields_3">
-        <TextBox Height="80"
-                 MinWidth="280"
-                 VerticalAlignment="Stretch"
-                 materialDesign:HintAssist.Hint="Multiline text"
-                 AcceptsReturn="True"
-                 SpellCheck.IsEnabled="True"
-                 Text="Multiline. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. The quick brown fox jumps over the lazy dog. War and peace. Keep going. Go on. For how long? Not long. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                 TextWrapping="Wrap"
-                 VerticalScrollBarVisibility="Auto" />
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+          </Grid.RowDefinitions>
+
+          <CheckBox x:Name="TextBoxWrapTextCheckBox"
+                    Content="Wrap text"
+                    IsChecked="True" />
+          
+          <TextBox Grid.Row="1"
+                   Height="80"
+                   MinWidth="280"
+                   VerticalAlignment="Stretch"
+                   materialDesign:HintAssist.Hint="Multiline text"
+                   AcceptsReturn="True"
+                   SpellCheck.IsEnabled="True"
+                   Text="Multiline. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. The quick brown fox jumps over the lazy dog. War and peace. Keep going. Go on. For how long? Not long. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                   TextWrapping="{Binding ElementName=TextBoxWrapTextCheckBox, Path=IsChecked, Converter={StaticResource BoolToTextWrappingConverter}}"
+                   VerticalScrollBarVisibility="Auto"
+                   HorizontalScrollBarVisibility="Auto"/>
+        </Grid>
       </smtx:XamlDisplay>
 
       <smtx:XamlDisplay UniqueKey="fields_32">
