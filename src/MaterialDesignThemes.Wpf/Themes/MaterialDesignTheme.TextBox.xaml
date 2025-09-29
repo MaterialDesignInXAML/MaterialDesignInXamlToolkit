@@ -175,7 +175,7 @@
                                 UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
                                 VerticalScrollBarVisibility="Hidden">
                       <b:Interaction.Behaviors>
-                        <behaviors:TextBoxHorizontalScrollBarBehavior TargetScrollBar="{Binding ElementName=CustomScrollBar}"/>
+                        <behaviors:TextBoxHorizontalScrollBarBehavior TargetScrollBar="{Binding ElementName=CustomScrollBar}" TargetScrollBarVisibility="{Binding RelativeSource={RelativeSource AncestorType=TextBox}, Path=HorizontalScrollBarVisibility}" />
                       </b:Interaction.Behaviors>
                     </ScrollViewer>
 

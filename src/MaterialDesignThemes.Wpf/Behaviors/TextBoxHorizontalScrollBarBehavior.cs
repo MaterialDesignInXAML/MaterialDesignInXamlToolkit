@@ -4,6 +4,8 @@ namespace MaterialDesignThemes.Wpf.Behaviors;
 
 internal class TextBoxHorizontalScrollBarBehavior : Behavior<ScrollViewer>
 {
+    private ScrollBar? _builtInScrollBar;
+
     public static readonly DependencyProperty TargetScrollBarProperty =
         DependencyProperty.Register(nameof(TargetScrollBar), typeof(ScrollBar), typeof(TextBoxHorizontalScrollBarBehavior), new PropertyMetadata(null, TargetScrollBarChanged));
     public ScrollBar TargetScrollBar
@@ -26,6 +28,14 @@ internal class TextBoxHorizontalScrollBarBehavior : Behavior<ScrollViewer>
         }
     }
 
+    public static readonly DependencyProperty TargetScrollBarVisibilityProperty =
+        DependencyProperty.Register(nameof(TargetScrollBarVisibility), typeof(ScrollBarVisibility), typeof(TextBoxHorizontalScrollBarBehavior), new PropertyMetadata(ScrollBarVisibility.Auto));
+    public ScrollBarVisibility TargetScrollBarVisibility
+    {
+        get => (ScrollBarVisibility)GetValue(TargetScrollBarVisibilityProperty);
+        set => SetValue(TargetScrollBarVisibilityProperty, value);
+    }
+
     private void TargetScrollBar_OnScroll(object sender, ScrollEventArgs e)
     {
         if (AssociatedObject is not { } ao) return;
@@ -33,14 +43,19 @@ internal class TextBoxHorizontalScrollBarBehavior : Behavior<ScrollViewer>
     }
 
     private void AssociatedObject_Loaded(object sender, RoutedEventArgs e)
-        => AssociatedObject.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
+    {
+        AssociatedObject.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
+        _builtInScrollBar = AssociatedObject.FindChild<ScrollBar>("PART_HorizontalScrollBar");
+    }
 
     private void AssociatedObject_SizeChanged(object sender, SizeChangedEventArgs e)
     {
         if (TargetScrollBar is not { } ts) return;
 
         ts.ViewportSize = AssociatedObject.ViewportWidth;
-        ts.Maximum = AssociatedObject.ScrollableWidth;
+        ts.Value = AssociatedObject.HorizontalOffset;
+        ts.Maximum = _builtInScrollBar!.Maximum;
+        UpdateTargetScrollBarVisibility(_builtInScrollBar!.Maximum > 0);
     }
 
     private void AssociatedObject_ScrollChanged(object sender, ScrollChangedEventArgs e)
@@ -48,6 +63,21 @@ internal class TextBoxHorizontalScrollBarBehavior : Behavior<ScrollViewer>
         if (TargetScrollBar is not { } ts) return;
 
         ts.Value = AssociatedObject.HorizontalOffset;
+        ts.Maximum = _builtInScrollBar!.Maximum;
+        UpdateTargetScrollBarVisibility(_builtInScrollBar!.Maximum > 0);
+    }
+
+    private void UpdateTargetScrollBarVisibility(bool showIfRequired)
+    {
+        if (TargetScrollBar is not { } ts) return;
+
+        AssociatedObject.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
+        ts.Visibility = TargetScrollBarVisibility switch
+        {
+            ScrollBarVisibility.Hidden or ScrollBarVisibility.Disabled => Visibility.Collapsed,
+            ScrollBarVisibility.Visible => Visibility.Visible,
+            _ => showIfRequired ? Visibility.Visible : Visibility.Collapsed,
+        };
     }
 
     protected override void OnAttached()
@@ -57,7 +87,6 @@ internal class TextBoxHorizontalScrollBarBehavior : Behavior<ScrollViewer>
         AssociatedObject.SizeChanged += AssociatedObject_SizeChanged;
         AssociatedObject.ScrollChanged += AssociatedObject_ScrollChanged;
     }
-
 
     protected override void OnDetaching()
     {
