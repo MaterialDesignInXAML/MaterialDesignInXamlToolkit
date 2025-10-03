@@ -14,7 +14,7 @@ public class TextBoxHorizontalScrollBarMarginConverter : IMultiValueConverter
             Thickness prefixTextMargin,
             bool isMouseOver,
             bool hasKeyboardFocus,
-            bool isOutlinedStyle,
+            bool hasOutlinedTextField,
             Thickness normalBorder,
             Thickness activeBorder])
         {
@@ -24,7 +24,7 @@ public class TextBoxHorizontalScrollBarMarginConverter : IMultiValueConverter
             double bottomOffset = 0;
             double topOffset = 0;
 
-            if (isOutlinedStyle && (isMouseOver || hasKeyboardFocus))
+            if (hasOutlinedTextField && (isMouseOver || hasKeyboardFocus))
             {
                 double horizDelta = activeBorder.Left - normalBorder.Left;
                 double vertDeltaTop = activeBorder.Top - normalBorder.Top;
