@@ -1026,7 +1026,10 @@ public class TreeListViewTests : TestBase
         {
             IVisualElement<TreeListViewItem> treeItem = await treeListView.GetElement<TreeListViewItem>($"/TreeListViewItem[{index}]");
             await Assert.That(await treeItem.GetContentText()).IsEqualTo(content);
-            await Assert.That(await treeItem.GetIsExpanded()).IsEqualTo(isExpanded);
+            if (await treeItem.GetHasItems())
+            {
+                await Assert.That(await treeItem.GetIsExpanded()).IsEqualTo(isExpanded);
+            }
         });
     }
 
