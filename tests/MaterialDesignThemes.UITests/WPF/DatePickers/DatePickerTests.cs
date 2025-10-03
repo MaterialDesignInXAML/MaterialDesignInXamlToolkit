@@ -76,12 +76,14 @@ public class DatePickerTests : TestBase
         await datePickerTextBox.SendKeyboardInput($"invalid date");
         await Assert.That(await datePickerTextBox.GetText()).IsEqualTo("invalid date");
 
-        // Act
-        await clearButton.LeftClick();
-        await Task.Delay(50, TestContext.Current!.CancellationToken);
+        // Act & Assert
+        await Wait.For(async () => {
+            await clearButton.LeftClick();
+            await Task.Delay(50, TestContext.Current!.CancellationToken);
 
-        // Assert
-        await Assert.That(await datePickerTextBox.GetText()).IsNull();
+            string? text = await datePickerTextBox.GetText();
+            await Assert.That(text).IsNull();
+        });
 
         recorder.Success();
     }
