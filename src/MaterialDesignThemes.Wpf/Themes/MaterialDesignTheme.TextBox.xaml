@@ -5,6 +5,7 @@
                     xmlns:internal="clr-namespace:MaterialDesignThemes.Wpf.Internal"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
                     xmlns:behaviors="clr-namespace:MaterialDesignThemes.Wpf.Behaviors"
+                    xmlns:behaviorsInternal="clr-namespace:MaterialDesignThemes.Wpf.Behaviors.Internal"
                     xmlns:b="http://schemas.microsoft.com/xaml/behaviors">
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ValidationErrorTemplate.xaml" />
@@ -177,7 +178,7 @@
                                 UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
                                 VerticalScrollBarVisibility="Hidden">
                       <b:Interaction.Behaviors>
-                        <behaviors:TextBoxHorizontalScrollBarBehavior TargetScrollBar="{Binding ElementName=CustomScrollBar}" TargetScrollBarVisibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=HorizontalScrollBarVisibility}" />
+                        <behaviorsInternal:TextBoxHorizontalScrollBarBehavior TargetScrollBar="{Binding ElementName=CustomScrollBar}" TargetScrollBarVisibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=HorizontalScrollBarVisibility}" />
                       </b:Interaction.Behaviors>
                     </ScrollViewer>
 

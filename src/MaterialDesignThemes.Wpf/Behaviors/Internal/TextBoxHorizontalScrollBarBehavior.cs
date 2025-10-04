@@ -1,8 +1,8 @@
 using Microsoft.Xaml.Behaviors;
 
-namespace MaterialDesignThemes.Wpf.Behaviors;
+namespace MaterialDesignThemes.Wpf.Behaviors.Internal;
 
-internal class TextBoxHorizontalScrollBarBehavior : Behavior<ScrollViewer>
+public class TextBoxHorizontalScrollBarBehavior : Behavior<ScrollViewer>
 {
     private ScrollBar? _builtInScrollBar;
 
