@@ -441,7 +441,7 @@
                    Margin="0 0 0 8" />
 
         <smtx:XamlDisplay UniqueKey="calendar_1">
-          <Calendar />
+          <Calendar IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
         </smtx:XamlDisplay>
       </StackPanel>
 
@@ -470,6 +470,7 @@
             </Grid.Resources>
             <Calendar materialDesign:CalendarAssist.HeaderBackground="{DynamicResource PrimaryHueDarkBrush}"
                       materialDesign:CalendarAssist.HeaderForeground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                      IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" 
                       Background="{DynamicResource PrimaryHueLightBrush}"
                       CalendarButtonStyle="{StaticResource SecondaryCalendarButton}"
                       CalendarDayButtonStyle="{StaticResource SecondaryCalendarDayButton}"
@@ -502,6 +503,7 @@
               </Style>
             </Grid.Resources>
             <Calendar materialDesign:CalendarAssist.HeaderBackground="#A2E9FF"
+                      IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" 
                       materialDesign:CalendarAssist.HeaderForeground="Black"
                       Background="#343C3F"
                       CalendarButtonStyle="{StaticResource CustomCalendarButton}"
@@ -515,7 +517,7 @@
         <TextBlock Text="Horizontal"
                    Margin=" 0 0 0 8" />
         <smtx:XamlDisplay UniqueKey="calendar_4">
-          <Calendar materialDesign:CalendarAssist.Orientation="Horizontal" />
+          <Calendar materialDesign:CalendarAssist.Orientation="Horizontal" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"  />
         </smtx:XamlDisplay>
       </StackPanel>
 
@@ -524,6 +526,7 @@
                    Margin="0 0 0 8" />
         <smtx:XamlDisplay UniqueKey="calendar_5">
           <Calendar materialDesign:ElevationAssist.Elevation="Dp8"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" 
                     Style="{StaticResource MaterialDesignCalendarPortraitForeground}" />
         </smtx:XamlDisplay>
       </StackPanel>

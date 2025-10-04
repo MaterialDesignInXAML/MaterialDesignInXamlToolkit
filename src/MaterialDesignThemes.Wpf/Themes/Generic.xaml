@@ -328,7 +328,7 @@
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
               <Setter TargetName="ComponentOneTwoWrapper" Property="Opacity" Value=".56" />
-              <Setter TargetName="ComponentThreeTextBlock" Property="Opacity" Value="1" />
+              <Setter TargetName="ComponentThreeTextBlock" Property="Opacity" Value=".56" />
             </Trigger>
             <Trigger Property="local:CalendarAssist.Orientation" Value="Horizontal">
               <Setter TargetName="ComponentOneTwoWrapper" Property="Orientation" Value="Vertical" />
