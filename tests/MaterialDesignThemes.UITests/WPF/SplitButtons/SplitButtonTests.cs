@@ -93,15 +93,16 @@ public class SplitButtonTests : TestBase
         //NB: give the popup some time to show
         await Wait.For(async () => await popupContent.GetIsVisible());
         await Wait.For(async () => await popupContent.GetActualHeight() > 10);
+
+        await recorder.SaveScreenshot("PopupOpen");
+
         await popupContent.LeftClick();
         await Task.Delay(50, TestContext.Current!.CancellationToken);
 
         // Assert
-        await Wait.For(async () =>
-        {
-            var invocations = await clickEvent.GetInvocations();
-            await Assert.That(invocations).HasSingleItem();
-        });
+        var invocations = await clickEvent.GetInvocations();
+        await Assert.That(invocations).HasSingleItem();
+
         recorder.Success();
     }
 
