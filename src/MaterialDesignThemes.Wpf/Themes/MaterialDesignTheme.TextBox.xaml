@@ -48,8 +48,8 @@
       <converters:ThicknessCloneConverter x:Key="HelperTextMarginConverter" CloneEdges="Left,Right" />
       <converters:MathConverter x:Key="DivisionConverter" Operation="Divide" Offset="1.5" />
       <converters:ThicknessCloneConverter x:Key="ThicknessCloneConverter" CloneEdges="All" AdditionalOffsetBottom="-1" />
-      <converters:TextBoxHorizontalScrollBarMarginConverter x:Key="TextBoxHorizontalScrollBarMarginConverter" />
-      <converters:TextBoxHorizontalScrollBarWidthConverter x:Key="TextBoxHorizontalScrollBarWidthConverter" />
+      <convertersInternal:TextBoxHorizontalScrollBarMarginConverter x:Key="TextBoxHorizontalScrollBarMarginConverter" />
+      <convertersInternal:TextBoxHorizontalScrollBarWidthConverter x:Key="TextBoxHorizontalScrollBarWidthConverter" />
     </Style.Resources>
 
     <Setter Property="AutomationProperties.Name" Value="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource Self}}" />
