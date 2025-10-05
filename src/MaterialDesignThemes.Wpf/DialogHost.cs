@@ -65,7 +65,7 @@ public class DialogHost : ContentControl
     private DialogClosedEventHandler? _attachedDialogClosedEventHandler;
     private IInputElement? _restoreFocusDialogClose;
     private IInputElement? _lastFocusedDialogElement;
-    private WindowState _previousWindowState;
+    private HwndSourceHook? _hook;
     private Action? _currentSnackbarMessageQueueUnPauseAction;
 
     static DialogHost()
@@ -412,48 +412,51 @@ public class DialogHost : ContentControl
     
     private void ListenForWindowStateChanged(Window? window)
     {
-
-        if (window is not null)
-        {
-            window.StateChanged -= Window_StateChanged;
-            window.StateChanged += Window_StateChanged;
-        }
-    }
-
-    private void Window_StateChanged(object? sender, EventArgs e)
-    {
-        if (sender is not Window window)
+        if (window is null)
         {
             return;
         }
 
-        var windowState = window.WindowState;
-        if (windowState == WindowState.Minimized)
+        if (PresentationSource.FromVisual(window) is HwndSource source)
         {
-            _lastFocusedDialogElement = FocusManager.GetFocusedElement(window);
-            _previousWindowState = windowState;
-            return;
+            _hook = Hook;
+            source.RemoveHook(_hook);
+            source.AddHook(_hook);
         }
 
-        // We only need to focus anything manually if the window changes state from Minimized --> (Normal or Maximized)
-        // Going from Normal --> Maximized (and vice versa) is fine since the focus is already kept correctly
-        if (IsWindowRestoredFromMinimized())
+        IntPtr Hook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
-            // Kinda hacky, but without a delay the focus doesn't always get set correctly because the Focus() method fires too early
-            Task.Delay(50).ContinueWith(_ => this.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            //https://learn.microsoft.com/en-us/windows/win32/menurc/wm-syscommand
+            const int WM_SYSCOMMAND = 0x0112;
+            const int SC_MINIMIZE = 0xf020;
+            const int SC_RESTORE = 0xF120;
+
+            long wParamLong = wParam.ToInt64();
+            switch (msg)
             {
-                if (IsLastFocusedDialogElementFocusable())
-                {
-                    _lastFocusedDialogElement!.Focus();
-                }
-            })));
+                case WM_SYSCOMMAND:
+                    if (wParamLong == SC_MINIMIZE && //Minimize
+                        _popupContentControl?.IsKeyboardFocusWithin == true) //Only persistent the one with keyboard focus
+                    {
+                        var element = Keyboard.FocusedElement;
+                        _lastFocusedDialogElement = element;
+                    }
+                    else if (wParamLong == SC_RESTORE) //Restore
+                    {
+                        // Kinda hacky, but without a delay the focus doesn't always get set correctly because the Focus() method fires too early
+                        Task.Delay(50).ContinueWith(_ => this.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                        {
+                            if (_lastFocusedDialogElement is UIElement { Focusable: true, IsVisible: true })
+                            {
+                                _lastFocusedDialogElement.Focus();
+                                _lastFocusedDialogElement = null;
+                            }
+                        })));
+                    }
+                    break;
+            }
+            return IntPtr.Zero;
         }
-        _previousWindowState = windowState;
-
-        bool IsWindowRestoredFromMinimized() => (windowState == WindowState.Normal || windowState == WindowState.Maximized) &&
-                                                _previousWindowState == WindowState.Minimized;
-
-        bool IsLastFocusedDialogElementFocusable() => _lastFocusedDialogElement is UIElement { Focusable: true, IsVisible: true };
     }
 
     /// <summary>
