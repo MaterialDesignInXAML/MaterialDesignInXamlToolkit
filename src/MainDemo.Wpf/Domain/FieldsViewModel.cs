@@ -62,7 +62,7 @@ public partial class FieldsViewModel : ObservableObject
     private ObservableCollection<KeyValuePair<string, Color>>? _autoSuggestBox2Suggestions;
 
     [ObservableProperty]
-    private List<string> _autoSuggestBox3Suggestions;
+    private List<string>? _autoSuggestBox3Suggestions;
     
 
     [ObservableProperty]
