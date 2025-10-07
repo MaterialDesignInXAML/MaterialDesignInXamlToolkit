@@ -232,6 +232,45 @@ public class AutoSuggestBoxTests : TestBase
         recorder.Success();
     }
 
+    [Test]
+    public async Task AutoSuggestBox_ClickingButtonInInteractiveItemTemplate_DoesNotSelectOrClosePopup()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // Arrange
+        IVisualElement<AutoSuggestBox> suggestBox = (await LoadUserControl<AutoSuggestTextBoxWithInteractiveTemplate>()).As<AutoSuggestBox>();
+        IVisualElement<Popup> popup = await suggestBox.GetElement<Popup>();
+        IVisualElement<ListBox> suggestionListBox = await popup.GetElement<ListBox>();
+
+        // Act
+        await suggestBox.MoveKeyboardFocus();
+        await suggestBox.SendInput(new KeyboardInput("a"));
+        await Task.Delay(50, TestContext.Current!.CancellationToken);
+
+        // Find the button in the first suggestion item
+        var thirdListBoxItem = await suggestionListBox.GetElement<ListBoxItem>("/ListBoxItem[2]");
+        var button = await thirdListBoxItem.GetElement<Button>();
+
+        // Click the button
+        await button.MoveCursorTo();
+        await button.LeftClick();
+        await Task.Delay(50, TestContext.Current!.CancellationToken);
+
+        // Assert
+        await Assert.That(await suggestBox.GetIsSuggestionOpen()).IsTrue();
+        int selectedIndex = await suggestionListBox.GetSelectedIndex();
+        await Assert.That(selectedIndex).IsNotEqualTo(2); // Should not select the item
+
+        static async Task AssertViewModelProperty(AutoSuggestBox autoSuggestBox)
+        {
+            var viewModel = (AutoSuggestTextBoxWithInteractiveTemplateViewModel)autoSuggestBox.DataContext;
+            var thirdItem = viewModel.Suggestions[2];
+            await Assert.That(thirdItem.Count).IsEqualTo(1);
+        }
+        await suggestBox.RemoteExecute(AssertViewModelProperty);
+        recorder.Success();
+    }
+
     private static async Task AssertExists(IVisualElement<ListBox> suggestionListBox, string text, bool existsOrNotCheck = true)
     {
         try
