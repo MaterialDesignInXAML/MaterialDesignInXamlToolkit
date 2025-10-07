@@ -207,6 +207,10 @@ public class AutoSuggestBox : TextBox
         if (_autoSuggestBoxList is null || e.OriginalSource is not FrameworkElement element)
             return;
 
+        // If the user clicked on an interactive element, let it handle the event.
+        if (IsInteractiveElement(e.OriginalSource as DependencyObject))
+            return;
+
         var selectedItem = element.DataContext;
         if (!_autoSuggestBoxList.Items.Contains(selectedItem))
             return;
@@ -236,7 +240,18 @@ public class AutoSuggestBox : TextBox
     #endregion
 
     #region Methods
-
+    private static bool IsInteractiveElement(DependencyObject? element)
+    {
+        while (element is not null)
+        {
+            if (element is ButtonBase or TextBoxBase or ComboBox)
+            {
+                return true;
+            }
+            element = VisualTreeHelper.GetParent(element);
+        }
+        return false;
+    }
     private void CloseAutoSuggestionPopUp()
     {
         IsSuggestionOpen = false;

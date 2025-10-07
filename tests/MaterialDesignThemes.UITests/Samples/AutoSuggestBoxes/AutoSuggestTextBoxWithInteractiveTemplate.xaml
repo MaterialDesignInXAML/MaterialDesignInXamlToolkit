@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="MaterialDesignThemes.UITests.Samples.AutoSuggestBoxes.AutoSuggestTextBoxWithInteractiveTemplate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:MaterialDesignThemes.UITests.Samples.AutoSuggestBoxes"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DataContext="{d:DesignInstance Type=local:AutoSuggestTextBoxWithInteractiveTemplateViewModel}"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+  <materialDesign:AutoSuggestBox Suggestions="{Binding Suggestions}"
+                                 Text="{Binding AutoSuggestText, UpdateSourceTrigger=PropertyChanged}"
+                                 ValueMember="Name">
+    <materialDesign:AutoSuggestBox.ItemTemplate>
+      <DataTemplate>
+        <Grid HorizontalAlignment="Stretch">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+          </Grid.ColumnDefinitions>
+          <StackPanel Grid.Column="0" Orientation="Horizontal">
+            <TextBlock VerticalAlignment="Center" Text="{Binding Name}" />
+            <TextBlock Margin="8,0"
+                       VerticalAlignment="Center"
+                       Text="{Binding Count}" />
+          </StackPanel>
+          <Button Grid.Column="1"
+                  Padding="2,0,0,0"
+                  Command="{Binding IncrementCountCommand}"
+                  Focusable="False"
+                  Style="{StaticResource MaterialDesignToolButton}">
+            <materialDesign:PackIcon Width="16"
+                                     Height="16"
+                                     Margin="0"
+                                     Kind="Plus" />
+          </Button>
+        </Grid>
+      </DataTemplate>
+    </materialDesign:AutoSuggestBox.ItemTemplate>
+  </materialDesign:AutoSuggestBox>
+</UserControl>

@@ -273,6 +273,8 @@
                         Style="{StaticResource MaterialDesignElevatedCard}">
                 <ListBox x:Name="PART_AutoSuggestBoxList"
                          Width="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ActualWidth}"
+                         HorizontalContentAlignment="Stretch"
+                         VerticalContentAlignment="Stretch"
                          DisplayMemberPath="{TemplateBinding DisplayMember}"
                          Focusable="False"
                          IsSynchronizedWithCurrentItem="True"
