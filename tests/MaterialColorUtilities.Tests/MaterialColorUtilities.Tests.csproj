@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net8.0-windows</TargetFrameworks>
+    <AssemblyTitle>MaterialColorUtilities.Tests</AssemblyTitle>
+    <Product>MaterialColorUtilities.Tests</Product>
+    <OutputType>Exe</OutputType>
+    <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
+    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableSourceLink>false</EnableSourceLink>
+    <SuppressImplicitGitSourceLink>true</SuppressImplicitGitSourceLink>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\MaterialDesign3.MaterialColorUtilities\MaterialColorUtilities.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="GitHubActionsTestLogger">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="System.Net.Http" />
+    <PackageReference Include="System.Text.RegularExpressions" />
+    <PackageReference Include="TUnit" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="TUnit.Assertions.AssertConditions.Throws" />
+    <Using Include="TUnit.Core.Executors" />
+    <Using Include="TUnit.Assertions" />
+  </ItemGroup>
+</Project>
