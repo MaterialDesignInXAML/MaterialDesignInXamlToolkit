@@ -13,7 +13,7 @@ private static readonly double ContrastTolerance = 0.05;
         unchecked((int)0xFFFF0000), // red
     };
 
-    private static readonly double[] ContrastLevels = { -1.0, 0.0, 0.5, 1.0 };
+    private static readonly double[] ContrastLevels = [-1.0, 0.0, 0.5, 1.0];
 
     private readonly MaterialDynamicColors _mdc = new();
 
@@ -104,10 +104,12 @@ private static readonly double ContrastTolerance = 0.05;
             var aTone = _a.GetHct(scheme).Tone;
             var bTone = _b.GetHct(scheme).Tone;
 
+#pragma warning disable CS0618 // Type or member is obsolete
             var aShouldBeLighter =
                 (_polarity == TonePolarity.Lighter) ||
                 (_polarity == TonePolarity.Nearer && !scheme.IsDark) ||
                 (_polarity == TonePolarity.Farther && scheme.IsDark);
+#pragma warning restore CS0618 // Type or member is obsolete
 
             var actual = aShouldBeLighter ? (aTone - bTone) : (bTone - aTone);
             if (actual < _delta - DeltaTolerance)
@@ -275,11 +277,13 @@ private static readonly double ContrastTolerance = 0.05;
             new ContrastConstraint(DC("on_tertiary_fixed"), "on_tertiary_fixed", DC("tertiary_fixed"), "tertiary_fixed", new ContrastCurve(4.5, 7, 11, 21)),
             new ContrastConstraint(DC("on_tertiary_fixed"), "on_tertiary_fixed", DC("tertiary_fixed_dim"), "tertiary_fixed_dim", new ContrastCurve(4.5, 7, 11, 21)),
 
+#pragma warning disable CS0618 // Type or member is obsolete
             // Delta constraints
             new DeltaConstraint(DC("primary"), "primary", DC("primary_container"), "primary_container", 10, TonePolarity.Farther),
             new DeltaConstraint(DC("secondary"), "secondary", DC("secondary_container"), "secondary_container", 10, TonePolarity.Farther),
             new DeltaConstraint(DC("tertiary"), "tertiary", DC("tertiary_container"), "tertiary_container", 10, TonePolarity.Farther),
             new DeltaConstraint(DC("error"), "error", DC("error_container"), "error_container", 10, TonePolarity.Farther),
+#pragma warning restore CS0618 // Type or member is obsolete
 
             new DeltaConstraint(DC("primary_fixed_dim"), "primary_fixed_dim", DC("primary_fixed"), "primary_fixed", 10, TonePolarity.Darker),
             new DeltaConstraint(DC("secondary_fixed_dim"), "secondary_fixed_dim", DC("secondary_fixed"), "secondary_fixed", 10, TonePolarity.Darker),
@@ -334,7 +338,7 @@ private static readonly double ContrastTolerance = 0.05;
     {
         var constraints = BuildConstraints();
 
-        foreach (var variant in Enum.GetValues(typeof(Variant)).Cast<Variant>())
+        foreach (var variant in Enum.GetValues<Variant>().Cast<Variant>())
         foreach (var contrastLevel in ContrastLevels)
         foreach (var argb in SeedArgb)
         foreach (var isDark in new[] { false, true })
@@ -348,7 +352,6 @@ private static readonly double ContrastTolerance = 0.05;
             }
 
             // If we got here, constraints passed for this (variant, seed, CL, dark) tuple.
-            await Assert.That(true).IsTrue(); // keep async signature satisfied
         }
     }
 }
