@@ -335,12 +335,18 @@ public class TextBoxTests : TestBase
 </StackPanel>
 ");
         var textBox = await stackPanel.GetElement<TextBox>("/TextBox");
-        await textBox.RightClick();
-
-        var contextMenu = await textBox.GetElement<ContextMenu>(".ContextMenu");
-
         var textBoxFont = await textBox.GetFontFamily();
         await Assert.That(textBoxFont?.FamilyNames.Values.First()).IsEqualTo("Times New Roman");
+
+        IVisualElement<ContextMenu> contextMenu = null!;
+        await Wait.For(async () =>
+        {
+            await textBox.RightClick();
+            contextMenu = await textBox.GetElement<ContextMenu>(".ContextMenu");
+            return await contextMenu.GetIsOpen();
+        });
+
+
         await Assert.That(await contextMenu.GetFontFamily()).IsEqualTo(textBoxFont);
 
         recorder.Success();
