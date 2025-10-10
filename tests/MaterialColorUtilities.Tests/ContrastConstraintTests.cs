@@ -334,7 +334,7 @@ private static readonly double ContrastTolerance = 0.05;
 
     [Test]
     [DisplayName("scheme_correctness_test: all variants & contrast levels satisfy constraints")]
-    public async Task Scheme_Correctness_All()
+    public void Scheme_Correctness_All()
     {
         var constraints = BuildConstraints();
 
