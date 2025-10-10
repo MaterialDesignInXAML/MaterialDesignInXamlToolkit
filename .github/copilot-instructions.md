@@ -25,7 +25,8 @@ The MaterialDesignInXamlToolkit is a **theme library** for WPF applications that
 - **WPF (Windows Presentation Foundation)** - UI framework
 - **XAML** - Markup for UI definitions and styles  
 - **Material Design** - Google's design system implementation
-- **.NET 9** - Target framework
+- **.NET 8** and **.NET Framework 4.7.2** - Target frameworks for the library
+- **.NET 9 SDK** - Required for building (as specified in `global.json`)
 - **C# 12.0** - Programming language
 - **PowerShell** - Build automation scripts
 
@@ -33,8 +34,8 @@ The MaterialDesignInXamlToolkit is a **theme library** for WPF applications that
 
 ### Requirements
 - **Windows** - Required for WPF development and compilation
-- **.NET 9 SDK** - As specified in `global.json`
-- **Visual Studio** or **Visual Studio Code** with C# extension
+- **.NET 9 SDK** - As specified in `global.json` (note: projects target .NET 8 and .NET Framework 4.7.2)
+- **Visual Studio 2022** or **Visual Studio Code** with C# extension
 - **PowerShell** - For build scripts
 
 ### Build and Test
