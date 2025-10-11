@@ -53,7 +53,7 @@
       <convertersInternal:TextBoxHorizontalScrollBarWidthConverter x:Key="TextBoxHorizontalScrollBarWidthConverter" />
     </Style.Resources>
 
-    <Setter Property="AutomationProperties.Name" Value="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource Self}, Converter={x:Static converters:ObjectToStringConverter.Instance}}" />
+    <Setter Property="AutomationProperties.Name" Value="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource Self}, Converter={x:Static convertersInternal:AutomationPropertiesNameConverter.Instance}}" />
     <Setter Property="AllowDrop" Value="true" />
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.TextBox.Border}" />

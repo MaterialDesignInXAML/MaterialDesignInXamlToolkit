@@ -23,7 +23,7 @@
       <converters:OutlinedStyleActiveBorderMarginCompensationConverter x:Key="OutlinedStyleActiveBorderMarginCompensationConverter" />
       <converters:ElevationRadiusConverter x:Key="ElevationRadiusConverter" Multiplier="-1" />
     </Style.Resources>
-    <Setter Property="AutomationProperties.Name" Value="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource Self}, Converter={x:Static converters:ObjectToStringConverter.Instance}}" />
+    <Setter Property="AutomationProperties.Name" Value="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource Self}, Converter={x:Static convertersInternal:AutomationPropertiesNameConverter.Instance}}" />
     <Setter Property="DropDownBackground" Value="{DynamicResource MaterialDesign.Brush.Card.Background}" />
     <Setter Property="DropDownElevation" Value="Dp2" />
     <Setter Property="Template">

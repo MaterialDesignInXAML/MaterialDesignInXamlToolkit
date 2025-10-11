@@ -1,11 +1,11 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace MaterialDesignThemes.Wpf.Converters;
+namespace MaterialDesignThemes.Wpf.Converters.Internal;
 
-public class ObjectToStringConverter : IValueConverter
+public class AutomationPropertiesNameConverter : IValueConverter
 {
-    public static readonly ObjectToStringConverter Instance = new();
+    public static readonly AutomationPropertiesNameConverter Instance = new();
 
     public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
