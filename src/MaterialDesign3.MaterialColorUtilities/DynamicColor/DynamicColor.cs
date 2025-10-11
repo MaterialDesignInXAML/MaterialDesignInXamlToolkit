@@ -140,6 +140,11 @@ public sealed class DynamicColor
         return (argb & 0x00ffffff) | (alpha << 24);
     }
 
+#if WPF
+    public System.Windows.Media.Color GetColor(DynamicScheme scheme)
+        => ColorUtils.ColorFromArgb(GetArgb(scheme));
+#endif
+
     public Hct GetHct(DynamicScheme scheme)
     {
         if (hctCache.TryGetValue(scheme, out var cached))

@@ -31,10 +31,12 @@
     <PackageReference Include="System.Net.Http" />
     <PackageReference Include="System.Text.RegularExpressions" />
     <PackageReference Include="TUnit" />
+    <PackageReference Include="Shouldly" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="TUnit.Assertions.AssertConditions.Throws" />
     <Using Include="TUnit.Core.Executors" />
     <Using Include="TUnit.Assertions" />
+    <Using Include="Shouldly" />
   </ItemGroup>
 </Project>
