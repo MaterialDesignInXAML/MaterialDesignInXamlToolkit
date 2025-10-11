@@ -314,7 +314,6 @@ public class DialogHostTests : TestBase
         await Wait.For(async () =>
         {
             var contentCoverBorder = await dialogHost.GetElement<Border>("ContentCoverBorder");
-                
             await Assert.That((await contentCoverBorder.GetCornerRadius()).TopLeft).IsEqualTo(1);
             await Assert.That((await contentCoverBorder.GetCornerRadius()).TopRight).IsEqualTo(2);
             await Assert.That((await contentCoverBorder.GetCornerRadius()).BottomRight).IsEqualTo(3);
@@ -500,7 +499,6 @@ public class DialogHostTests : TestBase
         var comboBox = await dialogHost.GetElement<ComboBox>("TargetedPlatformComboBox");
         await Task.Delay(500, TestContext.Current!.CancellationToken);
         await comboBox.LeftClick();
-        
         var item = await Wait.For(() => comboBox.GetElement<ComboBoxItem>("TargetItem"));
         await Task.Delay(TimeSpan.FromSeconds(1));
         await item.LeftClick();
@@ -513,5 +511,56 @@ public class DialogHostTests : TestBase
 
 
         recorder.Success();
+    }
+
+    [Test]
+    [Description("Issue 3434")]
+    [Arguments(WindowState.Minimized, WindowState.Maximized, null)]
+    [Arguments(WindowState.Minimized, WindowState.Normal, null)]
+    [Arguments(WindowState.Maximized, WindowState.Normal, null)]
+    [Arguments(WindowState.Minimized, WindowState.Maximized, "MaterialDesignEmbeddedDialogHost")]
+    [Arguments(WindowState.Minimized, WindowState.Normal, "MaterialDesignEmbeddedDialogHost")]
+    [Arguments(WindowState.Maximized, WindowState.Normal, "MaterialDesignEmbeddedDialogHost")]
+    public async Task DialogHost_WhenWindowStateChanges_FocusedElementStaysFocused(WindowState firstWindowState,
+                                                                                   WindowState secondWindowState,
+                                                                                   string? styleName)
+	{
+		await using var recorder = new TestRecorder(App);
+
+		var dialogHost = (await LoadUserControl<WithMultipleTextBoxes>()).As<DialogHost>();
+        if (styleName is not null)
+        {
+            await dialogHost.RemoteExecute(SetDialogHostStyle, styleName);
+        }
+        await Task.Delay(400, TestContext.Current!.CancellationToken);
+
+        // Select the second TextBox
+        var tbTwo = await dialogHost.GetElement<TextBox>("TextBoxTwo");
+        await tbTwo.MoveKeyboardFocus();
+		await Assert.That(await tbTwo.GetIsFocused()).IsTrue();
+        
+		// First state
+		await dialogHost.RemoteExecute(SetStateOfParentWindow, firstWindowState);
+		await Task.Delay(400, TestContext.Current!.CancellationToken);
+        // Second state
+        await dialogHost.RemoteExecute(SetStateOfParentWindow, secondWindowState);
+		await Task.Delay(400, TestContext.Current!.CancellationToken);
+
+		// After changing state of the window the previously focused element should be focused again
+		await Assert.That(await tbTwo.GetIsFocused()).IsTrue();
+		recorder.Success();
+
+		static object SetStateOfParentWindow(DialogHost dialogHost, WindowState state)
+        {
+            var window = Window.GetWindow(dialogHost);
+            window.WindowState = state;
+            return null!;
+        }
+        static object SetDialogHostStyle(DialogHost dialogHost, string styleName)
+        {
+            Style style = (Style)dialogHost.FindResource(styleName);
+            dialogHost.Style = style;
+            return null!;
+        }
     }
 }
