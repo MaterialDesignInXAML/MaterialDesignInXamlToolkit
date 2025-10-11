@@ -1,4 +1,8 @@
-﻿namespace MaterialColorUtilities.Tests;
+#if WPF
+using System.Windows.Media;
+#endif
+
+namespace MaterialColorUtilities.Tests;
 
 public sealed class ColorUtilsTests
 {
@@ -264,4 +268,43 @@ public sealed class ColorUtilsTests
             await Assert.That(converted).IsEqualTo(c);
         }
     }
+
+#if WPF
+    public static IEnumerable<Func<(int argb, Color color)>> TestColors()
+    {
+        yield return () => (unchecked((int)0xFFFF0000), Colors.Red);
+        yield return () => (unchecked((int)0xFF00FF00), Colors.Lime);
+        yield return () => (unchecked((int)0xFF0000FF), Colors.Blue);
+        yield return () => (unchecked((int)0xFFFF00FF), Colors.Magenta);
+        yield return () => (unchecked((int)0xFFFFFF00), Colors.Yellow);
+        yield return () => (unchecked((int)0xFF00FFFF), Colors.Cyan);
+        yield return () => (unchecked((int)0xFFFFFFFF), Colors.White);
+        yield return () => (unchecked((int)0xFF000000), Colors.Black);
+        yield return () => (unchecked((int)0x00FFFFFF), Colors.Transparent);
+    }
+
+    [Test]
+    [DisplayName("colorFromArgb returns known Colors")]
+    [MethodDataSource(nameof(TestColors))]
+    public async Task ColorFromArgb_KnownColors(int argb, Color color)
+    {
+        var converted = ColorUtils.ColorFromArgb(argb);
+
+        string result = $"{converted.A:x}{converted.R:x}{converted.G:x}{converted.B:X}";
+        string expected = $"{color.A:x}{color.R:x}{color.G:x}{color.B:X}";
+
+        await Assert.That(result).IsEqualTo(expected);
+    }
+
+    [Test]
+    [DisplayName("argbFromColor returns known ints")]
+    [MethodDataSource(nameof(TestColors))]
+    public async Task ArgbFromColor_KnownColors(int argb, Color color)
+    {
+        string result = ColorUtils.ArgbFromColor(color).ToString("X");
+        string expected = argb.ToString("X");
+
+        await Assert.That(result).IsEqualTo(expected);
+    }
+#endif
 }
