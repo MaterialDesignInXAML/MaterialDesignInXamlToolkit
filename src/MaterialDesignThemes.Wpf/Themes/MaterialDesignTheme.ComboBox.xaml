@@ -884,7 +884,7 @@
   </ControlTemplate>
 
   <Style x:Key="MaterialDesignComboBox" TargetType="{x:Type ComboBox}">
-    <Setter Property="AutomationProperties.Name" Value="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource Self}}" />
+    <Setter Property="AutomationProperties.Name" Value="{Binding Path=(wpf:HintAssist.Hint), RelativeSource={RelativeSource Self}, Converter={x:Static convertersInternal:AutomationPropertiesNameConverter.Instance}}" />
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ComboBox.Border}" />
     <Setter Property="BorderThickness" Value="0,0,0,1" />
