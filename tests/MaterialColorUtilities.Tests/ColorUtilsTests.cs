@@ -1,6 +1,4 @@
-#if WPF
 using System.Windows.Media;
-#endif
 
 namespace MaterialColorUtilities.Tests;
 
@@ -269,7 +267,6 @@ public sealed class ColorUtilsTests
         }
     }
 
-#if WPF
     public static IEnumerable<Func<(int argb, Color color)>> TestColors()
     {
         yield return () => (unchecked((int)0xFFFF0000), Colors.Red);
@@ -306,5 +303,4 @@ public sealed class ColorUtilsTests
 
         await Assert.That(result).IsEqualTo(expected);
     }
-#endif
 }

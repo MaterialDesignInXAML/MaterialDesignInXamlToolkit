@@ -26,7 +26,6 @@ public static class ColorUtils
     /// </summary>
     public static int ArgbFromRgb(int red, int green, int blue) => (255 << 24) | ((red & 255) << 16) | ((green & 255) << 8) | (blue & 255);
 
-#if WPF
     /// <summary>
     /// Converts a color in ARGB format to a <see cref="System.Windows.Media.Color"/>.
     /// </summary>
@@ -42,7 +41,6 @@ public static class ColorUtils
     /// </summary>
     public static int ArgbFromColor(System.Windows.Media.Color color) =>
         (color.A << 24) | (color.R << 16) | (color.G << 8) | color.B;
-#endif
 
     /// <summary>
     /// Converts a color from linear RGB components to ARGB format.

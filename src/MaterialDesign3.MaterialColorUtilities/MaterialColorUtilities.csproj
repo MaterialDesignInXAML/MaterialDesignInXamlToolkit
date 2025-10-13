@@ -24,11 +24,6 @@
     <NoWarn>CS0618</NoWarn>
   </PropertyGroup>
 
-  <!-- WPF may not be available when we want to target non-windows platforms in future -->
-  <PropertyGroup Condition="'$(TargetFramework)' == 'net462' OR '$(TargetFramework)' == 'net8.0-windows'">
-    <DefineConstants>$(DefineConstants);WPF</DefineConstants>
-  </PropertyGroup>
-
   <ItemGroup>
     <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
       <_Parameter1>MDIXColorsVersion</_Parameter1>

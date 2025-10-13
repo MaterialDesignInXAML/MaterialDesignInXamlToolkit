@@ -66,7 +66,6 @@ public sealed class DynamicSchemeTests
         await Assert.That(hue).IsEqualTo(163.0).Within(1.0);
     }
 
-#if WPF
     /// <summary>
     /// Shows how te crate a theme from a primary color.
     /// </summary>
@@ -169,5 +168,4 @@ public sealed class DynamicSchemeTests
             () => mdc.TextHintInverse.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x19, 0x1C, 0x17)));
         await Task.CompletedTask;
     }
-#endif
 }

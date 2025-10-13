@@ -14,11 +14,6 @@
     <SuppressImplicitGitSourceLink>true</SuppressImplicitGitSourceLink>
   </PropertyGroup>
 
-  <!-- WPF may not be available when we want to target non-windows platforms in future -->
-  <PropertyGroup Condition="'$(TargetFramework)' == 'net462' OR '$(TargetFramework)' == 'net8.0-windows'">
-    <DefineConstants>$(DefineConstants);WPF</DefineConstants>
-  </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\..\src\MaterialDesign3.MaterialColorUtilities\MaterialColorUtilities.csproj" />
   </ItemGroup>
