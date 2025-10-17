@@ -12,7 +12,8 @@
   <Style x:Key="MaterialDesignPopupBoxButton" TargetType="{x:Type Button}">
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="HorizontalContentAlignment" Value="Left" />
-    <Setter Property="Padding" Value="16,0,16,16" />
+    <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="Padding" Value="16,0,16,0" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type Button}">
@@ -30,38 +31,38 @@
                 <VisualState Name="MouseOver">
                   <Storyboard>
                     <DoubleAnimation Storyboard.TargetName="MouseOverBorder"
-                                     Storyboard.TargetProperty="Opacity"
-                                     To="0.1"
-                                     Duration="0" />
+                                   Storyboard.TargetProperty="Opacity"
+                                   To="0.1"
+                                   Duration="0" />
                   </Storyboard>
                 </VisualState>
                 <VisualState Name="Disabled">
                   <Storyboard>
                     <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                     To="0.48"
-                                     Duration="0" />
+                                   To="0.48"
+                                   Duration="0" />
                   </Storyboard>
                 </VisualState>
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
             <Border x:Name="MouseOverBorder"
-                    Background="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
-                    Opacity="0" />
+                  Background="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
+                  Opacity="0" />
             <wpf:Ripple MinHeight="48"
-                        Padding="{TemplateBinding Padding}"
-                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                        Content="{TemplateBinding Content}"
-                        ContentTemplate="{TemplateBinding ContentTemplate}"
-                        ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                        Feedback="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
-                        Focusable="False"
-                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                      Padding="{TemplateBinding Padding}"
+                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                      Content="{TemplateBinding Content}"
+                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                      ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                      Feedback="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
+                      Focusable="False"
+                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
-    <Setter Property="VerticalContentAlignment" Value="Bottom" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
   </Style>
 
   <wpf:PackIcon x:Key="MaterialDesignPopupBoxToggleContent"
