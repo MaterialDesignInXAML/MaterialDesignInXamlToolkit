@@ -140,17 +140,12 @@ public static class ScrollViewerAssist
                 const int WM_MOUSEHWHEEL = 0x020E;
                 switch (msg)
                 {
-                    case WM_MOUSEHWHEEL:
+                    case WM_MOUSEHWHEEL when scrollViewer.IsMouseOver:
                         int tilt = (short)((wParam.ToInt64() >> 16) & 0xFFFF);
-                        OnMouseTilt(tilt);
+                        scrollViewer.ScrollToHorizontalOffset(scrollViewer.HorizontalOffset + tilt);
                         return (IntPtr)1;
                 }
                 return IntPtr.Zero;
-            }
-
-            void OnMouseTilt(int tilt)
-            {
-                scrollViewer.ScrollToHorizontalOffset(scrollViewer.HorizontalOffset + tilt);
             }
         }
     }
