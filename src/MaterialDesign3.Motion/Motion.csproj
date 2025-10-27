@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>MaterialDesignThemes.Motion</RootNamespace>
+    <AssemblyName>MaterialDesignThemes.Motion</AssemblyName>
+    <TargetFrameworks>net462;net8.0-windows</TargetFrameworks>
+    <UseWPF>true</UseWPF>
+    <Description>Material motion specifications for Material Design in XAML Toolkit.</Description>
+    <LangVersion>13</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <EnableSourceLink>false</EnableSourceLink>
+    <SuppressImplicitGitSourceLink>true</SuppressImplicitGitSourceLink>
+    <MDIXColorsVersion Condition="$(MDIXColorsVersion) == '' Or $(MDIXColorsVersion) == '*Undefined*'">1.0.1</MDIXColorsVersion>
+    <MDIXColorsVersion>$([System.Text.RegularExpressions.Regex]::Replace("$(MDIXColorsVersion)", "-ci\d+$", ""))</MDIXColorsVersion>
+    <Version>$(MDIXColorsVersion)</Version>
+    <AssemblyVersion>$(MDIXColorsVersion)</AssemblyVersion>
+
+    <!-- Package Properties -->
+    <PackageId>MaterialDesignMotion</PackageId>
+    <Title>Material Design 3 Color Utilities</Title>
+    <PackageDescription>Utilities to create Material Design 3 Color Palettes</PackageDescription>
+    <PackageTags>WPF XAML Material Design Animation UI UX</PackageTags>
+    <NoWarn>CS0618</NoWarn>
+    <WarningsAsErrors>enable</WarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>MDIXColorsVersion</_Parameter1>
+      <_Parameter2>$(MDIXColorsVersion)</_Parameter2>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup Label="Compatibility Libraries for .NET462" Condition="'$(TargetFramework)' == 'net462'">
+    <PackageReference Include="System.Memory" />
+    <PackageReference Include="System.ValueTuple" />
+    <PackageReference Include="Polyfill">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Bcl.HashCode" />
+  </ItemGroup>
+</Project>
