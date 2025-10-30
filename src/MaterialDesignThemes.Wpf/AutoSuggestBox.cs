@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.ComponentModel;
 using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf;
@@ -244,7 +245,7 @@ public class AutoSuggestBox : TextBox
     {
         while (element is not null)
         {
-            if (element is ButtonBase or TextBoxBase or ComboBox)
+            if (element is ButtonBase or TextBoxBase or ComboBox or Hyperlink)
             {
                 return true;
             }
