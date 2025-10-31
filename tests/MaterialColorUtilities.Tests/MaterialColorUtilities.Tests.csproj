@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net8.0-windows</TargetFrameworks>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <AssemblyTitle>MaterialColorUtilities.Tests</AssemblyTitle>
     <Product>MaterialColorUtilities.Tests</Product>
     <OutputType>Exe</OutputType>
@@ -13,6 +13,7 @@
     <EnableSourceLink>false</EnableSourceLink>
     <SuppressImplicitGitSourceLink>true</SuppressImplicitGitSourceLink>
   </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\src\MaterialDesign3.MaterialColorUtilities\MaterialColorUtilities.csproj" />
   </ItemGroup>
@@ -25,10 +26,12 @@
     <PackageReference Include="System.Net.Http" />
     <PackageReference Include="System.Text.RegularExpressions" />
     <PackageReference Include="TUnit" />
+    <PackageReference Include="Shouldly" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="TUnit.Assertions.AssertConditions.Throws" />
     <Using Include="TUnit.Core.Executors" />
     <Using Include="TUnit.Assertions" />
+    <Using Include="Shouldly" />
   </ItemGroup>
 </Project>
