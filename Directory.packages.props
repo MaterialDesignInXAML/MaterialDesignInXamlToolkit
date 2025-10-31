@@ -1,4 +1,10 @@
 <Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <!-- https://learn.microsoft.com/nuget/consume-packages/Central-Package-Management?WT.mc_id=DT-MVP-5003472#transitive-pinning -->
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+  </PropertyGroup>
+  
   <ItemGroup>
     <PackageVersion Include="BluwolfIcons" Version="1.0.1" />
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.0" />
