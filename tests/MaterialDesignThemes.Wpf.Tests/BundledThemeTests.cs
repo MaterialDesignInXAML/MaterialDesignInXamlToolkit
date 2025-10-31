@@ -26,6 +26,7 @@ public class BundledThemeTests
 
         //Assert
         await Assert.That(() => bundledTheme.GetTheme()).ThrowsExactly<InvalidOperationException>();
+        Assert.NotNull(null);
     }
 
     [Test, STAThreadExecutor]
