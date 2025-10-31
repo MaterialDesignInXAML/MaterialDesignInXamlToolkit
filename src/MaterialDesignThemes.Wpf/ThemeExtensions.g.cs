@@ -34,7 +34,7 @@ static partial class ThemeExtensions
         theme.CheckBoxes.Disabled = BaseThemeColors.Neutral700;
         theme.CheckBoxes.UncheckedBorder = BaseThemeColors.Black100;
         theme.CheckBoxes.Off = BaseThemeColors.Black500;
-        theme.Chips.Background = Color.FromArgb(0x12, 0x00, 0x00, 0x00);
+        theme.Chips.Background = BaseThemeColors.Black50;
         theme.Chips.OutlineBorder = BaseThemeColors.Black100;
         theme.ColorZones.DarkBackground = BaseThemeColors.Neutral100;
         theme.ColorZones.DarkForeground = BaseThemeColors.Neutral900;
@@ -123,7 +123,7 @@ static partial class ThemeExtensions
         theme.CheckBoxes.Disabled = BaseThemeColors.Neutral300;
         theme.CheckBoxes.UncheckedBorder = BaseThemeColors.White100;
         theme.CheckBoxes.Off = BaseThemeColors.White500;
-        theme.Chips.Background = Color.FromArgb(0xFF, 0x2E, 0x3C, 0x43);
+        theme.Chips.Background = BaseThemeColors.White50;
         theme.Chips.OutlineBorder = BaseThemeColors.White100;
         theme.ColorZones.DarkBackground = BaseThemeColors.Neutral100;
         theme.ColorZones.DarkForeground = BaseThemeColors.Neutral900;
