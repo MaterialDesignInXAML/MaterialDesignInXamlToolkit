@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.ComponentModel;
 using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf;
@@ -8,6 +9,15 @@ namespace MaterialDesignThemes.Wpf;
 [TemplatePart(Name = AutoSuggestBoxListPart, Type = typeof(ListBox))]
 public class AutoSuggestBox : TextBox
 {
+    public static bool? GetIsInteractiveElement(DependencyObject obj)
+        => (bool?)obj.GetValue(IsInteractiveElementProperty);
+
+    public static void SetIsInteractiveElement(DependencyObject obj, bool? value)
+        => obj.SetValue(IsInteractiveElementProperty, value);
+
+    public static readonly DependencyProperty IsInteractiveElementProperty =
+        DependencyProperty.RegisterAttached("IsInteractiveElement", typeof(bool?), typeof(AutoSuggestBox), new PropertyMetadata(null));
+
     private const string AutoSuggestBoxListPart = "PART_AutoSuggestBoxList";
 
     protected ListBox? _autoSuggestBoxList;
@@ -185,6 +195,11 @@ public class AutoSuggestBox : TextBox
     protected override void OnLostFocus(RoutedEventArgs e)
     {
         base.OnLostFocus(e);
+        if (_autoSuggestBoxList is { } list &&
+            (list.IsKeyboardFocused || list.IsKeyboardFocusWithin))
+        {
+            return;
+        }
         CloseAutoSuggestionPopUp();
     }
     protected override void OnTextChanged(TextChangedEventArgs e)
@@ -206,6 +221,12 @@ public class AutoSuggestBox : TextBox
     {
         if (_autoSuggestBoxList is null || e.OriginalSource is not FrameworkElement element)
             return;
+
+        // If the user clicked on an interactive element, let it handle the event.
+        if (IsInteractiveElement(element))
+        {
+            return;
+        }
 
         var selectedItem = element.DataContext;
         if (!_autoSuggestBoxList.Items.Contains(selectedItem))
@@ -236,6 +257,27 @@ public class AutoSuggestBox : TextBox
     #endregion
 
     #region Methods
+    private bool IsInteractiveElement(DependencyObject? element)
+    {
+        return element.GetVisualAncestry()
+            .Where(x => x != this)
+            .Select(IsInteractive)
+            .Where(x => x is not null)
+            .FirstOrDefault() ?? false;
+
+        static bool? IsInteractive(DependencyObject element)
+        {
+            if (GetIsInteractiveElement(element) is bool isInteractiveElement)
+            {
+                return isInteractiveElement;
+            }
+            if (element is ButtonBase or TextBoxBase or ComboBox or Hyperlink)
+            {
+                return true;
+            }
+            return null;
+        }
+    }
 
     private void CloseAutoSuggestionPopUp()
     {
