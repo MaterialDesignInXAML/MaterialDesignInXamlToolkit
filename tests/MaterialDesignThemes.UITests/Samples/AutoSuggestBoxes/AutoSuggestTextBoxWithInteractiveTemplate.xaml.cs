@@ -1,19 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 namespace MaterialDesignThemes.UITests.Samples.AutoSuggestBoxes;
@@ -32,7 +17,7 @@ public partial class AutoSuggestTextBoxWithInteractiveTemplate : UserControl
 
 public partial class AutoSuggestTextBoxWithInteractiveTemplateViewModel : ObservableObject
 {
-    private List<SuggestionThing2> _baseSuggestions;
+    private readonly List<SuggestionThing2> _baseSuggestions;
 
     [ObservableProperty]
     private List<SuggestionThing2> _suggestions = [];
@@ -63,7 +48,7 @@ public partial class AutoSuggestTextBoxWithInteractiveTemplateViewModel : Observ
             new("Mtn Dew"),
             new("Orange")
         ];
-        Suggestions = new(_baseSuggestions);
+        Suggestions = [.. _baseSuggestions];
     }
 
     private static bool IsMatch(string item, string currentText)

@@ -20,7 +20,9 @@
             <ColumnDefinition Width="auto" />
           </Grid.ColumnDefinitions>
           <StackPanel Grid.Column="0" Orientation="Horizontal">
-            <TextBlock VerticalAlignment="Center" Text="{Binding Name}" />
+            <TextBlock VerticalAlignment="Center" Text="{Binding Name}"
+                       Background="Transparent"
+                       x:Name="NameTextblock"/>
             <TextBlock Margin="8,0"
                        VerticalAlignment="Center"
                        Text="{Binding Count}" />

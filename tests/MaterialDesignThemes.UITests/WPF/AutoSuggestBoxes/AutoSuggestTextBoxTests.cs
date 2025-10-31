@@ -8,7 +8,7 @@ public class AutoSuggestBoxTests : TestBase
 {
     public AutoSuggestBoxTests()
     {
-        AttachedDebuggerToRemoteProcess = false;
+        AttachedDebuggerToRemoteProcess = true;
     }
 
     [Test]
@@ -245,16 +245,15 @@ public class AutoSuggestBoxTests : TestBase
         // Act
         await suggestBox.MoveKeyboardFocus();
         await suggestBox.SendInput(new KeyboardInput("a"));
-        await Task.Delay(50, TestContext.Current!.CancellationToken);
+        await Task.Delay(500, TestContext.Current!.CancellationToken);
 
         // Find the button in the first suggestion item
         var thirdListBoxItem = await suggestionListBox.GetElement<ListBoxItem>("/ListBoxItem[2]");
         var button = await thirdListBoxItem.GetElement<Button>();
 
         // Click the button
-        await button.MoveCursorTo();
         await button.LeftClick();
-        await Task.Delay(50, TestContext.Current!.CancellationToken);
+        await Task.Delay(500, TestContext.Current!.CancellationToken);
 
         // Assert
         await Assert.That(await suggestBox.GetIsSuggestionOpen()).IsTrue();
@@ -268,6 +267,76 @@ public class AutoSuggestBoxTests : TestBase
             await Assert.That(thirdItem.Count).IsEqualTo(1);
         }
         await suggestBox.RemoteExecute(AssertViewModelProperty);
+        recorder.Success();
+    }
+
+    [Test]
+    public async Task AutoSuggestBox_ClickingButtonForcingNonInteractive_SelectsItemAndClosesPopup()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // Arrange
+        IVisualElement<AutoSuggestBox> suggestBox = (await LoadUserControl<AutoSuggestTextBoxWithInteractiveTemplate>()).As<AutoSuggestBox>();
+        IVisualElement<Popup> popup = await suggestBox.GetElement<Popup>();
+        IVisualElement<ListBox> suggestionListBox = await popup.GetElement<ListBox>();
+
+        // Act
+        await suggestBox.MoveKeyboardFocus();
+        await suggestBox.SendInput(new KeyboardInput("a"));
+        await Task.Delay(500, TestContext.Current!.CancellationToken);
+
+        // Find the button in the first suggestion item
+        var thirdListBoxItem = await suggestionListBox.GetElement<ListBoxItem>("/ListBoxItem[2]");
+        var button = await thirdListBoxItem.GetElement<Button>();
+
+        static void SetNonInteractive(Button button)
+            => AutoSuggestBox.SetIsInteractiveElement(button, false);
+        await button.RemoteExecute(SetNonInteractive);
+
+        // Click the button
+        await button.LeftClick();
+        await Task.Delay(500, TestContext.Current!.CancellationToken);
+
+        // Assert
+        await Assert.That(await suggestBox.GetIsSuggestionOpen()).IsFalse();
+
+        recorder.Success();
+    }
+
+    [Test]
+    public async Task AutoSuggestBox_ClickingTextblockThatIsInteractive_DoesNotSelectOrClosePopup()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // Arrange
+        IVisualElement<AutoSuggestBox> suggestBox = (await LoadUserControl<AutoSuggestTextBoxWithInteractiveTemplate>()).As<AutoSuggestBox>();
+        IVisualElement<Popup> popup = await suggestBox.GetElement<Popup>();
+        IVisualElement<ListBox> suggestionListBox = await popup.GetElement<ListBox>();
+
+        // Act
+        await suggestBox.MoveKeyboardFocus();
+        await suggestBox.SendInput(new KeyboardInput("a"));
+        await Task.Delay(500, TestContext.Current!.CancellationToken);
+
+        // Find the button in the first suggestion item
+        var thirdListBoxItem = await suggestionListBox.GetElement<ListBoxItem>("/ListBoxItem[2]");
+        var textBlock = await thirdListBoxItem.GetElement<TextBlock>("NameTextblock");
+
+        static void SetInteractive(TextBlock textBlock)
+            => AutoSuggestBox.SetIsInteractiveElement(textBlock, true);
+        await textBlock.RemoteExecute(SetInteractive);
+
+        // Click the button
+        await textBlock.LeftClick();
+        await Task.Delay(500, TestContext.Current!.CancellationToken);
+
+        // Assert
+        await Assert.That(await suggestBox.GetIsSuggestionOpen()).IsTrue();
+
+        // The list box item should selected because the TextBlock does not handle the click
+        int selectedIndex = await suggestionListBox.GetSelectedIndex();
+        await Assert.That(selectedIndex).IsEqualTo(2); 
+
         recorder.Success();
     }
 
