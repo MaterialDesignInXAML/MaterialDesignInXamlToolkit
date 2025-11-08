@@ -339,14 +339,19 @@
             </MultiTrigger>
 
             <!-- Floating hint -->
-            <Trigger Property="wpf:HintAssist.IsFloating" Value="True">
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
+                <Condition SourceName="Hint" Property="IsHintInFloatingPosition" Value="True" />
+              </MultiTrigger.Conditions>
               <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
-            </Trigger>
+            </MultiTrigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="wpf:HintAssist.IsFloating" Value="True" />
                 <Condition Property="IsKeyboardFocused" Value="True" />
               </MultiTrigger.Conditions>
+              <Setter TargetName="Hint" Property="HintOpacity" Value="1" />
               <Setter TargetName="Hint" Property="Foreground" Value="{Binding Path=(wpf:HintAssist.Foreground), RelativeSource={RelativeSource TemplatedParent}}" />
             </MultiTrigger>
 
