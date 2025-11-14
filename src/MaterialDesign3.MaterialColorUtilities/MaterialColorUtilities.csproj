@@ -2,7 +2,7 @@
   <PropertyGroup>
     <RootNamespace>MaterialColorUtilities</RootNamespace>
     <AssemblyName>MaterialColorUtilities</AssemblyName>
-    <TargetFrameworks>net462;net8.0-windows</TargetFrameworks>
+    <TargetFrameworks>net462;net8.0-windows;net10.0-windows</TargetFrameworks>
     <LangVersion>13</LangVersion>
     <ImplicitUsings>disable</ImplicitUsings>
     <RootNamespace>MaterialColorUtilities</RootNamespace>
