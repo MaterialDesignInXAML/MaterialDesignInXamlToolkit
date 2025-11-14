@@ -1,53 +1,54 @@
 name: Build Artifacts
 
 on:
-    workflow_call:
-        inputs:
-            build-configuration:
-                default: "Release"
-                required: false
-                type: string
-            mdix-version:
-                required: true
-                type: string
-            mdix-colors-version:
-                required: true
-                type: string
-            mdix-mahapps-version:
-                required: true
-                type: string
+  workflow_call:
+    inputs:
+      build-configuration:
+        default: "Release"
+        required: false
+        type: string
+      mdix-version:
+        required: true
+        type: string
+      mdix-colors-version:
+        required: true
+        type: string
+      mdix-mahapps-version:
+        required: true
+        type: string
 
 jobs:
-    build:
-        name: Build and Test
-        runs-on: windows-latest
+  build:
+    name: Build and Test
+    runs-on: windows-latest
 
-        env:
-            solution: MaterialDesignToolkit.Full.sln
+    env:
+      solution: MaterialDesignToolkit.Full.sln
 
         steps:
             - uses: actions/checkout@v6
 
-            - name: Setup .NET
-              uses: actions/setup-dotnet@v5
-              with:
-                  dotnet-version: |
-                      8.x
-                      9.x
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: |
+            8.x
+            9.x
+            10.x
 
-            - name: Restore dependencies
-              run: dotnet restore ${{ env.solution }}
+      - name: Restore dependencies
+        run: dotnet restore ${{ env.solution }}
 
-            - name: Build
-              run: dotnet build ${{ env.solution }} --configuration ${{ inputs.build-configuration }} --no-restore -p:Platform="Any CPU" -p:TreatWarningsAsErrors=True
-              env:
-                  MDIXVersion: ${{ inputs.mdix-version }}
-                  MDIXColorsVersion: ${{ inputs.mdix-colors-version }}
-                  MDIXMahAppsVersion: ${{ inputs.mdix-mahapps-version }}
+      - name: Build
+        run: dotnet build ${{ env.solution }} --configuration ${{ inputs.build-configuration }} --no-restore -p:Platform="Any CPU" -p:TreatWarningsAsErrors=True
+        env:
+          MDIXVersion: ${{ inputs.mdix-version }}
+          MDIXColorsVersion: ${{ inputs.mdix-colors-version }}
+          MDIXMahAppsVersion: ${{ inputs.mdix-mahapps-version }}
 
-            - name: Test
-              timeout-minutes: 20
-              run: dotnet test ${{ env.solution }} --configuration ${{ inputs.build-configuration }} --no-build --blame-crash --logger GitHubActions
+      - name: Test
+        timeout-minutes: 20
+        run: dotnet test ${{ env.solution }} --configuration ${{ inputs.build-configuration }} --no-build --blame-crash --logger GitHubActions
 
             - name: Upload Screenshots
               if: ${{ always() }}
@@ -57,8 +58,8 @@ jobs:
                   path: ${{ github.workspace }}\tests\MaterialDesignThemes.UITests\bin\${{ inputs.build-configuration }}\net9.0-windows\Screenshots
                   if-no-files-found: ignore
 
-            - name: Build NuGets
-              run: .\build\BuildNugets.ps1 -MDIXVersion ${{ inputs.mdix-version }} -MDIXColorsVersion ${{ inputs.mdix-colors-version }} -MDIXMahAppsVersion ${{ inputs.mdix-mahapps-version }}
+      - name: Build NuGets
+        run: .\build\BuildNugets.ps1 -MDIXVersion ${{ inputs.mdix-version }} -MDIXColorsVersion ${{ inputs.mdix-colors-version }} -MDIXMahAppsVersion ${{ inputs.mdix-mahapps-version }}
 
             - name: Upload NuGets
               uses: actions/upload-artifact@v6
