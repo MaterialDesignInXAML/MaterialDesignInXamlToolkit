@@ -9,7 +9,7 @@ on:
                 type: string
 
 env:
-    solution: MaterialDesignToolkit.Full.sln
+    solution: MaterialDesignToolkit.Full.slnx
     GITHUB_TOKEN: ${{ secrets.SA_PAT }}
 
 defaults:
