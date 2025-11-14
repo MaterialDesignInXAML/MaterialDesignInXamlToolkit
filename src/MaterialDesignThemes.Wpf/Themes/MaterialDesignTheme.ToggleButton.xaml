@@ -327,6 +327,7 @@
   <Style x:Key="MaterialDesignSwitchToggleButton" TargetType="{x:Type ToggleButton}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
     <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Cursor" Value="Hand" />
     <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
     <Setter Property="Padding" Value="0,1,0,0" />
@@ -438,6 +439,20 @@
                     <ScaleTransform ScaleX="1" ScaleY="1" />
                   </Ellipse.RenderTransform>
                 </Ellipse>
+                <Ellipse x:Name="halo"
+                         Width="22"
+                         Height="22"
+                         Margin="0"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         Fill="{DynamicResource MaterialDesign.Brush.Primary.Light}"
+                         IsHitTestVisible="False"
+                         Opacity="0"
+                         RenderTransformOrigin="0.5,0.5">
+                  <Ellipse.RenderTransform>
+                    <ScaleTransform ScaleX="2.5" ScaleY="2.5" />
+                  </Ellipse.RenderTransform>
+                </Ellipse>
                 <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                   <Ellipse x:Name="Thumb"
                            Width="25"
@@ -498,6 +513,9 @@
                   <SolidColorBrush Opacity=".12" Color="Black" />
                 </Setter.Value>
               </Setter>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Setter TargetName="halo" Property="Opacity" Value="{x:Static wpf:Constants.InteractionHoverOpacity}" />
             </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
