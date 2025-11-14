@@ -23,7 +23,7 @@ jobs:
     runs-on: windows-latest
 
     env:
-      solution: MaterialDesignToolkit.Full.sln
+      solution: MaterialDesignToolkit.Full.slnx
 
         steps:
             - uses: actions/checkout@v6
