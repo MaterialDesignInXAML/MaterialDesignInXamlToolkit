@@ -1,0 +1,54 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="ARM" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Demos/">
+    <Project Path="src/MahMaterialDragablzMashUp/MahAppsDragablzDemo.csproj" />
+    <Project Path="src/MainDemo.Wpf/MaterialDesignDemo.csproj" />
+    <Project Path="src/MaterialDesign3.Demo.Wpf/MaterialDesign3Demo.csproj" />
+    <Project Path="src/MaterialDesignDemo.Shared/MaterialDesignDemo.Shared.csproj" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".config/dotnet-tools.json" />
+    <File Path=".editorconfig" />
+    <File Path="build/BuildNugets.ps1" />
+    <File Path="build/MigrateBrushes.ps1" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.packages.props" />
+    <File Path="global.json" />
+    <File Path="nuget.config" />
+    <File Path="README.md" />
+    <File Path="Settings.XAMLStyler" />
+  </Folder>
+  <Folder Name="/Solution Items/Build/">
+    <File Path=".github/workflows/build_artifacts.yml" />
+    <File Path=".github/workflows/control_styles.yml" />
+    <File Path=".github/workflows/get_versions.yml" />
+    <File Path=".github/workflows/icon_update.yml" />
+    <File Path=".github/workflows/nightly_release.yml" />
+    <File Path=".github/workflows/pr_verification.yml" />
+    <File Path=".github/workflows/release.yml" />
+  </Folder>
+  <Folder Name="/Tools/">
+    <Project Path="src/MaterialDesign3.MaterialColorUtilities/MaterialColorUtilities.csproj" />
+    <Project Path="src/MaterialDesign3.Motion/Motion.csproj" />
+    <Project Path="src/MaterialDesignToolkit.ResourceGeneration/MaterialDesignToolkit.ResourceGeneration.csproj" />
+    <Project Path="tests/MaterialColorUtilities.Tests/MaterialColorUtilities.Tests.csproj" />
+  </Folder>
+  <Folder Name="/web/">
+    <File Path="src/web/images/MashUp.gif" />
+    <File Path="src/web/PaletteBuilder.html" />
+    <File Path="src/web/scripts/PaletteBuilder.js" />
+  </Folder>
+  <Project Path="src/MaterialDesignColors.Wpf/MaterialDesignColors.Wpf.csproj" />
+  <Project Path="src/MaterialDesignThemes.MahApps/MaterialDesignThemes.MahApps.csproj" />
+  <Project Path="src/MaterialDesignThemes.Wpf/MaterialDesignThemes.Wpf.csproj" />
+  <Project Path="tests/MaterialDesignColors.Wpf.Tests/MaterialDesignColors.Wpf.Tests.csproj" />
+  <Project Path="tests/MaterialDesignThemes.UITests/MaterialDesignThemes.UITests.csproj">
+    <BuildDependency Project="src/MainDemo.Wpf/MaterialDesignDemo.csproj" />
+  </Project>
+  <Project Path="tests/MaterialDesignThemes.Wpf.Tests/MaterialDesignThemes.Wpf.Tests.csproj" />
+</Solution>
