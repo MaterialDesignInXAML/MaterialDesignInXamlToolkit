@@ -13,7 +13,7 @@ public class ChipTests : TestBase
         ");
 
         //Act
-        string? content = await chip.GetContent();
+        object? content = await chip.GetContent();
 
         //Assert
         await Assert.That(content).IsEqualTo("Test Chip");
@@ -134,7 +134,8 @@ public class ChipTests : TestBase
 
         //Assert
         var dataContext = await chip.GetProperty<TestViewModel>(nameof(FrameworkElement.DataContext));
-        await Assert.That(dataContext.DeleteCommandExecuted).IsTrue();
+        await Assert.That(dataContext).IsNotNull();
+        await Assert.That(dataContext!.DeleteCommandExecuted).IsTrue();
 
         recorder.Success();
     }
@@ -154,7 +155,7 @@ public class ChipTests : TestBase
             """);
 
         //Act
-        var iconBackground = await chip.GetIconBackground();
+        var iconBackground = await chip.GetProperty<Brush>(nameof(Chip.IconBackground));
 
         //Assert
         await Assert.That(iconBackground).IsNotNull();
@@ -177,7 +178,7 @@ public class ChipTests : TestBase
             """);
 
         //Act
-        var iconForeground = await chip.GetIconForeground();
+        var iconForeground = await chip.GetProperty<Brush>(nameof(Chip.IconForeground));
 
         //Assert
         await Assert.That(iconForeground).IsNotNull();
@@ -197,7 +198,7 @@ public class ChipTests : TestBase
 
         //Act
         IVisualElement<Button> deleteButton = await chip.GetElement<Button>("PART_DeleteButton");
-        var toolTip = await deleteButton.GetToolTip();
+        var toolTip = await deleteButton.GetProperty<object>(nameof(FrameworkElement.ToolTip));
 
         //Assert
         await Assert.That(toolTip).IsEqualTo("Remove this chip");
@@ -251,7 +252,8 @@ public class ChipTests : TestBase
 
         //Assert
         var dataContext = await chip.GetProperty<TestViewModel>(nameof(FrameworkElement.DataContext));
-        await Assert.That(dataContext.DeleteCommandParameter).IsEqualTo("TestParameter");
+        await Assert.That(dataContext).IsNotNull();
+        await Assert.That(dataContext!.DeleteCommandParameter).IsEqualTo("TestParameter");
 
         recorder.Success();
     }
@@ -282,7 +284,9 @@ public class ChipTests : TestBase
             _execute = execute;
         }
 
+        #pragma warning disable CS0067 // Event is never used
         public event EventHandler? CanExecuteChanged;
+        #pragma warning restore CS0067
 
         public bool CanExecute(object? parameter) => true;
 
