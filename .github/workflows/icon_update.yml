@@ -20,7 +20,7 @@ jobs:
         runs-on: windows-latest
 
         steps:
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v6
             
             - name: Run Icon Generation
               run: dotnet run -c Release -- icons
