@@ -10,7 +10,7 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v6
             - name: Generate Control Styles Markdown
               run: build/GenerateThemesWikiMarkdown.ps1
               shell: pwsh
