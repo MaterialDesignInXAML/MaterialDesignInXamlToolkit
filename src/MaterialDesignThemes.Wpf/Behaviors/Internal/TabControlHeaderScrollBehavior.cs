@@ -42,9 +42,16 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
 
             var newTab = e.AddedItems[e.AddedItems.Count - 1];
 
-            //AssociatedObject.BringIntoView(newTab);
+            //TODO: Can we do better than queue and hope?
+            // https://source.dot.net/#PresentationFramework/System/Windows/Controls/ScrollViewer.cs,2448
+            // Try to grab the event, and provide my own retangle offseting the orignal one.
             AssociatedObject.Dispatcher.BeginInvoke(() =>
             {
+                if (tabControl.SelectedItem != newTab)
+                    return;
+
+                //TODO: Do we need to scroll?
+
                 var toOffset = AssociatedObject.ContentHorizontalOffset + (movingForward ? 52 : -52);
                 Debug.WriteLine($"Scrolling to {toOffset} from {AssociatedObject.ContentHorizontalOffset}");
                 AssociatedObject.ScrollToHorizontalOffset(toOffset);
