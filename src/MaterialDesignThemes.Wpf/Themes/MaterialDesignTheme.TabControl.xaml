@@ -1,7 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
-                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
+                    xmlns:behaviorsInternal="clr-namespace:MaterialDesignThemes.Wpf.Behaviors.Internal"
+                    xmlns:b="http://schemas.microsoft.com/xaml/behaviors">
 
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
@@ -24,54 +26,57 @@
   <ControlTemplate x:Key="ScrollingTabControlTemplate" TargetType="{x:Type TabControl}">
     <DockPanel KeyboardNavigation.TabNavigation="Local">
       <wpf:ColorZone x:Name="PART_HeaderZone"
-                           VerticalAlignment="Stretch"
-                           Panel.ZIndex="1"
-                           wpf:ElevationAssist.Elevation="{TemplateBinding wpf:ElevationAssist.Elevation}"
-                           Background="{TemplateBinding wpf:ColorZoneAssist.Background}"
-                           DockPanel.Dock="Top"
-                           Focusable="False">
+                     VerticalAlignment="Stretch"
+                     Panel.ZIndex="1"
+                     wpf:ElevationAssist.Elevation="{TemplateBinding wpf:ElevationAssist.Elevation}"
+                     Background="{TemplateBinding wpf:ColorZoneAssist.Background}"
+                     DockPanel.Dock="Top"
+                     Focusable="False">
         <ScrollViewer wpf:ScrollViewerAssist.BubbleVerticalScroll="True"
-                              wpf:ScrollViewerAssist.SupportHorizontalScroll="True"
-                              wpf:ScrollViewerAssist.IgnorePadding="{Binding Path=(wpf:ScrollViewerAssist.IgnorePadding), RelativeSource={RelativeSource TemplatedParent}}"
-                              wpf:ScrollViewerAssist.PaddingMode="{Binding Path=(wpf:ScrollViewerAssist.PaddingMode), RelativeSource={RelativeSource TemplatedParent}}"
-                              HorizontalScrollBarVisibility="Hidden"
-                              VerticalScrollBarVisibility="Hidden">
-          <StackPanel>
+                      wpf:ScrollViewerAssist.IgnorePadding="{Binding Path=(wpf:ScrollViewerAssist.IgnorePadding), RelativeSource={RelativeSource TemplatedParent}}"
+                      wpf:ScrollViewerAssist.PaddingMode="{Binding Path=(wpf:ScrollViewerAssist.PaddingMode), RelativeSource={RelativeSource TemplatedParent}}"
+                      wpf:ScrollViewerAssist.SupportHorizontalScroll="True"
+                      HorizontalScrollBarVisibility="Hidden"
+                      VerticalScrollBarVisibility="Hidden">
+          <b:Interaction.Behaviors>
+            <behaviorsInternal:TabControlHeaderScrollBehavior TabControl="{Binding RelativeSource={RelativeSource TemplatedParent}}" />
+          </b:Interaction.Behaviors>
+          <StackPanel Margin="52,0">
             <UniformGrid x:Name="CenteredHeaderPanel"
-                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                     Margin="{Binding Path=(wpf:TabAssist.HeaderPanelMargin), RelativeSource={RelativeSource TemplatedParent}}"
-                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                     wpf:TabAssist.BindableIsItemsHost="{Binding Visibility, RelativeSource={RelativeSource Self}}"
-                                     Focusable="False"
-                                     KeyboardNavigation.TabIndex="1"
-                                     Rows="1" />
+                         Margin="{Binding Path=(wpf:TabAssist.HeaderPanelMargin), RelativeSource={RelativeSource TemplatedParent}}"
+                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                         wpf:TabAssist.BindableIsItemsHost="{Binding Visibility, RelativeSource={RelativeSource Self}}"
+                         Focusable="False"
+                         KeyboardNavigation.TabIndex="1"
+                         Rows="1" />
             <VirtualizingStackPanel x:Name="HeaderPanel"
-                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                Margin="{Binding Path=(wpf:TabAssist.HeaderPanelMargin), RelativeSource={RelativeSource TemplatedParent}}"
-                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                wpf:TabAssist.BindableIsItemsHost="{Binding Visibility, RelativeSource={RelativeSource Self}}"
-                                                Focusable="False"
-                                                KeyboardNavigation.TabIndex="1"
-                                                Orientation="Horizontal" />
+                                    Margin="{Binding Path=(wpf:TabAssist.HeaderPanelMargin), RelativeSource={RelativeSource TemplatedParent}}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    wpf:TabAssist.BindableIsItemsHost="{Binding Visibility, RelativeSource={RelativeSource Self}}"
+                                    Focusable="False"
+                                    KeyboardNavigation.TabIndex="1"
+                                    Orientation="Horizontal" />
           </StackPanel>
         </ScrollViewer>
       </wpf:ColorZone>
 
       <Border x:Name="PART_BorderSelectedContent"
-                    Padding="{TemplateBinding Padding}"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    Panel.ZIndex="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Panel.ZIndex)}"
-                    Background="{x:Null}"
-                    Focusable="False">
+              Padding="{TemplateBinding Padding}"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch"
+              Panel.ZIndex="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Panel.ZIndex)}"
+              Background="{x:Null}"
+              Focusable="False">
         <ContentPresenter x:Name="PART_SelectedContentHost"
-                                  Margin="{TemplateBinding Padding}"
-                                  ContentSource="SelectedContent"
-                                  ContentStringFormat="{TemplateBinding SelectedContentStringFormat}"
-                                  ContentTemplate="{TemplateBinding SelectedContentTemplate}"
-                                  ContentTemplateSelector="{TemplateBinding SelectedContentTemplateSelector}"
-                                  Focusable="False"
-                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                          Margin="{TemplateBinding Padding}"
+                          ContentSource="SelectedContent"
+                          ContentStringFormat="{TemplateBinding SelectedContentStringFormat}"
+                          ContentTemplate="{TemplateBinding SelectedContentTemplate}"
+                          ContentTemplateSelector="{TemplateBinding SelectedContentTemplateSelector}"
+                          Focusable="False"
+                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
       </Border>
     </DockPanel>
 
@@ -166,37 +171,36 @@
   <ControlTemplate x:Key="WrappingTabControlTemplate" TargetType="{x:Type TabControl}">
     <DockPanel KeyboardNavigation.TabNavigation="Local">
       <wpf:ColorZone x:Name="PART_HeaderZone"
-                           VerticalAlignment="Stretch"
-                           Panel.ZIndex="1"
-                           wpf:ElevationAssist.Elevation="{TemplateBinding wpf:ElevationAssist.Elevation}"
-                           Background="{TemplateBinding wpf:ColorZoneAssist.Background}"
-                           DockPanel.Dock="Top"
-                           Focusable="False">
-        <ScrollViewer HorizontalScrollBarVisibility="Disabled"
-                              VerticalScrollBarVisibility="Auto">
+                     VerticalAlignment="Stretch"
+                     Panel.ZIndex="1"
+                     wpf:ElevationAssist.Elevation="{TemplateBinding wpf:ElevationAssist.Elevation}"
+                     Background="{TemplateBinding wpf:ColorZoneAssist.Background}"
+                     DockPanel.Dock="Top"
+                     Focusable="False">
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
           <WrapPanel x:Name="HeaderWrapPanel"
-                               Margin="{Binding Path=(wpf:TabAssist.HeaderPanelMargin), RelativeSource={RelativeSource TemplatedParent}}"
-                               Background="Transparent"
-                               IsItemsHost="True"
-                               KeyboardNavigation.TabIndex="1" />
+                     Margin="{Binding Path=(wpf:TabAssist.HeaderPanelMargin), RelativeSource={RelativeSource TemplatedParent}}"
+                     Background="Transparent"
+                     IsItemsHost="True"
+                     KeyboardNavigation.TabIndex="1" />
         </ScrollViewer>
       </wpf:ColorZone>
 
       <Border x:Name="PART_BorderSelectedContent"
-                    Padding="{TemplateBinding Padding}"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    Panel.ZIndex="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Panel.ZIndex)}"
-                    Background="{x:Null}"
-                    Focusable="False">
+              Padding="{TemplateBinding Padding}"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch"
+              Panel.ZIndex="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Panel.ZIndex)}"
+              Background="{x:Null}"
+              Focusable="False">
         <ContentPresenter x:Name="PART_SelectedContentHost"
-                                  Margin="{TemplateBinding Padding}"
-                                  ContentSource="SelectedContent"
-                                  ContentStringFormat="{TemplateBinding SelectedContentStringFormat}"
-                                  ContentTemplate="{TemplateBinding SelectedContentTemplate}"
-                                  ContentTemplateSelector="{TemplateBinding SelectedContentTemplateSelector}"
-                                  Focusable="False"
-                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                          Margin="{TemplateBinding Padding}"
+                          ContentSource="SelectedContent"
+                          ContentStringFormat="{TemplateBinding SelectedContentStringFormat}"
+                          ContentTemplate="{TemplateBinding SelectedContentTemplate}"
+                          ContentTemplateSelector="{TemplateBinding SelectedContentTemplateSelector}"
+                          Focusable="False"
+                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
       </Border>
     </DockPanel>
 
@@ -215,10 +219,7 @@
 
   <Style x:Key="MaterialDesignTabControlBase" TargetType="{x:Type TabControl}">
     <Setter Property="Background" Value="Transparent" />
-    <Setter Property="Foreground"
-                Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}},
-                                Path=(TextElement.Foreground),
-                                FallbackValue=Black}" />
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground), FallbackValue=Black}" />
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     <Setter Property="Padding" Value="0" />
     <Setter Property="Template" Value="{StaticResource ScrollingTabControlTemplate}" />
@@ -397,7 +398,7 @@
             </Border>
           </Grid>
           <ControlTemplate.Triggers>
-            <Trigger Property="IsMouseOver" Value="True" SourceName="ColorZoneHeader">
+            <Trigger SourceName="ColorZoneHeader" Property="IsMouseOver" Value="True">
               <Setter TargetName="Root" Property="Background" Value="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={x:Static converters:BrushOpacityConverter.Instance}, ConverterParameter=0.16}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">

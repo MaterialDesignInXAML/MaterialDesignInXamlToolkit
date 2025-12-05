@@ -56,7 +56,7 @@ public static class ScrollViewerAssist
         => (PaddingMode)element.GetValue(PaddingModeProperty);
 
     public static readonly DependencyProperty IgnorePaddingProperty = DependencyProperty.RegisterAttached(
-    "IgnorePadding", typeof(bool), typeof(ScrollViewerAssist), new PropertyMetadata(true));
+        "IgnorePadding", typeof(bool), typeof(ScrollViewerAssist), new PropertyMetadata(true));
 
     public static void SetIgnorePadding(DependencyObject element, bool value) => element.SetValue(IgnorePaddingProperty, value);
     public static bool GetIgnorePadding(DependencyObject element) => (bool)element.GetValue(IgnorePaddingProperty);
