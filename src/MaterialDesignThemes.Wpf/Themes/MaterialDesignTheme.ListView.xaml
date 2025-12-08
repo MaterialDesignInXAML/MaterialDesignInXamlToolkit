@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:internalConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters.Internal"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
   <ResourceDictionary.MergedDictionaries>
@@ -9,11 +10,15 @@
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Thumb.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
+
   <Style x:Key="{x:Static GridView.GridViewScrollViewerStyleKey}" TargetType="{x:Type ScrollViewer}">
     <Setter Property="CanContentScroll" Value="True" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ScrollViewer}">
+          <ControlTemplate.Resources>
+            <internalConverters:GridViewHasColumnsConverter x:Key="GridViewHasColumnsConverter" />
+          </ControlTemplate.Resources>
           <Grid Background="{TemplateBinding Background}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="*" />
@@ -25,7 +30,8 @@
             </Grid.RowDefinitions>
 
             <DockPanel Margin="{TemplateBinding Padding}">
-              <ScrollViewer wpf:ScrollViewerAssist.SyncHorizontalOffset="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+              <ScrollViewer x:Name="PART_HeaderScrollViewer"
+                            wpf:ScrollViewerAssist.SyncHorizontalOffset="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
                             wpf:ScrollViewerAssist.IgnorePadding="{Binding Path=(wpf:ScrollViewerAssist.IgnorePadding), RelativeSource={RelativeSource TemplatedParent}}"
                             wpf:ScrollViewerAssist.PaddingMode="{Binding Path=(wpf:ScrollViewerAssist.PaddingMode), RelativeSource={RelativeSource TemplatedParent}}"
                             DockPanel.Dock="Top"
@@ -75,6 +81,11 @@
                        Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
 
           </Grid>
+          <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=TemplatedParent.View, RelativeSource={RelativeSource Self}, Converter={StaticResource GridViewHasColumnsConverter}}" Value="False">
+              <Setter TargetName="PART_HeaderScrollViewer" Property="Visibility" Value="Collapsed" />
+            </DataTrigger>
+          </ControlTemplate.Triggers>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
