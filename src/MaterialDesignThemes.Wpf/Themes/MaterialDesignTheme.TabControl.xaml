@@ -2,6 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:internal="clr-namespace:MaterialDesignThemes.Wpf.Internal"
+                    xmlns:behaviorsInternal="clr-namespace:MaterialDesignThemes.Wpf.Behaviors.Internal"
+                    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
   <ResourceDictionary.MergedDictionaries>
@@ -37,7 +39,10 @@
                               wpf:ScrollViewerAssist.PaddingMode="{Binding Path=(wpf:ScrollViewerAssist.PaddingMode), RelativeSource={RelativeSource TemplatedParent}}"
                               HorizontalScrollBarVisibility="Hidden"
                               VerticalScrollBarVisibility="Hidden">
-          <StackPanel>
+          <b:Interaction.Behaviors>
+            <behaviorsInternal:TabControlHeaderScrollBehavior TabControl="{Binding RelativeSource={RelativeSource TemplatedParent}}" />
+          </b:Interaction.Behaviors>
+          <internal:BringIntoViewHijackingStackPanel TabScrollDirection="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(behaviorsInternal:TabControlHeaderScrollBehavior.TabScrollDirection)}">
             <UniformGrid x:Name="CenteredHeaderPanel"
                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                      Margin="{Binding Path=(wpf:TabAssist.HeaderPanelMargin), RelativeSource={RelativeSource TemplatedParent}}"
@@ -46,7 +51,7 @@
                                      Focusable="False"
                                      KeyboardNavigation.TabIndex="1"
                                      Rows="1" />
-            <internal:BringIntoViewHijackingVirtualizingStackPanel x:Name="HeaderPanel"
+            <VirtualizingStackPanel x:Name="HeaderPanel"
                                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                 Margin="{Binding Path=(wpf:TabAssist.HeaderPanelMargin), RelativeSource={RelativeSource TemplatedParent}}"
                                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -54,7 +59,7 @@
                                                 Focusable="False"
                                                 KeyboardNavigation.TabIndex="1"
                                                 Orientation="Horizontal" />
-          </StackPanel>
+          </internal:BringIntoViewHijackingStackPanel>
         </ScrollViewer>
       </wpf:ColorZone>
 
