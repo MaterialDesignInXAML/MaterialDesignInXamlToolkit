@@ -24,8 +24,8 @@ public class BringIntoViewHijackingStackPanel : StackPanel
         {
             e.Handled = true;
             double offset = TabScrollDirection switch {
-                TabScrollDirection.Backward => -52,
-                TabScrollDirection.Forward => 52,
+                TabScrollDirection.Backward => -TabControlHeaderScrollBehavior.ScrollOffset,
+                TabScrollDirection.Forward => TabControlHeaderScrollBehavior.ScrollOffset,
                 _ => 0
             };
             var point = child.TranslatePoint(new Point(), this);

@@ -33,18 +33,41 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
         DependencyProperty.Register(nameof(TabControl), typeof(TabControl),
             typeof(TabControlHeaderScrollBehavior), new PropertyMetadata(null, OnTabControlChanged));
 
+
     private static void OnTabControlChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var behavior = (TabControlHeaderScrollBehavior)d;
         if (e.OldValue is TabControl oldTabControl)
         {
             oldTabControl.SelectionChanged -= behavior.OnTabChanged;
+            oldTabControl.SizeChanged -= behavior.OnTabControlSizeChanged;
         }
         if (e.NewValue is TabControl newTabControl)
         {
             newTabControl.SelectionChanged += behavior.OnTabChanged;
+            newTabControl.SizeChanged += behavior.OnTabControlSizeChanged;
         }
     }
+
+    public FrameworkElement ScrollableContent
+    {
+        get => (FrameworkElement)GetValue(ScrollableContentProperty);
+        set => SetValue(ScrollableContentProperty, value);
+    }
+
+    public static readonly DependencyProperty ScrollableContentProperty =
+        DependencyProperty.Register(nameof(ScrollableContent), typeof(FrameworkElement),
+            typeof(TabControlHeaderScrollBehavior), new PropertyMetadata(null, OnScrollableContentChanged));
+
+    private static void OnScrollableContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var behavior = (TabControlHeaderScrollBehavior)d;
+        behavior.AddPaddingToScrollableContentIfWiderThanViewPort();
+    }
+
+    internal const double ScrollOffset = 40;    // MD spec says 52 DP, but that seems a little excessive in practice
+    internal static readonly Thickness ScrollableContentPadding = new(ScrollOffset, 0, ScrollOffset, 0);
+    internal static readonly Thickness NoScrollableContentPadding = new(0);
 
     private double? _desiredScrollStart;
     private bool _isAnimatingScroll;
@@ -70,10 +93,30 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
         int GetItemIndex(object? item) => tabControl.Items.IndexOf(item);
     }
 
+    private void OnTabControlSizeChanged(object sender, SizeChangedEventArgs _) => AddPaddingToScrollableContentIfWiderThanViewPort();
+    private void AssociatedObject_SizeChanged(object sender, SizeChangedEventArgs _) => AddPaddingToScrollableContentIfWiderThanViewPort();
+
+    private void AddPaddingToScrollableContentIfWiderThanViewPort()
+    {
+        if (ScrollableContent is null)
+            return;
+
+        if (ScrollableContent.ActualWidth > TabControl.ActualWidth)
+        {
+            ScrollableContent.Margin = ScrollableContentPadding;
+        }
+        else
+        {
+            ScrollableContent.Margin = NoScrollableContentPadding;
+        }
+    }
+
     protected override void OnAttached()
     {
         base.OnAttached();
         AssociatedObject.ScrollChanged += AssociatedObject_ScrollChanged;
+        AssociatedObject.SizeChanged += AssociatedObject_SizeChanged;
+        Dispatcher.BeginInvoke(() => AddPaddingToScrollableContentIfWiderThanViewPort());
     }
 
     protected override void OnDetaching()
@@ -82,6 +125,7 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
         if (AssociatedObject is { } ao)
         {
             ao.ScrollChanged -= AssociatedObject_ScrollChanged;
+            ao.SizeChanged -= AssociatedObject_SizeChanged;
         }
     }
 
