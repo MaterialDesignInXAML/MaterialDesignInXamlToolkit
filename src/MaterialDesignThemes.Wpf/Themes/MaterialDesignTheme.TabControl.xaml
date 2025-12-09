@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:internal="clr-namespace:MaterialDesignThemes.Wpf.Internal"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
   <ResourceDictionary.MergedDictionaries>
@@ -45,7 +46,7 @@
                                      Focusable="False"
                                      KeyboardNavigation.TabIndex="1"
                                      Rows="1" />
-            <VirtualizingStackPanel x:Name="HeaderPanel"
+            <internal:BringIntoViewHijackingVirtualizingStackPanel x:Name="HeaderPanel"
                                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                 Margin="{Binding Path=(wpf:TabAssist.HeaderPanelMargin), RelativeSource={RelativeSource TemplatedParent}}"
                                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
