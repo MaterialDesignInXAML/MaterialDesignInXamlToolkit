@@ -78,4 +78,14 @@ public static class TabAssist
 
     public static readonly DependencyProperty AnimateTabScrollingProperty =
         DependencyProperty.RegisterAttached("AnimateTabScrolling", typeof(bool), typeof(TabAssist), new PropertyMetadata(false));
+
+    public static double GetTabScrollOffset(DependencyObject obj)
+        => (double)obj.GetValue(TabScrollOffsetProperty);
+
+    public static void SetTabScrollOffset(DependencyObject obj, double value)
+        => obj.SetValue(TabScrollOffsetProperty, value);
+
+    public static readonly DependencyProperty TabScrollOffsetProperty =
+        DependencyProperty.RegisterAttached("TabScrollOffset", typeof(double),
+            typeof(TabAssist), new PropertyMetadata(0d));
 }

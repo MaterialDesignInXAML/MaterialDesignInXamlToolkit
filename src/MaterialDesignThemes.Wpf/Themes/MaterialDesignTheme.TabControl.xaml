@@ -42,7 +42,9 @@
           <b:Interaction.Behaviors>
             <behaviorsInternal:TabControlHeaderScrollBehavior TabControl="{Binding RelativeSource={RelativeSource TemplatedParent}}" ScrollableContent="{Binding ElementName=ScrollableContent}" />
           </b:Interaction.Behaviors>
-          <internal:BringIntoViewHijackingStackPanel x:Name="ScrollableContent" TabScrollDirection="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(behaviorsInternal:TabControlHeaderScrollBehavior.TabScrollDirection)}">
+          <internal:BringIntoViewHijackingStackPanel x:Name="ScrollableContent"
+                                                     TabScrollDirection="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(behaviorsInternal:TabControlHeaderScrollBehavior.TabScrollDirection)}"
+                                                     TabScrollOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.TabScrollOffset)}">
             <UniformGrid x:Name="CenteredHeaderPanel"
                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                      Margin="{Binding Path=(wpf:TabAssist.HeaderPanelMargin), RelativeSource={RelativeSource TemplatedParent}}"
@@ -234,6 +236,8 @@
     <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Button.Ripple}" />
     <Setter Property="wpf:TabAssist.HasUniformTabWidth" Value="False" />
     <Setter Property="wpf:TabAssist.AnimateTabScrolling" Value="True" />
+    <!-- MD spec says 52 DP, but that seems a little excessive in practice -->
+    <Setter Property="wpf:TabAssist.TabScrollOffset" Value="40" />
 
     <Style.Triggers>
       <Trigger Property="wpf:TabAssist.HeaderBehavior" Value="Wrapping">

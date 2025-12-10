@@ -65,10 +65,6 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
         behavior.AddPaddingToScrollableContentIfWiderThanViewPort();
     }
 
-    internal const double ScrollOffset = 40;    // MD spec says 52 DP, but that seems a little excessive in practice
-    internal static readonly Thickness ScrollableContentPadding = new(ScrollOffset, 0, ScrollOffset, 0);
-    internal static readonly Thickness NoScrollableContentPadding = new(0);
-
     private double? _desiredScrollStart;
     private bool _isAnimatingScroll;
 
@@ -103,11 +99,12 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
 
         if (ScrollableContent.ActualWidth > TabControl.ActualWidth)
         {
-            ScrollableContent.Margin = ScrollableContentPadding;
+            double offset = TabAssist.GetTabScrollOffset(TabControl);
+            ScrollableContent.Margin = new(offset, 0, offset, 0);
         }
         else
         {
-            ScrollableContent.Margin = NoScrollableContentPadding;
+            ScrollableContent.Margin = new();
         }
     }
 

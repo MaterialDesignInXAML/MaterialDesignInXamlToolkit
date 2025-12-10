@@ -15,6 +15,16 @@ public class BringIntoViewHijackingStackPanel : StackPanel
         DependencyProperty.Register(nameof(TabScrollDirection), typeof(TabScrollDirection),
             typeof(BringIntoViewHijackingStackPanel), new PropertyMetadata(TabScrollDirection.Unknown));
 
+    public double TabScrollOffset
+    {
+        get => (double)GetValue(TabScrollOffsetProperty);
+        set => SetValue(TabScrollOffsetProperty, value);
+    }
+
+    public static readonly DependencyProperty TabScrollOffsetProperty =
+        DependencyProperty.Register(nameof(TabScrollOffset),
+            typeof(double), typeof(BringIntoViewHijackingStackPanel), new PropertyMetadata(0d));
+
     public BringIntoViewHijackingStackPanel()
         => AddHandler(FrameworkElement.RequestBringIntoViewEvent, new RoutedEventHandler(OnRequestBringIntoView), false);
 
@@ -26,8 +36,8 @@ public class BringIntoViewHijackingStackPanel : StackPanel
 
             // TODO: Consider making the "TabScrollDirection" a destructive read (i.e. reset the value once it is read) to avoid leaving a Backward/Forward value that may be misinterpreted at a later stage.
             double offset = TabScrollDirection switch {
-                TabScrollDirection.Backward => -TabControlHeaderScrollBehavior.ScrollOffset,
-                TabScrollDirection.Forward => TabControlHeaderScrollBehavior.ScrollOffset,
+                TabScrollDirection.Backward => -TabScrollOffset,
+                TabScrollDirection.Forward => TabScrollOffset,
                 _ => 0
             };
             var point = child.TranslatePoint(new Point(), this);
