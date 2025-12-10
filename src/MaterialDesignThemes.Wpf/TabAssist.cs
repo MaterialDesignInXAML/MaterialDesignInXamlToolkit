@@ -70,15 +70,6 @@ public static class TabAssist
         DependencyProperty.RegisterAttached("HeaderBehavior", typeof(TabControlHeaderBehavior), typeof(TabAssist),
             new PropertyMetadata(TabControlHeaderBehavior.Scrolling));
 
-    public static bool GetAnimateTabScrolling(DependencyObject obj)
-        => (bool)obj.GetValue(AnimateTabScrollingProperty);
-
-    public static void SetAnimateTabScrolling(DependencyObject obj, bool value)
-        => obj.SetValue(AnimateTabScrollingProperty, value);
-
-    public static readonly DependencyProperty AnimateTabScrollingProperty =
-        DependencyProperty.RegisterAttached("AnimateTabScrolling", typeof(bool), typeof(TabAssist), new PropertyMetadata(false));
-
     public static double GetTabScrollOffset(DependencyObject obj)
         => (double)obj.GetValue(TabScrollOffsetProperty);
 
@@ -88,4 +79,14 @@ public static class TabAssist
     public static readonly DependencyProperty TabScrollOffsetProperty =
         DependencyProperty.RegisterAttached("TabScrollOffset", typeof(double),
             typeof(TabAssist), new PropertyMetadata(0d));
+
+    public static TimeSpan GetTabScrollDuration(DependencyObject obj)
+        => (TimeSpan)obj.GetValue(TabScrollDurationProperty);
+
+    public static void SetTabScrollDuration(DependencyObject obj, TimeSpan value)
+        => obj.SetValue(TabScrollDurationProperty, value);
+
+    public static readonly DependencyProperty TabScrollDurationProperty =
+        DependencyProperty.RegisterAttached("TabScrollDuration", typeof(TimeSpan),
+            typeof(TabAssist), new PropertyMetadata(TimeSpan.Zero));
 }

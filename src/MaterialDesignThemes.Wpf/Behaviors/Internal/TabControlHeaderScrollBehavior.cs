@@ -129,8 +129,8 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
     private void AssociatedObject_ScrollChanged(object sender, ScrollChangedEventArgs e)
     {
         Debug.WriteLine($"ContentHorizontalOffset: {AssociatedObject.ContentHorizontalOffset}, HorizontalOffset: {e.HorizontalOffset}, HorizontalChange: {e.HorizontalChange}, ViewportWidth: {e.ViewportWidth}, ExtentWidth: {e.ExtentWidth}");
-        bool useAnimation = TabAssist.GetAnimateTabScrolling(TabControl);
-        if (!useAnimation)
+        TimeSpan duration = TabAssist.GetTabScrollDuration(TabControl);
+        if (duration == TimeSpan.Zero)
             return;
         if ( _isAnimatingScroll || _desiredScrollStart is not { } desiredOffsetStart)
             return;
@@ -146,7 +146,7 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
 
         AssociatedObject.ScrollToHorizontalOffset(originalValue);
         Debug.WriteLine($"Initiating animated scroll from {originalValue} to {newValue}. Change is: {e.HorizontalChange}");
-        DoubleAnimation scrollAnimation = new(originalValue, newValue, new Duration(TimeSpan.FromMilliseconds(250)));
+        DoubleAnimation scrollAnimation = new(originalValue, newValue, new Duration(duration));
         scrollAnimation.Completed += (_, _) =>
         {
             Debug.WriteLine("Animation completed");

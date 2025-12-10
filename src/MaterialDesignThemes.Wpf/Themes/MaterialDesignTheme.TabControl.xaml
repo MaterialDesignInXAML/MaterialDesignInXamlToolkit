@@ -235,9 +235,9 @@
     <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp4" />
     <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Button.Ripple}" />
     <Setter Property="wpf:TabAssist.HasUniformTabWidth" Value="False" />
-    <Setter Property="wpf:TabAssist.AnimateTabScrolling" Value="True" />
     <!-- MD spec says 52 DP, but that seems a little excessive in practice -->
     <Setter Property="wpf:TabAssist.TabScrollOffset" Value="40" />
+    <Setter Property="wpf:TabAssist.TabScrollDuration" Value="0:0:0.250" />
 
     <Style.Triggers>
       <Trigger Property="wpf:TabAssist.HeaderBehavior" Value="Wrapping">
