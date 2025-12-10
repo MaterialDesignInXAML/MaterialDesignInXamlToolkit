@@ -23,6 +23,8 @@ public class BringIntoViewHijackingStackPanel : StackPanel
         if (e.OriginalSource is FrameworkElement child && child != this)
         {
             e.Handled = true;
+
+            // TODO: Consider making the "TabScrollDirection" a destructive read (i.e. reset the value once it is read) to avoid leaving a Backward/Forward value that may be misinterpreted at a later stage.
             double offset = TabScrollDirection switch {
                 TabScrollDirection.Backward => -TabControlHeaderScrollBehavior.ScrollOffset,
                 TabScrollDirection.Forward => TabControlHeaderScrollBehavior.ScrollOffset,
