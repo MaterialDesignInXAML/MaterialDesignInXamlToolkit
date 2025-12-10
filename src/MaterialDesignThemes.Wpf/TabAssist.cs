@@ -69,4 +69,13 @@ public static class TabAssist
     public static readonly DependencyProperty HeaderBehaviorProperty =
         DependencyProperty.RegisterAttached("HeaderBehavior", typeof(TabControlHeaderBehavior), typeof(TabAssist),
             new PropertyMetadata(TabControlHeaderBehavior.Scrolling));
+
+    public static bool GetAnimateTabScrolling(DependencyObject obj)
+        => (bool)obj.GetValue(AnimateTabScrollingProperty);
+
+    public static void SetAnimateTabScrolling(DependencyObject obj, bool value)
+        => obj.SetValue(AnimateTabScrollingProperty, value);
+
+    public static readonly DependencyProperty AnimateTabScrollingProperty =
+        DependencyProperty.RegisterAttached("AnimateTabScrolling", typeof(bool), typeof(TabAssist), new PropertyMetadata(false));
 }

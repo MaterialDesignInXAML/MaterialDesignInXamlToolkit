@@ -132,7 +132,11 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
     private void AssociatedObject_ScrollChanged(object sender, ScrollChangedEventArgs e)
     {
         Debug.WriteLine($"ContentHorizontalOffset: {AssociatedObject.ContentHorizontalOffset}, HorizontalOffset: {e.HorizontalOffset}, HorizontalChange: {e.HorizontalChange}, ViewportWidth: {e.ViewportWidth}, ExtentWidth: {e.ExtentWidth}");
-        if (_isAnimatingScroll || _desiredScrollStart is not { } desiredOffsetStart) return;
+        bool useAnimation = TabAssist.GetAnimateTabScrolling(TabControl);
+        if (!useAnimation)
+            return;
+        if ( _isAnimatingScroll || _desiredScrollStart is not { } desiredOffsetStart)
+            return;
 
         double originalValue = desiredOffsetStart;
         double newValue = e.HorizontalOffset;

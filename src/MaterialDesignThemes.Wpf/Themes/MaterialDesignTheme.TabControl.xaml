@@ -233,6 +233,7 @@
     <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp4" />
     <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Button.Ripple}" />
     <Setter Property="wpf:TabAssist.HasUniformTabWidth" Value="False" />
+    <Setter Property="wpf:TabAssist.AnimateTabScrolling" Value="True" />
 
     <Style.Triggers>
       <Trigger Property="wpf:TabAssist.HeaderBehavior" Value="Wrapping">
