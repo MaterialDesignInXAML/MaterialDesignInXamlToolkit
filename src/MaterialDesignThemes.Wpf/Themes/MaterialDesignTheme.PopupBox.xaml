@@ -17,7 +17,7 @@
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type Button}">
-          <Grid>
+          <Grid x:Name="rootGrid">
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup Name="CommonStates">
                 <VisualStateGroup.Transitions>
@@ -57,7 +57,14 @@
                       ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
                       Feedback="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
                       Focusable="False"
-                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" >
+              <wpf:Ripple.Clip>
+                <MultiBinding Converter="{x:Static converters:BorderClipConverter.Instance}">
+                  <Binding ElementName="rootGrid" Path="ActualWidth" />
+                  <Binding ElementName="rootGrid" Path="ActualHeight" />
+                </MultiBinding>
+              </wpf:Ripple.Clip>
+            </wpf:Ripple>
           </Grid>
         </ControlTemplate>
       </Setter.Value>
