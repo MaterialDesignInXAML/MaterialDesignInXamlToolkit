@@ -129,7 +129,7 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
     private void AssociatedObject_ScrollChanged(object sender, ScrollChangedEventArgs e)
     {
         Debug.WriteLine($"ContentHorizontalOffset: {AssociatedObject.ContentHorizontalOffset}, HorizontalOffset: {e.HorizontalOffset}, HorizontalChange: {e.HorizontalChange}, ViewportWidth: {e.ViewportWidth}, ExtentWidth: {e.ExtentWidth}");
-        TimeSpan duration = TabAssist.GetTabScrollDuration(TabControl);
+        TimeSpan duration = TabAssist.GetScrollDuration(TabControl);
         if (duration == TimeSpan.Zero)
             return;
         if ( _isAnimatingScroll || _desiredScrollStart is not { } desiredOffsetStart)

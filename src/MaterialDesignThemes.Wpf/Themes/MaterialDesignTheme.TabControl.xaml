@@ -237,7 +237,7 @@
     <Setter Property="wpf:TabAssist.HasUniformTabWidth" Value="False" />
     <!-- MD spec says 52 DP, but that seems a little excessive in practice -->
     <Setter Property="wpf:TabAssist.HeaderPadding" Value="40" />
-    <Setter Property="wpf:TabAssist.TabScrollDuration" Value="0:0:0.250" />
+    <Setter Property="wpf:TabAssist.ScrollDuration" Value="0:0:0.250" />
 
     <Style.Triggers>
       <Trigger Property="wpf:TabAssist.HeaderBehavior" Value="Wrapping">
