@@ -25,11 +25,23 @@ public class PaddedBringIntoViewStackPanel : StackPanel
         DependencyProperty.Register(nameof(HeaderPadding),
             typeof(double), typeof(PaddedBringIntoViewStackPanel), new PropertyMetadata(0d));
 
+    public bool UseHeaderPadding
+    {
+        get => (bool)GetValue(UseHeaderPaddingProperty);
+        set => SetValue(UseHeaderPaddingProperty, value);
+    }
+
+    public static readonly DependencyProperty UseHeaderPaddingProperty =
+        DependencyProperty.Register(nameof(UseHeaderPadding), typeof(bool), typeof(PaddedBringIntoViewStackPanel), new PropertyMetadata(false));
+
     public PaddedBringIntoViewStackPanel()
         => AddHandler(FrameworkElement.RequestBringIntoViewEvent, new RoutedEventHandler(OnRequestBringIntoView), false);
 
     private void OnRequestBringIntoView(object sender, RoutedEventArgs e)
     {
+        if (!UseHeaderPadding)
+            return;
+
         if (e.OriginalSource is FrameworkElement child && child != this)
         {
             e.Handled = true;

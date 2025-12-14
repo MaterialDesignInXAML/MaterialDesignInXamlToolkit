@@ -44,7 +44,8 @@
           </b:Interaction.Behaviors>
           <internal:PaddedBringIntoViewStackPanel x:Name="ScrollableContent"
                                                   ScrollDirection="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(behaviorsInternal:TabControlHeaderScrollBehavior.ScrollDirection)}"
-                                                  HeaderPadding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.HeaderPadding)}">
+                                                  HeaderPadding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.HeaderPadding)}"
+                                                  UseHeaderPadding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.UseHeaderPadding)}">
             <UniformGrid x:Name="CenteredHeaderPanel"
                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                      Margin="{Binding Path=(wpf:TabAssist.HeaderPanelMargin), RelativeSource={RelativeSource TemplatedParent}}"
@@ -237,6 +238,7 @@
     <Setter Property="wpf:TabAssist.HasUniformTabWidth" Value="False" />
     <!-- MD spec says 52 DP, but that seems a little excessive in practice -->
     <Setter Property="wpf:TabAssist.HeaderPadding" Value="40" />
+    <Setter Property="wpf:TabAssist.UseHeaderPadding" Value="True" />
     <Setter Property="wpf:TabAssist.ScrollDuration" Value="0:0:0.250" />
 
     <Style.Triggers>

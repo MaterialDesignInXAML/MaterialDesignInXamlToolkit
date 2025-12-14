@@ -73,6 +73,15 @@ public static class TabAssist
     public static double GetHeaderPadding(DependencyObject obj)
         => (double)obj.GetValue(HeaderPaddingProperty);
 
+    public static bool GetUseHeaderPadding(DependencyObject obj)
+        => (bool)obj.GetValue(UseHeaderPaddingProperty);
+
+    public static void SetUseHeaderPadding(DependencyObject obj, bool value)
+        => obj.SetValue(UseHeaderPaddingProperty, value);
+
+    public static readonly DependencyProperty UseHeaderPaddingProperty =
+        DependencyProperty.RegisterAttached("UseHeaderPadding", typeof(bool), typeof(TabAssist), new PropertyMetadata(false));
+
     public static void SetHeaderPadding(DependencyObject obj, double value)
         => obj.SetValue(HeaderPaddingProperty, value);
 

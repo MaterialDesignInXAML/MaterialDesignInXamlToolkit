@@ -94,6 +94,8 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
 
     private void AddPaddingToScrollableContentIfWiderThanViewPort()
     {
+        if (TabAssist.GetUseHeaderPadding(TabControl) == false)
+            return;
         if (ScrollableContent is null)
             return;
 
@@ -128,6 +130,8 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
 
     private void AssociatedObject_ScrollChanged(object sender, ScrollChangedEventArgs e)
     {
+        if (TabAssist.GetUseHeaderPadding(TabControl) == false)
+            return;
         TimeSpan duration = TabAssist.GetScrollDuration(TabControl);
         if (duration == TimeSpan.Zero)
             return;
