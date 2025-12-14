@@ -1,4 +1,4 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Windows.Media.Animation;
 using Microsoft.Xaml.Behaviors;
 
@@ -70,7 +70,7 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
 
     private void OnTabChanged(object sender, SelectionChangedEventArgs e)
     {
-        TabControl tabControl = (TabControl)sender;
+        var tabControl = (TabControl)sender;
 
         if (e.AddedItems.Count > 0)
         {
@@ -99,7 +99,7 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
 
         if (ScrollableContent.ActualWidth > TabControl.ActualWidth)
         {
-            double offset = TabAssist.GetTabScrollOffset(TabControl);
+            double offset = TabAssist.GetHeaderPadding(TabControl);
             ScrollableContent.Margin = new(offset, 0, offset, 0);
         }
         else

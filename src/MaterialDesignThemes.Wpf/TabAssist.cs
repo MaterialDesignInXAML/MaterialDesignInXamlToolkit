@@ -70,14 +70,14 @@ public static class TabAssist
         DependencyProperty.RegisterAttached("HeaderBehavior", typeof(TabControlHeaderBehavior), typeof(TabAssist),
             new PropertyMetadata(TabControlHeaderBehavior.Scrolling));
 
-    public static double GetTabScrollOffset(DependencyObject obj)
-        => (double)obj.GetValue(TabScrollOffsetProperty);
+    public static double GetHeaderPadding(DependencyObject obj)
+        => (double)obj.GetValue(HeaderPaddingProperty);
 
-    public static void SetTabScrollOffset(DependencyObject obj, double value)
-        => obj.SetValue(TabScrollOffsetProperty, value);
+    public static void SetHeaderPadding(DependencyObject obj, double value)
+        => obj.SetValue(HeaderPaddingProperty, value);
 
-    public static readonly DependencyProperty TabScrollOffsetProperty =
-        DependencyProperty.RegisterAttached("TabScrollOffset", typeof(double),
+    public static readonly DependencyProperty HeaderPaddingProperty =
+        DependencyProperty.RegisterAttached("HeaderPadding", typeof(double),
             typeof(TabAssist), new PropertyMetadata(0d));
 
     public static TimeSpan GetTabScrollDuration(DependencyObject obj)

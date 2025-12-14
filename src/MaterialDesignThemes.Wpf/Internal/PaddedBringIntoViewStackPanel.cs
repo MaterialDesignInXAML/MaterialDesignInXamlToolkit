@@ -15,14 +15,14 @@ public class PaddedBringIntoViewStackPanel : StackPanel
         DependencyProperty.Register(nameof(ScrollDirection), typeof(TabScrollDirection),
             typeof(PaddedBringIntoViewStackPanel), new PropertyMetadata(TabScrollDirection.Unknown));
 
-    public double TabScrollOffset
+    public double HeaderPadding
     {
-        get => (double)GetValue(TabScrollOffsetProperty);
-        set => SetValue(TabScrollOffsetProperty, value);
+        get => (double)GetValue(HeaderPaddingProperty);
+        set => SetValue(HeaderPaddingProperty, value);
     }
 
-    public static readonly DependencyProperty TabScrollOffsetProperty =
-        DependencyProperty.Register(nameof(TabScrollOffset),
+    public static readonly DependencyProperty HeaderPaddingProperty =
+        DependencyProperty.Register(nameof(HeaderPadding),
             typeof(double), typeof(PaddedBringIntoViewStackPanel), new PropertyMetadata(0d));
 
     public PaddedBringIntoViewStackPanel()
@@ -36,8 +36,8 @@ public class PaddedBringIntoViewStackPanel : StackPanel
 
             // TODO: Consider making the "ScrollDirection" a destructive read (i.e. reset the value once it is read) to avoid leaving a Backward/Forward value that may be misinterpreted at a later stage.
             double offset = ScrollDirection switch {
-                TabScrollDirection.Backward => -TabScrollOffset,
-                TabScrollDirection.Forward => TabScrollOffset,
+                TabScrollDirection.Backward => -HeaderPadding,
+                TabScrollDirection.Forward => HeaderPadding,
                 _ => 0
             };
             var point = child.TranslatePoint(new Point(), this);
