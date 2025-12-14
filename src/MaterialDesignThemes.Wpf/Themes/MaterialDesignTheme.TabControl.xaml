@@ -42,9 +42,9 @@
           <b:Interaction.Behaviors>
             <behaviorsInternal:TabControlHeaderScrollBehavior TabControl="{Binding RelativeSource={RelativeSource TemplatedParent}}" ScrollableContent="{Binding ElementName=ScrollableContent}" />
           </b:Interaction.Behaviors>
-          <internal:BringIntoViewHijackingStackPanel x:Name="ScrollableContent"
-                                                     TabScrollDirection="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(behaviorsInternal:TabControlHeaderScrollBehavior.TabScrollDirection)}"
-                                                     TabScrollOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.TabScrollOffset)}">
+          <internal:PaddedBringIntoViewStackPanel x:Name="ScrollableContent"
+                                                  TabScrollDirection="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(behaviorsInternal:TabControlHeaderScrollBehavior.TabScrollDirection)}"
+                                                  TabScrollOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.TabScrollOffset)}">
             <UniformGrid x:Name="CenteredHeaderPanel"
                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                      Margin="{Binding Path=(wpf:TabAssist.HeaderPanelMargin), RelativeSource={RelativeSource TemplatedParent}}"
@@ -61,7 +61,7 @@
                                                 Focusable="False"
                                                 KeyboardNavigation.TabIndex="1"
                                                 Orientation="Horizontal" />
-          </internal:BringIntoViewHijackingStackPanel>
+          </internal:PaddedBringIntoViewStackPanel>
         </ScrollViewer>
       </wpf:ColorZone>
 

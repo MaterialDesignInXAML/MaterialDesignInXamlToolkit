@@ -3,7 +3,7 @@ using MaterialDesignThemes.Wpf.Behaviors.Internal;
 
 namespace MaterialDesignThemes.Wpf.Internal;
 
-public class BringIntoViewHijackingStackPanel : StackPanel
+public class PaddedBringIntoViewStackPanel : StackPanel
 {
     public TabScrollDirection TabScrollDirection
     {
@@ -13,7 +13,7 @@ public class BringIntoViewHijackingStackPanel : StackPanel
 
     public static readonly DependencyProperty TabScrollDirectionProperty =
         DependencyProperty.Register(nameof(TabScrollDirection), typeof(TabScrollDirection),
-            typeof(BringIntoViewHijackingStackPanel), new PropertyMetadata(TabScrollDirection.Unknown));
+            typeof(PaddedBringIntoViewStackPanel), new PropertyMetadata(TabScrollDirection.Unknown));
 
     public double TabScrollOffset
     {
@@ -23,9 +23,9 @@ public class BringIntoViewHijackingStackPanel : StackPanel
 
     public static readonly DependencyProperty TabScrollOffsetProperty =
         DependencyProperty.Register(nameof(TabScrollOffset),
-            typeof(double), typeof(BringIntoViewHijackingStackPanel), new PropertyMetadata(0d));
+            typeof(double), typeof(PaddedBringIntoViewStackPanel), new PropertyMetadata(0d));
 
-    public BringIntoViewHijackingStackPanel()
+    public PaddedBringIntoViewStackPanel()
         => AddHandler(FrameworkElement.RequestBringIntoViewEvent, new RoutedEventHandler(OnRequestBringIntoView), false);
 
     private void OnRequestBringIntoView(object sender, RoutedEventArgs e)
