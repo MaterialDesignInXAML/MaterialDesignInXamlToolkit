@@ -128,7 +128,6 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
 
     private void AssociatedObject_ScrollChanged(object sender, ScrollChangedEventArgs e)
     {
-        Debug.WriteLine($"ContentHorizontalOffset: {AssociatedObject.ContentHorizontalOffset}, HorizontalOffset: {e.HorizontalOffset}, HorizontalChange: {e.HorizontalChange}, ViewportWidth: {e.ViewportWidth}, ExtentWidth: {e.ExtentWidth}");
         TimeSpan duration = TabAssist.GetScrollDuration(TabControl);
         if (duration == TimeSpan.Zero)
             return;
@@ -137,7 +136,6 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
 
         double originalValue = desiredOffsetStart;
         double newValue = e.HorizontalOffset;
-
         _isAnimatingScroll = true;
 
         // HACK: Temporarily disable user interaction while the animated scroll is ongoing. This prevents the double-click of a tab stopping the animation prematurely.
@@ -145,11 +143,9 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
         TabControl.SetCurrentValue(FrameworkElement.IsHitTestVisibleProperty, false);
 
         AssociatedObject.ScrollToHorizontalOffset(originalValue);
-        Debug.WriteLine($"Initiating animated scroll from {originalValue} to {newValue}. Change is: {e.HorizontalChange}");
         DoubleAnimation scrollAnimation = new(originalValue, newValue, new Duration(duration));
         scrollAnimation.Completed += (_, _) =>
         {
-            Debug.WriteLine("Animation completed");
             _desiredScrollStart = null;
             _isAnimatingScroll = false;
 
