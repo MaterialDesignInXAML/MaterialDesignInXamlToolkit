@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using System.Windows.Media.Animation;
 using Microsoft.Xaml.Behaviors;
 
@@ -17,11 +17,11 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
         scrollViewer.ScrollToHorizontalOffset((double)e.NewValue);
     }
 
-    public static readonly DependencyProperty TabScrollDirectionProperty =
-        DependencyProperty.RegisterAttached("TabScrollDirection", typeof(TabScrollDirection),
+    public static readonly DependencyProperty ScrollDirectionProperty =
+        DependencyProperty.RegisterAttached("ScrollDirection", typeof(TabScrollDirection),
             typeof(TabControlHeaderScrollBehavior), new PropertyMetadata(TabScrollDirection.Unknown));
-    public static TabScrollDirection GetTabScrollDirection(DependencyObject obj) => (TabScrollDirection)obj.GetValue(TabScrollDirectionProperty);
-    public static void SetTabScrollDirection(DependencyObject obj, TabScrollDirection value) => obj.SetValue(TabScrollDirectionProperty, value);
+    public static TabScrollDirection GetScrollDirection(DependencyObject obj) => (TabScrollDirection)obj.GetValue(ScrollDirectionProperty);
+    public static void SetScrollDirection(DependencyObject obj, TabScrollDirection value) => obj.SetValue(ScrollDirectionProperty, value);
 
     public TabControl TabControl
     {
@@ -75,7 +75,7 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
         if (e.AddedItems.Count > 0)
         {
             _desiredScrollStart = AssociatedObject.ContentHorizontalOffset;
-            SetTabScrollDirection(tabControl, (IsMovingForward() ? TabScrollDirection.Forward : TabScrollDirection.Backward));
+            SetScrollDirection(tabControl, (IsMovingForward() ? TabScrollDirection.Forward : TabScrollDirection.Backward));
         }
 
         bool IsMovingForward()

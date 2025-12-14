@@ -43,7 +43,7 @@
             <behaviorsInternal:TabControlHeaderScrollBehavior TabControl="{Binding RelativeSource={RelativeSource TemplatedParent}}" ScrollableContent="{Binding ElementName=ScrollableContent}" />
           </b:Interaction.Behaviors>
           <internal:PaddedBringIntoViewStackPanel x:Name="ScrollableContent"
-                                                  TabScrollDirection="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(behaviorsInternal:TabControlHeaderScrollBehavior.TabScrollDirection)}"
+                                                  ScrollDirection="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(behaviorsInternal:TabControlHeaderScrollBehavior.ScrollDirection)}"
                                                   TabScrollOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.TabScrollOffset)}">
             <UniformGrid x:Name="CenteredHeaderPanel"
                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"

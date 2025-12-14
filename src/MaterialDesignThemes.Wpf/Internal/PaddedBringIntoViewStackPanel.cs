@@ -5,14 +5,14 @@ namespace MaterialDesignThemes.Wpf.Internal;
 
 public class PaddedBringIntoViewStackPanel : StackPanel
 {
-    public TabScrollDirection TabScrollDirection
+    public TabScrollDirection ScrollDirection
     {
-        get => (TabScrollDirection)GetValue(TabScrollDirectionProperty);
-        set => SetValue(TabScrollDirectionProperty, value);
+        get => (TabScrollDirection)GetValue(ScrollDirectionProperty);
+        set => SetValue(ScrollDirectionProperty, value);
     }
 
-    public static readonly DependencyProperty TabScrollDirectionProperty =
-        DependencyProperty.Register(nameof(TabScrollDirection), typeof(TabScrollDirection),
+    public static readonly DependencyProperty ScrollDirectionProperty =
+        DependencyProperty.Register(nameof(ScrollDirection), typeof(TabScrollDirection),
             typeof(PaddedBringIntoViewStackPanel), new PropertyMetadata(TabScrollDirection.Unknown));
 
     public double TabScrollOffset
@@ -34,8 +34,8 @@ public class PaddedBringIntoViewStackPanel : StackPanel
         {
             e.Handled = true;
 
-            // TODO: Consider making the "TabScrollDirection" a destructive read (i.e. reset the value once it is read) to avoid leaving a Backward/Forward value that may be misinterpreted at a later stage.
-            double offset = TabScrollDirection switch {
+            // TODO: Consider making the "ScrollDirection" a destructive read (i.e. reset the value once it is read) to avoid leaving a Backward/Forward value that may be misinterpreted at a later stage.
+            double offset = ScrollDirection switch {
                 TabScrollDirection.Backward => -TabScrollOffset,
                 TabScrollDirection.Forward => TabScrollOffset,
                 _ => 0
