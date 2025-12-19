@@ -17,7 +17,7 @@
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type Button}">
-          <Grid>
+          <Grid ClipToBounds="True">
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup Name="CommonStates">
                 <VisualStateGroup.Transitions>
