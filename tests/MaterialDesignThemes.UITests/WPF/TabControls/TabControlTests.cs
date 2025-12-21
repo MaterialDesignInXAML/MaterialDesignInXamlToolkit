@@ -152,4 +152,56 @@ public class TabControlTests : TestBase
 
         recorder.Success();
     }
+
+    [Test]
+    public async Task ScrollingTabs_UniformGrid()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        //Arrange
+        const int numTabs = 10;
+        StringBuilder xaml = new("<TabControl>");
+        for (int i = 1; i <= numTabs; i++)
+        {
+            xaml.Append($"""
+                <TabItem Header="TAB {i}">
+                  <TextBlock Margin="8" Text="Tab {i}" />
+                </TabItem>
+                """);
+        }
+        xaml.Append("</TabControl>");
+        IVisualElement<TabControl> tabControl = await LoadXaml<TabControl>(xaml.ToString());
+
+        //Act
+
+        //Assert
+
+        recorder.Success();
+    }
+
+    [Test]
+    public async Task ScrollingTabs_VirtualizingStackPanel()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        //Arrange
+        const int numTabs = 10;
+        StringBuilder xaml = new("<TabControl HorizontalContentAlignment=\"Left\">");
+        for (int i = 1; i <= numTabs; i++)
+        {
+            xaml.Append($"""
+                <TabItem Header="TAB {i}">
+                  <TextBlock Margin="8" Text="Tab {i}" />
+                </TabItem>
+                """);
+        }
+        xaml.Append("</TabControl>");
+        IVisualElement<TabControl> tabControl = await LoadXaml<TabControl>(xaml.ToString());
+
+        //Act
+
+        //Assert
+
+        recorder.Success();
+    }
 }
