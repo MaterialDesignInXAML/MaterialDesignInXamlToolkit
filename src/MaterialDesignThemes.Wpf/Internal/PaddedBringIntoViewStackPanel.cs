@@ -13,7 +13,7 @@ public class PaddedBringIntoViewStackPanel : StackPanel
 
     public static readonly DependencyProperty ScrollDirectionProperty =
         DependencyProperty.Register(nameof(ScrollDirection), typeof(TabScrollDirection),
-            typeof(PaddedBringIntoViewStackPanel), new FrameworkPropertyMetadata(TabScrollDirection.Unknown, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+            typeof(PaddedBringIntoViewStackPanel), new PropertyMetadata(TabScrollDirection.Unknown));
 
     public double HeaderPadding
     {
@@ -55,7 +55,6 @@ public class PaddedBringIntoViewStackPanel : StackPanel
                 TabScrollDirection.Forward => panel.HeaderPadding,
                 _ => 0
             };
-            panel.ScrollDirection = TabScrollDirection.Unknown; // Destructive read of panel.ScrollDirection to avoid leaving an invalid value in the DP (and AP).
             var point = child.TranslatePoint(new Point(), panel);
             var newTargetRect = new Rect(new Point(point.X + offset, point.Y), child.RenderSize);
             panel.BringIntoView(newTargetRect);

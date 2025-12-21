@@ -78,6 +78,10 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
         {
             _desiredScrollStart = AssociatedObject.ContentHorizontalOffset;
             SetScrollDirection(tabControl, (IsMovingForward() ? TabScrollDirection.Forward : TabScrollDirection.Backward));
+
+            // In case the TabItem has focusable content, the FrameworkElement.RequestBringIntoView won't fire. The lines below ensures that it fires.
+            var tab = tabControl.ItemContainerGenerator.ContainerFromItem(e.AddedItems[0]) as TabItem;
+            tab?.BringIntoView();
         }
 
         bool IsMovingForward()
