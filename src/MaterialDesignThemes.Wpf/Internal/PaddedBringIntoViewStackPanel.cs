@@ -1,4 +1,4 @@
-﻿
+
 using MaterialDesignThemes.Wpf.Behaviors.Internal;
 
 namespace MaterialDesignThemes.Wpf.Internal;
@@ -34,27 +34,31 @@ public class PaddedBringIntoViewStackPanel : StackPanel
     public static readonly DependencyProperty UseHeaderPaddingProperty =
         DependencyProperty.Register(nameof(UseHeaderPadding), typeof(bool), typeof(PaddedBringIntoViewStackPanel), new PropertyMetadata(false));
 
-    public PaddedBringIntoViewStackPanel()
-        => AddHandler(FrameworkElement.RequestBringIntoViewEvent, new RoutedEventHandler(OnRequestBringIntoView), false);
+    static PaddedBringIntoViewStackPanel()
+        => EventManager.RegisterClassHandler(typeof(PaddedBringIntoViewStackPanel),
+            FrameworkElement.RequestBringIntoViewEvent,
+            new RequestBringIntoViewEventHandler(OnRequestBringIntoView));
 
-    private void OnRequestBringIntoView(object sender, RoutedEventArgs e)
+    private static void OnRequestBringIntoView(object sender, RoutedEventArgs e)
     {
-        if (!UseHeaderPadding)
+        var panel = (PaddedBringIntoViewStackPanel)sender;
+        if (!panel.UseHeaderPadding)
             return;
 
-        if (e.OriginalSource is FrameworkElement child && child != this)
+        if (e.OriginalSource is FrameworkElement child && child != panel)
         {
             e.Handled = true;
 
             // TODO: Consider making the "ScrollDirection" a destructive read (i.e. reset the value once it is read) to avoid leaving a Backward/Forward value that may be misinterpreted at a later stage.
-            double offset = ScrollDirection switch {
-                TabScrollDirection.Backward => -HeaderPadding,
-                TabScrollDirection.Forward => HeaderPadding,
+            double offset = panel.ScrollDirection switch
+            {
+                TabScrollDirection.Backward => -panel.HeaderPadding,
+                TabScrollDirection.Forward => panel.HeaderPadding,
                 _ => 0
             };
-            var point = child.TranslatePoint(new Point(), this);
+            var point = child.TranslatePoint(new Point(), panel);
             var newTargetRect = new Rect(new Point(point.X + offset, point.Y), child.RenderSize);
-            BringIntoView(newTargetRect);
+            panel.BringIntoView(newTargetRect);
         }
     }
 }
