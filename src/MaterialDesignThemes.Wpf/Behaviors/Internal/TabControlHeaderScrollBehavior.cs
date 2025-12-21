@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using System.Windows.Media.Animation;
 using Microsoft.Xaml.Behaviors;
 
@@ -41,11 +41,13 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
         {
             oldTabControl.SelectionChanged -= behavior.OnTabChanged;
             oldTabControl.SizeChanged -= behavior.OnTabControlSizeChanged;
+            oldTabControl.PreviewKeyDown -= behavior.OnTabControlPreviewKeyDown;
         }
         if (e.NewValue is TabControl newTabControl)
         {
             newTabControl.SelectionChanged += behavior.OnTabChanged;
             newTabControl.SizeChanged += behavior.OnTabControlSizeChanged;
+            newTabControl.PreviewKeyDown += behavior.OnTabControlPreviewKeyDown;
         }
     }
 
@@ -108,6 +110,15 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
         {
             ScrollableContent.Margin = new();
         }
+    }
+
+    private void OnTabControlPreviewKeyDown(object sender, KeyEventArgs e)
+    {
+        if (!_isAnimatingScroll)
+            return;
+
+        if (e.Key is Key.Left or Key.Right or Key.Home or Key.End or Key.PageUp or Key.PageDown)
+            e.Handled = true;
     }
 
     protected override void OnAttached()
