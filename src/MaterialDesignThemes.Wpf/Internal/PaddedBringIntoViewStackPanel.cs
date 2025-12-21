@@ -1,4 +1,4 @@
-
+﻿
 using MaterialDesignThemes.Wpf.Behaviors.Internal;
 
 namespace MaterialDesignThemes.Wpf.Internal;
@@ -13,7 +13,7 @@ public class PaddedBringIntoViewStackPanel : StackPanel
 
     public static readonly DependencyProperty ScrollDirectionProperty =
         DependencyProperty.Register(nameof(ScrollDirection), typeof(TabScrollDirection),
-            typeof(PaddedBringIntoViewStackPanel), new PropertyMetadata(TabScrollDirection.Unknown));
+            typeof(PaddedBringIntoViewStackPanel), new FrameworkPropertyMetadata(TabScrollDirection.Unknown, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
     public double HeaderPadding
     {
@@ -49,13 +49,13 @@ public class PaddedBringIntoViewStackPanel : StackPanel
         {
             e.Handled = true;
 
-            // TODO: Consider making the "ScrollDirection" a destructive read (i.e. reset the value once it is read) to avoid leaving a Backward/Forward value that may be misinterpreted at a later stage.
             double offset = panel.ScrollDirection switch
             {
                 TabScrollDirection.Backward => -panel.HeaderPadding,
                 TabScrollDirection.Forward => panel.HeaderPadding,
                 _ => 0
             };
+            panel.ScrollDirection = TabScrollDirection.Unknown; // Destructive read of panel.ScrollDirection to avoid leaving an invalid value in the DP (and AP).
             var point = child.TranslatePoint(new Point(), panel);
             var newTargetRect = new Rect(new Point(point.X + offset, point.Y), child.RenderSize);
             panel.BringIntoView(newTargetRect);
