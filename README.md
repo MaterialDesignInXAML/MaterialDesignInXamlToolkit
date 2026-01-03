@@ -97,36 +97,73 @@ This repository also contains 3 different demo applications:
 
 ## Screenshots
 
-> [!WARNING]
-> The screenshots below are taken from the Material Design 2 demo app.
-> It is possible that these are out of date. Run the demo app from latest source to see the latest version.
-
 <details>
-  <summary>Show images</summary>
+  <summary>Material Design 3 demo app screenshots</summary>
 
-  ![Screenshot of WPF Material Design 2 demo application home page](src/web/images/screen-home.png)
-  ![Buttons](src/web/images/screen-buttons.png)
-  ![Toggles](src/web/images/screen-toggles.png)
-  ![Fields](src/web/images/screen-fields.png)
-  ![ComboBoxes](src/web/images/screen-comboboxes.png)
-  ![Palette](src/web/images/screen-palette.png)
-  ![Color Tools](src/web/images/screen-colortools.png)
-  ![Pickers](src/web/images/screen-pickers.png)
-  ![Icons](src/web/images/screen-iconpack.png)
-  ![Cards](src/web/images/screen-cards.png)
-  ![Menus and Toolbars](src/web/images/screen-menutoolbar.png)
-  ![Progress Bars](src/web/images/screen-progress.png)
-  ![Dialogs](src/web/images/screen-dialogs.png)
-  ![Lists](src/web/images/screen-lists.png)
-  ![Tree View](src/web/images/screen-treeview.png)
-  ![Sliders](src/web/images/screen-sliders.png)
-  ![Chips](src/web/images/screen-chips.png)
-  ![Typography](src/web/images/screen-typography.png)
-  ![Group Box](src/web/images/screen-groupbox.png)
-  ![Snackbars](src/web/images/screen-snackbars.png)
-  ![Elevation](src/web/images/screen-elevation.png)
+  ![Buttons](src/web/images/screen-md3/buttons.png)
+  ![Cards](src/web/images/screen-md3/cards.png)
+  ![Chips](src/web/images/screen-md3/chips.png)
+  ![Colortool](src/web/images/screen-md3/colortool.png)
+  ![Colorzones](src/web/images/screen-md3/colorzones.png)
+  ![Comboboxes](src/web/images/screen-md3/comboboxes.png)
+  ![Datagrids](src/web/images/screen-md3/datagrids.png)
+  ![Dialogs](src/web/images/screen-md3/dialogs.png)
+  ![Drawer](src/web/images/screen-md3/drawer.png)
+  ![Elevation](src/web/images/screen-md3/elevation.png)
+  ![Expander](src/web/images/screen-md3/expander.png)
+  ![Fields](src/web/images/screen-md3/fields.png)
+  ![Fieldslineup](src/web/images/screen-md3/fieldslineup.png)
+  ![Groupboxes](src/web/images/screen-md3/groupboxes.png)
+  ![Home](src/web/images/screen-md3/home.png)
+  ![Iconpack](src/web/images/screen-md3/iconpack.png)
+  ![Lists](src/web/images/screen-md3/lists.png)
+  ![Menustoolbars](src/web/images/screen-md3/menustoolbars.png)
+  ![Navigationbar](src/web/images/screen-md3/navigationbar.png)
+  ![Navigationrail](src/web/images/screen-md3/navigationrail.png)
+  ![Pallete](src/web/images/screen-md3/pallete.png)
+  ![Pickers](src/web/images/screen-md3/pickers.png)
+  ![Progressindicators](src/web/images/screen-md3/progressindicators.png)
+  ![Ratingbar](src/web/images/screen-md3/ratingbar.png)
+  ![Slider](src/web/images/screen-md3/slider.png)
+  ![Snackbar](src/web/images/screen-md3/snackbar.png)
+  ![Toggles](src/web/images/screen-md3/toggles.png)
+  ![Tooltips](src/web/images/screen-md3/tooltips.png)
+  ![Transitions](src/web/images/screen-md3/transitions.png)
+  ![Trees](src/web/images/screen-md3/trees.png)
+  ![Typography](src/web/images/screen-md3/typography.png)
+
 </details>
 
+<details>
+
+  <summary>Material Design 2 demo app screenshots</summary>
+
+  > [!WARNING]
+  > The screenshots below are taken from the Material Design 2 demo app.
+  > Material Design 3 is the latest version, so the UI shown here may differ from the latest design.
+
+  ![Screenshot of WPF Material Design 2 demo application home page](src/web/images/screen-md2/home.png)
+  ![Buttons](src/web/images/screen-md2/buttons.png)
+  ![Toggles](src/web/images/screen-md2/toggles.png)
+  ![Fields](src/web/images/screen-md2/fields.png)
+  ![ComboBoxes](src/web/images/screen-md2/comboboxes.png)
+  ![Palette](src/web/images/screen-md2/palette.png)
+  ![Color Tools](src/web/images/screen-md2/colortools.png)
+  ![Pickers](src/web/images/screen-md2/pickers.png)
+  ![Icons](src/web/images/screen-md2/iconpack.png)
+  ![Cards](src/web/images/screen-md2/cards.png)
+  ![Menus and Toolbars](src/web/images/screen-md2/menutoolbar.png)
+  ![Progress Bars](src/web/images/screen-md2/progress.png)
+  ![Dialogs](src/web/images/screen-md2/dialogs.png)
+  ![Lists](src/web/images/screen-md2/lists.png)
+  ![Tree View](src/web/images/screen-md2/treeview.png)
+  ![Sliders](src/web/images/screen-md2/sliders.png)
+  ![Chips](src/web/images/screen-md2/chips.png)
+  ![Typography](src/web/images/screen-md2/typography.png)
+  ![Group Box](src/web/images/screen-md2/groupbox.png)
+  ![Snackbars](src/web/images/screen-md2/snackbars.png)
+  ![Elevation](src/web/images/screen-md2/elevation.png)
+</details>
 
 ## More examples
 
