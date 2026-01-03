@@ -186,7 +186,7 @@ public class DialogHost : ContentControl
     ///  Close a modal dialog.
     /// </summary>
     /// <param name="dialogIdentifier"> of the instance where the dialog should be closed. Typically this will match an identifier set in XAML. </param>
-    /// <param name="parameter"> to provide to close handler</param>
+    /// <param name="parameter"> Value returned by DialogHost.ShowDialog(...) or passed to close handler if one is provided.</param>
     public static void Close(object? dialogIdentifier, object? parameter)
     {
         DialogHost dialogHost = GetInstance(dialogIdentifier);
