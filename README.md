@@ -163,6 +163,17 @@ This repository also contains 3 different demo applications:
   ![Group Box](src/web/images/screen-md2/groupbox.png)
   ![Snackbars](src/web/images/screen-md2/snackbars.png)
   ![Elevation](src/web/images/screen-md2/elevation.png)
+  ![Colorzones](src/web/images/screen-md2/colorzones.png)
+  ![Datagrids](src/web/images/screen-md2/datagrids.png)
+  ![Drawer](src/web/images/screen-md2/drawer.png)
+  ![Expander](src/web/images/screen-md2/expander.png)
+  ![Fieldslineup](src/web/images/screen-md2/fieldslineup.png)
+  ![Navigationrail](src/web/images/screen-md2/navigationrail.png)
+  ![NumericUpDown](src/web/images/screen-md2/numericupdown.png)
+  ![Ratingbar](src/web/images/screen-md2/ratingbar.png)
+  ![Tabs](src/web/images/screen-md2/tabs.png)
+  ![Tooltips](src/web/images/screen-md2/tooltips.png)
+  ![Transitions](src/web/images/screen-md2/transitions.png)
 </details>
 
 ## More examples
