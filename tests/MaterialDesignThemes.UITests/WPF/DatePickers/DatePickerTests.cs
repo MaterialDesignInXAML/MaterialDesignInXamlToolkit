@@ -12,8 +12,6 @@ public class DatePickerTests : TestBase
     [Description("Pull Request 2192")]
     public async Task OnDatePickerHelperTextFontSize_ChangesHelperTextFontSize()
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <DatePicker materialDesign:HintAssist.HelperTextFontSize=""20""/>
@@ -25,15 +23,12 @@ public class DatePickerTests : TestBase
         double fontSize = await helpTextBlock.GetFontSize();
 
         await Assert.That(fontSize).IsEqualTo(20);
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 2495")]
     public async Task OnDatePicker_WithClearButton_ClearsSelectedDate()
     {
-        await using var recorder = new TestRecorder(App);
-
         string dateString = DateTime.Today.ToString("d", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"));
         var stackPanel = await LoadXaml<StackPanel>($@"
 <StackPanel>
@@ -53,16 +48,12 @@ public class DatePickerTests : TestBase
             selectedDate = await datePicker.GetSelectedDate();
             await Assert.That(selectedDate).IsNull();
         });
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3369")]
     public async Task OnDatePicker_WithClearButton_ClearsSelectedUncommittedText()
     {
-        await using var recorder = new TestRecorder(App);
-
         // Arrange
         var stackPanel = await LoadXaml<StackPanel>("""
             <StackPanel>
@@ -84,16 +75,12 @@ public class DatePickerTests : TestBase
             string? text = await datePickerTextBox.GetText();
             await Assert.That(text).IsNull();
         });
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 2737")]
     public async Task OutlinedDatePicker_RespectsActiveAndInactiveBorderThickness_WhenAttachedPropertiesAreSet()
     {
-        await using var recorder = new TestRecorder(App);
-
         // Arrange
         var expectedInactiveBorderThickness = new Thickness(4, 3, 2, 1);
         var expectedActiveBorderThickness = new Thickness(1, 2, 3, 4);
@@ -139,8 +126,6 @@ public class DatePickerTests : TestBase
         await Assert.That(hoverBorderThickness).IsEqualTo(expectedActiveBorderThickness);
         await Assert.That(focusedBorderThickness).IsEqualTo(expectedActiveBorderThickness);
         await Assert.That(withErrorBorderThickness).IsEqualTo(expectedActiveBorderThickness);
-
-        recorder.Success();
     }
 
     [Test]
@@ -155,8 +140,6 @@ public class DatePickerTests : TestBase
     [Arguments("MaterialDesignOutlinedDatePicker", 20)]
     public async Task DatePicker_WithHintAndHelperText_RespectsPadding(string styleName, int? padding)
     {
-        await using var recorder = new TestRecorder(App);
-
         // FIXME: Tolerance needed because TextFieldAssist.TextBoxViewMargin is in play and slightly modifies the hint text placement in certain cases.
         const double tolerance = 1.5;
 
@@ -180,8 +163,6 @@ public class DatePickerTests : TestBase
 
         await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left)).IsCloseTo(0, tolerance);
         await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - helperTextCoordinates.Value.Left)).IsCloseTo(0, tolerance);
-
-        recorder.Success();
     }
 
     [Test]
@@ -196,8 +177,6 @@ public class DatePickerTests : TestBase
     [Arguments("MaterialDesignOutlinedDatePicker", 20)]
     public async Task DatePicker_WithHintAndValidationError_RespectsPadding(string styleName, int? padding)
     {
-        await using var recorder = new TestRecorder(App);
-
         // FIXME: Tolerance needed because TextFieldAssist.TextBoxViewMargin is in play and slightly modifies the hint text placement in certain cases.
         const double tolerance = 1.5;
 
@@ -229,16 +208,12 @@ public class DatePickerTests : TestBase
 
         await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left)).IsCloseTo(0, tolerance);
         await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left)).IsCloseTo(0, tolerance);
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3365")]
     public async Task DatePicker_WithOutlinedStyleAndNoCustomHintBackgroundSet_ShouldApplyDefaultBackgroundWhenFloated()
     {
-        await using var recorder = new TestRecorder(App);
-
         // Arrange
         var stackPanel = await LoadXaml<StackPanel>("""
             <StackPanel>
@@ -261,8 +236,6 @@ public class DatePickerTests : TestBase
 
         // Assert (focused state)
         await Assert.That(await hintBackgroundGrid.GetBackgroundColor()).IsEqualTo(defaultFloatedBackground);
-
-        recorder.Success();
     }
 
     [Test]
@@ -273,8 +246,6 @@ public class DatePickerTests : TestBase
     [Arguments("MaterialDesignOutlinedDatePicker")]
     public async Task DatePicker_WithCustomHintBackgroundSet_ShouldApplyHintBackground(string style)
     {
-        await using var recorder = new TestRecorder(App);
-
         // Arrange
         var stackPanel = await LoadXaml<StackPanel>($$"""
             <StackPanel>
@@ -296,16 +267,12 @@ public class DatePickerTests : TestBase
 
         // Assert (focused state)
         await Assert.That(await hintBackgroundBorder.GetBackgroundColor()).IsEqualTo(Colors.Red);
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3547")]
     public async Task DatePicker_ShouldApplyIsMouseOverTriggers_WhenHoveringCalendarButton()
     {
-        await using var recorder = new TestRecorder(App);
-
         // Arrange
         Thickness expectedThickness = Constants.DefaultOutlinedBorderActiveThickness;
         var stackPanel = await LoadXaml<StackPanel>("""
@@ -330,8 +297,6 @@ public class DatePickerTests : TestBase
         // Assert
         await Assert.That(datePickerTextBoxHoverThickness).IsEqualTo(expectedThickness);
         await Assert.That(datePickerCalendarButtonHoverThickness).IsEqualTo(expectedThickness);
-
-        recorder.Success();
     }
 }
 

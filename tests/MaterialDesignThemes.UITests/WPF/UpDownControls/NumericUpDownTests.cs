@@ -11,8 +11,6 @@ public class NumericUpDownTests : TestBase
     [Test]
     public async Task NumericButtons_IncreaseAndDecreaseValue()
     {
-        await using var recorder = new TestRecorder(App);
-
         var numericUpDown = await LoadXaml<NumericUpDown>("""
         <materialDesign:NumericUpDown Value="1" />
         """);
@@ -36,15 +34,11 @@ public class NumericUpDownTests : TestBase
             await Assert.That(await textBox.GetText()).IsEqualTo("1");
             await Assert.That(await numericUpDown.GetValue()).IsEqualTo(1);
         });
-
-        recorder.Success();
     }
 
     [Test]
     public async Task NumericButtons_WithMaximum_DisablesPlusButton()
     {
-        await using var recorder = new TestRecorder(App);
-
         var numericUpDown = await LoadXaml<NumericUpDown>("""
         <materialDesign:NumericUpDown Value="1" Maximum="2" />
         """);
@@ -69,15 +63,11 @@ public class NumericUpDownTests : TestBase
         });
 
         await Assert.That(await plusButton.GetIsEnabled()).IsTrue();
-
-        recorder.Success();
     }
 
     [Test]
     public async Task NumericButtons_WithMinimum_DisablesMinusButton()
     {
-        await using var recorder = new TestRecorder(App);
-
         var numericUpDown = await LoadXaml<NumericUpDown>("""
         <materialDesign:NumericUpDown Value="2" Minimum="1" />
         """);
@@ -102,15 +92,11 @@ public class NumericUpDownTests : TestBase
         });
 
         await Assert.That(await minusButton.GetIsEnabled()).IsTrue();
-
-        recorder.Success();
     }
 
     [Test]
     public async Task MaxAndMinAssignments_CoerceValueToBeInRange()
     {
-        await using var recorder = new TestRecorder(App);
-
         var numericUpDown = await LoadXaml<NumericUpDown>("""
         <materialDesign:NumericUpDown Value="2" />
         """);
@@ -126,16 +112,12 @@ public class NumericUpDownTests : TestBase
         await Assert.That(await numericUpDown.GetValue()).IsEqualTo(3);
         await Assert.That(await numericUpDown.GetMinimum()).IsEqualTo(3);
         await Assert.That(await numericUpDown.GetMaximum()).IsEqualTo(3);
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3654")]
     public async Task InternalTextBoxIsFocused_WhenGettingKeyboardFocus()
     {
-        await using var recorder = new TestRecorder(App);
-
         // Arrange
         var stackPanel = await LoadXaml<StackPanel>("""
         <StackPanel>
@@ -156,16 +138,12 @@ public class NumericUpDownTests : TestBase
         // Assert
         await Assert.That(await textBox.GetIsFocused()).IsFalse();
         await Assert.That(await part_textBox.GetIsFocused()).IsTrue();
-
-        recorder.Success();
     }
 
     [Test]
     [Skip("Needs XAMLTest 1.2.3 or later")]
     public async Task NumericUpDown_ValueSetGreaterThanMaximum_CoercesToMaximum()
     {
-        await using var recorder = new TestRecorder(App);
-
         //Arrange
         var userControl = await LoadUserControl<BoundNumericUpDown>();
         var numericUpDown = await userControl.GetElement<NumericUpDown>();
@@ -187,8 +165,6 @@ public class NumericUpDownTests : TestBase
         await Assert.That(await numericUpDown.GetValue()).IsEqualTo(10);
         var viewModel = await userControl.GetProperty<BoundNumericUpDownViewModel>(nameof(BoundNumericUpDown.ViewModel));
         await Assert.That(viewModel?.Value).IsEqualTo(10);
-
-        recorder.Success();
     }
 
     [Test]
@@ -199,7 +175,6 @@ public class NumericUpDownTests : TestBase
     public async Task NumericUpDown_WhenValueEqualsMinimum_DisableButtons(int value,
         bool decreaseEnabled, bool increaseEnabled)
     {
-        await using var recorder = new TestRecorder(App);
         //Arrange
         var numericUpDown = await LoadXaml<NumericUpDown>($"""
         <materialDesign:NumericUpDown Value="{value}" Maximum="10" Minimum="1" />
@@ -215,15 +190,12 @@ public class NumericUpDownTests : TestBase
         //Assert
         await Assert.That(increaseButtonEnabled).IsEqualTo(increaseEnabled);
         await Assert.That(decreaseButtonEnabled).IsEqualTo(decreaseEnabled);
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3827")]
     public async Task NumericUpDown_WhenBindingUpdateTriggerIsPropertyChanged_ItUpdatesBeforeLoosingFocus()
     {
-        await using var recorder = new TestRecorder(App);
         //Arrange
         var numericUpDown = await LoadXaml<NumericUpDown>("""
         <materialDesign:NumericUpDown Tag="{Binding Value, RelativeSource={RelativeSource Self}, UpdateSourceTrigger=PropertyChanged}" Maximum="10" Minimum="1" />
@@ -239,15 +211,12 @@ public class NumericUpDownTests : TestBase
 
         //Assert
         await Assert.That(tag?.ToString()).IsEqualTo("4");
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3827")]
     public async Task NumericUpDown_WhenBindingUpdateTriggerIsLostFocus_ItDoesNotUpdateUntilItLoosesFocus()
     {
-        await using var recorder = new TestRecorder(App);
         //Arrange
         var userControl = await LoadUserControl<BoundNumericUpDown>();
         var numericUpDown = await userControl.GetElement<NumericUpDown>();
@@ -285,7 +254,5 @@ public class NumericUpDownTests : TestBase
         //Assert
         await Assert.That(valueBeforeLostFocus.ToString()).IsEqualTo("2");
         await Assert.That(valueAfterLostFocus.ToString()).IsEqualTo("4");
-
-        recorder.Success();
     }
 }

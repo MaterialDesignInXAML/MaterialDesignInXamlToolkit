@@ -18,8 +18,6 @@ public class ColorAdjustTests : TestBase
     [MethodDataSource(nameof(PrimaryColors))]
     public async Task PrimaryColor_AdjustToTheme(PrimaryColor primary)
     {
-        await using var recorder = new TestRecorder(App);
-
         await App.InitializeWithMaterialDesign(BaseTheme.Light, primary, colorAdjustment: new ColorAdjustment());
 
         IWindow window = await App.CreateWindow<ColorAdjustWindow>();
@@ -36,9 +34,6 @@ public class ColorAdjustTests : TestBase
         await Wait.For(async () => await window.GetBackgroundColor() != windowBackground);
 
         await AssertContrastRatio();
-
-        recorder.Success();
-
         async Task AssertContrastRatio()
         {
             const double tolerance = 0.1;

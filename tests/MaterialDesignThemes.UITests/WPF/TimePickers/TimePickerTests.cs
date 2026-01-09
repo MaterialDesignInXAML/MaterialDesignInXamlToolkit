@@ -13,8 +13,6 @@ public class TimePickerTests : TestBase
     [Arguments(2020, 8, 10)]
     public async Task OnTextChangedIfSelectedTimeIsNonNull_DatePartDoesNotChange(int year, int month, int day)
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <materialDesign:TimePicker Language=""en-US"" />
@@ -28,8 +26,6 @@ public class TimePickerTests : TestBase
 
         var actual = await timePicker.GetSelectedTime();
         await Assert.That(actual).IsEqualTo(new DateTime(year, month, day, 1, 10, 0));
-
-        recorder.Success();
     }
 
     [Test]
@@ -37,8 +33,6 @@ public class TimePickerTests : TestBase
     [Arguments(2020, 8, 10)]
     public async Task OnLostFocusIfSelectedTimeIsNonNull_DatePartDoesNotChange(int year, int month, int day)
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <materialDesign:TimePicker Language=""en-US"" />
@@ -55,8 +49,6 @@ public class TimePickerTests : TestBase
 
         var actual = await timePicker.GetSelectedTime();
         await Assert.That(actual).IsEqualTo(new DateTime(year, month, day, 1, 10, 0));
-
-        recorder.Success();
     }
 
     [Test]
@@ -64,8 +56,6 @@ public class TimePickerTests : TestBase
     [Arguments(2020, 8, 2)]
     public async Task OnClockPickedIfSelectedTimeIsNonNull_DatePartDoesNotChange(int year, int month, int day)
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <materialDesign:TimePicker/>
@@ -77,15 +67,11 @@ public class TimePickerTests : TestBase
 
         var actual = await timePicker.GetSelectedTime();
         await Assert.That(actual).IsEqualTo(new DateTime(year, month, day, 1, 10, 0));
-
-        recorder.Success();
     }
 
     [Test]
     public async Task OnTextChangedIfSelectedTimeIsNull_DatePartWillBeToday()
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <materialDesign:TimePicker Language=""en-US"" />
@@ -99,15 +85,11 @@ public class TimePickerTests : TestBase
 
         var actual = await timePicker.GetSelectedTime();
         await Assert.That(actual).IsEqualTo(AdjustToday(today, actual).Add(new TimeSpan(1, 23, 0)));
-
-        recorder.Success();
     }
 
     [Test]
     public async Task OnLostFocusIfSelectedTimeIsNull_DatePartWillBeToday()
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <materialDesign:TimePicker Language=""en-US"" />
@@ -124,15 +106,11 @@ public class TimePickerTests : TestBase
 
         var actual = await timePicker.GetSelectedTime();
         await Assert.That(actual).IsEqualTo(AdjustToday(today, actual).Add(new TimeSpan(1, 23, 0)));
-
-        recorder.Success();
     }
 
     [Test]
     public async Task OnClockPickedIfSelectedTimeIsNull_DatePartWillBeToday()
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <materialDesign:TimePicker/>
@@ -144,8 +122,6 @@ public class TimePickerTests : TestBase
 
         var actual = await timePicker.GetSelectedTime();
         await Assert.That(actual).IsEqualTo(AdjustToday(today, actual).Add(new TimeSpan(1, 23, 0)));
-
-        recorder.Success();
     }
 
     private static DateTime AdjustToday(DateTime today, DateTime? adjustTo)
@@ -165,8 +141,6 @@ public class TimePickerTests : TestBase
     [Arguments("1:02 AM")]
     public async Task OnLostFocusIfTimeHasBeenChanged_TextWillBeFormatted(string text)
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <materialDesign:TimePicker/>
@@ -182,8 +156,6 @@ public class TimePickerTests : TestBase
 
         var actual = await timePickerTextBox.GetText();
         await Assert.That(actual).IsEqualTo("1:02 AM");
-
-        recorder.Success();
     }
 
     [Test]
@@ -192,8 +164,6 @@ public class TimePickerTests : TestBase
     [Arguments("1:02 AM")]
     public async Task OnLostFocusIfTimeHasNotBeenChanged_TextWillBeFormatted(string text)
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <materialDesign:TimePicker/>
@@ -210,8 +180,6 @@ public class TimePickerTests : TestBase
 
         var actual = await timePickerTextBox.GetText();
         await Assert.That(actual).IsEqualTo("1:02 AM");
-
-        recorder.Success();
     }
 
     [Test]
@@ -220,8 +188,6 @@ public class TimePickerTests : TestBase
     [Arguments("1:02 AM")]
     public async Task OnEnterKeyDownIfTimeHasNotBeenChanged_TextWillBeFormatted(string text)
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <materialDesign:TimePicker/>
@@ -235,8 +201,6 @@ public class TimePickerTests : TestBase
 
         var actual = await timePickerTextBox.GetText();
         await Assert.That(actual).IsEqualTo("1:02 AM");
-
-        recorder.Success();
     }
 
     [Test]
@@ -245,8 +209,6 @@ public class TimePickerTests : TestBase
     [Arguments("1:02 AM")]
     public async Task OnEnterKeyDownIfTimeHasBeenChanged_TextWillBeFormatted(string text)
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <materialDesign:TimePicker/>
@@ -260,8 +222,6 @@ public class TimePickerTests : TestBase
 
         var actual = await timePickerTextBox.GetText();
         await Assert.That(actual).IsEqualTo("1:02 AM");
-
-        recorder.Success();
     }
 
     [Test]
@@ -270,8 +230,6 @@ public class TimePickerTests : TestBase
     [Arguments("1:02 AM")]
     public async Task OnTimePickedIfTimeHasBeenChanged_TextWillBeFormatted(string text)
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <materialDesign:TimePicker/>
@@ -286,8 +244,6 @@ public class TimePickerTests : TestBase
 
         var actual = await timePickerTextBox.GetText();
         await Assert.That(actual).IsEqualTo("1:03 AM");
-
-        recorder.Success();
     }
 
     [Test]
@@ -296,8 +252,6 @@ public class TimePickerTests : TestBase
     [Arguments("1:02 AM")]
     public async Task OnTimePickedIfTimeHasNotBeenChanged_TextWillBeFormatted(string text)
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <materialDesign:TimePicker/>
@@ -312,16 +266,12 @@ public class TimePickerTests : TestBase
 
         var actual = await timePickerTextBox.GetText();
         await Assert.That(actual).IsEqualTo("1:02 AM");
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Pull Request 2192")]
     public async Task OnTimePickerHelperTextFontSize_ChangesHelperTextFontSize()
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <materialDesign:TimePicker
@@ -333,15 +283,12 @@ public class TimePickerTests : TestBase
         double fontSize = await helpTextBlock.GetFontSize();
 
         await Assert.That(fontSize).IsEqualTo(20);
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 2737")]
     public async Task OutlinedTimePicker_RespectsActiveAndInactiveBorderThickness_WhenAttachedPropertiesAreSet()
     {
-        await using var recorder = new TestRecorder(App);
-
         // Arrange
         var expectedInactiveBorderThickness = new Thickness(4, 3, 2, 1);
         var expectedActiveBorderThickness = new Thickness(1, 2, 3, 4);
@@ -387,8 +334,6 @@ public class TimePickerTests : TestBase
         await Assert.That(hoverBorderThickness).IsEqualTo(expectedActiveBorderThickness);
         await Assert.That(focusedBorderThickness).IsEqualTo(expectedActiveBorderThickness);
         await Assert.That(withErrorBorderThickness).IsEqualTo(expectedActiveBorderThickness);
-
-        recorder.Success();
     }
 
     [Test]
@@ -403,8 +348,6 @@ public class TimePickerTests : TestBase
     [Arguments("MaterialDesignOutlinedTimePicker", 20)]
     public async Task TimePicker_WithHintAndHelperText_RespectsPadding(string styleName, int? padding)
     {
-        await using var recorder = new TestRecorder(App);
-
         // FIXME: Tolerance needed because TextFieldAssist.TextBoxViewMargin is in play and slightly modifies the hint text placement in certain cases.
         const double tolerance = 1.5;
 
@@ -428,8 +371,6 @@ public class TimePickerTests : TestBase
 
         await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left)).IsCloseTo(0, tolerance);
         await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - helperTextCoordinates.Value.Left)).IsCloseTo(0, tolerance);
-
-        recorder.Success();
     }
 
     [Test]
@@ -444,8 +385,6 @@ public class TimePickerTests : TestBase
     [Arguments("MaterialDesignOutlinedTimePicker", 20)]
     public async Task TimePicker_WithHintAndValidationError_RespectsPadding(string styleName, int? padding)
     {
-        await using var recorder = new TestRecorder(App);
-
         // FIXME: Tolerance needed because TextFieldAssist.TextBoxViewMargin is in play and slightly modifies the hint text placement in certain cases.
         const double tolerance = 1.5;
 
@@ -477,16 +416,12 @@ public class TimePickerTests : TestBase
 
         await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left)).IsCloseTo(0, tolerance);
         await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left)).IsCloseTo(0, tolerance);
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3119")]
     public async Task TimePicker_WithClearButton_ClearButtonClearsSelectedTime()
     {
-        await using var recorder = new TestRecorder(App);
-
         // Arrange
         var stackPanel = await LoadXaml<StackPanel>($@"
 <StackPanel>
@@ -504,16 +439,12 @@ public class TimePickerTests : TestBase
 
         // Assert
         await Assert.That(await timePicker.GetSelectedTime()).IsNull();
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3369")]
     public async Task TimePicker_WithClearButton_ClearButtonClearsUncommittedText()
     {
-        await using var recorder = new TestRecorder(App);
-
         // Arrange
         var stackPanel = await LoadXaml<StackPanel>($"""
         <StackPanel>
@@ -537,16 +468,12 @@ public class TimePickerTests : TestBase
             // Assert
             await Assert.That(await timePickerTextBox.GetText()).IsNull();
         });
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3365")]
     public async Task TimePicker_WithOutlinedStyleAndNoCustomHintBackgroundSet_ShouldApplyDefaultBackgroundWhenFloated()
     {
-        await using var recorder = new TestRecorder(App);
-
         // Arrange
         var stackPanel = await LoadXaml<StackPanel>("""
             <StackPanel>
@@ -569,8 +496,6 @@ public class TimePickerTests : TestBase
 
         // Assert (focused state)
         await Assert.That(await hintBackgroundGrid.GetBackgroundColor()).IsEqualTo(defaultFloatedBackground);
-
-        recorder.Success();
     }
 
     [Test]
@@ -581,8 +506,6 @@ public class TimePickerTests : TestBase
     [Arguments("MaterialDesignOutlinedTimePicker")]
     public async Task TimePicker_WithCustomHintBackgroundSet_ShouldApplyHintBackground(string style)
     {
-        await using var recorder = new TestRecorder(App);
-
         // Arrange
         var stackPanel = await LoadXaml<StackPanel>($$"""
             <StackPanel>
@@ -604,16 +527,12 @@ public class TimePickerTests : TestBase
 
         // Assert (focused state)
         await Assert.That(await hintBackgroundBorder.GetBackgroundColor()).IsEqualTo(Colors.Red);
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3547")]
     public async Task TimePicker_ShouldApplyIsMouseOverTriggers_WhenHoveringTimeButton()
     {
-        await using var recorder = new TestRecorder(App);
-
         // Arrange
         Thickness expectedThickness = Constants.DefaultOutlinedBorderActiveThickness;
         var stackPanel = await LoadXaml<StackPanel>("""
@@ -638,16 +557,12 @@ public class TimePickerTests : TestBase
         // Assert
         await Assert.That(timePickerTextBoxHoverThickness).IsEqualTo(expectedThickness);
         await Assert.That(timePickerTimeButtonHoverThickness).IsEqualTo(expectedThickness);
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3650")]
     public async Task TimePicker_MovesFocusToPrevious_WhenShiftAndTabIsPressed()
     {
-        await using var recorder = new TestRecorder(App);
-
         // Arrange
         var stackPanel = await LoadXaml<StackPanel>("""
             <StackPanel>
@@ -668,8 +583,6 @@ public class TimePickerTests : TestBase
         // Assert
         await Assert.That(await textBox.GetIsFocused()).IsTrue();
         await Assert.That(await timePickerTextBox.GetIsFocused()).IsFalse();
-
-        recorder.Success();
     }
 }
 

@@ -1,6 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Media;
 using MaterialDesignThemes.UITests;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
+using Microsoft.VisualStudio.TestPlatform.Utilities;
+using TUnit.Core;
 using TUnit.Core.Interfaces;
 
 [assembly: ParallelLimiter<SingleParallelLimit>]
@@ -24,13 +27,16 @@ public record SingleParallelLimit : IParallelLimit
     public int Limit => 1;
 }
 
-public abstract class TestBase()
+public abstract class TestBase
 {
-    protected bool AttachedDebuggerToRemoteProcess { get; set; } = true;
+    public bool AttachedDebuggerToRemoteProcess { get; set; } = true;
     protected static TextWriter Output => TestContext.Current?.OutputWriter ?? throw new InvalidOperationException("Could not find output writer");
 
     [NotNull]
-    protected IApp? App { get; set; }
+    public IApp? App { get; set; }
+
+    [NotNull]
+    public TestRecorder? Recorder { get; set; }
 
     protected async Task<Color> GetThemeColor(string name)
     {
@@ -54,9 +60,9 @@ public abstract class TestBase()
         return await App.CreateWindowWithUserControl(userControlType);
     }
 
-    [Before(Test)]
-    public async ValueTask InitializeAsync() =>
-        App = await XamlTest.App.StartRemote(new AppOptions
+    public Task<IApp> StartApp()
+    {
+        return XamlTest.App.StartRemote(new AppOptions
         {
 #if !DEBUG
             MinimizeOtherWindows = !System.Diagnostics.Debugger.IsAttached,
@@ -64,7 +70,5 @@ public abstract class TestBase()
             AllowVisualStudioDebuggerAttach = AttachedDebuggerToRemoteProcess,
             LogMessage = Output.WriteLine
         });
-
-    [After(Test)]
-    public async ValueTask DisposeAsync() => await App.DisposeAsync();
+    }
 }

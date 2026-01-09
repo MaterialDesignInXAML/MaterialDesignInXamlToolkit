@@ -14,8 +14,6 @@ public class AutoSuggestBoxTests : TestBase
     [Test]
     public async Task CanFilterItems_WithSuggestionsAndDisplayMember_FiltersSuggestions()
     {
-        await using var recorder = new TestRecorder(App);
-
         //Arrange
         IVisualElement<AutoSuggestBox> suggestBox = (await LoadUserControl<AutoSuggestTextBoxWithTemplate>()).As<AutoSuggestBox>();
         IVisualElement<Popup> popup = await suggestBox.GetElement<Popup>();
@@ -38,15 +36,11 @@ public class AutoSuggestBoxTests : TestBase
         await AssertExists(suggestionListBox, "Apples", false);
         await AssertExists(suggestionListBox, "Mtn Dew", false);
         await AssertExists(suggestionListBox, "Orange", false);
-
-        recorder.Success();
     }
 
     [Test]
     public async Task CanChoiceItem_FromTheSuggestions_AssertTheTextUpdated()
     {
-        await using var recorder = new TestRecorder(App);
-
         //Arrange
         IVisualElement<AutoSuggestBox> suggestBox = (await LoadUserControl<AutoSuggestTextBoxWithTemplate>()).As<AutoSuggestBox>();
         IVisualElement<Popup> popup = await suggestBox.GetElement<Popup>();
@@ -85,15 +79,11 @@ public class AutoSuggestBoxTests : TestBase
         var suggestBoxText = await suggestBox.GetText();
         //Validate that the current text is the same as the selected item
         await Assert.That(suggestBoxText).IsEqualTo("Bananas");
-
-        recorder.Success();
     }
 
     [Test]
     public async Task CanFilterItems_WithCollectionView_FiltersSuggestions()
     {
-        await using var recorder = new TestRecorder(App);
-
         //Arrange
         IVisualElement userControl = await LoadUserControl<AutoSuggestTextBoxWithCollectionView>();
         IVisualElement<AutoSuggestBox> suggestBox = await userControl.GetElement<AutoSuggestBox>();
@@ -117,16 +107,12 @@ public class AutoSuggestBoxTests : TestBase
         await AssertExists(suggestionListBox, "Apples", false);
         await AssertExists(suggestionListBox, "Mtn Dew", false);
         await AssertExists(suggestionListBox, "Orange", false);
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3761")]
     public async Task AutoSuggestBox_MovesFocusToNextElement_WhenPopupIsClosed()
     {
-        await using var recorder = new TestRecorder(App);
-
         // Arrange
         string xaml = """
             <StackPanel>
@@ -153,16 +139,12 @@ public class AutoSuggestBoxTests : TestBase
         // Assert
         await Assert.That(await suggestBox.GetIsFocused()).IsFalse();
         await Assert.That(await nextTextBox.GetIsFocused()).IsTrue();
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3815")]
     public async Task AutoSuggestBox_KeysUpAndDown_WrapAround()
     {
-        await using var recorder = new TestRecorder(App);
-
         //Arrange
         IVisualElement<AutoSuggestBox> suggestBox = (await LoadUserControl<AutoSuggestTextBoxWithTemplate>()).As<AutoSuggestBox>();
         IVisualElement<Popup> popup = await suggestBox.GetElement<Popup>();
@@ -196,16 +178,12 @@ public class AutoSuggestBoxTests : TestBase
         //Assert that the first item is selected after pressing ArrowDown
         await suggestBox.SendInput(new KeyboardInput(Key.Down));
         await Assert.That(await suggestionListBox.GetSelectedIndex()).IsEqualTo(0);
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3845")]
     public async Task AutoSuggestBox_SelectingAnItem_SetsSelectedItem()
     {
-        await using var recorder = new TestRecorder(App);
-
         //Arrange
         IVisualElement userControl = await LoadUserControl<AutoSuggestTextBoxWithCollectionView>();
         IVisualElement<AutoSuggestBox> suggestBox = await userControl.GetElement<AutoSuggestBox>();
@@ -228,15 +206,11 @@ public class AutoSuggestBoxTests : TestBase
             await Assert.That(viewModel.SelectedItem).IsEqualTo("Bananas");
         }
         await suggestBox.RemoteExecute(AssertViewModelProperty);
-
-        recorder.Success();
     }
 
     [Test]
     public async Task AutoSuggestBox_ClickingButtonInInteractiveItemTemplate_DoesNotSelectOrClosePopup()
     {
-        await using var recorder = new TestRecorder(App);
-
         // Arrange
         IVisualElement<AutoSuggestBox> suggestBox = (await LoadUserControl<AutoSuggestTextBoxWithInteractiveTemplate>()).As<AutoSuggestBox>();
         IVisualElement<Popup> popup = await suggestBox.GetElement<Popup>();
@@ -267,14 +241,11 @@ public class AutoSuggestBoxTests : TestBase
             await Assert.That(thirdItem.Count).IsEqualTo(1);
         }
         await suggestBox.RemoteExecute(AssertViewModelProperty);
-        recorder.Success();
     }
 
     [Test]
     public async Task AutoSuggestBox_ClickingButtonForcingNonInteractive_SelectsItemAndClosesPopup()
     {
-        await using var recorder = new TestRecorder(App);
-
         // Arrange
         IVisualElement<AutoSuggestBox> suggestBox = (await LoadUserControl<AutoSuggestTextBoxWithInteractiveTemplate>()).As<AutoSuggestBox>();
         IVisualElement<Popup> popup = await suggestBox.GetElement<Popup>();
@@ -299,15 +270,11 @@ public class AutoSuggestBoxTests : TestBase
 
         // Assert
         await Assert.That(await suggestBox.GetIsSuggestionOpen()).IsFalse();
-
-        recorder.Success();
     }
 
     [Test]
     public async Task AutoSuggestBox_ClickingTextblockThatIsInteractive_DoesNotSelectOrClosePopup()
     {
-        await using var recorder = new TestRecorder(App);
-
         // Arrange
         IVisualElement<AutoSuggestBox> suggestBox = (await LoadUserControl<AutoSuggestTextBoxWithInteractiveTemplate>()).As<AutoSuggestBox>();
         IVisualElement<Popup> popup = await suggestBox.GetElement<Popup>();
@@ -336,8 +303,6 @@ public class AutoSuggestBoxTests : TestBase
         // The list box item should selected because the TextBlock does not handle the click
         int selectedIndex = await suggestionListBox.GetSelectedIndex();
         await Assert.That(selectedIndex).IsEqualTo(2); 
-
-        recorder.Success();
     }
 
     private static async Task AssertExists(IVisualElement<ListBox> suggestionListBox, string text, bool existsOrNotCheck = true)

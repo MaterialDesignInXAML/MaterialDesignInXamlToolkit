@@ -10,8 +10,6 @@ public class PasswordBoxTests : TestBase
     [Test]
     public async Task OnClearButtonShown_LayoutDoesNotChange()
     {
-        await using var recorder = new TestRecorder(App);
-
         //Arrange
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
@@ -27,16 +25,12 @@ public class PasswordBoxTests : TestBase
         //Assert
         var rect = await passwordBox.GetCoordinates();
         await Assert.That(rect).IsEqualTo(initialRect);
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Pull Request 2192")]
     public async Task OnPasswordBoxHelperTextFontSize_ChangesHelperTextFontSize()
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <PasswordBox materialDesign:HintAssist.HelperTextFontSize=""20""/>
@@ -47,15 +41,12 @@ public class PasswordBoxTests : TestBase
         double fontSize = await helpTextBlock.GetFontSize();
 
         await Assert.That(fontSize).IsEqualTo(20);
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 2495")]
     public async Task OnPasswordBox_WithClearButton_ClearsPassword()
     {
-        await using var recorder = new TestRecorder(App);
-
         var grid = await LoadXaml<Grid>(@"
 <Grid Margin=""30"">
     <PasswordBox materialDesign:TextFieldAssist.HasClearButton=""True"" />
@@ -76,16 +67,12 @@ public class PasswordBoxTests : TestBase
             password = await passwordBox.GetPassword();
             await Assert.That(password).IsNull();
         });
-
-        recorder.Success();
     }
 
     [Test]
     [Description("PR 2828 and Issue 2930")]
     public async Task RevealPasswordBox_WithBoundPasswordProperty_RespectsThreeWayBinding()
     {
-        await using var recorder = new TestRecorder(App);
-
         await App.InitializeWithMaterialDesign();
         IWindow window = await App.CreateWindow<BoundPasswordBoxWindow>();
         var userControl = await window.GetElement<BoundPasswordBox>();
@@ -127,16 +114,12 @@ public class PasswordBoxTests : TestBase
         await Assert.That(boundText3).IsEqualTo("3");
         await Assert.That(password3).IsEqualTo("3");
         await Assert.That(clearTextPassword3).IsEqualTo("3");
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 2930")]
     public async Task PasswordBox_WithBoundPasswordProperty_RespectsBinding()
     {
-        await using var recorder = new TestRecorder(App);
-
         await App.InitializeWithMaterialDesign();
         IWindow window = await App.CreateWindow<BoundPasswordBoxWindow>();
         var userControl = await window.GetElement<BoundPasswordBox>();
@@ -159,16 +142,12 @@ public class PasswordBoxTests : TestBase
 
         await Assert.That(boundText2).IsEqualTo("2");
         await Assert.That(password2).IsEqualTo("2");
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 2998")]
     public async Task PasswordBox_WithRevealStyle_RespectsMaxLength()
     {
-        await using var recorder = new TestRecorder(App);
-
         var grid = await LoadXaml<Grid>(@"
 <Grid Margin=""30"">
     <PasswordBox MaxLength=""5"" Style=""{StaticResource MaterialDesignFloatingHintRevealPasswordBox}"" />
@@ -181,8 +160,6 @@ public class PasswordBoxTests : TestBase
 
         // Assert
         await Assert.That(maxLength2).IsEqualTo(maxLength1);
-
-        recorder.Success();
     }
 
     [Test]
@@ -206,8 +183,6 @@ public class PasswordBoxTests : TestBase
     [Arguments("MaterialDesignOutlinedRevealPasswordBox", 20)]
     public async Task PasswordBox_WithHintAndHelperText_RespectsPadding(string styleName, int? padding)
     {
-        await using var recorder = new TestRecorder(App);
-
         // FIXME: Tolerance needed because TextFieldAssist.TextBoxViewMargin is in play and slightly modifies the hint text placement in certain cases.
         const double tolerance = 1.5;
 
@@ -233,8 +208,6 @@ public class PasswordBoxTests : TestBase
             .IsCloseTo(0, tolerance);
         await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - helperTextCoordinates.Value.Left))
             .IsCloseTo(0, tolerance);
-
-        recorder.Success();
     }
 
     [Test]
@@ -258,8 +231,6 @@ public class PasswordBoxTests : TestBase
     [Arguments("MaterialDesignOutlinedRevealPasswordBox", 20)]
     public async Task PasswordBox_WithHintAndValidationError_RespectsPadding(string styleName, int? padding)
     {
-        await using var recorder = new TestRecorder(App);
-
         // FIXME: Tolerance needed because TextFieldAssist.TextBoxViewMargin is in play and slightly modifies the hint text placement in certain cases.
         const double tolerance = 1.5;
 
@@ -293,8 +264,6 @@ public class PasswordBoxTests : TestBase
             .IsCloseTo(0, tolerance);
         await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left))
             .IsCloseTo(0, tolerance);
-
-        recorder.Success();
     }
 
     [Test]
@@ -302,8 +271,6 @@ public class PasswordBoxTests : TestBase
     [Description("Issue 3095")]
     public async Task PasswordBox_WithRevealedPassword_RespectsKeyboardTabNavigation()
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel Orientation=""Vertical"">
   <TextBox x:Name=""TextBox1"" Width=""200"" />
@@ -331,16 +298,12 @@ public class PasswordBoxTests : TestBase
         await Assert.That(await revealPasswordTextBox.GetIsKeyboardFocused()).IsTrue();
         await revealPasswordTextBox.SendKeyboardInput($"{Key.Tab}{ModifierKeys.None}");
         await Assert.That(await textBox1.GetIsKeyboardFocused()).IsTrue();
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3799")]
     public async Task PasswordBox_WithRevealButtonIsTabStopSetToFalse_RespectsKeyboardTabNavigation()
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>("""
             <StackPanel Orientation="Vertical">
               <PasswordBox x:Name="PasswordBox" Width="200"
@@ -362,7 +325,5 @@ public class PasswordBoxTests : TestBase
         // Assert Tab backwards
         await textBox.SendKeyboardInput($"{ModifierKeys.Shift}{Key.Tab}{ModifierKeys.None}");
         await Assert.That(await passwordBox.GetIsKeyboardFocused()).IsTrue();
-
-        recorder.Success();
     }
 }

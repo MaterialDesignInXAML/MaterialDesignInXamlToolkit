@@ -32,8 +32,6 @@ public class AllStyles : TestBase
     [Arguments("TreeView", "MaterialDesignTreeView")]
     public async Task LoadStyleInIsolation_CanBeLoaded(string controlName, string styleName)
     {
-        await using var recorder = new TestRecorder(App);
-
         string applicationResourceXaml = $$"""
 <ResourceDictionary 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -78,7 +76,5 @@ public class AllStyles : TestBase
             """);
 
         await Assert.That(await window.GetIsVisible()).IsTrue();
-
-        recorder.Success();
     }
 }

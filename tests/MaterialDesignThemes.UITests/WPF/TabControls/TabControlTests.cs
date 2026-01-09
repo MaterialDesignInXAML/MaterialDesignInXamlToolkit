@@ -10,8 +10,6 @@ public class TabControlTests : TestBase
     [Description("Issue 2602")]
     public async Task OnLoad_ThemeBrushesSet()
     {
-        await using var recorder = new TestRecorder(App);
-
         //Arrange
         IVisualElement<TabControl> tabControl = await LoadXaml<TabControl>(@"
 <TabControl 
@@ -40,8 +38,6 @@ public class TabControlTests : TestBase
         await MaterialDesignSpec.AssertContrastRatio(foreground.Value, background.Value, MaterialDesignSpec.MinimumContrastSmallText);
 
         await Assert.That(selectedTabUnderline).IsEqualTo(foreground);
-
-        recorder.Success();
     }
 
     [Description("Issue 2983")]
@@ -58,8 +54,6 @@ public class TabControlTests : TestBase
     [Arguments("", false)]
     public async Task TabItem_ShouldKeepDataContext_WhenContextMenuOpens(string horizontalContentAlignment, bool hasUniformTabWidth)
     {
-        await using var recorder = new TestRecorder(App);
-
         string alignment = string.Empty;
         if (!string.IsNullOrEmpty(horizontalContentAlignment))
         {
@@ -115,16 +109,12 @@ public class TabControlTests : TestBase
         tabItem = await tabControl.GetElement<TabItem>();
         dataContext = await tabItem.GetDataContext();
         await Assert.That(dataContext).IsEqualTo("aaaa");
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3271")]
     public async Task TabControl_ShouldRespectSelectedContentTemplate_WhenSetDirectlyOnTabItem()
     {
-        await using var recorder = new TestRecorder(App);
-
         //Arrange
         IVisualElement<TabControl> tabControl = await LoadXaml<TabControl>("""
             <TabControl materialDesign:ColorZoneAssist.Mode="PrimaryMid"
@@ -149,7 +139,5 @@ public class TabControlTests : TestBase
         //Assert
         await Assert.That(await customContentBorder.GetBackgroundColor()).IsEqualTo(Colors.Fuchsia);
         await Assert.That(await customContent.GetText()).IsEqualTo("Tab content string");
-
-        recorder.Success();
     }
 }

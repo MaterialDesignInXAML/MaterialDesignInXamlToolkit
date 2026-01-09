@@ -13,8 +13,6 @@ public class PopupBoxTests : TestBase
     [Description("Issue 3129")]
     public async Task PopupBox_WithElevation_AppliesElevationToNestedCard(Elevation elevation)
     {
-        await using var recorder = new TestRecorder(App);
-
         //Arrange
         IVisualElement<PopupBox> popupBox = await LoadXaml<PopupBox>($@"
 <materialDesign:PopupBox VerticalAlignment=""Top""
@@ -29,15 +27,11 @@ public class PopupBoxTests : TestBase
 
         // Assert
         await Assert.That(await card.GetProperty<Elevation?>(ElevationAssist.ElevationProperty)).IsEqualTo(elevation);
-
-        recorder.Success();
     }
 
     [Test]
     public async Task PopupBox_WithContentTemplateSelector_ChangesContent()
     {
-        await using var recorder = new TestRecorder(App);
-
         //Arrange
         IVisualElement grid = (await LoadUserControl<PopupBoxWithTemplateSelector>());
 
@@ -56,8 +50,5 @@ public class PopupBoxTests : TestBase
             border = await popupBox.GetElement<Border>();
             await Assert.That(await border.GetBackgroundColor()).IsEqualTo(Colors.Red);
         });
-
-
-        recorder.Success();
     }
 }

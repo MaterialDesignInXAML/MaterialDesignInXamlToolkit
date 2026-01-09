@@ -11,8 +11,6 @@ public class ToolBarTests : TestBase
     [Arguments(Orientation.Vertical, Dock.Bottom)]
     public async Task ToolBar_OverflowGrid_RespectsOrientation(Orientation orientation, Dock expectedOverflowGridDock)
     {
-        await using var recorder = new TestRecorder(App);
-
         //Arrange
         var toolBarTray = await LoadXaml<ToolBarTray>($@"
 <ToolBarTray Orientation=""{orientation}"" DockPanel.Dock=""Top"">
@@ -27,7 +25,5 @@ public class ToolBarTests : TestBase
 
         //Assert
         await Assert.That(dock).IsEqualTo(expectedOverflowGridDock);
-
-        recorder.Success();
     }
 }

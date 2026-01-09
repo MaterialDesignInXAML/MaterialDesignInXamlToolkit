@@ -9,8 +9,6 @@ public class ComboBoxTests : TestBase
     [Description("Pull Request 2192")]
     public async Task OnComboBoxHelperTextFontSize_ChangesHelperTextFontSize()
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <ComboBox
@@ -22,15 +20,12 @@ public class ComboBoxTests : TestBase
         double fontSize = await helpTextBlock.GetFontSize();
 
         await Assert.That(fontSize).IsEqualTo(20);
-        recorder.Success();
     }
 
     [Test]
     [Description("Pull Request 2192")]
     public async Task OnFilledComboBoxHelperTextFontSize_ChangesHelperTextFontSize()
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <ComboBox
@@ -43,15 +38,12 @@ public class ComboBoxTests : TestBase
         double fontSize = await helpTextBlock.GetFontSize();
 
         await Assert.That(fontSize).IsEqualTo(20);
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 2495")]
     public async Task OnComboBox_WithClearButton_ClearsSelection()
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>($@"
 <StackPanel>
     <ComboBox materialDesign:HintAssist.Hint=""OS""
@@ -81,16 +73,12 @@ public class ComboBoxTests : TestBase
             selectedIndex = await comboBox.GetSelectedIndex();
             await Assert.That(selectedIndex >= 0).IsFalse();
         });
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 2690")]
     public async Task OnEditableComboBox_WithDefaultContextMenu_ShowsCutCopyPaste()
     {
-        await using var recorder = new TestRecorder(App);
-
         var comboBox = await LoadXaml<ComboBox>(@"
 <ComboBox IsEditable=""True"" Width=""200"" Style=""{StaticResource MaterialDesignComboBox}"">
     <ComboBoxItem Content=""Select1"" />
@@ -108,9 +96,6 @@ public class ComboBoxTests : TestBase
         await AssertMenu("Cut");
         await AssertMenu("Copy");
         await AssertMenu("Paste");
-
-        recorder.Success();
-
         async Task AssertMenu(string menuHeader)
         {
             var menuItem = await contextMenu!.GetElement(ElementQuery.PropertyExpression<MenuItem>(x => x.Header, menuHeader));
@@ -122,8 +107,6 @@ public class ComboBoxTests : TestBase
     [Description("Issue 2713")]
     public async Task OnEditableComboBox_ClickInTextArea_FocusesTextBox()
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel Orientation=""Horizontal"">
     <ComboBox x:Name=""EditableComboBox"" IsEditable=""True"" Style=""{StaticResource MaterialDesignComboBox}"">
@@ -159,8 +142,6 @@ public class ComboBoxTests : TestBase
         await Assert.That(wasOpenAfterClickOnEditableTextBox).IsFalse().Because("ComboBox should not have opened drop down when clicking the editable ait wTextBox");
         await Assert.That(textBoxHasFocus).IsTrue().Because("Editable TextBox should have focus");
         await Assert.That(textBoxHasKeyboardFocus).IsTrue().Because("Editable TextBox should have keyboard focus");
-
-        recorder.Success();
     }
 
     [Test]
@@ -175,8 +156,6 @@ public class ComboBoxTests : TestBase
     [Arguments("MaterialDesignOutlinedComboBox", 20)]
     public async Task ComboBox_WithHintAndHelperText_RespectsPadding(string styleName, int? padding)
     {
-        await using var recorder = new TestRecorder(App);
-
         // FIXME: Tolerance needed because TextFieldAssist.TextBoxViewMargin is in play and slightly modifies the hint text placement in certain cases.
         const double tolerance = 1.5;
 
@@ -200,8 +179,6 @@ public class ComboBoxTests : TestBase
 
         await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left)).IsCloseTo(0, tolerance);
         await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - helperTextCoordinates.Value.Left)).IsCloseTo(0, tolerance);
-
-        recorder.Success();
     }
 
     [Test]
@@ -216,8 +193,6 @@ public class ComboBoxTests : TestBase
     [Arguments("MaterialDesignOutlinedComboBox", 20)]
     public async Task ComboBox_WithHintAndValidationError_RespectsPadding(string styleName, int? padding)
     {
-        await using var recorder = new TestRecorder(App);
-
         // FIXME: Tolerance needed because TextFieldAssist.TextBoxViewMargin is in play and slightly modifies the hint text placement in certain cases.
         const double tolerance = 1.5;
 
@@ -249,8 +224,6 @@ public class ComboBoxTests : TestBase
 
         await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left)).IsCloseTo(0, tolerance);
         await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left)).IsCloseTo(0, tolerance);
-
-        recorder.Success();
     }
 
     [Test]
@@ -261,8 +234,6 @@ public class ComboBoxTests : TestBase
     [Description("Issue 3433")]
     public async Task ComboBox_WithHorizontalContentAlignment_RespectsAlignment(HorizontalAlignment alignment)
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>($"""
             <StackPanel>
               <ComboBox HorizontalContentAlignment="{alignment}">
@@ -274,8 +245,6 @@ public class ComboBoxTests : TestBase
         var selectedItemPresenter = await comboBox.GetElement<ContentPresenter>("contentPresenter");
 
         await Assert.That(await selectedItemPresenter.GetHorizontalAlignment()).IsEqualTo(alignment);
-
-        recorder.Success();
     }
 
     [Test]
@@ -285,8 +254,6 @@ public class ComboBoxTests : TestBase
     [Description("Issue 3623")]
     public async Task ComboBox_BorderShouldDependOnAppliedStyle(string style, double left, double top, double right, double bottom)
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>($$"""
              <StackPanel>
                <ComboBox Style="{StaticResource {{style}}}">
@@ -301,7 +268,5 @@ public class ComboBoxTests : TestBase
 
         Thickness thickness = await border.GetBorderThickness();
         await Assert.That(thickness).IsEqualTo(new Thickness(left, top, right, bottom));
-
-        recorder.Success();
     }
 }

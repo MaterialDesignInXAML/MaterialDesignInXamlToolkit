@@ -1,5 +1,6 @@
 ﻿using System.Windows.Media;
 using MaterialDesignColors;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
 
 namespace MaterialDesignThemes.UITests.WPF.Theme;
@@ -59,30 +60,29 @@ public partial class ThemeTests : TestBase
     private static SecondaryColor[] SecondaryColors() => Enum.GetValues<SecondaryColor>();
 
     [Test]
-    [Skip("Manual run when theme values change")]
+    [Explicit]
     [MatrixDataSource]
     public async Task BundledTheme_UsesSameColorsAsXamlResources(
         [Matrix("Light", "Dark")] string baseTheme,
         [MatrixMethod<ThemeTests>(nameof(PrimaryColors))] PrimaryColor primaryColor,
         [MatrixMethod<ThemeTests>(nameof(SecondaryColors))] SecondaryColor secondaryColor)
     {
-        IVisualElement<WrapPanel> bundledPanel = await Initialize($"""
+        IVisualElement<WrapPanel> bundledPanel = await Initialize(App, $"""
             <materialDesign:BundledTheme BaseTheme="{baseTheme}"
                 PrimaryColor="{primaryColor}"
                 SecondaryColor="{secondaryColor}" />
             """);
-        Dictionary<string, Color> bundledColorsByNames = await GetColors();
+        Dictionary<string, Color> bundledColorsByNames = await GetColors(App);
 
-        //Re-setup the App
-        await DisposeAsync();
-        await InitializeAsync();
+        //Setup second App instance to compare against
+        await using var app = await StartApp();
 
-        IVisualElement<WrapPanel> xamlPanel = await Initialize($"""
+        IVisualElement<WrapPanel> xamlPanel = await Initialize(app, $"""
             <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.{baseTheme}.xaml" />
             <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.{primaryColor}.xaml" />
             <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Secondary/MaterialDesignColor.{secondaryColor}.xaml" />
             """);
-        Dictionary<string, Color> xamlColorsByNames = await GetColors();
+        Dictionary<string, Color> xamlColorsByNames = await GetColors(app);
 
         await Assert.That(xamlColorsByNames.Count).IsEqualTo(bundledColorsByNames.Count);
 
@@ -91,13 +91,13 @@ public partial class ThemeTests : TestBase
             await Assert.That(bundledColorsByNames[brushName] == xamlColorsByNames[brushName]).IsTrue().Because($"Brush {brushName}, Bundled color {bundledColorsByNames[brushName]} does not match XAML color {xamlColorsByNames[brushName]}");
         }
 
-        async Task<Dictionary<string, Color>> GetColors()
+        async Task<Dictionary<string, Color>> GetColors(IApp app)
         {
-            Dictionary<string, Color> rv = new();
+            Dictionary<string, Color> rv = [];
 
             await Task.WhenAll(GetBrushResourceNames().Select(async x =>
             {
-                Color color = await GetResourceColor(x);
+                Color color = await GetResourceColor(app, x);
                 lock (rv)
                 {
                     rv[x] = color;
@@ -112,15 +112,21 @@ public partial class ThemeTests : TestBase
     private partial string GetXamlWrapPanel();
     private partial Task AssertAllThemeBrushesSet(IVisualElement<WrapPanel> panel);
 
-    private async Task<Color> GetResourceColor(string name)
+    private Task<Color> GetResourceColor(string name) => GetResourceColor(App, name);
+
+    private static async Task<Color> GetResourceColor(IApp app, string name)
     {
-        IResource resource = await App.GetResource(name);
+        IResource resource = await app.GetResource(name);
         SolidColorBrush? brush = resource.GetAs<SolidColorBrush>();
         await Assert.That(brush).IsNotNull();
         return brush!.Color;
     }
 
-    protected async Task<IVisualElement<WrapPanel>> Initialize(string themeDictionary)
+    protected Task<IVisualElement<WrapPanel>> Initialize(string themeDictionary)
+        => Initialize(App, themeDictionary);
+
+
+    protected async Task<IVisualElement<WrapPanel>> Initialize(IApp app, string themeDictionary)
     {
         string applicationResourceXaml = $"""
             <ResourceDictionary 
@@ -138,10 +144,10 @@ public partial class ThemeTests : TestBase
             </ResourceDictionary>
             """;
 
-        await App.Initialize(applicationResourceXaml,
+        await app.Initialize(applicationResourceXaml,
             Path.GetFullPath("MaterialDesignColors.dll"),
             Path.GetFullPath("MaterialDesignThemes.Wpf.dll"),
             System.Reflection.Assembly.GetExecutingAssembly().Location);
-        return await App.CreateWindowWith<WrapPanel>(GetXamlWrapPanel());
+        return await app.CreateWindowWith<WrapPanel>(GetXamlWrapPanel());
     }
 }
