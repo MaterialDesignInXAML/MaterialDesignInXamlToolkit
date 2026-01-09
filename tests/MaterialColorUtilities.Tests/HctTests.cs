@@ -3,7 +3,7 @@
 public sealed class HctTests
 {
     [Test]
-    [Skip("Takes a long time to run")]
+    [Explicit] //Takes a long time to run
     [DisplayName("HCT preserves original color for all opaque ARGB values")]
     public async Task Hct_Preserves_Original_Color_For_All_Opaque_ARGB()
     {

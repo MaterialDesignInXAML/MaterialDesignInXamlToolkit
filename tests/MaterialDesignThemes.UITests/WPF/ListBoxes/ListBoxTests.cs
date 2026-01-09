@@ -8,8 +8,6 @@ public class ListBoxTests : TestBase
     [Test]
     public async Task OnMouseOver_BackgroundIsSet()
     {
-        await using var recorder = new TestRecorder(App);
-
         var listBox = await LoadXaml<ListBox>(@"
 <ListBox MinWidth=""200"">
     <ListBoxItem Content=""Item1"" />
@@ -40,8 +38,6 @@ public class ListBoxTests : TestBase
 
         //float? contrastRatio = foreground?.ContrastRatio(effectiveBackground);
         //await Assert.True(contrastRatio >= MaterialDesignSpec.MinimumContrastSmallText);
-
-        recorder.Success();
     }
 
     [Test]
@@ -60,8 +56,6 @@ public class ListBoxTests : TestBase
     [Arguments("MaterialDesignChoiceChipSecondaryOutlineListBox")]
     public async Task OnClickChoiceChipListBox_ChangesSelectedItem(string listBoxStyle)
     {
-        await using var recorder = new TestRecorder(App);
-
         var listBox = await LoadXaml<ListBox>($@"
 <ListBox x:Name=""ChipsListBox"" Style=""{{StaticResource {listBoxStyle}}}"">
     <ListBoxItem>Mercury</ListBoxItem>
@@ -74,15 +68,11 @@ public class ListBoxTests : TestBase
         await earth.LeftClick();
 
         await Wait.For(async () => await Assert.That(await listBox.GetSelectedIndex()).IsEqualTo(2));
-
-        recorder.Success();
     }
 
     [Test]
     public async Task ScrollBarAssist_ButtonsVisibility_HidesButtonsOnMinimalistStyle()
     {
-        await using var recorder = new TestRecorder(App);
-
         string xaml = @"<ListBox Height=""300"" Width=""300""
 materialDesign:ScrollBarAssist.ButtonsVisibility=""Collapsed"" 
 ScrollViewer.HorizontalScrollBarVisibility=""Visible"" 
@@ -116,14 +106,11 @@ ScrollViewer.VerticalScrollBarVisibility=""Visible"">
         await Assert.That(await leftButton.GetIsVisible()).IsFalse();
         var rightButton = await horizontalScrollBar.GetElement<RepeatButton>("PART_LineRightButton");
         await Assert.That(await rightButton.GetIsVisible()).IsFalse();
-
-        recorder.Success();
     }
 
     [Test]
     public async Task OnListBoxAssist_WithShowSelectDisabled_SelectionIsDisabled()
     {
-        await using var recorder = new TestRecorder(App);
         var listBox = await LoadXaml<ListBox>($@"
 <ListBox materialDesign:ListBoxItemAssist.ShowSelection=""False"">
     <ListBoxItem>Mercury</ListBoxItem>
@@ -136,16 +123,12 @@ ScrollViewer.VerticalScrollBarVisibility=""Visible"">
         await earth.LeftClick();
         var selectedBorder = await earth.GetElement<Border>("SelectedBorder");
         await Wait.For(async () => await Assert.That(await selectedBorder.GetIsVisible()).IsFalse() == false);
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3188")]
     public async Task OnToggle_ShouldGrabFocus()
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>("""
             <StackPanel Orientation="Vertical">
                 <ListBox MinWidth="200"
@@ -171,7 +154,5 @@ ScrollViewer.VerticalScrollBarVisibility=""Visible"">
 
         // Assert
         await Wait.For(async () => await Assert.That(await listBox.GetIsKeyboardFocusWithin()).IsTrue());
-
-        recorder.Success();
     }
 }

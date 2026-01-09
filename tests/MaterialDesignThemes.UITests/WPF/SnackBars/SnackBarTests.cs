@@ -8,8 +8,6 @@ public class SnackBarTests : TestBase
     [Description("Issue 1223")]
     public async Task SnackBar_WithFontSizeAndWeight_AffectsDisplayedMessage()
     {
-        await using var recorder = new TestRecorder(App);
-
         //Arrange
         IVisualElement<Snackbar> snackBar = await LoadXaml<Snackbar>("""
             <materialDesign:Snackbar
@@ -24,7 +22,5 @@ public class SnackBarTests : TestBase
         // Assert
         await Assert.That(await textBlock.GetFontSize()).IsEqualTo(14);
         await Assert.That(await textBlock.GetFontWeight()).IsEqualTo(FontWeights.Bold);
-
-        recorder.Success();
     }
 }

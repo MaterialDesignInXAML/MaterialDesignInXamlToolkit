@@ -8,8 +8,6 @@ public class ColorPickerTests : TestBase
     [Test]
     public async Task OnLostFocusIfSelectedTimeIsNull_DatePartWillBeToday()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<ColorPicker> colorPicker = await LoadXaml<ColorPicker>(@"
     <materialDesign:ColorPicker Width=""400"" Height=""100"" Color=""Red""/>");
 
@@ -30,7 +28,5 @@ public class ColorPickerTests : TestBase
 
         double currentBrightness = (await colorPicker.GetColor()).ToHsb().Brightness;
         await Assert.That(currentBrightness).IsLessThan(lastBrightness);
-
-        recorder.Success();
     }
 }

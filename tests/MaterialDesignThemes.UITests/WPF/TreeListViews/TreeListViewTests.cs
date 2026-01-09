@@ -15,8 +15,6 @@ public class TreeListViewTests : TestBase
     [MethodDataSource(nameof(GetTestControls))]
     public async Task CanResetNestedElements(Type userControlType)
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> root = (await LoadUserControl(userControlType)).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
@@ -41,15 +39,11 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 3, "1_1_x");
         await AssertTreeItemContent(treeListView, 4, "1_2_x");
         await AssertTreeItemContent(treeListView, 5, "2");
-
-        recorder.Success();
     }
 
     [Test]
     public async Task CanMoveNestedElementDown()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
@@ -84,15 +78,11 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 3, "1_2");
         await AssertTreeItemContent(treeListView, 4, "1_1");
         await AssertTreeItemContent(treeListView, 5, "2");
-
-        recorder.Success();
     }
 
     [Test]
     public async Task CanMoveNestedElementUp()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
@@ -127,15 +117,11 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 3, "1_0");
         await AssertTreeItemContent(treeListView, 4, "1_2");
         await AssertTreeItemContent(treeListView, 5, "2");
-
-        recorder.Success();
     }
 
     [Test]
     public async Task CanMoveNestedElementWithExpandedChildrenDown()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
@@ -169,15 +155,11 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 6, "1_1_1");
         await AssertTreeItemContent(treeListView, 7, "1_1_2");
         await AssertTreeItemContent(treeListView, 8, "2");
-
-        recorder.Success();
     }
 
     [Test]
     public async Task CanMoveNestedElementWithExpandedChildrenUp()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
@@ -216,15 +198,11 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 6, "1_0");
         await AssertTreeItemContent(treeListView, 7, "1_2");
         await AssertTreeItemContent(treeListView, 8, "2");
-
-        recorder.Success();
     }
 
     [Test]
     public async Task CanMoveTopLevelElementDown()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> moveDownButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Down"));
@@ -242,15 +220,11 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 0, "0");
         await AssertTreeItemContent(treeListView, 1, "2");
         await AssertTreeItemContent(treeListView, 2, "1");
-
-        recorder.Success();
     }
 
     [Test]
     public async Task CanMoveTopLevelElementUp()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> moveUpButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Up"));
@@ -268,15 +242,11 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 0, "1");
         await AssertTreeItemContent(treeListView, 1, "0");
         await AssertTreeItemContent(treeListView, 2, "2");
-
-        recorder.Success();
     }
 
     [Test]
     public async Task CanMoveTopLevelElementWithExpandedChildrenDown()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
@@ -304,15 +274,11 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 3, "1_0");    // NOTE: If expansion state is lost when moving, these 3 children should not be present.
         await AssertTreeItemContent(treeListView, 4, "1_1");
         await AssertTreeItemContent(treeListView, 5, "1_2");
-
-        recorder.Success();
     }
 
     [Test]
     public async Task CanMoveTopLevelElementWithExpandedChildrenUp()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
@@ -340,15 +306,11 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 3, "1_2");
         await AssertTreeItemContent(treeListView, 4, "0");
         await AssertTreeItemContent(treeListView, 5, "2");
-
-        recorder.Success();
     }
 
     [Test]
     public async Task CanReplaceTopLevelElement()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> replaceButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Replace"));
@@ -366,15 +328,11 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 0, "0");
         await AssertTreeItemContent(treeListView, 1, "1_r");
         await AssertTreeItemContent(treeListView, 2, "2");
-
-        recorder.Success();
     }
 
     [Test]
     public async Task CanReplaceTopLevelElementWithExpandedChildren()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> replaceButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Replace"));
@@ -394,15 +352,11 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 0, "0");
         await AssertTreeItemContent(treeListView, 1, "1_r"); // NOTE: The three children should have been dropped by the replace call.
         await AssertTreeItemContent(treeListView, 2, "2");
-
-        recorder.Success();
     }
 
     [Test]
     public async Task CanReplaceNestedChildElement()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
@@ -432,15 +386,11 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 3, "1_1_r");
         await AssertTreeItemContent(treeListView, 4, "1_2");
         await AssertTreeItemContent(treeListView, 5, "2");
-
-        recorder.Success();
     }
 
     [Test]
     public async Task CanReplaceNestedChildElementWithExpandedChildren()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
@@ -486,16 +436,12 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 3, "1_1_r");
         await AssertTreeItemContent(treeListView, 4, "1_2");
         await AssertTreeItemContent(treeListView, 5, "2");
-
-        recorder.Success();
     }
 
     [Test]
     [MethodDataSource(nameof(GetTestControls))]
     public async Task WithHierarchicalDataTemplate_CanRemoveTopLevelElement(Type userControlType)
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> root = (await LoadUserControl(userControlType)).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
@@ -514,16 +460,12 @@ public class TreeListViewTests : TestBase
 
         await AssertTreeItemContent(treeListView, 0, "0");
         await AssertTreeItemContent(treeListView, 1, "2");
-        
-        recorder.Success();
     }
 
     [Test]
     [MethodDataSource(nameof(GetTestControls))]
     public async Task WithHierarchicalDataTemplate_CanRemoveNestedElement(Type userControlType)
     {
-        await using var recorder = new TestRecorder(App);
-
         //Arrange
         IVisualElement<Grid> root = (await LoadUserControl(userControlType)).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
@@ -561,15 +503,11 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 4, "1_1_1");
         await AssertTreeItemContent(treeListView, 5, "1_2");
         await AssertTreeItemContent(treeListView, 6, "2");
-
-        recorder.Success();
     }
 
     [Test]
     public async Task DoubleClickOnTreeListViewItem_TogglesExpansion()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
@@ -597,15 +535,11 @@ public class TreeListViewTests : TestBase
         await secondItem.LeftClick();
 
         await Wait.For(async () => await secondItem.GetIsExpanded() == false);
-
-        recorder.Success();
     }
 
     [Test]
     public async Task LeftAndRightArrowKeys_CollapseAndExpand()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
@@ -642,16 +576,12 @@ public class TreeListViewTests : TestBase
         //Left arrow to jump to parent
         await nestedItem.SendKeyboardInput($"{Key.Left}");
         await Wait.For(() => secondItem.GetIsSelected(), message: "Parent item is not selected");
-
-        recorder.Success();
     }
 
     [Test]
     [MethodDataSource(nameof(GetTestControls))]
     public async Task AddingChildrenToItemWithAlreadyExpandedChildren_InsertsNewChildAtCorrectIndex(Type userControlType)
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> root = (await LoadUserControl(userControlType)).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
@@ -678,16 +608,12 @@ public class TreeListViewTests : TestBase
 
         //Assert the child added last is below the child added first (and its children)
         await AssertTreeItemContent(treeListView, 4, "1_1");
-
-        recorder.Success();
     }
 
     [Test]
     [MethodDataSource(nameof(GetTestControls))]
     public async Task RemovingChildrenFromItemWithAlreadyExpandedChildren_ShouldDeleteSelectedChild(Type userControlType)
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> root = (await LoadUserControl(userControlType)).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
@@ -730,15 +656,11 @@ public class TreeListViewTests : TestBase
 
         //Assert the 2 children were successfully removed
         await AssertTreeItemContent(treeListView, 4, "2");
-
-        recorder.Success();
     }
 
     [Test]
     public async Task MovingChildItemAfterHavingMovedRootLevelParentItem_ShouldMoveChild()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
@@ -778,15 +700,11 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 3, "1_0");
         await AssertTreeItemContent(treeListView, 4, "1_2");
         await AssertTreeItemContent(treeListView, 5, "1_1");
-
-        recorder.Success();
     }
 
     [Test]
     public async Task MovingChildItemOfNestedItemAfterHavingMovedNestedItem_ShouldMoveChild()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
@@ -835,15 +753,11 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 6, "1_1_2");
         await AssertTreeItemContent(treeListView, 7, "1_1_1");
         await AssertTreeItemContent(treeListView, 8, "2");
-
-        recorder.Success();
     }
 
     [Test]
     public async Task TopLevelItemWithNestedExpandedChild_MovesChildrenMaintainingExpansion()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
@@ -886,15 +800,11 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 6, "1_1_2");
         await AssertTreeItemContent(treeListView, 7, "1_2");
         await AssertTreeItemContent(treeListView, 8, "2");
-
-        recorder.Success();
     }
 
     [Test]
     public async Task TopLevelItemWhichHasBeenExpandedAndCollapsed_MovesAndMaintainsCollapsedState()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add"));
@@ -936,15 +846,11 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 3, "1_0");
         await AssertTreeItemContent(treeListView, 4, "1_1");
         await AssertTreeItemContent(treeListView, 5, "1_2");
-
-        recorder.Success();
     }
 
     [Test]
     public async Task TreeListView_WithTemplateSelector_UsesSelectorTemplates()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<TreeListView> treeListView = (await LoadUserControl<TreeListViewTemplateSelector>()).As<TreeListView>();
 
         IVisualElement<TreeListViewItem> item3 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[2]");
@@ -965,15 +871,11 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 7, "1", Colors.Red);
         await AssertTreeItemContent(treeListView, 8, "2", Colors.Red);
         await AssertTreeItemContent(treeListView, 9, "3", Colors.Red);
-
-        recorder.Success();
     }
 
     [Test]
     public async Task TreeListView_WithCollectionView_RendersItems()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<TreeListView> treeListView = (await LoadUserControl<TreeListViewWithCollectionView>()).As<TreeListView>();
 
         IVisualElement<TreeListViewItem> item3 = await treeListView.GetElement<TreeListViewItem>("/TreeListViewItem[2]");
@@ -994,15 +896,11 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 7, "1");
         await AssertTreeItemContent(treeListView, 8, "2");
         await AssertTreeItemContent(treeListView, 9, "3");
-
-        recorder.Success();
     }
 
     [Test]
     public async Task TreeListView_AddingExpandedItemWithChildren_ShowsExpandedItem()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> root = (await LoadUserControl<TreeListViewDataBinding>()).As<Grid>();
         IVisualElement<TreeListView> treeListView = await root.GetElement<TreeListView>();
         IVisualElement<Button> addWithChildrenButton = await root.GetElement(ElementQuery.PropertyExpression<Button>(x => x.Content, "Add with Children"));
@@ -1016,8 +914,6 @@ public class TreeListViewTests : TestBase
         await AssertTreeItemContent(treeListView, 4, "3_0");
         await AssertTreeItemContent(treeListView, 5, "3_1");
         await AssertTreeItemContent(treeListView, 6, "3_2");
-
-        recorder.Success();
     }
 
     private static async Task AssertTreeItemContent(IVisualElement<TreeListView> treeListView, int index, string content, bool isExpanded = false)

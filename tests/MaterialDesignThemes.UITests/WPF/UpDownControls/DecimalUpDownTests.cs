@@ -15,8 +15,6 @@ public class DecimalUpDownTests: TestBase
     [Arguments("zh-CN")]
     public async Task NumericButtons_IncreaseAndDecreaseValue(string culture)
     {
-        await using var recorder = new TestRecorder(App);
-
         var numericUpDown = await LoadXaml<DecimalUpDown>("""
         <materialDesign:DecimalUpDown Value="1" ValueStep="0.1" />
         """);
@@ -42,9 +40,6 @@ public class DecimalUpDownTests: TestBase
             await Assert.That(await textBox.GetText()).IsEqualTo("1");
             await Assert.That(await numericUpDown.GetValue()).IsEqualTo(1);
         });
-
-        recorder.Success();
-
         static void SetCulture(Application _, string culture)
         {
             Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(culture);
@@ -54,8 +49,6 @@ public class DecimalUpDownTests: TestBase
     [Test]
     public async Task NumericButtons_WithMaximum_DisablesPlusButton()
     {
-        await using var recorder = new TestRecorder(App);
-
         var numericUpDown = await LoadXaml<DecimalUpDown>("""
         <materialDesign:DecimalUpDown Value="1" Maximum="2" />
         """);
@@ -80,15 +73,11 @@ public class DecimalUpDownTests: TestBase
         });
 
         await Assert.That(await plusButton.GetIsEnabled()).IsTrue();
-
-        recorder.Success();
     }
 
     [Test]
     public async Task NumericButtons_WithMinimum_DisablesMinusButton()
     {
-        await using var recorder = new TestRecorder(App);
-
         var numericUpDown = await LoadXaml<DecimalUpDown>("""
         <materialDesign:DecimalUpDown Value="2" Minimum="1" />
         """);
@@ -113,15 +102,11 @@ public class DecimalUpDownTests: TestBase
         });
 
         await Assert.That(await minusButton.GetIsEnabled()).IsTrue();
-
-        recorder.Success();
     }
 
     [Test]
     public async Task MaxAndMinAssignments_CoerceValueToBeInRange()
     {
-        await using var recorder = new TestRecorder(App);
-
         var numericUpDown = await LoadXaml<DecimalUpDown>("""
         <materialDesign:DecimalUpDown Value="2" />
         """);
@@ -137,16 +122,12 @@ public class DecimalUpDownTests: TestBase
         await Assert.That(await numericUpDown.GetValue()).IsEqualTo(3);
         await Assert.That(await numericUpDown.GetMinimum()).IsEqualTo(3);
         await Assert.That(await numericUpDown.GetMaximum()).IsEqualTo(3);
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3654")]
     public async Task InternalTextBoxIsFocused_WhenGettingKeyboardFocus()
     {
-        await using var recorder = new TestRecorder(App);
-
         // Arrange
         var stackPanel = await LoadXaml<StackPanel>("""
         <StackPanel>
@@ -167,16 +148,12 @@ public class DecimalUpDownTests: TestBase
         // Assert
         await Assert.That(await textBox.GetIsFocused()).IsFalse();
         await Assert.That(await part_textBox.GetIsFocused()).IsTrue();
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3781")]
     public async Task IncreaseButtonClickWhenTextIsAboveMaximum_DoesNotIncreaseValue()
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>("""
         <StackPanel>
           <materialDesign:DecimalUpDown Minimum="-2.5" Maximum="2.5" Value="2.5" />
@@ -196,8 +173,6 @@ public class DecimalUpDownTests: TestBase
         //NB: Because the focus has not left the up down control, we don't expect the text to change
         await Assert.That(await textBox.GetText()).IsEqualTo("30");
         await Assert.That(await decimalUpDown.GetValue()).IsEqualTo(2.5m);
-
-        recorder.Success();
     }
 
     [Test]
@@ -207,8 +182,6 @@ public class DecimalUpDownTests: TestBase
     [Arguments("2a", 2)]
     public async Task LostFocusWhenTextIsInvalid_RevertsToOriginalValue(string inputText, decimal expectedValue)
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>("""
         <StackPanel>
           <materialDesign:DecimalUpDown Minimum="-2.5" Maximum="2.5" Value="2.5" />
@@ -226,7 +199,5 @@ public class DecimalUpDownTests: TestBase
 
         await Assert.That(await textBox.GetText()).IsEqualTo(expectedValue.ToString());
         await Assert.That(await decimalUpDown.GetValue()).IsEqualTo(expectedValue);
-
-        recorder.Success();
     }
 }

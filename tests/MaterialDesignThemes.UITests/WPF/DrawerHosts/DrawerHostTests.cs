@@ -10,8 +10,6 @@ public class DialogHostTests : TestBase
     [Test]
     public async Task DrawerHost_OpenAndClose_RaisesEvents()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<DrawerHost> drawerHost = await LoadXaml<DrawerHost>(@"
 <materialDesign:DrawerHost>
   <materialDesign:DrawerHost.LeftDrawerContent>
@@ -80,15 +78,11 @@ public class DialogHostTests : TestBase
             var invocations = await closingEvent.GetInvocations();
             await Assert.That(invocations.Count).IsEqualTo(2);
         });
-
-        recorder.Success();
     }
 
     [Test]
     public async Task DrawerHost_CancelingClosingEvent_DrawerStaysOpen()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<DrawerHost> drawerHost = (await LoadUserControl<CancellingDrawerHost>()).As<DrawerHost>();
         var showButton = await drawerHost.GetElement<Button>("ShowButton");
         var closeButton = await drawerHost.GetElement<Button>("CloseButton");
@@ -120,17 +114,12 @@ public class DialogHostTests : TestBase
         await Task.Delay(100, TestContext.Current.CancellationToken);
         await Wait.For(async () => (await closingEvent.GetInvocations()).Count == 3);
         await Assert.That(await drawerHost.GetIsLeftDrawerOpen()).IsTrue();
-
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3224")]
     public async Task DrawerHost_ShouldInvokeCustomContentTemplateSelector_WhenSetExplicitly()
     {
-        await using var recorder = new TestRecorder(App);
-
         // Arrange
         IVisualElement<Grid> grid = await LoadXaml<Grid>("""
             <Grid>
@@ -175,8 +164,6 @@ public class DialogHostTests : TestBase
         await Assert.That(topDrawerContent).IsEqualTo("TopDrawerContent");
         await Assert.That(rightDrawerContent).IsEqualTo("RightDrawerContent");
         await Assert.That(bottomDrawerContent).IsEqualTo("BottomDrawerContent");
-
-        recorder.Success();
     }
 }
 

@@ -11,8 +11,6 @@ public class TextBoxTests : TestBase
     [Description("Issue 1883")]
     public async Task OnClearButtonShown_ControlHeightDoesNotChange()
     {
-        await using var recorder = new TestRecorder(App);
-
         //Arrange
         var grid = await LoadXaml<Grid>(@"
 <Grid Margin=""30"">
@@ -38,16 +36,12 @@ public class TextBoxTests : TestBase
 
         double height = await textBox.GetActualHeight();
         await Assert.That(height).IsEqualTo(initialHeight);
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 1883")]
     public async Task OnClearButtonWithHintShown_ControlHeightDoesNotChange()
     {
-        await using var recorder = new TestRecorder(App);
-
         //Arrange
         var grid = await LoadXaml<Grid>(@"
 <Grid Margin=""30"">
@@ -77,16 +71,12 @@ public class TextBoxTests : TestBase
         //Assert
         double height = await textBox.GetActualHeight();
         await Assert.That(height).IsEqualTo(initialHeight);
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 1979")]
     public async Task OnTextCleared_MultilineTextBox()
     {
-        await using var recorder = new TestRecorder(App);
-
         //Arrange
         var grid = await LoadXaml<Grid>(@"
 <Grid>
@@ -110,15 +100,12 @@ public class TextBoxTests : TestBase
         await Wait.For(async () => await Assert.That(await textBox.GetActualHeight()).IsEqualTo(initialHeight));
         Rect rect = await textBox.GetCoordinates();
         await Assert.That(rect).IsEqualTo(initialRect);
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 2495")]
     public async Task OnTextBox_WithClearButton_ClearsText()
     {
-        await using var recorder = new TestRecorder(App);
-
         var grid = await LoadXaml<Grid>(@"
 <Grid Margin=""30"">
     <TextBox VerticalAlignment=""Top""
@@ -140,16 +127,12 @@ public class TextBoxTests : TestBase
             text = await textBox.GetText();
             await Assert.That(text).IsNull();
         });
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 2002")]
     public async Task OnTextBoxDisabled_FloatingHintBackgroundIsOpaque()
     {
-        await using var recorder = new TestRecorder(App);
-
         var grid = await LoadXaml<Grid>(@"
 <Grid Background=""Red"">
     <TextBox
@@ -169,15 +152,12 @@ public class TextBoxTests : TestBase
         Color background = await hintBackground.GetEffectiveBackground(contentGrid);
 
         await Assert.That(background.A).IsEqualTo<byte>(255);
-        recorder.Success();
     }
 
     [Test]
     [Description("Pull Request 2192")]
     public async Task OnTextBoxHelperTextFontSize_ChangesHelperTextFontSize()
     {
-        await using var recorder = new TestRecorder(App);
-
         var grid = await LoadXaml<Grid>(@"
 <Grid Margin=""30"">
     <TextBox VerticalAlignment=""Top""
@@ -191,14 +171,11 @@ public class TextBoxTests : TestBase
         double fontSize = await helpTextBlock.GetFontSize();
 
         await Assert.That(fontSize).IsEqualTo(20);
-        recorder.Success();
     }
 
     [Test]
     public async Task CharacterCount_WithMaxLengthSet_IsDisplayed()
     {
-        await using var recorder = new TestRecorder(App);
-
         var grid = await LoadXaml<Grid>(@"
 <Grid Margin=""30"">
     <TextBox
@@ -213,15 +190,11 @@ public class TextBoxTests : TestBase
         await textBox.SetText("12345");
 
         await Assert.That(await characterCounter.GetText()).IsEqualTo("5 / 10");
-
-        recorder.Success();
     }
 
     [Test]
     public async Task CharacterCount_WithoutMaxLengthSet_IsCollapsed()
     {
-        await using var recorder = new TestRecorder(App);
-
         var grid = await LoadXaml<Grid>(@"
 <Grid Margin=""30"">
     <TextBox />
@@ -230,15 +203,11 @@ public class TextBoxTests : TestBase
         var characterCounter = await textBox.GetElement<TextBlock>("CharacterCounterTextBlock");
 
         await Assert.That(await characterCounter.GetIsVisible()).IsFalse();
-
-        recorder.Success();
     }
 
     [Test]
     public async Task CharacterCount_WithMaxLengthSetAndCharacterCounterVisibilityCollapsed_IsNotDisplayed()
     {
-        await using var recorder = new TestRecorder(App);
-
         var grid = await LoadXaml<Grid>(@"
 <Grid Margin=""30"">
     <TextBox
@@ -250,16 +219,12 @@ public class TextBoxTests : TestBase
         var characterCounter = await textBox.GetElement<TextBlock>("CharacterCounterTextBlock");
 
         await Assert.That(await characterCounter.GetIsVisible()).IsFalse();
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 2300")]
     public async Task HelperText_CanSetFontColorWithAttachedStyle()
     {
-        await using var recorder = new TestRecorder(App);
-
         var grid = await LoadXaml<Grid>(@"
 <Grid Margin=""30"">
     <TextBox
@@ -275,16 +240,12 @@ public class TextBoxTests : TestBase
         var helperText = await textBox.GetElement<TextBlock>("HelperTextTextBlock");
 
         await Assert.That(await helperText.GetForegroundColor()).IsEqualTo(Colors.Red);
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 2362")]
     public async Task FloatingOffset_ValuesGetAppropriatelyApplied()
     {
-        await using var recorder = new TestRecorder(App);
-
         var textBox = await LoadXaml<TextBox>(@"
 <TextBox Style=""{StaticResource MaterialDesignFloatingHintTextBox}""
          materialDesign:HintAssist.Hint=""Hint with offset""
@@ -297,16 +258,12 @@ public class TextBoxTests : TestBase
 
         await Assert.That(offset.X).IsEqualTo(1);
         await Assert.That(offset.Y).IsEqualTo(-42);
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 2390")]
     public async Task ContextMenu_FollowsTextBoxFontFamily()
     {
-        await using var recorder = new TestRecorder(App);
-
         var textBox = await LoadXaml<TextBox>(@"<TextBox FontFamily=""Times New Roman""/>");
 
         await textBox.RightClick();
@@ -319,16 +276,12 @@ public class TextBoxTests : TestBase
         {
             await Assert.That(await contextMenu.GetFontFamily()).IsEqualTo(textBoxFont);
         });
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 2390")]
     public async Task ContextMenu_UsesInheritedFontFamily()
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel TextElement.FontFamily=""Times New Roman"">
     <TextBox />
@@ -348,16 +301,12 @@ public class TextBoxTests : TestBase
 
 
         await Assert.That(await contextMenu.GetFontFamily()).IsEqualTo(textBoxFont);
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 2430")]
     public async Task VerticalContentAlignment_ProperlyAlignsText()
     {
-        await using var recorder = new TestRecorder(App);
-
         var textBox = await LoadXaml<TextBox>($@"
     <TextBox Height=""100"" Text=""Test""/>
 ");
@@ -373,16 +322,12 @@ public class TextBoxTests : TestBase
             await textBox.SetVerticalContentAlignment(alignment);
             await Assert.That(await scrollViewer.GetVerticalContentAlignment()).IsEqualTo(alignment);
         }
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 2596")]
     public async Task OutlinedTextBox_ValidationErrorMargin_MatchesHelperTextMargin()
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <TextBox Style=""{StaticResource MaterialDesignOutlinedTextBox}""
@@ -410,16 +355,12 @@ public class TextBoxTests : TestBase
         await Assert.That(errorMargin.HasValue).IsTrue();
         await Assert.That(textBoxPadding.HasValue).IsTrue();
         await Assert.That(errorMargin.Value.Left - textBoxPadding.Value.Left).IsZero().Because($"Error text does not respect the padding of the TextBox: Error text Margin.Left ({errorMargin.Value.Left}) == TextBox Padding.Left ({textBoxPadding.Value.Left})");
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 2596")]
     public async Task FilledTextBox_ValidationErrorMargin_MatchesHelperTextMargin()
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>(@"
 <StackPanel>
     <TextBox Style=""{StaticResource MaterialDesignFilledTextBox}""
@@ -448,8 +389,6 @@ public class TextBoxTests : TestBase
         await Assert.That(textBoxPadding.HasValue).IsTrue();
 
         await Assert.That(errorMargin.Value.Left - textBoxPadding.Value.Left).IsZero().Because($"Error text does not respect the padding of the TextBox: Error text Margin.Left ({errorMargin.Value.Left}) == TextBox Padding.Left ({textBoxPadding.Value.Left})");
-
-        recorder.Success();
     }
 
     [Test]
@@ -464,8 +403,6 @@ public class TextBoxTests : TestBase
     [Arguments("MaterialDesignOutlinedTextBox", 20)]
     public async Task TextBox_WithHintAndHelperText_RespectsPadding(string styleName, int? padding)
     {
-        await using var recorder = new TestRecorder(App);
-
         // FIXME: Tolerance needed because TextFieldAssist.TextBoxViewMargin is in play and slightly modifies the hint text placement in certain cases.
         const double tolerance = 1.5;
 
@@ -489,8 +426,6 @@ public class TextBoxTests : TestBase
 
         await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left)).IsCloseTo(0, tolerance);
         await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - helperTextCoordinates.Value.Left)).IsCloseTo(0, tolerance);
-
-        recorder.Success();
     }
 
     [Test]
@@ -505,8 +440,6 @@ public class TextBoxTests : TestBase
     [Arguments("MaterialDesignOutlinedTextBox", 20)]
     public async Task TextBox_WithHintAndValidationError_RespectsPadding(string styleName, int? padding)
     {
-        await using var recorder = new TestRecorder(App);
-
         // FIXME: Tolerance needed because TextFieldAssist.TextBoxViewMargin is in play and slightly modifies the hint text placement in certain cases.
         const double tolerance = 1.5;
 
@@ -538,8 +471,6 @@ public class TextBoxTests : TestBase
 
         await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - hintCoordinates.Value.Left)).IsCloseTo(0, tolerance);
         await Assert.That(Math.Abs(contentHostCoordinates.Value.Left - errorViewerCoordinates.Value.Left)).IsCloseTo(0, tolerance);
-
-        recorder.Success();
     }
 
     [Test]
@@ -550,8 +481,6 @@ public class TextBoxTests : TestBase
     [Description("Issue 3161")]
     public async Task TextBox_MultiLineAndFixedHeight_RespectsVerticalContentAlignment(VerticalAlignment alignment, VerticalAlignment expectedFloatingHintAlignment)
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>($$"""
             <StackPanel>
               <TextBox Style="{StaticResource MaterialDesignFilledTextBox}"
@@ -566,16 +495,12 @@ public class TextBoxTests : TestBase
         IVisualElement<Grid> contentGrid = await textBox.GetElement<Grid>("ContentGrid");
 
         await Assert.That(await contentGrid.GetVerticalAlignment()).IsEqualTo(expectedFloatingHintAlignment);
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3176")]
     public async Task ValidationErrorTemplate_WithChangingErrors_UpdatesValidation()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement userControl = await LoadUserControl<ValidationUpdates>();
         var textBox = await userControl.GetElement<TextBox>();
         var button = await userControl.GetElement<Button>();
@@ -588,16 +513,12 @@ public class TextBoxTests : TestBase
 
             await Assert.That(await textBlock.GetText()).IsEqualTo("Some error + more");
         });
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3914")]
     public async Task TextBox_ClearButtonRemainsHidden_WhenInitiallyCollapsedAndMadeVisible()
     {
-        await using var recorder = new TestRecorder(App);
-
         var grid = await LoadXaml<Grid>($"""
             <Grid Margin="30">
                 <TextBox Visibility="Collapsed"
@@ -615,8 +536,6 @@ public class TextBoxTests : TestBase
         Visibility clearButtonVisibility = await clearButton.GetVisibility();
 
         await Assert.That(clearButtonVisibility).IsEqualTo(Visibility.Collapsed);
-
-        recorder.Success();
     }
 }
 

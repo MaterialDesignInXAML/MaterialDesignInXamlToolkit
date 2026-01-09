@@ -16,8 +16,6 @@ public class DialogHostTests : TestBase
     [Test]
     public async Task OnOpenDialog_OverlayCoversContent()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement dialogHost = await LoadUserControl<WithCounter>();
         var overlay = await dialogHost.GetElement<Grid>("PART_ContentCoverGrid");
 
@@ -54,16 +52,12 @@ public class DialogHostTests : TestBase
         {
             await Assert.That((await resultTextBlock.GetText())!).IsEqualTo("Clicks: 2");
         }, retry);
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 2282")]
     public async Task ClosingDialogWithIsOpenProperty_ShouldRaiseDialogClosingEvent()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement dialogHost = await LoadUserControl<ClosingEventCounter>();
         var showButton = await dialogHost.GetElement<Button>("ShowDialogButton");
         var closeButton = await dialogHost.GetElement<Button>("CloseButton");
@@ -78,15 +72,12 @@ public class DialogHostTests : TestBase
         {
             await Assert.That(await resultTextBlock.GetText()).IsEqualTo("1");
         });
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 2398")]
     public async Task FontSettingsShouldInheritIntoDialog()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement grid = await LoadXaml<Grid>(@"
 <Grid TextElement.FontSize=""42""
       TextElement.FontFamily=""Times New Roman""
@@ -125,16 +116,12 @@ public class DialogHostTests : TestBase
         await Assert.That(await text2.GetFontSize()).IsEqualTo(42);
         await Assert.That((await text2.GetFontFamily())?.FamilyNames.Values.Contains("Times New Roman")).IsTrue();
         await Assert.That(await text2.GetFontWeight()).IsEqualTo(FontWeights.ExtraBold);
-
-        recorder.Success();
     }
 
     [Test]
     [Description("PR 2236")]
     public async Task ContentBackground_SetsDialogBackground()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement grid = await LoadXaml<Grid>(@"
 <Grid>
   <Grid.ColumnDefinitions>
@@ -171,8 +158,6 @@ public class DialogHostTests : TestBase
             await Assert.That(await card1.GetBackgroundColor()).IsEqualTo(Colors.Red);
             await Assert.That(await card2.GetBackgroundColor()).IsEqualTo(Colors.Red);
         });
-
-        recorder.Success();
     }
 
     [Test]
@@ -181,8 +166,6 @@ public class DialogHostTests : TestBase
     [Arguments(BaseTheme.Light)]
     public async Task DialogBackgroundShouldInheritThemeBackground(BaseTheme dialogTheme)
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement grid = await LoadXaml<Grid>($@"
 <Grid>
   <Grid.ColumnDefinitions>
@@ -251,16 +234,12 @@ public class DialogHostTests : TestBase
                 await textBlock2.GetEffectiveBackground(),
                 MinimumContrastSmallText);
         });
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 2772")]
     public async Task CornerRadius_AppliedToContentCoverBorder_WhenSetOnDialogHost()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement grid = await LoadXaml<Grid>(@"
 <Grid>
   <materialDesign:DialogHost x:Name=""DialogHost"" CornerRadius=""1,2,3,4"">
@@ -285,16 +264,12 @@ public class DialogHostTests : TestBase
             await Assert.That((await contentCoverBorder.GetCornerRadius()).BottomRight).IsEqualTo(3);
             await Assert.That((await contentCoverBorder.GetCornerRadius()).BottomLeft).IsEqualTo(4);
         });
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 2772")]
     public async Task CornerRadius_AppliedToContentCoverBorder_WhenSetOnEmbeddedDialogHost()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement grid = await LoadXaml<Grid>(@"
 <Grid>
   <materialDesign:DialogHost x:Name=""DialogHost"" Style=""{StaticResource MaterialDesignEmbeddedDialogHost}"" CornerRadius=""1,2,3,4"">
@@ -319,16 +294,12 @@ public class DialogHostTests : TestBase
             await Assert.That((await contentCoverBorder.GetCornerRadius()).BottomRight).IsEqualTo(3);
             await Assert.That((await contentCoverBorder.GetCornerRadius()).BottomLeft).IsEqualTo(4);
         });
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3069")]
     public async Task DialogHost_WithOpenDialog_ShowsPopupWhenLoaded()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> rootGrid = (await LoadUserControl<LoadAndUnloadControl>()).As<Grid>();
 
         IVisualElement<Button> loadButton = await rootGrid.GetElement<Button>("LoadDialogHost");
@@ -356,16 +327,12 @@ public class DialogHostTests : TestBase
             await closeButton.LeftClick();
             await Assert.That(await dialogHost.GetIsOpen()).IsFalse();
         });
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3094")]
     public async Task DialogHost_ChangesSelectedTabItem_DoesNotPerformTabChangeWhenRestoringFocus()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> rootGrid = (await LoadUserControl<RestoreFocus>()).As<Grid>();
         IVisualElement<TabItem> tabItem1 = await rootGrid.GetElement<TabItem>("TabItem1");
         IVisualElement<TabItem> tabItem2 = await rootGrid.GetElement<TabItem>("TabItem2");
@@ -388,16 +355,12 @@ public class DialogHostTests : TestBase
 
         await Assert.That(await tabItem1.GetIsSelected()).IsTrue();
         await Assert.That(await tabItem2.GetIsSelected()).IsFalse();
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3094")]
     public async Task DialogHost_ChangesSelectedRailItem_DoesNotPerformRailChangeWhenRestoringFocus()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> rootGrid = (await LoadUserControl<RestoreFocus>()).As<Grid>();
         IVisualElement<TabItem> railItem1 = await rootGrid.GetElement<TabItem>("RailItem1");
         IVisualElement<TabItem> railItem2 = await rootGrid.GetElement<TabItem>("RailItem2");
@@ -420,16 +383,12 @@ public class DialogHostTests : TestBase
 
         await Assert.That(await railItem1.GetIsSelected()).IsTrue();
         await Assert.That(await railItem2.GetIsSelected()).IsFalse();
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3094")]
     public async Task DialogHost_ChangesSelectedTabItem_DoesNotPerformTabChangeWhenRestoreFocusIsDisabled()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> rootGrid = (await LoadUserControl<RestoreFocusDisabled>()).As<Grid>();
         IVisualElement<TabItem> tabItem1 = await rootGrid.GetElement<TabItem>("TabItem1");
         IVisualElement<TabItem> tabItem2 = await rootGrid.GetElement<TabItem>("TabItem2");
@@ -452,16 +411,12 @@ public class DialogHostTests : TestBase
 
         await Assert.That(await tabItem1.GetIsSelected()).IsTrue();
         await Assert.That(await tabItem2.GetIsSelected()).IsFalse();
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3094")]
     public async Task DialogHost_ChangesSelectedRailItem_DoesNotPerformRailChangeWhenRestoreFocusIsDisabled()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<Grid> rootGrid = (await LoadUserControl<RestoreFocusDisabled>()).As<Grid>();
         IVisualElement<TabItem> railItem1 = await rootGrid.GetElement<TabItem>("RailItem1");
         IVisualElement<TabItem> railItem2 = await rootGrid.GetElement<TabItem>("RailItem2");
@@ -484,16 +439,12 @@ public class DialogHostTests : TestBase
 
         await Assert.That(await railItem1.GetIsSelected()).IsTrue();
         await Assert.That(await railItem2.GetIsSelected()).IsFalse();
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3450")]
     public async Task DialogHost_WithComboBox_CanSelectItem()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement dialogHost = await LoadUserControl<WithComboBox>();
 
         var comboBox = await dialogHost.GetElement<ComboBox>("TargetedPlatformComboBox");
@@ -509,9 +460,6 @@ public class DialogHostTests : TestBase
             var index = await comboBox.GetSelectedIndex();
             await Assert.That(index).IsEqualTo(1);
         });
-
-
-        recorder.Success();
     }
 
     [Test]

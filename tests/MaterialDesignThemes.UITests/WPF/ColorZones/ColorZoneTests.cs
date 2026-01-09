@@ -18,8 +18,6 @@ public class ColorZoneTests : TestBase
     [Arguments(ColorZoneMode.Dark, "MaterialDesign.Brush.ColorZone.DarkBackground", "MaterialDesign.Brush.ColorZone.DarkForeground")]
     public async Task Mode_SetsThemeColors(ColorZoneMode mode, string backgroundBrush, string foregroundBrush)
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<ColorZone> colorZone = await LoadXaml<ColorZone>(@$"
 <materialDesign:ColorZone Mode=""{mode}""/>
 ");
@@ -28,7 +26,5 @@ public class ColorZoneTests : TestBase
 
         await Assert.That(await colorZone.GetBackgroundColor()).IsEqualTo(background);
         await Assert.That(await colorZone.GetForegroundColor()).IsEqualTo(foreground);
-
-        recorder.Success();
     }
 }
