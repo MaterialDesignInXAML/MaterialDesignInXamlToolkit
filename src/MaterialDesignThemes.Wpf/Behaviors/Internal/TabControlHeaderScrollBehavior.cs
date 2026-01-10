@@ -121,7 +121,7 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
         if (!_isAnimatingScroll)
             return;
 
-        if (e.Key is Key.Left or Key.Right or Key.Home or Key.End or Key.PageUp or Key.PageDown)
+        if (e.Key is Key.Left or Key.Right or Key.Home or Key.End or Key.PageUp or Key.PageDown or Key.Tab)
             e.Handled = true;
     }
 
