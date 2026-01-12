@@ -131,9 +131,9 @@ public class NumericUpDownTests : TestBase
 
         // Act
         await textBox.MoveKeyboardFocus();
-        await Task.Delay(50, TestContext.Current!.CancellationToken);
+        await Task.Delay(50, TestContext.Current!.Execution.CancellationToken);
         await textBox.SendInput(new KeyboardInput(Key.Tab));
-        await Task.Delay(50, TestContext.Current.CancellationToken);
+        await Task.Delay(50, TestContext.Current.Execution.CancellationToken);
 
         // Assert
         await Assert.That(await textBox.GetIsFocused()).IsFalse();

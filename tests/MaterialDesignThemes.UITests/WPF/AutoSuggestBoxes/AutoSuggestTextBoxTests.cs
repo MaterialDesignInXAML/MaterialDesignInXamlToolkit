@@ -63,7 +63,7 @@ public class AutoSuggestBoxTests : TestBase
             lastHeight = currentHeight;
             if (!rv)
             {
-                await Task.Delay(100, TestContext.Current!.CancellationToken);
+                await Task.Delay(100, TestContext.Current!.Execution.CancellationToken);
             }
             return rv;
         });
@@ -74,7 +74,7 @@ public class AutoSuggestBoxTests : TestBase
         await bananas.LeftClick();
 
         // Wait for the text to be updated
-        await Task.Delay(50, TestContext.Current!.CancellationToken);
+        await Task.Delay(50, TestContext.Current!.Execution.CancellationToken);
 
         var suggestBoxText = await suggestBox.GetText();
         //Validate that the current text is the same as the selected item
@@ -128,13 +128,13 @@ public class AutoSuggestBoxTests : TestBase
 
         // Act
         await suggestBox.MoveKeyboardFocus();
-        await Task.Delay(50, TestContext.Current!.CancellationToken);
+        await Task.Delay(50, TestContext.Current!.Execution.CancellationToken);
         await suggestBox.SendInput(new KeyboardInput("B")); // Open the popup
-        await Task.Delay(50, TestContext.Current.CancellationToken);
+        await Task.Delay(50, TestContext.Current.Execution.CancellationToken);
         await suggestBox.SendInput(new KeyboardInput(Key.Escape)); // Close the popup
-        await Task.Delay(50, TestContext.Current.CancellationToken);
+        await Task.Delay(50, TestContext.Current.Execution.CancellationToken);
         await suggestBox.SendInput(new KeyboardInput(Key.Tab)); // Press TAB to focus the next element
-        await Task.Delay(50, TestContext.Current.CancellationToken);
+        await Task.Delay(50, TestContext.Current.Execution.CancellationToken);
 
         // Assert
         await Assert.That(await suggestBox.GetIsFocused()).IsFalse();
@@ -155,7 +155,7 @@ public class AutoSuggestBoxTests : TestBase
         //Act & Assert
         await suggestBox.MoveKeyboardFocus();
         await suggestBox.SendInput(new KeyboardInput("e"));
-        await Task.Delay(delay, TestContext.Current!.CancellationToken);
+        await Task.Delay(delay, TestContext.Current!.Execution.CancellationToken);
 
         static int? GetSuggestionCount(AutoSuggestBox autoSuggestBox)
         {
@@ -168,12 +168,12 @@ public class AutoSuggestBoxTests : TestBase
         //Assert that initially the first item is selected
         int selectedIndex = await suggestionListBox.GetSelectedIndex();
         await Assert.That(selectedIndex).IsEqualTo(0);
-        await Task.Delay(delay, TestContext.Current.CancellationToken);
+        await Task.Delay(delay, TestContext.Current.Execution.CancellationToken);
 
         //Assert that the last item is selected after pressing ArrowUp
         await suggestBox.SendInput(new KeyboardInput(Key.Up));
         await Assert.That(await suggestionListBox.GetSelectedIndex()).IsEqualTo(itemCount - 1);
-        await Task.Delay(delay, TestContext.Current.CancellationToken);
+        await Task.Delay(delay, TestContext.Current.Execution.CancellationToken);
 
         //Assert that the first item is selected after pressing ArrowDown
         await suggestBox.SendInput(new KeyboardInput(Key.Down));
@@ -219,7 +219,7 @@ public class AutoSuggestBoxTests : TestBase
         // Act
         await suggestBox.MoveKeyboardFocus();
         await suggestBox.SendInput(new KeyboardInput("a"));
-        await Task.Delay(500, TestContext.Current!.CancellationToken);
+        await Task.Delay(500, TestContext.Current!.Execution.CancellationToken);
 
         // Find the button in the first suggestion item
         var thirdListBoxItem = await suggestionListBox.GetElement<ListBoxItem>("/ListBoxItem[2]");
@@ -227,7 +227,7 @@ public class AutoSuggestBoxTests : TestBase
 
         // Click the button
         await button.LeftClick();
-        await Task.Delay(500, TestContext.Current!.CancellationToken);
+        await Task.Delay(500, TestContext.Current!.Execution.CancellationToken);
 
         // Assert
         await Assert.That(await suggestBox.GetIsSuggestionOpen()).IsTrue();
@@ -254,7 +254,7 @@ public class AutoSuggestBoxTests : TestBase
         // Act
         await suggestBox.MoveKeyboardFocus();
         await suggestBox.SendInput(new KeyboardInput("a"));
-        await Task.Delay(500, TestContext.Current!.CancellationToken);
+        await Task.Delay(500, TestContext.Current!.Execution.CancellationToken);
 
         // Find the button in the first suggestion item
         var thirdListBoxItem = await suggestionListBox.GetElement<ListBoxItem>("/ListBoxItem[2]");
@@ -266,7 +266,7 @@ public class AutoSuggestBoxTests : TestBase
 
         // Click the button
         await button.LeftClick();
-        await Task.Delay(500, TestContext.Current!.CancellationToken);
+        await Task.Delay(500, TestContext.Current!.Execution.CancellationToken);
 
         // Assert
         await Assert.That(await suggestBox.GetIsSuggestionOpen()).IsFalse();
@@ -283,7 +283,7 @@ public class AutoSuggestBoxTests : TestBase
         // Act
         await suggestBox.MoveKeyboardFocus();
         await suggestBox.SendInput(new KeyboardInput("a"));
-        await Task.Delay(500, TestContext.Current!.CancellationToken);
+        await Task.Delay(500, TestContext.Current!.Execution.CancellationToken);
 
         // Find the button in the first suggestion item
         var thirdListBoxItem = await suggestionListBox.GetElement<ListBoxItem>("/ListBoxItem[2]");
@@ -295,7 +295,7 @@ public class AutoSuggestBoxTests : TestBase
 
         // Click the button
         await textBlock.LeftClick();
-        await Task.Delay(500, TestContext.Current!.CancellationToken);
+        await Task.Delay(500, TestContext.Current!.Execution.CancellationToken);
 
         // Assert
         await Assert.That(await suggestBox.GetIsSuggestionOpen()).IsTrue();

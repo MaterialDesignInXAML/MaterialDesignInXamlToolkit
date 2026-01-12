@@ -18,16 +18,11 @@
     <ProjectReference Include="..\..\src\MaterialDesign3.MaterialColorUtilities\MaterialColorUtilities.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="GitHubActionsTestLogger">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="TUnit" />
     <PackageReference Include="Shouldly" />
   </ItemGroup>
   <ItemGroup>
-    <Using Include="TUnit.Assertions.AssertConditions.Throws" />
     <Using Include="TUnit.Core.Executors" />
     <Using Include="TUnit.Assertions" />
     <Using Include="Shouldly" />

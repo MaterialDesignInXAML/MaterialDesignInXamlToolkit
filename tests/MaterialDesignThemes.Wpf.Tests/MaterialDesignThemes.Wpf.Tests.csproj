@@ -17,17 +17,12 @@
     <ProjectReference Include="..\..\src\MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="GitHubActionsTestLogger">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="TUnit" />
   </ItemGroup>
 
   <ItemGroup>
     <Using Include="MaterialDesignThemes.Tests.TUnit"/>
-    <Using Include="TUnit.Assertions.AssertConditions.Throws" />
     <Using Include="TUnit.Core.Executors" />
   </ItemGroup>
 
