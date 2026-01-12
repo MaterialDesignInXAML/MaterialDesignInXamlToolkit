@@ -33,7 +33,7 @@ public class DialogHostTests : TestBase
 
         await toggleButton.LeftClick();
         //Allow for animations to start
-        await Task.Delay(10, TestContext.Current!.CancellationToken);
+        await Task.Delay(10, TestContext.Current!.Execution.CancellationToken);
 
         await Wait.For(async () =>
         {
@@ -48,7 +48,7 @@ public class DialogHostTests : TestBase
         });
 
         //Wait before clicking so the animations have time to finish
-        await Task.Delay(100, TestContext.Current.CancellationToken);
+        await Task.Delay(100, TestContext.Current.Execution.CancellationToken);
 
         await drawerHost.LeftClick();
 
@@ -61,7 +61,7 @@ public class DialogHostTests : TestBase
 
         await showButton.LeftClick();
         //Allow for animations to start
-        await Task.Delay(10, TestContext.Current.CancellationToken);
+        await Task.Delay(10, TestContext.Current.Execution.CancellationToken);
 
         await Wait.For(async () =>
         {
@@ -92,26 +92,26 @@ public class DialogHostTests : TestBase
 
         await showButton.LeftClick();
         //Allow open animation to finish
-        await Task.Delay(300, TestContext.Current!.CancellationToken);
+        await Task.Delay(300, TestContext.Current!.Execution.CancellationToken);
         await Wait.For(async () => (await openedEvent.GetInvocations()).Count == 1);
 
         var closingEvent = await drawerHost.RegisterForEvent(nameof(DrawerHost.DrawerClosing));
 
         //Attempt closing with routed command
         await closeButton.LeftClick();
-        await Task.Delay(100, TestContext.Current.CancellationToken);
+        await Task.Delay(100, TestContext.Current.Execution.CancellationToken);
         await Wait.For(async () => (await closingEvent.GetInvocations()).Count == 1);
         await Assert.That(await drawerHost.GetIsLeftDrawerOpen()).IsTrue();
 
         //Attempt closing with click away
         await drawerHost.LeftClick();
-        await Task.Delay(100, TestContext.Current.CancellationToken);
+        await Task.Delay(100, TestContext.Current.Execution.CancellationToken);
         await Wait.For(async () => (await closingEvent.GetInvocations()).Count == 2);
         await Assert.That(await drawerHost.GetIsLeftDrawerOpen()).IsTrue();
 
         //Attempt closing with DP property toggle
         await closeButtonDp.LeftClick();
-        await Task.Delay(100, TestContext.Current.CancellationToken);
+        await Task.Delay(100, TestContext.Current.Execution.CancellationToken);
         await Wait.For(async () => (await closingEvent.GetInvocations()).Count == 3);
         await Assert.That(await drawerHost.GetIsLeftDrawerOpen()).IsTrue();
     }

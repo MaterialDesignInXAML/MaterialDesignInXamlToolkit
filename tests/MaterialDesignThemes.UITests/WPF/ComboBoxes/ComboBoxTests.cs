@@ -125,7 +125,7 @@ public class ComboBoxTests : TestBase
 
         // Open the ComboBox initially
         await comboBox.LeftClick(Position.RightCenter);
-        await Task.Delay(50, TestContext.Current!.CancellationToken);   // Allow a little time for the drop-down to open (and property to change)
+        await Task.Delay(50, TestContext.Current!.Execution.CancellationToken);   // Allow a little time for the drop-down to open (and property to change)
         bool wasOpenAfterClickOnToggleButton = await comboBox.GetIsDropDownOpen();
 
         // Focus (i.e. click) another element
@@ -133,7 +133,7 @@ public class ComboBoxTests : TestBase
 
         // Click the editable TextBox of the ComboBox
         await editableTextBox.LeftClick();
-        await Task.Delay(50, TestContext.Current.CancellationToken);   // Allow a little time for the drop-down to open (and property to change)
+        await Task.Delay(50, TestContext.Current.Execution.CancellationToken);   // Allow a little time for the drop-down to open (and property to change)
         bool wasOpenAfterClickOnEditableTextBox = await comboBox.GetIsDropDownOpen();
         bool textBoxHasFocus = await editableTextBox.GetIsFocused();
         bool textBoxHasKeyboardFocus = await editableTextBox.GetIsKeyboardFocused();

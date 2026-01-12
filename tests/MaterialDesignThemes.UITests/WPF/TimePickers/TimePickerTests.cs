@@ -315,18 +315,18 @@ public class TimePickerTests : TestBase
 
         // Act
         await button.MoveCursorTo();
-        await Task.Delay(50, TestContext.Current!.CancellationToken);   // Wait for the visual change
+        await Task.Delay(50, TestContext.Current!.Execution.CancellationToken);   // Wait for the visual change
         var inactiveBorderThickness = await textBoxOuterBorder.GetBorderThickness();
         await timePickerTextBox.MoveCursorTo();
-        await Task.Delay(50, TestContext.Current.CancellationToken);   // Wait for the visual change
+        await Task.Delay(50, TestContext.Current.Execution.CancellationToken);   // Wait for the visual change
         var hoverBorderThickness = await textBoxOuterBorder.GetBorderThickness(); ;
         await timePickerTextBox.LeftClick();
-        await Task.Delay(50, TestContext.Current.CancellationToken);   // Wait for the visual change
+        await Task.Delay(50, TestContext.Current.Execution.CancellationToken);   // Wait for the visual change
         var focusedBorderThickness = await textBoxOuterBorder.GetBorderThickness(); ;
 
         // TODO: It would be cool if a validation error could be set via XAMLTest without the need for the Binding and ValidationRules elements in the XAML above.
         await timePicker.SetProperty(TimePicker.TextProperty, "11:00");
-        await Task.Delay(50, TestContext.Current.CancellationToken);   // Wait for the visual change
+        await Task.Delay(50, TestContext.Current.Execution.CancellationToken);   // Wait for the visual change
         var withErrorBorderThickness = await textBoxOuterBorder.GetBorderThickness(); ;
 
         // Assert
@@ -435,7 +435,7 @@ public class TimePickerTests : TestBase
 
         // Act
         await clearButton.LeftClick();
-        await Task.Delay(50, TestContext.Current!.CancellationToken);
+        await Task.Delay(50, TestContext.Current!.Execution.CancellationToken);
 
         // Assert
         await Assert.That(await timePicker.GetSelectedTime()).IsNull();
@@ -463,7 +463,7 @@ public class TimePickerTests : TestBase
         {
             // Act
             await clearButton.LeftClick();
-            await Task.Delay(50, TestContext.Current!.CancellationToken);
+            await Task.Delay(50, TestContext.Current!.Execution.CancellationToken);
 
             // Assert
             await Assert.That(await timePickerTextBox.GetText()).IsNull();
@@ -548,10 +548,10 @@ public class TimePickerTests : TestBase
 
         // Act
         await timePickerTextBoxBorder.MoveCursorTo();
-        await Task.Delay(50, TestContext.Current!.CancellationToken);
+        await Task.Delay(50, TestContext.Current!.Execution.CancellationToken);
         var timePickerTextBoxHoverThickness = await timePickerTextBoxBorder.GetBorderThickness();
         await timePickerTimeButton.MoveCursorTo();
-        await Task.Delay(50, TestContext.Current.CancellationToken);
+        await Task.Delay(50, TestContext.Current.Execution.CancellationToken);
         var timePickerTimeButtonHoverThickness = await timePickerTextBoxBorder.GetBorderThickness();
 
         // Assert
@@ -576,9 +576,9 @@ public class TimePickerTests : TestBase
 
         // Act
         await timePickerTextBox.MoveKeyboardFocus();
-        await Task.Delay(50, TestContext.Current!.CancellationToken);
+        await Task.Delay(50, TestContext.Current!.Execution.CancellationToken);
         await timePickerTextBox.SendInput(new KeyboardInput(Key.LeftShift, Key.Tab));
-        await Task.Delay(50, TestContext.Current.CancellationToken);
+        await Task.Delay(50, TestContext.Current.Execution.CancellationToken);
 
         // Assert
         await Assert.That(await textBox.GetIsFocused()).IsTrue();

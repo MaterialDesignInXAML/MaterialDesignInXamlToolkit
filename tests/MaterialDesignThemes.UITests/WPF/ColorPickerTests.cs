@@ -22,7 +22,7 @@ public class ColorPickerTests : TestBase
         await thumb.SendInput(MouseInput.MoveRelative(xOffset: -5, yOffset: -10));
         await thumb.SendInput(MouseInput.LeftDown());
         await thumb.SendInput(MouseInput.MoveRelative(yOffset: 25));
-        await Task.Delay(100, TestContext.Current!.CancellationToken);
+        await Task.Delay(100, TestContext.Current!.Execution.CancellationToken);
         await thumb.SendInput(MouseInput.LeftUp());
 
 

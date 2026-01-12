@@ -24,7 +24,7 @@ public class TextBoxTests : TestBase
 
         await textBox.MoveKeyboardFocus();
         //Delay needed to account for transition storyboard
-        await Task.Delay(MaterialDesignTextBox.FocusedAnimationTime, TestContext.Current!.CancellationToken);
+        await Task.Delay(MaterialDesignTextBox.FocusedAnimationTime, TestContext.Current!.Execution.CancellationToken);
 
         double initialHeight = await textBox.GetActualHeight();
 
@@ -32,7 +32,7 @@ public class TextBoxTests : TestBase
         await clearButton.LeftClick();
 
         //Assert
-        await Task.Delay(MaterialDesignTextBox.FocusedAnimationTime, TestContext.Current.CancellationToken);
+        await Task.Delay(MaterialDesignTextBox.FocusedAnimationTime, TestContext.Current.Execution.CancellationToken);
 
         double height = await textBox.GetActualHeight();
         await Assert.That(height).IsEqualTo(initialHeight);
@@ -66,7 +66,7 @@ public class TextBoxTests : TestBase
         //Act
         await textBox.MoveKeyboardFocus();
         //Delay needed to account for transition storyboard
-        await Task.Delay(MaterialDesignTextBox.FocusedAnimationTime, TestContext.Current!.CancellationToken);
+        await Task.Delay(MaterialDesignTextBox.FocusedAnimationTime, TestContext.Current!.Execution.CancellationToken);
 
         //Assert
         double height = await textBox.GetActualHeight();

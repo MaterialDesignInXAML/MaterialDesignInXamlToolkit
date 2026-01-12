@@ -1,51 +1,72 @@
 ﻿using System.Numerics;
 using System.Runtime.CompilerServices;
-using TUnit.Assertions.AssertConditions;
-using TUnit.Assertions.AssertConditions.Interfaces;
-using TUnit.Assertions.AssertionBuilders;
+using TUnit.Assertions.Core;
 
 namespace MaterialDesignThemes.Tests.TUnit;
 
 public static class IsCloseToExtensions
 {
-    public static IsCloseToWrapper<double> IsCloseTo(this IValueSource<double> valueSource, double expected, double precision, [CallerArgumentExpression(nameof(expected))] string? doNotPopulateThisValue1 = null, [CallerArgumentExpression(nameof(precision))] string? doNotPopulateThisValue2 = null)
+    public static IsCloseToAssertion<double> IsCloseTo(
+        this IAssertionSource<double> source, double expected, double precision,
+        [CallerArgumentExpression(nameof(expected))] string? expectedExpression = null,
+        [CallerArgumentExpression(nameof(precision))] string? precisionExpression = null)
     {
-        var assertionBuilder = valueSource.RegisterAssertion(new IsCloseToCondition<double>(expected, precision)
-            , [doNotPopulateThisValue1, doNotPopulateThisValue2]);
-
-        return new IsCloseToWrapper<double>(assertionBuilder);
+        source.Context.ExpressionBuilder.Append(".IsCloseTo(");
+        source.Context.ExpressionBuilder.Append(expectedExpression);
+        source.Context.ExpressionBuilder.Append(", ");
+        source.Context.ExpressionBuilder.Append(precisionExpression);
+        source.Context.ExpressionBuilder.Append(')');
+        return new IsCloseToAssertion<double>(source.Context, expected, precision);
     }
 
-    public static IsCloseToWrapper<float> IsCloseTo(this IValueSource<float> valueSource, float expected, float precision, [CallerArgumentExpression(nameof(expected))] string? doNotPopulateThisValue1 = null, [CallerArgumentExpression(nameof(precision))] string? doNotPopulateThisValue2 = null)
+    public static IsCloseToAssertion<float> IsCloseTo(
+        this IAssertionSource<float> source, float expected, float precision,
+        [CallerArgumentExpression(nameof(expected))] string? expectedExpression = null,
+        [CallerArgumentExpression(nameof(precision))] string? precisionExpression = null)
     {
-        var assertionBuilder = valueSource.RegisterAssertion(new IsCloseToCondition<float>(expected, precision)
-            , [doNotPopulateThisValue1, doNotPopulateThisValue2]);
-
-        return new IsCloseToWrapper<float>(assertionBuilder);
+        source.Context.ExpressionBuilder.Append(".IsCloseTo(");
+        source.Context.ExpressionBuilder.Append(expectedExpression);
+        source.Context.ExpressionBuilder.Append(", ");
+        source.Context.ExpressionBuilder.Append(precisionExpression);
+        source.Context.ExpressionBuilder.Append(')');
+        return new IsCloseToAssertion<float>(source.Context, expected, precision);
     }
 }
 
-public class IsCloseToWrapper<TActual>(InvokableAssertionBuilder<TActual> invokableAssertionBuilder)
-    : InvokableValueAssertionBuilder<TActual>(invokableAssertionBuilder);
-
-file class IsCloseToCondition<TActual>(TActual expected, TActual tolerance) : BaseAssertCondition<TActual>
-    where TActual :
-    IFloatingPoint<TActual>,
-    INumberBase<TActual>
+public class IsCloseToAssertion<TValue>(AssertionContext<TValue> context, TValue expected, TValue precision) : Assertion<TValue>(context)
+    where TValue : IFloatingPoint<TValue>, INumberBase<TValue>
 {
-    protected override string GetExpectation() => $"to be within {tolerance} of {expected}";
-
-    protected override ValueTask<AssertionResult> GetResult(
-        TActual? actualValue, Exception? exception,
-        AssertionMetadata assertionMetadata
-    )
+    protected override string GetExpectation()
     {
-        if(actualValue is null)
-            return AssertionResult.Fail("received null");
+        DefaultInterpolatedStringHandler defaultInterpolatedStringHandler = new(15, 1);
+        defaultInterpolatedStringHandler.AppendLiteral("to be within ");
+        defaultInterpolatedStringHandler.AppendFormatted($"\"{precision}\"");
+        defaultInterpolatedStringHandler.AppendLiteral(" of ");
+        defaultInterpolatedStringHandler.AppendFormatted($"\"{expected}\"");
+        return defaultInterpolatedStringHandler.ToStringAndClear();
+    }
 
-        TActual difference = actualValue - expected;
-        TActual absoluteDifference = TActual.Abs(difference);
-        bool isInRange = absoluteDifference <= tolerance;
-        return AssertionResult.FailIf(!isInRange, $"received {actualValue}");
+    protected override Task<AssertionResult> CheckAsync(EvaluationMetadata<TValue> metadata)
+    {
+        TValue? actualValue = metadata.Value;
+        Exception? exception = metadata.Exception;
+        if (exception != null)
+        {
+            return Task.FromResult(AssertionResult.Failed("threw " + exception.GetType().FullName));
+        }
+        if (actualValue is null)
+        {
+            return Task.FromResult(AssertionResult.Failed($"found <null>"));
+        }
+
+        TValue difference = actualValue - expected;
+        TValue absoluteDifference = TValue.Abs(difference);
+        bool isInRange = absoluteDifference <= precision;
+
+        if (isInRange)
+        {
+            return Task.FromResult(AssertionResult.Passed);
+        }
+        return Task.FromResult(AssertionResult.Failed($"found {actualValue}"));
     }
 }

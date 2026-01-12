@@ -76,7 +76,7 @@ public class ClockTests
 
         await Assert.That(invocations.Count).IsEqualTo(2);
 
-        await Assert.That(invocations[0].OldTime).IsEqualTo(default);
+        await Assert.That(invocations[0].OldTime).IsEqualTo(default(DateTime));
         await Assert.That(invocations[0].NewTime).IsEqualTo(now);
 
         await Assert.That(invocations[1].OldTime).IsEqualTo(now);

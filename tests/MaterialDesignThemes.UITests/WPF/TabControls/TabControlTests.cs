@@ -103,7 +103,7 @@ public class TabControlTests : TestBase
         await button.RightClick();
         await tabControl.MoveCursorTo();
         await tabControl.LeftClick(Position.TopLeft);
-        await Task.Delay(50, TestContext.Current!.CancellationToken); // allow a little time for the disconnect to occur
+        await Task.Delay(50, TestContext.Current!.Execution.CancellationToken); // allow a little time for the disconnect to occur
         
         // Assert data context still present
         tabItem = await tabControl.GetElement<TabItem>();
