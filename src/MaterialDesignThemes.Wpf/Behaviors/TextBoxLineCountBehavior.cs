@@ -15,14 +15,8 @@ public class TextBoxLineCountBehavior : Behavior<TextBox>
     {
         if (AssociatedObject is { } associatedObject)
         {
-            associatedObject.Dispatcher
-                .BeginInvoke(() =>
-                {
-                    int lineCount = associatedObject.LineCount;
-                    associatedObject.SetCurrentValue(TextFieldAssist.TextBoxLineCountProperty, lineCount);
-                    associatedObject.SetCurrentValue(TextFieldAssist.TextBoxIsMultiLineProperty, lineCount > 1);
-                },
-                DispatcherPriority.Background);
+            associatedObject.SetCurrentValue(TextFieldAssist.TextBoxLineCountProperty, associatedObject.LineCount);
+            associatedObject.SetCurrentValue(TextFieldAssist.TextBoxIsMultiLineProperty, associatedObject.LineCount > 1);
         }
     }
 
