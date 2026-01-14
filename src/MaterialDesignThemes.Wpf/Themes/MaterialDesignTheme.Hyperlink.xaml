@@ -2,9 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <!-- updated specification 2018 -->
-  <Style x:Key="MaterialDesignBody1Hyperlink" TargetType="{x:Type Hyperlink}">
-    <Setter Property="FontSize" Value="16" />
-    <Setter Property="FontWeight" Value="Regular" />
+  <Style x:Key="MaterialDesignHyperlink" TargetType="{x:Type Hyperlink}">
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="TextDecorations" Value="None" />
     <Style.Triggers>
@@ -22,6 +20,13 @@
         <Setter Property="TextDecorations" Value="Underline" />
       </MultiTrigger>
     </Style.Triggers>
+  </Style>
+
+  <Style x:Key="MaterialDesignBody1Hyperlink"
+         TargetType="{x:Type Hyperlink}"
+         BasedOn="{StaticResource MaterialDesignHyperlink}">
+    <Setter Property="FontSize" Value="16" />
+    <Setter Property="FontWeight" Value="Regular" />
   </Style>
 
   <Style x:Key="MaterialDesignBody2Hyperlink"

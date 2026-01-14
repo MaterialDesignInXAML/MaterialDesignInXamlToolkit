@@ -5,6 +5,9 @@
   </ResourceDictionary.MergedDictionaries>
 
   <Style x:Key="MaterialDesignTextBlock" TargetType="{x:Type TextBlock}">
+    <Style.Resources>
+      <Style TargetType="Hyperlink" BasedOn="{StaticResource MaterialDesignHyperlink}" />
+    </Style.Resources>
     <Setter Property="FontSize" Value="13" />
     <Setter Property="FontWeight" Value="Regular" />
     <Setter Property="Padding" Value="0,4" />
