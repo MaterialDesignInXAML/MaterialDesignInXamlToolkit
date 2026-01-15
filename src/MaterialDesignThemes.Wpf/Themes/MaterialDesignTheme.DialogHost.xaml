@@ -163,7 +163,6 @@
                   </Border.InputBindings>
                 </Border>
                 <wpf:Card x:Name="PART_PopupContentElement"
-                          Margin="{TemplateBinding DialogMargin}"
                           wpf:ElevationAssist.Elevation="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation)}"
                           Content="{TemplateBinding DialogContent}"
                           ContentStringFormat="{TemplateBinding DialogContentStringFormat}"
