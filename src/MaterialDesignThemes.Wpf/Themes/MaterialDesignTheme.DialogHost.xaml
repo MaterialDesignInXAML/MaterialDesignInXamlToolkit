@@ -155,13 +155,6 @@
                          PlacementTarget="{Binding ElementName=DialogHostRoot, Mode=OneWay}"
                          Style="{TemplateBinding PopupStyle}">
               <Grid>
-                <Border Background="Transparent" IsHitTestVisible="{TemplateBinding CloseOnClickAway}">
-                  <Border.InputBindings>
-                    <MouseBinding Command="{x:Static wpf:DialogHost.CloseDialogCommand}"
-                                  CommandParameter="{TemplateBinding CloseOnClickAwayParameter}"
-                                  MouseAction="LeftClick" />
-                  </Border.InputBindings>
-                </Border>
                 <wpf:Card x:Name="PART_PopupContentElement"
                           wpf:ElevationAssist.Elevation="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation)}"
                           Content="{TemplateBinding DialogContent}"
