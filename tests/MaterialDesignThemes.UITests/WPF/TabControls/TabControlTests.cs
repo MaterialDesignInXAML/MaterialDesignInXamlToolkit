@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Windows.Media;
+using MaterialDesignThemes.Wpf.Internal;
 
 
 namespace MaterialDesignThemes.UITests.WPF.TabControls;
@@ -154,13 +155,15 @@ public class TabControlTests : TestBase
     }
 
     [Test]
-    public async Task ScrollingTabs_UniformGrid()
+    [Arguments("")]                                     // UniformGrid style
+    [Arguments("HorizontalContentAlignment=\"Left\"")]  // VirtualizingStackPanel style
+    public async Task ScrollingTabs_WithMoreTabsThanScreenRealEstate_ShouldAddLeftAndRightMarginToHeaderPanel(string additionalProperties)
     {
         await using var recorder = new TestRecorder(App);
 
         //Arrange
-        const int numTabs = 10;
-        StringBuilder xaml = new("<TabControl>");
+        const int numTabs = 20;
+        StringBuilder xaml = new($"<TabControl {additionalProperties}>");
         for (int i = 1; i <= numTabs; i++)
         {
             xaml.Append($"""
@@ -171,22 +174,30 @@ public class TabControlTests : TestBase
         }
         xaml.Append("</TabControl>");
         IVisualElement<TabControl> tabControl = await LoadXaml<TabControl>(xaml.ToString());
+        IVisualElement<PaddedBringIntoViewStackPanel> headerPanel = await tabControl.GetElement<PaddedBringIntoViewStackPanel>();
+        double offsetWhenOverflowingWidth = await headerPanel.GetHeaderPadding();
 
         //Act
+        Thickness margin = await headerPanel.GetMargin();
 
-        //Assert
+        // Assert
+        await Assert.That(offsetWhenOverflowingWidth).IsGreaterThan(0);
+        await Assert.That(margin.Left).IsEqualTo(offsetWhenOverflowingWidth);
+        await Assert.That(margin.Right).IsEqualTo(offsetWhenOverflowingWidth);
 
         recorder.Success();
     }
 
     [Test]
-    public async Task ScrollingTabs_VirtualizingStackPanel()
+    [Arguments("")]                                     // UniformGrid style
+    [Arguments("HorizontalContentAlignment=\"Left\"")]  // VirtualizingStackPanel style
+    public async Task ScrollingTabs_WithLessTabsThanScreenRealEstate_ShouldNotAddLeftAndRightMarginToHeaderPanel(string additionalProperties)
     {
         await using var recorder = new TestRecorder(App);
 
         //Arrange
-        const int numTabs = 10;
-        StringBuilder xaml = new("<TabControl HorizontalContentAlignment=\"Left\">");
+        const int numTabs = 5;
+        StringBuilder xaml = new($"<TabControl {additionalProperties}>");
         for (int i = 1; i <= numTabs; i++)
         {
             xaml.Append($"""
@@ -197,10 +208,16 @@ public class TabControlTests : TestBase
         }
         xaml.Append("</TabControl>");
         IVisualElement<TabControl> tabControl = await LoadXaml<TabControl>(xaml.ToString());
+        IVisualElement<PaddedBringIntoViewStackPanel> headerPanel = await tabControl.GetElement<PaddedBringIntoViewStackPanel>();
+        double offsetWhenOverflowingWidth = await headerPanel.GetHeaderPadding();
 
         //Act
+        Thickness margin = await headerPanel.GetMargin();
 
-        //Assert
+        // Assert
+        await Assert.That(offsetWhenOverflowingWidth).IsGreaterThan(0);
+        await Assert.That(margin.Left).IsEqualTo(0);
+        await Assert.That(margin.Right).IsEqualTo(0);
 
         recorder.Success();
     }
