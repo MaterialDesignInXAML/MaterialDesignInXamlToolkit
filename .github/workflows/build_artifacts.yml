@@ -25,8 +25,8 @@ jobs:
     env:
       solution: MaterialDesignToolkit.Full.slnx
 
-        steps:
-            - uses: actions/checkout@v6
+    steps:
+      - uses: actions/checkout@v6
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
@@ -50,25 +50,25 @@ jobs:
         timeout-minutes: 20
         run: dotnet test ${{ env.solution }} --configuration ${{ inputs.build-configuration }} --no-build --blame-crash --logger GitHubActions
 
-            - name: Upload Screenshots
-              if: ${{ always() }}
-              uses: actions/upload-artifact@v6
-              with:
-                  name: Screenshots-${{ github.run_number }}
-                  path: ${{ github.workspace }}\tests\MaterialDesignThemes.UITests\bin\${{ inputs.build-configuration }}\net9.0-windows\Screenshots
-                  if-no-files-found: ignore
+      - name: Upload Screenshots
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v6
+        with:
+            name: Screenshots-${{ github.run_number }}
+            path: ${{ github.workspace }}\tests\MaterialDesignThemes.UITests\bin\${{ inputs.build-configuration }}\net9.0-windows\Screenshots
+            if-no-files-found: ignore
 
       - name: Build NuGets
         run: .\build\BuildNugets.ps1 -MDIXVersion ${{ inputs.mdix-version }} -MDIXColorsVersion ${{ inputs.mdix-colors-version }} -MDIXMahAppsVersion ${{ inputs.mdix-mahapps-version }}
 
-            - name: Upload NuGets
-              uses: actions/upload-artifact@v6
-              with:
-                  name: NuGets
-                  path: "*.nupkg"
+      - name: Upload NuGets
+        uses: actions/upload-artifact@v6
+        with:
+            name: NuGets
+            path: "*.nupkg"
 
-            - name: Upload Demo App
-              uses: actions/upload-artifact@v6
-              with:
-                  name: DemoApp
-                  path: "src/MainDemo.Wpf/bin/${{ env.buildConfiguration }}"
+      - name: Upload Demo App
+        uses: actions/upload-artifact@v6
+        with:
+            name: DemoApp
+            path: "src/MainDemo.Wpf/bin/${{ env.buildConfiguration }}"
