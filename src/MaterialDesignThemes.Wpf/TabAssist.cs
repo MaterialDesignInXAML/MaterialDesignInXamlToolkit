@@ -69,4 +69,33 @@ public static class TabAssist
     public static readonly DependencyProperty HeaderBehaviorProperty =
         DependencyProperty.RegisterAttached("HeaderBehavior", typeof(TabControlHeaderBehavior), typeof(TabAssist),
             new PropertyMetadata(TabControlHeaderBehavior.Scrolling));
+
+    public static double GetHeaderPadding(DependencyObject obj)
+        => (double)obj.GetValue(HeaderPaddingProperty);
+
+    public static bool GetUseHeaderPadding(DependencyObject obj)
+        => (bool)obj.GetValue(UseHeaderPaddingProperty);
+
+    public static void SetUseHeaderPadding(DependencyObject obj, bool value)
+        => obj.SetValue(UseHeaderPaddingProperty, value);
+
+    public static readonly DependencyProperty UseHeaderPaddingProperty =
+        DependencyProperty.RegisterAttached("UseHeaderPadding", typeof(bool), typeof(TabAssist), new PropertyMetadata(false));
+
+    public static void SetHeaderPadding(DependencyObject obj, double value)
+        => obj.SetValue(HeaderPaddingProperty, value);
+
+    public static readonly DependencyProperty HeaderPaddingProperty =
+        DependencyProperty.RegisterAttached("HeaderPadding", typeof(double),
+            typeof(TabAssist), new PropertyMetadata(0d));
+
+    public static TimeSpan GetScrollDuration(DependencyObject obj)
+        => (TimeSpan)obj.GetValue(ScrollDurationProperty);
+
+    public static void SetScrollDuration(DependencyObject obj, TimeSpan value)
+        => obj.SetValue(ScrollDurationProperty, value);
+
+    public static readonly DependencyProperty ScrollDurationProperty =
+        DependencyProperty.RegisterAttached("ScrollDuration", typeof(TimeSpan),
+            typeof(TabAssist), new PropertyMetadata(TimeSpan.Zero));
 }

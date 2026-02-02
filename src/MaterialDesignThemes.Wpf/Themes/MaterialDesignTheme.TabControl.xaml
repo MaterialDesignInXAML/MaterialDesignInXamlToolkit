@@ -1,6 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:internal="clr-namespace:MaterialDesignThemes.Wpf.Internal"
+                    xmlns:behaviorsInternal="clr-namespace:MaterialDesignThemes.Wpf.Behaviors.Internal"
+                    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
   <ResourceDictionary.MergedDictionaries>
@@ -36,7 +39,13 @@
                               wpf:ScrollViewerAssist.PaddingMode="{Binding Path=(wpf:ScrollViewerAssist.PaddingMode), RelativeSource={RelativeSource TemplatedParent}}"
                               HorizontalScrollBarVisibility="Hidden"
                               VerticalScrollBarVisibility="Hidden">
-          <StackPanel>
+          <b:Interaction.Behaviors>
+            <behaviorsInternal:TabControlHeaderScrollBehavior TabControl="{Binding RelativeSource={RelativeSource TemplatedParent}}" ScrollableContent="{Binding ElementName=ScrollableContent}" />
+          </b:Interaction.Behaviors>
+          <internal:PaddedBringIntoViewStackPanel x:Name="ScrollableContent"
+                                                  ScrollDirection="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(behaviorsInternal:TabControlHeaderScrollBehavior.ScrollDirection)}"
+                                                  HeaderPadding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.HeaderPadding)}"
+                                                  UseHeaderPadding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.UseHeaderPadding)}">
             <UniformGrid x:Name="CenteredHeaderPanel"
                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                      Margin="{Binding Path=(wpf:TabAssist.HeaderPanelMargin), RelativeSource={RelativeSource TemplatedParent}}"
@@ -53,7 +62,7 @@
                                                 Focusable="False"
                                                 KeyboardNavigation.TabIndex="1"
                                                 Orientation="Horizontal" />
-          </StackPanel>
+          </internal:PaddedBringIntoViewStackPanel>
         </ScrollViewer>
       </wpf:ColorZone>
 
@@ -227,6 +236,10 @@
     <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp4" />
     <Setter Property="wpf:RippleAssist.Feedback" Value="{DynamicResource MaterialDesign.Brush.Button.Ripple}" />
     <Setter Property="wpf:TabAssist.HasUniformTabWidth" Value="False" />
+    <!-- MD spec says 52 DP, but that seems a little excessive in practice -->
+    <Setter Property="wpf:TabAssist.HeaderPadding" Value="40" />
+    <Setter Property="wpf:TabAssist.UseHeaderPadding" Value="True" />
+    <Setter Property="wpf:TabAssist.ScrollDuration" Value="0:0:0.250" />
 
     <Style.Triggers>
       <Trigger Property="wpf:TabAssist.HeaderBehavior" Value="Wrapping">

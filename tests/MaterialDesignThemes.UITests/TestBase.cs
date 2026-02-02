@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Media;
 using MaterialDesignThemes.UITests;
+using MaterialDesignThemes.Wpf.Internal;
 using TUnit.Core.Interfaces;
 
 [assembly: ParallelLimiter<SingleParallelLimit>]
@@ -16,6 +17,7 @@ using TUnit.Core.Interfaces;
 [assembly: GenerateHelpers(typeof(TimePicker))]
 [assembly: GenerateHelpers(typeof(TreeListView))]
 [assembly: GenerateHelpers(typeof(TreeListViewItem))]
+[assembly: GenerateHelpers(typeof(PaddedBringIntoViewStackPanel))]
 
 namespace MaterialDesignThemes.UITests;
 
