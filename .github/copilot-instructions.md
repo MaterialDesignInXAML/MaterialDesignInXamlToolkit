@@ -41,13 +41,13 @@ The MaterialDesignInXamlToolkit is a **theme library** for WPF applications that
 ### Build and Test
 ```powershell
 # Restore dependencies
-dotnet restore MaterialDesignToolkit.Full.sln
+dotnet restore MaterialDesignToolkit.Full.slnx
 
 # Build (requires Windows)
-dotnet build MaterialDesignToolkit.Full.sln --configuration Release --no-restore -p:Platform="Any CPU" -p:TreatWarningsAsErrors=True
+dotnet build MaterialDesignToolkit.Full.slnx --configuration Release --no-restore -p:Platform="Any CPU" -p:TreatWarningsAsErrors=True
 
 # Run tests
-dotnet test MaterialDesignToolkit.Full.sln --configuration Release --no-build
+dotnet test MaterialDesignToolkit.Full.slnx --configuration Release --no-build
 
 # Build NuGet packages
 .\build\BuildNugets.ps1 -MDIXVersion "x.x.x" -MDIXColorsVersion "x.x.x" -MDIXMahAppsVersion "x.x.x"
