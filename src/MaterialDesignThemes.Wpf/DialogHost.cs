@@ -64,6 +64,8 @@ public class DialogHost : ContentControl
     private DialogClosingEventHandler? _attachedDialogClosingEventHandler;
     private DialogClosedEventHandler? _attachedDialogClosedEventHandler;
     private IInputElement? _restoreFocusDialogClose;
+    private IInputElement? _lastFocusedDialogElement;
+    private HwndSourceHook? _hook;
     private Action? _currentSnackbarMessageQueueUnPauseAction;
 
     static DialogHost()
@@ -370,6 +372,7 @@ public class DialogHost : ContentControl
 
         dialogHost.CurrentSession = new DialogSession(dialogHost);
         var window = Window.GetWindow(dialogHost);
+        dialogHost.ListenForWindowStateChanged(window);
         if (!dialogHost.IsRestoreFocusDisabled)
         {
             dialogHost._restoreFocusDialogClose = window != null ? FocusManager.GetFocusedElement(window) : null;
@@ -395,7 +398,8 @@ public class DialogHost : ContentControl
 
         //https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/187
         //totally not happy about this, but on immediate validation we can get some weird looking stuff...give WPF a kick to refresh...
-        Task.Delay(300).ContinueWith(t => dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => {
+        Task.Delay(300).ContinueWith(t => dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+        {
             CommandManager.InvalidateRequerySuggested();
             //Delay focusing the popup until after the animation has some time, Issue #2912
             UIElement? child = dialogHost.FocusPopup();
@@ -403,6 +407,56 @@ public class DialogHost : ContentControl
             child?.InvalidateVisual();
 
         })));
+    }
+
+    
+    private void ListenForWindowStateChanged(Window? window)
+    {
+        if (window is null)
+        {
+            return;
+        }
+
+        if (PresentationSource.FromVisual(window) is HwndSource source)
+        {
+            _hook = Hook;
+            source.RemoveHook(_hook);
+            source.AddHook(_hook);
+        }
+
+        IntPtr Hook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        {
+            //https://learn.microsoft.com/en-us/windows/win32/menurc/wm-syscommand
+            const int WM_SYSCOMMAND = 0x0112;
+            const int SC_MINIMIZE = 0xf020;
+            const int SC_RESTORE = 0xF120;
+
+            long wParamLong = wParam.ToInt64();
+            switch (msg)
+            {
+                case WM_SYSCOMMAND:
+                    if (wParamLong == SC_MINIMIZE && //Minimize
+                        _popupContentControl?.IsKeyboardFocusWithin == true) //Only persistent the one with keyboard focus
+                    {
+                        var element = Keyboard.FocusedElement;
+                        _lastFocusedDialogElement = element;
+                    }
+                    else if (wParamLong == SC_RESTORE) //Restore
+                    {
+                        // Kinda hacky, but without a delay the focus doesn't always get set correctly because the Focus() method fires too early
+                        Task.Delay(50).ContinueWith(_ => this.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                        {
+                            if (_lastFocusedDialogElement is UIElement { Focusable: true, IsVisible: true })
+                            {
+                                _lastFocusedDialogElement.Focus();
+                                _lastFocusedDialogElement = null;
+                            }
+                        })));
+                    }
+                    break;
+            }
+            return IntPtr.Zero;
+        }
     }
 
     /// <summary>
