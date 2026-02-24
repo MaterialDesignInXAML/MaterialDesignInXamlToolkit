@@ -8,11 +8,11 @@
              d:DesignHeight="450" d:DesignWidth="800">
   <UserControl.Resources>
     <DataTemplate x:Key="OddTemplate">
-      <Border Background="Red" Width="10" Height="10" />
+      <Border x:Name="ContentBorder" Background="Red" Width="10" Height="10" />
     </DataTemplate>
 
     <DataTemplate x:Key="EvenTemplate">
-      <Border Background="Blue" Width="10" Height="10" />
+      <Border x:Name="ContentBorder" Background="Blue" Width="10" Height="10" />
     </DataTemplate>
 
     <local:ColorTemplateSelector x:Key="ColorTemplateSelector"
