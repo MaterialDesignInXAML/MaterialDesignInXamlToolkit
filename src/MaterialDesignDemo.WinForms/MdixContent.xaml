@@ -21,9 +21,13 @@
     </ResourceDictionary>
   </UserControl.Resources>
   <Grid>
-    <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-               Text="Replace this with whatever MDIX content you want"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center" />
+    <TabControl>
+      <TabItem Header="Tab 1">
+        <TextBlock Text="Tab 1 content" VerticalAlignment="Center" HorizontalAlignment="Center" />
+      </TabItem>
+      <TabItem Header="Tab 2">
+        <TextBlock Text="Tab 2 content" VerticalAlignment="Center" HorizontalAlignment="Center" />
+      </TabItem>
+    </TabControl>
   </Grid>
 </UserControl>
