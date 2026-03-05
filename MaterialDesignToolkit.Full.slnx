@@ -10,6 +10,7 @@
     <Project Path="src/MainDemo.Wpf/MaterialDesignDemo.csproj" />
     <Project Path="src/MaterialDesign3.Demo.Wpf/MaterialDesign3Demo.csproj" />
     <Project Path="src/MaterialDesignDemo.Shared/MaterialDesignDemo.Shared.csproj" />
+    <Project Path="src/MaterialDesignDemo.WinForms/MaterialDesignDemo.WinForms.csproj" />
   </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".config/dotnet-tools.json" />
