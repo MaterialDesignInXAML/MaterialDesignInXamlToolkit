@@ -46,14 +46,14 @@ public class PopupBoxTests : TestBase
 
 
         // Assert
-        var border = await popupBox.GetElement<Border>();
+        var border = await popupBox.GetElement<Border>("ContentBorder");
         await Assert.That(await border.GetBackgroundColor()).IsEqualTo(Colors.Blue);
 
         await button.LeftClick();
 
         await Wait.For(async () =>
         {
-            border = await popupBox.GetElement<Border>();
+            border = await popupBox.GetElement<Border>("ContentBorder");
             await Assert.That(await border.GetBackgroundColor()).IsEqualTo(Colors.Red);
         });
 

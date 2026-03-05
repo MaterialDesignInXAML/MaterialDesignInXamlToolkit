@@ -95,14 +95,40 @@
               <Setter Property="Template">
                 <Setter.Value>
                   <ControlTemplate TargetType="ToggleButton">
-                    <wpf:Ripple Padding="{TemplateBinding Padding}"
-                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                Content="{TemplateBinding Content}"
-                                ContentTemplate="{TemplateBinding ContentTemplate}"
-                                ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                Focusable="False"
-                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    <Grid>
+                      <Border x:Name="border"
+                              Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=Background}"
+                              BorderBrush="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=BorderBrush}"
+                              BorderThickness="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=BorderThickness}"
+                              CornerRadius="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=wpf:PopupBox}, Path=(wpf:ButtonAssist.CornerRadius)}" />
+
+                      <wpf:Ripple Padding="{TemplateBinding Padding}"
+                                  ClipToBounds="True"
+                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  Content="{TemplateBinding Content}"
+                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                  ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                  Focusable="False"
+                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <wpf:Ripple.Clip>
+                          <MultiBinding Converter="{x:Static converters:BorderClipConverter.Instance}">
+                            <Binding ElementName="border" Path="ActualWidth" />
+                            <Binding ElementName="border" Path="ActualHeight" />
+                            <Binding ElementName="border" Path="CornerRadius" />
+                            <Binding ElementName="border" Path="BorderThickness" />
+                          </MultiBinding>
+                        </wpf:Ripple.Clip>
+                      </wpf:Ripple>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                      <Trigger Property="IsMouseOver" Value="true">
+                        <Setter TargetName="border" Property="Background" Value="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={x:Static converters:BrushOpacityConverter.Instance}, ConverterParameter=0.16}" />
+                      </Trigger>
+                      <Trigger Property="IsEnabled" Value="false">
+                        <Setter Property="Opacity" Value="0.38" />
+                      </Trigger>
+                    </ControlTemplate.Triggers>
                   </ControlTemplate>
                 </Setter.Value>
               </Setter>
