@@ -114,6 +114,12 @@ public static class ScrollViewerAssist
             }
         }
 
+        static void RemoveHandlers(ScrollViewer scrollViewer)
+        {
+            WeakEventManager<ScrollViewer, RoutedEventArgs>.RemoveHandler(scrollViewer, nameof(ScrollViewer.Loaded), OnLoaded);
+            WeakEventManager<ScrollViewer, RoutedEventArgs>.RemoveHandler(scrollViewer, nameof(ScrollViewer.Unloaded), OnUnloaded);
+        }
+
         static void RemoveHook(ScrollViewer scrollViewer)
         {
             if (scrollViewer.GetValue(HorizontalScrollHookProperty) is HwndSourceHook hook &&
@@ -138,12 +144,20 @@ public static class ScrollViewerAssist
             IntPtr Hook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
             {
                 const int WM_MOUSEHWHEEL = 0x020E;
+                const int WM_DESTROY = 0x0002;
+                const int WM_NCDESTROY = 0x0082;
                 switch (msg)
                 {
                     case WM_MOUSEHWHEEL when scrollViewer.IsMouseOver:
                         int tilt = (short)((wParam.ToInt64() >> 16) & 0xFFFF);
                         scrollViewer.ScrollToHorizontalOffset(scrollViewer.HorizontalOffset + tilt);
                         return (IntPtr)1;
+                    case WM_DESTROY:
+                    case WM_NCDESTROY:
+                        RemoveHandlers(scrollViewer);
+                        var source = PresentationSource.FromVisual(scrollViewer) as HwndSource;
+                        source?.RemoveHook(Hook);
+                        break;
                 }
                 return IntPtr.Zero;
             }
@@ -196,6 +210,12 @@ public static class ScrollViewerAssist
             }
         }
 
+        static void RemoveHandlers(ScrollViewer scrollViewer)
+        {
+            WeakEventManager<ScrollViewer, RoutedEventArgs>.RemoveHandler(scrollViewer, nameof(ScrollViewer.Loaded), OnLoaded);
+            WeakEventManager<ScrollViewer, RoutedEventArgs>.RemoveHandler(scrollViewer, nameof(ScrollViewer.Unloaded), OnUnloaded);
+        }
+
         static void RemoveHook(ScrollViewer scrollViewer)
         {
             scrollViewer.RemoveHandler(UIElement.MouseWheelEvent, (RoutedEventHandler)ScrollViewerOnMouseWheel);
@@ -204,7 +224,28 @@ public static class ScrollViewerAssist
         static void RegisterHook(ScrollViewer scrollViewer)
         {
             RemoveHook(scrollViewer);
-            scrollViewer.AddHandler(UIElement.MouseWheelEvent, (RoutedEventHandler)ScrollViewerOnMouseWheel, true);
+            if (PresentationSource.FromVisual(scrollViewer) is HwndSource source)
+            {
+                HwndSourceHook hook = Hook;
+                source.AddHook(hook);
+                scrollViewer.AddHandler(UIElement.MouseWheelEvent, (RoutedEventHandler)ScrollViewerOnMouseWheel, true);
+            }
+
+            IntPtr Hook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+            {
+                const int WM_DESTROY = 0x0002;
+                const int WM_NCDESTROY = 0x0082;
+                switch (msg)
+                {
+                    case WM_DESTROY:
+                    case WM_NCDESTROY:
+                        RemoveHandlers(scrollViewer);
+                        var source = PresentationSource.FromVisual(scrollViewer) as HwndSource;
+                        source?.RemoveHook(Hook);
+                        break;
+                }
+                return IntPtr.Zero;
+            }
         }
 
         // This relay is only needed because the UIElement.AddHandler() has strict requirements for the signature of the passed Delegate
