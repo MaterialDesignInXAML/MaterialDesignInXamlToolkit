@@ -16,17 +16,26 @@
                              PrimaryColor="DeepPurple"
                              SecondaryColor="Lime" />
 
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </UserControl.Resources>
   <Grid>
     <TabControl>
       <TabItem Header="Tab 1">
-        <TextBlock Text="Tab 1 content" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <Grid>
+          <TextBlock Text="Tab 1 content" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        </Grid>
       </TabItem>
       <TabItem Header="Tab 2">
-        <TextBlock Text="Tab 2 content" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <Grid>
+          <Grid.Resources>
+            <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
+          </Grid.Resources>
+          <TabControl>
+            <TabItem Header=" Tab 2.1" />
+            <TabItem Header=" Tab 2.2" />
+          </TabControl>
+        </Grid>
       </TabItem>
     </TabControl>
   </Grid>
