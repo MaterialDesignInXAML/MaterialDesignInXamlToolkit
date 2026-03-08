@@ -306,11 +306,13 @@ public static class ScrollViewerAssist
         }
 
         // This relay is only needed because the UIElement.AddHandler() has strict requirements for the signature of the passed Delegate
-        static void ScrollViewerOnMouseWheel(object? sender, RoutedEventArgs e) => HandleMouseWheel(sender, (MouseWheelEventArgs)e);
+        static void ScrollViewerOnMouseWheel(object sender, RoutedEventArgs e) => HandleMouseWheel(sender, (MouseWheelEventArgs)e);
 
-        static void HandleMouseWheel(object? sender, MouseWheelEventArgs e)
+        static void HandleMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            if (sender is not ScrollViewer sv || sv.GetVisualAncestry().Skip(1).FirstOrDefault() is not UIElement parentUiElement)
+            var scrollViewer = (ScrollViewer)sender;
+
+            if (scrollViewer.GetVisualAncestry().Skip(1).FirstOrDefault() is not UIElement parentUiElement)
                 return;
 
             // Re-raise the mouse wheel event on the visual parent to bubble it upwards
