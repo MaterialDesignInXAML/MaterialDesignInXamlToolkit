@@ -1,4 +1,4 @@
-﻿using System.Windows.Interop;
+using System.Windows.Interop;
 
 namespace MaterialDesignThemes.Wpf;
 
@@ -64,8 +64,8 @@ public static class ScrollViewerAssist
     private static readonly DependencyProperty HorizontalScrollHookProperty = DependencyProperty.RegisterAttached(
         "HorizontalScrollHook", typeof(HwndSourceHook), typeof(ScrollViewerAssist), new PropertyMetadata(null));
 
-    private static readonly DependencyProperty HorizontalScrollSourceProperty = DependencyProperty.RegisterAttached(
-        "HorizontalScrollSource", typeof(HwndSource), typeof(ScrollViewerAssist), new PropertyMetadata(null));
+    private static readonly DependencyProperty BubbleVerticalScrollHookProperty = DependencyProperty.RegisterAttached(
+        "BubbleVerticalScrollHook", typeof(HwndSourceHook), typeof(ScrollViewerAssist), new PropertyMetadata(null));
 
     public static readonly DependencyProperty SupportHorizontalScrollProperty = DependencyProperty.RegisterAttached(
         "SupportHorizontalScroll", typeof(bool), typeof(ScrollViewerAssist), new PropertyMetadata(false, OnSupportHorizontalScrollChanged));
@@ -73,16 +73,16 @@ public static class ScrollViewerAssist
     private static void OnSupportHorizontalScrollChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         //Based on: https://blog.walterlv.com/post/handle-horizontal-scrolling-of-touchpad-en.html
-        if (d is ScrollViewer scrollViewer)
+        if (d is ScrollViewer sv)
         {
-            if (scrollViewer.IsLoaded)
+            if (sv.IsLoaded)
             {
-                DoOnLoaded(scrollViewer);
+                DoOnLoaded(sv);
             }
             else
             {
-                WeakEventManager<ScrollViewer, RoutedEventArgs>.AddHandler(scrollViewer, nameof(ScrollViewer.Loaded), OnLoaded);
-                WeakEventManager<ScrollViewer, RoutedEventArgs>.AddHandler(scrollViewer, nameof(ScrollViewer.Unloaded), OnUnloaded);
+                RegisterForLoadedEvent(sv);
+                RegisterForUnloadedEvent(sv);
             }
         }
 
@@ -94,10 +94,35 @@ public static class ScrollViewerAssist
             }
         }
 
+        static void UnregisterForLoadedEvent(ScrollViewer sv)
+        {
+            WeakEventManager<ScrollViewer, RoutedEventArgs>.RemoveHandler(sv, nameof(ScrollViewer.Loaded), OnLoaded);
+        }
+
+        static void RegisterForLoadedEvent(ScrollViewer sv)
+        {
+            // Avoid double registrations
+            UnregisterForLoadedEvent(sv);
+            WeakEventManager<ScrollViewer, RoutedEventArgs>.AddHandler(sv, nameof(ScrollViewer.Loaded), OnLoaded);
+        }
+
+        static void UnregisterForUnloadedEvent(ScrollViewer sv)
+        {
+            WeakEventManager<ScrollViewer, RoutedEventArgs>.RemoveHandler(sv, nameof(ScrollViewer.Unloaded), OnUnloaded);
+        }
+
+        static void RegisterForUnloadedEvent(ScrollViewer sv)
+        {
+            // Avoid double registrations
+            UnregisterForUnloadedEvent(sv);
+            WeakEventManager<ScrollViewer, RoutedEventArgs>.AddHandler(sv, nameof(ScrollViewer.Unloaded), OnUnloaded);
+        }
+
         static void DoOnLoaded(ScrollViewer sv)
         {
             if (GetSupportHorizontalScroll(sv))
             {
+                RegisterForUnloadedEvent(sv);
                 RegisterHook(sv);
             }
             else
@@ -114,30 +139,23 @@ public static class ScrollViewerAssist
             }
         }
 
-        static void RemoveHandlers(ScrollViewer scrollViewer)
+        static void RemoveHook(ScrollViewer sv)
         {
-            WeakEventManager<ScrollViewer, RoutedEventArgs>.RemoveHandler(scrollViewer, nameof(ScrollViewer.Loaded), OnLoaded);
-            WeakEventManager<ScrollViewer, RoutedEventArgs>.RemoveHandler(scrollViewer, nameof(ScrollViewer.Unloaded), OnUnloaded);
-        }
-
-        static void RemoveHook(ScrollViewer scrollViewer)
-        {
-            if (scrollViewer.GetValue(HorizontalScrollHookProperty) is HwndSourceHook hook &&
-                scrollViewer.GetValue(HorizontalScrollSourceProperty) is HwndSource source)
+            var source = PresentationSource.FromVisual(sv) as HwndSource;
+            if (source is not null && sv.GetValue(HorizontalScrollHookProperty) is HwndSourceHook hook)
             {
                 source.RemoveHook(hook);
-                scrollViewer.SetValue(HorizontalScrollHookProperty, null);
+                sv.SetValue(HorizontalScrollHookProperty, null);
             }
         }
 
-        static void RegisterHook(ScrollViewer scrollViewer)
+        static void RegisterHook(ScrollViewer sv)
         {
-            RemoveHook(scrollViewer);
-            if (PresentationSource.FromVisual(scrollViewer) is HwndSource source)
+            RemoveHook(sv);
+            if (PresentationSource.FromVisual(sv) is HwndSource source)
             {
                 HwndSourceHook hook = Hook;
-                scrollViewer.SetValue(HorizontalScrollSourceProperty, source);
-                scrollViewer.SetValue(HorizontalScrollHookProperty, hook);
+                sv.SetValue(HorizontalScrollHookProperty, hook);
                 source.AddHook(hook);
             }
 
@@ -148,15 +166,15 @@ public static class ScrollViewerAssist
                 const int WM_NCDESTROY = 0x0082;
                 switch (msg)
                 {
-                    case WM_MOUSEHWHEEL when scrollViewer.IsMouseOver:
+                    case WM_MOUSEHWHEEL when sv.IsMouseOver:
                         int tilt = (short)((wParam.ToInt64() >> 16) & 0xFFFF);
-                        scrollViewer.ScrollToHorizontalOffset(scrollViewer.HorizontalOffset + tilt);
+                        sv.ScrollToHorizontalOffset(sv.HorizontalOffset + tilt);
                         return (IntPtr)1;
                     case WM_DESTROY:
                     case WM_NCDESTROY:
-                        RemoveHandlers(scrollViewer);
-                        var source = PresentationSource.FromVisual(scrollViewer) as HwndSource;
-                        source?.RemoveHook(Hook);
+                        UnregisterForLoadedEvent(sv);
+                        UnregisterForUnloadedEvent(sv);
+                        RemoveHook(sv);
                         break;
                 }
                 return IntPtr.Zero;
@@ -166,19 +184,19 @@ public static class ScrollViewerAssist
 
     public static readonly DependencyProperty BubbleVerticalScrollProperty = DependencyProperty.RegisterAttached(
         "BubbleVerticalScroll", typeof(bool), typeof(ScrollViewerAssist), new PropertyMetadata(false, OnBubbleVerticalScrollChanged));
-
+    
     private static void OnBubbleVerticalScrollChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is ScrollViewer scrollViewer)
+        if (d is ScrollViewer sv)
         {
-            if (scrollViewer.IsLoaded)
+            if (sv.IsLoaded)
             {
-                DoOnLoaded(scrollViewer);
+                DoOnLoaded(sv);
             }
             else
             {
-                WeakEventManager<ScrollViewer, RoutedEventArgs>.AddHandler(scrollViewer, nameof(ScrollViewer.Loaded), OnLoaded);
-                WeakEventManager<ScrollViewer, RoutedEventArgs>.AddHandler(scrollViewer, nameof(ScrollViewer.Unloaded), OnUnloaded);
+                RegisterForLoadedEvent(sv);
+                RegisterForUnloadedEvent(sv);
             }
         }
 
@@ -190,10 +208,48 @@ public static class ScrollViewerAssist
             }
         }
 
+        static void UnregisterForLoadedEvent(ScrollViewer sv)
+        {
+            WeakEventManager<ScrollViewer, RoutedEventArgs>.RemoveHandler(sv, nameof(ScrollViewer.Loaded), OnLoaded);
+        }
+
+        static void RegisterForLoadedEvent(ScrollViewer sv)
+        {
+            // Avoid double registrations
+            UnregisterForLoadedEvent(sv);
+            WeakEventManager<ScrollViewer, RoutedEventArgs>.AddHandler(sv, nameof(ScrollViewer.Loaded), OnLoaded);
+        }
+
+        static void UnregisterForUnloadedEvent(ScrollViewer sv)
+        {
+            WeakEventManager<ScrollViewer, RoutedEventArgs>.RemoveHandler(sv, nameof(ScrollViewer.Unloaded), OnUnloaded);
+        }
+
+        static void RegisterForUnloadedEvent(ScrollViewer sv)
+        {
+            // Avoid double registrations
+            UnregisterForUnloadedEvent(sv);
+            WeakEventManager<ScrollViewer, RoutedEventArgs>.AddHandler(sv, nameof(ScrollViewer.Unloaded), OnUnloaded);
+        }
+
+        static void UnregisterForMouseWheelEvent(ScrollViewer sv)
+        {
+            sv.RemoveHandler(UIElement.MouseWheelEvent, (RoutedEventHandler)ScrollViewerOnMouseWheel);
+        }
+
+        static void RegisterForMouseWheelEvent(ScrollViewer sv)
+        {
+            // Avoid double registrations
+            UnregisterForMouseWheelEvent(sv);
+            sv.AddHandler(UIElement.MouseWheelEvent, (RoutedEventHandler)ScrollViewerOnMouseWheel, true);
+        }
+
         static void DoOnLoaded(ScrollViewer sv)
         {
             if (GetBubbleVerticalScroll(sv))
             {
+                RegisterForUnloadedEvent(sv);
+                RegisterForMouseWheelEvent(sv);
                 RegisterHook(sv);
             }
             else
@@ -206,29 +262,29 @@ public static class ScrollViewerAssist
         {
             if (sender is ScrollViewer sv)
             {
-                RemoveHook(sv);
+                UnregisterForUnloadedEvent(sv);
+                UnregisterForMouseWheelEvent(sv);
             }
         }
 
-        static void RemoveHandlers(ScrollViewer scrollViewer)
+        static void RemoveHook(ScrollViewer sv)
         {
-            WeakEventManager<ScrollViewer, RoutedEventArgs>.RemoveHandler(scrollViewer, nameof(ScrollViewer.Loaded), OnLoaded);
-            WeakEventManager<ScrollViewer, RoutedEventArgs>.RemoveHandler(scrollViewer, nameof(ScrollViewer.Unloaded), OnUnloaded);
+            var source = PresentationSource.FromVisual(sv) as HwndSource;
+            if (source is not null && sv.GetValue(BubbleVerticalScrollHookProperty) is HwndSourceHook hook)
+            {
+                source.RemoveHook(hook);
+                sv.SetValue(BubbleVerticalScrollHookProperty, null);
+            }
         }
 
-        static void RemoveHook(ScrollViewer scrollViewer)
+        static void RegisterHook(ScrollViewer sv)
         {
-            scrollViewer.RemoveHandler(UIElement.MouseWheelEvent, (RoutedEventHandler)ScrollViewerOnMouseWheel);
-        }
-
-        static void RegisterHook(ScrollViewer scrollViewer)
-        {
-            RemoveHook(scrollViewer);
-            if (PresentationSource.FromVisual(scrollViewer) is HwndSource source)
+            RemoveHook(sv);
+            if (PresentationSource.FromVisual(sv) is HwndSource source)
             {
                 HwndSourceHook hook = Hook;
                 source.AddHook(hook);
-                scrollViewer.AddHandler(UIElement.MouseWheelEvent, (RoutedEventHandler)ScrollViewerOnMouseWheel, true);
+                sv.SetValue(BubbleVerticalScrollHookProperty, hook);
             }
 
             IntPtr Hook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
@@ -239,9 +295,10 @@ public static class ScrollViewerAssist
                 {
                     case WM_DESTROY:
                     case WM_NCDESTROY:
-                        RemoveHandlers(scrollViewer);
-                        var source = PresentationSource.FromVisual(scrollViewer) as HwndSource;
-                        source?.RemoveHook(Hook);
+                        UnregisterForMouseWheelEvent(sv);
+                        UnregisterForLoadedEvent(sv);
+                        UnregisterForUnloadedEvent(sv);
+                        RemoveHook(sv);
                         break;
                 }
                 return IntPtr.Zero;
