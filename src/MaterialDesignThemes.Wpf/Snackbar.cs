@@ -189,13 +189,13 @@ public class Snackbar : Control
     }
 
     public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
-        nameof(CornerRadius), typeof(Thickness), typeof(Snackbar), new PropertyMetadata(new Thickness(0)));
+        nameof(CornerRadius), typeof(CornerRadius), typeof(Snackbar), new PropertyMetadata(new CornerRadius(3)));
 
     [Bindable(true)]
     [Category("Appearance")]
-    public Thickness CornerRadius
+    public CornerRadius CornerRadius
     {
-        get => (Thickness)GetValue(CornerRadiusProperty);
+        get => (CornerRadius)GetValue(CornerRadiusProperty);
         set => SetValue(CornerRadiusProperty, value);
     }
 }
