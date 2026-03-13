@@ -97,7 +97,6 @@ partial class ThemeTests
           <TextBlock Text="Separator.Background" Background="{StaticResource MaterialDesign.Brush.Separator.Background}" />
           <TextBlock Text="StatusBar.Background" Background="{StaticResource MaterialDesign.Brush.StatusBar.Background}" />
           <TextBlock Text="StatusBar.Foreground" Background="{StaticResource MaterialDesign.Brush.StatusBar.Foreground}" />
-          <TextBlock Text="StatusBar.Separator" Background="{StaticResource MaterialDesign.Brush.StatusBar.Separator}" />
           <TextBlock Text="TabControl.Divider" Background="{StaticResource MaterialDesign.Brush.TabControl.Divider}" />
           <TextBlock Text="ToolBar.Background" Background="{StaticResource MaterialDesign.Brush.ToolBar.Background}" />
           <TextBlock Text="ToolBar.Separator" Background="{StaticResource MaterialDesign.Brush.ToolBar.Separator}" />
@@ -567,11 +566,6 @@ partial class ThemeTests
             await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesign.Brush.StatusBar.Foreground"));
         }
         {
-            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"StatusBar.Separator\"]");
-            Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesign.Brush.StatusBar.Separator"));
-        }
-        {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"TabControl.Divider\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesign.Brush.TabControl.Divider"));
@@ -1005,7 +999,6 @@ partial class ThemeTests
         yield return "MaterialDesign.Brush.Separator.Background";
         yield return "MaterialDesign.Brush.StatusBar.Background";
         yield return "MaterialDesign.Brush.StatusBar.Foreground";
-        yield return "MaterialDesign.Brush.StatusBar.Separator";
         yield return "MaterialDesign.Brush.TabControl.Divider";
         yield return "MaterialDesign.Brush.ToolBar.Background";
         yield return "MaterialDesign.Brush.ToolBar.Separator";

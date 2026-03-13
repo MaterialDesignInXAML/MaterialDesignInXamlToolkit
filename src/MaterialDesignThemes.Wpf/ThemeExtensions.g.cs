@@ -91,7 +91,6 @@ static partial class ThemeExtensions
         theme.Separators.Background = BaseThemeColors.Neutral800;
         theme.StatusBars.Background = BaseThemeColors.Neutral900;
         theme.StatusBars.Foreground = BaseThemeColors.Black900;
-        theme.StatusBars.Separator = BaseThemeColors.Black100;
         theme.TabControls.Divider = BaseThemeColors.Black100;
         theme.ToolBars.Background = BaseThemeColors.Neutral900;
         theme.ToolBars.Separator = BaseThemeColors.Black100;
@@ -183,7 +182,6 @@ static partial class ThemeExtensions
         theme.Separators.Background = BaseThemeColors.Neutral400;
         theme.StatusBars.Background = BaseThemeColors.Neutral50;
         theme.StatusBars.Foreground = BaseThemeColors.White900;
-        theme.StatusBars.Separator = BaseThemeColors.White100;
         theme.TabControls.Divider = BaseThemeColors.White100;
         theme.ToolBars.Background = BaseThemeColors.Neutral50;
         theme.ToolBars.Separator = BaseThemeColors.White100;

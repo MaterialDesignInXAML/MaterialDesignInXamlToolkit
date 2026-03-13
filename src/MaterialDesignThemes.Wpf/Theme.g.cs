@@ -828,13 +828,6 @@ partial class Theme
            set => _foreground = value;
         }
 
-        private ColorReference _separator;
-        public ColorReference Separator
-        {
-           get => _theme.Resolve(_separator);
-           set => _separator = value;
-        }
-
     }
 
     public class TabControl

@@ -29,8 +29,9 @@
     <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="statusbar_2">
       <StatusBar>
         <StatusBarItem>
-          <StackPanel Orientation="Horizontal">
+          <StackPanel Orientation="Horizontal" Height="40">
             <materialDesign:PackIcon Kind="CheckCircle"
+                                     Foreground="Lime"
                                      VerticalAlignment="Center"
                                      Margin="0,0,4,0" />
             <TextBlock Text="Build succeeded" VerticalAlignment="Center" />
@@ -50,7 +51,8 @@
           <StackPanel Orientation="Horizontal">
             <materialDesign:PackIcon Kind="AlertCircleOutline"
                                      VerticalAlignment="Center"
-                                     Margin="0,0,4,0" />
+                                     Margin="0,0,4,0"
+                                     Foreground="Red"/>
             <TextBlock Text="0 Errors" VerticalAlignment="Center" />
           </StackPanel>
         </StatusBarItem>
@@ -59,7 +61,8 @@
           <StackPanel Orientation="Horizontal">
             <materialDesign:PackIcon Kind="Alert"
                                      VerticalAlignment="Center"
-                                     Margin="0,0,4,0" />
+                                     Margin="0,0,4,0"
+                                     Foreground="Orange"/>
             <TextBlock Text="2 Warnings" VerticalAlignment="Center" />
           </StackPanel>
         </StatusBarItem>
