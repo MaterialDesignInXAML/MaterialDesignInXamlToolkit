@@ -29,6 +29,7 @@ partial class Theme
         RadioButtons = new(this);
         ScrollBars = new(this);
         Separators = new(this);
+        StatusBars = new(this);
         TabControls = new(this);
         ToolBars = new(this);
         ToggleButtons = new(this);
@@ -98,6 +99,8 @@ partial class Theme
     public ScrollBar ScrollBars { get; set; }
 
     public Separator Separators { get; set; }
+
+    public StatusBar StatusBars { get; set; }
 
     public TabControl TabControls { get; set; }
 
@@ -799,6 +802,30 @@ partial class Theme
         {
            get => _theme.Resolve(_background);
            set => _background = value;
+        }
+
+    }
+
+    public class StatusBar
+    {
+        private readonly Theme _theme;
+        public StatusBar(Theme theme)
+        {
+            _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+        }
+
+        private ColorReference _background;
+        public ColorReference Background
+        {
+           get => _theme.Resolve(_background);
+           set => _background = value;
+        }
+
+        private ColorReference _foreground;
+        public ColorReference Foreground
+        {
+           get => _theme.Resolve(_foreground);
+           set => _foreground = value;
         }
 
     }

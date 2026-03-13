@@ -1,0 +1,90 @@
+<UserControl x:Class="MaterialDesignDemo.StatusBars"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+             d:DesignHeight="600"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+  <StackPanel>
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="StatusBar" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Default StatusBar" />
+
+    <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="statusbar_1">
+      <StatusBar>
+        <StatusBarItem Content="Ready" />
+        <Separator />
+        <StatusBarItem Content="Items: 42" />
+        <Separator />
+        <StatusBarItem Content="100%" />
+      </StatusBar>
+    </smtx:XamlDisplay>
+
+    <TextBlock Margin="0,16,0,0"
+               Style="{StaticResource PageSectionTitleTextBlock}"
+               Text="StatusBar with icons" />
+
+    <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="statusbar_2">
+      <StatusBar>
+        <StatusBarItem>
+          <StackPanel Orientation="Horizontal" Height="40">
+            <materialDesign:PackIcon Kind="CheckCircle"
+                                     Foreground="Lime"
+                                     VerticalAlignment="Center"
+                                     Margin="0,0,4,0" />
+            <TextBlock Text="Build succeeded" VerticalAlignment="Center" />
+          </StackPanel>
+        </StatusBarItem>
+        <Separator />
+        <StatusBarItem>
+          <StackPanel Orientation="Horizontal">
+            <materialDesign:PackIcon Kind="SourceBranch"
+                                     VerticalAlignment="Center"
+                                     Margin="0,0,4,0" />
+            <TextBlock Text="main" VerticalAlignment="Center" />
+          </StackPanel>
+        </StatusBarItem>
+        <Separator />
+        <StatusBarItem>
+          <StackPanel Orientation="Horizontal">
+            <materialDesign:PackIcon Kind="AlertCircleOutline"
+                                     VerticalAlignment="Center"
+                                     Margin="0,0,4,0"
+                                     Foreground="Red"/>
+            <TextBlock Text="0 Errors" VerticalAlignment="Center" />
+          </StackPanel>
+        </StatusBarItem>
+        <Separator />
+        <StatusBarItem>
+          <StackPanel Orientation="Horizontal">
+            <materialDesign:PackIcon Kind="Alert"
+                                     VerticalAlignment="Center"
+                                     Margin="0,0,4,0"
+                                     Foreground="Orange"/>
+            <TextBlock Text="2 Warnings" VerticalAlignment="Center" />
+          </StackPanel>
+        </StatusBarItem>
+      </StatusBar>
+    </smtx:XamlDisplay>
+
+    <TextBlock Margin="0,16,0,0"
+               Style="{StaticResource PageSectionTitleTextBlock}"
+               Text="StatusBar with ProgressBar" />
+
+    <smtx:XamlDisplay HorizontalAlignment="Left" UniqueKey="statusbar_3">
+      <StatusBar>
+        <StatusBarItem Content="Processing..." />
+        <Separator />
+        <StatusBarItem HorizontalContentAlignment="Stretch">
+          <ProgressBar Width="120"
+                       Height="8"
+                       Value="65" />
+        </StatusBarItem>
+        <Separator />
+        <StatusBarItem Content="65%" />
+      </StatusBar>
+    </smtx:XamlDisplay>
+  </StackPanel>
+</UserControl>
