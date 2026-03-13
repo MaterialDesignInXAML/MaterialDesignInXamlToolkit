@@ -39,6 +39,7 @@
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ScrollBar.xaml" />
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ScrollViewer.xaml" />
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.StatusBar.xaml" />
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TabControl.xaml" />
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TimePicker.xaml" />
@@ -88,6 +89,8 @@
   <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource MaterialDesignScrollBar}" />
   <Style TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource MaterialDesignScrollViewer}" />
   <Style TargetType="{x:Type Slider}" BasedOn="{StaticResource MaterialDesign3.MaterialDesignSlider}" />
+  <Style TargetType="{x:Type StatusBar}" BasedOn="{StaticResource MaterialDesignStatusBar}" />
+  <Style TargetType="{x:Type StatusBarItem}" BasedOn="{StaticResource MaterialDesignStatusBarItem}" />
   <Style TargetType="{x:Type TabControl}" BasedOn="{StaticResource MaterialDesignTabControl}" />
   <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource MaterialDesignTabItem}" />
   <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}" />

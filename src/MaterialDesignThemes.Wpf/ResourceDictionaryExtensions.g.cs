@@ -84,6 +84,9 @@ static partial class ResourceDictionaryExtensions
         theme.ScrollBars.Foreground = GetColor(resourceDictionary, "MaterialDesign.Brush.ScrollBar.Foreground");
         theme.ScrollBars.RepeatButtonBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.ScrollBar.RepeatButtonBackground");
         theme.Separators.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.Separator.Background");
+        theme.StatusBars.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.StatusBar.Background");
+        theme.StatusBars.Foreground = GetColor(resourceDictionary, "MaterialDesign.Brush.StatusBar.Foreground");
+        theme.StatusBars.Separator = GetColor(resourceDictionary, "MaterialDesign.Brush.StatusBar.Separator");
         theme.TabControls.Divider = GetColor(resourceDictionary, "MaterialDesign.Brush.TabControl.Divider");
         theme.ToolBars.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.ToolBar.Background", "MaterialDesignToolBarBackground");
         theme.ToolBars.Separator = GetColor(resourceDictionary, "MaterialDesign.Brush.ToolBar.Separator");
@@ -227,6 +230,9 @@ static partial class ResourceDictionaryExtensions
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ScrollBar.Foreground", theme.ScrollBars.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ScrollBar.RepeatButtonBackground", theme.ScrollBars.RepeatButtonBackground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Separator.Background", theme.Separators.Background);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.StatusBar.Background", theme.StatusBars.Background);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.StatusBar.Foreground", theme.StatusBars.Foreground);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.StatusBar.Separator", theme.StatusBars.Separator);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.TabControl.Divider", theme.TabControls.Divider);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ToolBar.Background", theme.ToolBars.Background);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignToolBarBackground", theme.ToolBars.Background);

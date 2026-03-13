@@ -72,6 +72,9 @@
   <colors:StaticResource x:Key="MaterialDesign.Brush.Separator.Background" ResourceKey="Neutral800" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.SnackBar.Background" ResourceKey="Neutral100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.SnackBar.MouseOver" ResourceKey="Neutral200" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.StatusBar.Background" ResourceKey="Neutral900" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.StatusBar.Foreground" ResourceKey="Black900" />
+  <colors:StaticResource x:Key="MaterialDesign.Brush.StatusBar.Separator" ResourceKey="Black100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.TabControl.Divider" ResourceKey="Black100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.DisabledBackground" ResourceKey="Black50" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.FilledBackground" ResourceKey="Black50" />

@@ -345,6 +345,14 @@ public partial class MainWindowViewModel : ObservableObject
             ]);
 
         yield return new DemoItem(
+            "StatusBar",
+            typeof(StatusBars),
+            [
+                DocumentationLink.DemoPageLink<StatusBars>(),
+                DocumentationLink.StyleLink("StatusBar")
+            ]);
+
+        yield return new DemoItem(
             "Progress Indicator",
             typeof(Progress),
             [
