@@ -4,7 +4,6 @@
   <Style x:Key="MaterialDesignStatusBar" TargetType="{x:Type StatusBar}">
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.StatusBar.Background}" />
     <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.StatusBar.Foreground}" />
-    <Setter Property="FontSize" Value="12" />
     <Setter Property="MinHeight" Value="24" />
     <Setter Property="SnapsToDevicePixels" Value="True" />
     <Setter Property="Template">
