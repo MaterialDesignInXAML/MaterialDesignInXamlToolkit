@@ -275,6 +275,8 @@ jobs:
     steps:
       # Checkout is needed so that we can update the get_versions.yml file
       - uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.SA_PAT }}
 
       - name: Increment Version Numbers
         run: |
