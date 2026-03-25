@@ -358,7 +358,14 @@ public class DialogHost : ContentControl
             }
 
             //NB: _dialogTaskCompletionSource is only set in the case where the dialog is shown with Show
-            dialogHost._dialogTaskCompletionSource?.TrySetResult(closeParameter);
+            if (dialogHost._dialogTaskCompletionSource is { } taskCompletionSource)
+            {
+                Task.Run(async () =>
+                {
+                    await Task.Delay(400);  // Wait for the closing animation to finish before completing the DialogHost.Show() task.
+                    taskCompletionSource.TrySetResult(closeParameter);
+                });
+            }
 
             // Don't attempt to Invoke if _restoreFocusDialogClose hasn't been assigned yet. Can occur
             // if the MainWindow has started up minimized. Even when Show() has been called, this doesn't
