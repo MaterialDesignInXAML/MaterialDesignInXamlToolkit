@@ -14,10 +14,11 @@
   <Folder Name="/Solution Items/">
     <File Path=".config/dotnet-tools.json" />
     <File Path=".editorconfig" />
+    <File Path=".github/copilot-instructions.md" />
     <File Path="build/BuildNugets.ps1" />
     <File Path="build/MigrateBrushes.ps1" />
     <File Path="Directory.Build.props" />
-    <File Path="Directory.packages.props" />
+    <File Path="Directory.Packages.props" />
     <File Path="global.json" />
     <File Path="nuget.config" />
     <File Path="README.md" />

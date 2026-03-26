@@ -10,9 +10,6 @@ on:
       mdix-version:
         required: true
         type: string
-      mdix-colors-version:
-        required: true
-        type: string
       mdix-mahapps-version:
         required: true
         type: string
@@ -43,7 +40,6 @@ jobs:
         run: dotnet build ${{ env.solution }} --configuration ${{ inputs.build-configuration }} --no-restore -p:Platform="Any CPU" -p:TreatWarningsAsErrors=True
         env:
           MDIXVersion: ${{ inputs.mdix-version }}
-          MDIXColorsVersion: ${{ inputs.mdix-colors-version }}
           MDIXMahAppsVersion: ${{ inputs.mdix-mahapps-version }}
 
       - name: Test
@@ -59,7 +55,7 @@ jobs:
             if-no-files-found: ignore
 
       - name: Build NuGets
-        run: .\build\BuildNugets.ps1 -MDIXVersion ${{ inputs.mdix-version }} -MDIXColorsVersion ${{ inputs.mdix-colors-version }} -MDIXMahAppsVersion ${{ inputs.mdix-mahapps-version }}
+        run: .\build\BuildNugets.ps1 -MDIXVersion ${{ inputs.mdix-version }} -MDIXMahAppsVersion ${{ inputs.mdix-mahapps-version }}
 
       - name: Upload NuGets
         uses: actions/upload-artifact@v7

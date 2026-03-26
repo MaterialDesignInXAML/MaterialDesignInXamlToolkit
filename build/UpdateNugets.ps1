@@ -1,7 +1,6 @@
 param(
   [string]$Path,
   [string]$MDIXVersion = "1.0.0",
-  [string]$MDIXColorsVersion = "1.0.0",
   [string]$MDIXMahAppsVersion = "1.0.0"
 )
 
@@ -28,7 +27,6 @@ Push-Location "$(Join-Path $PSScriptRoot "..")"
 $Path = Resolve-Path $Path
 
 nupkgwrench nuspec dependencies modify "$Path" --dependency-id "MaterialDesignThemes" --dependency-version "$(Get-VersionString $MDIXVersion)"
-nupkgwrench nuspec dependencies modify "$Path" --dependency-id "MaterialDesignColors" --dependency-version "$(Get-VersionString $MDIXColorsVersion)"
 nupkgwrench nuspec dependencies modify "$Path" --dependency-id "MaterialDesignThemes.MahApps" --dependency-version "$(Get-VersionString $MDIXMahAppsVersion)"
 
 Pop-Location
