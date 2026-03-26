@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Windows.Media.Animation;
 using Microsoft.Xaml.Behaviors;
 
@@ -42,13 +41,31 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
             oldTabControl.SelectionChanged -= behavior.OnTabChanged;
             oldTabControl.SizeChanged -= behavior.OnTabControlSizeChanged;
             oldTabControl.PreviewKeyDown -= behavior.OnTabControlPreviewKeyDown;
+            oldTabControl.ItemContainerGenerator.ItemsChanged -= behavior.OnTabsChanged;
         }
         if (e.NewValue is TabControl newTabControl)
         {
             newTabControl.SelectionChanged += behavior.OnTabChanged;
             newTabControl.SizeChanged += behavior.OnTabControlSizeChanged;
             newTabControl.PreviewKeyDown += behavior.OnTabControlPreviewKeyDown;
+            newTabControl.ItemContainerGenerator.ItemsChanged += behavior.OnTabsChanged;
         }
+    }
+
+    public double AdditionalHeaderPanelContentWidth
+    {
+        get => (double)GetValue(AdditionalHeaderPanelContentWidthProperty);
+        set => SetValue(AdditionalHeaderPanelContentWidthProperty, value);
+    }
+
+    public static readonly DependencyProperty AdditionalHeaderPanelContentWidthProperty =
+        DependencyProperty.Register(nameof(AdditionalHeaderPanelContentWidth), typeof(double),
+            typeof(TabControlHeaderScrollBehavior), new PropertyMetadata(0d, AdditionalHeaderPanelContentWidthChanged));
+
+    private static void AdditionalHeaderPanelContentWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var behavior = (TabControlHeaderScrollBehavior)d;
+        behavior.AddPaddingToScrollableContentIfWiderThanViewPort();
     }
 
     public FrameworkElement ScrollableContent
@@ -67,8 +84,35 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
         behavior.AddPaddingToScrollableContentIfWiderThanViewPort();
     }
 
+    public ICommand NextTabCommand { get; }
+    public ICommand PreviousTabCommand { get; }
+
     private double? _desiredScrollStart;
     private bool _isAnimatingScroll;
+
+    public TabControlHeaderScrollBehavior()
+    {
+        NextTabCommand = new SimpleICommandImplementation(_ =>
+        {
+            // TODO: How to deal with disabled tabs?
+            if (TabControl is { } tabControl && tabControl.SelectedIndex < tabControl.Items.Count - 1)
+            {
+                tabControl.SelectedIndex++;
+                ((SimpleICommandImplementation)PreviousTabCommand!).Refresh();
+                ((SimpleICommandImplementation)NextTabCommand!).Refresh();
+            }
+        }, _ => (TabControl is { } tabControl && tabControl.SelectedIndex < tabControl.Items.Count - 1));
+        PreviousTabCommand = new SimpleICommandImplementation(_ =>
+        {
+            // TODO: How to deal with disabled tabs?
+            if (TabControl is { } tabControl && tabControl.SelectedIndex > 0)
+            {
+                tabControl.SelectedIndex--;
+                ((SimpleICommandImplementation)PreviousTabCommand!).Refresh();
+                ((SimpleICommandImplementation)NextTabCommand!).Refresh();
+            }
+        }, _ => (TabControl is { } tabControl && tabControl.SelectedIndex > 0));
+    }
 
     private void OnTabChanged(object sender, SelectionChangedEventArgs e)
     {
@@ -95,6 +139,8 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
         int GetItemIndex(object? item) => tabControl.Items.IndexOf(item);
     }
 
+    private void OnTabsChanged(object sender, ItemsChangedEventArgs e)
+        => AssociatedObject.Dispatcher.BeginInvoke(() => AddPaddingToScrollableContentIfWiderThanViewPort(), System.Windows.Threading.DispatcherPriority.Loaded);   // Defer execution until collection change is rendered
     private void OnTabControlSizeChanged(object sender, SizeChangedEventArgs _) => AddPaddingToScrollableContentIfWiderThanViewPort();
     private void AssociatedObject_SizeChanged(object sender, SizeChangedEventArgs _) => AddPaddingToScrollableContentIfWiderThanViewPort();
 
@@ -105,15 +151,19 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
         if (ScrollableContent is null)
             return;
 
-        if (ScrollableContent.ActualWidth > TabControl.ActualWidth)
+        if (ScrollableContent.ActualWidth > TabControl.ActualWidth - AdditionalHeaderPanelContentWidth)
         {
             double offset = TabAssist.GetHeaderPadding(TabControl);
-            ScrollableContent.Margin = new(offset, 0, offset, 0);
+            ScrollableContent.Margin = new(offset, 0, offset + AdditionalHeaderPanelContentWidth, 0);
+            TabAssist.SetIsOverflowing(TabControl, true);
         }
         else
         {
             ScrollableContent.Margin = new();
+            AssociatedObject.SetCurrentValue(TabControlHeaderScrollBehavior.CustomHorizontalOffsetProperty, 0d);
+            TabAssist.SetIsOverflowing(TabControl, false);
         }
+        AssociatedObject.Margin = new(0, 0, AdditionalHeaderPanelContentWidth, 0);
     }
 
     private void OnTabControlPreviewKeyDown(object sender, KeyEventArgs e)
@@ -172,6 +222,34 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
             TabControl.SetCurrentValue(FrameworkElement.IsHitTestVisibleProperty, originalIsHitTestVisibleValue);
         };
         AssociatedObject.BeginAnimation(TabControlHeaderScrollBehavior.CustomHorizontalOffsetProperty, scrollAnimation);
+    }
+
+    private class SimpleICommandImplementation : ICommand
+    {
+        private readonly Action<object?> _execute;
+        private readonly Func<object?, bool> _canExecute;
+
+        public SimpleICommandImplementation(Action<object?> execute)
+            : this(execute, null)
+        { }
+
+        public SimpleICommandImplementation(Action<object?> execute, Func<object?, bool>? canExecute)
+        {
+            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+            _canExecute = canExecute ?? (x => true);
+        }
+
+        public bool CanExecute(object? parameter) => _canExecute(parameter);
+
+        public void Execute(object? parameter) => _execute(parameter);
+
+        public event EventHandler? CanExecuteChanged
+        {
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
+        }
+
+        public void Refresh() => CommandManager.InvalidateRequerySuggested();
     }
 }
 

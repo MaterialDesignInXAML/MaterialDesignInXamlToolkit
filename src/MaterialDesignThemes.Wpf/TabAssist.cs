@@ -34,6 +34,44 @@ public static class TabAssist
     public static Thickness GetHeaderPanelMargin(DependencyObject element)
         => (Thickness)element.GetValue(HeaderPanelMarginProperty);
 
+    public static object? GetHeaderPanelCustomContent(DependencyObject obj)
+        => (object?)obj.GetValue(HeaderPanelCustomContentProperty);
+
+    public static void SetHeaderPanelCustomContent(DependencyObject obj, object? value)
+        => obj.SetValue(HeaderPanelCustomContentProperty, value);
+
+    public static readonly DependencyProperty HeaderPanelCustomContentProperty = DependencyProperty.RegisterAttached(
+        "HeaderPanelCustomContent", typeof(object), typeof(TabAssist), new PropertyMetadata(default));
+
+    internal static readonly DependencyPropertyKey IsOverflowingPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
+        "IsOverflowing", typeof(bool), typeof(TabAssist), new PropertyMetadata(false));
+
+    public static readonly DependencyProperty IsOverflowingProperty = IsOverflowingPropertyKey.DependencyProperty;
+
+    public static bool GetIsOverflowing(DependencyObject obj)
+        => (bool)obj.GetValue(IsOverflowingProperty);
+
+    public static bool GetUseNavigationPanel(DependencyObject obj)
+        => (bool)obj.GetValue(UseNavigationPanelProperty);
+
+    public static void SetUseNavigationPanel(DependencyObject obj, bool value)
+        => obj.SetValue(UseNavigationPanelProperty, value);
+
+    public static readonly DependencyProperty UseNavigationPanelProperty =
+        DependencyProperty.RegisterAttached("UseNavigationPanel", typeof(bool), typeof(TabAssist), new PropertyMetadata(false));
+
+    public static Thickness GetNavigationPanelMargin(DependencyObject obj)
+        => (Thickness)obj.GetValue(NavigationPanelMarginProperty);
+
+    public static void SetNavigationPanelMargin(DependencyObject obj, Thickness value)
+        => obj.SetValue(NavigationPanelMarginProperty, value);
+
+    public static readonly DependencyProperty NavigationPanelMarginProperty =
+        DependencyProperty.RegisterAttached("NavigationPanelMargin", typeof(Thickness), typeof(TabAssist), new PropertyMetadata(default(Thickness)));
+
+    internal static void SetIsOverflowing(DependencyObject obj, bool value)
+        => obj.SetValue(IsOverflowingPropertyKey, value);
+
     public static Visibility GetBindableIsItemsHost(DependencyObject obj)
         => (Visibility)obj.GetValue(BindableIsItemsHostProperty);
 
