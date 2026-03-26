@@ -94,24 +94,54 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
     {
         NextTabCommand = new SimpleICommandImplementation(_ =>
         {
-            // TODO: How to deal with disabled tabs?
-            if (TabControl is { } tabControl && tabControl.SelectedIndex < tabControl.Items.Count - 1)
+            if (TabControl is { } tabControl && TryGetNextTabIndex(tabControl, out int nextIndex))
             {
-                tabControl.SelectedIndex++;
+                tabControl.SelectedIndex = nextIndex;
                 ((SimpleICommandImplementation)PreviousTabCommand!).Refresh();
                 ((SimpleICommandImplementation)NextTabCommand!).Refresh();
             }
-        }, _ => (TabControl is { } tabControl && tabControl.SelectedIndex < tabControl.Items.Count - 1));
+        }, _ => (TabControl is { } tabControl && TryGetNextTabIndex(tabControl, out int _)));
         PreviousTabCommand = new SimpleICommandImplementation(_ =>
         {
-            // TODO: How to deal with disabled tabs?
-            if (TabControl is { } tabControl && tabControl.SelectedIndex > 0)
+            if (TabControl is { } tabControl && TryGetPreviousTabIndex(tabControl, out int previousIndex))
             {
-                tabControl.SelectedIndex--;
+                tabControl.SelectedIndex = previousIndex;
                 ((SimpleICommandImplementation)PreviousTabCommand!).Refresh();
                 ((SimpleICommandImplementation)NextTabCommand!).Refresh();
             }
-        }, _ => (TabControl is { } tabControl && tabControl.SelectedIndex > 0));
+        }, _ => (TabControl is { } tabControl && TryGetPreviousTabIndex(tabControl, out int _)));
+
+        static bool TryGetNextTabIndex(TabControl tabControl, out int nextTabIndex)
+        {
+            nextTabIndex = -1;
+            var nextTabs = GetEnabledTabItemIndices(tabControl, index => index > tabControl.SelectedIndex);
+            if (nextTabs.Count > 0)
+            {
+                nextTabIndex = nextTabs.First();
+                return true;
+            }
+            return false;
+        }
+
+        static bool TryGetPreviousTabIndex(TabControl tabControl, out int nextTabIndex)
+        {
+            nextTabIndex = -1;
+            var previousTabs = GetEnabledTabItemIndices(tabControl, index => index < tabControl.SelectedIndex);
+            if (previousTabs.Count > 0)
+            {
+                nextTabIndex = previousTabs.Last();
+                return true;
+            }
+            return false;
+        }
+
+        static List<int> GetEnabledTabItemIndices(TabControl tabControl, Predicate<int> predicate) => [.. tabControl
+            .Items
+            .Cast<object>()
+            .Select(item => (TabItem)tabControl.ItemContainerGenerator.ContainerFromItem(item))
+            .Where(tab => tab != null && tab.IsEnabled)
+            .Select(tab => tabControl.ItemContainerGenerator.IndexFromContainer(tab))
+            .Where(tabIndex => predicate(tabIndex))];
     }
 
     private void OnTabChanged(object sender, SelectionChangedEventArgs e)
