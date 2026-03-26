@@ -756,8 +756,9 @@
     </smtx:XamlDisplay>
 
     <Border Width="720"
-        BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}"
-        BorderThickness="1">
+            Margin="0,0,0,16"
+            BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}"
+            BorderThickness="1">
       <Grid>
         <Grid.RowDefinitions>
           <RowDefinition Height="auto" />
@@ -829,6 +830,92 @@
                 <TextBlock Margin="10"
                        FontSize="18"
                        Text="{Binding ., StringFormat=Content {0}}" />
+              </DataTemplate>
+            </TabControl.ContentTemplate>
+          </TabControl>
+        </smtx:XamlDisplay>
+
+      </Grid>
+    </Border>
+
+    <Border Width="720"
+            BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}"
+            BorderThickness="1">      
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" MinWidth="50" />
+          <ColumnDefinition Width="2" />
+          <ColumnDefinition Width="*" MinWidth="50" />
+        </Grid.ColumnDefinitions>
+
+        <materialDesign:ColorZone Grid.ColumnSpan="2"
+                                  Padding="8"
+                                  Mode="PrimaryMid">
+          <TextBlock Text="materialDesign:TabAssist.UseNavigationPanel=&quot;True&quot;" />
+        </materialDesign:ColorZone>
+
+        <materialDesign:ColorZone Grid.Column="2"
+                                  Padding="8"
+                                  Mode="PrimaryMid">
+          <TextBlock Text="materialDesign:TabAssist.HeaderPanelCustomContent=&quot;...&quot;" />
+        </materialDesign:ColorZone>
+
+        <smtx:XamlDisplay Grid.Row="1"
+                          Grid.Column="0"
+                          Margin="16"
+                          UniqueKey="tabs_tabAssist_3">
+          <TabControl materialDesign:TabAssist.HeaderBehavior="Scrolling"
+                      materialDesign:TabAssist.UseNavigationPanel="True"
+                      ItemsSource="{Binding LongList}"
+                      Style="{StaticResource MaterialDesignTabControl}">
+            <TabControl.ItemTemplate>
+              <DataTemplate>
+                <StackPanel Orientation="Horizontal">
+                  <TextBlock Text="{Binding ., StringFormat=Header {0}}" />
+                </StackPanel>
+              </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+              <DataTemplate>
+                <TextBlock Margin="10"
+                           FontSize="18"
+                           Text="{Binding ., StringFormat=Content {0}}" />
+              </DataTemplate>
+            </TabControl.ContentTemplate>
+          </TabControl>
+        </smtx:XamlDisplay>
+
+        <GridSplitter Grid.RowSpan="2"
+                      Grid.Column="1"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch" />
+
+        <smtx:XamlDisplay Grid.Row="1"
+                          Grid.Column="2"
+                          Margin="16"
+                          UniqueKey="tabs_tabAssist_4">
+          <TabControl materialDesign:TabAssist.HeaderBehavior="Scrolling"
+                      ItemsSource="{Binding LongList}"
+                      Style="{StaticResource MaterialDesignTabControl}">
+            <materialDesign:TabAssist.HeaderPanelCustomContent>
+              <Button Content="{materialDesign:PackIcon Kind=Plus}" Margin="8,0,0,0" />
+            </materialDesign:TabAssist.HeaderPanelCustomContent>
+            <TabControl.ItemTemplate>
+              <DataTemplate>
+                <StackPanel Orientation="Horizontal">
+                  <TextBlock Text="{Binding ., StringFormat=Header {0}}" />
+                </StackPanel>
+              </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+              <DataTemplate>
+                <TextBlock Margin="10"
+                           FontSize="18"
+                           Text="{Binding ., StringFormat=Content {0}}" />
               </DataTemplate>
             </TabControl.ContentTemplate>
           </TabControl>
