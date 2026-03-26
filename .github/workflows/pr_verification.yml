@@ -17,7 +17,6 @@ jobs:
     uses: ./.github/workflows/build_artifacts.yml
     with:
       mdix-version: "0.0.0"
-      mdix-colors-version: "0.0.0"
       mdix-mahapps-version: "0.0.0"
 
   automerge:

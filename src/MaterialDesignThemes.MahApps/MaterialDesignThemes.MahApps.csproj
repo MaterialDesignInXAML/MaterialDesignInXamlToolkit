@@ -18,7 +18,7 @@
     <PackageTags>WPF XAML MahApps Material Design Theme Colour Color UI UX</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" />
+    <ProjectReference Include="..\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" PrivateAssets="all" />
     <ProjectReference Include="..\MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj" />
   </ItemGroup>
   <ItemGroup>

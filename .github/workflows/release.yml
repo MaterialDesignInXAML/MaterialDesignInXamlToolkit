@@ -76,7 +76,6 @@ jobs:
     uses: ./.github/workflows/build_artifacts.yml
     with:
       mdix-version: ${{ needs.get_versions.outputs.mdix-version }}
-      mdix-colors-version: ${{ needs.get_versions.outputs.mdix-colors-version }}
       mdix-mahapps-version: ${{ needs.get_versions.outputs.mdix-mahapps-version }}
 
   build_icon_changes:
@@ -303,7 +302,6 @@ jobs:
           }
 
           Update-Version -Prefix "mdix-version"
-          Update-Version -Prefix "mdix-colors-version"
           Update-Version -Prefix "mdix-mahapps-version"
 
       - name: Open Pull Request

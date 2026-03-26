@@ -38,7 +38,7 @@
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" />
+    <ProjectReference Include="..\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" PrivateAssets="all" />
   </ItemGroup>
 
   <!-- This passes the environment variable values into assembly attributes that can be read in code -->
@@ -48,6 +48,16 @@
       <_Parameter2>$(MDIXVersion)</_Parameter2>
     </AssemblyAttribute>
   </ItemGroup>
+
+  <!-- Include MaterialDesignColors DLL in this NuGet package (collapsed from separate package) -->
+  <PropertyGroup>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);IncludeColorsBuildOutput</TargetsForTfmSpecificBuildOutput>
+  </PropertyGroup>
+  <Target Name="IncludeColorsBuildOutput">
+    <ItemGroup>
+      <BuildOutputInPackage Include="$(OutputPath)MaterialDesignColors.dll" />
+    </ItemGroup>
+  </Target>
   
   <!-- Package Content -->
   <ItemGroup>
