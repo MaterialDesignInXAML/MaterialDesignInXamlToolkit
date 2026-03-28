@@ -227,7 +227,7 @@ public class TabControlTests : TestBase
     [Arguments("", 20, true)]                                     // UniformGrid style
     [Arguments("HorizontalContentAlignment=\"Left\"", 5, false)]  // VirtualizingStackPanel style
     [Arguments("HorizontalContentAlignment=\"Left\"", 20, true)]  // VirtualizingStackPanel style
-    public async Task ScrollingTabs_WithNavigationPanel_ShouldAddLeftAndRightMarginToHeaderPanel(string additionalProperties, int numberOfTabs, bool expectedToOverflow)
+    public async Task ScrollingTabs_WithNavigationPanels_ShouldCorrectlySetIsOverflowingAndNavigationPanelVisibility(string additionalProperties, int numberOfTabs, bool expectedToOverflow)
     {
         await using var recorder = new TestRecorder(App);
 
@@ -246,17 +246,96 @@ public class TabControlTests : TestBase
         }
         xaml.Append("</TabControl>");
         IVisualElement<TabControl> tabControl = await LoadXaml<TabControl>(xaml.ToString());
-        IVisualElement<StackPanel> navigationPanel = await tabControl.GetElement<StackPanel>("NavigationPanel");
+        IVisualElement<StackPanel> navigationPanelLeft = await (await tabControl.GetElement<Grid>("NavigationPanelLeft")).GetElement<StackPanel>();
+        IVisualElement<StackPanel> navigationPanelRight = await tabControl.GetElement<StackPanel>("NavigationPanelRight");
 
         static bool GetIsOverflowing(TabControl tc) => TabAssist.GetIsOverflowing(tc);
 
         //Act
         bool isOverflowing = await tabControl.RemoteExecute(GetIsOverflowing);
-        Visibility headerPanelVisibility = await navigationPanel.GetVisibility();
+        Visibility navigationPanelLeftVisibility = await navigationPanelLeft.GetVisibility();
+        Visibility navigationPanelRightVisibility = await navigationPanelRight.GetVisibility();
 
         // Assert
         await Assert.That(isOverflowing).IsEqualTo(expectedToOverflow);
-        await Assert.That(headerPanelVisibility).IsEqualTo(expectedToOverflow ? Visibility.Visible : Visibility.Collapsed);
+        await Assert.That(navigationPanelLeftVisibility).IsEqualTo(expectedToOverflow ? Visibility.Visible : Visibility.Collapsed);
+        await Assert.That(navigationPanelRightVisibility).IsEqualTo(expectedToOverflow ? Visibility.Visible : Visibility.Collapsed);
+
+        recorder.Success();
+    }
+
+    [Test]
+    [Arguments("")]                                     // UniformGrid style
+    [Arguments("HorizontalContentAlignment=\"Left\"")]  // VirtualizingStackPanel style
+    public async Task ScrollingTabs_WithNavigationPanelLeft_ShouldCorrectlySetIsOverflowingAndNavigationPanelLeftVisibility(string additionalProperties)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        //Arrange
+        StringBuilder xaml = new($"""
+            <TabControl materialDesign:TabAssist.UseNavigationPanel="True" materialDesign:TabAssist.NavigationPanelPlacement="Left" {additionalProperties}>
+            """);
+
+        const int numTabs = 20;
+        for (int i = 1; i <= numTabs; i++)
+        {
+            xaml.Append($"""
+                <TabItem Header="TAB {i}">
+                  <TextBlock Margin="8" Text="Tab {i}" />
+                </TabItem>
+                """);
+        }
+        xaml.Append("</TabControl>");
+        IVisualElement<TabControl> tabControl = await LoadXaml<TabControl>(xaml.ToString());
+        IVisualElement<StackPanel> navigationPanel = await (await tabControl.GetElement<Grid>("NavigationPanelLeft")).GetElement<StackPanel>();
+
+        static bool GetIsOverflowing(TabControl tc) => TabAssist.GetIsOverflowing(tc);
+
+        //Act
+        bool isOverflowing = await tabControl.RemoteExecute(GetIsOverflowing);
+        Visibility navigationPanelVisibility = await navigationPanel.GetVisibility();
+
+        // Assert
+        await Assert.That(isOverflowing).IsEqualTo(true);
+        await Assert.That(navigationPanelVisibility).IsEqualTo(Visibility.Visible);
+
+        recorder.Success();
+    }
+
+    [Test]
+    [Arguments("")]                                     // UniformGrid style
+    [Arguments("HorizontalContentAlignment=\"Left\"")]  // VirtualizingStackPanel style
+    public async Task ScrollingTabs_WithNavigationPanelRight_ShouldCorrectlySetIsOverflowingAndNavigationPanelLeftVisibility(string additionalProperties)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        //Arrange
+        StringBuilder xaml = new($"""
+            <TabControl materialDesign:TabAssist.UseNavigationPanel="True" materialDesign:TabAssist.NavigationPanelPlacement="Right" {additionalProperties}>
+            """);
+
+        const int numTabs = 20;
+        for (int i = 1; i <= numTabs; i++)
+        {
+            xaml.Append($"""
+                <TabItem Header="TAB {i}">
+                  <TextBlock Margin="8" Text="Tab {i}" />
+                </TabItem>
+                """);
+        }
+        xaml.Append("</TabControl>");
+        IVisualElement<TabControl> tabControl = await LoadXaml<TabControl>(xaml.ToString());
+        IVisualElement<StackPanel> navigationPanel = await tabControl.GetElement<StackPanel>("NavigationPanelRight");
+
+        static bool GetIsOverflowing(TabControl tc) => TabAssist.GetIsOverflowing(tc);
+
+        //Act
+        bool isOverflowing = await tabControl.RemoteExecute(GetIsOverflowing);
+        Visibility navigationPanelVisibility = await navigationPanel.GetVisibility();
+
+        // Assert
+        await Assert.That(isOverflowing).IsEqualTo(true);
+        await Assert.That(navigationPanelVisibility).IsEqualTo(Visibility.Visible);
 
         recorder.Success();
     }

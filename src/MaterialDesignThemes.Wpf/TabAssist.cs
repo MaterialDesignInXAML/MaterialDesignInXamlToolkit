@@ -57,8 +57,8 @@ public static class TabAssist
     public static void SetUseNavigationPanel(DependencyObject obj, bool value)
         => obj.SetValue(UseNavigationPanelProperty, value);
 
-    public static readonly DependencyProperty UseNavigationPanelProperty =
-        DependencyProperty.RegisterAttached("UseNavigationPanel", typeof(bool), typeof(TabAssist), new PropertyMetadata(false));
+    public static readonly DependencyProperty UseNavigationPanelProperty = DependencyProperty.RegisterAttached(
+        "UseNavigationPanel", typeof(bool), typeof(TabAssist), new PropertyMetadata(false));
 
     public static Thickness GetNavigationPanelMargin(DependencyObject obj)
         => (Thickness)obj.GetValue(NavigationPanelMarginProperty);
@@ -66,8 +66,17 @@ public static class TabAssist
     public static void SetNavigationPanelMargin(DependencyObject obj, Thickness value)
         => obj.SetValue(NavigationPanelMarginProperty, value);
 
-    public static readonly DependencyProperty NavigationPanelMarginProperty =
-        DependencyProperty.RegisterAttached("NavigationPanelMargin", typeof(Thickness), typeof(TabAssist), new PropertyMetadata(default(Thickness)));
+    public static readonly DependencyProperty NavigationPanelMarginProperty = DependencyProperty.RegisterAttached(
+        "NavigationPanelMargin", typeof(Thickness), typeof(TabAssist), new PropertyMetadata(default(Thickness)));
+
+    public static NavigationPanelPlacement GetNavigationPanelPlacement(DependencyObject obj)
+        => (NavigationPanelPlacement)obj.GetValue(NavigationPanelPlacementProperty);
+
+    public static void SetNavigationPanelPlacement(DependencyObject obj, NavigationPanelPlacement value)
+        => obj.SetValue(NavigationPanelPlacementProperty, value);
+
+    public static readonly DependencyProperty NavigationPanelPlacementProperty = DependencyProperty.RegisterAttached(
+        "NavigationPanelPlacement", typeof(NavigationPanelPlacement), typeof(TabAssist), new PropertyMetadata(default(NavigationPanelPlacement)));  
 
     internal static void SetIsOverflowing(DependencyObject obj, bool value)
         => obj.SetValue(IsOverflowingPropertyKey, value);
@@ -136,4 +145,11 @@ public static class TabAssist
     public static readonly DependencyProperty ScrollDurationProperty =
         DependencyProperty.RegisterAttached("ScrollDuration", typeof(TimeSpan),
             typeof(TabAssist), new PropertyMetadata(TimeSpan.Zero));
+}
+
+public enum NavigationPanelPlacement
+{
+    Split,
+    Left,
+    Right
 }

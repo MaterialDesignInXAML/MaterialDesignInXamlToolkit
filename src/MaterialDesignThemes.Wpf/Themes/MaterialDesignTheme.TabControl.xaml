@@ -27,8 +27,13 @@
 
   <ControlTemplate x:Key="ScrollingTabControlTemplate" TargetType="{x:Type TabControl}">
     <ControlTemplate.Resources>
-      <convertersInternal:TabControlNavButtonPanelMarginConverter x:Key="TabControlNavButtonPanelMarginConverter" />
+      <convertersInternal:TabControlAdditionalHeaderPanelContentMarginConverter x:Key="TabControlAdditionalHeaderPanelContentMarginConverter" />
       <convertersInternal:TabControlNavButtonPanelVisibilityConverter x:Key="TabControlNavButtonPanelVisibilityConverter" />
+      <convertersInternal:TabControlNavButtonVisibilityConverter x:Key="LeftPreviousTabControlNavButtonVisibilityConverter" VisiblePlacements="Split, Left" />
+      <convertersInternal:TabControlNavButtonVisibilityConverter x:Key="LeftNextTabControlNavButtonVisibilityConverter" VisiblePlacements="Left" />
+      <convertersInternal:TabControlNavButtonVisibilityConverter x:Key="RightPreviousTabControlNavButtonVisibilityConverter" VisiblePlacements="Right" />
+      <convertersInternal:TabControlNavButtonVisibilityConverter x:Key="RightNextTabControlNavButtonVisibilityConverter" VisiblePlacements="Split, Right" />
+      <convertersInternal:TabControlNavButtonPanelMarginConverter x:Key="TabControlNavButtonPanelMarginConverter" />
     </ControlTemplate.Resources>
     <DockPanel KeyboardNavigation.TabNavigation="Local">
       <wpf:ColorZone x:Name="PART_HeaderZone"
@@ -49,7 +54,8 @@
               <behaviorsInternal:TabControlHeaderScrollBehavior x:Name="TabControlHeaderScrollBehavior"
                                                                 TabControl="{Binding RelativeSource={RelativeSource TemplatedParent}}"
                                                                 ScrollableContent="{Binding ElementName=ScrollableContent}"
-                                                                AdditionalHeaderPanelContentWidth="{Binding ElementName=AdditionalHeaderPanelContent, Path=ActualWidth}"/>
+                                                                AdditionalHeaderPanelContentWidth="{Binding ElementName=AdditionalHeaderPanelContent, Path=ActualWidth}"
+                                                                NavigationPanelLeftWidth="{Binding ElementName=NavigationPanelLeft, Path=ActualWidth}"/>
             </b:Interaction.Behaviors>
             <internal:PaddedBringIntoViewStackPanel x:Name="ScrollableContent"
                                                     ScrollDirection="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(behaviorsInternal:TabControlHeaderScrollBehavior.ScrollDirection)}"
@@ -73,10 +79,10 @@
                                       Orientation="Horizontal" />
             </internal:PaddedBringIntoViewStackPanel>
           </ScrollViewer>
-          
+
           <StackPanel x:Name="AdditionalHeaderPanelContent" Orientation="Horizontal" HorizontalAlignment="Left">
             <StackPanel.Margin>
-              <MultiBinding Converter="{StaticResource TabControlNavButtonPanelMarginConverter}">
+              <MultiBinding Converter="{StaticResource TabControlAdditionalHeaderPanelContentMarginConverter}">
                 <Binding ElementName="CenteredHeaderPanel" Path="ActualWidth" />
                 <Binding ElementName="HeaderPanel" Path="ActualWidth" />
                 <Binding ElementName="PART_HeaderZone" Path="ActualWidth" />
@@ -86,33 +92,79 @@
               </MultiBinding>
             </StackPanel.Margin>
 
-            <!-- Navigation panel -->
-            <StackPanel x:Name="NavigationPanel" Orientation="Horizontal" Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.NavigationPanelMargin)}">
+            <!-- Navigation panel (right) -->
+            <StackPanel x:Name="NavigationPanelRight" Orientation="Horizontal">
+              <StackPanel.Margin>
+                <MultiBinding Converter="{StaticResource TabControlNavButtonPanelMarginConverter}">
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TabAssist.NavigationPanelMargin)" />
+                  <Binding ElementName="RightPreviousButton" Path="Visibility" />
+                  <Binding ElementName="RightNextButton" Path="Visibility" />
+                </MultiBinding>
+              </StackPanel.Margin>
               <StackPanel.Visibility>
                 <MultiBinding Converter="{StaticResource TabControlNavButtonPanelVisibilityConverter}">
                   <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TabAssist.UseNavigationPanel)" />
                   <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TabAssist.IsOverflowing)" />
                 </MultiBinding>
               </StackPanel.Visibility>
-              <Button Width="16"
+              <Button x:Name="RightPreviousButton"
+                      Width="16"
                       Height="16"
                       Padding="0"
-                      Command="{Binding ElementName=TabControlHeaderScrollBehavior, Path=PreviousTabCommand}">
+                      Margin="0,0,8,0"
+                      Command="{Binding ElementName=TabControlHeaderScrollBehavior, Path=PreviousTabCommand}"
+                      Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.NavigationPanelPlacement), Converter={StaticResource RightPreviousTabControlNavButtonVisibilityConverter}}">
                 <wpf:PackIcon Kind="ChevronLeft" Width="12" Height="12" />
               </Button>
-              <Button Width="16"
+              <Button x:Name="RightNextButton"
+                      Width="16"
                       Height="16"
                       Padding="0"
-                      Margin="8,0,0,0"
-                      Command="{Binding ElementName=TabControlHeaderScrollBehavior, Path=NextTabCommand}">
+                      Command="{Binding ElementName=TabControlHeaderScrollBehavior, Path=NextTabCommand}"
+                      Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.NavigationPanelPlacement), Converter={StaticResource RightNextTabControlNavButtonVisibilityConverter}}">
                 <wpf:PackIcon Kind="ChevronRight" Width="12" Height="12" />
               </Button>
             </StackPanel>
 
             <!-- Custom content -->
             <ContentControl Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.HeaderPanelCustomContent)}" />
-
           </StackPanel>
+
+          <!-- Navigation panel (left) - for some reason the extra Grid is needed to trigger updates to NavigationPanelLeft.ActualWidth in the binding above -->
+          <Grid x:Name="NavigationPanelLeft" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal">
+              <StackPanel.Margin>
+                <MultiBinding Converter="{StaticResource TabControlNavButtonPanelMarginConverter}">
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TabAssist.NavigationPanelMargin)" />
+                  <Binding ElementName="LeftPreviousButton" Path="Visibility" />
+                  <Binding ElementName="LeftNextButton" Path="Visibility" />
+                </MultiBinding>
+              </StackPanel.Margin>
+              <StackPanel.Visibility>
+                <MultiBinding Converter="{StaticResource TabControlNavButtonPanelVisibilityConverter}">
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TabAssist.UseNavigationPanel)" />
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TabAssist.IsOverflowing)" />
+                </MultiBinding>
+              </StackPanel.Visibility>
+              <Button x:Name="LeftPreviousButton"
+                      Width="16"
+                      Height="16"
+                      Padding="0"
+                      Command="{Binding ElementName=TabControlHeaderScrollBehavior, Path=PreviousTabCommand}"
+                      Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.NavigationPanelPlacement), Converter={StaticResource LeftPreviousTabControlNavButtonVisibilityConverter}}">
+                <wpf:PackIcon Kind="ChevronLeft" Width="12" Height="12" />
+              </Button>
+              <Button x:Name="LeftNextButton"
+                      Width="16"
+                      Height="16"
+                      Padding="0"
+                      Margin="8,0,0,0"
+                      Command="{Binding ElementName=TabControlHeaderScrollBehavior, Path=NextTabCommand}"
+                      Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.NavigationPanelPlacement), Converter={StaticResource LeftNextTabControlNavButtonVisibilityConverter}}">
+                <wpf:PackIcon Kind="ChevronRight" Width="12" Height="12" />
+              </Button>
+            </StackPanel>
+          </Grid>
         </Grid>
       </wpf:ColorZone>
 

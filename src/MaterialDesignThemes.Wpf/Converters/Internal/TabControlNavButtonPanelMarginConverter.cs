@@ -7,11 +7,9 @@ public class TabControlNavButtonPanelMarginConverter : IMultiValueConverter
 {
     public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (values is [double scrollableContentWidthDefault, double scrollableContentWidthNonUniform, double controlWidth, StackPanel navPanel, ..])
+        if (values is [Thickness margin, Visibility previousButtonVisibility, Visibility nextButtonVisibility])
         {
-            double scrollableContentWidth = Math.Max(scrollableContentWidthDefault, scrollableContentWidthNonUniform);
-            double xOffset = Math.Min(controlWidth, scrollableContentWidth + navPanel.ActualWidth) - navPanel.ActualWidth;
-            return new Thickness(xOffset, 0, 0, 0);
+            return previousButtonVisibility == Visibility.Collapsed && nextButtonVisibility == Visibility.Collapsed ? new Thickness(0) : margin;
         }
         return new Thickness(0);
     }

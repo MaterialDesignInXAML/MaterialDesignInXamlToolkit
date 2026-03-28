@@ -68,6 +68,22 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
         behavior.AddPaddingToScrollableContentIfWiderThanViewPort();
     }
 
+    public double NavigationPanelLeftWidth
+    {
+        get => (double)GetValue(NavigationPanelLeftWidthProperty);
+        set => SetValue(NavigationPanelLeftWidthProperty, value);
+    }
+
+    public static readonly DependencyProperty NavigationPanelLeftWidthProperty =
+        DependencyProperty.Register(nameof(NavigationPanelLeftWidth), typeof(double),
+            typeof(TabControlHeaderScrollBehavior), new PropertyMetadata(0d, NavigationPanelLeftWidthChanged));
+
+    private static void NavigationPanelLeftWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var behavior = (TabControlHeaderScrollBehavior)d;
+        behavior.AddPaddingToScrollableContentIfWiderThanViewPort();
+    }
+
     public FrameworkElement ScrollableContent
     {
         get => (FrameworkElement)GetValue(ScrollableContentProperty);
@@ -193,7 +209,7 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
             AssociatedObject.SetCurrentValue(TabControlHeaderScrollBehavior.CustomHorizontalOffsetProperty, 0d);
             TabAssist.SetIsOverflowing(TabControl, false);
         }
-        AssociatedObject.Margin = new(0, 0, AdditionalHeaderPanelContentWidth, 0);
+        AssociatedObject.Margin = new(NavigationPanelLeftWidth, 0, AdditionalHeaderPanelContentWidth, 0);
     }
 
     private void OnTabControlPreviewKeyDown(object sender, KeyEventArgs e)
