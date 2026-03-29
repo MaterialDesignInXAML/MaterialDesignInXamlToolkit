@@ -418,4 +418,69 @@ public class TabControlTests : TestBase
 
         recorder.Success();
     }
+
+    [Test]
+    public async Task ScrollingTabs_NavigationPanel_ScrollsAndBringsSelectedTabIntoView()
+    {
+        await using var recorder = new TestRecorder(App);
+
+        // Arrange
+        const int numTabs = 20;
+        StringBuilder xaml = new($"<TabControl Width=\"504\" materialDesign:TabAssist.HeaderBehavior=\"Scrolling\" materialDesign:TabAssist.UseNavigationPanel=\"True\" materialDesign:TabAssist.NavigationPanelPlacement=\"Right\">");
+        for (int i = 1; i <= numTabs; i++)
+        {
+            xaml.Append($"""
+            <TabItem Header="TAB {i}">
+              <TextBlock Margin="8" Text="Tab {i}" />
+            </TabItem>
+            """);
+        }
+        xaml.Append("</TabControl>");
+
+        IVisualElement<TabControl> tabControl = await LoadXaml<TabControl>(xaml.ToString());
+        IVisualElement<PaddedBringIntoViewStackPanel> headerPanel = await tabControl.GetElement<PaddedBringIntoViewStackPanel>();
+        IVisualElement<StackPanel> navigationPanel = await tabControl.GetElement<StackPanel>("NavigationPanelRight");
+        IVisualElement<Button> rightNextButton = await navigationPanel.GetElement<Button>("RightNextButton");
+        IVisualElement<Button> rightPreviousButton = await navigationPanel.GetElement<Button>("RightPreviousButton");
+
+        // Act
+        // Scroll right once
+        await Task.Delay(300);
+        await rightNextButton.LeftClick();
+        await Task.Delay(300);
+
+        // Select an arbitrary tab (index 8)
+        IVisualElement<TabItem> someTab = await tabControl.GetElement<TabItem>("/TabItem[8]");
+        await someTab.LeftClick();
+
+        // Scroll back to the left
+        await Task.Delay(300);
+        await rightPreviousButton.LeftClick();
+        await Task.Delay(300);
+
+        // Select the last visible tab
+        // NB: The last visible tab is "hardcoded" to always be index 4 due to the fixed Width of 504 on the TabControl
+        IVisualElement<TabItem> lastVisibleTab = await tabControl.GetElement<TabItem>($"/TabItem[4]");
+        await lastVisibleTab.LeftClick();
+        await Task.Delay(300);
+
+        // Assert
+        int selectedTabIndex = await tabControl.GetSelectedIndex();
+        await Assert.That(selectedTabIndex).IsEqualTo(4);
+
+        double offsetWhenOverflowingWidth = await headerPanel.GetHeaderPadding();
+        Thickness margin = await headerPanel.GetMargin();
+
+        await Assert.That(offsetWhenOverflowingWidth).IsGreaterThan(0);
+        await Assert.That(margin.Left).IsEqualTo(offsetWhenOverflowingWidth);
+
+        static Thickness GetNavigationPanelMargin(TabControl tc) => TabAssist.GetNavigationPanelMargin(tc);
+
+        Thickness navigationPanelMargin = await tabControl.RemoteExecute(GetNavigationPanelMargin);
+        double navigationPanelActualWidth = await navigationPanel.GetActualWidth() + navigationPanelMargin.Left + navigationPanelMargin.Right;
+
+        await Assert.That(margin.Right).IsEqualTo(offsetWhenOverflowingWidth + navigationPanelActualWidth);
+
+        recorder.Success();
+    }
 }
