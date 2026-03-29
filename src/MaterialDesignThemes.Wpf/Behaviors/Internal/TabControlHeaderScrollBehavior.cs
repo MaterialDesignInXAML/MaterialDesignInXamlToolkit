@@ -222,10 +222,23 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
             if (e.RemovedItems.Count == 0) return true;
             int previousIndex = GetItemIndex(e.RemovedItems[0]);
             int nextIndex = GetItemIndex(e.AddedItems[^1]);
-            return nextIndex > previousIndex;
+
+            NavigationPanelBehavior behavior = TabAssist.GetNavigationPanelBehavior(tabControl);
+            return behavior switch
+            {
+                NavigationPanelBehavior.Scroll => GetItemOffset(nextIndex) > 0,
+                _ => nextIndex > previousIndex
+            };
         }
 
         int GetItemIndex(object? item) => tabControl.Items.IndexOf(item);
+
+        double GetItemOffset(int index)
+        {
+            if (tabControl.ItemContainerGenerator.ContainerFromIndex(index) is not TabItem container)
+                return 1;
+            return container.TranslatePoint(new Point(), AssociatedObject).X;
+        }
     }
 
     private void OnTabsChanged(object sender, ItemsChangedEventArgs e)
