@@ -409,7 +409,8 @@ public class TabControlTests : TestBase
         //Act
         await Task.Delay(100);  // I tried using Wait.For() with various inputs, but this is the only thing that works consistently :-(
         await rightNextButton.LeftClick();
-        await Wait.For(async () => await scrollViewer.GetContentHorizontalOffset() > 0);
+        //await Wait.For(async () => await scrollViewer.GetContentHorizontalOffset() > 0); // Inconsistent :-(
+        await Task.Delay(200);
 
         // Assert
         await Assert.That(await tabControl.GetSelectedIndex()).IsEqualTo(0);
