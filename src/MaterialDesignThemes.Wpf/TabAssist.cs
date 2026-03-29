@@ -51,6 +51,9 @@ public static class TabAssist
     public static bool GetIsOverflowing(DependencyObject obj)
         => (bool)obj.GetValue(IsOverflowingProperty);
 
+    internal static void SetIsOverflowing(DependencyObject obj, bool value)
+    => obj.SetValue(IsOverflowingPropertyKey, value);
+
     public static bool GetUseNavigationPanel(DependencyObject obj)
         => (bool)obj.GetValue(UseNavigationPanelProperty);
 
@@ -76,7 +79,7 @@ public static class TabAssist
         => obj.SetValue(NavigationPanelPlacementProperty, value);
 
     public static readonly DependencyProperty NavigationPanelPlacementProperty = DependencyProperty.RegisterAttached(
-        "NavigationPanelPlacement", typeof(NavigationPanelPlacement), typeof(TabAssist), new PropertyMetadata(default(NavigationPanelPlacement)));
+        "NavigationPanelPlacement", typeof(NavigationPanelPlacement), typeof(TabAssist), new PropertyMetadata(NavigationPanelPlacement.Split));
 
     public static NavigationPanelBehavior GetNavigationPanelBehavior(DependencyObject obj)
         => (NavigationPanelBehavior)obj.GetValue(NavigationPanelBehaviorProperty);
@@ -85,10 +88,7 @@ public static class TabAssist
         => obj.SetValue(NavigationPanelBehaviorProperty, value);
 
     public static readonly DependencyProperty NavigationPanelBehaviorProperty = DependencyProperty.RegisterAttached(
-        "NavigationPanelBehavior", typeof(NavigationPanelBehavior), typeof(TabAssist), new PropertyMetadata(default(NavigationPanelBehavior)));
-
-    internal static void SetIsOverflowing(DependencyObject obj, bool value)
-        => obj.SetValue(IsOverflowingPropertyKey, value);
+        "NavigationPanelBehavior", typeof(NavigationPanelBehavior), typeof(TabAssist), new PropertyMetadata(NavigationPanelBehavior.Scroll));
 
     public static Visibility GetBindableIsItemsHost(DependencyObject obj)
         => (Visibility)obj.GetValue(BindableIsItemsHostProperty);
