@@ -116,7 +116,8 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
                 if (behavior == NavigationPanelBehavior.Scroll)
                 {
                     _desiredScrollStart = AssociatedObject.ContentHorizontalOffset;
-                    AssociatedObject.ScrollToHorizontalOffset(AssociatedObject.ContentHorizontalOffset + AssociatedObject.ActualWidth);
+                    double newOffset = Math.Min(AssociatedObject.ContentHorizontalOffset + AssociatedObject.ActualWidth, AssociatedObject.ExtentWidth - AssociatedObject.ActualWidth - AssociatedObject.Margin.Left - AssociatedObject.Margin.Right);
+                    AssociatedObject.ScrollToHorizontalOffset(newOffset);
                 }
                 else if (behavior == NavigationPanelBehavior.Select && TryGetNextTabIndex(tabControl, out int nextIndex))
                 {
@@ -149,7 +150,7 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
             NavigationPanelBehavior behavior = TabAssist.GetNavigationPanelBehavior(tabControl);
             return behavior switch
             {
-                NavigationPanelBehavior.Scroll => AssociatedObject.ContentHorizontalOffset < AssociatedObject.ExtentWidth - AssociatedObject.ActualWidth,
+                NavigationPanelBehavior.Scroll => AssociatedObject.ContentHorizontalOffset < AssociatedObject.ExtentWidth - AssociatedObject.ActualWidth - AssociatedObject.Margin.Left - AssociatedObject.Margin.Right,
                 NavigationPanelBehavior.Select => TryGetNextTabIndex(tabControl, out int _),
                 _ => false
             };
