@@ -839,6 +839,7 @@
     </Border>
 
     <Border Width="720"
+            Margin="0,0,0,16"
             BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}"
             BorderThickness="1">      
       <Grid>
@@ -924,5 +925,179 @@
       </Grid>
     </Border>
 
+    <Border Width="720"
+            Margin="0,0,0,16"
+            BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}"
+            BorderThickness="1">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" MinWidth="50" />
+          <ColumnDefinition Width="2" />
+          <ColumnDefinition Width="*" MinWidth="50" />
+        </Grid.ColumnDefinitions>
+
+        <materialDesign:ColorZone Grid.ColumnSpan="2"
+                                  Padding="8"
+                                  Mode="PrimaryMid">
+          <TextBlock Text="materialDesign:TabAssist.NavigationPanelPlacement=&quot;Left&quot;" />
+        </materialDesign:ColorZone>
+
+        <materialDesign:ColorZone Grid.Column="2"
+                                  Padding="8"
+                                  Mode="PrimaryMid">
+          <TextBlock Text="materialDesign:TabAssist.NavigationPanelPlacement=&quot;Right&quot;" />
+        </materialDesign:ColorZone>
+
+        <smtx:XamlDisplay Grid.Row="1"
+                          Grid.Column="0"
+                          Margin="16"
+                          UniqueKey="tabs_tabAssist_5">
+          <TabControl materialDesign:TabAssist.HeaderBehavior="Scrolling"
+                      materialDesign:TabAssist.UseNavigationPanel="True"
+                      materialDesign:TabAssist.NavigationPanelPlacement="Left"
+                      ItemsSource="{Binding LongList}"
+                      Style="{StaticResource MaterialDesignTabControl}">
+            <TabControl.ItemTemplate>
+              <DataTemplate>
+                <StackPanel Orientation="Horizontal">
+                  <TextBlock Text="{Binding ., StringFormat=Header {0}}" />
+                </StackPanel>
+              </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+              <DataTemplate>
+                <TextBlock Margin="10"
+                           FontSize="18"
+                           Text="{Binding ., StringFormat=Content {0}}" />
+              </DataTemplate>
+            </TabControl.ContentTemplate>
+          </TabControl>
+        </smtx:XamlDisplay>
+
+        <GridSplitter Grid.RowSpan="2"
+                      Grid.Column="1"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch" />
+
+        <smtx:XamlDisplay Grid.Row="1"
+                      Grid.Column="2"
+                      Margin="16"
+                      UniqueKey="tabs_tabAssist_6">
+          <TabControl materialDesign:TabAssist.HeaderBehavior="Scrolling"
+                      materialDesign:TabAssist.UseNavigationPanel="True"
+                      materialDesign:TabAssist.NavigationPanelPlacement="Right"
+                      ItemsSource="{Binding LongList}"
+                      Style="{StaticResource MaterialDesignTabControl}">
+            <TabControl.ItemTemplate>
+              <DataTemplate>
+                <StackPanel Orientation="Horizontal">
+                  <TextBlock Text="{Binding ., StringFormat=Header {0}}" />
+                </StackPanel>
+              </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+              <DataTemplate>
+                <TextBlock Margin="10"
+                           FontSize="18"
+                           Text="{Binding ., StringFormat=Content {0}}" />
+              </DataTemplate>
+            </TabControl.ContentTemplate>
+          </TabControl>
+        </smtx:XamlDisplay>
+
+      </Grid>
+    </Border>
+
+
+    <Border Width="720"
+            Margin="0,0,0,16"
+            BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}"
+            BorderThickness="1">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto" />
+          <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" MinWidth="50" />
+          <ColumnDefinition Width="2" />
+          <ColumnDefinition Width="*" MinWidth="50" />
+        </Grid.ColumnDefinitions>
+
+        <materialDesign:ColorZone Grid.ColumnSpan="2"
+                                  Padding="8"
+                                  Mode="PrimaryMid">
+          <TextBlock Text="materialDesign:TabAssist.NavigationPanelBehavior=&quot;Scroll&quot;" />
+        </materialDesign:ColorZone>
+
+        <materialDesign:ColorZone Grid.Column="2"
+                                  Padding="8"
+                                  Mode="PrimaryMid">
+          <TextBlock Text="materialDesign:TabAssist.NavigationPanelBehavior=&quot;Select&quot;" />
+        </materialDesign:ColorZone>
+
+        <smtx:XamlDisplay Grid.Row="1"
+                          Grid.Column="0"
+                          Margin="16"
+                          UniqueKey="tabs_tabAssist_7">
+          <TabControl materialDesign:TabAssist.HeaderBehavior="Scrolling"
+                      materialDesign:TabAssist.UseNavigationPanel="True"
+                      materialDesign:TabAssist.NavigationPanelBehavior="Scroll"
+                      ItemsSource="{Binding LongList}"
+                      Style="{StaticResource MaterialDesignTabControl}">
+            <TabControl.ItemTemplate>
+              <DataTemplate>
+                <StackPanel Orientation="Horizontal">
+                  <TextBlock Text="{Binding ., StringFormat=Header {0}}" />
+                </StackPanel>
+              </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+              <DataTemplate>
+                <TextBlock Margin="10"
+                           FontSize="18"
+                           Text="{Binding ., StringFormat=Content {0}}" />
+              </DataTemplate>
+            </TabControl.ContentTemplate>
+          </TabControl>
+        </smtx:XamlDisplay>
+
+        <GridSplitter Grid.RowSpan="2"
+                      Grid.Column="1"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch" />
+
+        <smtx:XamlDisplay Grid.Row="1"
+                      Grid.Column="2"
+                      Margin="16"
+                      UniqueKey="tabs_tabAssist_8">
+          <TabControl materialDesign:TabAssist.HeaderBehavior="Scrolling"
+                      materialDesign:TabAssist.UseNavigationPanel="True"
+                      materialDesign:TabAssist.NavigationPanelBehavior="Select"
+                      ItemsSource="{Binding LongList}"
+                      Style="{StaticResource MaterialDesignTabControl}">
+            <TabControl.ItemTemplate>
+              <DataTemplate>
+                <StackPanel Orientation="Horizontal">
+                  <TextBlock Text="{Binding ., StringFormat=Header {0}}" />
+                </StackPanel>
+              </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+              <DataTemplate>
+                <TextBlock Margin="10"
+                           FontSize="18"
+                           Text="{Binding ., StringFormat=Content {0}}" />
+              </DataTemplate>
+            </TabControl.ContentTemplate>
+          </TabControl>
+        </smtx:XamlDisplay>
+
+      </Grid>
+    </Border>    
   </StackPanel>
 </UserControl>
