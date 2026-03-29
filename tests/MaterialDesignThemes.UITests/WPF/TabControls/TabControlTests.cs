@@ -339,4 +339,82 @@ public class TabControlTests : TestBase
 
         recorder.Success();
     }
+
+    [Test]
+    [Arguments("")]                                     // UniformGrid style
+    [Arguments("HorizontalContentAlignment=\"Left\"")]  // VirtualizingStackPanel style
+    public async Task ScrollingTabs_WithNavigationPanelAndSelectBehavior_ShouldChangeSelectedTabWhenClicked(string additionalProperties)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        //Arrange
+        StringBuilder xaml = new($"""
+            <TabControl materialDesign:TabAssist.UseNavigationPanel="True" materialDesign:TabAssist.NavigationPanelBehavior="Select" {additionalProperties}>
+            """);
+
+        const int numTabs = 20;
+        for (int i = 1; i <= numTabs; i++)
+        {
+            xaml.Append($"""
+                <TabItem Header="TAB {i}">
+                  <TextBlock Margin="8" Text="Tab {i}" />
+                </TabItem>
+                """);
+        }
+        xaml.Append("</TabControl>");
+        IVisualElement<TabControl> tabControl = await LoadXaml<TabControl>(xaml.ToString());
+        IVisualElement<ScrollViewer> scrollViewer = await tabControl.GetElement<ScrollViewer>();
+        IVisualElement<StackPanel> navigationPanel = await tabControl.GetElement<StackPanel>("NavigationPanelRight");
+        IVisualElement<Button> rightNextButton = await navigationPanel.GetElement<Button>("RightNextButton");
+
+        //Act
+        await Task.Delay(100);  // I tried using Wait.For() with various inputs, but this is the only thing that works consistently :-(
+        await rightNextButton.LeftClick();
+        await Wait.For(async () => await tabControl.GetSelectedIndex() > 0);
+
+        // Assert
+        await Assert.That(await tabControl.GetSelectedIndex()).IsEqualTo(1);
+        await Assert.That(await scrollViewer.GetContentHorizontalOffset()).IsEqualTo(0);
+
+        recorder.Success();
+    }
+
+    [Test]
+    [Arguments("")]                                     // UniformGrid style
+    [Arguments("HorizontalContentAlignment=\"Left\"")]  // VirtualizingStackPanel style
+    public async Task ScrollingTabs_WithNavigationPanelAndScrollBehavior_ShouldScrollWhenClicked(string additionalProperties)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        //Arrange
+        StringBuilder xaml = new($"""
+            <TabControl materialDesign:TabAssist.UseNavigationPanel="True" materialDesign:TabAssist.NavigationPanelBehavior="Scroll" {additionalProperties}>
+            """);
+
+        const int numTabs = 20;
+        for (int i = 1; i <= numTabs; i++)
+        {
+            xaml.Append($"""
+                <TabItem Header="TAB {i}">
+                  <TextBlock Margin="8" Text="Tab {i}" />
+                </TabItem>
+                """);
+        }
+        xaml.Append("</TabControl>");
+        IVisualElement<TabControl> tabControl = await LoadXaml<TabControl>(xaml.ToString());
+        IVisualElement<ScrollViewer> scrollViewer = await tabControl.GetElement<ScrollViewer>();
+        IVisualElement<StackPanel> navigationPanel = await tabControl.GetElement<StackPanel>("NavigationPanelRight");
+        IVisualElement<Button> rightNextButton = await navigationPanel.GetElement<Button>("RightNextButton");
+
+        //Act
+        await Task.Delay(100);  // I tried using Wait.For() with various inputs, but this is the only thing that works consistently :-(
+        await rightNextButton.LeftClick();
+        await Wait.For(async () => await scrollViewer.GetContentHorizontalOffset() > 0);
+
+        // Assert
+        await Assert.That(await tabControl.GetSelectedIndex()).IsEqualTo(0);
+        await Assert.That(await scrollViewer.GetContentHorizontalOffset()).IsGreaterThan(0);
+
+        recorder.Success();
+    }
 }
