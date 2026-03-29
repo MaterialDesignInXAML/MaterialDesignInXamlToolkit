@@ -76,7 +76,16 @@ public static class TabAssist
         => obj.SetValue(NavigationPanelPlacementProperty, value);
 
     public static readonly DependencyProperty NavigationPanelPlacementProperty = DependencyProperty.RegisterAttached(
-        "NavigationPanelPlacement", typeof(NavigationPanelPlacement), typeof(TabAssist), new PropertyMetadata(default(NavigationPanelPlacement)));  
+        "NavigationPanelPlacement", typeof(NavigationPanelPlacement), typeof(TabAssist), new PropertyMetadata(default(NavigationPanelPlacement)));
+
+    public static NavigationPanelBehavior GetNavigationPanelBehavior(DependencyObject obj)
+        => (NavigationPanelBehavior)obj.GetValue(NavigationPanelBehaviorProperty);
+
+    public static void SetNavigationPanelBehavior(DependencyObject obj, NavigationPanelBehavior value)
+        => obj.SetValue(NavigationPanelBehaviorProperty, value);
+
+    public static readonly DependencyProperty NavigationPanelBehaviorProperty = DependencyProperty.RegisterAttached(
+        "NavigationPanelBehavior", typeof(NavigationPanelBehavior), typeof(TabAssist), new PropertyMetadata(default(NavigationPanelBehavior)));
 
     internal static void SetIsOverflowing(DependencyObject obj, bool value)
         => obj.SetValue(IsOverflowingPropertyKey, value);
@@ -152,4 +161,10 @@ public enum NavigationPanelPlacement
     Split,
     Left,
     Right
+}
+
+public enum NavigationPanelBehavior
+{
+    Scroll,
+    Select
 }

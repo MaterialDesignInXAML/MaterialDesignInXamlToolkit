@@ -110,22 +110,64 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
     {
         NextTabCommand = new SimpleICommandImplementation(_ =>
         {
-            if (TabControl is { } tabControl && TryGetNextTabIndex(tabControl, out int nextIndex))
+            if (TabControl is { } tabControl)
             {
-                tabControl.SelectedIndex = nextIndex;
-                ((SimpleICommandImplementation)PreviousTabCommand!).Refresh();
-                ((SimpleICommandImplementation)NextTabCommand!).Refresh();
+                NavigationPanelBehavior behavior = TabAssist.GetNavigationPanelBehavior(tabControl);
+                if (behavior == NavigationPanelBehavior.Scroll)
+                {
+                    _desiredScrollStart = AssociatedObject.ContentHorizontalOffset;
+                    AssociatedObject.ScrollToHorizontalOffset(AssociatedObject.ContentHorizontalOffset + AssociatedObject.ActualWidth);
+                }
+                else if (behavior == NavigationPanelBehavior.Select && TryGetNextTabIndex(tabControl, out int nextIndex))
+                {
+                    tabControl.SelectedIndex = nextIndex;
+                }
             }
-        }, _ => (TabControl is { } tabControl && TryGetNextTabIndex(tabControl, out int _)));
+        }, CanNextTabCommandExecute);
         PreviousTabCommand = new SimpleICommandImplementation(_ =>
         {
-            if (TabControl is { } tabControl && TryGetPreviousTabIndex(tabControl, out int previousIndex))
+            if (TabControl is { } tabControl)
             {
-                tabControl.SelectedIndex = previousIndex;
-                ((SimpleICommandImplementation)PreviousTabCommand!).Refresh();
-                ((SimpleICommandImplementation)NextTabCommand!).Refresh();
+                NavigationPanelBehavior behavior = TabAssist.GetNavigationPanelBehavior(tabControl);
+                if (behavior == NavigationPanelBehavior.Scroll)
+                {
+                    _desiredScrollStart = AssociatedObject.ContentHorizontalOffset;
+                    AssociatedObject.ScrollToHorizontalOffset(AssociatedObject.ContentHorizontalOffset - AssociatedObject.ActualWidth);
+                }
+                else if (behavior == NavigationPanelBehavior.Select && TryGetPreviousTabIndex(tabControl, out int previousIndex))
+                {
+                    tabControl.SelectedIndex = previousIndex;
+                }
             }
-        }, _ => (TabControl is { } tabControl && TryGetPreviousTabIndex(tabControl, out int _)));
+        }, CanPreviousTabCommandExecute);
+
+        bool CanNextTabCommandExecute(object? _)
+        {
+            if (TabControl is not { } tabControl)
+                return false;
+
+            NavigationPanelBehavior behavior = TabAssist.GetNavigationPanelBehavior(tabControl);
+            return behavior switch
+            {
+                NavigationPanelBehavior.Scroll => AssociatedObject.ContentHorizontalOffset < AssociatedObject.ExtentWidth - AssociatedObject.ActualWidth,
+                NavigationPanelBehavior.Select => TryGetNextTabIndex(tabControl, out int _),
+                _ => false
+            };
+        }
+
+        bool CanPreviousTabCommandExecute(object? _)
+        {
+            if (TabControl is not { } tabControl)
+                return false;
+
+            NavigationPanelBehavior behavior = TabAssist.GetNavigationPanelBehavior(tabControl);
+            return behavior switch
+            {
+                NavigationPanelBehavior.Scroll => AssociatedObject.ContentHorizontalOffset > 0,
+                NavigationPanelBehavior.Select => TryGetPreviousTabIndex(tabControl, out int _),
+                _ => false
+            };
+        }
 
         static bool TryGetNextTabIndex(TabControl tabControl, out int nextTabIndex)
         {
@@ -139,13 +181,13 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
             return false;
         }
 
-        static bool TryGetPreviousTabIndex(TabControl tabControl, out int nextTabIndex)
+        static bool TryGetPreviousTabIndex(TabControl tabControl, out int previousTabIndex)
         {
-            nextTabIndex = -1;
+            previousTabIndex = -1;
             var previousTabs = GetEnabledTabItemIndices(tabControl, index => index < tabControl.SelectedIndex);
             if (previousTabs.Count > 0)
             {
-                nextTabIndex = previousTabs.Last();
+                previousTabIndex = previousTabs.Last();
                 return true;
             }
             return false;
@@ -241,6 +283,9 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
 
     private void AssociatedObject_ScrollChanged(object sender, ScrollChangedEventArgs e)
     {
+        ((SimpleICommandImplementation)PreviousTabCommand!).Refresh();
+        ((SimpleICommandImplementation)NextTabCommand!).Refresh();
+
         if (TabAssist.GetUseHeaderPadding(TabControl) == false)
             return;
         TimeSpan duration = TabAssist.GetScrollDuration(TabControl);
@@ -261,6 +306,9 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
         DoubleAnimation scrollAnimation = new(originalValue, newValue, new Duration(duration));
         scrollAnimation.Completed += (_, _) =>
         {
+            ((SimpleICommandImplementation)PreviousTabCommand!).Refresh();
+            ((SimpleICommandImplementation)NextTabCommand!).Refresh();
+
             _desiredScrollStart = null;
             _isAnimatingScroll = false;
 
