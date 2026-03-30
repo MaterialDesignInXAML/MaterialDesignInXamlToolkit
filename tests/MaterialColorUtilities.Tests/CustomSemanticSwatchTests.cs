@@ -5,7 +5,9 @@ namespace MaterialColorUtilities.Tests;
 public sealed class CustomSemanticSwatchTests
 {
     [Test]
-    public async Task CustomSemanticSwatches_ExtractExpectedThemeColors()
+    [Arguments(true)]
+    [Arguments(false)]
+    public async Task CustomSemanticSwatches_ExtractExpectedThemeColors(bool isDark)
     {
         var materialDynamicColors = new MaterialDynamicColors();
 
