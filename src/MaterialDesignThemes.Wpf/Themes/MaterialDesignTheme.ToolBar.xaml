@@ -17,7 +17,7 @@
   </ResourceDictionary.MergedDictionaries>
 
   <Style x:Key="MaterialDesignToolBarVerticalOverflowButtonStyle" TargetType="{x:Type ToggleButton}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ToolBar.Background}" />
+    <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource AncestorType=ToolBar}}" />
     <Setter Property="MinHeight" Value="0" />
     <Setter Property="MinWidth" Value="0" />
     <Setter Property="Template">
@@ -55,7 +55,7 @@
   </Style>
 
   <Style x:Key="MaterialDesignToolBarHorizontalOverflowButtonStyle" TargetType="{x:Type ToggleButton}">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ToolBar.Background}" />
+    <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource AncestorType=ToolBar}}" />
     <Setter Property="MinHeight" Value="0" />
     <Setter Property="MinWidth" Value="0" />
     <Setter Property="Template">
@@ -187,7 +187,7 @@
                      CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
                 <Border x:Name="ToolBarSubMenuBorder"
                         Margin="1"
-                        Background="{DynamicResource MaterialDesign.Brush.ToolBar.Background}"
+                        Background="{TemplateBinding Background}"
                         BorderBrush="{DynamicResource MaterialDesign.Brush.ToolBar.Overflow.Border}"
                         BorderThickness="1"
                         CornerRadius="2"
@@ -246,7 +246,6 @@
               <Setter TargetName="ToolBarSubMenuBorder" Property="Margin" Value="5,5,5,5" />
             </Trigger>
             <Trigger Property="Orientation" Value="Vertical">
-              <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ToolBar.Background}" />
               <Setter TargetName="Grid" Property="Margin" Value="1,3,1,1" />
               <Setter TargetName="MainPanelBorder" Property="Margin" Value="0,0,0,11" />
               <Setter TargetName="OverflowButton" Property="Style" Value="{StaticResource MaterialDesignToolBarVerticalOverflowButtonStyle}" />
