@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Windows.Media.Animation;
 using Microsoft.Xaml.Behaviors;
 
@@ -12,6 +13,9 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
     public static void SetCustomHorizontalOffset(DependencyObject obj, double value) => obj.SetValue(CustomHorizontalOffsetProperty, value);
     private static void CustomHorizontalOffsetChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
+        if (DesignerProperties.GetIsInDesignMode(d))
+            return;
+
         var scrollViewer = (ScrollViewer)d;
         scrollViewer.ScrollToHorizontalOffset((double)e.NewValue);
     }
@@ -35,6 +39,9 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
 
     private static void OnTabControlChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
+        if (DesignerProperties.GetIsInDesignMode(d))
+            return;
+
         var behavior = (TabControlHeaderScrollBehavior)d;
         if (e.OldValue is TabControl oldTabControl)
         {
@@ -64,6 +71,9 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
 
     private static void AdditionalHeaderPanelContentWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
+        if (DesignerProperties.GetIsInDesignMode(d))
+            return;
+
         var behavior = (TabControlHeaderScrollBehavior)d;
         behavior.AddPaddingToScrollableContentIfWiderThanViewPort();
     }
@@ -80,6 +90,9 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
 
     private static void NavigationPanelLeftWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
+        if (DesignerProperties.GetIsInDesignMode(d))
+            return;
+
         var behavior = (TabControlHeaderScrollBehavior)d;
         behavior.AddPaddingToScrollableContentIfWiderThanViewPort();
     }
@@ -96,6 +109,9 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
 
     private static void OnScrollableContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
+        if (DesignerProperties.GetIsInDesignMode(d))
+            return;
+
         var behavior = (TabControlHeaderScrollBehavior)d;
         behavior.AddPaddingToScrollableContentIfWiderThanViewPort();
     }
@@ -108,6 +124,13 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
 
     public TabControlHeaderScrollBehavior()
     {
+        if (DesignerProperties.GetIsInDesignMode(this))
+        {
+            NextTabCommand = null!;
+            PreviousTabCommand = null!;
+            return;
+        }
+
         NextTabCommand = new SimpleICommandImplementation(_ =>
         {
             if (TabControl is { } tabControl)
@@ -280,6 +303,9 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
     protected override void OnAttached()
     {
         base.OnAttached();
+        if (DesignerProperties.GetIsInDesignMode(this))
+            return;
+
         AssociatedObject.ScrollChanged += AssociatedObject_ScrollChanged;
         AssociatedObject.SizeChanged += AssociatedObject_SizeChanged;
         Dispatcher.BeginInvoke(() => AddPaddingToScrollableContentIfWiderThanViewPort());
@@ -288,6 +314,9 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
     protected override void OnDetaching()
     {
         base.OnDetaching();
+        if (DesignerProperties.GetIsInDesignMode(this))
+            return;
+
         if (AssociatedObject is { } ao)
         {
             ao.ScrollChanged -= AssociatedObject_ScrollChanged;
