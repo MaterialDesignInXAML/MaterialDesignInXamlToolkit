@@ -235,7 +235,7 @@ public class TabControlHeaderScrollBehavior : Behavior<ScrollViewer>
 
         double GetItemOffset(int index)
         {
-            if (tabControl.ItemContainerGenerator.ContainerFromIndex(index) is not TabItem container)
+            if (index < 0 || tabControl.ItemContainerGenerator.ContainerFromIndex(index) is not TabItem container)
                 return 1;
             return container.TranslatePoint(new Point(), AssociatedObject).X;
         }
