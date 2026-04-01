@@ -452,6 +452,7 @@
                         Focusable="True"
                         Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
                         IsTabStop="False"
+                        KeyboardNavigation.TabNavigation="Cycle"
                         Opacity="0"
                         RenderTransformOrigin=".5,.5"
                         Tag="{TemplateBinding DialogBackground}"
