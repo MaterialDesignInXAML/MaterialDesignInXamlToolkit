@@ -514,4 +514,70 @@ public class DialogHostTests : TestBase
 
         recorder.Success();
     }
+
+    [Test]
+    [Description("Issue 4027")]
+    [Arguments("", new[] { Key.Tab })]
+    [Arguments("", new[] { Key.LeftShift, Key.Tab })]
+    [Arguments("MaterialDesignEmbeddedDialogHost", new[] { Key.Tab })]
+    [Arguments("MaterialDesignEmbeddedDialogHost", new[] { Key.LeftShift, Key.Tab })]
+    public async Task DialogHost_TrapsFocusInsidePopup_WhenTabbing(string dialogHostStyle, Key[] inputActions)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        var dialogHost = await LoadXaml<DialogHost>("""
+    <materialDesign:DialogHost>
+        <Grid>
+            <StackPanel>
+                <TextBox />
+                <Button x:Name="btnOpenDialog"
+                        Content="Open dialog"
+                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" />
+            </StackPanel>
+        </Grid>
+
+        <materialDesign:DialogHost.DialogContent>
+            <StackPanel Width="300">
+                <TextBox x:Name="TextBoxOne" />
+                <TextBox x:Name="TextBoxTwo" />
+            </StackPanel>
+        </materialDesign:DialogHost.DialogContent>
+    </materialDesign:DialogHost>
+    """);
+
+        if (!string.IsNullOrEmpty(dialogHostStyle))
+        {
+            await dialogHost.RemoteExecute(SetDialogHostStyle, dialogHostStyle);
+        }
+
+        var openDialogButton = await dialogHost.GetElement<Button>("btnOpenDialog");
+        var textBoxOne = await dialogHost.GetElement<TextBox>("TextBoxOne");
+        var textBoxTwo = await dialogHost.GetElement<TextBox>("TextBoxTwo");
+
+        await openDialogButton.LeftClick();
+
+        await Task.Delay(400, TestContext.Current!.CancellationToken);
+
+        // By default the first focusable element should be focused
+        await Assert.That(await textBoxOne.GetIsFocused()).IsTrue();
+
+        await textBoxOne.SendInput(new KeyboardInput(inputActions));
+        await Task.Delay(100, TestContext.Current!.CancellationToken);
+
+        await Assert.That(await textBoxTwo.GetIsFocused()).IsTrue();
+
+        await textBoxTwo.SendInput(new KeyboardInput(inputActions));
+        await Task.Delay(100, TestContext.Current!.CancellationToken);
+
+        await Assert.That(await textBoxOne.GetIsFocused()).IsTrue();
+
+        recorder.Success();
+
+        static object SetDialogHostStyle(DialogHost dialogHost, string styleName)
+        {
+            var style = (Style)dialogHost.FindResource(styleName);
+            dialogHost.Style = style;
+            return null!;
+        }
+    }
 }
