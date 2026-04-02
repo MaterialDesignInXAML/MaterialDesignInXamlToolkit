@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:convertersInternal="clr-namespace:MaterialDesignThemes.Wpf.Converters.Internal"
                     xmlns:internal="clr-namespace:MaterialDesignThemes.Wpf.Internal"
                     xmlns:behaviorsInternal="clr-namespace:MaterialDesignThemes.Wpf.Behaviors.Internal"
                     xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
@@ -25,6 +26,15 @@
   </Style>
 
   <ControlTemplate x:Key="ScrollingTabControlTemplate" TargetType="{x:Type TabControl}">
+    <ControlTemplate.Resources>
+      <convertersInternal:TabControlAdditionalHeaderPanelContentMarginConverter x:Key="TabControlAdditionalHeaderPanelContentMarginConverter" />
+      <convertersInternal:TabControlNavButtonPanelVisibilityConverter x:Key="TabControlNavButtonPanelVisibilityConverter" />
+      <convertersInternal:TabControlNavButtonVisibilityConverter x:Key="LeftPreviousTabControlNavButtonVisibilityConverter" VisiblePlacements="Split, Left" />
+      <convertersInternal:TabControlNavButtonVisibilityConverter x:Key="LeftNextTabControlNavButtonVisibilityConverter" VisiblePlacements="Left" />
+      <convertersInternal:TabControlNavButtonVisibilityConverter x:Key="RightPreviousTabControlNavButtonVisibilityConverter" VisiblePlacements="Right" />
+      <convertersInternal:TabControlNavButtonVisibilityConverter x:Key="RightNextTabControlNavButtonVisibilityConverter" VisiblePlacements="Split, Right" />
+      <convertersInternal:TabControlNavButtonPanelMarginConverter x:Key="TabControlNavButtonPanelMarginConverter" />
+    </ControlTemplate.Resources>
     <DockPanel KeyboardNavigation.TabNavigation="Local">
       <wpf:ColorZone x:Name="PART_HeaderZone"
                            VerticalAlignment="Stretch"
@@ -33,37 +43,129 @@
                            Background="{TemplateBinding wpf:ColorZoneAssist.Background}"
                            DockPanel.Dock="Top"
                            Focusable="False">
-        <ScrollViewer wpf:ScrollViewerAssist.BubbleVerticalScroll="True"
-                              wpf:ScrollViewerAssist.SupportHorizontalScroll="True"
-                              wpf:ScrollViewerAssist.IgnorePadding="{Binding Path=(wpf:ScrollViewerAssist.IgnorePadding), RelativeSource={RelativeSource TemplatedParent}}"
-                              wpf:ScrollViewerAssist.PaddingMode="{Binding Path=(wpf:ScrollViewerAssist.PaddingMode), RelativeSource={RelativeSource TemplatedParent}}"
-                              HorizontalScrollBarVisibility="Hidden"
-                              VerticalScrollBarVisibility="Hidden">
-          <b:Interaction.Behaviors>
-            <behaviorsInternal:TabControlHeaderScrollBehavior TabControl="{Binding RelativeSource={RelativeSource TemplatedParent}}" ScrollableContent="{Binding ElementName=ScrollableContent}" />
-          </b:Interaction.Behaviors>
-          <internal:PaddedBringIntoViewStackPanel x:Name="ScrollableContent"
-                                                  ScrollDirection="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(behaviorsInternal:TabControlHeaderScrollBehavior.ScrollDirection)}"
-                                                  HeaderPadding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.HeaderPadding)}"
-                                                  UseHeaderPadding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.UseHeaderPadding)}">
-            <UniformGrid x:Name="CenteredHeaderPanel"
-                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                     Margin="{Binding Path=(wpf:TabAssist.HeaderPanelMargin), RelativeSource={RelativeSource TemplatedParent}}"
-                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                     wpf:TabAssist.BindableIsItemsHost="{Binding Visibility, RelativeSource={RelativeSource Self}}"
-                                     Focusable="False"
-                                     KeyboardNavigation.TabIndex="1"
-                                     Rows="1" />
-            <VirtualizingStackPanel x:Name="HeaderPanel"
-                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                Margin="{Binding Path=(wpf:TabAssist.HeaderPanelMargin), RelativeSource={RelativeSource TemplatedParent}}"
-                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                wpf:TabAssist.BindableIsItemsHost="{Binding Visibility, RelativeSource={RelativeSource Self}}"
-                                                Focusable="False"
-                                                KeyboardNavigation.TabIndex="1"
-                                                Orientation="Horizontal" />
-          </internal:PaddedBringIntoViewStackPanel>
-        </ScrollViewer>
+        <Grid>
+          <ScrollViewer wpf:ScrollViewerAssist.BubbleVerticalScroll="True"
+                        wpf:ScrollViewerAssist.SupportHorizontalScroll="True"
+                        wpf:ScrollViewerAssist.IgnorePadding="{Binding Path=(wpf:ScrollViewerAssist.IgnorePadding), RelativeSource={RelativeSource TemplatedParent}}"
+                        wpf:ScrollViewerAssist.PaddingMode="{Binding Path=(wpf:ScrollViewerAssist.PaddingMode), RelativeSource={RelativeSource TemplatedParent}}"
+                        HorizontalScrollBarVisibility="Hidden"
+                        VerticalScrollBarVisibility="Hidden">
+            <b:Interaction.Behaviors>
+              <behaviorsInternal:TabControlHeaderScrollBehavior x:Name="TabControlHeaderScrollBehavior"
+                                                                TabControl="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                                                                ScrollableContent="{Binding ElementName=ScrollableContent}"
+                                                                AdditionalHeaderPanelContentWidth="{Binding ElementName=AdditionalHeaderPanelContent, Path=ActualWidth}"
+                                                                NavigationPanelLeftWidth="{Binding ElementName=NavigationPanelLeft, Path=ActualWidth}"/>
+            </b:Interaction.Behaviors>
+            <internal:PaddedBringIntoViewStackPanel x:Name="ScrollableContent"
+                                                    ScrollDirection="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(behaviorsInternal:TabControlHeaderScrollBehavior.ScrollDirection)}"
+                                                    HeaderPadding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.HeaderPadding)}"
+                                                    UseHeaderPadding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.UseHeaderPadding)}">
+              <UniformGrid x:Name="CenteredHeaderPanel"
+                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                           Margin="{Binding Path=(wpf:TabAssist.HeaderPanelMargin), RelativeSource={RelativeSource TemplatedParent}}"
+                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                           wpf:TabAssist.BindableIsItemsHost="{Binding Visibility, RelativeSource={RelativeSource Self}}"
+                           Focusable="False"
+                           KeyboardNavigation.TabIndex="1"
+                           Rows="1" />
+              <VirtualizingStackPanel x:Name="HeaderPanel"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      Margin="{Binding Path=(wpf:TabAssist.HeaderPanelMargin), RelativeSource={RelativeSource TemplatedParent}}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      wpf:TabAssist.BindableIsItemsHost="{Binding Visibility, RelativeSource={RelativeSource Self}}"
+                                      Focusable="False"
+                                      KeyboardNavigation.TabIndex="1"
+                                      Orientation="Horizontal" />
+            </internal:PaddedBringIntoViewStackPanel>
+          </ScrollViewer>
+
+          <StackPanel x:Name="AdditionalHeaderPanelContent" Orientation="Horizontal" HorizontalAlignment="Left">
+            <StackPanel.Margin>
+              <MultiBinding Converter="{StaticResource TabControlAdditionalHeaderPanelContentMarginConverter}">
+                <Binding ElementName="CenteredHeaderPanel" Path="ActualWidth" />
+                <Binding ElementName="HeaderPanel" Path="ActualWidth" />
+                <Binding ElementName="PART_HeaderZone" Path="ActualWidth" />
+                <Binding RelativeSource="{RelativeSource Self}" />
+                <!-- Below binding only added to trigger the converter (using it directly will cause converter to be invoked repeatedly due to "rounding errors") -->
+                <Binding ElementName="AdditionalHeaderPanelContent" Path="ActualWidth" />
+              </MultiBinding>
+            </StackPanel.Margin>
+
+            <!-- Navigation panel (right) -->
+            <StackPanel x:Name="NavigationPanelRight" Orientation="Horizontal">
+              <StackPanel.Margin>
+                <MultiBinding Converter="{StaticResource TabControlNavButtonPanelMarginConverter}">
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TabAssist.NavigationPanelMargin)" />
+                  <Binding ElementName="RightPreviousButton" Path="Visibility" />
+                  <Binding ElementName="RightNextButton" Path="Visibility" />
+                </MultiBinding>
+              </StackPanel.Margin>
+              <StackPanel.Visibility>
+                <MultiBinding Converter="{StaticResource TabControlNavButtonPanelVisibilityConverter}">
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TabAssist.UseNavigationPanel)" />
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TabAssist.IsOverflowing)" />
+                </MultiBinding>
+              </StackPanel.Visibility>
+              <Button x:Name="RightPreviousButton"
+                      Width="16"
+                      Height="16"
+                      Padding="0"
+                      Margin="0,0,8,0"
+                      Command="{Binding ElementName=TabControlHeaderScrollBehavior, Path=PreviousTabCommand}"
+                      Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.NavigationPanelPlacement), Converter={StaticResource RightPreviousTabControlNavButtonVisibilityConverter}}">
+                <wpf:PackIcon Kind="ChevronLeft" Width="12" Height="12" />
+              </Button>
+              <Button x:Name="RightNextButton"
+                      Width="16"
+                      Height="16"
+                      Padding="0"
+                      Command="{Binding ElementName=TabControlHeaderScrollBehavior, Path=NextTabCommand}"
+                      Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.NavigationPanelPlacement), Converter={StaticResource RightNextTabControlNavButtonVisibilityConverter}}">
+                <wpf:PackIcon Kind="ChevronRight" Width="12" Height="12" />
+              </Button>
+            </StackPanel>
+
+            <!-- Custom content -->
+            <ContentControl Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.HeaderPanelCustomContent)}" />
+          </StackPanel>
+
+          <!-- Navigation panel (left) - for some reason the extra Grid is needed to trigger updates to NavigationPanelLeft.ActualWidth in the binding above -->
+          <Grid x:Name="NavigationPanelLeft" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal">
+              <StackPanel.Margin>
+                <MultiBinding Converter="{StaticResource TabControlNavButtonPanelMarginConverter}">
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TabAssist.NavigationPanelMargin)" />
+                  <Binding ElementName="LeftPreviousButton" Path="Visibility" />
+                  <Binding ElementName="LeftNextButton" Path="Visibility" />
+                </MultiBinding>
+              </StackPanel.Margin>
+              <StackPanel.Visibility>
+                <MultiBinding Converter="{StaticResource TabControlNavButtonPanelVisibilityConverter}">
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TabAssist.UseNavigationPanel)" />
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(wpf:TabAssist.IsOverflowing)" />
+                </MultiBinding>
+              </StackPanel.Visibility>
+              <Button x:Name="LeftPreviousButton"
+                      Width="16"
+                      Height="16"
+                      Padding="0"
+                      Command="{Binding ElementName=TabControlHeaderScrollBehavior, Path=PreviousTabCommand}"
+                      Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.NavigationPanelPlacement), Converter={StaticResource LeftPreviousTabControlNavButtonVisibilityConverter}}">
+                <wpf:PackIcon Kind="ChevronLeft" Width="12" Height="12" />
+              </Button>
+              <Button x:Name="LeftNextButton"
+                      Width="16"
+                      Height="16"
+                      Padding="0"
+                      Margin="8,0,0,0"
+                      Command="{Binding ElementName=TabControlHeaderScrollBehavior, Path=NextTabCommand}"
+                      Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.NavigationPanelPlacement), Converter={StaticResource LeftNextTabControlNavButtonVisibilityConverter}}">
+                <wpf:PackIcon Kind="ChevronRight" Width="12" Height="12" />
+              </Button>
+            </StackPanel>
+          </Grid>
+        </Grid>
       </wpf:ColorZone>
 
       <Border x:Name="PART_BorderSelectedContent"
@@ -240,6 +342,7 @@
     <Setter Property="wpf:TabAssist.HeaderPadding" Value="40" />
     <Setter Property="wpf:TabAssist.UseHeaderPadding" Value="True" />
     <Setter Property="wpf:TabAssist.ScrollDuration" Value="0:0:0.250" />
+    <Setter Property="wpf:TabAssist.NavigationPanelMargin" Value="8,0" />
 
     <Style.Triggers>
       <Trigger Property="wpf:TabAssist.HeaderBehavior" Value="Wrapping">
