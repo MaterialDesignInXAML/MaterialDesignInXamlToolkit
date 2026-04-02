@@ -5,6 +5,11 @@ using System.Runtime.InteropServices;
 [assembly: XmlnsDefinition("http://materialdesigninxaml.net/winfx/xaml/themes", "MaterialDesignThemes.Wpf.Transitions")]
 [assembly: XmlnsDefinition("http://materialdesigninxaml.net/winfx/xaml/themes", "MaterialDesignThemes.Wpf.Converters")]
 
+[assembly: XmlnsPrefix("http://materialdesigninxaml.net/winfx/xaml/themes-internal", "materialDesignInternal")]
+[assembly: XmlnsDefinition("http://materialdesigninxaml.net/winfx/xaml/themes-internal", "MaterialDesignThemes.Wpf.Internal")]
+[assembly: XmlnsDefinition("http://materialdesigninxaml.net/winfx/xaml/themes-internal", "MaterialDesignThemes.Wpf.Converters.Internal")]
+[assembly: XmlnsDefinition("http://materialdesigninxaml.net/winfx/xaml/themes-internal", "MaterialDesignThemes.Wpf.Behaviors.Internal")]
+
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type.

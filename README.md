@@ -83,6 +83,25 @@ Install-Package MaterialDesignThemes
   [...] >
 ```
 
+### XML Namespaces
+
+The toolkit exposes two XML namespaces for use in XAML:
+
+| Prefix | URI | Description |
+|--------|-----|-------------|
+| `materialDesign` | `http://materialdesigninxaml.net/winfx/xaml/themes` | Primary namespace for all public Material Design types, controls, and converters. |
+| `materialDesignInternal` | `http://materialdesigninxaml.net/winfx/xaml/themes-internal` | Namespace for types in internal sub-namespaces (`MaterialDesignThemes.Wpf.Internal`, `MaterialDesignThemes.Wpf.Converters.Internal`, `MaterialDesignThemes.Wpf.Behaviors.Internal`). |
+
+> [!WARNING]
+> Types exposed via the `materialDesignInternal` namespace are considered **internal implementation details** and are **not guaranteed to maintain backwards-compatibility between versions**. Use them at your own risk.
+
+To use the internal namespace in XAML:
+
+```xml
+<Window ...
+  xmlns:materialDesignInternal="http://materialdesigninxaml.net/winfx/xaml/themes-internal">
+```
+
 
 ## Building the source
 
