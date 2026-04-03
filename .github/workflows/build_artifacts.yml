@@ -72,3 +72,9 @@ jobs:
         with:
             name: DemoApp
             path: "src/MainDemo.Wpf/bin/${{ env.buildConfiguration }}"
+
+      - name: Upload Demo3 App
+        uses: actions/upload-artifact@v4
+        with:
+            name: Demo3App
+            path: "src/MaterialDesign3.Demo.Wpf/bin/${{ env.buildConfiguration }}"

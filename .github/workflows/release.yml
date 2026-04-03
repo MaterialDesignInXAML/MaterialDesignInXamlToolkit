@@ -135,8 +135,17 @@ jobs:
           name: DemoApp
           path: demo-app
 
+      - name: Download Demo3 App Artifacts
+        uses: actions/download-artifact@v8
+        with:
+          name: Demo3App
+          path: demo3-app
+
       - name: Zip Demo App
         run: zip -r DemoApp.zip demo-app/*
+
+      - name: Zip Demo3 App
+        run: zip -r Demo3App.zip demo3-app/*
 
       - name: Download Release Notes
         uses: actions/download-artifact@v8
@@ -145,8 +154,8 @@ jobs:
 
       - name: Create Release
         run: |
-          # We can't use glob pattern because of this bug https://github.com/cli/cli/issues/5099
-          gh release create v${{ inputs.milestone }} --repo '${{ github.repository }}' --draft --latest --title "${{ inputs.milestone }}" --notes-file ReleaseNotes.md (Get-Item '${{ github.workspace }}/nugets/*.nupkg') '${{ github.workspace }}/DemoApp.zip'
+            # We can't use glob pattern because of this bug https://github.com/cli/cli/issues/5099
+            gh release create v${{ inputs.milestone }} --repo '${{ github.repository }}' --draft --latest --title "${{ inputs.milestone }}" --notes-file ReleaseNotes.md (Get-Item '${{ github.workspace }}/nugets/*.nupkg') '${{ github.workspace }}/DemoApp.zip' '${{ github.workspace }}/Demo3App.zip'
 
   update_wiki:
     needs: [create_release]
