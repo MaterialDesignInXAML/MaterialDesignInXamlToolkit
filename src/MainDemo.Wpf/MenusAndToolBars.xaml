@@ -380,7 +380,7 @@
 
     <smtx:XamlDisplay Margin="0,16,0,16" UniqueKey="menus_toolbar_custom_bg">
       <ToolBarTray>
-        <ToolBar Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}"
+        <ToolBar Background="{DynamicResource MaterialDesign.Brush.Primary}"
                  ClipToBounds="False"
                  Style="{StaticResource MaterialDesignToolBar}">
           <Button Content="{materialDesign:PackIcon Kind=ContentSave}" ToolTip="Save" />
