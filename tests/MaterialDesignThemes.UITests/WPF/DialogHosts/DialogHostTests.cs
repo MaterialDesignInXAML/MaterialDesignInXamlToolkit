@@ -4,7 +4,6 @@ using MaterialDesignThemes.UITests.Samples.DialogHost;
 
 using static MaterialDesignThemes.UITests.MaterialDesignSpec;
 
-
 namespace MaterialDesignThemes.UITests.WPF.DialogHosts;
 
 public class DialogHostTests : TestBase
@@ -556,20 +555,16 @@ public class DialogHostTests : TestBase
 
         await openDialogButton.LeftClick();
 
-        await Task.Delay(400, TestContext.Current!.CancellationToken);
-
         // By default the first focusable element should be focused
-        await Assert.That(await textBoxOne.GetIsFocused()).IsTrue();
+        await Wait.For(async () => await Assert.That(await textBoxOne.GetIsFocused()).IsTrue());
 
         await textBoxOne.SendInput(new KeyboardInput(inputActions));
-        await Task.Delay(100, TestContext.Current!.CancellationToken);
-
-        await Assert.That(await textBoxTwo.GetIsFocused()).IsTrue();
+        
+        await Wait.For(async () => await Assert.That(await textBoxTwo.GetIsFocused()).IsTrue());
 
         await textBoxTwo.SendInput(new KeyboardInput(inputActions));
-        await Task.Delay(100, TestContext.Current!.CancellationToken);
 
-        await Assert.That(await textBoxOne.GetIsFocused()).IsTrue();
+        await Wait.For(async () => await Assert.That(await textBoxOne.GetIsFocused()).IsTrue());
 
         recorder.Success();
 
