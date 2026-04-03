@@ -9,35 +9,32 @@ public sealed class CustomSemanticSwatchTests
     [Arguments(false)]
     public async Task CustomSemanticSwatches_ExtractExpectedThemeColors(bool isDark)
     {
-        var materialDynamicColors = new MaterialDynamicColors();
+        MaterialDynamicColors materialDynamicColors = new();
 
         foreach (var semanticColor in GetSemanticColorExpectations())
         {
-            foreach (var isDark in new[] { false, true })
-            {
-                var expected = isDark ? semanticColor.Dark : semanticColor.Light;
-                var scheme = CreateSchemeWithCustomErrorSwatch(semanticColor.Swatch, isDark);
+            var expected = isDark ? semanticColor.Dark : semanticColor.Light;
+            var scheme = CreateSchemeWithCustomErrorSwatch(semanticColor.Swatch, isDark);
 
-                await Assert.That(materialDynamicColors.ErrorPaletteKeyColor.GetColor(scheme))
-                    .IsEqualTo(expected.PaletteKey)
-                    .Because($"{semanticColor.Name} palette key did not match for {(isDark ? "dark" : "light")} mode.");
+            await Assert.That(materialDynamicColors.ErrorPaletteKeyColor.GetColor(scheme))
+                .IsEqualTo(expected.PaletteKey)
+                .Because($"{semanticColor.Name} palette key did not match for {(isDark ? "dark" : "light")} mode.");
 
-                await Assert.That(materialDynamicColors.Error.GetColor(scheme))
-                    .IsEqualTo(expected.Role)
-                    .Because($"{semanticColor.Name} role color did not match for {(isDark ? "dark" : "light")} mode.");
+            await Assert.That(materialDynamicColors.Error.GetColor(scheme))
+                .IsEqualTo(expected.Role)
+                .Because($"{semanticColor.Name} role color did not match for {(isDark ? "dark" : "light")} mode.");
 
-                await Assert.That(materialDynamicColors.OnError.GetColor(scheme))
-                    .IsEqualTo(expected.OnRole)
-                    .Because($"{semanticColor.Name} on-role color did not match for {(isDark ? "dark" : "light")} mode.");
+            await Assert.That(materialDynamicColors.OnError.GetColor(scheme))
+                .IsEqualTo(expected.OnRole)
+                .Because($"{semanticColor.Name} on-role color did not match for {(isDark ? "dark" : "light")} mode.");
 
-                await Assert.That(materialDynamicColors.ErrorContainer.GetColor(scheme))
-                    .IsEqualTo(expected.Container)
-                    .Because($"{semanticColor.Name} container color did not match for {(isDark ? "dark" : "light")} mode.");
+            await Assert.That(materialDynamicColors.ErrorContainer.GetColor(scheme))
+                .IsEqualTo(expected.Container)
+                .Because($"{semanticColor.Name} container color did not match for {(isDark ? "dark" : "light")} mode.");
 
-                await Assert.That(materialDynamicColors.OnErrorContainer.GetColor(scheme))
-                    .IsEqualTo(expected.OnContainer)
-                    .Because($"{semanticColor.Name} on-container color did not match for {(isDark ? "dark" : "light")} mode.");
-            }
+            await Assert.That(materialDynamicColors.OnErrorContainer.GetColor(scheme))
+                .IsEqualTo(expected.OnContainer)
+                .Because($"{semanticColor.Name} on-container color did not match for {(isDark ? "dark" : "light")} mode.");
         }
     }
 
