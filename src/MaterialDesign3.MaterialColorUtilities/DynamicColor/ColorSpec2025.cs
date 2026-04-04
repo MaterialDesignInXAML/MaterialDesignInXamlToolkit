@@ -939,6 +939,354 @@ public class ColorSpec2025 : ColorSpec2021
         }
     }
 
+    // Warning High [WH]
+    public new DynamicColor WarningHigh
+    {
+        get
+        {
+            var color2025 = new DynamicColor.Builder()
+                .SetName("warning_high")
+                .SetPalette(s => s.WarningHighPalette)
+                .SetTone(s =>
+                {
+                    if (s.PlatformType == Platform.Phone) return s.IsDark ? TMinC(s.WarningHighPalette, 0, 98) : TMaxC(s.WarningHighPalette);
+                    return TMinC(s.WarningHighPalette);
+                })
+                .SetIsBackground(true)
+                .SetBackground(s => s.PlatformType == Platform.Phone ? (s.IsDark ? SurfaceBright : SurfaceDim) : SurfaceContainerHigh)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(4.5) : GetContrastCurve(7))
+                .SetToneDeltaPair(s => s.PlatformType == Platform.Phone ? new ToneDeltaPair(WarningHighContainer, WarningHigh, 5.0, TonePolarity.RelativeLighter, DeltaConstraint.Farther) : null!)
+                .Build();
+            return base.WarningHigh.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
+        }
+    }
+
+    public new DynamicColor? WarningHighDim
+    {
+        get
+        {
+            return new DynamicColor.Builder()
+                .SetName("warning_high_dim")
+                .SetPalette(s => s.WarningHighPalette)
+                .SetTone(s => TMinC(s.WarningHighPalette))
+                .SetIsBackground(true)
+                .SetBackground(s => SurfaceContainerHigh)
+                .SetContrastCurve(s => GetContrastCurve(4.5))
+                .SetToneDeltaPair(s => new ToneDeltaPair(WarningHighDim!, WarningHigh, 5.0, TonePolarity.Darker, DeltaConstraint.Farther))
+                .Build();
+        }
+    }
+
+    public new DynamicColor OnWarningHigh
+    {
+        get
+        {
+            var color2025 = new DynamicColor.Builder()
+                .SetName("on_warning_high")
+                .SetPalette(s => s.WarningHighPalette)
+                .SetBackground(s => s.PlatformType == Platform.Phone ? WarningHigh : WarningHighDim!)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(6) : GetContrastCurve(7))
+                .Build();
+            return base.OnWarningHigh.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
+        }
+    }
+
+    public new DynamicColor WarningHighContainer
+    {
+        get
+        {
+            var color2025 = new DynamicColor.Builder()
+                .SetName("warning_high_container")
+                .SetPalette(s => s.WarningHighPalette)
+                .SetTone(s =>
+                {
+                    if (s.PlatformType == Platform.Watch) return 30.0;
+                    return s.IsDark ? TMinC(s.WarningHighPalette, 30, 93) : TMaxC(s.WarningHighPalette, 0, 90);
+                })
+                .SetIsBackground(true)
+                .SetBackground(s => s.PlatformType == Platform.Phone ? (s.IsDark ? SurfaceBright : SurfaceDim) : null!)
+                .SetToneDeltaPair(s => s.PlatformType == Platform.Watch ? new ToneDeltaPair(WarningHighContainer, WarningHighDim!, 10.0, TonePolarity.Darker, DeltaConstraint.Farther) : null!)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone && s.ContrastLevel > 0 ? GetContrastCurve(1.5) : null!)
+                .Build();
+            return base.WarningHighContainer.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
+        }
+    }
+
+    public new DynamicColor OnWarningHighContainer
+    {
+        get
+        {
+            var color2025 = new DynamicColor.Builder()
+                .SetName("on_warning_high_container")
+                .SetPalette(s => s.WarningHighPalette)
+                .SetBackground(s => WarningHighContainer)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(4.5) : GetContrastCurve(7))
+                .Build();
+            return base.OnWarningHighContainer.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
+        }
+    }
+
+    // Warning Low [WL]
+    public new DynamicColor WarningLow
+    {
+        get
+        {
+            var color2025 = new DynamicColor.Builder()
+                .SetName("warning_low")
+                .SetPalette(s => s.WarningLowPalette)
+                .SetTone(s =>
+                {
+                    if (s.PlatformType == Platform.Phone) return s.IsDark ? TMinC(s.WarningLowPalette, 0, 98) : TMaxC(s.WarningLowPalette);
+                    return TMinC(s.WarningLowPalette);
+                })
+                .SetIsBackground(true)
+                .SetBackground(s => s.PlatformType == Platform.Phone ? (s.IsDark ? SurfaceBright : SurfaceDim) : SurfaceContainerHigh)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(4.5) : GetContrastCurve(7))
+                .SetToneDeltaPair(s => s.PlatformType == Platform.Phone ? new ToneDeltaPair(WarningLowContainer, WarningLow, 5.0, TonePolarity.RelativeLighter, DeltaConstraint.Farther) : null!)
+                .Build();
+            return base.WarningLow.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
+        }
+    }
+
+    public new DynamicColor? WarningLowDim
+    {
+        get
+        {
+            return new DynamicColor.Builder()
+                .SetName("warning_low_dim")
+                .SetPalette(s => s.WarningLowPalette)
+                .SetTone(s => TMinC(s.WarningLowPalette))
+                .SetIsBackground(true)
+                .SetBackground(s => SurfaceContainerHigh)
+                .SetContrastCurve(s => GetContrastCurve(4.5))
+                .SetToneDeltaPair(s => new ToneDeltaPair(WarningLowDim!, WarningLow, 5.0, TonePolarity.Darker, DeltaConstraint.Farther))
+                .Build();
+        }
+    }
+
+    public new DynamicColor OnWarningLow
+    {
+        get
+        {
+            var color2025 = new DynamicColor.Builder()
+                .SetName("on_warning_low")
+                .SetPalette(s => s.WarningLowPalette)
+                .SetBackground(s => s.PlatformType == Platform.Phone ? WarningLow : WarningLowDim!)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(6) : GetContrastCurve(7))
+                .Build();
+            return base.OnWarningLow.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
+        }
+    }
+
+    public new DynamicColor WarningLowContainer
+    {
+        get
+        {
+            var color2025 = new DynamicColor.Builder()
+                .SetName("warning_low_container")
+                .SetPalette(s => s.WarningLowPalette)
+                .SetTone(s =>
+                {
+                    if (s.PlatformType == Platform.Watch) return 30.0;
+                    return s.IsDark ? TMinC(s.WarningLowPalette, 30, 93) : TMaxC(s.WarningLowPalette, 0, 90);
+                })
+                .SetIsBackground(true)
+                .SetBackground(s => s.PlatformType == Platform.Phone ? (s.IsDark ? SurfaceBright : SurfaceDim) : null!)
+                .SetToneDeltaPair(s => s.PlatformType == Platform.Watch ? new ToneDeltaPair(WarningLowContainer, WarningLowDim!, 10.0, TonePolarity.Darker, DeltaConstraint.Farther) : null!)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone && s.ContrastLevel > 0 ? GetContrastCurve(1.5) : null!)
+                .Build();
+            return base.WarningLowContainer.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
+        }
+    }
+
+    public new DynamicColor OnWarningLowContainer
+    {
+        get
+        {
+            var color2025 = new DynamicColor.Builder()
+                .SetName("on_warning_low_container")
+                .SetPalette(s => s.WarningLowPalette)
+                .SetBackground(s => WarningLowContainer)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(4.5) : GetContrastCurve(7))
+                .Build();
+            return base.OnWarningLowContainer.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
+        }
+    }
+
+    // Information [I]
+    public new DynamicColor Information
+    {
+        get
+        {
+            var color2025 = new DynamicColor.Builder()
+                .SetName("information")
+                .SetPalette(s => s.InformationPalette)
+                .SetTone(s =>
+                {
+                    if (s.PlatformType == Platform.Phone) return s.IsDark ? TMinC(s.InformationPalette, 0, 98) : TMaxC(s.InformationPalette);
+                    return TMinC(s.InformationPalette);
+                })
+                .SetIsBackground(true)
+                .SetBackground(s => s.PlatformType == Platform.Phone ? (s.IsDark ? SurfaceBright : SurfaceDim) : SurfaceContainerHigh)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(4.5) : GetContrastCurve(7))
+                .SetToneDeltaPair(s => s.PlatformType == Platform.Phone ? new ToneDeltaPair(InformationContainer, Information, 5.0, TonePolarity.RelativeLighter, DeltaConstraint.Farther) : null!)
+                .Build();
+            return base.Information.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
+        }
+    }
+
+    public new DynamicColor? InformationDim
+    {
+        get
+        {
+            return new DynamicColor.Builder()
+                .SetName("information_dim")
+                .SetPalette(s => s.InformationPalette)
+                .SetTone(s => TMinC(s.InformationPalette))
+                .SetIsBackground(true)
+                .SetBackground(s => SurfaceContainerHigh)
+                .SetContrastCurve(s => GetContrastCurve(4.5))
+                .SetToneDeltaPair(s => new ToneDeltaPair(InformationDim!, Information, 5.0, TonePolarity.Darker, DeltaConstraint.Farther))
+                .Build();
+        }
+    }
+
+    public new DynamicColor OnInformation
+    {
+        get
+        {
+            var color2025 = new DynamicColor.Builder()
+                .SetName("on_information")
+                .SetPalette(s => s.InformationPalette)
+                .SetBackground(s => s.PlatformType == Platform.Phone ? Information : InformationDim!)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(6) : GetContrastCurve(7))
+                .Build();
+            return base.OnInformation.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
+        }
+    }
+
+    public new DynamicColor InformationContainer
+    {
+        get
+        {
+            var color2025 = new DynamicColor.Builder()
+                .SetName("information_container")
+                .SetPalette(s => s.InformationPalette)
+                .SetTone(s =>
+                {
+                    if (s.PlatformType == Platform.Watch) return 30.0;
+                    return s.IsDark ? TMinC(s.InformationPalette, 30, 93) : TMaxC(s.InformationPalette, 0, 90);
+                })
+                .SetIsBackground(true)
+                .SetBackground(s => s.PlatformType == Platform.Phone ? (s.IsDark ? SurfaceBright : SurfaceDim) : null!)
+                .SetToneDeltaPair(s => s.PlatformType == Platform.Watch ? new ToneDeltaPair(InformationContainer, InformationDim!, 10.0, TonePolarity.Darker, DeltaConstraint.Farther) : null!)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone && s.ContrastLevel > 0 ? GetContrastCurve(1.5) : null!)
+                .Build();
+            return base.InformationContainer.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
+        }
+    }
+
+    public new DynamicColor OnInformationContainer
+    {
+        get
+        {
+            var color2025 = new DynamicColor.Builder()
+                .SetName("on_information_container")
+                .SetPalette(s => s.InformationPalette)
+                .SetBackground(s => InformationContainer)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(4.5) : GetContrastCurve(7))
+                .Build();
+            return base.OnInformationContainer.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
+        }
+    }
+
+    // Safe [SF]
+    public new DynamicColor Safe
+    {
+        get
+        {
+            var color2025 = new DynamicColor.Builder()
+                .SetName("safe")
+                .SetPalette(s => s.SafePalette)
+                .SetTone(s =>
+                {
+                    if (s.PlatformType == Platform.Phone) return s.IsDark ? TMinC(s.SafePalette, 0, 98) : TMaxC(s.SafePalette);
+                    return TMinC(s.SafePalette);
+                })
+                .SetIsBackground(true)
+                .SetBackground(s => s.PlatformType == Platform.Phone ? (s.IsDark ? SurfaceBright : SurfaceDim) : SurfaceContainerHigh)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(4.5) : GetContrastCurve(7))
+                .SetToneDeltaPair(s => s.PlatformType == Platform.Phone ? new ToneDeltaPair(SafeContainer, Safe, 5.0, TonePolarity.RelativeLighter, DeltaConstraint.Farther) : null!)
+                .Build();
+            return base.Safe.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
+        }
+    }
+
+    public new DynamicColor? SafeDim
+    {
+        get
+        {
+            return new DynamicColor.Builder()
+                .SetName("safe_dim")
+                .SetPalette(s => s.SafePalette)
+                .SetTone(s => TMinC(s.SafePalette))
+                .SetIsBackground(true)
+                .SetBackground(s => SurfaceContainerHigh)
+                .SetContrastCurve(s => GetContrastCurve(4.5))
+                .SetToneDeltaPair(s => new ToneDeltaPair(SafeDim!, Safe, 5.0, TonePolarity.Darker, DeltaConstraint.Farther))
+                .Build();
+        }
+    }
+
+    public new DynamicColor OnSafe
+    {
+        get
+        {
+            var color2025 = new DynamicColor.Builder()
+                .SetName("on_safe")
+                .SetPalette(s => s.SafePalette)
+                .SetBackground(s => s.PlatformType == Platform.Phone ? Safe : SafeDim!)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(6) : GetContrastCurve(7))
+                .Build();
+            return base.OnSafe.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
+        }
+    }
+
+    public new DynamicColor SafeContainer
+    {
+        get
+        {
+            var color2025 = new DynamicColor.Builder()
+                .SetName("safe_container")
+                .SetPalette(s => s.SafePalette)
+                .SetTone(s =>
+                {
+                    if (s.PlatformType == Platform.Watch) return 30.0;
+                    return s.IsDark ? TMinC(s.SafePalette, 30, 93) : TMaxC(s.SafePalette, 0, 90);
+                })
+                .SetIsBackground(true)
+                .SetBackground(s => s.PlatformType == Platform.Phone ? (s.IsDark ? SurfaceBright : SurfaceDim) : null!)
+                .SetToneDeltaPair(s => s.PlatformType == Platform.Watch ? new ToneDeltaPair(SafeContainer, SafeDim!, 10.0, TonePolarity.Darker, DeltaConstraint.Farther) : null!)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone && s.ContrastLevel > 0 ? GetContrastCurve(1.5) : null!)
+                .Build();
+            return base.SafeContainer.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
+        }
+    }
+
+    public new DynamicColor OnSafeContainer
+    {
+        get
+        {
+            var color2025 = new DynamicColor.Builder()
+                .SetName("on_safe_container")
+                .SetPalette(s => s.SafePalette)
+                .SetBackground(s => SafeContainer)
+                .SetContrastCurve(s => s.PlatformType == Platform.Phone ? GetContrastCurve(4.5) : GetContrastCurve(7))
+                .Build();
+            return base.OnSafeContainer.ToBuilder().ExtendSpecVersion(SpecVersion.Spec2025, color2025).Build();
+        }
+    }
+
     // Primary Fixed Colors [PF]
     public new DynamicColor PrimaryFixed
     {

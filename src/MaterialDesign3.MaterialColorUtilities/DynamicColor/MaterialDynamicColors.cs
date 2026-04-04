@@ -13,6 +13,10 @@ public sealed class MaterialDynamicColors
     public DynamicColor NeutralPaletteKeyColor => colorSpec.NeutralPaletteKeyColor;
     public DynamicColor NeutralVariantPaletteKeyColor => colorSpec.NeutralVariantPaletteKeyColor;
     public DynamicColor ErrorPaletteKeyColor => colorSpec.ErrorPaletteKeyColor;
+    public DynamicColor WarningHighPaletteKeyColor => colorSpec.WarningHighPaletteKeyColor;
+    public DynamicColor WarningLowPaletteKeyColor => colorSpec.WarningLowPaletteKeyColor;
+    public DynamicColor InformationPaletteKeyColor => colorSpec.InformationPaletteKeyColor;
+    public DynamicColor SafePaletteKeyColor => colorSpec.SafePaletteKeyColor;
 
     // Surfaces [S]
     public DynamicColor Background => colorSpec.Background;
@@ -77,6 +81,34 @@ public sealed class MaterialDynamicColors
     public DynamicColor ErrorContainer => colorSpec.ErrorContainer;
     public DynamicColor OnErrorContainer => colorSpec.OnErrorContainer;
 
+    // Warning High [WH]
+    public DynamicColor WarningHigh => colorSpec.WarningHigh;
+    public DynamicColor? WarningHighDim => colorSpec.WarningHighDim;
+    public DynamicColor OnWarningHigh => colorSpec.OnWarningHigh;
+    public DynamicColor WarningHighContainer => colorSpec.WarningHighContainer;
+    public DynamicColor OnWarningHighContainer => colorSpec.OnWarningHighContainer;
+
+    // Warning Low [WL]
+    public DynamicColor WarningLow => colorSpec.WarningLow;
+    public DynamicColor? WarningLowDim => colorSpec.WarningLowDim;
+    public DynamicColor OnWarningLow => colorSpec.OnWarningLow;
+    public DynamicColor WarningLowContainer => colorSpec.WarningLowContainer;
+    public DynamicColor OnWarningLowContainer => colorSpec.OnWarningLowContainer;
+
+    // Information [I]
+    public DynamicColor Information => colorSpec.Information;
+    public DynamicColor? InformationDim => colorSpec.InformationDim;
+    public DynamicColor OnInformation => colorSpec.OnInformation;
+    public DynamicColor InformationContainer => colorSpec.InformationContainer;
+    public DynamicColor OnInformationContainer => colorSpec.OnInformationContainer;
+
+    // Safe [SF]
+    public DynamicColor Safe => colorSpec.Safe;
+    public DynamicColor? SafeDim => colorSpec.SafeDim;
+    public DynamicColor OnSafe => colorSpec.OnSafe;
+    public DynamicColor SafeContainer => colorSpec.SafeContainer;
+    public DynamicColor OnSafeContainer => colorSpec.OnSafeContainer;
+
     // Primary Fixed
     public DynamicColor PrimaryFixed => colorSpec.PrimaryFixed;
     public DynamicColor PrimaryFixedDim => colorSpec.PrimaryFixedDim;
@@ -102,6 +134,10 @@ public sealed class MaterialDynamicColors
         yield return NeutralPaletteKeyColor;
         yield return NeutralVariantPaletteKeyColor;
         yield return ErrorPaletteKeyColor;
+        yield return WarningHighPaletteKeyColor;
+        yield return WarningLowPaletteKeyColor;
+        yield return InformationPaletteKeyColor;
+        yield return SafePaletteKeyColor;
         yield return Background;
         yield return OnBackground;
         yield return Surface;
@@ -155,6 +191,26 @@ public sealed class MaterialDynamicColors
         yield return OnError;
         yield return ErrorContainer;
         yield return OnErrorContainer;
+        yield return WarningHigh;
+        yield return WarningHighDim!;
+        yield return OnWarningHigh;
+        yield return WarningHighContainer;
+        yield return OnWarningHighContainer;
+        yield return WarningLow;
+        yield return WarningLowDim!;
+        yield return OnWarningLow;
+        yield return WarningLowContainer;
+        yield return OnWarningLowContainer;
+        yield return Information;
+        yield return InformationDim!;
+        yield return OnInformation;
+        yield return InformationContainer;
+        yield return OnInformationContainer;
+        yield return Safe;
+        yield return SafeDim!;
+        yield return OnSafe;
+        yield return SafeContainer;
+        yield return OnSafeContainer;
         yield return ControlActivated;
         yield return ControlNormal;
         yield return ControlHighlight;

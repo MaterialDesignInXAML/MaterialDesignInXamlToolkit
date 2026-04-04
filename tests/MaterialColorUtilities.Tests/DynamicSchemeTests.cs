@@ -88,7 +88,7 @@ public sealed class DynamicSchemeTests
             () => mdc.TertiaryPaletteKeyColor.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x2B, 0x9F, 0x94)),
             () => mdc.NeutralPaletteKeyColor.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x75, 0x78, 0x71)),
             () => mdc.NeutralVariantPaletteKeyColor.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x72, 0x79, 0x6C)),
-            () => mdc.ErrorPaletteKeyColor.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0xDE, 0x37, 0x30)),
+            () => mdc.ErrorPaletteKeyColor.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0xA3, 0x17, 0x1A)),
 
             // Surfaces [S]
             () => mdc.Background.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x11, 0x14, 0x0F)),
@@ -108,8 +108,8 @@ public sealed class DynamicSchemeTests
             () => mdc.OutlineVariant.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x8B, 0x93, 0x85)),
             () => mdc.InverseSurface.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0xE1, 0xE3, 0xDB)),
             () => mdc.InverseOnSurface.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x28, 0x2B, 0x25)),
-            () => mdc.Shadow.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x00, 0x00, 0x00)),
-            () => mdc.Scrim.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x00, 0x00, 0x00)),
+            () => mdc.Shadow.GetColor(scheme).ShouldBe(Colors.Black),
+            () => mdc.Scrim.GetColor(scheme).ShouldBe(Colors.Black),
             () => mdc.SurfaceTint.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x9F, 0xD5, 0x8B)),
 
             // Primaries [P]
@@ -117,7 +117,7 @@ public sealed class DynamicSchemeTests
             () => mdc.PrimaryDim?.GetColor(scheme).ShouldBe(Color.FromArgb(0x00, 0x00, 0x00, 0x00)),
             () => mdc.OnPrimary.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x04, 0x2D, 0x00)),
             () => mdc.PrimaryContainer.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x6B, 0x9D, 0x5A)),
-            () => mdc.OnPrimaryContainer.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x00, 0x00, 0x00)),
+            () => mdc.OnPrimaryContainer.GetColor(scheme).ShouldBe(Colors.Black),
             () => mdc.PrimaryFixed.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0xBB, 0xF1, 0xA5)),
             () => mdc.PrimaryFixedDim.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x9F, 0xD5, 0x8B)),
             () => mdc.OnPrimaryFixed.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x01, 0x16, 0x00)),
@@ -129,7 +129,7 @@ public sealed class DynamicSchemeTests
             () => mdc.SecondaryDim?.GetColor(scheme).ShouldBe(Color.FromArgb(0x00, 0x00, 0x00, 0x00)),
             () => mdc.OnSecondary.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x18, 0x2A, 0x12)),
             () => mdc.SecondaryContainer.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x81, 0x97, 0x77)),
-            () => mdc.OnSecondaryContainer.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x00, 0x00, 0x00)),
+            () => mdc.OnSecondaryContainer.GetColor(scheme).ShouldBe(Colors.Black),
 
             // Secondary Fixed [QF]
             () => mdc.SecondaryFixed.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0xD2, 0xE9, 0xC5)),
@@ -142,7 +142,7 @@ public sealed class DynamicSchemeTests
             () => mdc.TertiaryDim?.GetColor(scheme).ShouldBe(Color.FromArgb(0x00, 0x00, 0x00, 0x00)),
             () => mdc.OnTertiary.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x00, 0x2B, 0x27)),
             () => mdc.TertiaryContainer.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x2D, 0xA1, 0x96)),
-            () => mdc.OnTertiaryContainer.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x00, 0x00, 0x00)),
+            () => mdc.OnTertiaryContainer.GetColor(scheme).ShouldBe(Colors.Black),
 
             // Tertiary Fixed [TF]
             () => mdc.TertiaryFixed.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x8B, 0xF5, 0xE8)),
@@ -151,11 +151,39 @@ public sealed class DynamicSchemeTests
             () => mdc.OnTertiaryFixedVariant.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x00, 0x3E, 0x38)),
 
             // Errors [E]
-            () => mdc.Error.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0xFF, 0xD2, 0xCC)),
+            () => mdc.Error.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0xFF, 0xD2, 0xCD)),
             () => mdc.ErrorDim?.GetColor(scheme).ShouldBe(Color.FromArgb(0x00, 0x00, 0x00, 0x00)),
-            () => mdc.OnError.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x54, 0x00, 0x03)),
-            () => mdc.ErrorContainer.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0xFF, 0x54, 0x49)),
-            () => mdc.OnErrorContainer.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x00, 0x00, 0x00)),
+            () => mdc.OnError.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x54, 0x00, 0x04)),
+            () => mdc.ErrorContainer.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0xFB, 0x59, 0x50)),
+            () => mdc.OnErrorContainer.GetColor(scheme).ShouldBe(Colors.Black),
+
+            // Warning High [WH]
+            () => mdc.WarningHighPaletteKeyColor.GetColor(scheme).ShouldBe(Color.FromArgb(255, 212, 69, 41)),
+            () => mdc.WarningHigh.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0xFF, 0xD2, 0xC9)),
+            () => mdc.OnWarningHigh.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x50, 0x08, 0x00)),
+            () => mdc.WarningHighContainer.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0xF7, 0x5E, 0x3F)),
+            () => mdc.OnWarningHighContainer.GetColor(scheme).ShouldBe(Colors.Black),
+
+            // Warning Low [WL]
+            () => mdc.WarningLowPaletteKeyColor.GetColor(scheme).ShouldBe(Color.FromArgb(255, 252, 163, 41)),
+            () => mdc.WarningLow.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0xFF, 0xD5, 0xA9)),
+            () => mdc.OnWarningLow.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x39, 0x20, 0x00)),
+            () => mdc.WarningLowContainer.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0xCD, 0x7F, 0x00)),
+            () => mdc.OnWarningLowContainer.GetColor(scheme).ShouldBe(Colors.Black),
+
+            // Information [I]
+            () => mdc.InformationPaletteKeyColor.GetColor(scheme).ShouldBe(Color.FromArgb(255, 0, 46, 122)),
+            () => mdc.Information.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0xD2, 0xDB, 0xFF)),
+            () => mdc.OnInformation.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x00, 0x21, 0x5D)),
+            () => mdc.InformationContainer.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x70, 0x8E, 0xDE)),
+            () => mdc.OnInformationContainer.GetColor(scheme).ShouldBe(Colors.Black),
+
+            // Safe [S]
+            () => mdc.SafePaletteKeyColor.GetColor(scheme).ShouldBe(Color.FromArgb(255, 41, 138, 64)),
+            () => mdc.Safe.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x91, 0xF2, 0x9B)),
+            () => mdc.OnSafe.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x00, 0x2D, 0x0C)),
+            () => mdc.SafeContainer.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x45, 0xA3, 0x56)),
+            () => mdc.OnSafeContainer.GetColor(scheme).ShouldBe(Colors.Black),
 
             // Android-only
             () => mdc.ControlActivated.GetColor(scheme).ShouldBe(Color.FromArgb(0xFF, 0x23, 0x51, 0x17)),
