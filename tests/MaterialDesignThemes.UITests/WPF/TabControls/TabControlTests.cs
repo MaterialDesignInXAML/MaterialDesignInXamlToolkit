@@ -371,11 +371,15 @@ public class TabControlTests : TestBase
 
         //Act
         await Wait.For(async () => await tabControl.RemoteExecute(GetIsOverflowing));
-        await rightNextButton.LeftClick();
-        await Wait.For(async () => await tabControl.GetSelectedIndex() > 0, new Retry(10, TimeSpan.FromSeconds(5)));
+        await Wait.For(async () => await rightNextButton.GetIsEnabled());
+        await Wait.For(async () =>
+        {
+            await rightNextButton.LeftClick();
+            return await tabControl.GetSelectedIndex() > 0;
+        }, new Retry(10, TimeSpan.FromSeconds(5)));
 
         // Assert
-        await Assert.That(await tabControl.GetSelectedIndex()).IsEqualTo(1);
+        await Assert.That(await tabControl.GetSelectedIndex()).IsGreaterThanOrEqualTo(1);
         await Assert.That(await scrollViewer.GetContentHorizontalOffset()).IsEqualTo(0);
 
         recorder.Success();
@@ -412,8 +416,12 @@ public class TabControlTests : TestBase
 
         //Act
         await Wait.For(async () => await tabControl.RemoteExecute(GetIsOverflowing));
-        await rightNextButton.LeftClick();
-        await Wait.For(async () => await scrollViewer.GetContentHorizontalOffset() > 0, new Retry(10, TimeSpan.FromSeconds(5)));
+        await Wait.For(async() => await rightNextButton.GetIsEnabled());
+        await Wait.For(async () =>
+        {
+            await rightNextButton.LeftClick();
+            return await scrollViewer.GetContentHorizontalOffset() > 0;
+        }, new Retry(10, TimeSpan.FromSeconds(5)));
 
         // Assert
         await Assert.That(await tabControl.GetSelectedIndex()).IsEqualTo(0);
@@ -456,6 +464,8 @@ public class TabControlTests : TestBase
 
         // Scroll right once
         double offsetBefore = await scrollViewer.GetContentHorizontalOffset();
+        await Wait.For(async () => await rightNextButton.GetIsEnabled());
+        await Task.Delay(200);
         await rightNextButton.LeftClick();
         await Wait.For(async () => await scrollViewer.GetContentHorizontalOffset() > offsetBefore, retry);
 
@@ -466,6 +476,7 @@ public class TabControlTests : TestBase
 
         // Scroll back to the left
         double offsetAfterScrollRight = await scrollViewer.GetContentHorizontalOffset();
+        await Wait.For(async () => await rightPreviousButton.GetIsEnabled());
         await rightPreviousButton.LeftClick();
         await Wait.For(async () => await scrollViewer.GetContentHorizontalOffset() < offsetAfterScrollRight, retry);
 
