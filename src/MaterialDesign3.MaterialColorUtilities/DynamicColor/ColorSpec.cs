@@ -9,6 +9,10 @@ public interface ColorSpec
     DynamicColor NeutralPaletteKeyColor { get; }
     DynamicColor NeutralVariantPaletteKeyColor { get; }
     DynamicColor ErrorPaletteKeyColor { get; }
+    DynamicColor WarningHighPaletteKeyColor { get; }
+    DynamicColor WarningLowPaletteKeyColor { get; }
+    DynamicColor InformationPaletteKeyColor { get; }
+    DynamicColor SafePaletteKeyColor { get; }
 
     // Surfaces [S]
     DynamicColor Background { get; }
@@ -60,6 +64,34 @@ public interface ColorSpec
     DynamicColor OnError { get; }
     DynamicColor ErrorContainer { get; }
     DynamicColor OnErrorContainer { get; }
+
+    // Warning High [WH]
+    DynamicColor WarningHigh { get; }
+    DynamicColor? WarningHighDim { get; }
+    DynamicColor OnWarningHigh { get; }
+    DynamicColor WarningHighContainer { get; }
+    DynamicColor OnWarningHighContainer { get; }
+
+    // Warning Low [WL]
+    DynamicColor WarningLow { get; }
+    DynamicColor? WarningLowDim { get; }
+    DynamicColor OnWarningLow { get; }
+    DynamicColor WarningLowContainer { get; }
+    DynamicColor OnWarningLowContainer { get; }
+
+    // Information [I]
+    DynamicColor Information { get; }
+    DynamicColor? InformationDim { get; }
+    DynamicColor OnInformation { get; }
+    DynamicColor InformationContainer { get; }
+    DynamicColor OnInformationContainer { get; }
+
+    // Safe [SF]
+    DynamicColor Safe { get; }
+    DynamicColor? SafeDim { get; }
+    DynamicColor OnSafe { get; }
+    DynamicColor SafeContainer { get; }
+    DynamicColor OnSafeContainer { get; }
 
     // Primary Fixed Colors [PF]
     DynamicColor PrimaryFixed { get; }

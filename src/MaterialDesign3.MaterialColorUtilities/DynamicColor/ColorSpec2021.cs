@@ -39,6 +39,30 @@ public class ColorSpec2021 : ColorSpec
         .SetTone(s => s.ErrorPalette.GetKeyColor().Tone)
         .Build();
 
+    public DynamicColor WarningHighPaletteKeyColor => new DynamicColor.Builder()
+        .SetName("warning_high_palette_key_color")
+        .SetPalette(s => s.WarningHighPalette)
+        .SetTone(s => s.WarningHighPalette.GetKeyColor().Tone)
+        .Build();
+
+    public DynamicColor WarningLowPaletteKeyColor => new DynamicColor.Builder()
+        .SetName("warning_low_palette_key_color")
+        .SetPalette(s => s.WarningLowPalette)
+        .SetTone(s => s.WarningLowPalette.GetKeyColor().Tone)
+        .Build();
+
+    public DynamicColor InformationPaletteKeyColor => new DynamicColor.Builder()
+        .SetName("information_palette_key_color")
+        .SetPalette(s => s.InformationPalette)
+        .SetTone(s => s.InformationPalette.GetKeyColor().Tone)
+        .Build();
+
+    public DynamicColor SafePaletteKeyColor => new DynamicColor.Builder()
+        .SetName("safe_palette_key_color")
+        .SetPalette(s => s.SafePalette)
+        .SetTone(s => s.SafePalette.GetKeyColor().Tone)
+        .Build();
+
     // Surfaces [S]
     public DynamicColor Background => new DynamicColor.Builder()
         .SetName("background")
@@ -377,6 +401,162 @@ public class ColorSpec2021 : ColorSpec
         .SetPalette(s => s.ErrorPalette)
         .SetTone(s => IsMonochrome(s) ? (s.IsDark ? 90.0 : 10.0) : (s.IsDark ? 90.0 : 30.0))
         .SetBackground(_ => ErrorContainer)
+        .SetContrastCurve(_ => new ContrastCurve(3.0, 4.5, 7.0, 11.0))
+        .Build();
+
+    // Warning High [WH]
+    public DynamicColor WarningHigh => new DynamicColor.Builder()
+        .SetName("warning_high")
+        .SetPalette(s => s.WarningHighPalette)
+        .SetTone(s => s.IsDark ? 80.0 : 40.0)
+        .SetIsBackground(true)
+        .SetBackground(HighestSurface)
+        .SetContrastCurve(_ => new ContrastCurve(3.0, 4.5, 7.0, 7.0))
+        .SetToneDeltaPair(_ => new ToneDeltaPair(WarningHighContainer, WarningHigh, 10.0, TonePolarity.Nearer, false))
+        .Build();
+
+    public DynamicColor? WarningHighDim => null;
+
+    public DynamicColor OnWarningHigh => new DynamicColor.Builder()
+        .SetName("on_warning_high")
+        .SetPalette(s => s.WarningHighPalette)
+        .SetTone(s => s.IsDark ? 20.0 : 100.0)
+        .SetBackground(_ => WarningHigh)
+        .SetContrastCurve(_ => new ContrastCurve(4.5, 7.0, 11.0, 21.0))
+        .Build();
+
+    public DynamicColor WarningHighContainer => new DynamicColor.Builder()
+        .SetName("warning_high_container")
+        .SetPalette(s => s.WarningHighPalette)
+        .SetTone(s => s.IsDark ? 30.0 : 90.0)
+        .SetIsBackground(true)
+        .SetBackground(HighestSurface)
+        .SetContrastCurve(_ => new ContrastCurve(1.0, 1.0, 3.0, 4.5))
+        .SetToneDeltaPair(_ => new ToneDeltaPair(WarningHighContainer, WarningHigh, 10.0, TonePolarity.Nearer, false))
+        .Build();
+
+    public DynamicColor OnWarningHighContainer => new DynamicColor.Builder()
+        .SetName("on_warning_high_container")
+        .SetPalette(s => s.WarningHighPalette)
+        .SetTone(s => IsMonochrome(s) ? (s.IsDark ? 90.0 : 10.0) : (s.IsDark ? 90.0 : 30.0))
+        .SetBackground(_ => WarningHighContainer)
+        .SetContrastCurve(_ => new ContrastCurve(3.0, 4.5, 7.0, 11.0))
+        .Build();
+
+    // Warning Low [WL]
+    public DynamicColor WarningLow => new DynamicColor.Builder()
+        .SetName("warning_low")
+        .SetPalette(s => s.WarningLowPalette)
+        .SetTone(s => s.IsDark ? 80.0 : 40.0)
+        .SetIsBackground(true)
+        .SetBackground(HighestSurface)
+        .SetContrastCurve(_ => new ContrastCurve(3.0, 4.5, 7.0, 7.0))
+        .SetToneDeltaPair(_ => new ToneDeltaPair(WarningLowContainer, WarningLow, 10.0, TonePolarity.Nearer, false))
+        .Build();
+
+    public DynamicColor? WarningLowDim => null;
+
+    public DynamicColor OnWarningLow => new DynamicColor.Builder()
+        .SetName("on_warning_low")
+        .SetPalette(s => s.WarningLowPalette)
+        .SetTone(s => s.IsDark ? 20.0 : 100.0)
+        .SetBackground(_ => WarningLow)
+        .SetContrastCurve(_ => new ContrastCurve(4.5, 7.0, 11.0, 21.0))
+        .Build();
+
+    public DynamicColor WarningLowContainer => new DynamicColor.Builder()
+        .SetName("warning_low_container")
+        .SetPalette(s => s.WarningLowPalette)
+        .SetTone(s => s.IsDark ? 30.0 : 90.0)
+        .SetIsBackground(true)
+        .SetBackground(HighestSurface)
+        .SetContrastCurve(_ => new ContrastCurve(1.0, 1.0, 3.0, 4.5))
+        .SetToneDeltaPair(_ => new ToneDeltaPair(WarningLowContainer, WarningLow, 10.0, TonePolarity.Nearer, false))
+        .Build();
+
+    public DynamicColor OnWarningLowContainer => new DynamicColor.Builder()
+        .SetName("on_warning_low_container")
+        .SetPalette(s => s.WarningLowPalette)
+        .SetTone(s => IsMonochrome(s) ? (s.IsDark ? 90.0 : 10.0) : (s.IsDark ? 90.0 : 30.0))
+        .SetBackground(_ => WarningLowContainer)
+        .SetContrastCurve(_ => new ContrastCurve(3.0, 4.5, 7.0, 11.0))
+        .Build();
+
+    // Information [I]
+    public DynamicColor Information => new DynamicColor.Builder()
+        .SetName("information")
+        .SetPalette(s => s.InformationPalette)
+        .SetTone(s => s.IsDark ? 80.0 : 40.0)
+        .SetIsBackground(true)
+        .SetBackground(HighestSurface)
+        .SetContrastCurve(_ => new ContrastCurve(3.0, 4.5, 7.0, 7.0))
+        .SetToneDeltaPair(_ => new ToneDeltaPair(InformationContainer, Information, 10.0, TonePolarity.Nearer, false))
+        .Build();
+
+    public DynamicColor? InformationDim => null;
+
+    public DynamicColor OnInformation => new DynamicColor.Builder()
+        .SetName("on_information")
+        .SetPalette(s => s.InformationPalette)
+        .SetTone(s => s.IsDark ? 20.0 : 100.0)
+        .SetBackground(_ => Information)
+        .SetContrastCurve(_ => new ContrastCurve(4.5, 7.0, 11.0, 21.0))
+        .Build();
+
+    public DynamicColor InformationContainer => new DynamicColor.Builder()
+        .SetName("information_container")
+        .SetPalette(s => s.InformationPalette)
+        .SetTone(s => s.IsDark ? 30.0 : 90.0)
+        .SetIsBackground(true)
+        .SetBackground(HighestSurface)
+        .SetContrastCurve(_ => new ContrastCurve(1.0, 1.0, 3.0, 4.5))
+        .SetToneDeltaPair(_ => new ToneDeltaPair(InformationContainer, Information, 10.0, TonePolarity.Nearer, false))
+        .Build();
+
+    public DynamicColor OnInformationContainer => new DynamicColor.Builder()
+        .SetName("on_information_container")
+        .SetPalette(s => s.InformationPalette)
+        .SetTone(s => IsMonochrome(s) ? (s.IsDark ? 90.0 : 10.0) : (s.IsDark ? 90.0 : 30.0))
+        .SetBackground(_ => InformationContainer)
+        .SetContrastCurve(_ => new ContrastCurve(3.0, 4.5, 7.0, 11.0))
+        .Build();
+
+    // Safe [SF]
+    public DynamicColor Safe => new DynamicColor.Builder()
+        .SetName("safe")
+        .SetPalette(s => s.SafePalette)
+        .SetTone(s => s.IsDark ? 80.0 : 40.0)
+        .SetIsBackground(true)
+        .SetBackground(HighestSurface)
+        .SetContrastCurve(_ => new ContrastCurve(3.0, 4.5, 7.0, 7.0))
+        .SetToneDeltaPair(_ => new ToneDeltaPair(SafeContainer, Safe, 10.0, TonePolarity.Nearer, false))
+        .Build();
+
+    public DynamicColor? SafeDim => null;
+
+    public DynamicColor OnSafe => new DynamicColor.Builder()
+        .SetName("on_safe")
+        .SetPalette(s => s.SafePalette)
+        .SetTone(s => s.IsDark ? 20.0 : 100.0)
+        .SetBackground(_ => Safe)
+        .SetContrastCurve(_ => new ContrastCurve(4.5, 7.0, 11.0, 21.0))
+        .Build();
+
+    public DynamicColor SafeContainer => new DynamicColor.Builder()
+        .SetName("safe_container")
+        .SetPalette(s => s.SafePalette)
+        .SetTone(s => s.IsDark ? 30.0 : 90.0)
+        .SetIsBackground(true)
+        .SetBackground(HighestSurface)
+        .SetContrastCurve(_ => new ContrastCurve(1.0, 1.0, 3.0, 4.5))
+        .SetToneDeltaPair(_ => new ToneDeltaPair(SafeContainer, Safe, 10.0, TonePolarity.Nearer, false))
+        .Build();
+
+    public DynamicColor OnSafeContainer => new DynamicColor.Builder()
+        .SetName("on_safe_container")
+        .SetPalette(s => s.SafePalette)
+        .SetTone(s => IsMonochrome(s) ? (s.IsDark ? 90.0 : 10.0) : (s.IsDark ? 90.0 : 30.0))
+        .SetBackground(_ => SafeContainer)
         .SetContrastCurve(_ => new ContrastCurve(3.0, 4.5, 7.0, 11.0))
         .Build();
 

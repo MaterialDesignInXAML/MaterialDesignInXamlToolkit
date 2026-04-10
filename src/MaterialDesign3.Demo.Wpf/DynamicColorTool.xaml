@@ -1,0 +1,765 @@
+<UserControl x:Class="MaterialDesign3Demo.DynamicColorTool"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:domain="clr-namespace:MaterialDesign3Demo.Domain"
+             xmlns:local="clr-namespace:MaterialDesign3Demo"
+             xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DataContext="{d:DesignInstance Type=domain:DynamicColorToolViewModel}"
+             d:DesignHeight="2000"
+             d:DesignWidth="1200"
+             mc:Ignorable="d">
+  <UserControl.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+
+      <Style x:Key="SectionTitleTextBlock"
+             TargetType="TextBlock"
+             BasedOn="{StaticResource MaterialDesignHeadline6TextBlock}">
+        <Setter Property="Margin" Value="0,0,0,8" />
+      </Style>
+
+      <Style x:Key="CardCaptionTextBlock"
+             TargetType="TextBlock"
+             BasedOn="{StaticResource MaterialDesignBody2TextBlock}">
+        <Setter Property="TextWrapping" Value="Wrap" />
+      </Style>
+
+      <Style x:Key="SourceModeListBox"
+             TargetType="ListBox"
+             BasedOn="{StaticResource MaterialDesignToolToggleFlatListBox}">
+        <Setter Property="Margin" Value="0,16,0,0" />
+      </Style>
+
+      <DataTemplate x:Key="ColorTileTemplate"
+                    DataType="{x:Type domain:DynamicColorGridTile}">
+        <Border Grid.Column="{Binding Column}"
+                Grid.ColumnSpan="{Binding ColumnSpan}"
+                MinHeight="96"
+                Margin="4"
+                Padding="12"
+                Background="{Binding BackgroundBrush}"
+                CornerRadius="8">
+          <Grid>
+            <Button HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Command="{Binding DataContext.CopyColorCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    CommandParameter="{Binding ColorHex}"
+                    Foreground="{Binding ForegroundBrush}"
+                    IsEnabled="True"
+                    Style="{StaticResource MaterialDesignIconButton}"
+                    ToolTip="Copy Color">
+              <materialDesign:PackIcon Foreground="{Binding ForegroundBrush}"
+                                       Kind="ContentCopy" />
+            </Button>
+
+            <StackPanel VerticalAlignment="Center">
+              <TextBlock Foreground="{Binding ForegroundBrush}"
+                         Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
+                         Text="{Binding Label}"
+                         TextWrapping="Wrap" />
+
+              <TextBlock Margin="0,8,0,0"
+                         Foreground="{Binding ForegroundBrush}"
+                         Opacity="0.8"
+                         Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                         Text="{Binding ColorHex}" />
+            </StackPanel>
+          </Grid>
+        </Border>
+      </DataTemplate>
+    </ResourceDictionary>
+  </UserControl.Resources>
+
+  <DockPanel>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+      <Grid Margin="16">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                   Text="Dynamic Color Tool" />
+
+        <TextBlock Grid.Row="1"
+                   Margin="0,8,0,24"
+                   Style="{StaticResource MaterialDesignBody1TextBlock}"
+                   Text="Configure primary, secondary, and tertiary source colors here. The scheme configuration, generated role grid, and custom semantic palette preview update live below."
+                   TextWrapping="Wrap" />
+
+        <WrapPanel Grid.Row="2"
+                   Margin="0,0,0,24">
+          <materialDesign:Card Width="360"
+                               Margin="0,0,16,16">
+            <StackPanel Margin="16">
+              <TextBlock Style="{StaticResource SectionTitleTextBlock}"
+                         Text="Primary" />
+
+              <TextBlock Style="{StaticResource CardCaptionTextBlock}"
+                         Text="Choose whether the primary palette is generated automatically or overridden with a custom color." />
+
+              <Border Height="56"
+                      Margin="0,16,0,0"
+                      CornerRadius="8"
+                      Background="{Binding PrimaryBrush}">
+                <TextBlock Margin="16,0"
+                           VerticalAlignment="Center"
+                           Foreground="{Binding PrimaryForegroundBrush}"
+                           Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                           Text="{Binding PrimaryColorHex}" />
+              </Border>
+
+              <ListBox ItemsSource="{Binding SourceModes}"
+                       DisplayMemberPath="DisplayName"
+                       SelectedValue="{Binding PrimarySourceMode}"
+                       SelectedValuePath="Value"
+                       Style="{StaticResource SourceModeListBox}"
+                       Visibility="Hidden" IsEnabled="False">
+                <ListBox.Resources>
+                  <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignToolToggleListBoxItem}">
+                    <Setter Property="Padding" Value="12,6" />
+                  </Style>
+                </ListBox.Resources>
+              </ListBox>
+
+              <TextBlock Margin="0,12,0,0"
+                         Style="{StaticResource CardCaptionTextBlock}"
+                         Text="{Binding PrimarySourceDescription}" />
+
+              <materialDesign:ColorPicker Margin="0,16,0,0"
+                                          Color="{Binding PrimaryColor}"
+                                          MinHeight="180" />
+            </StackPanel>
+          </materialDesign:Card>
+
+          <materialDesign:Card Width="360"
+                               Margin="0,0,16,16">
+            <StackPanel Margin="16">
+              <TextBlock Style="{StaticResource SectionTitleTextBlock}"
+                         Text="Secondary" />
+
+              <TextBlock Style="{StaticResource CardCaptionTextBlock}"
+                         Text="Choose whether the secondary palette is generated automatically or overridden with a custom color." />
+
+              <Border Height="56"
+                      Margin="0,16,0,0"
+                      CornerRadius="8"
+                      Background="{Binding SecondaryBrush}">
+                <TextBlock Margin="16,0"
+                           VerticalAlignment="Center"
+                           Foreground="{Binding SecondaryForegroundBrush}"
+                           Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                           Text="{Binding SecondaryColorHex}" />
+              </Border>
+
+              <ListBox ItemsSource="{Binding SourceModes}"
+                       DisplayMemberPath="DisplayName"
+                       SelectedValue="{Binding SecondarySourceMode}"
+                       SelectedValuePath="Value"
+                       Style="{StaticResource SourceModeListBox}">
+                <ListBox.Resources>
+                  <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignToolToggleListBoxItem}">
+                    <Setter Property="Padding" Value="12,6" />
+                  </Style>
+                </ListBox.Resources>
+              </ListBox>
+
+              <TextBlock Margin="0,12,0,0"
+                         Style="{StaticResource CardCaptionTextBlock}"
+                         Text="{Binding SecondarySourceDescription}" />
+
+              <materialDesign:ColorPicker Margin="0,16,0,0"
+                                          Color="{Binding SecondaryColor}"
+                                          IsEnabled="{Binding IsSecondaryCustomColorEnabled}"
+                                          Visibility="{Binding IsSecondaryCustomColorEnabled, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.CollapsedInstance}}"
+                                          MinHeight="180" />
+            </StackPanel>
+          </materialDesign:Card>
+
+          <materialDesign:Card Width="360"
+                               Margin="0,0,0,16">
+            <StackPanel Margin="16">
+              <TextBlock Style="{StaticResource SectionTitleTextBlock}"
+                         Text="Tertiary" />
+
+              <TextBlock Style="{StaticResource CardCaptionTextBlock}"
+                         Text="Choose whether the tertiary palette is generated automatically or overridden with a custom color." />
+
+              <Border Height="56"
+                      Margin="0,16,0,0"
+                      CornerRadius="8"
+                      Background="{Binding TertiaryBrush}">
+                <TextBlock Margin="16,0"
+                           VerticalAlignment="Center"
+                           Foreground="{Binding TertiaryForegroundBrush}"
+                           Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                           Text="{Binding TertiaryColorHex}" />
+              </Border>
+
+              <ListBox ItemsSource="{Binding SourceModes}"
+                       DisplayMemberPath="DisplayName"
+                       SelectedValue="{Binding TertiarySourceMode}"
+                       SelectedValuePath="Value"
+                       Style="{StaticResource SourceModeListBox}">
+                <ListBox.Resources>
+                  <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignToolToggleListBoxItem}">
+                    <Setter Property="Padding" Value="12,6" />
+                  </Style>
+                </ListBox.Resources>
+              </ListBox>
+
+              <TextBlock Margin="0,12,0,0"
+                         Style="{StaticResource CardCaptionTextBlock}"
+                         Text="{Binding TertiarySourceDescription}" />
+
+              <materialDesign:ColorPicker Margin="0,16,0,0"
+                                          Color="{Binding TertiaryColor}"
+                                          IsEnabled="{Binding IsTertiaryCustomColorEnabled}"
+                                          Visibility="{Binding IsTertiaryCustomColorEnabled, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.CollapsedInstance}}"
+                                          MinHeight="180" />
+            </StackPanel>
+          </materialDesign:Card>
+        </WrapPanel>
+
+        <materialDesign:Card Grid.Row="3"
+                             Width="736"
+                             Margin="0,0,0,24"
+                             HorizontalAlignment="Left">
+          <Grid Margin="16">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Style="{StaticResource SectionTitleTextBlock}"
+                       Text="Scheme Configuration" />
+
+            <TextBlock Grid.Row="1"
+                       Margin="0,16,0,0"
+                       Style="{StaticResource CardCaptionTextBlock}"
+                       Text="These controls define the active theme mode, dynamic scheme variant, contrast level, spec version, and platform for the generated scheme." />
+
+            <Grid Grid.Row="2"
+                  Margin="0,16,0,0">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="16" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+
+              <ComboBox Grid.Row="0"
+                        Grid.Column="0"
+                        materialDesign:HintAssist.Hint="Theme Mode"
+                        DisplayMemberPath="DisplayName"
+                        ItemsSource="{Binding ThemeModeOptions}"
+                        SelectedValue="{Binding SelectedThemeMode}"
+                        SelectedValuePath="Value"
+                        Style="{StaticResource MaterialDesignFilledComboBox}" />
+
+              <ComboBox Grid.Row="0"
+                        Grid.Column="2"
+                        materialDesign:HintAssist.Hint="Scheme"
+                        DisplayMemberPath="DisplayName"
+                        ItemsSource="{Binding VariantOptions}"
+                        SelectedValue="{Binding SelectedVariant}"
+                        SelectedValuePath="Value"
+                        Style="{StaticResource MaterialDesignFilledComboBox}" />
+
+              <StackPanel Grid.Row="1"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="3"
+                          Margin="0,16,0,0">
+                <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                           Text="Contrast Level" />
+                <Grid Margin="0,8,0,0">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                  </Grid.ColumnDefinitions>
+
+                  <Slider Grid.Column="0"
+                          IsMoveToPointEnabled="True"
+                          Maximum="1"
+                          Minimum="0"
+                          TickFrequency="0.05"
+                          Value="{Binding ContrastLevel}" />
+
+                  <TextBlock Grid.Column="1"
+                             Margin="16,0,0,0"
+                             VerticalAlignment="Center"
+                             Style="{StaticResource MaterialDesignBody1TextBlock}"
+                             Text="{Binding ContrastLevelText}" />
+                </Grid>
+              </StackPanel>
+
+              <ComboBox Grid.Row="2"
+                        Grid.Column="0"
+                        Margin="0,16,0,0"
+                        materialDesign:HintAssist.Hint="Spec Version"
+                        DisplayMemberPath="DisplayName"
+                        ItemsSource="{Binding SpecVersionOptions}"
+                        SelectedValue="{Binding SelectedSpecVersion}"
+                        SelectedValuePath="Value"
+                        Style="{StaticResource MaterialDesignFilledComboBox}" />
+
+              <ComboBox Grid.Row="2"
+                        Grid.Column="2"
+                        Margin="0,16,0,0"
+                        materialDesign:HintAssist.Hint="Platform"
+                        DisplayMemberPath="DisplayName"
+                        ItemsSource="{Binding PlatformOptions}"
+                        SelectedValue="{Binding SelectedPlatform}"
+                        SelectedValuePath="Value"
+                        Style="{StaticResource MaterialDesignFilledComboBox}" />
+            </Grid>
+          </Grid>
+        </materialDesign:Card>
+
+        <materialDesign:Card Grid.Row="4"
+                             Margin="0,0,0,16">
+          <Grid Margin="16">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Style="{StaticResource SectionTitleTextBlock}"
+                       Grid.ColumnSpan="8"
+                       Text="Generated Colors" />
+
+            <ContentControl Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding Primary}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="1"
+                            Grid.Column="2"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding Secondary}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="1"
+                            Grid.Column="4"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding Tertiary}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="1"
+                            Grid.Column="6"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding Error}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+
+            <ContentControl Grid.Row="2"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding OnPrimary}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="2"
+                            Grid.Column="2"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding OnSecondary}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="2"
+                            Grid.Column="4"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding OnTertiary}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="2"
+                            Grid.Column="6"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding OnError}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+
+            <ContentControl Grid.Row="3"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding PrimaryContainer}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="3"
+                            Grid.Column="2"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding SecondaryContainer}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="3"
+                            Grid.Column="4"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding TertiaryContainer}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="3"
+                            Grid.Column="6"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding ErrorContainer}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+
+            <ContentControl Grid.Row="4"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding OnPrimaryContainer}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="4"
+                            Grid.Column="2"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding OnSecondaryContainer}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="4"
+                            Grid.Column="4"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding OnTertiaryContainer}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="4"
+                            Grid.Column="6"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding OnErrorContainer}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+
+            <ContentControl Grid.Row="5"
+                            Grid.Column="0"
+                            Content="{Binding PrimaryFixed}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="5"
+                            Grid.Column="1"
+                            Content="{Binding PrimaryFixedDim}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="5"
+                            Grid.Column="2"
+                            Content="{Binding SecondaryFixed}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="5"
+                            Grid.Column="3"
+                            Content="{Binding SecondaryFixedDim}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="5"
+                            Grid.Column="4"
+                            Content="{Binding TertiaryFixed}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="5"
+                            Grid.Column="5"
+                            Content="{Binding TertiaryFixedDim}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="5"
+                            Grid.Column="6"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding InverseSurface}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+
+            <ContentControl Grid.Row="6"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding OnPrimaryFixed}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="6"
+                            Grid.Column="2"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding OnSecondaryFixed}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="6"
+                            Grid.Column="4"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding OnTertiaryFixed}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="6"
+                            Grid.Column="6"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding InverseOnSurface}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+
+            <ContentControl Grid.Row="7"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding OnPrimaryFixedVariant}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="7"
+                            Grid.Column="2"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding OnSecondaryFixedVariant}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="7"
+                            Grid.Column="4"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding OnTertiaryFixedVariant}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="7"
+                            Grid.Column="6"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding InversePrimary}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+
+            <ContentControl Grid.Row="8"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding SurfaceDim}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="8"
+                            Grid.Column="2"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding Surface}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="8"
+                            Grid.Column="4"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding SurfaceBright}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+
+            <ContentControl Grid.Row="9"
+                            Grid.Column="0"
+                            Content="{Binding SurfaceContainerLowest}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="9"
+                            Grid.Column="1"
+                            Content="{Binding SurfaceContainerLow}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="9"
+                            Grid.Column="2"
+                            Content="{Binding SurfaceContainer}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="9"
+                            Grid.Column="3"
+                            Content="{Binding SurfaceContainerHigh}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="9"
+                            Grid.Column="4"
+                            Content="{Binding SurfaceContainerHighest}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+
+            <ContentControl Grid.Row="10"
+                            Grid.Column="0"
+                            Content="{Binding OnSurface}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="10"
+                            Grid.Column="1"
+                            Content="{Binding OnSurfaceVariant}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="10"
+                            Grid.Column="2"
+                            Content="{Binding Outline}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="10"
+                            Grid.Column="3"
+                            Content="{Binding OutlineVariant}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="10"
+                            Grid.Column="4"
+                            Content="{Binding Scrim}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="10"
+                            Grid.Column="5"
+                            Content="{Binding Shadow}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+
+            <ContentControl Grid.Row="11"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding WarningHigh}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="11"
+                            Grid.Column="2"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding WarningLow}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="11"
+                            Grid.Column="4"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding Information}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="11"
+                            Grid.Column="6"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding Safe}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+
+            <ContentControl Grid.Row="12"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding OnWarningHigh}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="12"
+                            Grid.Column="2"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding OnWarningLow}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="12"
+                            Grid.Column="4"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding OnInformation}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="12"
+                            Grid.Column="6"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding OnSafe}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+
+            <ContentControl Grid.Row="13"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding WarningHighContainer}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="13"
+                            Grid.Column="2"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding WarningLowContainer}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="13"
+                            Grid.Column="4"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding InformationContainer}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="13"
+                            Grid.Column="6"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding SafeContainer}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+
+            <ContentControl Grid.Row="14"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding OnWarningHighContainer}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="14"
+                            Grid.Column="2"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding OnWarningLowContainer}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="14"
+                            Grid.Column="4"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding OnInformationContainer}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+            <ContentControl Grid.Row="14"
+                            Grid.Column="6"
+                            Grid.ColumnSpan="2"
+                            Content="{Binding OnSafeContainer}"
+                            ContentTemplate="{StaticResource ColorTileTemplate}" />
+          </Grid>
+        </materialDesign:Card>
+
+        <materialDesign:Card Grid.Row="5"
+                             Margin="0,0,0,16">
+          <Grid Margin="16">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Style="{StaticResource SectionTitleTextBlock}"
+                       Text="Custom Colors" />
+
+            <TextBlock Grid.Row="1"
+                       Margin="0,0,0,16"
+                       Style="{StaticResource CardCaptionTextBlock}"
+                       Text="Inspect a custom semantic swatch as a tonal palette and as a custom error palette injected into the active dynamic scheme."
+                       TextWrapping="Wrap" />
+
+            <Border Grid.Row="2"
+                    Height="56"
+                    CornerRadius="8"
+                    Background="{Binding CustomPaletteBrush}">
+              <TextBlock Margin="16,0"
+                         VerticalAlignment="Center"
+                         Foreground="{Binding CustomPaletteForegroundBrush}"
+                         Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                         Text="{Binding CustomPaletteColorHex}" />
+            </Border>
+
+            <materialDesign:ColorPicker Grid.Row="3"
+                                        Margin="0,16,0,0"
+                                        Color="{Binding CustomPaletteColor}"
+                                        MinHeight="180" />
+
+            <TextBlock Grid.Row="4"
+                       Margin="0,24,0,8"
+                       Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                       Text="Tonal Palette" />
+
+            <ItemsControl Grid.Row="5"
+                          Margin="0,0,0,24"
+                          ItemsSource="{Binding CustomTonalPaletteTiles}"
+                          ItemTemplate="{StaticResource ColorTileTemplate}">
+              <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                  <WrapPanel ItemWidth="140" />
+                </ItemsPanelTemplate>
+              </ItemsControl.ItemsPanel>
+            </ItemsControl>
+
+            <TextBlock Grid.Row="6"
+                       Margin="0,0,0,8"
+                       Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                       Text="Semantic Colors" />
+
+            <Grid Grid.Row="7">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+
+              <ContentControl Grid.Row="0"
+                              Content="{Binding CustomSemanticColorTiles[0]}"
+                              ContentTemplate="{StaticResource ColorTileTemplate}" />
+              <ContentControl Grid.Row="1"
+                              Content="{Binding CustomSemanticColorTiles[1]}"
+                              ContentTemplate="{StaticResource ColorTileTemplate}" />
+              <ContentControl Grid.Row="2"
+                              Content="{Binding CustomSemanticColorTiles[2]}"
+                              ContentTemplate="{StaticResource ColorTileTemplate}" />
+              <ContentControl Grid.Row="3"
+                              Content="{Binding CustomSemanticColorTiles[3]}"
+                              ContentTemplate="{StaticResource ColorTileTemplate}" />
+              <ContentControl Grid.Row="4"
+                              Content="{Binding CustomSemanticColorTiles[4]}"
+                              ContentTemplate="{StaticResource ColorTileTemplate}" />
+            </Grid>
+          </Grid>
+        </materialDesign:Card>
+      </Grid>
+    </ScrollViewer>
+  </DockPanel>
+</UserControl>

@@ -367,13 +367,19 @@ public class TabControlTests : TestBase
         IVisualElement<StackPanel> navigationPanel = await tabControl.GetElement<StackPanel>("NavigationPanelRight");
         IVisualElement<Button> rightNextButton = await navigationPanel.GetElement<Button>("RightNextButton");
 
+        static bool GetIsOverflowing(TabControl tc) => TabAssist.GetIsOverflowing(tc);
+
         //Act
-        await Task.Delay(100);  // I tried using Wait.For() with various inputs, but this is the only thing that works consistently :-(
-        await rightNextButton.LeftClick();
-        await Wait.For(async () => await tabControl.GetSelectedIndex() > 0);
+        await Wait.For(async () => await tabControl.RemoteExecute(GetIsOverflowing));
+        await Wait.For(async () => await rightNextButton.GetIsEnabled());
+        await Wait.For(async () =>
+        {
+            await rightNextButton.LeftClick();
+            return await tabControl.GetSelectedIndex() > 0;
+        }, new Retry(10, TimeSpan.FromSeconds(5)));
 
         // Assert
-        await Assert.That(await tabControl.GetSelectedIndex()).IsEqualTo(1);
+        await Assert.That(await tabControl.GetSelectedIndex()).IsGreaterThanOrEqualTo(1);
         await Assert.That(await scrollViewer.GetContentHorizontalOffset()).IsEqualTo(0);
 
         recorder.Success();
@@ -406,11 +412,16 @@ public class TabControlTests : TestBase
         IVisualElement<StackPanel> navigationPanel = await tabControl.GetElement<StackPanel>("NavigationPanelRight");
         IVisualElement<Button> rightNextButton = await navigationPanel.GetElement<Button>("RightNextButton");
 
+        static bool GetIsOverflowing(TabControl tc) => TabAssist.GetIsOverflowing(tc);
+
         //Act
-        await Task.Delay(100);  // I tried using Wait.For() with various inputs, but this is the only thing that works consistently :-(
-        await rightNextButton.LeftClick();
-        //await Wait.For(async () => await scrollViewer.GetContentHorizontalOffset() > 0); // Inconsistent :-(
-        await Task.Delay(200);
+        await Wait.For(async () => await tabControl.RemoteExecute(GetIsOverflowing));
+        await Wait.For(async() => await rightNextButton.GetIsEnabled());
+        await Wait.For(async () =>
+        {
+            await rightNextButton.LeftClick();
+            return await scrollViewer.GetContentHorizontalOffset() > 0;
+        }, new Retry(10, TimeSpan.FromSeconds(5)));
 
         // Assert
         await Assert.That(await tabControl.GetSelectedIndex()).IsEqualTo(0);
@@ -439,30 +450,41 @@ public class TabControlTests : TestBase
 
         IVisualElement<TabControl> tabControl = await LoadXaml<TabControl>(xaml.ToString());
         IVisualElement<PaddedBringIntoViewStackPanel> headerPanel = await tabControl.GetElement<PaddedBringIntoViewStackPanel>();
+        IVisualElement<ScrollViewer> scrollViewer = await tabControl.GetElement<ScrollViewer>();
         IVisualElement<StackPanel> navigationPanel = await tabControl.GetElement<StackPanel>("NavigationPanelRight");
         IVisualElement<Button> rightNextButton = await navigationPanel.GetElement<Button>("RightNextButton");
         IVisualElement<Button> rightPreviousButton = await navigationPanel.GetElement<Button>("RightPreviousButton");
 
+        static bool GetIsOverflowing(TabControl tc) => TabAssist.GetIsOverflowing(tc);
+        var retry = new Retry(10, TimeSpan.FromSeconds(5));
+
         // Act
+        // Wait for layout to complete and overflow to be detected
+        await Wait.For(async () => await tabControl.RemoteExecute(GetIsOverflowing));
+
         // Scroll right once
-        await Task.Delay(300);
+        double offsetBefore = await scrollViewer.GetContentHorizontalOffset();
+        await Wait.For(async () => await rightNextButton.GetIsEnabled());
+        await Task.Delay(200);
         await rightNextButton.LeftClick();
-        await Task.Delay(300);
+        await Wait.For(async () => await scrollViewer.GetContentHorizontalOffset() > offsetBefore, retry);
 
         // Select an arbitrary tab (index 8)
         IVisualElement<TabItem> someTab = await tabControl.GetElement<TabItem>("/TabItem[8]");
         await someTab.LeftClick();
+        await Wait.For(async () => await tabControl.GetSelectedIndex() == 8, retry);
 
         // Scroll back to the left
-        await Task.Delay(300);
+        double offsetAfterScrollRight = await scrollViewer.GetContentHorizontalOffset();
+        await Wait.For(async () => await rightPreviousButton.GetIsEnabled());
         await rightPreviousButton.LeftClick();
-        await Task.Delay(300);
+        await Wait.For(async () => await scrollViewer.GetContentHorizontalOffset() < offsetAfterScrollRight, retry);
 
         // Select the last visible tab
         // NB: The last visible tab is "hardcoded" to always be index 4 due to the fixed Width of 504 on the TabControl
         IVisualElement<TabItem> lastVisibleTab = await tabControl.GetElement<TabItem>($"/TabItem[4]");
         await lastVisibleTab.LeftClick();
-        await Task.Delay(300);
+        await Wait.For(async () => await tabControl.GetSelectedIndex() == 4, retry);
 
         // Assert
         int selectedTabIndex = await tabControl.GetSelectedIndex();

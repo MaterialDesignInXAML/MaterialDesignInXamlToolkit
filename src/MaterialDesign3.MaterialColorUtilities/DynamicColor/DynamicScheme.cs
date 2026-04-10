@@ -1,11 +1,18 @@
 ﻿using static System.Math;
 
+using System.Windows.Media;
+
 namespace MaterialColorUtilities;
 
 public class DynamicScheme
 {
     public static readonly SpecVersion DEFAULT_SPEC_VERSION = SpecVersion.Spec2021;
     public static readonly Platform DEFAULT_PLATFORM = Platform.Phone;
+    public static readonly Color DEFAULT_WARNING_HIGH_COLOR = Color.FromArgb(255, 212, 69, 41);
+    public static readonly Color DEFAULT_WARNING_LOW_COLOR = Color.FromArgb(255, 252, 163, 41);
+    public static readonly Color DEFAULT_INFORMATION_COLOR = Color.FromArgb(255, 0, 46, 122);
+    public static readonly Color DEFAULT_SAFE_COLOR = Color.FromArgb(255, 41, 138, 64);
+    public static readonly Color DEFAULT_ERROR_COLOR = Color.FromArgb(255, 163, 23, 26);
 
     // Core properties
     public int SourceColorArgb { get; private set; }
@@ -22,6 +29,10 @@ public class DynamicScheme
     public TonalPalette NeutralPalette { get; }
     public TonalPalette NeutralVariantPalette { get; }
     public TonalPalette ErrorPalette { get; }
+    public TonalPalette WarningHighPalette { get; }
+    public TonalPalette WarningLowPalette { get; }
+    public TonalPalette InformationPalette { get; }
+    public TonalPalette SafePalette { get; }
 
     public DynamicScheme() => throw new NotImplementedException();
 
@@ -47,6 +58,10 @@ public class DynamicScheme
             tertiaryPalette,
             neutralPalette,
             neutralVariantPalette,
+            null,
+            null,
+            null,
+            null,
             null)
     {
     }
@@ -74,7 +89,11 @@ public class DynamicScheme
             tertiaryPalette,
             neutralPalette,
             neutralVariantPalette,
-            errorPalette)
+            errorPalette,
+            null,
+            null,
+            null,
+            null)
     {
     }
 
@@ -90,7 +109,11 @@ public class DynamicScheme
         TonalPalette tertiaryPalette,
         TonalPalette neutralPalette,
         TonalPalette neutralVariantPalette,
-        TonalPalette? errorPalette)
+        TonalPalette? errorPalette,
+        TonalPalette? warningHighPalette = null,
+        TonalPalette? warningLowPalette = null,
+        TonalPalette? informationPalette = null,
+        TonalPalette? safePalette = null)
     {
         SourceColorArgb = sourceColorHct.Argb;
         SourceColorHct = sourceColorHct;
@@ -105,7 +128,11 @@ public class DynamicScheme
         TertiaryPalette = tertiaryPalette;
         NeutralPalette = neutralPalette;
         NeutralVariantPalette = neutralVariantPalette;
-        ErrorPalette = errorPalette ?? TonalPalette.FromHueAndChroma(25.0, 84.0);
+        ErrorPalette = errorPalette ?? TonalPalette.FromInt(ColorUtils.ArgbFromColor(DEFAULT_ERROR_COLOR));
+        WarningHighPalette = warningHighPalette ?? TonalPalette.FromInt(ColorUtils.ArgbFromColor(DEFAULT_WARNING_HIGH_COLOR));
+        WarningLowPalette = warningLowPalette ?? TonalPalette.FromInt(ColorUtils.ArgbFromColor(DEFAULT_WARNING_LOW_COLOR));
+        InformationPalette = informationPalette ?? TonalPalette.FromInt(ColorUtils.ArgbFromColor(DEFAULT_INFORMATION_COLOR));
+        SafePalette = safePalette ?? TonalPalette.FromInt(ColorUtils.ArgbFromColor(DEFAULT_SAFE_COLOR));
     }
 
     public static DynamicScheme From(DynamicScheme other, bool isDark) => From(other, isDark, other.ContrastLevel);
@@ -124,7 +151,11 @@ public class DynamicScheme
             other.TertiaryPalette,
             other.NeutralPalette,
             other.NeutralVariantPalette,
-            other.ErrorPalette);
+            other.ErrorPalette,
+            other.WarningHighPalette,
+            other.WarningLowPalette,
+            other.InformationPalette,
+            other.SafePalette);
     }
 
     public static double GetPiecewiseValue(Hct sourceColorHct, double[] hueBreakpoints, double[] hues)

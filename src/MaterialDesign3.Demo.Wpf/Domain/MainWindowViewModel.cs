@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Configuration;
 using System.Windows.Data;
+using MaterialColorUtilities;
 using MaterialDesignDemo.Shared.Domain;
 using MaterialDesignThemes.Wpf;
 using MaterialDesignThemes.Wpf.Transitions;
@@ -155,6 +156,17 @@ public class MainWindowViewModel : ViewModelBase
             ],
             selectedIcon: PackIconKind.Eyedropper,
             unselectedIcon: PackIconKind.EyedropperVariant);
+
+        yield return new DemoItem(
+            "Dynamic Color Tool",
+            typeof(DynamicColorTool),
+            [
+                DocumentationLink.DemoPageLink<DynamicColorTool>("Demo View"),
+                DocumentationLink.DemoPageLink<DynamicColorToolViewModel>("Demo View Model", "Domain"),
+                DocumentationLink.ApiLink<MaterialDynamicColors>()
+            ],
+            selectedIcon: PackIconKind.PaletteSwatch,
+            unselectedIcon: PackIconKind.PaletteSwatchOutline);
 
         yield return new DemoItem(
             "Buttons",
