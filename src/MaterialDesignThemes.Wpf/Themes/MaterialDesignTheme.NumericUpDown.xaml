@@ -47,9 +47,7 @@
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type wpf:UpDownBase}">
           <ControlTemplate.Resources>
-            <converters:ThicknessCloneConverter x:Key="NumericUpDownPaddingConverter"
-                                                AdditionalOffsetRight="55"
-                                                CloneEdges="All" />
+            <convertersInternal:UpDownButtonsPaddingConverter x:Key="NumericUpDownPaddingConverter" />
             <converters:ThicknessCloneConverter x:Key="PartButtonMarginConverter"
                                                 CloneEdges="Top,Right,Bottom"
                                                 FixedLeft="0" />
@@ -60,7 +58,6 @@
             <Grid>
               <TextBox x:Name="PART_TextBox"
                        Background="{TemplateBinding Background}"
-                       Padding="{TemplateBinding Padding, Converter={StaticResource NumericUpDownPaddingConverter}}"
                        VerticalAlignment="Stretch"
                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -103,21 +100,31 @@
                        BorderBrush="{TemplateBinding BorderBrush}"
                        BorderThickness="{TemplateBinding BorderThickness}"
                        Focusable="{TemplateBinding Focusable}"
-                       Style="{DynamicResource NestedTextBoxStyle}" />
+                       Style="{DynamicResource NestedTextBoxStyle}">
+                <TextBox.Padding>
+                  <MultiBinding Converter="{StaticResource NumericUpDownPaddingConverter}">
+                    <Binding Path="Padding" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding ElementName="ButtonsHost" Path="ActualWidth" />
+                  </MultiBinding>
+                </TextBox.Padding>
+              </TextBox>
 
-              <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+              <StackPanel x:Name="ButtonsHost"
+                          HorizontalAlignment="Right"
+                          Orientation="Horizontal"
+                          Visibility="{TemplateBinding UpDownButtonsVisibility}">
                 <RepeatButton x:Name="PART_DecreaseButton"
-                            Margin="{TemplateBinding Padding, Converter={StaticResource PartButtonMarginConverter}}"
-                            Content="{TemplateBinding DecreaseContent}"
-                            Foreground="{Binding ElementName=PART_TextBox, Path=Foreground}"
-                            Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                            Style="{DynamicResource NestedNumericUpDownButtonsStyle}" />
+                              Margin="{TemplateBinding Padding, Converter={StaticResource PartButtonMarginConverter}}"
+                              Content="{TemplateBinding DecreaseContent}"
+                              Foreground="{Binding ElementName=PART_TextBox, Path=Foreground}"
+                              Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
+                              Style="{DynamicResource NestedNumericUpDownButtonsStyle}" />
                 <RepeatButton x:Name="PART_IncreaseButton"
-                            Margin="{TemplateBinding Padding, Converter={StaticResource PartButtonMarginConverter}}"
-                            Content="{TemplateBinding IncreaseContent}"
-                            Foreground="{Binding ElementName=PART_TextBox, Path=Foreground}"
-                            Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                            Style="{DynamicResource NestedNumericUpDownButtonsStyle}" />
+                              Margin="{TemplateBinding Padding, Converter={StaticResource PartButtonMarginConverter}}"
+                              Content="{TemplateBinding IncreaseContent}"
+                              Foreground="{Binding ElementName=PART_TextBox, Path=Foreground}"
+                              Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
+                              Style="{DynamicResource NestedNumericUpDownButtonsStyle}" />
               </StackPanel>
             </Grid>
           </Border>

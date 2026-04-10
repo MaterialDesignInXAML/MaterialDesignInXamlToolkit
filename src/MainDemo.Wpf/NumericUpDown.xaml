@@ -54,6 +54,15 @@
           </materialDesign:NumericUpDown.DecreaseContent>
         </materialDesign:NumericUpDown>
       </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay Margin="10,5"
+                        VerticalAlignment="Top"
+                        UniqueKey="decimalUpDown_hiddenButtons">
+        <materialDesign:DecimalUpDown UpDownButtonsVisibility="Collapsed"
+                                      MinWidth="0"
+                                      Value="12.5"
+                                      Width="80" />
+      </smtx:XamlDisplay>
       
     </StackPanel>
 

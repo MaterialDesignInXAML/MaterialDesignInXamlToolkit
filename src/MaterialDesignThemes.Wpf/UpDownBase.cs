@@ -354,6 +354,15 @@ public class UpDownBase : Control
 
     public void SelectAll() => _textBoxField?.SelectAll();
 
+    public Visibility UpDownButtonsVisibility
+    {
+        get => (Visibility)GetValue(UpDownButtonsVisibilityProperty);
+        set => SetValue(UpDownButtonsVisibilityProperty, value);
+    }
+
+    public static readonly DependencyProperty UpDownButtonsVisibilityProperty =
+        DependencyProperty.Register(nameof(UpDownButtonsVisibility), typeof(Visibility), typeof(UpDownBase), new PropertyMetadata(Visibility.Visible));
+
     public object? IncreaseContent
     {
         get => GetValue(IncreaseContentProperty);
