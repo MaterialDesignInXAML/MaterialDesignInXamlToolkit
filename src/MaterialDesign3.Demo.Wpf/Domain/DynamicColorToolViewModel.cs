@@ -369,13 +369,13 @@ public class DynamicColorToolViewModel : ViewModelBase
     {
         get;
         private set => SetProperty(ref field, value);
-    } = Array.Empty<DynamicColorGridTile>();
+    } = [];
 
     public IReadOnlyList<DynamicColorGridTile> CustomSemanticColorTiles
     {
         get;
         private set => SetProperty(ref field, value);
-    } = Array.Empty<DynamicColorGridTile>();
+    } = [];
 
     public Brush PrimaryBrush => CreateBrush(PrimaryColor);
 

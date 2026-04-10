@@ -166,7 +166,7 @@
                             Margin="5,0,24,0"
                             AutomationProperties.Name="HamburgerToggleButton"
                             Click="MenuToggleButton_OnClick"
-                            IsChecked="True"
+                            IsChecked="False"
                             Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
 
               <Button Margin="0,0,0,0"
