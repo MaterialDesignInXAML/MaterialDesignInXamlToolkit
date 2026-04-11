@@ -38,22 +38,22 @@ Format:
 
 ## Command patterns
 
-### Targeted non-UI test run
+### Example targeted non-UI test run
 
 ```powershell
-dotnet test tests\MaterialDesignThemes.Wpf.Tests\MaterialDesignThemes.Wpf.Tests.csproj -c Release --no-build -- --treenode-filter "/*/*/UpDownButtonsPaddingConverterTests/*" --minimum-expected-tests 1 --no-ansi --no-progress
+dotnet test tests\MaterialDesignThemes.Wpf.Tests\MaterialDesignThemes.Wpf.Tests.csproj -c Release --no-build -- --treenode-filter "/*/*/AutomationPropertiesNameConverterTests/*" --minimum-expected-tests 1 --no-ansi --no-progress
 ```
 
-### Exact DecimalUpDown UI validation
+### Example targeted UI validation
 
 ```powershell
-dotnet test tests\MaterialDesignThemes.UITests\MaterialDesignThemes.UITests.csproj -c Release --no-build -- --treenode-filter "/*/*/DecimalUpDownTests/(UpDownButtonsVisibility_Collapsed_RemovesReservedPadding)|(UpDownButtonsVisibility_Hidden_PreservesReservedPadding)" --minimum-expected-tests 2 --no-ansi --no-progress
+dotnet test tests\MaterialDesignThemes.UITests\MaterialDesignThemes.UITests.csproj -c Release --no-build -- --treenode-filter "/*/*/DecimalUpDownTests/(NumericButtons_WithMaximum_DisablesPlusButton)|(NumericButtons_WithMinimum_DisablesMinusButton)" --minimum-expected-tests 2 --no-ansi --no-progress
 ```
 
 ### Verify a UI filter before running
 
 ```powershell
-tests\MaterialDesignThemes.UITests\bin\Release\net10.0-windows\MaterialDesignThemes.UITests.exe --list-tests --no-ansi --treenode-filter "/*/*/DecimalUpDownTests/(UpDownButtonsVisibility_Collapsed_RemovesReservedPadding)|(UpDownButtonsVisibility_Hidden_PreservesReservedPadding)"
+tests\MaterialDesignThemes.UITests\bin\Release\net10.0-windows\MaterialDesignThemes.UITests.exe --list-tests --no-ansi --treenode-filter "/*/*/DecimalUpDownTests/(NumericButtons_WithMaximum_DisablesPlusButton)|(NumericButtons_WithMinimum_DisablesMinusButton)"
 ```
 
 ## Mistakes to avoid

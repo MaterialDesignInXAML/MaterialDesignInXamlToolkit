@@ -47,34 +47,27 @@ Use this skill when working on runtime WPF behavior in this repository.
 
 ```csharp
 [Test]
-public async Task DecimalUpDown_WhenButtonsAreCollapsed_RemovesReservedPadding()
+public async Task DecimalUpDown_WithMaximum_DisablesPlusButton()
 {
     await using var recorder = new TestRecorder(App);
 
-    Thickness originalPadding = new(4, 5, 6, 7);
     var decimalUpDown = await LoadXaml<DecimalUpDown>("""
-    <materialDesign:DecimalUpDown Padding="4,5,6,7"
-                                  Width="160"
-                                  UpDownButtonsVisibility="Collapsed" />
+    <materialDesign:DecimalUpDown Value="1" Maximum="2" />
     """);
-    var buttonsHost = await decimalUpDown.GetElement<StackPanel>("ButtonsHost");
+    var plusButton = await decimalUpDown.GetElement<RepeatButton>("PART_IncreaseButton");
     var textBox = await decimalUpDown.GetElement<TextBox>("PART_TextBox");
 
+    await plusButton.LeftClick();
     await Wait.For(async () =>
     {
-        await Assert.That(await buttonsHost.RemoteExecute(GetButtonsHostVisibility)).IsEqualTo(Visibility.Collapsed);
-        await Assert.That(await buttonsHost.RemoteExecute(GetButtonsHostActualWidth)).IsEqualTo(0d);
-        await Assert.That(await textBox.RemoteExecute(GetTextBoxPadding)).IsEqualTo(originalPadding);
+        await Assert.That(await textBox.GetText()).IsEqualTo("2");
+        await Assert.That(await decimalUpDown.GetValue()).IsEqualTo(2);
     });
+
+    await Assert.That(await plusButton.GetIsEnabled()).IsFalse();
 
     recorder.Success();
 }
-
-private static Visibility GetButtonsHostVisibility(StackPanel stackPanel) => stackPanel.Visibility;
-
-private static double GetButtonsHostActualWidth(StackPanel stackPanel) => stackPanel.ActualWidth;
-
-private static Thickness GetTextBoxPadding(TextBox textBox) => textBox.Padding;
 ```
 
 ## Useful local references
