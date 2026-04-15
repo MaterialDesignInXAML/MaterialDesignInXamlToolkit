@@ -237,7 +237,8 @@ public partial class MainWindowViewModel : ObservableObject
             [
                 DocumentationLink.DemoPageLink<Typography>(),
                 DocumentationLink.StyleLink("TextBlock")
-            ])
+            ],
+            new TypographyViewModel())
         {
             HorizontalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
         };
