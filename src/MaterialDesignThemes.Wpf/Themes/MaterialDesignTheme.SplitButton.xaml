@@ -75,6 +75,7 @@
                           Grid.Column="1"
                           wpf:RippleAssist.IsDisabled="True"
                           Height="{TemplateBinding Height}"
+                          wpf:ButtonAssist.CornerRadius="{TemplateBinding wpf:ButtonAssist.CornerRadius, Converter={StaticResource RightButtonCornerRadiusConverter}}"
                           Padding="0"
                           Margin="0"
                           PopupUniformCornerRadius="{TemplateBinding PopupUniformCornerRadius}"
