@@ -173,6 +173,9 @@
             </Grid>
             <Grid x:Name="PathGrid" Margin="2" />
             <Canvas>
+              <Canvas.Resources>
+                <wpf:BindingProxy x:Key="PathGridProxy" Data="{Binding ElementName=PathGrid}" />
+              </Canvas.Resources>
               <Ellipse Width="{TemplateBinding Width}"
                        Height="{TemplateBinding Height}"
                        Fill="{TemplateBinding Background}" />
@@ -184,11 +187,11 @@
                     StrokeThickness="3">
                 <Path.Data>
                   <PathGeometry>
-                    <PathFigure StartPoint="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={x:Static circularProgressBarConverters:StartPointConverter.Instance}, Mode=OneWay}">
-                      <ArcSegment Size="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={x:Static circularProgressBarConverters:ArcSizeConverter.Instance}, Mode=OneWay}" SweepDirection="Clockwise">
+                    <PathFigure StartPoint="{Binding Source={StaticResource PathGridProxy}, Path=Data.ActualWidth, Converter={x:Static circularProgressBarConverters:StartPointConverter.Instance}, Mode=OneWay}">
+                      <ArcSegment Size="{Binding Source={StaticResource PathGridProxy}, Path=Data.ActualWidth, Converter={x:Static circularProgressBarConverters:ArcSizeConverter.Instance}, Mode=OneWay}" SweepDirection="Clockwise">
                         <ArcSegment.Point>
                           <MultiBinding Converter="{x:Static circularProgressBarConverters:ArcEndPointConverter.Instance}" ConverterParameter="{x:Static circularProgressBarConverters:ArcEndPointConverter.ParameterMidPoint}">
-                            <Binding ElementName="PathGrid" Path="ActualWidth" />
+                            <Binding Source="{StaticResource PathGridProxy}" Path="Data.ActualWidth" />
                             <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}" />
                             <Binding Path="Minimum" RelativeSource="{RelativeSource TemplatedParent}" />
                             <Binding Path="Maximum" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -196,10 +199,10 @@
                           </MultiBinding>
                         </ArcSegment.Point>
                       </ArcSegment>
-                      <ArcSegment Size="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={x:Static circularProgressBarConverters:ArcSizeConverter.Instance}, Mode=OneWay}" SweepDirection="Clockwise">
+                      <ArcSegment Size="{Binding Source={StaticResource PathGridProxy}, Path=Data.ActualWidth, Converter={x:Static circularProgressBarConverters:ArcSizeConverter.Instance}, Mode=OneWay}" SweepDirection="Clockwise">
                         <ArcSegment.Point>
                           <MultiBinding Converter="{x:Static circularProgressBarConverters:ArcEndPointConverter.Instance}">
-                            <Binding ElementName="PathGrid" Path="ActualWidth" />
+                            <Binding Source="{StaticResource PathGridProxy}" Path="Data.ActualWidth" />
                             <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}" />
                             <Binding Path="Minimum" RelativeSource="{RelativeSource TemplatedParent}" />
                             <Binding Path="Maximum" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -212,7 +215,7 @@
                 </Path.Data>
                 <Path.RenderTransform>
                   <TransformGroup>
-                    <RotateTransform x:Name="RotateTransform" CenterX="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={x:Static circularProgressBarConverters:RotateTransformCentreConverter.Instance}, Mode=OneWay}" CenterY="{Binding ElementName=PathGrid, Path=ActualWidth, Converter={x:Static circularProgressBarConverters:RotateTransformCentreConverter.Instance}, Mode=OneWay}" />
+                    <RotateTransform x:Name="RotateTransform" CenterX="{Binding Source={StaticResource PathGridProxy}, Path=Data.ActualWidth, Converter={x:Static circularProgressBarConverters:RotateTransformCentreConverter.Instance}, Mode=OneWay}" CenterY="{Binding Source={StaticResource PathGridProxy}, Path=Data.ActualWidth, Converter={x:Static circularProgressBarConverters:RotateTransformCentreConverter.Instance}, Mode=OneWay}" />
                   </TransformGroup>
                 </Path.RenderTransform>
               </Path>

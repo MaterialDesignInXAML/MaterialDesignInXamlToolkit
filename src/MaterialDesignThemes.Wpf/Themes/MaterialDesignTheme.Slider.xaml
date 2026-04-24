@@ -267,10 +267,13 @@
               IsHitTestVisible="False"
               RenderTransformOrigin="0.5,1"
               Visibility="Collapsed">
+          <Grid.Resources>
+            <wpf:BindingProxy x:Key="labelProxy" Data="{Binding ElementName=label}" />
+          </Grid.Resources>
           <Grid.RenderTransform>
             <TransformGroup>
               <ScaleTransform ScaleX="0" ScaleY="0" />
-              <TranslateTransform X="{Binding ActualWidth, ElementName=label, Converter={x:Static convertersInternal:SliderValueLabelPositionConverter.Instance}, ConverterParameter={x:Static Orientation.Horizontal}}" Y="-40" />
+              <TranslateTransform X="{Binding Data.ActualWidth, Source={StaticResource labelProxy}, Converter={x:Static convertersInternal:SliderValueLabelPositionConverter.Instance}, ConverterParameter={x:Static Orientation.Horizontal}}" Y="-40" />
             </TransformGroup>
           </Grid.RenderTransform>
           <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
@@ -479,10 +482,13 @@
               IsHitTestVisible="False"
               RenderTransformOrigin="1,0.5"
               Visibility="Collapsed">
+          <Grid.Resources>
+            <wpf:BindingProxy x:Key="labelProxy" Data="{Binding ElementName=label}" />
+          </Grid.Resources>
           <Grid.RenderTransform>
             <TransformGroup>
               <ScaleTransform ScaleX="0" ScaleY="0" />
-              <TranslateTransform X="{Binding ActualWidth, ElementName=label, Converter={x:Static convertersInternal:SliderValueLabelPositionConverter.Instance}, ConverterParameter={x:Static Orientation.Vertical}}" Y="-7" />
+              <TranslateTransform X="{Binding Data.ActualWidth, Source={StaticResource labelProxy}, Converter={x:Static convertersInternal:SliderValueLabelPositionConverter.Instance}, ConverterParameter={x:Static Orientation.Vertical}}" Y="-7" />
             </TransformGroup>
           </Grid.RenderTransform>
           <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
