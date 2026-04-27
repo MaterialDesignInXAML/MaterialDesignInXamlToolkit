@@ -6,6 +6,7 @@
     <Platform Name="x86" />
   </Configurations>
   <Folder Name="/Demos/">
+    <Project Path="src/Issue4017/Issue4017.csproj" />
     <Project Path="src/MahMaterialDragablzMashUp/MahAppsDragablzDemo.csproj" />
     <Project Path="src/MainDemo.Wpf/MaterialDesignDemo.csproj" />
     <Project Path="src/MaterialDesign3.Demo.Wpf/MaterialDesign3Demo.csproj" />
