@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Globalization;
-using MaterialDesign3Demo.Domain;
+using MaterialDesignDemo.Domain;
 using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesign3Demo;
