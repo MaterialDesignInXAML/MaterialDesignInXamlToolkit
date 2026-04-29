@@ -249,7 +249,7 @@ public class Clock : Control
         if (step < 1 || step > 60 || 60 % step != 0)
             throw new ArgumentOutOfRangeException(
                 nameof(MinuteSelectionStep),
-                "MinuteSelectionStep must be a divisor of 60 and between 1 and 60.");
+                $"{nameof(MinuteSelectionStep)} must be a divisor of 60 and between 1 and 60.");
 
         clock.GenerateButtons();
     }
