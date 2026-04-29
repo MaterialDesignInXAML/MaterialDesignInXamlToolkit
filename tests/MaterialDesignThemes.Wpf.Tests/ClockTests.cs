@@ -152,7 +152,8 @@ public class ClockTests
     {
         var clock = new Clock();
 
-        await Assert.That(() => clock.MinuteSelectionStep = value)
-            .Throws<ArgumentOutOfRangeException>();
+        var ex = Assert.Throws<ArgumentOutOfRangeException>(() => clock.MinuteSelectionStep = value);
+
+        await Assert.That(ex.Message).IsEqualTo($"{nameof(Clock.MinuteSelectionStep)} must be a divisor of 60 and between 1 and 60. (Parameter '{nameof(Clock.MinuteSelectionStep)}')");
     }
 }
