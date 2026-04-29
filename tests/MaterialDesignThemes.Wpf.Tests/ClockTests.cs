@@ -82,4 +82,78 @@ public class ClockTests
         await Assert.That(invocations[1].OldTime).IsEqualTo(now);
         await Assert.That(invocations[1].NewTime).IsEqualTo(now + TimeSpan.FromMinutes(-2));
     }
+
+
+    [Test]
+    [Arguments(1)]
+    [Arguments(2)]
+    [Arguments(3)]
+    [Arguments(4)]
+    [Arguments(5)]
+    [Arguments(6)]
+    [Arguments(10)]
+    [Arguments(12)]
+    [Arguments(15)]
+    [Arguments(20)]
+    [Arguments(30)]
+    [Arguments(60)]
+    public async Task MinuteSelectionStep_WhenSet_OnlyMatchingMinuteButtonsAreEnabled(int minuteSelectionStep)
+    {
+        var clock = new Clock
+        {
+            MinuteSelectionStep = minuteSelectionStep
+        };
+
+        clock.ApplyDefaultStyle();
+
+        Canvas minutesCanvas = clock.FindVisualChild<Canvas>(Clock.MinutesCanvasPartName);
+        var minuteButtons = minutesCanvas.GetVisualChildren<ClockItemButton>();
+
+        foreach (var button in minuteButtons)
+        {
+            int value = int.Parse(button.Content!.ToString()!);
+
+            bool shouldBeEnabled = value % minuteSelectionStep == 0;
+
+            await Assert.That(button.IsEnabled).IsEqualTo(shouldBeEnabled);
+            await Assert.That(button.Opacity).IsEqualTo(shouldBeEnabled ? 1d : 0.38d);
+        }
+    }
+
+    [Test]
+    public async Task MinuteSelectionStep_Default_AllButtonsAreEnabled()
+    {
+        var clock = new Clock();
+
+        clock.ApplyDefaultStyle();
+
+        Canvas minutesCanvas = clock.FindVisualChild<Canvas>(Clock.MinutesCanvasPartName);
+        var minuteButtons = minutesCanvas.GetVisualChildren<ClockItemButton>();
+
+        await Assert.That(minuteButtons.All(x => x.IsEnabled)).IsTrue();
+    }
+
+    [Test]
+    public async Task MinuteSelectionStep_DefaultValue_IsOne()
+    {
+        var clock = new Clock();
+
+        await Assert.That(clock.MinuteSelectionStep).IsEqualTo(1);
+    }
+
+    [Test]
+    [Arguments(0)]
+    [Arguments(-1)]
+    [Arguments(61)]
+    [Arguments(7)]
+    [Arguments(13)]
+    [Arguments(59)]
+    public async Task MinuteSelectionStep_InvalidValues_Throws(int value)
+    {
+        var clock = new Clock();
+
+        var ex = Assert.Throws<ArgumentOutOfRangeException>(() => clock.MinuteSelectionStep = value);
+
+        await Assert.That(ex.Message).IsEqualTo($"{nameof(Clock.MinuteSelectionStep)} must be a divisor of 60 and between 1 and 60. (Parameter '{nameof(Clock.MinuteSelectionStep)}')");
+    }
 }

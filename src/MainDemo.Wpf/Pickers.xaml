@@ -12,8 +12,7 @@
              d:DesignWidth="1920"
              mc:Ignorable="d">
   <StackPanel>
-    <TextBlock Text="Pickers"
-               Style="{StaticResource PageTitleTextBlock}" />
+    <TextBlock Style="{StaticResource PageTitleTextBlock}" Text="Pickers" />
 
     <TextBlock Text="Classic WPF DatePicker control with Material Design theme, and new TimePicker control:" />
 
@@ -31,45 +30,32 @@
         <smtx:XamlDisplay Margin="0,16,0,0"
                           HorizontalAlignment="Left"
                           UniqueKey="pickers_custom">
-          <DatePicker Width="100"
-                      materialDesign:HintAssist.Hint="Custom">
+          <DatePicker Width="100" materialDesign:HintAssist.Hint="Custom">
             <DatePicker.Resources>
               <Style x:Key="CustomCalendarDayButton"
                      TargetType="CalendarDayButton"
                      BasedOn="{StaticResource MaterialDesignCalendarDayButton}">
-                <Setter Property="materialDesign:CalendarAssist.SelectionColor"
-                        Value="#B2F39B" />
-                <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor"
-                        Value="Black" />
+                <Setter Property="materialDesign:CalendarAssist.SelectionColor" Value="#B2F39B" />
+                <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor" Value="Black" />
               </Style>
               <Style x:Key="CustomCalendarButton"
                      TargetType="CalendarButton"
                      BasedOn="{StaticResource MaterialDesignCalendarButton}">
-                <Setter Property="materialDesign:CalendarAssist.SelectionColor"
-                        Value="#B2F39B" />
-                <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor"
-                        Value="Black" />
+                <Setter Property="materialDesign:CalendarAssist.SelectionColor" Value="#B2F39B" />
+                <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor" Value="Black" />
               </Style>
               <Style x:Key="CustomCalendar"
                      TargetType="{x:Type Calendar}"
                      BasedOn="{StaticResource MaterialDesignDatePickerCalendarPortrait}">
-                <Setter Property="Background"
-                        Value="#343C3F" />
-                <Setter Property="CalendarButtonStyle"
-                        Value="{StaticResource CustomCalendarButton}" />
-                <Setter Property="CalendarDayButtonStyle"
-                        Value="{StaticResource CustomCalendarDayButton}" />
-                <Setter Property="Foreground"
-                        Value="White" />
-                <Setter Property="materialDesign:CalendarAssist.HeaderBackground"
-                        Value="#A2E9FF" />
-                <Setter Property="materialDesign:CalendarAssist.HeaderForeground"
-                        Value="Black" />
+                <Setter Property="Background" Value="#343C3F" />
+                <Setter Property="CalendarButtonStyle" Value="{StaticResource CustomCalendarButton}" />
+                <Setter Property="CalendarDayButtonStyle" Value="{StaticResource CustomCalendarDayButton}" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="materialDesign:CalendarAssist.HeaderBackground" Value="#A2E9FF" />
+                <Setter Property="materialDesign:CalendarAssist.HeaderForeground" Value="Black" />
               </Style>
-              <Style TargetType="DatePicker"
-                     BasedOn="{StaticResource MaterialDesignFloatingHintDatePicker}">
-                <Setter Property="CalendarStyle"
-                        Value="{StaticResource CustomCalendar}" />
+              <Style TargetType="DatePicker" BasedOn="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                <Setter Property="CalendarStyle" Value="{StaticResource CustomCalendar}" />
               </Style>
             </DatePicker.Resources>
           </DatePicker>
@@ -83,8 +69,7 @@
                       materialDesign:CalendarAssist.IsHeaderVisible="False"
                       materialDesign:HintAssist.Hint="Future Date">
             <DatePicker.SelectedDate>
-              <Binding Path="FutureValidatingDate"
-                       UpdateSourceTrigger="PropertyChanged">
+              <Binding Path="FutureValidatingDate" UpdateSourceTrigger="PropertyChanged">
                 <Binding.ValidationRules>
                   <domain:FutureDateValidationRule ValidatesOnTargetUpdated="True" />
                 </Binding.ValidationRules>
@@ -104,8 +89,7 @@
         <smtx:XamlDisplay Margin="0,32,0,0"
                           HorizontalAlignment="Left"
                           UniqueKey="pickers_3">
-          <ComboBox Name="LocaleCombo"
-                    Width="50">
+          <ComboBox Name="LocaleCombo" Width="50">
             <ComboBox.ItemsPanel>
               <ItemsPanelTemplate>
                 <VirtualizingStackPanel />
@@ -174,9 +158,9 @@
                           HorizontalAlignment="Left"
                           UniqueKey="pickers_unchanging_borderthickness">
           <DatePicker Width="140"
-                      BorderThickness="2"
                       materialDesign:HintAssist.HelperText="Helper text"
                       materialDesign:HintAssist.Hint="Pick Date"
+                      BorderThickness="2"
                       Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
         </smtx:XamlDisplay>
 
@@ -184,10 +168,10 @@
                           HorizontalAlignment="Left"
                           UniqueKey="pickers_14_custom_borderthickness">
           <DatePicker Width="140"
-                      materialDesign:TextFieldAssist.OutlinedBorderActiveThickness="3"
-                      BorderThickness="3"
                       materialDesign:HintAssist.HelperText="Helper text"
                       materialDesign:HintAssist.Hint="Pick Date"
+                      materialDesign:TextFieldAssist.OutlinedBorderActiveThickness="3"
+                      BorderThickness="3"
                       Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
         </smtx:XamlDisplay>
 
@@ -216,41 +200,38 @@
 
       <StackPanel>
         <smtx:XamlDisplay Margin="0,16,0,0"
-                  HorizontalAlignment="Left"
-                  VerticalAlignment="Top"
-                  UniqueKey="pickers_7">
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Top"
+                          UniqueKey="pickers_7">
           <materialDesign:TimePicker x:Name="PresetTimePicker"
-                             Width="100"
-                             Is24Hours="True"
-                             SelectedTimeChanged="PresetTimePicker_SelectedTimeChanged" />
+                                     Width="100"
+                                     Is24Hours="True"
+                                     SelectedTimeChanged="PresetTimePicker_SelectedTimeChanged" />
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay Margin="0,16,0,0"
-                  HorizontalAlignment="Left"
-                  VerticalAlignment="Top"
-                  UniqueKey="pickers_15">
-          <materialDesign:TimePicker ClockButtonVisibility="{Binding IsChecked, ElementName=IsClockButtonVisible, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.CollapsedInstance}}"
-                             Width="100"
-                             Is24Hours="True" />
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Top"
+                          UniqueKey="pickers_15">
+          <materialDesign:TimePicker Width="100"
+                                     ClockButtonVisibility="{Binding IsChecked, ElementName=IsClockButtonVisible, Converter={x:Static materialDesignConverters:BooleanToVisibilityConverter.CollapsedInstance}}"
+                                     Is24Hours="True" />
         </smtx:XamlDisplay>
         <CheckBox x:Name="IsClockButtonVisible"
                   Margin="0,10,0,0"
                   VerticalAlignment="Top"
                   Content="Show clock button" />
       </StackPanel>
-      
 
-      <StackPanel HorizontalAlignment="Left"
-                  VerticalAlignment="Top">
-        <smtx:XamlDisplay Margin="0,16,0,0"
-                          UniqueKey="pickers_8">
+
+      <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
+        <smtx:XamlDisplay Margin="0,16,0,0" UniqueKey="pickers_8">
           <materialDesign:TimePicker Width="100"
                                      materialDesign:HintAssist.Hint="Validates"
                                      Is24Hours="{Binding IsChecked, ElementName=Is24HourCheckbox}"
                                      IsInvalidTextAllowed="True">
             <materialDesign:TimePicker.Text>
-              <Binding Path="ValidatingTime"
-                       UpdateSourceTrigger="PropertyChanged">
+              <Binding Path="ValidatingTime" UpdateSourceTrigger="PropertyChanged">
                 <Binding.ValidationRules>
                   <domain:SimpleDateValidationRule ValidatesOnTargetUpdated="True" />
                 </Binding.ValidationRules>
@@ -280,12 +261,11 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Text="Custom popups"
-               Style="{StaticResource PageSectionTitleTextBlock}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Custom popups" />
 
     <TextBlock Text="By combining the DialogHost (see MainWindow.xaml) and the Calendar and Clock controls, custom popups can be built." />
 
-    <WrapPanel Margin="0 0 0 32">
+    <WrapPanel Margin="0,0,0,32">
       <smtx:XamlDisplay Grid.Row="3"
                         Grid.Column="0"
                         Margin="0,32,0,0"
@@ -307,10 +287,8 @@
                   <RowDefinition Height="Auto" />
                   <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <Viewbox Width="300"
-                         Stretch="Uniform">
-                  <Calendar x:Name="Calendar"
-                            Margin="-1,-4,-1,0" />
+                <Viewbox Width="300" Stretch="Uniform">
+                  <Calendar x:Name="Calendar" Margin="-1,-4,-1,0" />
                 </Viewbox>
 
 
@@ -355,8 +333,7 @@
                   <RowDefinition Height="Auto" />
                   <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <materialDesign:Clock x:Name="Clock"
-                                      DisplayAutomation="ToSeconds" />
+                <materialDesign:Clock x:Name="Clock" DisplayAutomation="ToSeconds" />
 
                 <StackPanel Grid.Row="1"
                             Margin="8"
@@ -399,10 +376,8 @@
                   <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <StackPanel Grid.Row="0"
-                            Orientation="Horizontal">
-                  <Calendar x:Name="CombinedCalendar"
-                            Margin="-1,-4,-1,0" />
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                  <Calendar x:Name="CombinedCalendar" Margin="-1,-4,-1,0" />
 
                   <materialDesign:Clock x:Name="CombinedClock"
                                         DisplayAutomation="CycleWithSeconds"
@@ -432,101 +407,87 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Text="Calendar Picker Styles"
-               Style="{StaticResource PageSectionTitleTextBlock}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Calendar Picker Styles" />
 
     <WrapPanel>
-      <StackPanel Margin="0 0 16 16">
-        <TextBlock Text="Default"
-                   Margin="0 0 0 8" />
+      <StackPanel Margin="0,0,16,16">
+        <TextBlock Margin="0,0,0,8" Text="Default" />
 
         <smtx:XamlDisplay UniqueKey="calendar_1">
           <Calendar IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
         </smtx:XamlDisplay>
       </StackPanel>
 
-      <StackPanel Margin="0 0 16 16">
-        <TextBlock Text="Custom colors"
-                   Margin="0 0 0 8" />
+      <StackPanel Margin="0,0,16,16">
+        <TextBlock Margin="0,0,0,8" Text="Custom colors" />
         <smtx:XamlDisplay UniqueKey="calendar_2">
           <Grid>
             <Grid.Resources>
               <Style x:Key="SecondaryCalendarDayButton"
                      TargetType="CalendarDayButton"
                      BasedOn="{StaticResource MaterialDesignCalendarDayButton}">
-                <Setter Property="materialDesign:CalendarAssist.SelectionColor"
-                        Value="{DynamicResource SecondaryHueMidBrush}" />
-                <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor"
-                        Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+                <Setter Property="materialDesign:CalendarAssist.SelectionColor" Value="{DynamicResource SecondaryHueMidBrush}" />
+                <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
               </Style>
               <Style x:Key="SecondaryCalendarButton"
                      TargetType="CalendarButton"
                      BasedOn="{StaticResource MaterialDesignCalendarButton}">
-                <Setter Property="materialDesign:CalendarAssist.SelectionColor"
-                        Value="{DynamicResource SecondaryHueMidBrush}" />
-                <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor"
-                        Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+                <Setter Property="materialDesign:CalendarAssist.SelectionColor" Value="{DynamicResource SecondaryHueMidBrush}" />
+                <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor" Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
               </Style>
             </Grid.Resources>
             <Calendar materialDesign:CalendarAssist.HeaderBackground="{DynamicResource PrimaryHueDarkBrush}"
                       materialDesign:CalendarAssist.HeaderForeground="{DynamicResource PrimaryHueDarkForegroundBrush}"
-                      IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" 
                       Background="{DynamicResource PrimaryHueLightBrush}"
                       CalendarButtonStyle="{StaticResource SecondaryCalendarButton}"
                       CalendarDayButtonStyle="{StaticResource SecondaryCalendarDayButton}"
-                      Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" />
+                      Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+                      IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
           </Grid>
         </smtx:XamlDisplay>
       </StackPanel>
 
-      <StackPanel Margin="0 0 16 16">
-        <TextBlock Text="More custom colors"
-                   Margin="0 0 0 8" />
+      <StackPanel Margin="0,0,16,16">
+        <TextBlock Margin="0,0,0,8" Text="More custom colors" />
         <smtx:XamlDisplay UniqueKey="calendar_3">
           <Grid>
             <Grid.Resources>
               <Style x:Key="CustomCalendarDayButton"
                      TargetType="CalendarDayButton"
                      BasedOn="{StaticResource MaterialDesignCalendarDayButton}">
-                <Setter Property="materialDesign:CalendarAssist.SelectionColor"
-                        Value="#B2F39B" />
-                <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor"
-                        Value="Black" />
+                <Setter Property="materialDesign:CalendarAssist.SelectionColor" Value="#B2F39B" />
+                <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor" Value="Black" />
               </Style>
               <Style x:Key="CustomCalendarButton"
                      TargetType="CalendarButton"
                      BasedOn="{StaticResource MaterialDesignCalendarButton}">
-                <Setter Property="materialDesign:CalendarAssist.SelectionColor"
-                        Value="#B2F39B" />
-                <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor"
-                        Value="Black" />
+                <Setter Property="materialDesign:CalendarAssist.SelectionColor" Value="#B2F39B" />
+                <Setter Property="materialDesign:CalendarAssist.SelectionForegroundColor" Value="Black" />
               </Style>
             </Grid.Resources>
             <Calendar materialDesign:CalendarAssist.HeaderBackground="#A2E9FF"
-                      IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" 
                       materialDesign:CalendarAssist.HeaderForeground="Black"
                       Background="#343C3F"
                       CalendarButtonStyle="{StaticResource CustomCalendarButton}"
                       CalendarDayButtonStyle="{StaticResource CustomCalendarDayButton}"
-                      Foreground="White" />
+                      Foreground="White"
+                      IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
           </Grid>
         </smtx:XamlDisplay>
       </StackPanel>
 
-      <StackPanel Margin="0 0 16 16">
-        <TextBlock Text="Horizontal"
-                   Margin=" 0 0 0 8" />
+      <StackPanel Margin="0,0,16,16">
+        <TextBlock Margin="0,0,0,8" Text="Horizontal" />
         <smtx:XamlDisplay UniqueKey="calendar_4">
-          <Calendar materialDesign:CalendarAssist.Orientation="Horizontal" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"  />
+          <Calendar materialDesign:CalendarAssist.Orientation="Horizontal" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
         </smtx:XamlDisplay>
       </StackPanel>
 
-      <StackPanel Margin="0 0 16 16">
-        <TextBlock Text="Transparent header and shadow"
-                   Margin="0 0 0 8" />
+      <StackPanel Margin="0,0,16,16">
+        <TextBlock Margin="0,0,0,8" Text="Transparent header and shadow" />
         <smtx:XamlDisplay UniqueKey="calendar_5">
           <Calendar materialDesign:ElevationAssist.Elevation="Dp8"
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" 
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignCalendarPortraitForeground}" />
         </smtx:XamlDisplay>
       </StackPanel>
@@ -534,13 +495,11 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Text="24h Clock Picker Styles"
-               Style="{StaticResource PageSectionTitleTextBlock}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="24h Clock Picker Styles" />
 
     <WrapPanel>
-      <StackPanel Margin="0 0 16 16">
-        <TextBlock Text="MaterialDesignClock"
-                   Margin="0 0 0 8" />
+      <StackPanel Margin="0,0,16,16">
+        <TextBlock Margin="0,0,0,8" Text="MaterialDesignClock" />
         <smtx:XamlDisplay UniqueKey="clock_1">
           <materialDesign:Clock Width="auto"
                                 DisplayAutomation="CycleWithSeconds"
@@ -549,9 +508,8 @@
         </smtx:XamlDisplay>
       </StackPanel>
 
-      <StackPanel Margin="0 0 16 16">
-        <TextBlock Text="No header"
-                   Margin="0 0 0 8" />
+      <StackPanel Margin="0,0,16,16">
+        <TextBlock Margin="0,0,0,8" Text="No header" />
         <smtx:XamlDisplay UniqueKey="clock_2">
           <materialDesign:Clock Width="auto"
                                 DisplayAutomation="CycleWithSeconds"
@@ -560,9 +518,8 @@
         </smtx:XamlDisplay>
       </StackPanel>
 
-      <StackPanel Margin="0 0 16 16">
-        <TextBlock Text="MaterialDesignClockHorizontal"
-                   Margin="0 0 0 8" />
+      <StackPanel Margin="0,0,16,16">
+        <TextBlock Margin="0,0,0,8" Text="MaterialDesignClockHorizontal" />
         <smtx:XamlDisplay UniqueKey="clock_3">
           <materialDesign:Clock Width="auto"
                                 DisplayAutomation="CycleWithSeconds"
@@ -571,9 +528,8 @@
         </smtx:XamlDisplay>
       </StackPanel>
 
-      <StackPanel Margin="0 0 16 16">
-        <TextBlock Text="MaterialDesignClockVertical"
-                   Margin="0 0 0 8" />
+      <StackPanel Margin="0,0,16,16">
+        <TextBlock Margin="0,0,0,8" Text="MaterialDesignClockVertical" />
         <smtx:XamlDisplay UniqueKey="clock_4">
           <materialDesign:Clock Width="auto"
                                 DisplayAutomation="CycleWithSeconds"
@@ -582,9 +538,8 @@
         </smtx:XamlDisplay>
       </StackPanel>
 
-      <StackPanel Margin="0 0 16 16">
-        <TextBlock Text="MaterialDesignClockHorizontalThemed"
-                   Margin="0 0 0 8" />
+      <StackPanel Margin="0,0,16,16">
+        <TextBlock Margin="0,0,0,8" Text="MaterialDesignClockHorizontalThemed" />
         <smtx:XamlDisplay UniqueKey="clock_5">
           <materialDesign:Clock Width="auto"
                                 DisplayAutomation="CycleWithSeconds"
@@ -593,9 +548,8 @@
         </smtx:XamlDisplay>
       </StackPanel>
 
-      <StackPanel Margin="0 0 16 16">
-        <TextBlock Text="MaterialDesignClockVerticalThemed"
-                   Margin="0 0 0 8" />
+      <StackPanel Margin="0,0,16,16">
+        <TextBlock Margin="0,0,0,8" Text="MaterialDesignClockVerticalThemed" />
         <smtx:XamlDisplay UniqueKey="clock_6">
           <materialDesign:Clock Width="auto"
                                 DisplayAutomation="CycleWithSeconds"
@@ -603,18 +557,30 @@
                                 Style="{StaticResource MaterialDesignClockVerticalThemed}" />
         </smtx:XamlDisplay>
       </StackPanel>
+
+      <StackPanel Margin="0,0,16,16">
+        <TextBlock Margin="0,0,0,8" Text="You can change the granularity of selectable times with the MinuteSelectionStep property." />
+        <ComboBox materialDesign:HintAssist.Hint="MinuteSelectionStep"
+                  ItemsSource="{Binding AvailableMinuteSelectionSteps}"
+                  SelectedItem="{Binding SelectedMinuteSelectionStep}"
+                  Style="{StaticResource MaterialDesignFilledComboBox}" />
+        <smtx:XamlDisplay UniqueKey="clock_7">
+          <materialDesign:Clock Width="auto"
+                                MinuteSelectionStep="{Binding SelectedMinuteSelectionStep}"
+                                Is24Hours="True"
+                                Style="{StaticResource MaterialDesignClock}" />
+        </smtx:XamlDisplay>
+      </StackPanel>
     </WrapPanel>
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-    <TextBlock Text="12h Clock Picker Styles"
-               Style="{StaticResource PageSectionTitleTextBlock}" />
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="12h Clock Picker Styles" />
 
     <WrapPanel>
-      <StackPanel Margin="0 0 16 16">
-        <TextBlock Text="MaterialDesignClock"
-                   Margin="0 0 0 8" />
-        <smtx:XamlDisplay UniqueKey="clock_7">
+      <StackPanel Margin="0,0,16,16">
+        <TextBlock Margin="0,0,0,8" Text="MaterialDesignClock" />
+        <smtx:XamlDisplay UniqueKey="clock_13">
           <materialDesign:Clock Width="auto"
                                 DisplayAutomation="ToSeconds"
                                 Is24Hours="False"
@@ -623,9 +589,8 @@
         </smtx:XamlDisplay>
       </StackPanel>
 
-      <StackPanel Margin="0 0 16 16">
-        <TextBlock Text="No header"
-                   Margin="0 0 0 8" />
+      <StackPanel Margin="0,0,16,16">
+        <TextBlock Margin="0,0,0,8" Text="No header" />
         <smtx:XamlDisplay UniqueKey="clock_8">
           <materialDesign:Clock Width="auto"
                                 DisplayAutomation="ToSeconds"
@@ -635,9 +600,8 @@
         </smtx:XamlDisplay>
       </StackPanel>
 
-      <StackPanel Margin="0 0 16 16">
-        <TextBlock Text="MaterialDesignClockHorizontal"
-                   Margin="0 0 0 8" />
+      <StackPanel Margin="0,0,16,16">
+        <TextBlock Margin="0,0,0,8" Text="MaterialDesignClockHorizontal" />
         <smtx:XamlDisplay UniqueKey="clock_9">
           <materialDesign:Clock DisplayAutomation="CycleWithSeconds"
                                 Is24Hours="False"
@@ -646,9 +610,8 @@
         </smtx:XamlDisplay>
       </StackPanel>
 
-      <StackPanel Margin=" 0 0 16 16">
-        <TextBlock Text="MaterialDesignClockVertical"
-                   Margin="0 0 0 8" />
+      <StackPanel Margin="0,0,16,16">
+        <TextBlock Margin="0,0,0,8" Text="MaterialDesignClockVertical" />
         <smtx:XamlDisplay UniqueKey="clock_10">
           <materialDesign:Clock DisplayAutomation="CycleWithSeconds"
                                 Is24Hours="False"
@@ -657,9 +620,8 @@
         </smtx:XamlDisplay>
       </StackPanel>
 
-      <StackPanel Margin="0 0 16 16">
-        <TextBlock Text="MaterialDesignClockHorizontalThemed"
-                   Margin="0 0 0 8" />
+      <StackPanel Margin="0,0,16,16">
+        <TextBlock Margin="0,0,0,8" Text="MaterialDesignClockHorizontalThemed" />
         <smtx:XamlDisplay UniqueKey="clock_11">
           <materialDesign:Clock Width="auto"
                                 DisplayAutomation="CycleWithSeconds"
@@ -669,9 +631,8 @@
         </smtx:XamlDisplay>
       </StackPanel>
 
-      <StackPanel Margin="0 0 16 16">
-        <TextBlock Text="MaterialDesignClockVerticalThemed"
-                   Margin="0 0 0 8" />
+      <StackPanel Margin="0,0,16,16">
+        <TextBlock Margin="0,0,0,8" Text="MaterialDesignClockVerticalThemed" />
         <smtx:XamlDisplay UniqueKey="clock_12">
           <materialDesign:Clock Width="auto"
                                 DisplayAutomation="CycleWithSeconds"
