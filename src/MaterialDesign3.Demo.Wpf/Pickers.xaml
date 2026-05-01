@@ -407,11 +407,11 @@
                 </Grid.Resources>
                 <Calendar materialDesign:CalendarAssist.HeaderBackground="{DynamicResource MaterialDesign.Brush.Primary.Dark}"
                           materialDesign:CalendarAssist.HeaderForeground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"
-                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                           Background="{DynamicResource MaterialDesign.Brush.Primary.Light}"
                           CalendarButtonStyle="{StaticResource SecondaryCalendarButton}"
                           CalendarDayButtonStyle="{StaticResource SecondaryCalendarDayButton}"
-                          Foreground="{DynamicResource MaterialDesign.Brush.Primary.Light.Foreground}" />
+                          Foreground="{DynamicResource MaterialDesign.Brush.Primary.Light.Foreground}"
+                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
               </Grid>
             </smtx:XamlDisplay>
           </GroupBox>
@@ -439,11 +439,11 @@
                 </Grid.Resources>
                 <Calendar materialDesign:CalendarAssist.HeaderBackground="#A2E9FF"
                           materialDesign:CalendarAssist.HeaderForeground="Black"
-                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                           Background="#343C3F"
                           CalendarButtonStyle="{StaticResource CustomCalendarButton}"
                           CalendarDayButtonStyle="{StaticResource CustomCalendarDayButton}"
-                          Foreground="White" />
+                          Foreground="White"
+                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
               </Grid>
             </smtx:XamlDisplay>
           </GroupBox>
@@ -468,8 +468,8 @@
                     Style="{StaticResource MaterialDesignCardGroupBox}">
             <smtx:XamlDisplay UniqueKey="calendar_5">
               <Calendar materialDesign:ElevationAssist.Elevation="Dp8"
-                        Style="{StaticResource MaterialDesignCalendarPortraitForeground}"
-                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Style="{StaticResource MaterialDesignCalendarPortraitForeground}" />
             </smtx:XamlDisplay>
           </GroupBox>
 
@@ -557,6 +557,26 @@
                                     Is24Hours="True"
                                     Style="{StaticResource MaterialDesignClockVerticalThemed}" />
             </smtx:XamlDisplay>
+          </GroupBox>
+
+          <GroupBox Margin="10"
+                    materialDesign:ColorZoneAssist.Mode="SecondaryMid"
+                    materialDesign:ElevationAssist.Elevation="Dp8"
+                    Header="MinuteSelectionStep"
+                    Style="{StaticResource MaterialDesignCardGroupBox}">
+            <StackPanel Margin="0,0,16,16">
+              <TextBlock Margin="0,0,0,8" Text="You can change the granularity of selectable times with the MinuteSelectionStep property." />
+              <ComboBox materialDesign:HintAssist.Hint="MinuteSelectionStep"
+                        ItemsSource="{Binding AvailableMinuteSelectionSteps}"
+                        SelectedItem="{Binding SelectedMinuteSelectionStep}"
+                        Style="{StaticResource MaterialDesignFilledComboBox}" />
+              <smtx:XamlDisplay UniqueKey="clock_13">
+                <materialDesign:Clock Width="auto"
+                                      Is24Hours="True"
+                                      MinuteSelectionStep="{Binding SelectedMinuteSelectionStep}"
+                                      Style="{StaticResource MaterialDesignClock}" />
+              </smtx:XamlDisplay>
+            </StackPanel>
           </GroupBox>
 
         </WrapPanel>
@@ -648,6 +668,8 @@
             </smtx:XamlDisplay>
 
           </GroupBox>
+
+
 
 
         </WrapPanel>

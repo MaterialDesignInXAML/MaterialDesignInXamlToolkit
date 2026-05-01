@@ -126,6 +126,9 @@
               <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
               <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" />
             </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter Property="Opacity" Value="0.38" />
+            </Trigger>
           </Style.Triggers>
         </Style>
       </Setter.Value>

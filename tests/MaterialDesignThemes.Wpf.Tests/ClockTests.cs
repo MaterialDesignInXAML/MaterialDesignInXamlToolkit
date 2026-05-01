@@ -82,4 +82,28 @@ public class ClockTests
         await Assert.That(invocations[1].OldTime).IsEqualTo(now);
         await Assert.That(invocations[1].NewTime).IsEqualTo(now + TimeSpan.FromMinutes(-2));
     }
+
+    [Test]
+    public async Task MinuteSelectionStep_DefaultValue_IsOne()
+    {
+        var clock = new Clock();
+
+        await Assert.That(clock.MinuteSelectionStep).IsEqualTo(1);
+    }
+
+    [Test]
+    [Arguments(0)]
+    [Arguments(-1)]
+    [Arguments(61)]
+    [Arguments(7)]
+    [Arguments(13)]
+    [Arguments(59)]
+    public async Task MinuteSelectionStep_InvalidValues_Throws(int value)
+    {
+        var clock = new Clock();
+
+        var ex = Assert.Throws<ArgumentOutOfRangeException>(() => clock.MinuteSelectionStep = value);
+
+        await Assert.That(ex.Message).IsEqualTo($"{nameof(Clock.MinuteSelectionStep)} must be a divisor of 60 and between 1 and 60. (Parameter '{nameof(Clock.MinuteSelectionStep)}')");
+    }
 }
