@@ -5,11 +5,10 @@ namespace MaterialDesignThemes.Wpf.Converters;
 
 public class EqualityToVisibilityConverter : IValueConverter
 {
-    public Visibility EqualityValue {get; init; } = Visibility.Visible;
-    public Visibility InequalityValue {get; init; } = Visibility.Collapsed;
+    public Visibility EqualityValue { get; init; } = Visibility.Visible;
+    public Visibility InequalityValue { get; init; } = Visibility.Collapsed;
 
     public static readonly EqualityToVisibilityConverter Instance = new();
-    public static readonly EqualityToVisibilityConverter VisibleOnIneneqaulityInstance = new() { EqualityValue = Visibility.Collapsed, InequalityValue = Visibility.Visible };
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
