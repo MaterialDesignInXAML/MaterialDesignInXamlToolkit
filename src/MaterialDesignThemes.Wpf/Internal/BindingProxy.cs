@@ -1,6 +1,6 @@
-﻿namespace MaterialDesignThemes.Wpf;
+﻿namespace MaterialDesignThemes.Wpf.Internal;
 
-public class BindingProxy : Freezable
+public sealed class BindingProxy : Freezable
 {
     protected override Freezable CreateInstanceCore() => new BindingProxy();
 

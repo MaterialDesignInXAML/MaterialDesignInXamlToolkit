@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:convertersInternal="clr-namespace:MaterialDesignThemes.Wpf.Converters.Internal"
+                    xmlns:internal="clr-namespace:MaterialDesignThemes.Wpf.Internal"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
   <ResourceDictionary.MergedDictionaries>
@@ -268,7 +269,7 @@
               RenderTransformOrigin="0.5,1"
               Visibility="Collapsed">
           <Grid.Resources>
-            <wpf:BindingProxy x:Key="labelProxy" Data="{Binding ElementName=label}" />
+            <internal:BindingProxy x:Key="labelProxy" Data="{Binding ElementName=label}" />
           </Grid.Resources>
           <Grid.RenderTransform>
             <TransformGroup>
@@ -483,7 +484,7 @@
               RenderTransformOrigin="1,0.5"
               Visibility="Collapsed">
           <Grid.Resources>
-            <wpf:BindingProxy x:Key="labelProxy" Data="{Binding ElementName=label}" />
+            <internal:BindingProxy x:Key="labelProxy" Data="{Binding ElementName=label}" />
           </Grid.Resources>
           <Grid.RenderTransform>
             <TransformGroup>

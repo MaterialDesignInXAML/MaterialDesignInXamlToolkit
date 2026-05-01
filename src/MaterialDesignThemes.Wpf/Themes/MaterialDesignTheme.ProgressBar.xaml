@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:circularProgressBarConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters.CircularProgressBar"
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:internal="clr-namespace:MaterialDesignThemes.Wpf.Internal"
                     xmlns:transitions="clr-namespace:MaterialDesignThemes.Wpf.Transitions"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
@@ -174,7 +175,7 @@
             <Grid x:Name="PathGrid" Margin="2" />
             <Canvas>
               <Canvas.Resources>
-                <wpf:BindingProxy x:Key="PathGridProxy" Data="{Binding ElementName=PathGrid}" />
+                <internal:BindingProxy x:Key="PathGridProxy" Data="{Binding ElementName=PathGrid}" />
               </Canvas.Resources>
               <Ellipse Width="{TemplateBinding Width}"
                        Height="{TemplateBinding Height}"
