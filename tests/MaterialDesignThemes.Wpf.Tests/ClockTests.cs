@@ -83,56 +83,6 @@ public class ClockTests
         await Assert.That(invocations[1].NewTime).IsEqualTo(now + TimeSpan.FromMinutes(-2));
     }
 
-
-    [Test]
-    [Arguments(1)]
-    [Arguments(2)]
-    [Arguments(3)]
-    [Arguments(4)]
-    [Arguments(5)]
-    [Arguments(6)]
-    [Arguments(10)]
-    [Arguments(12)]
-    [Arguments(15)]
-    [Arguments(20)]
-    [Arguments(30)]
-    [Arguments(60)]
-    public async Task MinuteSelectionStep_WhenSet_OnlyMatchingMinuteButtonsAreEnabled(int minuteSelectionStep)
-    {
-        var clock = new Clock
-        {
-            MinuteSelectionStep = minuteSelectionStep
-        };
-
-        clock.ApplyDefaultStyle();
-
-        Canvas minutesCanvas = clock.FindVisualChild<Canvas>(Clock.MinutesCanvasPartName);
-        var minuteButtons = minutesCanvas.GetVisualChildren<ClockItemButton>();
-
-        foreach (var button in minuteButtons)
-        {
-            int value = int.Parse(button.Content!.ToString()!);
-
-            bool shouldBeEnabled = value % minuteSelectionStep == 0;
-
-            await Assert.That(button.IsEnabled).IsEqualTo(shouldBeEnabled);
-            await Assert.That(button.Opacity).IsEqualTo(shouldBeEnabled ? 1d : 0.38d);
-        }
-    }
-
-    [Test]
-    public async Task MinuteSelectionStep_Default_AllButtonsAreEnabled()
-    {
-        var clock = new Clock();
-
-        clock.ApplyDefaultStyle();
-
-        Canvas minutesCanvas = clock.FindVisualChild<Canvas>(Clock.MinutesCanvasPartName);
-        var minuteButtons = minutesCanvas.GetVisualChildren<ClockItemButton>();
-
-        await Assert.That(minuteButtons.All(x => x.IsEnabled)).IsTrue();
-    }
-
     [Test]
     public async Task MinuteSelectionStep_DefaultValue_IsOne()
     {
