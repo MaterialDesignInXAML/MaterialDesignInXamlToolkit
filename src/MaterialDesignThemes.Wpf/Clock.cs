@@ -260,7 +260,6 @@ public class Clock : Control
         set => SetValue(MinuteSelectionStepProperty, value);
     }
 
-
     public static readonly RoutedEvent ClockChoiceMadeEvent =
         EventManager.RegisterRoutedEvent(
             "ClockChoiceMade",
@@ -324,15 +323,15 @@ public class Clock : Control
 
             if (Is24Hours)
             {
-                GenerateButtons(hoursCanvas, Enumerable.Range(13, 12).ToList(), ButtonRadiusRatio,
+                GenerateButtons(hoursCanvas, [.. Enumerable.Range(13, 12)], ButtonRadiusRatio,
                     new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours, Is24Hours), i => "ButtonStyle", "00",
                     ClockDisplayMode.Hours);
-                GenerateButtons(hoursCanvas, Enumerable.Range(1, 12).ToList(), ButtonRadiusInnerRatio,
+                GenerateButtons(hoursCanvas, [.. Enumerable.Range(1, 12)], ButtonRadiusInnerRatio,
                     new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours, Is24Hours), i => "ButtonStyle", "#",
                     ClockDisplayMode.Hours);
             }
             else
-                GenerateButtons(hoursCanvas, Enumerable.Range(1, 12).ToList(), ButtonRadiusRatio,
+                GenerateButtons(hoursCanvas, [.. Enumerable.Range(1, 12)], ButtonRadiusRatio,
                     new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Hours, Is24Hours), i => "ButtonStyle", "0",
                     ClockDisplayMode.Hours);
         }
@@ -343,7 +342,7 @@ public class Clock : Control
 
             GenerateButtons(
                 minutesCanvas,
-                Enumerable.Range(1, 60).ToList(),
+                [.. Enumerable.Range(1, 60)],
                 ButtonRadiusRatio,
                 new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Minutes, Is24Hours),
                 i => ((i / 5.0) % 1) == 0.0
@@ -358,7 +357,7 @@ public class Clock : Control
         {
             RemoveExistingButtons(secondsCanvas);
 
-            GenerateButtons(secondsCanvas, Enumerable.Range(1, 60).ToList(), ButtonRadiusRatio,
+            GenerateButtons(secondsCanvas, [.. Enumerable.Range(1, 60)], ButtonRadiusRatio,
                 new ClockItemIsCheckedConverter(() => Time, ClockDisplayMode.Seconds, Is24Hours),
                 i => ((i / 5.0) % 1) == 0.0 ? "ButtonStyle" : "LesserButtonStyle", "0",
                     ClockDisplayMode.Seconds);
@@ -387,7 +386,7 @@ public class Clock : Control
 
     private void GenerateButtons(
         Panel canvas,
-        ICollection<int> range,
+        List<int> range,
         double radiusRatio,
         IValueConverter isCheckedConverter,
         Func<int, string> stylePropertySelector,
@@ -425,10 +424,6 @@ public class Clock : Control
             {
                 bool isEnabled = isEnabledSelector.Invoke(i);
                 button.IsEnabled = isEnabled;
-                if (!isEnabled)
-                {
-                    button.Opacity = 0.38;
-                }
             }
             canvas.Children.Add(button);
         }
