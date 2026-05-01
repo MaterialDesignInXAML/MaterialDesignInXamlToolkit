@@ -10,7 +10,7 @@ public class PackIconTests : TestBase
     [Test]
     [Arguments(14)]
     [Arguments(60)]
-    public async Task PackIcon_MatchSizeWith_SyncsSizeWithSource(double fontSize)
+    public async Task PackIcon_ScaleToSizeOfWith_ScalesSizeWithSource(double fontSize)
     {
         await using var recorder = new TestRecorder(App);
 
@@ -18,7 +18,7 @@ public class PackIconTests : TestBase
             <StackPanel Orientation="Horizontal">
               <materialDesign:PackIcon VerticalAlignment="Center"
                                        Kind="Home"
-                                       MatchSizeWith="{Binding ElementName=MyTextBox}" />
+                                       ScaleToSizeOfWith="{Binding ElementName=MyTextBox}" />
               <TextBlock x:Name="MyTextBox"
                          VerticalAlignment="Center"
                          FontSize="{{fontSize}}"

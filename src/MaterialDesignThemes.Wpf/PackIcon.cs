@@ -45,20 +45,20 @@ public class PackIcon : Control
         private set => SetValue(DataPropertyKey, value);
     }
 
-    public static readonly DependencyProperty MatchSizeWithProperty =
+    public static readonly DependencyProperty ScaleToSizeOfWithProperty =
     DependencyProperty.Register(
-        nameof(MatchSizeWith),
+        nameof(ScaleToSizeOfWith),
         typeof(FrameworkElement),
         typeof(PackIcon),
-        new PropertyMetadata(null, OnMatchSizeWithChanged));
+        new PropertyMetadata(null, OnScaleToSizeOfWithChanged));
 
-    public FrameworkElement? MatchSizeWith
+    public FrameworkElement? ScaleToSizeOfWith
     {
-        get => (FrameworkElement?)GetValue(MatchSizeWithProperty);
-        set => SetValue(MatchSizeWithProperty, value);
+        get => (FrameworkElement?)GetValue(ScaleToSizeOfWithProperty);
+        set => SetValue(ScaleToSizeOfWithProperty, value);
     }
 
-    private static void OnMatchSizeWithChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnScaleToSizeOfWithChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var icon = (PackIcon)d;
 

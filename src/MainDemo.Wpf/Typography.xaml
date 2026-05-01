@@ -79,7 +79,7 @@
         <StackPanel Orientation="Horizontal">
             <materialDesign:PackIcon VerticalAlignment="Center"
                                       Kind="{Binding SelectedPackIcon}"
-                                      MatchSizeWith="{Binding ElementName=tbMaterialDesignHeadline1TextBlock}" />
+                                      ScaleToSizeOfWith="{Binding ElementName=tbMaterialDesignHeadline1TextBlock}" />
             <TextBlock x:Name="tbMaterialDesignHeadline1TextBlock"
                         VerticalAlignment="Center"
                         Style="{StaticResource MaterialDesignHeadline1TextBlock}"
@@ -116,7 +116,7 @@
         <StackPanel Orientation="Horizontal">
           <materialDesign:PackIcon VerticalAlignment="Center"
                                    Kind="{Binding SelectedPackIcon}"
-                                   MatchSizeWith="{Binding ElementName=tbMaterialDesignHeadline2TextBlock}" />
+                                   ScaleToSizeOfWith="{Binding ElementName=tbMaterialDesignHeadline2TextBlock}" />
           <TextBlock x:Name="tbMaterialDesignHeadline2TextBlock"
                      VerticalAlignment="Center"
                      Style="{StaticResource MaterialDesignHeadline2TextBlock}"
@@ -153,7 +153,7 @@
         <StackPanel Orientation="Horizontal">
           <materialDesign:PackIcon VerticalAlignment="Center"
                                    Kind="{Binding SelectedPackIcon}"
-                                   MatchSizeWith="{Binding ElementName=tbMaterialDesignHeadline3TextBlock}" />
+                                   ScaleToSizeOfWith="{Binding ElementName=tbMaterialDesignHeadline3TextBlock}" />
           <TextBlock x:Name="tbMaterialDesignHeadline3TextBlock"
                      VerticalAlignment="Center"
                      Style="{StaticResource MaterialDesignHeadline3TextBlock}"
@@ -190,7 +190,7 @@
         <StackPanel Orientation="Horizontal">
           <materialDesign:PackIcon VerticalAlignment="Center"
                                    Kind="{Binding SelectedPackIcon}"
-                                   MatchSizeWith="{Binding ElementName=tbMaterialDesignHeadline4TextBlock}" />
+                                   ScaleToSizeOfWith="{Binding ElementName=tbMaterialDesignHeadline4TextBlock}" />
           <TextBlock x:Name="tbMaterialDesignHeadline4TextBlock"
                      VerticalAlignment="Center"
                      Style="{StaticResource MaterialDesignHeadline4TextBlock}"
@@ -227,7 +227,7 @@
         <StackPanel Orientation="Horizontal">
           <materialDesign:PackIcon VerticalAlignment="Center"
                                    Kind="{Binding SelectedPackIcon}"
-                                   MatchSizeWith="{Binding ElementName=tbMaterialDesignHeadline5TextBlock}" />
+                                   ScaleToSizeOfWith="{Binding ElementName=tbMaterialDesignHeadline5TextBlock}" />
           <TextBlock x:Name="tbMaterialDesignHeadline5TextBlock"
                      VerticalAlignment="Center"
                      Style="{StaticResource MaterialDesignHeadline5TextBlock}"
@@ -264,7 +264,7 @@
         <StackPanel Orientation="Horizontal">
           <materialDesign:PackIcon VerticalAlignment="Center"
                                    Kind="{Binding SelectedPackIcon}"
-                                   MatchSizeWith="{Binding ElementName=tbMaterialDesignHeadline6TextBlock}" />
+                                   ScaleToSizeOfWith="{Binding ElementName=tbMaterialDesignHeadline6TextBlock}" />
           <TextBlock x:Name="tbMaterialDesignHeadline6TextBlock"
                      VerticalAlignment="Center"
                      Style="{StaticResource MaterialDesignHeadline6TextBlock}"
@@ -301,7 +301,7 @@
         <StackPanel Orientation="Horizontal">
           <materialDesign:PackIcon VerticalAlignment="Center"
                                    Kind="{Binding SelectedPackIcon}"
-                                   MatchSizeWith="{Binding ElementName=tbMaterialDesignSubtitle1TextBlock}" />
+                                   ScaleToSizeOfWith="{Binding ElementName=tbMaterialDesignSubtitle1TextBlock}" />
           <TextBlock x:Name="tbMaterialDesignSubtitle1TextBlock"
                      VerticalAlignment="Center"
                      Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
@@ -338,7 +338,7 @@
         <StackPanel Orientation="Horizontal">
           <materialDesign:PackIcon VerticalAlignment="Center"
                                    Kind="{Binding SelectedPackIcon}"
-                                   MatchSizeWith="{Binding ElementName=tbMaterialDesignSubtitle2TextBlock}" />
+                                   ScaleToSizeOfWith="{Binding ElementName=tbMaterialDesignSubtitle2TextBlock}" />
           <TextBlock x:Name="tbMaterialDesignSubtitle2TextBlock"
                      VerticalAlignment="Center"
                      Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
@@ -375,7 +375,7 @@
         <StackPanel Orientation="Horizontal">
           <materialDesign:PackIcon VerticalAlignment="Center"
                                    Kind="{Binding SelectedPackIcon}"
-                                   MatchSizeWith="{Binding ElementName=tbMaterialDesignBody1TextBlock}" />
+                                   ScaleToSizeOfWith="{Binding ElementName=tbMaterialDesignBody1TextBlock}" />
           <TextBlock x:Name="tbMaterialDesignBody1TextBlock"
                      VerticalAlignment="Center"
                      Style="{StaticResource MaterialDesignBody1TextBlock}"
@@ -412,7 +412,7 @@
         <StackPanel Orientation="Horizontal">
           <materialDesign:PackIcon VerticalAlignment="Center"
                                    Kind="{Binding SelectedPackIcon}"
-                                   MatchSizeWith="{Binding ElementName=tbMaterialDesignBody2TextBlock}" />
+                                   ScaleToSizeOfWith="{Binding ElementName=tbMaterialDesignBody2TextBlock}" />
           <TextBlock x:Name="tbMaterialDesignBody2TextBlock"
                      VerticalAlignment="Center"
                      Style="{StaticResource MaterialDesignBody2TextBlock}"
@@ -449,7 +449,7 @@
         <StackPanel Orientation="Horizontal">
           <materialDesign:PackIcon VerticalAlignment="Center"
                                    Kind="{Binding SelectedPackIcon}"
-                                   MatchSizeWith="{Binding ElementName=tbMaterialDesignCaptionTextBlock}" />
+                                   ScaleToSizeOfWith="{Binding ElementName=tbMaterialDesignCaptionTextBlock}" />
           <TextBlock x:Name="tbMaterialDesignCaptionTextBlock"
                      VerticalAlignment="Center"
                      Style="{StaticResource MaterialDesignCaptionTextBlock}"
@@ -486,7 +486,7 @@
         <StackPanel Orientation="Horizontal">
           <materialDesign:PackIcon VerticalAlignment="Center"
                                    Kind="{Binding SelectedPackIcon}"
-                                   MatchSizeWith="{Binding ElementName=tbMaterialDesignOverlineTextBlock}" />
+                                   ScaleToSizeOfWith="{Binding ElementName=tbMaterialDesignOverlineTextBlock}" />
           <TextBlock x:Name="tbMaterialDesignOverlineTextBlock"
                      VerticalAlignment="Center"
                      Style="{StaticResource MaterialDesignOverlineTextBlock}"
@@ -514,7 +514,7 @@
         <StackPanel Orientation="Horizontal">
           <materialDesign:PackIcon VerticalAlignment="Center"
                                    Kind="{Binding SelectedPackIcon}"
-                                   MatchSizeWith="{Binding ElementName=tbMaterialDesignButtonTextBlock}" />
+                                   ScaleToSizeOfWith="{Binding ElementName=tbMaterialDesignButtonTextBlock}" />
           <TextBlock x:Name="tbMaterialDesignButtonTextBlock"
                      VerticalAlignment="Center"
                      Style="{StaticResource MaterialDesignButtonTextBlock}"
