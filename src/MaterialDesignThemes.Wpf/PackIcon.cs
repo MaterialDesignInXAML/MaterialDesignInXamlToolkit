@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Windows.Data;
 using System.Windows.Media;
 
 namespace MaterialDesignThemes.Wpf;
@@ -42,6 +43,40 @@ public class PackIcon : Control
     {
         get => (string?)GetValue(DataProperty);
         private set => SetValue(DataPropertyKey, value);
+    }
+
+    public static readonly DependencyProperty ScaleToSizeOfWithProperty =
+    DependencyProperty.Register(
+        nameof(ScaleToSizeOfWith),
+        typeof(FrameworkElement),
+        typeof(PackIcon),
+        new PropertyMetadata(null, OnScaleToSizeOfWithChanged));
+
+    public FrameworkElement? ScaleToSizeOfWith
+    {
+        get => (FrameworkElement?)GetValue(ScaleToSizeOfWithProperty);
+        set => SetValue(ScaleToSizeOfWithProperty, value);
+    }
+
+    private static void OnScaleToSizeOfWithChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var icon = (PackIcon)d;
+
+        // Clear old bindings
+        BindingOperations.ClearBinding(icon, HeightProperty);
+        BindingOperations.ClearBinding(icon, WidthProperty);
+
+        if (e.NewValue is FrameworkElement source)
+        {
+            var heightBinding = new Binding(nameof(FrameworkElement.ActualHeight))
+            {
+                Source = source,
+                Mode = BindingMode.OneWay
+            };
+
+            icon.SetBinding(HeightProperty, heightBinding);
+            icon.SetBinding(WidthProperty, heightBinding); // Bind the Width to the height, so that the icon is always rectangular
+        }
     }
 
     public override void OnApplyTemplate()
