@@ -35,12 +35,12 @@ public class TabControlTests : TestBase
         Color? selectedTabUnderline = await selectedTabBorder.GetBorderBrushColor();
 
         //Assert
-        await Assert.That(foreground).IsNotNull();
-        await Assert.That(background).IsNotNull();
+        Color foregroundValue = await Assert.That(foreground).IsNotNull();
+        Color backgroundValue = await Assert.That(background).IsNotNull();
 
-        await MaterialDesignSpec.AssertContrastRatio(foreground.Value, background.Value, MaterialDesignSpec.MinimumContrastSmallText);
+        await MaterialDesignSpec.AssertContrastRatio(foregroundValue, backgroundValue, MaterialDesignSpec.MinimumContrastSmallText);
 
-        await Assert.That(selectedTabUnderline).IsEqualTo(foreground);
+        await Assert.That(selectedTabUnderline).IsEqualTo(foregroundValue);
 
         recorder.Success();
     }

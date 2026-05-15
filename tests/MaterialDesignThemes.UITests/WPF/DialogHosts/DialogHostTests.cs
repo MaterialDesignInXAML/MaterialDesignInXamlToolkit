@@ -235,9 +235,9 @@ public class DialogHostTests : TestBase
         await Wait.For(async () =>
         {
             Color? foreground1 = await textBlock1.GetForegroundColor();
-            await Assert.That(foreground1).IsNotNull();
+            Color foreground1Value = await Assert.That(foreground1).IsNotNull();
             await AssertContrastRatio(
-                foreground1.Value,
+                foreground1Value,
                 await textBlock1.GetEffectiveBackground(),
                 MinimumContrastSmallText);
         });
@@ -245,9 +245,9 @@ public class DialogHostTests : TestBase
         await Wait.For(async () =>
         {
             Color? foreground2 = await textBlock2.GetForegroundColor();
-            await Assert.That(foreground2).IsNotNull();
+            Color foreground2Value = await Assert.That(foreground2).IsNotNull();
             await AssertContrastRatio(
-                foreground2.Value,
+                foreground2Value,
                 await textBlock2.GetEffectiveBackground(),
                 MinimumContrastSmallText);
         });

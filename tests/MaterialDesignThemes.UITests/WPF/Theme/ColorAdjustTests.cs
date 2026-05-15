@@ -47,11 +47,13 @@ public class ColorAdjustTests : TestBase
 
             Color? smallTextForeground = await smallText.GetForegroundColor();
             Color smallTextBackground = await smallText.GetEffectiveBackground();
+            Color largeTextForegroundValue = await Assert.That(largeTextForeground).IsNotNull();
+            Color smallTextForegroundValue = await Assert.That(smallTextForeground).IsNotNull();
 
-            double largeContrastRatio = ColorAssist.ContrastRatio(largeTextForeground.Value, largeTextBackground);
+            double largeContrastRatio = ColorAssist.ContrastRatio(largeTextForegroundValue, largeTextBackground);
             await Assert.That(largeContrastRatio).IsGreaterThanOrEqualTo(MaterialDesignSpec.MinimumContrastLargeText - tolerance)
                 .Because($"Large font contrast ratio '{largeContrastRatio}' does not meet material design spec {MaterialDesignSpec.MinimumContrastLargeText}");
-            double smallContrastRatio = ColorAssist.ContrastRatio(smallTextForeground.Value, smallTextBackground);
+            double smallContrastRatio = ColorAssist.ContrastRatio(smallTextForegroundValue, smallTextBackground);
             await Assert.That(smallContrastRatio).IsGreaterThanOrEqualTo(MaterialDesignSpec.MinimumContrastSmallText - tolerance).Because($"Small font contrast ratio '{smallContrastRatio}' does not meet material design spec {MaterialDesignSpec.MinimumContrastSmallText}");
         }
     }
