@@ -4,8 +4,8 @@
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
   <converters:CornerRadiusCloneConverter x:Key="FixedBottomCornerRadiusConverter"
-                                         FixedBottomLeft="2"
-                                         FixedBottomRight="2" />
+                                         FixedBottomLeft="0"
+                                         FixedBottomRight="0" />
 
   <Style x:Key="MaterialDesignClockItemThumb" TargetType="{x:Type Thumb}">
     <Setter Property="Template">
