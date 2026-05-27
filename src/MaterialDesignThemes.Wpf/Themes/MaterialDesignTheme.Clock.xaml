@@ -3,10 +3,7 @@
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
-  <converters:CornerRadiusCloneConverter x:Key="FixedBottomCornerRadiusConverter"
-                                         FixedBottomLeft="0"
-                                         FixedBottomRight="0" />
-
+  
   <Style x:Key="MaterialDesignClockItemThumb" TargetType="{x:Type Thumb}">
     <Setter Property="Template">
       <Setter.Value>
@@ -93,6 +90,11 @@
   </Style>
 
   <Style x:Key="MaterialDesignClock" TargetType="{x:Type wpf:Clock}">
+    <Style.Resources>
+      <converters:CornerRadiusCloneConverter x:Key="FixedBottomCornerRadiusConverter"
+                                             FixedBottomLeft="0"
+                                             FixedBottomRight="0" />
+    </Style.Resources>
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="ButtonRadiusInnerRatio" Value=".6" />
