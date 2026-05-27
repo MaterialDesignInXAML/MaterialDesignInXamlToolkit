@@ -97,6 +97,7 @@
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="ButtonRadiusInnerRatio" Value=".6" />
     <Setter Property="ButtonRadiusRatio" Value=".835" />
+    <Setter Property="CornerRadius" Value="2"/>
     <Setter Property="ButtonStyle">
       <Setter.Value>
         <Style TargetType="{x:Type wpf:ClockItemButton}">
@@ -859,6 +860,7 @@
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="ButtonRadiusInnerRatio" Value=".6" />
     <Setter Property="ButtonRadiusRatio" Value=".835" />
+    <Setter Property="CornerRadius" Value="2"/>
     <Setter Property="ButtonStyle">
       <Setter.Value>
         <Style TargetType="{x:Type wpf:ClockItemButton}">
