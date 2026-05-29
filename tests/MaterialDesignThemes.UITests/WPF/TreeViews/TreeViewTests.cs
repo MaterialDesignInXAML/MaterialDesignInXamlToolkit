@@ -9,8 +9,6 @@ public class TreeViewTests : TestBase
     [Description("Issue 2618")]
     public async Task HasNoItemsExpanderVisibility_ChangesVisibilityOnExpander()
     {
-        await using var recorder = new TestRecorder(App);
-
         var treeView = await LoadXaml<TreeView>(@"
 <TreeView>
     <TreeViewItem Header=""Item1"" />
@@ -55,9 +53,6 @@ public class TreeViewTests : TestBase
 
         expander = await GetExpanderForHeader("Item8");
         await Assert.That(await expander.GetVisibility()).IsEqualTo(Visibility.Visible);
-
-        recorder.Success();
-
         async Task<IVisualElement<ToggleButton>> GetExpanderForHeader(string header)
         {
             var item = await treeView!.GetElement(ElementQuery.PropertyExpression<TreeViewItem>(x => x.Header, header));
@@ -72,8 +67,6 @@ public class TreeViewTests : TestBase
     [Arguments(Visibility.Visible)]
     public async Task HasNoItemsExpanderVisibility_SetOnTreeView_ChangesVisibilityOnExpanders(Visibility visibility)
     {
-        await using var recorder = new TestRecorder(App);
-
         var treeView = await LoadXaml<TreeView>($@"
 <TreeView materialDesign:TreeViewAssist.HasNoItemsExpanderVisibility=""{visibility}"">
     <TreeViewItem Header=""NoChild"" />
@@ -88,9 +81,6 @@ public class TreeViewTests : TestBase
 
         expander = await GetExpanderForHeader("HasChild");
         await Assert.That(await expander.GetVisibility()).IsEqualTo(Visibility.Visible);
-
-        recorder.Success();
-
         async Task<IVisualElement<ToggleButton>> GetExpanderForHeader(string header)
         {
             var item = await treeView!.GetElement(ElementQuery.PropertyExpression<TreeViewItem>(x => x.Header, header));

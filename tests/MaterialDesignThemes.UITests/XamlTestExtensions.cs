@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using MaterialDesignColors;
+﻿using MaterialDesignColors;
 
 namespace MaterialDesignThemes.UITests;
 

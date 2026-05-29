@@ -10,8 +10,6 @@ public class DialogHostTests : TestBase
     [Test]
     public async Task DrawerHost_OpenAndClose_RaisesEvents()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<DrawerHost> drawerHost = await LoadXaml<DrawerHost>(@"
 <materialDesign:DrawerHost>
   <materialDesign:DrawerHost.LeftDrawerContent>
@@ -35,7 +33,7 @@ public class DialogHostTests : TestBase
 
         await toggleButton.LeftClick();
         //Allow for animations to start
-        await Task.Delay(10, TestContext.Current!.CancellationToken);
+        await Task.Delay(10, TestContext.Current!.Execution.CancellationToken);
 
         await Wait.For(async () =>
         {
@@ -50,7 +48,7 @@ public class DialogHostTests : TestBase
         });
 
         //Wait before clicking so the animations have time to finish
-        await Task.Delay(100, TestContext.Current.CancellationToken);
+        await Task.Delay(100, TestContext.Current.Execution.CancellationToken);
 
         await drawerHost.LeftClick();
 
@@ -63,7 +61,7 @@ public class DialogHostTests : TestBase
 
         await showButton.LeftClick();
         //Allow for animations to start
-        await Task.Delay(10, TestContext.Current.CancellationToken);
+        await Task.Delay(10, TestContext.Current.Execution.CancellationToken);
 
         await Wait.For(async () =>
         {
@@ -80,15 +78,11 @@ public class DialogHostTests : TestBase
             var invocations = await closingEvent.GetInvocations();
             await Assert.That(invocations.Count).IsEqualTo(2);
         });
-
-        recorder.Success();
     }
 
     [Test]
     public async Task DrawerHost_CancelingClosingEvent_DrawerStaysOpen()
     {
-        await using var recorder = new TestRecorder(App);
-
         IVisualElement<DrawerHost> drawerHost = (await LoadUserControl<CancellingDrawerHost>()).As<DrawerHost>();
         var showButton = await drawerHost.GetElement<Button>("ShowButton");
         var closeButton = await drawerHost.GetElement<Button>("CloseButton");
@@ -98,39 +92,34 @@ public class DialogHostTests : TestBase
 
         await showButton.LeftClick();
         //Allow open animation to finish
-        await Task.Delay(300, TestContext.Current!.CancellationToken);
+        await Task.Delay(300, TestContext.Current!.Execution.CancellationToken);
         await Wait.For(async () => (await openedEvent.GetInvocations()).Count == 1);
 
         var closingEvent = await drawerHost.RegisterForEvent(nameof(DrawerHost.DrawerClosing));
 
         //Attempt closing with routed command
         await closeButton.LeftClick();
-        await Task.Delay(100, TestContext.Current.CancellationToken);
+        await Task.Delay(100, TestContext.Current.Execution.CancellationToken);
         await Wait.For(async () => (await closingEvent.GetInvocations()).Count == 1);
         await Assert.That(await drawerHost.GetIsLeftDrawerOpen()).IsTrue();
 
         //Attempt closing with click away
         await drawerHost.LeftClick();
-        await Task.Delay(100, TestContext.Current.CancellationToken);
+        await Task.Delay(100, TestContext.Current.Execution.CancellationToken);
         await Wait.For(async () => (await closingEvent.GetInvocations()).Count == 2);
         await Assert.That(await drawerHost.GetIsLeftDrawerOpen()).IsTrue();
 
         //Attempt closing with DP property toggle
         await closeButtonDp.LeftClick();
-        await Task.Delay(100, TestContext.Current.CancellationToken);
+        await Task.Delay(100, TestContext.Current.Execution.CancellationToken);
         await Wait.For(async () => (await closingEvent.GetInvocations()).Count == 3);
         await Assert.That(await drawerHost.GetIsLeftDrawerOpen()).IsTrue();
-
-
-        recorder.Success();
     }
 
     [Test]
     [Description("Issue 3224")]
     public async Task DrawerHost_ShouldInvokeCustomContentTemplateSelector_WhenSetExplicitly()
     {
-        await using var recorder = new TestRecorder(App);
-
         // Arrange
         IVisualElement<Grid> grid = await LoadXaml<Grid>("""
             <Grid>
@@ -175,8 +164,6 @@ public class DialogHostTests : TestBase
         await Assert.That(topDrawerContent).IsEqualTo("TopDrawerContent");
         await Assert.That(rightDrawerContent).IsEqualTo("RightDrawerContent");
         await Assert.That(bottomDrawerContent).IsEqualTo("BottomDrawerContent");
-
-        recorder.Success();
     }
 }
 

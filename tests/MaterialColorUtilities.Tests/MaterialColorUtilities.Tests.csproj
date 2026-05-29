@@ -2,11 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net8.0-windows;net10.0-windows</TargetFrameworks>
-    <AssemblyTitle>MaterialColorUtilities.Tests</AssemblyTitle>
-    <Product>MaterialColorUtilities.Tests</Product>
     <OutputType>Exe</OutputType>
-    <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
-    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
     <UseWPF>true</UseWPF>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -18,16 +14,11 @@
     <ProjectReference Include="..\..\src\MaterialDesign3.MaterialColorUtilities\MaterialColorUtilities.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="GitHubActionsTestLogger">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="TUnit" />
     <PackageReference Include="Shouldly" />
   </ItemGroup>
   <ItemGroup>
-    <Using Include="TUnit.Assertions.AssertConditions.Throws" />
     <Using Include="TUnit.Core.Executors" />
     <Using Include="TUnit.Assertions" />
     <Using Include="Shouldly" />

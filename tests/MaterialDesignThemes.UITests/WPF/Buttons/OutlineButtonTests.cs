@@ -7,8 +7,6 @@ public class OutlineButtonTests : TestBase
     [Test]
     public async Task OutlinedButton_UsesThemeColorForBorder()
     {
-        await using var recorder = new TestRecorder(App);
-
         //Arrange
         IVisualElement<Button> button = await LoadXaml<Button>(
             @"<Button Content=""Button"" Style=""{StaticResource MaterialDesignOutlinedButton}""/>");
@@ -22,15 +20,11 @@ public class OutlineButtonTests : TestBase
         //Assert
         await Assert.That(borderColor).IsEqualTo(midColor);
         await Assert.That(internalBorderColor).IsEqualTo(midColor);
-
-        recorder.Success();
     }
 
     [Test]
     public async Task OutlinedButton_BorderCanBeOverridden()
     {
-        await using var recorder = new TestRecorder(App);
-
         //Arrange
         var button = await LoadXaml<Button>(
             @"<Button Content=""Button""
@@ -38,7 +32,6 @@ public class OutlineButtonTests : TestBase
                           BorderThickness=""5""
                           BorderBrush=""Red""
                     />");
-        Color midColor = await GetThemeColor("MaterialDesign.Brush.Primary");
         IVisualElement<Border> internalBorder = await button.GetElement<Border>("border");
 
         //Act
@@ -48,15 +41,11 @@ public class OutlineButtonTests : TestBase
         //Assert
         await Assert.That(borderThickness).IsEqualTo(new Thickness(5));
         await Assert.That(borderBrush).IsEqualTo(Colors.Red);
-
-        recorder.Success();
     }
 
     [Test]
     public async Task OutlinedButton_OnMouseOver_UsesThemeBrush()
     {
-        await using var recorder = new TestRecorder(App);
-
         //Arrange
         IVisualElement<Button> button = await LoadXaml<Button>(
             @"<Button Content=""Button"" Style=""{StaticResource MaterialDesignOutlinedButton}""/>");
@@ -72,7 +61,5 @@ public class OutlineButtonTests : TestBase
             //Assert
             await Assert.That(internalBorderBackground?.Color).IsEqualTo(midColor);
         });
-
-        recorder.Success();
     }
 }

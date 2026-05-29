@@ -9,8 +9,6 @@ public class ContentControlTests : TestBase
     [Description("Issue 2510")]
     public async Task ClearButton_InsideOfControlTemplate_CanStillClearContent()
     {
-        await using var recorder = new TestRecorder(App);
-
         //Arrange
         var grid = await LoadXaml<ContentControl>(@"
 <ContentControl>
@@ -34,8 +32,6 @@ public class ContentControlTests : TestBase
         {
             await Assert.That(await textBox.GetText()).IsNullOrEmpty();
         });
-
-        recorder.Success();
     }
 
 }

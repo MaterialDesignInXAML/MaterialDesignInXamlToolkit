@@ -7,8 +7,6 @@ public class TextFieldDefaultHeightTests : TestBase
     [Test]
     public async Task SameHeightWithDefaultStyle()
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>("""
             <StackPanel>
                 <TextBox />
@@ -25,15 +23,11 @@ public class TextFieldDefaultHeightTests : TestBase
         await Assert.That(await GetHeight(stackPanel, "ComboBox")).IsCloseTo(height, Precision);
         await Assert.That(await GetHeight(stackPanel, "DatePicker")).IsCloseTo(height, Precision);
         await Assert.That(await GetHeight(stackPanel, "TimePicker")).IsCloseTo(height, Precision);
-
-        recorder.Success();
     }
 
  [Test]
     public async Task SameHeightWithFloatingHintStyle()
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>("""
             <StackPanel>
                 <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Hint" />
@@ -51,15 +45,11 @@ public class TextFieldDefaultHeightTests : TestBase
         await Assert.That(await GetHeight(stackPanel, "ComboBox")).IsCloseTo(height, Precision);
         await Assert.That(await GetHeight(stackPanel, "DatePicker")).IsCloseTo(height, Precision);
         await Assert.That(await GetHeight(stackPanel, "TimePicker")).IsCloseTo(height, Precision);
-
-        recorder.Success();
     }
 
     [Test]
     public async Task SameHeightWithFilledStyle()
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>("""
             <StackPanel>
                 <TextBox Style="{StaticResource MaterialDesignFilledTextBox}" materialDesign:HintAssist.Hint="Hint" />
@@ -77,15 +67,11 @@ public class TextFieldDefaultHeightTests : TestBase
         await Assert.That(await GetHeight(stackPanel, "ComboBox")).IsCloseTo(height, Precision);
         await Assert.That(await GetHeight(stackPanel, "DatePicker")).IsCloseTo(height, Precision);
         await Assert.That(await GetHeight(stackPanel, "TimePicker")).IsCloseTo(height, Precision);
-
-        recorder.Success();
     }
 
     [Test]
     public async Task SameHeightWithOutlinedStyle()
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>("""
             <StackPanel>
                 <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="Hint" />
@@ -103,8 +89,6 @@ public class TextFieldDefaultHeightTests : TestBase
         await Assert.That(await GetHeight(stackPanel, "ComboBox")).IsCloseTo(height, Precision);
         await Assert.That(await GetHeight(stackPanel, "DatePicker")).IsCloseTo(height, Precision);
         await Assert.That(await GetHeight(stackPanel, "TimePicker")).IsCloseTo(height, Precision);
-
-        recorder.Success();
     }
 
     private static async Task<double> GetHeight(IVisualElement container, string type, string? optionalName = null)

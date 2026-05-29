@@ -29,7 +29,7 @@ public class ColorPickerTests
     {
         ColorPicker colorPicker = CreateElement();
         Slider slider = GetHueSlider(colorPicker);
-        await Assert.That(colorPicker.Color).IsEqualTo(default);
+        await Assert.That(colorPicker.Color).IsEqualTo(default(Color));
         await Assert.That(slider.Value).IsEqualTo(0);
 
         //Thumb should be in the bottom left corner
