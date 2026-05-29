@@ -53,6 +53,7 @@ partial class ThemeTests
           <TextBlock Text="ComboBox.HoverBorder" Background="{StaticResource MaterialDesign.Brush.ComboBox.HoverBorder}" />
           <TextBlock Text="ComboBox.Border" Background="{StaticResource MaterialDesign.Brush.ComboBox.Border}" />
           <TextBlock Text="ComboBox.OutlineBorder" Background="{StaticResource MaterialDesign.Brush.ComboBox.OutlineBorder}" />
+          <TextBlock Text="ComboBox.DropDown.Background" Background="{StaticResource MaterialDesign.Brush.ComboBox.DropDown.Background}" />
           <TextBlock Text="ComboBox.Popup.DarkBackground" Background="{StaticResource MaterialDesign.Brush.ComboBox.Popup.DarkBackground}" />
           <TextBlock Text="ComboBox.Popup.DarkForeground" Background="{StaticResource MaterialDesign.Brush.ComboBox.Popup.DarkForeground}" />
           <TextBlock Text="ComboBox.Popup.LightBackground" Background="{StaticResource MaterialDesign.Brush.ComboBox.Popup.LightBackground}" />
@@ -344,6 +345,11 @@ partial class ThemeTests
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.OutlineBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesign.Brush.ComboBox.OutlineBorder"));
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.DropDown.Background\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesign.Brush.ComboBox.DropDown.Background"));
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ComboBox.Popup.DarkBackground\"]");
@@ -955,6 +961,7 @@ partial class ThemeTests
         yield return "MaterialDesign.Brush.ComboBox.HoverBorder";
         yield return "MaterialDesign.Brush.ComboBox.Border";
         yield return "MaterialDesign.Brush.ComboBox.OutlineBorder";
+        yield return "MaterialDesign.Brush.ComboBox.DropDown.Background";
         yield return "MaterialDesign.Brush.ComboBox.Popup.DarkBackground";
         yield return "MaterialDesign.Brush.ComboBox.Popup.DarkForeground";
         yield return "MaterialDesign.Brush.ComboBox.Popup.LightBackground";

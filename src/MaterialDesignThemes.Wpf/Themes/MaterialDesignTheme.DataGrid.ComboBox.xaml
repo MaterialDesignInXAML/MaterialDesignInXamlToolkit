@@ -159,7 +159,7 @@
         <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" UseLayoutRounding="True">
           <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
             <Border x:Name="shadow"
-                    Background="{DynamicResource MaterialDesign.Brush.Background}"
+                    Background="{DynamicResource MaterialDesign.Brush.ComboBox.DropDown.Background}"
                     BorderThickness="1"
                     CornerRadius="2"
                     Effect="{DynamicResource MaterialDesignShadowDepth2}" />
@@ -167,7 +167,7 @@
           <Border x:Name="dropDownBorder"
                   MinWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=DataGridCell}}"
                   Margin="{Binding ElementName=shadow, Path=Margin, Mode=OneWay}"
-                  Background="Transparent"
+                  Background="{DynamicResource MaterialDesign.Brush.ComboBox.DropDown.Background}"
                   BorderBrush="{DynamicResource MaterialDesign.Brush.DataGrid.ComboBoxHover}"
                   BorderThickness="1"
                   CornerRadius="2">
@@ -285,7 +285,7 @@
         <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" UseLayoutRounding="True">
           <AdornerDecorator CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
             <Border x:Name="shadow"
-                    Background="{DynamicResource MaterialDesign.Brush.Background}"
+                    Background="{DynamicResource MaterialDesign.Brush.ComboBox.DropDown.Background}"
                     BorderThickness="1"
                     CornerRadius="2"
                     Effect="{DynamicResource MaterialDesignShadowDepth2}" />
@@ -293,7 +293,7 @@
           <Border x:Name="dropDownBorder"
                   MinWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=DataGridCell}}"
                   Margin="{Binding ElementName=shadow, Path=Margin, Mode=OneWay}"
-                  Background="Transparent"
+                  Background="{DynamicResource MaterialDesign.Brush.ComboBox.DropDown.Background}"
                   BorderBrush="{DynamicResource MaterialDesign.Brush.DataGrid.ComboBoxHover}"
                   BorderThickness="1"
                   CornerRadius="2">
