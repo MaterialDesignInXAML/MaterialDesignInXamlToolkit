@@ -39,8 +39,6 @@ public class TabControlTests : TestBase
         await MaterialDesignSpec.AssertContrastRatio(foregroundValue, backgroundValue, MaterialDesignSpec.MinimumContrastSmallText);
 
         await Assert.That(selectedTabUnderline).IsEqualTo(foregroundValue);
-
-        recorder.Success();
     }
 
     [Description("Issue 2983")]
