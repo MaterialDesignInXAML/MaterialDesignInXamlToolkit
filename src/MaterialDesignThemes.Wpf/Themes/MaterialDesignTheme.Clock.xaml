@@ -3,6 +3,7 @@
                     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
                     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
 
+  
   <Style x:Key="MaterialDesignClockItemThumb" TargetType="{x:Type Thumb}">
     <Setter Property="Template">
       <Setter.Value>
@@ -89,10 +90,16 @@
   </Style>
 
   <Style x:Key="MaterialDesignClock" TargetType="{x:Type wpf:Clock}">
+    <Style.Resources>
+      <converters:CornerRadiusCloneConverter x:Key="FixedBottomCornerRadiusConverter"
+                                             FixedBottomLeft="0"
+                                             FixedBottomRight="0" />
+    </Style.Resources>
     <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="ButtonRadiusInnerRatio" Value=".6" />
     <Setter Property="ButtonRadiusRatio" Value=".835" />
+    <Setter Property="CornerRadius" Value="2"/>
     <Setter Property="ButtonStyle">
       <Setter.Value>
         <Style TargetType="{x:Type wpf:ClockItemButton}">
@@ -180,7 +187,7 @@
           <Border Background="{TemplateBinding Background}"
                   BorderBrush="{TemplateBinding BorderBrush}"
                   BorderThickness="{TemplateBinding BorderThickness}"
-                  CornerRadius="2">
+                  CornerRadius="{TemplateBinding CornerRadius}">
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="DisplayModeStates">
                 <VisualStateGroup.Transitions>
@@ -621,7 +628,7 @@
               <Border Height="120"
                       Margin="0,0,0,12"
                       Background="{DynamicResource MaterialDesign.Brush.Primary}"
-                      CornerRadius="2 2 0 0"
+                      CornerRadius="{TemplateBinding CornerRadius, Converter={StaticResource FixedBottomCornerRadiusConverter}}"
                       Visibility="{TemplateBinding IsHeaderVisible, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}">
                 <StackPanel x:Name="TimeReadoutStackPanel"
                             Margin="24"
@@ -855,6 +862,7 @@
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="ButtonRadiusInnerRatio" Value=".6" />
     <Setter Property="ButtonRadiusRatio" Value=".835" />
+    <Setter Property="CornerRadius" Value="2"/>
     <Setter Property="ButtonStyle">
       <Setter.Value>
         <Style TargetType="{x:Type wpf:ClockItemButton}">
@@ -940,7 +948,7 @@
           <Border Background="{TemplateBinding Background}"
                   BorderBrush="{TemplateBinding BorderBrush}"
                   BorderThickness="{TemplateBinding BorderThickness}"
-                  CornerRadius="2">
+                  CornerRadius="{TemplateBinding CornerRadius}">
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="DisplayModeStates">
                 <VisualStateGroup.Transitions>
@@ -1762,7 +1770,7 @@
           <Border Background="{TemplateBinding Background}"
                   BorderBrush="{TemplateBinding BorderBrush}"
                   BorderThickness="{TemplateBinding BorderThickness}"
-                  CornerRadius="2">
+                  CornerRadius="{TemplateBinding CornerRadius}">
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="DisplayModeStates">
                 <VisualStateGroup.Transitions>
@@ -2577,7 +2585,7 @@
           <Border Background="{TemplateBinding Background}"
                   BorderBrush="{TemplateBinding BorderBrush}"
                   BorderThickness="{TemplateBinding BorderThickness}"
-                  CornerRadius="2">
+                  CornerRadius="{TemplateBinding CornerRadius}">
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="DisplayModeStates">
                 <VisualStateGroup.Transitions>
@@ -3398,7 +3406,7 @@
           <Border Background="{TemplateBinding Background}"
                   BorderBrush="{TemplateBinding BorderBrush}"
                   BorderThickness="{TemplateBinding BorderThickness}"
-                  CornerRadius="2">
+                  CornerRadius="{TemplateBinding CornerRadius}">
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="DisplayModeStates">
                 <VisualStateGroup.Transitions>
