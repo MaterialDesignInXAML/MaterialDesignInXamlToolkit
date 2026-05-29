@@ -279,11 +279,10 @@ public class ComboBoxTests : TestBase
 
         var stackPanel = await LoadXaml<StackPanel>($$"""
              <StackPanel>
-               <ComboBox x:Name="Combo"
-                         Width="200">
+               <ComboBox Width="200">
                  <ComboBox.Resources>
                    <SolidColorBrush x:Key="MaterialDesign.Brush.ComboBox.DropDown.Background"
-                                   Color="#CC336699" />
+                                    Color="#CC336699" />
                  </ComboBox.Resources>
                  <ComboBoxItem Content="Android" />
                  <ComboBoxItem Content="iOS" />
@@ -292,16 +291,14 @@ public class ComboBoxTests : TestBase
              </StackPanel>
              """);
 
-        var comboBox = await stackPanel.GetElement<ComboBox>("Combo");
+        var comboBox = await stackPanel.GetElement<ComboBox>();
         await comboBox.LeftClick(Position.RightCenter);
 
         var popup = await Wait.For(async () => await comboBox.GetElement<ComboBoxPopup>("PART_Popup"));
-        var popupBackground = await popup.GetProperty<Brush>(Control.BackgroundProperty);
-        var popupBackgroundBrush = popupBackground as SolidColorBrush;
+        Color? popupBackground = await popup.GetBackgroundColor();
 
         await Assert.That(popupBackground).IsNotNull();
-        await Assert.That(popupBackgroundBrush).IsNotNull();
-        await Assert.That(popupBackgroundBrush!.Color).IsEqualTo((Color)ColorConverter.ConvertFromString("#CC336699"));
+        await Assert.That(popupBackground).IsEqualTo((Color)ColorConverter.ConvertFromString("#CC336699"));
 
         recorder.Success();
     }
