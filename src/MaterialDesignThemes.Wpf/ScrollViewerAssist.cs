@@ -56,7 +56,7 @@ public static class ScrollViewerAssist
         => (PaddingMode)element.GetValue(PaddingModeProperty);
 
     public static readonly DependencyProperty IgnorePaddingProperty = DependencyProperty.RegisterAttached(
-    "IgnorePadding", typeof(bool), typeof(ScrollViewerAssist), new PropertyMetadata(true));
+        "IgnorePadding", typeof(bool), typeof(ScrollViewerAssist), new PropertyMetadata(true));
 
     public static void SetIgnorePadding(DependencyObject element, bool value) => element.SetValue(IgnorePaddingProperty, value);
     public static bool GetIgnorePadding(DependencyObject element) => (bool)element.GetValue(IgnorePaddingProperty);
@@ -191,7 +191,7 @@ public static class ScrollViewerAssist
         {
             if (sv.IsLoaded)
             {
-                DoOnLoaded(sv);
+                ApplyBubbleVerticalScrollHooks(sv);
             }
             else
             {
@@ -204,7 +204,7 @@ public static class ScrollViewerAssist
         {
             if (sender is ScrollViewer sv)
             {
-                DoOnLoaded(sv);
+                ApplyBubbleVerticalScrollHooks(sv);
             }
         }
 
@@ -244,7 +244,7 @@ public static class ScrollViewerAssist
             sv.AddHandler(UIElement.MouseWheelEvent, (RoutedEventHandler)ScrollViewerOnMouseWheel, true);
         }
 
-        static void DoOnLoaded(ScrollViewer sv)
+        static void ApplyBubbleVerticalScrollHooks(ScrollViewer sv)
         {
             if (GetBubbleVerticalScroll(sv))
             {
@@ -255,6 +255,8 @@ public static class ScrollViewerAssist
             else
             {
                 RemoveHook(sv);
+                UnregisterForMouseWheelEvent(sv);
+                UnregisterForUnloadedEvent(sv);
             }
         }
 

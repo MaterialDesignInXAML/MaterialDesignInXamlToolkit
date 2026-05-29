@@ -34,6 +34,7 @@
                             wpf:ScrollViewerAssist.SyncHorizontalOffset="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
                             wpf:ScrollViewerAssist.IgnorePadding="{Binding Path=(wpf:ScrollViewerAssist.IgnorePadding), RelativeSource={RelativeSource TemplatedParent}}"
                             wpf:ScrollViewerAssist.PaddingMode="{Binding Path=(wpf:ScrollViewerAssist.PaddingMode), RelativeSource={RelativeSource TemplatedParent}}"
+                            wpf:ScrollViewerAssist.BubbleVerticalScroll="{Binding Path=(wpf:ScrollViewerAssist.BubbleVerticalScroll), RelativeSource={RelativeSource TemplatedParent}}"
                             DockPanel.Dock="Top"
                             Focusable="false"
                             HorizontalScrollBarVisibility="Hidden"
@@ -212,9 +213,9 @@
       <converters:ListViewGridViewConverter x:Key="MaterialDesignListViewTemplateConverter">
         <converters:ListViewGridViewConverter.DefaultValue>
           <ControlTemplate TargetType="{x:Type ListView}">
-            <ScrollViewer>
+            <ScrollViewer wpf:ScrollViewerAssist.BubbleVerticalScroll="{Binding Path=(wpf:ScrollViewerAssist.BubbleVerticalScroll), RelativeSource={RelativeSource TemplatedParent}}">
               <ItemsPresenter />
-            </ScrollViewer>
+            </ScrollViewer> 
             <ControlTemplate.Triggers>
               <Trigger Property="IsGrouping" Value="True">
                 <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
@@ -224,7 +225,8 @@
         </converters:ListViewGridViewConverter.DefaultValue>
         <converters:ListViewGridViewConverter.ViewValue>
           <ControlTemplate TargetType="{x:Type ListView}">
-            <ScrollViewer Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}">
+            <ScrollViewer Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}"
+                          wpf:ScrollViewerAssist.BubbleVerticalScroll="{Binding Path=(wpf:ScrollViewerAssist.BubbleVerticalScroll), RelativeSource={RelativeSource TemplatedParent}}">
               <ItemsPresenter />
             </ScrollViewer>
             <ControlTemplate.Triggers>

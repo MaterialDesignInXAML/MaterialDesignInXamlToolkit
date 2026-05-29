@@ -489,7 +489,7 @@
                   BorderThickness="{TemplateBinding BorderThickness}"
                   CornerRadius="{TemplateBinding wpf:DataGridAssist.CornerRadius}"
                   SnapsToDevicePixels="True">
-            <ScrollViewer x:Name="DG_ScrollViewer" Focusable="false">
+            <ScrollViewer x:Name="DG_ScrollViewer" Focusable="false" wpf:ScrollViewerAssist.BubbleVerticalScroll="{Binding Path=(wpf:ScrollViewerAssist.BubbleVerticalScroll), RelativeSource={RelativeSource TemplatedParent}}">
               <ScrollViewer.Template>
                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
                   <Grid>

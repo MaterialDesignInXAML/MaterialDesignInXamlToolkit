@@ -284,6 +284,7 @@
                           Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}"
                           wpf:ScrollViewerAssist.IgnorePadding="{Binding Path=(wpf:ScrollViewerAssist.IgnorePadding), RelativeSource={RelativeSource TemplatedParent}}"
                           wpf:ScrollViewerAssist.PaddingMode="{Binding Path=(wpf:ScrollViewerAssist.PaddingMode), RelativeSource={RelativeSource TemplatedParent}}"
+                          wpf:ScrollViewerAssist.BubbleVerticalScroll="{Binding Path=(wpf:ScrollViewerAssist.BubbleVerticalScroll), RelativeSource={RelativeSource TemplatedParent}}"
                           Padding="{TemplateBinding Padding}"
                           Background="{TemplateBinding Background}"
                           CanContentScroll="false"
