@@ -54,57 +54,6 @@
             <TextBlock Margin="8,0,0,0" Text="EXPLORE" />
           </StackPanel>
         </Button>
-
-        <CheckBox x:Name="cbBubbleVerticalScroll" Content="materialDesign:ScrollViewerAssist.BubbleVerticalScroll" />
-        <ScrollViewer Height="400">
-          <StackPanel Orientation="Horizontal">
-            <DockPanel Margin="0,0,32,0" LastChildFill="False">
-              <TextBlock DockPanel.Dock="Top" Text="DataGrid" />
-              <DataGrid materialDesign:ScrollViewerAssist.BubbleVerticalScroll="{Binding ElementName=cbBubbleVerticalScroll, Path=IsChecked}"
-                        Background="Fuchsia"
-                        DockPanel.Dock="Top"
-                        ItemsSource="{Binding Numbers}">
-                <DataGrid.Columns>
-                  <DataGridTextColumn Binding="{Binding .}" Header="Number" />
-                </DataGrid.Columns>
-              </DataGrid>
-            </DockPanel>
-
-            <DockPanel Margin="0,0,32,0" LastChildFill="False">
-              <TextBlock DockPanel.Dock="Top" Text="ListBox" />
-              <ListBox materialDesign:ScrollViewerAssist.BubbleVerticalScroll="{Binding ElementName=cbBubbleVerticalScroll, Path=IsChecked}"
-                       Background="Fuchsia"
-                       DockPanel.Dock="Top"
-                       ItemsSource="{Binding Numbers}" />
-            </DockPanel>
-
-            <DockPanel Margin="0,0,32,0" LastChildFill="False">
-              <TextBlock DockPanel.Dock="Top" Text="ListView" />
-              <ListView materialDesign:ScrollViewerAssist.BubbleVerticalScroll="{Binding ElementName=cbBubbleVerticalScroll, Path=IsChecked}"
-                        Background="Fuchsia"
-                        DockPanel.Dock="Top"
-                        ItemsSource="{Binding Numbers}" />
-            </DockPanel>
-
-            <DockPanel Margin="0,0,32,0" LastChildFill="False">
-              <TextBlock DockPanel.Dock="Top" Text="TreeView" />
-              <TreeView materialDesign:ScrollViewerAssist.BubbleVerticalScroll="{Binding ElementName=cbBubbleVerticalScroll, Path=IsChecked}"
-                        Background="Fuchsia"
-                        DockPanel.Dock="Top"
-                        ItemsSource="{Binding Numbers}" />
-            </DockPanel>
-
-            <DockPanel Margin="0,0,32,0" LastChildFill="False">
-              <TextBlock DockPanel.Dock="Top" Text="TreeListView" />
-              <materialDesign:TreeListView materialDesign:ScrollViewerAssist.BubbleVerticalScroll="{Binding ElementName=cbBubbleVerticalScroll, Path=IsChecked}"
-                                           Background="Fuchsia"
-                                           DockPanel.Dock="Top"
-                                           ItemsSource="{Binding Numbers}" />
-            </DockPanel>
-
-          </StackPanel>
-        </ScrollViewer>
-
       </StackPanel>
     </Grid>
 

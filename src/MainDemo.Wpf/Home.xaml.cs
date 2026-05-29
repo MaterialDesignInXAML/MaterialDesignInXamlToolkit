@@ -5,14 +5,7 @@ namespace MaterialDesignDemo;
 
 public partial class Home
 {
-    public Home()
-    {
-        InitializeComponent();
-        Numbers = Enumerable.Range(0, 100).ToList();
-        DataContext = this;
-    }
-
-    public IReadOnlyList<int> Numbers { get; }
+    public Home() => InitializeComponent();
 
     private void GitHubButton_OnClick(object sender, RoutedEventArgs e)
         => Link.OpenInBrowser(ConfigurationManager.AppSettings["GitHub"]);
