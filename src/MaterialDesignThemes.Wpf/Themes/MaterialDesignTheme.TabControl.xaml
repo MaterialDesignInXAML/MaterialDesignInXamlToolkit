@@ -820,10 +820,12 @@
                   <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="1*" />
+                    <RowDefinition Height="Auto" />
                   </Grid.RowDefinitions>
                   <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="Auto" />
                   </Grid.ColumnDefinitions>
                   <ContentPresenter x:Name="FloatingContentPanel"
                                     Grid.Row="0"
@@ -842,8 +844,16 @@
                                IsItemsHost="True"
                                Rows="0" />
 
+                  <ContentPresenter x:Name="AdditionalEndContentPresenter"
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Bottom"
+                                    Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:NavigationRailAssist.AdditionalEndContent)}"
+                                    Focusable="False" />
+
                   <Rectangle x:Name="DividerRect"
-                             Grid.RowSpan="2"
+                             Grid.RowSpan="3"
                              Width="1"
                              Height="Auto"
                              HorizontalAlignment="Right"
@@ -881,7 +891,7 @@
             </Trigger>
             <Trigger Property="TabStripPlacement" Value="Top">
               <Setter Property="BorderThickness" Value="0,0,0,1" />
-              <Setter TargetName="DividerRect" Property="Grid.ColumnSpan" Value="2" />
+              <Setter TargetName="DividerRect" Property="Grid.ColumnSpan" Value="3" />
               <Setter TargetName="DividerRect" Property="Grid.RowSpan" Value="1" />
               <Setter TargetName="DividerRect" Property="Height" Value="1" />
               <Setter TargetName="DividerRect" Property="HorizontalAlignment" Value="Stretch" />
@@ -892,10 +902,12 @@
               <Setter TargetName="HeaderPanel" Property="Grid.Row" Value="0" />
               <Setter TargetName="HeaderPanel" Property="Rows" Value="1" />
               <Setter TargetName="TabGrid" Property="DockPanel.Dock" Value="Top" />
+              <Setter TargetName="AdditionalEndContentPresenter" Property="Grid.Column" Value="2" />
+              <Setter TargetName="AdditionalEndContentPresenter" Property="Grid.Row" Value="0" />
             </Trigger>
             <Trigger Property="TabStripPlacement" Value="Bottom">
               <Setter Property="BorderThickness" Value="0,1,0,0" />
-              <Setter TargetName="DividerRect" Property="Grid.ColumnSpan" Value="2" />
+              <Setter TargetName="DividerRect" Property="Grid.ColumnSpan" Value="3" />
               <Setter TargetName="DividerRect" Property="Grid.RowSpan" Value="1" />
               <Setter TargetName="DividerRect" Property="Height" Value="1" />
               <Setter TargetName="DividerRect" Property="HorizontalAlignment" Value="Stretch" />
@@ -906,6 +918,8 @@
               <Setter TargetName="HeaderPanel" Property="Grid.Row" Value="0" />
               <Setter TargetName="HeaderPanel" Property="Rows" Value="1" />
               <Setter TargetName="TabGrid" Property="DockPanel.Dock" Value="Bottom" />
+              <Setter TargetName="AdditionalEndContentPresenter" Property="Grid.Column" Value="2" />
+              <Setter TargetName="AdditionalEndContentPresenter" Property="Grid.Row" Value="0" />
             </Trigger>
             <Trigger Property="TabStripPlacement" Value="Right">
               <Setter Property="BorderThickness" Value="1,0,0,0" />

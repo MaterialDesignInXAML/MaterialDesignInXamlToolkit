@@ -2,7 +2,7 @@ namespace MaterialDesignThemes.Wpf;
 
 public static class NavigationRailAssist
 {
-    private static readonly CornerRadius DefaultCornerRadius = new CornerRadius(2.0);
+    private static readonly CornerRadius DefaultCornerRadius = new(2.0);
 
     #region CornerRadius
     /// <summary>
@@ -27,6 +27,13 @@ public static class NavigationRailAssist
     public static object GetFloatingContent(DependencyObject element) => (object)element.GetValue(FloatingContentProperty);
     public static void SetFloatingContent(DependencyObject element, object value) => element.SetValue(FloatingContentProperty, value);
 
+    #endregion
+
+    #region Property AdditionalEndContent
+    public static readonly DependencyProperty AdditionalEndContentProperty = DependencyProperty.RegisterAttached(
+        "AdditionalEndContent", typeof(object), typeof(NavigationRailAssist), new PropertyMetadata(null));
+    public static object GetAdditionalEndContent(DependencyObject obj) => (object)obj.GetValue(AdditionalEndContentProperty);
+    public static void SetAdditionalEndContent(DependencyObject obj, object value) => obj.SetValue(AdditionalEndContentProperty, value);
     #endregion
 
     #region Property ShowSelectionBackground

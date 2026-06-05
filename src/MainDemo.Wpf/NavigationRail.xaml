@@ -792,5 +792,61 @@
         </materialDesign:Card>
       </smtx:XamlDisplay>
     </StackPanel>
+
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Additional End Content" />
+
+    <smtx:XamlDisplay UniqueKey="navrail_additionalEndContent_1">
+      <materialDesign:Card>
+        <TabControl Height="400"
+                    materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
+                    SnapsToDevicePixels="True"
+                    Style="{StaticResource MaterialDesignNavigationRailTabControl}"
+                    TabStripPlacement="Left">
+          <materialDesign:NavigationRailAssist.AdditionalEndContent>
+            <StackPanel>
+              <Button Margin="8"
+                      Background="{DynamicResource MaterialDesign.Brush.ToolBar.Background}"
+                      Content="{materialDesign:PackIcon Kind=Person}"
+                      Style="{StaticResource MaterialDesignIconButton}" />
+              <Button Margin="8"
+                      Content="{materialDesign:PackIcon Kind=Cog}"
+                      Style="{StaticResource MaterialDesignIconButton}" />
+            </StackPanel>
+          </materialDesign:NavigationRailAssist.AdditionalEndContent>
+          <TabItem>
+            <TabItem.Header>
+              <StackPanel Width="auto" Height="auto">
+                <materialDesign:PackIcon Width="24"
+                                         Height="24"
+                                         HorizontalAlignment="Center"
+                                         Kind="Folder" />
+                <TextBlock HorizontalAlignment="Center" Text="All Files" />
+              </StackPanel>
+            </TabItem.Header>
+            <TextBlock Margin="16"
+                       Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                       Text="All Files" />
+          </TabItem>
+
+          <TabItem>
+            <TabItem.Header>
+              <StackPanel Width="auto" Height="auto">
+                <materialDesign:PackIcon Width="24"
+                                         Height="24"
+                                         HorizontalAlignment="Center"
+                                         Kind="ClockOutline" />
+                <TextBlock HorizontalAlignment="Center" Text="Recent" />
+              </StackPanel>
+            </TabItem.Header>
+            <TextBlock Margin="16"
+                       Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                       Text="Recent" />
+          </TabItem>
+        </TabControl>
+      </materialDesign:Card>
+    </smtx:XamlDisplay>
+
   </StackPanel>
 </UserControl>
