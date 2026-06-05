@@ -47,6 +47,8 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
     private static int Compare(T value1, T value2) => _arithmetic.Compare(value1, value2);
 #endif
 
+    private bool _isTextChanging;
+
     #region DependencyProperties
 
     #region DependencyProperty : MinimumProperty
@@ -116,7 +118,7 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
         };
         upDownBase.RaiseEvent(args);
 
-        if (upDownBase._textBoxField is { } textBox)
+        if (!upDownBase._isTextChanging && upDownBase._textBoxField is { } textBox)
         {
             textBox.Text = Convert.ToString(e.NewValue, CultureInfo.CurrentCulture);
         }
@@ -196,10 +198,13 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
     public override void OnApplyTemplate()
     {
         if (_increaseButton != null)
+        {
             _increaseButton.Click -= IncreaseButtonOnClick;
-
+        }
         if (_decreaseButton != null)
+        {
             _decreaseButton.Click -= DecreaseButtonOnClick;
+        }
         if (_textBoxField != null)
         {
             _textBoxField.TextChanged -= OnTextBoxTextChanged;
@@ -243,7 +248,9 @@ public class UpDownBase<T, TArithmetic> : UpDownBase
         {
             if (TryParse(textBoxField.Text, CultureInfo.CurrentCulture, out T? value))
             {
+                _isTextChanging = true;
                 SetCurrentValue(ValueProperty, ClampValue(value));
+                _isTextChanging = false;
             }
         }
     }
