@@ -214,6 +214,30 @@ public class NumericUpDownTests : TestBase
     }
 
     [Test]
+    [Description("Issue 4061")]
+    public async Task NumericUpDown_WhenMinimumIsPositiveNumber_ItAllowsTextToBeChangedWithoutClamping()
+    {
+        //Arrange
+        //NB: Value should be something that is not equal to the minimum
+        var numericUpDown = await LoadXaml<NumericUpDown>("""
+        <materialDesign:NumericUpDown Tag="{Binding Value, RelativeSource={RelativeSource Self}, UpdateSourceTrigger=PropertyChanged}" Maximum="150" Minimum="60" Value="70" />
+        """);
+
+        var textBox = await numericUpDown.GetElement<TextBox>("PART_TextBox");
+
+        //Act
+        await textBox.MoveKeyboardFocus();
+        await textBox.SendKeyboardInput($"{ModifierKeys.Control}{Key.A}{ModifierKeys.None}8");
+        object? firstValue = await numericUpDown.GetTag();
+        await textBox.SendKeyboardInput($"7");
+        object? secondValue = await numericUpDown.GetTag();
+
+        //Assert
+        await Assert.That(firstValue?.ToString()).IsEqualTo("60");
+        await Assert.That(secondValue?.ToString()).IsEqualTo("87");
+    }
+
+    [Test]
     [Description("Issue 3827")]
     public async Task NumericUpDown_WhenBindingUpdateTriggerIsLostFocus_ItDoesNotUpdateUntilItLoosesFocus()
     {
