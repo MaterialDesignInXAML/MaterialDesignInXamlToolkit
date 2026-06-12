@@ -213,7 +213,8 @@
       <converters:ListViewGridViewConverter x:Key="MaterialDesignListViewTemplateConverter">
         <converters:ListViewGridViewConverter.DefaultValue>
           <ControlTemplate TargetType="{x:Type ListView}">
-            <ScrollViewer wpf:ScrollViewerAssist.BubbleVerticalScroll="{Binding Path=(wpf:ScrollViewerAssist.BubbleVerticalScroll), RelativeSource={RelativeSource TemplatedParent}}">
+            <ScrollViewer wpf:ScrollViewerAssist.BubbleVerticalScroll="{Binding Path=(wpf:ScrollViewerAssist.BubbleVerticalScroll), RelativeSource={RelativeSource TemplatedParent}}"
+                          Background="{TemplateBinding Background}">
               <ItemsPresenter />
             </ScrollViewer> 
             <ControlTemplate.Triggers>
@@ -226,7 +227,8 @@
         <converters:ListViewGridViewConverter.ViewValue>
           <ControlTemplate TargetType="{x:Type ListView}">
             <ScrollViewer Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}"
-                          wpf:ScrollViewerAssist.BubbleVerticalScroll="{Binding Path=(wpf:ScrollViewerAssist.BubbleVerticalScroll), RelativeSource={RelativeSource TemplatedParent}}">
+                          wpf:ScrollViewerAssist.BubbleVerticalScroll="{Binding Path=(wpf:ScrollViewerAssist.BubbleVerticalScroll), RelativeSource={RelativeSource TemplatedParent}}"
+                          Background="{TemplateBinding Background}">
               <ItemsPresenter />
             </ScrollViewer>
             <ControlTemplate.Triggers>
