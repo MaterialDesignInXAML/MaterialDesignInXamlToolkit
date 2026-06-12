@@ -275,8 +275,6 @@ public class ComboBoxTests : TestBase
     [Description("Issue 3887")]
     public async Task ComboBox_UsesDropDownBackgroundResource_WhenBackgroundIsNotSet()
     {
-        await using var recorder = new TestRecorder(App);
-
         var stackPanel = await LoadXaml<StackPanel>($$"""
              <StackPanel>
                <ComboBox Width="200">
@@ -294,12 +292,11 @@ public class ComboBoxTests : TestBase
         var comboBox = await stackPanel.GetElement<ComboBox>();
         await comboBox.LeftClick(Position.RightCenter);
 
+
         var popup = await Wait.For(async () => await comboBox.GetElement<ComboBoxPopup>("PART_Popup"));
         Color? popupBackground = await popup.GetBackgroundColor();
 
         await Assert.That(popupBackground).IsNotNull();
         await Assert.That(popupBackground).IsEqualTo((Color)ColorConverter.ConvertFromString("#CC336699"));
-
-        recorder.Success();
     }
 }

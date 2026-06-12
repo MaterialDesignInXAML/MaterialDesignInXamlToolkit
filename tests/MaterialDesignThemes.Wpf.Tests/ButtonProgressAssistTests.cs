@@ -52,7 +52,7 @@ public class ButtonProgressAssistTests
         Button testElement = new();
         // Assert defaults
         await Assert.That(ButtonProgressAssist.IsIndeterminateProperty.Name).IsEqualTo("IsIndeterminate");
-        await Assert.That(ButtonProgressAssist.GetIsIndeterminate(testElement)).IsEqualTo(default(bool));
+        await Assert.That(ButtonProgressAssist.GetIsIndeterminate(testElement)).IsFalse();
 
         // Assert setting works
         ButtonProgressAssist.SetIsIndeterminate(testElement, false);
@@ -65,7 +65,7 @@ public class ButtonProgressAssistTests
         Button testElement = new();
         // Assert defaults
         await Assert.That(ButtonProgressAssist.IndicatorForegroundProperty.Name).IsEqualTo("IndicatorForeground");
-        await Assert.That(ButtonProgressAssist.GetIndicatorForeground(testElement)).IsEqualTo(default(Brush));
+        await Assert.That(ButtonProgressAssist.GetIndicatorForeground(testElement)).IsNull();
 
         // Assert setting works
         ButtonProgressAssist.SetIndicatorForeground(testElement, Brushes.LightBlue);
@@ -78,7 +78,7 @@ public class ButtonProgressAssistTests
         Button testElement = new();
         // Assert defaults
         await Assert.That(ButtonProgressAssist.IndicatorBackgroundProperty.Name).IsEqualTo("IndicatorBackground");
-        await Assert.That(ButtonProgressAssist.GetIndicatorBackground(testElement)).IsEqualTo(default(Brush));
+        await Assert.That(ButtonProgressAssist.GetIndicatorBackground(testElement)).IsNull();
 
         // Assert setting works
         ButtonProgressAssist.SetIndicatorBackground(testElement, Brushes.DarkGoldenrod);
@@ -91,7 +91,7 @@ public class ButtonProgressAssistTests
         Button testElement = new();
         // Assert defaults
         await Assert.That(ButtonProgressAssist.IsIndicatorVisibleProperty.Name).IsEqualTo("IsIndicatorVisible");
-        await Assert.That(ButtonProgressAssist.GetIsIndicatorVisible(testElement)).IsEqualTo(default(bool));
+        await Assert.That(ButtonProgressAssist.GetIsIndicatorVisible(testElement)).IsFalse();
 
         // Assert setting works
         ButtonProgressAssist.SetIsIndicatorVisible(testElement, true);

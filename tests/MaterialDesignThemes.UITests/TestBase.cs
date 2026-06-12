@@ -16,6 +16,7 @@ using TUnit.Core.Interfaces;
 [assembly: GenerateHelpers(typeof(DrawerHost))]
 [assembly: GenerateHelpers(typeof(NumericUpDown))]
 [assembly: GenerateHelpers(typeof(PopupBox))]
+[assembly: GenerateHelpers(typeof(ComboBoxPopup))]
 [assembly: GenerateHelpers(typeof(SmartHint))]
 [assembly: GenerateHelpers(typeof(TimePicker))]
 [assembly: GenerateHelpers(typeof(TreeListView))]
