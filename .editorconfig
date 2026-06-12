@@ -132,6 +132,9 @@ csharp_style_expression_bodied_indexers = true:silent
 csharp_style_expression_bodied_lambdas = true:silent
 csharp_style_expression_bodied_local_functions = false:silent
 
+# TUnit0031: Async void methods and lambdas are not allowed
+dotnet_diagnostic.TUnit0031.severity = suggestion
+
 [*.{cs,vb}]
 #### Naming styles ####
 
@@ -188,3 +191,4 @@ dotnet_style_prefer_auto_properties = true:silent
 dotnet_style_object_initializer = true:suggestion
 dotnet_style_collection_initializer = true:suggestion
 dotnet_style_prefer_simplified_boolean_expressions = true:suggestion
+
