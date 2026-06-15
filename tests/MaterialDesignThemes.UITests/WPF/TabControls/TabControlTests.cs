@@ -284,7 +284,7 @@ public class TabControlTests : TestBase
         Visibility navigationPanelVisibility = await navigationPanel.GetVisibility();
 
         // Assert
-        await Assert.That(isOverflowing).IsEqualTo(true);
+        await Assert.That(isOverflowing).IsTrue();
         await Assert.That(navigationPanelVisibility).IsEqualTo(Visibility.Visible);
 
         recorder.Success();
@@ -322,7 +322,7 @@ public class TabControlTests : TestBase
         Visibility navigationPanelVisibility = await navigationPanel.GetVisibility();
 
         // Assert
-        await Assert.That(isOverflowing).IsEqualTo(true);
+        await Assert.That(isOverflowing).IsTrue();
         await Assert.That(navigationPanelVisibility).IsEqualTo(Visibility.Visible);
 
         recorder.Success();
