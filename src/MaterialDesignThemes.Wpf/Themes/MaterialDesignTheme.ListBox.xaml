@@ -959,4 +959,153 @@
   </Style>
 
   <!--#endregion-->
+
+  <Style x:Key="SegmentedListBoxItem" TargetType="ListBoxItem">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ListBoxItem.Border}" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Cursor" Value="{Binding Path=(wpf:ListBoxItemAssist.Cursor), RelativeSource={RelativeSource AncestorType=ListBox}}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
+    <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, FallbackValue=Left}" />
+    <Setter Property="Padding" Value="14,6,14,6" />
+    <Setter Property="SnapsToDevicePixels" Value="True" />
+    <Setter Property="Margin" Value="2" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+          <Border Margin="{TemplateBinding Margin}"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                ClipToBounds="{TemplateBinding ClipToBounds}"
+                CornerRadius="{Binding RelativeSource={RelativeSource AncestorType=ListBox}, Path=(wpf:ListBoxItemAssist.CornerRadius)}">
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup Name="CommonStates">
+                <VisualStateGroup.Transitions>
+                  <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
+                    <VisualTransition.GeneratedEasingFunction>
+                      <CircleEase EasingMode="EaseOut" />
+                    </VisualTransition.GeneratedEasingFunction>
+                  </VisualTransition>
+                </VisualStateGroup.Transitions>
+                <VisualState Name="Normal" />
+                <VisualState Name="MouseOver">
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="MouseOverBorder"
+                                   Storyboard.TargetProperty="Opacity"
+                                   To="1"
+                                   Duration="0" />
+                  </Storyboard>
+                </VisualState>
+                <VisualState Name="Disabled" />
+              </VisualStateGroup>
+              <VisualStateGroup Name="SelectionStates">
+                <VisualStateGroup.Transitions>
+                  <VisualTransition GeneratedDuration="0:0:0.6" />
+                </VisualStateGroup.Transitions>
+                <VisualState Name="Selected">
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="SelectedBorder"
+                                   Storyboard.TargetProperty="Opacity"
+                                   To="1"
+                                   Duration="0" />
+                  </Storyboard>
+                </VisualState>
+                <VisualState Name="Unselected" />
+                <VisualState Name="SelectedUnfocused">
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="SelectedUnfocusedBorder"
+                                   Storyboard.TargetProperty="Opacity"
+                                   To="1"
+                                   Duration="0" />
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Grid>
+
+              <Border x:Name="MouseOverBorder"
+                    Background="{Binding Path=(wpf:ListBoxItemAssist.HoverBackground), RelativeSource={RelativeSource TemplatedParent}}"
+                    CornerRadius="{Binding RelativeSource={RelativeSource AncestorType=ListBox}, Path=(wpf:ListBoxItemAssist.CornerRadius)}"
+                    Opacity="0" />
+              <Border x:Name="SelectedBorder"
+                    Background="{Binding Path=(wpf:ListBoxItemAssist.SelectedFocusedBackground), RelativeSource={RelativeSource TemplatedParent}}"
+                    CornerRadius="{Binding RelativeSource={RelativeSource AncestorType=ListBox}, Path=(wpf:ListBoxItemAssist.CornerRadius)}"
+                    Opacity="0" />
+              <Border x:Name="SelectedUnfocusedBorder"
+                    Background="{Binding Path=(wpf:ListBoxItemAssist.SelectedUnfocusedBackground), RelativeSource={RelativeSource TemplatedParent}}"
+                    CornerRadius="{Binding RelativeSource={RelativeSource AncestorType=ListBox}, Path=(wpf:ListBoxItemAssist.CornerRadius)}"
+                    Opacity="0" />
+              <wpf:Ripple x:Name="Ripple"
+                        Padding="{TemplateBinding Padding}"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                        ClipToBounds="True"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                        ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                        Feedback="{TemplateBinding Foreground, Converter={x:Static converters:BrushRoundConverter.Instance}}"
+                        Focusable="False"
+                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                <wpf:Ripple.Clip>
+                  <MultiBinding Converter="{x:Static converters:BorderClipConverter.Instance}">
+                    <Binding ElementName="MouseOverBorder" Path="ActualWidth" />
+                    <Binding ElementName="MouseOverBorder" Path="ActualHeight" />
+                    <Binding ElementName="MouseOverBorder" Path="CornerRadius" />
+                    <Binding ElementName="MouseOverBorder" Path="BorderThickness" />
+                  </MultiBinding>
+                </wpf:Ripple.Clip>
+              </wpf:Ripple>
+            </Grid>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+              <Setter TargetName="Ripple" Property="Opacity" Value=".92" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter Property="Opacity" Value=".56" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, FallbackValue=Center}" />
+    <Setter Property="wpf:ListBoxItemAssist.HoverBackground" Value="{Binding Foreground, RelativeSource={RelativeSource Self}, Converter={x:Static converters:BrushOpacityConverter.Instance}, ConverterParameter=0.1}" />
+    <Setter Property="wpf:ListBoxItemAssist.SelectedFocusedBackground" Value="{Binding Foreground, RelativeSource={RelativeSource Self}, Converter={x:Static converters:BrushOpacityConverter.Instance}, ConverterParameter=0.18}" />
+    <Setter Property="wpf:ListBoxItemAssist.SelectedUnfocusedBackground" Value="{Binding Foreground, RelativeSource={RelativeSource Self}, Converter={x:Static converters:BrushOpacityConverter.Instance}, ConverterParameter=0.09}" />
+  </Style>
+
+  <Style x:Key="SegmentedListBox" TargetType="ListBox">
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ListBox.SegmentedBackground}" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="ItemContainerStyle" Value="{StaticResource SegmentedListBoxItem}" />
+    <Setter Property="ItemsPanel">
+      <Setter.Value>
+        <ItemsPanelTemplate>
+          <StackPanel Orientation="Horizontal" />
+        </ItemsPanelTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="Padding" Value="2" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="ListBox">
+          <Border Margin="{TemplateBinding Margin}"
+                Padding="{TemplateBinding Padding}"
+                HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                wpf:ElevationAssist.Elevation="{TemplateBinding wpf:ElevationAssist.Elevation}"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                ClipToBounds="{TemplateBinding ClipToBounds}"
+                CornerRadius="{Binding RelativeSource={RelativeSource AncestorType=ListBox}, Path=(wpf:ListBoxItemAssist.CornerRadius)}">
+            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="wpf:ListBoxItemAssist.CornerRadius" Value="8" />
+  </Style>
+
 </ResourceDictionary>

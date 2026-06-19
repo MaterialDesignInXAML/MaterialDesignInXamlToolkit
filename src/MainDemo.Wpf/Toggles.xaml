@@ -452,6 +452,67 @@
       </ListBox>
     </smtx:XamlDisplay>
 
+    <WrapPanel Margin="0,24,0,0">
+      <smtx:XamlDisplay UniqueKey="toggle_buttons_43">
+        <ListBox SelectedIndex="0" Style="{StaticResource SegmentedListBox}"
+                 VerticalAlignment="Center">
+          <ListBoxItem>Male</ListBoxItem>
+          <ListBoxItem>Female</ListBoxItem>
+          <ListBoxItem>Diverse</ListBoxItem>
+        </ListBox>
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay UniqueKey="toggle_buttons_44">
+        <ListBox SelectedIndex="0" Style="{StaticResource SegmentedListBox}"
+                 VerticalAlignment="Center">
+          <ListBoxItem>
+            <StackPanel Orientation="Horizontal">
+              <materialDesign:PackIcon VerticalAlignment="Center" Kind="ListBox" />
+              <TextBlock Text="List" />
+            </StackPanel>
+          </ListBoxItem>
+          <ListBoxItem>
+            <StackPanel Orientation="Horizontal">
+              <materialDesign:PackIcon VerticalAlignment="Center" Kind="FileTree" />
+              <TextBlock Text="Tree" />
+            </StackPanel>
+          </ListBoxItem>
+        </ListBox>
+      </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay UniqueKey="toggle_buttons_45">
+        <ListBox materialDesign:ListBoxItemAssist.CornerRadius="16"
+                 BorderBrush="{DynamicResource MaterialDesign.Brush.Foreground}"
+                 BorderThickness="1"
+                 FontSize="20"
+                 SelectedIndex="0"
+                 Style="{StaticResource SegmentedListBox}">
+          <ListBox.ItemContainerStyle>
+            <Style TargetType="ListBoxItem" BasedOn="{StaticResource SegmentedListBoxItem}">
+              <Setter Property="materialDesign:ListBoxItemAssist.SelectedFocusedBackground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+              <Setter Property="materialDesign:ListBoxItemAssist.SelectedUnfocusedBackground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+            </Style>
+          </ListBox.ItemContainerStyle>
+          <ListBoxItem>Monthly</ListBoxItem>
+          <ListBoxItem>
+            <StackPanel Orientation="Horizontal">
+              <TextBlock VerticalAlignment="Center" Text="Yearly" />
+              <materialDesign:Chip Background="Red"
+                                   Content="-20%"
+                                   FontSize="18"
+                                   IconBackground="Red"
+                                   IconForeground="{DynamicResource MaterialDesign.Brush.Foreground}"
+                                   IsHitTestVisible="False">
+                <materialDesign:Chip.Icon>
+                  <materialDesign:PackIcon Kind="Tag" />
+                </materialDesign:Chip.Icon>
+              </materialDesign:Chip>
+            </StackPanel>
+          </ListBoxItem>
+        </ListBox>
+      </smtx:XamlDisplay>
+    </WrapPanel>
+
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
     <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Tabs" />
 

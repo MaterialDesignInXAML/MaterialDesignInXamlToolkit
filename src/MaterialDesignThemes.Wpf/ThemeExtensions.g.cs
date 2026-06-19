@@ -36,6 +36,7 @@ static partial class ThemeExtensions
         theme.CheckBoxes.Off = BaseThemeColors.Black500;
         theme.Chips.Background = BaseThemeColors.Black50;
         theme.Chips.OutlineBorder = BaseThemeColors.Black100;
+        theme.ListBoxes.SegmentedBackground = BaseThemeColors.Black50;
         theme.ColorZones.DarkBackground = BaseThemeColors.Neutral100;
         theme.ColorZones.DarkForeground = BaseThemeColors.Neutral900;
         theme.ColorZones.LightBackground = BaseThemeColors.Neutral900;
@@ -127,6 +128,7 @@ static partial class ThemeExtensions
         theme.CheckBoxes.Off = BaseThemeColors.White500;
         theme.Chips.Background = BaseThemeColors.White50;
         theme.Chips.OutlineBorder = BaseThemeColors.White100;
+        theme.ListBoxes.SegmentedBackground = BaseThemeColors.White50;
         theme.ColorZones.DarkBackground = BaseThemeColors.Neutral100;
         theme.ColorZones.DarkForeground = BaseThemeColors.Neutral900;
         theme.ColorZones.LightBackground = BaseThemeColors.Neutral900;

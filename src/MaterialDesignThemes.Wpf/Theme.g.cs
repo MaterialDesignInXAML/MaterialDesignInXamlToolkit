@@ -17,6 +17,7 @@ partial class Theme
         Cards = new(this);
         CheckBoxes = new(this);
         Chips = new(this);
+        ListBoxes = new(this);
         ColorZones = new(this);
         ComboBoxes = new(this);
         DataGrids = new(this);
@@ -75,6 +76,8 @@ partial class Theme
     public CheckBox CheckBoxes { get; set; }
 
     public Chip Chips { get; set; }
+
+    public ListBox ListBoxes { get; set; }
 
     public ColorZone ColorZones { get; set; }
 
@@ -285,6 +288,23 @@ partial class Theme
         {
            get => _theme.Resolve(_outlineBorder);
            set => _outlineBorder = value;
+        }
+
+    }
+
+    public class ListBox
+    {
+        private readonly Theme _theme;
+        public ListBox(Theme theme)
+        {
+            _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+        }
+
+        private ColorReference _segmentedBackground;
+        public ColorReference SegmentedBackground
+        {
+           get => _theme.Resolve(_segmentedBackground);
+           set => _segmentedBackground = value;
         }
 
     }
