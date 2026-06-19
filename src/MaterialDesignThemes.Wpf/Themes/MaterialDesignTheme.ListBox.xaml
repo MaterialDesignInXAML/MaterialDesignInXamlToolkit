@@ -969,10 +969,11 @@
     <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, FallbackValue=Left}" />
     <Setter Property="Padding" Value="14,6,14,6" />
     <Setter Property="SnapsToDevicePixels" Value="True" />
+    <Setter Property="Margin" Value="2" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ListBoxItem}">
-          <Border Margin="4"
+          <Border Margin="{TemplateBinding Margin}"
                 Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
@@ -1075,10 +1076,9 @@
   </Style>
 
   <Style x:Key="SegmentedListBox" TargetType="ListBox">
-    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Chip.Background}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.ListBox.SegmentedBackground}" />
     <Setter Property="BorderBrush" Value="Transparent" />
     <Setter Property="BorderThickness" Value="0" />
-    <Setter Property="HorizontalAlignment" Value="Left" />
     <Setter Property="ItemContainerStyle" Value="{StaticResource SegmentedListBoxItem}" />
     <Setter Property="ItemsPanel">
       <Setter.Value>
@@ -1105,7 +1105,6 @@
         </ControlTemplate>
       </Setter.Value>
     </Setter>
-    <Setter Property="VerticalAlignment" Value="Center" />
     <Setter Property="wpf:ListBoxItemAssist.CornerRadius" Value="8" />
   </Style>
 

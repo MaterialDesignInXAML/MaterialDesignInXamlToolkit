@@ -163,7 +163,9 @@
             "light": "Black50",
             "dark": "White50"
         },
-        "alternateKeys": [],
+        "alternateKeys": [
+            "MaterialDesign.Brush.ListBox.SegmentedBackground"
+        ],
         "obsoleteKeys": [
             "MaterialDesignChipBackground"
         ]

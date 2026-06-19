@@ -454,7 +454,8 @@
 
     <WrapPanel Margin="0,24,0,0">
       <smtx:XamlDisplay UniqueKey="toggle_buttons_43">
-        <ListBox SelectedIndex="0" Style="{StaticResource SegmentedListBox}">
+        <ListBox SelectedIndex="0" Style="{StaticResource SegmentedListBox}"
+                 VerticalAlignment="Center">
           <ListBoxItem>Male</ListBoxItem>
           <ListBoxItem>Female</ListBoxItem>
           <ListBoxItem>Diverse</ListBoxItem>
@@ -462,7 +463,8 @@
       </smtx:XamlDisplay>
 
       <smtx:XamlDisplay UniqueKey="toggle_buttons_44">
-        <ListBox SelectedIndex="0" Style="{StaticResource SegmentedListBox}">
+        <ListBox SelectedIndex="0" Style="{StaticResource SegmentedListBox}"
+                 VerticalAlignment="Center">
           <ListBoxItem>
             <StackPanel Orientation="Horizontal">
               <materialDesign:PackIcon VerticalAlignment="Center" Kind="ListBox" />

@@ -42,6 +42,7 @@ partial class ThemeTests
           <TextBlock Text="CheckBox.Off" Background="{StaticResource MaterialDesign.Brush.CheckBox.Off}" />
           <TextBlock Text="Chip.Background" Background="{StaticResource MaterialDesign.Brush.Chip.Background}" />
           <TextBlock Text="Chip.OutlineBorder" Background="{StaticResource MaterialDesign.Brush.Chip.OutlineBorder}" />
+          <TextBlock Text="ListBox.SegmentedBackground" Background="{StaticResource MaterialDesign.Brush.ListBox.SegmentedBackground}" />
           <TextBlock Text="ColorZone.DarkBackground" Background="{StaticResource MaterialDesign.Brush.ColorZone.DarkBackground}" />
           <TextBlock Text="ColorZone.DarkForeground" Background="{StaticResource MaterialDesign.Brush.ColorZone.DarkForeground}" />
           <TextBlock Text="ColorZone.LightBackground" Background="{StaticResource MaterialDesign.Brush.ColorZone.LightBackground}" />
@@ -129,6 +130,7 @@ partial class ThemeTests
           <TextBlock Text="MaterialDesignBodyLight" Background="{StaticResource MaterialDesignBodyLight}" />
           <TextBlock Text="MaterialDesignCheckBoxOff" Background="{StaticResource MaterialDesignCheckBoxOff}" />
           <TextBlock Text="MaterialDesignTextBoxBorder" Background="{StaticResource MaterialDesignTextBoxBorder}" />
+          <TextBlock Text="MaterialDesignChipBackground" Background="{StaticResource MaterialDesignChipBackground}" />
           <TextBlock Text="MaterialDesignChipBackground" Background="{StaticResource MaterialDesignChipBackground}" />
           <TextBlock Text="MaterialDesignBody" Background="{StaticResource MaterialDesignBody}" />
           <TextBlock Text="MaterialDesignBodyLight" Background="{StaticResource MaterialDesignBodyLight}" />
@@ -289,6 +291,11 @@ partial class ThemeTests
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Chip.OutlineBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesign.Brush.Chip.OutlineBorder"));
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ListBox.SegmentedBackground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesign.Brush.ListBox.SegmentedBackground"));
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ColorZone.DarkBackground\"]");
@@ -731,6 +738,11 @@ partial class ThemeTests
             await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesignChipBackground"));
         }
         {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignChipBackground\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesignChipBackground"));
+        }
+        {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignBody\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesignBody"));
@@ -944,6 +956,7 @@ partial class ThemeTests
         yield return "MaterialDesign.Brush.CheckBox.Off";
         yield return "MaterialDesign.Brush.Chip.Background";
         yield return "MaterialDesign.Brush.Chip.OutlineBorder";
+        yield return "MaterialDesign.Brush.ListBox.SegmentedBackground";
         yield return "MaterialDesign.Brush.ColorZone.DarkBackground";
         yield return "MaterialDesign.Brush.ColorZone.DarkForeground";
         yield return "MaterialDesign.Brush.ColorZone.LightBackground";
@@ -1034,6 +1047,7 @@ partial class ThemeTests
         yield return "MaterialDesignBodyLight";
         yield return "MaterialDesignCheckBoxOff";
         yield return "MaterialDesignTextBoxBorder";
+        yield return "MaterialDesignChipBackground";
         yield return "MaterialDesignChipBackground";
         yield return "MaterialDesignBody";
         yield return "MaterialDesignBodyLight";
