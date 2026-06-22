@@ -249,6 +249,15 @@
         "alternateKeys": []
     },
     {
+        "name": "MaterialDesign.Brush.ComboBox.DropDown.Background",
+        "themeValues": {
+            "light": "Neutral900",
+            "dark": "Neutral100"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
         "name": "MaterialDesign.Brush.ComboBox.Popup.DarkBackground",
         "themeValues": {
             "light": "Neutral100",
