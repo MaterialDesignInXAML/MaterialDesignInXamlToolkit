@@ -33,19 +33,19 @@ public class ColorPicker : Control
     private static void ColorPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var colorPicker = (ColorPicker)d;
-        if (colorPicker._inCallback)
+
+        if (!colorPicker._inCallback)
         {
-            return;
+            colorPicker._inCallback = true;
+            colorPicker.SetCurrentValue(HsbProperty, ((Color)e.NewValue).ToHsb());
+            colorPicker._inCallback = false;
         }
 
-        colorPicker._inCallback = true;
-        colorPicker.SetCurrentValue(HsbProperty, ((Color)e.NewValue).ToHsb());
         var args = new RoutedPropertyChangedEventArgs<Color>(
             (Color)e.OldValue,
             (Color)e.NewValue)
         { RoutedEvent = ColorChangedEvent };
         colorPicker.RaiseEvent(args);
-        colorPicker._inCallback = false;
     }
 
     public static readonly RoutedEvent ColorChangedEvent =
