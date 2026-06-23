@@ -104,6 +104,28 @@ public class ColorPickerTests
     }
 
     [Test]
+    public async Task ColorChangedShouldFireWhenColorIsChangedThroughHsb()
+    {
+        var colorPicker = new ColorPicker();
+
+        var called = false;
+        Color receivedColor = default;
+
+        colorPicker.ColorChanged += (_, args) =>
+        {
+            called = true;
+            receivedColor = args.NewValue;
+        };
+
+        colorPicker.SetCurrentValue(
+            ColorPicker.HsbProperty,
+            new Hsb(120, 1, 1));
+
+        await Assert.That(called).IsTrue();
+        await Assert.That(receivedColor).IsEqualTo(Colors.Lime);
+    }
+
+    [Test]
     public async Task DraggingTheHueSliderChangesHue()
     {
         ColorPicker colorPicker = CreateElement();
