@@ -305,6 +305,56 @@ public class AutoSuggestBoxTests : TestBase
         await Assert.That(selectedIndex).IsEqualTo(2); 
     }
 
+    [Test]
+    [Arguments(true)]
+    [Arguments(false)]
+    public async Task ShowSuggestionsOnFocus_Keyboard_FollowsSetting(bool showSuggestionsOnFocus)
+    {
+        // Arrange
+        IVisualElement userControl = await LoadUserControl<AutoSuggestTextBoxWithCollectionView>();
+        IVisualElement<AutoSuggestBox> suggestBox = await userControl.GetElement<AutoSuggestBox>();
+        IVisualElement<Popup> popup = await suggestBox.GetElement<Popup>();
+
+        static void SetShowSuggestionsOnFocus(AutoSuggestBox autoSuggestBox, bool value)
+        {
+            autoSuggestBox.ShowSuggestionsOnFocus = value;
+        }
+        await suggestBox.RemoteExecute(SetShowSuggestionsOnFocus, showSuggestionsOnFocus);
+
+        // Act
+        await suggestBox.MoveKeyboardFocus();
+        await Task.Delay(100, TestContext.Current!.Execution.CancellationToken);
+
+        // Assert
+        await Assert.That(await suggestBox.GetIsSuggestionOpen()).IsEqualTo(showSuggestionsOnFocus);
+        await Assert.That(await popup.GetIsOpen()).IsEqualTo(showSuggestionsOnFocus);
+    }
+
+    [Test]
+    [Arguments(true)]
+    [Arguments(false)]
+    public async Task ShowSuggestionsOnFocus_Mouse_FollowsSetting(bool showSuggestionsOnFocus)
+    {
+        // Arrange
+        IVisualElement userControl = await LoadUserControl<AutoSuggestTextBoxWithCollectionView>();
+        IVisualElement<AutoSuggestBox> suggestBox = await userControl.GetElement<AutoSuggestBox>();
+        IVisualElement<Popup> popup = await suggestBox.GetElement<Popup>();
+
+        static void SetShowSuggestionsOnFocus(AutoSuggestBox autoSuggestBox, bool value)
+        {
+            autoSuggestBox.ShowSuggestionsOnFocus = value;
+        }
+        await suggestBox.RemoteExecute(SetShowSuggestionsOnFocus, showSuggestionsOnFocus);
+
+        // Act
+        await suggestBox.LeftClick();
+        await Task.Delay(100, TestContext.Current!.Execution.CancellationToken);
+
+        // Assert
+        await Assert.That(await suggestBox.GetIsSuggestionOpen()).IsEqualTo(showSuggestionsOnFocus);
+        await Assert.That(await popup.GetIsOpen()).IsEqualTo(showSuggestionsOnFocus);
+    }
+
     private static async Task AssertExists(IVisualElement<ListBox> suggestionListBox, string text, bool existsOrNotCheck = true)
     {
         try
