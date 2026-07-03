@@ -134,18 +134,40 @@ public class AutoSuggestBox : TextBox
         remove => RemoveHandler(SuggestionChosenEvent, value);
     }
 
+    public bool ShowSuggestionsOnFocus
+    {
+        get => (bool)GetValue(ShowSuggestionsOnFocusProperty);
+        set => SetValue(ShowSuggestionsOnFocusProperty, value);
+    }
+
+    public static readonly DependencyProperty ShowSuggestionsOnFocusProperty =
+        DependencyProperty.Register(
+            nameof(ShowSuggestionsOnFocus),
+            typeof(bool),
+            typeof(AutoSuggestBox),
+            new PropertyMetadata(false));
+
     #endregion
 
+    protected override void OnGotFocus(RoutedEventArgs e)
+    {
+        base.OnGotFocus(e);
+
+        if (ShowSuggestionsOnFocus &&
+            _autoSuggestBoxList is not null &&
+            _autoSuggestBoxList.Items.Count > 0 &&
+            !IsSuggestionOpen)
+        {
+            IsSuggestionOpen = true;
+        }
+    }
     static AutoSuggestBox() => DefaultStyleKeyProperty.OverrideMetadata(typeof(AutoSuggestBox), new FrameworkPropertyMetadata(typeof(AutoSuggestBox)));
 
     #region Override methods
 
     public override void OnApplyTemplate()
     {
-        if (_autoSuggestBoxList is not null)
-        {
-            _autoSuggestBoxList.PreviewMouseDown -= AutoSuggestionListBox_PreviewMouseDown;
-        }
+        _autoSuggestBoxList?.PreviewMouseDown -= AutoSuggestionListBox_PreviewMouseDown;
 
         if (GetTemplateChild(AutoSuggestBoxListPart) is ListBox listBox)
         {
@@ -207,10 +229,27 @@ public class AutoSuggestBox : TextBox
         base.OnTextChanged(e);
         if (_autoSuggestBoxList is null)
             return;
-        if ((Text.Length == 0 || _autoSuggestBoxList.Items.Count == 0) && IsSuggestionOpen)
-            IsSuggestionOpen = false;
-        else if (Text.Length > 0 && !IsSuggestionOpen && IsFocused && _autoSuggestBoxList.Items.Count > 0)
+
+        bool hasItems = _autoSuggestBoxList.Items.Count > 0;
+        bool isEmpty = string.IsNullOrEmpty(Text);
+
+        bool shouldOpen =
+            IsFocused &&
+            hasItems &&
+            (ShowSuggestionsOnFocus || !isEmpty);
+
+        bool shouldClose =
+            !hasItems ||
+            (!ShowSuggestionsOnFocus && isEmpty);
+
+        if (shouldOpen)
+        {
             IsSuggestionOpen = true;
+        }
+        else if (shouldClose)
+        {
+            IsSuggestionOpen = false;
+        }
     }
 
     #endregion

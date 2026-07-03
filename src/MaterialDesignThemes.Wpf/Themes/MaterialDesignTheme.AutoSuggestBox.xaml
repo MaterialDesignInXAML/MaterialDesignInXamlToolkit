@@ -263,7 +263,7 @@
                          IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsSuggestionOpen, Mode=TwoWay}"
                          PopupAnimation="Slide"
                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                         StaysOpen="False"
+                         StaysOpen="True"
                          Visibility="Collapsed">
               <wpf:Card x:Name="PopupCard"
                         Margin="{TemplateBinding DropDownElevation, Converter={x:Static converters:ElevationMarginConverter.Instance}}"
