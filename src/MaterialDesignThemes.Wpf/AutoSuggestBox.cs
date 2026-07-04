@@ -186,27 +186,18 @@ public class AutoSuggestBox : TextBox
         {
             case Key.Down:
                 IncrementSelection();
-                e.Handled = true;
                 break;
             case Key.Up:
                 DecrementSelection();
-                e.Handled = true;
                 break;
             case Key.Enter:
                 CommitValueSelection();
-                e.Handled = true;
                 break;
             case Key.Escape:
                 CloseAutoSuggestionPopUp();
-                e.Handled = true;
                 break;
             case Key.Tab:
-                bool wasItemSelected = CommitValueSelection();
-                // Only mark the event as handled if the SuggestionList is open and therefore the Selection was successful
-                if (wasItemSelected)
-                {
-                    e.Handled = true;
-                }
+                CommitValueSelection();
                 break;
             default:
                 return;
