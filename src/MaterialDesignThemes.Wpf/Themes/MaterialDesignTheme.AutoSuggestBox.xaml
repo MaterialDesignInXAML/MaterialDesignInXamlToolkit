@@ -262,6 +262,8 @@
                          Focusable="False"
                          IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsSuggestionOpen, Mode=TwoWay}"
                          PopupAnimation="Slide"
+                         Placement="Bottom"
+                         PlacementTarget="{Binding ElementName=OuterBorder}"
                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                          StaysOpen="True"
                          Visibility="Collapsed">
