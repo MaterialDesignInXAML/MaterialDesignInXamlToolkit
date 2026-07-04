@@ -368,7 +368,7 @@ public class AutoSuggestBox : TextBox
         if (_autoSuggestBoxList is null || Suggestions is null)
             return;
         ICollectionView collectionView = CollectionViewSource.GetDefaultView(Suggestions);
-        int itemCount = collectionView.Cast<object>().Count();
+        int itemCount = GetItemCount(collectionView);
 
         // If we're at the last item, wrap around to the first.
         if (collectionView.CurrentPosition == itemCount - 1)
@@ -376,6 +376,15 @@ public class AutoSuggestBox : TextBox
         else
             collectionView.MoveCurrentToNext();
         _autoSuggestBoxList.ScrollIntoView(_autoSuggestBoxList.SelectedItem);
+    }
+
+    private static int GetItemCount(ICollectionView collectionView)
+    {
+        if (collectionView is ListCollectionView lcv)
+        {
+            return lcv.Count;
+        }
+        return collectionView.Cast<object>().Count();
     }
 
     #endregion
