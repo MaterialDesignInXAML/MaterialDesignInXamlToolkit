@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="MaterialDesignDemo.QuickSearchDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:MaterialDesignDemo"
+             xmlns:materialDesign="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Padding="24,16"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+  <Grid Width="500" Height="500">
+    <materialDesign:AutoSuggestBox VerticalAlignment="Top"
+                                   materialDesign:HintAssist.Hint="Search (Esc to close)"
+                                   materialDesign:TextFieldAssist.HasClearButton="True"
+                                   materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                   materialDesign:TextFieldAssist.LeadingIcon="Search"
+                                   DisplayMember="Name"
+                                   DropDownMaxHeight="420"
+                                   FontSize="20"
+                                   PreviewKeyDown="SearchBox_KeyDown"
+                                   SelectedItem="{Binding SelectedItem}"
+                                   ShowSuggestionsOnFocus="True"
+                                   Style="{StaticResource MaterialDesignOutlinedAutoSuggestBox}"
+                                   Suggestions="{Binding FilteredItems}"
+                                   Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
+  </Grid>
+</UserControl>

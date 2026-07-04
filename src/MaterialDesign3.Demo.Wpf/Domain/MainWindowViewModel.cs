@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Configuration;
 using System.Windows.Data;
+using CommunityToolkit.Mvvm.Input;
 using MaterialColorUtilities;
 using MaterialDesignDemo.Shared.Domain;
 using MaterialDesignThemes.Wpf;
@@ -9,7 +10,7 @@ using MaterialDesignThemes.Wpf.Transitions;
 
 namespace MaterialDesign3Demo.Domain;
 
-public class MainWindowViewModel : ViewModelBase
+public partial class MainWindowViewModel : ViewModelBase
 {
     public MainWindowViewModel(ISnackbarMessageQueue snackbarMessageQueue, string? startupPage)
     {
@@ -501,5 +502,20 @@ public class MainWindowViewModel : ViewModelBase
 
         return obj is DemoItem item
                && item.Name.ToLower().Contains(_searchKeyword!.ToLower());
+    }
+
+    [RelayCommand]
+    private async Task OpenQuickSearchAsync()
+    {
+        var quickSearchDialog = new QuickSearchDialog
+        {
+            DataContext = new QuickSearchDialogViewModel(DemoItems)
+        };
+        var result = await DialogHost.Show(quickSearchDialog, "RootDialog");
+        if (result is DemoItem selectedItem)
+        {
+            SelectedItem = selectedItem;
+            SelectedIndex = DemoItems.IndexOf(selectedItem);
+        }
     }
 }

@@ -485,4 +485,19 @@ public partial class MainWindowViewModel : ObservableObject
                && item.Name.IndexOf(searchKeyword, StringComparison.OrdinalIgnoreCase) >= 0;
 #endif
     }
+
+    [RelayCommand]
+    private async Task OpenQuickSearchAsync()
+    {
+        var quickSearchDialog = new QuickSearchDialog
+        {
+            DataContext = new QuickSearchDialogViewModel(DemoItems)
+        };
+        var result = await DialogHost.Show(quickSearchDialog, "RootDialog");
+        if (result is DemoItem selectedItem)
+        {
+            SelectedItem = selectedItem;
+            SelectedIndex = DemoItems.IndexOf(selectedItem);
+        }
+    }
 }

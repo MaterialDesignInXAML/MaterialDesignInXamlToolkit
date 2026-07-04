@@ -16,6 +16,11 @@
         Style="{StaticResource MaterialDesignWindow}"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d">
+  <Window.InputBindings>
+    <KeyBinding Key="K"
+                Modifiers="Control"
+                Command="{Binding OpenQuickSearchCommand}" />
+  </Window.InputBindings>
   <Window.CommandBindings>
     <CommandBinding Command="Copy" Executed="OnCopy" />
   </Window.CommandBindings>

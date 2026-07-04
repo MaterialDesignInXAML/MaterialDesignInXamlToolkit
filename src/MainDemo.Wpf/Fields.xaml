@@ -709,9 +709,11 @@
                    VerticalAlignment="Center"
                    Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                    Text="Simple source list" />
+        <CheckBox Content="ShowSuggestionsOnFocus" x:Name="cbShowSuggestionsOnFocus"/>
 
         <smtx:XamlDisplay UniqueKey="fields_autosuggestion_1">
           <materialDesign:AutoSuggestBox VerticalAlignment="Bottom"
+                                         ShowSuggestionsOnFocus="{Binding ElementName=cbShowSuggestionsOnFocus, Path=IsChecked}"
                                          Suggestions="{Binding AutoSuggestBox1Suggestions}"
                                          Text="{Binding AutoSuggestBox1Text, UpdateSourceTrigger=PropertyChanged}" />
         </smtx:XamlDisplay>

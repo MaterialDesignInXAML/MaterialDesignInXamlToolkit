@@ -51,7 +51,7 @@
                 Style="{StaticResource MaterialDesignFlatButton}">
           <StackPanel Orientation="Horizontal">
             <materialDesign:PackIcon Kind="Binoculars" />
-            <TextBlock Margin="8,0,0,0" Text="EXPLORE" />
+            <TextBlock Margin="8,0,0,0" Text="EXPLORE (Ctrl+K)" />
           </StackPanel>
         </Button>
       </StackPanel>
