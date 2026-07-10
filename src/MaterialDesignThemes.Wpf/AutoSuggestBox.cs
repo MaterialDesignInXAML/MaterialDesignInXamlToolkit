@@ -292,8 +292,7 @@ public class AutoSuggestBox : TextBox
         return element.GetVisualAncestry()
             .Where(x => x != this)
             .Select(IsInteractive)
-            .Where(x => x is not null)
-            .FirstOrDefault() ?? false;
+            .FirstOrDefault(x => x is not null) ?? false;
 
         static bool? IsInteractive(DependencyObject element)
         {

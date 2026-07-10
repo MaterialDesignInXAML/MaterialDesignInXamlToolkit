@@ -28,5 +28,5 @@ public partial class QuickSearchDialogViewModel(IReadOnlyCollection<DemoItem> it
     public IReadOnlyCollection<DemoItem> FilteredItems
         => string.IsNullOrWhiteSpace(SearchText)
         ? _items
-        : _items.Where(i => i.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase)).ToList();
+        : [.. _items.Where(i => i.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase))];
 }
