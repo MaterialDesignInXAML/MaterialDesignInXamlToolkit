@@ -498,6 +498,27 @@ public class TextBoxTests : TestBase
     }
 
     [Test]
+    public async Task TextBox_WithSelectAllOnTripleClick_SelectsAllText()
+    {
+        var textBox = await LoadXaml<TextBox>($$"""
+            <TextBox Style="{StaticResource MaterialDesignFilledTextBox}"
+              Text="Some text to select"
+              materialDesign:TextFieldAssist.SelectAllOnTripleClick="True"
+              Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            """);
+        await textBox.LeftClick();
+        await textBox.LeftClick();
+        await textBox.LeftClick();
+        //await Task.Delay(1000); 
+        await Wait.For(async () =>
+        {
+            string? selectedText = await textBox.GetSelectedText();
+
+            await Assert.That(selectedText).IsEqualTo("Some text to select");
+        });
+    }
+
+        [Test]
     [Description("Issue 3176")]
     public async Task ValidationErrorTemplate_WithChangingErrors_UpdatesValidation()
     {

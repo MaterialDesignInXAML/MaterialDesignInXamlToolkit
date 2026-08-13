@@ -151,6 +151,45 @@ public static class TextFieldAssist
     public static bool GetIncludeSpellingSuggestions(TextBoxBase element) => (bool)element.GetValue(IncludeSpellingSuggestionsProperty);
 
     /// <summary>
+    /// Allow triple click to select all text in a TextBox.
+    /// </summary>
+    public static readonly DependencyProperty SelectAllOnTripleClickProperty =
+        DependencyProperty.RegisterAttached(
+            "SelectAllOnTripleClick",
+            typeof(bool),
+            typeof(TextFieldAssist),
+            new PropertyMetadata(false, OnSelectAllOnTripleClickChanged));
+
+    public static bool GetSelectAllOnTripleClick(DependencyObject obj) =>
+        (bool)obj.GetValue(SelectAllOnTripleClickProperty);
+
+    public static void SetSelectAllOnTripleClick(DependencyObject obj, bool value) =>
+        obj.SetValue(SelectAllOnTripleClickProperty, value);
+
+    private static void OnSelectAllOnTripleClickChanged(
+        DependencyObject d,
+        DependencyPropertyChangedEventArgs e)
+    {
+        if (d is TextBox textBox)
+        {
+            if ((bool)e.NewValue)
+                textBox.PreviewMouseLeftButtonDown += TextBox_PreviewMouseLeftButtonDown;
+            else
+                textBox.PreviewMouseLeftButtonDown -= TextBox_PreviewMouseLeftButtonDown;
+        }
+    }
+
+    private static void TextBox_PreviewMouseLeftButtonDown(
+        object sender,
+        MouseButtonEventArgs e)
+    {
+        if (e.ClickCount == 3 && sender is TextBox textBox)
+        {
+            textBox.SelectAll();
+            e.Handled = true;
+        }
+    }
+    /// <summary>
     /// SuffixText dependency property
     /// </summary>
     public static readonly DependencyProperty SuffixTextProperty = DependencyProperty.RegisterAttached(
