@@ -833,7 +833,7 @@ public class PopupBox : ContentControl
 
     private void ToggleButtonOnPreviewMouseLeftButtonUp(object? sender, MouseButtonEventArgs mouseButtonEventArgs)
     {
-        if (PopupMode == PopupBoxPopupMode.Click || !IsPopupOpen) return;
+        if (!IsPopupOpen) return;
 
         if (ToggleCheckedContent != null)
         {
