@@ -51,4 +51,33 @@ public class PopupBoxTests : TestBase
             await Assert.That(await border.GetBackgroundColor()).IsEqualTo(Colors.Red);
         });
     }
+
+    [Test]
+    [Description("https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/2280")]
+    public async Task PopupBox_WhenInOpenedState_ClosesWhenClicked()
+    {
+        //Arrange
+        IVisualElement<PopupBox> popupBox = await LoadXaml<PopupBox>("""
+            <materialDesign:PopupBox Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}" IsPopupOpen="True">
+                <StackPanel>
+                    <Button Content="1" />
+                    <Button Content="2" />
+                    <Button Content="3" />
+                </StackPanel>
+            </materialDesign:PopupBox>
+            """);
+        bool isOpen = await popupBox.GetIsPopupOpen();
+        await Assert.That(isOpen).IsTrue();
+
+        //Act
+        IVisualElement<ToggleButton> toggleButton = await popupBox.GetElement<ToggleButton>("/ToggleButton");
+        await toggleButton.LeftClick();
+
+        //Assert
+        await Wait.For(async () =>
+        {
+            isOpen = await popupBox.GetIsPopupOpen();
+            await Assert.That(isOpen).IsFalse();
+        });
+    }
 }
