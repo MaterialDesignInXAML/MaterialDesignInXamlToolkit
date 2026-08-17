@@ -170,7 +170,7 @@ public static class TextFieldAssist
         DependencyObject d,
         DependencyPropertyChangedEventArgs e)
     {
-        if (d is TextBox textBox)
+        if (d is TextBoxBase textBox)
         {
             if ((bool)e.NewValue)
                 textBox.PreviewMouseLeftButtonDown += TextBox_PreviewMouseLeftButtonDown;
