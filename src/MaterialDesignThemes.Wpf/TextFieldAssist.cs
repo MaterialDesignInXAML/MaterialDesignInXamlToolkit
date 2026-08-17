@@ -183,7 +183,7 @@ public static class TextFieldAssist
         object sender,
         MouseButtonEventArgs e)
     {
-        if (e.ClickCount == 3 && sender is TextBox textBox)
+        if (e.ClickCount == 3 && sender is TextBoxBase textBox)
         {
             textBox.SelectAll();
             e.Handled = true;
