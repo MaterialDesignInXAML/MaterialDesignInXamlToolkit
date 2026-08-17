@@ -99,7 +99,6 @@
           <TextBox VerticalAlignment="Center"
                    materialDesign:TextFieldAssist.HasClearButton="True"
                    materialDesign:TextFieldAssist.PrefixText="$"
-                   materialDesign:TextFieldAssist.SelectAllOnTripleClick="True"
                    materialDesign:TextFieldAssist.SuffixText="mm"
                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                    Text="Good stuff">
@@ -149,7 +148,14 @@
                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                    Text="Some Text" />
         </smtx:XamlDisplay>
+      </DockPanel>
 
+      <DockPanel Style="{StaticResource FieldDockPanel}">
+        <smtx:XamlDisplay UniqueKey="fields_2">
+          <TextBox materialDesign:TextFieldAssist.SelectAllOnTripleClick="True"
+                   Style="{StaticResource MaterialDesignTextBox}"
+                   Text="Triple click to select all text" />
+        </smtx:XamlDisplay>
       </DockPanel>
 
       <DockPanel Style="{StaticResource FieldDockPanel}">
