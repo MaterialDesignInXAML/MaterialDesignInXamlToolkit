@@ -834,11 +834,6 @@ public class DialogHost : ContentControl
         var child = _popup?.Child ?? _popupContentControl;
         if (child is null) return null;
 
-        if (PresentationSource.FromVisual(child) is HwndSource hwndSource)
-        {
-            SetFocus(hwndSource.Handle);
-        }
-
         CommandManager.InvalidateRequerySuggested();
         var focusable = child.VisualDepthFirstTraversal().OfType<UIElement>().FirstOrDefault(ui => ui.Focusable);
         if (focusable is null) return null;
