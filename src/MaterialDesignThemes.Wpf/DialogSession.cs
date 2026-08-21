@@ -7,16 +7,16 @@ namespace MaterialDesignThemes.Wpf;
 /// </summary>
 public class DialogSession
 {
-    private readonly DialogHost _owner;
-
     internal DialogSession(DialogHost owner)
-        => _owner = owner ?? throw new ArgumentNullException(nameof(owner));
+        => DialogHost = owner ?? throw new ArgumentNullException(nameof(owner));
+
+    public DialogHost DialogHost { get; }
 
     /// <summary>
-    /// Indicates if the dialog session has ended.  Once ended no further method calls will be permitted.
+    /// Indicates if the dialog session has ended. Once ended no further method calls will be permitted.
     /// </summary>
     /// <remarks>
-    /// Client code cannot set this directly, this is internally managed.  To end the dialog session use <see cref="Close()"/>.
+    /// Client code cannot set this directly, this is internally managed. To end the dialog session use <see cref="Close()"/>.
     /// </remarks>
     public bool IsEnded { get; internal set; }
 
@@ -28,7 +28,7 @@ public class DialogSession
     /// <summary>
     /// Gets the <see cref="DialogHost.DialogContent"/> which is currently displayed, so this could be a view model or a UI element.
     /// </summary>
-    public object? Content => _owner.DialogContent;
+    public object? Content => DialogHost.DialogContent;
 
     /// <summary>
     /// Update the current content in the dialog.
@@ -36,11 +36,11 @@ public class DialogSession
     /// <param name="content"></param>
     public void UpdateContent(object? content)
     {
-        _owner.AssertTargetableContent();
-        _owner.DialogContent = content;
-        _owner.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+        DialogHost.AssertTargetableContent();
+        DialogHost.DialogContent = content;
+        DialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
         {
-            _owner.FocusPopup();
+            DialogHost.FocusPopup();
         }));
     }
 
@@ -52,7 +52,7 @@ public class DialogSession
     {
         if (IsEnded) throw new InvalidOperationException("Dialog session has ended.");
 
-        _owner.InternalClose(null);
+        DialogHost.InternalClose(null);
     }
 
     /// <summary>
@@ -64,6 +64,6 @@ public class DialogSession
     {
         if (IsEnded) throw new InvalidOperationException("Dialog session has ended.");
 
-        _owner.InternalClose(parameter);
+        DialogHost.InternalClose(parameter);
     }
 }

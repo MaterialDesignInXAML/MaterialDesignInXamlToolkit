@@ -42,8 +42,12 @@ public partial class Dialogs
     }
 
     // Used for DialogHost.DialogClosingAttached
-    private void Sample2_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs)
-        => Debug.WriteLine($"SAMPLE 2: Closing dialog with parameter: {eventArgs.Parameter ?? string.Empty}");
+    private async void Sample2_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs)
+    {
+        Debug.WriteLine($"{DateTime.Now.TimeOfDay} SAMPLE 2: Closing dialog with parameter: {eventArgs.Parameter ?? string.Empty}");
+        await eventArgs.Session.DialogHost.WaitForClosed();
+        Debug.WriteLine($"{DateTime.Now.TimeOfDay} SAMPLE 2: Closed dialog with parameter: {eventArgs.Parameter ?? string.Empty}");
+    }
 
     private void Sample2_DialogHost_OnDialogClosed(object sender, DialogClosedEventArgs eventArgs)
         => Debug.WriteLine($"SAMPLE 2: Closed dialog with parameter: {eventArgs.Parameter ?? string.Empty}");
