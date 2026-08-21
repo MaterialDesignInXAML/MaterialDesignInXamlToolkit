@@ -167,9 +167,9 @@
       <smtx:XamlDisplay Grid.Row="4"
                         Grid.Column="3"
                         UniqueKey="fields_2">
-          <TextBox materialDesign:TextFieldAssist.SelectAllOnTripleClick="True"
+          <TextBox materialDesign:TextFieldAssist.SelectAllOnTripleClick="False"
                    Style="{StaticResource MaterialDesignTextBox}"
-                   Text="Triple click to select all text" />
+                   Text="Triple click does not select all text" />
         </smtx:XamlDisplay>
 
       <smtx:XamlDisplay Grid.Row="5"

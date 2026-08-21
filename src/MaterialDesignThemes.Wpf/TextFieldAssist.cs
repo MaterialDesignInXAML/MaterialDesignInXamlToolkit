@@ -160,10 +160,10 @@ public static class TextFieldAssist
             typeof(TextFieldAssist),
             new PropertyMetadata(false, OnSelectAllOnTripleClickChanged));
 
-    public static bool GetSelectAllOnTripleClick(DependencyObject obj) =>
+    public static bool GetSelectAllOnTripleClick(TextBoxBase obj) =>
         (bool)obj.GetValue(SelectAllOnTripleClickProperty);
 
-    public static void SetSelectAllOnTripleClick(DependencyObject obj, bool value) =>
+    public static void SetSelectAllOnTripleClick(TextBoxBase obj, bool value) =>
         obj.SetValue(SelectAllOnTripleClickProperty, value);
 
     private static void OnSelectAllOnTripleClickChanged(
@@ -177,18 +177,19 @@ public static class TextFieldAssist
             else
                 textBox.PreviewMouseLeftButtonDown -= TextBox_PreviewMouseLeftButtonDown;
         }
-    }
 
-    private static void TextBox_PreviewMouseLeftButtonDown(
-        object sender,
-        MouseButtonEventArgs e)
-    {
-        if (e.ClickCount == 3 && sender is TextBoxBase textBox)
+        static void TextBox_PreviewMouseLeftButtonDown(
+            object sender,
+            MouseButtonEventArgs e)
         {
-            textBox.SelectAll();
-            e.Handled = true;
+            if (e.ClickCount == 3 && sender is TextBoxBase textBox)
+            {
+                textBox.SelectAll();
+                e.Handled = true;
+            }
         }
     }
+
     /// <summary>
     /// SuffixText dependency property
     /// </summary>
