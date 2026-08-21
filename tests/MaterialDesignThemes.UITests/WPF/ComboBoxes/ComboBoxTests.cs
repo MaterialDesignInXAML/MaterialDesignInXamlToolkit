@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Windows.Media;
 using MaterialDesignThemes.UITests.WPF.TextBoxes;
 
 namespace MaterialDesignThemes.UITests.WPF.ComboBoxes;
@@ -268,5 +269,34 @@ public class ComboBoxTests : TestBase
 
         Thickness thickness = await border.GetBorderThickness();
         await Assert.That(thickness).IsEqualTo(new Thickness(left, top, right, bottom));
+    }
+
+    [Test]
+    [Description("Issue 3887")]
+    public async Task ComboBox_UsesDropDownBackgroundResource_WhenBackgroundIsNotSet()
+    {
+        var stackPanel = await LoadXaml<StackPanel>($$"""
+             <StackPanel>
+               <ComboBox Width="200">
+                 <ComboBox.Resources>
+                   <SolidColorBrush x:Key="MaterialDesign.Brush.ComboBox.DropDown.Background"
+                                    Color="#CC336699" />
+                 </ComboBox.Resources>
+                 <ComboBoxItem Content="Android" />
+                 <ComboBoxItem Content="iOS" />
+                 <ComboBoxItem Content="Linux" />
+               </ComboBox>
+             </StackPanel>
+             """);
+
+        var comboBox = await stackPanel.GetElement<ComboBox>();
+        await comboBox.LeftClick(Position.RightCenter);
+
+
+        var popup = await Wait.For(async () => await comboBox.GetElement<ComboBoxPopup>("PART_Popup"));
+        Color? popupBackground = await popup.GetBackgroundColor();
+
+        await Assert.That(popupBackground).IsNotNull();
+        await Assert.That(popupBackground).IsEqualTo((Color)ColorConverter.ConvertFromString("#CC336699"));
     }
 }

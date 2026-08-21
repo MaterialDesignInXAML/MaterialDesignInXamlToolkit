@@ -136,12 +136,12 @@ public class DialogHostTests
         dialogHost.Identifier = id;
 
         await DialogHost.Show("Content", id,
-            new DialogOpenedEventHandler((async (sender, args) =>
+            new DialogOpenedEventHandler(async (sender, args) =>
             {
                 var ex = await Assert.ThrowsAsync<InvalidOperationException>(() => DialogHost.Show("Content", id));
                 args.Session.Close();
                 await Assert.That(ex?.Message).IsEqualTo("DialogHost is already open.");
-            })));
+            }));
     }
 
     [Test]

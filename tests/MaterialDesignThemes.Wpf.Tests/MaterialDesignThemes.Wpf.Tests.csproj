@@ -6,9 +6,6 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\MaterialDesignThemes.UITests\TUnit\IsCloseToExtensions.cs" Link="TUnit\IsCloseToExtensions.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\src\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj" />
     <ProjectReference Include="..\..\src\MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj" />
   </ItemGroup>
@@ -18,11 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Using Include="MaterialDesignThemes.Tests.TUnit"/>
     <Using Include="TUnit.Core.Executors" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="TUnit\" />
   </ItemGroup>
 </Project>

@@ -353,6 +353,7 @@ partial class Theme
         public ComboBox(Theme theme)
         {
             _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+            DropDowns = new(theme);
             Popups = new(theme);
         }
 
@@ -405,7 +406,26 @@ partial class Theme
            set => _outlineBorder = value;
         }
 
+        public DropDown DropDowns { get; set; }
+
         public Popup Popups { get; set; }
+
+        public class DropDown
+        {
+            private readonly Theme _theme;
+            public DropDown(Theme theme)
+            {
+                _theme = theme ?? throw new ArgumentNullException(nameof(theme));
+            }
+
+            private ColorReference _background;
+            public ColorReference Background
+            {
+               get => _theme.Resolve(_background);
+               set => _background = value;
+            }
+
+        }
 
         public class Popup
         {

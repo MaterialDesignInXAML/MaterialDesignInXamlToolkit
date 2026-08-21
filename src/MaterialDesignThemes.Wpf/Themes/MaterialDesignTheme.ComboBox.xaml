@@ -534,7 +534,7 @@
                    PopupAnimation="Fade"
                    RelativeHorizontalOffset="-6"
                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                   Tag="{DynamicResource MaterialDesign.Brush.Background}"
+                   Tag="{DynamicResource MaterialDesign.Brush.ComboBox.DropDown.Background}"
                    UpVerticalOffset="15"
                    UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
                    VerticalOffset="0">
@@ -557,7 +557,7 @@
         <ContentControl>
           <ScrollViewer MinHeight="1"
                   MaxHeight="{TemplateBinding MaxDropDownHeight}"
-                  Background="{Binding Background, ElementName=PART_Popup}">
+                  Background="Transparent">
             <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" />
           </ScrollViewer>
         </ContentControl>
@@ -796,8 +796,8 @@
           <Condition SourceName="PART_Popup" Property="wpf:ColorZoneAssist.Mode" Value="Standard" />
         </MultiTrigger.Conditions>
         <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
-        <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={x:Static converters:RemoveAlphaBrushConverter.Instance}}" />
-        <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesign.Brush.Background}" />
+        <Setter TargetName="PART_Popup" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource Self}}" />
+        <Setter TargetName="PART_Popup" Property="Tag" Value="{DynamicResource MaterialDesign.Brush.ComboBox.DropDown.Background}" />
       </MultiTrigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
