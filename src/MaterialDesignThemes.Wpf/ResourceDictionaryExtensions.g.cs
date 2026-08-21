@@ -43,6 +43,7 @@ static partial class ResourceDictionaryExtensions
         theme.ComboBoxes.HoverBorder = GetColor(resourceDictionary, "MaterialDesign.Brush.ComboBox.HoverBorder", "MaterialDesignBody");
         theme.ComboBoxes.Border = GetColor(resourceDictionary, "MaterialDesign.Brush.ComboBox.Border", "MaterialDesignBodyLight", "MaterialDesignCheckBoxOff", "MaterialDesignTextBoxBorder");
         theme.ComboBoxes.OutlineBorder = GetColor(resourceDictionary, "MaterialDesign.Brush.ComboBox.OutlineBorder", "MaterialDesignColumnHeader", "MaterialDesignTextAreaBorder");
+        theme.ComboBoxes.DropDowns.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.ComboBox.DropDown.Background");
         theme.ComboBoxes.Popups.DarkBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.ComboBox.Popup.DarkBackground");
         theme.ComboBoxes.Popups.DarkForeground = GetColor(resourceDictionary, "MaterialDesign.Brush.ComboBox.Popup.DarkForeground");
         theme.ComboBoxes.Popups.LightBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.ComboBox.Popup.LightBackground");
@@ -164,6 +165,7 @@ static partial class ResourceDictionaryExtensions
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ComboBox.OutlineBorder", theme.ComboBoxes.OutlineBorder);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignColumnHeader", theme.ComboBoxes.OutlineBorder);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignTextAreaBorder", theme.ComboBoxes.OutlineBorder);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ComboBox.DropDown.Background", theme.ComboBoxes.DropDowns.Background);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ComboBox.Popup.DarkBackground", theme.ComboBoxes.Popups.DarkBackground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ComboBox.Popup.DarkForeground", theme.ComboBoxes.Popups.DarkForeground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ComboBox.Popup.LightBackground", theme.ComboBoxes.Popups.LightBackground);
