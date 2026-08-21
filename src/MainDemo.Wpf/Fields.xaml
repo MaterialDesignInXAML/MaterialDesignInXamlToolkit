@@ -148,7 +148,14 @@
                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                    Text="Some Text" />
         </smtx:XamlDisplay>
+      </DockPanel>
 
+      <DockPanel Style="{StaticResource FieldDockPanel}">
+        <smtx:XamlDisplay UniqueKey="fields_2">
+          <TextBox materialDesign:TextFieldAssist.SelectAllOnTripleClick="False"
+                   Style="{StaticResource MaterialDesignTextBox}"
+                   Text="Triple click does not select all text" />
+        </smtx:XamlDisplay>
       </DockPanel>
 
       <DockPanel Style="{StaticResource FieldDockPanel}">
@@ -182,18 +189,18 @@
           <CheckBox x:Name="TextBoxWrapTextCheckBox"
                     Content="Wrap text"
                     IsChecked="True" />
-          
+
           <TextBox Grid.Row="1"
                    Height="80"
                    MinWidth="280"
                    VerticalAlignment="Stretch"
                    materialDesign:HintAssist.Hint="Multiline text"
                    AcceptsReturn="True"
+                   HorizontalScrollBarVisibility="Auto"
                    SpellCheck.IsEnabled="True"
                    Text="Multiline. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. The quick brown fox jumps over the lazy dog. War and peace. Keep going. Go on. For how long? Not long. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                    TextWrapping="{Binding ElementName=TextBoxWrapTextCheckBox, Path=IsChecked, Converter={StaticResource BoolToTextWrappingConverter}}"
-                   VerticalScrollBarVisibility="Auto"
-                   HorizontalScrollBarVisibility="Auto"/>
+                   VerticalScrollBarVisibility="Auto" />
         </Grid>
       </smtx:XamlDisplay>
 
@@ -690,12 +697,11 @@
     <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Custom Background" />
 
     <WrapPanel Margin="0,0,0,32" Background="Chocolate">
-      <smtx:XamlDisplay Margin="16"
-                        UniqueKey="fields_custom_background_1">
+      <smtx:XamlDisplay Margin="16" UniqueKey="fields_custom_background_1">
         <TextBox Width="200"
-                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  materialDesign:HintAssist.Hint="Hint text"
-                 materialDesign:HintAssist.HintPaddingBrush="Chocolate" />
+                 materialDesign:HintAssist.HintPaddingBrush="Chocolate"
+                 Style="{StaticResource MaterialDesignOutlinedTextBox}" />
         <!-- Set HintAssist.HintPaddingBrush to match the custom background to get correct coloring of the hint padding (when floated) -->
       </smtx:XamlDisplay>
     </WrapPanel>
@@ -704,7 +710,7 @@
     <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="AutoSuggestBox" />
 
     <WrapPanel>
-      <StackPanel  Width="256" Margin="0,0,16,16">
+      <StackPanel Width="256" Margin="0,0,16,16">
         <TextBlock Margin="0,0,0,8"
                    VerticalAlignment="Center"
                    Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
@@ -719,7 +725,7 @@
         </smtx:XamlDisplay>
       </StackPanel>
 
-      <StackPanel  Width="256" Margin="0,0,16,16">
+      <StackPanel Width="256" Margin="0,0,16,16">
         <TextBlock Margin="0,0,0,8"
                    Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                    Text="AutoSuggestBox with ItemTemplate" />
@@ -774,7 +780,7 @@
         </smtx:XamlDisplay>
       </StackPanel>
 
-      <StackPanel  Width="256" Margin="0,0,16,16">
+      <StackPanel Width="256" Margin="0,0,16,16">
         <TextBlock Margin="0,0,0,8"
                    Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                    Text="Outlined AutoSuggestBox" />

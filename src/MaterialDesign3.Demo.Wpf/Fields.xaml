@@ -43,11 +43,12 @@
         <ColumnDefinition Width="Auto" />
         <ColumnDefinition Width="155" />
         <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="155" />
+        <ColumnDefinition Width="190" />
         <ColumnDefinition Width="*" />
       </Grid.ColumnDefinitions>
 
       <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
         <RowDefinition Height="Auto" />
         <RowDefinition Height="Auto" />
         <RowDefinition Height="Auto" />
@@ -165,13 +166,21 @@
 
       <smtx:XamlDisplay Grid.Row="4"
                         Grid.Column="3"
+                        UniqueKey="fields_2">
+          <TextBox materialDesign:TextFieldAssist.SelectAllOnTripleClick="False"
+                   Style="{StaticResource MaterialDesignTextBox}"
+                   Text="Triple click does not select all text" />
+        </smtx:XamlDisplay>
+
+      <smtx:XamlDisplay Grid.Row="5"
+                        Grid.Column="3"
                         UniqueKey="fields_13">
         <TextBox MinWidth="72"
                  materialDesign:HintAssist.Hint="I'm Disabled"
                  IsEnabled="False" />
       </smtx:XamlDisplay>
 
-      <smtx:XamlDisplay Grid.Row="5"
+      <smtx:XamlDisplay Grid.Row="6"
                         Grid.Column="3"
                         UniqueKey="fields_15">
         <PasswordBox MinWidth="72"
