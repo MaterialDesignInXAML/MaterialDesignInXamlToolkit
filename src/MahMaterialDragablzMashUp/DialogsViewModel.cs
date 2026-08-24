@@ -11,18 +11,18 @@ public class DialogsViewModel
 
     public ICommand ShowLeftFlyoutCommand { get; }
 
-    private ResourceDictionary DialogDictionary = new ResourceDictionary() { Source = new Uri("pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Dialogs.xaml") };
+    private readonly ResourceDictionary DialogDictionary = new ResourceDictionary() { Source = new Uri("pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Dialogs.xaml") };
 
     public DialogsViewModel()
     {
-        ShowInputDialogCommand = new AnotherCommandImplementation(_ => InputDialog());
-        ShowProgressDialogCommand = new AnotherCommandImplementation(_ => ProgressDialog());
+        ShowInputDialogCommand = new AnotherCommandImplementation(async _ => await InputDialog());
+        ShowProgressDialogCommand = new AnotherCommandImplementation(async _ => await ProgressDialog());
         ShowLeftFlyoutCommand = new AnotherCommandImplementation(_ => ShowLeftFlyout());
     }
 
     public Flyout? LeftFlyout { get; set; }
 
-    private void InputDialog()
+    private async Task InputDialog()
     {
         var metroDialogSettings = new MetroDialogSettings
         {
@@ -30,10 +30,10 @@ public class DialogsViewModel
             NegativeButtonText = "CANCEL"
         };
 
-        DialogCoordinator.Instance.ShowInputAsync(this, "MahApps Dialog", "Using Material Design Themes", metroDialogSettings);
+        await DialogCoordinator.Instance.ShowInputAsync(this, "MahApps Dialog", "Using Material Design Themes", metroDialogSettings);
     }
 
-    private async void ProgressDialog()
+    private async Task ProgressDialog()
     {
         var metroDialogSettings = new MetroDialogSettings
         {
@@ -49,6 +49,12 @@ public class DialogsViewModel
 
     private void ShowLeftFlyout()
     {
-        ((MainWindow)Application.Current.MainWindow).LeftFlyout.IsOpen = !((MainWindow)Application.Current.MainWindow).LeftFlyout.IsOpen;
+        // Avoid direct cast to the project's MainWindow type (XAML-generated partials can confuse the analyzer).
+        // Find the named flyout from the main window and toggle its IsOpen state.
+        var leftFlyout = Application.Current?.MainWindow?.FindName("LeftFlyout") as Flyout;
+        if (leftFlyout != null)
+        {
+            leftFlyout.IsOpen = !leftFlyout.IsOpen;
+        }
     }
 }

@@ -21,7 +21,7 @@ public class MahViewModel : INotifyPropertyChanged
         {
             if (value < 0)
             {
-                throw new Exception("Value must be positive");
+                throw new System.ArgumentOutOfRangeException(nameof(UpDownValue), value, "Value must be non-negative");
             }
             if (_UpDownValue != value)
             {
