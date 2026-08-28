@@ -25,11 +25,11 @@
           <ControlTemplate.Resources>
             <converters:FirstNonNullConverter x:Key="FirstNonNullConverter" />
           </ControlTemplate.Resources>
-          <Grid x:Name="DialogHostRoot" Focusable="False">
+          <Grid x:Name="PART_DialogHostRoot" Focusable="False">
             <VisualStateManager.VisualStateGroups>
-              <VisualStateGroup x:Name="PopupStates">
+              <VisualStateGroup Name="{x:Static wpf:DialogHost.VisualStateGroupName}">
                 <VisualStateGroup.Transitions>
-                  <VisualTransition From="Closed" To="Open">
+                  <VisualTransition From="{x:Static wpf:DialogHost.ClosedStateName}" To="{x:Static wpf:DialogHost.OpenStateName}">
                     <Storyboard>
                       <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup" Storyboard.TargetProperty="IsOpen">
                         <DiscreteBooleanKeyFrame KeyTime="0" Value="True" />
@@ -68,7 +68,7 @@
                       </DoubleAnimationUsingKeyFrames>
                     </Storyboard>
                   </VisualTransition>
-                  <VisualTransition From="Open" To="Closed">
+                  <VisualTransition From="{x:Static wpf:DialogHost.OpenStateName}" To="{x:Static wpf:DialogHost.ClosedStateName}">
                     <Storyboard>
                       <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup" Storyboard.TargetProperty="IsOpen">
                         <DiscreteBooleanKeyFrame KeyTime="0:0:0.3" Value="False" />
@@ -111,7 +111,7 @@
                     </Storyboard>
                   </VisualTransition>
                 </VisualStateGroup.Transitions>
-                <VisualState x:Name="Open">
+                <VisualState Name="{x:Static wpf:DialogHost.OpenStateName}">
                   <Storyboard>
                     <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup"
                                                     Storyboard.TargetProperty="IsOpen"
@@ -136,7 +136,7 @@
                                      Duration="0" />
                   </Storyboard>
                 </VisualState>
-                <VisualState x:Name="Closed">
+                <VisualState Name="{x:Static wpf:DialogHost.ClosedStateName}">
                   <Storyboard>
                     <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup" Storyboard.TargetProperty="IsOpen">
                       <DiscreteBooleanKeyFrame KeyTime="0" Value="False" />
@@ -152,7 +152,7 @@
             <wpf:PopupEx x:Name="PART_Popup"
                          wpf:ThemeAssist.Theme="{TemplateBinding DialogTheme}"
                          Placement="{TemplateBinding Placement}"
-                         PlacementTarget="{Binding ElementName=DialogHostRoot, Mode=OneWay}"
+                         PlacementTarget="{Binding ElementName=PART_DialogHostRoot, Mode=OneWay}"
                          Style="{TemplateBinding PopupStyle}">
               <Grid>
                 <Border Background="Transparent" IsHitTestVisible="{TemplateBinding CloseOnClickAway}">
@@ -265,11 +265,11 @@
           <ControlTemplate.Resources>
             <converters:FirstNonNullConverter x:Key="FirstNonNullConverter" />
           </ControlTemplate.Resources>
-          <Grid x:Name="DialogHostRoot" Focusable="False">
+          <Grid x:Name="PART_DialogHostRoot" Focusable="False">
             <VisualStateManager.VisualStateGroups>
-              <VisualStateGroup x:Name="PopupStates">
+              <VisualStateGroup Name="{x:Static wpf:DialogHost.VisualStateGroupName}">
                 <VisualStateGroup.Transitions>
-                  <VisualTransition From="Closed" To="Open">
+                  <VisualTransition From="{x:Static wpf:DialogHost.ClosedStateName}" To="{x:Static wpf:DialogHost.OpenStateName}">
                     <Storyboard>
                       <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup" Storyboard.TargetProperty="Visibility">
                         <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
@@ -308,7 +308,7 @@
                       </DoubleAnimationUsingKeyFrames>
                     </Storyboard>
                   </VisualTransition>
-                  <VisualTransition From="Open" To="Closed">
+                  <VisualTransition From="{x:Static wpf:DialogHost.OpenStateName}" To="{x:Static wpf:DialogHost.ClosedStateName}">
                     <Storyboard>
                       <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup" Storyboard.TargetProperty="Visibility">
                         <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}" />
@@ -351,7 +351,7 @@
                     </Storyboard>
                   </VisualTransition>
                 </VisualStateGroup.Transitions>
-                <VisualState x:Name="Open">
+                <VisualState Name="{x:Static wpf:DialogHost.OpenStateName}">
                   <Storyboard>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup"
                                                    Storyboard.TargetProperty="Visibility"
@@ -376,7 +376,7 @@
                                      Duration="0" />
                   </Storyboard>
                 </VisualState>
-                <VisualState x:Name="Closed">
+                <VisualState Name="{x:Static wpf:DialogHost.ClosedStateName}">
                   <Storyboard>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Popup"
                                                    Storyboard.TargetProperty="Visibility"

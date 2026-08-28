@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Threading;
 using System.Windows.Media;
 using MaterialDesignThemes.UITests.Samples.DialogHost;
 
@@ -11,6 +12,64 @@ public class DialogHostTests : TestBase
     public DialogHostTests()
     {
         AttachedDebuggerToRemoteProcess = false;
+    }
+
+    [Test]
+    public async Task WaitForOpenAndClosed_CompletesAfterDialogAnimates()
+    {
+        var dialogHost = await LoadXaml<DialogHost>("<materialDesign:DialogHost />");
+
+        await dialogHost.RemoteExecute(OpenAndWaitForCompletion);
+        await Assert.That(dialogHost.GetIsOpen()).IsTrue();
+
+        await dialogHost.RemoteExecute(CloseAndWaitForCompletion);
+        await Assert.That(dialogHost.GetIsOpen()).IsFalse();
+
+        static async Task OpenAndWaitForCompletion(DialogHost dialogHost)
+        {
+            CancellationTokenSource cts = new(TimeSpan.FromSeconds(30));
+            Task wait = dialogHost.WaitForOpened(cts.Token);
+            dialogHost.IsOpen = true;
+            await wait;
+        }
+
+        static async Task CloseAndWaitForCompletion(DialogHost dialogHost)
+        {
+            CancellationTokenSource cts = new(TimeSpan.FromSeconds(30));
+            Task wait = dialogHost.WaitForClosed(cts.Token);
+            dialogHost.IsOpen = false;
+            await wait;
+        }
+    }
+
+    [Test]
+    public async Task WaitAlreadyReachedState_CompletesImmediately()
+    {
+        var dialogHost = await LoadXaml<DialogHost>("<materialDesign:DialogHost />");
+
+        await dialogHost.RemoteExecute(OpenAndWaitForCompletionTwice);
+        await Assert.That(dialogHost.GetIsOpen()).IsTrue();
+
+        await dialogHost.RemoteExecute(CloseAndWaitForCompletionTwice);
+        await Assert.That(dialogHost.GetIsOpen()).IsFalse();
+
+        static async Task OpenAndWaitForCompletionTwice(DialogHost dialogHost)
+        {
+            CancellationTokenSource cts = new(TimeSpan.FromSeconds(30));
+            Task wait = dialogHost.WaitForOpened(cts.Token);
+            dialogHost.IsOpen = true;
+            await wait;
+            await dialogHost.WaitForOpened(cts.Token);
+        }
+
+        static async Task CloseAndWaitForCompletionTwice(DialogHost dialogHost)
+        {
+            CancellationTokenSource cts = new(TimeSpan.FromSeconds(30));
+            Task wait = dialogHost.WaitForClosed(cts.Token);
+            dialogHost.IsOpen = false;
+            await wait;
+            await dialogHost.WaitForClosed(cts.Token);
+        }
     }
 
     [Test]
@@ -288,7 +347,7 @@ public class DialogHostTests : TestBase
         await Wait.For(async () =>
         {
             var contentCoverBorder = await dialogHost.GetElement<Border>("ContentCoverBorder");
-                
+
             await Assert.That((await contentCoverBorder.GetCornerRadius()).TopLeft).IsEqualTo(1);
             await Assert.That((await contentCoverBorder.GetCornerRadius()).TopRight).IsEqualTo(2);
             await Assert.That((await contentCoverBorder.GetCornerRadius()).BottomRight).IsEqualTo(3);
@@ -450,7 +509,7 @@ public class DialogHostTests : TestBase
         var comboBox = await dialogHost.GetElement<ComboBox>("TargetedPlatformComboBox");
         await Task.Delay(500, TestContext.Current!.Execution.CancellationToken);
         await comboBox.LeftClick();
-        
+
         var item = await Wait.For(() => comboBox.GetElement<ComboBoxItem>("TargetItem"));
         await Task.Delay(TimeSpan.FromSeconds(1));
         await item.LeftClick();
@@ -507,7 +566,7 @@ public class DialogHostTests : TestBase
         await Wait.For(async () => await Assert.That(await textBoxOne.GetIsFocused()).IsTrue());
 
         await textBoxOne.SendInput(new KeyboardInput(inputActions));
-        
+
         await Wait.For(async () => await Assert.That(await textBoxTwo.GetIsFocused()).IsTrue());
 
         await textBoxTwo.SendInput(new KeyboardInput(inputActions));

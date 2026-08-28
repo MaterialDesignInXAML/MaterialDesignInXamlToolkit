@@ -1,9 +1,12 @@
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Security;
+using System.Threading;
 using System.Windows.Data;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Threading;
+using MaterialDesignThemes.Wpf.Internal;
 
 namespace MaterialDesignThemes.Wpf;
 
@@ -31,13 +34,18 @@ public enum DialogHostOpenDialogCommandDataContextSource
 [TemplatePart(Name = PopupPartName, Type = typeof(Popup))]
 [TemplatePart(Name = PopupPartName, Type = typeof(ContentControl))]
 [TemplatePart(Name = ContentCoverGridName, Type = typeof(Grid))]
-[TemplateVisualState(GroupName = "PopupStates", Name = OpenStateName)]
-[TemplateVisualState(GroupName = "PopupStates", Name = ClosedStateName)]
+[TemplatePart(Name = RootContentPartName, Type = typeof(FrameworkElement))]
+[TemplateVisualState(GroupName = VisualStateGroupName, Name = OpenStateName)]
+[TemplateVisualState(GroupName = VisualStateGroupName, Name = ClosedStateName)]
 public class DialogHost : ContentControl
 {
+    public const string VisualStateGroupName = "PopupStates";
+
     public const string PopupPartName = "PART_Popup";
     public const string PopupContentPartName = "PART_PopupContentElement";
     public const string ContentCoverGridName = "PART_ContentCoverGrid";
+    public const string RootContentPartName = "PART_DialogHostRoot";
+
     public const string OpenStateName = "Open";
     public const string ClosedStateName = "Closed";
 
@@ -56,6 +64,9 @@ public class DialogHost : ContentControl
     private DialogClosingEventHandler? _asyncShowClosingEventHandler;
     private DialogClosedEventHandler? _asyncShowClosedEventHandler;
     private TaskCompletionSource<object?>? _dialogTaskCompletionSource;
+
+    private VisualStateMonitor? _visualStateMonitor;
+
 
     private Popup? _popup;
     private ContentControl? _popupContentControl;
@@ -215,6 +226,33 @@ public class DialogHost : ContentControl
     /// <param name="dialogIdentifier">of the instance where the dialog should be closed. Typically this will match an identifier set in XAML.</param>
     /// <returns></returns>
     public static bool IsDialogOpen(object? dialogIdentifier) => GetDialogSession(dialogIdentifier)?.IsEnded == false;
+
+
+    /// <summary>
+    /// Waits for the DialogHost to move into the Opened visual state. This is useful when you want to ensure that the dialog is fully opened before performing a UI action, such as focusing a control within the dialog.
+    /// </summary>
+    /// <param name="dialogIdentifier">of the instance where the dialog should be closed. Typically this will match an identifier set in XAML.</param>
+    /// <param name="cancellationToken">A token to determine how long to wait.</param>
+    /// <returns>A task that completes when the DialogHost has moved into the Opened visual state.</returns>
+    /// <exception cref="InvalidOperationException">Throw when the DialogHost template does not contain the Opened visual state.</exception>
+    public static Task WaitForOpened(object? dialogIdentifier = null, CancellationToken cancellationToken = default)
+    {
+        var instance = GetInstance(dialogIdentifier);
+        return instance.WaitForOpened(cancellationToken);
+    }
+
+    /// <summary>
+    /// Waits for the DialogHost to move into the Closed visual state. This is useful when you want to ensure that the dialog is fully closed before performing a UI action, such as focusing a control outside of the dialog.
+    /// </summary>
+    /// <param name="dialogIdentifier">of the instance where the dialog should be closed. Typically this will match an identifier set in XAML.</param>
+    /// <param name="cancellationToken">A token to determine how long to wait.</param>
+    /// <returns>A task that completes when the DialogHost has moved into the Closed visual state.</returns>
+    /// <exception cref="InvalidOperationException">Throw when the DialogHost template does not contain the Closed visual state.</exception>
+    public static Task WaitForClosed(object? dialogIdentifier = null, CancellationToken cancellationToken = default)
+    {
+        var instance = GetInstance(dialogIdentifier);
+        return instance.WaitForClosed(cancellationToken);
+    }
 
     private static DialogHost GetInstance(object? dialogIdentifier)
     {
@@ -395,7 +433,8 @@ public class DialogHost : ContentControl
 
         //https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/187
         //totally not happy about this, but on immediate validation we can get some weird looking stuff...give WPF a kick to refresh...
-        Task.Delay(300).ContinueWith(t => dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => {
+        Task.Delay(300).ContinueWith(t => dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+        {
             CommandManager.InvalidateRequerySuggested();
             //Delay focusing the popup until after the animation has some time, Issue #2912
             UIElement? child = dialogHost.FocusPopup();
@@ -628,8 +667,37 @@ public class DialogHost : ContentControl
 
         VisualStateManager.GoToState(this, GetStateName(), false);
 
+        if (GetTemplateChild(RootContentPartName) is FrameworkElement root &&
+            VisualStateManager.GetVisualStateGroups(root) is [VisualStateGroup stateGroup, ..])
+        {
+            var stateNames = stateGroup.States.OfType<VisualState>().Select(x => x.Name).ToList();
+            if (stateNames.Contains(OpenStateName) && stateNames.Contains(ClosedStateName))
+            {
+                _visualStateMonitor = new(stateGroup);
+            }
+        }
         base.OnApplyTemplate();
     }
+
+    /// <summary>
+    /// Waits for the DialogHost to move into the Opened visual state. This is useful when you want to ensure that the dialog is fully opened before performing a UI action, such as focusing a control within the dialog.
+    /// </summary>
+    /// <param name="cancellationToken">A token to determine how long to wait.</param>
+    /// <returns>A task that completes when the DialogHost has moved into the Opened visual state.</returns>
+    /// <exception cref="InvalidOperationException">Throw when the DialogHost template does not contain the Opened visual state.</exception>
+    public Task WaitForOpened(CancellationToken cancellationToken = default)
+        => _visualStateMonitor?.WaitForState(OpenStateName, cancellationToken)
+        ?? throw new InvalidOperationException("Unable to locate visual states for the DialogHost, cannot wait for state transitions");
+
+    /// <summary>
+    /// Waits for the DialogHost to move into the Closed visual state. This is useful when you want to ensure that the dialog is fully closed before performing a UI action, such as focusing a control outside of the dialog.
+    /// </summary>
+    /// <param name="cancellationToken">A token to determine how long to wait.</param>
+    /// <returns>A task that completes when the DialogHost has moved into the Closed visual state.</returns>
+    /// <exception cref="InvalidOperationException">Throw when the DialogHost template does not contain the Closed visual state.</exception>
+    public Task WaitForClosed(CancellationToken cancellationToken = default)
+        => _visualStateMonitor?.WaitForState(ClosedStateName, cancellationToken)
+        ?? throw new InvalidOperationException("Unable to locate visual states for the DialogHost, cannot wait for state transitions");
 
     #region restore focus properties
 
@@ -965,11 +1033,6 @@ public class DialogHost : ContentControl
                 (popup as PopupEx)?.RefreshPosition();
             }
         }
-    }
-
-    private void OnPreviewGotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
-    {
-
     }
 
     [SecurityCritical]
