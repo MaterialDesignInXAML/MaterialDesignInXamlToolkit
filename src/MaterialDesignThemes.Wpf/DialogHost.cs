@@ -643,7 +643,7 @@ public class DialogHost : ContentControl
         if (GetTemplateChild(RootContentPartName) is FrameworkElement root &&
             VisualStateManager.GetVisualStateGroups(root) is [VisualStateGroup stateGroup, ..])
         {
-            var stateNames = stateGroup.States.OfType<VisualStateGroup>().Select(x => x.Name).ToList();
+            var stateNames = stateGroup.States.OfType<VisualState>().Select(x => x.Name).ToList();
             if (stateNames.Contains(OpenStateName) && stateNames.Contains(ClosedStateName))
             {
                 _visualStateMonitor = new(stateGroup);
