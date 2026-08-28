@@ -227,6 +227,33 @@ public class DialogHost : ContentControl
     /// <returns></returns>
     public static bool IsDialogOpen(object? dialogIdentifier) => GetDialogSession(dialogIdentifier)?.IsEnded == false;
 
+
+    /// <summary>
+    /// Waits for the DialogHost to move into the Opened visual state. This is useful when you want to ensure that the dialog is fully opened before performing a UI action, such as focusing a control within the dialog.
+    /// </summary>
+    /// <param name="dialogIdentifier">of the instance where the dialog should be closed. Typically this will match an identifier set in XAML.</param>
+    /// <param name="cancellationToken">A token to determine how long to wait.</param>
+    /// <returns>A task that completes when the DialogHost has moved into the Opened visual state.</returns>
+    /// <exception cref="InvalidOperationException">Throw when the DialogHost template does not contain the Opened visual state.</exception>
+    public static Task WaitForOpened(object? dialogIdentifier = null, CancellationToken cancellationToken = default)
+    {
+        var instance = GetInstance(dialogIdentifier);
+        return instance.WaitForOpened(cancellationToken);
+    }
+
+    /// <summary>
+    /// Waits for the DialogHost to move into the Closed visual state. This is useful when you want to ensure that the dialog is fully closed before performing a UI action, such as focusing a control outside of the dialog.
+    /// </summary>
+    /// <param name="dialogIdentifier">of the instance where the dialog should be closed. Typically this will match an identifier set in XAML.</param>
+    /// <param name="cancellationToken">A token to determine how long to wait.</param>
+    /// <returns>A task that completes when the DialogHost has moved into the Closed visual state.</returns>
+    /// <exception cref="InvalidOperationException">Throw when the DialogHost template does not contain the Closed visual state.</exception>
+    public static Task WaitForClosed(object? dialogIdentifier = null, CancellationToken cancellationToken = default)
+    {
+        var instance = GetInstance(dialogIdentifier);
+        return instance.WaitForClosed(cancellationToken);
+    }
+
     private static DialogHost GetInstance(object? dialogIdentifier)
     {
         if (LoadedInstances.Count == 0)
@@ -652,10 +679,22 @@ public class DialogHost : ContentControl
         base.OnApplyTemplate();
     }
 
+    /// <summary>
+    /// Waits for the DialogHost to move into the Opened visual state. This is useful when you want to ensure that the dialog is fully opened before performing a UI action, such as focusing a control within the dialog.
+    /// </summary>
+    /// <param name="cancellationToken">A token to determine how long to wait.</param>
+    /// <returns>A task that completes when the DialogHost has moved into the Opened visual state.</returns>
+    /// <exception cref="InvalidOperationException">Throw when the DialogHost template does not contain the Opened visual state.</exception>
     public Task WaitForOpened(CancellationToken cancellationToken = default)
         => _visualStateMonitor?.WaitForState(OpenStateName, cancellationToken)
         ?? throw new InvalidOperationException("Unable to locate visual states for the DialogHost, cannot wait for state transitions");
 
+    /// <summary>
+    /// Waits for the DialogHost to move into the Closed visual state. This is useful when you want to ensure that the dialog is fully closed before performing a UI action, such as focusing a control outside of the dialog.
+    /// </summary>
+    /// <param name="cancellationToken">A token to determine how long to wait.</param>
+    /// <returns>A task that completes when the DialogHost has moved into the Closed visual state.</returns>
+    /// <exception cref="InvalidOperationException">Throw when the DialogHost template does not contain the Closed visual state.</exception>
     public Task WaitForClosed(CancellationToken cancellationToken = default)
         => _visualStateMonitor?.WaitForState(ClosedStateName, cancellationToken)
         ?? throw new InvalidOperationException("Unable to locate visual states for the DialogHost, cannot wait for state transitions");

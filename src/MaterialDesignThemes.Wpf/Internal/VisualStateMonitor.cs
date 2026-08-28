@@ -2,15 +2,10 @@
 
 namespace MaterialDesignThemes.Wpf.Internal;
 
-internal sealed class VisualStateMonitor
+internal sealed class VisualStateMonitor(VisualStateGroup visualStateGroup)
 {
-    private readonly VisualStateGroup _visualStateGroup;
-
-    public VisualStateMonitor(VisualStateGroup visualStateGroup)
-    {
-        _visualStateGroup = visualStateGroup ??
+    private readonly VisualStateGroup _visualStateGroup = visualStateGroup ??
             throw new ArgumentNullException(nameof(visualStateGroup));
-    }
 
     public Task WaitForState(string state, CancellationToken cancellationToken)
     {
@@ -18,7 +13,6 @@ internal sealed class VisualStateMonitor
         if (currentState == state) return Task.CompletedTask;
 
         TaskCompletionSource<string> tcs = new();
-        cancellationToken.Register(() => tcs.TrySetCanceled());
 
         EventHandler<VisualStateChangedEventArgs> stateChanged = null!;
         stateChanged = (sender, e) =>
@@ -29,6 +23,12 @@ internal sealed class VisualStateMonitor
                 tcs.TrySetResult(state);
             }
         };
+
+        cancellationToken.Register(() =>
+        {
+            _visualStateGroup.CurrentStateChanged -= stateChanged;
+            tcs.TrySetCanceled(cancellationToken);
+        });
 
         _visualStateGroup.CurrentStateChanged += stateChanged;
 

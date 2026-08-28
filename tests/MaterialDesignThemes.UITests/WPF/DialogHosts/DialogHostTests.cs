@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Threading;
 using System.Windows.Media;
 using MaterialDesignThemes.UITests.Samples.DialogHost;
 
@@ -14,7 +15,7 @@ public class DialogHostTests : TestBase
     }
 
     [Test]
-    public async Task WaitForClosed_CompletesAfterDialogCloses()
+    public async Task WaitForOpenAndClosed_CompletesAfterDialogAnimates()
     {
         var dialogHost = await LoadXaml<DialogHost>("<materialDesign:DialogHost />");
 
@@ -26,16 +27,48 @@ public class DialogHostTests : TestBase
 
         static async Task OpenAndWaitForCompletion(DialogHost dialogHost)
         {
-            Task wait = dialogHost.WaitForOpened();
+            CancellationTokenSource cts = new(TimeSpan.FromSeconds(30));
+            Task wait = dialogHost.WaitForOpened(cts.Token);
             dialogHost.IsOpen = true;
             await wait;
         }
 
         static async Task CloseAndWaitForCompletion(DialogHost dialogHost)
         {
-            Task wait = dialogHost.WaitForClosed();
+            CancellationTokenSource cts = new(TimeSpan.FromSeconds(30));
+            Task wait = dialogHost.WaitForClosed(cts.Token);
             dialogHost.IsOpen = false;
             await wait;
+        }
+    }
+
+    [Test]
+    public async Task WaitAlreadyReachedState_CompletesImmediately()
+    {
+        var dialogHost = await LoadXaml<DialogHost>("<materialDesign:DialogHost />");
+
+        await dialogHost.RemoteExecute(OpenAndWaitForCompletionTwice);
+        await Assert.That(dialogHost.GetIsOpen()).IsTrue();
+
+        await dialogHost.RemoteExecute(CloseAndWaitForCompletionTwice);
+        await Assert.That(dialogHost.GetIsOpen()).IsFalse();
+
+        static async Task OpenAndWaitForCompletionTwice(DialogHost dialogHost)
+        {
+            CancellationTokenSource cts = new(TimeSpan.FromSeconds(30));
+            Task wait = dialogHost.WaitForOpened(cts.Token);
+            dialogHost.IsOpen = true;
+            await wait;
+            await dialogHost.WaitForOpened(cts.Token);
+        }
+
+        static async Task CloseAndWaitForCompletionTwice(DialogHost dialogHost)
+        {
+            CancellationTokenSource cts = new(TimeSpan.FromSeconds(30));
+            Task wait = dialogHost.WaitForClosed(cts.Token);
+            dialogHost.IsOpen = false;
+            await wait;
+            await dialogHost.WaitForClosed(cts.Token);
         }
     }
 
