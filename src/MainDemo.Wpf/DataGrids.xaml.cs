@@ -6,7 +6,7 @@ public partial class DataGrids
 {
     public DataGrids()
     {
-        DataContext = new ListsAndGridsViewModel();
+        DataContext = new ListsAndGridsViewModel(MainWindow.Snackbar.MessageQueue!);
         InitializeComponent();
     }
 }

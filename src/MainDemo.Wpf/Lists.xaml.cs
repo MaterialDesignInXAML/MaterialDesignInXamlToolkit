@@ -6,7 +6,7 @@ public partial class Lists
 {
     public Lists()
     {
-        DataContext = new ListsAndGridsViewModel();
+        DataContext = new ListsAndGridsViewModel(MainWindow.Snackbar.MessageQueue!);
         InitializeComponent();
     }
 }

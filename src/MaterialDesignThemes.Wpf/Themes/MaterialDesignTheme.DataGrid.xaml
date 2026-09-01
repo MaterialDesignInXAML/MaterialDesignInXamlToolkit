@@ -259,12 +259,16 @@
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
                     SnapsToDevicePixels="True" />
-            <ContentPresenter Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+            <ContentPresenter Margin="{TemplateBinding Padding}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
     <Setter Property="Validation.ErrorTemplate" Value="{x:Null}" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
     <Style.Triggers>
       <Trigger Property="IsKeyboardFocusWithin" Value="True">
         <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=(wpf:DataGridAssist.SelectedCellBorderBrush)}" />
@@ -381,7 +385,7 @@
                                   RecognizesAccessKey="True"
                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                 <Control SnapsToDevicePixels="false"
-                         Template="{Binding ValidationErrorTemplate, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}},FallbackValue={x:Null}}"
+                         Template="{Binding ValidationErrorTemplate, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, FallbackValue={x:Null}}"
                          Visibility="{Binding (Validation.HasError), Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, FallbackValue=Collapsed}" />
               </StackPanel>
             </Border>
@@ -489,7 +493,9 @@
                   BorderThickness="{TemplateBinding BorderThickness}"
                   CornerRadius="{TemplateBinding wpf:DataGridAssist.CornerRadius}"
                   SnapsToDevicePixels="True">
-            <ScrollViewer x:Name="DG_ScrollViewer" Focusable="false" wpf:ScrollViewerAssist.BubbleVerticalScroll="{Binding Path=(wpf:ScrollViewerAssist.BubbleVerticalScroll), RelativeSource={RelativeSource TemplatedParent}}">
+            <ScrollViewer x:Name="DG_ScrollViewer"
+                          wpf:ScrollViewerAssist.BubbleVerticalScroll="{Binding Path=(wpf:ScrollViewerAssist.BubbleVerticalScroll), RelativeSource={RelativeSource TemplatedParent}}"
+                          Focusable="false">
               <ScrollViewer.Template>
                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
                   <Grid>

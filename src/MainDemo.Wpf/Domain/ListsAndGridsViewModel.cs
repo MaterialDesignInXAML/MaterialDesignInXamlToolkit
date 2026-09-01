@@ -1,12 +1,17 @@
 using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.Input;
 using MaterialDesignDemo.Shared.Domain;
+using MaterialDesignThemes.Wpf;
 
 namespace MaterialDesignDemo.Domain;
 
-public class ListsAndGridsViewModel : ViewModelBase
+public partial class ListsAndGridsViewModel : ViewModelBase
 {
-    public ListsAndGridsViewModel()
+    private readonly ISnackbarMessageQueue _snackbarMessageQueue;
+
+    public ListsAndGridsViewModel(ISnackbarMessageQueue snackbarMessageQueue)
     {
+        _snackbarMessageQueue = snackbarMessageQueue;
         Items1 = CreateData();
         Items2 = CreateData();
         Items3 = CreateData();
@@ -21,7 +26,7 @@ public class ListsAndGridsViewModel : ViewModelBase
             };
         }
 
-        Files = new List<string>();
+        Files = [];
 
         for (int i = 0; i < 1000; i++)
         {
@@ -56,8 +61,8 @@ public class ListsAndGridsViewModel : ViewModelBase
 
     private static ObservableCollection<SelectableViewModel> CreateData()
     {
-        return new ObservableCollection<SelectableViewModel>
-        {
+        return
+        [
             new SelectableViewModel
             {
                 Code = 'M',
@@ -77,7 +82,7 @@ public class ListsAndGridsViewModel : ViewModelBase
                 Name = "Predator",
                 Description = "If it bleeds, we can kill it"
             }
-        };
+        ];
     }
 
     public ObservableCollection<SelectableViewModel> Items1 { get; }
@@ -85,9 +90,21 @@ public class ListsAndGridsViewModel : ViewModelBase
     public ObservableCollection<SelectableViewModel> Items3 { get; }
     public ObservableCollection<SelectableViewModel> Items4 { get; }
 
-    public IEnumerable<string> Foods => new[] { "Burger", "Fries", "Shake", "Lettuce" };
+    public IEnumerable<string> Foods => ["Burger", "Fries", "Shake", "Lettuce"];
 
     public IList<string> Files { get; }
 
-    public IEnumerable<DataGridSelectionUnit> SelectionUnits => new[] { DataGridSelectionUnit.FullRow, DataGridSelectionUnit.Cell, DataGridSelectionUnit.CellOrRowHeader };
+    public IEnumerable<DataGridSelectionUnit> SelectionUnits => [DataGridSelectionUnit.FullRow, DataGridSelectionUnit.Cell, DataGridSelectionUnit.CellOrRowHeader];
+
+    [RelayCommand]
+    private void EditItem(SelectableViewModel item)
+        => _snackbarMessageQueue.Enqueue($"Editing {item.Name}");
+
+    [RelayCommand]
+    private void DuplicateItem(SelectableViewModel item)
+        => _snackbarMessageQueue.Enqueue($"Duplicating {item.Name}");
+
+    [RelayCommand]
+    private void DeleteItem(SelectableViewModel item)
+        => _snackbarMessageQueue.Enqueue($"Deleting {item.Name}");
 }
