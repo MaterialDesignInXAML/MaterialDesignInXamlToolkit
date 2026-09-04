@@ -25,9 +25,8 @@ jobs:
     - id: check_for_changes
       name: Check for changes
       run: |
-        # Grab the last two run, since the latest run will be the current one executing
-        $workflowList = gh run list --workflow "${{ github.workflow }}" --branch "${{ github.ref_name }}" --json databaseId --limit 2 --repo "${{ github.repository }}"
-        $runId = ($workflowList | ConvertFrom-Json)[1].databaseId
+        $workflowList = gh run list --workflow "${{ github.workflow }}" --branch "${{ github.ref_name }}" --json databaseId --status completed --repo "${{ github.repository }}"
+        $runId = ($workflowList | ConvertFrom-Json)[0].databaseId
         $lastRunHash = ((gh run view $runId --json headSha --repo "${{ github.repository }}") | ConvertFrom-Json).headSha
 
         echo "Last hash $lastRunHash"
