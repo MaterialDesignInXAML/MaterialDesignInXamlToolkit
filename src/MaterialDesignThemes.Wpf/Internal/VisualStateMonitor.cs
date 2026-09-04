@@ -1,41 +1,73 @@
-﻿using System.Threading;
+using System.Threading;
 
 namespace MaterialDesignThemes.Wpf.Internal;
 
-internal sealed class VisualStateMonitor(VisualStateGroup visualStateGroup)
+public sealed class VisualStateMonitor
 {
-    private readonly VisualStateGroup _visualStateGroup = visualStateGroup ??
-            throw new ArgumentNullException(nameof(visualStateGroup));
+    public static VisualStateMonitor? GetMonitor(DependencyObject obj)
+        => (VisualStateMonitor?)obj.GetValue(MonitorProperty);
+
+    public static void SetMonitor(DependencyObject obj, VisualStateMonitor? value)
+        => obj.SetValue(MonitorProperty, value);
+
+    public static readonly DependencyProperty MonitorProperty =
+        DependencyProperty.RegisterAttached("Monitor", typeof(VisualStateMonitor), typeof(VisualStateMonitor), new PropertyMetadata(null));
+
+    public static string? GetCurrentState(DependencyObject obj)
+        => (string?)obj.GetValue(CurrentStateProperty);
+
+    public static void SetCurrentState(DependencyObject obj, string? value)
+        => obj.SetValue(CurrentStateProperty, value);
+
+    public static readonly DependencyProperty CurrentStateProperty =
+        DependencyProperty.RegisterAttached("CurrentState", typeof(string), typeof(VisualStateMonitor), new PropertyMetadata("", OnCurrentStateChanged));
+
+    private static void OnCurrentStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (GetMonitor(d) is { } monitor)
+        {
+            monitor.StateChanged((string)e.NewValue);
+        }
+    }
+
+    private string _currentState = "";
+    private event EventHandler<string>? CurrentStateChanged;
+
+    public VisualStateMonitor(DependencyObject source) => SetMonitor(source, this);
+
+    public void StateChanged(string state)
+    {
+        _currentState = state;
+        CurrentStateChanged?.Invoke(this, state);
+    }
 
     public Task WaitForState(string state, CancellationToken cancellationToken)
     {
-        string currentState = _visualStateGroup.CurrentState.Name;
-        if (currentState == state) return Task.CompletedTask;
+        if (_currentState == state) return Task.CompletedTask;
 
         TaskCompletionSource<string> tcs = new();
 
-        EventHandler<VisualStateChangedEventArgs> stateChanged = null!;
+        EventHandler<string> stateChanged = null!;
         stateChanged = (sender, e) =>
         {
-            if (e.NewState.Name == state)
+            if (e == state)
             {
-                _visualStateGroup.CurrentStateChanged -= stateChanged;
+                CurrentStateChanged -= stateChanged;
                 tcs.TrySetResult(state);
             }
         };
 
         cancellationToken.Register(() =>
         {
-            _visualStateGroup.CurrentStateChanged -= stateChanged;
+            CurrentStateChanged -= stateChanged;
             tcs.TrySetCanceled(cancellationToken);
         });
 
-        _visualStateGroup.CurrentStateChanged += stateChanged;
+        CurrentStateChanged += stateChanged;
 
-        currentState = _visualStateGroup.CurrentState.Name;
-        if (currentState == state)
+        if (_currentState == state)
         {
-            _visualStateGroup.CurrentStateChanged -= stateChanged;
+            CurrentStateChanged -= stateChanged;
 
             return Task.CompletedTask;
         }
