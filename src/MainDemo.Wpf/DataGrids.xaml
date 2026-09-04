@@ -184,6 +184,58 @@
                 CanUserAddRows="False"
                 ItemsSource="{Binding Items4}" />
     </smtx:XamlDisplay>
+
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+
+    <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Custom row height" />
+
+    <smtx:XamlDisplay UniqueKey="grids_5">
+      <DataGrid AutoGenerateColumns="False"
+                IsReadOnly="True"
+                ItemsSource="{Binding Items1}">
+        <DataGrid.Columns>
+          <DataGridTemplateColumn Header="Actions">
+            <DataGridTemplateColumn.CellTemplate>
+              <DataTemplate>
+                <StackPanel Orientation="Horizontal">
+                  <Button Command="{Binding DataContext.EditItemCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                          CommandParameter="{Binding .}"
+                          Content="{materialDesign:PackIcon Kind=Pen}"
+                          Style="{StaticResource MaterialDesignIconButton}"
+                          ToolTip="Edit">
+                    <Button.Resources>
+                      <SolidColorBrush x:Key="MaterialDesign.Brush.Primary" Color="Orange" />
+                    </Button.Resources>
+                  </Button>
+                  <Button Command="{Binding DataContext.DuplicateItemCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                          CommandParameter="{Binding .}"
+                          Content="{materialDesign:PackIcon Kind=ContentDuplicate}"
+                          Style="{StaticResource MaterialDesignIconButton}"
+                          ToolTip="Duplicate">
+                    <Button.Resources>
+                      <SolidColorBrush x:Key="MaterialDesign.Brush.Primary" Color="DodgerBlue" />
+                    </Button.Resources>
+                  </Button>
+                  <Button Command="{Binding DataContext.DeleteItemCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                          CommandParameter="{Binding .}"
+                          Content="{materialDesign:PackIcon Kind=Bin}"
+                          Style="{StaticResource MaterialDesignIconButton}"
+                          ToolTip="Delete">
+                    <Button.Resources>
+                      <SolidColorBrush x:Key="MaterialDesign.Brush.Primary" Color="Red" />
+                    </Button.Resources>
+                  </Button>
+                </StackPanel>
+              </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+          </DataGridTemplateColumn>
+          <DataGridTextColumn Binding="{Binding Code}" Header="Code" />
+          <DataGridTextColumn Binding="{Binding Name}" Header="Name" />
+          <DataGridTextColumn Binding="{Binding Description}" Header="Description" />
+        </DataGrid.Columns>
+      </DataGrid>
+    </smtx:XamlDisplay>
+
   </StackPanel>
 </UserControl>
 
