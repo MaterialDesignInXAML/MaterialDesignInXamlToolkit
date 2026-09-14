@@ -1,4 +1,5 @@
-﻿using MaterialDesign.Shared;
+﻿using System.Reflection;
+using MaterialDesign.Shared;
 using MaterialDesignThemes.Wpf;
 using ShowMeTheXAML;
 
@@ -32,7 +33,9 @@ public partial class App : Application
                     XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
         */
 
-        XamlDisplay.Init();
+        var sharedAssembly
+            = Assembly.GetAssembly(typeof(MaterialDesignDemo.Shared.IMaterialDesignDemoSharedAssemblyMarker));
+        XamlDisplay.Init(sharedAssembly);
 
         // test setup for Persian culture settings
         /*System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("fa-Ir");

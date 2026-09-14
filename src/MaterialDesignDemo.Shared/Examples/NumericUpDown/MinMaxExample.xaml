@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="MaterialDesignDemo.Shared.Examples.NumericUpDown.MinMaxExample"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+             mc:Ignorable="d">
+  <smtx:XamlDisplay UniqueKey="NumericUpDown_MinMaxExample">
+    <materialDesign:Card Padding="16">
+      <StackPanel>
+        <TextBlock Margin="0,0,0,8"
+                   Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                   Text="Minimum/Maximum" />
+
+        <TextBlock Margin="0,0,0,16"
+                   Text="Use the Minimum or Maximum property to set boundaries."
+                   TextWrapping="Wrap" />
+
+        <WrapPanel Margin="0,0,0,8">
+          <StackPanel Margin="8">
+            <TextBlock Text="Range 0-10" />
+            <materialDesign:NumericUpDown Width="120"
+                                          Maximum="10"
+                                          Minimum="0"
+                                          Value="5" />
+          </StackPanel>
+        </WrapPanel>
+      </StackPanel>
+    </materialDesign:Card>
+  </smtx:XamlDisplay>
+</UserControl>

@@ -491,6 +491,19 @@ public partial class MainWindowViewModel : ViewModelBase
             ],
             selectedIcon: PackIconKind.Tooltip,
             unselectedIcon: PackIconKind.Tooltip);
+
+        yield return new DemoItem(
+            nameof(NumericUpDown),
+            typeof(NumericUpDown),
+            [
+                DocumentationLink.DemoPageLink<NumericUpDown>(),
+                DocumentationLink.StyleLink(nameof(NumericUpDown)),
+                DocumentationLink.ApiLink<NumericUpDown>(),
+                DocumentationLink.ApiLink<DecimalUpDown>(),
+                DocumentationLink.ApiLink<UpDownBase>()
+            ],
+            selectedIcon: PackIconKind.Counter,
+            unselectedIcon: PackIconKind.Counter);
     }
 
     private bool DemoItemsFilter(object obj)
