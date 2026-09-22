@@ -12,7 +12,7 @@
       as part of Material Design in XAML Toolkit. Other themes, for existing controls
       must be selected manually by the user, so that they override default styles.
       The easiest way to do this is include:
-
+      
       MaterialDesignTheme.Defaults.xaml
       in your App.xaml
     -->
@@ -953,16 +953,17 @@
                   </ContentPresenter.Tag>
                 </ContentPresenter>
               </AdornerDecorator>
-              <Grid x:Name="PART_ContentCover"
-                    Grid.Row="0"
-                    Grid.RowSpan="3"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="3"
-                    Focusable="False"
-                    IsHitTestVisible="False"
-                    Opacity="0">
-                <Grid.Style>
-                  <Style TargetType="Grid">
+              <Border x:Name="PART_ContentCover"
+                      Grid.Row="0"
+                      Grid.RowSpan="3"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="3"
+                      CornerRadius="{TemplateBinding CornerRadius}"
+                      Focusable="False"
+                      IsHitTestVisible="False"
+                      Opacity="0">
+                <Border.Style>
+                  <Style TargetType="Border">
                     <Setter Property="Background" Value="{Binding OverlayBackground, RelativeSource={RelativeSource TemplatedParent}}" />
                     <Style.Triggers>
                       <DataTrigger Binding="{Binding OpenMode, RelativeSource={RelativeSource TemplatedParent}}" Value="Standard">
@@ -973,8 +974,8 @@
                       </Trigger>
                     </Style.Triggers>
                   </Style>
-                </Grid.Style>
-              </Grid>
+                </Border.Style>
+              </Border>
               <Grid x:Name="PART_LeftDrawer"
                     Margin="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={x:Static converters:DrawerOffsetConverter.Instance}, ConverterParameter={x:Static Dock.Left}}"
                     HorizontalAlignment="Left"
