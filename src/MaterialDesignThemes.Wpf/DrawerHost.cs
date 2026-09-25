@@ -81,6 +81,15 @@ public class DrawerHost : ContentControl
         set => SetValue(OverlayBackgroundProperty, value);
     }
 
+    public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
+        nameof(CornerRadius), typeof(CornerRadius), typeof(DrawerHost), new PropertyMetadata(default(CornerRadius)));
+
+    public CornerRadius CornerRadius
+    {
+        get => (CornerRadius)GetValue(CornerRadiusProperty);
+        set => SetValue(CornerRadiusProperty, value);
+    }
+
     public DrawerHostOpenMode OpenMode
     {
         get => (DrawerHostOpenMode)GetValue(OpenModeProperty);
