@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Windows.Data;
 
 namespace MaterialDesignThemes.Wpf.Converters;
@@ -14,10 +14,10 @@ public class DrawerOffsetConverter : IValueConverter
         Dock dock = (parameter is Dock) ? (Dock)parameter : Dock.Left;
         return dock switch
         {
-            Dock.Top => new Thickness(0, 0 - d, 0, 0),
-            Dock.Bottom => new Thickness(0, 0, 0, 0 - d),
-            Dock.Right => new Thickness(0, 0, 0 - d, 0),
-            _ => (object)new Thickness(0 - d, 0, 0, 0),
+            Dock.Top => new Thickness(0, -d, 0, 0),
+            Dock.Bottom => new Thickness(0, 0, 0, -d),
+            Dock.Right => new Thickness(0, 0, -d, 0),
+            _ => new Thickness(-d, 0, 0, 0),
         };
     }
 
