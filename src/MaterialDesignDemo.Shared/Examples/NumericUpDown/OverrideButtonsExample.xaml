@@ -8,19 +8,19 @@
              d:DesignHeight="240"
              d:DesignWidth="700"
              mc:Ignorable="d">
-  <smtx:XamlDisplay UniqueKey="NumericUpDown_OverrideButtonsExample">
-    <materialDesign:Card Padding="16">
-      <StackPanel>
-        <TextBlock Margin="0,0,0,8"
+  <materialDesign:Card Padding="16">
+    <StackPanel>
+      <TextBlock Margin="0,0,0,8"
                    Style="{StaticResource MaterialDesignHeadline6TextBlock}"
                    Text="Custom button content" />
-        <TextBlock Margin="0,0,0,12"
+      <TextBlock Margin="0,0,0,12"
                    Text="You can change the content of the IncreaseContent and DecreaseContent buttons."
                    TextWrapping="Wrap" />
 
-        <WrapPanel>
-          <StackPanel Margin="8">
-            <TextBlock Text="Custom icons" />
+      <WrapPanel>
+        <StackPanel Margin="8">
+          <TextBlock Text="Custom icons" />
+          <smtx:XamlDisplay UniqueKey="NumericUpDown_OverrideButtonsExample_1">
             <materialDesign:NumericUpDown>
               <materialDesign:NumericUpDown.IncreaseContent>
                 <Border BorderBrush="{DynamicResource MaterialDesign.Brush.Foreground}"
@@ -37,10 +37,13 @@
                 </Border>
               </materialDesign:NumericUpDown.DecreaseContent>
             </materialDesign:NumericUpDown>
-          </StackPanel>
+          </smtx:XamlDisplay>
 
-          <StackPanel Margin="8">
-            <TextBlock Text="Custom text" />
+        </StackPanel>
+
+        <StackPanel Margin="8">
+          <TextBlock Text="Custom text" />
+          <smtx:XamlDisplay UniqueKey="NumericUpDown_OverrideButtonsExample_2">
             <materialDesign:NumericUpDown Width="150">
               <materialDesign:NumericUpDown.IncreaseContent>
                 <TextBlock Padding="4" Text="Inc" />
@@ -49,9 +52,9 @@
                 <TextBlock Padding="4" Text="Dec" />
               </materialDesign:NumericUpDown.DecreaseContent>
             </materialDesign:NumericUpDown>
-          </StackPanel>
-        </WrapPanel>
-      </StackPanel>
-    </materialDesign:Card>
-  </smtx:XamlDisplay>
+          </smtx:XamlDisplay>
+        </StackPanel>
+      </WrapPanel>
+    </StackPanel>
+  </materialDesign:Card>
 </UserControl>

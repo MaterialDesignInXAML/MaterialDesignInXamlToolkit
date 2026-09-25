@@ -6,27 +6,27 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              mc:Ignorable="d">
-  <smtx:XamlDisplay UniqueKey="NumericUpDown_MinMaxExample">
-    <materialDesign:Card Padding="16">
-      <StackPanel>
-        <TextBlock Margin="0,0,0,8"
+  <materialDesign:Card Padding="16">
+    <StackPanel>
+      <TextBlock Margin="0,0,0,8"
                    Style="{StaticResource MaterialDesignHeadline6TextBlock}"
                    Text="Minimum/Maximum" />
 
-        <TextBlock Margin="0,0,0,16"
+      <TextBlock Margin="0,0,0,16"
                    Text="Use the Minimum or Maximum property to set boundaries."
                    TextWrapping="Wrap" />
 
-        <WrapPanel Margin="0,0,0,8">
-          <StackPanel Margin="8">
-            <TextBlock Text="Range 0-10" />
+      <WrapPanel Margin="0,0,0,8">
+        <StackPanel Margin="8">
+          <TextBlock Text="Range 0-10" />
+          <smtx:XamlDisplay UniqueKey="NumericUpDown_MinMaxExample">
             <materialDesign:NumericUpDown Width="120"
                                           Maximum="10"
                                           Minimum="0"
                                           Value="5" />
-          </StackPanel>
-        </WrapPanel>
-      </StackPanel>
-    </materialDesign:Card>
-  </smtx:XamlDisplay>
+          </smtx:XamlDisplay>
+        </StackPanel>
+      </WrapPanel>
+    </StackPanel>
+  </materialDesign:Card>
 </UserControl>

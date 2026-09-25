@@ -8,39 +8,47 @@
              d:DesignHeight="400"
              d:DesignWidth="800"
              mc:Ignorable="d">
-  <smtx:XamlDisplay UniqueKey="NumericUpDown_BasicUsage">
-    <materialDesign:Card Padding="16">
-      <StackPanel>
-        <TextBlock Margin="0,0,0,8"
+
+  <materialDesign:Card Padding="16">
+    <StackPanel>
+      <TextBlock Margin="0,0,0,8"
                    Style="{StaticResource MaterialDesignHeadline6TextBlock}"
                    Text="Basic usage" />
 
-        <TextBlock Margin="0,0,0,16"
+      <TextBlock Margin="0,0,0,16"
                    Text="NumericUpDown is used to allow users to pick or type numeric values with optional step/limits."
                    TextWrapping="Wrap" />
 
-        <WrapPanel Margin="0,0,0,8">
-          <StackPanel Margin="8">
-            <TextBlock Text="Default" />
+      <WrapPanel Margin="0,0,0,8">
+        <StackPanel Margin="8">
+          <TextBlock Text="Default" />
+          <smtx:XamlDisplay UniqueKey="NumericUpDown_BasicUsage_1">
             <materialDesign:NumericUpDown Width="120" />
-          </StackPanel>
+          </smtx:XamlDisplay>
+        </StackPanel>
 
-          <StackPanel Margin="8">
-            <TextBlock Text="Floating" />
+        <StackPanel Margin="8">
+          <TextBlock Text="Floating" />
+          <smtx:XamlDisplay UniqueKey="NumericUpDown_BasicUsage_2">
             <materialDesign:NumericUpDown Width="150" Style="{StaticResource MaterialDesignFloatingHintNumericUpDown}" />
-          </StackPanel>
+          </smtx:XamlDisplay>
 
-          <StackPanel Margin="8">
-            <TextBlock Text="Filled" />
+        </StackPanel>
+
+        <StackPanel Margin="8">
+          <TextBlock Text="Filled" />
+          <smtx:XamlDisplay UniqueKey="NumericUpDown_BasicUsage_3">
             <materialDesign:NumericUpDown Width="150" Style="{StaticResource MaterialDesignFilledNumericUpDown}" />
-          </StackPanel>
+          </smtx:XamlDisplay>
+        </StackPanel>
 
-          <StackPanel Margin="8">
-            <TextBlock Text="Outlined" />
+        <StackPanel Margin="8">
+          <TextBlock Text="Outlined" />
+          <smtx:XamlDisplay UniqueKey="NumericUpDown_BasicUsage_4">
             <materialDesign:NumericUpDown Width="150" Style="{StaticResource MaterialDesignOutlinedNumericUpDown}" />
-          </StackPanel>
-        </WrapPanel>
-      </StackPanel>
-    </materialDesign:Card>
-  </smtx:XamlDisplay>
+          </smtx:XamlDisplay>
+        </StackPanel>
+      </WrapPanel>
+    </StackPanel>
+  </materialDesign:Card>
 </UserControl>

@@ -8,33 +8,36 @@
              d:DesignHeight="220"
              d:DesignWidth="700"
              mc:Ignorable="d">
-  <smtx:XamlDisplay UniqueKey="NumericUpDown_KeyboardAndScroll">
-    <materialDesign:Card Padding="16">
-      <StackPanel>
-        <TextBlock Margin="0,0,0,8"
+  <materialDesign:Card Padding="16">
+    <StackPanel>
+      <TextBlock Margin="0,0,0,8"
                    Style="{StaticResource MaterialDesignHeadline6TextBlock}"
                    Text="Increment/Decrement with keyboard and mouse wheel" />
-        <TextBlock Margin="0,0,0,12"
+      <TextBlock Margin="0,0,0,12"
                    Text="Allow changing value with Up/Down arrow keys and, when focused, mouse wheel scrolling (AllowChangeOnScroll=&quot;True&quot;)."
                    TextWrapping="Wrap" />
 
-        <WrapPanel>
-          <StackPanel Margin="8">
-            <TextBlock Text="Use arrows or wheel" />
+      <WrapPanel>
+        <StackPanel Margin="8">
+          <TextBlock Text="Use arrows or wheel" />
+          <smtx:XamlDisplay UniqueKey="NumericUpDown_KeyboardAndScroll_1">
             <materialDesign:NumericUpDown Width="140"
                                           AllowChangeOnScroll="True"
                                           Value="10" />
-          </StackPanel>
+          </smtx:XamlDisplay>
 
-          <StackPanel Margin="8">
-            <TextBlock Text="Decimal example" />
+        </StackPanel>
+
+        <StackPanel Margin="8">
+          <TextBlock Text="Decimal example" />
+          <smtx:XamlDisplay UniqueKey="NumericUpDown_KeyboardAndScroll_2">
             <materialDesign:DecimalUpDown Width="140"
                                           AllowChangeOnScroll="True"
                                           ValueStep="0.25"
                                           Value="1.5" />
-          </StackPanel>
-        </WrapPanel>
-      </StackPanel>
-    </materialDesign:Card>
-  </smtx:XamlDisplay>
+          </smtx:XamlDisplay>
+        </StackPanel>
+      </WrapPanel>
+    </StackPanel>
+  </materialDesign:Card>
 </UserControl>
