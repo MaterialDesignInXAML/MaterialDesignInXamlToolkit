@@ -1,0 +1,43 @@
+<UserControl x:Class="MaterialDesignDemo.Shared.Examples.NumericUpDown.KeyboardAndScrollExample"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+             d:DesignHeight="220"
+             d:DesignWidth="700"
+             mc:Ignorable="d">
+  <materialDesign:Card Padding="16">
+    <StackPanel>
+      <TextBlock Margin="0,0,0,8"
+                   Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                   Text="Increment/Decrement with keyboard and mouse wheel" />
+      <TextBlock Margin="0,0,0,12"
+                   Text="Allow changing value with Up/Down arrow keys and, when focused, mouse wheel scrolling (AllowChangeOnScroll=&quot;True&quot;)."
+                   TextWrapping="Wrap" />
+
+      <WrapPanel>
+        <StackPanel Margin="8">
+          <TextBlock Text="Use arrows or wheel" />
+          <smtx:XamlDisplay UniqueKey="NumericUpDown_KeyboardAndScroll_1">
+            <materialDesign:NumericUpDown Width="140"
+                                          AllowChangeOnScroll="True"
+                                          Value="10" />
+          </smtx:XamlDisplay>
+
+        </StackPanel>
+
+        <StackPanel Margin="8">
+          <TextBlock Text="Decimal example" />
+          <smtx:XamlDisplay UniqueKey="NumericUpDown_KeyboardAndScroll_2">
+            <materialDesign:DecimalUpDown Width="140"
+                                          AllowChangeOnScroll="True"
+                                          ValueStep="0.25"
+                                          Value="1.5" />
+          </smtx:XamlDisplay>
+        </StackPanel>
+      </WrapPanel>
+    </StackPanel>
+  </materialDesign:Card>
+</UserControl>

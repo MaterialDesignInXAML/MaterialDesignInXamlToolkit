@@ -1,0 +1,60 @@
+<UserControl x:Class="MaterialDesignDemo.Shared.Examples.NumericUpDown.OverrideButtonsExample"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+             d:DesignHeight="240"
+             d:DesignWidth="700"
+             mc:Ignorable="d">
+  <materialDesign:Card Padding="16">
+    <StackPanel>
+      <TextBlock Margin="0,0,0,8"
+                   Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                   Text="Custom button content" />
+      <TextBlock Margin="0,0,0,12"
+                   Text="You can change the content of the IncreaseContent and DecreaseContent buttons."
+                   TextWrapping="Wrap" />
+
+      <WrapPanel>
+        <StackPanel Margin="8">
+          <TextBlock Text="Custom icons" />
+          <smtx:XamlDisplay UniqueKey="NumericUpDown_OverrideButtonsExample_1">
+            <materialDesign:NumericUpDown>
+              <materialDesign:NumericUpDown.IncreaseContent>
+                <Border BorderBrush="{DynamicResource MaterialDesign.Brush.Foreground}"
+                        BorderThickness="1"
+                        CornerRadius="20">
+                  <materialDesign:PackIcon Kind="ArrowUp" />
+                </Border>
+              </materialDesign:NumericUpDown.IncreaseContent>
+              <materialDesign:NumericUpDown.DecreaseContent>
+                <Border BorderBrush="{DynamicResource MaterialDesign.Brush.Foreground}"
+                        BorderThickness="1"
+                        CornerRadius="20">
+                  <materialDesign:PackIcon Kind="ArrowDown" />
+                </Border>
+              </materialDesign:NumericUpDown.DecreaseContent>
+            </materialDesign:NumericUpDown>
+          </smtx:XamlDisplay>
+
+        </StackPanel>
+
+        <StackPanel Margin="8">
+          <TextBlock Text="Custom text" />
+          <smtx:XamlDisplay UniqueKey="NumericUpDown_OverrideButtonsExample_2">
+            <materialDesign:NumericUpDown Width="150">
+              <materialDesign:NumericUpDown.IncreaseContent>
+                <TextBlock Padding="4" Text="Inc" />
+              </materialDesign:NumericUpDown.IncreaseContent>
+              <materialDesign:NumericUpDown.DecreaseContent>
+                <TextBlock Padding="4" Text="Dec" />
+              </materialDesign:NumericUpDown.DecreaseContent>
+            </materialDesign:NumericUpDown>
+          </smtx:XamlDisplay>
+        </StackPanel>
+      </WrapPanel>
+    </StackPanel>
+  </materialDesign:Card>
+</UserControl>

@@ -1,0 +1,86 @@
+<UserControl x:Class="MaterialDesignDemo.Shared.Examples.NumericUpDown.TypesTableExample"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+             d:DesignHeight="300"
+             d:DesignWidth="900"
+             mc:Ignorable="d">
+  <materialDesign:Card Padding="16">
+    <StackPanel>
+      <TextBlock Margin="0,0,0,8"
+                 Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                 Text="Numeric types overview" />
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="200" />
+          <ColumnDefinition Width="200" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   FontWeight="Bold"
+                   Text="Type" />
+        <TextBlock Grid.Row="0"
+                   Grid.Column="1"
+                   FontWeight="Bold"
+                   Text="Control" />
+        <TextBlock Grid.Row="0"
+                   Grid.Column="2"
+                   FontWeight="Bold"
+                   Text="Use case" />
+
+        <TextBlock Grid.Row="1"
+                   Grid.Column="0"
+                   Margin="0,8"
+                   VerticalAlignment="Center"
+                   Text="int (NumericUpDown)" />
+        <smtx:XamlDisplay UniqueKey="NumericUpDown_TypesTableExample_1">
+          <materialDesign:NumericUpDown Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="160"
+                                        Margin="0,8"
+                                        HorizontalAlignment="Left"
+                                        Value="10" />
+        </smtx:XamlDisplay>
+        <TextBlock Grid.Row="1"
+                   Grid.Column="2"
+                   Margin="0,8"
+                   VerticalAlignment="Center"
+                   Text="Counts, quantities, indexes, IDs"
+                   TextWrapping="Wrap" />
+
+        <TextBlock Grid.Row="2"
+                   Grid.Column="0"
+                   Margin="0,8"
+                   VerticalAlignment="Center"
+                   Text="decimal (DecimalUpDown)" />
+        <smtx:XamlDisplay UniqueKey="NumericUpDown_TypesTableExample_2">
+
+          <materialDesign:DecimalUpDown Grid.Row="2"
+                                        Grid.Column="1"
+                                        Width="160"
+                                        Margin="0,8"
+                                        HorizontalAlignment="Left"
+                                        ValueStep="0.1"
+                                        Value="11.5" />
+        </smtx:XamlDisplay>
+        <TextBlock Grid.Row="2"
+                   Grid.Column="2"
+                   Margin="0,8"
+                   VerticalAlignment="Center"
+                   Text="Money, prices, tax rates, financial calculations."
+                   TextWrapping="Wrap" />
+      </Grid>
+    </StackPanel>
+  </materialDesign:Card>
+</UserControl>

@@ -95,7 +95,7 @@ public partial class FieldsLineUp
             case TimePicker timePicker:
                 timePicker.SelectedTime = DateTime.Now;
                 break;
-            case NumericUpDown numericUpDown:
+            case MaterialDesignThemes.Wpf.NumericUpDown numericUpDown:
                 numericUpDown.Value = 0;
                 break;
             default:
