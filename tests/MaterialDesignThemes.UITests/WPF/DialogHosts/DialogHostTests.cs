@@ -574,12 +574,99 @@ public class DialogHostTests : TestBase
         await Wait.For(async () => await Assert.That(await textBoxOne.GetIsFocused()).IsTrue());
 
         recorder.Success();
+    }
 
-        static object SetDialogHostStyle(DialogHost dialogHost, string styleName)
+    [Test]
+    [Description("Issue 4097")]
+    [Arguments("")]
+    [Arguments("MaterialDesignEmbeddedDialogHost")]
+    public async Task DialogHost_WithTransitionsDisabled_FocusesDialogWithoutWaitingForTransition(string dialogHostStyle)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        var dialogHost = await LoadXaml<DialogHost>("""
+    <materialDesign:DialogHost materialDesign:TransitionAssist.DisableTransitions="True">
+        <materialDesign:DialogHost.DialogContent>
+            <TextBox x:Name="DialogTextBox" Width="200" />
+        </materialDesign:DialogHost.DialogContent>
+    </materialDesign:DialogHost>
+    """);
+
+        if (!string.IsNullOrEmpty(dialogHostStyle))
         {
-            var style = (Style)dialogHost.FindResource(styleName);
-            dialogHost.Style = style;
-            return null!;
+            await dialogHost.RemoteExecute(SetDialogHostStyle, dialogHostStyle);
         }
+
+        string? focusedElementName = await dialogHost.RemoteExecute(OpenAndGetFocusedElementName);
+
+        await Assert.That(focusedElementName).IsEqualTo("DialogTextBox");
+
+        recorder.Success();
+
+        static async Task<string?> OpenAndGetFocusedElementName(DialogHost dialogHost)
+        {
+            // Opened and closed once first, so the check below does not include loading the templates
+            dialogHost.IsOpen = true;
+            await Task.Delay(500);
+            dialogHost.IsOpen = false;
+            await Task.Delay(500);
+
+            dialogHost.IsOpen = true;
+            // Well within the 300 ms the dialog host waits for when there is a transition
+            await Task.Delay(100);
+            return (Keyboard.FocusedElement as FrameworkElement)?.Name;
+        }
+    }
+
+    [Test]
+    [Description("Issue 4097")]
+    [Arguments("")]
+    [Arguments("MaterialDesignEmbeddedDialogHost")]
+    public async Task DialogHost_FocusMovedInsideDialogWhileOpening_IsKept(string dialogHostStyle)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        var dialogHost = await LoadXaml<DialogHost>("""
+    <materialDesign:DialogHost>
+        <materialDesign:DialogHost.DialogContent>
+            <StackPanel Width="300">
+                <TextBox x:Name="TextBoxOne" />
+                <TextBox x:Name="TextBoxTwo" />
+            </StackPanel>
+        </materialDesign:DialogHost.DialogContent>
+    </materialDesign:DialogHost>
+    """);
+
+        if (!string.IsNullOrEmpty(dialogHostStyle))
+        {
+            await dialogHost.RemoteExecute(SetDialogHostStyle, dialogHostStyle);
+        }
+
+        string? focusedElementName = await dialogHost.RemoteExecute(OpenFocusSecondTextBoxAndWait);
+
+        await Assert.That(focusedElementName).IsEqualTo("TextBoxTwo");
+
+        recorder.Success();
+
+        static async Task<string?> OpenFocusSecondTextBoxAndWait(DialogHost dialogHost)
+        {
+            dialogHost.IsOpen = true;
+            await Task.Delay(50);
+
+            // As when the user clicks the second TextBox right after the dialog appears
+            var content = (Panel)dialogHost.DialogContent!;
+            Keyboard.Focus(content.Children[1]);
+
+            // Past the delay after which the dialog host moves the focus into the dialog
+            await Task.Delay(800);
+            return (Keyboard.FocusedElement as FrameworkElement)?.Name;
+        }
+    }
+
+    private static object SetDialogHostStyle(DialogHost dialogHost, string styleName)
+    {
+        var style = (Style)dialogHost.FindResource(styleName);
+        dialogHost.Style = style;
+        return null!;
     }
 }

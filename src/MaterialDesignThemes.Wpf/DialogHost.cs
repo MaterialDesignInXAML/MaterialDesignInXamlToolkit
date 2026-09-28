@@ -431,17 +431,28 @@ public class DialogHost : ContentControl
         dialogHost.DialogOpenedCallback?.Invoke(dialogHost, dialogOpenedEventArgs);
         dialogHost._asyncShowOpenedEventHandler?.Invoke(dialogHost, dialogOpenedEventArgs);
 
-        //https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/187
-        //totally not happy about this, but on immediate validation we can get some weird looking stuff...give WPF a kick to refresh...
-        Task.Delay(300).ContinueWith(t => dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+        if (TransitionAssist.GetDisableTransitions(dialogHost))
+        {
+            //Without a transition there is nothing to wait for: the dialog is complete on the next frame,
+            //and waiting would send the first keys typed into it to the controls behind the dialog
+            dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(OnDialogShown));
+        }
+        else
+        {
+            //https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/issues/187
+            //totally not happy about this, but on immediate validation we can get some weird looking stuff...give WPF a kick to refresh...
+            //Delay focusing the popup until after the animation has some time, Issue #2912
+            Task.Delay(300).ContinueWith(t => dialogHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(OnDialogShown)));
+        }
+
+        void OnDialogShown()
         {
             CommandManager.InvalidateRequerySuggested();
-            //Delay focusing the popup until after the animation has some time, Issue #2912
-            UIElement? child = dialogHost.FocusPopup();
+            //If the content has already moved the focus into the dialog (for example when it loaded), leave it there
+            UIElement? child = dialogHost.FocusPopup(keepFocusWithin: true);
 
             child?.InvalidateVisual();
-
-        })));
+        }
     }
 
     /// <summary>
@@ -891,13 +902,16 @@ public class DialogHost : ContentControl
     /// <summary>
     /// Attempts to focus the content of a popup.
     /// </summary>
+    /// <param name="keepFocusWithin">When true, the focus is left alone if it is already inside the popup content.</param>
     /// <returns>The popup content.</returns>
-    internal UIElement? FocusPopup()
+    internal UIElement? FocusPopup(bool keepFocusWithin = false)
     {
         var child = _popup?.Child ?? _popupContentControl;
         if (child is null) return null;
 
         CommandManager.InvalidateRequerySuggested();
+        if (keepFocusWithin && child.IsKeyboardFocusWithin) return child;
+
         var focusable = child.VisualDepthFirstTraversal().OfType<UIElement>().FirstOrDefault(ui => ui.Focusable);
         if (focusable is null) return null;
 
