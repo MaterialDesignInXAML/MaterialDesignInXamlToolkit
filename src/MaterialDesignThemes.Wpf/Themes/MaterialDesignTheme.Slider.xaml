@@ -590,9 +590,7 @@
   <ControlTemplate x:Key="MaterialDesignSliderHorizontal" TargetType="{x:Type Slider}">
     <Border Background="{TemplateBinding Background}"
             BorderBrush="{TemplateBinding BorderBrush}"
-            BorderThickness="{TemplateBinding BorderThickness}"
-            SnapsToDevicePixels="True"
-            UseLayoutRounding="True">
+            BorderThickness="{TemplateBinding BorderThickness}">
       <Grid SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto" />
@@ -684,9 +682,7 @@
   <ControlTemplate x:Key="MaterialDesignSliderVertical" TargetType="{x:Type Slider}">
     <Border Background="{TemplateBinding Background}"
             BorderBrush="{TemplateBinding BorderBrush}"
-            BorderThickness="{TemplateBinding BorderThickness}"
-            SnapsToDevicePixels="True"
-            UseLayoutRounding="True">
+            BorderThickness="{TemplateBinding BorderThickness}">
       <Grid SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="Auto" />
@@ -778,9 +774,7 @@
   <ControlTemplate x:Key="MaterialDesignDiscreteSliderHorizontal" TargetType="{x:Type Slider}">
     <Border Background="{TemplateBinding Background}"
             BorderBrush="{TemplateBinding BorderBrush}"
-            BorderThickness="{TemplateBinding BorderThickness}"
-            SnapsToDevicePixels="True"
-            UseLayoutRounding="True">
+            BorderThickness="{TemplateBinding BorderThickness}">
       <Grid SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto" />
@@ -872,9 +866,7 @@
   <ControlTemplate x:Key="MaterialDesignDiscreteSliderVertical" TargetType="{x:Type Slider}">
     <Border Background="{TemplateBinding Background}"
             BorderBrush="{TemplateBinding BorderBrush}"
-            BorderThickness="{TemplateBinding BorderThickness}"
-            SnapsToDevicePixels="True"
-            UseLayoutRounding="True">
+            BorderThickness="{TemplateBinding BorderThickness}">
       <Grid SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="Auto" />
@@ -972,7 +964,6 @@
     <Setter Property="SnapsToDevicePixels" Value="False" />
     <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false" />
     <Setter Property="Template" Value="{StaticResource MaterialDesignSliderHorizontal}" />
-    <Setter Property="UseLayoutRounding" Value="False" />
     <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp1" />
     <Style.Triggers>
       <Trigger Property="Orientation" Value="Vertical">
@@ -994,7 +985,6 @@
     <Setter Property="SnapsToDevicePixels" Value="False" />
     <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false" />
     <Setter Property="Template" Value="{StaticResource MaterialDesignDiscreteSliderHorizontal}" />
-    <Setter Property="UseLayoutRounding" Value="False" />
     <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp1" />
     <Setter Property="wpf:SliderAssist.FocusSliderOnClick" Value="True" />
     <Style.Triggers>
@@ -1017,7 +1007,6 @@
     <Setter Property="SnapsToDevicePixels" Value="False" />
     <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false" />
     <Setter Property="Template" Value="{StaticResource MaterialDesignDiscreteSliderVertical}" />
-    <Setter Property="UseLayoutRounding" Value="False" />
     <Setter Property="wpf:ElevationAssist.Elevation" Value="Dp1" />
     <Setter Property="wpf:SliderAssist.FocusSliderOnClick" Value="True" />
     <Style.Triggers>
