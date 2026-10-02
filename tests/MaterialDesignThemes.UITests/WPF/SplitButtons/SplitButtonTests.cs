@@ -1,6 +1,5 @@
 using MaterialDesignThemes.UITests.Samples.SplitButton;
 
-
 [assembly: GenerateHelpers(typeof(SplitButtonWithCommandBinding))]
 
 namespace MaterialDesignThemes.UITests.WPF.SplitButtons;
@@ -114,6 +113,7 @@ public class SplitButtonTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     public async Task SplitButton_CommandCanExecuteFalse_DisablesButton()
     {
         //Arrange

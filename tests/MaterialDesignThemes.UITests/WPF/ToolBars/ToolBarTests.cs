@@ -1,13 +1,12 @@
-﻿using System.ComponentModel;
-using System.Windows.Media;
-
+﻿using System.Windows.Media;
 
 namespace MaterialDesignThemes.UITests.WPF.ToolBars;
 
 public class ToolBarTests : TestBase
 {
-    [Description("Issue 2991")]
     [Test]
+    [DoesNotRequireInteraction]
+    [Description("Issue 2991")]
     [Arguments(Orientation.Horizontal, Dock.Right)]
     [Arguments(Orientation.Vertical, Dock.Bottom)]
     public async Task ToolBar_OverflowGrid_RespectsOrientation(Orientation orientation, Dock expectedOverflowGridDock)
@@ -28,8 +27,9 @@ public class ToolBarTests : TestBase
         await Assert.That(dock).IsEqualTo(expectedOverflowGridDock);
     }
 
-    [Description("Issue 3694")]
     [Test]
+    [DoesNotRequireInteraction]
+    [Description("Issue 3694")]
     public async Task ToolBar_OverflowButton_InheritsCustomBackground()
     {
         await using var recorder = new TestRecorder(App);
