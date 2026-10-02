@@ -5,6 +5,7 @@ public class TextFieldDefaultHeightTests : TestBase
     private const double Precision = 0.001;
 
     [Test]
+    [DoesNotRequireInteraction]
     public async Task SameHeightWithDefaultStyle()
     {
         var stackPanel = await LoadXaml<StackPanel>("""
@@ -18,14 +19,15 @@ public class TextFieldDefaultHeightTests : TestBase
             """);
 
         double height = await GetHeight(stackPanel, "TextBox");
-        
+
         await Assert.That(await GetHeight(stackPanel, "PasswordBox")).IsCloseTo(height, Precision);
         await Assert.That(await GetHeight(stackPanel, "ComboBox")).IsCloseTo(height, Precision);
         await Assert.That(await GetHeight(stackPanel, "DatePicker")).IsCloseTo(height, Precision);
         await Assert.That(await GetHeight(stackPanel, "TimePicker")).IsCloseTo(height, Precision);
     }
 
- [Test]
+    [Test]
+    [DoesNotRequireInteraction]
     public async Task SameHeightWithFloatingHintStyle()
     {
         var stackPanel = await LoadXaml<StackPanel>("""
@@ -48,6 +50,7 @@ public class TextFieldDefaultHeightTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     public async Task SameHeightWithFilledStyle()
     {
         var stackPanel = await LoadXaml<StackPanel>("""
@@ -70,6 +73,7 @@ public class TextFieldDefaultHeightTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     public async Task SameHeightWithOutlinedStyle()
     {
         var stackPanel = await LoadXaml<StackPanel>("""

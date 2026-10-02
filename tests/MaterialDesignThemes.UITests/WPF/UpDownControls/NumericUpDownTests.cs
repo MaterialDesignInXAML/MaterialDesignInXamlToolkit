@@ -1,10 +1,7 @@
-using System.ComponentModel;
 using System.Windows.Data;
 using MaterialDesignThemes.UITests.Samples.UpDownControls;
 
-
 namespace MaterialDesignThemes.UITests.WPF.UpDownControls;
-
 
 public class NumericUpDownTests : TestBase
 {
@@ -95,6 +92,7 @@ public class NumericUpDownTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     public async Task MaxAndMinAssignments_CoerceValueToBeInRange()
     {
         var numericUpDown = await LoadXaml<NumericUpDown>("""
@@ -168,6 +166,7 @@ public class NumericUpDownTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Arguments(1, false, true)]
     [Arguments(5, true, true)]
     [Arguments(10, true, false)]

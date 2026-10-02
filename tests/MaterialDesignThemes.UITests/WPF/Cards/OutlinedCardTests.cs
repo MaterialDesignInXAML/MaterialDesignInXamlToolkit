@@ -5,6 +5,7 @@ namespace MaterialDesignThemes.UITests.WPF.Cards;
 public class OutlinedCardTests : TestBase
 {
     [Test]
+    [DoesNotRequireInteraction]
     public async Task OutlinedCard_UsesThemeColorForBorder()
     {
         //Arrange
@@ -21,6 +22,7 @@ public class OutlinedCardTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     public async Task OutlinedCard_UniformCornerRadiusApplied_AppliesCornerRadiusOnBorder()
     {
         //Arrange

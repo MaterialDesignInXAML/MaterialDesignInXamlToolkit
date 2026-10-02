@@ -105,6 +105,7 @@ public class DecimalUpDownTests: TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     public async Task MaxAndMinAssignments_CoerceValueToBeInRange()
     {
         var numericUpDown = await LoadXaml<DecimalUpDown>("""

@@ -15,6 +15,7 @@ public class DialogHostTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     public async Task WaitForOpenAndClosed_CompletesAfterDialogAnimates()
     {
         var dialogHost = await LoadXaml<DialogHost>("<materialDesign:DialogHost />");
@@ -43,6 +44,7 @@ public class DialogHostTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     public async Task WaitAlreadyReachedState_CompletesImmediately()
     {
         var dialogHost = await LoadXaml<DialogHost>("<materialDesign:DialogHost />");

@@ -5,6 +5,7 @@ namespace MaterialDesignThemes.UITests.WPF.Buttons;
 public class RaisedButtonTests : TestBase
 {
     [Test]
+    [DoesNotRequireInteraction]
     public async Task OnLoad_ThemeBrushesSet()
     {
         //Arrange
