@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net10.0-windows</TargetFramework>
     <IsPackable>false</IsPackable>
@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <Using Include="MaterialDesignThemes.Wpf" />
+    <Using Include="System.ComponentModel"/>
     <Using Include="XamlTest" />
   </ItemGroup>
 

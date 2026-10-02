@@ -2,12 +2,12 @@ using System.ComponentModel;
 using MaterialDesignThemes.UITests.Samples.PasswordBox;
 using MaterialDesignThemes.UITests.WPF.TextBoxes;
 
-
 namespace MaterialDesignThemes.UITests.WPF.PasswordBoxes;
 
 public class PasswordBoxTests : TestBase
 {
     [Test]
+    [DoesNotRequireInteraction]
     public async Task OnClearButtonShown_LayoutDoesNotChange()
     {
         //Arrange
@@ -28,6 +28,7 @@ public class PasswordBoxTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Description("Pull Request 2192")]
     public async Task OnPasswordBoxHelperTextFontSize_ChangesHelperTextFontSize()
     {
@@ -145,6 +146,7 @@ public class PasswordBoxTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Description("Issue 2998")]
     public async Task PasswordBox_WithRevealStyle_RespectsMaxLength()
     {
@@ -163,6 +165,7 @@ public class PasswordBoxTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Arguments("MaterialDesignFloatingHintPasswordBox", null)]
     [Arguments("MaterialDesignFloatingHintPasswordBox", 5)]
     [Arguments("MaterialDesignFloatingHintPasswordBox", 20)]
@@ -211,6 +214,7 @@ public class PasswordBoxTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Arguments("MaterialDesignFloatingHintPasswordBox", null)]
     [Arguments("MaterialDesignFloatingHintPasswordBox", 5)]
     [Arguments("MaterialDesignFloatingHintPasswordBox", 20)]
