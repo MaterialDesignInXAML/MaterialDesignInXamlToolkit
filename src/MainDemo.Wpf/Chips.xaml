@@ -91,7 +91,7 @@
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_35">
-          <materialDesign:Chip Content="Example Chip" Style="{StaticResource MaterialDesignOutlineChip}" />
+          <materialDesign:Chip Content="Example Chip" IsDeletable="True" Style="{StaticResource MaterialDesignOutlineChip}" />
         </smtx:XamlDisplay>
 
         <smtx:XamlDisplay Margin="0,0,8,8" UniqueKey="chips_36">
