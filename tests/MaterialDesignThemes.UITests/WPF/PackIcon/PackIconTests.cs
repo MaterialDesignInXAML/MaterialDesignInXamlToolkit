@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
-
-namespace MaterialDesignThemes.UITests.WPF.PackIcon;
+﻿namespace MaterialDesignThemes.UITests.WPF.PackIcon;
 
 public class PackIconTests : TestBase
 {
     [Test]
+    [DoesNotRequireInteraction]
     [Arguments(14)]
     [Arguments(60)]
     public async Task PackIcon_ScaleToSizeOfWith_ScalesSizeWithSource(double fontSize)

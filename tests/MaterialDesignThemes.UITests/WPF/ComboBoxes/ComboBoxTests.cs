@@ -7,6 +7,7 @@ namespace MaterialDesignThemes.UITests.WPF.ComboBoxes;
 public class ComboBoxTests : TestBase
 {
     [Test]
+    [DoesNotRequireInteraction]
     [Description("Pull Request 2192")]
     public async Task OnComboBoxHelperTextFontSize_ChangesHelperTextFontSize()
     {
@@ -24,6 +25,7 @@ public class ComboBoxTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Description("Pull Request 2192")]
     public async Task OnFilledComboBoxHelperTextFontSize_ChangesHelperTextFontSize()
     {
@@ -146,6 +148,7 @@ public class ComboBoxTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Arguments("MaterialDesignFloatingHintComboBox", null)]
     [Arguments("MaterialDesignFloatingHintComboBox", 5)]
     [Arguments("MaterialDesignFloatingHintComboBox", 20)]
@@ -183,6 +186,7 @@ public class ComboBoxTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Arguments("MaterialDesignFloatingHintComboBox", null)]
     [Arguments("MaterialDesignFloatingHintComboBox", 5)]
     [Arguments("MaterialDesignFloatingHintComboBox", 20)]
@@ -228,6 +232,7 @@ public class ComboBoxTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Arguments(HorizontalAlignment.Left)]
     [Arguments(HorizontalAlignment.Right)]
     [Arguments(HorizontalAlignment.Center)]

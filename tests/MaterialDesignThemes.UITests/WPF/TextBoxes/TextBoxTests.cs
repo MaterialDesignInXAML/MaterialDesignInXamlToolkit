@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Media;
 using MaterialDesignThemes.UITests.Samples.Validation;
@@ -74,6 +73,7 @@ public class TextBoxTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Description("Issue 1979")]
     public async Task OnTextCleared_MultilineTextBox()
     {
@@ -130,6 +130,7 @@ public class TextBoxTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Description("Issue 2002")]
     public async Task OnTextBoxDisabled_FloatingHintBackgroundIsOpaque()
     {
@@ -155,6 +156,7 @@ public class TextBoxTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Description("Pull Request 2192")]
     public async Task OnTextBoxHelperTextFontSize_ChangesHelperTextFontSize()
     {
@@ -174,6 +176,7 @@ public class TextBoxTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     public async Task CharacterCount_WithMaxLengthSet_IsDisplayed()
     {
         var grid = await LoadXaml<Grid>(@"
@@ -193,6 +196,7 @@ public class TextBoxTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     public async Task CharacterCount_WithoutMaxLengthSet_IsCollapsed()
     {
         var grid = await LoadXaml<Grid>(@"
@@ -206,6 +210,7 @@ public class TextBoxTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     public async Task CharacterCount_WithMaxLengthSetAndCharacterCounterVisibilityCollapsed_IsNotDisplayed()
     {
         var grid = await LoadXaml<Grid>(@"
@@ -222,6 +227,7 @@ public class TextBoxTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Description("Issue 2300")]
     public async Task HelperText_CanSetFontColorWithAttachedStyle()
     {
@@ -243,6 +249,7 @@ public class TextBoxTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Description("Issue 2362")]
     public async Task FloatingOffset_ValuesGetAppropriatelyApplied()
     {
@@ -304,6 +311,7 @@ public class TextBoxTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Description("Issue 2430")]
     public async Task VerticalContentAlignment_ProperlyAlignsText()
     {
@@ -325,6 +333,7 @@ public class TextBoxTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Description("Issue 2596")]
     public async Task OutlinedTextBox_ValidationErrorMargin_MatchesHelperTextMargin()
     {
@@ -347,7 +356,6 @@ public class TextBoxTests : TestBase
         var textBox = await stackPanel.GetElement<TextBox>("/TextBox");
 
         var errorViewer = await textBox.GetElement<Border>("DefaultErrorViewer");
-        var helperTextTextBlock = await textBox.GetElement<TextBlock>("HelperTextTextBlock");
 
         Thickness? errorMargin = await errorViewer.GetMargin();
         Thickness? textBoxPadding = await textBox.GetPadding();
@@ -358,6 +366,7 @@ public class TextBoxTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Description("Issue 2596")]
     public async Task FilledTextBox_ValidationErrorMargin_MatchesHelperTextMargin()
     {
@@ -380,7 +389,6 @@ public class TextBoxTests : TestBase
         var textBox = await stackPanel.GetElement<TextBox>("/TextBox");
 
         var errorViewer = await textBox.GetElement<Border>("DefaultErrorViewer");
-        var helperTextTextBlock = await textBox.GetElement<TextBlock>("HelperTextTextBlock");
 
         Thickness? errorMargin = await errorViewer.GetProperty<Thickness>(FrameworkElement.MarginProperty);
         Thickness? textBoxPadding = await textBox.GetProperty<Thickness>(Control.PaddingProperty);
@@ -392,6 +400,7 @@ public class TextBoxTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Arguments("MaterialDesignFloatingHintTextBox", null)]
     [Arguments("MaterialDesignFloatingHintTextBox", 5)]
     [Arguments("MaterialDesignFloatingHintTextBox", 20)]
@@ -429,6 +438,7 @@ public class TextBoxTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Arguments("MaterialDesignFloatingHintTextBox", null)]
     [Arguments("MaterialDesignFloatingHintTextBox", 5)]
     [Arguments("MaterialDesignFloatingHintTextBox", 20)]
@@ -474,6 +484,7 @@ public class TextBoxTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Arguments(VerticalAlignment.Stretch, VerticalAlignment.Stretch)]
     [Arguments(VerticalAlignment.Top, VerticalAlignment.Top)]
     [Arguments(VerticalAlignment.Bottom, VerticalAlignment.Bottom)]
@@ -559,6 +570,7 @@ public class TextBoxTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Description("Issue 3914")]
     public async Task TextBox_ClearButtonRemainsHidden_WhenInitiallyCollapsedAndMadeVisible()
     {

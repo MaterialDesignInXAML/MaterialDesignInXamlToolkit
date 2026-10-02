@@ -5,6 +5,7 @@ namespace MaterialDesignThemes.UITests;
 public class AllStyles : TestBase
 {
     [Test]
+    [DoesNotRequireInteraction]
     [Arguments("Button", "MaterialDesignRaisedButton")]
     [Arguments("Calendar", "MaterialDesignCalendarPortrait")]
     [Arguments("CheckBox", "MaterialDesignCheckBox")]

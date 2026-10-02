@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Media;
 using MaterialDesignThemes.UITests.WPF.TextBoxes;
@@ -269,6 +268,7 @@ public class TimePickerTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Description("Pull Request 2192")]
     public async Task OnTimePickerHelperTextFontSize_ChangesHelperTextFontSize()
     {
@@ -337,6 +337,7 @@ public class TimePickerTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Arguments("MaterialDesignFloatingHintTimePicker", null)]
     [Arguments("MaterialDesignFloatingHintTimePicker", 5)]
     [Arguments("MaterialDesignFloatingHintTimePicker", 20)]
@@ -374,6 +375,7 @@ public class TimePickerTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Arguments("MaterialDesignFloatingHintTimePicker", null)]
     [Arguments("MaterialDesignFloatingHintTimePicker", 5)]
     [Arguments("MaterialDesignFloatingHintTimePicker", 20)]

@@ -5,6 +5,7 @@ namespace MaterialDesignThemes.UITests.WPF.Flippers;
 public class ClassicFlipperTests : TestBase
 {
     [Test]
+    [DoesNotRequireInteraction]
     public async Task UniformCornerRadiusAndOutlinedCardStyleAttachedPropertiesApplied_AppliesCornerRadiusOnBorder()
     {
         //Arrange
@@ -23,6 +24,7 @@ public class ClassicFlipperTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     public async Task UniformCornerRadiusAndElevatedCardStyleAttachedPropertiesApplied_AppliesCornerRadiusOnBorder()
     {
         //Arrange
@@ -43,6 +45,7 @@ public class ClassicFlipperTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     public async Task ElevatedCardStyleApplied_AppliesDefaultElevation()
     {
         //Arrange
