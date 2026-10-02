@@ -2,6 +2,7 @@ using System.ComponentModel;
 using MaterialDesignThemes.UITests.Samples.AutoSuggestBoxes;
 using MaterialDesignThemes.UITests.Samples.AutoSuggestTextBoxes;
 using TUnit.Core.Exceptions;
+
 namespace MaterialDesignThemes.UITests.WPF.AutoSuggestBoxes;
 
 public class AutoSuggestBoxTests : TestBase
