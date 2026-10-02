@@ -1,6 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Media;
+using MaterialDesignThemes.UITests;
 using MaterialDesignThemes.Wpf.Internal;
+using TUnit.Core.Interfaces;
 
 [assembly: GenerateHelpers(typeof(AutoSuggestBox))]
 [assembly: GenerateHelpers(typeof(ColorPicker))]
@@ -16,7 +18,16 @@ using MaterialDesignThemes.Wpf.Internal;
 [assembly: GenerateHelpers(typeof(TreeListViewItem))]
 [assembly: GenerateHelpers(typeof(PaddedBringIntoViewStackPanel))]
 
+
+[assembly: ParallelLimiter<ParallelLimit>]
+
+
 namespace MaterialDesignThemes.UITests;
+
+public record ParallelLimit : IParallelLimit
+{
+    public int Limit => 10;
+}
 
 public abstract class TestBase
 {
