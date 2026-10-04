@@ -44,10 +44,10 @@
                    Margin="0,8"
                    VerticalAlignment="Center"
                    Text="int (NumericUpDown)" />
-        <smtx:XamlDisplay UniqueKey="NumericUpDown_TypesTableExample_1">
-          <materialDesign:NumericUpDown Grid.Row="1"
-                                        Grid.Column="1"
-                                        Width="160"
+        <smtx:XamlDisplay Grid.Row="1"
+                          Grid.Column="1"
+                          UniqueKey="NumericUpDown_TypesTableExample_1">
+          <materialDesign:NumericUpDown Width="160"
                                         Margin="0,8"
                                         HorizontalAlignment="Left"
                                         Value="10" />
@@ -64,11 +64,11 @@
                    Margin="0,8"
                    VerticalAlignment="Center"
                    Text="decimal (DecimalUpDown)" />
-        <smtx:XamlDisplay UniqueKey="NumericUpDown_TypesTableExample_2">
+        <smtx:XamlDisplay Grid.Row="2"
+                          Grid.Column="1"
+                          UniqueKey="NumericUpDown_TypesTableExample_2">
 
-          <materialDesign:DecimalUpDown Grid.Row="2"
-                                        Grid.Column="1"
-                                        Width="160"
+          <materialDesign:DecimalUpDown Width="160"
                                         Margin="0,8"
                                         HorizontalAlignment="Left"
                                         ValueStep="0.1"
