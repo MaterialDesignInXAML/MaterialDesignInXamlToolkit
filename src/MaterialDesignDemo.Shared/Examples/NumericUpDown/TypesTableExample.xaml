@@ -24,8 +24,11 @@
           <RowDefinition Height="Auto" />
           <RowDefinition Height="Auto" />
           <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
+        <!-- Header -->
         <TextBlock Grid.Row="0"
                    Grid.Column="0"
                    FontWeight="Bold"
@@ -39,6 +42,7 @@
                    FontWeight="Bold"
                    Text="Use case" />
 
+        <!-- NumericUpDown -->
         <TextBlock Grid.Row="1"
                    Grid.Column="0"
                    Margin="0,8"
@@ -59,6 +63,7 @@
                    Text="Counts, quantities, indexes, IDs"
                    TextWrapping="Wrap" />
 
+        <!-- DecimalUpDown -->
         <TextBlock Grid.Row="2"
                    Grid.Column="0"
                    Margin="0,8"
@@ -79,6 +84,50 @@
                    Margin="0,8"
                    VerticalAlignment="Center"
                    Text="Money, prices, tax rates, financial calculations."
+                   TextWrapping="Wrap" />
+
+        <!-- LongUpDown -->
+        <TextBlock Grid.Row="3"
+                   Grid.Column="0"
+                   Margin="0,8"
+                   VerticalAlignment="Center"
+                   Text="long (LongUpDown)" />
+        <smtx:XamlDisplay Grid.Row="3"
+                          Grid.Column="1"
+                          UniqueKey="NumericUpDown_TypesTableExample_3">
+          <materialDesign:LongUpDown Width="160"
+                                     Margin="0,8"
+                                     HorizontalAlignment="Left"
+                                     ValueStep="1"
+                                     Value="3147483647" />
+        </smtx:XamlDisplay>
+        <TextBlock Grid.Row="3"
+                   Grid.Column="2"
+                   Margin="0,8"
+                   VerticalAlignment="Center"
+                   Text="Large IDs, file sizes, timestamps, large counters."
+                   TextWrapping="Wrap" />
+
+        <!-- DoubleUpDown -->
+        <TextBlock Grid.Row="4"
+                   Grid.Column="0"
+                   Margin="0,8"
+                   VerticalAlignment="Center"
+                   Text="double (DoubleUpDown)" />
+        <smtx:XamlDisplay Grid.Row="4"
+                          Grid.Column="1"
+                          UniqueKey="NumericUpDown_TypesTableExample_4">
+          <materialDesign:DoubleUpDown Width="160"
+                                       Margin="0,8"
+                                       HorizontalAlignment="Left"
+                                       ValueStep="0.00000000001"
+                                       Value="3.14159265359" />
+        </smtx:XamlDisplay>
+        <TextBlock Grid.Row="4"
+                   Grid.Column="2"
+                   Margin="0,8"
+                   VerticalAlignment="Center"
+                   Text="Scientific measurements, engineering values, coordinates, floating-point calculations"
                    TextWrapping="Wrap" />
       </Grid>
     </StackPanel>

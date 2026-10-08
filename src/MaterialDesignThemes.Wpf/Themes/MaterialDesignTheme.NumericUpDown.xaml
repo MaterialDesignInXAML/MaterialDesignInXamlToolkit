@@ -181,6 +181,14 @@
        TargetType="{x:Type wpf:DecimalUpDown}"
        BasedOn="{StaticResource MaterialDesignFloatingHintUpDownBase}" />
 
+  <Style x:Key="MaterialDesignFloatingHintLongUpDown"
+       TargetType="{x:Type wpf:LongUpDown}"
+       BasedOn="{StaticResource MaterialDesignFloatingHintUpDownBase}" />
+
+  <Style x:Key="MaterialDesignFloatingHintDoubleUpDown"
+       TargetType="{x:Type wpf:DoubleUpDown}"
+       BasedOn="{StaticResource MaterialDesignFloatingHintUpDownBase}" />
+
   <Style x:Key="MaterialDesignFilledUpDownBase"
          TargetType="{x:Type wpf:UpDownBase}"
          BasedOn="{StaticResource MaterialDesignFloatingHintUpDownBase}">
@@ -204,6 +212,14 @@
          TargetType="{x:Type wpf:DecimalUpDown}"
          BasedOn="{StaticResource MaterialDesignFilledUpDownBase}" />
 
+  <Style x:Key="MaterialDesignFilledLongUpDown"
+         TargetType="{x:Type wpf:LongUpDown}"
+         BasedOn="{StaticResource MaterialDesignFilledUpDownBase}" />
+
+  <Style x:Key="MaterialDesignFilledDoubleUpDown"
+         TargetType="{x:Type wpf:DoubleUpDown}"
+         BasedOn="{StaticResource MaterialDesignFilledUpDownBase}" />
+
   <Style x:Key="MaterialDesignOutlinedUpDownBase"
          TargetType="{x:Type wpf:UpDownBase}"
          BasedOn="{StaticResource MaterialDesignFloatingHintUpDownBase}">
@@ -225,5 +241,13 @@
 
   <Style x:Key="MaterialDesignOutlinedDecimalUpDown"
          TargetType="{x:Type wpf:DecimalUpDown}"
+         BasedOn="{StaticResource MaterialDesignOutlinedUpDownBase}" />
+
+  <Style x:Key="MaterialDesignOutlinedLongUpDown"
+         TargetType="{x:Type wpf:LongUpDown}"
+         BasedOn="{StaticResource MaterialDesignOutlinedUpDownBase}" />
+
+  <Style x:Key="MaterialDesignOutlinedDoubleUpDown"
+         TargetType="{x:Type wpf:DoubleUpDown}"
          BasedOn="{StaticResource MaterialDesignOutlinedUpDownBase}" />
 </ResourceDictionary>

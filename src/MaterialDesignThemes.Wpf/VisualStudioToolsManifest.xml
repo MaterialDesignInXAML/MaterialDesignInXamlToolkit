@@ -10,6 +10,8 @@
       <Item Type="MaterialDesignThemes.Wpf.DataGridComboBoxColumn" />
       <Item Type="MaterialDesignThemes.Wpf.DataGridTextColumn" />
       <Item Type="MaterialDesignThemes.Wpf.DecimalUpDown" />
+      <Item Type="MaterialDesignThemes.Wpf.LongUpDown" />
+      <Item Type="MaterialDesignThemes.Wpf.DoubleUpDown" />
       <Item Type="MaterialDesignThemes.Wpf.DialogHost" />
       <Item Type="MaterialDesignThemes.Wpf.DrawerHost" />
       <Item Type="MaterialDesignThemes.Wpf.Flipper" />
