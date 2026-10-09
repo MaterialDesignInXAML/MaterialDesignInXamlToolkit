@@ -44,6 +44,8 @@
   <Style TargetType="{x:Type local:SplitButton}" BasedOn="{StaticResource MaterialDesignRaisedSplitButton}" />
   <Style TargetType="{x:Type local:NumericUpDown}" BasedOn="{StaticResource MaterialDesignNumericUpDown}" />
   <Style TargetType="{x:Type local:DecimalUpDown}" BasedOn="{StaticResource MaterialDesignNumericUpDown}" />
+  <Style TargetType="{x:Type local:LongUpDown}" BasedOn="{StaticResource MaterialDesignNumericUpDown}" />
+  <Style TargetType="{x:Type local:DoubleUpDown}" BasedOn="{StaticResource MaterialDesignNumericUpDown}" />
 
   <system:Boolean x:Key="True">True</system:Boolean>
 
