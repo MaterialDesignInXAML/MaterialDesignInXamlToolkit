@@ -4,7 +4,6 @@ namespace MaterialDesignThemes.UITests.WPF.TreeListViews;
 
 public class TreeListViewTests : TestBase
 {
-
     public static IEnumerable<Func<Type>> GetTestControls()
     {
         yield return () => typeof(TreeListViewDataBinding);

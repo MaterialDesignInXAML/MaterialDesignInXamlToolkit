@@ -1,13 +1,13 @@
-﻿using System.Windows.Media;
+using System.Windows.Media;
 using MaterialDesignColors;
 using Microsoft.VisualStudio.TestPlatform.ObjectModel;
-
 
 namespace MaterialDesignThemes.UITests.WPF.Theme;
 
 public partial class ThemeTests : TestBase
 {
     [Test]
+    [DoesNotRequireInteraction]
     public async Task WhenUsingBuiltInLightXamlThemeDictionary_AllBrushesApplied()
     {
         IVisualElement<WrapPanel> panel = await Initialize("""
@@ -20,6 +20,7 @@ public partial class ThemeTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     public async Task WhenUsingBuiltInDarkXamlThemeDictionary_AllBrushesApplied()
     {
         IVisualElement<WrapPanel> panel = await Initialize("""
@@ -32,6 +33,7 @@ public partial class ThemeTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     public async Task WhenUsingBuiltInThemeDictionary_AllBrushesApplied()
     {
         IVisualElement<WrapPanel> panel = await Initialize("""
@@ -45,6 +47,7 @@ public partial class ThemeTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     public async Task WhenUsingCustomColorThemeDictionary_AllBrushesApplied()
     {
         IVisualElement<WrapPanel> panel = await Initialize("""
@@ -60,6 +63,7 @@ public partial class ThemeTests : TestBase
     private static SecondaryColor[] SecondaryColors() => Enum.GetValues<SecondaryColor>();
 
     [Test]
+    [DoesNotRequireInteraction]
     [Explicit]
     [MatrixDataSource]
     public async Task BundledTheme_UsesSameColorsAsXamlResources(

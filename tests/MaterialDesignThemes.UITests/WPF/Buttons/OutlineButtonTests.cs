@@ -5,6 +5,7 @@ namespace MaterialDesignThemes.UITests.WPF.Buttons;
 public class OutlineButtonTests : TestBase
 {
     [Test]
+    [DoesNotRequireInteraction]
     public async Task OutlinedButton_UsesThemeColorForBorder()
     {
         //Arrange
@@ -23,15 +24,18 @@ public class OutlineButtonTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     public async Task OutlinedButton_BorderCanBeOverridden()
     {
         //Arrange
         var button = await LoadXaml<Button>(
-            @"<Button Content=""Button""
-                          Style=""{StaticResource MaterialDesignOutlinedButton}""
-                          BorderThickness=""5""
-                          BorderBrush=""Red""
-                    />");
+            """
+            <Button Content="Button"
+                    Style="{StaticResource MaterialDesignOutlinedButton}"
+                    BorderThickness="5"
+                    BorderBrush="Red"
+                    />
+            """);
         IVisualElement<Border> internalBorder = await button.GetElement<Border>("border");
 
         //Act
