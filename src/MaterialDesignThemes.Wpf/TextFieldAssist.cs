@@ -434,6 +434,14 @@ public static class TextFieldAssist
     public static bool GetTextBoxIsMultiLine(DependencyObject element)
         => (bool)element.GetValue(TextBoxIsMultiLineProperty);
 
+    internal static DependencyObject? GetTrailingContent(DependencyObject obj)
+        => (DependencyObject?)obj.GetValue(TrailingContentProperty);
+
+    internal static void SetTrailingContent(DependencyObject obj, DependencyObject? value) => obj.SetValue(TrailingContentProperty, value);
+
+    internal static readonly DependencyProperty TrailingContentProperty =
+        DependencyProperty.RegisterAttached("TrailingContent", typeof(DependencyObject), typeof(TextFieldAssist), new PropertyMetadata(null));
+
     #region Methods
 
     private static void IncludeSpellingSuggestionsChanged(DependencyObject element, DependencyPropertyChangedEventArgs e)

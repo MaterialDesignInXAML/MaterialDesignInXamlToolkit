@@ -30,7 +30,7 @@
         <StackPanel Margin="8">
           <TextBlock Text="Floating" />
           <smtx:XamlDisplay UniqueKey="NumericUpDown_BasicUsage_2">
-            <materialDesign:NumericUpDown Width="150" Style="{StaticResource MaterialDesignFloatingHintNumericUpDown}" />
+            <materialDesign:NumericUpDown Width="150" materialDesign:HintAssist.Hint="Hint" Style="{StaticResource MaterialDesignFloatingHintNumericUpDown}" />
           </smtx:XamlDisplay>
 
         </StackPanel>
