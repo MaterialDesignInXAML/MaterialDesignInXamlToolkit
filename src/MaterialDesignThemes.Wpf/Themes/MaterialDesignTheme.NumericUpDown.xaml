@@ -13,7 +13,7 @@
          TargetType="{x:Type ButtonBase}"
          BasedOn="{StaticResource MaterialDesignFlatButton}">
     <Setter Property="Focusable" Value="False" />
-    <Setter Property="Height" Value="18" />
+    <Setter Property="Height" Value="17" />
     <Setter Property="Padding" Value="0" />
     <Setter Property="VerticalAlignment" Value="Center" />
   </Style>
@@ -47,77 +47,72 @@
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type wpf:UpDownBase}">
           <ControlTemplate.Resources>
-            <converters:ThicknessCloneConverter x:Key="PartButtonMarginConverter"
-                                                CloneEdges="Top,Right,Bottom"
-                                                FixedLeft="0" />
             <converters:NonDefaultThicknessConverter x:Key="OutlinedBorderInactiveThicknessConverter" DefaultThickness="{x:Static wpf:Constants.DefaultOutlinedBorderInactiveThickness}" />
             <converters:NonDefaultThicknessConverter x:Key="OutlinedBorderActiveThicknessConverter" DefaultThickness="{x:Static wpf:Constants.DefaultOutlinedBorderActiveThickness}" />
           </ControlTemplate.Resources>
-          <Border CornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}">
-            <Grid>
-              <TextBox x:Name="PART_TextBox"
-                       Background="{TemplateBinding Background}"
-                       Padding="{TemplateBinding Padding}"
-                       VerticalAlignment="Stretch"
-                       HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                       VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                       internal:InternalTextFieldAssist.IsMouseOver="{TemplateBinding IsMouseOver}"
-                       wpf:HintAssist.Background="{TemplateBinding wpf:HintAssist.Background}"
-                       wpf:HintAssist.FloatingOffset="{TemplateBinding wpf:HintAssist.FloatingOffset}"
-                       wpf:HintAssist.FloatingScale="{TemplateBinding wpf:HintAssist.FloatingScale}"
-                       wpf:HintAssist.FontFamily="{TemplateBinding wpf:HintAssist.FontFamily}"
-                       wpf:HintAssist.Foreground="{TemplateBinding wpf:HintAssist.Foreground}"
-                       wpf:HintAssist.HelperTextStyle="{TemplateBinding wpf:HintAssist.HelperTextStyle}"
-                       wpf:HintAssist.Hint="{TemplateBinding wpf:HintAssist.Hint}"
-                       wpf:HintAssist.HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                       wpf:HintAssist.HintPaddingBrush="{TemplateBinding wpf:HintAssist.HintPaddingBrush}"
-                       wpf:HintAssist.IsFloating="{TemplateBinding wpf:HintAssist.IsFloating}"
-                       wpf:TextFieldAssist.DecorationVisibility="{TemplateBinding wpf:TextFieldAssist.DecorationVisibility}"
-                       wpf:TextFieldAssist.HasClearButton="{TemplateBinding wpf:TextFieldAssist.HasClearButton}"
-                       wpf:TextFieldAssist.HasFilledTextField="{TemplateBinding wpf:TextFieldAssist.HasFilledTextField}"
-                       wpf:TextFieldAssist.HasLeadingIcon="{TemplateBinding wpf:TextFieldAssist.HasLeadingIcon}"
-                       wpf:TextFieldAssist.HasOutlinedTextField="{TemplateBinding wpf:TextFieldAssist.HasOutlinedTextField}"
-                       wpf:TextFieldAssist.HasTrailingIcon="{TemplateBinding wpf:TextFieldAssist.HasTrailingIcon}"
-                       wpf:TextFieldAssist.IconVerticalAlignment="{TemplateBinding wpf:TextFieldAssist.IconVerticalAlignment}"
-                       wpf:TextFieldAssist.LeadingIcon="{TemplateBinding wpf:TextFieldAssist.LeadingIcon}"
-                       wpf:TextFieldAssist.LeadingIconSize="{TemplateBinding wpf:TextFieldAssist.LeadingIconSize}"
-                       wpf:TextFieldAssist.NewSpecHighlightingEnabled="{TemplateBinding wpf:TextFieldAssist.NewSpecHighlightingEnabled}"
-                       wpf:TextFieldAssist.OutlinedBorderActiveThickness="{TemplateBinding wpf:TextFieldAssist.OutlinedBorderActiveThickness}"
-                       wpf:TextFieldAssist.PrefixText="{TemplateBinding wpf:TextFieldAssist.PrefixText}"
-                       wpf:TextFieldAssist.PrefixTextHintBehavior="{TemplateBinding wpf:TextFieldAssist.PrefixTextHintBehavior}"
-                       wpf:TextFieldAssist.PrefixTextVisibility="{TemplateBinding wpf:TextFieldAssist.PrefixTextVisibility}"
-                       wpf:TextFieldAssist.RippleOnFocusEnabled="{TemplateBinding wpf:TextFieldAssist.RippleOnFocusEnabled}"
-                       wpf:TextFieldAssist.SuffixText="{TemplateBinding wpf:TextFieldAssist.SuffixText}"
-                       wpf:TextFieldAssist.SuffixTextHintBehavior="{TemplateBinding wpf:TextFieldAssist.SuffixTextHintBehavior}"
-                       wpf:TextFieldAssist.SuffixTextVisibility="{TemplateBinding wpf:TextFieldAssist.SuffixTextVisibility}"
-                       wpf:TextFieldAssist.TextBoxViewMargin="{TemplateBinding wpf:TextFieldAssist.TextBoxViewMargin}"
-                       wpf:TextFieldAssist.TextBoxViewVerticalAlignment="{TemplateBinding wpf:TextFieldAssist.TextBoxViewVerticalAlignment}"
-                       wpf:TextFieldAssist.TextFieldCornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}"
-                       wpf:TextFieldAssist.TrailingIcon="{TemplateBinding wpf:TextFieldAssist.TrailingIcon}"
-                       wpf:TextFieldAssist.TrailingIconSize="{TemplateBinding wpf:TextFieldAssist.TrailingIconSize}"
-                       wpf:TextFieldAssist.UnderlineBrush="{TemplateBinding wpf:TextFieldAssist.UnderlineBrush}"
-                       wpf:TextFieldAssist.UnderlineCornerRadius="{TemplateBinding wpf:TextFieldAssist.UnderlineCornerRadius}"
-                       BorderBrush="{TemplateBinding BorderBrush}"
-                       BorderThickness="{TemplateBinding BorderThickness}"
-                       Focusable="{TemplateBinding Focusable}"
-                       Style="{DynamicResource NestedTextBoxStyle}" />
-
-              <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Background="Transparent">
+          <TextBox x:Name="PART_TextBox"
+                   Padding="{TemplateBinding Padding}"
+                   VerticalAlignment="Stretch"
+                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                   internal:InternalTextFieldAssist.IsMouseOver="{TemplateBinding IsMouseOver}"
+                   wpf:HintAssist.Background="{TemplateBinding wpf:HintAssist.Background}"
+                   wpf:HintAssist.FloatingOffset="{TemplateBinding wpf:HintAssist.FloatingOffset}"
+                   wpf:HintAssist.FloatingScale="{TemplateBinding wpf:HintAssist.FloatingScale}"
+                   wpf:HintAssist.FontFamily="{TemplateBinding wpf:HintAssist.FontFamily}"
+                   wpf:HintAssist.Foreground="{TemplateBinding wpf:HintAssist.Foreground}"
+                   wpf:HintAssist.HelperTextStyle="{TemplateBinding wpf:HintAssist.HelperTextStyle}"
+                   wpf:HintAssist.Hint="{TemplateBinding wpf:HintAssist.Hint}"
+                   wpf:HintAssist.HintOpacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
+                   wpf:HintAssist.HintPaddingBrush="{TemplateBinding wpf:HintAssist.HintPaddingBrush}"
+                   wpf:HintAssist.IsFloating="{TemplateBinding wpf:HintAssist.IsFloating}"
+                   wpf:TextFieldAssist.DecorationVisibility="{TemplateBinding wpf:TextFieldAssist.DecorationVisibility}"
+                   wpf:TextFieldAssist.HasClearButton="{TemplateBinding wpf:TextFieldAssist.HasClearButton}"
+                   wpf:TextFieldAssist.HasFilledTextField="{TemplateBinding wpf:TextFieldAssist.HasFilledTextField}"
+                   wpf:TextFieldAssist.HasLeadingIcon="{TemplateBinding wpf:TextFieldAssist.HasLeadingIcon}"
+                   wpf:TextFieldAssist.HasOutlinedTextField="{TemplateBinding wpf:TextFieldAssist.HasOutlinedTextField}"
+                   wpf:TextFieldAssist.HasTrailingIcon="{TemplateBinding wpf:TextFieldAssist.HasTrailingIcon}"
+                   wpf:TextFieldAssist.IconVerticalAlignment="{TemplateBinding wpf:TextFieldAssist.IconVerticalAlignment}"
+                   wpf:TextFieldAssist.LeadingIcon="{TemplateBinding wpf:TextFieldAssist.LeadingIcon}"
+                   wpf:TextFieldAssist.LeadingIconSize="{TemplateBinding wpf:TextFieldAssist.LeadingIconSize}"
+                   wpf:TextFieldAssist.NewSpecHighlightingEnabled="{TemplateBinding wpf:TextFieldAssist.NewSpecHighlightingEnabled}"
+                   wpf:TextFieldAssist.OutlinedBorderActiveThickness="{TemplateBinding wpf:TextFieldAssist.OutlinedBorderActiveThickness}"
+                   wpf:TextFieldAssist.PrefixText="{TemplateBinding wpf:TextFieldAssist.PrefixText}"
+                   wpf:TextFieldAssist.PrefixTextHintBehavior="{TemplateBinding wpf:TextFieldAssist.PrefixTextHintBehavior}"
+                   wpf:TextFieldAssist.PrefixTextVisibility="{TemplateBinding wpf:TextFieldAssist.PrefixTextVisibility}"
+                   wpf:TextFieldAssist.RippleOnFocusEnabled="{TemplateBinding wpf:TextFieldAssist.RippleOnFocusEnabled}"
+                   wpf:TextFieldAssist.SuffixText="{TemplateBinding wpf:TextFieldAssist.SuffixText}"
+                   wpf:TextFieldAssist.SuffixTextHintBehavior="{TemplateBinding wpf:TextFieldAssist.SuffixTextHintBehavior}"
+                   wpf:TextFieldAssist.SuffixTextVisibility="{TemplateBinding wpf:TextFieldAssist.SuffixTextVisibility}"
+                   wpf:TextFieldAssist.TextBoxViewMargin="{TemplateBinding wpf:TextFieldAssist.TextBoxViewMargin}"
+                   wpf:TextFieldAssist.TextBoxViewVerticalAlignment="{TemplateBinding wpf:TextFieldAssist.TextBoxViewVerticalAlignment}"
+                   wpf:TextFieldAssist.TextFieldCornerRadius="{TemplateBinding wpf:TextFieldAssist.TextFieldCornerRadius}"
+                   wpf:TextFieldAssist.TrailingIcon="{TemplateBinding wpf:TextFieldAssist.TrailingIcon}"
+                   wpf:TextFieldAssist.TrailingIconSize="{TemplateBinding wpf:TextFieldAssist.TrailingIconSize}"
+                   wpf:TextFieldAssist.UnderlineBrush="{TemplateBinding wpf:TextFieldAssist.UnderlineBrush}"
+                   wpf:TextFieldAssist.UnderlineCornerRadius="{TemplateBinding wpf:TextFieldAssist.UnderlineCornerRadius}"
+                   Background="{TemplateBinding Background}"
+                   BorderBrush="{TemplateBinding BorderBrush}"
+                   BorderThickness="{TemplateBinding BorderThickness}"
+                   Focusable="{TemplateBinding Focusable}"
+                   Style="{DynamicResource NestedTextBoxStyle}">
+            <wpf:TextFieldAssist.TrailingContent>
+              <StackPanel HorizontalAlignment="Right"
+                          Background="Transparent"
+                          Orientation="Horizontal">
                 <RepeatButton x:Name="PART_DecreaseButton"
-                            Margin="{TemplateBinding Padding, Converter={StaticResource PartButtonMarginConverter}}"
-                            Content="{TemplateBinding DecreaseContent}"
-                            Foreground="{Binding ElementName=PART_TextBox, Path=Foreground}"
-                            Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                            Style="{DynamicResource NestedNumericUpDownButtonsStyle}" />
+                              Content="{TemplateBinding DecreaseContent}"
+                              Foreground="{Binding ElementName=PART_TextBox, Path=Foreground}"
+                              Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
+                              Style="{DynamicResource NestedNumericUpDownButtonsStyle}" />
                 <RepeatButton x:Name="PART_IncreaseButton"
-                            Margin="{TemplateBinding Padding, Converter={StaticResource PartButtonMarginConverter}}"
-                            Content="{TemplateBinding IncreaseContent}"
-                            Foreground="{Binding ElementName=PART_TextBox, Path=Foreground}"
-                            Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
-                            Style="{DynamicResource NestedNumericUpDownButtonsStyle}" />
+                              Content="{TemplateBinding IncreaseContent}"
+                              Foreground="{Binding ElementName=PART_TextBox, Path=Foreground}"
+                              Opacity="{TemplateBinding wpf:HintAssist.HintOpacity}"
+                              Style="{DynamicResource NestedNumericUpDownButtonsStyle}" />
               </StackPanel>
-            </Grid>
-          </Border>
+            </wpf:TextFieldAssist.TrailingContent>
+          </TextBox>
           <ControlTemplate.Triggers>
             <!-- PART_Button hovering -->
             <MultiTrigger>
@@ -178,16 +173,16 @@
          BasedOn="{StaticResource MaterialDesignFloatingHintUpDownBase}" />
 
   <Style x:Key="MaterialDesignFloatingHintDecimalUpDown"
-       TargetType="{x:Type wpf:DecimalUpDown}"
-       BasedOn="{StaticResource MaterialDesignFloatingHintUpDownBase}" />
+         TargetType="{x:Type wpf:DecimalUpDown}"
+         BasedOn="{StaticResource MaterialDesignFloatingHintUpDownBase}" />
 
   <Style x:Key="MaterialDesignFloatingHintLongUpDown"
-       TargetType="{x:Type wpf:LongUpDown}"
-       BasedOn="{StaticResource MaterialDesignFloatingHintUpDownBase}" />
+         TargetType="{x:Type wpf:LongUpDown}"
+         BasedOn="{StaticResource MaterialDesignFloatingHintUpDownBase}" />
 
   <Style x:Key="MaterialDesignFloatingHintDoubleUpDown"
-       TargetType="{x:Type wpf:DoubleUpDown}"
-       BasedOn="{StaticResource MaterialDesignFloatingHintUpDownBase}" />
+         TargetType="{x:Type wpf:DoubleUpDown}"
+         BasedOn="{StaticResource MaterialDesignFloatingHintUpDownBase}" />
 
   <Style x:Key="MaterialDesignFilledUpDownBase"
          TargetType="{x:Type wpf:UpDownBase}"
