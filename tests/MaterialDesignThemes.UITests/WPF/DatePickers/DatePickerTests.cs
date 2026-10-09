@@ -168,7 +168,6 @@ public class DatePickerTests : TestBase
     }
 
     [Test]
-    [DoesNotRequireInteraction]
     [Arguments("MaterialDesignFloatingHintDatePicker", null)]
     [Arguments("MaterialDesignFloatingHintDatePicker", 5)]
     [Arguments("MaterialDesignFloatingHintDatePicker", 20)]
