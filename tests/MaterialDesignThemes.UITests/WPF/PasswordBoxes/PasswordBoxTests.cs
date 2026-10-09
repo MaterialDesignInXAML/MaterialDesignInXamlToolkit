@@ -214,7 +214,6 @@ public class PasswordBoxTests : TestBase
     }
 
     [Test]
-    [DoesNotRequireInteraction]
     [Arguments("MaterialDesignFloatingHintPasswordBox", null)]
     [Arguments("MaterialDesignFloatingHintPasswordBox", 5)]
     [Arguments("MaterialDesignFloatingHintPasswordBox", 20)]
