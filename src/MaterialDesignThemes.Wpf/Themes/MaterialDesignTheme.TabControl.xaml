@@ -9,6 +9,7 @@
 
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
   <Style x:Key="FocusVisual">
@@ -108,21 +109,19 @@
                 </MultiBinding>
               </StackPanel.Visibility>
               <Button x:Name="RightPreviousButton"
-                      Width="16"
-                      Height="16"
-                      Padding="0"
                       Margin="0,0,8,0"
+                      Style="{Binding Path=(wpf:TabAssist.NavigationButtonStyle),
+                                      RelativeSource={RelativeSource TemplatedParent}}"
                       Command="{Binding ElementName=TabControlHeaderScrollBehavior, Path=PreviousTabCommand}"
                       Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.NavigationPanelPlacement), Converter={StaticResource RightPreviousTabControlNavButtonVisibilityConverter}}">
-                <wpf:PackIcon Kind="ChevronLeft" Width="12" Height="12" />
+                <wpf:PackIcon Kind="ChevronLeft" />
               </Button>
               <Button x:Name="RightNextButton"
-                      Width="16"
-                      Height="16"
-                      Padding="0"
+                      Style="{Binding Path=(wpf:TabAssist.NavigationButtonStyle),
+                                      RelativeSource={RelativeSource TemplatedParent}}"
                       Command="{Binding ElementName=TabControlHeaderScrollBehavior, Path=NextTabCommand}"
                       Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.NavigationPanelPlacement), Converter={StaticResource RightNextTabControlNavButtonVisibilityConverter}}">
-                <wpf:PackIcon Kind="ChevronRight" Width="12" Height="12" />
+                <wpf:PackIcon Kind="ChevronRight" />
               </Button>
             </StackPanel>
 
@@ -147,21 +146,19 @@
                 </MultiBinding>
               </StackPanel.Visibility>
               <Button x:Name="LeftPreviousButton"
-                      Width="16"
-                      Height="16"
-                      Padding="0"
+                      Style="{Binding Path=(wpf:TabAssist.NavigationButtonStyle),
+                                      RelativeSource={RelativeSource TemplatedParent}}"
                       Command="{Binding ElementName=TabControlHeaderScrollBehavior, Path=PreviousTabCommand}"
                       Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.NavigationPanelPlacement), Converter={StaticResource LeftPreviousTabControlNavButtonVisibilityConverter}}">
-                <wpf:PackIcon Kind="ChevronLeft" Width="12" Height="12" />
+                <wpf:PackIcon Kind="ChevronLeft" />
               </Button>
               <Button x:Name="LeftNextButton"
-                      Width="16"
-                      Height="16"
-                      Padding="0"
+                      Style="{Binding Path=(wpf:TabAssist.NavigationButtonStyle),
+                                      RelativeSource={RelativeSource TemplatedParent}}"
                       Margin="8,0,0,0"
                       Command="{Binding ElementName=TabControlHeaderScrollBehavior, Path=NextTabCommand}"
                       Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:TabAssist.NavigationPanelPlacement), Converter={StaticResource LeftNextTabControlNavButtonVisibilityConverter}}">
-                <wpf:PackIcon Kind="ChevronRight" Width="12" Height="12" />
+                <wpf:PackIcon Kind="ChevronRight" />
               </Button>
             </StackPanel>
           </Grid>
@@ -343,6 +340,7 @@
     <Setter Property="wpf:TabAssist.UseHeaderPadding" Value="True" />
     <Setter Property="wpf:TabAssist.ScrollDuration" Value="0:0:0.250" />
     <Setter Property="wpf:TabAssist.NavigationPanelMargin" Value="8,0" />
+    <Setter Property="wpf:TabAssist.NavigationButtonStyle" Value="{StaticResource MaterialDesignIconForegroundButton}" />
 
     <Style.Triggers>
       <Trigger Property="wpf:TabAssist.HeaderBehavior" Value="Wrapping">
