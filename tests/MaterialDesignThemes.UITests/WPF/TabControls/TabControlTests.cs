@@ -457,10 +457,10 @@ public class TabControlTests : TestBase
         await rightNextButton.LeftClick();
         await Wait.For(async () => await scrollViewer.GetContentHorizontalOffset() > offsetBefore, retry);
 
-        // Select an arbitrary tab (index 8)
-        IVisualElement<TabItem> someTab = await tabControl.GetElement<TabItem>("/TabItem[8]");
+        // Select an arbitrary tab (index 6)
+        IVisualElement<TabItem> someTab = await tabControl.GetElement<TabItem>("/TabItem[6]");
         await someTab.LeftClick();
-        await Wait.For(async () => await tabControl.GetSelectedIndex() == 8, retry);
+        await Wait.For(async () => await tabControl.GetSelectedIndex() == 6, retry);
 
         // Scroll back to the left
         double offsetAfterScrollRight = await scrollViewer.GetContentHorizontalOffset();
@@ -470,13 +470,13 @@ public class TabControlTests : TestBase
 
         // Select the last visible tab
         // NB: The last visible tab is "hardcoded" to always be index 4 due to the fixed Width of 504 on the TabControl
-        IVisualElement<TabItem> lastVisibleTab = await tabControl.GetElement<TabItem>($"/TabItem[4]");
+        IVisualElement<TabItem> lastVisibleTab = await tabControl.GetElement<TabItem>($"/TabItem[3]");
         await lastVisibleTab.LeftClick();
-        await Wait.For(async () => await tabControl.GetSelectedIndex() == 4, retry);
+        await Wait.For(async () => await tabControl.GetSelectedIndex() == 3, retry);
 
         // Assert
         int selectedTabIndex = await tabControl.GetSelectedIndex();
-        await Assert.That(selectedTabIndex).IsEqualTo(4);
+        await Assert.That(selectedTabIndex).IsEqualTo(3);
 
         double offsetWhenOverflowingWidth = await headerPanel.GetHeaderPadding();
         Thickness margin = await headerPanel.GetMargin();

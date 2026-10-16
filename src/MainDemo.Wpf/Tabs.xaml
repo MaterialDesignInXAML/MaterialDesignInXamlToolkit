@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:sharedTabControls="clr-namespace:MaterialDesignDemo.Shared.Examples.TabControls;assembly=MaterialDesignDemo.Shared"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              d:DataContext="{d:DesignInstance Type=domain:TabsViewModel,
@@ -1098,6 +1099,9 @@
         </smtx:XamlDisplay>
 
       </Grid>
-    </Border>    
+    </Border>
+
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+    <sharedTabControls:NavigationButtonStyleExample />
   </StackPanel>
 </UserControl>
