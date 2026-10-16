@@ -155,11 +155,10 @@ public static class TabAssist
         DependencyProperty.RegisterAttached("ScrollDuration", typeof(TimeSpan),
             typeof(TabAssist), new PropertyMetadata(TimeSpan.Zero));
 
-    public static Style GetNavigationButtonStyle(TabControl obj)
-        => (Style)obj.GetValue(NavigationButtonStyleProperty);
-
-    public static void SetNavigationButtonStyle(TabControl obj, Style value)
-        => obj.SetValue(NavigationButtonStyleProperty, value);
+    public static Style? GetNavigationButtonStyle(TabControl tabControl)
+        => (Style?)tabControl.GetValue(NavigationButtonStyleProperty);
+    public static void SetNavigationButtonStyle(TabControl tabControl, Style? value)
+        => tabControl.SetValue(NavigationButtonStyleProperty, value);
     public static readonly DependencyProperty NavigationButtonStyleProperty =
         DependencyProperty.RegisterAttached("NavigationButtonStyle", typeof(Style), typeof(TabAssist), new PropertyMetadata(null));
 }
