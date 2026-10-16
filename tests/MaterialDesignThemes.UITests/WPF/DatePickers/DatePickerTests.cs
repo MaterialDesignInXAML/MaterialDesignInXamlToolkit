@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Media;
 using MaterialDesignThemes.UITests.WPF.TextBoxes;
