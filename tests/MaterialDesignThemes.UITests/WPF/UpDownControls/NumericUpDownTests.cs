@@ -139,6 +139,7 @@ public class NumericUpDownTests : TestBase
     }
 
     [Test]
+    [Skip("Needs XAMLTest 1.2.3 or later")]
     public async Task NumericUpDown_ValueSetGreaterThanMaximum_CoercesToMaximum()
     {
         //Arrange
