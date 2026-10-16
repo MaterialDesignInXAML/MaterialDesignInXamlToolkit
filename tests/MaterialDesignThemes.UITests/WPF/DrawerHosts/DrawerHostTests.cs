@@ -117,6 +117,7 @@ public class DialogHostTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Description("Issue 3224")]
     public async Task DrawerHost_ShouldInvokeCustomContentTemplateSelector_WhenSetExplicitly()
     {
@@ -174,7 +175,7 @@ public class CustomContentTemplateSelector : DataTemplateSelector
     public override DataTemplate? SelectTemplate(object? item, DependencyObject container)
     {
         var template = new DataTemplate();
-        FrameworkElementFactory content = new FrameworkElementFactory(typeof(TextBlock));
+        FrameworkElementFactory content = new(typeof(TextBlock));
         content.SetValue(TextBlock.TextProperty, ContentText);
         template.VisualTree = content;
         return template;

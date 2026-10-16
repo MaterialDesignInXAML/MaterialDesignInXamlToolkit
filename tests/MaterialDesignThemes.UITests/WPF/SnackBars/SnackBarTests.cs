@@ -1,10 +1,9 @@
-﻿using System.ComponentModel;
-
-namespace MaterialDesignThemes.UITests.WPF.SnackBars;
+﻿namespace MaterialDesignThemes.UITests.WPF.SnackBars;
 
 public class SnackBarTests : TestBase
 {
     [Test]
+    [DoesNotRequireInteraction]
     [Description("Issue 1223")]
     public async Task SnackBar_WithFontSizeAndWeight_AffectsDisplayedMessage()
     {

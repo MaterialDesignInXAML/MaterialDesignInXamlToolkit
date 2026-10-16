@@ -1,11 +1,9 @@
-﻿
-
-namespace MaterialDesignThemes.UITests.WPF.Cards;
+﻿namespace MaterialDesignThemes.UITests.WPF.Cards;
 
 public class ElevatedCardTests : TestBase
 {
-
     [Test]
+    [DoesNotRequireInteraction]
     public async Task ElevatedCard_UniformCornerRadiusApplied_AppliesCornerRadiusOnBorder()
     {
         //Arrange

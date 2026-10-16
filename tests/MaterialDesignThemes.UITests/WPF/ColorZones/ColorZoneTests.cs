@@ -1,11 +1,11 @@
 ﻿using System.Windows.Media;
 
-
 namespace MaterialDesignThemes.UITests.WPF.ColorZones;
 
 public class ColorZoneTests : TestBase
 {
     [Test]
+    [DoesNotRequireInteraction]
     [Arguments(ColorZoneMode.Standard, "MaterialDesign.Brush.Background", "MaterialDesign.Brush.Foreground")]
     [Arguments(ColorZoneMode.Inverted, "MaterialDesign.Brush.Foreground", "MaterialDesign.Brush.Background")]
     [Arguments(ColorZoneMode.PrimaryLight, "MaterialDesign.Brush.Primary.Light", "MaterialDesign.Brush.Primary.Light.Foreground")]

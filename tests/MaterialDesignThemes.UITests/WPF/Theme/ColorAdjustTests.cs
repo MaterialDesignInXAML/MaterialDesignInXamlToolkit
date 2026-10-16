@@ -9,7 +9,7 @@ public class ColorAdjustTests : TestBase
 {
     public static IEnumerable<Func<PrimaryColor>> PrimaryColors()
     {
-        return Enum.GetValues(typeof(PrimaryColor))
+        return Enum.GetValues<PrimaryColor>()
             .OfType<PrimaryColor>()
             .Select(x => new Func<PrimaryColor>(() => x));
     }

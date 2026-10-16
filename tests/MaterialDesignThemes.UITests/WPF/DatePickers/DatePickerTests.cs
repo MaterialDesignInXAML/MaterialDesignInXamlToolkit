@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Media;
 using MaterialDesignThemes.UITests.WPF.TextBoxes;
@@ -9,6 +8,7 @@ namespace MaterialDesignThemes.UITests.WPF.DatePickers;
 public class DatePickerTests : TestBase
 {
     [Test]
+    [DoesNotRequireInteraction]
     [Description("Pull Request 2192")]
     public async Task OnDatePickerHelperTextFontSize_ChangesHelperTextFontSize()
     {
@@ -129,6 +129,7 @@ public class DatePickerTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Arguments("MaterialDesignFloatingHintDatePicker", null)]
     [Arguments("MaterialDesignFloatingHintDatePicker", 5)]
     [Arguments("MaterialDesignFloatingHintDatePicker", 20)]
