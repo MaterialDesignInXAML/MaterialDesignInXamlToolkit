@@ -410,7 +410,7 @@ public class TimePickerTests : TestBase
 
         var contentHost = await timePicker.GetElement<ScrollViewer>("PART_ContentHost");
         var hint = await timePicker.GetElement<SmartHint>("Hint");
-        var errorViewer = await timePicker.GetElement<Border>("DefaultErrorViewer");
+        var errorViewer = await Wait.For(async () => await timePicker.GetElement<Border>("DefaultErrorViewer"));
 
         Rect? contentHostCoordinates = await contentHost.GetCoordinates();
         Rect? hintCoordinates = await hint.GetCoordinates();

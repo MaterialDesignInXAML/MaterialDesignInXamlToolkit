@@ -257,7 +257,7 @@ public class PasswordBoxTests : TestBase
 
         var contentHost = await passwordBox.GetElement<ScrollViewer>("PART_ContentHost");
         var hint = await passwordBox.GetElement<SmartHint>("Hint");
-        var errorViewer = await passwordBox.GetElement<Border>("DefaultErrorViewer");
+        var errorViewer = await Wait.For(async () => await passwordBox.GetElement<Border>("DefaultErrorViewer"));
 
         Rect? contentHostCoordinates = await contentHost.GetCoordinates();
         Rect? hintCoordinates = await hint.GetCoordinates();

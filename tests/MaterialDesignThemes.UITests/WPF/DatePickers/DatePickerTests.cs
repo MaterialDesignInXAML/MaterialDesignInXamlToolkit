@@ -201,7 +201,7 @@ public class DatePickerTests : TestBase
 
         var contentHost = await datePicker.GetElement<ScrollViewer>("PART_ContentHost");
         var hint = await datePicker.GetElement<SmartHint>("Hint");
-        var errorViewer = await datePicker.GetElement<Border>("DefaultErrorViewer");
+        var errorViewer = await Wait.For(async () => await datePicker.GetElement<Border>("DefaultErrorViewer"));
 
         Rect? contentHostCoordinates = await contentHost.GetCoordinates();
         Rect? hintCoordinates = await hint.GetCoordinates();

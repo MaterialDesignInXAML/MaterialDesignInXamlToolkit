@@ -221,7 +221,7 @@ public class ComboBoxTests : TestBase
 
         var contentHost = await comboBox.GetElement<ScrollViewer>("PART_ContentHost");
         var hint = await comboBox.GetElement<SmartHint>("Hint");
-        var errorViewer = await comboBox.GetElement<Border>("DefaultErrorViewer");
+        var errorViewer = await Wait.For(async () => await comboBox.GetElement<Border>("DefaultErrorViewer"));
 
         Rect? contentHostCoordinates = await contentHost.GetCoordinates();
         Rect? hintCoordinates = await hint.GetCoordinates();

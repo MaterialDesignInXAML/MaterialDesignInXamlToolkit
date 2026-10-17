@@ -46,7 +46,8 @@ xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"">
                 extraNamespaceDeclarations.AppendLine($@"xmlns:{namespacePrefix}=""clr-namespace:{type.Namespace};assembly={type.Assembly.GetName().Name}""");
             }
 
-            string title = TestContext.Current?.GetDisplayName() ?? "Test Window";
+            // Display names can contain quotes (e.g. HorizontalContentAlignment="Left") which would break the XAML attribute
+            string title = System.Security.SecurityElement.Escape(TestContext.Current?.GetDisplayName() ?? "Test Window");
 
             string windowXaml = $$"""
                 <Window

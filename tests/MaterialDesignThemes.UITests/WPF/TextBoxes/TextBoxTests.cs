@@ -1,4 +1,4 @@
-using System.Globalization;
+﻿using System.Globalization;
 using System.Windows.Media;
 using MaterialDesignThemes.UITests.Samples.Validation;
 
@@ -355,7 +355,7 @@ public class TextBoxTests : TestBase
 
         var textBox = await stackPanel.GetElement<TextBox>("/TextBox");
 
-        var errorViewer = await textBox.GetElement<Border>("DefaultErrorViewer");
+        var errorViewer = await Wait.For(async () => await textBox.GetElement<Border>("DefaultErrorViewer"));
 
         Thickness? errorMargin = await errorViewer.GetMargin();
         Thickness? textBoxPadding = await textBox.GetPadding();
@@ -388,7 +388,7 @@ public class TextBoxTests : TestBase
 
         var textBox = await stackPanel.GetElement<TextBox>("/TextBox");
 
-        var errorViewer = await textBox.GetElement<Border>("DefaultErrorViewer");
+        var errorViewer = await Wait.For(async () => await textBox.GetElement<Border>("DefaultErrorViewer"));
 
         Thickness? errorMargin = await errorViewer.GetProperty<Thickness>(FrameworkElement.MarginProperty);
         Thickness? textBoxPadding = await textBox.GetProperty<Thickness>(Control.PaddingProperty);
@@ -473,7 +473,7 @@ public class TextBoxTests : TestBase
 
         var contentHost = await textBox.GetElement<ScrollViewer>("PART_ContentHost");
         var hint = await textBox.GetElement<SmartHint>("Hint");
-        var errorViewer = await textBox.GetElement<Border>("DefaultErrorViewer");
+        var errorViewer = await Wait.For(async () => await textBox.GetElement<Border>("DefaultErrorViewer"));
 
         Rect? contentHostCoordinates = await contentHost.GetCoordinates();
         Rect? hintCoordinates = await hint.GetCoordinates();

@@ -26,7 +26,7 @@ namespace MaterialDesignThemes.UITests;
 
 public record ParallelLimit : IParallelLimit
 {
-    public int Limit => 10;
+    public int Limit => Math.Max(2, Environment.ProcessorCount);
 }
 
 public abstract class TestBase
@@ -62,12 +62,16 @@ public abstract class TestBase
         return await App.CreateWindowWithUserControl(userControlType);
     }
 
+    private static bool IsNonInteractiveTest()
+        => TestContext.Current?.Metadata.TestDetails.GetAttributes<DoesNotRequireInteractionAttribute>().Any() == true;
+
     public Task<IApp> StartApp()
     {
         return XamlTest.App.StartRemote(new AppOptions
         {
 #if !DEBUG
-            MinimizeOtherWindows = !System.Diagnostics.Debugger.IsAttached,
+            // Minimizing other windows would also minimize the windows of tests running in parallel
+            MinimizeOtherWindows = !System.Diagnostics.Debugger.IsAttached && !IsNonInteractiveTest(),
 #endif
             AllowVisualStudioDebuggerAttach = AttachedDebuggerToRemoteProcess,
             LogMessage = Output.WriteLine
