@@ -56,6 +56,9 @@ jobs:
       - name: Generate Release Notes
         run: |
           $response = gh api --method POST -H "Accept: application/vnd.github+json" /repos/${{ github.repository }}/releases/generate-notes -f tag_name='v${{ inputs.milestone }}'
+          if ($LASTEXITCODE -ne 0) {
+              throw "Failed to generate release notes (gh exit code $LASTEXITCODE)."
+          }
           $json = $response | ConvertFrom-Json
           $releaseNotes = $json.body
           $contributors = "${{ steps.get-contribs.outputs.contributors }}"
