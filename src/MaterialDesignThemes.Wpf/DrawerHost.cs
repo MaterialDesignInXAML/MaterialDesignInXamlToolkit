@@ -527,8 +527,7 @@ public class DrawerHost : ContentControl
 
     public override void OnApplyTemplate()
     {
-        if (_templateContentCoverElement != null)
-            _templateContentCoverElement.PreviewMouseLeftButtonUp += TemplateContentCoverElementOnPreviewMouseLeftButtonUp;
+        _templateContentCoverElement?.PreviewMouseLeftButtonUp += TemplateContentCoverElementOnPreviewMouseLeftButtonUp;
         WireDrawer(_leftDrawerElement, true);
         WireDrawer(_topDrawerElement, true);
         WireDrawer(_rightDrawerElement, true);
@@ -537,8 +536,7 @@ public class DrawerHost : ContentControl
         base.OnApplyTemplate();
 
         _templateContentCoverElement = GetTemplateChild(TemplateContentCoverPartName) as FrameworkElement;
-        if (_templateContentCoverElement != null)
-            _templateContentCoverElement.PreviewMouseLeftButtonUp += TemplateContentCoverElementOnPreviewMouseLeftButtonUp;
+        _templateContentCoverElement?.PreviewMouseLeftButtonUp += TemplateContentCoverElementOnPreviewMouseLeftButtonUp;
         _leftDrawerElement = WireDrawer(GetTemplateChild(TemplateLeftDrawerPartName) as FrameworkElement, false);
         _topDrawerElement = WireDrawer(GetTemplateChild(TemplateTopDrawerPartName) as FrameworkElement, false);
         _rightDrawerElement = WireDrawer(GetTemplateChild(TemplateRightDrawerPartName) as FrameworkElement, false);

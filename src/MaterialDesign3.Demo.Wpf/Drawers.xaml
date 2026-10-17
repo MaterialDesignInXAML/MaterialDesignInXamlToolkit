@@ -19,6 +19,11 @@
 
       <TextBlock VerticalAlignment="Center" Text="Primary Overlay Background" />
 
+      <StackPanel Orientation="Horizontal" Margin="30,0,0,0">
+        <TextBlock VerticalAlignment="Center" Text="materialDesign:TransitionAssist.DisableTransitions" />
+        <ToggleButton x:Name="TransitionToggle" Margin="8,0,0,0" />
+      </StackPanel>
+
       <TextBlock Margin="30,0,16,0"
                  VerticalAlignment="Center"
                  Text="Open Mode" />
@@ -35,6 +40,7 @@
                                  Width="480"
                                  Height="480"
                                  Margin="32"
+                                 materialDesign:TransitionAssist.DisableTransitions="{Binding ElementName=TransitionToggle, Path=IsChecked}"
                                  HorizontalAlignment="Center"
                                  VerticalAlignment="Center"
                                  BorderBrush="{DynamicResource MaterialDesign.Brush.TextBox.HoverBackground}"
