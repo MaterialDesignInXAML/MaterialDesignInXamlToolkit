@@ -22,6 +22,11 @@
         <TextBlock VerticalAlignment="Center" Text="Primary Overlay Background" />
       </StackPanel>
 
+      <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+        <TextBlock VerticalAlignment="Center" Text="materialDesign:TransitionAssist.DisableTransitions" />
+        <ToggleButton x:Name="TransitionToggle" Margin="8,0,0,0" />
+      </StackPanel>
+
       <StackPanel Margin="0,8,0,0" Orientation="Horizontal">
         <TextBlock VerticalAlignment="Center" Text="Open Mode" />
         <ComboBox SelectedValue="{Binding OpenMode, ElementName=DrawerHost}" SelectedValuePath="Content">
@@ -57,6 +62,7 @@
                                  Width="480"
                                  Height="480"
                                  Margin="32"
+                                 materialDesign:TransitionAssist.DisableTransitions="{Binding ElementName=TransitionToggle, Path=IsChecked}"
                                  ApplyBlurBackground="{Binding ElementName=cbApplyBlurBackground, Path=IsChecked}"
                                  BlurRadius="{Binding ElementName=BlurRadiusSlider, Path=Value}"
                                  HorizontalAlignment="Center"
