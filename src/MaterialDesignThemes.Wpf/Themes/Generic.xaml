@@ -670,7 +670,8 @@
                   <Storyboard>
                     <DoubleAnimation Storyboard.TargetName="PART_ContentCover"
                                      Storyboard.TargetProperty="Opacity"
-                                     To="0" />
+                                     To="0"
+                                     Duration="0" />
                     <BooleanAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentCover" Storyboard.TargetProperty="IsHitTestVisible">
                       <DiscreteBooleanKeyFrame Value="False" />
                     </BooleanAnimationUsingKeyFrames>
