@@ -26,7 +26,7 @@ namespace MaterialDesignThemes.UITests;
 
 public record ParallelLimit : IParallelLimit
 {
-    public int Limit => Math.Max(2, Environment.ProcessorCount);
+    public int Limit => 10;
 }
 
 public abstract class TestBase
