@@ -67,7 +67,8 @@ xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"">
                     Background="{DynamicResource MaterialDesignPaper}"
                     FontFamily="{materialDesign:MaterialDesignFont}" 
                     Title="{{title}}"
-                    Topmost="True">
+                    Topmost="True"
+                    WindowStartupLocation="CenterScreen">
                     {{xaml}}
                 </Window>
                 """;
