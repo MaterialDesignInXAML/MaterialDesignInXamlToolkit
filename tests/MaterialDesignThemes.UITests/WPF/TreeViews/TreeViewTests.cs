@@ -1,11 +1,12 @@
-﻿using System.ComponentModel;
-
+﻿using System.Collections.ObjectModel;
+using System.Windows.Data;
 
 namespace MaterialDesignThemes.UITests.WPF.TreeViews;
 
 public class TreeViewTests : TestBase
 {
     [Test]
+    [DoesNotRequireInteraction]
     [Description("Issue 2618")]
     public async Task HasNoItemsExpanderVisibility_ChangesVisibilityOnExpander()
     {
@@ -55,12 +56,13 @@ public class TreeViewTests : TestBase
         await Assert.That(await expander.GetVisibility()).IsEqualTo(Visibility.Visible);
         async Task<IVisualElement<ToggleButton>> GetExpanderForHeader(string header)
         {
-            var item = await treeView!.GetElement(ElementQuery.PropertyExpression<TreeViewItem>(x => x.Header, header));
+            var item = await treeView.GetElement(ElementQuery.PropertyExpression<TreeViewItem>(x => x.Header, header));
             return await item.GetElement<ToggleButton>();
         }
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Description("Issue 2618")]
     [Arguments(Visibility.Hidden)]
     [Arguments(Visibility.Collapsed)]
@@ -83,7 +85,7 @@ public class TreeViewTests : TestBase
         await Assert.That(await expander.GetVisibility()).IsEqualTo(Visibility.Visible);
         async Task<IVisualElement<ToggleButton>> GetExpanderForHeader(string header)
         {
-            var item = await treeView!.GetElement(ElementQuery.PropertyExpression<TreeViewItem>(x => x.Header, header));
+            var item = await treeView.GetElement(ElementQuery.PropertyExpression<TreeViewItem>(x => x.Header, header));
             return await item.GetElement<ToggleButton>();
         }
     }

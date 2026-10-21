@@ -7,6 +7,7 @@ namespace MaterialDesignThemes.UITests.WPF.PopupBoxes;
 public class PopupBoxTests : TestBase
 {
     [Test]
+    [DoesNotRequireInteraction]
     [Arguments(Elevation.Dp0)]
     [Arguments(Elevation.Dp16)]
     [Arguments(Elevation.Dp24)]

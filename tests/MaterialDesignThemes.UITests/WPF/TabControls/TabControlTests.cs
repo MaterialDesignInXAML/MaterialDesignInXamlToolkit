@@ -1,13 +1,12 @@
-using System.ComponentModel;
 using System.Windows.Media;
 using MaterialDesignThemes.Wpf.Internal;
-
 
 namespace MaterialDesignThemes.UITests.WPF.TabControls;
 
 public class TabControlTests : TestBase
 {
     [Test]
+    [DoesNotRequireInteraction]
     [Description("Issue 2602")]
     public async Task OnLoad_ThemeBrushesSet()
     {
@@ -113,6 +112,7 @@ public class TabControlTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Description("Issue 3271")]
     public async Task TabControl_ShouldRespectSelectedContentTemplate_WhenSetDirectlyOnTabItem()
     {
@@ -143,6 +143,7 @@ public class TabControlTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Arguments("")]                                     // UniformGrid style
     [Arguments("HorizontalContentAlignment=\"Left\"")]  // VirtualizingStackPanel style
     public async Task ScrollingTabs_WithMoreTabsThanScreenRealEstate_ShouldAddLeftAndRightMarginToHeaderPanel(string additionalProperties)
@@ -177,6 +178,7 @@ public class TabControlTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Arguments("")]                                     // UniformGrid style
     [Arguments("HorizontalContentAlignment=\"Left\"")]  // VirtualizingStackPanel style
     public async Task ScrollingTabs_WithLessTabsThanScreenRealEstate_ShouldNotAddLeftAndRightMarginToHeaderPanel(string additionalProperties)
@@ -211,6 +213,7 @@ public class TabControlTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Arguments("", 5, false)]                                     // UniformGrid style
     [Arguments("", 20, true)]                                     // UniformGrid style
     [Arguments("HorizontalContentAlignment=\"Left\"", 5, false)]  // VirtualizingStackPanel style
@@ -253,6 +256,7 @@ public class TabControlTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Arguments("")]                                     // UniformGrid style
     [Arguments("HorizontalContentAlignment=\"Left\"")]  // VirtualizingStackPanel style
     public async Task ScrollingTabs_WithNavigationPanelLeft_ShouldCorrectlySetIsOverflowingAndNavigationPanelLeftVisibility(string additionalProperties)
@@ -291,6 +295,7 @@ public class TabControlTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     [Arguments("")]                                     // UniformGrid style
     [Arguments("HorizontalContentAlignment=\"Left\"")]  // VirtualizingStackPanel style
     public async Task ScrollingTabs_WithNavigationPanelRight_ShouldCorrectlySetIsOverflowingAndNavigationPanelLeftVisibility(string additionalProperties)

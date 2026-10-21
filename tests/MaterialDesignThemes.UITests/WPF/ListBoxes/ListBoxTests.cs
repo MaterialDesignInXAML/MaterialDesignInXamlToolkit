@@ -71,6 +71,7 @@ public class ListBoxTests : TestBase
     }
 
     [Test]
+    [DoesNotRequireInteraction]
     public async Task ScrollBarAssist_ButtonsVisibility_HidesButtonsOnMinimalistStyle()
     {
         string xaml = @"<ListBox Height=""300"" Width=""300""
