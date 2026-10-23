@@ -44,6 +44,13 @@ partial class Theme
        set => _background = value;
     }
 
+    private ColorReference _error;
+    public ColorReference Error
+    {
+       get => Resolve(_error);
+       set => _error = value;
+    }
+
     private ColorReference _foreground;
     public ColorReference Foreground
     {
@@ -58,11 +65,32 @@ partial class Theme
        set => _foregroundLight = value;
     }
 
+    private ColorReference _info;
+    public ColorReference Info
+    {
+       get => Resolve(_info);
+       set => _info = value;
+    }
+
+    private ColorReference _success;
+    public ColorReference Success
+    {
+       get => Resolve(_success);
+       set => _success = value;
+    }
+
     private ColorReference _validationError;
     public ColorReference ValidationError
     {
        get => Resolve(_validationError);
        set => _validationError = value;
+    }
+
+    private ColorReference _warning;
+    public ColorReference Warning
+    {
+       get => Resolve(_warning);
+       set => _warning = value;
     }
 
     public Badged Badgeds { get; set; }
