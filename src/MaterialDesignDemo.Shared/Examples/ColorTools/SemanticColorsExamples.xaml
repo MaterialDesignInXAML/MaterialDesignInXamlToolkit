@@ -32,6 +32,8 @@
           <RowDefinition Height="Auto" />
           <RowDefinition Height="Auto" />
           <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <!-- Header -->
@@ -190,6 +192,41 @@
                 VerticalAlignment="Center"
                 Command="{Binding CopyResourceCommand}"
                 CommandParameter="MaterialDesign.Brush.Info"
+                Content="{materialDesign:PackIcon Kind=ContentCopy}"
+                Style="{StaticResource MaterialDesignIconForegroundButton}" />
+
+        <Separator Grid.Row="9" Grid.ColumnSpan="4" />
+
+        <!-- Validation Error -->
+        <smtx:XamlDisplay Grid.Row="10"
+                          Grid.Column="0"
+                          UniqueKey="SemanticColorsExamples_ValidationError">
+          <Border Width="48"
+                  Height="24"
+                  Margin="8"
+                  Background="{DynamicResource MaterialDesign.Brush.ValidationError}"
+                  CornerRadius="4" />
+        </smtx:XamlDisplay>
+
+        <TextBlock Grid.Row="10"
+                   Grid.Column="1"
+                   Margin="8"
+                   VerticalAlignment="Center"
+                   Text="Validation Error" />
+
+        <TextBlock Grid.Row="10"
+                   Grid.Column="2"
+                   Margin="8"
+                   VerticalAlignment="Center"
+                   Text="MaterialDesign.Brush.ValidationError" />
+
+        <Button Grid.Row="10"
+                Grid.Column="3"
+                Margin="8,4"
+                Padding="12,4"
+                VerticalAlignment="Center"
+                Command="{Binding CopyResourceCommand}"
+                CommandParameter="MaterialDesign.Brush.ValidationError"
                 Content="{materialDesign:PackIcon Kind=ContentCopy}"
                 Style="{StaticResource MaterialDesignIconForegroundButton}" />
       </Grid>
