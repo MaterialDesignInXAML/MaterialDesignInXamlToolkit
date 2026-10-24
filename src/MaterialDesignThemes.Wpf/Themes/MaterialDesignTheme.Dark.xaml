@@ -41,6 +41,7 @@
   <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.PopupBorder" ResourceKey="White100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.RowHoverBackground" ResourceKey="White100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.DataGrid.Selected" ResourceKey="Neutral400" />
+  <SolidColorBrush x:Key="MaterialDesign.Brush.Error" Color="#FF3F5F" po:Freeze="True" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.Foreground" ResourceKey="White900" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.HoverBorder" ResourceKey="White900" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.PasswordBox.HoverBorder" ResourceKey="White900" />
@@ -58,6 +59,7 @@
   <colors:StaticResource x:Key="MaterialDesign.Brush.PasswordBox.OutlineBorder" ResourceKey="White700" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ComboBox.OutlineBorder" ResourceKey="White700" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.Ignored" ResourceKey="Neutral400" />
+  <SolidColorBrush x:Key="MaterialDesign.Brush.Info" Color="#4A86FF" po:Freeze="True" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ListBoxItem.Border" ResourceKey="White100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ListBoxItem.Selected" ResourceKey="White100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ListView.Hover" ResourceKey="White100" />
@@ -76,6 +78,7 @@
   <colors:StaticResource x:Key="MaterialDesign.Brush.SnackBar.MouseOver" ResourceKey="Neutral700" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.StatusBar.Background" ResourceKey="Neutral50" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.StatusBar.Foreground" ResourceKey="White900" />
+  <SolidColorBrush x:Key="MaterialDesign.Brush.Success" Color="#3DCB6C" po:Freeze="True" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.TabControl.Divider" ResourceKey="White100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.DisabledBackground" ResourceKey="White50" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.TextBox.FilledBackground" ResourceKey="White100" />
@@ -95,5 +98,6 @@
   <colors:StaticResource x:Key="MaterialDesign.Brush.ToolBar.Separator" ResourceKey="White100" />
   <colors:StaticResource x:Key="MaterialDesign.Brush.ToolTip.Background" ResourceKey="Neutral900" />
   <SolidColorBrush x:Key="MaterialDesign.Brush.ValidationError" Color="#FFCF6679" po:Freeze="True" />
+  <SolidColorBrush x:Key="MaterialDesign.Brush.Warning" Color="#FFB545" po:Freeze="True" />
 
 </ResourceDictionary>

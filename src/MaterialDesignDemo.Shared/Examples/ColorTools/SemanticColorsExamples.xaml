@@ -1,0 +1,235 @@
+﻿<UserControl x:Class="MaterialDesignDemo.Shared.Examples.ColorTools.SemanticColorsExamples"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:MaterialDesignDemo.Shared.Examples.ColorTools"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+  <materialDesign:Card Padding="16">
+    <StackPanel>
+      <TextBlock Margin="0,0,0,8"
+                 Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                 Text="Semantic, theme-aware colors" />
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="90" />
+          <ColumnDefinition Width="120" />
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   Margin="8"
+                   FontWeight="SemiBold"
+                   Text="Preview" />
+
+        <TextBlock Grid.Row="0"
+                   Grid.Column="1"
+                   Margin="8"
+                   FontWeight="SemiBold"
+                   Text="Name" />
+
+        <TextBlock Grid.Row="0"
+                   Grid.Column="2"
+                   Margin="8"
+                   FontWeight="SemiBold"
+                   Text="Resource key" />
+
+        <Separator Grid.Row="1" Grid.ColumnSpan="4" />
+
+        <!-- Error -->
+        <smtx:XamlDisplay Grid.Row="2"
+                          Grid.Column="0"
+                          UniqueKey="SemanticColorsExamples_Error">
+          <Border Width="48"
+                  Height="24"
+                  Margin="8"
+                  Background="{DynamicResource MaterialDesign.Brush.Error}"
+                  CornerRadius="4" />
+        </smtx:XamlDisplay>
+
+        <TextBlock Grid.Row="2"
+                   Grid.Column="1"
+                   Margin="8"
+                   VerticalAlignment="Center"
+                   Text="Error" />
+
+        <TextBlock Grid.Row="2"
+                   Grid.Column="2"
+                   Margin="8"
+                   VerticalAlignment="Center"
+                   Text="MaterialDesign.Brush.Error" />
+
+        <Button Grid.Row="2"
+                Grid.Column="3"
+                Margin="8,4"
+                Padding="12,4"
+                VerticalAlignment="Center"
+                Command="{Binding CopyResourceCommand}"
+                CommandParameter="MaterialDesign.Brush.Error"
+                Content="{materialDesign:PackIcon Kind=ContentCopy}"
+                Style="{StaticResource MaterialDesignIconForegroundButton}" />
+
+        <Separator Grid.Row="3" Grid.ColumnSpan="4" />
+
+        <!-- Warning -->
+        <smtx:XamlDisplay Grid.Row="4"
+                          Grid.Column="0"
+                          UniqueKey="SemanticColorsExamples_Warning">
+          <Border Width="48"
+                  Height="24"
+                  Margin="8"
+                  Background="{DynamicResource MaterialDesign.Brush.Warning}"
+                  CornerRadius="4" />
+        </smtx:XamlDisplay>
+
+        <TextBlock Grid.Row="4"
+                   Grid.Column="1"
+                   Margin="8"
+                   VerticalAlignment="Center"
+                   Text="Warning" />
+
+        <TextBlock Grid.Row="4"
+                   Grid.Column="2"
+                   Margin="8"
+                   VerticalAlignment="Center"
+                   Text="MaterialDesign.Brush.Warning" />
+
+        <Button Grid.Row="4"
+                Grid.Column="3"
+                Margin="8,4"
+                Padding="12,4"
+                VerticalAlignment="Center"
+                Command="{Binding CopyResourceCommand}"
+                CommandParameter="MaterialDesign.Brush.Warning"
+                Content="{materialDesign:PackIcon Kind=ContentCopy}"
+                Style="{StaticResource MaterialDesignIconForegroundButton}" />
+
+        <Separator Grid.Row="5" Grid.ColumnSpan="4" />
+
+        <!-- Success -->
+        <smtx:XamlDisplay Grid.Row="6"
+                          Grid.Column="0"
+                          UniqueKey="SemanticColorsExamples_Success">
+          <Border Width="48"
+                  Height="24"
+                  Margin="8"
+                  Background="{DynamicResource MaterialDesign.Brush.Success}"
+                  CornerRadius="4" />
+        </smtx:XamlDisplay>
+
+        <TextBlock Grid.Row="6"
+                   Grid.Column="1"
+                   Margin="8"
+                   VerticalAlignment="Center"
+                   Text="Success" />
+
+        <TextBlock Grid.Row="6"
+                   Grid.Column="2"
+                   Margin="8"
+                   VerticalAlignment="Center"
+                   Text="MaterialDesign.Brush.Success" />
+
+        <Button Grid.Row="6"
+                Grid.Column="3"
+                Margin="8,4"
+                Padding="12,4"
+                VerticalAlignment="Center"
+                Command="{Binding CopyResourceCommand}"
+                CommandParameter="MaterialDesign.Brush.Success"
+                Content="{materialDesign:PackIcon Kind=ContentCopy}"
+                Style="{StaticResource MaterialDesignIconForegroundButton}" />
+
+        <Separator Grid.Row="7" Grid.ColumnSpan="4" />
+
+        <!-- Info -->
+        <smtx:XamlDisplay Grid.Row="8"
+                          Grid.Column="0"
+                          UniqueKey="SemanticColorsExamples_Info">
+          <Border Width="48"
+                  Height="24"
+                  Margin="8"
+                  Background="{DynamicResource MaterialDesign.Brush.Info}"
+                  CornerRadius="4" />
+        </smtx:XamlDisplay>
+
+        <TextBlock Grid.Row="8"
+                   Grid.Column="1"
+                   Margin="8"
+                   VerticalAlignment="Center"
+                   Text="Info" />
+
+        <TextBlock Grid.Row="8"
+                   Grid.Column="2"
+                   Margin="8"
+                   VerticalAlignment="Center"
+                   Text="MaterialDesign.Brush.Info" />
+
+        <Button Grid.Row="8"
+                Grid.Column="3"
+                Margin="8,4"
+                Padding="12,4"
+                VerticalAlignment="Center"
+                Command="{Binding CopyResourceCommand}"
+                CommandParameter="MaterialDesign.Brush.Info"
+                Content="{materialDesign:PackIcon Kind=ContentCopy}"
+                Style="{StaticResource MaterialDesignIconForegroundButton}" />
+
+        <Separator Grid.Row="9" Grid.ColumnSpan="4" />
+
+        <!-- Validation Error -->
+        <smtx:XamlDisplay Grid.Row="10"
+                          Grid.Column="0"
+                          UniqueKey="SemanticColorsExamples_ValidationError">
+          <Border Width="48"
+                  Height="24"
+                  Margin="8"
+                  Background="{DynamicResource MaterialDesign.Brush.ValidationError}"
+                  CornerRadius="4" />
+        </smtx:XamlDisplay>
+
+        <TextBlock Grid.Row="10"
+                   Grid.Column="1"
+                   Margin="8"
+                   VerticalAlignment="Center"
+                   Text="Validation Error" />
+
+        <TextBlock Grid.Row="10"
+                   Grid.Column="2"
+                   Margin="8"
+                   VerticalAlignment="Center"
+                   Text="MaterialDesign.Brush.ValidationError" />
+
+        <Button Grid.Row="10"
+                Grid.Column="3"
+                Margin="8,4"
+                Padding="12,4"
+                VerticalAlignment="Center"
+                Command="{Binding CopyResourceCommand}"
+                CommandParameter="MaterialDesign.Brush.ValidationError"
+                Content="{materialDesign:PackIcon Kind=ContentCopy}"
+                Style="{StaticResource MaterialDesignIconForegroundButton}" />
+      </Grid>
+    </StackPanel>
+  </materialDesign:Card>
+</UserControl>

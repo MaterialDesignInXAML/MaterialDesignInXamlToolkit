@@ -22,9 +22,13 @@ partial class ThemeTests
             </Style>
           </WrapPanel.Resources>
           <TextBlock Text="Background" Background="{StaticResource MaterialDesign.Brush.Background}" />
+          <TextBlock Text="Error" Background="{StaticResource MaterialDesign.Brush.Error}" />
           <TextBlock Text="Foreground" Background="{StaticResource MaterialDesign.Brush.Foreground}" />
           <TextBlock Text="ForegroundLight" Background="{StaticResource MaterialDesign.Brush.ForegroundLight}" />
+          <TextBlock Text="Info" Background="{StaticResource MaterialDesign.Brush.Info}" />
+          <TextBlock Text="Success" Background="{StaticResource MaterialDesign.Brush.Success}" />
           <TextBlock Text="ValidationError" Background="{StaticResource MaterialDesign.Brush.ValidationError}" />
+          <TextBlock Text="Warning" Background="{StaticResource MaterialDesign.Brush.Warning}" />
           <TextBlock Text="Badged.DarkBackground" Background="{StaticResource MaterialDesign.Brush.Badged.DarkBackground}" />
           <TextBlock Text="Badged.DarkForeground" Background="{StaticResource MaterialDesign.Brush.Badged.DarkForeground}" />
           <TextBlock Text="Badged.LightBackground" Background="{StaticResource MaterialDesign.Brush.Badged.LightBackground}" />
@@ -194,6 +198,11 @@ partial class ThemeTests
             await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesign.Brush.Background"));
         }
         {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Error\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesign.Brush.Error"));
+        }
+        {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Foreground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesign.Brush.Foreground"));
@@ -204,9 +213,24 @@ partial class ThemeTests
             await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesign.Brush.ForegroundLight"));
         }
         {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Info\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesign.Brush.Info"));
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Success\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesign.Brush.Success"));
+        }
+        {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ValidationError\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesign.Brush.ValidationError"));
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Warning\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesign.Brush.Warning"));
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Badged.DarkBackground\"]");
@@ -942,9 +966,13 @@ partial class ThemeTests
     private static IEnumerable<string> GetBrushResourceNames()
     {
         yield return "MaterialDesign.Brush.Background";
+        yield return "MaterialDesign.Brush.Error";
         yield return "MaterialDesign.Brush.Foreground";
         yield return "MaterialDesign.Brush.ForegroundLight";
+        yield return "MaterialDesign.Brush.Info";
+        yield return "MaterialDesign.Brush.Success";
         yield return "MaterialDesign.Brush.ValidationError";
+        yield return "MaterialDesign.Brush.Warning";
         yield return "MaterialDesign.Brush.Badged.DarkBackground";
         yield return "MaterialDesign.Brush.Badged.DarkForeground";
         yield return "MaterialDesign.Brush.Badged.LightBackground";

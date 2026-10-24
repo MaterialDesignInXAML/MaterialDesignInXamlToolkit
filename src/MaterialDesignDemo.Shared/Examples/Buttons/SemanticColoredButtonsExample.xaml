@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="MaterialDesignDemo.Shared.Examples.Buttons.SemanticColoredButtonsExample"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:MaterialDesignDemo.Shared.Examples.Buttons"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+  <materialDesign:Card Padding="16">
+    <StackPanel>
+      <TextBlock Margin="0,0,0,8"
+                 Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                 Text="Semantic colored buttons" />
+
+      <TextBlock Margin="0,0,0,16"
+                 Text="NumericUpDown is used to allow users to pick or type numeric values with optional step/limits."
+                 TextWrapping="Wrap" />
+
+      <WrapPanel Margin="0,0,0,8">
+        <StackPanel Orientation="Horizontal">
+          <smtx:XamlDisplay Margin="0,0,16,0" UniqueKey="SemanticColoredButtonsExample_Error">
+            <Button Background="{DynamicResource MaterialDesign.Brush.Error}"
+                    BorderBrush="{DynamicResource MaterialDesign.Brush.Error}"
+                    Content="Error"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Margin="0,0,16,0" UniqueKey="SemanticColoredButtonsExample_Warning">
+            <Button Background="{DynamicResource MaterialDesign.Brush.Warning}"
+                    BorderBrush="{DynamicResource MaterialDesign.Brush.Warning}"
+                    Content="Warning"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Margin="0,0,16,0" UniqueKey="SemanticColoredButtonsExample_Success">
+            <Button Background="{DynamicResource MaterialDesign.Brush.Success}"
+                    BorderBrush="{DynamicResource MaterialDesign.Brush.Success}"
+                    Content="Success"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay Margin="0,0,16,0" UniqueKey="SemanticColoredButtonsExample_Info">
+            <Button Background="{DynamicResource MaterialDesign.Brush.Info}"
+                    BorderBrush="{DynamicResource MaterialDesign.Brush.Info}"
+                    Content="Info"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+          </smtx:XamlDisplay>
+        </StackPanel>
+      </WrapPanel>
+    </StackPanel>
+  </materialDesign:Card>
+</UserControl>
