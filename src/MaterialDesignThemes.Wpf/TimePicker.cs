@@ -88,7 +88,33 @@ public class TimePicker : Control
     }
 
     public static readonly DependencyProperty SelectedTimeProperty = DependencyProperty.Register(
-        nameof(SelectedTime), typeof(DateTime?), typeof(TimePicker), new FrameworkPropertyMetadata(default(DateTime?), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, SelectedTimePropertyChangedCallback));
+        nameof(SelectedTime), typeof(DateTime?), typeof(TimePicker), new FrameworkPropertyMetadata(default(DateTime?), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, SelectedTimePropertyChangedCallback, CoerceSelectedTime));
+
+    /// <summary>Optional rule for minute slots, used for all selection paths.
+    /// The argument retains its date, with seconds cleared. The rule must be fast and side-effect free.</summary>
+    public static readonly DependencyProperty IsTimeAllowedProperty = Clock.IsTimeAllowedProperty.AddOwner(
+        typeof(TimePicker), new PropertyMetadata(null, SelectionRulesChanged));
+
+    public Predicate<DateTime>? IsTimeAllowed
+    {
+        get => (Predicate<DateTime>?)GetValue(IsTimeAllowedProperty);
+        set => SetValue(IsTimeAllowedProperty, value);
+    }
+
+    /// <summary>Refresh after data captured by IsTimeAllowed changes. Call on the UI thread.</summary>
+    public void RefreshTimeAvailability()
+    {
+        CoerceValue(SelectedTimeProperty);
+        _clock.RefreshTimeAvailability();
+    }
+
+    private static object? CoerceSelectedTime(DependencyObject d, object value)
+    {
+        var picker = (TimePicker)d;
+        return value is DateTime time ? TimeSelectionRules.Nearest(time, picker.IsTimeAllowed) : null;
+    }
+
+    private static void SelectionRulesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) => d.CoerceValue(SelectedTimeProperty);
 
     private static void SelectedTimePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
     {
@@ -481,10 +507,14 @@ public class TimePicker : Control
     {
         CultureInfo culture = Language.GetSpecificCulture();
 
-        return DateTime.TryParse(s,
-                                 culture,
-                                 DateTimeStyles.AssumeLocal | DateTimeStyles.AllowWhiteSpaces | DateTimeStyles.NoCurrentDateDefault,
-                                 out time);
+        if (!DateTime.TryParse(
+            s,
+            culture,
+            DateTimeStyles.AssumeLocal | DateTimeStyles.AllowWhiteSpaces | DateTimeStyles.NoCurrentDateDefault,
+            out time))
+            return false;
+
+        return TimeSelectionRules.IsAllowed((SelectedTime?.Date ?? DateTime.Today).Add(time.TimeOfDay), IsTimeAllowed);
     }
 
     private string? DateTimeToString(DateTime? d)
@@ -576,6 +606,7 @@ public class TimePicker : Control
         _clock.SetBinding(StyleProperty, GetBinding(ClockStyleProperty));
         _clock.SetBinding(Clock.TimeProperty, GetBinding(SelectedTimeProperty, new NullableDateTimeToCurrentDateConverter()));
         _clock.SetBinding(Clock.Is24HoursProperty, GetBinding(Is24HoursProperty));
+        _clock.SetBinding(Clock.IsTimeAllowedProperty, GetBinding(IsTimeAllowedProperty));
         _clockHostContentControl.SetBinding(StyleProperty, GetBinding(ClockHostContentControlStyleProperty));
     }
 

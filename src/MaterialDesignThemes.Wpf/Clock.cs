@@ -58,12 +58,44 @@ public class Clock : Control
     }
 
     public static readonly DependencyProperty TimeProperty = DependencyProperty.Register(
-        nameof(Time), typeof(DateTime), typeof(Clock), new FrameworkPropertyMetadata(default(DateTime), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, TimePropertyChangedCallback));
+        nameof(Time), typeof(DateTime), typeof(Clock), new FrameworkPropertyMetadata(default(DateTime), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, TimePropertyChangedCallback, CoerceTime));
+
+    /// <summary>Optional synchronous rule for minute slots, used for all selection paths.
+    /// Receives a date and time with seconds cleared. Keep the rule fast and free of side effects.</summary>
+    public static readonly DependencyProperty IsTimeAllowedProperty = DependencyProperty.Register(
+        nameof(IsTimeAllowed), typeof(Predicate<DateTime>), typeof(Clock), new PropertyMetadata(null, SelectionRulesChanged));
+
+    public Predicate<DateTime>? IsTimeAllowed
+    {
+        get => (Predicate<DateTime>?)GetValue(IsTimeAllowedProperty);
+        set => SetValue(IsTimeAllowedProperty, value);
+    }
+
+    /// <summary>Refresh after data captured by IsTimeAllowed changes. Call on the UI thread.</summary>
+    public void RefreshTimeAvailability()
+    {
+        CoerceValue(TimeProperty);
+        UpdateButtonAvailability();
+    }
+
+    private static object CoerceTime(DependencyObject d, object value)
+    {
+        var clock = (Clock)d;
+        return TimeSelectionRules.Nearest((DateTime)value, clock.IsTimeAllowed) ?? clock.Time;
+    }
+
+    private static void SelectionRulesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var clock = (Clock)d;
+        clock.CoerceValue(TimeProperty);
+        clock.UpdateButtonAvailability();
+    }
 
     private static void TimePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
     {
         var clock = (Clock)dependencyObject;
         SetFlags(clock);
+        clock.UpdateButtonAvailability();
         TimeChangedEventArgs args = new(TimeChangedEvent, (DateTime)e.OldValue, (DateTime)e.NewValue);
         clock.OnTimeChanged(args);
     }
@@ -126,6 +158,9 @@ public class Clock : Control
             clock.Time = new DateTime(clock.Time.Year, clock.Time.Month, clock.Time.Day, clock.Time.Hour + 12, clock.Time.Minute, clock.Time.Second);
         else if (!clock.IsPostMeridiem && clock.Time.Hour >= 12)
             clock.Time = new DateTime(clock.Time.Year, clock.Time.Month, clock.Time.Day, clock.Time.Hour - 12, clock.Time.Minute, clock.Time.Second);
+
+        SetFlags(clock);
+        clock.UpdateButtonAvailability();
     }
 
     public bool IsPostMeridiem
@@ -419,6 +454,7 @@ public class Clock : Control
             button.SetBinding(Canvas.TopProperty, GetBinding("Y", button));
 
             button.Content = (i == 60 ? 0 : (i == 24 && clockDisplayMode == ClockDisplayMode.Hours ? 0 : i)).ToString(format);
+            button.Tag = Tuple.Create(clockDisplayMode, i);
 
             if (isEnabledSelector is not null)
             {
@@ -427,6 +463,8 @@ public class Clock : Control
             }
             canvas.Children.Add(button);
         }
+
+        UpdateButtonAvailability();
 
         BindingBase GetBinding(
             string propertyName,
@@ -443,6 +481,41 @@ public class Clock : Control
         }
     }
 
+
+    private void UpdateButtonAvailability()
+    {
+        foreach (string part in new[] { HoursCanvasPartName, MinutesCanvasPartName, SecondsCanvasPartName })
+        {
+            if (GetTemplateChild(part) is not Canvas canvas)
+                continue;
+
+            foreach (ClockItemButton button in canvas.Children.OfType<ClockItemButton>())
+            {
+                if (button.Tag is not Tuple<ClockDisplayMode, int> item)
+                    continue;
+
+                ClockDisplayMode mode = item.Item1;
+                int value = item.Item2;
+                bool enabled;
+                if (mode == ClockDisplayMode.Hours)
+                {
+                    int hour = Is24Hours ? value % 24 : value % 12 + (IsPostMeridiem ? 12 : 0);
+                    enabled = TimeSelectionRules.Nearest(Time, IsTimeAllowed, hour).HasValue;
+                }
+                else
+                {
+                    var candidate = mode == ClockDisplayMode.Minutes
+                        ? Time.Date.AddHours(Time.Hour).AddMinutes(value % 60).AddTicks(Time.TimeOfDay.Ticks % TimeSpan.TicksPerMinute)
+                        : Time.Date.AddHours(Time.Hour).AddMinutes(Time.Minute).AddSeconds(value % 60);
+                    enabled = TimeSelectionRules.IsAllowed(candidate, IsTimeAllowed);
+                    if (mode == ClockDisplayMode.Minutes)
+                        enabled &= value % 60 % MinuteSelectionStep == 0;
+                }
+                button.SetCurrentValue(IsEnabledProperty, enabled);
+                button.SetCurrentValue(OpacityProperty, enabled ? 1.0 : 0.25);
+            }
+        }
+    }
 
     private void ClockItemDragCompletedHandler(object sender, DragCompletedEventArgs e)
     {
