@@ -13,6 +13,19 @@
     <StartupObject>MaterialDesignDemo.App</StartupObject>
   </PropertyGroup>
 
+  <PropertyGroup Label="Velopack">
+    <VelopackPackId>Keboo.MDIX</VelopackPackId>
+    <VelopackFlowServiceUrl>https://apiservice---dev.lemonsky-a48dfb07.eastus2.azurecontainerapps.io/</VelopackFlowServiceUrl>
+    <VelopackPushOnPublish>true</VelopackPushOnPublish>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>VelopackFlowServiceUrl</_Parameter1>
+      <_Parameter2>$(VelopackFlowServiceUrl)</_Parameter2>
+    </AssemblyAttribute>
+  </ItemGroup>
+
   <!--
   We do this because we are setting a custom Main method with the StartupObject property above.
   This prevents WPF from generating a default Main method.
@@ -56,7 +69,7 @@
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm" />
     <PackageReference Include="System.CommandLine" />
-    <PackageReference Include="Velopack" />
+    <PackageReference Include="Velopack.Build" />
     <PackageReference Include="VirtualizingWrapPanel" />
     <PackageReference Include="ShowMeTheXAML" />
     <PackageReference Include="ShowMeTheXAML.AvalonEdit" />
