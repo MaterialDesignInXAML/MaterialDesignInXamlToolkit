@@ -52,7 +52,13 @@ public partial class MainWindowViewModel : ObservableObject
         LoadVersions();
     }
 
-    private readonly UpdateManager _updateManager = new(new VelopackFlowUpdateSource());
+    private readonly UpdateManager _updateManager = new(new VelopackFlowSource(GetFlowServiceUrl()));
+
+    private static string GetFlowServiceUrl()
+        => typeof(MainWindowViewModel).Assembly
+            .GetCustomAttributes<AssemblyMetadataAttribute>()
+            .SingleOrDefault(x => x.Key == "VelopackFlowServiceUrl")?.Value
+            ?? "https://api.velopack.io/";
 
     private readonly ICollectionView _demoItemsView;
 
