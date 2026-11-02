@@ -808,7 +808,7 @@
                        FontStretch="{TemplateBinding FontStretch}"
                        FontStyle="{TemplateBinding FontStyle}"
                        FontWeight="{TemplateBinding FontWeight}"
-                       GroupName="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, FallbackValue={x:Null}}"
+                       GroupName="{Binding Name,RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, FallbackValue={x:Null}}"
                        IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
                        Style="{StaticResource MaterialDesignChoiceChipRadioButton}" />
         </ControlTemplate>
