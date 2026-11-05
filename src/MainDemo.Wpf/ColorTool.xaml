@@ -4,6 +4,7 @@
              xmlns:converters="clr-namespace:MaterialDesignDemo.Shared.Converters;assembly=MaterialDesignDemo.Shared"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:sharedDomain="clr-namespace:MaterialDesignDemo.Shared.Domain;assembly=MaterialDesignDemo.Shared"
+             xmlns:sharedColorTools="clr-namespace:MaterialDesignDemo.Shared.Examples.ColorTools;assembly=MaterialDesignDemo.Shared"
              xmlns:local="clr-namespace:MaterialDesignDemo"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:materialDesignColors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
@@ -124,6 +125,11 @@
     <local:ThemeSettings Margin="0,0,0,8" DockPanel.Dock="Top" />
 
     <DockPanel>
+      
+      <sharedColorTools:SemanticColorsExamples DockPanel.Dock="Bottom"/>
+
+      <Rectangle DockPanel.Dock="Bottom" Style="{StaticResource PageSectionSeparator}" />
+      
       <!-- Selection controls -->
       <Border DockPanel.Dock="Bottom">
         <Grid>
