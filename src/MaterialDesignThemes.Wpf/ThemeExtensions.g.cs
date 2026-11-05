@@ -21,7 +21,6 @@ static partial class ThemeExtensions
         theme.ForegroundLight = BaseThemeColors.Black500;
         theme.Info = Color.FromArgb(0xFF, 0x21, 0x96, 0xF3);
         theme.Success = Color.FromArgb(0xFF, 0x00, 0xC8, 0x53);
-        theme.ValidationError = Color.FromArgb(0xFF, 0xB0, 0x00, 0x20);
         theme.Warning = Color.FromArgb(0xFF, 0xFF, 0x98, 0x00);
         theme.Badgeds.DarkBackground = BaseThemeColors.Neutral100;
         theme.Badgeds.DarkForeground = BaseThemeColors.Neutral900;
@@ -118,7 +117,6 @@ static partial class ThemeExtensions
         theme.ForegroundLight = BaseThemeColors.White500;
         theme.Info = Color.FromArgb(0xFF, 0x4A, 0x86, 0xFF);
         theme.Success = Color.FromArgb(0xFF, 0x3D, 0xCB, 0x6C);
-        theme.ValidationError = Color.FromArgb(0xFF, 0xCF, 0x66, 0x79);
         theme.Warning = Color.FromArgb(0xFF, 0xFF, 0xB5, 0x45);
         theme.Badgeds.DarkBackground = BaseThemeColors.Neutral100;
         theme.Badgeds.DarkForeground = BaseThemeColors.Neutral900;

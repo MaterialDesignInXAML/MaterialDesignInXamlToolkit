@@ -71,7 +71,7 @@
           </Border>
           <ControlTemplate.Triggers>
             <Trigger Property="Validation.HasError" Value="True">
-              <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
+              <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Error}" />
             </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
@@ -88,7 +88,7 @@
         <ControlTemplate>
           <Border Margin="-1,0,-1,-4"
                   Padding="1,0,1,2"
-                  BorderBrush="{DynamicResource MaterialDesign.Brush.ValidationError}"
+                  BorderBrush="{DynamicResource MaterialDesign.Brush.Error}"
                   BorderThickness="0,0,0,2">
             <AdornedElementPlaceholder />
           </Border>
@@ -172,7 +172,7 @@
                             <TextBlock Margin="0,2"
                                        HorizontalAlignment="{TemplateBinding wpf:ValidationAssist.HorizontalAlignment}"
                                        FontSize="{TemplateBinding wpf:ValidationAssist.FontSize}"
-                                       Foreground="{DynamicResource MaterialDesign.Brush.ValidationError}"
+                                       Foreground="{DynamicResource MaterialDesign.Brush.Error}"
                                        Text="{Binding ErrorContent}"
                                        TextWrapping="Wrap"
                                        UseLayoutRounding="false" />
@@ -201,7 +201,7 @@
           </Grid>
           <ControlTemplate.Triggers>
             <Trigger Property="Validation.HasError" Value="True">
-              <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
+              <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Error}" />
             </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>

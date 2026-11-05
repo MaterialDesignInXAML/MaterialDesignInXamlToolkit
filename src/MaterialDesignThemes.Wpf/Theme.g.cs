@@ -79,13 +79,6 @@ partial class Theme
        set => _success = value;
     }
 
-    private ColorReference _validationError;
-    public ColorReference ValidationError
-    {
-       get => Resolve(_validationError);
-       set => _validationError = value;
-    }
-
     private ColorReference _warning;
     public ColorReference Warning
     {

@@ -74,7 +74,7 @@
                 <TextBlock x:Name="Sample_CloseClicked" />
               </WrapPanel>
 
-              <materialDesign:Chip HorizontalAlignment="Right" Foreground="{DynamicResource MaterialDesign.Brush.ValidationError}">
+              <materialDesign:Chip HorizontalAlignment="Right" Foreground="{DynamicResource MaterialDesign.Brush.Error}">
                 <WrapPanel VerticalAlignment="Center">
                   <materialDesign:PackIcon Kind="ArrowLeftBottom" RenderTransformOrigin="0.5 0.5">
                     <materialDesign:PackIcon.RenderTransform>

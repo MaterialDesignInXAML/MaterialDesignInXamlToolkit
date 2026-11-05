@@ -44,17 +44,6 @@
         ]
     },
     {
-        "name": "MaterialDesign.Brush.ValidationError",
-        "themeValues": {
-            "light": "#FFB00020",
-            "dark": "#FFCF6679"
-        },
-        "alternateKeys": [],
-        "obsoleteKeys": [
-            "MaterialDesignValidationErrorBrush"
-        ]
-    },
-    {
         "name": "MaterialDesign.Brush.Badged.DarkBackground",
         "themeValues": {
             "light": "Neutral100",
@@ -723,7 +712,10 @@
             "dark": "#FF3F5F"
         },
         "alternateKeys": [],
-        "obsoleteKeys": []
+        "obsoleteKeys": [
+            "MaterialDesign.Brush.ValidationError",
+            "MaterialDesignValidationErrorBrush"
+        ]
     },
     {
         "name": "MaterialDesign.Brush.Warning",
