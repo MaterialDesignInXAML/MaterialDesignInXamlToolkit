@@ -75,6 +75,8 @@ public class DialogHost : ContentControl
     private DialogClosingEventHandler? _attachedDialogClosingEventHandler;
     private DialogClosedEventHandler? _attachedDialogClosedEventHandler;
     private IInputElement? _restoreFocusDialogClose;
+    private Window? _window;
+    private UIElement? _lastFocusedPopupElement;
     private Action? _currentSnackbarMessageQueueUnPauseAction;
 
     static DialogHost()
@@ -1010,8 +1012,50 @@ public class DialogHost : ContentControl
     private string GetStateName()
         => IsOpen ? OpenStateName : ClosedStateName;
 
+    protected override void OnGotKeyboardFocus(KeyboardFocusChangedEventArgs e)
+    {
+        if (e.NewFocus is UIElement element &&
+            _popup?.Child is { } child &&
+            child.IsAncestorOf(element))
+        {
+            _lastFocusedPopupElement = element;
+        }
+        base.OnGotKeyboardFocus(e);
+    }
+
+    protected override void OnLostKeyboardFocus(KeyboardFocusChangedEventArgs e)
+    {
+        // Minimizing moves focus to null; only forget the element when the user focuses something else in this window
+        if (e.NewFocus is DependencyObject newFocus &&
+            _popup?.Child is { } child &&
+            !child.IsAncestorOf(newFocus) &&
+            Window.GetWindow(newFocus) == _window)
+        {
+            _lastFocusedPopupElement = null;
+        }
+        base.OnLostKeyboardFocus(e);
+    }
+
+    private void WindowOnActivated(object? sender, EventArgs e)
+    {
+        // The popup has its own window handle, so WPF does not restore focus into it when the window is re-activated (issue #3434)
+        Dispatcher.BeginInvoke(() =>
+        {
+            if (IsOpen &&
+                _popup is { IsOpen: true, Child: { IsKeyboardFocusWithin: false } child } &&
+                _lastFocusedPopupElement is { IsVisible: true } element &&
+                child.IsAncestorOf(element))
+            {
+                element.Focus();
+            }
+        }, DispatcherPriority.Input);
+    }
+
     private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
     {
+        _window?.Activated -= WindowOnActivated;
+        _window = null;
+
         foreach (var weakRef in LoadedInstances.ToList())
         {
             if (!weakRef.TryGetTarget(out DialogHost? dialogHost) || ReferenceEquals(dialogHost, this))
@@ -1024,6 +1068,10 @@ public class DialogHost : ContentControl
 
     private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
     {
+        _window?.Activated -= WindowOnActivated;
+        _window = Window.GetWindow(this);
+        _window?.Activated += WindowOnActivated;
+
         foreach (var weakRef in LoadedInstances.ToList())
         {
             if (weakRef.TryGetTarget(out DialogHost? dialogHost) && ReferenceEquals(dialogHost, this))
