@@ -703,7 +703,7 @@ public class DialogHostTests : TestBase
 
     [Test]
     [Description("Issue 3434")]
-    //[Arguments(null)]
+    [Arguments(null)]
     [Arguments("MaterialDesignEmbeddedDialogHost")]
     public async Task DialogHost_WhenWindowStateChanges_FocusOutsideDialogStaysOutside(string? styleName)
     {
