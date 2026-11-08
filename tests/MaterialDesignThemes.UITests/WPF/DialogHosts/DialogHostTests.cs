@@ -665,6 +665,95 @@ public class DialogHostTests : TestBase
         }
     }
 
+    [Test]
+    [Description("Issue 3434")]
+    [Arguments(WindowState.Minimized, WindowState.Maximized, null)]
+    [Arguments(WindowState.Minimized, WindowState.Normal, null)]
+    [Arguments(WindowState.Minimized, WindowState.Maximized, "MaterialDesignEmbeddedDialogHost")]
+    [Arguments(WindowState.Minimized, WindowState.Normal, "MaterialDesignEmbeddedDialogHost")]
+    public async Task DialogHost_WhenWindowStateChanges_FocusedElementStaysFocused(WindowState firstWindowState,
+                                                                                   WindowState secondWindowState,
+                                                                                   string? styleName)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        var dialogHost = (await LoadUserControl<WithMultipleTextBoxes>()).As<DialogHost>();
+        if (styleName is not null)
+        {
+            await dialogHost.RemoteExecute(SetDialogHostStyle, styleName);
+        }
+        await Task.Delay(400);
+
+        // Select the second TextBox
+        var tbTwo = await dialogHost.GetElement<TextBox>("TextBoxTwo");
+        await tbTwo.MoveKeyboardFocus();
+        await Assert.That(await tbTwo.GetIsFocused()).IsTrue();
+
+        // First state
+        await dialogHost.RemoteExecute(SetStateOfParentWindow, firstWindowState);
+        await Task.Delay(400);
+        // Second state
+        await dialogHost.RemoteExecute(SetStateOfParentWindow, secondWindowState);
+        await Task.Delay(400);
+
+        // After changing state of the window the previously focused element should be focused again
+        await Assert.That(await tbTwo.GetIsFocused()).IsTrue();
+        recorder.Success();
+    }
+
+    [Test]
+    [Description("Issue 3434")]
+    //[Arguments(null)]
+    [Arguments("MaterialDesignEmbeddedDialogHost")]
+    public async Task DialogHost_WhenWindowStateChanges_FocusOutsideDialogStaysOutside(string? styleName)
+    {
+        await using var recorder = new TestRecorder(App);
+
+        var grid = await LoadXaml<Grid>("""
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+              </Grid.ColumnDefinitions>
+              <TextBox x:Name="OutsideTextBox" VerticalAlignment="Center" />
+              <materialDesign:DialogHost x:Name="DialogHost" Grid.Column="1" IsOpen="True">
+                <materialDesign:DialogHost.DialogContent>
+                  <TextBox x:Name="InsideTextBox" MinWidth="200" />
+                </materialDesign:DialogHost.DialogContent>
+              </materialDesign:DialogHost>
+            </Grid>
+            """);
+        var dialogHost = await grid.GetElement<DialogHost>("DialogHost");
+        if (styleName is not null)
+        {
+            await dialogHost.RemoteExecute(SetDialogHostStyle, styleName);
+        }
+        await Task.Delay(400);
+
+        var insideTextBox = await dialogHost.GetElement<TextBox>("InsideTextBox");
+        var outsideTextBox = await grid.GetElement<TextBox>("OutsideTextBox");
+        await insideTextBox.MoveKeyboardFocus();
+        await Assert.That(await insideTextBox.GetIsFocused()).IsTrue();
+        await outsideTextBox.MoveKeyboardFocus();
+        await Assert.That(await outsideTextBox.GetIsFocused()).IsTrue();
+
+        await dialogHost.RemoteExecute(SetStateOfParentWindow, WindowState.Minimized);
+        await Task.Delay(400);
+        await dialogHost.RemoteExecute(SetStateOfParentWindow, WindowState.Normal);
+        await Task.Delay(400);
+
+        // Focus was outside the dialog before minimizing, so it must not be moved into the dialog
+        await Assert.That(await outsideTextBox.GetIsFocused()).IsTrue();
+        recorder.Success();
+    }
+
+    private static object SetStateOfParentWindow(DialogHost dialogHost, WindowState state)
+    {
+        var window = Window.GetWindow(dialogHost);
+        window.WindowState = state;
+        return null!;
+    }
+
     private static object SetDialogHostStyle(DialogHost dialogHost, string styleName)
     {
         var style = (Style)dialogHost.FindResource(styleName);
