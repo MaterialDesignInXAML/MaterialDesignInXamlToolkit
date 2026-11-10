@@ -69,66 +69,77 @@
               </DoubleAnimationUsingKeyFrames>
             </Storyboard>
           </ControlTemplate.Resources>
-          <Grid x:Name="templateRoot"
-                Background="Transparent"
-                SnapsToDevicePixels="True">
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="Auto" />
-              <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Viewbox x:Name="IconHost"
-                     Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:RadioButtonAssist.RadioButtonSize)}"
-                     Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:RadioButtonAssist.RadioButtonSize)}"
-                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-              <Canvas Width="24"
-                      Height="24"
-                      Background="Transparent">
-                <Path x:Name="Graphic"
-                      Data="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
-                      Fill="{DynamicResource MaterialDesign.Brush.RadioButton.Outline}" />
-                <Ellipse x:Name="InteractionEllipse"
-                         Canvas.Left="12"
-                         Canvas.Top="12"
-                         Width="0"
-                         Height="0"
-                         Fill="{TemplateBinding Foreground}"
-                         IsHitTestVisible="False"
-                         Opacity="0"
-                         RenderTransformOrigin="0.5,0.5">
-                  <Ellipse.RenderTransform>
-                    <TransformGroup>
-                      <ScaleTransform />
-                      <SkewTransform />
-                      <RotateTransform />
-                      <TranslateTransform />
-                    </TransformGroup>
-                  </Ellipse.RenderTransform>
-                </Ellipse>
-              </Canvas>
-            </Viewbox>
+          <DockPanel x:Name="templateRoot"
+                     Background="Transparent"
+                     LastChildFill="True"
+                     SnapsToDevicePixels="True">
+            <Grid x:Name="IconWrapper"
+                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                  DockPanel.Dock="Left">
+              <Viewbox x:Name="IconHost"
+                       Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:RadioButtonAssist.RadioButtonSize)}"
+                       Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:RadioButtonAssist.RadioButtonSize)}">
+                <Canvas Width="24"
+                        Height="24"
+                        Background="Transparent">
+                  <Path x:Name="Graphic"
+                        Data="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+                        Fill="{DynamicResource MaterialDesign.Brush.RadioButton.Outline}" />
+                  <Ellipse x:Name="InteractionEllipse"
+                           Canvas.Left="12"
+                           Canvas.Top="12"
+                           Width="0"
+                           Height="0"
+                           Fill="{TemplateBinding Foreground}"
+                           IsHitTestVisible="False"
+                           Opacity="0"
+                           RenderTransformOrigin="0.5,0.5">
+                    <Ellipse.RenderTransform>
+                      <TransformGroup>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform />
+                        <TranslateTransform />
+                      </TransformGroup>
+                    </Ellipse.RenderTransform>
+                  </Ellipse>
+                </Canvas>
+              </Viewbox>
 
-            <!-- halo shown when hovering -->
-            <Ellipse x:Name="halo"
-                     Grid.Column="0"
-                     Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:RadioButtonAssist.RadioButtonSize), Converter={x:Static converters:MathConverter.MultiplyInstance}, ConverterParameter=1.6}"
-                     Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:RadioButtonAssist.RadioButtonSize), Converter={x:Static converters:MathConverter.MultiplyInstance}, ConverterParameter=1.6}"
-                     HorizontalAlignment="Center"
-                     VerticalAlignment="Center"
-                     Fill="{TemplateBinding Foreground}"
-                     IsHitTestVisible="False"
-                     Opacity="0"
-                     RenderTransformOrigin="0.5,0.5" />
+              <!-- halo shown when hovering -->
+              <Ellipse x:Name="halo"
+                       Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:RadioButtonAssist.RadioButtonSize), Converter={x:Static converters:MathConverter.MultiplyInstance}, ConverterParameter=1.6}"
+                       Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:RadioButtonAssist.RadioButtonSize), Converter={x:Static converters:MathConverter.MultiplyInstance}, ConverterParameter=1.6}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Fill="{TemplateBinding Foreground}"
+                       IsHitTestVisible="False"
+                       Opacity="0"
+                       RenderTransformOrigin="0.5,0.5" />
+            </Grid>
 
             <ContentPresenter x:Name="contentPresenter"
-                              Grid.Column="1"
                               Margin="{TemplateBinding Padding}"
                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                               Focusable="False"
                               RecognizesAccessKey="True"
                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-          </Grid>
+          </DockPanel>
           <ControlTemplate.Triggers>
+            <!-- the glyph docks opposite to where the content goes. right is the default -->
+            <Trigger Property="wpf:RadioButtonAssist.ContentPlacement" Value="Left">
+              <Setter TargetName="IconWrapper" Property="DockPanel.Dock" Value="Right" />
+            </Trigger>
+            <Trigger Property="wpf:RadioButtonAssist.ContentPlacement" Value="Top">
+              <Setter TargetName="IconWrapper" Property="DockPanel.Dock" Value="Bottom" />
+              <Setter TargetName="IconWrapper" Property="HorizontalAlignment" Value="Center" />
+            </Trigger>
+            <Trigger Property="wpf:RadioButtonAssist.ContentPlacement" Value="Bottom">
+              <Setter TargetName="IconWrapper" Property="DockPanel.Dock" Value="Top" />
+              <Setter TargetName="IconWrapper" Property="HorizontalAlignment" Value="Center" />
+            </Trigger>
             <EventTrigger RoutedEvent="ButtonBase.Click">
               <BeginStoryboard Storyboard="{StaticResource Click}" />
             </EventTrigger>
@@ -216,16 +227,16 @@
               </DoubleAnimationUsingKeyFrames>
             </Storyboard>
           </ControlTemplate.Resources>
-          <Grid x:Name="templateRoot"
-                Background="Transparent"
-                SnapsToDevicePixels="True">
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="Auto" />
-              <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Viewbox Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:RadioButtonAssist.RadioButtonSize)}"
+          <DockPanel x:Name="templateRoot"
+                     Background="Transparent"
+                     LastChildFill="True"
+                     SnapsToDevicePixels="True">
+            <Viewbox x:Name="IconWrapper"
+                     Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:RadioButtonAssist.RadioButtonSize)}"
                      Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:RadioButtonAssist.RadioButtonSize)}"
-                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                     DockPanel.Dock="Left">
               <Canvas Width="24" Height="24">
                 <Path x:Name="Graphic"
                       Data="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
@@ -251,15 +262,26 @@
               </Canvas>
             </Viewbox>
             <ContentPresenter x:Name="contentPresenter"
-                              Grid.Column="1"
                               Margin="{TemplateBinding Padding}"
                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                               Focusable="False"
                               RecognizesAccessKey="True"
                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-          </Grid>
+          </DockPanel>
           <ControlTemplate.Triggers>
+            <!-- the glyph docks opposite to where the content goes. right is the default -->
+            <Trigger Property="wpf:RadioButtonAssist.ContentPlacement" Value="Left">
+              <Setter TargetName="IconWrapper" Property="DockPanel.Dock" Value="Right" />
+            </Trigger>
+            <Trigger Property="wpf:RadioButtonAssist.ContentPlacement" Value="Top">
+              <Setter TargetName="IconWrapper" Property="DockPanel.Dock" Value="Bottom" />
+              <Setter TargetName="IconWrapper" Property="HorizontalAlignment" Value="Center" />
+            </Trigger>
+            <Trigger Property="wpf:RadioButtonAssist.ContentPlacement" Value="Bottom">
+              <Setter TargetName="IconWrapper" Property="DockPanel.Dock" Value="Top" />
+              <Setter TargetName="IconWrapper" Property="HorizontalAlignment" Value="Center" />
+            </Trigger>
             <EventTrigger RoutedEvent="ButtonBase.Click">
               <BeginStoryboard Storyboard="{StaticResource Click}" />
             </EventTrigger>

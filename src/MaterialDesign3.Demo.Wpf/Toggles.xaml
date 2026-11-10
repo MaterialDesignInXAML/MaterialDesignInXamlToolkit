@@ -4,6 +4,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:domain="clr-namespace:MaterialDesign3Demo.Domain"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:sharedCbs="clr-namespace:MaterialDesignDemo.Shared.Examples.CheckBoxExamples;assembly=MaterialDesignDemo.Shared"
+             xmlns:sharedRbs="clr-namespace:MaterialDesignDemo.Shared.Examples.RadioButtonExamples;assembly=MaterialDesignDemo.Shared"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              d:DesignHeight="700"
@@ -203,6 +205,8 @@
                   Style="{StaticResource MaterialDesignSecondaryCheckBox}" />
       </smtx:XamlDisplay>
     </StackPanel>
+
+    <sharedRbs:ContentPlacementExample Grid.Row="3" Grid.Column="1" />
 
     <StackPanel Grid.Row="4"
                 Grid.Column="0"
@@ -484,21 +488,22 @@
       </StackPanel>
     </smtx:XamlDisplay>
 
-    <smtx:XamlDisplay Grid.Row="8"
-                      Grid.Column="1"
-                      HorizontalAlignment="Left"
-                      VerticalAlignment="Top"
-                      UniqueKey="checkboxes_2">
-      <StackPanel Margin="8,0">
-        <CheckBox materialDesign:CheckBoxAssist.CheckBoxSize="30"
+    <StackPanel Grid.Row="8"
+                Grid.Column="1"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">
+      <smtx:XamlDisplay UniqueKey="checkboxes_2">
+        <StackPanel Margin="8,0">
+          <CheckBox materialDesign:CheckBoxAssist.CheckBoxSize="30"
                   Content="Custom Size"
                   IsChecked="True" />
-        <CheckBox materialDesign:RippleAssist.IsDisabled="True"
+          <CheckBox materialDesign:RippleAssist.IsDisabled="True"
                   Content="Ripple disabled"
                   IsChecked="True" />
-      </StackPanel>
-    </smtx:XamlDisplay>
-
+        </StackPanel>
+      </smtx:XamlDisplay>
+      <sharedCbs:ContentPlacementExample />
+    </StackPanel>
 
     <TextBlock Grid.Row="10"
                Grid.Column="0"
