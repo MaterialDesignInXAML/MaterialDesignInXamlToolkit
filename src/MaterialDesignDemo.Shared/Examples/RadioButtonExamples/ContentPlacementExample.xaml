@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="MaterialDesignDemo.Shared.Examples.RadioButtonExamples.ContentPlacementExample"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:MaterialDesignDemo.Shared.Examples.RadioButtonExamples"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+             d:DesignHeight="400"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+  <materialDesign:Card Padding="16" HorizontalAlignment="Left">
+    <StackPanel>
+      <TextBlock Margin="0,0,0,8"
+                 Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                 Text="Content placement" />
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition MinWidth="200" />
+          <ColumnDefinition Width="2" />
+          <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <smtx:XamlDisplay Grid.Column="0"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          UniqueKey="RadioButton_ContentPlacementExample_1">
+          <RadioButton materialDesign:RadioButtonAssist.ContentPlacement="{Binding ElementName=lbContentPlacement, Path=SelectedValue}" Content="Radio" />
+        </smtx:XamlDisplay>
+
+        <GridSplitter Grid.Column="1"
+                      Width="2"
+                      VerticalAlignment="Stretch" />
+
+        <StackPanel Grid.Column="2" Margin="8">
+          <TextBlock Text="RadioButtonAssist.ContentPlacement" />
+
+          <ListBox x:Name="lbContentPlacement"
+                   HorizontalAlignment="Left"
+                   SelectedIndex="3"
+                   SelectedValuePath="Content"
+                   Style="{StaticResource SegmentedListBox}">
+            <ListBoxItem Content="{x:Static Dock.Left}" />
+            <ListBoxItem Content="{x:Static Dock.Top}" />
+            <ListBoxItem Content="{x:Static Dock.Right}" />
+            <ListBoxItem Content="{x:Static Dock.Bottom}" />
+          </ListBox>
+        </StackPanel>
+      </Grid>
+    </StackPanel>
+  </materialDesign:Card>
+</UserControl>
