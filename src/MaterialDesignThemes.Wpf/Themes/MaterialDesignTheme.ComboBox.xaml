@@ -755,16 +755,16 @@
 
       <!-- Validation.HasError -->
       <Trigger Property="Validation.HasError" Value="True">
-        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
-        <Setter TargetName="Underline" Property="Background" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
-        <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Error}" />
+        <Setter TargetName="Underline" Property="Background" Value="{DynamicResource MaterialDesign.Brush.Error}" />
+        <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Error}" />
       </Trigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
           <Condition Property="Validation.HasError" Value="True" />
           <Condition Property="wpf:TextFieldAssist.HasOutlinedTextField" Value="True" />
         </MultiTrigger.Conditions>
-        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Error}" />
         <Setter TargetName="OuterBorder" Property="BorderThickness" Value="{Binding Path=(wpf:TextFieldAssist.OutlinedBorderActiveThickness), RelativeSource={RelativeSource TemplatedParent}}" />
         <Setter TargetName="ContentGrid" Property="Margin">
           <Setter.Value>

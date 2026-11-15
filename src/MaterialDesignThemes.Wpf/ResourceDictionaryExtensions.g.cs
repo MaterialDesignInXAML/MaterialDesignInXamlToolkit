@@ -11,9 +11,12 @@ static partial class ResourceDictionaryExtensions
     private static partial void LoadThemeColors(ResourceDictionary resourceDictionary, Theme theme)
     {
         theme.Background = GetColor(resourceDictionary, "MaterialDesign.Brush.Background", "MaterialDesignPaper");
+        theme.Error = GetColor(resourceDictionary, "MaterialDesign.Brush.Error", "MaterialDesign.Brush.ValidationError", "MaterialDesignValidationErrorBrush");
         theme.Foreground = GetColor(resourceDictionary, "MaterialDesign.Brush.Foreground", "MaterialDesignBody");
         theme.ForegroundLight = GetColor(resourceDictionary, "MaterialDesign.Brush.ForegroundLight", "MaterialDesignBodyLight", "MaterialDesignCheckBoxOff", "MaterialDesignTextBoxBorder");
-        theme.ValidationError = GetColor(resourceDictionary, "MaterialDesign.Brush.ValidationError", "MaterialDesignValidationErrorBrush");
+        theme.Info = GetColor(resourceDictionary, "MaterialDesign.Brush.Info");
+        theme.Success = GetColor(resourceDictionary, "MaterialDesign.Brush.Success");
+        theme.Warning = GetColor(resourceDictionary, "MaterialDesign.Brush.Warning");
         theme.Badgeds.DarkBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.Badged.DarkBackground");
         theme.Badgeds.DarkForeground = GetColor(resourceDictionary, "MaterialDesign.Brush.Badged.DarkForeground");
         theme.Badgeds.LightBackground = GetColor(resourceDictionary, "MaterialDesign.Brush.Badged.LightBackground");
@@ -105,14 +108,18 @@ static partial class ResourceDictionaryExtensions
     {
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Background", theme.Background);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignPaper", theme.Background);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Error", theme.Error);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ValidationError", theme.Error);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesignValidationErrorBrush", theme.Error);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Foreground", theme.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignBody", theme.Foreground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ForegroundLight", theme.ForegroundLight);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignBodyLight", theme.ForegroundLight);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignCheckBoxOff", theme.ForegroundLight);
         SetSolidColorBrush(resourceDictionary, "MaterialDesignTextBoxBorder", theme.ForegroundLight);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.ValidationError", theme.ValidationError);
-        SetSolidColorBrush(resourceDictionary, "MaterialDesignValidationErrorBrush", theme.ValidationError);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Info", theme.Info);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Success", theme.Success);
+        SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Warning", theme.Warning);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Badged.DarkBackground", theme.Badgeds.DarkBackground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Badged.DarkForeground", theme.Badgeds.DarkForeground);
         SetSolidColorBrush(resourceDictionary, "MaterialDesign.Brush.Badged.LightBackground", theme.Badgeds.LightBackground);

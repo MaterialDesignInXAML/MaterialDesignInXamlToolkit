@@ -534,9 +534,9 @@
 
             <!-- Validation.HasError -->
             <Trigger Property="Validation.HasError" Value="true">
-              <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
-              <Setter TargetName="Underline" Property="Background" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
-              <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
+              <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Error}" />
+              <Setter TargetName="Underline" Property="Background" Value="{DynamicResource MaterialDesign.Brush.Error}" />
+              <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Error}" />
             </Trigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
@@ -556,9 +556,9 @@
             </MultiTrigger>
             <!-- ValidationAssist.HasError (when TextBox is nested inside another control) -->
             <Trigger Property="wpf:ValidationAssist.HasError" Value="true">
-              <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
-              <Setter TargetName="Underline" Property="Background" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
-              <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
+              <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Error}" />
+              <Setter TargetName="Underline" Property="Background" Value="{DynamicResource MaterialDesign.Brush.Error}" />
+              <Setter TargetName="Hint" Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Error}" />
             </Trigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>

@@ -29,6 +29,8 @@ foreach ($file in $files) {
     $fileContents = $fileContents -replace "\{StaticResource\ MaterialDesignCheckBoxDisabled}", "{StaticResource MaterialDesign.Brush.CheckBox.Disabled}"
     $fileContents = $fileContents -replace "\{StaticResource\ MaterialDesignChipBackground}", "{StaticResource MaterialDesign.Brush.Chip.Background}"
     $fileContents = $fileContents -replace "\{StaticResource\ MaterialDesignDataGridRowHoverBackground}", "{StaticResource MaterialDesign.Brush.DataGrid.RowHoverBackground}"
+    $fileContents = $fileContents -replace "\{StaticResource\ MaterialDesign\.Brush\.ValidationError}", "{StaticResource MaterialDesign.Brush.Error}"
+    $fileContents = $fileContents -replace "\{StaticResource\ MaterialDesignValidationErrorBrush}", "{StaticResource MaterialDesign.Brush.Error}"
     $fileContents = $fileContents -replace "\{StaticResource\ MaterialDesignBody}", "{StaticResource MaterialDesign.Brush.Foreground}"
     $fileContents = $fileContents -replace "\{StaticResource\ MaterialDesignBodyLight}", "{StaticResource MaterialDesign.Brush.ForegroundLight}"
     $fileContents = $fileContents -replace "\{StaticResource\ MaterialDesignCheckBoxOff}", "{StaticResource MaterialDesign.Brush.ForegroundLight}"
@@ -46,7 +48,6 @@ foreach ($file in $files) {
     $fileContents = $fileContents -replace "\{StaticResource\ MaterialDesignToolBackground}", "{StaticResource MaterialDesign.Brush.ToolBar.Item.Background}"
     $fileContents = $fileContents -replace "\{StaticResource\ MaterialDesignToolForeground}", "{StaticResource MaterialDesign.Brush.ToolBar.Item.Foreground}"
     $fileContents = $fileContents -replace "\{StaticResource\ MaterialDesignToolTipBackground}", "{StaticResource MaterialDesign.Brush.ToolTip.Background}"
-    $fileContents = $fileContents -replace "\{StaticResource\ MaterialDesignValidationErrorBrush}", "{StaticResource MaterialDesign.Brush.ValidationError}"
     if ($fileContents.Length -ne $fileLength) {
         Set-Content -Path $file -Value $fileContents -Encoding utf8BOM -NoNewline
     }

@@ -150,8 +150,8 @@
               <Setter TargetName="Graphic" Property="Opacity" Value="0.56" />
             </Trigger>
             <Trigger Property="Validation.HasError" Value="true">
-              <Setter TargetName="Graphic" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
-              <Setter TargetName="contentPresenter" Property="Control.Foreground" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
+              <Setter TargetName="Graphic" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.Error}" />
+              <Setter TargetName="contentPresenter" Property="Control.Foreground" Value="{DynamicResource MaterialDesign.Brush.Error}" />
             </Trigger>
             <Trigger SourceName="IconHost" Property="IsMouseOver" Value="True">
               <Setter TargetName="halo" Property="Opacity" Value="{x:Static wpf:Constants.InteractionHoverOpacity}" />
@@ -279,8 +279,8 @@
               <Setter TargetName="Graphic" Property="Opacity" Value="0.56" />
             </Trigger>
             <Trigger Property="Validation.HasError" Value="true">
-              <Setter TargetName="Graphic" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
-              <Setter TargetName="contentPresenter" Property="Control.Foreground" Value="{DynamicResource MaterialDesign.Brush.ValidationError}" />
+              <Setter TargetName="Graphic" Property="Fill" Value="{DynamicResource MaterialDesign.Brush.Error}" />
+              <Setter TargetName="contentPresenter" Property="Control.Foreground" Value="{DynamicResource MaterialDesign.Brush.Error}" />
             </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>

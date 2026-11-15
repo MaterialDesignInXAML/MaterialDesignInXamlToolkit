@@ -22,9 +22,12 @@ partial class ThemeTests
             </Style>
           </WrapPanel.Resources>
           <TextBlock Text="Background" Background="{StaticResource MaterialDesign.Brush.Background}" />
+          <TextBlock Text="Error" Background="{StaticResource MaterialDesign.Brush.Error}" />
           <TextBlock Text="Foreground" Background="{StaticResource MaterialDesign.Brush.Foreground}" />
           <TextBlock Text="ForegroundLight" Background="{StaticResource MaterialDesign.Brush.ForegroundLight}" />
-          <TextBlock Text="ValidationError" Background="{StaticResource MaterialDesign.Brush.ValidationError}" />
+          <TextBlock Text="Info" Background="{StaticResource MaterialDesign.Brush.Info}" />
+          <TextBlock Text="Success" Background="{StaticResource MaterialDesign.Brush.Success}" />
+          <TextBlock Text="Warning" Background="{StaticResource MaterialDesign.Brush.Warning}" />
           <TextBlock Text="Badged.DarkBackground" Background="{StaticResource MaterialDesign.Brush.Badged.DarkBackground}" />
           <TextBlock Text="Badged.DarkForeground" Background="{StaticResource MaterialDesign.Brush.Badged.DarkForeground}" />
           <TextBlock Text="Badged.LightBackground" Background="{StaticResource MaterialDesign.Brush.Badged.LightBackground}" />
@@ -111,11 +114,12 @@ partial class ThemeTests
           <TextBlock Text="ToggleButton.Switch.TrackOffBackground" Background="{StaticResource MaterialDesign.Brush.ToggleButton.Switch.TrackOffBackground}" />
           <TextBlock Text="ToolTip.Background" Background="{StaticResource MaterialDesign.Brush.ToolTip.Background}" />
           <TextBlock Text="MaterialDesignPaper" Background="{StaticResource MaterialDesignPaper}" />
+          <TextBlock Text="MaterialDesign.Brush.ValidationError" Background="{StaticResource MaterialDesign.Brush.ValidationError}" />
+          <TextBlock Text="MaterialDesignValidationErrorBrush" Background="{StaticResource MaterialDesignValidationErrorBrush}" />
           <TextBlock Text="MaterialDesignBody" Background="{StaticResource MaterialDesignBody}" />
           <TextBlock Text="MaterialDesignBodyLight" Background="{StaticResource MaterialDesignBodyLight}" />
           <TextBlock Text="MaterialDesignCheckBoxOff" Background="{StaticResource MaterialDesignCheckBoxOff}" />
           <TextBlock Text="MaterialDesignTextBoxBorder" Background="{StaticResource MaterialDesignTextBoxBorder}" />
-          <TextBlock Text="MaterialDesignValidationErrorBrush" Background="{StaticResource MaterialDesignValidationErrorBrush}" />
           <TextBlock Text="MaterialDesignFlatButtonClick" Background="{StaticResource MaterialDesignFlatButtonClick}" />
           <TextBlock Text="MaterialDesignFlatButtonRipple" Background="{StaticResource MaterialDesignFlatButtonRipple}" />
           <TextBlock Text="MaterialDesignSnackbarRipple" Background="{StaticResource MaterialDesignSnackbarRipple}" />
@@ -194,6 +198,11 @@ partial class ThemeTests
             await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesign.Brush.Background"));
         }
         {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Error\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesign.Brush.Error"));
+        }
+        {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Foreground\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesign.Brush.Foreground"));
@@ -204,9 +213,19 @@ partial class ThemeTests
             await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesign.Brush.ForegroundLight"));
         }
         {
-            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"ValidationError\"]");
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Info\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesign.Brush.ValidationError"));
+            await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesign.Brush.Info"));
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Success\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesign.Brush.Success"));
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Warning\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesign.Brush.Warning"));
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"Badged.DarkBackground\"]");
@@ -639,6 +658,16 @@ partial class ThemeTests
             await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesignPaper"));
         }
         {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesign.Brush.ValidationError\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesign.Brush.ValidationError"));
+        }
+        {
+            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignValidationErrorBrush\"]");
+            Color? textBlockBackground = await textBlock.GetBackgroundColor();
+            await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesignValidationErrorBrush"));
+        }
+        {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignBody\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesignBody"));
@@ -657,11 +686,6 @@ partial class ThemeTests
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignTextBoxBorder\"]");
             Color? textBlockBackground = await textBlock.GetBackgroundColor();
             await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesignTextBoxBorder"));
-        }
-        {
-            IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignValidationErrorBrush\"]");
-            Color? textBlockBackground = await textBlock.GetBackgroundColor();
-            await Assert.That(textBlockBackground).IsEqualTo(await GetResourceColor("MaterialDesignValidationErrorBrush"));
         }
         {
             IVisualElement<TextBlock> textBlock = await panel.GetElement<TextBlock>("[Text=\"MaterialDesignFlatButtonClick\"]");
@@ -942,9 +966,12 @@ partial class ThemeTests
     private static IEnumerable<string> GetBrushResourceNames()
     {
         yield return "MaterialDesign.Brush.Background";
+        yield return "MaterialDesign.Brush.Error";
         yield return "MaterialDesign.Brush.Foreground";
         yield return "MaterialDesign.Brush.ForegroundLight";
-        yield return "MaterialDesign.Brush.ValidationError";
+        yield return "MaterialDesign.Brush.Info";
+        yield return "MaterialDesign.Brush.Success";
+        yield return "MaterialDesign.Brush.Warning";
         yield return "MaterialDesign.Brush.Badged.DarkBackground";
         yield return "MaterialDesign.Brush.Badged.DarkForeground";
         yield return "MaterialDesign.Brush.Badged.LightBackground";
@@ -1034,11 +1061,12 @@ partial class ThemeTests
     private static IEnumerable<string> GetObsoleteBrushResourceNames()
     {
         yield return "MaterialDesignPaper";
+        yield return "MaterialDesign.Brush.ValidationError";
+        yield return "MaterialDesignValidationErrorBrush";
         yield return "MaterialDesignBody";
         yield return "MaterialDesignBodyLight";
         yield return "MaterialDesignCheckBoxOff";
         yield return "MaterialDesignTextBoxBorder";
-        yield return "MaterialDesignValidationErrorBrush";
         yield return "MaterialDesignFlatButtonClick";
         yield return "MaterialDesignFlatButtonRipple";
         yield return "MaterialDesignSnackbarRipple";

@@ -44,17 +44,6 @@
         ]
     },
     {
-        "name": "MaterialDesign.Brush.ValidationError",
-        "themeValues": {
-            "light": "#FFB00020",
-            "dark": "#FFCF6679"
-        },
-        "alternateKeys": [],
-        "obsoleteKeys": [
-            "MaterialDesignValidationErrorBrush"
-        ]
-    },
-    {
         "name": "MaterialDesign.Brush.Badged.DarkBackground",
         "themeValues": {
             "light": "Neutral100",
@@ -715,5 +704,44 @@
         "obsoleteKeys": [
             "MaterialDesignSelection"
         ]
+    },
+    {
+        "name": "MaterialDesign.Brush.Error",
+        "themeValues": {
+            "light": "#F44336",
+            "dark": "#FF3F5F"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": [
+            "MaterialDesign.Brush.ValidationError",
+            "MaterialDesignValidationErrorBrush"
+        ]
+    },
+    {
+        "name": "MaterialDesign.Brush.Warning",
+        "themeValues": {
+            "light": "#FF9800",
+            "dark": "#FFB545"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
+        "name": "MaterialDesign.Brush.Success",
+        "themeValues": {
+            "light": "#00C853",
+            "dark": "#3DCB6C"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
+    },
+    {
+        "name": "MaterialDesign.Brush.Info",
+        "themeValues": {
+            "light": "#2196F3",
+            "dark": "#4A86FF"
+        },
+        "alternateKeys": [],
+        "obsoleteKeys": []
     }
 ]

@@ -2,10 +2,11 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:sharedDomain="clr-namespace:MaterialDesignDemo.Shared.Domain;assembly=MaterialDesignDemo.Shared"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sharedDomain="clr-namespace:MaterialDesignDemo.Shared.Domain;assembly=MaterialDesignDemo.Shared"
+             xmlns:sharedButtons="clr-namespace:MaterialDesignDemo.Shared.Examples.Buttons;assembly=MaterialDesignDemo.Shared"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              d:DataContext="{d:DesignInstance sharedDomain:ButtonsViewModel}"
@@ -498,6 +499,10 @@
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
+    <sharedButtons:SemanticColoredButtonsExample/>
+
+    <Rectangle Style="{StaticResource PageSectionSeparator}" />
+
     <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Corner Radius" />
 
     <StackPanel Orientation="Horizontal">
@@ -969,7 +974,6 @@
         <smtx:XamlDisplay UniqueKey="split_button_3">
           <materialDesign:SplitButton VerticalAlignment="Bottom"
                                       Content="Split Button"
-                                     
                                       Style="{StaticResource MaterialDesignRaisedDarkSplitButton}">
             <materialDesign:SplitButton.PopupContent>
               <ContentControl ContentTemplate="{StaticResource PopupContent}" />

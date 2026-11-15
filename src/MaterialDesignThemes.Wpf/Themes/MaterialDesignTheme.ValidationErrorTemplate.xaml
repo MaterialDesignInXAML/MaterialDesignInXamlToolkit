@@ -18,7 +18,7 @@
                    Margin="2"
                    HorizontalAlignment="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.HorizontalAlignment)}"
                    FontSize="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.FontSize)}"
-                   Foreground="{DynamicResource MaterialDesign.Brush.ValidationError}"
+                   Foreground="{DynamicResource MaterialDesign.Brush.Error}"
                    Text="{Binding ErrorContent, Mode=OneTime}"
                    TextWrapping="Wrap"
                    UseLayoutRounding="false" />
@@ -34,7 +34,7 @@
                    Margin="0,2"
                    HorizontalAlignment="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.HorizontalAlignment)}"
                    FontSize="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.FontSize)}"
-                   Foreground="{DynamicResource MaterialDesign.Brush.ValidationError}"
+                   Foreground="{DynamicResource MaterialDesign.Brush.Error}"
                    Text="{Binding /ErrorContent, Mode=OneTime}"
                    TextWrapping="Wrap"
                    UseLayoutRounding="false" />
@@ -48,7 +48,7 @@
           <TextBlock Margin="0,2"
                      HorizontalAlignment="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.HorizontalAlignment)}"
                      FontSize="{Binding ElementName=Placeholder, Path=AdornedElement.(wpf:ValidationAssist.FontSize)}"
-                     Foreground="{DynamicResource MaterialDesign.Brush.ValidationError}"
+                     Foreground="{DynamicResource MaterialDesign.Brush.Error}"
                      Text="{Binding /ErrorContent, Mode=OneTime}"
                      TextWrapping="Wrap"
                      UseLayoutRounding="false" />
