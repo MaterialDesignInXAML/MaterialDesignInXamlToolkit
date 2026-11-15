@@ -156,4 +156,76 @@ ScrollViewer.VerticalScrollBarVisibility=""Visible"">
         // Assert
         await Wait.For(async () => await Assert.That(await listBox.GetIsKeyboardFocusWithin()).IsTrue());
     }
+
+    [Test]
+    [Description("Issue 4118")]
+    public async Task ListBoxesWithSameChoiceChipStyle_ShouldNotInterfereWithEachOther()
+    {
+        string[] listBoxStyles =
+        [
+            "MaterialDesignChoiceChipListBox",
+            "MaterialDesignChoiceChipPrimaryListBox",
+            "MaterialDesignChoiceChipSecondaryListBox",
+            "MaterialDesignChoiceChipOutlineListBox",
+            "MaterialDesignChoiceChipPrimaryOutlineListBox",
+            "MaterialDesignChoiceChipSecondaryOutlineListBox"
+        ];
+
+        string listBoxesXaml = string.Empty;
+        foreach (string listBoxStyle in listBoxStyles)
+        {
+            listBoxesXaml += CreateListBoxXaml(listBoxStyle);
+        }
+
+        var stackPanel = await LoadXaml<StackPanel>($$"""
+        <StackPanel Orientation="Vertical">
+            {{listBoxesXaml}}
+        </StackPanel>
+        """);
+
+        for (int i = 0; i < listBoxStyles.Length; i++)
+        {
+            var firstListBox = await stackPanel.GetElement<ListBox>($"/ListBox[{i * 2}]");
+            var secondListBox = await stackPanel.GetElement<ListBox>($"/ListBox[{(i * 2) + 1}]");
+
+            await Assert.That(await firstListBox.GetSelectedIndex()).IsEqualTo(1);
+            await Assert.That(await secondListBox.GetSelectedIndex()).IsEqualTo(1);
+
+            var firstListBoxEarth = await firstListBox.GetElement<ListBoxItem>("/ListBoxItem[2]");
+            await firstListBoxEarth.LeftClick();
+
+            await Wait.For(async () =>
+            {
+                await Assert.That(await firstListBox.GetSelectedIndex()).IsEqualTo(2);
+                await Assert.That(await secondListBox.GetSelectedIndex()).IsEqualTo(1);
+            });
+
+            var secondListBoxPluto = await secondListBox.GetElement<ListBoxItem>("/ListBoxItem[3]");
+            await secondListBoxPluto.LeftClick();
+
+            await Wait.For(async () =>
+            {
+                await Assert.That(await firstListBox.GetSelectedIndex()).IsEqualTo(2);
+                await Assert.That(await secondListBox.GetSelectedIndex()).IsEqualTo(3);
+            });
+        }
+
+        static string CreateListBoxXaml(string listBoxStyle)
+        {
+            return $$"""
+            <ListBox SelectedIndex="1" Style="{StaticResource {{listBoxStyle}}}">
+                <ListBoxItem Content="Mercury" />
+                <ListBoxItem Content="Venus" />
+                <ListBoxItem Content="Earth" />
+                <ListBoxItem Content="Pluto" />
+            </ListBox>
+            <ListBox SelectedIndex="1" Style="{StaticResource {{listBoxStyle}}}">
+                <ListBoxItem Content="Mercury" />
+                <ListBoxItem Content="Venus" />
+                <ListBoxItem Content="Earth" />
+                <ListBoxItem Content="Pluto" />
+            </ListBox>
+            """;
+        }
+    }
 }
