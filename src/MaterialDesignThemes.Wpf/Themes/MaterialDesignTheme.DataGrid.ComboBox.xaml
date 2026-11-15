@@ -57,7 +57,7 @@
                 <Condition Property="IsSelected" Value="False" />
                 <Condition Property="IsKeyboardFocused" Value="True" />
               </MultiTrigger.Conditions>
-              <Setter TargetName="Bd" Property="Background" Value="{DynamicResource MaterialDesign.Brush.TextBox.ComboBoxHover}" />
+              <Setter TargetName="Bd" Property="Background" Value="{DynamicResource MaterialDesign.Brush.DataGrid.ComboBoxHover}" />
             </MultiTrigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
