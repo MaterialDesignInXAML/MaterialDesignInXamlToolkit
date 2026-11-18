@@ -83,11 +83,21 @@ public class DialogHostTests
     [Description("Issue 3804")]
     public async Task CanShowDialogBeforeLoaded()
     {
-        // Do not raise Loaded: the host is only initialized at this point,
-        // which is the state a DialogHost declared in XAML is in when a
-        // Window's Loaded handler runs during startup. Show must find it.
+        // Simulate a DialogHost declared in XAML during window startup: the
+        // XAML loader initializes the host (BeginInit/EndInit) before the
+        // Window's Loaded handler runs, but the host itself has not raised
+        // Loaded yet. Show must find it via the registration done in
+        // OnInitialized.
+        // Merely constructing the host is not enough: FrameworkElement only
+        // raises Initialized on EndInit (or when added to a visual tree), so
+        // a bare `new DialogHost()` is never registered and Show throws
+        // "No loaded DialogHost instances."
         using ControlHost<DialogHost> host = new(x => x.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent)));
         DialogHost dialogHost = host.Content;
+        ((ISupportInitialize)dialogHost).BeginInit();
+        ((ISupportInitialize)dialogHost).EndInit();
+        await Assert.That(dialogHost.IsInitialized).IsTrue();
+
         var id = Guid.NewGuid();
         dialogHost.Identifier = id;
 
