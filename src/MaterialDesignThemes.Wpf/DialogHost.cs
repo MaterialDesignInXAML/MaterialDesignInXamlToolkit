@@ -1024,15 +1024,7 @@ public class DialogHost : ContentControl
 
     private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
     {
-        foreach (var weakRef in LoadedInstances.ToList())
-        {
-            if (weakRef.TryGetTarget(out DialogHost? dialogHost) && ReferenceEquals(dialogHost, this))
-            {
-                return;
-            }
-        }
-
-        LoadedInstances.Add(new WeakReference<DialogHost>(this));
+        RegisterInstance();
 
         if (IsOpen && _popup is { } popup)
         {
@@ -1042,6 +1034,30 @@ public class DialogHost : ContentControl
                 (popup as PopupEx)?.RefreshPosition();
             }
         }
+    }
+
+    /// <summary>
+    /// Registers the instance as soon as it is initialized, so that <see cref="Show(object, object?, DialogOpenedEventHandler?, DialogClosingEventHandler?, DialogClosedEventHandler?)"/>
+    /// can find it before the <see cref="FrameworkElement.Loaded"/> event fires (see issue 3804).
+    /// A dialog shown before load is opened once loading completes, via <see cref="OnLoaded"/>.
+    /// </summary>
+    protected override void OnInitialized(EventArgs e)
+    {
+        base.OnInitialized(e);
+        RegisterInstance();
+    }
+
+    private void RegisterInstance()
+    {
+        foreach (var weakRef in LoadedInstances.ToList())
+        {
+            if (weakRef.TryGetTarget(out DialogHost? dialogHost) && ReferenceEquals(dialogHost, this))
+            {
+                return;
+            }
+        }
+
+        LoadedInstances.Add(new WeakReference<DialogHost>(this));
     }
 
     [SecurityCritical]

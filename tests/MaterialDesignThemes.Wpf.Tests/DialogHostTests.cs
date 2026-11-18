@@ -80,6 +80,24 @@ public class DialogHostTests
     }
 
     [Test]
+    [Description("Issue 3804")]
+    public async Task CanShowDialogBeforeLoaded()
+    {
+        // Do not raise Loaded: the host is only initialized at this point,
+        // which is the state a DialogHost declared in XAML is in when a
+        // Window's Loaded handler runs during startup. Show must find it.
+        using ControlHost<DialogHost> host = new(x => x.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent)));
+        DialogHost dialogHost = host.Content;
+        var id = Guid.NewGuid();
+        dialogHost.Identifier = id;
+
+        object? result = await DialogHost.Show("Content", id,
+            new DialogOpenedEventHandler(((sender, args) => { args.Session.Close(42); })));
+        await Assert.That(result).IsEqualTo(42);
+        await Assert.That(dialogHost.IsOpen).IsFalse();
+    }
+
+    [Test]
     public async Task CanOpenDialogWithShowMethodAndCloseWithIsOpen()
     {
         using var host = CreateElement();
