@@ -1022,7 +1022,7 @@ public class DialogHost : ContentControl
         }
     }
 
-    private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
+    private void Register()
     {
         foreach (var weakRef in LoadedInstances.ToList())
         {
@@ -1033,6 +1033,11 @@ public class DialogHost : ContentControl
         }
 
         LoadedInstances.Add(new WeakReference<DialogHost>(this));
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
+    {
+        Register();
 
         if (IsOpen && _popup is { } popup)
         {
@@ -1042,6 +1047,12 @@ public class DialogHost : ContentControl
                 (popup as PopupEx)?.RefreshPosition();
             }
         }
+    }
+
+    protected override void OnInitialized(EventArgs e)
+    {
+        base.OnInitialized(e);
+        Register();
     }
 
     [SecurityCritical]

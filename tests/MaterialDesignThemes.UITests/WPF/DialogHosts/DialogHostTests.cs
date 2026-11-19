@@ -665,6 +665,18 @@ public class DialogHostTests : TestBase
         }
     }
 
+    [Test]
+    [DoesNotRequireInteraction]
+    [Description("Issue 3804")]
+    public async Task DialogHost_CanOpenDialog_FromWindowConstructor()
+    {
+        await App.InitializeWithMaterialDesign();
+        IWindow window = await App.CreateWindow<OpenDialogInConstructorWindow>();
+        var dialogHost = await window.GetElement<DialogHost>();
+
+        await Assert.That(await dialogHost.GetIsOpen()).IsTrue();
+    }
+
     private static object SetDialogHostStyle(DialogHost dialogHost, string styleName)
     {
         var style = (Style)dialogHost.FindResource(styleName);
