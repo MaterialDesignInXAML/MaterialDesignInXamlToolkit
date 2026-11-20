@@ -4,6 +4,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:domain="clr-namespace:MaterialDesignDemo.Domain"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:sharedCbs="clr-namespace:MaterialDesignDemo.Shared.Examples.CheckBoxExamples;assembly=MaterialDesignDemo.Shared"
+             xmlns:sharedRbs="clr-namespace:MaterialDesignDemo.Shared.Examples.RadioButtonExamples;assembly=MaterialDesignDemo.Shared"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
              d:DesignHeight="4096"
@@ -223,6 +225,8 @@
       </smtx:XamlDisplay>
     </WrapPanel>
 
+    <sharedRbs:ContentPlacementExample />
+
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
     <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Checkboxes" />
 
@@ -288,6 +292,8 @@
                   IsChecked="True" />
       </StackPanel>
     </smtx:XamlDisplay>
+
+    <sharedCbs:ContentPlacementExample />
 
     <Rectangle Style="{StaticResource PageSectionSeparator}" />
     <TextBlock Style="{StaticResource PageSectionTitleTextBlock}" Text="Switch" />
