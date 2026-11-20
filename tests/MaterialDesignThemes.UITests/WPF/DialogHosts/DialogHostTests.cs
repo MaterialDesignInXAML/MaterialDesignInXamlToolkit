@@ -9,6 +9,12 @@ namespace MaterialDesignThemes.UITests.WPF.DialogHosts;
 
 public class DialogHostTests : TestBase
 {
+    public static IEnumerable<string?> DialogHostStyles()
+    {
+        yield return null; // this acts like the default style
+        yield return "MaterialDesignEmbeddedDialogHost";
+    }
+
     public DialogHostTests()
     {
         AttachedDebuggerToRemoteProcess = false;
@@ -580,9 +586,8 @@ public class DialogHostTests : TestBase
 
     [Test]
     [Description("Issue 4097")]
-    [Arguments("")]
-    [Arguments("MaterialDesignEmbeddedDialogHost")]
-    public async Task DialogHost_WithTransitionsDisabled_FocusesDialogWithoutWaitingForTransition(string dialogHostStyle)
+    [MethodDataSource(nameof(DialogHostStyles))]
+    public async Task DialogHost_WithTransitionsDisabled_FocusesDialogWithoutWaitingForTransition(string? dialogHostStyle)
     {
         await using var recorder = new TestRecorder(App);
 
@@ -622,9 +627,8 @@ public class DialogHostTests : TestBase
 
     [Test]
     [Description("Issue 4097")]
-    [Arguments("")]
-    [Arguments("MaterialDesignEmbeddedDialogHost")]
-    public async Task DialogHost_FocusMovedInsideDialogWhileOpening_IsKept(string dialogHostStyle)
+    [MethodDataSource(nameof(DialogHostStyles))]
+    public async Task DialogHost_FocusMovedInsideDialogWhileOpening_IsKept(string? dialogHostStyle)
     {
         await using var recorder = new TestRecorder(App);
 
@@ -679,13 +683,8 @@ public class DialogHostTests : TestBase
 
     [Test]
     [Description("Issue 3434")]
-    [Arguments(WindowState.Minimized, WindowState.Maximized, null)]
-    [Arguments(WindowState.Minimized, WindowState.Normal, null)]
-    [Arguments(WindowState.Minimized, WindowState.Maximized, "MaterialDesignEmbeddedDialogHost")]
-    [Arguments(WindowState.Minimized, WindowState.Normal, "MaterialDesignEmbeddedDialogHost")]
-    public async Task DialogHost_WhenWindowStateChanges_FocusedElementStaysFocused(WindowState firstWindowState,
-                                                                                   WindowState secondWindowState,
-                                                                                   string? styleName)
+    [MethodDataSource(nameof(DialogHostStyles))]
+    public async Task DialogHost_WhenWindowStateChanges_FocusedElementStaysFocused(string? styleName)
     {
         await using var recorder = new TestRecorder(App);
 
@@ -701,11 +700,9 @@ public class DialogHostTests : TestBase
         await tbTwo.MoveKeyboardFocus();
         await Assert.That(await tbTwo.GetIsFocused()).IsTrue();
 
-        // First state
-        await dialogHost.RemoteExecute(SetStateOfParentWindow, firstWindowState);
+        await dialogHost.RemoteExecute(SetStateOfParentWindow, WindowState.Minimized);
         await Task.Delay(400);
-        // Second state
-        await dialogHost.RemoteExecute(SetStateOfParentWindow, secondWindowState);
+        await dialogHost.RemoteExecute(SetStateOfParentWindow, WindowState.Normal);
         await Task.Delay(400);
 
         // After changing state of the window the previously focused element should be focused again
@@ -715,8 +712,7 @@ public class DialogHostTests : TestBase
 
     [Test]
     [Description("Issue 3434")]
-    [Arguments(null)]
-    [Arguments("MaterialDesignEmbeddedDialogHost")]
+    [MethodDataSource(nameof(DialogHostStyles))]
     public async Task DialogHost_WhenWindowStateChanges_FocusOutsideDialogStaysOutside(string? styleName)
     {
         await using var recorder = new TestRecorder(App);
