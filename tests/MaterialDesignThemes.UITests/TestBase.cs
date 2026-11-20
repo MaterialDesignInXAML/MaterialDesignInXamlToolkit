@@ -62,7 +62,7 @@ public abstract class TestBase
         return await App.CreateWindowWithUserControl(userControlType);
     }
 
-    private static bool IsNonInteractiveTest()
+    internal static bool IsNonInteractiveTest()
         => TestContext.Current?.Metadata.TestDetails.GetAttributes<DoesNotRequireInteractionAttribute>().Any() == true;
 
     public Task<IApp> StartApp()

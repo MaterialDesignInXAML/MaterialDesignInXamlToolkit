@@ -24,7 +24,7 @@ public class XamlTestExecutor : ITestExecutor
 
             // In non-interactive tests we skip the input state check because non-interactive tests
             // run in parallel with interactive tests, which can change the global mouse/keyboard state
-            bool isNonInteractive = testMetadata.TestDetails.GetAttributes<DoesNotRequireInteractionAttribute>().Any();
+            bool isNonInteractive = TestBase.IsNonInteractiveTest();
             recorder.Success(skipInputStateCheck: isNonInteractive);
         }
         else
