@@ -7,6 +7,7 @@
     <Prefer32Bit Condition="'$(TargetFramework)' == 'net472'">true</Prefer32Bit>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
     <UseWPF>true</UseWPF>
+    <Version>1.0.7</Version>
     <SignAssembly>false</SignAssembly>
     <ApplicationManifest>App.manifest</ApplicationManifest>
 
@@ -17,6 +18,8 @@
     <VelopackPackId>Keboo.MDIX</VelopackPackId>
     <VelopackFlowServiceUrl>https://apiservice---dev.lemonsky-a48dfb07.eastus2.azurecontainerapps.io/</VelopackFlowServiceUrl>
     <VelopackPushOnPublish>true</VelopackPushOnPublish>
+    <VelopackBuildMsi>false</VelopackBuildMsi>
+    <!--<VelopackRuntimes>vcredist143-x64</VelopackRuntimes>-->
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,7 +32,7 @@
   <!--
   We do this because we are setting a custom Main method with the StartupObject property above.
   This prevents WPF from generating a default Main method.
-  -->
+  -->  
   <ItemGroup>
     <ApplicationDefinition Remove="App.xaml" />
     <Page Include="App.xaml" />
