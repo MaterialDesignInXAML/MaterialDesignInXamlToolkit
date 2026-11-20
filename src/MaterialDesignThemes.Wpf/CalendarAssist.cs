@@ -9,6 +9,36 @@ public enum CalendarOrientation
 }
 public static class CalendarAssist
 {
+    #region ReleaseMouseCaptureOnMouseUp
+    /// <summary>Identifies the attached property that releases a CalendarItem's mouse capture after a left mouse button release.</summary>
+    public static readonly DependencyProperty ReleaseMouseCaptureOnMouseUpProperty = DependencyProperty.RegisterAttached(
+        "ReleaseMouseCaptureOnMouseUp", typeof(bool), typeof(CalendarAssist), new PropertyMetadata(false, OnReleaseMouseCaptureOnMouseUpChanged));
+
+    /// <summary>Gets whether the CalendarItem releases its mouse capture on mouse-up.</summary>
+    public static bool GetReleaseMouseCaptureOnMouseUp(DependencyObject element) => (bool)element.GetValue(ReleaseMouseCaptureOnMouseUpProperty);
+    /// <summary>Sets whether the CalendarItem releases its mouse capture on mouse-up.</summary>
+    public static void SetReleaseMouseCaptureOnMouseUp(DependencyObject element, bool value) => element.SetValue(ReleaseMouseCaptureOnMouseUpProperty, value);
+
+    private static void OnReleaseMouseCaptureOnMouseUpChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is not CalendarItem calendarItem)
+            return;
+
+        if ((bool)e.NewValue)
+            calendarItem.AddHandler(Mouse.MouseUpEvent, new MouseButtonEventHandler(OnCalendarItemMouseUp), true);
+        else
+            calendarItem.RemoveHandler(Mouse.MouseUpEvent, new MouseButtonEventHandler(OnCalendarItemMouseUp));
+    }
+
+    private static void OnCalendarItemMouseUp(object sender, MouseButtonEventArgs e)
+    {
+        // Calendar's day button handles MouseUp, skipping CalendarItem.OnMouseUp.
+        // Release only this item's capture, after the day button has finished selection.
+        if (e.ChangedButton == MouseButton.Left && sender is CalendarItem { IsMouseCaptured: true } calendarItem)
+            calendarItem.ReleaseMouseCapture();
+    }
+    #endregion
+
     #region Header Visibility
     public static readonly DependencyProperty IsHeaderVisibleProperty = DependencyProperty.RegisterAttached(
         "IsHeaderVisible", typeof(bool), typeof(CalendarAssist), new PropertyMetadata(true));
