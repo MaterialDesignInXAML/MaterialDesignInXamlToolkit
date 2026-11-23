@@ -391,6 +391,35 @@ public class DialogHostTests : TestBase
     }
 
     [Test]
+    [Description("Issue 3804")]
+    [DoesNotRequireInteraction]
+    public async Task ShowDialogOnStartup_DialogIsOpenAfterWindowLaunches()
+    {
+        // The sample's constructor calls DialogHost.Show before the window
+        // is launched, mirroring a MainWindow that shows a dialog during
+        // app startup. Assert the dialog is open once the window launched.
+        IVisualElement<Grid> rootGrid = (await LoadUserControl<ShowDialogOnStartup>()).As<Grid>();
+
+        IVisualElement<DialogHost> dialogHost = await rootGrid.GetElement<DialogHost>("DialogHost");
+
+        await Wait.For(async () => await Assert.That(await dialogHost.GetIsOpen()).IsTrue());
+
+        await Wait.For(async () =>
+        {
+            var popupContent = await dialogHost.GetElement<Card>("PART_PopupContentElement");
+            await Assert.That(await popupContent.GetIsVisible()).IsTrue();
+        });
+
+        await dialogHost.RemoteExecute(CloseDialog);
+
+        static Task CloseDialog(DialogHost dialogHost)
+        {
+            dialogHost.IsOpen = false;
+            return Task.CompletedTask;
+        }
+    }
+
+    [Test]
     [Description("Issue 3094")]
     public async Task DialogHost_ChangesSelectedTabItem_DoesNotPerformTabChangeWhenRestoringFocus()
     {
