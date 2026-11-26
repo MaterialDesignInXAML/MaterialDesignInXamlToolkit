@@ -1,0 +1,44 @@
+<UserControl x:Class="MaterialDesignDemo.Shared.Examples.Alerts.AlertElevationExamples"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML">
+  <materialDesign:Card Padding="16">
+    <StackPanel>
+      <TextBlock Margin="0,0,0,8"
+                 Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                 Text="Elevation" />
+      <WrapPanel>
+        <WrapPanel.Resources>
+          <Style TargetType="smtx:XamlDisplay" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
+            <Setter Property="Margin" Value="0,0,16,8" />
+          </Style>
+        </WrapPanel.Resources>
+        <smtx:XamlDisplay UniqueKey="AlertExamples_ElevationDp0">
+          <materialDesign:Alert materialDesign:ElevationAssist.Elevation="Dp0"
+                                Content="Elevation Dp0"
+                                Severity="Error" />
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="AlertExamples_ElevationDp1">
+          <materialDesign:Alert materialDesign:ElevationAssist.Elevation="Dp1"
+                                Content="Elevation Dp1"
+                                Severity="Info" />
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="AlertExamples_ElevationDp4">
+          <materialDesign:Alert materialDesign:ElevationAssist.Elevation="Dp4"
+                                Content="Elevation Dp4"
+                                Severity="Success" />
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="AlertExamples_ElevationDp8">
+          <materialDesign:Alert Title="Warning"
+                                materialDesign:ElevationAssist.Elevation="Dp8"
+                                Content="Elevation Dp8"
+                                Severity="Warning" />
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="AlertExamples_ElevationNone">
+          <materialDesign:Alert materialDesign:ElevationAssist.Elevation="Dp4" Content="Elevation Dp4 without severity" />
+        </smtx:XamlDisplay>
+      </WrapPanel>
+    </StackPanel>
+  </materialDesign:Card>
+</UserControl>

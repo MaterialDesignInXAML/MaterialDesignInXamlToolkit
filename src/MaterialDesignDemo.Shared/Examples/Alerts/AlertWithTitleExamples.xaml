@@ -1,0 +1,43 @@
+<UserControl x:Class="MaterialDesignDemo.Shared.Examples.Alerts.AlertWithTitleExamples"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML">
+  <materialDesign:Card Padding="16">
+    <StackPanel>
+      <TextBlock Margin="0,0,0,8"
+                 Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                 Text="Title" />
+      <WrapPanel>
+        <WrapPanel.Resources>
+          <Style TargetType="smtx:XamlDisplay" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
+            <Setter Property="Margin" Value="0,0,16,8" />
+          </Style>
+        </WrapPanel.Resources>
+        <smtx:XamlDisplay UniqueKey="AlertExamples_TitleNone">
+          <materialDesign:Alert Title="Note" Content="This is an Alert with a neutral title." />
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="AlertExamples_TitleInfo">
+          <materialDesign:Alert Title="Info"
+                                Content="This is an info Alert with an informative title."
+                                Severity="Info" />
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="AlertExamples_TitleSuccess">
+          <materialDesign:Alert Title="Success"
+                                Content="This is a success Alert with an encouraging title."
+                                Severity="Success" />
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="AlertExamples_TitleWarning">
+          <materialDesign:Alert Title="Warning"
+                                Content="This is a warning Alert with a cautious title."
+                                Severity="Warning" />
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="AlertExamples_TitleError">
+          <materialDesign:Alert Title="Error"
+                                Content="This is an error Alert with a scary title."
+                                Severity="Error" />
+        </smtx:XamlDisplay>
+      </WrapPanel>
+    </StackPanel>
+  </materialDesign:Card>
+</UserControl>

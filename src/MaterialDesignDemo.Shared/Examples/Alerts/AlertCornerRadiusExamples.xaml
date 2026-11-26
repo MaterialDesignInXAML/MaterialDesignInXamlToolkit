@@ -1,0 +1,41 @@
+<UserControl x:Class="MaterialDesignDemo.Shared.Examples.Alerts.AlertCornerRadiusExamples"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML">
+  <materialDesign:Card Padding="16">
+    <StackPanel>
+      <TextBlock Margin="0,0,0,8"
+                 Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                 Text="Corner radius" />
+      <WrapPanel>
+        <WrapPanel.Resources>
+          <Style TargetType="smtx:XamlDisplay" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
+            <Setter Property="Margin" Value="0,0,16,8" />
+          </Style>
+        </WrapPanel.Resources>
+        <smtx:XamlDisplay UniqueKey="AlertExamples_CornerRadiusNone">
+          <materialDesign:Alert Content="No corner radius"
+                                CornerRadius="0"
+                                Severity="Info" />
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="AlertExamples_CornerRadiusLarge">
+          <materialDesign:Alert Content="Large corner radius"
+                                CornerRadius="16"
+                                Severity="Success" />
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="AlertExamples_CornerRadiusLarger">
+          <materialDesign:Alert Content="Larger corner radius"
+                                CornerRadius="32"
+                                Severity="Success" />
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="AlertExamples_CornerRadiusMixed">
+          <materialDesign:Alert Title="Warning"
+                                Content="Mixed corner radius"
+                                CornerRadius="16,0,16,0"
+                                Severity="Warning" />
+        </smtx:XamlDisplay>
+      </WrapPanel>
+    </StackPanel>
+  </materialDesign:Card>
+</UserControl>

@@ -16,6 +16,7 @@
       MaterialDesignTheme.Defaults.xaml
       in your App.xaml
     -->
+    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Alert.xaml" />
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Badged.xaml" />
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
     <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Chip.xaml" />
@@ -35,6 +36,7 @@
   </ResourceDictionary.MergedDictionaries>
 
   <!-- set up default styles for our custom Material Design in XAML Toolkit controls -->
+  <Style TargetType="{x:Type local:Alert}" BasedOn="{StaticResource MaterialDesignAlert}" />
   <Style TargetType="{x:Type local:Clock}" BasedOn="{StaticResource MaterialDesignClock}" />
   <Style TargetType="{x:Type local:Badged}" BasedOn="{StaticResource MaterialDesignBadge}" />
   <Style TargetType="{x:Type local:Card}" BasedOn="{StaticResource MaterialDesignElevatedCard}" />

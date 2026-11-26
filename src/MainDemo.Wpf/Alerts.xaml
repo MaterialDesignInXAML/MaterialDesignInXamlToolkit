@@ -1,0 +1,15 @@
+<UserControl x:Class="MaterialDesignDemo.Alerts"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sharedAlerts="clr-namespace:MaterialDesignDemo.Shared.Examples.Alerts;assembly=MaterialDesignDemo.Shared">
+  <StackPanel>
+    <TextBlock Margin="0,0,0,16"
+               Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+               Text="Alert" />
+    <sharedAlerts:AlertExamples />
+    <sharedAlerts:AlertWithTitleExamples Margin="0,16,0,0" />
+    <sharedAlerts:AlertCornerRadiusExamples Margin="0,16,0,0" />
+    <sharedAlerts:AlertElevationExamples Margin="0,16,0,0" />
+    <sharedAlerts:AlertCloseExamples Margin="0,16,0,0" />
+  </StackPanel>
+</UserControl>

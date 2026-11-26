@@ -256,6 +256,15 @@ public partial class MainWindowViewModel : ObservableObject
         };
 
         yield return new DemoItem(
+            "Alert",
+            typeof(Alerts),
+            [
+                DocumentationLink.DemoPageLink<Alerts>(),
+                DocumentationLink.StyleLink("Alert"),
+                DocumentationLink.ApiLink<Alert>()
+            ]);
+
+        yield return new DemoItem(
             "Icons",
             typeof(IconPack),
             [
