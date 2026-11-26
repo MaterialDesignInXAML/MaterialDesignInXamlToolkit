@@ -61,6 +61,7 @@
               <StackPanel HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                 <ContentPresenter x:Name="Title"
                                   Margin="0,0,0,4"
+                                  TextBlock.FontWeight="DemiBold"
                                   Content="{TemplateBinding Title}" />
                 <ContentPresenter x:Name="Content" />
               </StackPanel>
