@@ -8,33 +8,55 @@
       <TextBlock Margin="0,0,0,8"
                  Style="{StaticResource MaterialDesignHeadline6TextBlock}"
                  Text="Basic usage" />
-      <WrapPanel>
-        <WrapPanel.Resources>
+      <StackPanel>
+        <StackPanel.Resources>
           <Style TargetType="smtx:XamlDisplay" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
             <Setter Property="Margin" Value="0,0,16,8" />
           </Style>
-        </WrapPanel.Resources>
-        <smtx:XamlDisplay UniqueKey="AlertExamples_None">
-          <materialDesign:Alert Content="The reactor type is RBMK-1000" />
-        </smtx:XamlDisplay>
-        <smtx:XamlDisplay UniqueKey="AlertExamples_Info">
-          <materialDesign:Alert Content="The reactor was fired up successfully" Severity="Info" />
-        </smtx:XamlDisplay>
-        <smtx:XamlDisplay UniqueKey="AlertExamples_Success">
-          <materialDesign:Alert Content="The reactor is running at optimum temperature" Severity="Success" />
-        </smtx:XamlDisplay>
-        <smtx:XamlDisplay UniqueKey="AlertExamples_Warning">
-          <materialDesign:Alert Content="The reactor temperature exceeds the optimal range" Severity="Warning" />
-        </smtx:XamlDisplay>
-        <smtx:XamlDisplay UniqueKey="AlertExamples_Error">
-          <materialDesign:Alert Content="Meltdown is imminent" Severity="Error" />
-        </smtx:XamlDisplay>
-        <smtx:XamlDisplay UniqueKey="AlertExamples_CustomIcon">
-          <materialDesign:Alert Content="Custom icon"
-                                IconKind="Radioactive"
-                                Severity="Warning" />
-        </smtx:XamlDisplay>
-      </WrapPanel>
+        </StackPanel.Resources>
+        <WrapPanel>
+          <smtx:XamlDisplay UniqueKey="AlertExamples_None">
+            <materialDesign:Alert Content="The reactor type is RBMK-1000" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay UniqueKey="AlertExamples_Info">
+            <materialDesign:Alert Content="The reactor was fired up successfully" Severity="Info" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay UniqueKey="AlertExamples_Success">
+            <materialDesign:Alert Content="The reactor is running at optimum temperature" Severity="Success" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay UniqueKey="AlertExamples_Warning">
+            <materialDesign:Alert Content="The reactor temperature exceeds the optimal range" Severity="Warning" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay UniqueKey="AlertExamples_Error">
+            <materialDesign:Alert Content="Meltdown is imminent" Severity="Error" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay UniqueKey="AlertExamples_CustomIcon">
+            <materialDesign:Alert Content="Custom icon"
+                                  IconKind="Radioactive"
+                                  Severity="Warning" />
+          </smtx:XamlDisplay>
+        </WrapPanel>
+
+        <WrapPanel>
+          <smtx:XamlDisplay UniqueKey="AlertExamples_Multiline">
+            <materialDesign:Alert MaxWidth="300"
+                                  Content="The reactor core temperature has been rising steadily for the past hour. Please check the coolant pumps and control rods before continuing operation."
+                                  Severity="Info" />
+          </smtx:XamlDisplay>
+          <smtx:XamlDisplay UniqueKey="AlertExamples_CustomContent" VerticalAlignment="Center">
+            <materialDesign:Alert Severity="Error">
+              <StackPanel Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" Text="Control rods are stuck" />
+                <Button Margin="16,0,0,0"
+                        Content="SCRAM"
+                        Style="{StaticResource MaterialDesignFlatButton}" />
+              </StackPanel>
+            </materialDesign:Alert>
+          </smtx:XamlDisplay>
+        </WrapPanel>
+
+      </StackPanel>
+
     </StackPanel>
   </materialDesign:Card>
 </UserControl>
