@@ -19,7 +19,7 @@
                                 CloseClick="Alert_OnCloseClick"
                                 Content="Click the close icon to dismiss me"
                                 Severity="Info"
-                                ShowCloseIcon="True" />
+                                ShowCloseButton="True" />
         </smtx:XamlDisplay>
         <smtx:XamlDisplay UniqueKey="AlertExamples_CloseWarning">
           <materialDesign:Alert x:Name="WarningAlert"
@@ -27,7 +27,7 @@
                                 CloseClick="Alert_OnCloseClick"
                                 Content="This alert can be dismissed as well."
                                 Severity="Warning"
-                                ShowCloseIcon="True" />
+                                ShowCloseButton="True" />
         </smtx:XamlDisplay>
       </WrapPanel>
       <Button HorizontalAlignment="Left"

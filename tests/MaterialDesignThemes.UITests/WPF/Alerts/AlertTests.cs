@@ -76,9 +76,9 @@ public class AlertTests : TestBase
     [DoesNotRequireInteraction]
     [Arguments(false, Visibility.Collapsed)]
     [Arguments(true, Visibility.Visible)]
-    public async Task ShowCloseIcon_ControlsCloseButtonVisibility(bool showCloseIcon, Visibility expectedVisibility)
+    public async Task ShowCloseButton_ControlsCloseButtonVisibility(bool showCloseButton, Visibility expectedVisibility)
     {
-        IVisualElement<Alert> alert = await LoadXaml<Alert>($"""<materialDesign:Alert ShowCloseIcon="{showCloseIcon}" Content="Hello" />""");
+        IVisualElement<Alert> alert = await LoadXaml<Alert>($"""<materialDesign:Alert ShowCloseButton="{showCloseButton}" Content="Hello" />""");
         IVisualElement<Button> closeButton = await alert.GetElement<Button>(Alert.CloseButtonPartName);
 
         await Assert.That(await closeButton.GetVisibility()).IsEqualTo(expectedVisibility);
@@ -87,7 +87,7 @@ public class AlertTests : TestBase
     [Test]
     public async Task ClickCloseButton_RaisesCloseClick()
     {
-        IVisualElement<Alert> alert = await LoadXaml<Alert>("""<materialDesign:Alert Severity="Warning" ShowCloseIcon="True" Content="Hello" />""");
+        IVisualElement<Alert> alert = await LoadXaml<Alert>("""<materialDesign:Alert Severity="Warning" ShowCloseButton="True" Content="Hello" />""");
         IVisualElement<Button> closeButton = await alert.GetElement<Button>(Alert.CloseButtonPartName);
         var closeClickEvent = await alert.RegisterForEvent(nameof(Alert.CloseClick));
 

@@ -62,14 +62,14 @@ public class Alert : ContentControl
     /// <summary>
     /// Shows a close button; clicking it raises <see cref="CloseClick"/>. Hiding the alert is up to the handler.
     /// </summary>
-    public bool ShowCloseIcon
+    public bool ShowCloseButton
     {
-        get => (bool)GetValue(ShowCloseIconProperty);
-        set => SetValue(ShowCloseIconProperty, value);
+        get => (bool)GetValue(ShowCloseButtonProperty);
+        set => SetValue(ShowCloseButtonProperty, value);
     }
 
-    public static readonly DependencyProperty ShowCloseIconProperty =
-        DependencyProperty.Register(nameof(ShowCloseIcon), typeof(bool), typeof(Alert), new PropertyMetadata(false));
+    public static readonly DependencyProperty ShowCloseButtonProperty =
+        DependencyProperty.Register(nameof(ShowCloseButton), typeof(bool), typeof(Alert), new PropertyMetadata(false));
 
     [Category("Behavior")]
     public event RoutedEventHandler CloseClick

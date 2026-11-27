@@ -46,7 +46,7 @@
                       AutomationProperties.Name="Close"
                       DockPanel.Dock="Right"
                       Style="{StaticResource MaterialDesignIconForegroundButton}"
-                      Visibility="{TemplateBinding ShowCloseIcon, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}">
+                      Visibility="{TemplateBinding ShowCloseButton, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}">
                 <wpf:PackIcon Width="18"
                               Height="18"
                               HorizontalAlignment="Center"
