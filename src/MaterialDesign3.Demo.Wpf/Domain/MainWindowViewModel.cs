@@ -292,6 +292,17 @@ public partial class MainWindowViewModel : ViewModelBase
             unselectedIcon: PackIconKind.CardOutline);
 
         yield return new DemoItem(
+            "Alert",
+            typeof(Alerts),
+            [
+                DocumentationLink.DemoPageLink<Alerts>(),
+                DocumentationLink.StyleLink("Alert"),
+                DocumentationLink.ApiLink<Alert>()
+            ],
+            selectedIcon: PackIconKind.AlertCircle,
+            unselectedIcon: PackIconKind.AlertCircleOutline);
+
+        yield return new DemoItem(
             "Icon Pack",
             typeof(IconPack),
             [

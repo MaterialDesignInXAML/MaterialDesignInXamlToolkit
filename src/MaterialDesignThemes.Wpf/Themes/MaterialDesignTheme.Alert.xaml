@@ -1,0 +1,130 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf">
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+
+  <Style x:Key="MaterialDesignAlert" TargetType="{x:Type wpf:Alert}">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="IconKind" Value="{x:Static wpf:PackIconKind.NoteTextOutline}" />
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="Padding" Value="16,12" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type wpf:Alert}">
+          <Grid>
+            <AdornerDecorator x:Name="Shadow" CacheMode="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ShadowAssist.CacheMode)}">
+              <AdornerDecorator.OpacityMask>
+                <MultiBinding Converter="{x:Static converters:ShadowOpacityMaskConverter.Instance}">
+                  <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}" />
+                  <Binding Path="ActualHeight" RelativeSource="{RelativeSource TemplatedParent}" />
+                  <Binding Path="(wpf:ElevationAssist.Elevation)" RelativeSource="{RelativeSource TemplatedParent}" />
+                </MultiBinding>
+              </AdornerDecorator.OpacityMask>
+              <Border Background="{DynamicResource MaterialDesign.Brush.Card.Background}"
+                      CornerRadius="{TemplateBinding CornerRadius}"
+                      Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}}" />
+            </AdornerDecorator>
+            <Border Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}" />
+
+            <Border x:Name="Tint"
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    Opacity="0.14" />
+            <DockPanel Margin="{TemplateBinding Padding}">
+              <Button x:Name="PART_CloseButton"
+                      Width="24"
+                      Height="24"
+                      Margin="12,-2,-4,-2"
+                      VerticalAlignment="Center"
+                      AutomationProperties.Name="Close"
+                      DockPanel.Dock="Right"
+                      Style="{StaticResource MaterialDesignIconForegroundButton}"
+                      Visibility="{TemplateBinding ShowCloseButton, Converter={x:Static converters:BooleanToVisibilityConverter.CollapsedInstance}}">
+                <wpf:PackIcon Width="18"
+                              Height="18"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              Kind="Close" />
+              </Button>
+              <wpf:PackIcon x:Name="Icon"
+                            Width="20"
+                            Height="20"
+                            Margin="0,1,12,0"
+                            VerticalAlignment="Top"
+                            Kind="{Binding IconKind, RelativeSource={RelativeSource TemplatedParent}, TargetNullValue={x:Static wpf:PackIconKind.None}}" />
+              <StackPanel HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                <StackPanel.Resources>
+                  <DataTemplate DataType="{x:Type sys:String}">
+                    <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type wpf:Alert}}, Path=FontSize, FallbackValue=16}"
+                               Text="{Binding}"
+                               TextTrimming="CharacterEllipsis"
+                               TextWrapping="Wrap" />
+                  </DataTemplate>
+                </StackPanel.Resources>
+                <ContentPresenter x:Name="Title"
+                                  Margin="0,0,0,4"
+                                  Content="{TemplateBinding Title}"
+                                  TextBlock.FontWeight="DemiBold" />
+                <ContentPresenter x:Name="Content" />
+              </StackPanel>
+            </DockPanel>
+          </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="Title" Value="{x:Null}">
+              <Setter TargetName="Icon" Property="VerticalAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}" />
+              <Setter TargetName="PART_CloseButton" Property="VerticalAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}" />
+              <Setter TargetName="Title" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="wpf:ElevationAssist.Elevation" Value="Dp0">
+              <Setter TargetName="Shadow" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="Severity" Value="None">
+              <Setter TargetName="Tint" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="Severity" Value="Info">
+              <Setter TargetName="Tint" Property="Background" Value="{DynamicResource MaterialDesign.Brush.Info}" />
+            </Trigger>
+            <Trigger Property="Severity" Value="Success">
+              <Setter TargetName="Tint" Property="Background" Value="{DynamicResource MaterialDesign.Brush.Success}" />
+            </Trigger>
+            <Trigger Property="Severity" Value="Warning">
+              <Setter TargetName="Tint" Property="Background" Value="{DynamicResource MaterialDesign.Brush.Warning}" />
+            </Trigger>
+            <Trigger Property="Severity" Value="Error">
+              <Setter TargetName="Tint" Property="Background" Value="{DynamicResource MaterialDesign.Brush.Error}" />
+            </Trigger>
+            <Trigger Property="IconKind" Value="{x:Null}">
+              <Setter TargetName="Icon" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Style.Triggers>
+      <Trigger Property="Severity" Value="Info">
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Info}" />
+        <Setter Property="IconKind" Value="{x:Static wpf:PackIconKind.InformationOutline}" />
+      </Trigger>
+      <Trigger Property="Severity" Value="Success">
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Success}" />
+        <Setter Property="IconKind" Value="{x:Static wpf:PackIconKind.CheckCircleOutline}" />
+      </Trigger>
+      <Trigger Property="Severity" Value="Warning">
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Warning}" />
+        <Setter Property="IconKind" Value="{x:Static wpf:PackIconKind.AlertOutline}" />
+      </Trigger>
+      <Trigger Property="Severity" Value="Error">
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Error}" />
+        <Setter Property="IconKind" Value="{x:Static wpf:PackIconKind.AlertCircleOutline}" />
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+</ResourceDictionary>

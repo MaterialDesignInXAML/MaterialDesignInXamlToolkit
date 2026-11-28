@@ -1,0 +1,35 @@
+<UserControl x:Class="MaterialDesignDemo.Shared.Examples.Alerts.AlertForegroundExamples"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML">
+  <materialDesign:Card Padding="16">
+    <StackPanel>
+      <TextBlock Margin="0,0,0,8"
+                 Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                 Text="Custom foreground" />
+      <WrapPanel>
+        <WrapPanel.Resources>
+          <Style TargetType="smtx:XamlDisplay" BasedOn="{StaticResource {x:Type smtx:XamlDisplay}}">
+            <Setter Property="Margin" Value="0,0,16,8" />
+          </Style>
+        </WrapPanel.Resources>
+        <smtx:XamlDisplay UniqueKey="AlertExamples_ForegroundDefault">
+          <materialDesign:Alert Content="Default foreground"
+                                Severity="Error" />
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="AlertExamples_ForegroundBody">
+          <materialDesign:Alert Content="Body foreground, tint stays red"
+                                Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
+                                Severity="Error" />
+        </smtx:XamlDisplay>
+        <smtx:XamlDisplay UniqueKey="AlertExamples_ForegroundCustom">
+          <materialDesign:Alert Title="Warning"
+                                Content="Custom foreground, tint stays orange"
+                                Foreground="DarkSlateBlue"
+                                Severity="Warning" />
+        </smtx:XamlDisplay>
+      </WrapPanel>
+    </StackPanel>
+  </materialDesign:Card>
+</UserControl>
