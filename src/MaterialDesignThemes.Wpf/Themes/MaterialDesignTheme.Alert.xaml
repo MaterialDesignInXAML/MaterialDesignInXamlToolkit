@@ -10,7 +10,7 @@
   <Style x:Key="MaterialDesignAlert" TargetType="{x:Type wpf:Alert}">
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="Focusable" Value="False" />
-    <Setter Property="Foreground" Value="{Binding Severity, RelativeSource={RelativeSource Self}, Converter={x:Static converters:SeverityToBrushConverter.Instance}}" />
+    <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
     <Setter Property="HorizontalAlignment" Value="Left" />
     <Setter Property="IconKind" Value="{x:Static wpf:PackIconKind.NoteTextOutline}" />
     <Setter Property="IsTabStop" Value="False" />
@@ -97,19 +97,20 @@
     </Setter>
     <Setter Property="VerticalContentAlignment" Value="Center" />
     <Style.Triggers>
-      <Trigger Property="Severity" Value="None">
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
-      </Trigger>
       <Trigger Property="Severity" Value="Info">
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Info}" />
         <Setter Property="IconKind" Value="{x:Static wpf:PackIconKind.InformationOutline}" />
       </Trigger>
       <Trigger Property="Severity" Value="Success">
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Success}" />
         <Setter Property="IconKind" Value="{x:Static wpf:PackIconKind.CheckCircleOutline}" />
       </Trigger>
       <Trigger Property="Severity" Value="Warning">
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Warning}" />
         <Setter Property="IconKind" Value="{x:Static wpf:PackIconKind.AlertOutline}" />
       </Trigger>
       <Trigger Property="Severity" Value="Error">
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Error}" />
         <Setter Property="IconKind" Value="{x:Static wpf:PackIconKind.AlertCircleOutline}" />
       </Trigger>
     </Style.Triggers>

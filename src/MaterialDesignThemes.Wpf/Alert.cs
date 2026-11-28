@@ -2,6 +2,15 @@ using System.ComponentModel;
 
 namespace MaterialDesignThemes.Wpf;
 
+public enum Severity
+{
+    None,
+    Info,
+    Success,
+    Warning,
+    Error
+}
+
 /// <summary>
 /// Displays a short message, tinted with the semantic color matching its <see cref="Severity"/>.
 /// </summary>
