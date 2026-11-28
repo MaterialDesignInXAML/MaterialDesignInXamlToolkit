@@ -63,7 +63,6 @@
                 <StackPanel.Resources>
                   <DataTemplate DataType="{x:Type sys:String}">
                     <TextBlock FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type wpf:Alert}}, Path=FontSize, FallbackValue=16}"
-                               FontWeight="{Binding RelativeSource={RelativeSource AncestorType={x:Type wpf:Alert}}, Path=FontWeight, FallbackValue=Regular}"
                                Text="{Binding}"
                                TextTrimming="CharacterEllipsis"
                                TextWrapping="Wrap" />
