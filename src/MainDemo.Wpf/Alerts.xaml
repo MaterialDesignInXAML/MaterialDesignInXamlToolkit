@@ -9,6 +9,7 @@
     <sharedAlerts:AlertExamples />
     <sharedAlerts:AlertWithTitleExamples Margin="0,16,0,0" />
     <sharedAlerts:AlertCornerRadiusExamples Margin="0,16,0,0" />
+    <sharedAlerts:AlertForegroundExamples Margin="0,16,0,0" />
     <sharedAlerts:AlertElevationExamples Margin="0,16,0,0" />
     <sharedAlerts:AlertCloseExamples Margin="0,16,0,0" />
   </StackPanel>

@@ -41,6 +41,18 @@ public class AlertTests : TestBase
 
     [Test]
     [DoesNotRequireInteraction]
+    public async Task CustomForeground_DoesNotChangeTint()
+    {
+        IVisualElement<Alert> alert = await LoadXaml<Alert>("""<materialDesign:Alert Severity="Error" Foreground="Lime" Content="Hello" />""");
+        Color errorColor = await GetThemeColor("MaterialDesign.Brush.Error");
+        IVisualElement<Border> tint = await alert.GetElement<Border>("Tint");
+
+        await Assert.That(await alert.GetForegroundColor()).IsEqualTo(Colors.Lime);
+        await Assert.That(await tint.GetBackgroundColor()).IsEqualTo(errorColor);
+    }
+
+    [Test]
+    [DoesNotRequireInteraction]
     public async Task ExplicitIconKind_OverridesSeverityIcon()
     {
         IVisualElement<Alert> alert = await LoadXaml<Alert>("""<materialDesign:Alert Severity="Error" IconKind="Bell" Content="Hello" />""");

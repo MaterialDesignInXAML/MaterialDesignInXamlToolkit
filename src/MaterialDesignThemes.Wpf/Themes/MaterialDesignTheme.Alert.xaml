@@ -34,7 +34,6 @@
             <Border Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}" />
 
             <Border x:Name="Tint"
-                    Background="{TemplateBinding Foreground}"
                     CornerRadius="{TemplateBinding CornerRadius}"
                     Opacity="0.14" />
             <DockPanel Margin="{TemplateBinding Padding}">
@@ -87,6 +86,18 @@
             </Trigger>
             <Trigger Property="Severity" Value="None">
               <Setter TargetName="Tint" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="Severity" Value="Info">
+              <Setter TargetName="Tint" Property="Background" Value="{DynamicResource MaterialDesign.Brush.Info}" />
+            </Trigger>
+            <Trigger Property="Severity" Value="Success">
+              <Setter TargetName="Tint" Property="Background" Value="{DynamicResource MaterialDesign.Brush.Success}" />
+            </Trigger>
+            <Trigger Property="Severity" Value="Warning">
+              <Setter TargetName="Tint" Property="Background" Value="{DynamicResource MaterialDesign.Brush.Warning}" />
+            </Trigger>
+            <Trigger Property="Severity" Value="Error">
+              <Setter TargetName="Tint" Property="Background" Value="{DynamicResource MaterialDesign.Brush.Error}" />
             </Trigger>
             <Trigger Property="IconKind" Value="{x:Null}">
               <Setter TargetName="Icon" Property="Visibility" Value="Collapsed" />
